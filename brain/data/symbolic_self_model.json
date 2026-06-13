@@ -1,0 +1,90 @@
+{
+  "built_at": "2026-06-13T21:17:14.246705+00:00",
+  "knowledge_domains": {
+    "PLANNING": {
+      "rule_count": 2,
+      "mean_confidence": 0.79,
+      "mean_hits": 2669.5,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.593
+    },
+    "EMOTIONAL": {
+      "rule_count": 1,
+      "mean_confidence": 0.63,
+      "mean_hits": 33.0,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.473
+    },
+    "SOCIAL": {
+      "rule_count": 2,
+      "mean_confidence": 0.96,
+      "mean_hits": 4124.0,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.72
+    },
+    "TECHNICAL": {
+      "rule_count": 12,
+      "mean_confidence": 0.696,
+      "mean_hits": 3.92,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.409
+    },
+    "GENERAL": {
+      "rule_count": 5,
+      "mean_confidence": 0.62,
+      "mean_hits": 0.0,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.15,
+      "quality": 0.313
+    },
+    "COGNITIVE": {
+      "rule_count": 1,
+      "mean_confidence": 0.6,
+      "mean_hits": 0.0,
+      "prediction_error": 0.2891,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.11,
+      "quality": 0.259
+    }
+  },
+  "weak_areas": [
+    "COGNITIVE",
+    "GENERAL"
+  ],
+  "strong_areas": [
+    "SOCIAL"
+  ],
+  "rule_health": {
+    "total_rules": 23,
+    "active_rules": 23,
+    "tombstoned_rules": 0,
+    "mean_confidence": 0.703,
+    "pending_revisions": 0,
+    "grounding": {
+      "total_tracked": 0,
+      "mean_grounding": 0.5,
+      "well_grounded": 0,
+      "poorly_grounded": 0
+    }
+  },
+  "concept_coverage": [],
+  "causal_edges_total": 97,
+  "causal_by_domain": {
+    "GENERAL": 76,
+    "PLANNING": 9,
+    "TECHNICAL": 10,
+    "COGNITIVE": 2
+  },
+  "domain_error_rates": {
+    "COGNITIVE": 0.2891
+  }
+}

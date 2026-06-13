@@ -1,0 +1,62 @@
+[
+ {
+  "ts": 1781383719.455727,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1781383800.7499561,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781383989.4394329,
+  "stance": "disown",
+  "desire": "impasse_signal",
+  "statement": "I'm pulled by the feeling of being stuck, but I don't endorse being ruled by it."
+ },
+ {
+  "ts": 1781384196.39216,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781384340.01314,
+  "stance": "neutral",
+  "desire": "competence",
+  "statement": "I notice I'm drawn to being capable and effective; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781384416.528733,
+  "stance": "disown",
+  "desire": "impasse_signal",
+  "statement": "I'm pulled by the feeling of being stuck, but I don't endorse being ruled by it."
+ },
+ {
+  "ts": 1781384463.348901,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781384688.2868202,
+  "stance": "neutral",
+  "desire": "competence",
+  "statement": "I notice I'm drawn to being capable and effective; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781385000.011963,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1781385301.637314,
+  "stance": "disown",
+  "desire": "impasse_signal",
+  "statement": "I'm pulled by the feeling of being stuck, but I don't endorse being ruled by it."
+ }
+]

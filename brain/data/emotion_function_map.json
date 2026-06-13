@@ -1,0 +1,20 @@
+{
+  "impasse_signal": {
+    "dream_cycle": 0.8226855111111111
+  },
+  "uncertainty": {
+    "reflect_on_write_a_cognitive_function_or_tool_that_": 0.1
+  },
+  "risk_estimate": {
+    "search_own_files": 0.1
+  },
+  "motivation": {
+    "look_outward": 0.1
+  },
+  "confidence": {
+    "generate_intrinsic_goals": 0.4325
+  },
+  "exploration_drive": {
+    "dream_cycle": 0.1
+  }
+}

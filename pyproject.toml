@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orrin"
+version = "3.30.0"
+description = "Orrin — an autonomous cognitive agent (brain loop, goals/memory daemons, backend API)."
+requires-python = ">=3.10"
+dependencies = [
+    "prometheus_client",
+    "numpy",
+    "requests",
+    "beautifulsoup4",
+    "sentence-transformers",
+    "watchdog==6.0.0",
+    "openai>=1.40.0",
+    "python-dotenv>=1.0.1",
+    "psutil>=5.9",
+    # knowledge-graph entity extraction (optional — regex fallback if absent).
+    # After install: python -m spacy download en_core_web_sm
+    "spacy>=3.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+# ── Packaging note (Finding 5) ──────────────────────────────────────────────
+# This declares the project's dependencies and makes the top-level daemon
+# packages (goals, memory, reaper, backend, observability) and the `brain`
+# package itself pip-installable as a unit (`pip install -e .`).
+#
+# It does NOT fix the deeper issue Finding 5 describes: brain/'s subpackages
+# (cog_memory, cognition, utils, affect, think, agency, behavior, core,
+# embodiment, registry, symbolic, ...) are imported as bare top-level names
+# (e.g. `import utils.log`, not `brain.utils.log`), which only works because
+# main.py and pytest.ini (`pythonpath = . brain`) both prepend `brain/` onto
+# sys.path at startup. Making that installable cleanly requires collapsing
+# everything under one `orrin/` namespace with absolute imports — a
+# multi-day refactor of the same scope as Finding 1's ORRIN_loop
+# decomposition, deferred for the same reason (do it behind the test suite,
+# one phase at a time).
+[tool.setuptools]
+packages = ["backend", "brain", "goals", "memory", "observability", "reaper"]

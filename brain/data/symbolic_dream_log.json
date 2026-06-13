@@ -1,0 +1,2815 @@
+[
+  {
+    "timestamp": "2026-06-13T20:44:01.505362+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [intrinsic_goal] 'Write a cognitive function or tool that improves some",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.82): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.82,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.286): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.285): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.279): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743):",
+        "score": 0.285,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.35): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.35,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.348): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.421): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.427): [opinion formed]",
+        "score": 0.348,
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:44:54.815103+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [intrinsic_goal] 'Write a cognitive function or tool that improves some",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.82): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.82,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.286): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.285): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.279): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743):",
+        "score": 0.285,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.35): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.35,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.348): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.421): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.427): [opinion formed]",
+        "score": 0.348,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=3)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:45:38.495764+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [intrinsic_goal] 'Write a cognitive function or tool that improves some",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.82): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.82,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.286): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.285): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.279): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743):",
+        "score": 0.285,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.35): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.35,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.348): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.421): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.427): [opinion formed]",
+        "score": 0.348,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=4)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:46:51.234010+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [intrinsic_goal] 'Write a cognitive function or tool that improves some",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.82): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.82,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.35): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=1.0): [Incubation insight] [analogy/GENERAL] [IMPROVES, USES] Similar situation (score=0.743): [",
+        "score": 0.35,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.348): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.421): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.427): [opinion formed]",
+        "score": 0.348,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.398): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "score": 0.398,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.362): 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=5)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:48:02.482035+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=6)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=3)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:48:44.374880+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=8)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:50:18.345649+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=10)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=5)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "3c841c992534",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'introspective_planning' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d04362c09cce",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "29b5850e8b4a",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:50:58.718184+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=11)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=6)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "3c841c992534",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'introspective_planning' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d04362c09cce",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "29b5850e8b4a",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:51:42.867140+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=12)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=7)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "3c841c992534",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:52:29.994383+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.257): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.257,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=13)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=8)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:53:18.700779+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=15)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=10)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'uncertainty rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "c5473c141375",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "9d7db2b1b65d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:53:59.783454+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=16)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=11)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=2)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'uncertainty rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "c5473c141375",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "9d7db2b1b65d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:54:38.979062+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=17)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=12)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=3)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:55:55.159049+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt → rule: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=18)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=13)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=4)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "9d7db2b1b65d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:57:02.534085+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=20)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=15)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:57:49.999599+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.299): [intrinsic_goal] 'Write a structured account of what's stuck and why' (driven by output_producing): Review recent working memory and long memory for stuck point → rule: [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+        "score": 0.299,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account of what's stuck and why\". Recent cognitive actions: reflect_on_write_a_cognitive_function_or_tool_t",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream_cycle' (avg=0.75, n=5).",
+        "score": 0.265,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.259): [Self-Review 2026-06-13T20:48:41.343152Z] Accepted 186/400 Top picks: [('search_own_files', 58), ('reflect_on_write_a_cognitive_function_or_tool_that_', 53), ('",
+        "score": 0.259,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.284): 📝 Working memory summary: - emotional reflection: [symbolic] orrin_v3 (project): path=/Users/ricmassey/orrin_v3; language=Python [orrin, project, brain, v3, pyt",
+        "score": 0.284,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=21)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=16)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=6)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T20:59:19.322732+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=18)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'introspective_planning' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d04362c09cce",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "762372a81c1f",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:00:23.984839+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=23)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=19)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "762372a81c1f",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'look_outward' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "2c0b52d8a127",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_missed_goals' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "6fb1e4e4b7cb",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:01:07.855295+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=25)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=21)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'look_outward' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "2c0b52d8a127",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_missed_goals' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "6fb1e4e4b7cb",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "f571a2767de9",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:01:57.346377+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=26)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=22)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "f571a2767de9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal falls' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "04113fab285e",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "e40f5f53a405",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:02:35.101155+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=27)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=23)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal falls' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "04113fab285e",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "e40f5f53a405",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:03:14.027310+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=28)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=24)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:04:05.225607+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=29)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal falls' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "04113fab285e",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:04:50.588323+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=25)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "24b76d7c40b9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "f571a2767de9",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:05:34.359752+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=31)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=26)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:06:21.164823+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:07:07.530178+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=32)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=27)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:08:30.360200+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=33)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=28)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'search_own_files' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "f571a2767de9",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:09:19.211136+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=29)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'attempt_regulation' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "824ca7a46172",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:10:05.007392+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=31)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=7)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "ab8081239f12",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'attempt_regulation' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "824ca7a46172",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:10:42.745698+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=35)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=32)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'exploration_drive rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "b05f1c299ab4",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:11:28.003769+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=36)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=33)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'update_affect_state' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "9d7db2b1b65d",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'exploration_drive rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "b05f1c299ab4",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "fd550ec8882f",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:12:15.385698+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=37)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'exploration_drive rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "b05f1c299ab4",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'threat_level rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "fd550ec8882f",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:12:58.787579+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=38)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "29b5850e8b4a",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:13:36.059728+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'exploration_drive rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "b05f1c299ab4",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:14:12.705430+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=39)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=34)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'uncertainty rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d098ff69a88e",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:15:28.398500+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=41)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=35)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "3c841c992534",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'introspective_planning' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d04362c09cce",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal falls' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "04113fab285e",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_missed_goals' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "6fb1e4e4b7cb",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'uncertainty rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d098ff69a88e",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "baef81e0c38a",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:16:25.915966+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=42)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=36)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'dream_cycle' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92a85ae9f566",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'impasse_signal rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "baef81e0c38a",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "bb3c93d61622",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-13T21:17:13.389166+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.314): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.284): [Goal progress | cycle 30] Goal: \"Write a structured account",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.322): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.265): [self_review] High-reward functions worth sustaining: 'dream",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.345): 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently. (felt neutral) {symbolic_dream_insight}\nEvent types: symbol",
+        "score": 0.345,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=43)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_write_a_cognitive_function_or_tool_that' → 'risk_estimate rises' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "3c841c992534",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'metacog_analyze' → 'impasse_signal rises' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "bb3c93d61622",
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'reflect_on_think' → 'impasse_signal falls' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "392ae213d6f4",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  }
+]

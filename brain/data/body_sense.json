@@ -1,0 +1,14 @@
+{
+  "body_states": [
+    "heavy",
+    "strained",
+    "swelling"
+  ],
+  "vitals": {
+    "rss_mb": 826.84375,
+    "cpu_util": 1.032,
+    "fd_pct": 0.00019168853759765625
+  },
+  "dominant": "heavy",
+  "_stress_streak": 216
+}

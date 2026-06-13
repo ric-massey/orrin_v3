@@ -1,0 +1,697 @@
+{
+  "entities": {
+    "1ecc7dba8bb8": {
+      "id": "1ecc7dba8bb8",
+      "name": "Orrin",
+      "type": "AI",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "ai",
+        "self",
+        "agent",
+        "cognitive"
+      ],
+      "properties": {
+        "role": "self",
+        "version": "v3"
+      },
+      "confidence": 1.0,
+      "never_decay": true,
+      "first_seen": "2026-06-13T20:43:25.749956Z",
+      "last_updated": "2026-06-13T20:43:25.749956Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "36b8e8bc1bef": {
+      "id": "36b8e8bc1bef",
+      "name": "Ric Massey",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "ric",
+        "ricmassey",
+        "user",
+        "person",
+        "human",
+        "creator"
+      ],
+      "properties": {
+        "role": "creator",
+        "username": "ricmassey",
+        "home": "/Users/ricmassey"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-06-13T20:43:25.749956Z",
+      "last_updated": "2026-06-13T20:43:25.749956Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "6402c1d600cc": {
+      "id": "6402c1d600cc",
+      "name": "Rics-MacBook-Air-3.local",
+      "type": "tool",
+      "aliases": [],
+      "tags": [
+        "computer",
+        "machine",
+        "hardware",
+        "darwin"
+      ],
+      "properties": {
+        "os": "Darwin 24.5.0",
+        "arch": "arm64",
+        "hostname": "Rics-MacBook-Air-3.local",
+        "load_1m": "6.89",
+        "process_count": "467",
+        "disk_used_pct": "91",
+        "time_of_day": "evening"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-06-13T20:43:25.749956Z",
+      "last_updated": "2026-06-13T21:16:25.736866Z",
+      "source": "bootstrap",
+      "mentions": 44
+    },
+    "9220b4725352": {
+      "id": "9220b4725352",
+      "name": "orrin_v3",
+      "type": "project",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "project",
+        "brain",
+        "v3",
+        "python",
+        "ai",
+        "agent"
+      ],
+      "properties": {
+        "path": "/Users/ricmassey/orrin_v3",
+        "language": "Python"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-06-13T20:43:25.749956Z",
+      "last_updated": "2026-06-13T20:43:25.749956Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "d524605d0f85": {
+      "id": "d524605d0f85",
+      "name": "MacBook Air",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "macbook",
+        "air",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:43:25.750027Z",
+      "last_updated": "2026-06-13T20:43:25.750027Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "7a10f399752f": {
+      "id": "7a10f399752f",
+      "name": "afternoon",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "time",
+        "afternoon"
+      ],
+      "properties": {},
+      "confidence": 0.5704,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:53:19.439116Z",
+      "last_updated": "2026-06-13T20:53:19.439116Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "ca49ca4bb673": {
+      "id": "ca49ca4bb673",
+      "name": "CPU",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "cpu",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:53:19.440073Z",
+      "last_updated": "2026-06-13T20:53:19.440073Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "b6fba500be5b": {
+      "id": "b6fba500be5b",
+      "name": "Hacker News",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "news",
+        "organization",
+        "org",
+        "hacker"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.167195Z",
+      "last_updated": "2026-06-13T20:59:20.208066Z",
+      "source": "long_memory_heuristic",
+      "mentions": 4
+    },
+    "bce995d19424": {
+      "id": "bce995d19424",
+      "name": "Hacker News] Noise",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "news",
+        "org",
+        "hacker",
+        "noise"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.167256Z",
+      "last_updated": "2026-06-13T20:59:20.167256Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "b49408f4b1b7": {
+      "id": "b49408f4b1b7",
+      "name": "Census Bureau",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "org",
+        "bureau",
+        "census"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.167278Z",
+      "last_updated": "2026-06-13T20:59:20.167278Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "065df5519659": {
+      "id": "065df5519659",
+      "name": "Hacker News] Comments",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "comments",
+        "organization",
+        "news",
+        "org",
+        "hacker"
+      ],
+      "properties": {},
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.167297Z",
+      "last_updated": "2026-06-13T20:59:20.208158Z",
+      "source": "long_memory_heuristic",
+      "mentions": 3
+    },
+    "1077b6ae0d97": {
+      "id": "1077b6ae0d97",
+      "name": "GameBoy",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "org",
+        "gameboy"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.183646Z",
+      "last_updated": "2026-06-13T20:59:20.183646Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "ba3ae0fcc80f": {
+      "id": "ba3ae0fcc80f",
+      "name": "GameBoy Workboy",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "workboy",
+        "gameboy"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.183837Z",
+      "last_updated": "2026-06-13T20:59:20.183837Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "09d928666ac7": {
+      "id": "09d928666ac7",
+      "name": "Hacker News] Running DOS on Behringers",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "running",
+        "organization",
+        "news",
+        "org",
+        "hacker",
+        "dos",
+        "behringers"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.208108Z",
+      "last_updated": "2026-06-13T20:59:20.208108Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "d19db96779be": {
+      "id": "d19db96779be",
+      "name": "UNTRUSTED source",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "source",
+        "untrusted",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.208356Z",
+      "last_updated": "2026-06-13T20:59:20.208356Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "f9ef378bfe31": {
+      "id": "f9ef378bfe31",
+      "name": "DIY x86 Bios",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "x86",
+        "diy",
+        "bios",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.208375Z",
+      "last_updated": "2026-06-13T20:59:20.208375Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "15ab6327011e": {
+      "id": "15ab6327011e",
+      "name": "DIY",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "diy",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.208445Z",
+      "last_updated": "2026-06-13T20:59:20.208445Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "ffdf8c66d3c2": {
+      "id": "ffdf8c66d3c2",
+      "name": "Scratch",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "scratch"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-06-13T20:59:20.208545Z",
+      "last_updated": "2026-06-13T20:59:20.208545Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "9e65c5a2859c": {
+      "id": "9e65c5a2859c",
+      "name": "Banning",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "org",
+        "banning"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.862219Z",
+      "last_updated": "2026-06-13T21:00:24.862219Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "46ab578353b0": {
+      "id": "46ab578353b0",
+      "name": "Ted",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "ted",
+        "person"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.862257Z",
+      "last_updated": "2026-06-13T21:00:24.862845Z",
+      "source": "long_memory_heuristic",
+      "mentions": 4
+    },
+    "12f761765ac7": {
+      "id": "12f761765ac7",
+      "name": "Blog Recipes",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "recipes",
+        "person",
+        "blog"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.862290Z",
+      "last_updated": "2026-06-13T21:00:24.862290Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "c4a9438e08d9": {
+      "id": "c4a9438e08d9",
+      "name": "Last week",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "last",
+        "unknown",
+        "week",
+        "date"
+      ],
+      "properties": {},
+      "confidence": 0.5704,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.862311Z",
+      "last_updated": "2026-06-13T21:00:24.862311Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "dac1613353d2": {
+      "id": "dac1613353d2",
+      "name": "things",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "things"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.862774Z",
+      "last_updated": "2026-06-13T21:00:24.862854Z",
+      "source": "long_memory_heuristic",
+      "mentions": 2
+    },
+    "af02586509de": {
+      "id": "af02586509de",
+      "name": "https://desfontain.es",
+      "type": "AI",
+      "aliases": [],
+      "tags": [
+        "https",
+        "es",
+        "ai",
+        "desfontain"
+      ],
+      "properties": {},
+      "confidence": 0.4368,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.863435Z",
+      "last_updated": "2026-06-13T21:00:24.863435Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "0636aa7186f4": {
+      "id": "0636aa7186f4",
+      "name": "banning noise.html",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "html",
+        "unknown",
+        "banning",
+        "noise"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.863473Z",
+      "last_updated": "2026-06-13T21:00:24.863473Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "5e94aafac003": {
+      "id": "5e94aafac003",
+      "name": "Unite",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unite",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:00:24.863519Z",
+      "last_updated": "2026-06-13T21:00:24.863519Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    }
+  },
+  "relations": [
+    {
+      "id": "8a8529c0ceb4",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "is_a",
+      "target_id": "9220b4725352",
+      "target_name": "orrin_v3",
+      "confidence": 0.98,
+      "first_seen": "2026-06-13T20:43:25.749983Z",
+      "last_updated": "2026-06-13T21:17:14.269464Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "3ede940a9ae5",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "knows",
+      "target_id": "36b8e8bc1bef",
+      "target_name": "Ric Massey",
+      "confidence": 0.98,
+      "first_seen": "2026-06-13T20:43:25.750000Z",
+      "last_updated": "2026-06-13T21:17:14.269471Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "6b497533bd4b",
+      "source_id": "36b8e8bc1bef",
+      "source_name": "Ric Massey",
+      "relation": "created",
+      "target_id": "1ecc7dba8bb8",
+      "target_name": "Orrin",
+      "confidence": 0.98,
+      "first_seen": "2026-06-13T20:43:25.750010Z",
+      "last_updated": "2026-06-13T21:17:14.269478Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "8ce804a251dd",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "d524605d0f85",
+      "target_name": "MacBook Air",
+      "confidence": 0.98,
+      "first_seen": "2026-06-13T20:43:25.750041Z",
+      "last_updated": "2026-06-13T21:17:14.269484Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "5a0487e59c7a",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "6402c1d600cc",
+      "target_name": "Rics-MacBook-Air-3.local",
+      "confidence": 0.98,
+      "first_seen": "2026-06-13T20:43:25.750806Z",
+      "last_updated": "2026-06-13T21:16:25.740761Z",
+      "source": "environment"
+    },
+    {
+      "id": "3af66869a502",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "d86ea4377067",
+      "target_name": "56%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:53:19.440090Z",
+      "last_updated": "2026-06-13T20:53:19.440090Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "2e69e54f428a",
+      "source_id": "76471c40710a",
+      "source_name": "0.44",
+      "relation": "related_to",
+      "target_id": "21ab0656c435",
+      "target_name": "0.33",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:53:19.440203Z",
+      "last_updated": "2026-06-13T20:53:19.440203Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "4c4eee82b9b8",
+      "source_id": "bce995d19424",
+      "source_name": "Hacker News] Noise",
+      "relation": "related_to",
+      "target_id": "b49408f4b1b7",
+      "target_name": "Census Bureau",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:59:20.167853Z",
+      "last_updated": "2026-06-13T20:59:20.167853Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "c88141446e6f",
+      "source_id": "b6fba500be5b",
+      "source_name": "Hacker News",
+      "relation": "related_to",
+      "target_id": "1077b6ae0d97",
+      "target_name": "GameBoy",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:59:20.183720Z",
+      "last_updated": "2026-06-13T20:59:20.183720Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "eb10f75d1dcc",
+      "source_id": "d19db96779be",
+      "source_name": "UNTRUSTED source",
+      "relation": "ddx_with",
+      "target_id": "f9ef378bfe31",
+      "target_name": "DIY x86 Bios",
+      "confidence": 0.62,
+      "first_seen": "2026-06-13T20:59:20.208392Z",
+      "last_updated": "2026-06-13T20:59:20.208392Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "e5e2b67c65f6",
+      "source_id": "09d928666ac7",
+      "source_name": "Hacker News] Running DOS on Behringers",
+      "relation": "related_to",
+      "target_id": "15ab6327011e",
+      "target_name": "DIY",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:59:20.208456Z",
+      "last_updated": "2026-06-13T20:59:20.208456Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "0550227fc928",
+      "source_id": "15ab6327011e",
+      "source_name": "DIY",
+      "relation": "related_to",
+      "target_id": "065df5519659",
+      "target_name": "Hacker News] Comments",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T20:59:20.208465Z",
+      "last_updated": "2026-06-13T20:59:20.208465Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "6e72f23cf452",
+      "source_id": "46ab578353b0",
+      "source_name": "Ted",
+      "relation": "created",
+      "target_id": "dac1613353d2",
+      "target_name": "things",
+      "confidence": 0.69,
+      "first_seen": "2026-06-13T21:00:24.862784Z",
+      "last_updated": "2026-06-13T21:00:24.862859Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "f97959c26ada",
+      "source_id": "9e65c5a2859c",
+      "source_name": "Banning",
+      "relation": "related_to",
+      "target_id": "46ab578353b0",
+      "target_name": "Ted",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T21:00:24.863119Z",
+      "last_updated": "2026-06-13T21:00:24.863119Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "2bb60dac7911",
+      "source_id": "12f761765ac7",
+      "source_name": "Blog Recipes",
+      "relation": "related_to",
+      "target_id": "c4a9438e08d9",
+      "target_name": "Last week",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T21:00:24.863162Z",
+      "last_updated": "2026-06-13T21:00:24.863162Z",
+      "source": "long_memory_heuristic:cooc"
+    }
+  ],
+  "meta": {
+    "version": 1,
+    "last_updated": "2026-06-13T21:17:14.269542Z",
+    "last_consolidation": "2026-06-13T21:17:14.269540Z",
+    "entity_count": 26,
+    "relation_count": 15
+  }
+}

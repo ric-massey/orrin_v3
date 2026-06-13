@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.build/
+.dist/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+env/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Node/Electron 
+node_modules/
+dist/
+build/
+*.log
+
+# env files (never commit real secrets) — but DO ship the documented template.
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+
+# Advisory lock files (V3 stable-inode flock design keeps these; never commit)
+*.lock
+
+
+# Runtime telemetry & rolling logs (regenerated each run; not version-controlled state)
+brain/data/events.jsonl
+brain/data/trace.jsonl
+brain/data/evaluator_wal.jsonl
+brain/data/rule_firings.jsonl
+brain/data/activity_log.txt
+brain/data/error_log.txt
+brain/data/model_failures.txt
+brain/data/llm_prompt.txt
+brain/data/cognition_history.json
+brain/data/metacog_log.json
+brain/data/speech_log.json
+brain/data/reflection_log.json
+brain/data/regulation_log.json
+brain/data/attention_history.json
+
+# Native language organ artifacts — fetched corpus + model checkpoint (regenerated
+# by pretraining / continual learning; large binaries, not source).
+brain/data/language/
+
+# Snapshot / backup / export zips (artifacts, not source)
+*.zip
+
+# Old manual purge/backup dirs (artifacts, not source)
+/.backup_*/
+
+# --- Runtime mind-state artifacts (regenerated each run; not source/seed) ---
+# The repo ships a clean baseline seed (config + default .json state). The files
+# below are the volatile/personal/large runtime artifacts that accumulate while
+# Orrin runs — snapshots, rotated logs, notes, append-logs, and daemon WAL trees.
+brain/data/_archive/
+brain/data/rotated/
+brain/data/notes/
+brain/data/*.jsonl
+brain/data/*.txt
+
+# Background daemons' runtime state trees (WAL, snapshots, media — regenerated).
+/data/

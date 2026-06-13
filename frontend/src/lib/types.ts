@@ -1,0 +1,149 @@
+// Telemetry data contracts — mirror backend/server/schema.py.
+// Pure types + domain constants, kept separate from the runtime hook (telemetry.ts).
+
+export const LOOP_NODES = ["perceive", "reflect", "plan", "act"] as const;
+export type LoopNode = (typeof LOOP_NODES)[number];
+export type NodeStatus = "idle" | "active" | "done";
+export type LogLevel = "debug" | "info" | "warn" | "error" | "critical";
+
+export interface Affect {
+  valence: number;
+  arousal: number;
+  homeostasis: number;
+  extra: Record<string, number>;
+}
+
+export interface MemoryRecord {
+  id?: string;
+  op: "read" | "write";
+  store: string;
+  key: string;
+  summary: string;
+  salience?: number;
+  ts?: number;
+}
+
+export interface LogLine {
+  level: LogLevel;
+  source: string;
+  message: string;
+  ts?: number;
+}
+
+export interface MetricPoint {
+  t: number;
+  [k: string]: number;
+}
+
+export interface Goal {
+  id?: string;
+  title: string;
+  status: string;
+  tier?: string;
+  priority?: number | string | null;
+  tags?: string[];
+  steps_done?: number;
+  steps_total?: number;
+  current_step?: string | null;
+  active?: boolean;
+  serves?: string;
+  aspiration?: boolean;
+}
+
+/** One node in the cognitive map (a registered function). */
+export interface CatalogFn {
+  name: string;
+  subsystem: string;
+  file: string;
+  lineno: number;
+  endline?: number;
+  summary?: string;
+  kind?: string;
+  count?: number;
+  avg_reward?: number;
+}
+
+export interface FnEdge {
+  from: string;
+  to: string;
+  weight: number;
+}
+
+export interface FnCatalog {
+  functions: Record<string, CatalogFn>;
+  subsystems: Record<string, string[]>;
+  edges?: FnEdge[];
+}
+
+/** A recent firing of a cognitive function (drives the map's "active light"). */
+export interface FnEvent {
+  fn: string;
+  cycle?: number;
+  reward?: number | null;
+  /** Which cognitive lane ran it: "deliberate" (conscious slot) | "executive". */
+  lane?: string;
+}
+
+// ── Dual-process / Global Workspace (§19 Consciousness panel) ───────────────
+/** The single conscious content the Global Workspace broadcast this cycle. */
+export interface WorkspaceConscious {
+  content?: string;
+  source?: string;       // user · affect · signal · goal · monitor …
+  salience?: number;     // 0..1 competition winner score
+  kind?: string;         // breakthrough kind, when the winner came from the Monitor
+  wants?: string;        // route the Monitor asked the deliberate mind to take
+  ts?: number;
+}
+/** A candidate the Monitor offered to the workspace (it never seizes the slot).
+ *  `threshold` is the learned per-kind salience bias from §20.1 dismissal-
+ *  recalibration: <1.0 means this kind has been "crying wolf" and is being quieted. */
+export interface Breakthrough { kind: string; salience: number; wants?: string; threshold?: number }
+/** Dumb structural watchdog row — fires on stall regardless of the Monitor (I12). */
+export interface WatchdogRow { goal_id: string; cycles_since_advance: number; armed: boolean }
+/** The Executive lane's backgrounded plan-step advance (the "dribble"). */
+export interface ExecutiveSummary {
+  active_fn?: string | null;
+  active_step?: string | null;
+  goal_id?: string | null;
+  goal_title?: string;
+  last_result?: { goal?: string; step?: string; [k: string]: unknown } | null;
+  queue?: { goal_id?: string | null; title?: string; status?: string; next_step?: string | null }[];
+  /** Multi-goal pursuit: every goal the Executive advanced THIS tick (the
+   *  data behind the Sphere's K executive lights). */
+  advanced?: { goal_id?: string | null; goal_title?: string; step?: string | null; fn?: string | null; status?: string }[];
+  [k: string]: unknown;
+}
+export interface MonitorBlock { recent_breakthroughs?: Breakthrough[]; watchdog?: WatchdogRow[] }
+/** A ranked candidate that competed for the workspace this cycle (Fix 4 —
+ *  the "losers": what almost became conscious, and why this won). */
+export interface WorkspaceCandidate { source?: string; content?: string; salience?: number; kind?: string; wants?: string }
+export interface WorkspaceBlock { conscious?: WorkspaceConscious; candidates?: WorkspaceCandidate[] }
+
+/** The merged client-side view of the system, produced by useTelemetry(). */
+export interface TelemetryState {
+  activeNode: string | null;
+  nodeStatus: Record<string, NodeStatus>;
+  narrative: string;
+  affect: Affect;
+  memory: MemoryRecord[];
+  logs: LogLine[];
+  metrics: Record<string, number>;
+  metricSeries: MetricPoint[];
+  goals: Goal[];
+  cycle: number;
+  activeFn: string | null;
+  /** Lane of the deliberate "active light": deliberate | executive (Gap 3). */
+  activeLane: string | null;
+  fnRecent: FnEvent[];
+  // Dual-process §19 blocks (Consciousness panel). Null until first emitted.
+  executive: ExecutiveSummary | null;
+  monitor: MonitorBlock | null;
+  workspace: WorkspaceBlock | null;
+  /** Live interoceptive cost model, per executed function (Fix 7). */
+  interoception: Record<string, unknown> | null;
+  /** Free-form extras the loop pushes (e.g. awareness). */
+  extra: Record<string, unknown>;
+  connected: boolean;
+  source: "connecting" | "live" | "demo";
+  updatedAt: number;
+}

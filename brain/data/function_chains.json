@@ -1,0 +1,88 @@
+{
+  "reflect_on_write_a_cognitive_function_or_tool_that_": {
+    "dream_cycle": {
+      "count": 5,
+      "bonus": 0.25
+    },
+    "reflect_on_write_a_cognitive_function_or_tool_that_": {
+      "count": 6,
+      "bonus": 0.3
+    },
+    "seek_novelty": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "attempt_regulation": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "reflect_on_missed_goals": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "introspective_planning": {
+    "reflect_on_write_a_cognitive_function_or_tool_that_": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "reflect_on_missed_goals": {
+    "reflect_on_missed_goals": {
+      "count": 6,
+      "bonus": 0.3
+    },
+    "reflect_on_think": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "reflect_on_desire": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "reflect_on_think": {
+    "reflect_on_missed_goals": {
+      "count": 4,
+      "bonus": 0.2
+    }
+  },
+  "attempt_regulation": {
+    "look_outward": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "attempt_regulation": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "leave_note": {
+    "reflect_as_agents": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "reflect_as_agents": {
+    "reflect_as_agents": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "dream_cycle": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "dream_cycle": {
+    "search_own_files": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "seek_novelty": {
+    "reflect_on_missed_goals": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  }
+}

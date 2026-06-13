@@ -1,0 +1,31 @@
+{
+  "intrinsic-2026-06-13T20:25:20.750744+00:00::search_own_files": {
+    "hashes": [
+      "ece89620e33f6fc3",
+      "95a2935e022d9e99",
+      "89dabdf6513363cc",
+      "30bb4c04490f923e",
+      "b2e489c69f139e4d",
+      "3c74ca5ba8682857"
+    ],
+    "count": 6,
+    "barren_streak": 2,
+    "low_streak": 2,
+    "ts": 1781383412.956886
+  },
+  "intrinsic-2026-06-13T20:43:56.036453+00:00::search_own_files": {
+    "hashes": [
+      "25983421acd7c6aa",
+      "95a2935e022d9e99",
+      "89dabdf6513363cc",
+      "a08c246c25d61beb",
+      "16434fc608db7541",
+      "3c74ca5ba8682857",
+      "30bb4c04490f923e"
+    ],
+    "count": 7,
+    "barren_streak": 31,
+    "low_streak": 31,
+    "ts": 1781385375.227286
+  }
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "13025fc839",
+    "topic": "aspiration",
+    "view": "aspiration feels unresolved — specifically: \"Dream: In a labyrinth at dusk, [analogy/GENERAL] Similar situation (score=0.335): [autobiography] Since my last entry: [\".",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-06-13T21:03:56.448072+00:00",
+    "updated_at": "2026-06-13T21:03:56.448072+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "impasse_signal",
+    "formation_method": "rule_based",
+    "evidence": [
+      {
+        "ts": "2026-06-13T21:03:56.448072+00:00",
+        "kind": "observation",
+        "ref_id": "e149a70d-54df-472f-89d6-277f071f3ff4",
+        "direction": "for",
+        "weight": 0.25
+      }
+    ],
+    "salience": 0.3,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e149a70d-54df-472f-89d6-277f071f3ff4"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  }
+]

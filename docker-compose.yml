@@ -1,0 +1,37 @@
+# Orrin — one-command full stack.
+#
+#   docker compose up --build
+#
+# Then open the Face & Brain UI at http://localhost:5173
+# (telemetry API on :8800, Prometheus metrics on :9100).
+#
+# API keys are optional. To supply them, create a `.env` file next to this file:
+#   OPENAI_API_KEY=sk-...     # enables LLM tool calls (symbolic-only without it)
+#   SERPER_API_KEY=...        # enables live web search (local-file fallback without it)
+# Compose reads that `.env` automatically for the ${...} substitutions below.
+
+services:
+  orrin:
+    build: .
+    container_name: orrin
+    ports:
+      - "5173:5173"   # Face & Brain UI (Vite dev server)
+      - "8800:8800"   # telemetry API + WebSocket
+      - "9100:9100"   # Prometheus metrics
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      SERPER_API_KEY: ${SERPER_API_KEY:-}
+      ORRIN_BACKEND_HOST: "0.0.0.0"
+      ORRIN_UI: "1"
+      ORRIN_UI_OPEN: "0"
+    volumes:
+      # Named volumes — Docker seeds them from the image's tracked seed state on
+      # first run, then persists the live "mind" across restarts. (A bind mount
+      # would start EMPTY and wipe the seed state, so we use named volumes here.)
+      - orrin_brain_data:/app/brain/data
+      - orrin_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  orrin_brain_data:
+  orrin_data:

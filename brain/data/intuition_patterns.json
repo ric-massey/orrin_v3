@@ -1,0 +1,26 @@
+{
+  "COGNITIVE": {
+    "emotional": 0.6716,
+    "pattern": 0.6716,
+    "analysis": 0.6716,
+    "impasse": 0.6716,
+    "signal": 0.6716,
+    "exploration": 0.6716,
+    "drive": 0.6716,
+    "threat": 0.6716,
+    "level": 0.6716,
+    "unc": 0.6716
+  },
+  "GENERAL": {
+    "emotional": 0.5537,
+    "pattern": 0.5537,
+    "analysis": 0.5537,
+    "impasse": 0.5537,
+    "signal": 0.5537,
+    "exploration": 0.5537,
+    "drive": 0.5537,
+    "threat": 0.5537,
+    "level": 0.5537,
+    "unc": 0.5537
+  }
+}

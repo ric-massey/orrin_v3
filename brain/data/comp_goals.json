@@ -1,0 +1,41 @@
+[
+  {
+    "id": "intrinsic-2026-06-13T20:25:20.750744+00:00",
+    "title": "Understand history of written language more deeply",
+    "name": "Understand history of written language more deeply",
+    "kind": "generic",
+    "tier": "growth",
+    "priority": "NORMAL",
+    "tags": [
+      "intrinsic",
+      "world_knowledge"
+    ],
+    "spec": {
+      "description": "I know a little about history of written language. Use research_topic / wikipedia_search / fetch_and_read to learn something NEW about history of written language specifically, then write the new finding to long memory.",
+      "driven_by": "world_knowledge"
+    },
+    "next_action": null,
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "A new angle on history of written language was researched.",
+        "met": true,
+        "met_at": 1781382355.324136
+      },
+      {
+        "text": "A new fact about history of written language was written to long memory.",
+        "met": true,
+        "met_at": 1781382355.324136
+      }
+    ],
+    "serves": "Understand the world more deeply",
+    "completed_timestamp": "2026-06-13T20:43:56.002956Z",
+    "last_updated": "2026-06-13T20:43:56.002956Z",
+    "history": [
+      {
+        "event": "completed",
+        "timestamp": "2026-06-13T20:43:56.002956Z"
+      }
+    ]
+  }
+]

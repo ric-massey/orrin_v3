@@ -1,0 +1,16 @@
+# requirements.txt
+
+prometheus_client
+numpy
+requests
+beautifulsoup4
+sentence-transformers
+
+watchdog==6.0.0
+openai>=1.40.0
+python-dotenv>=1.0.1
+psutil>=5.9
+
+# knowledge-graph entity extraction (optional — regex fallback if absent).
+# After install: python -m spacy download en_core_web_sm
+spacy>=3.7

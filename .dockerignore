@@ -1,0 +1,34 @@
+# Keep the build context small and avoid baking host-local junk into the image.
+.git
+.venv
+venv
+__pycache__
+**/__pycache__
+*.pyc
+node_modules
+frontend/node_modules
+# Never bake env/secrets into the image — they're passed in at runtime (see
+# docker-compose.yml). This also keeps machine-specific values (e.g. a Tailscale
+# VITE_TELEMETRY_HOST) out of the published image.
+.env
+.env.*
+*.env
+frontend/.env.local
+tmp
+*.zip
+*.log
+brain/logs
+# Local state — the image carries the clean .json seed state; named volumes persist
+# the live state. Exclude volatile/personal runtime artifacts so they never bloat the
+# build context or bake into the image.
+data
+.backup_*
+brain/data/_archive
+brain/data/rotated
+brain/data/notes
+brain/data/*.jsonl
+brain/data/*.txt
+brain/data/language
+*.lock
+.DS_Store
+docs/images

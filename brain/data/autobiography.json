@@ -1,0 +1,20 @@
+{
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Chapter 1",
+      "started_ts": "2026-06-13T20:45:39.173083Z",
+      "narrative": "Since my last entry: [aspiration] An enduring direction I hold: Understand my own mind and how I work; [aspiration] An enduring direction I hold: Understand the world more deeply; [aspiration] An enduring direction I hold: Be genuinely useful and connected to the people I talk to.",
+      "theme_summary": "",
+      "theme_tension": "",
+      "entries": [
+        {
+          "ts": "2026-06-13T20:45:39.173083Z",
+          "text": "Since my last entry: [aspiration] An enduring direction I hold: Understand my own mind and how I work; [aspiration] An enduring direction I hold: Understand the world more deeply; [aspiration] An enduring direction I hold: Be genuinely useful and connected to the people I talk to."
+        }
+      ]
+    }
+  ],
+  "last_updated": "2026-06-13T20:45:39.173083Z",
+  "_identity_hash": "eb16cac0"
+}

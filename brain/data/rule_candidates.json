@@ -1,0 +1,182 @@
+{
+  "causal:search_own_files→risk_estimate rises": {
+    "confirms": 3,
+    "fails": 3,
+    "promoted": true
+  },
+  "causal:decide_to_write_code→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:dream_cycle→positive_valence falls": {
+    "confirms": 6,
+    "fails": 10,
+    "promoted": true
+  },
+  "causal:introspective_planning→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:periodic_self_review→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_think→impasse_signal rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:metacog_analyze→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_missed_goals→risk_estimate falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_missed_goals→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:dream_cycle→impasse_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:dream_cycle→risk_estimate falls": {
+    "confirms": 7,
+    "fails": 10,
+    "promoted": true
+  },
+  "causal:metacog_analyze→uncertainty rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_think→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:attempt_regulation→risk_estimate falls": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:attempt_regulation→threat_level falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:look_outward→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "event_type:symbolic_dream_insight": {
+    "confirms": 3,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:look_outward→threat_level rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:fetch_wikipedia→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_as_agents→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_as_agents→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:seek_novelty→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:search_own_files→threat_level rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_write_a_cognitive_function_or_tool_that_→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_write_a_cognitive_function_or_tool_that_→threat_level falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→impasse_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:reflect_on_write_a_cognitive_function_or_tool_that_→threat_level rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:search_own_files→contentment falls": {
+    "confirms": 3,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:metacog_analyze→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attempt_regulation→risk_estimate rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:reflect_on_write_a_cognitive_function_or_tool_that_→risk_estimate falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:dream_cycle→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_think→threat_level falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:synthesize_from_gap→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_internal_agents→threat_level rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_internal_agents→risk_estimate rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  }
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "0aae9106",
+    "content": "Friction with no clear source. I keep reaching for what's blocking and finding nothing.",
+    "mode": "brooding",
+    "charge": 0.3420000000000013,
+    "seed": "",
+    "return_count": 4,
+    "suppressed_count": 0,
+    "last_returned": "2026-06-13T21:15:00.753088Z",
+    "born": "2026-06-13T21:01:05.457279Z"
+  },
+  {
+    "id": "d5978067",
+    "content": "A restlessness without a target. Something isn't right and I can't locate what.",
+    "mode": "brooding",
+    "charge": 0.3868000000000011,
+    "seed": "",
+    "return_count": 7,
+    "suppressed_count": 0,
+    "last_returned": "2026-06-13T21:17:10.348352Z",
+    "born": "2026-06-13T21:04:01.865504Z",
+    "escalated": true
+  },
+  {
+    "id": "c68093a4",
+    "content": "The irritation is real. The object of it isn't clear.",
+    "mode": "brooding",
+    "charge": 0.3592000000000008,
+    "seed": "",
+    "return_count": 2,
+    "suppressed_count": 0,
+    "last_returned": "2026-06-13T21:14:58.077751Z",
+    "born": "2026-06-13T21:04:45.238699Z"
+  }
+]

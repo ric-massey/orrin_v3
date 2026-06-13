@@ -1,0 +1,28 @@
+[
+  {
+    "date": "2026-06-13",
+    "symbolic_hits": 169,
+    "llm_calls": 0,
+    "total_queries": 169,
+    "symbolic_ratio": 1.0,
+    "rules_total": 23,
+    "rules_added_today": 23,
+    "rules_forgotten_today": 38,
+    "crystallized_today": 0,
+    "avg_rule_conditions": 1.96,
+    "conflicts_detected": 0,
+    "meta_rule_applications": 36,
+    "meta_rule_applications_total": 250,
+    "top_meta_rule": "Prefer rules with more past hits",
+    "sub_goals_spawned": 0,
+    "experiments_run": 0,
+    "experiments_succeeded": 0,
+    "exploration_drive_mean": 0.0,
+    "avg_rule_depth": 5.0,
+    "avg_concept_depth": 0.0,
+    "causal_graph_density": 1.827,
+    "goal_completion_rate": 0.0,
+    "experiment_success_rate": 0.0,
+    "forgetting_rate_7d": 0
+  }
+]

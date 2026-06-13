@@ -1,0 +1,425 @@
+[
+  {
+    "action": "search_own_files",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 530,
+    "confidence": 0.669,
+    "first_seen": "2026-06-13T20:43:21.261733Z",
+    "last_seen": "2026-06-13T21:08:23.965988Z"
+  },
+  {
+    "action": "reflect_on_write_a_cognitive_function_or_tool_that_",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 476,
+    "confidence": 0.554,
+    "first_seen": "2026-06-13T20:45:36.078655Z",
+    "last_seen": "2026-06-13T21:17:10.665812Z"
+  },
+  {
+    "action": "dream_cycle",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 458,
+    "confidence": 0.503,
+    "first_seen": "2026-06-13T20:44:01.486286Z",
+    "last_seen": "2026-06-13T21:17:13.189707Z"
+  },
+  {
+    "action": "dream_cycle",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 431,
+    "confidence": 0.479,
+    "first_seen": "2026-06-13T20:44:54.798982Z",
+    "last_seen": "2026-06-13T21:12:15.252817Z"
+  },
+  {
+    "action": "reflect_on_write_a_cognitive_function_or_tool_that_",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 389,
+    "confidence": 0.462,
+    "first_seen": "2026-06-13T20:43:39.332473Z",
+    "last_seen": "2026-06-13T21:11:22.037149Z"
+  },
+  {
+    "action": "search_own_files",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 245,
+    "confidence": 0.339,
+    "first_seen": "2026-06-13T20:46:37.942993Z",
+    "last_seen": "2026-06-13T21:16:15.183207Z"
+  },
+  {
+    "action": "metacog_analyze",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 244,
+    "confidence": 0.55,
+    "first_seen": "2026-06-13T20:43:50.971716Z",
+    "last_seen": "2026-06-13T21:16:17.615055Z"
+  },
+  {
+    "action": "look_outward",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 218,
+    "confidence": 0.608,
+    "first_seen": "2026-06-13T20:43:32.929180Z",
+    "last_seen": "2026-06-13T21:03:54.275353Z"
+  },
+  {
+    "action": "metacog_analyze",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 197,
+    "confidence": 0.46,
+    "first_seen": "2026-06-13T20:43:53.330552Z",
+    "last_seen": "2026-06-13T21:16:20.274721Z"
+  },
+  {
+    "action": "reflect_on_missed_goals",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 190,
+    "confidence": 0.86,
+    "first_seen": "2026-06-13T20:49:49.684500Z",
+    "last_seen": "2026-06-13T21:15:18.988502Z"
+  },
+  {
+    "action": "attempt_regulation",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 142,
+    "confidence": 0.542,
+    "first_seen": "2026-06-13T20:55:39.110873Z",
+    "last_seen": "2026-06-13T21:08:18.594347Z"
+  },
+  {
+    "action": "reflect_on_think",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 135,
+    "confidence": 0.554,
+    "first_seen": "2026-06-13T20:49:34.189789Z",
+    "last_seen": "2026-06-13T21:15:22.162739Z"
+  },
+  {
+    "action": "attempt_regulation",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 117,
+    "confidence": 0.463,
+    "first_seen": "2026-06-13T20:55:36.706062Z",
+    "last_seen": "2026-06-13T21:09:16.640995Z"
+  },
+  {
+    "action": "reflect_on_think",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 111,
+    "confidence": 0.467,
+    "first_seen": "2026-06-13T20:44:41.803352Z",
+    "last_seen": "2026-06-13T21:11:25.100442Z"
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 110,
+    "confidence": 0.669,
+    "first_seen": "2026-06-13T20:43:37.219910Z",
+    "last_seen": "2026-06-13T20:43:44.295538Z"
+  },
+  {
+    "action": "introspective_planning",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 110,
+    "confidence": 0.602,
+    "first_seen": "2026-06-13T20:47:50.301155Z",
+    "last_seen": "2026-06-13T21:15:09.093757Z"
+  },
+  {
+    "action": "look_outward",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 73,
+    "confidence": 0.275,
+    "first_seen": "2026-06-13T20:55:45.533222Z",
+    "last_seen": "2026-06-13T21:00:21.389884Z"
+  },
+  {
+    "action": "introspective_planning",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 70,
+    "confidence": 0.437,
+    "first_seen": "2026-06-13T20:45:33.528011Z",
+    "last_seen": "2026-06-13T20:50:04.723218Z"
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 69,
+    "confidence": 0.736,
+    "first_seen": "2026-06-13T20:43:30.681108Z",
+    "last_seen": "2026-06-13T20:49:27.200945Z"
+  },
+  {
+    "action": "look_outward",
+    "context": "distressed",
+    "outcome": "failure",
+    "count": 67,
+    "confidence": 0.262,
+    "first_seen": "2026-06-13T20:56:52.871530Z",
+    "last_seen": "2026-06-13T21:03:56.481709Z"
+  },
+  {
+    "action": "reflect_as_agents",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 46,
+    "confidence": 0.75,
+    "first_seen": "2026-06-13T20:59:14.381641Z",
+    "last_seen": "2026-06-13T20:59:16.579465Z"
+  },
+  {
+    "action": "decide_to_write_code",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 38,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:43:55.673481Z",
+    "last_seen": "2026-06-13T20:43:55.673481Z"
+  },
+  {
+    "action": "propose_value_revision",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 38,
+    "confidence": 0.582,
+    "first_seen": "2026-06-13T20:58:32.139486Z",
+    "last_seen": "2026-06-13T21:17:08.000176Z"
+  },
+  {
+    "action": "reflect_on_growth_history",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 36,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:43:23.576214Z",
+    "last_seen": "2026-06-13T20:43:23.576214Z"
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 36,
+    "confidence": 0.333,
+    "first_seen": "2026-06-13T20:43:35.054782Z",
+    "last_seen": "2026-06-13T20:43:35.054782Z"
+  },
+  {
+    "action": "periodic_self_review",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 34,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:48:41.301326Z",
+    "last_seen": "2026-06-13T20:48:41.301326Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 33,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:50:00.291886Z",
+    "last_seen": "2026-06-13T20:50:00.291886Z"
+  },
+  {
+    "action": "propose_value_revision",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 33,
+    "confidence": 0.507,
+    "first_seen": "2026-06-13T20:50:02.561612Z",
+    "last_seen": "2026-06-13T20:50:02.561612Z"
+  },
+  {
+    "action": "metacog_monitor",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 29,
+    "confidence": 0.655,
+    "first_seen": "2026-06-13T20:53:11.817015Z",
+    "last_seen": "2026-06-13T20:53:11.817015Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "distressed",
+    "outcome": "failure",
+    "count": 25,
+    "confidence": 0.446,
+    "first_seen": "2026-06-13T20:56:55.332844Z",
+    "last_seen": "2026-06-13T20:56:55.332844Z"
+  },
+  {
+    "action": "dream_cycle",
+    "context": "distressed",
+    "outcome": "failure",
+    "count": 25,
+    "confidence": 0.065,
+    "first_seen": "2026-06-13T20:57:02.450469Z",
+    "last_seen": "2026-06-13T20:57:02.450469Z"
+  },
+  {
+    "action": "fetch_wikipedia",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 23,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:58:36.276968Z",
+    "last_seen": "2026-06-13T20:58:36.276968Z"
+  },
+  {
+    "action": "read_rss",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 23,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T20:58:54.320553Z",
+    "last_seen": "2026-06-13T20:58:54.320553Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 23,
+    "confidence": 0.427,
+    "first_seen": "2026-06-13T20:59:11.961243Z",
+    "last_seen": "2026-06-13T20:59:11.961243Z"
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 22,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:00:03.849106Z",
+    "last_seen": "2026-06-13T21:00:03.849106Z"
+  },
+  {
+    "action": "seek_novelty",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 22,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:00:11.638393Z",
+    "last_seen": "2026-06-13T21:00:11.638393Z"
+  },
+  {
+    "action": "reflect_on_desire",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 22,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:00:16.499148Z",
+    "last_seen": "2026-06-13T21:00:16.499148Z"
+  },
+  {
+    "action": "reflect_on_effectiveness",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 22,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:00:19.039777Z",
+    "last_seen": "2026-06-13T21:00:19.039777Z"
+  },
+  {
+    "action": "detect_tensions",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 20,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:01:47.943397Z",
+    "last_seen": "2026-06-13T21:01:47.943397Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 17,
+    "confidence": 0.4,
+    "first_seen": "2026-06-13T21:03:49.621755Z",
+    "last_seen": "2026-06-13T21:03:49.621755Z"
+  },
+  {
+    "action": "reflect_on_write_a_cognitive_function_or_tool_that_",
+    "context": "distressed",
+    "outcome": "failure",
+    "count": 17,
+    "confidence": 0.06,
+    "first_seen": "2026-06-13T21:03:59.383458Z",
+    "last_seen": "2026-06-13T21:03:59.383458Z"
+  },
+  {
+    "action": "read_a_book",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 12,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:07:54.616831Z",
+    "last_seen": "2026-06-13T21:07:54.616831Z"
+  },
+  {
+    "action": "synthesize_from_gap",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 7,
+    "confidence": 0.667,
+    "first_seen": "2026-06-13T21:12:08.150979Z",
+    "last_seen": "2026-06-13T21:12:08.150979Z"
+  },
+  {
+    "action": "reflect_on_internal_agents",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 7,
+    "confidence": 0.5,
+    "first_seen": "2026-06-13T21:12:10.485208Z",
+    "last_seen": "2026-06-13T21:12:10.485208Z"
+  },
+  {
+    "action": "reflect_on_internal_agents",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 7,
+    "confidence": 0.5,
+    "first_seen": "2026-06-13T21:12:13.064870Z",
+    "last_seen": "2026-06-13T21:12:13.064870Z"
+  },
+  {
+    "action": "reflect_on_missed_goals",
+    "context": "distressed",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.182,
+    "first_seen": "2026-06-13T21:15:25.050032Z",
+    "last_seen": "2026-06-13T21:15:25.050032Z"
+  },
+  {
+    "action": "metacog_monitor",
+    "context": "distressed",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.5,
+    "first_seen": "2026-06-13T21:16:22.857109Z",
+    "last_seen": "2026-06-13T21:16:22.857109Z"
+  }
+]

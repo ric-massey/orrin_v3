@@ -1,0 +1,10 @@
+{
+  "COGNITIVE": {
+    "accuracy": 0.9251,
+    "total": 228.0,
+    "correct": 162.5,
+    "symbolic_total": 0,
+    "reliability": 0.7109,
+    "last_updated": "2026-06-13T21:17:04.816232+00:00"
+  }
+}

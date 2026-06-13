@@ -1,0 +1,160 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-06-13T20:43:56.210412Z",
+    "last_updated": "2026-06-13T20:43:56.210418Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [
+      {
+        "title": "Write a structured account of what's stuck and why",
+        "name": "Write a structured account of what's stuck and why",
+        "status": "in_progress",
+        "source": "commitment",
+        "driven_by": "will",
+        "timestamp": "2026-06-13T20:43:56.210406Z",
+        "last_updated": "2026-06-13T21:17:00.241690Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-06-13T20:43:56.210406Z"
+          }
+        ],
+        "id": "intrinsic-2026-06-13T20:43:56.036453+00:00",
+        "kind": "generic",
+        "tier": "core",
+        "priority": "NORMAL",
+        "tags": [
+          "intrinsic",
+          "output_producing"
+        ],
+        "spec": {
+          "description": "Review recent working memory and long memory for stuck points. Name the obstacle specifically and write it as a note Ric could read.",
+          "driven_by": "output_producing"
+        },
+        "next_action": null,
+        "milestones": [
+          {
+            "text": "Recent memory was scanned for blocking patterns.",
+            "met": true,
+            "met_at": 1781384075.5538812
+          },
+          {
+            "text": "The specific obstacle was written as a readable note.",
+            "met": false,
+            "met_at": null
+          }
+        ],
+        "serves": "Make things — produce work that didn't exist before",
+        "plan": [
+          {
+            "step": "Gather context relevant to Write a structured account of what's stuck and why",
+            "status": "pending",
+            "generated_at": "2026-06-13T21:17:00.241690Z"
+          },
+          {
+            "step": "Reflect on what was found about Write a structured account of what's stuck and why and how it bears on the goal",
+            "status": "pending",
+            "generated_at": "2026-06-13T21:17:00.241690Z"
+          },
+          {
+            "step": "Write a concrete next action to working memory",
+            "status": "pending",
+            "generated_at": "2026-06-13T21:17:00.241690Z"
+          }
+        ],
+        "_step_attempts": {},
+        "_completion_attempts": 1
+      }
+    ]
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-06-13T20:43:18.480812+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-06-13T20:43:18.480812+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 1,
+    "progress": 0.05,
+    "recent_contributions": [
+      "Understand history of written language more deeply"
+    ]
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-06-13T20:43:18.480812+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-06-13T20:43:18.480812+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "progress": 0.0,
+    "recent_contributions": []
+  }
+]

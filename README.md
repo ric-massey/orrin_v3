@@ -312,13 +312,22 @@ self-model, relationships, dreams, and a thought stream.
 ## Running with Docker
 
 If you'd rather not install Python, Node, PyTorch, and the embedding models on your host,
-the repo ships a `Dockerfile` and `docker-compose.yml` that bundle the whole stack:
+the repo ships a `Dockerfile` and `docker-compose.yml` that bundle the whole stack.
+
+**Quickest — pull the prebuilt image (no build):** a multi-arch image (amd64 + arm64) is
+published to GitHub Container Registry, so this works on Intel/AMD and Apple-Silicon/ARM alike:
+
+```bash
+docker compose pull && docker compose up    # pulls ghcr.io/ric-massey/orrin_v3:latest
+```
+
+**Or build it yourself** (always works, builds natively for your machine):
 
 ```bash
 docker compose up --build
 ```
 
-Then open the Face & Brain UI at **http://localhost:5173** (telemetry API on `:8800`,
+Either way, open the Face & Brain UI at **http://localhost:5173** (telemetry API on `:8800`,
 Prometheus metrics on `:9100`). That's the entire system — brain loop, daemons, backend,
 and UI — running in one container without touching your local environment.
 

@@ -12,6 +12,10 @@
 
 services:
   orrin:
+    # Prefer the prebuilt multi-arch image (amd64 + arm64) — `docker compose pull`
+    # grabs it so you don't have to build. `build: .` is the fallback for
+    # `docker compose up --build` (builds natively for your machine).
+    image: ghcr.io/ric-massey/orrin_v3:latest
     build: .
     container_name: orrin
     ports:

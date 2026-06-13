@@ -1,10 +1,10 @@
 {
-  "built_at": "2026-06-13T21:17:14.246705+00:00",
+  "built_at": "2026-06-13T23:24:41.791460+00:00",
   "knowledge_domains": {
     "PLANNING": {
       "rule_count": 2,
       "mean_confidence": 0.79,
-      "mean_hits": 2669.5,
+      "mean_hits": 2827.0,
       "prediction_error": 0.5,
       "abstraction_count": 0,
       "action_credit_bonus": 0.0,
@@ -12,30 +12,30 @@
     },
     "EMOTIONAL": {
       "rule_count": 1,
-      "mean_confidence": 0.63,
-      "mean_hits": 33.0,
+      "mean_confidence": 0.455,
+      "mean_hits": 75.0,
       "prediction_error": 0.5,
       "abstraction_count": 0,
       "action_credit_bonus": 0.0,
-      "quality": 0.473
+      "quality": 0.341
     },
     "SOCIAL": {
       "rule_count": 2,
-      "mean_confidence": 0.96,
-      "mean_hits": 4124.0,
+      "mean_confidence": 0.552,
+      "mean_hits": 4319.0,
       "prediction_error": 0.5,
       "abstraction_count": 0,
       "action_credit_bonus": 0.0,
-      "quality": 0.72
+      "quality": 0.414
     },
     "TECHNICAL": {
-      "rule_count": 12,
+      "rule_count": 13,
       "mean_confidence": 0.696,
-      "mean_hits": 3.92,
+      "mean_hits": 7.46,
       "prediction_error": 0.5,
       "abstraction_count": 0,
       "action_credit_bonus": 0.0,
-      "quality": 0.409
+      "quality": 0.522
     },
     "GENERAL": {
       "rule_count": 5,
@@ -50,25 +50,24 @@
       "rule_count": 1,
       "mean_confidence": 0.6,
       "mean_hits": 0.0,
-      "prediction_error": 0.2891,
+      "prediction_error": 0.3017,
       "abstraction_count": 0,
       "action_credit_bonus": 0.11,
-      "quality": 0.259
+      "quality": 0.257
     }
   },
   "weak_areas": [
     "COGNITIVE",
-    "GENERAL"
+    "GENERAL",
+    "EMOTIONAL"
   ],
-  "strong_areas": [
-    "SOCIAL"
-  ],
+  "strong_areas": [],
   "rule_health": {
-    "total_rules": 23,
-    "active_rules": 23,
+    "total_rules": 24,
+    "active_rules": 24,
     "tombstoned_rules": 0,
-    "mean_confidence": 0.703,
-    "pending_revisions": 0,
+    "mean_confidence": 0.662,
+    "pending_revisions": 1,
     "grounding": {
       "total_tracked": 0,
       "mean_grounding": 0.5,
@@ -77,14 +76,14 @@
     }
   },
   "concept_coverage": [],
-  "causal_edges_total": 97,
+  "causal_edges_total": 143,
   "causal_by_domain": {
-    "GENERAL": 76,
-    "PLANNING": 9,
+    "GENERAL": 113,
+    "PLANNING": 11,
     "TECHNICAL": 10,
-    "COGNITIVE": 2
+    "COGNITIVE": 9
   },
   "domain_error_rates": {
-    "COGNITIVE": 0.2891
+    "COGNITIVE": 0.3017
   }
 }

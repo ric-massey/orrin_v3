@@ -7,7 +7,7 @@
     "intensity": 1.0,
     "sticky": true,
     "source": "goal",
-    "suppress_count": 216,
+    "suppress_count": 572,
     "last_surfaced": 0,
     "born": "2026-06-13T20:43:20.998392Z"
   },
@@ -19,7 +19,7 @@
     "intensity": 1.0,
     "sticky": true,
     "source": "impasse_signal",
-    "suppress_count": 213,
+    "suppress_count": 569,
     "last_surfaced": 0,
     "born": "2026-06-13T20:43:28.455274Z"
   },
@@ -31,7 +31,7 @@
     "intensity": 1.0,
     "sticky": true,
     "source": "risk_estimate",
-    "suppress_count": 209,
+    "suppress_count": 565,
     "last_surfaced": 0,
     "born": "2026-06-13T20:43:37.012454Z"
   },
@@ -43,7 +43,7 @@
     "intensity": 1.0,
     "sticky": true,
     "source": "goal",
-    "suppress_count": 208,
+    "suppress_count": 564,
     "last_surfaced": 0,
     "born": "2026-06-13T20:43:39.256092Z"
   },
@@ -55,7 +55,7 @@
     "intensity": 1.0,
     "sticky": true,
     "source": "goal",
-    "suppress_count": 201,
+    "suppress_count": 557,
     "last_surfaced": 0,
     "born": "2026-06-13T20:43:55.610885Z"
   }

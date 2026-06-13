@@ -6,7 +6,7 @@
       "dir": 0.22,
       "goal": 0.29700000000000004,
       "emo": 0.312,
-      "novel": 0.10505731177980954,
+      "novel": 0.14562999868569548,
       "band": 0.25,
       "drive": 0.15
     },
@@ -14,16 +14,15 @@
       "resource_deficit": 0.75,
       "emo_impasse_signal": 1.0,
       "__bias__": 1.0,
-      "ne_high": 0.612,
-      "stress_load_load": 0.98,
+      "ne_high": 0.6,
+      "stress_load_load": 1.0,
       "action_debt": 1.0,
-      "tension_active": 1.0,
       "identity_investment": 0.2860387767736777,
-      "distress_present": 0.9026185751461882,
-      "threat_detector_response": 0.75
+      "distress_present": 0.9100637126411233,
+      "threat_detector_response": 0.85
     },
     "dominant_affect": "impasse_signal",
-    "stagnation_signal": 0.025286558899047653,
+    "stagnation_signal": 0.22814999342847747,
     "attention_mode": "engaged",
     "energy_state": "medium",
     "energy_boosts": {
@@ -33,19 +32,19 @@
       "seek_novelty": -0.18
     },
     "neuro_boosts": {
-      "plan_next_step": 0.065,
-      "assess_goal_progress": 0.065,
-      "narrative_update": -0.319,
-      "look_around": -0.044,
-      "seek_novelty": -0.044,
-      "dream_cycle": -0.319,
-      "generate_intrinsic_goals": -0.274,
-      "detect_memory_contradictions": -0.274,
-      "plan_self_evolution": -0.274,
-      "propose_value_revision": -0.274,
-      "reflection": 0.118,
-      "self_soothing": 0.118,
-      "attempt_regulation": 0.118
+      "plan_next_step": 0.06,
+      "assess_goal_progress": 0.06,
+      "narrative_update": -0.321,
+      "look_around": -0.041,
+      "seek_novelty": -0.041,
+      "dream_cycle": -0.321,
+      "generate_intrinsic_goals": -0.28,
+      "detect_memory_contradictions": -0.28,
+      "plan_self_evolution": -0.28,
+      "propose_value_revision": -0.28,
+      "reflection": 0.12,
+      "self_soothing": 0.12,
+      "attempt_regulation": 0.12
     },
     "user_spoke": false,
     "helpfulness_boosts": {},
@@ -235,86 +234,32 @@
     ],
     "ranked": [
       [
-        "reflect_on_write_a_cognitive_function_or_tool_that_",
-        1.751
+        "periodic_self_review",
+        1.4484
       ],
       [
-        "reflect_on_think",
-        1.0463
+        "reflect_on_cognition_schedule",
+        1.443
       ],
       [
-        "attempt_regulation",
-        1.0369
+        "reflect_on_growth_history",
+        1.4397
       ],
       [
-        "reflect_on_cognition_patterns",
-        1.0274
+        "look_outward",
+        1.4328
       ],
       [
-        "metacog_analyze",
-        1.025
+        "reflect_on_desire",
+        1.4033
       ],
       [
-        "metacog_init",
-        1.0109
+        "reflect_on_effectiveness",
+        1.4004
       ]
     ],
     "component_scores": {
-      "reflect_on_write_a_cognitive_function_or_tool_that_": {
-        "dir": 0.10540925533894598,
-        "goal": 0.0,
-        "emo": 1.0,
-        "novel": 0.1375,
-        "band": 0.8718804512852556,
-        "drive": 0.0,
-        "attn": 0.0,
-        "energy": 0.0,
-        "help": 0.0,
-        "emo_route": 0.622,
-        "chain": 0.3,
-        "neuro": 0.0,
-        "emo_mode": 0.0,
-        "outward": 0.0,
-        "goal_recruit": 0.2617312252521515,
-        "explore": 0.0
-      },
-      "reflect_on_think": {
-        "dir": 0.0,
-        "goal": 0.0,
-        "emo": 0.0,
-        "novel": 0.8875,
-        "band": 1.0,
-        "drive": 0.0,
-        "attn": 0.0,
-        "energy": 0.0,
-        "help": 0.0,
-        "emo_route": 0.467,
-        "chain": 0.0,
-        "neuro": 0.0,
-        "emo_mode": 0.0,
-        "outward": 0.0,
-        "goal_recruit": 0.23653462529182434,
-        "explore": 0.0
-      },
-      "attempt_regulation": {
-        "dir": 0.1516196087157807,
-        "goal": 0.0,
-        "emo": 0.748,
-        "novel": 1.0,
-        "band": 1.0,
-        "drive": 0.0,
-        "attn": 0.0,
-        "energy": 0.0,
-        "help": 0.0,
-        "emo_route": 0.0,
-        "chain": 0.1,
-        "neuro": 0.1176,
-        "emo_mode": 0.1,
-        "outward": 0.0,
-        "goal_recruit": 0.09766639173030853,
-        "explore": 0.0
-      },
-      "reflect_on_cognition_patterns": {
+      "periodic_self_review": {
         "dir": 0.0,
         "goal": 0.0,
         "emo": 0.0,
@@ -324,33 +269,15 @@
         "attn": 0.0,
         "energy": 0.0,
         "help": 0.0,
-        "emo_route": 0.467,
+        "emo_route": 0.468,
         "chain": 0.0,
         "neuro": 0.0,
         "emo_mode": 0.0,
         "outward": 0.0,
-        "goal_recruit": 0.21491541266441344,
+        "goal_recruit": 0.2292982220649719,
         "explore": 0.0
       },
-      "metacog_analyze": {
-        "dir": 0.13801311186847084,
-        "goal": 0.0,
-        "emo": 0.0,
-        "novel": 0.55,
-        "band": 0.8663961316155877,
-        "drive": 0.0,
-        "attn": 0.0,
-        "energy": 0.0,
-        "help": 0.0,
-        "emo_route": 0.467,
-        "chain": 0.0,
-        "neuro": 0.0,
-        "emo_mode": 0.0,
-        "outward": 0.0,
-        "goal_recruit": 0.2534712731838226,
-        "explore": 0.0
-      },
-      "metacog_init": {
+      "reflect_on_cognition_schedule": {
         "dir": 0.0,
         "goal": 0.0,
         "emo": 0.0,
@@ -360,37 +287,109 @@
         "attn": 0.0,
         "energy": 0.0,
         "help": 0.0,
-        "emo_route": 0.467,
+        "emo_route": 0.468,
         "chain": 0.0,
         "neuro": 0.0,
         "emo_mode": 0.0,
         "outward": 0.0,
-        "goal_recruit": 0.18740530014038084,
+        "goal_recruit": 0.1908075213432312,
+        "explore": 0.0
+      },
+      "reflect_on_growth_history": {
+        "dir": 0.20412414523193154,
+        "goal": 0.0,
+        "emo": 0.0,
+        "novel": 1.0,
+        "band": 1.0,
+        "drive": 0.0,
+        "attn": 0.0,
+        "energy": 0.0,
+        "help": 0.0,
+        "emo_route": 0.468,
+        "chain": 0.0,
+        "neuro": 0.0,
+        "emo_mode": 0.0,
+        "outward": 0.0,
+        "goal_recruit": 0.1469804048538208,
+        "explore": 0.0
+      },
+      "look_outward": {
+        "dir": 0.1543033499620919,
+        "goal": 0.0,
+        "emo": 0.0,
+        "novel": 1.0,
+        "band": 0.6659236086918032,
+        "drive": 0.5090484011776586,
+        "attn": 0.0,
+        "energy": -0.18,
+        "help": 0.0,
+        "emo_route": 0.305,
+        "chain": 0.0,
+        "neuro": 0.0,
+        "emo_mode": 0.0,
+        "outward": 0.039686646462666675,
+        "goal_recruit": 0.16821951270103455,
+        "explore": 0.0
+      },
+      "reflect_on_desire": {
+        "dir": 0.13245323570650439,
+        "goal": 0.0,
+        "emo": 0.0,
+        "novel": 1.0,
+        "band": 1.0,
+        "drive": 0.0,
+        "attn": 0.0,
+        "energy": 0.0,
+        "help": 0.0,
+        "emo_route": 0.468,
+        "chain": 0.0,
+        "neuro": 0.0,
+        "emo_mode": 0.0,
+        "outward": 0.0,
+        "goal_recruit": 0.13507034182548522,
+        "explore": 0.0
+      },
+      "reflect_on_effectiveness": {
+        "dir": 0.0,
+        "goal": 0.0,
+        "emo": 0.0,
+        "novel": 1.0,
+        "band": 1.0,
+        "drive": 0.0,
+        "attn": 0.0,
+        "energy": 0.0,
+        "help": 0.0,
+        "emo_route": 0.468,
+        "chain": 0.0,
+        "neuro": 0.0,
+        "emo_mode": 0.0,
+        "outward": 0.0,
+        "goal_recruit": 0.1500544309616089,
         "explore": 0.0
       }
     },
-    "decision_id": "b02111e7-6ea5-4367-b4da-5de79fe7bcf6",
+    "decision_id": "fa2d1b7a-30d9-48f6-b761-5e3f2a294127",
     "anti_repeat": {
       "applied": false,
-      "stagnation_signal": 0.025286558899047653,
-      "immediate_repeat": false
+      "stagnation_signal": 0.22814999342847747,
+      "immediate_repeat": true
     },
     "drive_conflicts": [
-      {
-        "drives": [
-          "usefulness",
-          "stability"
-        ],
-        "label": "urgency vs. routine",
-        "intensity": 0.462
-      },
       {
         "drives": [
           "exploration_drive",
           "usefulness"
         ],
         "label": "wondering vs. doing",
-        "intensity": 0.449
+        "intensity": 0.609
+      },
+      {
+        "drives": [
+          "mastery",
+          "usefulness"
+        ],
+        "label": "self-understanding vs. task completion",
+        "intensity": 0.55
       },
       {
         "drives": [
@@ -398,7 +397,7 @@
           "stability"
         ],
         "label": "exploring vs. settling",
-        "intensity": 0.405
+        "intensity": 0.526
       }
     ]
   }

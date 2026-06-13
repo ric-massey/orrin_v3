@@ -1,15 +1,15 @@
 {
-  "peer_goal_auditor": 4.7179853475061624e-11,
-  "long_memory": 5.0143323918654186e-11,
-  "emotion": 0.4131991310488904,
-  "attention/hijack": 0.7576541261432848,
-  "peer_emotion_historian": 0.11359108895839613,
-  "drive_exploration": 0.41390513978565463,
-  "setpoint_regulation": 0.291476125929684,
-  "distress_pressure": 0.3009661164658258,
-  "drive_mastery": 0.001720155879048262,
-  "social_presence": 0.6531722526379548,
-  "drive_social": 0.20481456512956236,
-  "prediction_check": 0.07866767646875544,
-  "reward_impulse": 0.0006577249496757409
+  "peer_goal_auditor": 7.920878165286832e-12,
+  "long_memory": 8.418405957367245e-12,
+  "emotion": 0.5483553227607513,
+  "attention/hijack": 0.7128043374204907,
+  "peer_emotion_historian": 0.019070452958852423,
+  "drive_exploration": 0.28966066133073526,
+  "setpoint_regulation": 0.22316696382320808,
+  "distress_pressure": 0.11647930724946183,
+  "drive_mastery": 0.00028879159513382427,
+  "social_presence": 0.15572823451357592,
+  "drive_social": 0.024596123222048943,
+  "prediction_check": 0.033046264387315276,
+  "reward_impulse": 0.3797522513427065
 }

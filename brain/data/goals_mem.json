@@ -1,5 +1,35 @@
 [
   {
+    "name": "Strengthen COGNITIVE symbolic reasoning",
+    "description": "The COGNITIVE domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-06-13T22:00:02.461608+00:00",
+    "last_updated": "2026-06-13T22:00:02.461608+00:00",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-06-13T22:00:02.461608+00:00"
+      }
+    ]
+  },
+  {
+    "name": "Strengthen GENERAL symbolic reasoning",
+    "description": "The GENERAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-06-13T22:00:02.461608+00:00",
+    "last_updated": "2026-06-13T22:00:02.461608+00:00",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-06-13T22:00:02.461608+00:00"
+      }
+    ]
+  },
+  {
     "name": "Immediate Actions",
     "tier": "short_term",
     "status": "active",
@@ -16,7 +46,7 @@
         "source": "commitment",
         "driven_by": "will",
         "timestamp": "2026-06-13T20:43:56.210406Z",
-        "last_updated": "2026-06-13T21:17:00.241690Z",
+        "last_updated": "2026-06-13T23:24:42.770303Z",
         "history": [
           {
             "event": "created",
@@ -53,17 +83,17 @@
           {
             "step": "Gather context relevant to Write a structured account of what's stuck and why",
             "status": "pending",
-            "generated_at": "2026-06-13T21:17:00.241690Z"
+            "generated_at": "2026-06-13T23:24:42.770303Z"
           },
           {
             "step": "Reflect on what was found about Write a structured account of what's stuck and why and how it bears on the goal",
             "status": "pending",
-            "generated_at": "2026-06-13T21:17:00.241690Z"
+            "generated_at": "2026-06-13T23:24:42.770303Z"
           },
           {
             "step": "Write a concrete next action to working memory",
             "status": "pending",
-            "generated_at": "2026-06-13T21:17:00.241690Z"
+            "generated_at": "2026-06-13T23:24:42.770303Z"
           }
         ],
         "_step_attempts": {},

@@ -5,9 +5,9 @@
     "last": 10.26
   },
   "leave_note": {
-    "ema": 2.09,
-    "n": 241,
-    "last": 3.39
+    "ema": 6.76,
+    "n": 244,
+    "last": 23.71
   },
   "generate_intrinsic_goals": {
     "ema": 0.42,
@@ -15,14 +15,14 @@
     "last": 0.05
   },
   "search_own_files": {
-    "ema": 5.71,
-    "n": 420,
-    "last": 6.82
+    "ema": 13.14,
+    "n": 441,
+    "last": 18.47
   },
   "update_affect_state": {
-    "ema": 30.25,
-    "n": 584,
-    "last": 5.59
+    "ema": 44.9,
+    "n": 655,
+    "last": 13.29
   },
   "look_outward": {
     "ema": 12.56,
@@ -40,9 +40,9 @@
     "last": 200.57
   },
   "reflect_on_internal_agents": {
-    "ema": 28.18,
-    "n": 14,
-    "last": 0.2
+    "ema": 23.19,
+    "n": 15,
+    "last": 3.22
   },
   "wikipedia_search": {
     "ema": 49.69,
@@ -50,18 +50,18 @@
     "last": 0.04
   },
   "imagine_opposite_self": {
-    "ema": 166.33,
-    "n": 8,
-    "last": 137.57
+    "ema": 154.23,
+    "n": 9,
+    "last": 105.83
   },
   "narrative_update": {
-    "ema": 126.35,
-    "n": 7,
-    "last": 0.19
+    "ema": 101.26,
+    "n": 8,
+    "last": 0.89
   },
   "propose_value_revision": {
-    "ema": 36.06,
-    "n": 14,
+    "ema": 23.1,
+    "n": 16,
     "last": 0.06
   },
   "pick_book": {
@@ -115,24 +115,24 @@
     "last": 0.06
   },
   "introspective_planning": {
-    "ema": 4.28,
-    "n": 42,
-    "last": 2.43
+    "ema": 7.14,
+    "n": 46,
+    "last": 0.45
   },
   "attempt_regulation": {
-    "ema": 2.43,
-    "n": 419,
-    "last": 1.13
+    "ema": 3.3,
+    "n": 420,
+    "last": 6.8
   },
   "dream_cycle": {
-    "ema": 37860.35,
-    "n": 292,
-    "last": 38130.41
+    "ema": 44465.62,
+    "n": 424,
+    "last": 46092.76
   },
   "detect_memory_contradictions": {
-    "ema": 146.13,
-    "n": 8,
-    "last": 114.67
+    "ema": 145.56,
+    "n": 9,
+    "last": 143.29
   },
   "list_books": {
     "ema": 150.57,
@@ -145,29 +145,29 @@
     "last": 0.13
   },
   "reflect_on_cognition_schedule": {
-    "ema": 61.23,
-    "n": 416,
-    "last": 154.54
+    "ema": 109.38,
+    "n": 418,
+    "last": 216.35
   },
   "metacog_monitor": {
-    "ema": 0.53,
-    "n": 238,
-    "last": 0.47
+    "ema": 0.46,
+    "n": 239,
+    "last": 0.2
   },
   "metacog_analyze": {
-    "ema": 1.31,
-    "n": 253,
-    "last": 1.49
+    "ema": 1.95,
+    "n": 265,
+    "last": 4.2
   },
   "reflect_on_think": {
-    "ema": 5.11,
-    "n": 287,
-    "last": 0.27
+    "ema": 15.61,
+    "n": 295,
+    "last": 0.23
   },
   "reflect_on_desire": {
-    "ema": 114.42,
-    "n": 51,
-    "last": 147.32
+    "ema": 166.01,
+    "n": 54,
+    "last": 287.71
   },
   "audit_reflective_claims": {
     "ema": 107.9,
@@ -175,14 +175,14 @@
     "last": 9.0
   },
   "reflect_as_agents": {
-    "ema": 68.98,
-    "n": 10,
-    "last": 8.69
+    "ema": 37.44,
+    "n": 13,
+    "last": 4.89
   },
   "read_book": {
-    "ema": 47.54,
-    "n": 8,
-    "last": 2.84
+    "ema": 39.47,
+    "n": 9,
+    "last": 7.17
   },
   "read_rss": {
     "ema": 505.21,
@@ -190,14 +190,14 @@
     "last": 568.18
   },
   "read_a_book": {
-    "ema": 11550.65,
-    "n": 9,
-    "last": 13941.47
+    "ema": 12503.82,
+    "n": 11,
+    "last": 14147.2
   },
   "periodic_self_review": {
-    "ema": 247.15,
-    "n": 10,
-    "last": 666.45
+    "ema": 231.57,
+    "n": 12,
+    "last": 168.35
   },
   "associative_recall": {
     "ema": 184.22,
@@ -215,9 +215,9 @@
     "last": 0.72
   },
   "reflect_on_missed_goals": {
-    "ema": 19.79,
-    "n": 19,
-    "last": 0.27
+    "ema": 33.91,
+    "n": 35,
+    "last": 71.47
   },
   "extract_semantic_facts": {
     "ema": 51.06,
@@ -235,9 +235,9 @@
     "last": 16003.02
   },
   "research_topic": {
-    "ema": 940.85,
-    "n": 28,
-    "last": 0.05
+    "ema": 1752.08,
+    "n": 29,
+    "last": 4997.0
   },
   "detect_tensions": {
     "ema": 35.42,
@@ -250,9 +250,9 @@
     "last": 33.79
   },
   "reflect_on_self_beliefs": {
-    "ema": 293.36,
-    "n": 8,
-    "last": 497.8
+    "ema": 331.15,
+    "n": 9,
+    "last": 482.29
   },
   "maybe_surface_regret": {
     "ema": 42.0,
@@ -260,9 +260,9 @@
     "last": 0.09
   },
   "reflect_on_growth_history": {
-    "ema": 98.61,
-    "n": 11,
-    "last": 21.43
+    "ema": 90.08,
+    "n": 12,
+    "last": 55.98
   },
   "synthesize_from_gap": {
     "ema": 27.13,
@@ -270,9 +270,9 @@
     "last": 0.19
   },
   "maybe_surface_association": {
-    "ema": 42.02,
-    "n": 8,
-    "last": 0.05
+    "ema": 26.92,
+    "n": 10,
+    "last": 0.09
   },
   "mark_private": {
     "ema": 240.1,
@@ -285,9 +285,9 @@
     "last": 24.66
   },
   "reflect_on_outcomes": {
-    "ema": 164.03,
-    "n": 8,
-    "last": 74.37
+    "ema": 142.07,
+    "n": 9,
+    "last": 54.22
   },
   "reflect_on_effectiveness": {
     "ema": 94.46,
@@ -300,9 +300,9 @@
     "last": 3.1
   },
   "reflect_on_cognition_patterns": {
-    "ema": 84.43,
-    "n": 11,
-    "last": 41.65
+    "ema": 33.19,
+    "n": 17,
+    "last": 24.54
   },
   "look_around": {
     "ema": 256.16,
@@ -315,9 +315,9 @@
     "last": 455.32
   },
   "generate_concepts_from_memories": {
-    "ema": 51.36,
-    "n": 8,
-    "last": 10.06
+    "ema": 42.58,
+    "n": 9,
+    "last": 7.44
   },
   "summarize_relationships": {
     "ema": 42.01,
@@ -340,18 +340,18 @@
     "last": 69.34
   },
   "fetch_wikipedia": {
-    "ema": 8306.37,
-    "n": 8,
-    "last": 8120.99
+    "ema": 8205.59,
+    "n": 9,
+    "last": 7802.49
   },
   "metacog_init": {
-    "ema": 4.28,
-    "n": 26,
-    "last": 1.62
+    "ema": 3.8,
+    "n": 32,
+    "last": 2.29
   },
   "reflect_on_write_a_cognitive_function_or_tool_that_": {
-    "ema": 3.35,
-    "n": 72,
-    "last": 2.81
+    "ema": 6.41,
+    "n": 120,
+    "last": 3.09
   }
 }

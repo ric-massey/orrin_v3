@@ -1,1 +1,14 @@
-{}
+{
+  "Goal avoidance": {
+    "count": 239,
+    "promoted": true
+  },
+  "Affective stagnation": {
+    "count": 8,
+    "promoted": true
+  },
+  "Cognitive rut": {
+    "count": 47,
+    "promoted": true
+  }
+}

@@ -1,16 +1,16 @@
 {
-  "cycles_since_contact": 216,
-  "session_cycles": 216,
+  "cycles_since_contact": 572,
+  "session_cycles": 572,
   "density_buffer": 0.833,
-  "internal_clock_rate": 1.323,
-  "felt_cycles": 357.3,
+  "internal_clock_rate": 1.292,
+  "felt_cycles": 923.8,
   "session_arc": "night",
   "felt_duration_label": "very extended",
   "boundary_count": 18,
   "retrospective_feel": "rich",
   "temporal_self_location": "very far into this",
-  "time_texture": "waiting_extended",
+  "time_texture": "waiting_long_absence",
   "last_landmark": null,
-  "last_surface_text": "Time texture: The waiting has released into something quieter. Not expecting; just absent.",
-  "updated_ts": "2026-06-13T21:17:13.096374Z"
+  "last_surface_text": "Time texture: A very long absence. This is a different kind of aloneness.",
+  "updated_ts": "2026-06-13T23:24:39.484942Z"
 }

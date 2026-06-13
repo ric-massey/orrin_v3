@@ -1,11 +1,11 @@
 {
   "reflect_on_write_a_cognitive_function_or_tool_that_": {
     "dream_cycle": {
-      "count": 5,
-      "bonus": 0.25
+      "count": 13,
+      "bonus": 0.3
     },
     "reflect_on_write_a_cognitive_function_or_tool_that_": {
-      "count": 6,
+      "count": 12,
       "bonus": 0.3
     },
     "seek_novelty": {
@@ -17,6 +17,10 @@
       "bonus": 0.1
     },
     "reflect_on_missed_goals": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "leave_note": {
       "count": 2,
       "bonus": 0.1
     }
@@ -29,7 +33,7 @@
   },
   "reflect_on_missed_goals": {
     "reflect_on_missed_goals": {
-      "count": 6,
+      "count": 7,
       "bonus": 0.3
     },
     "reflect_on_think": {
@@ -75,8 +79,16 @@
   },
   "dream_cycle": {
     "search_own_files": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "reflect_on_write_a_cognitive_function_or_tool_that_": {
       "count": 3,
       "bonus": 0.15
+    },
+    "dream_cycle": {
+      "count": 2,
+      "bonus": 0.1
     }
   },
   "seek_novelty": {

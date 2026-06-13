@@ -1,1 +1,20 @@
-{}
+{
+  "dream_cycle": 0.1,
+  "search_own_files": 0.1,
+  "metacog_analyze": 0.1,
+  "reflect_on_cognition_patterns": 0.1,
+  "metacog_monitor": 0.1,
+  "leave_note": 0.1,
+  "reflect_as_agents": 0.1,
+  "read_a_book": 0.5,
+  "metacog_init": 0.1,
+  "introspective_planning": 0.1,
+  "detect_memory_contradictions": 0.5,
+  "reflect_on_write_a_cognitive_function_or_tool_that_": 0.1,
+  "reflect_on_missed_goals": 0.1,
+  "reflect_on_think": 0.1,
+  "periodic_self_review": 0.1,
+  "reflect_on_cognition_schedule": 0.1,
+  "reflect_on_internal_agents": 0.5,
+  "attempt_regulation": 0.5
+}

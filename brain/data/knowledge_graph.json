@@ -63,17 +63,17 @@
         "os": "Darwin 24.5.0",
         "arch": "arm64",
         "hostname": "Rics-MacBook-Air-3.local",
-        "load_1m": "6.89",
-        "process_count": "467",
-        "disk_used_pct": "91",
+        "load_1m": "3.77",
+        "process_count": "460",
+        "disk_used_pct": "96",
         "time_of_day": "evening"
       },
       "confidence": 0.98,
       "never_decay": true,
       "first_seen": "2026-06-13T20:43:25.749956Z",
-      "last_updated": "2026-06-13T21:16:25.736866Z",
+      "last_updated": "2026-06-13T23:21:22.102740Z",
       "source": "bootstrap",
-      "mentions": 44
+      "mentions": 115
     },
     "9220b4725352": {
       "id": "9220b4725352",
@@ -129,12 +129,12 @@
         "afternoon"
       ],
       "properties": {},
-      "confidence": 0.5704,
+      "confidence": 0.6333,
       "never_decay": false,
       "first_seen": "2026-06-13T20:53:19.439116Z",
-      "last_updated": "2026-06-13T20:53:19.439116Z",
+      "last_updated": "2026-06-13T21:53:47.930454Z",
       "source": "long_memory_heuristic",
-      "mentions": 1
+      "mentions": 3
     },
     "ca49ca4bb673": {
       "id": "ca49ca4bb673",
@@ -503,6 +503,104 @@
       "last_updated": "2026-06-13T21:00:24.863519Z",
       "source": "spacy_propn",
       "mentions": 1
+    },
+    "ccdc0674a4bd": {
+      "id": "ccdc0674a4bd",
+      "name": "Write a structured account of what's stuck and why",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "structured",
+        "write",
+        "stuck",
+        "account",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:35:34.324901Z",
+      "last_updated": "2026-06-13T21:36:19.467622Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "1935d7b6e1cd": {
+      "id": "1935d7b6e1cd",
+      "name": "writing",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "writing",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "act of creating a persistent",
+        "description": ""
+      },
+      "confidence": 0.661,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:35:34.324954Z",
+      "last_updated": "2026-06-13T21:36:19.469684Z",
+      "source": "definition",
+      "mentions": 3
+    },
+    "fe1bb438a0ef": {
+      "id": "fe1bb438a0ef",
+      "name": "Wikipedia/Writing:",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "writing",
+        "wikipedia",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:35:34.759963Z",
+      "last_updated": "2026-06-13T21:35:34.759963Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "a07bdcbcbb02": {
+      "id": "a07bdcbcbb02",
+      "name": "Disk",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "disk",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-06-13T21:53:47.932495Z",
+      "last_updated": "2026-06-13T21:53:47.932495Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "d57fd91679ff": {
+      "id": "d57fd91679ff",
+      "name": "evening",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "evening",
+        "time",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-06-13T22:23:46.386728Z",
+      "last_updated": "2026-06-13T23:24:41.989817Z",
+      "source": "long_memory_heuristic",
+      "mentions": 3
     }
   },
   "relations": [
@@ -515,7 +613,7 @@
       "target_name": "orrin_v3",
       "confidence": 0.98,
       "first_seen": "2026-06-13T20:43:25.749983Z",
-      "last_updated": "2026-06-13T21:17:14.269464Z",
+      "last_updated": "2026-06-13T23:24:41.994046Z",
       "source": "bootstrap"
     },
     {
@@ -527,7 +625,7 @@
       "target_name": "Ric Massey",
       "confidence": 0.98,
       "first_seen": "2026-06-13T20:43:25.750000Z",
-      "last_updated": "2026-06-13T21:17:14.269471Z",
+      "last_updated": "2026-06-13T23:24:41.994053Z",
       "source": "bootstrap"
     },
     {
@@ -539,7 +637,7 @@
       "target_name": "Orrin",
       "confidence": 0.98,
       "first_seen": "2026-06-13T20:43:25.750010Z",
-      "last_updated": "2026-06-13T21:17:14.269478Z",
+      "last_updated": "2026-06-13T23:24:41.994059Z",
       "source": "bootstrap"
     },
     {
@@ -551,7 +649,7 @@
       "target_name": "MacBook Air",
       "confidence": 0.98,
       "first_seen": "2026-06-13T20:43:25.750041Z",
-      "last_updated": "2026-06-13T21:17:14.269484Z",
+      "last_updated": "2026-06-13T23:24:41.994063Z",
       "source": "bootstrap"
     },
     {
@@ -563,7 +661,7 @@
       "target_name": "Rics-MacBook-Air-3.local",
       "confidence": 0.98,
       "first_seen": "2026-06-13T20:43:25.750806Z",
-      "last_updated": "2026-06-13T21:16:25.740761Z",
+      "last_updated": "2026-06-13T23:21:22.110129Z",
       "source": "environment"
     },
     {
@@ -685,13 +783,85 @@
       "first_seen": "2026-06-13T21:00:24.863162Z",
       "last_updated": "2026-06-13T21:00:24.863162Z",
       "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "f84c64b1e0f8",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "899265909518",
+      "target_name": "41%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T21:23:20.093143Z",
+      "last_updated": "2026-06-13T21:23:20.093143Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "addd4da87369",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "e911ea5fed06",
+      "target_name": "88%",
+      "confidence": 0.47,
+      "first_seen": "2026-06-13T21:53:47.931836Z",
+      "last_updated": "2026-06-13T21:53:47.932032Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "23e9f7e91c4e",
+      "source_id": "e911ea5fed06",
+      "source_name": "88%",
+      "relation": "related_to",
+      "target_id": "5f5369e31ff7",
+      "target_name": "95%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T21:53:47.932047Z",
+      "last_updated": "2026-06-13T21:53:47.932047Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "557ede10e9f1",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "df5b9760f364",
+      "target_name": "42%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T22:23:46.389102Z",
+      "last_updated": "2026-06-13T22:23:46.389102Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "6787f4f86f3f",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "3bb15466942b",
+      "target_name": "35%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T22:54:07.148830Z",
+      "last_updated": "2026-06-13T22:54:07.148830Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "682abe03b449",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "7f7cde037a58",
+      "target_name": "48%",
+      "confidence": 0.4,
+      "first_seen": "2026-06-13T23:24:41.991267Z",
+      "last_updated": "2026-06-13T23:24:41.991267Z",
+      "source": "long_memory_heuristic:cooc"
     }
   ],
   "meta": {
     "version": 1,
-    "last_updated": "2026-06-13T21:17:14.269542Z",
-    "last_consolidation": "2026-06-13T21:17:14.269540Z",
-    "entity_count": 26,
-    "relation_count": 15
+    "last_updated": "2026-06-13T23:24:41.994083Z",
+    "last_consolidation": "2026-06-13T23:24:41.992304Z",
+    "entity_count": 31,
+    "relation_count": 21
   }
 }

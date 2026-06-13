@@ -3,39 +3,39 @@
     "exploration_drive": {},
     "impasse_signal": {
       "search_own_files": {
-        "n": 18,
-        "q": 0.35943310222222224
+        "n": 34,
+        "q": 0.3492944766535948
       },
       "look_outward": {
         "n": 11,
         "q": 0.31117227878787873
       },
       "reflect_on_write_a_cognitive_function_or_tool_that_": {
-        "n": 30,
-        "q": 0.6667411488740742
+        "n": 71,
+        "q": 0.6073630583386539
       },
       "decide_to_write_code": {
         "n": 1,
         "q": 0.7512
       },
       "update_affect_state": {
-        "n": 31,
+        "n": 100,
         "q": 0.35
       },
       "reflect_on_think": {
-        "n": 8,
-        "q": 0.678393953611111
+        "n": 16,
+        "q": 0.6520457344444445
       },
       "metacog_analyze": {
-        "n": 13,
-        "q": 0.5547671606837606
+        "n": 25,
+        "q": 0.5518135328355556
       },
       "dream_cycle": {
-        "n": 33,
-        "q": 0.5611691342195287
+        "n": 153,
+        "q": 0.44230390414291926
       },
       "periodic_self_review": {
-        "n": 1,
+        "n": 3,
         "q": 0.35
       },
       "generate_intrinsic_goals": {
@@ -43,44 +43,44 @@
         "q": 0.668
       },
       "reflect_on_missed_goals": {
-        "n": 9,
-        "q": 0.7170789543209876
+        "n": 21,
+        "q": 0.6574147355132274
       },
       "narrative_update": {
-        "n": 1,
-        "q": 0.788
+        "n": 2,
+        "q": 0.7846901777777777
       },
       "propose_value_revision": {
-        "n": 4,
-        "q": 0.8275849222222222
+        "n": 6,
+        "q": 0.8311823074074074
       },
       "metacog_monitor": {
-        "n": 2,
-        "q": 0.5651934222222221
+        "n": 3,
+        "q": 0.5398049185185184
       },
       "introspective_planning": {
-        "n": 2,
-        "q": 0.5657904444444444
+        "n": 5,
+        "q": 0.53749052
       },
       "attempt_regulation": {
-        "n": 8,
-        "q": 0.6743679791666667
+        "n": 9,
+        "q": 0.6748159814814815
       },
       "leave_note": {
-        "n": 2,
-        "q": 0.6284562555555556
+        "n": 5,
+        "q": 0.6749282455555556
       },
       "fetch_wikipedia": {
-        "n": 1,
-        "q": 0.6278439222222223
+        "n": 2,
+        "q": 0.5897698722222222
       },
       "read_rss": {
         "n": 1,
         "q": 0.6117318533333334
       },
       "reflect_as_agents": {
-        "n": 2,
-        "q": 0.6989561
+        "n": 5,
+        "q": 0.6510050555555555
       },
       "fetch_and_read": {
         "n": 1,
@@ -91,27 +91,75 @@
         "q": 0.5968372622222222
       },
       "reflect_on_desire": {
-        "n": 1,
-        "q": 0.7529770866666667
+        "n": 4,
+        "q": 0.606493131
       },
       "reflect_on_effectiveness": {
         "n": 1,
         "q": 0.35
       },
       "read_a_book": {
-        "n": 1,
-        "q": 0.5886526133333334
+        "n": 2,
+        "q": 0.5624494455555555
       },
       "reflect_on_internal_agents": {
-        "n": 2,
+        "n": 3,
         "q": 0.35
+      },
+      "generate_concepts_from_memories": {
+        "n": 1,
+        "q": 0.5508057777777777
+      },
+      "reflect_on_cognition_patterns": {
+        "n": 4,
+        "q": 0.35
+      },
+      "metacog_init": {
+        "n": 5,
+        "q": 0.500907989511111
+      },
+      "imagine_opposite_self": {
+        "n": 1,
+        "q": 0.5937573666666667
+      },
+      "research_topic": {
+        "n": 1,
+        "q": 0.8817751411111112
+      },
+      "reflect_on_self_beliefs": {
+        "n": 1,
+        "q": 0.35
+      },
+      "detect_memory_contradictions": {
+        "n": 1,
+        "q": 0.35
+      },
+      "reflect_on_cognition_schedule": {
+        "n": 2,
+        "q": 0.6104
+      },
+      "reflect_on_growth_history": {
+        "n": 1,
+        "q": 0.35
+      },
+      "reflect_on_outcomes": {
+        "n": 1,
+        "q": 0.35
+      },
+      "read_book": {
+        "n": 1,
+        "q": 0.5344000000000001
+      },
+      "maybe_surface_association": {
+        "n": 1,
+        "q": 0.5344000000000001
       }
     },
     "social_deficit": {},
     "stable": {
       "search_own_files": {
-        "n": 130,
-        "q": 0.6768310256410256
+        "n": 888,
+        "q": 0.6857766141141133
       },
       "reflect_on_growth_history": {
         "n": 3,
@@ -126,24 +174,24 @@
         "q": 0.48041
       },
       "update_affect_state": {
-        "n": 6,
-        "q": 0.45000000000000007
+        "n": 8,
+        "q": 0.42500000000000004
       },
       "metacog_analyze": {
-        "n": 35,
-        "q": 0.5398697142857142
+        "n": 157,
+        "q": 0.5364567530077845
       },
       "dream_cycle": {
-        "n": 179,
-        "q": 0.6532581570567351
+        "n": 2688,
+        "q": 0.6348512549004472
       },
       "introspective_planning": {
-        "n": 75,
-        "q": 0.5506695558518518
+        "n": 303,
+        "q": 0.545275804253759
       },
       "reflect_on_write_a_cognitive_function_or_tool_that_": {
-        "n": 339,
-        "q": 0.5933625516224185
+        "n": 5430,
+        "q": 0.5838802867827306
       },
       "inject_tension_signals": {
         "n": 1,
@@ -158,93 +206,134 @@
         "q": 0.7
       },
       "reflect_on_missed_goals": {
-        "n": 420,
-        "q": 0.6280973174603173
+        "n": 3455,
+        "q": 0.6289699835133606
       },
       "reflect_on_think": {
-        "n": 111,
-        "q": 0.6444881801801798
+        "n": 1019,
+        "q": 0.6368871246319919
       },
       "narrative_update": {
-        "n": 33,
+        "n": 154,
         "q": 0.6766666666666667
       },
       "attempt_regulation": {
-        "n": 114,
-        "q": 0.5928870175438599
+        "n": 906,
+        "q": 0.616439337748343
       },
       "look_outward": {
-        "n": 78,
-        "q": 0.6291388888888889
+        "n": 476,
+        "q": 0.6282601540616246
       },
       "leave_note": {
-        "n": 47,
-        "q": 0.5864311404255321
+        "n": 328,
+        "q": 0.5864366817073166
       },
       "reflect_as_agents": {
-        "n": 137,
-        "q": 0.6127286301703163
+        "n": 929,
+        "q": 0.6122946763545027
       },
       "seek_novelty": {
-        "n": 66,
-        "q": 0.6365887777777778
+        "n": 462,
+        "q": 0.6365887777777784
       },
       "reflect_on_desire": {
-        "n": 44,
+        "n": 308,
         "q": 0.6528533333333333
       },
       "reflect_on_effectiveness": {
-        "n": 22,
+        "n": 154,
         "q": 0.6919333333333334
       },
       "detect_tensions": {
-        "n": 21,
-        "q": 0.6267760047619049
+        "n": 153,
+        "q": 0.6225692555555556
       },
       "synthesize_from_gap": {
         "n": 1,
         "q": 0.6127823777777779
       },
       "propose_value_revision": {
-        "n": 1,
+        "n": 133,
         "q": 0.5544720000000001
+      },
+      "read_a_book": {
+        "n": 1,
+        "q": 0.6040928111111111
+      },
+      "maybe_surface_association": {
+        "n": 1,
+        "q": 0.5455752888888888
+      },
+      "metacog_monitor": {
+        "n": 114,
+        "q": 0.56403
+      },
+      "research_topic": {
+        "n": 114,
+        "q": 0.6267
+      },
+      "periodic_self_review": {
+        "n": 114,
+        "q": 0.6963333333333334
+      },
+      "reflect_on_cognition_patterns": {
+        "n": 2,
+        "q": 0.35
+      },
+      "metacog_init": {
+        "n": 1,
+        "q": 0.5668499555555556
       }
     }
   },
   "counts": {
-    "search_own_files": 148,
-    "reflect_on_growth_history": 3,
+    "search_own_files": 922,
+    "reflect_on_growth_history": 4,
     "generate_intrinsic_goals": 3,
-    "look_outward": 89,
+    "look_outward": 487,
     "wikipedia_search": 8,
-    "update_affect_state": 37,
-    "reflect_on_write_a_cognitive_function_or_tool_that_": 369,
-    "metacog_analyze": 48,
+    "update_affect_state": 108,
+    "reflect_on_write_a_cognitive_function_or_tool_that_": 5501,
+    "metacog_analyze": 182,
     "decide_to_write_code": 1,
-    "dream_cycle": 212,
-    "reflect_on_think": 119,
-    "introspective_planning": 77,
-    "periodic_self_review": 1,
-    "reflect_on_missed_goals": 429,
-    "narrative_update": 34,
+    "dream_cycle": 2841,
+    "reflect_on_think": 1035,
+    "introspective_planning": 308,
+    "periodic_self_review": 117,
+    "reflect_on_missed_goals": 3476,
+    "narrative_update": 156,
     "inject_tension_signals": 1,
     "mark_tension_resolved": 1,
     "schedule_in": 1,
-    "propose_value_revision": 5,
-    "metacog_monitor": 2,
-    "attempt_regulation": 122,
-    "leave_note": 49,
-    "fetch_wikipedia": 1,
+    "propose_value_revision": 139,
+    "metacog_monitor": 117,
+    "attempt_regulation": 915,
+    "leave_note": 333,
+    "fetch_wikipedia": 2,
     "read_rss": 1,
-    "reflect_as_agents": 139,
+    "reflect_as_agents": 934,
     "fetch_and_read": 1,
-    "seek_novelty": 67,
-    "reflect_on_desire": 45,
-    "reflect_on_effectiveness": 23,
-    "detect_tensions": 21,
-    "read_a_book": 1,
+    "seek_novelty": 463,
+    "reflect_on_desire": 312,
+    "reflect_on_effectiveness": 155,
+    "detect_tensions": 153,
+    "read_a_book": 3,
     "synthesize_from_gap": 1,
-    "reflect_on_internal_agents": 2
+    "reflect_on_internal_agents": 3,
+    "generate_concepts_from_memories": 1,
+    "maybe_surface_association": 2,
+    "reflect_on_cognition_patterns": 6,
+    "metacog_init": 6,
+    "imagine_opposite_self": 1,
+    "research_topic": 115,
+    "reflect_on_self_beliefs": 1,
+    "detect_memory_contradictions": 1,
+    "reflect_on_cognition_schedule": 2,
+    "reflect_on_outcomes": 1,
+    "read_book": 1
   },
-  "suppressed": {}
+  "suppressed": {
+    "dream_cycle": 8
+  }
 }

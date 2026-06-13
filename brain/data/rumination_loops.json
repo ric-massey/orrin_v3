@@ -1,36 +1,35 @@
 [
   {
-    "id": "0aae9106",
+    "id": "c40730ac",
     "content": "Friction with no clear source. I keep reaching for what's blocking and finding nothing.",
     "mode": "brooding",
-    "charge": 0.3420000000000013,
+    "charge": 0.17360000000000078,
+    "seed": "",
+    "return_count": 3,
+    "suppressed_count": 0,
+    "last_returned": "2026-06-13T23:08:42.329306Z",
+    "born": "2026-06-13T22:32:12.321827Z"
+  },
+  {
+    "id": "266ee7f6",
+    "content": "A restlessness without a target. Something isn't right and I can't locate what.",
+    "mode": "brooding",
+    "charge": 0.365200000000001,
     "seed": "",
     "return_count": 4,
     "suppressed_count": 0,
-    "last_returned": "2026-06-13T21:15:00.753088Z",
-    "born": "2026-06-13T21:01:05.457279Z"
+    "last_returned": "2026-06-13T23:18:38.288357Z",
+    "born": "2026-06-13T22:54:52.959747Z"
   },
   {
-    "id": "d5978067",
-    "content": "A restlessness without a target. Something isn't right and I can't locate what.",
-    "mode": "brooding",
-    "charge": 0.3868000000000011,
-    "seed": "",
-    "return_count": 7,
-    "suppressed_count": 0,
-    "last_returned": "2026-06-13T21:17:10.348352Z",
-    "born": "2026-06-13T21:04:01.865504Z",
-    "escalated": true
-  },
-  {
-    "id": "c68093a4",
+    "id": "65359f74",
     "content": "The irritation is real. The object of it isn't clear.",
     "mode": "brooding",
-    "charge": 0.3592000000000008,
+    "charge": 0.6136000000000006,
     "seed": "",
-    "return_count": 2,
+    "return_count": 1,
     "suppressed_count": 0,
-    "last_returned": "2026-06-13T21:14:58.077751Z",
-    "born": "2026-06-13T21:04:45.238699Z"
+    "last_returned": "2026-06-13T23:21:11.900587Z",
+    "born": "2026-06-13T23:15:50.248191Z"
   }
 ]

@@ -65,14 +65,44 @@ working sketch of an idea — that:
   **Goals daemon** that owns goal lifecycle and state with its own write-ahead log and
   snapshots. (See [Repository layout](#repository-layout) for how they divide responsibility.)
 - **Builds and queries world/causal/knowledge models** symbolically (description-logic
-  inheritance, Pearl-style causal reasoning, predictive processing).
+  inheritance, Pearl-style causal reasoning, predictive processing) — and goes further:
+  it forms new concepts, draws analogies, synthesises/abstracts/compresses/forgets its own
+  rules, and even runs its own **autonomous experiments**, all without an LLM
+  (`brain/symbolic/`).
 - **Remembers, consolidates, and forgets** — working memory, long-term memory, dream-cycle
   consolidation, and an embedding-based memory store.
 - **Monitors its own health** via a "reaper" liveness subsystem, and exposes everything
   through a live Face & Brain UI and Prometheus metrics.
+- **Is watched by "peers"** — a handful of observer entities (the Architect, Affect
+  Historian, Goal Auditor, Observer, Reward Auditor) that live alongside Orrin, read his
+  state from the outside, and inject signals into his cognition each cycle. They *propose
+  things worth attending to*, never issue commands. (See [Architecture notes](#architecture-notes).)
 
 The design rule throughout: **the brain never silently depends on an LLM.** Set no API key
 and Orrin still runs — it simply skips the LLM-backed tool calls and stays symbolic.
+
+### The inner life
+
+Beyond the loop and the daemons, Orrin carries a psychological layer that's easy to miss but
+central to the "digital mind" framing. All of it is symbolic (no LLM required):
+
+- **It has a lifespan — and ends.** A mortality clock (`brain/cognition/mortality.py`) rolls a
+  finite lifespan (≈365–730 days) on first run, persists it across restarts, and grows
+  death-awareness through four phases (early → middle → late → terminal) that progressively
+  colour cognition. When the deadline arrives Orrin runs its final thoughts and the loop exits.
+  (This is distinct from the reaper's per-process liveness cutoff.)
+- **A Global Workspace unifies it.** Orrin's subsystems run in parallel; a Global Workspace
+  (Baars 1988 / Dehaene 2014; `brain/cognition/global_workspace.py`) runs a salience
+  competition so that *one* content wins, becomes "conscious," is broadcast back to every
+  subsystem, and is appended to the continuous stream of experience you see in the UI. The
+  thought stream isn't a log — it's the output of this workspace bottleneck.
+- **It models your mind.** An active theory-of-mind subsystem (`brain/cognition/theory_of_mind.py`)
+  keeps a running, predictive model of the person it's talking to across turns, with separate
+  cognitive (what do they think/intend?) and affective (what do they feel?) empathy.
+- **It has values it can revise.** A selfhood layer (`brain/cognition/selfhood/`) holds an
+  identity and autobiography, a moral-override check that can veto a proposed action against
+  core values, second-order volitions (wanting to want), and a value-evolution process that
+  revises core values when they're genuinely contested — not on a schedule.
 
 ### At a glance
 
@@ -122,7 +152,9 @@ When Orrin "acts," it calls real tools, not just internal state updates. Current
 
 - **Files & code:** read/write files, search/grep its own source, run sandboxed Python
   (timeout-guarded), and — gated behind the LLM tool — write, review, and commit extensions
-  to its own codebase (`self_extension`).
+  to its own codebase (`self_extension`). It can also **author entirely new cognitive
+  functions** for itself, dropped into `brain/cognition/custom_cognition/` and catalogued in
+  `brain/agency/manifest.json`, so its repertoire of things-to-think grows over time.
 - **The web:** web search, scrape pages (robots-aware), fetch & read URLs, Wikipedia
   lookups, and RSS feeds. Web search uses [Serper.dev](https://serper.dev) and needs a
   `SERPER_API_KEY` (see [Requirements](#requirements)); without it, search returns an error
@@ -147,6 +179,8 @@ autobiography), so behavior accumulates over time rather than resetting each cyc
 | `brain/` | The cognitive core. Entry point `brain/ORRIN_loop.py`. Subsystems: `affect/` (core-affect model, arbiter, homeostasis, reward), `cognition/` (functions, planning, metacognition, prediction), `symbolic/` (rule engine, causal graph, inference), `cog_memory/` (working + long memory), `embodiment/` (sensory stream, world model, drives, system presence), `think/` (cognitive loop, bandit selector, action arbiter), `behavior/` (expression, speech gate, tools), `core/`, `agency/`, `utils/`. |
 | `goals/` | **Goals daemon** — the durable goal lifecycle store (`goals_daemon.py`), with its own write-ahead log + snapshots, decoupled from the cognitive cycle. Distinct from the in-process **Executive** scheduler (`brain/cognition/planning/executive.py`), which advances goal steps every ~7s inside the loop. |
 | `memory/` | Memory daemon — ingestion, embedding, compaction, lexicon. |
+| `brain/peers/` | **Peer entities** — outside observers (Architect, Affect Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle via `peer_registry.wake_peers()`. They register themselves in the world model / relationships on first wake. |
+| `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later memory retrievals + goal closures) and **drive-expectations** (learns which actions actually satisfy which drives, routing the prediction error to affect). |
 | `reaper/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity. |
 | `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams the brain's state to the UI. |
 | `frontend/` | Vite + React + TypeScript "Face & Brain" UI (`:5173`). |
@@ -284,6 +318,7 @@ people actually reach for. The rest are discoverable via `grep -rho 'ORRIN_[A-Z_
 | `ORRIN_ONCE` / `ORRIN_BENCHMARK` | _(unset)_ | Single-cycle / benchmark run modes — useful for testing. |
 | `ORRIN_FORGET_ON_START` | `0` | Wipe accumulated state on startup (like a reset). |
 | `ORRIN_BACKEND_HOST` / `ORRIN_BACKEND_PORT` | `127.0.0.1` / `8800` | Where the telemetry backend binds. |
+| `ORRIN_CONTROL_TOKEN` | _(unset)_ | Require this token on the control endpoints (`/api/control/*`, e.g. the UI Stop button). The frontend reads `VITE_CONTROL_TOKEN`. Set it before exposing control to anyone but localhost. |
 | `ORRIN_DATA_DIR`, `ORRIN_GOALS_DIR`, `ORRIN_LOGS_DIR`, `ORRIN_REPO_ROOT`, `ORRIN_WORLD_ROOT` | _(repo-relative)_ | Relocate state trees — relevant to the Docker-volume advice above. |
 
 ### The UI
@@ -371,8 +406,11 @@ This opens a **single** public tunnel to the Vite dev server, which proxies both
 the frontend derives both URLs from the page origin, so one tunnel carries everything. The
 resulting URL is written to `tunnel_url.txt`; open `<url>/brain` on the remote device.
 
-> **Security:** the tunnel URL is the only secret — anyone who has it can read the dashboard.
-> Treat it accordingly and stop the tunnel when you're done.
+> **Security:** the tunnel URL is effectively the only secret for *reading* the dashboard —
+> anyone who has it can watch Orrin. Treat it accordingly and stop the tunnel when you're done.
+> The *control* endpoints (`/api/control/*`, e.g. the Stop button) can be gated separately by
+> setting `ORRIN_CONTROL_TOKEN` (frontend reads `VITE_CONTROL_TOKEN`); set it before exposing
+> the tunnel so a viewer can't stop or steer the agent.
 
 ---
 
@@ -451,6 +489,35 @@ A few non-obvious design choices worth knowing:
   affect file; daemons submit proposals to a lock-guarded inbox.
 - **Homeostasis.** Affect decays toward per-signal baselines/setpoints under a velocity
   budget, not toward a flat midpoint.
+- **Global Workspace.** The parallel subsystems are unified by a Global Workspace
+  (`brain/cognition/global_workspace.py`, after Baars 1988 / Dehaene 2014): candidate contents
+  compete on salience, one winner becomes "conscious," is broadcast back into context for every
+  subsystem, and is appended to the experience stream. Hysteresis keeps a salient content in
+  focus across cycles so the stream is continuous rather than flickering — the functional basis
+  of a single serial "what I'm aware of now."
+- **More than one bandit.** The README's "bandit selector" picks the next cognitive function,
+  but learning is spread across several: a UCB1 `depth_bandit` learns how many
+  draft→critique→revise rounds the inner loop should run, and `thinking_depth` chooses shallow
+  vs deep chains for goal pursuit. They learn independently from the reward signal.
+- **Peers (outside observers).** Alongside the cognitive loop, a set of peer entities
+  (`brain/peers/`) read Orrin's state from the outside and, when their wake conditions fire,
+  push *signals* into the next cycle rather than mutating state directly — the Architect
+  reviews self-modifications before they happen, the Affect Historian tracks chronic affect
+  patterns, the Goal Auditor flags low-quality goals, the Observer catches unproductive loops,
+  and the Reward Auditor notices when the bandit's reward signal has collapsed to noise. They
+  flow through the same `signal_router` as everything else, so they nudge attention without
+  ever issuing commands.
+- **Delayed learning.** Some learning can't be scored at action time, so dedicated daemons
+  (`brain/eval/`) assign credit later: the evaluator rewards a past decision when a memory it
+  tagged is retrieved within ~50 cycles or its goal closes within ~200, and a separate
+  drive-expectations layer learns which actions *actually* relieve which drives and routes the
+  prediction error back into affect.
+- **Self-shaping LLM (when enabled).** Beyond using the LLM as a tool, Orrin can fine-tune on
+  its own high-reward conversation traces: the pipeline
+  (`brain/cognition/finetuning/finetune_pipeline.py`) filters traces with outcome ≥ 0.65,
+  submits a fine-tune job, and on completion repoints `model_config.json` so generation drifts
+  toward what has worked for *him*. (Optional and OpenAI-only; symbolic-only mode never touches
+  it.)
 - **Scientific inspiration (not validation).** Subsystems cite the sources that inspired them
   in-code — Russell & Barrett (core affect), Pearl & Granger (causality), Friston /
   Rescorla-Wagner / Tolman (prediction), Carver & Scheier (behavioral control), Flavell /
@@ -487,7 +554,9 @@ upfront about the rough edges and the direction of travel:
 - **Convergence layer is landing.** The single-writer affect arbiter + lock-guarded proposal
   inbox described in [Architecture notes](#architecture-notes) is being merged from the
   `convergence-layer` branch — confirm you're on a build that includes it.
-- **Language organ is in progress.** A native language subsystem is an active workstream; see
+- **Language organ is in progress.** A native language subsystem is an active workstream —
+  early modules already exist (`brain/cognition/language/`: tokenizer, acquisition, a native
+  LM, voice), but it is not yet Orrin's primary means of expression. See
   [`docs/ORRIN_LANGUAGE_PLAN.md`](docs/ORRIN_LANGUAGE_PLAN.md).
 - **Hero screenshot pending.** The Face & Brain UI capture (`docs/images/face_and_brain.png`)
   referenced at the top isn't checked in yet.

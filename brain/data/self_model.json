@@ -33,44 +33,45 @@
     "student of my own mind"
   ],
   "recent_focus": [
+    "Strengthen COGNITIVE symbolic reasoning",
+    "Strengthen GENERAL symbolic reasoning",
     "Immediate Actions",
-    "Understand my own mind and how I work",
-    "Understand the world more deeply",
-    "recent activity: chunk",
-    "recent activity: affective_reflection"
+    "recent activity: metacog_pattern",
+    "recent activity: chunk"
   ],
   "knowledge_domains": {
     "PLANNING": 0.59,
-    "EMOTIONAL": 0.47,
-    "SOCIAL": 0.72,
-    "TECHNICAL": 0.41,
+    "EMOTIONAL": 0.34,
+    "SOCIAL": 0.41,
+    "TECHNICAL": 0.52,
     "GENERAL": 0.31,
     "COGNITIVE": 0.26
   },
   "weaknesses": [
     "COGNITIVE",
-    "GENERAL"
+    "GENERAL",
+    "EMOTIONAL"
   ],
   "recent_changes": [
-    "[2026-06-13] Symbolic update: knowledge_domains updated: {'PLANNING': 0.59, 'EMOTIONAL': 0.47, 'SOCIAL': 0.72, 'TECHNICAL': 0.41, 'GENERAL': 0.31, 'COGNITIVE': 0.26}"
+    "[2026-06-13] Symbolic update: knowledge_domains updated: {'PLANNING': 0.59, 'EMOTIONAL': 0.34, 'SOCIAL': 0.41, 'TECHNICAL': 0.52, 'GENERAL': 0.31, 'COGNITIVE': 0.26}"
   ],
-  "symbolic_confidence": 0.7,
+  "symbolic_confidence": 0.679,
   "strengths": [
     "SOCIAL"
   ],
   "identity_story": "[analogy/GENERAL] Similar situation (score=0.335): [autobiography] Since my last entry: [aspiration] An enduring direction I hold: Understand my own mind and how I work; [aspiration] An enduring direction I hold: Understand the world more deeply; [aspiration] An enduring direction I hold: Be genuinely useful and connected to the people I talk to.",
   "_identity_refreshed_ts": 1781383539.3929842,
   "latent_identity_vector": [
-    0.3403,
-    0.5319,
-    0.2848,
-    0.765,
-    0.3204,
+    0.3283,
+    0.5124,
+    0.2805,
+    0.8115,
+    0.2917,
     0.3016,
     0.3516,
     0.9984,
     0.3516,
-    0.7778
+    0.7592
   ],
   "imaginative_threads": []
 }

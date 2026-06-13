@@ -1,12 +1,12 @@
 {
   "search_own_files": {
-    "count": 26,
-    "total_reward": 9.069795839999996,
-    "avg_reward": 0.3488383015384614
+    "count": 47,
+    "total_reward": 16.22601220622221,
+    "avg_reward": 0.34523430226004703
   },
   "reflect_on_growth_history": {
-    "count": 1,
-    "total_reward": 0.35,
+    "count": 2,
+    "total_reward": 0.7,
     "avg_reward": 0.35
   },
   "generate_intrinsic_goals": {
@@ -25,19 +25,19 @@
     "avg_reward": 0.41082
   },
   "update_affect_state": {
-    "count": 34,
-    "total_reward": 11.899999999999993,
-    "avg_reward": 0.3499999999999998
+    "count": 105,
+    "total_reward": 36.75000000000007,
+    "avg_reward": 0.3500000000000007
   },
   "reflect_on_write_a_cognitive_function_or_tool_that_": {
-    "count": 29,
-    "total_reward": 19.452234466222222,
-    "avg_reward": 0.6707667057318007
+    "count": 77,
+    "total_reward": 46.506810372266656,
+    "avg_reward": 0.6039845502891773
   },
   "metacog_analyze": {
-    "count": 14,
-    "total_reward": 7.879973088888889,
-    "avg_reward": 0.5628552206349207
+    "count": 26,
+    "total_reward": 14.178428543111112,
+    "avg_reward": 0.5453241747350428
   },
   "decide_to_write_code": {
     "count": 1,
@@ -45,59 +45,59 @@
     "avg_reward": 0.7512
   },
   "dream_cycle": {
-    "count": 38,
-    "total_reward": 21.800123209066665,
-    "avg_reward": 0.5736874528701754
+    "count": 170,
+    "total_reward": 77.10546417293344,
+    "avg_reward": 0.453561553958432
   },
   "reflect_on_think": {
-    "count": 8,
-    "total_reward": 5.42715162888889,
-    "avg_reward": 0.6783939536111112
+    "count": 16,
+    "total_reward": 10.432731751111112,
+    "avg_reward": 0.6520457344444445
   },
   "introspective_planning": {
-    "count": 7,
-    "total_reward": 4.387609577777778,
-    "avg_reward": 0.6268013682539683
+    "count": 11,
+    "total_reward": 6.477881288888888,
+    "avg_reward": 0.5888982989898989
   },
   "periodic_self_review": {
-    "count": 1,
-    "total_reward": 0.35,
-    "avg_reward": 0.35
+    "count": 3,
+    "total_reward": 1.0499999999999998,
+    "avg_reward": 0.3499999999999999
   },
   "reflect_on_missed_goals": {
-    "count": 9,
-    "total_reward": 6.453710588888889,
-    "avg_reward": 0.7170789543209877
+    "count": 25,
+    "total_reward": 15.625971817777778,
+    "avg_reward": 0.6250388727111111
   },
   "narrative_update": {
-    "count": 1,
-    "total_reward": 0.788,
-    "avg_reward": 0.788
+    "count": 2,
+    "total_reward": 1.5693803555555554,
+    "avg_reward": 0.7846901777777777
   },
   "propose_value_revision": {
-    "count": 4,
-    "total_reward": 3.310339688888889,
-    "avg_reward": 0.8275849222222222
+    "count": 6,
+    "total_reward": 4.987093844444445,
+    "avg_reward": 0.8311823074074075
   },
   "metacog_monitor": {
-    "count": 2,
-    "total_reward": 1.1303868444444443,
-    "avg_reward": 0.5651934222222221
+    "count": 3,
+    "total_reward": 1.6194147555555554,
+    "avg_reward": 0.5398049185185184
   },
   "attempt_regulation": {
-    "count": 8,
-    "total_reward": 5.394943833333334,
-    "avg_reward": 0.6743679791666668
+    "count": 9,
+    "total_reward": 6.073343833333334,
+    "avg_reward": 0.6748159814814816
   },
   "leave_note": {
-    "count": 3,
-    "total_reward": 1.8789541111111112,
-    "avg_reward": 0.626318037037037
+    "count": 6,
+    "total_reward": 3.9966828277777777,
+    "avg_reward": 0.6661138046296297
   },
   "fetch_wikipedia": {
-    "count": 1,
-    "total_reward": 0.6278439222222223,
-    "avg_reward": 0.6278439222222223
+    "count": 2,
+    "total_reward": 1.1795397444444444,
+    "avg_reward": 0.5897698722222222
   },
   "read_rss": {
     "count": 1,
@@ -105,9 +105,9 @@
     "avg_reward": 0.6117318533333334
   },
   "reflect_as_agents": {
-    "count": 2,
-    "total_reward": 1.3979122,
-    "avg_reward": 0.6989561
+    "count": 5,
+    "total_reward": 3.2550252777777784,
+    "avg_reward": 0.6510050555555557
   },
   "fetch_and_read": {
     "count": 1,
@@ -120,9 +120,9 @@
     "avg_reward": 0.5968372622222222
   },
   "reflect_on_desire": {
-    "count": 1,
-    "total_reward": 0.7529770866666667,
-    "avg_reward": 0.7529770866666667
+    "count": 4,
+    "total_reward": 2.425972524,
+    "avg_reward": 0.606493131
   },
   "reflect_on_effectiveness": {
     "count": 1,
@@ -135,9 +135,9 @@
     "avg_reward": 0.7242961
   },
   "read_a_book": {
-    "count": 1,
-    "total_reward": 0.5886526133333334,
-    "avg_reward": 0.5886526133333334
+    "count": 3,
+    "total_reward": 1.7289917022222223,
+    "avg_reward": 0.5763305674074074
   },
   "synthesize_from_gap": {
     "count": 1,
@@ -145,8 +145,63 @@
     "avg_reward": 0.6127823777777779
   },
   "reflect_on_internal_agents": {
+    "count": 3,
+    "total_reward": 1.0499999999999998,
+    "avg_reward": 0.3499999999999999
+  },
+  "generate_concepts_from_memories": {
+    "count": 1,
+    "total_reward": 0.5508057777777777,
+    "avg_reward": 0.5508057777777777
+  },
+  "maybe_surface_association": {
     "count": 2,
-    "total_reward": 0.7,
+    "total_reward": 1.079975288888889,
+    "avg_reward": 0.5399876444444445
+  },
+  "reflect_on_cognition_patterns": {
+    "count": 6,
+    "total_reward": 2.1,
+    "avg_reward": 0.35000000000000003
+  },
+  "metacog_init": {
+    "count": 6,
+    "total_reward": 3.0713899031111116,
+    "avg_reward": 0.5118983171851853
+  },
+  "imagine_opposite_self": {
+    "count": 1,
+    "total_reward": 0.5937573666666667,
+    "avg_reward": 0.5937573666666667
+  },
+  "research_topic": {
+    "count": 1,
+    "total_reward": 0.8817751411111112,
+    "avg_reward": 0.8817751411111112
+  },
+  "reflect_on_self_beliefs": {
+    "count": 1,
+    "total_reward": 0.35,
     "avg_reward": 0.35
+  },
+  "detect_memory_contradictions": {
+    "count": 1,
+    "total_reward": 0.35,
+    "avg_reward": 0.35
+  },
+  "reflect_on_cognition_schedule": {
+    "count": 2,
+    "total_reward": 1.2208,
+    "avg_reward": 0.6104
+  },
+  "reflect_on_outcomes": {
+    "count": 1,
+    "total_reward": 0.35,
+    "avg_reward": 0.35
+  },
+  "read_book": {
+    "count": 1,
+    "total_reward": 0.5344000000000001,
+    "avg_reward": 0.5344000000000001
   }
 }

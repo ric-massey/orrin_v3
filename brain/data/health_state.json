@@ -1,9 +1,0 @@
-{
-  "status": "nominal",
-  "cycle": 0,
-  "streak": 0,
-  "sick_streak": 1,
-  "last_check_ts": 1781392928.3110578,
-  "milestones_fired": [],
-  "total_healthy_cycles": 12
-}

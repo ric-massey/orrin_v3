@@ -79,3 +79,19 @@ brain/data/*.txt
 
 # Background daemons' runtime state trees (WAL, snapshots, media — regenerated).
 /data/
+
+# ── Runtime state (regenerated each run/reset) — untracked. Only the config
+#    seeds below are versioned. (git rm --cached'd 2026-06-14.)
+brain/data/*.json
+!brain/data/model_config.json
+!brain/data/vocabulary.json
+!brain/data/vocab_weights.json
+!brain/data/meta_rules.json
+!brain/data/cognitive_functions.json
+!brain/data/behavioral_functions_list.json
+!brain/data/affect_model.json
+!brain/data/capability_descriptions.json
+
+# Local artifacts
+.predegrade_backups/
+tmp/

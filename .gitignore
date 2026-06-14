@@ -95,3 +95,8 @@ brain/data/*.json
 # Local artifacts
 .predegrade_backups/
 tmp/
+
+# Runtime outbox + logs + temp artifacts
+outbox/*.json
+brain/logs/
+*.tmp

@@ -8,6 +8,14 @@
     "definition": "ask_llm_tool(query: 'str' = '', purpose: 'str' = 'question') -> 'str'\nLLM as a registry tool — same standing as web_search or wikipedia.\n\n    Invoked through the same dispatch path as every other tool; when the LLM\n    is disabled/unreachable it returns a plain \"tool unavailable\" message,\n    exactly like a dead web fetch — a result to route around, not an error."
   },
   {
+    "name": "assert_speakable",
+    "definition": "assert_speakable(text: 'str') -> 'str'\nReturn `text` if speakable; raise SpeakabilityError otherwise.\n\n    The door calls this AFTER composition. A failure here means the composer\n    copied backend representation instead of composing from meaning — a bug to\n    fix at the source, not text to sanitize and ship."
+  },
+  {
+    "name": "build_motive",
+    "definition": "build_motive(context: 'Dict[str, Any]', *, intent: 'str', recipient: 'str' = 'Ric', seed: 'str' = None) -> \"'Motive'\"\nConstruct a Motive from the committed goal + felt state, with the step's\n    intent threaded in by step_execution when present.\n\n    Provenance flows one of two ways:\n      • `context[\"_expression_motive\"]` — set by execute_step_action when an\n        expressive act is fired from a plan step, carrying the step's intent and\n        the owning goal's purpose (Phase 2 / E6). Its fields override the\n        goal-derived defaults so the act serves the reason it was triggered.\n      • otherwise the goal-derived defaults (Phase-1 local motive).\n    The seed always defaults to the affect meaning kernel — never a raw WM line."
+  },
+  {
     "name": "build_response",
     "definition": "build_response(user_input: 'str', context: 'Dict[str, Any]', affect_state: 'Dict[str, Any]') -> 'str'\nBuild a response through the full pipeline. Always returns a non-empty string.\n\n    Comprehension (S1) and memory retrieval (S2) run exactly once here and are\n    passed into the symbolic compose path — speech_generator skips re-running them."
   },
@@ -18,6 +26,10 @@
   {
     "name": "call_generated_function",
     "definition": "call_generated_function(function_name: 'str') -> 'bool'\nReload the generated module and call a function within it by name.\n    Returns True on success, False on failure."
+  },
+  {
+    "name": "compose_from_motive",
+    "definition": "compose_from_motive(motive: 'Motive', context: 'Dict[str, Any]') -> 'str'\nCompose person-facing language from the motive + current affect.\n\n    Reuses the authoring organ (expression.express) — affect-driven,\n    vocabulary-based, congruence-checked. It NEVER reads working memory or any\n    symbolic/telemetry field; the only content kernel it sees is the motive's\n    own (sanitized) seed."
   },
   {
     "name": "delay_between_requests",
@@ -48,6 +60,10 @@
     "definition": "express(salience: 'CycleState', context: 'Dict[str, Any]', user_input: 'str' = '') -> 'str'\nTranslate Orrin's current state into natural language using the vocabulary\n    database. Returns empty string if there is nothing worth saying."
   },
   {
+    "name": "express_to_user",
+    "definition": "express_to_user(motive: 'Motive', channel: 'str', context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nCompose from `motive`, enforce speakability, stamp, and route to `channel`.\n\n    Returns {\"success\", \"channel\", \"text\", \"motive\"}."
+  },
+  {
     "name": "filter_memories",
     "definition": "filter_memories(memories, tag='[MemoryFilter]')"
   },
@@ -70,6 +86,10 @@
   {
     "name": "is_scraping_allowed",
     "definition": "is_scraping_allowed(url: 'str') -> 'bool'"
+  },
+  {
+    "name": "is_speakable",
+    "definition": "is_speakable(text: 'str') -> 'bool'\nTrue if `text` is composed, person-facing language with no backend\n    representation leaking through (telemetry tags, bracket markers, paths)."
   },
   {
     "name": "load_private_thoughts_as_list",
@@ -106,6 +126,10 @@
   {
     "name": "scrape_text",
     "definition": "scrape_text(url: 'str') -> 'str'\nRespect robots.txt, then fetch and return ~first 2000 chars of visible text."
+  },
+  {
+    "name": "strip_internal",
+    "definition": "strip_internal(text: 'str') -> 'str'\nBest-effort sanitizer for a *content kernel* (a Motive.seed), not for\n    composed output. Removes bracket tags and collapses whitespace so a genuine\n    meaning kernel can flow into composition reworded rather than copied. The\n    door still asserts speakability on the final composed text."
   },
   {
     "name": "tool_thinking",

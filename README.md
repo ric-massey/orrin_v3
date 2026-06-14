@@ -103,6 +103,14 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   identity and autobiography, a moral-override check that can veto a proposed action against
   core values, second-order volitions (wanting to want), and a value-evolution process that
   revises core values when they're genuinely contested — not on a schedule.
+- **It can't read its own dials.** Orrin's affect lives internally as raw numbers, but the
+  part of him that *reasons and decides* never sees them. The unconscious machinery — the
+  function-selector, the attention system, the cost layer — reads those floats directly and
+  uses them to shape what happens next; the conscious layer receives only a felt-sense
+  translation ("a heaviness, like moving through something thick") that names the sensation,
+  never the emotion label or its value (`brain/affect/affect_summary.py`). Like a person
+  reading their own body rather than a gauge, he has to *introspect* to work out what he's
+  feeling. (See [Architecture notes](#architecture-notes).)
 
 ### At a glance
 
@@ -495,6 +503,17 @@ A few non-obvious design choices worth knowing:
   subsystem, and is appended to the experience stream. Hysteresis keeps a salient content in
   focus across cycles so the stream is continuous rather than flickering — the functional basis
   of a single serial "what I'm aware of now."
+- **Affect has two readers (felt sense vs. raw signal).** Core affect is stored as raw numeric
+  signals in `context["affect_state"]`, and Orrin's two cognitive halves read them differently.
+  The *unconscious machinery* — the bandit function-selector (`brain/think/think_utils/select_function.py`),
+  the attention hijacker (`brain/cognition/attention.py`), and the interoceptive cost/EVC layer
+  (`brain/cognition/interoception.py`) — reads the raw floats and uses them to bias what runs
+  next. The *reasoning layer* never receives a number: `brain/affect/affect_summary.py` renders
+  the signals into felt-sense descriptions that name the sensation, not the emotion label or its
+  value, and only that text reaches the inner-loop prompt, the self-model, and the speech gate.
+  The signals are hedonic-adjusted first, so a state Orrin has adapted to stops dominating the
+  felt picture. The intent is that he must *introspect* to know what he feels — interoception,
+  not a readout.
 - **More than one bandit.** The README's "bandit selector" picks the next cognitive function,
   but learning is spread across several: a UCB1 `depth_bandit` learns how many
   draft→critique→revise rounds the inner loop should run, and `thinking_depth` chooses shallow

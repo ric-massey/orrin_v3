@@ -273,6 +273,10 @@ def _learning_pulse(context: "Context") -> float:
 
 _LAST_GOALS_PUSH = 0.0
 _GOALS_PUSH_INTERVAL = 2.0   # seconds; goals change slowly, don't flood the bridge
+# Cognitive cycles a committed goal may tick ZERO milestones before it's degraded to
+# a simpler achievable form (or disengaged). Bounds honest stalls: a goal whose action
+# keeps failing to produce shouldn't pin impasse indefinitely (Wrosch goal adjustment).
+_GOAL_STALL_MAX = 40
 
 
 def _emit_goals(context: "Context") -> None:
@@ -744,11 +748,13 @@ def _boot_context() -> Context:
     # Clark (1997) embodied cognition: acting on the environment is constitutive
     # of cognition, not peripheral to it.
     try:
+        # write_to_desktop_note / announce_presence are no longer called here —
+        # the _write_desktop_note and _announce wrappers compose through the one
+        # expression door (behavior.express_to_user), which routes to them
+        # internally (EXPRESSION_MEMBRANE_FIX_PLAN E2/E3).
         from embodiment.system_presence import (
             get_system_state   as _gss,
-            write_to_desktop_note as _wdn,
             check_user_active  as _cua,
-            announce_presence  as _anp,
             read_clipboard     as _rcb,
         )
         def _survey_env(context=None):
@@ -757,16 +763,21 @@ def _boot_context() -> Context:
             _uwm({"content": f"[survey] System state: {str(s)[:300]}", "event_type": "system_survey", "priority": 2})
             return s
         def _write_desktop_note(context=None):
-            wm = [e.get("content", "") for e in (context or {}).get("working_memory", [])[-3:] if isinstance(e, dict)]
-            content = "\n".join(wm) if wm else "Thinking."
-            return _wdn("Orrin's note", content)
+            # Compose through the one expression door — never scrape working
+            # memory (EXPRESSION_MEMBRANE_FIX_PLAN E2).
+            from behavior.express_to_user import build_motive, express_to_user
+            ctx = context or {}
+            motive = build_motive(ctx, intent="write_desktop_note", recipient="Ric")
+            return express_to_user(motive, "desktop", ctx)
         def _check_user(context=None):
             return _cua()
         def _announce(context=None):
-            wm = (context or {}).get("working_memory") or []
-            last = wm[-1] if wm else {}
-            msg = last.get("content", "I'm here.") if isinstance(last, dict) else str(last)
-            return _anp(msg[:200])
+            # Compose through the one expression door — never ship the last WM
+            # entry to the dashboard (EXPRESSION_MEMBRANE_FIX_PLAN E3).
+            from behavior.express_to_user import build_motive, express_to_user
+            ctx = context or {}
+            motive = build_motive(ctx, intent="announce", recipient="dashboard")
+            return express_to_user(motive, "dashboard", ctx)
         def _read_clip(context=None):
             r = _rcb()
             if r.get("content"):
@@ -2248,7 +2259,50 @@ def run_cognitive_loop(
                         # Post-step: tick milestones, snapshot again, compute reward.
                         try:
                             if _tick_ms is not None:
-                                _tick_ms(context)
+                                _ticked_n = _tick_ms(context)
+                                # Complete the COMMITTED goal the moment its milestones
+                                # are all genuinely met. It's excluded from the main-loop
+                                # satiety sweep and the Executive's pursue is unreliable,
+                                # so an all-met committed goal otherwise sits in_progress
+                                # forever with impasse climbing. mark_goal_completed re-checks
+                                # milestones (hollow guard), so this only closes a goal that
+                                # is genuinely finished (milestones tick on real artifacts:
+                                # note_written / research / production traces — env_snapshot).
+                                _cgoal = context.get("committed_goal")
+                                if isinstance(_cgoal, dict) and _cgoal.get("status") != "completed":
+                                    _gms = [m for m in (_cgoal.get("milestones") or []) if isinstance(m, dict)]
+                                    _cyc_now = get_cycle_count()
+                                    # Progress clock: reset whenever a milestone ticks (or first sight).
+                                    if _ticked_n or _cgoal.get("_last_progress_cycle") is None:
+                                        _cgoal["_last_progress_cycle"] = _cyc_now
+                                    if _gms and all(m.get("met") for m in _gms):
+                                        try:
+                                            from cognition.planning.goals import (
+                                                mark_goal_completed as _mgc,
+                                                merge_updated_goal_into_tree as _mugit,
+                                            )
+                                            from cognition.planning import goal_arbiter as _ga
+                                            _mgc(_cgoal, context=context)
+                                            if _cgoal.get("status") == "completed":
+                                                _ga.apply((lambda _g: (lambda _t: _mugit(_t, _g)))(_cgoal),
+                                                          source="loop.milestones_all_met")
+                                                if (context.get("committed_goal") or {}).get("id") == _cgoal.get("id"):
+                                                    context["committed_goal"] = None
+                                                log_activity(f"[loop] Goal completed (milestones met): {(_cgoal.get('title') or '?')[:50]}")
+                                        except Exception as _mce:
+                                            record_failure("ORRIN_loop.complete_on_milestones", _mce)
+                                    else:
+                                        # No-progress → degrade/disengage. A goal that ticks NO
+                                        # milestone for _GOAL_STALL_MAX cycles (its action keeps
+                                        # failing to produce — e.g. research that can't reach the
+                                        # web) shouldn't pin impasse forever. Go simpler, or let go.
+                                        _stall = _cyc_now - int(_cgoal.get("_last_progress_cycle") or _cyc_now)
+                                        if _stall >= _GOAL_STALL_MAX:
+                                            try:
+                                                from cognition.planning.pursue_goal import _degrade_or_disengage as _dod
+                                                _dod(_cgoal, context, (_cgoal.get("title") or "?"), "no progress")
+                                            except Exception as _sde:
+                                                record_failure("ORRIN_loop.stall_degrade", _sde)
                             _post_snap = _snap(context) if _snap else {}
                             _env_r = _env_delta(_pre_snap, _post_snap) if _env_delta else 0.5
                         except Exception:

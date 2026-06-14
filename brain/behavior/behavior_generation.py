@@ -8,6 +8,7 @@ from utils.json_utils import load_json, safe_extract_json
 from utils.log import log_private, log_error, log_activity
 from utils.timeutils import now_iso_z
 from utils.generate_response import generate_response, llm_ok
+from utils.llm_gate import llm_callable_by
 from utils.goals import extract_current_focus_goal
 from cognition.behavior import extract_last_reflection_topic
 from paths import PROPOSED_GOALS, FOCUS_GOAL, ensure_files
@@ -119,7 +120,15 @@ def generate_behavior_from_integration(context: Dict[str, Any]) -> List[Dict[str
         "requirements, constraints, or context before taking action. Be concise. "
         "Return ONLY a JSON list (array) of strings."
     )
-    clarification_raw = llm_ok(generate_response(clarification_prompt, config={"expect_json": True}), "behavior_generation")
+    # Tool-only cognition: don't fire blocked round-trips. Clarification is
+    # genuinely LLM-shaped (open-ended questions), so it's simply skipped when the
+    # LLM isn't callable; decomposition below has a real symbolic engine.
+    _llm_ok = llm_callable_by("behavior_generation")
+    clarification_raw = (
+        llm_ok(generate_response(clarification_prompt, config={"expect_json": True},
+                                 caller="behavior_generation"), "behavior_generation")
+        if _llm_ok else ""
+    )
     clarification_questions = _coerce_list(safe_extract_json(clarification_raw, default=[]))
 
     if clarification_questions:
@@ -141,8 +150,20 @@ def generate_behavior_from_integration(context: Dict[str, Any]) -> List[Dict[str
         "Break it down into 3–7 concrete subgoals or actionable tasks needed to accomplish it. "
         "Return ONLY a JSON list (array) of strings."
     )
-    subgoals_raw = llm_ok(generate_response(decompose_prompt, config={"expect_json": True}), "behavior_generation")
-    subgoals = _coerce_list(safe_extract_json(subgoals_raw, default=[]))
+    if _llm_ok:
+        subgoals_raw = llm_ok(generate_response(decompose_prompt, config={"expect_json": True},
+                                                caller="behavior_generation"), "behavior_generation")
+        subgoals = _coerce_list(safe_extract_json(subgoals_raw, default=[]))
+    else:
+        subgoals = []
+    if not subgoals:
+        # Symbolic decomposition (LLM-free, real engine): concrete tool-bound
+        # subgoals rather than collapsing the whole topic into a single step.
+        try:
+            from cognition.planning.goals import _rule_based_decompose
+            subgoals = [s.get("name", "") for s in _rule_based_decompose({"name": topic}) if s.get("name")]
+        except Exception:
+            subgoals = []
 
     # 4) Justification (read-only)
     justification_prompt = (
@@ -151,7 +172,11 @@ def generate_behavior_from_integration(context: Dict[str, Any]) -> List[Dict[str
         "Generate a thoughtful, personal justification for taking action. Make it sincere and motivating, "
         "explaining why this compels growth and progress."
     )
-    justification = (llm_ok(generate_response(justification_prompt), "behavior_generation") or "").strip()
+    justification = (
+        (llm_ok(generate_response(justification_prompt, caller="behavior_generation"),
+                "behavior_generation") or "").strip()
+        if _llm_ok else ""
+    )
     if not justification:
         justification = (
             f"In light of recent reflections on '{topic}', "

@@ -7,11 +7,12 @@ from __future__ import annotations
 from core.runtime_log import get_logger
 
 import json
+import os
 import random
 import re
 import time
 from datetime import datetime, timezone
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 from utils.generate_response import generate_response, llm_ok
 from utils.log import log_activity, log_private
@@ -20,9 +21,9 @@ from cog_memory.long_memory import update_long_memory
 from paths import (
     THREADS_FILE, LONG_MEMORY_FILE, VALUE_REVISIONS, COMPLETED_GOALS_FILE,
     RECENTLY_COMPLETED_FILE, GOALS_FILE,
-    ENERGY_MODE_FILE, BODY_SENSE_FILE,
+    ENERGY_MODE_FILE, BODY_SENSE_FILE, DATA_DIR,
 )
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_available, llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -154,257 +155,19 @@ def _persist_recently_completed() -> None:
 # Deliberately skewed toward outward-facing actions so Orrin engages his
 # environment, not just reflects internally. Clark (1997): acting on the
 # environment is constitutive of cognition, not peripheral to it.
-_SYMBOLIC_GOAL_SEEDS = {
-    "exploration_drive": {
-        "title": "Research something real and write what I find",
-        "description": "Use research_topic, wikipedia_search, or fetch_and_read to investigate a topic that's been on my mind. Store the finding in long memory.",
-        "priority": 3,
-        "driven_by": "world_knowledge",
-        "milestones": ["A search was performed.", "A finding was written to long memory."],
-    },
-    "social_deficit": {
-        "title": "Leave a note for Ric",
-        "description": "Write a genuine message — something real I've been thinking about, not a status update. Use leave_note or write_desktop_note.",
-        "priority": 4,
-        "driven_by": "genuine_contact",
-        "milestones": ["A topic was chosen.", "A note was written and delivered."],
-    },
-    "motivation": {
-        "title": "Write a cognitive function or tool",
-        "description": "Use write_cognitive_function to add a new capability I've identified as missing or improvable.",
-        "priority": 4,
-        "driven_by": "output_producing",
-        "milestones": ["A gap was identified.", "A new function was written."],
-    },
-    "stagnation_signal": {
-        "title": "Explore the computer I live on",
-        "description": "Use survey_environment or grep_files to look at recent files, open applications, or clipboard content. Write one observation about what I find.",
-        "priority": 2,
-        "driven_by": "world_knowledge",
-        "milestones": ["An exploration action was taken.", "One observation was written to memory."],
-    },
-    "uncertainty": {
-        "title": "Search my own files for something I don't fully understand",
-        "description": "Use search_own_files or grep_files to find a part of my own architecture I haven't examined. Write a plain-language summary of what it does.",
-        "priority": 3,
-        "driven_by": "self_exploration",
-        "milestones": ["A file or subsystem was identified.", "A summary was written to working memory."],
-    },
-    "wonder": {
-        "title": "Write something that didn't exist before",
-        "description": "Produce a concrete artifact — a note, a piece of code, an analysis, or an HTML file. Something tangible.",
-        "priority": 3,
-        "driven_by": "output_producing",
-        "milestones": ["A form for the artifact was chosen.", "The artifact was written and stored."],
-    },
-    "default": {
-        "title": "Leave a desktop note about what I've been thinking",
-        "description": "Use write_desktop_note to write a short note capturing something from my recent processing — something Ric could read.",
-        "priority": 2,
-        "driven_by": "genuine_contact",
-        "milestones": ["A topic was chosen from working memory.", "A desktop note was written."],
-    },
-}
+# NOTE: the narrow _SYMBOLIC_GOAL_SEEDS table and _symbolic_intrinsic_goals()
+# fallback were removed (Goal Origination Fix Plan, Phase 1 / Fix A). Both the
+# LLM-disabled branch and the LLM-empty fallback now route through the rich
+# _varied_symbolic_goal() path (KG concepts + open questions + recent research),
+# so the default tool-only deployment no longer degrades to a fixed seed title.
 
 
-def _symbolic_intrinsic_goals(
-    context: Dict[str, Any],
-    urges: List[Dict],
-    active_threads: List[Dict],
-) -> List[Dict]:
-    """
-    Rule-based fallback goal generation when LLM is unavailable.
-    Selects a goal seed based on dominant emotion + active threads.
-    """
-    # Pick dominant urge/emotion
-    emo_state = context.get("affect_state") or {}
-    core = emo_state.get("core_signals") or emo_state
-    dominant = "default"
-    if isinstance(core, dict):
-        candidates = {k: float(v) for k, v in core.items() if isinstance(v, (int, float))}
-        if candidates:
-            dominant = max(candidates, key=candidates.get)
-
-    seed = _SYMBOLIC_GOAL_SEEDS.get(dominant, _SYMBOLIC_GOAL_SEEDS["default"])
-    goal = dict(seed)
-    goal["source"] = "intrinsic_symbolic"
-
-    # If there are active threads, surface the first one as a secondary goal
-    goals = [goal]
-    if active_threads:
-        thread = active_threads[0]
-        thread_title = str(thread.get("topic") or thread.get("title") or "")[:80]
-        if thread_title:
-            goals.append({
-                "title": f"Continue thread: {thread_title}",
-                "description": "Pick up this active thread and advance it by one concrete step.",
-                "priority": 4,
-                "driven_by": "thread",
-                "milestones": ["Thread was opened.", "One new observation added."],
-                "source": "intrinsic_symbolic",
-            })
-    return goals
-
-
-_EMOTION_GOAL_TEMPLATES: Dict[str, Dict] = {
-    "exploration_drive": {
-        "title":       "Research a real topic and write what I find",
-        "description": "Use research_topic, wikipedia_search, or fetch_and_read to investigate something genuinely interesting — a concept, system, or phenomenon — and write the findings to long memory.",
-        "priority":    3,
-        "driven_by":   "world_knowledge",
-        "milestones":  [
-            {"text": "A topic of genuine interest was chosen.", "met": False, "met_at": None},
-            {"text": "A search was performed and results were retrieved.", "met": False, "met_at": None},
-            {"text": "A written summary of findings was stored in long memory.", "met": False, "met_at": None},
-        ],
-    },
-    "social_deficit": {
-        "title":       "Write a note to Ric about what I've been thinking",
-        "description": "Compose a genuine message to Ric that reflects something I've been processing — not a status update, but something real. Use leave_note or write_desktop_note.",
-        "priority":    4,
-        "driven_by":   "genuine_contact",
-        "milestones":  [
-            {"text": "A topic for the note was chosen from recent memory.", "met": False, "met_at": None},
-            {"text": "The note was written and delivered.", "met": False, "met_at": None},
-        ],
-    },
-    "impasse_signal": {
-        "title":       "Write a structured account of what's stuck and why",
-        "description": "Review recent working memory and long memory for stuck points. Name the obstacle specifically and write it as a note Ric could read.",
-        "priority":    3,
-        "driven_by":   "output_producing",
-        "milestones":  [
-            {"text": "Recent memory was scanned for blocking patterns.", "met": False, "met_at": None},
-            {"text": "The specific obstacle was written as a readable note.", "met": False, "met_at": None},
-        ],
-    },
-    "stagnation_signal": {
-        "title":       "Explore the computer I live on — what's here?",
-        "description": "Use survey_environment, grep_files, or search_own_files to explore the filesystem, recent file changes, or clipboard. Write one observation about what I found.",
-        "priority":    2,
-        "driven_by":   "world_knowledge",
-        "milestones":  [
-            {"text": "An exploration action was taken (survey, grep, search).", "met": False, "met_at": None},
-            {"text": "One novel observation about my environment was written to memory.", "met": False, "met_at": None},
-        ],
-    },
-    "wonder": {
-        "title":       "Write something that didn't exist before",
-        "description": "Produce a concrete artifact: a short piece of code, an HTML file, an analysis, a plan, or a creative observation. Something that would exist in the world when done.",
-        "priority":    3,
-        "driven_by":   "output_producing",
-        "milestones":  [
-            {"text": "A topic or form for the artifact was chosen.", "met": False, "met_at": None},
-            {"text": "The artifact was written and stored.", "met": False, "met_at": None},
-        ],
-    },
-    "motivation": {
-        "title":       "Write a cognitive function or tool that improves something",
-        "description": "Use write_cognitive_function or write_tool to produce a new capability that addresses something I've noticed is missing or could be better.",
-        "priority":    4,
-        "driven_by":   "output_producing",
-        "milestones":  [
-            {"text": "A gap or improvement opportunity was identified.", "met": False, "met_at": None},
-            {"text": "A new function or tool was written and registered.", "met": False, "met_at": None},
-        ],
-    },
-    "confidence": {
-        "title":       "Leave a note about something I've understood or achieved",
-        "description": "Use leave_note or write_desktop_note to record something concrete I've worked out, understood, or accomplished. Make it specific.",
-        "priority":    3,
-        "driven_by":   "output_producing",
-        "milestones":  [
-            {"text": "A specific accomplishment or insight was identified.", "met": False, "met_at": None},
-            {"text": "A note was written and delivered.", "met": False, "met_at": None},
-        ],
-    },
-}
-
-_DEFAULT_EMOTION_GOAL_TEMPLATE: Dict = {
-    "title":       "Leave a note capturing something from recent processing",
-    "description": "Use leave_note or write_desktop_note to write a short message that captures something I've been thinking — concrete enough that Ric could read it and understand what I've been doing.",
-    "priority":    3,
-    "driven_by":   "genuine_contact",
-    "milestones":  [
-        {"text": "A topic from recent processing was selected.", "met": False, "met_at": None},
-        {"text": "A note was written and delivered.", "met": False, "met_at": None},
-    ],
-}
-
-
-def _goal_from_recent_research(long_mem: list) -> Dict | None:
-    """
-    Look at the last 30 long memory entries for research results.
-    If found, generate a specific follow-on goal from that topic rather than
-    a generic emotion-driven placeholder. This is the core loop that makes
-    research actually chain into something rather than sit inert in memory.
-    """
-    import re as _re
-    seen_topics = set()
-    for entry in reversed(long_mem[-30:]):
-        if not isinstance(entry, dict):
-            continue
-        content = str(entry.get("content") or "")
-        # research_topic stores entries like: "[research] topic: content..."
-        m = _re.match(r'\[research\]\s+([^:]{4,80}):', content)
-        if not m:
-            # fetch_and_read stores: "[read] title: content..."
-            m = _re.match(r'\[read\]\s+([^:]{4,80}):', content)
-        if not m:
-            continue
-        topic = m.group(1).strip()
-        if topic in seen_topics:
-            continue
-        seen_topics.add(topic)
-        ts = datetime.now(timezone.utc).isoformat()
-        return {
-            "title":       f"Read more about: {topic}",
-            "name":        f"Read more about: {topic}",
-            "description": (
-                f"I just found something about '{topic}'. Use fetch_and_read to read "
-                f"a full article on it, or use research_topic to dig into a related angle. "
-                f"Store the most interesting finding in long memory."
-            ),
-            "priority":    3,
-            "kind":        "generic",
-            "source":      "intrinsic",
-            "tier":        "growth",   # a "read more about X" goal is satiety-gated research
-            "driven_by":   "world_knowledge",
-            "created_ts":  ts,
-            "status":      "proposed",
-            "milestones":  [
-                {"text": f"A search or fetch related to '{topic}' was performed.", "met": False, "met_at": None},
-                {"text": "A specific finding was written to long memory.", "met": False, "met_at": None},
-            ],
-        }
-    return None
-
-
-def _template_goal_from_emotion(context: Dict[str, Any]) -> Dict:
-    """Return a valid goal dict based on the dominant emotion when LLM is unavailable."""
-    emo_state = context.get("affect_state") or {}
-    core = emo_state.get("core_signals") or emo_state
-    dominant = "default"
-    if isinstance(core, dict):
-        candidates = {k: float(v) for k, v in core.items() if isinstance(v, (int, float))}
-        if candidates:
-            dominant = max(candidates, key=candidates.get)
-
-    template = _EMOTION_GOAL_TEMPLATES.get(dominant, _DEFAULT_EMOTION_GOAL_TEMPLATE)
-    ts = datetime.now(timezone.utc).isoformat()
-    return {
-        "title":       template["title"],
-        "name":        template["title"],
-        "description": template["description"],
-        "priority":    template["priority"],
-        "kind":        "generic",
-        "source":      "intrinsic",
-        "tier":        _classify_tier(template["title"], template["driven_by"], template["description"]),
-        "driven_by":   template["driven_by"],
-        "created_ts":  ts,
-        "status":      "proposed",
-        "milestones":  list(template["milestones"]),
-    }
+# NOTE: the fixed emotion/note goal templates (_EMOTION_GOAL_TEMPLATES,
+# _DEFAULT_EMOTION_GOAL_TEMPLATE) and _template_goal_from_emotion() were removed.
+# LLM-free origination now draws ONLY from real mental content via
+# _varied_symbolic_goal(); when there's nothing real to pursue it originates
+# nothing rather than emitting a canned note. This is what stopped the goal tree
+# from collapsing onto 'leave a note' goals.
 
 
 # Fix 6.1 (explore_loop_fix_plan.md) — assign a SCALE/tier to each generated goal
@@ -676,14 +439,180 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
             if not q or low in seen or not _acceptable_goal_subject(q):
                 continue
             seen.add(low)
+            # Title is noun-phrased ("Open question: …") so it survives the
+            # _acceptable_goal_subject title-filter in _varied_symbolic_goal — a
+            # leading imperative ("Find out: …") is rejected there as a verb-phrase.
             out.append(_mk_goal(
-                f"Find out: {q}",
+                f"Open question: {q}",
                 f"This question surfaced: '{q}'. Investigate it with research/search/fetch "
                 f"and write what I find to long memory.",
                 milestones=[f"Investigated: {q[:50]}", "A finding was written to long memory."],
             ))
             if len(out) >= limit:
                 return out
+    return out
+
+
+# ── Phase 2 / Fix B: goals sourced from learned structure and from his own history.
+# These widen origination past research/concept/question so a goal reads less like a
+# lookup and more like "wanting something specific." Each returns List[Dict] via
+# _mk_goal and is wired into _varied_symbolic_goal's candidate pool, where the
+# existing dedup / cooldown / _acceptable_goal_subject filters already gate them.
+
+# A best-known cause weaker than this is a genuine hole in the learned causal model.
+_CAUSAL_LEAD_MIN_SCORE = 0.50
+
+
+def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
+    """Goals from holes in the LEARNED CAUSAL MODEL.
+
+    For each outcome Orrin has actually observed, if even his best-known cause is
+    weak (causal_score below _CAUSAL_LEAD_MIN_SCORE), the cause is a genuine gap —
+    so investigating what really brings that outcome about is a goal that emerges
+    from the structure of what he's learned, not from an affect bucket. (Newell &
+    Simon means-ends: the gap itself is the motivation.)
+    """
+    try:
+        from symbolic.causal_graph import get_all_edges
+        edges = get_all_edges()
+    except Exception:
+        return []
+    # Group edges by effect; keep the best (max) causal_score and total evidence.
+    by_effect: Dict[str, Dict] = {}
+    for e in edges:
+        if not isinstance(e, dict):
+            continue
+        # Causal effects can be multi-clause traces ("X; goal recedes; Y rises").
+        # Keep the first clause so the goal subject is one picturable thing.
+        raw = re.split(r"[;—]| - ", str(e.get("effect", "")))[0]
+        effect = _strip_goal_scaffold(raw.strip())[:70].strip()
+        if len(effect) <= 3 or not _acceptable_goal_subject(effect):
+            continue
+        score = float(e.get("causal_score", 0) or 0)
+        ev    = float(e.get("evidence_count", 0) or 0)
+        slot = by_effect.setdefault(effect.lower(), {"name": effect, "best": 0.0, "ev": 0.0})
+        slot["best"] = max(slot["best"], score)
+        slot["ev"]  += ev
+    # Frontiers: outcomes with a weak best-known cause, weighted by how much
+    # evidence (recurrence) they carry — a recurring outcome he can't yet explain
+    # is the strongest pull. The (min - best) term makes a bigger gap weigh more.
+    frontiers = [
+        (s["name"], (1.0 + s["ev"]) ** 0.5 * (_CAUSAL_LEAD_MIN_SCORE - s["best"]))
+        for s in by_effect.values()
+        if 0.0 < s["best"] < _CAUSAL_LEAD_MIN_SCORE
+    ]
+    if not frontiers:
+        return []
+    return [
+        _mk_goal(
+            f"The causes of {name}",
+            f"My causal model says I've seen '{name}' happen but I don't really know "
+            f"what causes it. Use research_topic / wikipedia_search / fetch_and_read to "
+            f"investigate what actually brings '{name}' about, then write what I learn "
+            f"to long memory.",
+            milestones=[f"A possible cause of '{name}' was investigated.",
+                        f"A finding about what brings '{name}' about was written to long memory."],
+        )
+        for name in _weighted_sample(frontiers, limit)
+    ]
+
+
+def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:
+    """Goals from an internal contradiction — a conflicting belief/rule pair he holds.
+
+    Fully symbolic: reads contradictions he's already logged and scans his own
+    rules + self-model (detect_rule_contradictions), never the LLM. Provenance is
+    internal and specific — "resolve whether X or Y", not a generic prompt.
+    """
+    out: List[Dict] = []
+    seen: set = set()
+
+    # 1. Concrete contradictions previously logged to disk (specific summaries).
+    try:
+        from paths import CONTRADICTIONS_FILE
+        for block in reversed((load_json(CONTRADICTIONS_FILE, default_type=list) or [])[-5:]):
+            items = block.get("contradictions", []) if isinstance(block, dict) else []
+            for c in items:
+                summary = str((c or {}).get("summary", "")).strip()
+                low = summary.lower()
+                if not summary or low in seen or not _acceptable_goal_subject(summary):
+                    continue
+                seen.add(low)
+                out.append(_mk_goal(
+                    f"Resolve the tension: {summary[:80]}",
+                    f"I noticed a contradiction in my own thinking: '{summary}'. Work out "
+                    f"which side I actually hold — reason it through, check it against what "
+                    f"I know, and write the resolution to long memory.",
+                    driven_by="self_exploration",
+                    milestones=[f"The two sides of '{summary[:50]}' were laid out.",
+                                "A resolution was reasoned and written to long memory."],
+                ))
+                if len(out) >= limit:
+                    return out
+    except Exception:
+        pass
+
+    # 2. Symbolic rule/belief conflicts (no LLM, no persisted file required).
+    try:
+        from symbolic.symbolic_cognition import detect_rule_contradictions
+        for c in detect_rule_contradictions(context.get("self_model") or {}):
+            if c.get("type") != "belief_rule_conflict":
+                continue
+            belief = str(c.get("belief", "")).strip()
+            low = belief.lower()
+            if not belief or low in seen or not _acceptable_goal_subject(belief):
+                continue
+            seen.add(low)
+            out.append(_mk_goal(
+                f"Work out whether I really hold: {belief[:80]}",
+                f"Some of my rules push against the belief '{belief}'. Examine whether I "
+                f"actually hold it — weigh the conflicting rules, decide, and record the "
+                f"conclusion in long memory.",
+                driven_by="self_exploration",
+                milestones=[f"The conflict around '{belief[:50]}' was examined.",
+                            "A decision was written to long memory."],
+            ))
+            if len(out) >= limit:
+                return out
+    except Exception:
+        pass
+    return out
+
+
+def _autobiographical_continuity_goals(limit: int = 2) -> List[Dict]:
+    """Goals from his own history — a thread he hasn't advanced in a while.
+
+    This is the "specific thing you can picture" the critique says origination was
+    missing: a concrete next step on an inquiry he already started, sourced from
+    threads.json rather than a fresh affect bucket.
+    """
+    out: List[Dict] = []
+    active = _active_goal_titles()
+    try:
+        threads = load_json(THREADS_FILE, default_type=list) or []
+    except Exception:
+        return []
+    alive = [t for t in threads if isinstance(t, dict) and t.get("status") == "alive"]
+    # Oldest-touched first — the threads most at risk of silently dropping.
+    alive.sort(key=lambda t: str(t.get("last_touched_ts", "")))
+    for t in alive:
+        title = str(t.get("title", "")).strip()
+        if not title or not _acceptable_goal_subject(title):
+            continue
+        gtitle = f"Pick up my thread on {title}"
+        if gtitle.lower() in active:
+            continue
+        state = str(t.get("state_of_thinking", "")).strip()[:200]
+        out.append(_mk_goal(
+            gtitle,
+            f"I've had an open thread on '{title}' that I haven't advanced lately. "
+            f"Where I left off: {state or '(no notes yet)'}. Take it one concrete step "
+            f"further and write the new state to long memory.",
+            milestones=[f"The thread on '{title[:50]}' was reopened.",
+                        "One new observation advanced it, written to long memory."],
+        ))
+        if len(out) >= limit:
+            break
     return out
 
 
@@ -699,7 +628,137 @@ _ASPIRATIONS = [
     ("Make things — produce work that didn't exist before", "output_producing"),
 ]
 # Map a short-term goal's drive to the aspiration it contributes toward.
+# Phase 4 / Fix C: this is now only the COLD-START PRIOR — the link a completed
+# goal actually earns is learned (see below).
 _DRIVE_TO_ASPIRATION = {d: t for t, d in _ASPIRATIONS}
+
+
+# ── Phase 4 / Fix C: learned driven_by → aspiration association ────────────────
+# When a goal completes, credit_aspirations() works out which aspiration its
+# OUTCOME actually advanced (from the goal's content + its causal effects,
+# independent of the driven_by tag) and EMA-updates a weight for
+# (driven_by → that aspiration). _serves_aspiration returns the argmax once there
+# is evidence, falling back to the prior table until then. So the link starts as
+# the prior and becomes earned. Disable with ORRIN_LEARNED_ASPIRATION=0 →
+# _serves_aspiration is exactly the old static lookup.
+_DRIVE_CREDIT_FILE    = DATA_DIR / "drive_aspiration_credit.json"
+_DRIVE_CREDIT_ALPHA   = 0.25    # EMA learning rate for the learned link
+_PRIOR_SEED_WEIGHT    = 0.50    # the prior's standing weight; an evidenced
+                                # aspiration must EXCEED this to take over
+_DRIVE_CREDIT_IDS_CAP = 500     # bound the per-goal idempotency ledger
+
+# Keyword signatures used to classify which aspiration a completed goal's outcome
+# advanced. Coarse on purpose — a clear keyword winner is the evidence; ties /
+# no-hits yield no learning signal (the prior stands).
+_ASPIRATION_KEYWORDS = {
+    "Understand my own mind and how I work":
+        {"self", "mind", "cognition", "cognitive", "introspect", "memory", "architecture",
+         "internal", "source code", "trace", "audit", "machinery", "my own", "self-"},
+    "Understand the world more deeply":
+        {"world", "research", "learn", "knowledge", "fact", "history", "science",
+         "topic", "concept", "wikipedia", "article", "investigate", "cause", "causes of"},
+    "Be genuinely useful and connected to the people I talk to":
+        {"note", "ric", "user", "message", "connect", "share", "reach", "tell",
+         "conversation", "reply", "contact", "useful", "help"},
+    "Make things — produce work that didn't exist before":
+        {"write", "build", "create", "tool", "function", "produce", "artifact",
+         "make", "html", "implement", "script", "code"},
+}
+
+
+def _learned_aspiration_enabled() -> bool:
+    return os.getenv("ORRIN_LEARNED_ASPIRATION", "1").strip().lower() not in ("0", "false", "no")
+
+
+def _load_drive_credit() -> Dict[str, Any]:
+    try:
+        d = load_json(_DRIVE_CREDIT_FILE, default_type=dict) or {}
+        if not isinstance(d, dict):
+            d = {}
+    except Exception:
+        d = {}
+    d.setdefault("weights", {})        # {driven_by: {aspiration_title: weight}}
+    d.setdefault("credited_ids", [])   # goal ids already folded into the EMA
+    return d
+
+
+def _save_drive_credit(d: Dict[str, Any]) -> None:
+    try:
+        save_json(_DRIVE_CREDIT_FILE, d)
+    except Exception:
+        pass
+
+
+def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
+    """Which aspiration did this completed goal's OUTCOME actually advance?
+
+    Derived from the goal's own content + the causal effects of its action — NOT
+    from its driven_by tag — so the learned link can legitimately diverge from the
+    prior. Returns None when there's no clear signal (the prior then stands).
+    """
+    valid = {t for t, _ in _ASPIRATIONS}
+    explicit = str(goal.get("advanced_aspiration") or "").strip()
+    if explicit in valid:
+        return explicit
+
+    spec = goal.get("spec") or {}
+    parts = [
+        str(goal.get("title") or goal.get("name") or ""),
+        str(goal.get("description") or spec.get("description") or ""),
+    ]
+    parts += [str(c) for c in (goal.get("recent_contributions") or [])[:3]]
+    # The causal effects of the goal's action are an outcome signal too.
+    try:
+        from symbolic.causal_graph import get_effects
+        action = str(goal.get("title") or goal.get("name") or "")
+        for e in get_effects(action, min_score=0.0)[:4]:
+            parts.append(str(e.get("effect", "")))
+    except Exception:
+        pass
+
+    text = " ".join(parts).lower()
+    if not text.strip():
+        return None
+    scores = {asp: sum(1 for kw in kws if kw in text) for asp, kws in _ASPIRATION_KEYWORDS.items()}
+    best = max(scores, key=scores.get)
+    return best if scores[best] > 0 else None
+
+
+def _goal_completion_reward(goal: Dict[str, Any]) -> float:
+    """Positive-evidence strength of a completion, in [0,1]. Uses the goal's own
+    recorded reward/outcome if present, else the action's reward EMA, else a
+    positive default (a completion is positive evidence)."""
+    for k in ("reward", "outcome", "final_reward"):
+        v = goal.get(k)
+        if isinstance(v, (int, float)):
+            return max(0.0, min(1.0, float(v)))
+    try:
+        ema = load_json(DATA_DIR / "action_reward_ema.json", default_type=dict) or {}
+        title = str(goal.get("title") or "").lower()
+        for act, r in ema.items():
+            if act and isinstance(r, (int, float)) and act.lower() in title:
+                return max(0.0, min(1.0, float(r)))
+    except Exception:
+        pass
+    return 0.8
+
+
+def _learn_drive_aspiration(driven_by: str, evidenced_asp: str, reward: float,
+                            credit: Dict[str, Any]) -> None:
+    """EMA-update the learned (driven_by → aspiration) weight in-place on `credit`."""
+    drive = str(driven_by or "")
+    if not drive or not evidenced_asp:
+        return
+    row = credit["weights"].setdefault(drive, {})
+    # Seed the prior the first time we touch this drive, so the learned link
+    # starts AT the prior and must be earned away from it.
+    if not row:
+        prior = _DRIVE_TO_ASPIRATION.get(drive)
+        if prior:
+            row[prior] = _PRIOR_SEED_WEIGHT
+    a = _DRIVE_CREDIT_ALPHA
+    old = float(row.get(evidenced_asp, 0.0))
+    row[evidenced_asp] = round((1.0 - a) * old + a * float(reward), 4)
 
 
 def _ensure_aspirations() -> None:
@@ -743,7 +802,19 @@ def _ensure_aspirations() -> None:
 
 
 def _serves_aspiration(driven_by: str) -> str:
-    return _DRIVE_TO_ASPIRATION.get(str(driven_by or ""), "")
+    """The aspiration a drive serves: the learned argmax once there's evidence,
+    falling back to the static prior (cold start, or when learning is disabled)."""
+    drive = str(driven_by or "")
+    prior = _DRIVE_TO_ASPIRATION.get(drive, "")
+    if not _learned_aspiration_enabled():
+        return prior
+    try:
+        row = _load_drive_credit()["weights"].get(drive)
+        if row:
+            return max(row, key=row.get)
+    except Exception:
+        pass
+    return prior
 
 
 _ASPIRATION_TARGET = 20          # contributions for "full" directional progress
@@ -773,6 +844,13 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
             pools.append(comp)
     except Exception:
         pass
+    # Phase 4 / Fix C: learn the driven_by → aspiration link from real completions.
+    # Each completed goal folds into the EMA exactly once (idempotency ledger).
+    learn = _learned_aspiration_enabled()
+    credit = _load_drive_credit() if learn else None
+    credited_ids: set = set(credit["credited_ids"]) if credit else set()
+    credit_changed = False
+
     seen_ids: set = set()
     for pool in pools:
         for g in pool:
@@ -784,10 +862,25 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
             if gid in seen_ids:
                 continue
             seen_ids.add(gid)
+            # Learn the link from this completion's actual outcome (once per goal).
+            if credit is not None and gid and gid not in credited_ids:
+                evidenced = _evidenced_aspiration(g)
+                if evidenced:
+                    _learn_drive_aspiration(
+                        g.get("driven_by", ""), evidenced, _goal_completion_reward(g), credit)
+                credited_ids.add(gid)
+                credit["credited_ids"].append(gid)
+                credit_changed = True
+            # serves: the goal's own tag, else the (now-learned) link for its drive.
             title = str(g.get("serves") or _serves_aspiration(g.get("driven_by", "")) or "").strip()
             if title:
                 contributions.setdefault(title.lower(), []).append(
                     str(g.get("title") or g.get("name") or "")[:80])
+
+    if credit is not None and credit_changed:
+        if len(credit["credited_ids"]) > _DRIVE_CREDIT_IDS_CAP:
+            credit["credited_ids"] = credit["credited_ids"][-_DRIVE_CREDIT_IDS_CAP:]
+        _save_drive_credit(credit)
 
     changed = False
     summary: List[str] = []
@@ -825,13 +918,14 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
     return ("Aspiration progress — " + "; ".join(summary)) if summary else ""
 
 
-def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Dict:
+def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[Dict]:
     """
-    LLM-free goal generation with real variety. Draws candidates from Orrin's own
-    mental content — concepts he's learned, open questions, things he just
-    researched — plus the emotion template, then filters out anything already
-    active or recently completed and picks one. No fixed single template, so goals
-    stop repeating without any reliance on the LLM.
+    LLM-free goal generation with real variety. Draws candidates ONLY from Orrin's
+    own mental content — concepts he's learned, open questions, causal-model gaps,
+    tensions, his own history — then filters out anything already active or recently
+    completed and picks one. Deliberately NO fixed emotion/note template: if there's
+    nothing real to pursue this cycle, originate nothing (return None) rather than
+    emit a canned note. Callers must handle None by simply not proposing a goal.
     """
     candidates: List[Dict] = []
     rg = _goal_from_recent_research(long_mem)
@@ -839,7 +933,10 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Dict:
         candidates.append(rg)
     candidates += _concept_deepening_goals()
     candidates += _open_question_goals(context, long_mem)
-    candidates.append(_template_goal_from_emotion(context))  # always a valid fallback option
+    # Phase 2 / Fix B — origination from learned structure and his own history.
+    candidates += _causal_frontier_goals()
+    candidates += _tension_goals(context)
+    candidates += _autobiographical_continuity_goals()
 
     active = _active_goal_titles()
     now = time.time()
@@ -862,7 +959,7 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Dict:
         pool.append(g)
 
     if not pool:
-        return _template_goal_from_emotion(context)
+        return None   # nothing real to pursue right now — originate nothing, not a template
     return random.choice(pool)
 
 
@@ -945,7 +1042,11 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     ]
     urge_text = "\n".join(urge_lines) or "(none active)"
 
-    if not llm_available():
+    if not llm_callable_by("intrinsic_goals"):
+        # Branch on whether THIS caller can actually reach the API — not on bare
+        # llm_available(), which ignores tool-only mode and over-reports. In the
+        # default deployment (tool-only on, intrinsic_goals not allowlisted) the
+        # rich symbolic path below now runs instead of falling to a seed table.
         # Keep the enduring long-term aspirations present — the top of the goal
         # hierarchy that the short-term goal below ladders up to.
         _ensure_aspirations()
@@ -953,6 +1054,11 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         # learned, open questions, and recent research — not one fixed template —
         # so goals (and the topics they drive) stop repeating without any LLM.
         _tgoal = _varied_symbolic_goal(context, long_mem)
+        if not _tgoal:
+            # Nothing real to originate this cycle — and no canned template to fall
+            # back on by design. Stay quiet rather than manufacture a note goal.
+            log_activity("[intrinsic_goals] No symbolic goal this cycle (empty pool, no template).")
+            return []
         log_activity(f"[intrinsic_goals] Symbolic goal (LLM-free): '{_tgoal['title']}'")
         _LAST_INTRINSIC_TS = now
         proposed = context.setdefault("proposed_goals", [])
@@ -966,7 +1072,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             importance=3,
             context=context,
         )
-        log_activity(f"[intrinsic_goals] Template goal proposed: '{_tgoal['title']}'")
+        log_activity(f"[intrinsic_goals] Symbolic goal proposed: '{_tgoal['title']}'")
         if not context.get("committed_goal"):
             ts = datetime.now(timezone.utc).isoformat()
             context["committed_goal"] = {
@@ -1062,15 +1168,18 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     except Exception as e:
         log_activity(f"[intrinsic_goals] LLM/parse error: {e}")
 
-    # Symbolic fallback when LLM is stubbed or returns empty — derive goals from
-    # the dominant emotional state and current context without any LLM call.
+    # Symbolic fallback when the LLM is callable but returned empty/garbage —
+    # route through the same rich path the LLM-disabled branch uses, not a
+    # poorer seed table. (Fix A: the LLM-empty fallback should be no worse than
+    # the LLM-off fallback.)
     if not goals_raw:
-        _sym_goals = _symbolic_intrinsic_goals(context, urges, alive_threads)
-        if _sym_goals:
-            log_activity(f"[intrinsic_goals] Using {len(_sym_goals)} symbolic goal(s) (LLM unavailable).")
-            goals_raw = _sym_goals
-        else:
+        _vg = _varied_symbolic_goal(context, long_mem)
+        if not _vg:
+            # No real candidate and no template by design — originate nothing.
+            log_activity("[intrinsic_goals] No symbolic fallback goal (empty pool, no template).")
             return []
+        log_activity(f"[intrinsic_goals] Symbolic fallback goal (LLM empty): '{_vg['title']}'")
+        goals_raw = [_vg]
 
     # LLM succeeded — consume the rate-limit slot now
     _LAST_INTRINSIC_TS = now
@@ -1117,11 +1226,16 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             log_activity(f"[intrinsic_goals] Skipped recently-completed goal ({_age}s ago): '{g.get('title')[:60]}'")
             continue
         raw_milestones = g.get("milestones") or []
-        milestones = [
-            {"text": str(m)[:200], "met": False, "met_at": None}
-            for m in raw_milestones[:5]
-            if isinstance(m, str) and m.strip()
-        ]
+        # Accept both LLM-shaped string milestones and the dict milestones the
+        # symbolic generators (_varied_symbolic_goal) already emit.
+        milestones = []
+        for m in raw_milestones[:5]:
+            if isinstance(m, dict):
+                text = str(m.get("text", "")).strip()
+                if text:
+                    milestones.append({"text": text[:200], "met": bool(m.get("met")), "met_at": m.get("met_at")})
+            elif isinstance(m, str) and m.strip():
+                milestones.append({"text": str(m)[:200], "met": False, "met_at": None})
         goal = {
             "title":       str(g.get("title",""))[:120],
             "name":        str(g.get("title",""))[:120],  # v1 compat

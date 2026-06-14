@@ -6,9 +6,18 @@
 # superhuman — humans manage 1-2 — and is intentional: Orrin retains the
 # cognitive advantage of parallel processing while still having limits.
 #
-# Affective hijacking:
+# Affective hijacking (on FELT intensity, after hedonic adaptation):
 #   intensity >= 0.70: moderate — 1 slot consumed, 2 remain for signals
 #   intensity >= 0.85: acute   — 2 slots consumed, 1 remains for signals
+#
+# Hijacking is gated on the *felt* intensity (raw level minus hedonic
+# adaptation), not the raw sensor value. A signal pinned high for many cycles
+# adapts — its felt intensity decays toward a floor — so it stops monopolizing
+# attention even though its raw level is unchanged, freeing slots for other
+# signals and letting the DMN (ambient_thought) rebound. A signal that *changes*
+# re-sensitizes (deviation from baseline grows) and grabs attention again. This
+# is the mechanism that prevents a chronically dominant signal from locking the
+# whole system into one basin: response tracks the derivative, not the level.
 #
 # The hijacking affect is injected as a synthetic signal at the head of the
 # attention window so the inner loop always knows what is pressing in.
@@ -51,8 +60,9 @@ def apply_attention_filter(
     """
     affect_state = context.get("affect_state") or {}
     core_signals   = affect_state.get("core_signals") or {}
+    hedonic_baselines = affect_state.get("hedonic_baselines") or {}
 
-    hijack_emotion, hijack_intensity = _find_hijacker(core_signals)
+    hijack_emotion, hijack_intensity = _find_hijacker(core_signals, hedonic_baselines)
 
     slots_taken = 0
     if hijack_emotion is not None:
@@ -99,8 +109,19 @@ def apply_attention_filter(
 
 def _find_hijacker(
     core_signals: Dict[str, Any],
+    hedonic_baselines: Optional[Dict[str, Any]] = None,
 ) -> Tuple[Optional[str], float]:
-    """Return (emotion_name, intensity) for the strongest emotion above threshold, or (None, 0.0)."""
+    """Return (emotion_name, felt_intensity) for the strongest emotion above
+    threshold *after hedonic adaptation*, or (None, 0.0).
+
+    Gating on felt intensity (not the raw sensor) means a signal that has been
+    pinned high for many cycles adapts out of the hijack — its felt charge
+    decays toward a floor — so it stops seizing attention even though its raw
+    level is unchanged. A signal that *changes* re-sensitizes (its deviation
+    from the drifting baseline grows) and captures attention again. The partial
+    adaptation floor in effective_intensity keeps a severe genuine threat from
+    ever fully vanishing.
+    """
     best_name:  Optional[str] = None
     best_value: float         = 0.0
 
@@ -109,11 +130,27 @@ def _find_hijacker(
             v = float(val)
         except (TypeError, ValueError):
             continue
-        if v >= _HIJACK_THRESHOLD and v > best_value:
-            best_value = v
+        felt = _felt_intensity(emo, v, hedonic_baselines)
+        if felt >= _HIJACK_THRESHOLD and felt > best_value:
+            best_value = felt
             best_name  = emo
 
     return best_name, best_value
+
+
+def _felt_intensity(
+    emotion: str,
+    val: float,
+    hedonic_baselines: Optional[Dict[str, Any]],
+) -> float:
+    """Hedonically-adapted (felt) intensity of an emotion. Falls back to the raw
+    value if the adaptation machinery can't be loaded, so attention never fails
+    closed."""
+    try:
+        from affect.affect_dynamics import effective_intensity as _ei
+        return _ei(emotion, val, hedonic_baselines or {})
+    except Exception:
+        return val
 
 
 def _make_hijack_signal(

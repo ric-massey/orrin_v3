@@ -360,6 +360,17 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         except Exception as _e:
             record_failure("think_module.think.7", _e)
 
+        # Native language faculty: write a first-person FELT summary of this choice
+        # — his ASSUMPTION of what just happened, drawn from his PERCEIVED affect,
+        # in his own words — into his language corpus. This is the experiential
+        # replacement for the raw decision telemetry (now dropped from training).
+        # Throttled + symbolic; FUTURE: native_lm writes this once fluent.
+        try:
+            from cognition.language.acquisition import narrate_experience as _narrate
+            _narrate(context)
+        except Exception as _ne:
+            record_failure("think_module.think.narrate", _ne)
+
         # Link dominant emotion → function with last cycle's actual reward as signal.
         # Previously called without reward_signal so it always incremented +1.0 —
         # making it a pure frequency counter, not a learner. Using context["last_reward"]

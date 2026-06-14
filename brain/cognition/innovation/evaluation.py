@@ -13,14 +13,14 @@ from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
 from utils.self_model import get_self_model
 from paths import PROPOSED_TOOLS_JSON, TOOL_EVALUATIONS_JSON, LONG_MEMORY_FILE, IMPLEMENTED_TOOLS_FILE
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
 
 def evaluate_new_abstractions() -> str:
-    if not llm_available():
+    if not llm_callable_by("evaluation"):
         log_activity("[evaluation] evaluate_new_abstractions skipped — LLM unavailable")
         return ""
     try:

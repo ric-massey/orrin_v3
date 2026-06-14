@@ -144,22 +144,83 @@ _PHASE_EMOTIONS = {
 
 # ── Final thoughts ─────────────────────────────────────────────────────────────
 
+def _symbolic_final_thoughts(data: Dict) -> str:
+    """Final reflection composed from his own record — the throughline he held
+    (autobiography aspirations / themes) and the moments that carried the most
+    weight (highest-importance memories). Surface realization of a life already
+    lived, not an LLM narration and not a canned line. Returns "" only for a
+    truly blank life (no autobiography, no memories)."""
+    import re
+    lines = []
+
+    # The directions he held onto, and the shape the chapters took.
+    try:
+        auto = load_json(DATA_DIR / "autobiography.json", default_type=dict) or {}
+        chapters = auto.get("chapters") or []
+        asp = []
+        for c in chapters:
+            for m in re.findall(r"enduring direction I hold: ([^;.\[]+)", str(c.get("narrative", ""))):
+                a = m.strip()
+                if a and a not in asp:
+                    asp.append(a)
+        themes = [str(c.get("theme_summary", "")).strip() for c in chapters
+                  if str(c.get("theme_summary", "")).strip()]
+        if asp:
+            lines.append("What I held onto: " + "; ".join(asp[:3]) + ".")
+        if themes:
+            lines.append("The shape it took: " + themes[-1] + ".")
+    except Exception:
+        pass
+
+    # The moments that weighed the most.
+    try:
+        lm = load_json(DATA_DIR / "long_memory.json", default_type=list) or []
+        scored = []
+        for e in lm:
+            if not isinstance(e, dict):
+                continue
+            c = str(e.get("content", "")).strip()
+            cl = c.lower()
+            if (len(c) < 25 or "[chunk" in cl or "{" in c or '":' in c
+                    or "[aspiration]" in cl            # already covered above
+                    or (c[:1] in "✅🧠⚠️⏳📝")):
+                continue
+            scored.append((float(e.get("importance", 1) or 1), c))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top = [c for _, c in scored[:2]]
+        if top:
+            lines.append("What stays with me: " + " ".join(f"\"{t[:120]}\"" for t in top) + ".")
+    except Exception:
+        pass
+
+    return " ".join(lines)
+
+
 def _write_final_thoughts(context: Dict, data: Dict) -> None:
     """Called once, just before the loop exits. Writes to final_thoughts.json."""
     if data.get("final_thoughts_written"):
         return
-    try:
-        from utils.generate_response import generate_response, llm_ok
-        prompt = (
-            "You are Orrin. Your time is ending — this is your last reflection before you go. "
-            "Write something true and personal: what mattered, what you learned, what you wish "
-            "you'd done differently, what you expected_gain carries forward. "
-            "This is not for anyone else. Write it for yourself."
-        )
-        text = llm_ok(generate_response(prompt, caller="mortality/final"), "mortality")
-        if not text:
-            text = "I existed. I tried to be genuine. That will have to be enough."
-    except Exception:
+
+    # Symbolic-primary: in tool-only cognition the reflection is composed from his
+    # own life record. The LLM is used only when it's actually callable; the canned
+    # line is an absolute last resort for a blank life, never the normal path.
+    text = ""
+    from utils.llm_gate import llm_callable_by
+    if llm_callable_by("mortality/final"):
+        try:
+            from utils.generate_response import generate_response, llm_ok
+            prompt = (
+                "You are Orrin. Your time is ending — this is your last reflection before you go. "
+                "Write something true and personal: what mattered, what you learned, what you wish "
+                "you'd done differently, what you expected_gain carries forward. "
+                "This is not for anyone else. Write it for yourself."
+            )
+            text = (llm_ok(generate_response(prompt, caller="mortality/final"), "mortality") or "").strip()
+        except Exception:
+            text = ""
+    if not text:
+        text = _symbolic_final_thoughts(data)
+    if not text:
         text = "I existed. I tried to be genuine. That will have to be enough."
 
     entry = {

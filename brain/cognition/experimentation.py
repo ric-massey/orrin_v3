@@ -732,6 +732,16 @@ def run_experiment_cycle(context: Dict[str, Any]) -> Dict[str, Any]:
     Returns a summary dict.
     """
     global _last_hypothesis_ts
+
+    # Hypothesis generation / experiment design is open-vocabulary (Phase 5):
+    # genuinely the LLM's job. When cognition can't reach it, skip cleanly rather
+    # than firing blocked round-trips. (Also tagged requires_llm for the selection
+    # path; this guards the direct dream-cycle call.) The SYMBOLIC experiment
+    # runner (symbolic.autonomous_experiment) covers the LLM-off case separately.
+    from utils.llm_gate import llm_callable_by
+    if not llm_callable_by("experimentation"):
+        return {"step": "skip", "reason": "llm_unavailable"}
+
     exps = _load_experiments()
     pending = _get_oldest_pending(exps)
 

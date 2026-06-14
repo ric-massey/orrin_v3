@@ -556,7 +556,7 @@ def get_orrin_file_activity() -> List[Dict[str, Any]]:
     return results[:30]  # cap to most recent 30
 
 
-def announce_presence(message: str) -> Dict[str, Any]:
+def announce_presence(message: str, kind: str = "presence") -> Dict[str, Any]:
     """
     Write an announcement to brain/data/announcements.json.
 
@@ -566,6 +566,10 @@ def announce_presence(message: str) -> Dict[str, Any]:
 
     Args:
         message: The message Orrin wants to announce.
+        kind: "presence" (a dashboard announcement) or "note" (a delivered
+              note routed through the same bridge so it is actually seen —
+              EXPRESSION_MEMBRANE_FIX_PLAN E4/option A). The dashboard can style
+              the two differently; both are person-facing.
 
     Returns:
         {"success": bool, "announcement_count": int, "error": str | None}
@@ -579,6 +583,7 @@ def announce_presence(message: str) -> Dict[str, Any]:
             "message": message,
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "source": "system_presence",
+            "kind": kind,
         }
         existing.append(entry)
         # Keep the 50 most recent

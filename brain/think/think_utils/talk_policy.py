@@ -180,6 +180,23 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
                     _speech_comprehension = context.get("_last_speech_comprehension", {})
             except Exception as _sg_e:
                 log_model_issue(f"speech_gate failed, falling back to raw content: {_sg_e}")
+        else:
+            # Self-initiated speech (no user present): compose through the ONE
+            # expression door rather than piping raw inner (raw_action) text out
+            # (EXPRESSION_MEMBRANE_FIX_PLAN E5). The raw inner text is handed in
+            # as a meaning kernel (seed) and reworded by the same composer that
+            # builds replies; speakability is enforced so no backend tag ships.
+            try:
+                from behavior.express_to_user import build_motive, compose_from_motive
+                from behavior.speakability import is_speakable
+                _self_motive = build_motive(
+                    context, intent="express_state", recipient="self", seed=txt)
+                _composed = compose_from_motive(_self_motive, context)
+                if _composed and is_speakable(_composed):
+                    txt = _composed
+                    context["_self_motive"] = _self_motive.to_dict()
+            except Exception as _self_e:
+                log_model_issue(f"self-speech compose failed, falling back to raw: {_self_e}")
 
         # Route through should_speak (owns chat log write, SSE, timing gate).
         rendered = speaker.should_speak(txt, emo, context, force_speak=True) or ""
@@ -198,12 +215,19 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
             # construction-grammar scores can't learn from blank buckets.
             try:
                 from think.speech_log import log_reply as _log_reply
+                _self_motive = context.pop("_self_motive", None)
                 if not _speech_plan:
                     _speech_plan = {
                         "response_type": "answer" if user_input else "express_state",
                         "tone": (_derive_tone(emo) or {}).get("tone", "neutral"),
-                        "source": "raw_action",
+                        # Provenance (E6/2.3): self-initiated speech now carries the
+                        # motive it was composed from, so "why did he say this" is
+                        # answerable and the construction-grammar scorer can learn
+                        # per-intent — not a blank "raw_action" bucket.
+                        "source": "composed" if _self_motive else "raw_action",
                     }
+                if _self_motive:
+                    _speech_plan["motive"] = _self_motive
                 _last_id = _log_reply(
                     user_input    = user_input,
                     reply         = rendered,

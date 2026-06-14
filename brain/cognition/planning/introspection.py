@@ -26,7 +26,7 @@ from paths import (
     WORKING_MEMORY_FILE,
 )
 from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -38,75 +38,91 @@ def _coerce_list(x) -> List[Any]:
         return []
     return [x]
 
+def _symbolic_self_summary() -> str:
+    """A real self-assessment from the symbolic self-model — strong/weak knowledge
+    domains and rule health — instead of a templated 'Feeling X, working toward Y'
+    line. Returns '' when the model has nothing to say."""
+    parts: List[str] = []
+    try:
+        from symbolic.symbolic_self_model import get_symbolic_self_model
+        model = get_symbolic_self_model()
+        strong = [s for s in (model.get("strong_areas") or []) if s]
+        weak   = [w for w in (model.get("weak_areas") or []) if w]
+        health = model.get("rule_health") or {}
+        if strong:
+            parts.append(f"I'm on firmer ground in {', '.join(strong[:3])}")
+        if weak:
+            parts.append(f"shakier in {', '.join(weak[:3])}")
+        mc = health.get("mean_confidence")
+        if isinstance(mc, (int, float)):
+            band = "low" if mc < 0.45 else "moderate" if mc < 0.70 else "solid"
+            parts.append(f"my rules hold together at {band} confidence")
+    except Exception as e:
+        record_failure("introspection._symbolic_self_summary", e)
+    return "; ".join(parts)
+
+
 def _rule_based_introspection() -> Dict[str, Any]:
     """
-    Build a structured introspection from existing context data without LLM.
-    Reads affect_state, committed_goal, working_memory, and concept/KG text,
-    formats them into a reflection string, writes to working_memory.
+    Symbolic introspective planning — no LLM, no templated mood report.
+
+    Does two real things from current state:
+      1. Goal maintenance (an actual update, not a no-op): drop terminal goals and
+         flag goals whose last recorded event was a failed attempt for review.
+      2. Self-assessment from the symbolic self-model (strong/weak domains, rule
+         health), which replaces the old slot-filled 'Feeling X. Working toward Y.'
     """
     current_goals = _coerce_list(load_json(GOALS_FILE, default_type=list))
-    self_model = ensure_self_model_integrity(get_self_model())
 
-    # Emotional state
-    emo = self_model.get("affect_state") or {}
-    core = emo.get("core_signals") if isinstance(emo.get("core_signals"), dict) else emo
-    dominant_emotion = "neutral"
-    if isinstance(core, dict):
-        dominant_emotion = max(
-            ((k, float(v)) for k, v in core.items() if isinstance(v, (int, float))),
-            key=lambda x: x[1], default=("neutral", 0.0)
-        )[0]
+    # ── 1) Goal maintenance — a real, conservative update driven by goal state ──
+    kept: List[Dict] = []
+    pruned = 0
+    flagged = 0
+    for g in current_goals:
+        if not isinstance(g, dict):
+            kept.append(g)
+            continue
+        status = str(g.get("status", "")).lower()
+        if status in ("completed", "abandoned"):
+            pruned += 1
+            continue
+        hist = g.get("history") or []
+        if isinstance(hist, list) and hist and isinstance(hist[-1], dict):
+            if hist[-1].get("event") == "failed_attempt" and not g.get("needs_review"):
+                g["needs_review"] = True
+                flagged += 1
+        kept.append(g)
 
-    # Committed goal
-    committed = self_model.get("committed_goal") or {}
-    goal_title = (committed.get("title") or "") if isinstance(committed, dict) else ""
+    # ── 2) Self-assessment from the symbolic self-model ──
+    sm = _symbolic_self_summary()
 
-    # Working memory — last 3 items
-    wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
-    recent_wm = wm[-3:] if len(wm) >= 3 else wm
-    wm_lines = "\n".join(
-        f"  - {str(e.get('content', ''))[:120]}"
-        for e in recent_wm if isinstance(e, dict)
-    ) or "  (no recent working memory)"
+    goal_bits: List[str] = []
+    if kept:
+        goal_bits.append(f"{len(kept)} live goal" + ("s" if len(kept) != 1 else ""))
+    if pruned:
+        goal_bits.append(f"set down {pruned} finished or abandoned")
+    if flagged:
+        goal_bits.append(f"flagged {flagged} that keep stalling")
 
-    # Concept text from self_model if present
-    concept_text = str(self_model.get("_concept_text") or "").strip()[:300]
-    kg_text = str(self_model.get("_kg_text") or "").strip()[:300]
+    pieces = ([sm] if sm else []) + goal_bits
+    summary = ("Looking inward: " + "; ".join(pieces) + ".") if pieces else \
+              "Looking inward: nothing is clearly pulling for change right now."
 
-    reflection_lines = [
-        f"[rule-based introspection | {now_iso_z()}]",
-        f"Dominant emotion: {dominant_emotion}",
-        f"Active goal: {goal_title or '(none)'}",
-        "Recent working memory:",
-        wm_lines,
-    ]
-    if concept_text:
-        reflection_lines.append(f"Concept context: {concept_text}")
-    if kg_text:
-        reflection_lines.append(f"Knowledge context: {kg_text}")
-
-    summary = (
-        f"Feeling {dominant_emotion}. "
-        + (f"Working toward: {goal_title}. " if goal_title else "No committed goal. ")
-        + f"Recent focus: {str(recent_wm[-1].get('content', ''))[:80] if recent_wm else 'nothing recent'}."
-    )
-    reflection_lines.append(f"Summary: {summary}")
-
-    reflection = "\n".join(reflection_lines)
-
-    update_working_memory(f"🧠 Introspection (rule-based): {summary}")
-    log_reflection(reflection)
+    # Persist the maintained goal list (the actual update).
+    save_json(GOALS_FILE, kept)
+    update_working_memory(f"🧠 Introspection (symbolic): {summary}")
+    log_reflection(summary)
     with open(PRIVATE_THOUGHTS_FILE, "a", encoding="utf-8") as f:
-        f.write(f"[{now_iso_z()}] Rule-based introspection. {summary}\n")
+        f.write(f"[{now_iso_z()}] Symbolic introspection. {summary}\n")
 
-    log_activity("✅ Rule-based introspective planning complete.")
-    return {"updated_goals": current_goals, "summary": summary}
+    log_activity("✅ Symbolic introspective planning complete.")
+    return {"updated_goals": kept, "summary": summary}
 
 
 def introspective_planning() -> Dict[str, Any]:
     raw = None  # for debug write on failure
 
-    if not llm_available():
+    if not llm_callable_by("introspection"):
         try:
             return _rule_based_introspection()
         except Exception as e:

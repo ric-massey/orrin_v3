@@ -12,7 +12,7 @@ from utils.log import log_error, log_activity
 from cog_memory.working_memory import update_working_memory
 from utils.self_model import get_self_model
 from paths import PROPOSED_TOOLS_JSON, FOCUS_GOAL, PRIVATE_THOUGHTS_FILE
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -42,7 +42,7 @@ def bootstrap_self() -> str:
     Orrin reflects on latest tools/ideas and simulates improvements
     to its own bootstrapping process.
     """
-    if not llm_available():
+    if not llm_callable_by("bootstrap"):
         log_activity("[bootstrap] bootstrap_self skipped — LLM unavailable")
         return ""
     try:

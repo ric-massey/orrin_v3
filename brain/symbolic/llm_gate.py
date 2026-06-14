@@ -25,6 +25,7 @@ from typing import Dict, Optional
 
 from utils.log import log_activity
 from utils.failure_counter import record_failure
+from utils.llm_gate import llm_callable_by
 _log = get_logger(__name__)
 
 _gate_lock = threading.Lock()
@@ -99,6 +100,11 @@ def gated_generate(
             _wait_for_slot(max_wait=10.0)
     except Exception as _e:
         record_failure("llm_gate.gated_generate", _e)
+
+    # Tool-only deployment: if this caller can't reach the API, don't fire a
+    # blocked round-trip — the symbolic router above already had its chance.
+    if not llm_callable_by(caller):
+        return ""
 
     # ── LLM call ──────────────────────────────────────────────────────────
     try:

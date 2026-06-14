@@ -39,6 +39,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from utils.llm_router import routed_response, get_deep_model
+from utils.llm_gate import llm_callable_by
 from utils.log import log_activity, log_error
 from think.scratchpad import scratchpad_append, scratchpad_latest
 from think.meta_controller import decide as meta_decide
@@ -408,6 +409,33 @@ def run_inner_loop(
     }
     """
     cycle_start = time.time()
+
+    # ── No LLM path? Deliberate symbolically (Fix D), else defer honestly (Fix E)
+    # Every routed_response-driven step below needs the LLM tool. When it isn't
+    # callable by inner_loop (default tool-only deployment), run the symbolic
+    # System-2 path instead: draft from the symbolic stack, critique + revise with
+    # symbolic critics, escalate by widening search. If that's disabled or fails,
+    # fall back to Fix E's honest typed defer so nothing silently no-ops.
+    if not llm_callable_by("inner_loop"):
+        try:
+            from think.inner_loop_symbolic import (
+                run_inner_loop_symbolic, symbolic_inner_loop_enabled,
+            )
+            if symbolic_inner_loop_enabled():
+                return run_inner_loop_symbolic(topic, context_text, context, max_rounds=max_rounds)
+        except Exception as _se:
+            record_failure("inner_loop.run_inner_loop.symbolic_dispatch", _se)
+        log_activity("[inner_loop] deferred: deliberation requires the llm tool "
+                     "(symbolic mode unavailable)")
+        return {
+            "content": "",
+            "rounds_used": 0,
+            "meta_decision": "defer",
+            "critique_applied": False,
+            "escalated": False,
+            "confidence": 0.0,
+            "reason": "deliberation requires llm tool",
+        }
 
     # ── Round count ────────────────────────────────────────────────────────────
     _caller_specified = max_rounds is not None

@@ -78,6 +78,27 @@ def llm_available() -> bool:
         return False
 
 
+def llm_callable_by(caller: str) -> bool:
+    """True only if `caller` could actually reach the API right now —
+    i.e. the LLM is available AND (tool-only is off OR caller is allowlisted).
+
+    This is the gate cognition should use to decide 'LLM path vs symbolic
+    path', because llm_available() ignores tool-only mode and over-reports:
+    in the default deployment (llm_enabled: true, key present,
+    ORRIN_LLM_TOOL_ONLY=1) it returns True even though every non-allowlisted
+    caller gets 'tool unavailable' past the symbolic gate in generate_response.
+    """
+    if not llm_available():
+        return False
+    try:
+        from utils.generate_response import _llm_tool_only, _LLM_TOOL_CALLERS
+        if _llm_tool_only() and caller not in _LLM_TOOL_CALLERS:
+            return False
+    except Exception:
+        pass
+    return True
+
+
 # ── requires_llm tagging ───────────────────────────────────────────────────────
 #
 # Cognitive functions that produce nothing useful without the LLM declare it —
@@ -96,6 +117,24 @@ REQUIRES_LLM_FUNCTIONS: frozenset = frozenset({
     "ask_llm",
     "ask_llm_for_research",
     "ask_llm_about_conversation",
+    # Phase 5 — open-vocabulary creativity with no symbolic path. These are kept
+    # as the LLM's job, not converted; they're filtered from the candidate pool in
+    # tool-only mode so they're cleanly never selected (no run-and-degrade).
+    # NOTE: decide_to_write_code is deliberately NOT here — it reaches the LLM via
+    # the allow-listed ask_llm tool path, which works in tool-only mode.
+    "check_projection_against_reality",   # #8 future-self projection
+    "run_experiment_cycle",               # #9 hypothesis generation / experiment design
+    "run_active_experiment",
+    "bootstrap_self",                     # #9 invent a new cognitive tool
+    "evaluate_new_abstractions",
+    "assess_innovation_outcomes",
+    "propose_extension",                  # #21 propose/review code self-extension
+    "review_extension",
+    "run_sandbox_experiments",            # #22 value invention / mutation (sandbox)
+    "generate_absurd_goal",
+    "invent_new_value",
+    "mutate_directive",
+    "reflect_on_sandbox_experiment",
 })
 
 
@@ -128,6 +167,16 @@ def filter_llm_dependent(names: Iterable[str]) -> List[str]:
     unavailable. No-op (full list back) when the tool is up.
     """
     names = list(names)
-    if llm_available():
+    # requires_llm functions reach the API as ordinary cognition (non-allowlisted
+    # callers), so they are usable only when the LLM is available AND tool-only
+    # mode is off. In the default tool-only deployment they can never run, so they
+    # must be filtered here too — otherwise (the old llm_available()-only check)
+    # they stayed in the pool, got selected, and ran-and-degraded every cycle.
+    try:
+        from utils.generate_response import _llm_tool_only
+        cognition_can_call = llm_available() and not _llm_tool_only()
+    except Exception:
+        cognition_can_call = llm_available()
+    if cognition_can_call:
         return names
     return [n for n in names if not fn_requires_llm(n)]

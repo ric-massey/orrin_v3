@@ -29,6 +29,17 @@ def run_sandbox_experiments(context=None):
     All actions, results, and self-evaluations are logged to SANDBOX_LOG.
     """
     context = context or {}
+
+    # The sandbox is open-vocabulary value/belief invention — genuinely the LLM's
+    # job (Phase 5). When cognition can't reach the LLM, skip cleanly instead of
+    # firing a series of blocked round-trips that all return empty. (It's also
+    # tagged requires_llm, so select_function won't pick it; this guards the
+    # direct dream-cycle call path too.)
+    from utils.llm_gate import llm_callable_by
+    if not llm_callable_by("sandbox"):
+        _log.info("[sandbox] skipped — LLM not callable for cognition")
+        return {"timestamp": now_iso_z(), "results": [], "overall_rating": "", "skipped": True}
+
     experiments = [
         invent_new_value,
         mutate_directive,

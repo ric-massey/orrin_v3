@@ -40,7 +40,7 @@ from utils.json_utils import load_json, save_json
 from cog_memory.long_memory import update_long_memory
 from cog_memory.working_memory import update_working_memory
 from paths import OPINIONS_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE, LONG_MEMORY_FILE
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -680,6 +680,75 @@ def _new_opinion_entry(
     return entry
 
 
+# Emotion polarity sets + internal markers, shared by the evidence-weighted engine.
+_OPINION_POS_EMO = {"positive_valence", "expected_gain", "confidence", "motivation",
+                    "excitement", "wonder", "exploration_drive"}
+_OPINION_NEG_EMO = {"negative_valence", "threat_level", "conflict_signal", "impasse_signal",
+                    "social_penalty", "rejection_signal", "melancholy", "risk_estimate"}
+_OPINION_INTERNAL_MARKERS = ("[chunk:", "[metacog", "[incubation", "[sym_",
+                             "[done]", "[pattern]", "✅", "🧠", "📝", "⚠️")
+
+
+def _evidence_weighted_opinion(topic: str, recent: List[Dict]):
+    """Form a view from the DISTRIBUTION of evidence about `topic` — the emotional
+    charge each recent mention carried, weighted by its importance — rather than
+    from one momentary mood and a canned frame. Confidence rises with the mass and
+    CONSISTENCY of that evidence (a weak Beta-style read), so a conflicted topic is
+    honestly low-confidence. Returns (view, confidence) or (None, 0.0) when the
+    evidence is too thin to hold any view.
+    """
+    pos_mass = neg_mass = 0.0
+    n = 0
+    best_snip, best_w = "", -1.0
+    charged: List[str] = []
+    tl = topic.lower()
+
+    for e in reversed(recent):
+        if not isinstance(e, dict):
+            continue
+        text = str(e.get("content", "")).strip()
+        low = text.lower()
+        if any(m in low for m in _OPINION_INTERNAL_MARKERS):
+            continue
+        if tl not in low or len(text) < 20:
+            continue
+        n += 1
+        w = min(1.0, float(e.get("importance", 1) or 1) / 5.0) or 0.2
+        emo = str(e.get("emotion", "")).strip().lower()
+        if emo in _OPINION_POS_EMO:
+            pos_mass += w; charged.append(emo)
+        elif emo in _OPINION_NEG_EMO:
+            neg_mass += w; charged.append(emo)
+        if w > best_w:
+            best_w, best_snip = w, text[:120]
+
+    if n == 0:
+        return None, 0.0
+
+    charged_mass = pos_mass + neg_mass
+    if charged_mass > 0:
+        consistency = abs(pos_mass - neg_mass) / charged_mass     # 0 conflicted … 1 unanimous
+        evidence_factor = charged_mass / (charged_mass + 2.0)     # more charged evidence → firmer
+        confidence = round(min(0.92, _MIN_CONFIDENCE + 0.62 * consistency * evidence_factor), 2)
+    else:
+        confidence = round(_MIN_CONFIDENCE + 0.05, 2)             # mentioned, never charged
+
+    snip_clause = f'most sharply in "{best_snip}"' if best_snip else "though I can't fix it to one moment"
+    tcap = topic[0].upper() + topic[1:]
+
+    moments = f"{n} recent moment" + ("s" if n != 1 else "")
+    if pos_mass > neg_mass * 1.3 and charged_mass > 0:
+        view = f"{tcap} has mostly landed well across {moments} — {snip_clause}. I find myself drawn to it."
+    elif neg_mass > pos_mass * 1.3 and charged_mass > 0:
+        view = f"{tcap} keeps landing badly — {snip_clause}. I've grown wary of it."
+    elif charged_mass > 0:
+        view = f"{tcap} pulls me both ways — {snip_clause}. I'm genuinely of two minds about it."
+    else:
+        view = f"{tcap} keeps surfacing — {snip_clause} — but it hasn't settled into a stance yet."
+
+    return view, confidence
+
+
 def _form(context: Dict[str, Any]) -> Optional[str]:
     global _last_formation_ts
 
@@ -714,54 +783,16 @@ def _form(context: Dict[str, Any]) -> Optional[str]:
             key=lambda x: x[1], default=("neutral", 0.0)
         )[0]
 
-    if not llm_available():
-        # Rule-based opinion: derive valence from emotional state and recent context.
-        # Pull an actual snippet from WM so views are specific, not templates.
-        _POSITIVE_EMOTIONS = {"positive_valence", "expected_gain", "confidence", "motivation", "excitement", "wonder", "exploration_drive"}
-        _NEGATIVE_EMOTIONS = {"negative_valence", "threat_level", "conflict_signal", "impasse_signal", "social_penalty", "rejection_signal", "melancholy", "risk_estimate"}
-
-        # Find the most content-rich WM entry that mentions this topic.
-        # Skip derived/internal text — quoting "[Chunk: [metacog/pattern]..."
-        # verbatim in a user-facing opinion was the telemetry-leak reply the
-        # audits flagged ("My sense of thinking is positive — it came up in:
-        # \"[Chunk: ...\""). Internal bookkeeping is never speakable content.
-        _INTERNAL_MARKERS = ("[chunk:", "[metacog", "[incubation", "[sym_",
-                             "[done]", "[pattern]", "✅", "🧠", "📝", "⚠️")
-        topic_snippet = ""
-        for entry in reversed(recent):
-            if not isinstance(entry, dict):
-                continue
-            text = str(entry.get("content", ""))
-            _tl = text.lower()
-            if any(m in _tl for m in _INTERNAL_MARKERS):
-                continue
-            if topic.lower() in _tl and len(text) > 20:
-                topic_snippet = text[:120].strip()
-                break
-
-        if dominant in _POSITIVE_EMOTIONS:
-            valence = "positive"
-            if topic_snippet:
-                view = f"My sense of {topic} is positive — it came up in: \"{topic_snippet}\"."
-            else:
-                view = f"{topic} keeps surfacing and feels generative right now."
-        elif dominant in _NEGATIVE_EMOTIONS:
-            valence = "negative"
-            if topic_snippet:
-                view = f"{topic} feels unresolved — specifically: \"{topic_snippet}\"."
-            else:
-                view = f"{topic} is recurring and something about it creates friction."
-        else:
-            valence = "neutral"
-            if topic_snippet:
-                view = f"I'm noticing {topic} without a settled view — recently: \"{topic_snippet}\"."
-            else:
-                view = f"{topic} is present in my processing but I haven't formed a strong take yet."
-
-        confidence = _MIN_CONFIDENCE + 0.10  # slightly above floor for rule-based
+    if not llm_callable_by("opinions/form"):
+        # Evidence-weighted: stance + confidence computed from the distribution of
+        # emotionally-charged memories about the topic, not a momentary mood + a
+        # canned frame. None when the evidence is too thin to hold a view.
+        view, confidence = _evidence_weighted_opinion(topic, recent)
+        if not view:
+            return None
 
         entry = _new_opinion_entry(topic, view, confidence, dominant, recent,
-                                   existing, "rule_based")
+                                   existing, "evidence_weighted")
         existing.append(entry)
         if len(existing) > _MAX_OPINIONS:
             existing.sort(key=_eviction_key, reverse=True)
@@ -769,12 +800,12 @@ def _form(context: Dict[str, Any]) -> Optional[str]:
         _save(existing)
 
         update_long_memory(
-            f"[opinion formed] On '{topic}': {view} (confidence {confidence:.2f}, rule-based)",
+            f"[opinion formed] On '{topic}': {view}",
             emotion=dominant,
             importance=2,
         )
         _last_formation_ts = time.time()
-        log_private(f"[opinions] rule-based opinion on '{topic}' ({valence}): {view}")
+        log_private(f"[opinions] evidence-weighted opinion on '{topic}': {view}")
         return topic
 
     # LLM path
@@ -958,16 +989,22 @@ def reflect_on_opinions(context: Dict[str, Any]) -> str:
         if isinstance(e, dict) and not str(e.get("content", "")).startswith(_SKIP_PREFIXES)
     )
 
-    if not llm_available():
-        # Rule-based: run the ledger pass and report state without LLM.
+    if not llm_callable_by("opinions/reflect"):
+        # Symbolic: the ledger judges. Run the evidence pass over recent memory
+        # (this is the real work — it can shift confidence, flag for review, and
+        # accrue for/against mass), then report the held view in qualitative terms
+        # so no raw telemetry decimal leaks into memory/corpus.
         _update_evidence(recent, opinions)
         op["needs_review"] = False
         _save(opinions)
         topic = op.get("topic", "unknown")
         view = op.get("view", "")
-        confidence = float(op.get("confidence") or 0.5)
-        summary = f"Holding view on '{topic}' (confidence {confidence:.2f}): {view[:80]}"
-        log_private(f"[opinions] rule-based reflect held '{topic}'")
+        conf = float(op.get("confidence") or 0.5)
+        held = ("hold loosely" if conf < 0.45 else
+                "hold with some conviction" if conf < 0.70 else
+                "hold firmly")
+        summary = f"On '{topic}', I still {held}: {view[:100]}"
+        log_private(f"[opinions] symbolic reflect held '{topic}' (conf={conf:.2f})")
         return summary
 
     from utils.generate_response import generate_response, llm_ok

@@ -5,7 +5,6 @@
 from __future__ import annotations
 from core.runtime_log import get_logger
 
-import random
 import uuid
 from datetime import datetime, timezone
 from typing import Dict, Any, List
@@ -14,21 +13,9 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from cog_memory.long_memory import update_long_memory
 from paths import THREADS_FILE, LONG_MEMORY_FILE
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
-
-
-_ADVANCE_PHRASES = [
-    "I'm still sitting with this.",
-    "Something here remains unresolved.",
-    "I keep returning to this question.",
-    "This thread hasn't closed yet.",
-    "There's more here I haven't reached.",
-    "I'm not done thinking about this.",
-    "The question is still open.",
-    "I haven't found the bottom of this yet.",
-]
 
 # A thread is stale after this many cycles without engagement
 _STALE_CYCLES = 20
@@ -93,6 +80,34 @@ def get_stale_threads(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     return stale
 
 
+def _symbolic_continue(title: str, current_state: str, related_texts: List[str]) -> str:
+    """Advance the inquiry from what has actually accumulated about it: surface the
+    newest related memory not yet reflected in the thread's state. Returns "" when
+    nothing new has landed (a genuinely dormant thread — no fabricated progress)."""
+    cur_low = (current_state or "").lower()
+    dev = ""
+    for t in reversed(related_texts or []):            # newest first
+        s = (t or "").strip()
+        sl = s.lower()
+        if len(s) < 20 or "[chunk" in sl or "{" in s or '":' in s:
+            continue
+        if s[:50].lower() in cur_low:                  # already folded into the state
+            continue
+        dev = s[:180]
+        break
+    if not dev:
+        return ""
+
+    base = (current_state or "").strip()
+    if len(base) > 160:
+        end = base.find(". ")
+        base = base[: end + 1] if 20 < end < 160 else base[:160]
+    t = title.strip()
+    if base:
+        return f"{base} Since then, this landed: \"{dev}\". I'm still working out how it fits {t}."
+    return f"On {t}: \"{dev}\" is the latest that bears on it, and I haven't resolved where it leads."
+
+
 def continue_thread(thread: Dict[str, Any], context: Dict[str, Any] = None) -> str:
     """
     Run a reflection pass on the thread: load related memories, update state-of-thinking.
@@ -122,23 +137,19 @@ def continue_thread(thread: Dict[str, Any], context: Dict[str, Any] = None) -> s
     )
 
     new_state = current_state
-    if llm_available():
+    if llm_callable_by("threads"):
         try:
             from utils.generate_response import generate_response, llm_ok
             new_state = (llm_ok(generate_response(prompt), "threads") or "").strip() or current_state
         except Exception as e:
             log_activity(f"[thread] LLM unavailable for thread continuation: {e}")
     else:
-        # Rule-based: pick the highest-salience thread content and append a template phrase.
-        # Extract a meaningful snippet from the existing state_of_thinking.
-        snippet = current_state.strip()
-        if len(snippet) > 120:
-            # Take first sentence if possible
-            end = snippet.find(". ")
-            snippet = snippet[: end + 1] if end > 20 else snippet[:120]
-        phrase = random.choice(_ADVANCE_PHRASES)
-        new_state = f"{snippet} {phrase}".strip() if snippet else phrase
-        log_activity(f"[thread] Rule-based continuation for '{title[:40]}'.")
+        # Symbolic: advance the inquiry from what has actually accumulated in
+        # memory about it — surface the newest related development not yet folded
+        # into the thread's state. When nothing new has landed, the thread is
+        # genuinely dormant: leave it unchanged rather than fabricate progress.
+        new_state = _symbolic_continue(title, current_state, related_texts) or current_state
+        log_activity(f"[thread] Symbolic continuation for '{title[:40]}'.")
 
     # Update thread
     threads = load_threads()

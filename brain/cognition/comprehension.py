@@ -18,7 +18,7 @@ from core.runtime_log import get_logger
 from typing import Any, Dict
 
 from utils.log import log_private
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -52,7 +52,7 @@ def comprehend(user_text: str, context: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _parse(user_text: str) -> Dict[str, Any]:
-    if not llm_available():
+    if not llm_callable_by("comprehension"):
         return _fallback(user_text)
     try:
         from utils.llm_router import routed_response

@@ -156,6 +156,43 @@ def log_raw_user_input(entry: Union[str, Dict[str, str]]) -> None:
     except Exception as exc:
         log_error(f"Error logging user input: {exc}")
 
+_CHAT_STOP = {
+    "that", "this", "with", "have", "what", "your", "about", "they", "them",
+    "from", "would", "could", "there", "their", "thing", "really", "going",
+    "just", "like", "want", "know", "think", "yeah", "okay", "right", "well",
+    "been", "were", "when", "then", "than", "some", "much", "very", "into",
+    "keep", "thinking", "actually", "something", "things", "maybe", "still",
+    "even", "make", "made", "does", "doing", "mean", "means", "kind",
+}
+
+
+def _symbolic_chat_summary(recent_chats: list) -> str:
+    """Extractive conversation summary — no LLM. Surfaces the main topics (frequent
+    content words across turns) and the single most substantive exchange, grounded
+    in the actual text. Returns "" when there's nothing substantive to keep."""
+    import re
+    from collections import Counter
+
+    texts = [str(e.get("content", "")).strip() for e in recent_chats if isinstance(e, dict)]
+    texts = [t for t in texts if len(t) > 3]
+    if not texts:
+        return ""
+
+    words = []
+    for t in texts:
+        words += [w for w in re.findall(r"[a-zA-Z]{4,}", t.lower()) if w not in _CHAT_STOP]
+    topics = [w for w, _ in Counter(words).most_common(4)]
+
+    salient = max(texts, key=len)[:160].strip()
+
+    parts = []
+    if topics:
+        parts.append("We kept returning to " + ", ".join(topics))
+    if salient:
+        parts.append(f"the line that stays with me: \"{salient}\"")
+    return ("; ".join(parts) + ".") if parts else ""
+
+
 def summarize_chat_to_long_memory(
     cycle_count: int,
     chat_log_file: Union[str, Path],
@@ -179,12 +216,18 @@ def summarize_chat_to_long_memory(
         recent_chats = chat_log[-20:]
         chat_text = "\n".join(str(entry.get("content", "")) for entry in recent_chats)
 
-        prompt = (
-            "Summarize the following recent conversation concisely and meaningfully, "
-            "capturing main topics, emotions, and insights:\n\n"
-            f"{chat_text}\n\nSummary:"
-        )
-        summary = llm_ok(generate_response(prompt), "chat_log")
+        # Symbolic-primary: in tool-only cognition the summary is extractive over
+        # the actual turns; the LLM is used only when it's genuinely callable.
+        from utils.llm_gate import llm_callable_by
+        if llm_callable_by("chat_log"):
+            prompt = (
+                "Summarize the following recent conversation concisely and meaningfully, "
+                "capturing main topics, emotions, and insights:\n\n"
+                f"{chat_text}\n\nSummary:"
+            )
+            summary = llm_ok(generate_response(prompt, caller="chat_log"), "chat_log")
+        else:
+            summary = _symbolic_chat_summary(recent_chats)
         if not summary:
             return
 

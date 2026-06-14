@@ -104,6 +104,49 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
                 return True
         return False  # production milestone with no real artifact evidence → unmet
 
+    # NOTE milestones ("the note was written / left / delivered", "wrote a note to
+    # Ric"). leave_note/write_desktop_note write the note to the outbox and drop a
+    # 'note_written' marker into WM. Verify by that REAL artifact, not by whether the
+    # note's prose echoes the milestone's own words — it never does (the note is about
+    # its subject, e.g. the obstacle, not about "a readable note"). This is what let
+    # note goals stall forever despite the note genuinely being written.
+    _NOTE_ACTIONS = ("written", "wrote", "write", "left", "deliver", "compos", "record")
+    if "note" in text_lower and any(w in text_lower for w in _NOTE_ACTIONS):
+        for entry in wm[-12:]:
+            if isinstance(entry, dict):
+                et = str(entry.get("event_type", "")).lower()
+                es = str(entry.get("content", "")).lower()
+            else:
+                et, es = "", str(entry).lower()
+            if et in ("note_written", "leave_note", "desktop_note") \
+                    or "[note_written]" in es or es.startswith("left a note"):
+                return True
+        return False  # note milestone, no real note artifact yet → unmet
+
+    # RESEARCH / FINDING milestones ("a finding/summary was written to long memory",
+    # "a search was performed", "results were retrieved"). research_topic/wikipedia/
+    # fetch_and_read store the finding and drop a '[research]'/'[wikipedia]' marker in
+    # WM. Verify by that real-retrieval evidence rather than token overlap.
+    _RESEARCH_HINTS = ("finding", "research", "summary of findings", "search was performed",
+                       "results were retrieved", "written to long memory", "stored in long memory")
+    if any(h in text_lower for h in _RESEARCH_HINTS):
+        # Real long-memory growth since the goal committed = a finding was genuinely
+        # stored (set by apply_milestone_updates; robust to WM pruning).
+        if context.get("_research_progressed"):
+            return True
+        for entry in wm[-12:]:
+            if isinstance(entry, dict):
+                et = str(entry.get("event_type", "")).lower()
+                es = str(entry.get("content", "")).lower()
+            else:
+                et, es = "", str(entry).lower()
+            # Specific research-action markers only — NOT the broad "world_perception"
+            # type, which look_around/environment perceptions also use (would false-tick).
+            if es.startswith(("[research]", "[wikipedia]", "[fetch", "[llm_research]")) \
+                    or "[research]" in es or et == "llm_tool_research":
+                return True
+        return False  # research milestone, no real retrieval yet → unmet
+
     key_tokens = _milestone_tokens(text)
     if len(key_tokens) < 2:
         return False
@@ -148,6 +191,19 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
     milestones = goal.get("milestones")
     if not isinstance(milestones, list):
         return 0
+
+    # Long-memory progress signal for research/finding milestones. research_topic /
+    # wikipedia_search / fetch_and_read reliably store findings in LONG memory (not
+    # WM), so "a finding was written to long memory" is verified by real long-memory
+    # GROWTH since this goal was committed — robust to the WM pruning/timing that left
+    # the transient "[research]" marker invisible. Baseline lazily on first sight.
+    try:
+        _lm_now = _lm_total(context)
+        if goal.get("_lm_baseline") is None:
+            goal["_lm_baseline"] = _lm_now
+        context["_research_progressed"] = _lm_now > int(goal.get("_lm_baseline") or 0)
+    except Exception:
+        context["_research_progressed"] = False
 
     now = time.time()
     ticked = 0

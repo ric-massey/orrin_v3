@@ -225,6 +225,79 @@ def _emit(decision: str, context: Dict[str, Any], round_num: int, reason: str = 
 _BRANCH_CONF_LOW  = 0.35   # below this: don't bother simulating (too uncertain for sim to help)
 _BRANCH_CONF_HIGH = 0.72   # above this: linear sim is enough (already confident)
 
+# Valence vocabulary for scoring a projected belief-chain. Matched against the
+# conclusions of causal edges / rule steps (Orrin's own signal names).
+_LOOKAHEAD_NEG = ("stagnation", "impasse", "conflict", "threat", "penalty",
+                  "rejection", "risk", "melancholy", "failure", "frustrat",
+                  "stuck", "blocked", "loop", "avoidance", "debt", "regret",
+                  "error", "worse", "decline")
+_LOOKAHEAD_POS = ("expected_gain", "reward", "confidence", "motivation",
+                  "exploration", "novelty", "progress", "insight", "growth",
+                  "understanding", "resolved", "success", "complete", "improve",
+                  "learn")
+
+
+def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
+    """Conservative symbolic forward check, used when the LLM can't simulate.
+
+    Rolls the intent forward through the causal graph (get_effects) plus the
+    rule/causal-chain planner, and scores the projected conclusions for valence.
+    Vetoes ONLY on a confident, net-negative projection — a clear bad outcome.
+    A sparse or empty projection (the common case while the causal graph is still
+    growing) returns True, so it can never block on no signal and cannot create
+    false-veto think_more loops. It sharpens automatically as beliefs accumulate.
+
+    Returns True to proceed, False to veto (→ think_more).
+    """
+    try:
+        conclusions: List[str] = []
+        confs: List[float] = []
+
+        # 1) Direct causal forward model: what does this action tend to cause?
+        try:
+            from symbolic.causal_graph import get_effects
+            for e in get_effects(intent, min_score=0.4)[:6]:
+                conclusions.append(str(e.get("effect", "")).lower())
+                confs.append(float(e.get("causal_score", 0.5)))
+        except Exception:
+            pass
+
+        # 2) Rule/causal chain rollout — skip analogy steps (no valence signal).
+        try:
+            from symbolic.temporal_planner import plan as _tplan
+            proj = _tplan(intent, horizon="short")
+            for s in (proj.get("steps") or []):
+                if s.get("type") in ("rule", "causal_edge"):
+                    conclusions.append(str(s.get("conclusion", "")).lower())
+                    confs.append(float(s.get("confidence", 0.5)))
+        except Exception:
+            pass
+
+        if not conclusions:
+            log_private("[meta_ctrl] symbolic lookahead: no projection → no veto")
+            return True
+
+        neg = sum(1 for c in conclusions if any(w in c for w in _LOOKAHEAD_NEG))
+        pos = sum(1 for c in conclusions if any(w in c for w in _LOOKAHEAD_POS))
+        mean_conf = (sum(confs) / len(confs)) if confs else 0.5
+
+        # Temper by how reliable predictions are in this domain.
+        try:
+            from symbolic.prediction_engine import domain_weighted_prediction_error
+            reliability = 1.0 - min(1.0, domain_weighted_prediction_error(intent))
+        except Exception:
+            reliability = 0.6
+        veto_conf = mean_conf * reliability
+
+        confidently_negative = (neg > pos) and (neg >= 2) and (veto_conf >= 0.5)
+        log_private(
+            f"[meta_ctrl] symbolic lookahead: neg={neg} pos={pos} "
+            f"veto_conf={veto_conf:.2f} → {'VETO' if confidently_negative else 'proceed'}"
+        )
+        return not confidently_negative
+    except Exception:
+        return True
+
 
 def simulate_outcome(context: Dict[str, Any], content: str) -> bool:
     """
@@ -253,6 +326,17 @@ def simulate_outcome(context: Dict[str, Any], content: str) -> bool:
         steps = 5 if use_branching else 2
 
         result   = simulate_lookahead(context, intent=intent, steps=steps, branching=use_branching)
+
+        # No LLM simulation (tool-only cognition) → conservative symbolic forward
+        # check instead of a blind skip. It only vetoes a confidently-negative
+        # projection; a sparse/empty projection proceeds, so it never fabricates a
+        # positive nor blocks on no signal.
+        if result.get("skipped"):
+            proceed = _symbolic_lookahead(intent, context)
+            log_private(f"[meta_ctrl] simulate_outcome via symbolic lookahead → "
+                        f"{'proceed' if proceed else 'VETO (think_more)'}")
+            return proceed
+
         positive = bool(result.get("positive", True))
         conf     = float(result.get("confidence", 0.5))
         branches = int(result.get("branches_explored", 0))

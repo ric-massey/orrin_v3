@@ -37,6 +37,7 @@ _VALID_PURPOSES = frozenset({
     "understand_conversation",
     "clarify",
     "summarize",
+    "write_code",
 })
 
 _PURPOSE_FRAMES: Dict[str, str] = {
@@ -64,6 +65,13 @@ _PURPOSE_FRAMES: Dict[str, str] = {
         "I am Orrin. I need a summary of the following.\n"
         "Content: {query}\n\n"
         "Provide a concise summary (2-4 sentences), preserving the most important points."
+    ),
+    "write_code": (
+        "I am Orrin, an autonomous AI writing a new Python cognitive function for myself.\n"
+        "{query}\n\n"
+        "Output ONLY the function BODY (the indented lines). No def line, no imports, no "
+        "markdown fences, no prose or explanation. It may call update_working_memory(str) "
+        "and log_activity(str). Keep it under 15 lines and use only ASCII characters."
     ),
 }
 

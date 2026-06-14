@@ -16,7 +16,7 @@ from affect.reward_signals.reward_signals import release_reward_signal
 
 from paths import GOALS_FILE, COMPLETED_GOALS_FILE, FOCUS_GOAL, SELF_BELIEF_REVISIONS_FILE
 from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -501,7 +501,7 @@ def decompose_goal(goal: Dict) -> List[Dict]:
     Break a complex goal into actionable subgoals.
     Uses rule-based decomposition when LLM is unavailable.
     """
-    if not llm_available():
+    if not llm_callable_by("goals"):
         return _rule_based_decompose(goal)
 
     prompt = (
@@ -529,7 +529,7 @@ def try_to_accomplish(goal: Dict) -> bool:
     Attempt an atomic goal. Uses working-memory evidence when LLM unavailable.
     Returns True if succeeded, False if needs decomposition.
     """
-    if not llm_available():
+    if not llm_callable_by("goals"):
         success = _rule_based_accomplish(goal)
         if success:
             goal["status"] = "completed"

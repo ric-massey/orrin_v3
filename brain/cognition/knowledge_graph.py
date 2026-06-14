@@ -32,7 +32,7 @@ from utils.json_utils import load_json, save_json, safe_extract_json, modify_jso
 from utils.log import log_activity, log_private
 from paths import KNOWLEDGE_GRAPH_FILE
 from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.embed_similarity import text_similarity, embeddings_available
 from utils.content_quarantine import PROMPT_NOTE as _EXTERNAL_CONTENT_NOTE, is_quarantined
 from utils.failure_counter import record_failure
@@ -1170,7 +1170,7 @@ def consolidate_from_long_memory(context: Optional[Dict] = None) -> Dict:
     # optional. The heuristic pass above has already run and been saved; when the
     # LLM is down we skip this enrichment and keep the symbolic extractions rather
     # than discarding them.
-    if llm_available():
+    if llm_callable_by("knowledge_graph/consolidation"):
         recent = relevant[-12:]  # cap at last 12 entries
         combined = "\n".join(f"- {t}" for t in recent)
         prompt = (

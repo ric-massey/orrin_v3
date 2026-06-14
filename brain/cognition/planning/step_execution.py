@@ -247,7 +247,9 @@ def _result_is_real(out: Any) -> bool:
     return not any(m in s for m in _FAILURE_MARKERS)
 
 
-def execute_step_action(fn_name: str, context: Dict[str, Any]) -> Tuple[bool, str]:
+def execute_step_action(fn_name: str, context: Dict[str, Any],
+                        step_text: str = "", goal: Optional[Dict[str, Any]] = None
+                        ) -> Tuple[bool, str]:
     """
     Fire the recognised act (the basal-ganglia "go") and judge it by its result.
 
@@ -256,6 +258,14 @@ def execute_step_action(fn_name: str, context: Dict[str, Any]) -> Tuple[bool, st
                        The caller should advance the step and credit agency.
       executed=False → the act was throttled / produced nothing. The caller
                        should leave the step pending and retry/replan.
+
+    Intent propagation (EXPRESSION_MEMBRANE_FIX_PLAN E6): when the act faces a
+    person (leave_note / write_desktop_note / announce / speech), word-match
+    still SELECTS the act, but it no longer DISCARDS the why. The owning goal's
+    purpose and the step's own text are threaded into the expression door via
+    context["_expression_motive"] so the artifact is composed to serve the
+    reason it was triggered — "him writing the note," not "a note happening
+    near him."
     """
     # Procedural/deliberate split (Phase 5): when running on the background
     # Executive lane (context["_procedural_only"]), refuse anything that isn't a
@@ -281,11 +291,34 @@ def execute_step_action(fn_name: str, context: Dict[str, Any]) -> Tuple[bool, st
         log_error(f"[step_exec] '{fn_name}' is not a callable registered function")
         return (False, "")
 
+    # Thread the goal's motive across the execution boundary for person-facing
+    # acts (E6). The expression door reads context["_expression_motive"] and
+    # composes from it; cleared in finally so it never leaks to a later act.
+    _motive_set = False
+    try:
+        from behavior.express_to_user import EXPRESSIVE_FUNCTIONS
+        if fn_name in EXPRESSIVE_FUNCTIONS:
+            g = goal if isinstance(goal, dict) else (context.get("committed_goal") or {})
+            spec = g.get("spec") if isinstance(g.get("spec"), dict) else {}
+            why = str(spec.get("description") or g.get("description")
+                      or g.get("title") or g.get("name") or "")[:200]
+            context["_expression_motive"] = {
+                "intent": (step_text or fn_name)[:120],
+                "why": why,
+                "goal_id": str(g.get("id") or g.get("title") or g.get("name") or ""),
+            }
+            _motive_set = True
+    except Exception as e:
+        log_error(f"[step_exec] motive threading failed for '{fn_name}': {e}")
+
     try:
         out = fn(context)
     except Exception as e:
         log_error(f"[step_exec] '{fn_name}' raised: {e}")
         return (False, "")
+    finally:
+        if _motive_set:
+            context.pop("_expression_motive", None)
 
     real = _result_is_real(out)
     result_text = (out if isinstance(out, str) else str(out))[:300]

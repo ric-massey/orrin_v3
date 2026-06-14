@@ -1525,6 +1525,22 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     _impasse = float(_cs_now.get("impasse_signal", 0.0) or 0.0)
     _goal_commit = max(0.0, min(1.0, 0.5 * (float(_cs_now.get("motivation", 0.0) or 0.0)
                                             + float(_cs_now.get("confidence", 0.0) or 0.0))))
+
+    # Goal-type action gating (means-ends): an action that EXCLUSIVELY serves a
+    # different kind of goal than the committed one must not win the slot — a
+    # code-writing action on a research goal, or research on a code goal, is working
+    # on the wrong end-state. Classify once here; penalise mismatches in the loop.
+    # Only exclusive "doing" actions are gated; shared/reflective functions stay free.
+    _goal_type = "general"
+    _mismatch_fn = None
+    if _has_committed_goal:
+        try:
+            from cognition.planning.goal_types import goal_type_of, is_mismatched_doing_action as _mismatch_fn
+            _goal_type = goal_type_of(context.get("committed_goal") or {})
+        except Exception as _gte:
+            record_failure("select_function.goal_type", _gte)
+            _mismatch_fn = None
+
     for name in actions:
         definition = defs.get(name, name)
         s_dir  = _kw_overlap_score(definition, directive)
@@ -1601,6 +1617,13 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # far larger s_emo exploration prior (≈0.19 of total) untouched.
         if _has_committed_goal and name in _BLIND_EXPLORE_FNS and s_goal_recruit <= 0.0:
             total -= min(0.40, 0.15 + 0.20 * _goal_commit + 0.10 * _impasse)
+
+        # Goal-type gate: decisively suppress an action that exclusively serves a
+        # DIFFERENT goal type (e.g. decide_to_write_code on an "understand X" goal).
+        # -0.6 overcomes even the impasse→action recruitment boost so cross-type
+        # actions can't win — the action that produces THIS goal's end-state does.
+        if _mismatch_fn is not None and _mismatch_fn(_goal_type, name):
+            total -= 0.6
 
         # Behavioral adaptation signals (Carver & Scheier, 1982 control systems):
         # Set by behavioral_adaptation.py when metacog detects recurring patterns.

@@ -306,8 +306,9 @@ def _retrieve(
     # Speakability chokepoint: internal bookkeeping ([Chunk:, [metacog/...],
     # [Incubation], reward ticks) must never be quoted at a user. Replies that
     # embedded these verbatim were the "telemetry leak" both audits flagged.
-    _INTERNAL = ("[chunk:", "[metacog", "[incubation", "[sym_", "[done]",
-                 "✅", "🧠", "📝", "⚠️")
+    # Single source of truth shared with the expression door — one list, no
+    # per-emitter drift (EXPRESSION_MEMBRANE_FIX_PLAN E7).
+    from behavior.speakability import INTERNAL_MARKERS as _INTERNAL
     memories = [
         m for m in memories
         if not any(t in str(m.get("_excerpt") or m.get("content") or "").lower()

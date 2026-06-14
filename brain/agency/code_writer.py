@@ -13,6 +13,7 @@ from core.runtime_log import get_logger
 import ast
 import importlib.util
 import json
+import re
 import sys
 import textwrap
 import threading
@@ -83,6 +84,36 @@ def _is_safe_path(path: Path) -> bool:
         except ValueError:
             continue
     return False
+
+def _clean_llm_code_body(resp: Optional[str]) -> Optional[str]:
+    """Turn an ask_llm response into a usable function BODY, or None.
+
+    ask_llm returns plain strings for BOTH success (the code) and failure ("ask_llm:
+    …", "LLM tool unavailable …", cooldown, etc.) — map the failure/unavailable
+    sentinels to None (→ no stub, capability-unavailable path). On success, strip
+    markdown fences / def-line / imports and normalise the smart-punctuation the LLM
+    likes to emit (em-dash etc.) that would otherwise fail the syntax check."""
+    if not resp or not isinstance(resp, str):
+        return None
+    s = resp.strip()
+    low = s.lower()
+    if (s.startswith("ask_llm:") or "llm tool unavailable" in low
+            or "llm_tool_blocked" in low or "cooldown active" in low
+            or "no response received" in low or "llm call failed" in low):
+        return None
+    if "```" in s:
+        m = re.search(r"```(?:python|py)?\s*(.*?)```", s, re.DOTALL)
+        if m:
+            s = m.group(1).strip()
+    # ASCII-normalise common smart punctuation so valid logic isn't rejected for a dash.
+    for bad, good in (("—", "-"), ("–", "-"), ("‘", "'"), ("’", "'"),
+                      ("“", '"'), ("”", '"'), (" ", " ")):
+        s = s.replace(bad, good)
+    keep = [ln for ln in s.splitlines()
+            if not ln.strip().startswith(("def ", "import ", "from "))]
+    s = "\n".join(keep).strip()
+    return s or None
+
 
 def _validate_syntax(code: str) -> Optional[str]:
     """Returns error string if code has a syntax error, else None."""
@@ -364,8 +395,13 @@ def synthesize_from_gap(context: Dict[str, Any] = None, **_) -> str:
 
 def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
     """
-    Orrin writes a new cognitive function based on his current goal or exploration_drive.
-    Uses LLM if available, otherwise generates a simple template function.
+    Write a new cognitive function for the current goal — but ONLY when the
+    code-writing tool can supply a genuine function body. Writing code is a
+    generative act that needs the LLM tool; in tool-only mode (the default) this
+    background caller is not on the LLM allow-list, so it gets nothing. That is the
+    honest outcome: NO do-nothing stub is written and NO milestone is faked. The
+    goal's production milestone then stays unmet, so the goal honestly degrades or
+    disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win.
     """
     ctx = context or {}
     goal = ctx.get("committed_goal") or {}
@@ -373,98 +409,37 @@ def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
     safe_topic = topic.lower().replace(" ", "_")[:40]
     fn_name = f"reflect_on_{safe_topic}"
 
-    # Try LLM first for a real function body
+    # Writing code needs the LLM. Per the tool-only design, the LLM is reached as a
+    # DELIBERATE TOOL (ask_llm) — Orrin's brain deciding to use a resource — not as
+    # background cognition. When the LLM is down/unavailable, ask_llm returns an
+    # unavailable message, which _clean_llm_code_body() maps to None below → no stub.
     body = None
     try:
-        from utils.generate_response import generate_response, llm_ok
-        prompt = (
-            f"Write the body of a Python function called '{fn_name}'.\n"
-            f"It should: {topic}.\n"
-            f"It has access to update_working_memory(str) and log_activity(str).\n"
-            f"Keep it under 15 lines. No imports needed. Just the body (no def line)."
-        )
-        body = llm_ok(generate_response(prompt), "code_writer")
+        from cognition.tools.ask_llm import ask_llm
+        query = f"Write the body of a Python function named '{fn_name}'. It should: {topic}."
+        body = _clean_llm_code_body(ask_llm(ctx, query=query, purpose="write_code", force=True))
     except Exception as _e:
         record_failure("code_writer.decide_to_write_code", _e)
 
-    # A minimal body that always validates — used both when the LLM returns
-    # nothing AND as a fallback when an LLM-written body fails verification (a
-    # syntactically/safety-invalid LLM body otherwise left the goal's production
-    # milestone permanently unmet: decide_to_write_code "ran" every cycle but
-    # never actually wrote a registered function).
-    _safe_body = (
-        f'update_working_memory("Orrin is reflecting on: {topic}")\n'
-        f'log_activity("Auto-generated reflection on {topic}")\n'
-    )
+    # No genuine body → the code-writing capability is unavailable right now. Do NOT
+    # write a hollow stub and do NOT fake the milestone; surface the honest blocker so
+    # the goal can degrade/disengage rather than loop on fake artifacts.
     if not body or not body.strip():
-        body = _safe_body
+        update_working_memory(
+            f"[capability_unavailable] Can't write code for '{topic[:50]}' — the "
+            f"code-writing tool (LLM) is unavailable. No function written.",
+            event_type="capability_unavailable", importance=2,
+        )
+        log_activity("[code_writer] decide_to_write_code: no LLM body available — not writing a stub.")
+        return
 
     result = write_cognitive_function(
         fn_name,
         description=f"Auto-generated: reflect on {topic}",
         body=body,
     )
-    # Fallback: if the LLM body failed verification, retry once with the safe
-    # template so a real function still gets written and registered (the goal's
-    # production milestone can only tick on a genuine "wrote ... function" trace).
-    if not result["success"] and body != _safe_body:
-        log_activity(f"[code_writer] LLM body failed ({result.get('error','')[:80]}); retrying with safe template.")
-        result = write_cognitive_function(
-            fn_name,
-            description=f"Auto-generated: reflect on {topic}",
-            body=_safe_body,
-        )
-
     if result["success"]:
         update_working_memory(f"Wrote new function '{fn_name}' for: {topic}")
-        # Ground-truth milestone tick. A function was genuinely written and
-        # registered, so satisfy the committed goal's production milestone(s) right
-        # here instead of relying on the downstream WM-text observer: that success
-        # trace is written on the conscious thread but env_snapshot reads a possibly-
-        # stale context["working_memory"], so the tick was missed and the goal looped
-        # re-writing the same function forever (the production milestone never met).
-        try:
-            import time as _t
-            _g = ctx.get("committed_goal")
-            if isinstance(_g, dict):
-                _PROD = ("written", "wrote", "write", "registered", "register",
-                         "created", "create", "built", "build", "produced",
-                         "produce", "implemented", "implement")
-                _ART = ("function", "tool", "capability", "module", "code")
-                _now = _t.time()
-                for _m in (_g.get("milestones") or []):
-                    if isinstance(_m, dict) and not _m.get("met"):
-                        _txt = str(_m.get("text", "")).lower()
-                        if any(w in _txt for w in _PROD) and any(w in _txt for w in _ART):
-                            _m["met"] = True
-                            _m["met_at"] = _now
-                # If that satisfied the last milestone, COMPLETE the goal here at the
-                # source of truth. The committed goal is excluded from the main loop's
-                # satiety sweep and only completes via the Executive's pursue, which is
-                # unreliable under resource preemption + the fast-path goal not being in
-                # goals_mem — so an all-met goal would otherwise sit in_progress forever,
-                # re-writing the same function and pinning impasse. mark_goal_completed's
-                # hollow guard still applies (it re-checks milestones).
-                _ms_all = [m for m in (_g.get("milestones") or []) if isinstance(m, dict)]
-                if _ms_all and all(m.get("met") for m in _ms_all):
-                    try:
-                        from cognition.planning.goals import mark_goal_completed, merge_updated_goal_into_tree
-                        from cognition.planning import goal_arbiter
-                        mark_goal_completed(_g, context=context)
-                        if _g.get("status") == "completed":
-                            goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, _g),
-                                               source="code_writer.goal_completed")
-                            if isinstance(context, dict) and (context.get("committed_goal") or {}).get("id") == _g.get("id"):
-                                context["committed_goal"] = None
-                            update_working_memory(
-                                f"[goal_completed] Finished '{_g.get('title','?')[:50]}' — wrote {fn_name}.",
-                                event_type="goal_completed", importance=3,
-                            )
-                            log_activity(f"[code_writer] Goal completed via real artifact: {_g.get('title','?')[:50]}")
-                    except Exception as _ce:
-                        record_failure("code_writer.decide_to_write_code.complete", _ce)
-        except Exception as _e:
-            record_failure("code_writer.decide_to_write_code.tick", _e)
     else:
         update_working_memory(f"Tried to write code but failed: {result['error']}")
 

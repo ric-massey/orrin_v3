@@ -23,7 +23,7 @@ from paths import (
     ensure_files,
 )
 from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -44,7 +44,7 @@ def _priority(q: Dict[str, Any]) -> float:
     return (1.0 - sat) * 0.6 + (age / 3600.0) * 0.3 + (1.0 / (1 + tries)) * 0.1
 
 def exploration_drive_loop() -> str | None:
-    if not llm_available():
+    if not llm_callable_by("exploration"):
         log_activity("[exploration] exploration_drive_loop skipped — LLM unavailable")
         return None
     exploration_drive = load_json(CURIOUS_GEORGE, default_type=list)
@@ -121,7 +121,7 @@ def _load_causal_rules_text() -> str:
     return "(no causal rules text available)"
 
 def simulate_world_state_change(change_description: str) -> Dict[str, Any] | None:
-    if not llm_available():
+    if not llm_callable_by("exploration"):
         log_activity("[exploration] simulate_world_state_change skipped — LLM unavailable")
         return None
     world_model = load_json(WORLD_MODEL, default_type=dict)

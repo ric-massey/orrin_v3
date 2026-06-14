@@ -22,6 +22,7 @@ assess_goal_progress():
 from __future__ import annotations
 from core.runtime_log import get_logger
 
+import copy
 import json as _json
 import os
 import re
@@ -41,7 +42,7 @@ from cognition.planning.goals import (
     set_goal_plan, insert_plan_step, prune_satisfied_steps,
     reprioritize_pending_steps, unmet_milestone_texts, _plan_step_tokens,
 )
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -137,82 +138,155 @@ _DELIBERATE_MAX_ROUNDS: int = 30
 
 # ── Plan generation ──────────────────────────────────────────────────────────
 
-def _symbolic_plan(goal_title: str, context: Dict[str, Any]) -> List[str]:
-    """
-    Rule-based plan generator for when LLM is unavailable.
-    Maps common goal patterns to concrete cognitive-function-level steps.
-    """
-    title = goal_title.lower()
-    # Extract the bare TOPIC, stripping goal scaffolding ("Understand X more deeply"
-    # → "X"). Critically: the plan must research the SUBJECT, not the literal goal
-    # title — the old code searched his own code for "Understand alicia douvall more
-    # deeply" instead of finding out who she is.
-    _topic = re.sub(r"^\s*(understand|learn about|find out|research|study|explore|look up|dig into|read about)\b\s*:?\s*",
-                    "", goal_title.strip(), flags=re.I)
-    _topic = re.sub(r"\s+more deeply\b\.?\s*$", "", _topic, flags=re.I).strip() or goal_title.strip()
+# Executable action vocabulary the planner grounds goals against — the SAME
+# capability descriptions step_execution routes steps on (recognise_step_action),
+# so any tool selected here is guaranteed recognisable and runnable. New tools
+# added to the manifest become plannable automatically: this is general
+# capability grounding, not a fixed goal→category table.
+_PLANNABLE_ACTIONS = (
+    "research_topic", "wikipedia_search", "fetch_and_read", "read_rss",
+    "search_own_files", "grep_files", "list_directory",
+    "look_outward", "look_around", "survey_environment", "read_clipboard",
+    "seek_novelty", "leave_note", "write_desktop_note",
+)
+_FILE_TOOLS     = frozenset({"search_own_files", "grep_files", "list_directory"})
+_RESEARCH_TOOLS = frozenset({"research_topic", "wikipedia_search"})
+# Tools that need an input from a prior step (fetch_and_read wants a URL), so they
+# are only ever a deepening step, never a cold lead.
+_DEEPEN_ONLY    = frozenset({"fetch_and_read"})
+# Below this capability↔goal match, no tool genuinely serves the goal → honest
+# block (slightly under step_execution's _SEMANTIC_FLOOR so the planner is a
+# touch more willing to propose than the executor is to auto-route).
+_PLAN_FLOOR = 0.18
 
-    # File search (benchmark_realignment.md F4 — e.g. B3's "Find the word
-    # 'reaper' in any brain file"): a search-shaped goal needs a search-shaped
-    # plan (search → grep → summarize), not the generic gather/identify/execute
-    # template. Guarded by a file/string cue so research-style "find out about X"
-    # goals still hit the research branch below.
-    if (("grep" in title) or
-            (any(w in title for w in ("find", "search", "locate", "look for"))
-             and any(w in title for w in ("file", "files", "word", "string", "code", "brain", "repo")))):
-        _m = re.search(r"['\"]([^'\"]{2,60})['\"]", goal_title)
-        _needle = _m.group(1) if _m else _topic
+# Intent → candidate executable tools. The goal's intent VERB selects a tool
+# family (reliable for the common goal shapes — "understand X" is a research
+# intent even though it shares no words with research_topic's description); then
+# capability_overlap picks the best-matching specific tool WITHIN the family, and
+# goals with no recognised intent fall back to grounding over the whole vocabulary.
+# This is intent classification + capability grounding — not canned per-goal plans.
+# Order matters: explicit intents (self / outward / explore) are checked before
+# the broad research family, so "look outward at what is happening" doesn't get
+# swallowed by research's "what is" trigger.
+_INTENT_FAMILIES = (
+    (("my own", "myself", "my code", "my system", "my architecture", "how i work",
+      "about myself", "my cognition", "my mind", "my memory", "audit my", "trace my",
+      "my source", "my data"),
+     ("search_own_files", "grep_files")),
+    (("observe", "outward", "outside", "external world", "what's happening",
+      "what is happening", "going on", "current events", "news", "rss"),
+     ("look_outward", "read_rss", "look_around")),
+    (("explore", "discover", "curious", "novel", "seek", "something new", "unfamiliar"),
+     ("seek_novelty", "research_topic")),
+    (("understand", "research", "learn", "study", "investigate", "read about",
+      "find out", "look up", "dig into", "what is", "who is", "history of",
+      "knowledge", "about the", "facts about"),
+     ("research_topic", "wikipedia_search", "fetch_and_read")),
+    (("note", "write to ric", "record", "message", "tell ric", "contact",
+      "connect", "reach out", "leave a note"),
+     ("leave_note", "write_desktop_note")),
+)
+
+
+def _intent_candidates(goal_title: str) -> tuple:
+    """The candidate tool family for the goal's intent, or the full vocabulary
+    when no intent verb is recognised. A bare 'find/locate' only routes to the
+    file family when there's a file/string cue, so 'find out about X' stays
+    research, not a file grep."""
+    gl = (goal_title or "").lower()
+    file_cue = any(w in gl for w in ("file", "files", "word ", "string", "code",
+                                     "brain", "repo", "grep", "function", "class", "module"))
+    if (("grep" in gl) or
+            (any(w in gl for w in ("find", "locate", "search for", "look for")) and file_cue)):
+        return ("search_own_files", "grep_files")
+    for triggers, tools in _INTENT_FAMILIES:
+        if any(t in gl for t in triggers):
+            return tools
+    return _PLANNABLE_ACTIONS
+
+
+def _goal_topic(goal_title: str) -> str:
+    """Strip goal scaffolding to the bare subject — 'Understand X more deeply' → 'X'
+    — so the plan acts on the SUBJECT, not the literal goal sentence."""
+    t = re.sub(r"^\s*(understand|learn about|find out|research|study|explore|look up|dig into|read about)\b\s*:?\s*",
+               "", (goal_title or "").strip(), flags=re.I)
+    t = re.sub(r"\s+more deeply\b\.?\s*$", "", t, flags=re.I).strip()
+    return t or (goal_title or "").strip()
+
+
+def _search_needle(goal_title: str, default: str) -> str:
+    """For file/string-search goals the precise target is usually quoted
+    ('Find the word ‹reaper›') — search for THAT, not the whole goal sentence."""
+    m = re.search(r"['\"]([^'\"]{2,60})['\"]", goal_title or "")
+    return m.group(1) if m else default
+
+
+def _symbolic_plan(goal_title: str, context: Dict[str, Any]) -> List[str]:
+    """Capability-grounded action planner (LLM-free).
+
+    Scores the goal against the curated capability vocabulary — the same
+    descriptions step_execution routes on — and builds an executable, topic-bound
+    plan from the best-matching tool(s). General by construction: any goal a
+    capability serves gets a plan, and a goal no capability serves returns []
+    (the caller then blocks needs_capability — an honest gap, never a canned
+    category template). Every emitted step names a real tool, so
+    recognise_step_action can always map it to a runnable action.
+    """
+    topic = _goal_topic(goal_title)
+    gl = (goal_title or "").lower()
+
+    # Production intent (write/build a function/tool/code) → generative gateway,
+    # mirroring step_execution's production gate so recognition and satisfaction agree.
+    if (any(w in gl for w in ("write", "create", "build", "implement", "produce"))
+            and any(w in gl for w in ("function", "tool", "capability", "module", "code"))):
         return [
-            f"Run search_own_files to locate '{_needle}' in my own files",
-            f"Run grep_files to find the exact occurrences of '{_needle}'",
-            f"Write a one-line summary of where '{_needle}' appears to working memory",
+            f"Use write_cognitive_function to build code for: {topic}",
+            "Write what the new capability does to working memory",
         ]
-    # GENUINE self-understanding — only explicit self-reference (NOT bare "understand",
-    # which was hijacking every external-topic goal into navel-gazing).
-    if any(w in title for w in ("my own", "myself", "my code", "my system", "my architecture",
-                                "how i work", "about myself", "my self", "my cognition", "my mind")):
-        return [
-            "Run search_own_files to scan my own code for key patterns",
-            "Review the last 20 entries in long memory for recurring themes",
-            "Write a working memory reflection on what I've learned about myself",
-        ]
-    # Relationship / social
-    if any(w in title for w in ("connect ", "relationship", "social", " person", "with ric", "with the user")):
-        return [
-            "Check relationships.json for known persons and last contact",
-            "Prepare a brief update or greeting for the primary contact",
-            "Log intent to share it when they next appear",
-        ]
-    # Understand / research / learn-about an EXTERNAL topic — bind the plan to the
-    # extracted subject and end by writing a real new fact ABOUT it to LONG memory
-    # (which is what these goals' own milestone requires).
-    if any(w in title for w in ("understand", "research", "read about", "study", "investigate",
-                                "find out", "look up", "dig into", "learn about", "learn ",
-                                "world", "knowledge", "what is", "who is")):
-        return [
-            f"Call research_topic / wikipedia_search to find NEW information about: {_topic}",
-            f"Call fetch_and_read to read a full article specifically about {_topic}",
-            f"Write one specific new fact learned about {_topic} to long memory",
-        ]
-    # Open goal / advance an idea
-    if any(w in title for w in ("advance", "open", "idea", "thread", "dormant")):
-        return [
-            "Review working memory for unresolved threads or open questions",
-            "Pick the most salient open thread and take one concrete step",
-            "Log what progress was made and what remains",
-        ]
-    # Exploration / novelty
-    if any(w in title for w in ("explore", "discover", "curious", "novel", "seek")):
-        return [
-            f"Search for an area related to {_topic} I haven't examined recently",
-            "Generate a self-question from what I found",
-            "Reflect on whether the question connects to any current goal",
-        ]
-    # Generic fallback — bound to the goal's own subject, not navel-gazing.
-    return [
-        f"Gather context relevant to {_topic}",
-        f"Reflect on what was found about {_topic} and how it bears on the goal",
-        "Write a concrete next action to working memory",
-    ]
+
+    # Intent family narrows the candidates; capability_overlap picks the best
+    # specific tool within it and grounds the choice in the goal's own words.
+    candidates = _intent_candidates(goal_title)
+    try:
+        from think.think_utils.select_function import _capability_descriptions, _capability_overlap
+        descs = _capability_descriptions()
+    except Exception:
+        descs = {}
+    primary_pool = [fn for fn in candidates if fn not in _DEEPEN_ONLY] or list(candidates)
+    scores = {fn: _capability_overlap(descs.get(fn) or fn.replace("_", " "), goal_title or "")
+              for fn in primary_pool}
+    if not scores:
+        return []
+    best_score = max(scores.values())
+
+    in_family = candidates is not _PLANNABLE_ACTIONS
+    if in_family:
+        # The curated family ORDER is itself a strong prior (it lists the canonical
+        # lead tool first — research_topic before wikipedia_search), so prefer the
+        # highest-priority tool whose score is within a margin of the best; overlap
+        # only breaks genuine near-ties. The family is the grounding, so a weak
+        # lexical score is fine here.
+        primary = next((fn for fn in primary_pool if scores[fn] >= best_score - 0.10),
+                       primary_pool[0])
+    else:
+        # Open-vocabulary fallback (no intent matched): pure capability grounding,
+        # floor-gated so a random low-overlap pick becomes an honest block instead.
+        if best_score < _PLAN_FLOOR:
+            return []
+        primary = max(primary_pool, key=lambda fn: scores[fn])
+    is_file = primary in _FILE_TOOLS
+    bind = _search_needle(goal_title, topic) if is_file else topic
+    label = f"where '{bind}' appears" if is_file else f"about {topic}"
+
+    steps = [f"Call {primary} to make progress on: {bind}"]
+    # Natural deepening so the plan produces real findings, not a single touch.
+    if primary in _RESEARCH_TOOLS:
+        steps.append(f"Call fetch_and_read to read a full source about {topic}")
+    elif primary in _FILE_TOOLS:
+        other = "grep_files" if primary != "grep_files" else "search_own_files"
+        steps.append(f"Call {other} to pin down the exact occurrences of '{bind}'")
+    steps.append(f"Write one concrete thing learned {label} to working memory")
+    return steps
 
 
 _CAUSAL_LEAD_MIN_SCORE = 0.50   # only act on reasonably strong learned causes
@@ -287,7 +361,7 @@ def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
     # when the caller demands symbolic-only (the background Executive daemon sets
     # context["_symbolic_only"] so it never calls the LLM — no contention with
     # think(), and faithful to §0.1 "Symbolic only. No 'ask an LLM to plan.'").
-    if not llm_available() or context.get("_symbolic_only"):
+    if not llm_callable_by("pursue_goal/plan") or context.get("_symbolic_only"):
         sym = _symbolic_plan(goal_title, context)
         log_activity(f"[pursue_goal] Symbolic plan for '{goal_title[:60]}' ({len(sym)} steps)")
         return _lead(sym)
@@ -562,6 +636,142 @@ def _maybe_close_on_tier(goal: Dict[str, Any], goal_title: str, next_step: str,
     return None  # close was blocked (hollow) — keep pursuing via the normal path
 
 
+def _degrade_or_disengage(goal: Dict[str, Any], context: Dict[str, Any],
+                          goal_title: str, reason: str) -> Optional[Dict[str, Any]]:
+    """A goal that can't proceed — because a needed capability is down OR because it's
+    making no progress. FIRST time: reduce it to a simpler achievable sub-goal that
+    still serves the aspiration (means-ends — "go simpler"). If already reduced or no
+    reduction exists: disengage (Wrosch — "abandon"). Never stub/fake. `reason` is a
+    short human cue (e.g. "needs llm (unavailable)" or "no progress"). Returns a status
+    dict, or None to fall through to normal handling."""
+    try:
+        from cognition.planning.goal_types import reduced_goal_spec
+        from cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
+        from cognition.planning import goal_arbiter
+    except Exception:
+        return None
+
+    if not goal.get("_degraded"):
+        spec = reduced_goal_spec(goal)
+        if spec:
+            goal["_degraded"] = True
+            goal["_original_title"] = goal.get("title")
+            # Snapshot the full pre-degrade form so it can be restored verbatim when
+            # the capability recovers (see _repromote_if_recovered). A degrade is a
+            # TEMPORARY means-ends reduction, not a permanent demotion — without this
+            # snapshot a transient outage converts the goal to a note for good.
+            goal["_predegrade"] = {
+                "title":      goal.get("title"),
+                "name":       goal.get("name"),
+                "type":       goal.get("type"),
+                "milestones": copy.deepcopy(goal.get("milestones")),
+            }
+            goal["title"] = spec["title"]
+            goal["name"]  = spec["title"]
+            goal["type"]  = spec["type"]
+            goal["milestones"] = spec["milestones"]
+            goal["_needs_deliberate_action"] = None
+            goal["_deliberate_rounds"] = 0
+            goal["_last_progress_cycle"] = None   # fresh progress clock for the new form
+            set_goal_plan(goal, [])   # force a fresh plan for the new, achievable form
+            context["committed_goal"] = goal
+            update_working_memory(
+                f"[goal_degraded] '{(goal.get('_original_title') or goal_title)[:40]}' ({reason}) "
+                f"— pursuing a simpler achievable step instead: {spec['title'][:50]}",
+                event_type="goal_degraded", importance=3,
+            )
+            log_activity(f"[pursue_goal] Degraded goal ({reason}) → {spec['title'][:50]}")
+            try:
+                goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                                   source="pursue_goal.degrade")
+            except Exception as _e:
+                record_failure("pursue_goal.degrade.persist", _e)
+            return {"status": "degraded", "goal": spec["title"]}
+
+    # Already reduced (or no reduction available) → disengage honestly.
+    mark_goal_failed(goal, reason=f"unworkable:{reason}", context=context)
+    context["committed_goal"] = None
+    update_working_memory(
+        f"[goal_disengaged] Releasing '{(goal.get('_original_title') or goal_title)[:40]}' — "
+        f"{reason}, and no simpler version left. Moving on.",
+        event_type="goal_disengaged", importance=3,
+    )
+    log_activity(f"[pursue_goal] Disengaged goal ({reason}, no reduction): {goal_title[:40]}")
+    return {"status": "disengaged", "goal": goal_title, "reason": reason}
+
+
+def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bool:
+    """Restore a degraded goal to its full form once the capability it needed is
+    available again. A degrade (means-ends reduction → "Note what I know about X")
+    is meant to be temporary; nothing else ever reverts it, so without this a single
+    transient web/LLM outage permanently rewrites real goals into notes. Returns True
+    if the goal was restored."""
+    if not isinstance(goal, dict) or not goal.get("_degraded"):
+        return False
+    try:
+        from cognition.planning.goal_types import required_capability, capability_available
+    except Exception:
+        return False
+
+    snap = goal.get("_predegrade") if isinstance(goal.get("_predegrade"), dict) else {}
+    orig_title = snap.get("title") or goal.get("_original_title")
+    if not orig_title:
+        return False
+
+    # What did the ORIGINAL (full) form need? Probe with its title/type/description so
+    # the classifier sees the real research goal, not the degraded note form.
+    probe = {
+        "title": orig_title,
+        "name": snap.get("name") or orig_title,
+        "type": snap.get("type"),
+        "spec": goal.get("spec"),
+        "description": goal.get("description"),
+    }
+    cap = required_capability(probe)
+    if not capability_available(cap, context):
+        return False  # still down → stay in the achievable degraded form
+
+    # Restore the full form.
+    goal["title"] = orig_title
+    goal["name"]  = snap.get("name") or orig_title
+    if snap.get("type") is not None:
+        goal["type"] = snap["type"]
+    else:
+        goal.pop("type", None)           # let it re-derive from title/description
+    if snap.get("milestones") is not None:
+        goal["milestones"] = copy.deepcopy(snap["milestones"])
+    else:
+        # Legacy degrade (pre-snapshot): synthesise an honest acquire-knowledge
+        # milestone so the restored goal closes on a real finding, not on a note.
+        subj = orig_title.split(":", 1)[-1].strip() or orig_title
+        goal["milestones"] = [
+            {"text": f"A finding about {subj[:60]} was written to long memory.",
+             "met": False, "met_at": None},
+        ]
+    goal["_degraded"] = False
+    goal.pop("_predegrade", None)
+    goal.pop("_original_title", None)
+    goal["_last_progress_cycle"] = None   # fresh progress clock for the restored form
+    goal["_needs_deliberate_action"] = None
+    goal["_deliberate_rounds"] = 0
+    set_goal_plan(goal, [])               # force a fresh plan for the full form
+    context["committed_goal"] = goal
+    update_working_memory(
+        f"[goal_repromoted] '{orig_title[:50]}' — the capability it needs is back, "
+        f"restoring the full goal instead of the note stand-in.",
+        event_type="goal_repromoted", importance=3,
+    )
+    log_activity(f"[pursue_goal] Re-promoted recovered goal → {orig_title[:50]}")
+    try:
+        from cognition.planning.goals import merge_updated_goal_into_tree
+        from cognition.planning import goal_arbiter
+        goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                           source="pursue_goal.repromote")
+    except Exception as _e:
+        record_failure("pursue_goal.repromote.persist", _e)
+    return True
+
+
 # ── Main entry ───────────────────────────────────────────────────────────────
 
 def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
@@ -600,6 +810,12 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
             f"[goal_released] '{goal.get('title', '')}' was already {goal.get('status')} — clearing active slot."
         )
         return {"status": "ok", "skipped": True, "reason": "goal_already_done"}
+
+    # A goal that was degraded to a note while a capability was down is restored to
+    # its full form as soon as that capability is back — before we plan/act, so we
+    # pursue the real goal, not the leftover note stand-in.
+    if goal.get("_degraded"):
+        _repromote_if_recovered(goal, context)
 
     goal_title  = goal.get("title") or goal.get("name", "")
 
@@ -789,7 +1005,22 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
                     context=context,
                     max_rounds=4,
                 )
-                revised_text = il_result.get("content", "")
+                # inner_loop either deferred (no llm, symbolic mode off) or ran in
+                # symbolic mode — in both cases its output is NOT JSON plan steps:
+                # a typed defer is empty, and symbolic deliberation yields reasoning
+                # text / KG facts, not a plan. Either way, drop to the lightweight
+                # symbolic replan below rather than misparsing it into a bad plan.
+                _typed_defer = (il_result.get("meta_decision") == "defer"
+                                and il_result.get("reason") == "deliberation requires llm tool")
+                if _typed_defer or il_result.get("mode") == "symbolic":
+                    log_activity(
+                        f"[pursue_goal] inner_loop {'deferred' if _typed_defer else 'symbolic'} "
+                        f"(no llm) — using symbolic replan for '{goal_title[:60]}'"
+                    )
+                    goal["plan"] = []
+                    revised_text = ""
+                else:
+                    revised_text = il_result.get("content", "")
                 # Try to parse as JSON steps
                 deep_steps: List[str] = []
                 try:
@@ -853,7 +1084,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         if not steps:
             # Fallback: single-step shallow plan (symbolic when LLM is down OR the
             # caller demands symbolic-only — the background Executive daemon).
-            if not llm_available() or context.get("_symbolic_only"):
+            if not llm_callable_by("pursue_goal/fallback") or context.get("_symbolic_only"):
                 concept_text = context.get("_concept_text", "")
                 fallback_step = f"{goal_title}: {next_step_dict['step'] if next_step_dict else 'reflect and take one concrete action'}{(' — ' + concept_text[:100]) if concept_text else ''}".strip()[:300]
             else:
@@ -898,7 +1129,10 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     _executed = False
     _result_text = ""
     if _act_fn:
-        _executed, _result_text = execute_step_action(_act_fn, context)
+        # Pass the step text + owning goal so a person-facing act composes to
+        # serve the reason it was triggered (EXPRESSION_MEMBRANE_FIX_PLAN E6).
+        _executed, _result_text = execute_step_action(
+            _act_fn, context, step_text=next_step, goal=goal)
 
     # ── Honest hand-off: a step the Executive must NOT run (generative / outward /
     # self-modifying — execute_step_action returns a "deferred" marker). Do NOT
@@ -908,6 +1142,19 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # conscious opportunities so a genuinely un-doable goal disengages adaptively
     # (Wrosch) instead of nagging forever.
     if _act_fn and not _executed and str(_result_text).lower().startswith("deferred"):
+        # Feasibility first: if the capability this goal needs is unavailable right
+        # now, don't nag the conscious mind toward an impossible act — reduce to an
+        # achievable sub-goal (go simpler) or disengage (abandon). Never stub.
+        try:
+            from cognition.planning.goal_types import required_capability, capability_available
+            _cap = required_capability(goal)
+            if _cap and not capability_available(_cap, context):
+                _handled = _degrade_or_disengage(goal, context, goal_title, f"needs {_cap} (unavailable)")
+                if _handled is not None:
+                    return _handled
+        except Exception as _fe:
+            record_failure("pursue_goal.feasibility", _fe)
+
         cc = context.get("cycle_count") or {}
         _cyc = int(cc.get("count", 0) if isinstance(cc, dict) else cc or 0)
         if goal.get("_last_deliberate_cycle") != _cyc:
@@ -1008,7 +1255,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # Working-memory record: the real result when an act fired, else narration.
     if _executed:
         update_working_memory(f"[Goal pursuit] {goal_title}: {next_step} → {_result_text[:200]}")
-    elif not llm_available():
+    elif not llm_callable_by("pursue_goal"):
         _concept_text = context.get("_concept_text", "")
         _step_output = (
             f"{goal_title} | {next_step}"

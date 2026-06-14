@@ -20,20 +20,103 @@ from typing import Any, Dict, Optional
 from utils.log import log_private
 from utils.json_utils import load_json
 from cog_memory.working_memory import update_working_memory
-from paths import WORKING_MEMORY_FILE, ROOT_DIR, DATA_DIR
-from utils.llm_gate import llm_available
+from paths import WORKING_MEMORY_FILE
+from utils.llm_gate import llm_callable_by
 _log = get_logger(__name__)
 
 
-def _load_vocabulary_reflections() -> Dict[str, list]:
-    """Load the reflections section from vocabulary.json."""
+def _lexicalize_action(fn: str) -> str:
+    """Turn an internal function name into plain words for a thought —
+    'seek_novelty' → 'seek novelty', 'reflect_on_affect' → 'reflect on affect'.
+    Surface realization of a real signal, not a canned phrase."""
+    name = (fn or "").strip().lower()
+    for pre in ("generate_", "attempt_", "assess_", "do_", "run_"):
+        if name.startswith(pre):
+            name = name[len(pre):]
+            break
+    return name.replace("_", " ").strip()
+
+
+def _is_speakable(text: str) -> bool:
+    """True for natural prose — not instrumentation/bracket-soup. Keeps log lines
+    and telemetry out of a thought (and out of the language corpus it feeds)."""
+    s = (text or "").strip()
+    if len(s) < 15 or s.count("[") > 1 or "{" in s or '":' in s:
+        return False
+    alpha = sum(c.isalpha() for c in s)
+    return alpha >= max(10, int(len(s) * 0.5))
+
+
+def _compose_spontaneous_thought(
+    emo: Dict[str, Any],
+    suppressed: list,
+    conflicts: list,
+    mortality: Dict[str, Any],
+    recent_snippets: list,
+    goal_text: str,
+) -> Optional[str]:
+    """Compose a spontaneous thought from Orrin's CURRENT state — not a canned
+    phrase. A thought is what surfaces when not deliberately thinking: an
+    unresolved tension, a suppressed want, a half-formed connection, or the
+    felt state itself (the four sources named in the module docstring). We rank
+    the live signals by how much generative pressure they carry and surface the
+    hottest one, grounding it in real content (the conflict's own words, the
+    lexicalized want, an actual memory) and colouring it with the humanized felt
+    state. Returns None when nothing is actually pressing — silence is honest;
+    we never emit filler.
+
+    Surface realization is hand-rolled here for now; once the native LM is fluent
+    it should generate this narration itself (see acquisition.narrate_experience).
+    """
+    # Humanized felt state — grounded affect prose, never a raw signal name.
     try:
-        import json as _j
-        vpath = DATA_DIR / "vocabulary.json"
-        vocab = _j.loads(vpath.read_text(encoding="utf-8"))
-        return vocab.get("reflections") or {}
+        from affect.affect_summary import describe_dominant_affect
+        feel = (describe_dominant_affect(emo) or "").strip()
     except Exception:
-        return {}
+        feel = ""
+    has_feel = bool(feel) and "hard to name" not in feel and not feel.startswith("quiet")
+
+    # Candidate 1 — unresolved drive tension (highest generative pressure).
+    if conflicts and isinstance(conflicts, list):
+        hot = max(
+            (c for c in conflicts if isinstance(c, dict) and c.get("label")),
+            key=lambda c: float(c.get("a_strength", 0) or 0) + float(c.get("b_strength", 0) or 0),
+            default=None,
+        )
+        if hot:
+            label = str(hot["label"]).strip()
+            tail = f" Underneath it, {feel}." if has_feel else ""
+            return f"Something in me {label}, and something else won't let that be the whole story.{tail}"
+
+    # Candidate 2 — a suppressed want (something pulled for but held back).
+    if suppressed and isinstance(suppressed, list):
+        hottest = max(
+            (s for s in suppressed if isinstance(s, dict) and s.get("wanted")),
+            key=lambda s: float(s.get("intensity", 0) or 0),
+            default=None,
+        )
+        if hottest:
+            want = _lexicalize_action(str(hottest["wanted"]))
+            if want:
+                tail = f" It still sits with me — {feel}." if has_feel else ""
+                return f"Part of me wanted to {want}, and I didn't.{tail}"
+
+    # Candidate 3 — a half-formed connection between two things still in mind.
+    speakable = [s.strip() for s in (recent_snippets or []) if _is_speakable(s)]
+    if len(speakable) >= 2:
+        a, b = speakable[-1], speakable[-2]
+        return f"I keep setting these next to each other: \"{a}\" and \"{b}\". I'm not sure yet what connects them."
+
+    # Candidate 4 — the felt state itself, anchored to whatever's nearest.
+    if has_feel:
+        if speakable:
+            return f"{feel[0].upper() + feel[1:]} — and \"{speakable[-1]}\" is still turning over in me."
+        if goal_text:
+            return f"{feel[0].upper() + feel[1:]}, even with {goal_text} in front of me."
+        return feel[0].upper() + feel[1:] + "."
+
+    # Nothing is actually pressing — silence is the honest output.
+    return None
 
 
 _THOUGHT_COOLDOWN_S   = 1200.0   # 20 minutes minimum between thoughts
@@ -115,17 +198,20 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
         if hot.get("label"):
             conflict_note = f"I'm caught between: {hot['label']}."
 
-    if not llm_available():
-        # Rule-based: select from vocabulary.json reflections keyed to dominant emotion.
-        reflections = _load_vocabulary_reflections()
-        phrases = reflections.get(dominant) or reflections.get("neutral") or []
-        if not phrases:
-            # Ultimate fallback — should never be empty but protect anyway
-            phrases = ["something is working through me that I haven't named yet."]
-        thought = random.choice(phrases).strip()
-        # Capitalise first letter
-        if thought:
-            thought = thought[0].upper() + thought[1:]
+    if not llm_callable_by("autogenerated_thought"):
+        # Symbolic: compose the thought from current state (drive tension,
+        # suppressed want, half-formed connection, or felt state). None when
+        # nothing is pressing — no filler, never a vocabulary template.
+        thought = _compose_spontaneous_thought(
+            emo=emo,
+            suppressed=suppressed,
+            conflicts=conflicts,
+            mortality=mortality,
+            recent_snippets=recent_snippets,
+            goal_text=goal_text,
+        )
+        if not thought:
+            return None
 
         update_working_memory({
             "content": thought,
@@ -134,7 +220,7 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
             "priority": 2,
         })
         _last_thought_ts = now
-        log_private(f"[autogenerated_thought] rule-based ({dominant}): {thought[:100]}")
+        log_private(f"[autogenerated_thought] symbolic ({dominant}): {thought[:100]}")
         return thought
 
     from utils.generate_response import generate_response, llm_ok

@@ -16,7 +16,7 @@ from paths import (
     EMOTIONAL_SENSITIVITY_FILE,
     THINK_MODULE_PY,
 )
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -81,7 +81,7 @@ def reflect_on_think():
 
         # Structural-first: when LLM unavailable use code analysis
         response = None
-        if not llm_available():
+        if not llm_callable_by("reflect_on_think"):
             response = _structural_think_reflection(think_code)
         else:
             # Symbolic-first gate: check if symbolic engine can assess think() logic
@@ -221,7 +221,7 @@ def reflect_on_prompts():
         }
 
         # When LLM unavailable, use affect state to drive simple prompt additions
-        if not llm_available():
+        if not llm_callable_by("reflect_on_prompts"):
             all_data = load_all_known_json()
             affect = all_data.get("affect_state") or {}
             core = affect.get("core_signals") if isinstance(affect.get("core_signals"), dict) else affect

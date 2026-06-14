@@ -27,6 +27,7 @@ import threading
 from typing import Any, Dict, List
 
 from utils.llm_router import routed_response
+from utils.llm_gate import llm_callable_by
 from utils.log import log_activity, log_error
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -66,12 +67,24 @@ def simulate_lookahead(
     {
         "steps":             list[str] — projected chain (chosen branch if branching),
         "projected_state":   str       — narrative of final state,
-        "positive":          bool      — net-positive projection?
+        "positive":          bool|None — net-positive projection? None when skipped,
         "confidence":        float     — 0.0–1.0,
         "branches_explored": int       — 0 (linear) or 2 (branching),
+        "skipped":           bool      — present and True when the LLM was off and
+                                         no simulation ran (absent otherwise).
     }
     """
     steps = max(2, min(6, int(steps)))
+
+    # Forward simulation is an LLM-shaped function with no symbolic path yet.
+    # When cognition can't reach the LLM (default tool-only deployment), do NOT
+    # fabricate a positive projection — that silently rubber-stamps every action
+    # downstream (meta_controller.simulate_outcome) — and do NOT burn a blocked
+    # round-trip. Return an honest skip; positive=None means "no signal", and
+    # consumers must treat `skipped` as "simulation did not run", not approval.
+    if not llm_callable_by("simulate/lookahead"):
+        return {"steps": [], "projected_state": "", "positive": None,
+                "confidence": 0.0, "branches_explored": 0, "skipped": True}
 
     goal_title = (context.get("committed_goal") or {}).get("title", "")
     goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
@@ -291,6 +304,14 @@ def run_debate(
     }
     """
     n_voices = max(2, min(3, int(n_voices)))
+
+    # Debate is LLM-only (n_voices independent generations + a judge call). When
+    # cognition can't reach the LLM, skip honestly instead of firing blocked
+    # round-trips that all return empty.
+    if not llm_callable_by("simulate/debate"):
+        log_activity("[simulate/debate] Skipped — LLM not callable for cognition.")
+        return {"synthesis": "", "voices": {v: "" for v in _VOICE_ORDER[:n_voices]},
+                "skipped": True}
 
     # Prevent concurrent debates from multiplying in-flight LLM calls.
     # If another debate is already running (semaphore acquired), skip silently

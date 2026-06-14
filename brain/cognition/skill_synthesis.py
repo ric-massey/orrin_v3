@@ -39,7 +39,7 @@ from paths import (
     WORKING_MEMORY_FILE, PROPOSED_TOOLS_JSON, SKILL_SYNTHESIS_FILE,
 )
 from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_available
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 
 _SELF_GENERATED_DIR = Path(__file__).resolve().parent / "self_generated"
@@ -455,7 +455,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
     Generates code via LLM, runs verification pipeline, registers on success.
     Returns result dict with keys: success, fn_name, file_path, verification, error.
     """
-    if not llm_available():
+    if not llm_callable_by("skill_synthesis"):
         log_activity("[skill_synthesis] skipped — LLM unavailable")
         return {"success": False, "error": "llm_unavailable"}
     gap_text = candidate.get("snippet", "")
@@ -623,7 +623,7 @@ def detect_and_synthesize(context: Dict[str, Any]) -> Dict[str, Any]:
     2. If a high-scoring candidate exists and cooldown allows: synthesizes it.
     Returns a summary dict.
     """
-    if not llm_available():
+    if not llm_callable_by("skill_synthesis"):
         log_activity("[skill_synthesis] skipped — LLM unavailable")
         return {"gaps_found": 0, "synthesized": False, "reason": "llm_unavailable"}
     global _last_synthesis_ts

@@ -87,33 +87,26 @@ def escalate_with_behavior_list(
     if not any(opt["type"] == "ask_user" for opt in options):
         options.append({"type": "ask_user", "description": "Ask the user for clarification or help."})
 
-    # 4) LLM selection
-    escalation_prompt = (
-        f"I am stuck after {retries} attempts.\n"
-        f"Action: {action}\n"
-        f"Error: {last_error}\n"
-        "Which of these escalation options should I try next and why?\n"
-        + "\n".join(f"- {o['type']}: {o['description']}" for o in options)
-        + "\n\nReply with the action type and a short reason."
-    )
-    from utils.generate_response import generate_response, llm_ok  # local import to avoid cycles
-    choice = (llm_ok(generate_response(escalation_prompt, caller="escalate"), "escalate") or "").strip()
-
-    # 5) Parse choice robustly (case-insensitive containment)
-    choice_cf = choice.casefold()
+    # 4) Symbolic action selection — no free-text needed over an enumerated set.
+    #    Rule: try to self-resolve (any actionable option) before bothering the
+    #    user. Bandit: among actionable options, pick the highest past value.
+    #    ask_user is the last-resort default. Outcomes feed back via the
+    #    "escalation" bandit context as they're recorded.
+    from utils import bandit
+    actionable = [o for o in options if o["type"] != "ask_user"]
     picked = None
-    for o in options:
-        if o["type"].casefold() in choice_cf:
-            picked = o
-            break
-    if picked is None:
-        picked = next((o for o in options if o["type"] == "ask_user"), options[0])
-        reason = "Defaulted to asking the user for help."
-    else:
+    if actionable:
+        ranked = bandit.pick_ctx("escalation", [o["type"] for o in actionable])
+        if ranked:
+            picked = next((o for o in actionable if o["type"] == ranked[0]), None)
+        picked = picked or actionable[0]
         reason = (
-            f"Escalated after multiple failed attempts. "
-            f"{picked.get('description','').strip()}"
+            f"Escalated after {retries} failed attempts — trying the best-valued "
+            f"option next. {picked.get('description','').strip()}"
         ).strip()
+    else:
+        picked = next((o for o in options if o["type"] == "ask_user"), options[0])
+        reason = f"Stuck after {retries} attempts with no actionable option — asking for help."
 
     # 6) Enqueue chosen action (high urgency — resolved at the front next cycle)
     from think.think_utils.action_gate import propose_action

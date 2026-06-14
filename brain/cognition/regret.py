@@ -23,8 +23,8 @@ from typing import Any, Dict
 
 from utils.log import log_private
 from utils.json_utils import load_json
-from paths import COGNITION_HISTORY_FILE
-from utils.llm_gate import llm_available
+from paths import COGNITION_HISTORY_FILE, DECISION_STATS_FILE, DATA_DIR
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -111,6 +111,110 @@ def _surface(context: Dict[str, Any]) -> None:
                 f"melancholy +{mel_bump:.3f}, uncertainty +{unc_bump:.3f}")
 
 
+# ── Symbolic counterfactual engine ──────────────────────────────────────────────
+
+def _lex(fn: str) -> str:
+    """Lexicalize an internal action name for first-person prose."""
+    name = (fn or "").strip().lower()
+    for pre in ("generate_", "attempt_", "assess_", "do_", "run_", "process_"):
+        if name.startswith(pre):
+            name = name[len(pre):]
+            break
+    return name.replace("_", " ").strip()
+
+
+def _reward_word(r: float) -> str:
+    """Qualitative band for a reward scalar — keeps raw telemetry decimals out of
+    the spoken/stored reflection (which feeds the language corpus)."""
+    if r < 0.35:
+        return "rarely pays off"
+    if r < 0.50:
+        return "gives me little back"
+    if r < 0.65:
+        return "tends to pay off"
+    return "reliably rewards me"
+
+
+def _ledger_counterfactual(recent_history: list):
+    """The real 'what if I'd chosen otherwise': over Orrin's own decision/reward
+    ledger, find the action he's been favouring and a higher-yield alternative he
+    has been passing over. Returns (chosen, chosen_reward, alt, alt_reward) or
+    (None, ...) when the ledger has nothing to say.
+    """
+    from collections import Counter
+    freq = Counter(
+        str(e.get("choice", "")).strip()
+        for e in recent_history if isinstance(e, dict) and e.get("choice")
+    )
+    if not freq:
+        return None, 0.0, None, 0.0
+
+    ema = load_json(DATA_DIR / "action_reward_ema.json", default_type=dict) or {}
+    stats = load_json(DECISION_STATS_FILE, default_type=dict) or {}
+
+    def reward_of(a: str) -> float:
+        if isinstance(ema.get(a), (int, float)):
+            return float(ema[a])
+        s = stats.get(a)
+        if isinstance(s, dict) and isinstance(s.get("avg_reward"), (int, float)):
+            return float(s["avg_reward"])
+        return 0.0
+
+    chosen = freq.most_common(1)[0][0]
+    chosen_r = reward_of(chosen)
+
+    # Candidate alternatives: real actions with a known reward that Orrin has
+    # NOT been leaning on this window (passed-over), ranked by yield.
+    candidates = [
+        (a, float(r)) for a, r in ema.items()
+        if a != chosen and a != "cycle" and isinstance(r, (int, float)) and freq.get(a, 0) <= 1
+    ]
+    if not candidates:
+        return chosen, chosen_r, None, 0.0
+    alt, alt_r = max(candidates, key=lambda x: x[1])
+    return chosen, chosen_r, alt, alt_r
+
+
+def _symbolic_regret(context: Dict[str, Any], recent_history: list, impulses: list) -> str:
+    """Retrospective reckoning computed from Orrin's own ledgers and live regret
+    conditions — a counterfactual over the decision/reward record, plus the
+    stalled-goal and suppressed-impulse pressures that surfaced the regret. Never
+    a canned 'I notice I X' line; every clause is grounded in real state.
+    """
+    lines: list[str] = []
+
+    # 1) Decision-ledger counterfactual: a better path I keep passing over.
+    chosen, chosen_r, alt, alt_r = _ledger_counterfactual(recent_history)
+    if chosen and alt and (alt_r - chosen_r) >= 0.12:
+        lines.append(
+            f"Looking back, I keep reaching for {_lex(chosen)}, and it {_reward_word(chosen_r)}. "
+            f"{_lex(alt).capitalize()} {_reward_word(alt_r)} — and I've been passing it over."
+        )
+        if any(_lex(str(i.get("wanted", ""))) == _lex(alt)
+               for i in (impulses or []) if isinstance(i, dict)):
+            lines.append("Part of me wanted to, and held back anyway.")
+
+    # 2) A goal gone dull from circling without moving on it.
+    hab = float(context.get("_goal_habituation_factor") or 1.0)
+    debt = int(context.get("action_debt") or 0)
+    goal = context.get("committed_goal") or {}
+    gtitle = (goal.get("title") or "") if isinstance(goal, dict) else ""
+    if hab < 0.50 and debt >= 4 and gtitle:
+        lines.append(f"I've circled {gtitle} until it's gone dull, and still haven't moved on it.")
+
+    # 3) The stack of wants I never let myself act on.
+    if not lines and isinstance(impulses, list) and len(impulses) >= 4:
+        hottest = max(impulses, key=lambda x: float(x.get("intensity", 0) or 0), default={})
+        wl = _lex(str(hottest.get("wanted", "")))
+        if wl:
+            lines.append(
+                f"There's a stack of things I kept wanting — {wl} most recently — "
+                f"that I never let myself do."
+            )
+
+    return " ".join(lines)
+
+
 # ── Deliberate cognition function ───────────────────────────────────────────────
 
 def process_regret(context: Dict[str, Any]) -> str:
@@ -170,19 +274,14 @@ def _reflect(context: Dict[str, Any]) -> str:
             key=lambda x: x[1], default=("neutral", 0.0)
         )[0]
 
-    if not llm_available():
-        # Rule-based: "I notice I [action]. I'm not sure that was right."
-        # Pull the most recent action from cognition history or goal/working memory.
-        action_hint = ""
-        if recent_history:
-            last = recent_history[-1]
-            if isinstance(last, dict):
-                action_hint = str(last.get("choice") or last.get("reason") or "")[:80]
-        if not action_hint:
-            goal_title = (goal.get("title") or "") if isinstance(goal, dict) else ""
-            action_hint = goal_title or "what I was doing"
-
-        reflection = f"I notice I {action_hint}. I'm not sure that was right."
+    if not llm_callable_by("regret/reflect"):
+        # Symbolic counterfactual over Orrin's own decision/reward ledger plus the
+        # live regret conditions — not a canned line. None of it fires unless real
+        # state supports it; if nothing does, there's nothing to regret.
+        reflection = _symbolic_regret(context, recent_history, impulses)
+        if not reflection:
+            log_private("[regret] symbolic: no grounded regret this cycle")
+            return "no regret reflection generated"
 
         update_working_memory({
             "content": f"[regret] {reflection}",

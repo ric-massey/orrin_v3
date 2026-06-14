@@ -19,8 +19,11 @@ from paths import (
     CONTRADICTIONS_JSON as CONTRADICTIONS_FILE,
 )
 
-# Load reflection prompts once at import time
-REF_PROMPTS = load_json(REF_PROMPTS_PATH, default_type=dict)
+def _load_ref_prompts() -> dict:
+    """Read reflection prompts at call time so live edits (and first-time
+    creation by reflect_on_prompts) are picked up without a restart."""
+    prompts = load_json(REF_PROMPTS_PATH, default_type=dict)
+    return prompts if isinstance(prompts, dict) else {}
 
 def reflect_on_cognition_rhythm():
     """
@@ -35,7 +38,7 @@ def reflect_on_cognition_rhythm():
             return
 
         schedule = data.get("cognition_schedule", {})
-        prompt_template = REF_PROMPTS.get("reflect_on_cognition_rhythm", "")
+        prompt_template = _load_ref_prompts().get("reflect_on_cognition_rhythm", "")
         if not prompt_template:
             log_model_issue("⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm")
             return
@@ -57,7 +60,9 @@ def reflect_on_cognition_rhythm():
                 f"{prompt_template}\n\n"
                 f"Current cognition schedule:\n{json.dumps(schedule, indent=2)}\n\n"
                 f"Recent choices:\n{recent_entries}\n\n"
-                "Respond with JSON like: { \"dream\": 8, \"reflect\": 4 } or {} if no change."
+                "Respond with JSON mapping cognition-function names to new weights "
+                "(0.0-1.0), e.g. { \"dream_cycle\": 0.3, \"reflect_on_outcomes\": 0.2 }, "
+                "or {} if no change. Only include functions whose weight should change."
             ),
         }
 

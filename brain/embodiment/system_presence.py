@@ -159,6 +159,14 @@ def _capture_screen(path: str) -> tuple[bool, str]:
     """Capture the full screen to `path` (PNG). Returns (success, error_message)."""
     try:
         if _PLATFORM == "Darwin":
+            # §10.6 graceful degradation: if Screen Recording is positively off, say so
+            # honestly instead of shelling out and writing a black/empty image.
+            try:
+                from utils.os_permissions import is_denied, off_message
+                if is_denied("screen_recording"):
+                    return False, off_message("screen_recording")
+            except Exception:
+                pass
             r = subprocess.run(["screencapture", "-x", path],
                                capture_output=True, text=True, timeout=_SUBPROCESS_TIMEOUT)
             if r.returncode == 0 and Path(path).exists():

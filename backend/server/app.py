@@ -851,6 +851,18 @@ async def egress(window_s: float = 86400.0) -> JSONResponse:
         return JSONResponse({"services": {}, "total_requests": 0, "error": str(e)})
 
 
+@api.get("/permissions")
+async def permissions() -> JSONResponse:
+    """OS capability grant-state for the Trust screen (§10.6): per-capability whether
+    Orrin's body can see your screen / control apps / notify you, with a deep-link to
+    the right System Settings pane. Non-prompting; honest about what's off."""
+    try:
+        from brain.utils.os_permissions import status as _perm_status
+        return JSONResponse(_perm_status())
+    except Exception as e:
+        return JSONResponse({"platform": "", "capabilities": [], "error": str(e)})
+
+
 import collections as _collections  # noqa: E402
 
 # Rolling (ts, cycle) samples so Thinking Rate is a real slope, not an instantaneous

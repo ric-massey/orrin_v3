@@ -768,6 +768,31 @@ interface EgressFeed {
   total_requests?: number;
 }
 
+interface Capability {
+  key: string;
+  label: string;
+  why: string;
+  state: "granted" | "denied" | "unknown" | "not_required";
+  deep_link?: string;
+  off_message?: string;
+}
+interface PermissionsFeed {
+  platform?: string;
+  capabilities?: Capability[];
+}
+
+// §10.6 — a capability's grant state as a short, honest badge.
+function CapabilityState({ state }: { state: Capability["state"] }) {
+  const map: Record<Capability["state"], { text: string; cls: string }> = {
+    granted: { text: "On", cls: "text-signal-ok" },
+    not_required: { text: "On", cls: "text-signal-ok" },
+    denied: { text: "Off", cls: "text-destructive" },
+    unknown: { text: "Ask when needed", cls: "text-muted-foreground" },
+  };
+  const { text, cls } = map[state];
+  return <span className={cn("text-xs font-medium tabular-nums", cls)}>{text}</span>;
+}
+
 function TrustSection({
   status,
   onChanged,
@@ -776,6 +801,8 @@ function TrustSection({
   onChanged: () => void | Promise<void>;
 }) {
   const egress = usePolledJSON<EgressFeed>("/api/egress", 6000);
+  const perms = usePolledJSON<PermissionsFeed>("/api/permissions", 10000);
+  const capabilities = perms?.capabilities ?? [];
   const services = egress?.services ?? {};
   const rows = Object.entries(services);
   const nothingLeaves = (egress?.total_requests ?? 0) === 0;
@@ -842,6 +869,37 @@ function TrustSection({
             </p>
           )}
         </div>
+
+        {capabilities.length > 0 && (
+          <div className="border-t border-border pt-4">
+            <div className="text-sm font-medium">What Orrin's body can reach</div>
+            <p className="mt-0.5 mb-2 text-xs text-muted-foreground">
+              His body asks your OS before it can see your screen or reach other apps.
+              Anything off here just means that sense is closed — he carries on without it.
+            </p>
+            <div className="space-y-2">
+              {capabilities.map((c) => (
+                <div key={c.key} className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-sm">{c.label}</div>
+                    <div className="text-xs text-muted-foreground">{c.why}</div>
+                  </div>
+                  <div className="flex shrink-0 flex-col items-end gap-0.5">
+                    <CapabilityState state={c.state} />
+                    {c.state === "denied" && c.deep_link && (
+                      <a
+                        href={c.deep_link}
+                        className="text-xs text-primary underline-offset-2 hover:underline"
+                      >
+                        Open System Settings
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <ToggleRow
           label="Let Orrin fine-tune on his own conversations"

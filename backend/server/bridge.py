@@ -41,7 +41,21 @@ class OrrinBridge:
 
     # ── window wiring ─────────────────────────────────────────────────────────
     def attach_window(self, window: Any) -> None:
+        """Bind — or rebind — the view to the live brain (E6). Safe to call again when
+        the window is re-attached after a detach (F1: hidden then re-shown, or a freshly
+        created window): the telemetry stream is re-pointed at this window and, if the
+        stream is already live, handed a fresh snapshot so it's current immediately
+        rather than waiting for the next delta. The hub sink itself never duplicates —
+        it's the same bound method, deduped by hub.add_sink."""
         self._window = window
+        if window is not None and self._subscribed:
+            self._push_snapshot()
+
+    def detach_window(self) -> None:
+        """The view went away (window hidden/closed) but the brain keeps thinking
+        (Always-thinking). Telemetry pushes become no-ops until a window re-attaches;
+        the sink stays registered (a cheap no-op) so reattach needs no re-subscribe."""
+        self._window = None
 
     def _push(self, payload: Dict[str, Any]) -> None:
         """Forward a snapshot/delta to the page. Double-encode through JSON so the
@@ -83,10 +97,14 @@ class OrrinBridge:
             return {"status": 502, "body": json.dumps({"error": str(e)}), "contentType": "application/json"}
 
     # ── live telemetry stream (BridgeTransport.connectTelemetry → here) ────────
+    def _push_snapshot(self) -> None:
+        """Push the current full state to the bound window (used on subscribe and on
+        reattach so a re-shown/reloaded view is immediately current)."""
+        self._push({"type": "snapshot", "state": {**hub.state, "history": list(hub.history)}})
+
     def telemetry_subscribe(self) -> Dict[str, Any]:
         """Send the current snapshot immediately, then stream deltas via the sink."""
-        snapshot = {"type": "snapshot", "state": {**hub.state, "history": list(hub.history)}}
-        self._push(snapshot)
+        self._push_snapshot()
         hub.add_sink(self._push)
         self._subscribed = True
         return {"ok": True}

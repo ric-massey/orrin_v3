@@ -14,7 +14,9 @@ def run_python(code: str, timeout: float = 5.0, cwd: str | None = None) -> Dict[
     if not isinstance(code, str):
         return {"ok": False, "stdout": "", "stderr": "code must be str", "returncode": -1}
 
-    py = sys.executable
+    # Embedded CPython when frozen (§10.2 / I1); sys.executable in a dev checkout.
+    from utils.runtime_python import interpreter as _interp
+    py = _interp()
     env = {"PYTHONIOENCODING": "utf-8"}  # no secrets
 
     _tmp_dir = None

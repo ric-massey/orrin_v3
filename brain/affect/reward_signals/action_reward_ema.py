@@ -88,6 +88,20 @@ _PH_GAMMA  = 0.5    # Pearce-Hall associability blend (classic value)
 _DEFAULT       = 0.45  # expected-value prior — slightly below typical actual so first wins feel rewarding
 _ASSOC_DEFAULT = 0.5   # associability prior — moderate → mid learning rate before evidence
 
+# Pseudo-action EMA keys that are submitted on purpose and are not cognitive
+# functions: "cycle" (finalize.py's pre-choice fallback) and the calibrated
+# reward channels (reward_calibrator._release submits action_type=channel so
+# each channel learns its own expectation). Whitelisted so they don't trip the
+# "possible typo'd action name" warning on first use.
+_KNOWN_PSEUDO_ACTIONS = frozenset({
+    "cycle",
+    "goal_closure",
+    "user_validation",
+    "prediction_hit",
+    "contradiction_resolved",
+    "retrieval_auxiliary",
+})
+
 
 def _flag_unknown_action(action_type: str) -> None:
     """Surface first-seen action names that no registry knows. The table accepts
@@ -97,8 +111,11 @@ def _flag_unknown_action(action_type: str) -> None:
     (new tools, behavioral functions) must still be able to learn."""
     # "cycle" is finalize.py's deliberate fallback EMA key for the cycle-level
     # reward before any function has been chosen (first cycle after a reset) —
-    # a known pseudo-action, not a typo.
-    if action_type == "cycle":
+    # a known pseudo-action, not a typo. The calibrated reward channels
+    # (reward_calibrator._release) likewise pass their channel name as
+    # action_type on purpose, so each channel learns its own expectation —
+    # also known pseudo-actions, not typos.
+    if action_type in _KNOWN_PSEUDO_ACTIONS:
         return
     try:
         from registry.cognition_registry import COGNITIVE_FUNCTIONS

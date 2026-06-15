@@ -18,17 +18,31 @@ import signal
 import threading
 import time
 import uuid
-from typing import Any, AsyncIterator, Dict
+from typing import Any, AsyncIterator, Callable, Dict, Optional
+
+from pathlib import Path as _Path2
 
 from fastapi import APIRouter, FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
-from .config import RESPONSE_CAP, demo_enabled
+from .config import RESPONSE_CAP, demo_enabled, trusted_origins
 from .demo import run_demo
 from .hub import Hub
 
 hub = Hub()
+
+# Built React UI (Vite `dist/`). The native pywebview window loads this over the
+# loopback telemetry server, so the page resolves its WS/REST from its own origin
+# with no build-time host baked in. ORRIN_UI_DIST overrides the location.
+_UI_DIST = _Path2(
+    os.environ.get("ORRIN_UI_DIST", str(_Path2(__file__).resolve().parents[2] / "frontend" / "dist"))
+).resolve()
+
+
+def _ui_dist_ready() -> bool:
+    return (_UI_DIST / "index.html").exists()
 
 
 @contextlib.asynccontextmanager
@@ -46,10 +60,14 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 
 app = FastAPI(title="Orrin Telemetry Bridge", version="1.0.0", lifespan=lifespan)
 
-# Dev CORS — the Vite dev server runs on a different origin.
+# CORS — the Vite UI runs on a different origin (:5173 → :8800), so cross-origin
+# is normal. Allowlist the UI's own origin(s) instead of "*" so a hostile page
+# can't READ responses from these endpoints (e.g. exfiltrate /api/source). The
+# allowlist is derived from the same host/port wiring the launcher uses; tunnels
+# add their public origin via ORRIN_EXTRA_ORIGINS. (UI_AUDIT H1.)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=trusted_origins(),
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -80,7 +98,22 @@ async def state() -> JSONResponse:
 from pathlib import Path as _Path  # noqa: E402
 
 _REPO_ROOT = _Path(__file__).resolve().parents[2]
-_DATA_DIR = _REPO_ROOT / "brain" / "data"
+# _REPO_ROOT stays PROGRAM-relative (the /source repo-jail below must point at the
+# shipped code, never the user's data). But the DATA root must honor ORRIN_DATA_DIR
+# or the brain writes to the relocated dir while these read endpoints keep reading
+# the stale brain/data — the UI then shows an empty/old mind (§13.2 split-brain).
+# Consume the one resolver the brain uses; fall back to the same env logic if it
+# can't be imported (e.g. brain/ not on sys.path).
+try:
+    from brain.paths import DATA_DIR as _DATA_DIR  # noqa: E402
+except Exception:  # pragma: no cover - defensive
+    _env_data = os.environ.get("ORRIN_DATA_DIR")
+    _DATA_DIR = _Path(_env_data).resolve() if _env_data else _REPO_ROOT / "brain" / "data"
+
+# /source serves the metric-info pages their cited source — only ever real
+# source/text files. Restrict to these suffixes and forbid dotfiles so the
+# repo-jail can't be used to read .env, .git/*, lockfiles, etc. (UI_AUDIT H1.)
+_SOURCE_OK_SUFFIXES = {".py", ".ts", ".tsx", ".js", ".jsx", ".json", ".md", ".css", ".txt", ".yml", ".yaml"}
 
 
 @api.get("/catalog")
@@ -280,7 +313,13 @@ async def source(file: str = "", start: int = 1, end: int = 0) -> JSONResponse:
     """Return a read-only slice of a repo source file (for the metric info pages)."""
     try:
         target = (_REPO_ROOT / file).resolve()
-        target.relative_to(_REPO_ROOT)  # repo-jail
+        rel = target.relative_to(_REPO_ROOT)  # repo-jail
+        # Defense-in-depth (H1): forbid dotfiles/dotdirs and non-source types so
+        # the jail can't be turned into a secret reader (.env, .git/*, …).
+        if any(part.startswith(".") for part in rel.parts):
+            return JSONResponse({"error": "forbidden path", "file": file}, status_code=403)
+        if target.suffix.lower() not in _SOURCE_OK_SUFFIXES:
+            return JSONResponse({"error": "unsupported file type", "file": file}, status_code=403)
         lines = target.read_text("utf-8", errors="replace").splitlines()
         lo = max(1, int(start))
         hi = min(len(lines), int(end) if end else len(lines))
@@ -341,10 +380,12 @@ _MEMORY_STORES = {
 
 
 @api.get("/memory")
-async def memory_store(store: str = "long", q: str = "", n: int = 50, offset: int = 0) -> JSONResponse:
-    """Paged, newest-first browse of a REAL memory store file — what he actually
-    remembers, as opposed to the live op ring the WS streams (which is a sampled
-    ticker of this session's reads/writes, not the store)."""
+async def memory_store(store: str = "long", q: str = "", n: int = 50, offset: int = 0,
+                      order: str = "recency") -> JSONResponse:
+    """Paged browse of a REAL memory store file — what he actually remembers, as
+    opposed to the live op ring the WS streams. `order=recency` (default, newest
+    first) or `order=importance` (by importance/salience) powers the Memory
+    Explorer's Recent vs Important lenses (§9.5)."""
     import json as _json
     fname = _MEMORY_STORES.get((store or "").lower())
     if not fname:
@@ -370,7 +411,16 @@ async def memory_store(store: str = "long", q: str = "", n: int = 50, offset: in
         if needle:
             entries = [e for e in entries if needle in _json.dumps(e, ensure_ascii=False).lower()]
         matched = len(entries)
-        entries = list(reversed(entries))  # newest-first (stores append)
+        if (order or "").lower() == "importance":
+            def _imp(e: Dict[str, Any]) -> float:
+                for k in ("importance", "salience", "weight", "score"):
+                    v = e.get(k)
+                    if isinstance(v, (int, float)):
+                        return float(v)
+                return 0.0
+            entries = sorted(entries, key=_imp, reverse=True)
+        else:
+            entries = list(reversed(entries))  # recency: newest-first (stores append)
         lo = max(0, int(offset))
         hi = lo + max(1, min(200, int(n)))
         page = []
@@ -427,12 +477,27 @@ async def chat_history(n: int = 100) -> JSONResponse:
 # Every box reads real files; numbers are computed server-side so the L0 row
 # polls ONE endpoint (/vitals) on one timer instead of eleven.
 
+# Files that exist but fail to JSON-parse (corruption) are tracked here so the
+# UI can distinguish "data file unreadable" from "nothing yet" instead of both
+# rendering as an empty panel (UI_AUDIT L6). Surfaced as a /vitals "Data" chip.
+_DATA_PARSE_ERRORS: Dict[str, str] = {}
+
+
 def _read_json(fname: str, default: Any) -> Any:
     import json as _json
     try:
-        d = _json.loads((_DATA_DIR / fname).read_text("utf-8"))
-        return d if isinstance(d, type(default)) else default
+        text = (_DATA_DIR / fname).read_text("utf-8")
+    except FileNotFoundError:
+        _DATA_PARSE_ERRORS.pop(fname, None)  # missing ≠ corrupt
+        return default
     except Exception:
+        return default
+    try:
+        d = _json.loads(text)
+        _DATA_PARSE_ERRORS.pop(fname, None)  # parsed OK — clear any prior error
+        return d if isinstance(d, type(default)) else default
+    except Exception as e:
+        _DATA_PARSE_ERRORS[fname] = str(e)[:160]
         return default
 
 
@@ -712,6 +777,254 @@ async def forgetting(n: int = 30) -> JSONResponse:
     return JSONResponse({"sweeps": log[-max(1, min(100, n)):], "total": len(log)})
 
 
+@api.get("/lifecycle")
+async def lifecycle() -> JSONResponse:
+    """Tell death / interrupted (crash-or-stall) / alive apart (§10.5), so the UI can
+    route to the Death Screen, a 'restarting' note, or normal viewing on launch."""
+    try:
+        from brain.utils.lifecycle import status as _status
+        return JSONResponse(_status())
+    except Exception as e:
+        return JSONResponse({"state": "alive", "error": str(e)})
+
+
+@app.get("/api/death")
+async def death(request: Request) -> JSONResponse:
+    """The one place the veil lifts (§10.4). While Orrin is ALIVE this refuses (the
+    live privacy guarantee is structurally impossible to bypass); only once death is
+    recorded does it open his complete interior — private + final thoughts, his last
+    conscious stream, his autobiography. You couldn't read his private mind while he
+    lived; now that he's gone, you can know him completely."""
+    try:
+        from brain.cognition.mortality import life_status as _ls, lifespan_rolled as _rolled
+        is_dead = _rolled() and bool(_ls().get("final_thoughts_written"))
+    except Exception:
+        is_dead = False
+    if not is_dead:
+        raise HTTPException(status_code=403, detail="Orrin is alive — his interior is his own")
+
+    import json as _json
+    out: Dict[str, Any] = {"state": "dead"}
+    try:
+        out["final_thoughts"] = _json.loads((_DATA_DIR / "final_thoughts.json").read_text("utf-8"))
+    except Exception:
+        out["final_thoughts"] = []
+    try:
+        out["private_thoughts"] = (_DATA_DIR / "private_thoughts.txt").read_text("utf-8")[-20000:]
+    except Exception:
+        out["private_thoughts"] = ""
+    out["autobiography"] = _read_json("autobiography.json", {})
+    try:
+        out["conscious_stream"] = _json.loads((_DATA_DIR / "conscious_stream.json").read_text("utf-8"))
+    except Exception:
+        out["conscious_stream"] = []
+    try:
+        from brain.cognition.mortality import life_status as _ls2
+        out["life"] = _ls2()
+    except Exception:
+        pass
+    return JSONResponse(out)
+
+
+@api.get("/boot")
+async def boot() -> JSONResponse:
+    """The boot sequence (§9.7): ordered, truthful startup milestones + a `ready` flag.
+    The wake-up screen polls this and dissolves into Cognition once ready. A warm
+    reopen (brain already up) returns ready immediately."""
+    try:
+        from brain.utils.boot_events import snapshot as _boot_snapshot
+        return JSONResponse(_boot_snapshot())
+    except Exception as e:
+        return JSONResponse({"events": [], "ready": True, "error": str(e)})
+
+
+@api.get("/egress")
+async def egress(window_s: float = 86400.0) -> JSONResponse:
+    """The egress ledger (§9.4): per-service rollup of outbound calls over the last
+    window (default 24h) — counts/timestamps only, never a prompt or query. With no
+    keys set, Orrin runs symbolic-only and this stays at zero, which is what lets the
+    Trust screen say 'nothing leaves your machine.'"""
+    try:
+        from brain.utils.egress import summary as _egress_summary
+        return JSONResponse(_egress_summary(window_s))
+    except Exception as e:
+        return JSONResponse({"services": {}, "total_requests": 0, "error": str(e)})
+
+
+import collections as _collections  # noqa: E402
+
+# Rolling (ts, cycle) samples so Thinking Rate is a real slope, not an instantaneous
+# guess — and reads 0 once the cycle counter stops advancing (Stop).
+_life_cycle_samples: "Any" = _collections.deque(maxlen=30)
+
+
+def _thinking_rate_per_min(cycle: int) -> float:
+    now = time.time()
+    _life_cycle_samples.append((now, int(cycle)))
+    pts = [(t, c) for (t, c) in _life_cycle_samples if t >= now - 120]
+    if len(pts) >= 2:
+        (t0, c0), (t1, c1) = pts[0], pts[-1]
+        if t1 > t0:
+            return max(0.0, (c1 - c0) / (t1 - t0) * 60.0)
+    return 0.0
+
+
+def _current_interests(limit: int = 6) -> List[str]:
+    """Top active goal titles — 'what he cares about right now' (§9.10)."""
+    import json as _json
+    titles: List[str] = []
+    seen: set = set()
+    try:
+        raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+
+        def walk(o: Any) -> None:
+            if isinstance(o, dict):
+                title, status = o.get("title"), str(o.get("status") or "")
+                if title and title not in seen and status.lower() in ("active", "in_progress", "pursuing", "open"):
+                    seen.add(title)
+                    titles.append(str(title))
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+
+        walk(raw)
+    except Exception:
+        pass
+    return titles[:limit]
+
+
+@api.get("/life")
+async def life() -> JSONResponse:
+    """Life Support (§9.10): Orrin's vital signs — his headroom to think, his thinking
+    rate, his age, and the life he *believes* he has left. Resources are framed about
+    HIM (disk = his mind's room to grow, measured against his data dir). The true
+    lifespan is never exposed — only the felt estimate (mortality keeps a private
+    noise offset by design)."""
+    readings: Dict[str, Any] = {}
+    try:
+        import psutil as _psutil
+        vm = _psutil.virtual_memory()
+        du = _psutil.disk_usage(str(_DATA_DIR))
+        readings["cpu"] = {
+            "available_pct": round(100.0 - _psutil.cpu_percent(interval=None), 1),
+            "load_pct": round(_psutil.cpu_percent(interval=None), 1),
+        }
+        readings["memory"] = {"available_bytes": int(vm.available), "total_bytes": int(vm.total)}
+        readings["storage"] = {"free_bytes": int(du.free), "used_bytes": int(du.used), "total_bytes": int(du.total)}
+    except Exception as e:
+        readings["resources_error"] = str(e)
+
+    # His mind's size against the user's disk ceiling (§10.3) — the framing Life
+    # Support uses ("room left to grow his mind"), not the raw host disk.
+    try:
+        from brain.utils.resource_ceilings import usage as _ceil_usage
+        readings["mind_disk"] = _ceil_usage()
+    except Exception:
+        pass
+
+    readings["thinking_rate_per_min"] = round(_thinking_rate_per_min(hub.state.get("cycle", 0)), 2)
+    readings["cycle"] = hub.state.get("cycle", 0)
+
+    try:
+        from brain.cognition.mortality import life_status as _life_status
+        readings["mortality"] = _life_status()  # felt-only; never the true lifespan
+    except Exception as e:
+        readings["mortality"] = {"error": str(e)}
+
+    readings["interests"] = _current_interests()
+    return JSONResponse(readings)
+
+
+def _coerce_ts(obj: Dict[str, Any]) -> "Optional[float]":
+    """Best-effort unix-seconds timestamp from an event dict (varied schemas)."""
+    from datetime import datetime
+    for k in ("ts", "timestamp", "created_at", "time", "date", "when"):
+        v = obj.get(k)
+        if isinstance(v, (int, float)):
+            v = float(v)
+            return v / 1000.0 if v > 1e12 else v
+        if isinstance(v, str) and v:
+            try:
+                return datetime.fromisoformat(v.replace("Z", "+00:00")).timestamp()
+            except Exception:
+                continue
+    return None
+
+
+@api.get("/activity")
+async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
+    """While-you-were-away activity feed (§9.8): a merged, time-ordered view DERIVED
+    from existing stores (goals, memories, dreams, belief revisions, egress) — no new
+    write path. `since` is unix-seconds (the per-viewer 'last seen', held client-side);
+    defaults to the last 24h."""
+    import json as _json
+    now = time.time()
+    if since <= 0:
+        since = now - 86400
+    events: List[Dict[str, Any]] = []
+
+    def add(kind: str, ts: "Optional[float]", label: str) -> None:
+        if ts is None or ts < since:
+            return
+        events.append({"type": kind, "ts": ts, "label": str(label)[:200]})
+
+    try:
+        raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+        seen: set = set()
+
+        def walk(o: Any) -> None:
+            if isinstance(o, dict):
+                if o.get("title") and o.get("status"):
+                    gid = str(o.get("id") or o.get("title"))
+                    if gid not in seen:
+                        seen.add(gid)
+                        add("goal", _coerce_ts(o), f"Goal: {o.get('title')}")
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+
+        walk(raw)
+    except Exception:
+        pass
+
+    for e in _read_json("long_memory.json", [])[-300:]:
+        if isinstance(e, dict):
+            add("memory", _coerce_ts(e), e.get("content") or e.get("summary") or "Formed a memory")
+    for d in _read_json("dream_log.json", [])[-100:]:
+        if isinstance(d, dict):
+            add("dream", _coerce_ts(d), d.get("summary") or "Consolidated a dream")
+    rev = _read_json("self_belief_revisions.json", {})
+    if isinstance(rev, dict):
+        for dom, lst in rev.items():
+            if isinstance(lst, list):
+                for r in lst[-20:]:
+                    if isinstance(r, dict):
+                        add("belief", _coerce_ts(r), f"Revised a belief about {dom}")
+    try:
+        from brain.utils.egress import events as _eg_events
+        for r in _eg_events(since):
+            svc = r.get("service")
+            if svc == "serper":
+                add("web", r.get("ts"), "Searched the web")
+            elif svc == "web":
+                add("web", r.get("ts"), "Visited a site")
+            elif svc == "finetune":
+                add("finetune", r.get("ts"), "Uploaded traces to fine-tune")
+    except Exception:
+        pass
+
+    events.sort(key=lambda e: e["ts"], reverse=True)
+    events = events[: max(1, min(500, int(limit)))]
+    summary: Dict[str, int] = {}
+    for e in events:
+        summary[e["type"]] = summary.get(e["type"], 0) + 1
+    return JSONResponse({"events": events, "summary": summary, "since": since, "now": now})
+
+
 @api.get("/vitals")
 async def vitals() -> JSONResponse:
     """The L0 vital-signs aggregator: every chip computed server-side from one or
@@ -800,6 +1113,13 @@ async def vitals() -> JSONResponse:
         chip("innerweather", "Felt time", str(ts.get("session_arc") or "—"), "ok",
              f"feels {ts.get('felt_duration_label', '?')} · {str(ts.get('time_texture', '')).replace('_', ' ')}")
 
+    # Data integrity (L6): a file that exists but fails to parse reads as "empty"
+    # everywhere else — surface it loudly here so corruption is visible, not silent.
+    if _DATA_PARSE_ERRORS:
+        n = len(_DATA_PARSE_ERRORS)
+        chip("data", "Data", f"{n} corrupt", "err",
+             "unreadable: " + ", ".join(sorted(_DATA_PARSE_ERRORS)[:6]))
+
     return JSONResponse({"chips": chips, "ts": time.time()})
 
 
@@ -834,16 +1154,36 @@ app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 
 # ── Control: stop Orrin from the UI ──────────────────────────────────────────
 _CONTROL_TOKEN = os.environ.get("ORRIN_CONTROL_TOKEN", "").strip()
+_INGEST_TOKEN = os.environ.get("ORRIN_INGEST_TOKEN", "").strip()
 _LOOPBACK_HOSTS = frozenset({"127.0.0.1", "::1", "localhost"})
+
+
+def _reject_untrusted_origin(request: Request) -> None:
+    """Reject browser requests carrying an Origin we don't trust (UI_AUDIT H2/H3).
+
+    The shutdown / ingest / agent endpoints are side-effecting "simple requests"
+    that CORS does NOT stop (no preflight, the side effect fires server-side even
+    though the browser can't read the response). So a hostile page on evil.com
+    could otherwise POST to 127.0.0.1 and shut Orrin down or inject input. We
+    distinguish the real UI from a hostile page by the Origin header: the UI's
+    own origin is allowlisted; a foreign Origin is rejected; native clients (the
+    in-process producer, curl) send no Origin and pass through.
+    """
+    origin = (request.headers.get("origin") or "").strip()
+    if origin and origin not in set(trusted_origins()):
+        raise HTTPException(status_code=403, detail="untrusted origin")
 
 
 def _authorize_control(request: Request) -> None:
     """Guard /api/control/* — destructive, so it must not be triggerable by any
-    network caller (UI_AUDIT H3). Two modes:
-      • ORRIN_CONTROL_TOKEN set → require matching X-Orrin-Control-Token header.
+    network caller (UI_AUDIT H3). Layered:
+      • reject any untrusted browser Origin (blocks cross-site CSRF even from a
+        loopback-reaching page — UI_AUDIT H2);
+      • ORRIN_CONTROL_TOKEN set → require matching X-Orrin-Control-Token header;
       • not set → allow loopback clients only (localhost dev), reject the rest
         with guidance to configure a token for remote use.
     """
+    _reject_untrusted_origin(request)
     if _CONTROL_TOKEN:
         supplied = (request.headers.get("X-Orrin-Control-Token") or "").strip()
         if not hmac.compare_digest(supplied, _CONTROL_TOKEN):
@@ -857,21 +1197,54 @@ def _authorize_control(request: Request) -> None:
         )
 
 
+# A "stop Orrin" handler the orchestrator (main.py) registers. When present, the
+# Stop button halts ONLY cognition (loop + daemons) and leaves the UI/window up,
+# so you can keep viewing his frozen mind. Absent (e.g. standalone `backend/main.py`),
+# Stop falls back to a full-process SIGINT, preserving the old behavior.
+_stop_handler: "Optional[Callable[[], None]]" = None
+
+
+def set_stop_handler(fn: "Callable[[], None]") -> None:
+    global _stop_handler
+    _stop_handler = fn
+
+
+def _authorize_ingest(request: Request) -> None:
+    """Guard /ingest — the producer entry point (UI_AUDIT H3). Reject hostile
+    browser Origins (a page should never spoof the brain's telemetry), and when
+    ORRIN_INGEST_TOKEN is set require the matching header so a remote-exposed
+    backend only accepts frames from the real cognitive loop. Unset → loopback
+    dev is zero-config; the in-process producer sends no Origin and passes."""
+    _reject_untrusted_origin(request)
+    if _INGEST_TOKEN:
+        supplied = (request.headers.get("X-Orrin-Ingest-Token") or "").strip()
+        if not hmac.compare_digest(supplied, _INGEST_TOKEN):
+            raise HTTPException(status_code=403, detail="invalid or missing ingest token")
+
+
 @app.post("/api/control/shutdown")
 async def control_shutdown(request: Request) -> Dict[str, Any]:
     """
-    Stop Orrin from the UI. The telemetry API runs inside the launcher process
-    (embedded in a daemon thread), so raising SIGINT here drives the launcher's
-    existing KeyboardInterrupt path — full graceful shutdown of the cognitive
-    loop, daemons, WAL flush, and the Vite UI child tree (via stop_ui).
+    Stop Orrin from the UI.
 
-    The signal is fired on a short delay so this HTTP response reaches the UI
-    before the process tears down.
+    When the orchestrator registered a stop handler (the normal `python main.py`
+    run), the Stop button halts ONLY cognition — the loop and its daemons — and
+    leaves the UI/window running so you can keep viewing his (now-frozen) mind.
+    Quitting the app is a separate action: close the window.
+
+    Without a handler (standalone `backend/main.py`), there's nothing but the
+    server to stop, so it falls back to a full-process SIGINT (the old behavior).
+
+    The action fires on a short delay so this HTTP response reaches the UI first.
     """
     _authorize_control(request)
     await hub.broadcast({"type": "delta", "frame": hub.merge(
-        {"logs": [{"level": "warn", "source": "control", "message": "shutdown requested from UI"}]}
+        {"logs": [{"level": "warn", "source": "control", "message": "stop requested from UI"}]}
     )})
+
+    if _stop_handler is not None:
+        threading.Timer(0.2, _safe_stop).start()
+        return {"ok": True, "stopping": True, "scope": "cognition"}
 
     def _trigger() -> None:
         # Default SIGINT handler raises KeyboardInterrupt in the main thread,
@@ -880,13 +1253,232 @@ async def control_shutdown(request: Request) -> Dict[str, Any]:
             os.kill(os.getpid(), signal.SIGINT)
 
     threading.Timer(0.4, _trigger).start()
-    return {"ok": True, "stopping": True}
+    return {"ok": True, "stopping": True, "scope": "process"}
+
+
+def _safe_stop() -> None:
+    """Invoke the registered stop handler, swallowing any error."""
+    with contextlib.suppress(Exception):
+        if _stop_handler is not None:
+            _stop_handler()
+
+
+# A "reset Orrin" handler the orchestrator (main.py) registers — wipes his state to a
+# newborn and re-launches the process. Absent (standalone backend) → reset is
+# unavailable rather than a no-op, so the UI can report honestly.
+_reset_handler: "Optional[Callable[[], None]]" = None
+
+
+def set_reset_handler(fn: "Callable[[], None]") -> None:
+    global _reset_handler
+    _reset_handler = fn
+
+
+def _safe_reset() -> None:
+    with contextlib.suppress(Exception):
+        if _reset_handler is not None:
+            _reset_handler()
+
+
+# A "restart Orrin" handler (stop + re-launch, NO wipe) the orchestrator registers —
+# used after a Mind Restore swaps his state on disk so the new mind loads clean.
+_restart_handler: "Optional[Callable[[], None]]" = None
+
+
+def set_restart_handler(fn: "Callable[[], None]") -> None:
+    global _restart_handler
+    _restart_handler = fn
+
+
+def _safe_restart() -> None:
+    with contextlib.suppress(Exception):
+        if _restart_handler is not None:
+            _restart_handler()
+
+
+# ── Mind export / import (§9.6) ──────────────────────────────────────────────
+@app.get("/api/mind/export")
+async def mind_export(request: Request):
+    """Stream the full mind as one portable archive (both state trees, atomically).
+    Guarded like every control surface."""
+    _authorize_control(request)
+    from fastapi import Response as _Response
+    from brain.utils import mind_archive as _ma
+    data = _ma.export_bytes()
+    return _Response(
+        content=data,
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{_ma.export_filename()}"'},
+    )
+
+
+@app.post("/api/mind/import")
+async def mind_import(request: Request) -> Dict[str, Any]:
+    """Restore a mind from a raw archive (request body = the .orrindmind bytes). The
+    current mind is snapshotted FIRST; a bad/foreign/newer archive is refused and the
+    running mind is left untouched. On success Orrin restarts so the new state loads."""
+    _authorize_control(request)
+    from brain.utils import mind_archive as _ma
+    body = await request.body()
+    if not body:
+        raise HTTPException(status_code=400, detail="empty body — send the archive bytes")
+    try:
+        result = _ma.import_archive(body)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    if _restart_handler is not None:
+        threading.Timer(0.4, _safe_restart).start()
+        result["restarting"] = True
+    return result
+
+
+# ── Diagnostics export (§10.7) ───────────────────────────────────────────────
+@app.get("/api/diagnostics")
+async def diagnostics_export(request: Request):
+    """Stream an opt-in diagnostics bundle: recent operational logs + the boot/death/
+    crash state tag (§10.5) and schema version — NEVER memory content or private
+    thoughts (the module enforces an allowlist). Owner-only, guarded like every control
+    surface; no silent telemetry — the user chooses to send it."""
+    _authorize_control(request)
+    from fastapi import Response as _Response
+    from brain.utils import diagnostics as _diag
+    data = _diag.export_bytes()
+    return _Response(
+        content=data,
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{_diag.export_filename()}"'},
+    )
+
+
+# ── Settings: API keys (kept in the OS keychain) ─────────────────────────────
+# The one small WRITE surface Part 4 introduces. Guarded exactly like /api/control/*
+# (untrusted Origin rejected; loopback-only unless a control token is configured), so
+# a hostile page can't read which keys exist or change them. Values are never
+# returned — only booleans — and never logged.
+@app.get("/api/settings")
+async def get_settings(request: Request) -> Dict[str, Any]:
+    _authorize_control(request)
+    from brain.utils import secrets as _secrets
+    from brain.utils import prefs as _prefs
+    cfg = _secrets.configured()
+    try:
+        from brain.cognition.mortality import lifespan_rolled as _rolled
+        rolled = _rolled()
+    except Exception:
+        rolled = False
+    # Pluggable LLM providers (Part 11): the menu + the current selection, so Settings
+    # can render the single-select. Never exposes a key value — only which are set.
+    try:
+        from brain.utils import llm_providers as _providers
+        _prov_catalog = _providers.catalog()
+        _selected = _providers.selected_id()
+    except Exception:
+        _prov_catalog, _selected = [], "openai"
+    return {
+        "configured": cfg,
+        "symbolic_only": not cfg.get("openai", False),
+        "prefs": _prefs.all_prefs(),
+        "lifespan_rolled": rolled,
+        "llm": {
+            "providers": _prov_catalog,
+            "selected": _selected,
+        },
+    }
+
+
+@app.post("/api/settings")
+async def update_settings(payload: Dict[str, Any], request: Request) -> Dict[str, Any]:
+    """Store/clear API keys in the OS keychain. Body keys (all optional):
+    `openai_api_key`, `serper_api_key` — an empty string clears that key. Saving the
+    OpenAI key re-inits the cached client so it takes effect without a restart."""
+    _authorize_control(request)
+    from brain.utils import secrets as _secrets
+
+    payload = payload or {}
+    changed: list[str] = []
+    needs_reinit = False
+
+    # API keys (any provider) — `<name>_api_key`; an empty string clears it.
+    for _name in _secrets.ENV_VARS:
+        _field = f"{_name}_api_key"
+        if _field in payload:
+            _secrets.set_key(_name, payload.get(_field))
+            changed.append(_name)
+            if _name != "serper":  # serper is read per-call from env; needs no re-init
+                needs_reinit = True
+
+    # Non-secret toggles + LLM provider selection → config.json.
+    from brain.utils import prefs as _prefs
+    incoming_prefs = payload.get("prefs")
+    if isinstance(incoming_prefs, dict):
+        for k, v in incoming_prefs.items():
+            if k in _prefs.DEFAULTS:
+                _prefs.set(k, bool(v) if isinstance(_prefs.DEFAULTS[k], bool) else v)
+                changed.append(f"pref:{k}")
+                if k in ("llm_provider", "llm_model", "llm_base_url"):
+                    needs_reinit = True
+
+    if needs_reinit:
+        # A new key / provider / model takes effect without a restart: drop the cached
+        # provider (Part 11) and flip the master LLM switch on when a real provider is
+        # now selected, so the tool becomes reachable (llm_gate).
+        with contextlib.suppress(Exception):
+            from brain.utils.generate_response import reinit_client
+            reinit_client()
+        with contextlib.suppress(Exception):
+            from brain.utils import llm_providers as _providers
+            from brain.utils.json_utils import load_json as _lj, save_json as _sj
+            from paths import MODEL_CONFIG_FILE as _mcf
+            _mc = _lj(_mcf, default_type=dict) or {}
+            _mc["llm_enabled"] = _providers.selected_id() != "none"
+            _sj(_mcf, _mc)
+
+    cfg = _secrets.configured()
+    return {
+        "ok": True,
+        "changed": changed,
+        "configured": cfg,
+        "symbolic_only": not cfg.get("openai", False),
+        "prefs": _prefs.all_prefs(),
+    }
+
+
+@app.post("/api/llm/test")
+async def llm_test(request: Request) -> Dict[str, Any]:
+    """Test connection (§11.1): a cheap round-trip with the currently-selected provider
+    so the user can confirm a key/endpoint/model works before relying on it."""
+    _authorize_control(request)
+    from brain.utils import llm_providers as _providers
+    provider = _providers.resolve()
+    if provider is None:
+        return {"ok": False, "message": "No provider selected (symbolic-only)."}
+    if not provider.is_configured():
+        return {"ok": False, "message": "This provider isn't configured yet (add a key or endpoint)."}
+    ok, message = provider.test_connection()
+    return {"ok": bool(ok), "message": message, "provider": provider.id, "model": provider.model}
+
+
+@app.post("/api/control/reset")
+async def control_reset(request: Request) -> Dict[str, Any]:
+    """Wipe Orrin to a newborn and re-launch. Destructive — same guard as shutdown,
+    and the UI gates it behind an explicit confirm. The actual wipe/reseed/restart is
+    the orchestrator's job (main.py registered the handler); fires on a short delay so
+    this response reaches the UI first."""
+    _authorize_control(request)
+    if _reset_handler is None:
+        raise HTTPException(status_code=503, detail="reset is unavailable in this run mode")
+    await hub.broadcast({"type": "delta", "frame": hub.merge(
+        {"logs": [{"level": "warn", "source": "control", "message": "reset requested from UI — Orrin is becoming a newborn"}]}
+    )})
+    threading.Timer(0.3, _safe_reset).start()
+    return {"ok": True, "resetting": True}
 
 
 # ── Producer ingest ──────────────────────────────────────────────────────────
 @app.post("/ingest")
-async def ingest(frame: Dict[str, Any]) -> Dict[str, Any]:
+async def ingest(frame: Dict[str, Any], request: Request) -> Dict[str, Any]:
     """Producer entry point used by TelemetryBridge. Merge + broadcast a delta."""
+    _authorize_ingest(request)
     delta = hub.merge(frame or {})
     await hub.broadcast({"type": "delta", "frame": delta})
     return {"ok": True}
@@ -894,8 +1486,9 @@ async def ingest(frame: Dict[str, Any]) -> Dict[str, Any]:
 
 # ── Input pipeline: Face → core loop → Face ──────────────────────────────────
 @app.post("/api/agent/input")
-async def agent_input(body: Dict[str, Any]) -> Any:
+async def agent_input(body: Dict[str, Any], request: Request) -> Any:
     """The Face submits a user message; queued for the core loop, surfaced on the Brain stream."""
+    _reject_untrusted_origin(request)
     message = str((body or {}).get("message", "")).strip()
     if not message:
         return JSONResponse({"ok": False, "error": "empty message"}, status_code=400)
@@ -915,16 +1508,18 @@ async def agent_input(body: Dict[str, Any]) -> Any:
 
 
 @app.get("/api/agent/inputs")
-async def agent_inputs() -> Dict[str, Any]:
+async def agent_inputs(request: Request) -> Dict[str, Any]:
     """Drain and return all pending Face inputs (used by the core loop)."""
+    _reject_untrusted_origin(request)
     items = list(hub.inputs)
     hub.inputs.clear()
     return {"inputs": items}
 
 
 @app.post("/api/agent/respond")
-async def agent_respond(body: Dict[str, Any]) -> Any:
+async def agent_respond(body: Dict[str, Any], request: Request) -> Any:
     """The core loop delivers its reply for a given input id; the Face polls for it."""
+    _reject_untrusted_origin(request)
     rid = str((body or {}).get("id", "")).strip()
     reply = str((body or {}).get("reply", ""))
     if not rid:
@@ -939,23 +1534,29 @@ async def agent_respond(body: Dict[str, Any]) -> Any:
 
 
 @app.get("/api/agent/response/{rid}")
-async def agent_response(rid: str) -> Dict[str, Any]:
+async def agent_response(rid: str, request: Request) -> Dict[str, Any]:
     """One-shot fetch of the agent's reply for an input id (consumed on read)."""
+    _reject_untrusted_origin(request)
     r = hub.responses.pop(rid, None)
     return {"reply": r["reply"] if r else None}
 
 
-# ── Landing page ─────────────────────────────────────────────────────────────
+# ── Landing page / built UI ──────────────────────────────────────────────────
 @app.get("/", response_class=HTMLResponse)
-async def index() -> str:
-    return (
+async def index():
+    # Serve the built React app when present (native window + browser both load
+    # the real UI here); otherwise fall back to the bridge status page.
+    if _ui_dist_ready():
+        return FileResponse(_UI_DIST / "index.html")
+    return HTMLResponse(
         "<html><body style='font-family:ui-monospace,monospace;background:#0a0a0a;"
         "color:#e5e5e5;padding:2rem'>"
         "<h2>Orrin Telemetry Bridge</h2>"
         "<p>WebSocket: <code>/ws/telemetry</code> &nbsp;·&nbsp; Ingest: "
         "<code>POST /ingest</code> &nbsp;·&nbsp; Snapshot: <code>GET /state</code></p>"
         f"<p>Connected UI clients: {hub.client_count}</p>"
-        "<p>Start the UI with <code>cd frontend &amp;&amp; npm run dev</code>.</p>"
+        "<p>No build found. Run <code>cd frontend &amp;&amp; npm run build</code>, "
+        "or start the dev server with <code>ORRIN_UI_DEV=1</code>.</p>"
         "</body></html>"
     )
 
@@ -963,6 +1564,17 @@ async def index() -> str:
 # ── WebSocket (consumers; also accepts producer-over-WS frames) ──────────────
 @app.websocket("/ws/telemetry")
 async def ws_telemetry(ws: WebSocket) -> None:
+    # The WS carries the same live data the read-token protects (memory ops,
+    # logs, narrative, affect), so apply the same policy here (UI_AUDIT H4).
+    # Browsers can't set handshake headers, so the token rides as a query param;
+    # loopback stays open so localhost dev is zero-config, matching _authorize_read.
+    if _READ_TOKEN:
+        client_host = (ws.client.host if ws.client else "") or ""
+        if client_host not in ("127.0.0.1", "::1", "localhost"):
+            supplied = (ws.query_params.get("token") or "").strip()
+            if not hmac.compare_digest(supplied, _READ_TOKEN):
+                await ws.close(code=4403)
+                return
     await hub.connect(ws)
     try:
         while True:
@@ -976,3 +1588,12 @@ async def ws_telemetry(ws: WebSocket) -> None:
         await hub.disconnect(ws)
     except Exception:
         await hub.disconnect(ws)
+
+
+# ── Static UI assets ─────────────────────────────────────────────────────────
+# Mounted LAST so every API route and the WebSocket win the match first; this
+# only catches built assets the SPA references (/assets/*, /orrin.svg, …). The
+# explicit "/" route above serves index.html. Skipped entirely when no build is
+# present (the bridge status page is then the only HTML).
+if _ui_dist_ready():
+    app.mount("/", StaticFiles(directory=str(_UI_DIST), html=True), name="ui")

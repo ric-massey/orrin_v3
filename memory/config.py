@@ -9,8 +9,13 @@ import os
 import time
 
 # ---------- Paths ----------
+# The daemon-durability tree (memory WAL + media). ORRIN_STATE_DIR repoints it
+# together with the rest of Orrin's state (the packaged app/tests set it); the
+# default keeps the in-repo `data/` layout. This is the same env var brain/paths.py
+# and main.py's goals dir read, so all three trees stay co-located.
 ROOT_DIR = Path(__file__).resolve().parent.parent  # .../orrin2.0
-DATA_DIR = ROOT_DIR / "data"
+_env_state = os.environ.get("ORRIN_STATE_DIR")
+DATA_DIR = Path(_env_state).resolve() if _env_state else ROOT_DIR / "data"
 MEMORY_DIR = DATA_DIR / "memory"
 MEDIA_DIR = DATA_DIR / "media"
 WAL_DIR = MEMORY_DIR / "wal"

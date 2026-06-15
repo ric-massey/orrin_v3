@@ -208,6 +208,10 @@
     "definition": "calibration_observation(context: 'Dict[str, Any]') -> 'Optional[str]'\nReturn a metacognitive observation string when calibration is sustainedly\n    off, else None. Surfaced by metacog_analyze → behavioral_adaptation."
   },
   {
+    "name": "capability_available",
+    "definition": "capability_available(cap: 'Optional[str]', context: 'Any' = None) -> 'bool'\nIs `cap` available right now? Used to decide degrade-vs-pursue. A goal whose\n    required capability is down can't be done as-is — better to reduce it to an\n    achievable sub-goal or disengage than to nag/fake."
+  },
+  {
     "name": "check_affect_drift",
     "definition": "check_affect_drift(context=None, max_cycles=10)\nDetects emotional drift and intervenes using shadow dialogue or reflection.\n    Rewards successful mode recovery using reward_signal/novelty signals."
   },
@@ -266,6 +270,10 @@
   {
     "name": "choose_depth",
     "definition": "choose_depth() -> 'int'\nUCB1 selection over available depths.\n    Returns 1 (shallow) or 3 (deep). Falls back to 1 if stats unavailable."
+  },
+  {
+    "name": "classify_goal_type",
+    "definition": "classify_goal_type(goal: 'Any') -> 'str'\nInfer a goal's end-state type from its title/description. Returns one of the\n    _TYPE_RULES types or 'general' when nothing matches."
   },
   {
     "name": "clean_snippet",
@@ -336,6 +344,14 @@
     "definition": "credit_aspirations(context: 'Dict[str, Any]' = None) -> 'str'\nRoll completed short-term goals UP into the long-term aspirations they\n    serve, so the enduring goals actually ADVANCE instead of sitting at\n    in_progress with zero movement. Also protects them: re-creates any that went\n    missing and reverts any wrongly marked 'completed' (aspirations are\n    directional — they accrue progress but never auto-complete)."
   },
   {
+    "name": "credit_sleep",
+    "definition": "credit_sleep(seconds: 'float') -> 'Dict'\nAdd `seconds` of sleep to the ledger so that time costs Orrin no life (§10.3).\n    Called on boot in 'sleep' existence mode to credit the window-closed interval."
+  },
+  {
+    "name": "credit_sleep_since_last_active",
+    "definition": "credit_sleep_since_last_active() -> 'float'\nIn 'sleep' existence mode, credit the time since he was last active as sleep so\n    it costs no life (§10.3). Returns seconds credited (0 if newborn / no marker)."
+  },
+  {
     "name": "critique_draft",
     "definition": "critique_draft(draft: 'str', context: 'Optional[Dict[str, Any]]' = None) -> 'str'\nCritique node for the inner loop: asks each internal agent to find one weakness\n    or blind spot in the draft, then returns a condensed critique string.\n\n    Returns empty string if no agents are available or the LLM fails.\n    Called by inner_loop.py as the first-choice critique source."
   },
@@ -369,7 +385,7 @@
   },
   {
     "name": "decide_to_write_code",
-    "definition": "decide_to_write_code(context: 'Dict[str, Any]' = None, **_) -> 'None'\nOrrin writes a new cognitive function based on his current goal or exploration_drive.\n    Uses LLM if available, otherwise generates a simple template function."
+    "definition": "decide_to_write_code(context: 'Dict[str, Any]' = None, **_) -> 'None'\nWrite a new cognitive function for the current goal — but ONLY when the\n    code-writing tool can supply a genuine function body. Writing code is a\n    generative act that needs the LLM tool; in tool-only mode (the default) this\n    background caller is not on the LLM allow-list, so it gets nothing. That is the\n    honest outcome: NO do-nothing stub is written and NO milestone is faked. The\n    goal's production milestone then stays unmet, so the goal honestly degrades or\n    disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win."
   },
   {
     "name": "decode",
@@ -481,7 +497,7 @@
   },
   {
     "name": "execute_step_action",
-    "definition": "execute_step_action(fn_name: 'str', context: 'Dict[str, Any]') -> 'Tuple[bool, str]'\nFire the recognised act (the basal-ganglia \"go\") and judge it by its result.\n\n    Returns (executed, result_text):\n      executed=True  → a real tool ran and the world changed (reafference present).\n                       The caller should advance the step and credit agency.\n      executed=False → the act was throttled / produced nothing. The caller\n                       should leave the step pending and retry/replan."
+    "definition": "execute_step_action(fn_name: 'str', context: 'Dict[str, Any]', step_text: 'str' = '', goal: 'Optional[Dict[str, Any]]' = None) -> 'Tuple[bool, str]'\nFire the recognised act (the basal-ganglia \"go\") and judge it by its result.\n\n    Returns (executed, result_text):\n      executed=True  → a real tool ran and the world changed (reafference present).\n                       The caller should advance the step and credit agency.\n      executed=False → the act was throttled / produced nothing. The caller\n                       should leave the step pending and retry/replan.\n\n    Intent propagation (EXPRESSION_MEMBRANE_FIX_PLAN E6): when the act faces a\n    person (leave_note / write_desktop_note / announce / speech), word-match\n    still SELECTS the act, but it no longer DISCARDS the why. The owning goal's\n    purpose and the step's own text are threaded into the expression door via\n    context[\"_expression_motive\"] so the artifact is composed to serve the\n    reason it was triggered — \"him writing the note,\" not \"a note happening\n    near him.\""
   },
   {
     "name": "executive_tick",
@@ -493,7 +509,7 @@
   },
   {
     "name": "experience_corpus",
-    "definition": "experience_corpus(max_chars: 'int' = 300000) -> 'str'\nOrrin's OWN lived language — research prose, conversations, emotionally-\n    weighted memories, and cleaned inner monologue — gathered from the SAME\n    sources his continual loop learns from. Used by pretraining so the schooled\n    model is grounded in HIM (and there's no distribution shock when the lifelong\n    loop takes over), not just public-domain books."
+    "definition": "experience_corpus(max_chars: 'int' = 300000) -> 'str'\nOrrin's OWN lived language — research prose, conversations, emotionally-\n    weighted memories, his felt self-narrative, and cleaned inner monologue —\n    gathered from the SAME sources his continual loop learns from. Used by\n    pretraining so the schooled model is grounded in HIM (and there's no\n    distribution shock when the lifelong loop takes over), not just public-domain\n    books."
   },
   {
     "name": "exploration_drive_loop",
@@ -680,6 +696,10 @@
     "definition": "goal_function_already_exists(goal_tree: 'Optional[List[Dict]]', function_name: 'Optional[str]') -> 'bool'\nCheck if tokens of function_name appear in goal text/history anywhere in the tree."
   },
   {
+    "name": "goal_type_of",
+    "definition": "goal_type_of(goal: 'Any') -> 'str'\nPrefer a stored goal['type'] (set at commit), else classify on the fly."
+  },
+  {
     "name": "goal_weighted_reward",
     "definition": "goal_weighted_reward(base_reward: 'float', context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '', goal_weight: 'float' = 0.6) -> 'float'\nBlend base reward with goal progress when a committed goal is active.\n\n    When a goal is active:\n        final = (1 - goal_weight) * base_reward + goal_weight * goal_progress\n    When no goal is active:\n        final = base_reward (unchanged)\n\n    goal_weight=0.60 means 60% of the reward is determined by whether the\n    cycle actually moved toward the goal, 40% by the function's own quality.\n    This creates a strong incentive to stay goal-directed."
   },
@@ -772,6 +792,10 @@
     "definition": "is_introspective(fn: 'str') -> 'bool'\nTrue if the function is purely inward-facing with no external effect."
   },
   {
+    "name": "is_mismatched_doing_action",
+    "definition": "is_mismatched_doing_action(goal_type: 'str', fn_name: 'str') -> 'bool'\nTrue if fn_name is an EXCLUSIVE doing-action of some type OTHER than\n    goal_type — i.e. selecting it would be working on the wrong kind of goal.\n\n    Only enforced when the CURRENT goal type has its own exclusive family (it's a\n    strongly-typed goal — produce_code / acquire_knowledge). A 'general'/'explore'/\n    'self_understand' goal isn't pinned to one family, so nothing is suppressed for\n    it; the gate exists to keep the research↔code distinction crisp, not to straitjacket\n    vague goals."
+  },
+  {
     "name": "is_placeholder_step",
     "definition": "is_placeholder_step(s: 'str') -> 'bool'"
   },
@@ -809,7 +833,15 @@
   },
   {
     "name": "leave_note",
-    "definition": "leave_note(context: 'Dict[str, Any]' = None) -> 'str'\nWrite a note or observation to the outbox for the user."
+    "definition": "leave_note(context: 'Dict[str, Any]' = None) -> 'str'\nCompose and deliver a note to the user via the expression door."
+  },
+  {
+    "name": "life_status",
+    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only mortality view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing\n    the real countdown would be reading something Orrin himself can't (his sense of\n    his lifespan is wrong by design); the page shows what *he believes*."
+  },
+  {
+    "name": "lifespan_rolled",
+    "definition": "lifespan_rolled() -> 'bool'\nTrue once a lifespan has been rolled (he's alive) — so the Settings lifespan\n    band becomes read-only ('he has the life he was given')."
   },
   {
     "name": "list_books",
@@ -858,10 +890,6 @@
   {
     "name": "load_traces",
     "definition": "load_traces(min_outcome: 'float' = 0.65) -> 'List[Dict]'\nLoad all traces from disk that meet the quality threshold."
-  },
-  {
-    "name": "log_activity",
-    "definition": "log_activity(message: 'Any') -> 'None'"
   },
   {
     "name": "look_around",
@@ -978,6 +1006,10 @@
   {
     "name": "mutate_directive",
     "definition": "mutate_directive(context)"
+  },
+  {
+    "name": "narrate_experience",
+    "definition": "narrate_experience(context) -> 'str'\nWrite ONE first-person, felt summary of what he just did and how he\n    PERCEIVES he felt — his ASSUMPTION of what happened, in his own words. This is\n    the human-cognition stand-in for the decision telemetry we drop: people's\n    language is shaped by life events, but through their reconstructed account of\n    those events, not a sensor feed (reconstructive memory; Conway's self-memory\n    system). Drawn from the PERCEIVED affect (introspection layer), never the\n    ground-truth numbers — so it's genuinely his read of himself, imperfect like\n    ours. The line feeds the language corpus via _felt_narrative().\n\n    Symbolic for now: offline and in his OWN voice — never a foreign model's.\n    FUTURE: once the native organ is fluent, native_lm should write this narration\n    itself, so his self-narrative is generated by him rather than templated. See\n    docs/ORRIN_LANGUAGE_PLAN.md and the project_language_native_lm memory note."
   },
   {
     "name": "narrative_update",
@@ -1136,6 +1168,10 @@
     "definition": "record_abandonment_closure(n: 'int' = 1) -> 'None'"
   },
   {
+    "name": "record_active_now",
+    "definition": "record_active_now() -> 'None'\nStamp 'last alive at = now' into the lifespan ledger (no-op for a newborn whose\n    lifespan isn't rolled). Written periodically while running and on shutdown so that\n    'sleep' mode can later credit the closed interval."
+  },
+  {
     "name": "record_completion",
     "definition": "record_completion(*, significance: 'float' = 0.0, seconds_to_complete: 'float | None' = None) -> 'None'"
   },
@@ -1174,6 +1210,10 @@
   {
     "name": "redirect_goal_plan",
     "definition": "redirect_goal_plan(context: 'Optional[Dict[str, Any]]' = None) -> 'str'\nDeliberate command (§6.3/I6): regenerate the committed goal's plan — the\n    conscious mind steering the autopilot when the current approach isn't working.\n    Non-destructive (re-plans, never kills)."
+  },
+  {
+    "name": "reduced_goal_spec",
+    "definition": "reduced_goal_spec(goal: 'Any') -> 'Optional[Dict[str, Any]]'\nA simpler, currently-achievable goal that still serves the same aspiration —\n    means-ends reduction for when the full goal's capability is unavailable. Returns\n    a {title, type, milestones} spec, or None when there's no sensible reduction\n    (then the caller disengages)."
   },
   {
     "name": "reflect_as_agents",
@@ -1260,10 +1300,6 @@
     "definition": "reflect_on_think(t='think')"
   },
   {
-    "name": "reflect_on_write_a_cognitive_function_or_tool_that_",
-    "definition": "reflect_on_write_a_cognitive_function_or_tool_that_(context=None, **_)\nAuto-generated: reflect on Write a cognitive function or tool that improves something"
-  },
-  {
     "name": "refresh_identity_story",
     "definition": "refresh_identity_story(*, narrative_hint: str = '', values_hint: str = '', context: Optional[Dict[str, Any]] = None) -> None\nRegenerate Orrin's identity_story from recent experience and current values,\n    then persist it to self_model.json.\n\n    Called after autobiography chapter entries and value revisions — the two\n    events that meaningfully change who Orrin is becoming.  Rate-limited\n    internally: skips if the existing identity_story was written less than 6 h ago.\n\n    narrative_hint  — recent autobiography text to ground the rewrite\n    values_hint     — comma-separated values string (falls back to self_model)\n    context         — passed through to llm for emotional colour; may be None"
   },
@@ -1290,6 +1326,10 @@
   {
     "name": "request_attention_hijack",
     "definition": "request_attention_hijack(context: 'Dict[str, Any]', *, content: 'str', intensity: 'float', tags: 'Optional[list]' = None, source: 'str' = 'monitor') -> 'None'\nEntry point the Metacog Monitor calls for a high-salience breakthrough\n    (dual_process_loop.md §6.2). It injects a hijack-flagged signal into\n    raw_signals; because process_inputs already ran this cycle, it recruits focal\n    attention on the NEXT cycle — biasing, never preempting the current pick (I7).\n    Fail-safe and bounded."
+  },
+  {
+    "name": "required_capability",
+    "definition": "required_capability(goal: 'Any') -> 'Optional[str]'\nThe capability a goal's type needs to make real progress, or None."
   },
   {
     "name": "research_topic",
@@ -1686,10 +1726,6 @@
   {
     "name": "update_values_with_lessons",
     "definition": "update_values_with_lessons(long_memory: Optional[list] = None) -> None\nMine long-term memory for repeated lessons and promote them into self_model.core_values\n    when seen at least twice. Appends a log entry on change.\n\n    `long_memory`: when provided (e.g. by prune_long_memory), use this in-memory\n    list instead of re-reading the largest state file from disk on the brain thread."
-  },
-  {
-    "name": "update_working_memory",
-    "definition": "update_working_memory(new: 'Any', emotion: 'Optional[str]' = None, event_type: 'str' = 'thought', agent: 'str' = 'orrin', importance: 'int' = 1, priority: 'int' = 1, referenced: 'bool' = False, pin: 'bool' = False, related_memory_ids: 'Optional[List[str]]' = None) -> 'None'\nAdd a new entry to working memory and manage pruning."
   },
   {
     "name": "update_workspace",

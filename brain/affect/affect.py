@@ -13,6 +13,16 @@ from paths import (
 )
 
 
+def _llm_available() -> bool:
+    """True when an LLM is enabled and reachable; mirrors the guard used at the
+    other symbolic-first call sites (cf. self_model_conflicts._llm_ready)."""
+    try:
+        from utils.llm_gate import llm_available
+        return bool(llm_available())
+    except Exception:
+        return False
+
+
 def investigate_unexplained_emotions(context, self_model, memory):
     from cog_memory.working_memory import update_working_memory
     from affect.reward_signals.reward_signals import release_reward_signal
@@ -186,8 +196,11 @@ def detect_affect(text, use_gpt=True):
     if kw.get("intensity", 0.0) > 0.0:
         return kw
 
-    # GPT fallback
-    if use_gpt:
+    # GPT fallback — only when an LLM is actually reachable. In symbolic-first
+    # mode generate_response() returns symbolic narrative prose, not JSON, so
+    # the extract_json path below can never succeed and would silently degrade
+    # every unclassified text to "neutral" while spamming JSON-salvage failures.
+    if use_gpt and _llm_available():
         prompt = (
             "Analyze the following message and infer the emotion and its strength.\n"
             f"Message: \"{text}\"\n\n"

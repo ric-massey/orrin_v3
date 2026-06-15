@@ -14,3 +14,17 @@ psutil>=5.9
 # knowledge-graph entity extraction (optional — regex fallback if absent).
 # After install: python -m spacy download en_core_web_sm
 spacy>=3.7
+
+# Native desktop window (no browser tab, no npm at runtime). Uses the OS webview
+# (WKWebView / WebView2 / WebKitGTK). Falls back to a browser tab if unavailable.
+pywebview>=5.0
+
+# API keys live in the OS keychain (Keychain / Credential Manager / libsecret),
+# never a plaintext .env in the bundle. Falls back to in-memory if no backend.
+keyring>=24.0
+
+# Optional pluggable LLM providers (Part 11) — imported lazily, only when the user
+# selects that provider in Settings. The brain stays symbolic-first without them, and
+# Local/Custom OpenAI-compatible endpoints reuse the `openai` client (no extra dep).
+anthropic>=0.40.0
+google-genai>=0.3.0

@@ -1,1 +1,22 @@
-{}
+{
+  "1081121b31dc": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "841b2b172345": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "4df67ddf883d": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "2067e0ccc1ba": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  }
+}

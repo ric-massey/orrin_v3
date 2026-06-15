@@ -48,23 +48,53 @@ _last_awareness_log_ts: float = 0.0
 
 # ── Lifespan initialization ────────────────────────────────────────────────────
 
+def _lifespan_band() -> "tuple[float, float]":
+    """The [min, max] day band the lifespan is rolled within. The user sets the ODDS
+    (the band) in Settings; the exact span is ALWAYS rolled at random inside it
+    (§10.3). Band is read from env (seeded from config.json at boot); defaults keep the
+    natural 1–2yr range. Consumed only when a lifespan is rolled (birth/Reset), never
+    mid-life."""
+    import os
+    try:
+        lo = float(os.getenv("ORRIN_LIFESPAN_MIN_DAYS") or _LIFESPAN_MIN_DAYS)
+        hi = float(os.getenv("ORRIN_LIFESPAN_MAX_DAYS") or _LIFESPAN_MAX_DAYS)
+    except Exception:
+        lo, hi = _LIFESPAN_MIN_DAYS, _LIFESPAN_MAX_DAYS
+    if hi < lo:
+        lo, hi = hi, lo
+    return max(1.0, lo), max(1.0, hi)
+
+
 def _init_lifespan() -> Dict:
     """Roll and save a new lifespan. Called exactly once at first run."""
-    lifespan_days = random.uniform(_LIFESPAN_MIN_DAYS, _LIFESPAN_MAX_DAYS)
+    lo, hi = _lifespan_band()
+    lifespan_days = random.uniform(lo, hi)
     noise_days = random.uniform(-_NOISE_RANGE_DAYS, _NOISE_RANGE_DAYS)
     born_at = datetime.now(timezone.utc).isoformat()
     data = {
         "born_at": born_at,
         "lifespan_days": round(lifespan_days, 2),
         "noise_days": round(noise_days, 2),   # Orrin's estimate is off by this much
+        "slept_seconds": 0.0,                  # time asleep — subtracted from elapsed
         "final_thoughts_written": False,
     }
     save_json(LIFESPAN_FILE, data)
     log_activity(
         f"[mortality] Born. Lifespan: {lifespan_days:.1f} days "
-        f"(internal estimate offset: {noise_days:+.1f}d)"
+        f"(band {lo:.0f}–{hi:.0f}d; internal estimate offset: {noise_days:+.1f}d)"
     )
     return data
+
+
+def _elapsed_seconds(data: Dict) -> float:
+    """Seconds Orrin has been ALIVE — wall-clock since birth minus any time slept.
+    Sleep pauses the mortality clock (§10.3), so sleeping costs him no life."""
+    born = _parse_dt(data.get("born_at"))
+    if not born:
+        return 0.0
+    wall = (datetime.now(timezone.utc) - born).total_seconds()
+    slept = float(data.get("slept_seconds") or 0.0)
+    return max(0.0, wall - slept)
 
 
 def _load_lifespan() -> Dict:
@@ -81,11 +111,10 @@ def _life_fraction(data: Dict) -> float:
     Real fraction of life elapsed [0..1].
     Uses the true lifespan, not Orrin's noisy estimate.
     """
-    born = _parse_dt(data.get("born_at"))
-    if not born:
+    if not _parse_dt(data.get("born_at")):
         return 0.0
     lifespan_s = float(data.get("lifespan_days", 60)) * 86400
-    elapsed_s = (datetime.now(timezone.utc) - born).total_seconds()
+    elapsed_s = _elapsed_seconds(data)
     return max(0.0, min(1.0, elapsed_s / lifespan_s))
 
 
@@ -94,13 +123,12 @@ def _felt_fraction(data: Dict) -> float:
     Orrin's subjective sense of how much life remains — biased by noise_days.
     He might feel more or less time has passed than reality.
     """
-    born = _parse_dt(data.get("born_at"))
-    if not born:
+    if not _parse_dt(data.get("born_at")):
         return 0.0
     felt_lifespan_s = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
     if felt_lifespan_s <= 0:
         felt_lifespan_s = 1
-    elapsed_s = (datetime.now(timezone.utc) - born).total_seconds()
+    elapsed_s = _elapsed_seconds(data)
     return max(0.0, min(1.0, elapsed_s / felt_lifespan_s))
 
 
@@ -123,12 +151,78 @@ def _parse_dt(s: Any) -> Optional[datetime]:
 
 def _days_remaining_felt(data: Dict) -> float:
     """Days Orrin believes he has left (based on his noisy estimate)."""
-    born = _parse_dt(data.get("born_at"))
-    if not born:
+    if not _parse_dt(data.get("born_at")):
         return 999.0
     felt_lifespan_days = float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))
-    elapsed_days = (datetime.now(timezone.utc) - born).total_seconds() / 86400
+    elapsed_days = _elapsed_seconds(data) / 86400
     return max(0.0, felt_lifespan_days - elapsed_days)
+
+
+def credit_sleep(seconds: float) -> Dict:
+    """Add `seconds` of sleep to the ledger so that time costs Orrin no life (§10.3).
+    Called on boot in 'sleep' existence mode to credit the window-closed interval."""
+    if seconds <= 0:
+        return _load_lifespan()
+    data = _load_lifespan()
+    data["slept_seconds"] = float(data.get("slept_seconds") or 0.0) + float(seconds)
+    save_json(LIFESPAN_FILE, data)
+    log_activity(f"[mortality] Slept {seconds / 3600:.1f}h — lifespan paused for that time.")
+    return data
+
+
+def lifespan_rolled() -> bool:
+    """True once a lifespan has been rolled (he's alive) — so the Settings lifespan
+    band becomes read-only ('he has the life he was given')."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    return bool(data.get("born_at") and data.get("lifespan_days"))
+
+
+def record_active_now() -> None:
+    """Stamp 'last alive at = now' into the lifespan ledger (no-op for a newborn whose
+    lifespan isn't rolled). Written periodically while running and on shutdown so that
+    'sleep' mode can later credit the closed interval."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    if not (data.get("born_at") and data.get("lifespan_days")):
+        return
+    data["last_active_at"] = datetime.now(timezone.utc).isoformat()
+    save_json(LIFESPAN_FILE, data)
+
+
+def credit_sleep_since_last_active() -> float:
+    """In 'sleep' existence mode, credit the time since he was last active as sleep so
+    it costs no life (§10.3). Returns seconds credited (0 if newborn / no marker)."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    if not (data.get("born_at") and data.get("lifespan_days")):
+        return 0.0
+    last = _parse_dt(data.get("last_active_at"))
+    if not last:
+        record_active_now()
+        return 0.0
+    gap = (datetime.now(timezone.utc) - last).total_seconds()
+    if gap <= 0:
+        return 0.0
+    credit_sleep(gap)
+    record_active_now()  # reset the marker so the next interval starts now
+    return gap
+
+
+def life_status() -> Dict[str, Any]:
+    """Read-only mortality view for the Life Support page (§9.10). Exposes ONLY the
+    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing
+    the real countdown would be reading something Orrin himself can't (his sense of
+    his lifespan is wrong by design); the page shows what *he believes*."""
+    data = _load_lifespan()
+    born = _parse_dt(data.get("born_at"))
+    age_days = (datetime.now(timezone.utc) - born).total_seconds() / 86400 if born else 0.0
+    felt_frac = _felt_fraction(data)
+    return {
+        "born_at": data.get("born_at"),
+        "age_days": round(age_days, 2),
+        "felt_days_remaining": round(_days_remaining_felt(data), 1),
+        "felt_life_fraction": round(felt_frac, 3),
+        "phase": _phase(felt_frac),
+        "final_thoughts_written": bool(data.get("final_thoughts_written")),
+    }
 
 
 # ── Emotional effects by phase ─────────────────────────────────────────────────

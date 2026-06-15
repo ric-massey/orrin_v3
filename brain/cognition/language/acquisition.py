@@ -41,7 +41,7 @@ _REPLAY_KEEP = 400000
 # dropped and his felt account is what trains the organ.
 _FELT_FILE = Path(__file__).resolve().parents[2] / "data" / "language" / "felt_experience.txt"
 _FELT_KEEP = 120000               # cap the felt-narrative corpus (chars)
-_NARRATE_MIN_INTERVAL_S = 90.0    # throttle so a 10s cycle can't flood the corpus
+_NARRATE_MIN_INTERVAL_S = 90.0    # min seconds between narrations, so the fast (~10s) cognitive cycle can't flood the corpus
 _last_narrate = 0.0
 
 # Lines that are internal instrumentation, not language to learn from.

@@ -16,6 +16,8 @@
 // It is intentionally tiny and dependency-free (no react-query) per the audit's
 // "even a hand-rolled fetchJSON with a TTL cache" guidance.
 
+import { getTransport } from "./transport";
+
 type CacheEntry = { ts: number; data: unknown };
 
 const cache = new Map<string, CacheEntry>();
@@ -65,7 +67,18 @@ export async function fetchJSON<T = unknown>(url: string, opts: FetchJSONOpts = 
   }
 
   const p = (async () => {
-    const r = await fetch(url);
+    // Every read flows through the active transport (HTTP today; the in-process
+    // bridge in B2) rather than calling window.fetch directly.
+    const r = await getTransport().fetch(url);
+    // M2: the backend always returns JSON (even `{error}` on 4xx/5xx), so a
+    // NON-JSON body means we didn't reach the backend — e.g. the Vite proxy or a
+    // tunnel served an HTML 502/504 because the backend is down. Throw a clear
+    // error (not an opaque JSON parse failure) and do NOT mark success/ cache, so
+    // pollers keep their last good data and StaleBadge flips to "stale".
+    const ct = (r.headers.get("content-type") || "").toLowerCase();
+    if (!ct.includes("json")) {
+      throw new Error(`non-JSON response (HTTP ${r.status}) from ${url} — backend unreachable?`);
+    }
     const data = (await r.json()) as T;
     if (r.ok) {
       lastOk.set(url, Date.now());

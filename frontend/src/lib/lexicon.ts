@@ -91,6 +91,34 @@ export const LEX = {
   // ── Misc chrome ───────────────────────────────────────────────────────────
   sphere_empty: { bio: "Mapping his mind…", eng: "Loading the function catalog…" },
   exec_idle: { bio: "Idle — no step advancing this cycle.", eng: "Idle — no task step ran this tick." },
+
+  // ── Named rooms (§9.1 navigation) ─────────────────────────────────────────
+  nav_face: { bio: "Face", eng: "Face" },
+  nav_cognition: { bio: "Cognition", eng: "Cognition" },
+  nav_life: { bio: "Life Support", eng: "Resource Manager" },
+  nav_memory: { bio: "Memory", eng: "Memory" },
+  nav_timeline: { bio: "Timeline", eng: "Activity log" },
+  nav_brain: { bio: "Brain", eng: "Brain" },
+  nav_settings: { bio: "Settings", eng: "Settings" },
+
+  // ── Cognition view (§9.3) ─────────────────────────────────────────────────
+  cog_focus: { bio: "Current focus", eng: "Active function (this cycle)" },
+  cog_goal: { bio: "Current goal", eng: "Active goal + step" },
+  cog_competing: { bio: "Competing thoughts", eng: "Workspace candidates (ranked)" },
+  cog_winner: { bio: "What took his attention", eng: "Broadcast winner" },
+  cog_peers: { bio: "Inner voices", eng: "Active peer models" },
+  cog_drives: { bio: "Drive pressure", eng: "Priority weights" },
+  cog_symbolic: { bio: "Symbolic activity", eng: "Rules firing" },
+  cog_private: { bio: "His private thoughts stay his own.", eng: "Protected interior (not exposed by the API)." },
+
+  // ── Life Support (§9.10) ──────────────────────────────────────────────────
+  life_cpu: { bio: "Headroom to think", eng: "CPU available" },
+  life_mem: { bio: "Working-memory headroom", eng: "RAM available" },
+  life_disk: { bio: "Room left to grow his mind", eng: "Disk free (data dir)" },
+  life_rate: { bio: "How fast he's thinking", eng: "Cycles/min" },
+  life_age: { bio: "How long he's been alive", eng: "Uptime since born_at" },
+  life_remaining: { bio: "Life he feels he has left", eng: "Est. days remaining (felt)" },
+  life_interests: { bio: "What he cares about right now", eng: "Top active goals" },
 } as const;
 
 export type LexId = keyof typeof LEX;

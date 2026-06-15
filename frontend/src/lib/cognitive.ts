@@ -1,23 +1,14 @@
 // Shared bits for the Cognitive Map / Sphere views.
 
+// Host/transport resolution now lives in lib/transport.ts (the single I/O seam);
+// `apiBase` is re-exported here so the Brain panels' `import { API } from
+// "@/lib/cognitive"` keep working unchanged.
+import { apiBase } from "./transport";
+
+export { apiBase };
+
 export const TELEMETRY_HOST =
   (import.meta.env.VITE_TELEMETRY_HOST as string | undefined) || "127.0.0.1:8800";
-
-/**
- * Canonical HTTP base for the telemetry backend. Resolution mirrors wsUrl():
- *   1. explicit `VITE_API_URL` (trailing slash stripped),
- *   2. explicit `VITE_TELEMETRY_HOST`,
- *   3. the page's own origin — Vite proxies `/api` (and `/ws`) to the backend,
- *      so a tunnel/LAN viewer gets working REST with zero config (Fix 5).
- * Single source of truth — previously duplicated in Header.tsx and Face.tsx (L4).
- */
-export function apiBase(): string {
-  const explicit = import.meta.env.VITE_API_URL as string | undefined;
-  if (explicit) return explicit.replace(/\/$/, "");
-  const envHost = import.meta.env.VITE_TELEMETRY_HOST as string | undefined;
-  if (envHost) return `http://${envHost}`;
-  return window.location.origin;
-}
 
 /** REST root for the Brain panels' data endpoints. Always the `/api/` form so
  *  the single Vite proxy rule covers every endpoint (catalog, goals, history,

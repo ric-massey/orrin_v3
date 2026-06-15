@@ -47,7 +47,9 @@ def llm_available() -> bool:
     1. brain/data/model_config.json — llm_enabled explicitly False → deny.
        Torn/unreadable config reuses the last good value (fail-closed before
        the first good read).
-    2. OPENAI_API_KEY present in the environment — missing → deny.
+    2. The user-selected provider (Part 11) is configured — "none", or a
+       provider with no key/endpoint → deny. (For OpenAI this is the same
+       OPENAI_API_KEY check as before.)
     3. Circuit breaker in utils.generate_response — open (recent hard
        network failures or auth failures) → deny.
     4. utils.llm_router importable — missing → deny.
@@ -55,12 +57,19 @@ def llm_available() -> bool:
     if not _llm_enabled_in_config():
         return False
 
-    if not os.getenv("OPENAI_API_KEY"):
-        try:
-            from dotenv import load_dotenv
-            load_dotenv()
-        except Exception:
-            pass
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except Exception:
+        pass
+    try:
+        from utils import llm_providers as _providers
+        _prov = _providers.resolve()
+        if _prov is None or not _prov.is_configured():
+            return False
+    except Exception:
+        # If the provider layer is somehow unimportable, fall back to the historical
+        # OpenAI check so a misconfiguration fails closed, not open.
         if not os.getenv("OPENAI_API_KEY"):
             return False
 

@@ -1,0 +1,101 @@
+name: Build Orrin (desktop app)
+
+# Builds downloadable, UNSIGNED Orrin bundles on macOS (arm64 + Intel), Windows, and
+# Linux — all from GitHub's runners, so no Windows/Linux hardware is needed. PyInstaller
+# can't cross-compile, which is exactly why each OS builds on its own runner.
+#
+# Run it: push a tag like `v0.1.0`, or trigger manually (Actions tab → Run workflow).
+# Artifacts (.dmg / .zip / .tar.gz) attach to the run; on a tag they also attach to a
+# GitHub Release. Signing comes later (I4): macOS users right-click→Open past Gatekeeper,
+# Windows users click "More info → Run anyway" past SmartScreen once.
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write   # the release step attaches installers to a GitHub Release on tags
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false   # one OS failing must not abort the others
+      matrix:
+        include:
+          - os: macos-14      # Apple Silicon
+            name: macos-arm64
+          - os: macos-13      # Intel
+            name: macos-x64
+          - os: windows-latest
+            name: windows-x64
+          - os: ubuntu-latest
+            name: linux-x64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build the UI (bundled from disk; no npm at runtime)
+        working-directory: frontend
+        run: npm ci && npm run build
+
+      # On Linux, default PyPI torch is the multi-GB CUDA build. Orrin is a CPU desktop
+      # app, so pin the CPU wheel BEFORE requirements resolves sentence-transformers' dep.
+      - name: Install CPU torch (Linux)
+        if: runner.os == 'Linux'
+        run: pip install "torch>=2.2" --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Pre-fetch ML weights into the bundle (offline first-run, I2)
+        run: python packaging/bundle_models.py --out packaging/build/models
+
+      - name: Freeze (PyInstaller, I3)
+        run: pyinstaller packaging/orrin.spec --noconfirm
+
+      # ── Package per OS ──────────────────────────────────────────────────────
+      - name: Package macOS .dmg
+        if: runner.os == 'macOS'
+        run: hdiutil create -volname Orrin -srcfolder dist/Orrin.app -ov -format UDZO "dist/Orrin-${{ matrix.name }}.dmg"
+
+      - name: Package Windows .zip
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/Orrin/* -DestinationPath "dist/Orrin-${{ matrix.name }}.zip"
+
+      - name: Package Linux .tar.gz
+        if: runner.os == 'Linux'
+        run: tar -C dist -czf "dist/Orrin-${{ matrix.name }}.tar.gz" Orrin
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Orrin-${{ matrix.name }}
+          path: |
+            dist/*.dmg
+            dist/*.zip
+            dist/*.tar.gz
+          if-no-files-found: error
+
+      # On a tag, attach the installers to a GitHub Release so people can download them.
+      - name: Attach to release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.dmg
+            dist/*.zip
+            dist/*.tar.gz

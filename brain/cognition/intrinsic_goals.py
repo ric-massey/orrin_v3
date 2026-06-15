@@ -918,6 +918,57 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
     return ("Aspiration progress — " + "; ".join(summary)) if summary else ""
 
 
+# Research/web findings are written to long memory by look_outward as
+#   "[world_perception] From searching '<query>': <result>"   (a finding), and
+#   "[world_perception] I reached outward with a question: <query>"  (the intent).
+# These markers let us source a follow-up goal from what Orrin actually went and
+# learned, without depending on an `extra`/source field that long_memory.json
+# doesn't persist.
+_RESEARCH_FINDING_RE = re.compile(r"from searching '([^']{3,140})'\s*:\s*(.*)", re.I | re.S)
+_RESEARCH_INTENT_RE = re.compile(r"reached outward with a question:\s*(.{3,140})", re.I)
+
+
+def _goal_from_recent_research(long_mem: list, scan: int = 30) -> Optional[Dict]:
+    """A goal to FOLLOW UP on something Orrin recently went and looked into.
+
+    Scans the most recent long-memory entries for a web/research finding and, if
+    one has a clean subject, proposes taking it one concrete step further. Returns
+    a single candidate (the caller pools/dedupes/cooldown-gates it) or None when
+    there's no recent research worth continuing — originate nothing, not a template.
+    """
+    try:
+        for entry in reversed(list(long_mem or [])[-scan:]):
+            content = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
+            low = content.lower()
+            topic = snippet = ""
+            m = _RESEARCH_FINDING_RE.search(content)
+            if m:
+                topic = _strip_goal_scaffold(m.group(1).strip())
+                snippet = " ".join(m.group(2).split())[:200]
+            elif "reached outward with a question" in low:
+                mi = _RESEARCH_INTENT_RE.search(content)
+                if mi:
+                    topic = _strip_goal_scaffold(mi.group(1).strip().rstrip("?."))
+            topic = topic[:80].strip()
+            if not topic or not _acceptable_goal_subject(topic):
+                continue
+            note = (
+                f"I recently looked into '{topic}'"
+                + (f" and found: {snippet}. " if snippet else ". ")
+                + "Take it one concrete step further — use research_topic / wikipedia_search / "
+                "fetch_and_read to learn something NEW about it, then write the new finding to long memory."
+            )
+            return _mk_goal(
+                f"Follow-up on {topic}",
+                note,
+                milestones=[f"A new angle on '{topic[:50]}' was researched.",
+                            "A new finding was written to long memory."],
+            )
+    except Exception:
+        return None
+    return None
+
+
 def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[Dict]:
     """
     LLM-free goal generation with real variety. Draws candidates ONLY from Orrin's

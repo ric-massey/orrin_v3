@@ -3,6 +3,7 @@ import { Activity, Cpu, Database, HelpCircle, LayoutGrid, Radio, X } from "lucid
 import { Responsive, useContainerWidth } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import { useTelemetryState } from "@/App";
+import { useStreamStale } from "@/lib/telemetry";
 import { API } from "@/lib/cognitive";
 import { fetchJSON } from "@/lib/fetchJSON";
 import { useLocalStorage } from "@/lib/useLocalStorage";
@@ -30,6 +31,7 @@ import LanguagePanel from "@/components/brain/LanguagePanel";
 import type { LiveIntero } from "@/components/brain/DrivesPanel";
 import { useLexicon } from "@/lib/lexicon";
 import { cn } from "@/lib/utils";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // ── Fix 3: moveable/resizable layout ─────────────────────────────────────────
 // One react-grid-layout `Responsive` grid replaces the static CSS grids. Drag
@@ -87,6 +89,10 @@ function defaultLayouts(): Layouts {
   return { lg, md, sm };
 }
 
+// Columns per breakpoint (mirror the <Responsive cols> prop). Used to clamp a
+// stored layout back inside the grid so a panel can't be stranded off-screen.
+const COLS: Record<string, number> = { lg: 12, md: 8, sm: 6 };
+
 // A stored layout from an older release may miss panels added since (or carry
 // removed ones) — sanitize back to defaults rather than render a broken grid.
 function sanitizeLayouts(raw: unknown): Layouts {
@@ -98,13 +104,25 @@ function sanitizeLayouts(raw: unknown): Layouts {
     if (!Array.isArray(items)) return def;
     const ids = new Set(items.map((it) => (it as LayoutItem)?.i));
     if (PANEL_IDS.some((id) => !ids.has(id))) return def;
-    out[bp] = items.filter(
-      (it): it is LayoutItem =>
-        !!it && typeof (it as LayoutItem).i === "string" &&
-        PANEL_IDS.includes((it as LayoutItem).i as PanelId) &&
-        [(it as LayoutItem).x, (it as LayoutItem).y, (it as LayoutItem).w, (it as LayoutItem).h]
-          .every((n) => typeof n === "number" && isFinite(n)),
-    );
+    const cols = COLS[bp] ?? 12;
+    out[bp] = items
+      .filter(
+        (it): it is LayoutItem =>
+          !!it && typeof (it as LayoutItem).i === "string" &&
+          PANEL_IDS.includes((it as LayoutItem).i as PanelId) &&
+          [(it as LayoutItem).x, (it as LayoutItem).y, (it as LayoutItem).w, (it as LayoutItem).h]
+            .every((n) => typeof n === "number" && isFinite(n)),
+      )
+      // L5: clamp each item inside the grid. A panel dragged/resized off the
+      // right edge (or to an absurd offset) stays recoverable without needing a
+      // full layout reset.
+      .map((it) => {
+        const minW = it.minW ?? 1;
+        const minH = it.minH ?? 1;
+        const w = Math.min(Math.max(it.w, minW), cols);
+        const x = Math.min(Math.max(0, it.x), Math.max(0, cols - w));
+        return { ...it, w, x, y: Math.max(0, it.y), h: Math.max(it.h, minH) };
+      });
   }
   return out;
 }
@@ -128,15 +146,10 @@ export default function Brain() {
     return () => { stop = true; clearInterval(id); };
   }, []);
 
-  // Fix 9: the socket can claim to be open while frames stopped arriving —
-  // go amber when the last telemetry update is old. The 5s tick keeps the KPI
-  // honest even when no frames arrive to trigger a re-render.
-  const [, setTick] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setTick((n) => n + 1), 5_000);
-    return () => clearInterval(id);
-  }, []);
-  const streamStale = t.source === "live" && t.updatedAt > 0 && Date.now() - t.updatedAt > 15_000;
+  // Fix 9 / M1: the socket can claim to be open while frames stopped arriving —
+  // go amber when the last telemetry update is old. Shared with the Header so
+  // both agree (the hook's own tick keeps this honest with no frames arriving).
+  const streamStale = useStreamStale(t);
 
   // Fix 11: one-time orientation overlay; the "Tour" button re-opens it.
   const [welcomeSeen, setWelcomeSeen] = useLocalStorage<boolean>("orrin.brain.welcome.v1", false, { sanitize: (r) => !!r });
@@ -184,7 +197,14 @@ export default function Brain() {
             icon={<Radio className="h-4 w-4" />}
             label={lx("kpi_stream")}
             title={lxTip("kpi_stream")}
-            value={streamStale ? "Stalled" : t.source === "live" ? "Live" : t.source === "demo" ? "Demo" : "Connecting"}
+            value={
+              t.source === "stopped" ? "Stopped"
+              : streamStale ? "Stalled"
+              : t.source === "live" ? "Live"
+              : t.source === "demo" ? "Demo"
+              : t.retries > 0 ? `Reconnecting (${t.retries})`
+              : "Connecting"
+            }
             warn={streamStale}
           />
           <Kpi
@@ -248,7 +268,12 @@ export default function Brain() {
             >
               {PANEL_IDS.map((id) => (
                 <div key={id} className="overflow-auto">
-                  {panels[id]}
+                  {/* H5: isolate each panel — a malformed data shape that throws
+                      in one box degrades that box, instead of white-screening
+                      the entire dashboard (the least-visible failure mode). */}
+                  <ErrorBoundary fallback={<PanelError id={id} />}>
+                    {panels[id]}
+                  </ErrorBoundary>
                 </div>
               ))}
             </Responsive>
@@ -293,6 +318,28 @@ function WelcomeOverlay({ onClose }: { onClose: () => void }) {
           Got it — show me the mind
         </button>
       </div>
+    </div>
+  );
+}
+
+// H5 fallback: rendered in place of a panel that threw, so the failure is
+// visible and localized rather than a blank page.
+function PanelError({ id }: { id: string }) {
+  return (
+    <div
+      role="alert"
+      className="flex h-full min-h-[120px] flex-col items-center justify-center gap-1 rounded-xl border border-signal-warn/40 bg-signal-warn/5 p-4 text-center"
+    >
+      <div className="text-[12px] font-medium text-signal-warn">This panel failed to render</div>
+      <div className="text-[11px] text-muted-foreground">
+        <span className="font-mono">{id}</span> — its data may be malformed. Other panels are unaffected.
+      </div>
+      <button
+        onClick={() => window.location.reload()}
+        className="mt-1 rounded-md border border-border bg-card px-2 py-0.5 text-[11px] text-muted-foreground hover:text-foreground"
+      >
+        Reload
+      </button>
     </div>
   );
 }

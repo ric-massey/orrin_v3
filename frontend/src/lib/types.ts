@@ -144,6 +144,11 @@ export interface TelemetryState {
   /** Free-form extras the loop pushes (e.g. awareness). */
   extra: Record<string, unknown>;
   connected: boolean;
-  source: "connecting" | "live" | "demo";
+  /** "stopped" = the user shut Orrin down from the UI (an intentional offline
+   *  state), distinct from "connecting" (couldn't reach / lost the backend). */
+  source: "connecting" | "live" | "demo" | "stopped";
+  /** Consecutive failed reconnect attempts (0 when live). Drives the
+   *  "Reconnecting" indicator so a long outage isn't an indefinite "Connecting". */
+  retries: number;
   updatedAt: number;
 }

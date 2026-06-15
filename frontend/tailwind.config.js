@@ -80,12 +80,19 @@ export default {
           from: { opacity: "0", transform: "translateY(4px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        // The Cognition view's slow ~20s pulse — synced to Orrin's cycle so the
+        // page "breathes" (§9.3). Deliberately subtle (a faint ring/opacity swell).
+        breathe: {
+          "0%, 100%": { opacity: "1", boxShadow: "0 0 0 0 hsl(var(--signal-accent) / 0.18)" },
+          "50%": { opacity: "0.97", boxShadow: "0 0 0 6px hsl(var(--signal-accent) / 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-node": "pulse-node 1.6s ease-in-out infinite",
         "fade-in": "fade-in 0.3s ease-out",
+        breathe: "breathe 20s ease-in-out infinite",
       },
     },
   },

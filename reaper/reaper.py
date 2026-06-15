@@ -78,6 +78,15 @@ class Reaper:
             return  # don't double-fire
         self._triggered = True
 
+        # Tag this as a STALL-restart (not death, not a crash) so the next launch shows
+        # "restarting", not a memorial or "stopped unexpectedly" (§10.5). Best-effort —
+        # the reaper must still kill even if telemetry fails.
+        try:
+            from utils.lifecycle import mark_stall
+            mark_stall(reason)
+        except Exception as _e:
+            _log.warning("silent except: %s", _e)
+
         _log_durably(f"[REAPER] Shutdown triggered: {reason}")
 
         if self.dying_window_s <= 0:

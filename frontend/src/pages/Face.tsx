@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTelemetryState } from "@/App";
 import NarrativeStatusCard from "@/components/face/NarrativeStatusCard";
-import { apiBase } from "@/lib/cognitive";
+import { apiGet, apiPost, transportFetch } from "@/lib/transport";
 
 interface Message {
   id: string;
@@ -51,7 +51,7 @@ export default function Face() {
     let stop = false;
     (async () => {
       try {
-        const r = await fetch(`${apiBase()}/api/chat?n=200`);
+        const r = await apiGet(`/api/chat?n=200`);
         const d = await r.json();
         if (stop || !Array.isArray(d?.messages)) return;
         const server: Message[] = d.messages
@@ -63,8 +63,21 @@ export default function Face() {
           }));
         if (server.length === 0) return;
         setMessages((local) => {
-          const seen = new Set(local.map((m) => `${m.role}|${m.text}`));
-          const missing = server.filter((m) => !seen.has(`${m.role}|${m.text}`));
+          // M3: dedup by OCCURRENCE, not by content. Keying on `role|text`
+          // collapsed legitimately-repeated messages ("ok", "yes") into one.
+          // Instead, consume one local occurrence per matching server message,
+          // so the Nth identical line survives.
+          const remaining = new Map<string, number>();
+          for (const m of local) {
+            const k = `${m.role}|${m.text}`;
+            remaining.set(k, (remaining.get(k) || 0) + 1);
+          }
+          const missing = server.filter((m) => {
+            const k = `${m.role}|${m.text}`;
+            const c = remaining.get(k) || 0;
+            if (c > 0) { remaining.set(k, c - 1); return false; }
+            return true;
+          });
           if (missing.length === 0) return local;
           // Server history predates whatever this browser saw — prepend it.
           return [...missing, ...local].slice(-CHAT_HISTORY_CAP);
@@ -224,7 +237,9 @@ function ThinkingBubble({ narrative }: { narrative: string }) {
 async function getReply(text: string, narrative: string): Promise<string> {
   if (CHAT_URL) {
     try {
-      const res = await fetch(CHAT_URL, {
+      // A user-configured external endpoint (absolute URL) — still flows through
+      // the transport so the bridge can pass it through in the packaged app.
+      const res = await transportFetch(CHAT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
@@ -238,12 +253,7 @@ async function getReply(text: string, narrative: string): Promise<string> {
 
   // Submit to the core loop via the input pipeline and wait for its reply.
   try {
-    const base = apiBase();
-    const res = await fetch(`${base}/api/agent/input`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text }),
-    });
+    const res = await apiPost(`/api/agent/input`, { message: text });
     const data = await res.json();
     const id: string | undefined = data?.id;
     if (!id) throw new Error("no id");
@@ -251,11 +261,11 @@ async function getReply(text: string, narrative: string): Promise<string> {
     const deadline = Date.now() + 30000; // wait up to 30s for the loop to respond
     while (Date.now() < deadline) {
       await sleep(800);
-      const r = await fetch(`${base}/api/agent/response/${id}`);
+      const r = await apiGet(`/api/agent/response/${id}`);
       const d = await r.json();
       if (d?.reply) return String(d.reply);
     }
-    return "Got it — I've handed your message to my core loop and it'll fold into my next cycle. I didn't form a reply within the wait window this time.";
+    return "Got it — your message reached my core loop and is still being processed (it wasn't lost). I just didn't finish a reply within the wait window; it'll fold into an upcoming cycle.";
   } catch {
     /* backend unreachable → local reflection */
   }

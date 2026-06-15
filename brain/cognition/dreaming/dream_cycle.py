@@ -654,6 +654,16 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     except Exception as _fge:
         log_activity(f"[dream] forgetting cycle skipped: {_fge}")
 
+    # Disk-ceiling forgetting (§10.3) — if his mind has grown past the user's ceiling,
+    # trim the safe growable stores back under budget. No-op when under the ceiling.
+    try:
+        from utils.resource_ceilings import enforce_disk_ceiling as _edc
+        _ceil = _edc()
+        if _ceil.get("over"):
+            log_activity(f"[dream] Over disk ceiling — trimmed {sum(_ceil.get('trimmed', {}).values())} entries to stay under.")
+    except Exception as _ce:
+        record_failure("dream_cycle.dream_cycle.disk_ceiling", _ce)
+
     # Symbolic self-improvement — rehabilitate rules, calibrate router thresholds,
     # prune underused meta-rules. Has its own 4h internal cooldown.
     try:

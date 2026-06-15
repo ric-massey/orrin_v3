@@ -1,35 +1,26 @@
 # manager.py
-import importlib.util
-import sys
-from pathlib import Path
 from typing import Callable, Dict
 
 from utils.log import log_model_issue, log_private
-from paths import ROOT_DIR
+from agency.self_code import SELF_COGNITION_DIR, ensure_tree, load_module_from
 
 def load_custom_cognition() -> Dict[str, Callable]:
     """
-    Dynamically load callable functions from cognition/custom_cognition/*.py.
+    Dynamically load callable functions Orrin has written, from
+    <data dir>/self_code/custom_cognition/*.py (the writable tree — §10.1; never the
+    read-only program folder).
 
     - Honors __all__ if present.
     - Otherwise exports all top-level callables that don't start with "_".
     - Returns {function_name: callable}. Later files override earlier names (with a warning).
     """
-    directory: Path = ROOT_DIR / "cognition" / "custom_cognition"
+    ensure_tree()
+    directory = SELF_COGNITION_DIR
     functions: Dict[str, Callable] = {}
 
     if not directory.exists():
         log_model_issue(f"[load_custom_cognition] Directory not found: {directory}")
         return functions
-
-    # IMPORTANT: ensure this is a package for relative imports
-    init_file = directory / "__init__.py"
-    if not init_file.exists():
-        try:
-            init_file.write_text("# package marker for custom cognition\n", encoding="utf-8")
-            log_private("[load_custom_cognition] Created missing __init__.py in custom_cognition/")
-        except Exception as e:
-            log_model_issue(f"[load_custom_cognition] Could not create __init__.py: {e}")
 
     for path in sorted(directory.iterdir()):
         if not path.is_file() or path.suffix != ".py":
@@ -37,18 +28,11 @@ def load_custom_cognition() -> Dict[str, Callable]:
         if path.name.startswith("_") or path.name == "__init__.py":
             continue
 
-        # Use the package name so relative imports work
-        module_name = f"cognition.custom_cognition.{path.stem}"
         try:
-            spec = importlib.util.spec_from_file_location(module_name, str(path))
-            if spec is None or spec.loader is None:
-                log_model_issue(f"[load_custom_cognition] Cannot load spec for: {path.name}")
+            module = load_module_from(path, "custom_cognition")
+            if module is None:
+                log_model_issue(f"[load_custom_cognition] Cannot load: {path.name}")
                 continue
-
-            module = importlib.util.module_from_spec(spec)
-            # Register early so intra-package relative imports can resolve
-            sys.modules[module_name] = module
-            spec.loader.exec_module(module)
 
             exported = []
             names = getattr(module, "__all__", None)

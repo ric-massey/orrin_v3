@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useReducer, useRef } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { LogLevel, LOOP_NODES, MetricPoint, TelemetryState } from "./types";
+import { getTransport } from "./transport";
 
 // Re-export the data contracts so existing `@/lib/telemetry` imports keep working.
 export * from "./types";
@@ -29,6 +30,7 @@ export const initialState: TelemetryState = {
   extra: {},
   connected: false,
   source: "connecting",
+  retries: 0,
   updatedAt: 0,
 };
 
@@ -38,7 +40,7 @@ export const initialState: TelemetryState = {
 type Action =
   | { type: "snapshot"; state: any }
   | { type: "delta"; frame: any }
-  | { type: "status"; connected: boolean; source: TelemetryState["source"] }
+  | { type: "status"; connected: boolean; source: TelemetryState["source"]; retries?: number }
   | { type: "reset" };
 
 function applyDelta(s: TelemetryState, f: any): TelemetryState {
@@ -79,7 +81,7 @@ function applyDelta(s: TelemetryState, f: any): TelemetryState {
 function reducer(s: TelemetryState, a: Action): TelemetryState {
   switch (a.type) {
     case "status":
-      return { ...s, connected: a.connected, source: a.source };
+      return { ...s, connected: a.connected, source: a.source, retries: a.retries ?? s.retries };
     case "reset":
       return { ...initialState, source: s.source, connected: s.connected };
     case "snapshot": {
@@ -137,19 +139,8 @@ function reducer(s: TelemetryState, a: Action): TelemetryState {
 // ─────────────────────────────────────────────────────────────────────────────
 // Config
 // ─────────────────────────────────────────────────────────────────────────────
-function wsUrl(): string {
-  const explicit = import.meta.env.VITE_TELEMETRY_WS as string | undefined;
-  if (explicit) return explicit;
-  const envHost = import.meta.env.VITE_TELEMETRY_HOST as string | undefined;
-  // When accessed remotely (tunnel/LAN), proxy /ws through Vite so the
-  // WebSocket uses the same host/port as the page instead of hardcoded localhost.
-  if (!envHost) {
-    const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    return `${proto}//${window.location.host}/ws/telemetry`;
-  }
-  return `ws://${envHost}/ws/telemetry`;
-}
-
+// The live-stream transport (WebSocket today; the in-process bridge in B2) is
+// resolved via getTransport(); this hook owns only the demo + reconnect policy.
 const DEMO_FORCED = (import.meta.env.VITE_TELEMETRY_DEMO as string | undefined) === "1";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -164,10 +155,16 @@ export interface UseTelemetryOptions {
 
 export function useTelemetry(opts: UseTelemetryOptions = {}) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const wsRef = useRef<WebSocket | null>(null);
+  // Close handle for the current telemetry subscription (the fn returned by
+  // transport.connectTelemetry). Closing it is an *intentional* drop that won't
+  // reconnect — used on unmount and (proactively) on user-initiated stop.
+  const closeRef = useRef<null | (() => void)>(null);
   const retryRef = useRef(0);
   const demoTimer = useRef<number | null>(null);
-  const closedRef = useRef(false);
+  // Set when the user shuts Orrin down from the UI: the ensuing socket drop is
+  // intentional, so show "Stopped" rather than "Reconnecting". Cleared on the
+  // next successful connect so a restart auto-recovers to Live.
+  const stoppedRef = useRef(false);
 
   const stopDemo = useCallback(() => {
     if (demoTimer.current != null) {
@@ -232,61 +229,83 @@ export function useTelemetry(opts: UseTelemetryOptions = {}) {
       startDemo();
       return;
     }
-    let ws: WebSocket;
-    try {
-      ws = new WebSocket(wsUrl());
-    } catch {
-      if (opts.demoFallback) startDemo();
-      return;
-    }
-    wsRef.current = ws;
-    dispatch({ type: "status", connected: false, source: "connecting" });
+    dispatch({ type: "status", connected: false, source: stoppedRef.current ? "stopped" : "connecting" });
 
-    ws.onopen = () => {
-      retryRef.current = 0;
-      stopDemo();
-      dispatch({ type: "status", connected: true, source: "live" });
-    };
-    ws.onmessage = (ev) => {
-      try {
-        const msg = JSON.parse(ev.data);
-        if (msg.type === "snapshot") dispatch({ type: "snapshot", state: msg.state });
-        else if (msg.type === "delta") dispatch({ type: "delta", frame: msg.frame });
-      } catch {
-        /* ignore malformed frame */
-      }
-    };
-    ws.onclose = () => {
-      dispatch({ type: "status", connected: false, source: "connecting" });
-      // Don't reconnect a socket we deliberately closed. closedRef alone is racy:
-      // under React StrictMode the cleanup runs, then the remount resets
-      // closedRef=false BEFORE this (async) onclose fires — so the dead socket
-      // would reconnect, leaving TWO live sockets and every message logged twice.
-      // The per-socket flag survives the remount and prevents that.
-      if (closedRef.current || (ws as unknown as { _intentional?: boolean })._intentional) return;
-      retryRef.current += 1;
-      if (opts.demoFallback && retryRef.current >= 3) {
-        startDemo();
-        return;
-      }
-      const delay = Math.min(1000 * 2 ** retryRef.current, 8000);
-      window.setTimeout(() => !closedRef.current && connect(), delay);
-    };
-    ws.onerror = () => ws.close();
+    // The transport owns the socket (and the per-subscription intentional-close
+    // flag that prevents a StrictMode remount from double-connecting). This hook
+    // owns the demo + reconnect/backoff policy below.
+    closeRef.current = getTransport().connectTelemetry({
+      onOpen: () => {
+        retryRef.current = 0;
+        stoppedRef.current = false; // backend is back — leave the "stopped" state
+        stopDemo();
+        dispatch({ type: "status", connected: true, source: "live", retries: 0 });
+      },
+      onSnapshot: (st) => dispatch({ type: "snapshot", state: st }),
+      onDelta: (frame) => dispatch({ type: "delta", frame }),
+      onClose: () => {
+        // Don't react to a drop after we've unmounted.
+        if (closeRef.current === null) return;
+        retryRef.current += 1;
+        // When the user stopped Orrin, show "Stopped" (intentional) rather than
+        // "Reconnecting" (which reads like a fault). We KEEP retrying underneath so
+        // the UI auto-recovers to Live if Orrin is restarted. Otherwise surface the
+        // attempt count (L1) so a long outage reads "Reconnecting", not an
+        // indefinite, indistinguishable "Connecting".
+        dispatch(
+          stoppedRef.current
+            ? { type: "status", connected: false, source: "stopped" }
+            : { type: "status", connected: false, source: "connecting", retries: retryRef.current },
+        );
+        if (opts.demoFallback && retryRef.current >= 3) {
+          startDemo();
+          return;
+        }
+        const delay = Math.min(1000 * 2 ** retryRef.current, 8000);
+        window.setTimeout(() => closeRef.current !== null && connect(), delay);
+      },
+    });
   }, [opts.demo, opts.demoFallback, startDemo, stopDemo]);
 
   useEffect(() => {
-    closedRef.current = false;
+    // The Stop button dispatches this after the backend acknowledges shutdown,
+    // so the UI flips to "Stopped" immediately. We deliberately do NOT close the
+    // stream here: the backend teardown drops it within a moment, which fires the
+    // reconnect loop that (with stoppedRef set) shows "Stopped" while quietly
+    // retrying — so the UI auto-recovers to "Live" if Orrin is restarted.
+    const onStopped = () => {
+      stoppedRef.current = true;
+      dispatch({ type: "status", connected: false, source: "stopped" });
+    };
+    window.addEventListener("orrin:stopped", onStopped);
     connect();
     return () => {
-      closedRef.current = true;
+      window.removeEventListener("orrin:stopped", onStopped);
       stopDemo();
-      const sock = wsRef.current;
-      if (sock) (sock as unknown as { _intentional?: boolean })._intentional = true;
-      sock?.close();
+      // Intentional close: the transport suppresses this subscription's onClose,
+      // and nulling the ref stops any pending reconnect timer from firing.
+      const close = closeRef.current;
+      closeRef.current = null;
+      close?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return state;
+}
+
+/**
+ * One definition of "the live stream has gone stale" (UI_AUDIT M1). A socket can
+ * stay `connected` while frames stop arriving (wedged backend / dead producer);
+ * previously the Header and the Brain KPI each judged liveness differently, so
+ * the Header could claim "Live" while the data was minutes old. Every consumer
+ * now calls this. The internal tick keeps it honest with no frames arriving.
+ */
+export function useStreamStale(state: TelemetryState, thresholdMs = 15_000): boolean {
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((n) => n + 1), 5_000);
+    return () => clearInterval(id);
+  }, []);
+  return state.source === "live" && state.updatedAt > 0 && Date.now() - state.updatedAt > thresholdMs;
 }

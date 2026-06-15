@@ -104,6 +104,20 @@ def submit_finetune_job(
     Upload training file and submit fine-tuning job to OpenAI.
     Returns the job ID, or None on failure.
     """
+    # Consent gate (§9.4): fine-tuning UPLOADS conversation content (the user's words)
+    # to OpenAI and spends on their account. It must never run without explicit opt-in.
+    try:
+        from utils.prefs import get as _pref
+        if not _pref("allow_finetune", False):
+            log_activity("[finetune] skipped — fine-tuning is off (enable it in Settings → Privacy & Trust).")
+            return None
+        # Fine-tuning is OpenAI-only (§11.2): the upload + job APIs are OpenAI's, and a
+        # fine-tune repoint must never clobber a non-OpenAI selection. Skip cleanly.
+        if str(_pref("llm_provider", "openai")) != "openai":
+            log_activity("[finetune] skipped — fine-tuning is only available with the OpenAI provider.")
+            return None
+    except Exception:
+        return None  # fail closed: if we can't confirm consent, don't upload
     try:
         from openai import OpenAI
         client = OpenAI()
@@ -113,6 +127,14 @@ def submit_finetune_job(
             upload = client.files.create(file=f, purpose="fine-tune")
         file_id = upload.id
         log_activity(f"[finetune] File uploaded: {file_id}")
+        # Egress ledger (§9.4): fine-tuning is a categorically heavier event — it
+        # UPLOADS conversation content. Log it as a distinct service so the Trust
+        # screen shows it apart from per-call request volume.
+        try:
+            from utils.egress import record as _egress
+            _egress("finetune")
+        except Exception:
+            pass
 
         job = client.fine_tuning.jobs.create(
             training_file=file_id,

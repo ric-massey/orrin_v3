@@ -11,10 +11,7 @@ from __future__ import annotations
 from core.runtime_log import get_logger
 
 import ast
-import importlib.util
-import json
 import re
-import sys
 import textwrap
 import threading
 from pathlib import Path
@@ -26,15 +23,27 @@ from think.sandbox_runner import run_python
 from paths import ROOT_DIR
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
+# Orrin's self-written code lives in the writable per-user tree (§10.1), not the
+# read-only program folder. self_code owns those dirs, the import namespace, and the
+# manifest (relative paths) — this module just asks it to write/load/record.
+from agency.self_code import (
+    SELF_COGNITION_DIR,
+    SELF_SKILLS_DIR,
+    ensure_tree,
+    load_module_from,
+    load_manifest as _load_manifest,
+    save_manifest as _save_manifest,
+    append_manifest as _append_manifest,
+    abs_path as _manifest_abs_path,
+)
 _log = get_logger(__name__)
 
 _LOCK = threading.Lock()
 
-# Safe write locations
-
+# Safe write locations — the writable self-code subtrees (NOT the program folder).
 _ALLOWED_WRITE_DIRS = [
-    ROOT_DIR / "cognition" / "custom_cognition",
-    ROOT_DIR / "agency" / "skills",
+    SELF_COGNITION_DIR,
+    SELF_SKILLS_DIR,
 ]
 
 # Resolved against ROOT_DIR so blocking is by path prefix, not substring —
@@ -54,18 +63,6 @@ _BLOCKED_PATHS = [
         "agency/code_writer.py",
     )
 ]
-
-_MANIFEST_FILE = ROOT_DIR / "agency" / "manifest.json"
-
-def _load_manifest() -> List[Dict[str, Any]]:
-    try:
-        return json.loads(_MANIFEST_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-
-def _save_manifest(entries: List[Dict[str, Any]]) -> None:
-    _MANIFEST_FILE.parent.mkdir(parents=True, exist_ok=True)
-    _MANIFEST_FILE.write_text(json.dumps(entries, indent=2), encoding="utf-8")
 
 def _is_safe_path(path: Path) -> bool:
     resolved = path.resolve()
@@ -211,8 +208,9 @@ def write_cognitive_function(
             if stderr and "Error" in stderr and "ImportError" not in stderr:
                 return {"success": False, "path": "", "error": f"Verification: {stderr[:300]}"}
 
-    # Write file
-    target_dir = ROOT_DIR / "cognition" / "custom_cognition"
+    # Write file into the writable self-code tree (never the program folder).
+    ensure_tree()
+    target_dir = SELF_COGNITION_DIR
     target_dir.mkdir(parents=True, exist_ok=True)
     file_path = target_dir / f"{name}.py"
 
@@ -221,12 +219,8 @@ def write_cognitive_function(
 
     # Hot-register into live COGNITIVE_FUNCTIONS
     try:
-        mod_name = f"cognition.custom_cognition.{name}"
-        spec = importlib.util.spec_from_file_location(mod_name, str(file_path))
-        mod = importlib.util.module_from_spec(spec)
-        sys.modules[mod_name] = mod
-        spec.loader.exec_module(mod)
-        fn = getattr(mod, name, None)
+        mod = load_module_from(file_path, "custom_cognition")
+        fn = getattr(mod, name, None) if mod is not None else None
         if callable(fn):
             from registry.cognition_registry import COGNITIVE_FUNCTIONS
             COGNITIVE_FUNCTIONS[name] = {"function": fn, "is_cognition": True}
@@ -234,17 +228,8 @@ def write_cognitive_function(
     except Exception as e:
         log_error(f"Hot-registration of {name} failed: {e} — will load on next restart")
 
-    # Update manifest
-    with _LOCK:
-        manifest = _load_manifest()
-        manifest.append({
-            "name": name,
-            "kind": "cognitive_function",
-            "description": description,
-            "path": str(file_path),
-            "written_at": now_iso_z(),
-        })
-        _save_manifest(manifest)
+    # Update manifest (path stored relative to the self-code root)
+    _append_manifest(name, "cognitive_function", description, file_path)
 
     update_working_memory(f"Wrote new cognitive function: '{name}' — {description}")
     return {"success": True, "path": str(file_path), "error": None}
@@ -290,7 +275,8 @@ def write_tool(
         if not result.get("ok") and "Error" in result.get("stderr", "") and "ImportError" not in result.get("stderr", ""):
             return {"success": False, "path": "", "error": f"Sandbox: {result['stderr'][:300]}"}
 
-    skills_dir = ROOT_DIR / "agency" / "skills"
+    ensure_tree()
+    skills_dir = SELF_SKILLS_DIR
     skills_dir.mkdir(parents=True, exist_ok=True)
     file_path = skills_dir / f"{name}.py"
 
@@ -299,12 +285,8 @@ def write_tool(
 
     # Hot-register into tool_registry
     try:
-        mod_name = f"agency.skills.{name}"
-        spec = importlib.util.spec_from_file_location(mod_name, str(file_path))
-        mod = importlib.util.module_from_spec(spec)
-        sys.modules[mod_name] = mod
-        spec.loader.exec_module(mod)
-        fn = getattr(mod, name, None)
+        mod = load_module_from(file_path, "skills")
+        fn = getattr(mod, name, None) if mod is not None else None
         if callable(fn):
             from behavior.tools.toolkit import tool_registry
             tool_registry[name] = fn
@@ -312,16 +294,7 @@ def write_tool(
     except Exception as e:
         log_error(f"Hot-registration of tool {name} failed: {e}")
 
-    with _LOCK:
-        manifest = _load_manifest()
-        manifest.append({
-            "name": name,
-            "kind": "tool",
-            "description": description,
-            "path": str(file_path),
-            "written_at": now_iso_z(),
-        })
-        _save_manifest(manifest)
+    _append_manifest(name, "tool", description, file_path)
 
     update_working_memory(f"Wrote new tool: '{name}' — {description}")
     return {"success": True, "path": str(file_path), "error": None}
@@ -340,7 +313,7 @@ def delete_own_code(name: str) -> Dict[str, Any]:
         if not entry:
             return {"success": False, "error": f"No record of writing '{name}'"}
 
-        path = Path(entry["path"])
+        path = _manifest_abs_path(entry)
         if not _is_safe_path(path):
             return {"success": False, "error": "Cannot delete — path is outside safe write zones"}
 

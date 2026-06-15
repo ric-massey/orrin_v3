@@ -73,6 +73,7 @@ from config.tuning import (
 from paths import (
     RELATIONSHIPS_FILE, MODEL_CONFIG_FILE, CONTEXT, WORKING_MEMORY_FILE,
     LONG_MEMORY_FILE, AFFECT_STATE_FILE, BANDIT_STATE_FILE,
+    REFLECTION as REFLECTION_LOG_FILE, CHAT_LOG_FILE,
 )
 
 # ── Face & Brain UI telemetry ────────────────────────────────────────────────
@@ -482,6 +483,11 @@ def _validate_boot_files() -> None:
     checks = [
         (LONG_MEMORY_FILE,      list,  []),
         (WORKING_MEMORY_FILE,   list,  []),
+        # reflection_log / chat_log are list-typed too; previously they only
+        # logged "does not contain a list" and were skipped (never self-healed),
+        # so a bad shape persisted across boots (run audit #5).
+        (REFLECTION_LOG_FILE,   list,  []),
+        (CHAT_LOG_FILE,         list,  []),
         (AFFECT_STATE_FILE,  dict,  {}),
         (BANDIT_STATE_FILE,     dict,  {}),
     ]

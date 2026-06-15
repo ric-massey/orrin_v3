@@ -4,19 +4,62 @@ from pathlib import Path
 from typing import Iterable
 
 # ===== Base directories =====
+# This is the ONE resolver for the "mind" tree (brain/data, brain/logs,
+# brain/think) — env-overridable so tests, tooling, and the packaged desktop app
+# can repoint all live state away from the program folder. Every override must be
+# set BEFORE this module is imported. Defaults keep the in-repo layout.
 ROOT_DIR  = Path(__file__).resolve().parent
-# ORRIN_DATA_DIR / ORRIN_LOGS_DIR let tests (and tooling) repoint all live
-# state away from brain/data — must be set before this module is imported.
+_REPO_ROOT = ROOT_DIR.parent
 _env_data = os.environ.get("ORRIN_DATA_DIR")
 _env_logs = os.environ.get("ORRIN_LOGS_DIR")
+_env_think = os.environ.get("ORRIN_THINK_DIR")
 DATA_DIR  = Path(_env_data).resolve() if _env_data else ROOT_DIR / "data"
-THINK_DIR = ROOT_DIR / "think"
+THINK_DIR = Path(_env_think).resolve() if _env_think else ROOT_DIR / "think"
 LOGS_DIR  = Path(_env_logs).resolve() if _env_logs else ROOT_DIR / "logs"
 TESTS_DIR = ROOT_DIR / "tests"
+
+# The daemon-durability tree (the repo-root `data/` dir: goals WAL, memory WAL,
+# media). Distinct from the "mind" above by design (README "Two state trees"), but
+# it must relocate together with it. `memory/config.py` and main.py's GOALS dir
+# read this same ORRIN_STATE_DIR so all three stay co-located.
+_env_state = os.environ.get("ORRIN_STATE_DIR")
+STATE_DIR = Path(_env_state).resolve() if _env_state else _REPO_ROOT / "data"
+GOALS_DIR = Path(os.environ.get("ORRIN_GOALS_DIR")).resolve() if os.environ.get("ORRIN_GOALS_DIR") else STATE_DIR / "goals"
+MEMORY_DIR = STATE_DIR / "memory"
+MEDIA_DIR = STATE_DIR / "media"
+
+# Orrin's self-written code (custom cognition + skills) lives WITH the mind in the
+# writable data dir, never in the read-only program bundle (§10.1) — so it travels
+# with him on export and is reset with the rest of his state. The two subtrees mirror
+# the bundled package layout (cognition/custom_cognition, agency/skills); the loader
+# in agency/self_code.py creates them, marks them as packages, and wires them onto
+# the import path. Creation/markers live in that loader (not the mkdir loop below)
+# so import-order and namespace wiring stay in one place.
+SELF_CODE_DIR = DATA_DIR / "self_code"
+SELF_COGNITION_DIR = SELF_CODE_DIR / "custom_cognition"
+SELF_SKILLS_DIR = SELF_CODE_DIR / "skills"
 
 # Ensure folders exist
 for d in (DATA_DIR, THINK_DIR, LOGS_DIR, TESTS_DIR):
     d.mkdir(parents=True, exist_ok=True)
+
+
+def state_roots() -> "dict[str, Path]":
+    """The full set of on-disk state roots as one coherent bundle — the single
+    place export/import (§9.6), Reset, and first-launch seeding enumerate so no
+    tree is ever missed or left inconsistent (§13.3). Program-relative roots
+    (inbox/outbox) are included for completeness."""
+    return {
+        "data": DATA_DIR,        # the mind
+        "logs": LOGS_DIR,        # brain logs
+        "think": THINK_DIR,      # generated think_module.py
+        "self_code": SELF_CODE_DIR,
+        "goals": GOALS_DIR,      # goals daemon WAL + snapshots
+        "memory": MEMORY_DIR,    # memory daemon WAL
+        "media": MEDIA_DIR,      # ingested media
+        "inbox": INBOX_DIR,
+        "outbox": OUTBOX_DIR,
+    }
 
 # ===== Events & Outcome Log =====
 EVENTS_FILE = DATA_DIR / "events.jsonl"

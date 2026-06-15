@@ -81,11 +81,18 @@ def _force_api_path(mock_client, key: str = "invalid-key"):
     # llm_available() (LLM-as-tool gate) would short-circuit before the API when
     # llm_enabled is false in model_config.json — these tests simulate a LIVE
     # tool whose API call fails, so force the gate open.
+    # The vendor call now goes through the pluggable provider (Part 11): the OpenAI
+    # provider builds its OWN client, so patch _get_client at the provider boundary too
+    # (and reset the resolver cache so a fresh, configured OpenAIProvider is built).
+    import utils.llm_providers as _providers
+    _providers.reinit()
     with patch("utils.generate_response._get_client", return_value=mock_client), \
+         patch("utils.llm_providers.openai_provider.OpenAIProvider._get_client", return_value=mock_client), \
          patch("symbolic.reasoning_router.route", return_value={"resolved": False, "answer": None}), \
          patch("utils.llm_gate.llm_available", return_value=True), \
          patch.dict(os.environ, {"OPENAI_API_KEY": key, "ORRIN_LLM_TOOL_ONLY": "0"}):
         yield
+    _providers.reinit()
 
 
 def test_generate_response_returns_error_dict_on_401():

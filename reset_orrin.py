@@ -73,6 +73,15 @@ DEFAULTS: dict = {
     "depth_stats.json":     {},
     "emotion_function_map.json": {},
     "reflection_stats.json": {},
+    # List-typed state files. These MUST reset to [] regardless of the shape
+    # currently on disk — a prior corruption to a dict is exactly what tripped
+    # the boot "should be list, got dict" schema errors (run audit #4/#5). If we
+    # only peeked at the current first byte we would faithfully re-emit the bad
+    # dict shape, so they are pinned here authoritatively.
+    "long_memory.json":     [],
+    "working_memory.json":  [],
+    "reflection_log.json":  [],
+    "chat_log.json":        [],
 }
 
 

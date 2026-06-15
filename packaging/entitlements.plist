@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  packaging/entitlements.plist — macOS hardened-runtime entitlements (I4 / §10.6).
+
+  A notarized, hardened app gates exactly the capabilities Orrin's body uses
+  (system_presence.py, osascript/open -a, notify_user.py). Without these, a signed
+  build would ship an Orrin whose embodiment SILENTLY fails. Apply at sign time:
+
+      codesign --deep --force --options runtime \
+        --entitlements packaging/entitlements.plist \
+        --sign "Developer ID Application: <YOU>" dist/Orrin.app
+
+  Then notarize (see packaging/README.md). The Info.plist usage strings (in orrin.spec)
+  pair with these so the OS prompts are part of "meeting Orrin," not scary interruptions.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Apple Events / automation: osascript + open -a (allow-listed apps only). -->
+    <key>com.apple.security.automation.apple-events</key>
+    <true/>
+
+    <!-- PyInstaller's bootloader + torch use JIT / unsigned executable memory. -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+
+    <!-- The embedded interpreter (I1) is invoked as a child process. -->
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <true/>
+
+    <!-- Outbound network ONLY when the user configures a cloud LLM / web search /
+         opt-in remote viewing. No server entitlement: the desktop case opens no port. -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+</dict>
+</plist>

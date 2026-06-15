@@ -91,7 +91,10 @@ def run_python_sandboxed(code: str, *, dry_run: bool = False, timeout_s: int = 5
         tf.write(code)
         path = Path(tf.name)
 
-    cmd = [sys.executable, "-I", str(path)]  # isolated mode
+    # Use the embedded CPython when frozen (§10.2 / I1) — sys.executable would be the
+    # Orrin host binary in a packaged app, not a Python interpreter.
+    from utils.runtime_python import interpreter as _interp
+    cmd = [_interp(), "-I", str(path)]  # isolated mode
     start = time.time()
     try:
         proc = subprocess.Popen(

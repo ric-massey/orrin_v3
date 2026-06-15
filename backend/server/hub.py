@@ -11,7 +11,7 @@ from __future__ import annotations
 import asyncio
 import collections
 import time
-from typing import Any, Deque, Dict, List, Set
+from typing import Any, Callable, Deque, Dict, List, Set
 
 import json
 from pathlib import Path
@@ -46,6 +46,17 @@ def clamp01(v: Any) -> float:
         return max(0.0, min(1.0, float(v)))
     except (TypeError, ValueError):
         return 0.0
+
+
+def _to_float(v: Any):
+    """Coerce to float, or None if it isn't numeric. Used so a single non-numeric
+    metric value can't raise inside merge() and drop the whole frame (logs/memory
+    included) — UI_AUDIT L3."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if f == f else None  # drop NaN (NaN != NaN)
 
 
 def stamp(record: Dict[str, Any]) -> Dict[str, Any]:
@@ -93,10 +104,31 @@ class Hub:
         # awaiting Face pickup (the closed integration loop).
         self.inputs: Deque[Dict[str, Any]] = collections.deque(maxlen=INPUT_CAP)
         self.responses: "collections.OrderedDict[str, Dict[str, Any]]" = collections.OrderedDict()
+        # In-process subscribers (the pywebview bridge). Every broadcast is also
+        # fanned out to these synchronously, so the native window receives the
+        # exact same snapshot/delta stream as a WebSocket client — with no socket.
+        self._sinks: List[Callable[[Dict[str, Any]], None]] = []
 
     @property
     def client_count(self) -> int:
         return len(self._clients)
+
+    # ── in-process sinks (the pywebview bridge) ──────────────────────────────
+    def add_sink(self, fn: Callable[[Dict[str, Any]], None]) -> None:
+        if fn not in self._sinks:
+            self._sinks.append(fn)
+
+    def remove_sink(self, fn: Callable[[Dict[str, Any]], None]) -> None:
+        with __import__("contextlib").suppress(ValueError):
+            self._sinks.remove(fn)
+
+    def publish_sync(self, payload: Dict[str, Any]) -> None:
+        """Fan a snapshot/delta out to in-process subscribers. Never raises."""
+        for fn in list(self._sinks):
+            try:
+                fn(payload)
+            except Exception:
+                pass
 
     # ── connection lifecycle ─────────────────────────────────────────────────
     async def connect(self, ws: WebSocket) -> None:
@@ -128,6 +160,10 @@ class Hub:
             async with self._lock:
                 for ws in dead:
                     self._clients.discard(ws)
+        # Same stream to the in-process bridge (native window) — so a delta merged
+        # by an endpoint (e.g. agent/input, shutdown) reaches it too, not only the
+        # producer's frames.
+        self.publish_sync(payload)
 
     # ── state merge ──────────────────────────────────────────────────────────
     def merge(self, frame: Dict[str, Any]) -> Dict[str, Any]:
@@ -173,14 +209,18 @@ class Hub:
             s["affect"] = cur
             delta["affect"] = cur
 
-        # Metrics (scalar dict + rolling series for charts)
+        # Metrics (scalar dict + rolling series for charts). Coerce defensively:
+        # a non-numeric/NaN value is dropped rather than allowed to raise and lose
+        # the whole frame's logs/memory (L3).
         metrics = frame.get("metrics")
         if isinstance(metrics, dict) and metrics:
-            s["metrics"] = {**s.get("metrics", {}), **metrics}
-            point = {"t": round(time.time(), 3), **{k: float(v) for k, v in metrics.items()}}
-            s["metric_series"] = (s.get("metric_series", []) + [point])[-METRIC_CAP:]
-            delta["metrics"] = s["metrics"]
-            delta["metric_point"] = point
+            clean = {k: f for k, v in metrics.items() if (f := _to_float(v)) is not None}
+            if clean:
+                s["metrics"] = {**s.get("metrics", {}), **clean}
+                point = {"t": round(time.time(), 3), **clean}
+                s["metric_series"] = (s.get("metric_series", []) + [point])[-METRIC_CAP:]
+                delta["metrics"] = s["metrics"]
+                delta["metric_point"] = point
 
         # Memory records (append to ring; broadcast only the new ones)
         mem = frame.get("memory") or []

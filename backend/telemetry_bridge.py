@@ -43,7 +43,7 @@ import os
 import threading
 import time
 import uuid
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 _DEFAULT_URL = "http://127.0.0.1:8800"
 _FLUSH_INTERVAL = 0.10   # seconds between coalesced flushes
@@ -51,12 +51,14 @@ _LOG_CAP = 500           # bounded ring — oldest logs dropped on overflow
 _MEM_CAP = 500           # bounded ring — oldest memory records dropped on overflow
 
 
-def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5) -> None:
+def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5,
+               headers: Optional[Dict[str, str]] = None) -> None:
     """POST JSON, preferring requests, falling back to urllib. Never raises."""
     data = json.dumps(payload).encode("utf-8")
+    hdrs = {"Content-Type": "application/json", **(headers or {})}
     try:
         import requests  # type: ignore
-        requests.post(url, data=data, headers={"Content-Type": "application/json"}, timeout=timeout)
+        requests.post(url, data=data, headers=hdrs, timeout=timeout)
         return
     except ModuleNotFoundError:
         pass
@@ -64,7 +66,7 @@ def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5) -> None:
         return
     try:
         from urllib import request as _rq
-        req = _rq.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+        req = _rq.Request(url, data=data, headers=hdrs, method="POST")
         _rq.urlopen(req, timeout=timeout).close()
     except Exception:
         return
@@ -105,6 +107,11 @@ class TelemetryBridge:
             base = base[: -len("/ingest")]
         self.base_url = base
         self.ingest_url = base + "/ingest"
+        # When the backend is configured to require an ingest token (remote
+        # exposure), send it so the real cognitive loop is accepted while
+        # spoofed frames are rejected (UI_AUDIT H3). Unset on localhost dev.
+        _tok = os.getenv("ORRIN_INGEST_TOKEN", "").strip()
+        self._ingest_headers: Dict[str, str] = {"X-Orrin-Ingest-Token": _tok} if _tok else {}
         if enabled is None:
             enabled = os.getenv("ORRIN_TELEMETRY_DISABLED", "").strip().lower() not in ("1", "true", "yes")
         self.enabled = bool(enabled)
@@ -123,10 +130,32 @@ class TelemetryBridge:
         self._memory: "collections.deque[Dict[str, Any]]" = collections.deque(maxlen=mem_cap)
         self._dropped_logs = 0
 
+        # In-process delivery (the pywebview bridge, no HTTP/port). When set via
+        # configure_inprocess(), flushes/inputs/replies bypass the network and go
+        # straight to the in-process hub. Default None → the HTTP path above.
+        self._frame_sink: Optional[Callable[[Dict[str, Any]], None]] = None
+        self._input_source: Optional[Callable[[], List[Dict[str, Any]]]] = None
+        self._responder: Optional[Callable[[str, str], None]] = None
+
         self._stop = threading.Event()
         self._worker: Optional[threading.Thread] = None
         if self.enabled:
             self._start()
+
+    def configure_inprocess(
+        self,
+        *,
+        frame_sink: Callable[[Dict[str, Any]], None],
+        input_source: Callable[[], List[Dict[str, Any]]],
+        responder: Callable[[str, str], None],
+    ) -> None:
+        """Route telemetry frames, Face inputs, and replies through in-process
+        callables instead of HTTP — used by the native window (no open port)."""
+        self._frame_sink = frame_sink
+        self._input_source = input_source
+        self._responder = responder
+        self.enabled = True
+        self._start()
 
     # ── lifecycle ────────────────────────────────────────────────────────────
     def _start(self) -> None:
@@ -239,6 +268,12 @@ class TelemetryBridge:
         """
         if not self.enabled:
             return []
+        if self._input_source is not None:
+            try:
+                items = self._input_source()
+                return items if isinstance(items, list) else []
+            except Exception:
+                return []
         data = _get_json(self.base_url + "/api/agent/inputs", timeout=1.0)
         if isinstance(data, dict) and isinstance(data.get("inputs"), list):
             return data["inputs"]
@@ -247,6 +282,12 @@ class TelemetryBridge:
     def respond(self, input_id: str, reply: str) -> None:
         """Deliver the agent's reply back to the Face message identified by input_id."""
         if not self.enabled:
+            return
+        if self._responder is not None:
+            try:
+                self._responder(str(input_id), str(reply))
+            except Exception:
+                pass
             return
         _post_json(self.base_url + "/api/agent/respond", {"id": str(input_id), "reply": str(reply)})
 
@@ -259,8 +300,15 @@ class TelemetryBridge:
 
     def _flush_once(self) -> None:
         frame = self._take_frame()
-        if frame:
-            _post_json(self.ingest_url, frame)
+        if not frame:
+            return
+        if self._frame_sink is not None:
+            try:
+                self._frame_sink(frame)
+            except Exception:
+                pass
+            return
+        _post_json(self.ingest_url, frame, headers=self._ingest_headers)
 
     def _take_frame(self) -> Dict[str, Any]:
         """Atomically snapshot + clear the accumulator into one outbound frame."""

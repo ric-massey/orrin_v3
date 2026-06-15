@@ -4,11 +4,46 @@
 from __future__ import annotations
 from pathlib import Path
 import os
+import sys
 
 def compute_repo_root(this_file: str) -> Path:
     """Resolve repo root from the caller's file unless ORRIN_REPO_ROOT overrides."""
     env = os.environ.get("ORRIN_REPO_ROOT")
     return Path(env).resolve() if env else Path(this_file).resolve().parent
+
+
+def user_data_home(app_name: str = "Orrin") -> Path:
+    """The OS-conventional, writable per-user app-data directory.
+
+    A shipped app must not write into its own (read-only) program folder, so the
+    mind lives here instead. macOS: ~/Library/Application Support/Orrin · Windows:
+    %APPDATA%\\Orrin · Linux: $XDG_DATA_HOME/orrin (or ~/.local/share/orrin)."""
+    if sys.platform == "darwin":
+        return Path.home() / "Library" / "Application Support" / app_name
+    if os.name == "nt":
+        base = os.environ.get("APPDATA") or str(Path.home() / "AppData" / "Roaming")
+        return Path(base) / app_name
+    base = os.environ.get("XDG_DATA_HOME") or str(Path.home() / ".local" / "share")
+    return Path(base) / app_name.lower()
+
+
+def apply_user_data_env(home: Path) -> dict[str, str]:
+    """Point every state-tree override at a subdir of `home`, WITHOUT clobbering an
+    override already set (so dev/tests/env keep precedence). Must run before
+    brain.paths / memory.config are first imported. Returns what was applied."""
+    home = Path(home)
+    layout = {
+        "ORRIN_DATA_DIR": home / "data",     # the mind
+        "ORRIN_LOGS_DIR": home / "logs",     # brain logs
+        "ORRIN_THINK_DIR": home / "think",   # generated think_module.py
+        "ORRIN_STATE_DIR": home / "state",   # daemon WAL/media tree
+    }
+    applied: dict[str, str] = {}
+    for key, val in layout.items():
+        if not os.environ.get(key):
+            os.environ[key] = str(val)
+            applied[key] = str(val)
+    return applied
 
 def resolve_dist(env_var: str, default_path: Path) -> Path:
     """Resolve a UI dist directory with env override and absolute pathing."""

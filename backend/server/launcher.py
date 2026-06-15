@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-from .config import UI_DEV_URL, open_browser_enabled, ui_enabled
+from .config import UI_DEV_URL, open_browser_enabled, ui_dev_enabled, ui_enabled
 
 _FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
 
@@ -24,9 +24,16 @@ def launch_ui(host: str, port: int) -> Optional[subprocess.Popen]:
     """
     Start the Vite dev server as a child process. Installs npm deps on first run.
     Returns the Popen handle, or None if disabled / unavailable.
+
+    Only runs on the developer path (ORRIN_UI_DEV=1). The packaged app shows a
+    native pywebview window over the built dist and never spawns npm at runtime,
+    so this is a no-op there.
     """
     if not ui_enabled():
         print("[orrin] ORRIN_UI=0 → skipping UI launch")
+        return None
+    if not ui_dev_enabled():
+        print("[orrin] ORRIN_UI_DEV not set → native window mode; not spawning Vite/npm")
         return None
     if not (_FRONTEND_DIR / "package.json").exists():
         print(f"[orrin] no frontend at {_FRONTEND_DIR} — skipping UI launch")

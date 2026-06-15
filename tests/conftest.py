@@ -19,6 +19,14 @@ _LIVE_LOGS = _REPO_ROOT / "brain" / "logs"
 _SESSION_STATE = Path(tempfile.mkdtemp(prefix="orrin-test-state-"))
 os.environ["ORRIN_DATA_DIR"] = str(_SESSION_STATE / "data")
 os.environ["ORRIN_LOGS_DIR"] = str(_SESSION_STATE / "logs")
+# Also isolate the think dir and the daemon-durability tree (goals/memory/media)
+# now that they're env-overridable (Group C) — keeps the suite fully off the live
+# trees, not just brain/data + brain/logs.
+os.environ["ORRIN_THINK_DIR"] = str(_SESSION_STATE / "think")
+os.environ["ORRIN_STATE_DIR"] = str(_SESSION_STATE / "state")
+# Never touch the developer's real OS keychain from the test suite — force the
+# in-memory secrets backend (utils.secrets) for the whole session.
+os.environ["ORRIN_KEYRING"] = "0"
 
 if "paths" in sys.modules:  # pragma: no cover — defensive
     raise RuntimeError(

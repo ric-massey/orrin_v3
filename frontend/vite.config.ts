@@ -5,6 +5,9 @@ import path from "node:path";
 // Vite dev server runs on 5173. The FastAPI telemetry backend runs on 8800;
 // the WebSocket URL is configured via VITE_TELEMETRY_WS (see .env.example).
 export default defineConfig({
+  // Relative asset URLs so the built app loads from disk (file://) in the native
+  // pywebview window, not only from a server root. Harmless when served.
+  base: "./",
   plugins: [react()],
   resolve: {
     alias: {

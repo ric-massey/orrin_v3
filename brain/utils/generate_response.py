@@ -127,6 +127,29 @@ def _get_client() -> OpenAI:
             _client = OpenAI()
     return _client
 
+def reinit_client() -> None:
+    """Drop the cached OpenAI client so a newly-saved key takes effect on the next
+    call WITHOUT a restart (Phase 4 / §4 — keys are pasted in Settings, not files).
+
+    Also clears the auth circuit breaker: a previously-dead key trips a long auth
+    breaker (_cb_trip_auth) that would otherwise keep refusing calls even after the
+    user fixes the key. The client rebuilds lazily on the next generate_response()."""
+    global _client, _cb_auth_open_until
+    with _cb_lock:
+        _cb_auth_open_until = 0.0
+    _client = None
+    # Drop the response cache too: its key is the model_config model name, which is
+    # provider-INDEPENDENT, so a switch (e.g. OpenAI→Anthropic) would otherwise serve the
+    # old provider's cached reply for the same prompt within the TTL (Part 11).
+    _GR_CACHE.clear()
+    # Also drop the cached pluggable provider (Part 11) so a newly-saved key, provider,
+    # or model takes effect on the next call without a restart.
+    try:
+        from utils import llm_providers as _providers
+        _providers.reinit()
+    except Exception:
+        pass
+
 def get_thinking_model() -> str:
     val = model_roles.get("thinking", "gpt-4.1")
     if isinstance(val, dict):
@@ -346,7 +369,15 @@ def generate_response(
         from utils.llm_gate import llm_available
         if not llm_available():
             return _err("tool unavailable: llm")
-        if not os.getenv("OPENAI_API_KEY"):
+
+        # Resolve the user-selected provider (Part 11). "none" ⇒ symbolic-only; an
+        # unconfigured provider (no key / no endpoint) is a normal "tool unavailable",
+        # not an error. For OpenAI this resolves to today's path verbatim.
+        from utils import llm_providers as _providers
+        provider = _providers.resolve(default_model=model_name)
+        if provider is None:
+            return _err("tool unavailable: llm (provider: none — symbolic-only)")
+        if not provider.is_configured():
             return _err("tool unavailable: llm (no API key)")
 
         lp = Path(LLM_PROMPT)
@@ -381,43 +412,27 @@ def generate_response(
                 except Exception as _e:
                     record_failure("generate_response.generate_response.6", _e)
 
-        client = _get_client()
-
-        # Responses API: system prompt → instructions, user messages → input.
-        _sys_msg      = next((m for m in messages if m.get("role") == "system"), None)
-        _instructions = _sys_msg["content"] if _sys_msg else ""
-        _user_msgs    = [m for m in messages if m.get("role") != "system"]
-
-        # Single user turn → plain string; multi-turn → array of role/content dicts.
-        if len(_user_msgs) == 1:
-            _inp: Any = _user_msgs[0]["content"]
-        elif _user_msgs:
-            _inp = [{"role": m["role"], "content": m["content"]} for m in _user_msgs]
-        else:
-            _inp = coerce_to_string(prompt)
-
-        kwargs: Dict[str, Any] = dict(model=model_name, input=_inp)
-        if _instructions:
-            kwargs["instructions"] = _instructions
-        if max_tokens:
-            kwargs["max_output_tokens"] = max_tokens
-        if expect_json:
-            kwargs["text"] = {"format": {"type": "json_object"}}
+        # The model to actually request: OpenAI keeps per-call routing (model_config /
+        # the `model` arg) verbatim; other providers use the model the user chose for
+        # them in Settings (model_config's gpt-* default is meaningless for Claude/Gemini).
+        _eff_model = model_name if provider.id == "openai" else (provider.model or model_name)
 
         # Fast-fail if circuit is open (API recently unreachable)
         if _cb_is_open():
             return _err("LLM circuit open — API unreachable, skipping call")
 
         def _call():
-            return client.responses.create(**kwargs, timeout=8)
+            return provider.generate(
+                messages, model=_eff_model, max_tokens=max_tokens, expect_json=expect_json, timeout=8
+            )
 
         try:
-            resp = _retry(_call, tries=1, backoff=0.0)
+            pr = _retry(_call, tries=1, backoff=0.0)
         except Exception as _api_exc:
             if _is_network_error(_api_exc):
                 _cb_trip()
             raise
-        reply = (getattr(resp, "output_text", None) or "").strip()
+        reply = (pr.get("content") or "").strip()
         if _gr_cache_k and reply:
             _gr_cache_put(_gr_cache_k, reply)
         if not reply:
@@ -425,14 +440,17 @@ def generate_response(
 
         try:
             from utils.token_meter import record_call as _record_tokens
-            _usage = getattr(resp, "usage", None)
-            if _usage:
-                _record_tokens(
-                    caller or "unknown",
-                    model_name,
-                    int(getattr(_usage, "input_tokens",  0) or getattr(_usage, "prompt_tokens",     0) or 0),
-                    int(getattr(_usage, "output_tokens", 0) or getattr(_usage, "completion_tokens", 0) or 0),
-                )
+            _usage = pr.get("usage") or {}
+            _in = int(_usage.get("input", 0) or 0)
+            _out = int(_usage.get("output", 0) or 0)
+            if _in or _out:
+                _record_tokens(caller or "unknown", _eff_model, _in, _out)
+            # Egress ledger (§9.4): one outbound call, tagged by the active provider
+            # (§11.1 — "Nothing leaves your machine" for none/local). Counts/tokens
+            # only — never the prompt or response.
+            from utils.egress import record as _egress
+            if not provider.local:
+                _egress(provider.egress_name, approx_tokens=(_in + _out) or None)
         except Exception as _e:
             record_failure("generate_response.generate_response.7", _e)
 

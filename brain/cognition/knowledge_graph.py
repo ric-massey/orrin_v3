@@ -712,7 +712,10 @@ def _get_nlp():
         return _SPACY_NLP
     try:
         import spacy
-        _SPACY_NLP = spacy.load("en_core_web_sm")  # full pipeline (need lemmas + parse)
+        # Load from the BUNDLED model path when frozen (I2 — offline first-run), else
+        # the pip-installed package by name in a dev checkout.
+        from utils.model_assets import spacy_model as _spacy_model
+        _SPACY_NLP = spacy.load(_spacy_model("en_core_web_sm"))  # full pipeline (lemmas + parse)
         _log.info("[kg] spaCy en_core_web_sm loaded for entity extraction")
     except Exception as exc:
         _SPACY_FAILED = True

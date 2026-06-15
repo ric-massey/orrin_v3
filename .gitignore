@@ -100,3 +100,6 @@ tmp/
 outbox/*.json
 brain/logs/
 *.tmp
+
+# One-time migration backups (e.g. the legacy self-code manifest repointed in C3)
+*.migrated

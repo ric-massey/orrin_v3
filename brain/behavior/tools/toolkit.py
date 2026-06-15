@@ -30,6 +30,10 @@ from paths import (
 )
 from utils.timeutils import now_iso_z
 
+# Set once after the first web_search call finds no SERPER_API_KEY, so the
+# expected "key not set" state is noted a single time rather than per call.
+_SERPER_KEY_NOTICED = False
+
 # Helpers
 
 def _normalize_target(path_like: str | Path) -> Path:
@@ -203,7 +207,14 @@ def web_search(query: str) -> Dict[str, Any]:
     """
     api_key = os.getenv("SERPER_API_KEY")
     if not api_key:
-        log_error("[web_search] SERPER_API_KEY not set.")
+        # An unset key is an expected, documented config state (web search is
+        # optional; Orrin falls back to searching its own files). Note it once
+        # per process at activity level instead of spamming error_log.txt on
+        # every call (run audit #6).
+        global _SERPER_KEY_NOTICED
+        if not _SERPER_KEY_NOTICED:
+            _SERPER_KEY_NOTICED = True
+            log_activity("[web_search] SERPER_API_KEY not set — web search disabled, using local files.")
         return {"error": "missing_api_key"}
 
     url = "https://api.serper.dev/search"
@@ -212,6 +223,12 @@ def web_search(query: str) -> Dict[str, Any]:
 
     resp = _http_with_retries("POST", url, headers=headers, data=json.dumps(payload), timeout=12)
     resp.raise_for_status()
+    # Egress ledger (§9.4): one Serper search left the device. Query is never stored.
+    try:
+        from utils.egress import record as _egress
+        _egress("serper")
+    except Exception:
+        pass
     return resp.json()
 
 @catch_and_route("tool", return_on_error=lambda e: f"❌ Scrape failed: {e}")
@@ -229,6 +246,12 @@ def scrape_text(url: str) -> str:
         timeout=12,
     )
     resp.raise_for_status()
+    # Egress ledger (§9.4): a page fetch left the device (URL not stored).
+    try:
+        from utils.egress import record as _egress
+        _egress("web")
+    except Exception:
+        pass
     soup = BeautifulSoup(resp.text, "html.parser")
     text = soup.get_text(separator="\n").strip()
     # light collapse of excessive blank lines

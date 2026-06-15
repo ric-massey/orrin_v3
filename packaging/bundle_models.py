@@ -27,6 +27,14 @@ import os
 import sys
 from pathlib import Path
 
+# Windows consoles default to cp1252; force UTF-8 so a stray non-ASCII char in our or a
+# library's output can't crash the build (the original Windows CI failure).
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 # Keep these in sync with the load sites (embedder.py / embed_similarity.py / knowledge_graph.py).
 EMBED_MODEL = "all-mpnet-base-v2"
 SPACY_MODEL = "en_core_web_sm"
@@ -42,14 +50,14 @@ def bundle(out: Path) -> None:
     # Download the embedding model INTO the bundle cache by pointing the env at it first.
     os.environ["SENTENCE_TRANSFORMERS_HOME"] = str(st_home)
     os.environ["HF_HOME"] = str(hf_home)
-    print(f"[bundle] downloading sentence-transformers/{EMBED_MODEL} → {st_home}")
+    print(f"[bundle] downloading sentence-transformers/{EMBED_MODEL} -> {st_home}")
     from sentence_transformers import SentenceTransformer  # type: ignore
 
     SentenceTransformer(EMBED_MODEL, device="cpu")  # populates the cache
 
     # spaCy: download the package, then copy its installed model dir into the bundle so
     # it can be loaded by PATH (spacy.load(<path>)) with nothing pip-installed at runtime.
-    print(f"[bundle] downloading spaCy/{SPACY_MODEL} → {spacy_dir / SPACY_MODEL}")
+    print(f"[bundle] downloading spaCy/{SPACY_MODEL} -> {spacy_dir / SPACY_MODEL}")
     import subprocess
 
     subprocess.run([sys.executable, "-m", "spacy", "download", SPACY_MODEL], check=True)
@@ -65,7 +73,7 @@ def bundle(out: Path) -> None:
     if dest.exists():
         shutil.rmtree(dest)
     shutil.copytree(model_data, dest)
-    print(f"[bundle] done — {out}")
+    print(f"[bundle] done - {out}")
 
 
 def main() -> None:

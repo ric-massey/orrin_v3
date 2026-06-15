@@ -21,7 +21,7 @@ def main() -> int:
     raw = (sys.argv[1] if len(sys.argv) > 1 else "") or os.environ.get("ORRIN_VERSION") or os.environ.get("GITHUB_REF_NAME") or ""
     version = raw.strip().lstrip("vV")
     if not version:
-        print("[set_version] no version provided — keeping the checked-in default")
+        print("[set_version] no version provided - keeping the checked-in default")
         return 0
     vf = Path(__file__).resolve().parent.parent / "brain" / "version.py"
     text = vf.read_text(encoding="utf-8")
@@ -30,7 +30,7 @@ def main() -> int:
         print(f"[set_version] could not find the __version__ line in {vf}", file=sys.stderr)
         return 1
     vf.write_text(new, encoding="utf-8")
-    print(f"[set_version] brain/version.py → {version}")
+    print(f"[set_version] brain/version.py -> {version}")
     return 0
 
 

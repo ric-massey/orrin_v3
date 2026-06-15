@@ -110,6 +110,21 @@ class OrrinBridge:
     def deliver(self, input_id: str, reply: str) -> None:
         self._client.post("/api/agent/respond", json={"id": input_id, "reply": reply})
 
+    # ── native file dialogs (E7 — Mind export/import over the bridge) ──────────
+    # Binary can't ride the text REST proxy, so the whole transfer runs in Python via
+    # a native Save/Open dialog. The handlers live in brain.utils.mind_dialogs (so
+    # they're testable without importing the app); these are thin delegators.
+    def export_mind(self) -> Dict[str, Any]:
+        """Native Save dialog → write the full mind archive to the chosen path."""
+        from brain.utils.mind_dialogs import export_mind as _export
+        return _export(self._window)
+
+    def import_mind(self) -> Dict[str, Any]:
+        """Native Open dialog → restore the mind from the chosen archive (routed
+        through the same /api/mind/import endpoint as the browser path)."""
+        from brain.utils.mind_dialogs import import_mind as _import
+        return _import(self._window, self._client.post)
+
 
 _bridge: Optional[OrrinBridge] = None
 

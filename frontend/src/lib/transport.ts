@@ -22,6 +22,15 @@ export interface TelemetryStreamHandlers {
   onClose: () => void;
 }
 
+export interface MindTransferResult {
+  ok: boolean;
+  path?: string;
+  cancelled?: boolean;
+  error?: string;
+  restarting?: boolean;
+  detail?: string;
+}
+
 export interface Transport {
   /** True for the in-process bridge (no network egress). */
   readonly isBridge: boolean;
@@ -31,6 +40,12 @@ export interface Transport {
   fetch(input: string, init?: RequestInit): Promise<Response>;
   /** Open the live telemetry stream; returns a close() that won't reconnect. */
   connectTelemetry(handlers: TelemetryStreamHandlers): () => void;
+  /** Bridge-only: native Save dialog → write the mind archive in Python (binary
+   *  can't ride the text REST proxy). undefined in the HTTP transport, where the
+   *  browser's download/upload path is used instead. */
+  exportMindNative?(): Promise<MindTransferResult>;
+  /** Bridge-only: native Open dialog → restore the mind in Python. */
+  importMindNative?(): Promise<MindTransferResult>;
 }
 
 // ── HTTP implementation (fetch + WebSocket) ──────────────────────────────────
@@ -117,6 +132,8 @@ type PyApi = {
   }>;
   telemetry_subscribe: () => Promise<unknown>;
   telemetry_unsubscribe: () => Promise<unknown>;
+  export_mind?: () => Promise<MindTransferResult>;
+  import_mind?: () => Promise<MindTransferResult>;
 };
 
 /** Resolve `window.pywebview.api`, waiting for the `pywebviewready` event if the
@@ -157,6 +174,18 @@ class BridgeTransport implements Transport {
     const headers = (init?.headers as Record<string, string>) || undefined;
     const r = await api.request({ method, path: input, body, headers });
     return new Response(r.body, { status: r.status, headers: { "content-type": r.contentType } });
+  }
+
+  async exportMindNative(): Promise<MindTransferResult> {
+    const api = await bridgeReady();
+    if (!api.export_mind) return { ok: false, error: "bridge has no export_mind" };
+    return api.export_mind();
+  }
+
+  async importMindNative(): Promise<MindTransferResult> {
+    const api = await bridgeReady();
+    if (!api.import_mind) return { ok: false, error: "bridge has no import_mind" };
+    return api.import_mind();
   }
 
   connectTelemetry(h: TelemetryStreamHandlers): () => void {

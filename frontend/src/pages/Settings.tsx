@@ -629,10 +629,46 @@ function DialectButton({
 function BackupSection() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [note, setNote] = useState<string | null>(null);
-  // Binary transfer needs a real HTTP response; the in-process bridge passes bodies
-  // as text, so export/import run from the browser/dev view (a native Save/Open
-  // dialog over the bridge is a follow-up).
-  const isBridge = getTransport().isBridge;
+  // In the native window binary can't ride the text REST proxy, so export/import go
+  // through native Save/Open dialogs handled entirely in Python (bridge.export_mind /
+  // import_mind). In the browser/dev view we use the download/upload path below.
+  const transport = getTransport();
+  const isBridge = transport.isBridge;
+
+  // Native (bridge) export: a Save dialog in Python writes the archive directly.
+  const exportMindNative = async () => {
+    setNote("Choose where to keep him…");
+    try {
+      const r = await transport.exportMindNative?.();
+      if (!r) return;
+      if (r.cancelled) setNote(null);
+      else if (r.ok) setNote(`Exported to ${r.path}.`);
+      else setNote(`Export failed: ${r.error ?? "unknown error"}`);
+    } catch {
+      setNote("Export failed.");
+    }
+  };
+
+  // Native (bridge) import: an Open dialog in Python reads + restores the archive.
+  const importMindNative = async () => {
+    if (
+      !window.confirm(
+        "Restore replaces Orrin's current mind. A safety copy of the current mind is saved first, then he restarts. This cannot be undone. Choose an archive to restore?",
+      )
+    ) {
+      return;
+    }
+    setNote("Choose an archive — a safety copy is saved first, then Orrin restarts…");
+    try {
+      const r = await transport.importMindNative?.();
+      if (!r) return;
+      if (r.cancelled) setNote(null);
+      else if (r.ok) setNote("Restoring — Orrin is coming back with the restored mind…");
+      else setNote(`Restore refused: ${(r.detail ?? r.error ?? "unknown error").slice(0, 160)}`);
+    } catch {
+      // The process restarts, so the call may drop — that means it worked.
+    }
+  };
 
   const exportMind = async () => {
     setNote("Preparing his mind…");
@@ -692,9 +728,14 @@ function BackupSection() {
       </CardHeader>
       <CardContent className="space-y-2">
         {isBridge ? (
-          <p className="text-sm text-muted-foreground">
-            Open Orrin in your browser to export or restore his mind.
-          </p>
+          <div className="flex flex-wrap gap-2">
+            <Button size="sm" variant="outline" onClick={() => void exportMindNative()}>
+              <Download className="mr-1.5 h-4 w-4" /> Export Mind…
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => void importMindNative()}>
+              <Upload className="mr-1.5 h-4 w-4" /> Restore Mind…
+            </Button>
+          </div>
         ) : (
           <div className="flex flex-wrap gap-2">
             <Button size="sm" variant="outline" onClick={() => void exportMind()}>

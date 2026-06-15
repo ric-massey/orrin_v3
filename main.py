@@ -376,6 +376,10 @@ try:
     if _disk_ceiling:
         # The target his forgetting sweeps trim toward (§10.3).
         os.environ.setdefault("ORRIN_DISK_CEILING_GB", str(_disk_ceiling))
+    _mem_ceiling = _prefs.get("memory_ceiling_gb", 4)
+    if _mem_ceiling:
+        # The target above which the dream cycle evicts in-process caches (§10.3).
+        os.environ.setdefault("ORRIN_MEMORY_CEILING_GB", str(_mem_ceiling))
     if _prefs.get("existence_mode", "sleep") == "sleep":
         # Closed time costs no life: credit the interval since he was last active.
         from cognition.mortality import credit_sleep_since_last_active as _credit_sleep

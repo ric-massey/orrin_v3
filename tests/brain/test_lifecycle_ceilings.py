@@ -57,3 +57,28 @@ def test_disk_ceiling_is_noop_when_under(monkeypatch):
     monkeypatch.setenv("ORRIN_DISK_CEILING_GB", "100")  # huge → never over
     assert rc.over_disk_ceiling() is False
     assert rc.enforce_disk_ceiling() == {"over": False, "trimmed": {}}
+
+
+def test_memory_ceiling_evicts_caches_when_over(monkeypatch):
+    # Force "over": pretend RSS is 8 GB against a 4 GB ceiling. We monkeypatch the RSS
+    # reader so the test does not depend on the real process size or on psutil.
+    monkeypatch.setenv("ORRIN_MEMORY_CEILING_GB", "4")
+    monkeypatch.setattr(rc, "process_rss_bytes", lambda: 8 * rc._GB)
+    assert rc.over_memory_ceiling() is True
+    report = rc.enforce_memory_ceiling()
+    assert report["over"] is True
+    assert isinstance(report["evicted"], list)  # whatever caches were importable
+
+
+def test_memory_ceiling_is_noop_when_under(monkeypatch):
+    monkeypatch.setattr(rc, "process_rss_bytes", lambda: 1 * rc._GB)  # under any sane ceiling
+    monkeypatch.setenv("ORRIN_MEMORY_CEILING_GB", "4")
+    assert rc.over_memory_ceiling() is False
+    assert rc.enforce_memory_ceiling() == {"over": False, "evicted": []}
+
+
+def test_memory_ceiling_noop_when_rss_unavailable(monkeypatch):
+    # psutil missing ⇒ process_rss_bytes() returns 0 ⇒ ceiling is a no-op, not a guess.
+    monkeypatch.setattr(rc, "process_rss_bytes", lambda: 0)
+    monkeypatch.setenv("ORRIN_MEMORY_CEILING_GB", "0.0000001")
+    assert rc.over_memory_ceiling() is False

@@ -924,6 +924,14 @@ async def life() -> JSONResponse:
     except Exception:
         pass
 
+    # Resident memory against the user's memory ceiling (§10.3) — same framing. ratio 0
+    # when psutil/RSS is unavailable, so the UI can show it as unmeasured rather than 0%.
+    try:
+        from brain.utils.resource_ceilings import memory_usage as _mem_usage
+        readings["mind_memory"] = _mem_usage()
+    except Exception:
+        pass
+
     readings["thinking_rate_per_min"] = round(_thinking_rate_per_min(hub.state.get("cycle", 0)), 2)
     readings["cycle"] = hub.state.get("cycle", 0)
 

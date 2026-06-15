@@ -116,3 +116,82 @@ def enforce_disk_ceiling() -> Dict[str, Any]:
     except Exception:
         pass
     return {"over": True, "trimmed": trimmed, "usage": usage()}
+
+
+# ── Memory ceiling (§10.3) ───────────────────────────────────────────────────
+# Advisory with a hard floor: the ML stack (torch + a resident embedder + spaCy) needs
+# ~4 GB, so the pref warns below that rather than starving him. ABOVE the floor, this is
+# where the ceiling earns its keep — when resident memory is over budget, evict the
+# in-process caches (LLM response cache, embedding cache, provider) to give memory back.
+# It never trims semantic memory and never kills the process; clearing caches only costs
+# a little recompute.
+def memory_ceiling_gb() -> float:
+    env = os.getenv("ORRIN_MEMORY_CEILING_GB")
+    if env:
+        try:
+            return float(env)
+        except Exception:
+            pass
+    try:
+        from utils.prefs import get as _pref
+        return float(_pref("memory_ceiling_gb", 4))
+    except Exception:
+        return 4.0
+
+
+def memory_ceiling_bytes() -> int:
+    return int(memory_ceiling_gb() * _GB)
+
+
+def process_rss_bytes() -> int:
+    """Resident set size of this process — what the memory ceiling bounds. 0 if psutil
+    is unavailable (then the ceiling is a no-op rather than a guess)."""
+    try:
+        import psutil
+        return int(psutil.Process().memory_info().rss)
+    except Exception:
+        return 0
+
+
+def memory_usage() -> Dict[str, Any]:
+    rss = process_rss_bytes()
+    ceil = memory_ceiling_bytes()
+    return {"rss_bytes": rss, "ceiling_bytes": ceil, "ratio": (rss / ceil) if ceil > 0 else 0.0}
+
+
+def over_memory_ceiling() -> bool:
+    rss = process_rss_bytes()
+    return rss > 0 and rss > memory_ceiling_bytes()
+
+
+def _evict_caches() -> List[str]:
+    """Clear the safe-to-drop in-process caches. Each is best-effort and independent."""
+    cleared: List[str] = []
+    try:
+        from utils import generate_response as _gr
+        _gr._GR_CACHE.clear()
+        cleared.append("llm_response_cache")
+    except Exception:
+        pass
+    try:
+        from utils import embed_similarity as _es
+        # The embedding cache is an lru_cache on _embed (up to 8192 vectors).
+        _es._embed.cache_clear()
+        cleared.append("embedding_cache")
+    except Exception:
+        pass
+    try:
+        from utils import llm_providers as _p
+        _p.reinit()
+        cleared.append("provider")
+    except Exception:
+        pass
+    return cleared
+
+
+def enforce_memory_ceiling() -> Dict[str, Any]:
+    """If resident memory is over the ceiling, evict in-process caches to give it back.
+    No-op when under (the common case). Returns a small report."""
+    if not over_memory_ceiling():
+        return {"over": False, "evicted": []}
+    return {"over": True, "evicted": _evict_caches(), "usage": memory_usage()}

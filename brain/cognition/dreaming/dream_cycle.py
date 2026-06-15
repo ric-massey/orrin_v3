@@ -664,6 +664,16 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     except Exception as _ce:
         record_failure("dream_cycle.dream_cycle.disk_ceiling", _ce)
 
+    # Memory-ceiling eviction (§10.3) — if resident memory is over the user's ceiling,
+    # drop the safe-to-recompute in-process caches to give it back. No-op when under.
+    try:
+        from utils.resource_ceilings import enforce_memory_ceiling as _emc
+        _mem = _emc()
+        if _mem.get("over"):
+            log_activity(f"[dream] Over memory ceiling — evicted caches: {', '.join(_mem.get('evicted', [])) or 'none'}.")
+    except Exception as _me:
+        record_failure("dream_cycle.dream_cycle.memory_ceiling", _me)
+
     # Symbolic self-improvement — rehabilitate rules, calibrate router thresholds,
     # prune underused meta-rules. Has its own 4h internal cooldown.
     try:

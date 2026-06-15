@@ -20,6 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r backend/requirements.txt
           pip install pytest
+          # Optional LLM SDKs: lazy-imported at runtime (kept out of requirements/bundle),
+          # but installed here so the H2 real-SDK adapter verification actually runs in CI.
+          pip install anthropic google-genai
 
       - name: Run test suite
         run: |

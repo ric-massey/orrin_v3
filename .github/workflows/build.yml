@@ -71,19 +71,53 @@ jobs:
       - name: Freeze (PyInstaller, I3)
         run: pyinstaller packaging/orrin.spec --noconfirm
 
+      # Stage a private CPython into the bundle so the sandbox doesn't fall back to the
+      # host (I1). Best-effort: a failure logs and continues (host fallback still works).
+      - name: Stage embedded CPython (I1)
+        run: python packaging/stage_embedded_python.py
+
+      - name: Resolve version
+        id: ver
+        shell: bash
+        run: |
+          REF="${GITHUB_REF_NAME:-}"
+          if [[ "$REF" == v* ]]; then echo "version=${REF#v}" >> "$GITHUB_OUTPUT";
+          else echo "version=0.0.0" >> "$GITHUB_OUTPUT"; fi
+
       # ── Package per OS ──────────────────────────────────────────────────────
       - name: Package macOS .dmg
         if: runner.os == 'macOS'
         run: hdiutil create -volname Orrin -srcfolder dist/Orrin.app -ov -format UDZO "dist/Orrin-${{ matrix.name }}.dmg"
 
+      # A raw .zip stays as a fallback; the Setup.exe (below) is the real installer.
       - name: Package Windows .zip
         if: runner.os == 'Windows'
         shell: pwsh
         run: Compress-Archive -Path dist/Orrin/* -DestinationPath "dist/Orrin-${{ matrix.name }}.zip"
 
+      # Real installer (I5): bundle the WebView2 bootstrapper + build a Setup.exe.
+      - name: Build Windows installer (I5)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://go.microsoft.com/fwlink/p/?LinkId=2124703" -OutFile "packaging/windows/MicrosoftEdgeWebview2Setup.exe"
+          choco install innosetup --no-progress -y
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DMyAppVersion=${{ steps.ver.outputs.version }}" "packaging\windows\orrin.iss"
+
+      # A raw .tar.gz stays as a fallback; the AppImage (below) is the real app.
       - name: Package Linux .tar.gz
         if: runner.os == 'Linux'
         run: tar -C dist -czf "dist/Orrin-${{ matrix.name }}.tar.gz" Orrin
+
+      # Real AppImage (I6). WebKitGTK is the native-window runtime dep on Linux.
+      - name: Build Linux AppImage (I6)
+        if: runner.os == 'Linux'
+        env:
+          ORRIN_VERSION: ${{ steps.ver.outputs.version }}
+          ARCH: x86_64
+        run: |
+          sudo apt-get update && sudo apt-get install -y libfuse2 || true
+          bash packaging/linux/make_appimage.sh
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -93,6 +127,8 @@ jobs:
             dist/*.dmg
             dist/*.zip
             dist/*.tar.gz
+            dist/*.exe
+            dist/*.AppImage
           if-no-files-found: error
 
       # On a tag, attach the installers to a GitHub Release so people can download them.
@@ -104,3 +140,5 @@ jobs:
             dist/*.dmg
             dist/*.zip
             dist/*.tar.gz
+            dist/*.exe
+            dist/*.AppImage

@@ -108,6 +108,21 @@ one update away from losing him without a copy.*
 
 ## Status
 - **Done & tested in-repo:** I1, I2.
+- **I1 — embedded CPython now staged by CI (2026-06-15):** `packaging/stage_embedded_python.py`
+  fetches a relocatable standalone CPython (astral-sh/python-build-standalone, pinned) and
+  drops it where `brain/utils/runtime_python.py` probes — `Resources/python/bin/python3`
+  (macOS), `python\python.exe` (Windows), `python/bin/python3` (Linux). Wired into
+  `build.yml` after the freeze; best-effort (host fallback if staging fails, or set
+  `ORRIN_REQUIRE_EMBEDDED=1` to make it fatal). Verifies on the next tagged build.
+- **I5 — Windows installer wired (2026-06-15):** `packaging/windows/orrin.iss` (Inno Setup)
+  builds a per-user `Orrin-Setup-windows-x64.exe` with Start-Menu/desktop shortcuts and
+  bundles the WebView2 evergreen bootstrapper (installed silently when the runtime is
+  missing). CI downloads the bootstrapper, `choco install innosetup`, runs `ISCC`. The raw
+  `.zip` stays as a fallback artifact. **Still blocked:** code-signing the .exe (SmartScreen).
+- **I6 — Linux AppImage wired (2026-06-15):** `packaging/linux/make_appimage.sh` builds an
+  AppDir from `dist/Orrin/` (generated icon via Pillow, `.desktop`, `AppRun`) and packs it
+  with `appimagetool` → `Orrin-linux-x86_64.AppImage`. CI runs it; the `.tar.gz` stays as a
+  fallback. WebKitGTK is still the native-window runtime dep (else browser-tab fallback).
 - **I3 — DONE & verified on macOS arm64 (2026-06-15):** `pyinstaller packaging/orrin.spec`
   produces a standalone **`dist/Orrin.app` (807 MB)** that boots from the per-user data
   dir, seeds a newborn, loads the bundled ML weights (torch + sentence-transformers),
@@ -120,5 +135,7 @@ one update away from losing him without a copy.*
 - **I7 — in-repo layer DONE & tested** (version, opt-in update check, export-before-update
   wired to the G1 schema spine, Settings UI, CI version stamping). The platform SWAP infra
   (Sparkle/Squirrel/zsync) remains external (needs signing + hosting).
-- **Needs a build machine + certs (not runnable here):** I4 sign/notarize (Apple Dev
-  cert), I5 Windows, I6 Linux, I7 platform updater infra.
+- **Needs certs / hosting (not doable in-repo):** I4 sign/notarize (Apple Dev cert),
+  Windows code-signing for the I5 installer, I7 platform updater infra (Sparkle/Squirrel/
+  zsync + a place to host the appcast). The I5/I6 packaging and I1 staging now run in CI
+  and are verified by the next tagged build.

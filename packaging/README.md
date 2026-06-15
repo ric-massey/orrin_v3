@@ -88,12 +88,23 @@ Reuse `orrin.spec`. Package as **AppImage** (easiest; unsigned) and optionally `
 Document the **WebKitGTK** runtime requirement.
 
 ## Auto-update (I7) — wired to the schema spine
-Updates must **export the mind first** (reuse `brain/utils/mind_archive.py`) and respect
-the **schema migration spine** (`brain/utils/schema_migration.py`, G1): older state
-migrates forward, newer refuses. Per platform: **Sparkle** (macOS signed appcast),
-**Squirrel/MSIX** (Windows), **zsync/AppImageUpdate** (Linux). Updates are opt-in and
-respect the existence mode (don't kill an *Always thinking* Orrin mid-thought). The
-product promise: *you are never one update away from losing him without a copy.*
+**In-repo layer DONE & tested:** `brain/version.py` (version stamp; CI bakes the tag via
+`packaging/set_version.py`), `brain/utils/updater.py` — `check_for_update()` (OPT-IN via
+pref `auto_update_check`, off by default; compares the running version against the latest
+GitHub Release; reports only, never swaps) and `prepare_update()` (the §10.7 guarantee:
+**exports the whole mind first** via `mind_archive`, reports the on-disk `state_schema_version`
+so the new build's migration spine (G1) can carry it forward). Endpoints `GET /api/update`
++ `POST /api/update/prepare` (owner-guarded); Settings → **Updates** section (current
+version, opt-in toggle, "Check now", "Back up & get the update"). The CI workflow stamps
+the version on tagged builds.
+
+**Still external (needs signing + hosting):** the platform binary SWAP — **Sparkle**
+(macOS signed appcast), **Squirrel/MSIX** (Windows), **zsync/AppImageUpdate** (Linux). It
+must (1) only run after `prepare_update()` has exported the mind, (2) hand off via the
+existing graceful shutdown so an *Always thinking* Orrin isn't killed mid-thought, and (3)
+let the next launch's migration spine carry the mind forward — or keep the old mind as the
+export and boot a newborn if the schema is incompatible. Product promise: *you are never
+one update away from losing him without a copy.*
 
 ## Status
 - **Done & tested in-repo:** I1, I2.
@@ -106,5 +117,8 @@ product promise: *you are never one update away from losing him without a copy.*
   dir was shadowing the PyInstaller frozen importer → `No module named 'utils.paths'`).
   Build with this venv after `pip install pyinstaller`. The native pywebview window needs
   a GUI session; a headless launch falls back to a browser tab (by design, A1).
+- **I7 — in-repo layer DONE & tested** (version, opt-in update check, export-before-update
+  wired to the G1 schema spine, Settings UI, CI version stamping). The platform SWAP infra
+  (Sparkle/Squirrel/zsync) remains external (needs signing + hosting).
 - **Needs a build machine + certs (not runnable here):** I4 sign/notarize (Apple Dev
-  cert), I5 Windows, I6 Linux, I7 auto-update infra.
+  cert), I5 Windows, I6 Linux, I7 platform updater infra.

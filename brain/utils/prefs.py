@@ -37,6 +37,8 @@ DEFAULTS: Dict[str, Any] = {
     "llm_provider": "openai",
     "llm_model": "",
     "llm_base_url": "",
+    # Auto-update (§10.7 / I7) — opt-in so nothing phones home for a new release silently.
+    "auto_update_check": False,
 }
 
 

@@ -60,6 +60,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyinstaller
 
+      - name: Stamp the release version (I7 auto-update)
+        run: python packaging/set_version.py
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+
       - name: Pre-fetch ML weights into the bundle (offline first-run, I2)
         run: python packaging/bundle_models.py --out packaging/build/models
 

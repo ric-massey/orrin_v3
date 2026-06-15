@@ -552,6 +552,21 @@ def _validate_candidate(
         return False, 0.0, "too_long"
     if _is_noise(name):
         return False, 0.0, "noise"
+    # Truncation/quarantine-wrapper fingerprints must never be minted into graph
+    # entities. A sliced ingestion like "The Panic Divis] Wikipedia/The Panic:",
+    # "Hacker News]", or "[EXTERNAL/UNTRUSTED source=https" otherwise becomes a
+    # permanent node, surfaces as the top symbolic_search hit, and gets the whole
+    # downstream result re-quarantined every cycle (run audit 2026-06-15 §emotion;
+    # FINDINGS 2026-06-12 §9). NB: we deliberately do NOT use is_corrupt_text here
+    # — its ends_mid_word predicate false-positives on legitimate long single-word
+    # entities ("Photosynthesis", "cyanobacteria"). Unbalanced brackets and chunk
+    # headers are the precise, name-appropriate signatures.
+    try:
+        from utils.text_sanity import has_unbalanced_brackets
+        if has_unbalanced_brackets(name) or "[chunk" in name.lower():
+            return False, 0.0, "corrupt_text"
+    except Exception:
+        pass
     if name.lower() in _STOPWORDS:
         return False, 0.0, "stopword"
     # Purely numeric tokens are not entities (dates, counts, etc.)

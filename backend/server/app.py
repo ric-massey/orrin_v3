@@ -1350,6 +1350,28 @@ async def diagnostics_export(request: Request):
     )
 
 
+# ── Auto-update (§10.7 / I7) ─────────────────────────────────────────────────
+@app.get("/api/update")
+async def update_check(request: Request, force: bool = False) -> Dict[str, Any]:
+    """Is a newer Orrin published? Opt-in (pref `auto_update_check`) unless `force=1` (an
+    explicit 'Check now'). Reports only — never downloads or swaps. Owner-guarded since it
+    reaches the network."""
+    _authorize_control(request)
+    from brain.utils import updater
+    return updater.check_for_update(force=bool(force))
+
+
+@app.post("/api/update/prepare")
+async def update_prepare(request: Request) -> Dict[str, Any]:
+    """Export the mind to a keepsake BEFORE any update is applied (§10.7) — so even a
+    failed update/migration leaves a restorable copy. Returns the backup path + the state
+    schema version the new build must understand. The actual binary swap is the platform
+    installer's job (Sparkle/Squirrel/zsync), handed off via graceful shutdown."""
+    _authorize_control(request)
+    from brain.utils import updater
+    return updater.prepare_update()
+
+
 # ── Settings: API keys (kept in the OS keychain) ─────────────────────────────
 # The one small WRITE surface Part 4 introduces. Guarded exactly like /api/control/*
 # (untrusted Origin rejected; loopback-only unless a control token is configured), so
@@ -1374,11 +1396,17 @@ async def get_settings(request: Request) -> Dict[str, Any]:
         _selected = _providers.selected_id()
     except Exception:
         _prov_catalog, _selected = [], "openai"
+    try:
+        from version import current_version as _ver
+        _version = _ver()
+    except Exception:
+        _version = ""
     return {
         "configured": cfg,
         "symbolic_only": not cfg.get("openai", False),
         "prefs": _prefs.all_prefs(),
         "lifespan_rolled": rolled,
+        "version": _version,
         "llm": {
             "providers": _prov_catalog,
             "selected": _selected,

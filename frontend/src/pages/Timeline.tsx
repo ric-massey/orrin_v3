@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Target, Brain, Moon, Lightbulb, Globe, UploadCloud, Circle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { apiGet } from "@/lib/transport";
+import InfoDot from "@/components/brain/InfoDot";
+import { ROOM_INFO } from "@/lib/roomMetrics";
 
 // "While you were away" (§9.8) — the feature that most makes an autonomous system
 // feel alive. The "last seen" marker is a per-viewer client value (localStorage in the
@@ -80,7 +82,10 @@ export default function Timeline() {
   return (
     <div className="mx-auto w-full max-w-3xl space-y-5 px-4 py-6 sm:px-6">
       <div className="space-y-1">
-        <h1 className="text-xl font-semibold tracking-tight">While you were away</h1>
+        <h1 className="flex items-center gap-1 text-xl font-semibold tracking-tight">
+          While you were away
+          <InfoDot info={ROOM_INFO.timeline} />
+        </h1>
         <p className="text-sm text-muted-foreground">since {sinceLabel}</p>
       </div>
 

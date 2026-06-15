@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { useLexicon } from "@/lib/lexicon";
 import { usePolledJSON } from "@/lib/usePolled";
 import { useTelemetryState } from "../App";
+import InfoDot from "@/components/brain/InfoDot";
+import { ROOM_INFO } from "@/lib/roomMetrics";
 
 // Cognition (§9.3): a calm reading of feeds Orrin already produces, arranged as a
 // narrative — "what is he doing right now?". Pure composition: the live blocks come
@@ -76,7 +78,7 @@ export default function Cognition() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Block title={t("cog_winner")}>
+        <Block title={t("cog_winner")} info="workspace">
           {tel.workspace?.conscious?.content ? (
             <div className="space-y-1">
               <p className="text-sm">{tel.workspace.conscious.content}</p>
@@ -91,7 +93,7 @@ export default function Cognition() {
           )}
         </Block>
 
-        <Block title={t("cog_goal")}>
+        <Block title={t("cog_goal")} info="cog_goal">
           {activeGoal ? (
             <div className="space-y-1">
               <p className="text-sm">{activeGoal.title}</p>
@@ -109,7 +111,7 @@ export default function Cognition() {
           )}
         </Block>
 
-        <Block title={t("cog_competing")} className="sm:col-span-2">
+        <Block title={t("cog_competing")} info="workspace" className="sm:col-span-2">
           {tel.workspace?.candidates && tel.workspace.candidates.length > 0 ? (
             <ul className="space-y-1.5">
               {[...tel.workspace.candidates]
@@ -134,7 +136,7 @@ export default function Cognition() {
           )}
         </Block>
 
-        <Block title={t("cog_drives")}>
+        <Block title={t("cog_drives")} info="drives">
           {drives?.drives && Object.keys(drives.drives).length > 0 ? (
             <ul className="space-y-1">
               {Object.entries(drives.drives)
@@ -157,7 +159,7 @@ export default function Cognition() {
           )}
         </Block>
 
-        <Block title={t("cog_symbolic")}>
+        <Block title={t("cog_symbolic")} info="symbolic">
           {symbolic?.rules && symbolic.rules.length > 0 ? (
             <div className="space-y-1">
               <Meta>
@@ -178,7 +180,7 @@ export default function Cognition() {
           )}
         </Block>
 
-        <Block title={t("cog_peers")} className="sm:col-span-2">
+        <Block title={t("cog_peers")} info="peers" className="sm:col-span-2">
           {people?.peers && people.peers.length > 0 ? (
             <div className="flex flex-wrap gap-1.5">
               {people.peers.map((p, i) => (
@@ -204,17 +206,22 @@ export default function Cognition() {
 
 function Block({
   title,
+  info,
   children,
   className,
 }: {
   title: string;
+  info?: keyof typeof ROOM_INFO;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <Card className={className}>
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+        <CardTitle className="flex items-center gap-1 text-sm font-medium text-muted-foreground">
+          {title}
+          {info && <InfoDot info={ROOM_INFO[info]} />}
+        </CardTitle>
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>

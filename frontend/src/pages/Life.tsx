@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useLexicon, type LexId } from "@/lib/lexicon";
 import { usePolledJSON } from "@/lib/usePolled";
+import InfoDot from "@/components/brain/InfoDot";
+import { ROOM_INFO } from "@/lib/roomMetrics";
 
 // Life Support (§9.10) — the same numbers as a sysadmin's stats, framed as a being's
 // vital signs (Resource Manager in the engineering dialect). Two honesty rules from
@@ -132,6 +134,7 @@ function Vital({
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Icon className="h-4 w-4" />
           {t(lex)}
+          {ROOM_INFO[lex] && <InfoDot info={ROOM_INFO[lex]} className="ml-auto" />}
         </div>
         <div className={cn("text-2xl font-semibold tabular-nums", amber && "text-signal-warn")}>{value}</div>
         {detail && <div className="text-xs text-muted-foreground">{detail}</div>}

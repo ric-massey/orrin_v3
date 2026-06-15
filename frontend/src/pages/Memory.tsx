@@ -4,6 +4,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useLexicon } from "@/lib/lexicon";
 import { usePolledJSON } from "@/lib/usePolled";
+import InfoDot from "@/components/brain/InfoDot";
+import { ROOM_INFO } from "@/lib/roomMetrics";
+
+// Which source note backs each lens (Part 8 drill-down).
+const LENS_INFO: Record<Lens, keyof typeof ROOM_INFO> = {
+  recent: "memory_list",
+  important: "memory_list",
+  forgotten: "memory_forgotten",
+  identity: "memory_identity",
+};
 
 // Memory Explorer (§9.5) — four lenses over data that already ships. The "Forgotten"
 // lens is the quietly powerful one: watching him forget is what makes "his memory
@@ -42,7 +52,10 @@ export default function Memory() {
   return (
     <div className="mx-auto w-full max-w-4xl space-y-5 px-4 py-6 sm:px-6">
       <div className="space-y-1">
-        <h1 className="text-xl font-semibold tracking-tight">Memory</h1>
+        <h1 className="flex items-center gap-1 text-xl font-semibold tracking-tight">
+          Memory
+          <InfoDot info={ROOM_INFO[LENS_INFO[lens]]} />
+        </h1>
         <p className="text-sm text-muted-foreground">What he remembers, what he keeps, and what he lets go.</p>
       </div>
 

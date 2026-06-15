@@ -103,3 +103,7 @@ brain/logs/
 
 # One-time migration backups (e.g. the legacy self-code manifest repointed in C3)
 *.migrated
+
+# Runtime pre-corruption backups (json_utils writes these when a store is malformed)
+*.bak
+*.bak_*

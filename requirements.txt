@@ -19,6 +19,12 @@ spacy>=3.7
 # (WKWebView / WebView2 / WebKitGTK). Falls back to a browser tab if unavailable.
 pywebview>=5.0
 
+# Status-bar / menu-bar tray for Always-thinking mode (F1): re-show or quit while the
+# window is closed and the brain keeps running. Best-effort — a missing/failed tray
+# falls back to headless-on-close, so it never traps the user. Pillow draws the icon.
+pystray>=0.19
+Pillow>=10.0
+
 # API keys live in the OS keychain (Keychain / Credential Manager / libsecret),
 # never a plaintext .env in the bundle. Falls back to in-memory if no backend.
 keyring>=24.0

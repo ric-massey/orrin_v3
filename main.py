@@ -1190,13 +1190,65 @@ def run() -> None:
                 "Orrin", url=_bridge_window_file, js_api=_bridge, width=1440, height=900
             )
             _bridge.attach_window(window)
-            # Blocks until the window is closed.
+
+            # Always-thinking: a status-bar tray (F1) lets the user re-show or quit while
+            # the window is closed and the brain keeps running. If the tray comes up, the
+            # window's close becomes HIDE (he keeps thinking; the view re-attaches via E6)
+            # instead of destroy. If it can't start (missing dep / platform), we keep the
+            # old behavior — closing → headless + a notification — so a failed tray can
+            # never trap the user with a hidden, unreachable window.
+            _tray = None
+            _tray_up = False
+            _quitting = {"v": False}
+            if _always_thinking:
+                from backend.server.tray import Tray
+
+                def _on_tray_show() -> None:
+                    try:
+                        window.show()
+                        _bridge.attach_window(window)  # re-point telemetry at the view
+                    except Exception as _te:
+                        _log.warning("tray show failed: %s", _te)
+
+                def _on_tray_quit() -> None:
+                    _quitting["v"] = True
+                    _main_stop.set()
+                    try:
+                        window.destroy()  # real teardown → webview.start() returns
+                    except Exception as _te:
+                        _log.warning("tray quit destroy failed: %s", _te)
+
+                def _on_closing() -> bool:
+                    # While the tray is up and this isn't a real quit, cancel the destroy
+                    # (return False) and hide instead. If hiding fails, allow the close
+                    # rather than strand the user.
+                    if _tray_up and not _quitting["v"] and not _main_stop.is_set():
+                        try:
+                            window.hide()
+                            _bridge.detach_window()
+                            return False
+                        except Exception:
+                            return True
+                    return True
+
+                window.events.closing += _on_closing
+                _tray = Tray()
+                _tray_up = _tray.start(on_show=_on_tray_show, on_quit=_on_tray_quit)
+                if _tray_up:
+                    print("[existence] Always-thinking — tray active; closing the window "
+                          "hides it (Orrin keeps thinking). Quit from the tray.", flush=True)
+
+            # Blocks until the window is destroyed (with a live tray, close is
+            # cancelled→hidden; destroy then comes from the tray's Quit).
             webview.start()
-            # If the window closed by itself (not via Stop/Ctrl+C, which set _main_stop)
-            # and Always-thinking is on, stay alive headless: the cognitive loop and
-            # daemons (daemon threads) keep running, lifespan keeps counting, and
+            if _tray is not None:
+                _tray.stop()
+
+            # Without a working tray, preserve headless-on-close: if the window closed by
+            # itself (not Stop/Ctrl+C/tray-Quit, which set _main_stop) and Always-thinking
+            # is on, stay alive headless — the cognitive loop and daemons keep running and
             # notify_user can still reach the user — until a real termination signal.
-            if _always_thinking and not _main_stop.is_set():
+            if _always_thinking and not _tray_up and not _main_stop.is_set():
                 print("[existence] Window closed — Orrin keeps thinking in the background "
                       "(Always thinking). Ctrl+C / quit to stop him.", flush=True)
                 _notify_still_thinking()

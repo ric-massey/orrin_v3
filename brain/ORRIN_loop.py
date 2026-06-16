@@ -2025,13 +2025,40 @@ def run_cognitive_loop(
             except Exception as _uwe:
                 record_failure("ORRIN_loop.workspace_pre_think", _uwe)
 
-            # ── think() always runs ────────────────────────────────────────────
-            # Every cycle is a conscious cycle. The unconscious layer (emotional
-            # updates, embodiment, signals) already ran above — now think() picks
-            # up from there and deliberates, forms inner dialogue, and acts.
-            log_activity("[consciousness] triggered: always_on")
-            context["_last_think_cycle"] = get_cycle_count()
-            _ui_stage("plan", "Planning — deliberating the next move.")
+            # ── Conscious ignition gate (Dehaene 2014; Baars 1988; Kahneman 2011) ─
+            # Consciousness is a threshold crossing ("ignition"), not a metronome.
+            # The unconscious substrate above (affect, embodiment, signals,
+            # subconscious threads, workspace competition) ran this cycle REGARDLESS.
+            # But only a salient / uncertain / conflicted cycle IGNITES into full
+            # deliberate cognition. should_think() is the bar; the periodic floor
+            # (MAX_SILENT_CYCLES) guarantees he never goes fully dormant.
+            #
+            # On a quiet (non-ignited) cycle Orrin stays in low-power default mode:
+            # think() still runs for bookkeeping + cheap symbolic selection, but
+            # deliberate System-2 recruitment (inner_loop) is withheld (see
+            # think_module §7) and the selector damps expensive deliberate functions
+            # (see select_function "unconscious damp"). This restores the
+            # conscious/unconscious distinction that "always_on" had collapsed.
+            # Disable with ORRIN_IGNITION_GATE=0 → exact old always-on behaviour.
+            _ignited, _ign_reason = True, "always_on"
+            if os.environ.get("ORRIN_IGNITION_GATE", "1") != "0":
+                try:
+                    from think.consciousness_trigger import should_think as _should_think
+                    _ignited, _ign_reason = _should_think(context)
+                except Exception as _ige:
+                    record_failure("ORRIN_loop.ignition_gate", _ige)
+                    _ignited, _ign_reason = True, "ignition_error_failopen"
+            context["_conscious_cycle"] = bool(_ignited)
+            context["_ignition_reason"] = str(_ign_reason)
+            if _ignited:
+                log_activity(f"[consciousness] ignited: {_ign_reason}")
+                # Only an ignited cycle resets the silent-run counter, so the
+                # periodic floor in should_think() actually measures quiet time.
+                context["_last_think_cycle"] = get_cycle_count()
+                _ui_stage("plan", "Planning — deliberating the next move.")
+            else:
+                log_activity(f"[consciousness] quiet — unconscious cycle ({_ign_reason})")
+                _ui_stage("plan", "Idling — below the threshold of deliberate thought.")
             result = think(context)
 
             _decision_id = (context.get("last_decision") or {}).get("reason", {}).get("decision_id")
@@ -2941,10 +2968,13 @@ def run_cognitive_loop(
             except Exception as _pe:
                 log_error(f"check_predictions failed: {_pe}")
 
-            # Dream cycle — fires when idle and 6h have elapsed since last dream
+            # Dream cycle — fires when idle and 6h have elapsed since last dream.
+            # Skipped while HostResourceGuard has paused the heavy cycles: dreaming
+            # is memory-hungry, and the host is already under disk/swap pressure.
             try:
                 from cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
-                if should_dream(context):
+                from reaper.host_resources import heavy_cycles_paused as _heavy_paused
+                if (not _heavy_paused()) and should_dream(context):
                     import threading as _thr
                     _dt = _thr.Thread(
                         target=_dream_cycle, args=(context,),
@@ -3012,7 +3042,10 @@ def run_cognitive_loop(
                     _stag = float(
                         (affect_state.get("core_signals") or affect_state).get("stagnation_signal", 0.0)
                     )
-                    if _stag > 0.5 and get_cycle_count() % 40 == 0:
+                    # Reading is the other memory-hungry heavy cycle: skip it while
+                    # HostResourceGuard has paused heavies due to host pressure.
+                    from reaper.host_resources import heavy_cycles_paused as _heavy_paused
+                    if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused():
                         from cognition.language.acquisition import read_a_book as _rab
                         _line = _rab(context, steps=30)
                         if _line:

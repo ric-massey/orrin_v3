@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 set "REPO=%~dp0"
 cd /d "%REPO%"
 set "LOG=%REPO%brain\data\run_log.txt"
-if "%ORRIN_CYCLE_SLEEP%"=="" set "ORRIN_CYCLE_SLEEP=20"
+if "%ORRIN_CYCLE_SLEEP%"=="" set "ORRIN_CYCLE_SLEEP=1"
 
 if exist "%REPO%.venv\Scripts\python.exe" (
     set "PYTHON=%REPO%.venv\Scripts\python.exe"

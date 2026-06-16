@@ -11,6 +11,7 @@ from reaper.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
 from reaper.lifespan import LifespanByCycles
 from reaper.no_goals import NoGoalsGuard
 from reaper.memory import MemoryHealthGuard
+from reaper.host_resources import HostResourceGuard
 from reaper.repeat import RepeatLoopGuard
 from observability.nervous_system import HealthBus, NervousSystem
 from observability.metrics import (
@@ -36,6 +37,11 @@ GetSockLimit = Callable[[], int]
 GetCpuUtil = Callable[[], float]
 GetStepLatencyMs = Callable[[], float]
 GetMemoryHealth = Callable[[], Dict[str, float | int]]  # ← already NEW
+
+# Host-machine resource provider hints (NEW: outward-looking, not Orrin's own)
+GetDiskFreeBytes = Callable[[], float]
+GetSwapUsedBytes = Callable[[], float]
+GetVmemPercent = Callable[[], float]
 
 class Pulse:
     """Thread-safe pulse counter that the main loop updates."""
@@ -109,6 +115,23 @@ def start_watchdogs(
     cpu_sustain_s: float = 10.0,
     latency_slope_ms_per_s: float = 0.5,
     latency_mean_ms_threshold: float = 50.0,
+    # --------- HOST RESOURCE GUARD (outward-looking; providers + tunables) ---------
+    get_disk_free_bytes: Optional[GetDiskFreeBytes] = None,
+    get_swap_used_bytes: Optional[GetSwapUsedBytes] = None,
+    get_vmem_percent: Optional[GetVmemPercent] = None,
+    host_on_warn: Optional[Callable[[str], None]] = None,
+    host_on_pause: Optional[Callable[[str], None]] = None,
+    host_on_resume: Optional[Callable[[str], None]] = None,
+    disk_warn_free_bytes: float = 20.0 * 1024 * 1024 * 1024,
+    disk_pause_free_bytes: float = 10.0 * 1024 * 1024 * 1024,
+    disk_sustain_s: float = 10.0,
+    swap_warn_used_bytes: float = 2.0 * 1024 * 1024 * 1024,
+    swap_pause_used_bytes: float = 4.0 * 1024 * 1024 * 1024,
+    swap_growth_warn_bytes_per_s: float = 5.0 * 1024 * 1024,
+    swap_sustain_s: float = 20.0,
+    vmem_warn_percent: float = 85.0,
+    vmem_pause_percent: float = 95.0,
+    vmem_sustain_s: float = 15.0,
     # --------- REPEAT-LOOP GUARD (tunables) ---------
     enable_repeat_guard: bool = True,
     action_window_n: int = 50,
@@ -132,7 +155,8 @@ def start_watchdogs(
     """
     Spin up a daemon thread that continuously checks watchdogs.
     Returns:
-      (reaper, detector, errors, liveness, lifespan, no_goals, mem_guard, repeat_guard, stop_evt)
+      (reaper, detector, errors, liveness, lifespan, no_goals, mem_guard,
+       host_guard, repeat_guard, stop_evt)
     """
     reaper = Reaper(kill=kill_current_process)
 
@@ -199,6 +223,28 @@ def start_watchdogs(
         latency_mean_ms_threshold=latency_mean_ms_threshold,
     )
 
+    # Host resource guard (outward-looking; staged, NON-fatal escalation).
+    # Unlike every other guard it does NOT route to reaper.trigger — killing
+    # Orrin can't reclaim host swap/disk. It warns, then pauses heavy cycles.
+    host_guard = HostResourceGuard(
+        on_warn=host_on_warn,
+        on_pause=host_on_pause,
+        on_resume=host_on_resume,
+        get_disk_free_bytes=get_disk_free_bytes,
+        get_swap_used_bytes=get_swap_used_bytes,
+        get_vmem_percent=get_vmem_percent,
+        disk_warn_free_bytes=disk_warn_free_bytes,
+        disk_pause_free_bytes=disk_pause_free_bytes,
+        disk_sustain_s=disk_sustain_s,
+        swap_warn_used_bytes=swap_warn_used_bytes,
+        swap_pause_used_bytes=swap_pause_used_bytes,
+        swap_growth_warn_bytes_per_s=swap_growth_warn_bytes_per_s,
+        swap_sustain_s=swap_sustain_s,
+        vmem_warn_percent=vmem_warn_percent,
+        vmem_pause_percent=vmem_pause_percent,
+        vmem_sustain_s=vmem_sustain_s,
+    )
+
     # Repeat-loop guard (optional)
     repeat_guard: Optional[RepeatLoopGuard] = None
     if enable_repeat_guard:
@@ -252,6 +298,7 @@ def start_watchdogs(
             if no_goals is not None:
                 no_goals.step()
             mem_guard.step()
+            host_guard.step()
             if repeat_guard is not None:
                 repeat_guard.step()
 
@@ -397,6 +444,7 @@ def start_watchdogs(
         lifespan,
         no_goals,
         mem_guard,
+        host_guard,
         repeat_guard,
         stop_evt,
     )

@@ -93,6 +93,7 @@ export const LEX = {
   exec_idle: { bio: "Idle — no step advancing this cycle.", eng: "Idle — no task step ran this tick." },
 
   // ── Named rooms (§9.1 navigation) ─────────────────────────────────────────
+  nav_watch: { bio: "Watch", eng: "Watch" },
   nav_face: { bio: "Face", eng: "Face" },
   nav_cognition: { bio: "Cognition", eng: "Cognition" },
   nav_life: { bio: "Life Support", eng: "Resource Manager" },

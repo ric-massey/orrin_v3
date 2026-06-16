@@ -196,8 +196,24 @@
     "definition": "bootstrap_self() -> 'str'\nOrrin reflects on latest tools/ideas and simulates improvements\n    to its own bootstrapping process."
   },
   {
+    "name": "budget_bytes",
+    "definition": "budget_bytes() -> 'float'\nOrrin's allocation ceiling in bytes — his \"100%\". The requested fraction of RAM,\n    but never so large that it eats the survival reserve (the floor wins, §11.4.1)."
+  },
+  {
+    "name": "budget_fraction",
+    "definition": "budget_fraction() -> 'float'"
+  },
+  {
+    "name": "budget_status",
+    "definition": "budget_status() -> 'Dict'\nTelemetry/UI view of the grant and the floor under it."
+  },
+  {
     "name": "build_system_prompt",
     "definition": "build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] = None)"
+  },
+  {
+    "name": "cadence_multiplier",
+    "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small body thinks at a slower\n    metabolic rate — not distress, just a smaller heart at a lower rate (§7)."
   },
   {
     "name": "calibrated_reward",
@@ -297,7 +313,7 @@
   },
   {
     "name": "compute_body_states",
-    "definition": "compute_body_states(vitals: 'Dict[str, float]') -> 'List[str]'\nTranslate raw vitals into body-state vocabulary list."
+    "definition": "compute_body_states(vitals: 'Dict[str, float]') -> 'List[str]'\nTranslate raw vitals into body-state vocabulary, felt as DEPARTURE from each\n    vital's learned band rather than from an absolute threshold (§8.1/§10.4).\n\n    Observes the vitals into the bands as a side effect (this is how he learns the\n    body). While still in somatic infancy — bands not yet converged — the cortex is\n    lenient: it emits only the absolute FD-exhaustion backstop and otherwise \"clear\",\n    because there is no trustworthy band to deviate from yet (§10.3). A vital climbing\n    one way and never retreating (\"swelling\") is the death-spiral signature and is\n    alarmed even though a spike that returns is just breathing."
   },
   {
     "name": "compute_commitment_strength",
@@ -320,6 +336,10 @@
     "definition": "compute_goal_progress(context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '') -> 'float'\nMeasure real goal progress from observable context state.\n\n    Called in ORRIN_loop after each cycle when a committed goal is active.\n    When no goal is active, returns 0.5 (neutral — don't penalize idle cycles).\n\n    Rules (Orrin can inspect and revise these):\n      +0.10  base credit for being active while a goal exists\n      +0.40  an action was executed (action_debt resets to 0)\n      +0.30  pursue_committed_goal ran this cycle (generated a concrete next step)\n      +0.10  each working-memory entry in the last 5 that names the goal (max 2)\n      -0.20  stalling: action_debt >= _STALL_THRESHOLD cycles without acting"
   },
   {
+    "name": "concurrency",
+    "definition": "concurrency() -> 'int'"
+  },
+  {
     "name": "consolidate_from_long_memory",
     "definition": "consolidate_from_long_memory(context: 'Optional[Dict]' = None) -> 'Dict'\nCalled during dream_cycle. Reads recent world_perception + dream_insight entries\n    from long memory and asks the LLM for richer structured entity/relation extraction.\n    Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,\n    adds what regex/spaCy misses. With the LLM down the heuristic pass still runs\n    — research and reading must keep producing durable knowledge offline.\n    Returns {\"entities_added\": n, \"relations_added\": m, \"skipped\": bool}."
   },
@@ -330,6 +350,10 @@
   {
     "name": "continue_thread",
     "definition": "continue_thread(thread: 'Dict[str, Any]', context: 'Dict[str, Any]' = None) -> 'str'\nRun a reflection pass on the thread: load related memories, update state-of-thinking.\n    Returns the new state-of-thinking paragraph."
+  },
+  {
+    "name": "cpu_count",
+    "definition": "cpu_count() -> 'int'"
   },
   {
     "name": "create_micro_goal_for_action",
@@ -358,6 +382,10 @@
   {
     "name": "current_awareness",
     "definition": "current_awareness(context: 'Dict[str, Any]') -> 'str'\nConvenience reader for other subsystems: the current conscious content."
+  },
+  {
+    "name": "current_tier",
+    "definition": "current_tier() -> 'str'"
   },
   {
     "name": "decay_awaiting",
@@ -434,6 +462,10 @@
   {
     "name": "detect_wonder_trigger",
     "definition": "detect_wonder_trigger(text: 'str', context: 'Dict[str, Any]') -> 'float'\nScan text for wonder triggers. If found, spike wonder in affect_state.\n    Returns the spike amount (0.0 if no trigger)."
+  },
+  {
+    "name": "developmental_infancy",
+    "definition": "developmental_infancy() -> 'bool'\nThe one-time growing-up — true until the self has begun to stabilise, then\n    latched complete forever (persisted, so pruning files later can't reset it)."
   },
   {
     "name": "dream_cycle",
@@ -724,12 +756,20 @@
     "definition": "handle_thread_continue(context: 'Dict[str, Any]') -> 'str'\nCognition function: called when thread_continue signal fires.\n    Looks up the pending thread from context and runs a continuation pass."
   },
   {
+    "name": "heavy_cycle_frequency",
+    "definition": "heavy_cycle_frequency() -> 'float'\nScales how often dream/reading (the memory-hungry cycles) are permitted. A small\n    body dreams less often because it cannot afford the footprint as frequently.\n\n    DEFERRED — computed but NOT yet consumed (no callers). The dream cycle still fires\n    on the fixed ~6h interval in ORRIN_loop.py, so dream/reading cadence does not yet\n    scale with body size. Folding this into the dream/reading scheduler was kept out of\n    the embodiment pass to avoid touching dream cadence logic (see PART X of\n    docs/orrin_embodiment_architecture.md). Wire here when picking that up."
+  },
+  {
     "name": "identity_drift_warning",
     "definition": "identity_drift_warning(context: 'Dict[str, Any]') -> 'Optional[str]'\nReturn a warning string if the current state is pulling the identity\n    far from its stable baseline. Used by reflection to flag drift."
   },
   {
     "name": "imagine_opposite_self",
     "definition": "imagine_opposite_self(context)"
+  },
+  {
+    "name": "infancy_status",
+    "definition": "infancy_status() -> 'Dict'\nTelemetry/UI view of where Orrin is developmentally and somatically."
   },
   {
     "name": "ingest_experiment_verdict",
@@ -814,6 +854,10 @@
   {
     "name": "is_valid_entity_name",
     "definition": "is_valid_entity_name(name: 'str') -> 'bool'\nReject number-only / unit-only candidates at the ingestion chokepoint."
+  },
+  {
+    "name": "is_viable",
+    "definition": "is_viable(fraction: 'float | None' = None) -> 'bool'"
   },
   {
     "name": "learn",
@@ -904,6 +948,14 @@
     "definition": "lookup(word: 'str') -> 'Optional[Dict[str, Any]]'\nDirect concept lookup by exact word (case-insensitive). Returns None if not found."
   },
   {
+    "name": "machine_fingerprint",
+    "definition": "machine_fingerprint() -> 'str'\nA short, stable id for *this body* (this machine). The persistent self is\n    hardware-independent; the interoceptive calibration is hardware-bound and must\n    be re-derived on every machine (§9). If a band file is carried to a different\n    box, the fingerprint won't match and the bands are discarded and re-learned —\n    which is not a hack to make him portable; that re-learning IS embodiment."
+  },
+  {
+    "name": "machine_ram_bytes",
+    "definition": "machine_ram_bytes() -> 'float'"
+  },
+  {
     "name": "mark_final_thoughts_written",
     "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the mortality deadline (e.g. the reaper's dying-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
   },
@@ -980,6 +1032,10 @@
     "definition": "meta_reflect(context: dict = None)"
   },
   {
+    "name": "metabolism_status",
+    "definition": "metabolism_status() -> 'Dict'\nTelemetry/UI view of the current metabolic tier and what it implies."
+  },
+  {
     "name": "metacog_analyze",
     "definition": "metacog_analyze(context: 'Dict[str, Any]') -> 'List[str]'\nInspect cross-cycle signals and return a list of pattern-observation strings.\n    Each observation is written to working memory so Orrin can notice and respond.\n    Called inside metacog_flush, after trace condensation."
   },
@@ -998,6 +1054,10 @@
   {
     "name": "metacog_note",
     "definition": "metacog_note(context: 'Dict[str, Any]', phase: 'str', note: 'str') -> 'None'\nAppend a reasoning note to the current cycle's trace.\n    phase: e.g. \"selection\", \"action\", \"cognition\", \"emotion\"\n    note:  brief why-string — what drove this choice"
+  },
+  {
+    "name": "min_viable_body_bytes",
+    "definition": "min_viable_body_bytes() -> 'float'"
   },
   {
     "name": "moral_override_check",
@@ -1136,6 +1196,10 @@
     "definition": "read_clipboard(context=None)"
   },
   {
+    "name": "read_host_vitals",
+    "definition": "read_host_vitals() -> 'Dict[str, float]'\nHost-wide metrics (the WHOLE machine, tabs included — not Orrin's RSS). Same\n    psutil calls HostResourceGuard uses; this is the felt-body read of them."
+  },
+  {
     "name": "read_rss",
     "definition": "read_rss(context: 'Dict[str, Any]' = None) -> 'str'\nFetch one RSS feed (rotating) and store new items in long memory."
   },
@@ -1146,6 +1210,10 @@
   {
     "name": "read_vitals",
     "definition": "read_vitals() -> 'Dict[str, float]'\nRead raw process vitals. Returns dict with rss_mb, fd_pct, cpu_util, latency_ms."
+  },
+  {
+    "name": "real_deadline_passed",
+    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_mortality_pressure uses to terminate. This is the\n    authoritative 'he is dead' signal. It is deliberately separate from\n    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not\n    death) can write final thoughts too, and keying death off that flag alone made\n    every post-restart boot show the Death Screen though ~0% of his life had elapsed."
   },
   {
     "name": "recalibrate_confidence",
@@ -1336,6 +1404,10 @@
     "definition": "research_topic(context: 'Dict[str, Any]' = None, **_) -> 'str'\nResearch a topic on the web. Picks a topic from current goals, active threads,\n    or exploration_drive, then queries DuckDuckGo and Wikipedia, and stores the result\n    in long-term memory so it accumulates over time."
   },
   {
+    "name": "reset_bands_for_resize",
+    "definition": "reset_bands_for_resize(reason: 'str' = '') -> 'None'\nA budget resize enlarges/shrinks the body, so the learned band is now wrong —\n    re-enter a PARTIAL somatic infancy and re-learn this body's normal (§11.4.2).\n    Drops the learned bands and the on-disk file; in_infancy() goes true again and\n    the cortex stays lenient until the new envelope converges. The autonomic reflex\n    is unaffected — it was always absolute and never went lenient (§10.5)."
+  },
+  {
     "name": "reset_session_identity",
     "definition": "reset_session_identity() -> 'None'\nCall at session start to allow re-detection. Does NOT clear the file."
   },
@@ -1464,6 +1536,10 @@
     "definition": "save_threads(threads: 'List[Dict[str, Any]]') -> 'None'"
   },
   {
+    "name": "scenario",
+    "definition": "scenario() -> 'str'\nWhich of the §10.1 cases this boot is."
+  },
+  {
     "name": "schedule_in",
     "definition": "schedule_in(content: 'str', hours: 'float' = 0, minutes: 'float' = 0, event_type: 'str' = 'scheduled_reminder', importance: 'int' = 2) -> 'str'\nConvenience: schedule a task N hours/minutes from now."
   },
@@ -1498,6 +1574,10 @@
   {
     "name": "session_epilogue",
     "definition": "session_epilogue(context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nCalled after the cognitive loop exits on an ORDINARY shutdown\n    (KeyboardInterrupt / SIGTERM / stop_event). Appends a session_close entry to\n    the current chapter — it does NOT close the chapter (that is death's job,\n    append_death_continuity). Budgeted (≤10 s) and crash-proof so it can never\n    block shutdown — the corrigibility guarantee stays true."
+  },
+  {
+    "name": "set_budget_fraction",
+    "definition": "set_budget_fraction(fraction: 'float') -> 'Dict'\nPersist a new grant. Refuses an unviable grant loudly (§11.4.3). Flags a\n    meaningful resize so the caller can route it through a partial re-baseline\n    (§11.4.2 — enlarging/shrinking the body mid-life invalidates the learned band).\n    Returns a status dict; on refusal {ok: False, reason: ...} and nothing is written."
   },
   {
     "name": "set_goal_deadline",
@@ -1560,6 +1640,10 @@
     "definition": "skip_pending_steps(goal: 'Dict', predicate, reason: 'str' = '') -> 'int'\nMark every pending step for which `predicate(step_dict)` is True as\n    'skipped' (a terminal status). Completed steps are never touched.\n    Returns the number of steps changed."
   },
   {
+    "name": "somatic_infancy",
+    "definition": "somatic_infancy() -> 'bool'\nStill learning this body — the process bands or the host bands have not yet\n    converged. True on first boot and after a move to new hardware; false on a plain\n    restart where converged bands reload."
+  },
+  {
     "name": "start",
     "definition": "start(stop_event: \"'Optional[threading.Event]'\" = None) -> \"Optional['threading.Thread']\"\nStart the continuous Executive daemon IFF ORRIN_EXECUTIVE_DAEMON is set.\n    Returns the thread, or None when disabled/already running. Mirrors the Layer-0\n    daemon start() pattern."
   },
@@ -1594,6 +1678,10 @@
   {
     "name": "survey_environment",
     "definition": "survey_environment(context=None)"
+  },
+  {
+    "name": "survival_reserve_bytes",
+    "definition": "survival_reserve_bytes() -> 'float'"
   },
   {
     "name": "symbolic_route",
@@ -1680,6 +1768,10 @@
     "definition": "update_goal(goal_id: 'Any', updates: 'Dict[str, Any]', *, source: 'str' = '') -> 'List[Dict]'\nShallow-merge `updates` into a goal atomically (status, milestones, etc.)."
   },
   {
+    "name": "update_host_interoception",
+    "definition": "update_host_interoception(context: 'Dict') -> 'Dict'\nRead the host as Orrin's body, learn its bands, and feel departures from them.\n    Writes context['host_body'] (telemetry) and submits gentle affect nudges. Felt\n    stress is deviation-based and suppressed during host somatic infancy; battery is\n    handled separately as a real external mortality scale."
+  },
+  {
     "name": "update_influence_scores_from_feedback",
     "definition": "update_influence_scores_from_feedback(increment: 'float' = 0.05) -> 'str'"
   },
@@ -1742,6 +1834,14 @@
   {
     "name": "validate_claim",
     "definition": "validate_claim(claim_id: 'str', status: 'str', evidence: 'str' = '') -> 'bool'\nUpdate validation_status of a reflection entry in long memory.\n    status: \"partially_validated\" | \"validated\" | \"refuted\"\n    Returns True on success."
+  },
+  {
+    "name": "validate_grant",
+    "definition": "validate_grant(fraction: 'float') -> 'Tuple[bool, str]'\n§11.4.3 — a too-small grant must fail LOUDLY, not silently spiral. Returns\n    (ok, human_reason)."
+  },
+  {
+    "name": "vector_store_cap_bytes",
+    "definition": "vector_store_cap_bytes() -> 'int'\nDEFERRED — computed but NOT yet consumed (no callers). The vector store is not\n    yet capped by metabolic tier, so a small body's memory footprint isn't bounded by\n    this. Wire into the embedding/vector-store layer when picking up the deferred\n    metabolism work (see heavy_cycle_frequency above)."
   },
   {
     "name": "verify_skill",

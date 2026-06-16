@@ -84,11 +84,16 @@ def status() -> Dict[str, Any]:
     state = "alive"
     info: Dict[str, Any] = {}
     try:
-        from cognition.mortality import life_status, lifespan_rolled
+        from cognition.mortality import life_status, lifespan_rolled, real_deadline_passed
         if lifespan_rolled():
             ls = life_status()
             info.update({"born_at": ls.get("born_at"), "age_days": ls.get("age_days"), "phase": ls.get("phase")})
-            if ls.get("final_thoughts_written"):
+            # True death requires the REAL lifespan deadline to have passed — NOT merely
+            # that final thoughts exist on disk. The reaper's dying-window reflection (a
+            # stall-RESTART) also writes final thoughts; gating on that flag alone made
+            # every subsequent boot route to the Death Screen even at ~0% life elapsed
+            # (observed 2026-06-15: born today, 411-day lifespan, flag set by a restart).
+            if real_deadline_passed() and ls.get("final_thoughts_written"):
                 state = "dead"
     except Exception:
         pass

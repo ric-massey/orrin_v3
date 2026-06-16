@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { TelemetryState } from "@/lib/telemetry";
-
-const NODE_LABEL: Record<string, string> = {
-  perceive: "Perceiving",
-  reflect: "Reflecting",
-  plan: "Planning",
-  act: "Acting",
-};
+import { useLexicon } from "@/lib/lexicon";
+import { useStageLabel, useThought } from "@/lib/thoughts";
 
 /**
  * Translates the backend cognitive loop into a single, calm human-readable line.
- * No jargon, no metrics — just what Orrin is "doing" right now.
+ * No jargon, no metrics — just what Orrin is "doing" right now. The line, the
+ * stage badge and the mood word all obey the bio↔eng terminology toggle (the
+ * visual is identical in both dialects; only the words change).
  */
 export default function NarrativeStatusCard({ telemetry }: { telemetry: TelemetryState }) {
-  const node = telemetry.activeNode ?? "";
-  const label = NODE_LABEL[node] ?? "Present";
+  const { mode } = useLexicon();
+  const thought = useThought(telemetry);
+  const label = useStageLabel(telemetry.activeNode);
   const [dots, setDots] = useState("");
 
   useEffect(() => {
@@ -23,7 +21,7 @@ export default function NarrativeStatusCard({ telemetry }: { telemetry: Telemetr
     return () => window.clearInterval(id);
   }, []);
 
-  const mood = moodWord(telemetry.affect.valence, telemetry.affect.arousal);
+  const mood = moodWord(telemetry.affect.valence, telemetry.affect.arousal, mode);
 
   return (
     <div className="mx-auto w-full max-w-2xl">
@@ -35,11 +33,11 @@ export default function NarrativeStatusCard({ telemetry }: { telemetry: Telemetr
           </span>
           <div>
             <div className="text-sm font-medium tracking-tight">
-              {telemetry.narrative || `${label}…`}
+              {thought || `${label}…`}
               <span className="ml-0.5 inline-block w-4 text-left text-muted-foreground">{dots}</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              {label} · feeling {mood}
+              {label} · {mode === "eng" ? "affect" : "feeling"} {mood}
             </div>
           </div>
         </div>
@@ -70,10 +68,12 @@ function barColor(v: number) {
   return "bg-signal-error";
 }
 
-function moodWord(valence: number, arousal: number) {
-  if (valence > 0.6 && arousal > 0.55) return "energized";
-  if (valence > 0.6) return "content";
-  if (valence < 0.4 && arousal > 0.55) return "unsettled";
-  if (valence < 0.4) return "subdued";
-  return "steady";
+// Same affect state, two dialects: a felt mood word (bio) vs. the signed
+// valence/arousal quadrant it comes from (eng).
+function moodWord(valence: number, arousal: number, mode: "bio" | "eng") {
+  if (valence > 0.6 && arousal > 0.55) return mode === "eng" ? "high +valence" : "energized";
+  if (valence > 0.6) return mode === "eng" ? "+valence" : "content";
+  if (valence < 0.4 && arousal > 0.55) return mode === "eng" ? "high −valence" : "unsettled";
+  if (valence < 0.4) return mode === "eng" ? "−valence" : "subdued";
+  return mode === "eng" ? "near setpoint" : "steady";
 }

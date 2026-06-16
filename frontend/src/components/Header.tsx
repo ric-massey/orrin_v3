@@ -6,6 +6,7 @@ import {
   Circle,
   Clock,
   Database,
+  Eye,
   MessageCircle,
   Network,
   Power,
@@ -26,6 +27,7 @@ interface HeaderProps {
 // progressively deeper views of the same mind, ending in the full research grid.
 // `research: true` rooms get the engineering-dialect toggle (their chrome translates).
 const ROOMS: { path: string; lex: LexId; icon: typeof Activity; research: boolean }[] = [
+  { path: "/watch", lex: "nav_watch", icon: Eye, research: false },
   { path: "/face", lex: "nav_face", icon: MessageCircle, research: false },
   { path: "/cognition", lex: "nav_cognition", icon: BrainIcon, research: true },
   { path: "/life", lex: "nav_life", icon: Activity, research: true },

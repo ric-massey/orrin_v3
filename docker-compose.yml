@@ -27,7 +27,14 @@ services:
       SERPER_API_KEY: ${SERPER_API_KEY:-}
       ORRIN_BACKEND_HOST: "0.0.0.0"
       ORRIN_UI: "1"
+      # Use the web UI (Vite on :5173 + API on :8800). Without this, main.py would
+      # default to the native desktop window, which has no display in a container.
+      ORRIN_UI_DEV: "1"
       ORRIN_UI_OPEN: "0"
+      # Metrics are opt-in (off by default in a source/desktop run). The container
+      # turns them on and pins the port so the published :9100 below actually serves.
+      ORRIN_METRICS: "1"
+      ORRIN_METRICS_PORT: "9100"
     volumes:
       # Named volumes — Docker seeds them from the image's tracked seed state on
       # first run, then persists the live "mind" across restarts. (A bind mount

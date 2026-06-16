@@ -130,12 +130,13 @@ def final_reflection(context: Dict[str, Any] = None) -> str:
         except Exception as _e:
             record_failure("terminal.final_reflection", _e)
 
-    # Keep lifespan.json honest about the artifact we just wrote.
-    try:
-        from cognition.mortality import mark_final_thoughts_written
-        mark_final_thoughts_written()
-    except Exception as _e:
-        record_failure("terminal.final_reflection.flag", _e)
+    # Do NOT set lifespan.json's `final_thoughts_written` here. This reflection runs in
+    # the reaper's dying window — a stall-RESTART, not the natural lifespan deadline —
+    # so flipping the death flag made the NEXT boot show the Death Screen forever (and
+    # would also shadow his genuine end-of-life reflection, since _write_final_thoughts
+    # early-returns once the flag is set). That flag belongs solely to mortality's real-
+    # deadline path (apply_mortality_pressure → _write_final_thoughts). This handoff
+    # reflection is written to FINAL_THOUGHTS above; it is intentionally not "death".
 
     # Close autobiography chapter with final words
     try:

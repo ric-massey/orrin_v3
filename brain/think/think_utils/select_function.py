@@ -1200,6 +1200,65 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         if _route:
             context["_bt_pending"] = {"kind": _gw_now.get("kind"), "route_fns": list(_route.keys())}
 
+    # ── Workspace → action coupling (Fix 2; Redgrave, Prescott & Gurney 1999) ──
+    # The Global Workspace already chose ONE conscious content this cycle. In the
+    # brain, the basal-ganglia selector is driven by the currently salient cortical
+    # representation — the "spotlight" and the motor selector are the SAME
+    # bottleneck. Here they had drifted apart: the workspace winner only biased
+    # selection when it was a Monitor breakthrough (above); for ordinary conscious
+    # content (a feeling, the goal, a percept, a thought) it touched nothing, so
+    # awareness and action were decoupled. This makes the conscious content a real
+    # prior on the action pick, scaled by its salience — a strong additive bias,
+    # NOT a hard override (I7: bias, never preempt). Monitor breakthroughs are
+    # already routed above, so they're skipped here to avoid double-counting.
+    # Disable with ORRIN_WORKSPACE_PRIOR=0.
+    _workspace_prior: Dict[str, float] = {}
+    try:
+        import os as _os_wp
+        if _os_wp.environ.get("ORRIN_WORKSPACE_PRIOR", "1") != "0":
+            _gw_ws  = context.get("global_workspace") or {}
+            _ws_src = str(_gw_ws.get("source", ""))
+            _ws_sal = float(_gw_ws.get("salience", 0.0) or 0.0)
+            if _ws_src and not _ws_src.startswith("monitor:") and _ws_sal > 0.0:
+                # source → the functions that ACT ON that kind of conscious content.
+                _ws_routes = {
+                    "goal":    {"attend_goal": 1.0, "plan_next_step": 0.8, "assess_goal_progress": 0.6},
+                    "affect":  {"reflection": 0.8, "reflect_on_self_beliefs": 0.7, "narrative_update": 0.5},
+                    "thought": {"reflection": 0.8, "narrative_update": 0.6},
+                    "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
+                    "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
+                }.get(_ws_src, {})
+                # Headroom 0.35: strong enough to be a genuine prior (cf. tension 0.15,
+                # ACC recruit ≤0.6), bounded so it never dominates the arg-max alone.
+                _ws_gain = 0.35 * max(0.0, min(1.0, _ws_sal))
+                for _wfn, _wwt in _ws_routes.items():
+                    if _wfn in actions:
+                        _workspace_prior[_wfn] = _ws_gain * _wwt
+    except Exception as _wpe:
+        record_failure("select_function.workspace_prior", _wpe)
+
+    # ── Unconscious damp (Fix 1 teeth; Dehaene 2014 ignition is all-or-none) ────
+    # On a non-ignited cycle the loop stayed in low-power default mode: deliberate
+    # System-2 functions should not win the slot. Damp the expensive/generative
+    # deliberate functions so a quiet cycle drifts toward cheap default-mode work
+    # (light reflection, rest) instead of spinning up planning/codegen/research.
+    # Graded penalty, never a lockout — the floor still forces ignition eventually.
+    # Disable with ORRIN_IGNITION_GATE=0 (the gate itself sets _conscious_cycle).
+    _unconscious_damp: Dict[str, float] = {}
+    try:
+        if context.get("_conscious_cycle") is False:
+            _EFFORTFUL_FNS = frozenset({
+                "plan_next_step", "plan_self_evolution", "redirect_goal_plan",
+                "adapt_subgoals", "generate_intrinsic_goals", "decide_to_write_code",
+                "write_cognitive_function", "skill_synthesis", "self_review",
+                "web_research", "look_outward", "search_own_files",
+            })
+            for _efn in _EFFORTFUL_FNS:
+                if _efn in actions:
+                    _unconscious_damp[_efn] = -0.30
+    except Exception as _ude:
+        record_failure("select_function.unconscious_damp", _ude)
+
     # Tension boost: when active tensions exist, nudge resolution-oriented functions
     _tension_boost: Dict[str, float] = {}
     try:
@@ -1582,6 +1641,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         s_outward   = float(_outward_boost.get(name, 0.0))
         s_goal_recruit = float(_goal_recruit.get(name, 0.0))  # §4.2 goal-derived
         s_recruit      = float(_recruit_boost.get(name, 0.0))  # ACC→action recruitment
+        s_workspace    = float(_workspace_prior.get(name, 0.0))   # Fix 2: awareness→action
+        s_uncon_damp   = float(_unconscious_damp.get(name, 0.0))  # Fix 1: quiet-cycle damp
         # Directed exploration: lift actions whose payoff is currently uncertain
         # (associability above its neutral prior). Clamped at 0 so confidently
         # modelled actions are neither bonused nor penalised (Gershman 2018).
@@ -1594,7 +1655,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             if _nuse < 8:
                 s_curio = 0.18 * (_expl_drive - 0.5) * (1.0 - _nuse / 8.0)
 
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_goal_recruit + s_recruit + s_explore + s_curio + s_evc
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_goal_recruit + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
         # here: pursue_committed_goal is no longer a deliberate candidate (it runs in
@@ -1966,6 +2027,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         "energy_state": str(context.get("energy_state") or "medium"),
         "energy_boosts": {k: round(v, 3) for k, v in _energy_boost.items() if abs(v) > 0.01},
         "neuro_boosts":  {k: round(v, 3) for k, v in _neuro_boost.items()  if abs(v) > 0.01},
+        "workspace_prior": {k: round(v, 3) for k, v in _workspace_prior.items() if abs(v) > 0.01},
+        "conscious_cycle": context.get("_conscious_cycle", True),
         "user_spoke": _user_spoke,
         "helpfulness_boosts": {k: round(v, 3) for k, v in _helpfulness_boost.items() if abs(v) > 0.01},
         "candidates": list(actions),

@@ -604,9 +604,43 @@ try:
         return 1024
     def _get_cpu_util() -> float:
         return _proc.cpu_percent(interval=None) / 100.0
+    # Host-machine signals (outward-looking, not Orrin's own process).
+    def _get_disk_free_bytes() -> float:
+        return float(_psutil.disk_usage("/").free)
+    def _get_swap_used_bytes() -> float:
+        return float(_psutil.swap_memory().used)
+    def _get_vmem_percent() -> float:
+        return float(_psutil.virtual_memory().percent)
 except ImportError:
     _get_rss_mb = _get_fd_open = _get_fd_limit = None  # type: ignore[assignment]
     _get_sock_open = _get_sock_limit = _get_cpu_util = None  # type: ignore[assignment]
+    _get_disk_free_bytes = _get_swap_used_bytes = _get_vmem_percent = None  # type: ignore[assignment]
+
+
+# Host-resource escalation → console/dashboard. These are NON-fatal: the host
+# guard never kills Orrin (that wouldn't reclaim host swap/disk), it just surfaces
+# the pressure and, at the hard line, pauses the heavy cycles.
+def _host_flag(state: str, msg: str) -> None:
+    try:
+        from backend.telemetry_bridge import get_bridge
+        tb = get_bridge()
+        level = "warn" if state != "ok" else "info"
+        tb.log(level, "host", msg)
+        tb.update(extra={"host_resource_state": state, "host_resource_detail": msg})
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+
+def _host_on_warn(msg: str) -> None:
+    print(f"[host] WARN {msg}")
+    _host_flag("warn", msg)
+
+def _host_on_pause(msg: str) -> None:
+    print(f"[host] PAUSE heavy cycles — {msg}")
+    _host_flag("pause", msg)
+
+def _host_on_resume(msg: str) -> None:
+    print(f"[host] resume — {msg}")
+    _host_flag("ok", msg)
 
 try:
     tup = start_watchdogs(
@@ -622,6 +656,12 @@ try:
         get_sock_open=_get_sock_open,
         get_sock_limit=_get_sock_limit,
         get_cpu_util=_get_cpu_util,
+        get_disk_free_bytes=_get_disk_free_bytes,
+        get_swap_used_bytes=_get_swap_used_bytes,
+        get_vmem_percent=_get_vmem_percent,
+        host_on_warn=_host_on_warn,
+        host_on_pause=_host_on_pause,
+        host_on_resume=_host_on_resume,
     )
 except TypeError:
     tup = start_watchdogs(
@@ -637,6 +677,7 @@ except TypeError:
     lifespan,
     no_goals,
     mem_guard,
+    host_guard,
     repeat_guard,
     stop_evt,
 ) = tup
@@ -885,10 +926,21 @@ def _stop_cognition() -> None:
     print("[main] cognition stopped; UI still running.")
 
 
+_shutting_down = False  # guards _graceful_shutdown against double-invocation
+
+
 def _graceful_shutdown() -> None:
     """Full quit: stop every subsystem in dependency order, flush state, and tear
     down the UI. Runs on window-close / Ctrl+C. A watchdog force-exits if a wedged
     brain thread keeps shutdown from completing, so quitting always terminates."""
+    global _shutting_down
+    if _shutting_down:
+        return  # window-close + signal can both reach here; run teardown once
+    _shutting_down = True
+    # Runs on the MAIN thread (the signal handler only sets a flag), so I/O here is
+    # safe. This is the line whose absence in the run log proved a stop had skipped
+    # graceful shutdown entirely.
+    print("[main] graceful shutdown — stopping subsystems…", flush=True)
     # Watchdog: if teardown stalls (e.g. a daemon thread won't honor stop), force a
     # clean exit so the window never lingers and run_orrin.sh sees a 0 (no restart).
     _timeout = float(os.environ.get("ORRIN_SHUTDOWN_TIMEOUT_S", "12"))
@@ -1094,30 +1146,30 @@ def _notify_still_thinking() -> None:
 
 
 def _on_signal(signum, _frame) -> None:
-    """Ctrl+C / SIGTERM → request shutdown by setting the stop flags directly.
+    """Ctrl+C / SIGTERM → request shutdown by setting the stop Events ONLY.
 
-    We do NOT rely on the default SIGINT→KeyboardInterrupt path: a bare `except:`
-    somewhere in the heartbeat's call chain can swallow that exception, so a single
-    Ctrl+C would be eaten and never reach the shutdown. Setting an Event from the
-    handler can't be swallowed — the pulse loop's `while not _main_stop.is_set()`
-    sees it and unwinds into _graceful_shutdown (with its force-exit watchdog)."""
-    try:
-        name = signal.Signals(signum).name
-    except Exception:
-        name = str(signum)
-    print(f"\n[main] {name} received; shutting down…", flush=True)
+    A signal handler MUST be async-signal-safe. It can fire while the main thread
+    holds a non-reentrant lock — e.g. mid-`print` holding the stdout buffer lock
+    (the pulse loop prints `[main] pulse=…` every 100 ticks). Doing I/O here
+    (print, window.destroy, writing the clean-shutdown marker) can therefore
+    deadlock or raise a reentrant-call error from inside the handler, which is
+    exactly how a stop once died as exit 130 with NO graceful shutdown and got
+    mis-recorded as a crash (then needlessly auto-restarted by run_orrin.sh).
+
+    So we do the one safe thing — set Events (the documented signal-handler
+    pattern) — and let the main thread observe the flag and run the I/O-heavy
+    teardown on a clean stack:
+      • fallback/headless: `_pulse_loop`'s `while not _main_stop.is_set()` exits
+        → `finally: _graceful_shutdown()` (prints, marks the run clean, exits 0).
+      • bridge mode: a shutdown-watcher thread (started in run()) waits on
+        _main_stop and destroys the window so webview.start() returns into the
+        same graceful path."""
     _main_stop.set()
     try:
         stop_evt.set()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    # Bridge window: closing it is what returns webview.start(); destroy it so the
-    # main thread (blocked in the GUI loop) falls through to graceful shutdown.
-    try:
-        if _bridge is not None and getattr(_bridge, "_window", None) is not None:
-            _bridge._window.destroy()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
+    except Exception:
+        # Handler context — never do logging I/O here; the main thread reports.
+        pass
 
 
 def run() -> None:
@@ -1140,7 +1192,7 @@ def run() -> None:
                 "goals_api": _goals_api,
                 "memory_daemon": daemon,
                 "stop_event": stop_evt,
-                "cycle_sleep": float(os.environ.get("ORRIN_CYCLE_SLEEP", "10")),
+                "cycle_sleep": float(os.environ.get("ORRIN_CYCLE_SLEEP", "1")),
             },
             name="orrin-brain",
             daemon=True,
@@ -1169,6 +1221,33 @@ def run() -> None:
     # thread (the UI is a browser tab) and wait on Ctrl+C.
     _main_stop.clear()
 
+    # ORRIN_ONCE: the cognitive loop breaks after a single tick, but the process
+    # otherwise lives on (pulse heartbeat + daemons), so a "single-cycle" run never
+    # returns on its own. Watch the loop and, once that one cycle is done, trip
+    # _main_stop so both the bridge and headless paths fall into the normal graceful
+    # shutdown (whose own watchdog forces exit if teardown stalls). Armed AFTER
+    # _main_stop.clear() above so the clear can't race the watcher. Only active when
+    # ORRIN_ONCE=1, so steady-state is untouched. The watcher stops on whichever
+    # comes first — the loop thread ending, the cognitive cycle counter advancing, or
+    # a hard deadline — so a slow/blocking loop teardown can't strand the run.
+    if os.getenv("ORRIN_ONCE") == "1" and _cog_thread is not None:
+        print("[brain] ORRIN_ONCE: will stop the process after one cognitive cycle")
+        _once_start_cycles = get_cycle_count()
+        _once_deadline = time.time() + 120.0
+
+        def _once_watcher() -> None:
+            while time.time() < _once_deadline:
+                if not _cog_thread.is_alive():
+                    break
+                if get_cycle_count() > _once_start_cycles:
+                    break
+                time.sleep(0.2)
+            print("[brain] ORRIN_ONCE: single cycle complete → stopping")
+            _main_stop.set()
+        threading.Thread(
+            target=_once_watcher, name="orrin-once-watcher", daemon=True
+        ).start()
+
     if _BRIDGE_MODE and _bridge_window_file:
         import webview  # available — bridge mode was only chosen if importable
         _pulse_thread = threading.Thread(
@@ -1190,6 +1269,20 @@ def run() -> None:
                 "Orrin", url=_bridge_window_file, js_api=_bridge, width=1440, height=900
             )
             _bridge.attach_window(window)
+
+            # Signal → window teardown, off the handler stack. _on_signal only sets
+            # _main_stop (it must stay I/O-free); this watcher does the destroy that
+            # returns webview.start() into _graceful_shutdown. Daemon so it can't keep
+            # the process alive on its own.
+            def _shutdown_watcher() -> None:
+                _main_stop.wait()
+                try:
+                    window.destroy()  # idempotent enough; webview ignores a re-destroy
+                except Exception:
+                    pass
+            threading.Thread(
+                target=_shutdown_watcher, name="orrin-shutdown-watcher", daemon=True
+            ).start()
 
             # Always-thinking: a status-bar tray (F1) lets the user re-show or quit while
             # the window is closed and the brain keeps running. If the tray comes up, the

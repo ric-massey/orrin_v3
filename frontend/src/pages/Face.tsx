@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTelemetryState } from "@/App";
 import NarrativeStatusCard from "@/components/face/NarrativeStatusCard";
+import { useThought } from "@/lib/thoughts";
 import { apiGet, apiPost, transportFetch } from "@/lib/transport";
 
 interface Message {
@@ -33,6 +34,7 @@ function loadStoredMessages(): Message[] {
 
 export default function Face() {
   const telemetry = useTelemetryState();
+  const thought = useThought(telemetry);
   const [messages, setMessages] = useState<Message[]>(loadStoredMessages);
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -147,7 +149,7 @@ export default function Face() {
               {messages.map((m) => (
                 <Bubble key={m.id} role={m.role} text={m.text} />
               ))}
-              {thinking && <ThinkingBubble narrative={telemetry.narrative} />}
+              {thinking && <ThinkingBubble narrative={thought} />}
             </div>
           )}
         </div>

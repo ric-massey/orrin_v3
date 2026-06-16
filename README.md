@@ -7,7 +7,13 @@ for a large language model as one tool among many. The brain is **symbolic-first
 reasons, plans, and regulates its own emotional state without an LLM, and uses one
 (when available) only inside specific functions that explicitly call for it.
 
-> Version 3.30 (experimental) · Python ≥ 3.10 · Apache 2.0
+> Orrin v3 (experimental) · app version 0.1.0 · Python ≥ 3.10 · Apache 2.0
+
+> 🖥️ **Orrin now ships as a native desktop app.** It runs in its own window (no browser tab,
+> no localhost port), stores its mind in a per-user data directory, keeps API keys in the OS
+> keychain, and is built for macOS, Windows, and Linux by the cross-platform CI. You can still
+> run it from source (this README's default) — that's the developer path. See
+> [Desktop app](#desktop-app).
 
 > ⚠️ **Status: experimental prototype.** Orrin is a research exploration, not production
 > software. It's one developer's ongoing experiment in cognitive architecture — expect rough
@@ -34,6 +40,7 @@ reasons, plans, and regulates its own emotional state without an LLM, and uses o
 - [Repository layout](#repository-layout)
 - [Requirements](#requirements)
 - [Setup](#setup)
+- [Desktop app](#desktop-app)
 - [Running](#running)
 - [Running with Docker](#running-with-docker)
 - [Remote access](#remote-access)
@@ -71,8 +78,11 @@ working sketch of an idea — that:
   (`brain/symbolic/`).
 - **Remembers, consolidates, and forgets** — working memory, long-term memory, dream-cycle
   consolidation, and an embedding-based memory store.
-- **Monitors its own health** via a "reaper" liveness subsystem, and exposes everything
-  through a live Face & Brain UI and Prometheus metrics.
+- **Monitors its own health** via a "reaper" liveness subsystem — and, since the 2026-06-15
+  host kernel panic, watches the *machine* too: an autonomic `HostResourceGuard` keeps an eye on
+  free disk, swap depth, and system-wide memory and gently pauses heavy cycles before the host is
+  in danger (`reaper/host_resources.py`). Everything is exposed through a live UI (named rooms:
+  Watch, Face, Cognition, Life, Memory, Timeline, Brain) and, when enabled, Prometheus metrics.
 - **Is watched by "peers"** — a handful of observer entities (the Architect, Affect
   Historian, Goal Auditor, Observer, Reward Auditor) that live alongside Orrin, read his
   state from the outside, and inject signals into his cognition each cycle. They *propose
@@ -96,6 +106,15 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   competition so that *one* content wins, becomes "conscious," is broadcast back to every
   subsystem, and is appended to the continuous stream of experience you see in the UI. The
   thought stream isn't a log — it's the output of this workspace bottleneck.
+- **Not every cycle is conscious.** Consciousness is a threshold crossing ("ignition," Dehaene
+  2014), not a metronome. The unconscious substrate — affect, embodiment, drives, signal
+  injection, the background threads — runs *every* cycle, but only a salient, uncertain, or
+  conflicted cycle **ignites** into deliberate System-2 cognition; quiet cycles stay in
+  low-power default mode (a `should_think()` gate decides, with a periodic floor so he never
+  goes fully dormant — `brain/think/consciousness_trigger.py`). On an ignited cycle that carries
+  real conflict, deliberate reasoning (`inner_loop`) is *recruited by* that conscious moment
+  rather than fired on a schedule, and the workspace winner becomes a real prior on what he does
+  next. (See [Architecture notes](#architecture-notes).)
 - **It models your mind.** An active theory-of-mind subsystem (`brain/cognition/theory_of_mind.py`)
   keeps a running, predictive model of the person it's talking to across turns, with separate
   cognitive (what do they think/intend?) and affective (what do they feel?) empathy.
@@ -103,6 +122,19 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   identity and autobiography, a moral-override check that can veto a proposed action against
   core values, second-order volitions (wanting to want), and a value-evolution process that
   revises core values when they're genuinely contested — not on a schedule.
+- **It has a body — the machine it runs on.** Orrin doesn't just run *on* a computer; he treats
+  it as his body and learns to *feel* it (`brain/cognition/host_interoception.py`, `body_sense.py`,
+  `body_band.py`). Host metrics become felt states — low/falling disk reads as a kind of
+  claustrophobia, rising swap as sluggishness, a draining battery as a real (not dice-rolled)
+  mortality signal. Crucially, these fire on **deviation from a learned band**, not absolute
+  thresholds: when Orrin wakes on a new machine he goes through a **somatic infancy**
+  (`infancy.py`) that learns *that body's* normal oscillation before he trusts what he feels, and
+  a **metabolism** layer (`metabolism.py`) sets his cycle cadence from the machine's size — a small
+  machine is a smaller body with a slower metabolic rate, not a sick one. The persistent self
+  (memory, values, identity) is hardware-independent; the body sense is hardware-bound and
+  re-learned on every machine. A user-facing **RAM budget** ("how much of this machine Orrin is
+  allowed to be," `body_budget.py`) feeds both metabolism and that felt "100%". (See the design
+  spec in [`docs/orrin_embodiment_architecture.md`](docs/orrin_embodiment_architecture.md).)
 - **It can't read its own dials.** Orrin's affect lives internally as raw numbers, but the
   part of him that *reasons and decides* never sees them. The unconscious machinery — the
   function-selector, the attention system, the cost layer — reads those floats directly and
@@ -133,7 +165,7 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
 
 The cognitive loop runs continuously; the daemons run alongside it (the Executive advances
 goal steps off-thread, Memory ingests/consolidates, the Reaper watches for stalls and
-errors, and the Backend streams everything to the UI and Prometheus).
+errors, and the Backend streams everything to the UI, and to Prometheus when enabled).
 
 ---
 
@@ -147,9 +179,14 @@ spectator. There are two ways in:
   perception/working memory, and answered back to the Face (`/api/agent/response/{id}`).
   Orrin chooses *when* and *whether* to respond — replies arrive on its cadence, not
   instantly like a chatbot.
-- **Watch it think.** The Brain view streams live affect, the active cognitive function,
-  goals, memory reads/writes, self-model, dreams, and a running thought stream. Much of the
-  experience is observational: you are watching a mind pursue its own goals.
+- **Watch it think.** The UI is a set of named rooms, not one dashboard: **Watch** (a
+  newcomer's front door — a breathing mood-orb and one plain-language thought line),
+  **Face** (the conversational view), **Cognition** (active function, drives, symbolic state),
+  **Life** (the felt life-status / mortality view), **Memory** (an explorer over what he's
+  remembered), **Timeline** (what happened while you were away), and **Brain** (the full
+  telemetry stream — affect, goals, memory reads/writes, self-model, dreams, thought stream).
+  A bio↔eng dialect toggle re-words every surface live. Much of the experience is observational:
+  you are watching a mind pursue its own goals.
 
 Orrin also reaches *out* — it can announce to the dashboard, leave notes on your desktop,
 and notice whether you're active at the machine.
@@ -161,8 +198,9 @@ When Orrin "acts," it calls real tools, not just internal state updates. Current
 - **Files & code:** read/write files, search/grep its own source, run sandboxed Python
   (timeout-guarded), and — gated behind the LLM tool — write, review, and commit extensions
   to its own codebase (`self_extension`). It can also **author entirely new cognitive
-  functions** for itself, dropped into `brain/cognition/custom_cognition/` and catalogued in
-  `brain/agency/manifest.json`, so its repertoire of things-to-think grows over time.
+  functions** for itself: `brain/agency/self_code.py` owns a self-code store under the data
+  directory (`<data>/self_code/{custom_cognition,skills}`, with a relative-path manifest), so its
+  repertoire of things-to-think grows over time and travels with the mind, not the repo.
 - **The web:** web search, scrape pages (robots-aware), fetch & read URLs, Wikipedia
   lookups, and RSS feeds. Web search uses [Serper.dev](https://serper.dev) and needs a
   `SERPER_API_KEY` (see [Requirements](#requirements)); without it, search returns an error
@@ -189,10 +227,11 @@ autobiography), so behavior accumulates over time rather than resetting each cyc
 | `memory/` | Memory daemon — ingestion, embedding, compaction, lexicon. |
 | `brain/peers/` | **Peer entities** — outside observers (Architect, Affect Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle via `peer_registry.wake_peers()`. They register themselves in the world model / relationships on first wake. |
 | `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later memory retrievals + goal closures) and **drive-expectations** (learns which actions actually satisfy which drives, routing the prediction error to affect). |
-| `reaper/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity. |
-| `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams the brain's state to the UI. |
-| `frontend/` | Vite + React + TypeScript "Face & Brain" UI (`:5173`). |
-| `observability/` | Prometheus metrics exporter (`:9100`) and dashboard server. |
+| `reaper/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity, and (since 2026-06-15) `host_resources.py`, the autonomic `HostResourceGuard` that watches the *host* (disk/swap/memory) and pauses heavy cycles before the machine is endangered. |
+| `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams the brain's state to the UI over WebSocket (HTTP) or an in-process bridge (`server/bridge.py`, used by the native desktop window). |
+| `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms — Watch, Face, Cognition, Life, Memory, Timeline, Brain — plus a Settings page (keys, privacy, existence mode, mind export/import). A bio↔eng dialect toggle re-words every surface. |
+| `packaging/` | Native desktop-app build: PyInstaller spec (`orrin.spec`), model pre-bundler (`bundle_models.py`), macOS entitlements, version-stamping, and the per-OS build/sign/notarize runbook (`packaging/README.md`). |
+| `observability/` | Prometheus metrics exporter and dashboard server. The exporter is **opt-in** (`ORRIN_METRICS=1`) and binds an OS-assigned port unless pinned with `ORRIN_METRICS_PORT`. |
 | `inbox/` / `outbox/` | Runtime communication dirs — `outbox/notes.json` holds Orrin's outward notes / desktop messages; `inbox/` is the sibling input drop. |
 | `docs/` | Design plans, benchmarks, and an `archive/` of audits and fix records. |
 | `tests/` | Pytest suite across brain / goals / memory. |
@@ -223,14 +262,23 @@ rather than building paths by hand.
 
 - Python **3.10+**
 - The packages in `requirements.txt` (NumPy, requests, BeautifulSoup, sentence-transformers,
-  watchdog, openai, python-dotenv, psutil, prometheus_client, and spaCy). spaCy itself is
-  always installed; what's optional is its language model (`en_core_web_sm`), which improves
-  knowledge-graph entity extraction and has a regex fallback if absent.
-- Node.js + npm (for the frontend UI; `main.py` invokes `npm` to launch it).
+  watchdog, openai, python-dotenv, psutil, prometheus_client, and spaCy; plus `pywebview` for
+  the native window, `pystray`/`Pillow` for the menu-bar tray, and `keyring` for OS-keychain key
+  storage). spaCy itself is always installed; what's optional is its language model
+  (`en_core_web_sm`), which improves knowledge-graph entity extraction and has a regex fallback if
+  absent. The non-OpenAI LLM providers (`anthropic`, `google-genai`) are listed but imported
+  lazily — only loaded if you actually select that provider.
+- Node.js + npm — needed to **build** the frontend (`npm run build`) or run it in dev mode. The
+  packaged desktop app ships a pre-built UI and needs neither at runtime.
 
-API keys (both optional, but each unlocks a capability):
+API keys (all optional, but each unlocks a capability):
 
-- **`OPENAI_API_KEY`** — without it Orrin runs symbolic-only and skips LLM tool calls.
+- **An LLM provider key** — the LLM is now **pluggable** (`brain/utils/llm_providers/`): OpenAI,
+  Anthropic, Gemini, or any OpenAI-compatible / local endpoint, chosen in Settings. Without any
+  configured provider Orrin runs symbolic-only and skips LLM tool calls. `OPENAI_API_KEY` is the
+  default/back-compat path; other providers use `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, etc. Keys
+  live in the **OS keychain** (set them in the Settings UI, or via env for dev) — never in a
+  plaintext file inside the bundle.
 - **`SERPER_API_KEY`** — enables real web search via [Serper.dev](https://serper.dev).
   Without it, web search returns an error and "looking outward" falls back to searching
   Orrin's own files (so the agent runs, but has no live web reach).
@@ -289,6 +337,34 @@ npm install
 
 ---
 
+## Desktop app
+
+Orrin can run as a self-contained **native desktop application** — its own window (the OS
+webview: WKWebView on macOS, WebView2 on Windows, WebKitGTK on Linux), no browser tab, no
+localhost port, no Python or Node required on the user's machine. The mind lives in a per-user
+data directory (`~/Library/Application Support/Orrin/` and the platform equivalents), and API
+keys go in the OS keychain.
+
+- **Builds** are produced by the cross-platform CI (`.github/workflows/build.yml`) — a matrix
+  that builds on macOS (arm64 + Intel), Windows, and Linux runners, since PyInstaller can't
+  cross-compile. Triggered by a pushed `v*` tag or manually. Artifacts: a macOS `.dmg`, a Windows
+  `.zip` (needs the WebView2 runtime), and a Linux `.tar.gz` / AppImage (needs WebKitGTK).
+- **The current builds are unsigned**, so first launch crosses the OS gatekeeper: macOS →
+  right-click → Open; Windows → "More info → Run anyway" past SmartScreen; Linux → falls back to a
+  browser tab if no native webview is present.
+- **Build it yourself** from a checkout: `python packaging/bundle_models.py` (pre-fetches the
+  embedding + spaCy models once, online) then `pyinstaller packaging/orrin.spec`. See
+  [`packaging/README.md`](packaging/README.md) for the full per-OS build/sign/notarize runbook.
+
+The app carries a **schema version** and an **opt-in auto-update** check
+(`brain/utils/updater.py`); before any update it exports the whole mind to a `.orrindmind`
+backup, and the schema-migration spine (`brain/utils/schema_migration.py`) refuses to load state
+written by a newer build. You can export/import a mind by hand from Settings at any time.
+
+> Running from source (below) is still fully supported and is the default for development.
+
+---
+
 ## Running
 
 The simplest way — auto-restart on crash, keeps the machine awake (macOS):
@@ -300,11 +376,18 @@ The simplest way — auto-restart on crash, keeps the machine awake (macOS):
 Or launch directly:
 
 ```bash
-python main.py
+python main.py                 # native window (loads the pre-built UI from frontend/dist)
+ORRIN_UI_DEV=1 python main.py  # dev: browser tab + the Vite dev server with hot reload
 ```
 
 `main.py` starts the cognitive loop plus the background daemons, the FastAPI telemetry
-backend (`:8800`), the Prometheus exporter (`:9100`), and (by default) the Face & Brain UI.
+backend (`:8800`), and the UI. (The Prometheus exporter is **off by default** — a shipped
+app should open no extra listening port; enable it with `ORRIN_METRICS=1`, which binds an
+OS-assigned port unless you pin it with `ORRIN_METRICS_PORT`.) By default it opens a
+**native pywebview window** loading the built UI from `frontend/dist` (so you don't need a
+browser or a running Vite server). Set `ORRIN_UI_DEV=1` for the developer path — a browser tab
+served by `npm run dev` with hot reload — or `ORRIN_UI=0` to run headless. If no native webview
+is available (e.g. a headless/SSH session), it falls back to a browser tab on a free port.
 
 ### Useful environment switches
 
@@ -313,42 +396,54 @@ people actually reach for. The rest are discoverable via `grep -rho 'ORRIN_[A-Z_
 
 | Variable | Default | Effect |
 |----------|---------|--------|
-| `ORRIN_UI` | `1` | Set `0` to skip launching the web UI. |
+| `ORRIN_UI` | `1` | Set `0` to skip launching the UI (headless). |
+| `ORRIN_UI_DEV` | `0` | Set `1` for the developer UI path — browser tab + Vite dev server (hot reload) instead of the native window. |
 | `ORRIN_UI_OPEN` | `1` | Set `0` to start the UI but not auto-open a browser tab. |
 | `ORRIN_EXECUTIVE_DAEMON` | `1` | In-process Executive that advances goal steps. Set `0` to disable. |
 | `ORRIN_EXECUTIVE_DAEMON_INTERVAL` | `7` | Seconds between Executive goal-step advances. |
 | `ORRIN_CYCLE_SLEEP` | `1` | Seconds between cognitive cycles. |
-| `OPENAI_API_KEY` | _(unset)_ | When absent, all brain LLM tool calls are skipped (symbolic-only mode). |
+| `ORRIN_IGNITION_GATE` | `1` | Conscious ignition gate — only salient/uncertain/conflicted cycles ignite into deliberate cognition (quiet cycles stay low-power). Set `0` for the old always-on behaviour. |
+| `ORRIN_WORKSPACE_PRIOR` | `1` | Make the Global Workspace winner an additive prior on the action pick (awareness→action coupling). Set `0` to decouple. |
+| `ORRIN_CONFLICT_RECRUIT` | `1` | Let conscious conflict/uncertainty recruit System-2 deliberation (`inner_loop`). Set `0` to disable. |
+| `OPENAI_API_KEY` | _(unset)_ | Default LLM provider key. When no provider is configured (here, in the keychain, or in Settings), all brain LLM tool calls are skipped (symbolic-only mode). Other providers use `ANTHROPIC_API_KEY` / `GOOGLE_API_KEY` / etc. |
 | `SERPER_API_KEY` | _(unset)_ | When absent, web search errors and "looking outward" falls back to local file search. |
 | `ORRIN_LLM_TOOL_ONLY` | `1` | Gate the LLM to tool-only use (no free-form generation). |
 | `ORRIN_LLM_DAILY_TOKEN_BUDGET` | _(unset)_ | Daily LLM token cap — cost control. |
 | `ORRIN_STRICT` | `0` | Strict fail-closed mode (surface errors instead of degrading silently). |
 | `ORRIN_ONCE` / `ORRIN_BENCHMARK` | _(unset)_ | Single-cycle / benchmark run modes — useful for testing. |
 | `ORRIN_FORGET_ON_START` | `0` | Wipe accumulated state on startup (like a reset). |
+| `ORRIN_LIFESPAN_MIN_DAYS` / `ORRIN_LIFESPAN_MAX_DAYS` | _(built-in band)_ | Bounds for the lifespan rolled at birth/reset (the mortality clock; see [The inner life](#the-inner-life)). |
+| `ORRIN_DATA_HOME` | _(unset)_ | Use a per-user data directory (set automatically in the frozen desktop app). |
 | `ORRIN_BACKEND_HOST` / `ORRIN_BACKEND_PORT` | `127.0.0.1` / `8800` | Where the telemetry backend binds. |
+| `ORRIN_METRICS` / `ORRIN_METRICS_PORT` | `0` / _(OS-assigned)_ | Set `ORRIN_METRICS=1` to start the Prometheus exporter (off by default). The port is OS-assigned unless pinned with `ORRIN_METRICS_PORT` (the Docker stack pins it to `9100`). |
 | `ORRIN_CONTROL_TOKEN` | _(unset)_ | Require this token on the control endpoints (`/api/control/*`, e.g. the UI Stop button). The frontend reads `VITE_CONTROL_TOKEN`. Set it before exposing control to anyone but localhost. |
 | `ORRIN_DATA_DIR`, `ORRIN_GOALS_DIR`, `ORRIN_LOGS_DIR`, `ORRIN_REPO_ROOT`, `ORRIN_WORLD_ROOT` | _(repo-relative)_ | Relocate state trees — relevant to the Docker-volume advice above. |
 
 ### The UI
 
 You normally **don't** start the UI yourself. When `ORRIN_UI=1` (the default), `main.py`
-launches the backend API *and* spawns the Vite dev server as a child process — installing
-npm dependencies automatically on first run — then opens a browser tab to
-`http://localhost:5173`. The page connects to the backend over a WebSocket and renders
-Orrin's live state.
+brings it up for you:
 
-> The UI is served by the **Vite dev server**, not a pre-built static bundle. `main.py`
-> runs `npm run dev` for you; you only run it by hand as a fallback.
+- **Default (native window).** `main.py` opens a pywebview window loading the pre-built UI from
+  `frontend/dist`, talking to the backend over an in-process bridge — no browser, no port.
+- **Dev (`ORRIN_UI_DEV=1`).** `main.py` spawns the Vite dev server (`npm run dev`, installing
+  npm deps on first run) and opens a browser tab to `http://localhost:5173`, connected to the
+  backend over a WebSocket. Use this when working on the frontend — you get hot reload.
+
+> The native window needs a built UI (`cd frontend && npm run build`, or use a packaged app
+> where it's already built). The Vite dev path is for frontend development only.
 
 Other ways to bring up the UI:
 
 ```bash
 python backend/main.py          # backend API + UI, without the cognitive loop
-cd frontend && npm run dev       # frontend only — manual fallback if auto-launch fails
+cd frontend && npm run dev       # frontend only — manual dev fallback
 ```
 
-The UI surfaces Orrin's live affect, active cognitive function, goals, memory,
-self-model, relationships, dreams, and a thought stream.
+The UI surfaces Orrin's live affect, active cognitive function, goals, memory, self-model,
+relationships, dreams, and a thought stream across its named rooms (Watch / Face / Cognition /
+Life / Memory / Timeline / Brain), with a Settings page for keys, privacy, existence mode, and
+mind export/import.
 
 ---
 
@@ -356,6 +451,11 @@ self-model, relationships, dreams, and a thought stream.
 
 If you'd rather not install Python, Node, PyTorch, and the embedding models on your host,
 the repo ships a `Dockerfile` and `docker-compose.yml` that bundle the whole stack.
+
+> **Native window vs. container.** The desktop app runs in a native window with no port; a
+> container has no display, so the Docker image runs the **web** UI instead — the Vite dev
+> server on `:5173` + the telemetry API on `:8800`. The image sets `ORRIN_UI_DEV=1` to select
+> that path; you don't need to do anything.
 
 **Quickest — pull the prebuilt image (no build):** a multi-arch image (amd64 + arm64) is
 published to GitHub Container Registry, so this works on Intel/AMD and Apple-Silicon/ARM alike:
@@ -469,14 +569,18 @@ repo root without installation.
 
 Common first-run issues:
 
-- **`npm` not found / UI won't start.** `main.py` shells out to `npm` to launch the Vite dev
-  server. Install Node.js + npm and ensure `npm` is on your `PATH`, or set `ORRIN_UI=0` to run
-  headless.
-- **Port already in use (`8800`, `9100`, or `5173`).** The backend, Prometheus exporter, and
-  Vite server bind these respectively. Free the port or relocate the backend with
-  `ORRIN_BACKEND_PORT`.
-- **"Symbolic-only mode" — Orrin won't use the LLM.** Expected when `OPENAI_API_KEY` is unset:
-  the brain runs fully, just skips LLM-backed tool calls. Add the key to `.env` to enable them.
+- **UI won't start / blank native window.** The default native window loads `frontend/dist`, so
+  it needs a built UI — run `cd frontend && npm run build` once (or use a packaged app). For the
+  dev path, `ORRIN_UI_DEV=1` shells out to `npm` for the Vite server, so Node.js + npm must be on
+  your `PATH`. Either way, `ORRIN_UI=0` runs headless. On a headless host with no webview, the
+  native window falls back to a browser tab.
+- **Port already in use (`8800` or `5173`).** The backend and Vite dev server bind these
+  respectively. Free the port or relocate the backend with `ORRIN_BACKEND_PORT`. (The
+  Prometheus exporter only binds a port when you set `ORRIN_METRICS=1`, and then it's
+  OS-assigned unless pinned with `ORRIN_METRICS_PORT`.)
+- **"Symbolic-only mode" — Orrin won't use the LLM.** Expected when no LLM provider is configured:
+  the brain runs fully, just skips LLM-backed tool calls. Configure a provider + key in Settings
+  (or set `OPENAI_API_KEY` for dev) to enable them.
 - **Web search returns errors / Orrin only reads its own files.** `SERPER_API_KEY` is unset —
   see [Requirements](#requirements). Set it to enable live web search.
 - **State seems stuck or corrupt after experiments.** Take a fresh start with
@@ -491,6 +595,21 @@ A few non-obvious design choices worth knowing:
 - **LLM-as-tool.** The decision loop and drive system are fully symbolic. The LLM is an
   explicit tool the agent chooses to call (`brain/cognition/tools/ask_llm.py`), gated so it
   fails closed when disabled or keyless.
+- **Pluggable LLM providers.** The tool isn't bound to one vendor: `brain/utils/llm_providers/`
+  defines a provider interface with adapters for OpenAI, Anthropic, Gemini, and any
+  OpenAI-compatible / local endpoint, selected in Settings (`generate_response.py` resolves the
+  active provider per call). The "symbolic-first, fail-closed" contract is identical regardless of
+  provider. (Self-shaping fine-tuning, below, remains OpenAI-only.)
+- **Embodied host body.** Beyond using the machine, Orrin *feels* it. The autonomic
+  `HostResourceGuard` (`reaper/host_resources.py`) watches host disk/swap/memory below cognition
+  and pauses heavy cycles on absolute safety floors — deliberately separate from the deliberative
+  loop, because a thrashing loop can't be asked to rescue the substrate it runs on. The
+  interoceptive layer (`brain/cognition/host_interoception.py`, `body_sense.py`, `body_band.py`)
+  feeds the *same* host metrics into felt states, but on **deviation from a learned band** rather
+  than absolute thresholds — so a small or busy machine isn't experienced as chronic distress.
+  Three mappings stay separate by design: absolute capacity → **metabolism** (cycle cadence),
+  deviation → **affect** (felt body), absolute floors → **reflex** (the guard). A new machine
+  triggers a **somatic infancy** that learns that body's normal before he trusts it.
 - **Convergence layer.** Affect and action are integrated through arbiters
   (`brain/affect/arbiter.py`, `brain/think/action_arbiter.py`) so the "instinctual" and
   "analytical" subsystems propose rather than race on shared state. A single writer owns the
@@ -503,6 +622,24 @@ A few non-obvious design choices worth knowing:
   subsystem, and is appended to the experience stream. Hysteresis keeps a salient content in
   focus across cycles so the stream is continuous rather than flickering — the functional basis
   of a single serial "what I'm aware of now."
+- **Conscious ignition (the loop has a threshold).** The cognitive loop runs continuously, but
+  *deliberate* cognition does not fire on every cycle. Each cycle the unconscious substrate
+  (affect, embodiment, signals, the background threads, the workspace competition) runs
+  regardless; then an **ignition gate** (`should_think()`, `brain/think/consciousness_trigger.py`)
+  decides whether this cycle crosses into full conscious deliberation — user input, high
+  uncertainty, a strong signal, an emotion spike, prediction error, goal drift, or stagnation all
+  ignite it, and a periodic floor (`MAX_SILENT_CYCLES`) guarantees he never stays silent for long.
+  A non-ignited cycle stays in low-power default mode: the selector damps effortful functions
+  (planning, codegen, research) so a quiet cycle drifts toward cheap work instead of spinning up
+  expensive cognition. Two further couplings make awareness, action, and reasoning line up rather
+  than drift: the Global Workspace winner is an additive **prior on the action pick** (the
+  "spotlight" and the basal-ganglia selector are one bottleneck — Redgrave, Prescott & Gurney
+  1999), and on an ignited+conflicted cycle System-2 deliberation (`inner_loop`) is **recruited
+  by** that conscious conflict rather than fired on a schedule (conflict-monitoring theory;
+  Botvinick et al. 2001). All three are fail-safe and feature-flagged
+  (`ORRIN_IGNITION_GATE`, `ORRIN_WORKSPACE_PRIOR`, `ORRIN_CONFLICT_RECRUIT`); the design rationale
+  and the still-planned conscious→unconscious write-back are in
+  [`docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md`](docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md).
 - **Affect has two readers (felt sense vs. raw signal).** Core affect is stored as raw numeric
   signals in `context["affect_state"]`, and Orrin's two cognitive halves read them differently.
   The *unconscious machinery* — the bandit function-selector (`brain/think/think_utils/select_function.py`),
@@ -555,9 +692,12 @@ history that produced the current architecture.
 This is an experimental prototype, so the caveats are real and the surface keeps moving. Being
 upfront about the rough edges and the direction of travel:
 
-- **No stability guarantees.** State formats, environment variables, internal APIs, and on-disk
-  layouts change between versions without migrations — a long-running "mind" may not survive an
-  upgrade. Treat `reset_orrin.py` as a normal part of the workflow, not a last resort.
+- **Weak stability guarantees.** State formats, environment variables, and internal APIs still
+  change fast between versions. There's now a schema-version spine (`schema_migration.py`) that
+  stamps state, refuses to load state written by a *newer* build, and auto-exports a `.orrindmind`
+  backup before migrating — but the migration registry is essentially empty, so a long-running
+  "mind" may still not survive a big upgrade. Export your mind from Settings before updating, and
+  treat `reset_orrin.py` as a normal part of the workflow.
 - **Not security-hardened.** Orrin runs sandboxed Python, reads/writes your filesystem, and can
   open allow-listed apps. Run it on a machine you trust and don't expose it to the public
   internet (the [remote-access](#remote-access) tunnel especially is unauthenticated).
@@ -568,17 +708,33 @@ upfront about the rough edges and the direction of travel:
   similarity falls back to token-Jaccard when the model can't load (`embed_similarity.py`) —
   but there's no first-class build that drops the ML stack entirely. A lighter embedding
   backend is the obvious next step for SBCs and constrained hosts.
-- **LLM provider is OpenAI-only.** The LLM tool targets OpenAI models; there's no pluggable
-  provider abstraction yet. (Symbolic-only mode means this is never a hard requirement.)
-- **Convergence layer is landing.** The single-writer affect arbiter + lock-guarded proposal
-  inbox described in [Architecture notes](#architecture-notes) is being merged from the
-  `convergence-layer` branch — confirm you're on a build that includes it.
+- **Desktop builds are unsigned.** The cross-platform CI produces real artifacts, but they
+  aren't code-signed or notarized yet, so every OS gatekeeper flags first launch (see
+  [Desktop app](#desktop-app)). Signing/notarization needs paid developer certs and is deferred.
+- **Embodiment is freshly landed — and only partway through its plan.** The felt-host-body layer
+  (host interoception, band-learning, metabolism, infancy, the RAM-budget slider) is new as of
+  2026-06-15 and under-exercised. The consolidated roadmap is
+  [`docs/UNIFIED_EMBODIED_DEVELOPMENT_PLAN_2026-06-15.md`](docs/UNIFIED_EMBODIED_DEVELOPMENT_PLAN_2026-06-15.md)
+  (it supersedes the three source docs — the embodiment spec, the conscious/unconscious plan, and the
+  infancy note — which now read as background). Built so far is the body *sense*; still ahead are the
+  **inward vital-floor reflex** (an autonomic load-shedder for Orrin's own footprint, distinct from
+  the outward `HostResourceGuard`), the **top-down write-down spine** that lets experience reshape
+  unconscious priors, and the experience-gated **developmental arc** — plus open tuning work
+  (heavy-cycle scheduling, dream-recovery accounting, per-phase bands). The detailed body spec lives
+  in [`docs/orrin_embodiment_architecture.md`](docs/orrin_embodiment_architecture.md).
+- **Conscious→unconscious write-back is still missing.** The conscious *ignition* layer landed
+  (see [Architecture notes](#architecture-notes)), but feedback today is one-directional:
+  unconscious→conscious has many wires, conscious→unconscious almost none, so a conscious
+  conclusion can act on the world without reshaping a drive or a salience prior. Closing that
+  loop — and the impoverished-newborn developmental arc it unlocks — is planned but not built;
+  the design and its risks are in
+  [`docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md`](docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md).
 - **Language organ is in progress.** A native language subsystem is an active workstream —
   early modules already exist (`brain/cognition/language/`: tokenizer, acquisition, a native
   LM, voice), but it is not yet Orrin's primary means of expression. See
   [`docs/ORRIN_LANGUAGE_PLAN.md`](docs/ORRIN_LANGUAGE_PLAN.md).
-- **Hero screenshot pending.** The Face & Brain UI capture (`docs/images/face_and_brain.png`)
-  referenced at the top isn't checked in yet.
+- **Hero screenshot pending.** The UI capture (`docs/images/face_and_brain.png`) referenced at
+  the top isn't checked in yet.
 
 For deeper design plans, benchmarks, and the audit/fix history behind the current
 architecture, see `docs/` and `docs/archive/`.

@@ -56,8 +56,15 @@ EXPOSE 5173 8800 9100
 
 # Bind to all interfaces so the host can reach the container; don't try to open a
 # browser from inside the container (you open http://localhost:5173 yourself).
+#
+# ORRIN_UI_DEV=1 selects the web UI path (Vite dev server on :5173 + telemetry API
+# on :8800), which is the right one for a headless server container. Without it,
+# main.py defaults to the native pywebview window — which has no display inside a
+# container and would never serve :5173. (Vite binds 0.0.0.0 via vite.config's
+# `server.host: true`, so the port mapping reaches it.)
 ENV ORRIN_BACKEND_HOST=0.0.0.0 \
     ORRIN_UI=1 \
+    ORRIN_UI_DEV=1 \
     ORRIN_UI_OPEN=0
 
 CMD ["python", "main.py"]

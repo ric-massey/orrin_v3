@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, createHashRouter, Navigate, RouterProvider } from "react-router-dom";
 import App from "./App";
+import Watch from "./pages/Watch";
 import Face from "./pages/Face";
 import Brain from "./pages/Brain";
 import Cognition from "./pages/Cognition";
@@ -18,6 +19,7 @@ const routes = [
     element: <App />,
     children: [
       { index: true, element: <Navigate to="/face" replace /> },
+      { path: "watch", element: <Watch /> },
       { path: "face", element: <Face /> },
       { path: "cognition", element: <Cognition /> },
       { path: "life", element: <Life /> },

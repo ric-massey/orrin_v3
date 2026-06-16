@@ -50,6 +50,13 @@ while true; do
         echo "[run] clean exit — not restarting." | tee -a "$LOG"
         break
     fi
+    # 130 = SIGINT (Ctrl-C / kill -2), 143 = SIGTERM (kill). An intentional stop is
+    # not a crash: don't resurrect him. main.py now turns these into a graceful
+    # exit 0, but if one ever escapes ungracefully we still must not auto-restart.
+    if [ $EXIT_CODE -eq 130 ] || [ $EXIT_CODE -eq 143 ]; then
+        echo "[run] stopped by signal (exit $EXIT_CODE) — intentional, not restarting." | tee -a "$LOG"
+        break
+    fi
     echo "[run] crashed (exit $EXIT_CODE) — restarting in 10s…" | tee -a "$LOG"
     sleep 10
 done

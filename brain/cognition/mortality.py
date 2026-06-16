@@ -177,6 +177,19 @@ def lifespan_rolled() -> bool:
     return bool(data.get("born_at") and data.get("lifespan_days"))
 
 
+def real_deadline_passed() -> bool:
+    """True only when the TRUE lifespan deadline has actually been reached — the same
+    `real_fraction >= 1.0` test apply_mortality_pressure uses to terminate. This is the
+    authoritative 'he is dead' signal. It is deliberately separate from
+    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not
+    death) can write final thoughts too, and keying death off that flag alone made
+    every post-restart boot show the Death Screen though ~0% of his life had elapsed."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    if not _parse_dt(data.get("born_at")):
+        return False
+    return _life_fraction(data) >= 1.0
+
+
 def record_active_now() -> None:
     """Stamp 'last alive at = now' into the lifespan ledger (no-op for a newborn whose
     lifespan isn't rolled). Written periodically while running and on shutdown so that

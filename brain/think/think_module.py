@@ -383,13 +383,68 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
             except Exception as _e:
                 record_failure("think_module.think.8", _e)
 
-        # === 7) Symbolic context pass (no automatic LLM) ===
-        # LLM is a tool Orrin can call explicitly via cognitive functions —
-        # not a background engine that runs every cycle. The inner_loop
-        # (draft→critique→revise via LLM) is intentionally skipped here.
-        # action_gate and individual functions may still invoke LLM as a
-        # deliberate tool when the selected function requires it.
+        # === 7) Conflict-gated deliberation (Fix 3; Botvinick et al. 2001) =======
+        # Default stance is unchanged: the LLM is a TOOL, not a background engine —
+        # most cycles pass through symbolically with NO automatic deliberation.
+        # What changes: conflict-monitoring theory (the ACC detects response
+        # conflict and recruits dlPFC controlled / System-2 processing) says
+        # deliberate reasoning should be RECRUITED BY a conscious moment that is
+        # uncertain or conflicted — not fired on a fixed schedule, and not left to
+        # whichever arbitrary function happens to call it. So on an IGNITED cycle
+        # (the ignition gate in ORRIN_loop set _conscious_cycle) that carries real
+        # conflict/uncertainty in the workspace, recruit inner_loop on the conscious
+        # content and hand its conclusion to the expression layer. inner_loop itself
+        # respects the LLM tool-gate (symbolic System-2 fallback when the tool is
+        # withheld), so this stays honest under tool-only deployments. A short
+        # cooldown bounds cost. Disable with ORRIN_CONFLICT_RECRUIT=0.
         _inner_meta = "output"
+        try:
+            import os as _os_cr
+            _ignited_cycle = context.get("_conscious_cycle") is not False
+            if _ignited_cycle and _os_cr.environ.get("ORRIN_CONFLICT_RECRUIT", "1") != "0":
+                _core = (affect_state.get("core_signals") if isinstance(affect_state, dict) else None) or affect_state or {}
+                _uncertainty = float(_core.get("uncertainty", 0.0) or 0.0)
+                _cands = context.get("_workspace_candidates") or []
+                _margin = 1.0
+                if len(_cands) >= 2:
+                    _margin = (float(_cands[0].get("salience", 0.0) or 0.0)
+                               - float(_cands[1].get("salience", 0.0) or 0.0))
+                _has_tension = bool(context.get("active_tensions"))
+                # Conflict = ambiguous awareness: high uncertainty, a near-tie between
+                # the top two conscious candidates, or a live tension under doubt.
+                _conflict = (
+                    _uncertainty > 0.55
+                    or _margin < 0.10
+                    or (_has_tension and _uncertainty > 0.40)
+                )
+                _last_delib = int(context.get("_last_deliberation_cycle", -99) or -99)
+                if _conflict and (cycle_count - _last_delib) >= 2:
+                    from cognition.global_workspace import current_awareness as _aware
+                    _topic = (_aware(context) or "").strip()
+                    if not _topic:
+                        _tns = context.get("active_tensions") or []
+                        _topic = ((_tns[0].get("title") if _tns else "")
+                                  or (context.get("committed_goal") or {}).get("title", ""))
+                    if _topic:
+                        from think.inner_loop import run_inner_loop as _ril
+                        _ctext = "\n".join(
+                            str(e.get("content", e) if isinstance(e, dict) else e)[:120]
+                            for e in (context.get("working_memory") or [])[-4:]
+                        )
+                        _delib = _ril(_topic, _ctext, context) or {}
+                        context["_last_deliberation_cycle"] = cycle_count
+                        _concl = _delib.get("content", "")
+                        if _concl:
+                            context["reasoning_conclusion"] = _concl
+                            context["_inner_loop_output"] = _concl
+                        _inner_meta = _delib.get("meta_decision", "output")
+                        emit_thought(
+                            "deliberation_recruited",
+                            f"conflict→System2 on: {_topic[:80]}",
+                            full_trace=str(_concl)[:400], cycle=cycle_count,
+                        )
+        except Exception as _cre:
+            record_failure("think_module.think.conflict_recruit", _cre)
         context["_inner_meta"] = _inner_meta
 
         # === 8) Basal ganglia: evaluate + maybe act ===

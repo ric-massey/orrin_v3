@@ -95,11 +95,21 @@ def cadence_multiplier() -> float:
 
 def heavy_cycle_frequency() -> float:
     """Scales how often dream/reading (the memory-hungry cycles) are permitted. A small
-    body dreams less often because it cannot afford the footprint as frequently."""
+    body dreams less often because it cannot afford the footprint as frequently.
+
+    DEFERRED — computed but NOT yet consumed (no callers). The dream cycle still fires
+    on the fixed ~6h interval in ORRIN_loop.py, so dream/reading cadence does not yet
+    scale with body size. Folding this into the dream/reading scheduler was kept out of
+    the embodiment pass to avoid touching dream cadence logic (see PART X of
+    docs/orrin_embodiment_architecture.md). Wire here when picking that up."""
     return float(_profile()["heavy_freq"])
 
 
 def vector_store_cap_bytes() -> int:
+    """DEFERRED — computed but NOT yet consumed (no callers). The vector store is not
+    yet capped by metabolic tier, so a small body's memory footprint isn't bounded by
+    this. Wire into the embedding/vector-store layer when picking up the deferred
+    metabolism work (see heavy_cycle_frequency above)."""
     return int(_profile()["vector_cap_mb"]) * 1024 * 1024
 
 

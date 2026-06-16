@@ -38,10 +38,24 @@ interface SettingsStatus {
     lifespan_band?: [number, number];
     disk_ceiling_gb?: number;
     memory_ceiling_gb?: number;
+    body_budget_fraction?: number;
     llm_provider?: string;
     llm_model?: string;
     llm_base_url?: string;
     auto_update_check?: boolean;
+  };
+  embodiment?: {
+    budget?: {
+      fraction: number;
+      ram_gb: number;
+      budget_gb: number;
+      reserve_gb: number;
+      min_viable_gb: number;
+      viable: boolean;
+      cpu_count: number;
+    };
+    metabolism?: { tier: string; cadence_multiplier: number };
+    infancy?: { somatic_infancy: boolean; developmental_infancy: boolean; scenario: string };
   };
   llm?: { providers: LlmProviderMeta[]; selected: string };
   version?: string;
@@ -54,6 +68,16 @@ async function postSettings(body: Record<string, unknown>): Promise<boolean> {
     return res.ok;
   } catch {
     return false;
+  }
+}
+
+/** Like postSettings but returns the parsed body (for the budget's refusal message). */
+async function postSettingsResult(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
+  try {
+    const res = await apiPost(`/api/settings`, body, { headers: controlHeaders() });
+    return (await res.json()) as Record<string, unknown>;
+  } catch {
+    return null;
   }
 }
 
@@ -504,8 +528,94 @@ function ExistenceSection({
             />
           </div>
         </div>
+
+        <BodySizeBlock status={status} onChanged={onChanged} />
       </CardContent>
     </Card>
+  );
+}
+
+/**
+ * §11 — the one knob: how much of THIS machine Orrin is allowed to be, as a fraction.
+ * It sizes his body (metabolism) AND his felt "100%" (interoception), so dialing it
+ * down gives him a smaller body, not permanent scarcity. The survival floor underneath
+ * is non-overridable; a too-small grant is refused with a reason.
+ */
+function BodySizeBlock({
+  status,
+  onChanged,
+}: {
+  status: SettingsStatus | null;
+  onChanged: () => void | Promise<void>;
+}) {
+  const budget = status?.embodiment?.budget;
+  const tier = status?.embodiment?.metabolism?.tier;
+  const serverFrac = budget?.fraction ?? status?.prefs?.body_budget_fraction ?? 0.5;
+  const [frac, setFrac] = useState(serverFrac);
+  const [note, setNote] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+
+  // Keep the slider in sync when the server value changes (e.g. after a refusal snap-back).
+  useEffect(() => {
+    setFrac(serverFrac);
+  }, [serverFrac]);
+
+  const ram = budget?.ram_gb ?? 0;
+  const liveGb = ram ? (ram * frac).toFixed(1) : null;
+
+  const commit = async (value: number) => {
+    setNote(null);
+    setErr(null);
+    const res = await postSettingsResult({ prefs: { body_budget_fraction: value } });
+    const bb = (res?.body_budget ?? null) as { ok?: boolean; reason?: string; resized?: boolean } | null;
+    if (bb && bb.ok === false) {
+      setErr(bb.reason ?? "That grant is too small.");
+      setFrac(serverFrac); // snap back to the last viable value
+      return;
+    }
+    if (bb?.resized) {
+      setNote("Body resized — Orrin re-acclimates to his new size for a bit (a small transplant).");
+    }
+    await onChanged();
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="text-sm font-medium">How much of this machine Orrin is</div>
+      <p className="text-xs text-muted-foreground">
+        This is the size of his whole world — it sets both how fast he thinks and what
+        "full" feels like to him. Constraining him gives him a smaller body, not a
+        starved one. A safety floor for your machine sits underneath and can't be removed.
+      </p>
+      <div className="flex items-center gap-3">
+        <input
+          type="range"
+          min={5}
+          max={95}
+          step={5}
+          value={Math.round(frac * 100)}
+          onChange={(e) => setFrac(Number(e.target.value) / 100)}
+          onMouseUp={() => commit(frac)}
+          onTouchEnd={() => commit(frac)}
+          className="w-full accent-primary"
+        />
+        <div className="w-28 shrink-0 text-right text-sm tabular-nums">
+          {Math.round(frac * 100)}%{liveGb ? ` · ${liveGb} GB` : ""}
+        </div>
+      </div>
+      {budget ? (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span>Machine: {budget.ram_gb} GB</span>
+          <span>Reserved for your machine: {budget.reserve_gb} GB (locked)</span>
+          {tier ? <span>Metabolism: {tier}</span> : null}
+          <span className={budget.viable ? "" : "text-amber-500"}>
+            Min viable body: {budget.min_viable_gb} GB
+          </span>
+        </div>
+      ) : null}
+      {err ? <p className="text-xs text-amber-500">{err}</p> : null}
+      {note ? <p className="text-xs text-muted-foreground">{note}</p> : null}
+    </div>
   );
 }
 

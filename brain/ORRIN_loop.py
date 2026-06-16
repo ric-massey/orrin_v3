@@ -1552,6 +1552,16 @@ def run_cognitive_loop(
             except Exception as _bse:
                 log_error(f"body_sense update failed: {_bse}")
 
+            # ── Host interoception: feel the MACHINE as his body (§6.2) ─────
+            # The host's disk/swap/memory/battery, felt as departure from their learned
+            # bands — the outward gaze the inward body_sense (and the 2026-06-15 crash)
+            # missed. A separate system from the autonomic reflex (HostResourceGuard).
+            try:
+                from cognition.host_interoception import update_host_interoception as _uhi
+                _uhi(context)
+            except Exception as _hie:
+                log_error(f"host_interoception update failed: {_hie}")
+
             # ── stagnation_signal driver: inject stagnation_signal_seek signal when idle ───────
             try:
                 _stagnation_signal = float(
@@ -3440,7 +3450,16 @@ def run_cognitive_loop(
                 except Exception as _fte:
                     record_failure("ORRIN_loop.finetune_check", _fte)
 
-            time.sleep(cycle_sleep)
+            # Metabolism (§7, mapping #1): a smaller body runs at a slower metabolic
+            # rate — the cadence multiplier stretches the inter-cycle sleep on a small
+            # machine and compresses it on a large one. Not distress, just a smaller
+            # heart at a lower rate. Fails safe to ×1.0.
+            try:
+                from cognition.metabolism import cadence_multiplier as _cad
+                _cycle_sleep_eff = cycle_sleep * _cad()
+            except Exception:
+                _cycle_sleep_eff = cycle_sleep
+            time.sleep(_cycle_sleep_eff)
 
         except KeyboardInterrupt:
             print("\nCognitive loop stopped manually.")

@@ -76,6 +76,21 @@ def _get_bands() -> BodyBands:
     return _bands
 
 
+def reset_bands_for_resize(reason: str = "") -> None:
+    """A budget resize enlarges/shrinks the body, so the learned band is now wrong —
+    re-enter a PARTIAL somatic infancy and re-learn this body's normal (§11.4.2).
+    Drops the learned bands and the on-disk file; in_infancy() goes true again and
+    the cortex stays lenient until the new envelope converges. The autonomic reflex
+    is unaffected — it was always absolute and never went lenient (§10.5)."""
+    global _bands
+    try:
+        (DATA_DIR / "body_bands.json").unlink(missing_ok=True)
+    except Exception:
+        pass
+    _bands = BodyBands(DATA_DIR / "body_bands.json", specs=_BAND_SPECS)
+    log_private(f"[body_sense] re-baselining body after resize ({reason}) — partial infancy")
+
+
 def read_vitals() -> Dict[str, float]:
     """Read raw process vitals. Returns dict with rss_mb, fd_pct, cpu_util, latency_ms."""
     vitals: Dict[str, float] = {}

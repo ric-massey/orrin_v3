@@ -1421,12 +1421,24 @@ async def get_settings(request: Request) -> Dict[str, Any]:
         _version = _ver()
     except Exception:
         _version = ""
+    # Embodiment (§11): the budget/floor the slider renders against, plus the resulting
+    # metabolic tier and where Orrin is in infancy — so the UI can explain what the
+    # grant means (his body size, his metabolism, the non-overridable host floor).
+    embodiment: Dict[str, Any] = {}
+    try:
+        from brain.cognition.body_budget import budget_status as _bs
+        from brain.cognition.metabolism import metabolism_status as _ms
+        from brain.cognition.infancy import infancy_status as _is
+        embodiment = {"budget": _bs(), "metabolism": _ms(), "infancy": _is()}
+    except Exception:
+        embodiment = {}
     return {
         "configured": cfg,
         "symbolic_only": not cfg.get("openai", False),
         "prefs": _prefs.all_prefs(),
         "lifespan_rolled": rolled,
         "version": _version,
+        "embodiment": embodiment,
         "llm": {
             "providers": _prov_catalog,
             "selected": _selected,
@@ -1458,8 +1470,18 @@ async def update_settings(payload: Dict[str, Any], request: Request) -> Dict[str
     # Non-secret toggles + LLM provider selection → config.json.
     from brain.utils import prefs as _prefs
     incoming_prefs = payload.get("prefs")
+    budget_result: Dict[str, Any] | None = None
     if isinstance(incoming_prefs, dict):
         for k, v in incoming_prefs.items():
+            # The body budget (§11) routes through its validating setter, NOT a raw
+            # prefs.set: it refuses an unviable grant loudly (§11.4.3) and a meaningful
+            # resize re-enters a partial somatic infancy (§11.4.2). Skip the generic path.
+            if k == "body_budget_fraction":
+                from brain.cognition.body_budget import set_budget_fraction
+                budget_result = set_budget_fraction(v)
+                if budget_result.get("ok"):
+                    changed.append("pref:body_budget_fraction")
+                continue
             if k in _prefs.DEFAULTS:
                 _prefs.set(k, bool(v) if isinstance(_prefs.DEFAULTS[k], bool) else v)
                 changed.append(f"pref:{k}")
@@ -1482,13 +1504,20 @@ async def update_settings(payload: Dict[str, Any], request: Request) -> Dict[str
             _sj(_mcf, _mc)
 
     cfg = _secrets.configured()
-    return {
+    resp = {
         "ok": True,
         "changed": changed,
         "configured": cfg,
         "symbolic_only": not cfg.get("openai", False),
         "prefs": _prefs.all_prefs(),
     }
+    # Surface a budget refusal (or applied resize) so the slider can show it (§11.4.3).
+    if budget_result is not None:
+        resp["body_budget"] = budget_result
+        if not budget_result.get("ok"):
+            resp["ok"] = False
+            resp["body_budget_error"] = budget_result.get("reason")
+    return resp
 
 
 @app.post("/api/llm/test")

@@ -367,6 +367,18 @@ class OrrinSpeaker:
             "[Incubation", "[Pattern]", "[Emotional residue", "[body_sense",
         )
 
+        import re as _re
+        def _looks_internal(c: str) -> bool:
+            """A serialized structure or a key=value diagnostic line is never speech.
+            Catches dict/list/tuple reprs ("{'trigger': 'cognition', 'skipped': True}")
+            and telemetry dumps ("Health summary: cpu=0.00, hb=0.00, err=0.00") that
+            reached his voice as "Earlier I was thinking: …" — the DROP_PREFIXES list
+            only blocks known string prefixes, not a stringified cognition return-value
+            or status line (FINDINGS 2026-06-16)."""
+            if c[:1] in "{[(":
+                return True
+            return len(_re.findall(r"\b\w+=[\w.\-]+", c)) >= 2
+
         # Current dominant emotion for congruence weighting
         current_emo: Dict = {}
         if context:
@@ -422,6 +434,8 @@ class OrrinSpeaker:
                 continue
             if content.startswith("[") or content.startswith("🧠") or content.startswith("✅") or content.startswith("⚠️"):
                 continue
+            if _looks_internal(content):
+                continue  # dict reprs / telemetry dumps are never speech
             if _ict is not None and _ict(content):
                 continue  # corruption artifacts (chunk headers, truncations)
             overlap = len(twords & set(content.lower().split()))
@@ -450,6 +464,8 @@ class OrrinSpeaker:
                     continue
                 if content.startswith(("[", "🧠", "✅", "⚠️")):
                     continue
+                if _looks_internal(content):
+                    continue  # dict reprs / telemetry dumps are never speech
                 if _ict is not None and _ict(content):
                     continue
                 if 12 <= len(content) <= 180:

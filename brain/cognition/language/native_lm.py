@@ -14,6 +14,8 @@
 # organ, fed by the library (#1) and, optionally, a one-time schooling (pretrain).
 from __future__ import annotations
 
+import functools
+import threading
 import time
 from pathlib import Path
 from typing import Dict, Optional
@@ -51,6 +53,27 @@ _meta: Dict = {"steps": 0, "tokens_seen": 0, "born": None}
 # call flush() to force a save at the end of a pretraining run.
 _SAVE_INTERVAL_S = 90.0
 _last_save = 0.0
+
+# The model/optimizer are a single shared global, but train_on() (learning bouts,
+# from acquisition) and generate()/evaluate() (inference, from voice) are reached
+# from different points in the cognitive cycle and can run on different threads. A
+# learning bout's loss.backward() needs the weights at the version they had during
+# its forward pass; if an overlapping call runs _opt.step() (an in-place weight
+# update — and head.weight is tied to tok.weight, a strided view) or flips train/
+# eval mode mid-bout, the pending graph is corrupted. That surfaced once in the
+# wild as: "a variable needed for gradient computation has been modified by an
+# inplace operation … AsStridedBackward0, version 170". Serialize every entry point
+# that touches _model/_opt so training and inference can never interleave.
+_MODEL_LOCK = threading.Lock()
+
+
+def _locked(fn):
+    """Serialize a native-LM entry point on _MODEL_LOCK (see note above)."""
+    @functools.wraps(fn)
+    def _w(*a, **k):
+        with _MODEL_LOCK:
+            return fn(*a, **k)
+    return _w
 
 
 def available() -> bool:
@@ -214,6 +237,7 @@ def ensure_tokenizer(seed_text: str = "") -> bool:
     return tok.train([seed_text])
 
 
+@_locked
 def train_on(text: str, steps: int = 60, batch: int = 16) -> Optional[float]:
     """One bout of learning on a block of his experience. Returns avg loss."""
     if not _TORCH or not text:
@@ -246,6 +270,7 @@ def train_on(text: str, steps: int = 60, batch: int = 16) -> Optional[float]:
     return total / max(1, n)
 
 
+@_locked
 def generate(prompt: str = "", length: int = 80, temperature: float = 0.8) -> str:
     """Sample text in his own voice — however crude — from what he's learned."""
     if not _ensure():
@@ -263,6 +288,7 @@ def generate(prompt: str = "", length: int = 80, temperature: float = 0.8) -> st
     return tok.decode(ids)
 
 
+@_locked
 def evaluate(text: str, blocks: int = 24, batch: int = 16) -> Optional[float]:
     """Held-out PERPLEXITY: average next-token surprise on text he is NOT training
     on, with no gradient. This is how you tell real language learning from mere

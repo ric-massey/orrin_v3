@@ -369,13 +369,14 @@ class OrrinSpeaker:
 
         import re as _re
         def _looks_internal(c: str) -> bool:
-            """A serialized structure or a key=value diagnostic line is never speech.
-            Catches dict/list/tuple reprs ("{'trigger': 'cognition', 'skipped': True}")
-            and telemetry dumps ("Health summary: cpu=0.00, hb=0.00, err=0.00") that
+            """A serialized dict or a key=value diagnostic line is never speech.
+            Catches dict reprs ("{'trigger': 'cognition', 'skipped': True}") and
+            telemetry dumps ("Health summary: cpu=0.00, hb=0.00, err=0.00") that
             reached his voice as "Earlier I was thinking: …" — the DROP_PREFIXES list
             only blocks known string prefixes, not a stringified cognition return-value
-            or status line (FINDINGS 2026-06-16)."""
-            if c[:1] in "{[(":
+            or status line (FINDINGS 2026-06-16). '[' is handled by the prefix drop
+            above; only '{' is matched here so parenthetical speech isn't caught."""
+            if c.startswith("{"):
                 return True
             return len(_re.findall(r"\b\w+=[\w.\-]+", c)) >= 2
 

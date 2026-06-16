@@ -80,10 +80,19 @@ def _looks_internal(c: str) -> bool:
 Verified: catches all three leaked strings; does **not** flag normal speech
 (including "E=mc2", which has a single `=`).
 
-**Deeper cause (not required for the fix, worth a follow-up):** the upstream writers
-should tag these WM entries `internal_telemetry` so they're never speech candidates
-in the first place — consistent with the expression-membrane design (one door,
-`express_to_user`, composing from a Motive rather than scraping working memory).
+**Upstream source-fix (also done):** rather than rely only on the membrane backstop,
+the leak is now stopped at the write boundary. `update_working_memory()`
+(`cog_memory/working_memory.py`) — the single choke point every WM write flows
+through — tags any entry whose content is a dict repr (`{…`) or a `key=value`
+telemetry line (`≥2` pairs) with `internal_telemetry=True`. Long-memory consolidation
+(`ORRIN_loop.py:~3408`) now skips `internal_telemetry` entries, so diagnostics never
+become autobiographical memory or speech candidates in the first place. The predicate
+is deliberately narrow — it matches `{` and `key=value` only, **not** a `[` prefix,
+which the codebase uses for legitimate human-readable memories (`[research]`,
+`[Goal pursuit]`) that must still consolidate. `internal_telemetry` is read only by
+the speech layer (`speak.py`, `speakability.py`), so tagging has no effect on memory
+retrieval, reward, or goals. This is the structurally-correct fix; `speak.py`'s
+`_looks_internal` remains as defense-in-depth.
 
 ---
 
@@ -142,11 +151,17 @@ longer interleave on the shared model. (Closes the dropout-mode-flip race too.)
 ## 6. Files changed
 
 - `brain/utils/lifecycle.py` — Bug A (committed `a759550`).
-- `brain/behavior/speak.py` — Bug B: `_looks_internal` predicate + two guards.
+- `brain/behavior/speak.py` — Bug B (membrane backstop): `_looks_internal` predicate
+  + two guards.
+- `brain/cog_memory/working_memory.py` — Bug B (upstream source-fix):
+  `_looks_machine_content` predicate; tags machine content `internal_telemetry`.
+- `brain/ORRIN_loop.py` — Bug B (upstream): LM consolidation skips
+  `internal_telemetry` entries.
 - `brain/cognition/language/native_lm.py` — Bug C: `_MODEL_LOCK` + `_locked` on
   `train_on`/`generate`/`evaluate`.
 
-Both edited files compile (`py_compile`); predicate unit-tested.
+All edited files compile (`py_compile`); both predicates unit-tested (including the
+`[research]`/`[Goal pursuit]` no-regression cases).
 
 ## 7. Lifeline housekeeping
 

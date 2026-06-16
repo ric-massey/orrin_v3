@@ -3405,6 +3405,7 @@ def run_cognitive_loop(
                             _wme_imp >= 3
                             and len(_wme_content) > 60
                             and not _wme.get("_promoted_to_lm")
+                            and not _wme.get("internal_telemetry")  # diagnostics/dicts never become autobiographical memory
                             and _wme_type not in ("system", "reward", "reward_penalty", "choice")
                         ):
                             _ulm_cons(

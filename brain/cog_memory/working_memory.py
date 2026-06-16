@@ -16,6 +16,28 @@ from paths import WORKING_MEMORY_FILE, AFFECT_STATE_FILE
 import os as _os
 _log = get_logger(__name__)
 
+import re as _re
+_MACHINE_KV_RE = _re.compile(r"\b\w+=[\w.\-]+")
+
+
+def _looks_machine_content(c: str) -> bool:
+    """A serialized structure or a key=value diagnostic line is machine telemetry, not
+    a thought. Entries whose content matches are tagged ``internal_telemetry`` so the
+    expression membrane never offers them as speech and LM consolidation skips them.
+    FINDINGS 2026-06-16: cognition return-dicts ({'trigger': 'cognition', 'skipped':
+    True}) and health-summary lines ("cpu=0.00, hb=0.00, err=0.00") reached his voice
+    as "Earlier I was thinking: …". This tags them at the write boundary — the source —
+    complementing the speak.py membrane backstop.
+
+    Deliberately matches only a dict repr ('{') and key=value telemetry — NOT a '['
+    prefix, which the codebase uses for legitimate human-readable memories
+    ([research], [Goal pursuit], …) that must still consolidate into long memory."""
+    c = (c or "").lstrip()
+    if c.startswith("{"):
+        return True
+    return len(_MACHINE_KV_RE.findall(c)) >= 2
+
+
 MAX_WORKING_LOGS: int = 25
 
 # ── Working-memory-cap plasticity (proactive_resource_plan §5, final item) ──────
@@ -302,6 +324,12 @@ def update_working_memory(
     else:
         # Unsupported type, nothing to do
         return
+
+    # Machine-structured content (a cognition return-dict, a telemetry line) is never a
+    # thought: tag it so the expression membrane won't voice it and LM promotion skips
+    # it. This is the upstream source-fix; speak.py keeps a membrane-side backstop.
+    if not entry.get("internal_telemetry") and _looks_machine_content(str(entry.get("content") or "")):
+        entry["internal_telemetry"] = True
 
     # The whole load -> dedup/chunk/trim -> save cycle happens under one lock
     # (modify_json) so a concurrent update_working_memory call can't interleave

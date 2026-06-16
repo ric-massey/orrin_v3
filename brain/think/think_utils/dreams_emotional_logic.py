@@ -7,7 +7,7 @@ from affect.apply_affective_feedback import apply_affective_feedback
 from affect.threat_detector import process_affective_signals
 from cog_memory.working_memory import update_working_memory
 from affect.reward_signals.reward_signals import release_reward_signal
-from affect.reward_signals.resource_deficit import update_function_resource_deficit
+from affect.reward_signals.resource_deficit import update_function_usage_fatigue
 from utils.json_utils import load_json
 from paths import AFFECT_STATE_FILE
 import json  # NEW
@@ -46,7 +46,7 @@ def dreams_and_emotional_logic(context):
                 "referenced": 0,
                 "pin": False
             })
-            update_function_resource_deficit(context, "dream")
+            update_function_usage_fatigue(context, "dream")
             release_reward_signal(
                 context,
                 signal_type="novelty",

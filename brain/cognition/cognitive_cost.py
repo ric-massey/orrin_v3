@@ -73,18 +73,28 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         )
 
     # ── 2. EXCESSIVE INTROSPECTION → RESOURCE_DEFICIT + REDUCED EFFECTIVENESS ──────────
-    # Too much inward focus without action costs energy and dulls output.
+    # Too much inward focus without action costs energy and dulls output. But the
+    # fatigue PUMP must fire only when the rumination DEEPENS, never every cycle it
+    # persists — otherwise it self-reinforces: high resource_deficit + impasse biases
+    # the bandit toward reflection → ≥5/8 introspective → more deficit → more impasse,
+    # a rumination loop that pays for itself in fatigue (embodiment audit §H, Loop 2).
+    # The steering flag (_introspection_overload) stays set the whole time so
+    # action_gate keeps pushing him OUT of the loop; only the additive drain is gated
+    # on escalation, so being in a reflective stretch is not itself perpetually taxed.
     recent = context.get("recent_picks") or []
     window8 = recent[-8:]
     intr_count = sum(1 for f in window8 if is_introspective(f))
+    prev_overload = int(context.get("_introspection_overload", 0) or 0)
     if intr_count >= 5:
-        drain = 0.03 * (intr_count - 4)
-        emo["resource_deficit"] = min(1.0, float(emo.get("resource_deficit", 0.0)) + drain)
         context["_introspection_overload"] = intr_count  # read by action_gate scorer
-        penalties.append(
-            f"introspection overload ({intr_count}/8 recent picks) "
-            f"→ resource_deficit +{drain:.2f}, action effectiveness ↓"
-        )
+        # Pump only on ONSET (crossing into overload) or ESCALATION (deeper than before).
+        if intr_count > prev_overload:
+            drain = 0.03 * (intr_count - max(prev_overload, 4))
+            emo["resource_deficit"] = min(1.0, float(emo.get("resource_deficit", 0.0)) + drain)
+            penalties.append(
+                f"introspection overload deepening ({prev_overload or '<5'}→{intr_count}/8) "
+                f"→ resource_deficit +{drain:.2f}, action effectiveness ↓"
+            )
     else:
         context.pop("_introspection_overload", None)
 

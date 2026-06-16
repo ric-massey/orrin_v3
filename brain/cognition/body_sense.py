@@ -3,13 +3,29 @@
 # them into felt-state vocabulary that Orrin can reference and that merges into
 # affect_state to bias function selection.
 #
+# Felt states are DEVIATION-based, not absolute-level based. This is the central
+# correction of the embodiment architecture (docs/orrin_embodiment_architecture.md
+# §8.1, §10.4 + the Part VIII/IX audit): the old code fired "heavy" on an ABSOLUTE
+# RSS > 400 MB, and with sentence-transformers + PyTorch resident Orrin's RSS is
+# essentially ALWAYS above 400 MB — so "heavy" was his *resting* state. That pumped
+# resource_deficit every single cycle and pinned _stress_streak (→ stress_load), so
+# the whole affect substrate saturated at 1.000 and "drowning felt like breathing."
+#
+# The fix: learn the *band* each vital oscillates within (body_band.Band) and feel
+# only DEPARTURE from that band. 85% memory or 900 MB RSS is this body's homeostasis
+# and reads as nothing; a vital LEAVING its learned band is what registers. While the
+# body is still learning this machine (somatic infancy — bands not yet converged),
+# the cortex stays lenient and emits no stress states (§10.3/§10.4). The autonomic
+# reflex (reaper/host_resources.HostResourceGuard) is a SEPARATE, absolute system and
+# is untouched by any of this — the brainstem never goes lenient (§10.5).
+#
 # Felt states:
-#   heavy    — RSS high and climbing
-#   spacious — RSS low, CPU idle
-#   strained — FD count near ceiling or CPU sustained high
-#   sluggish — step latency high relative to baseline
-#   swelling — RSS slope positive and accelerating
-#   clear    — all vitals nominal
+#   heavy    — RSS above its learned band (sustained load departing from normal)
+#   spacious — RSS below its learned band, CPU idle (more room than usual)
+#   strained — FD or CPU above its band, OR FD genuinely near the OS limit (absolute)
+#   sluggish — step latency above its learned band (slower than THIS body's normal)
+#   swelling — RSS marching one way and not retreating (the death-spiral signature)
+#   clear    — all vitals inside their bands (or still in infancy)
 from __future__ import annotations
 from core.runtime_log import get_logger
 
@@ -26,21 +42,38 @@ except Exception:
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import BODY_SENSE_FILE
+from paths import BODY_SENSE_FILE, DATA_DIR
 from utils.failure_counter import record_failure
+from cognition.body_band import BodyBands
 _log = get_logger(__name__)
 
-# Thresholds (tuneable)
-_RSS_HEAVY_MB    = 400.0   # above this → heavy
-_RSS_SPACIOUS_MB = 150.0   # below this → spacious candidate
-_FD_STRAIN_PCT   = 0.75    # FD pct above this → strained
-_CPU_STRAIN_PCT  = 0.80    # CPU util above this → strained
-_LATENCY_HIGH_MS = 3000.0  # step latency above this → sluggish
-_SLOPE_ACCEL_MB  = 5.0     # RSS rising >5 MB/sample → swelling
+# Absolute backstops (NOT felt-state triggers). FD genuinely near the OS limit is
+# dangerous on any machine regardless of what Orrin has learned as normal — a
+# newborn can still suffocate (§10.5), so this one stays absolute even in infancy.
+_FD_DANGER_PCT   = 0.92    # FD pct at/above this → strained, band or no band
 
-# Rolling RSS samples for slope computation
-_rss_samples: List[float] = []
-_MAX_SAMPLES = 10
+# How far OUTSIDE a learned band a vital must sit before it's *felt* (in band-widths).
+# A small margin keeps the relaxed-inward ceiling from making him twitchy.
+_FELT_MARGIN = 0.20
+
+# The learned oscillation envelopes for THIS body. Hardware-bound, re-learned on
+# every machine (the file is fingerprinted; a copy from another box is discarded).
+# Lazily loaded so import stays cheap and test harnesses can repoint DATA_DIR.
+_BAND_SPECS = {
+    # RSS climbs as caches warm then holds; give convergence room before trusting it.
+    "rss_mb":     {"min_samples": 120, "stable_needed": 90},
+    "cpu_util":   {"min_samples": 80,  "stable_needed": 60},
+    "fd_pct":     {"min_samples": 80,  "stable_needed": 60},
+    "latency_ms": {"min_samples": 80,  "stable_needed": 60},
+}
+_bands: BodyBands | None = None
+
+
+def _get_bands() -> BodyBands:
+    global _bands
+    if _bands is None:
+        _bands = BodyBands(DATA_DIR / "body_bands.json", specs=_BAND_SPECS).load()
+    return _bands
 
 
 def read_vitals() -> Dict[str, float]:
@@ -89,38 +122,60 @@ def read_vitals() -> Dict[str, float]:
 
 
 def compute_body_states(vitals: Dict[str, float]) -> List[str]:
-    """Translate raw vitals into body-state vocabulary list."""
-    global _rss_samples
+    """Translate raw vitals into body-state vocabulary, felt as DEPARTURE from each
+    vital's learned band rather than from an absolute threshold (§8.1/§10.4).
+
+    Observes the vitals into the bands as a side effect (this is how he learns the
+    body). While still in somatic infancy — bands not yet converged — the cortex is
+    lenient: it emits only the absolute FD-exhaustion backstop and otherwise "clear",
+    because there is no trustworthy band to deviate from yet (§10.3). A vital climbing
+    one way and never retreating ("swelling") is the death-spiral signature and is
+    alarmed even though a spike that returns is just breathing."""
+    bands = _get_bands()
 
     rss    = vitals.get("rss_mb", 0.0)
     cpu    = vitals.get("cpu_util", 0.0)
     fd_pct = vitals.get("fd_pct", 0.0)
     lat    = vitals.get("latency_ms", 0.0)
 
-    _rss_samples.append(rss)
-    if len(_rss_samples) > _MAX_SAMPLES:
-        _rss_samples = _rss_samples[-_MAX_SAMPLES:]
+    # Learn the body: fold this cycle's sample into every band.
+    bands.observe("rss_mb", rss)
+    bands.observe("cpu_util", cpu)
+    bands.observe("fd_pct", fd_pct)
+    if lat > 0.0:
+        bands.observe("latency_ms", lat)
 
-    states = []
+    states: List[str] = []
 
-    # slope for swelling / heavy detection
-    if len(_rss_samples) >= 3:
-        slope = (_rss_samples[-1] - _rss_samples[-3]) / 2.0
-    else:
-        slope = 0.0
-
-    if rss > _RSS_HEAVY_MB:
-        states.append("heavy")
-    elif rss < _RSS_SPACIOUS_MB and cpu < 0.3:
-        states.append("spacious")
-
-    if fd_pct > _FD_STRAIN_PCT or cpu > _CPU_STRAIN_PCT:
+    # Absolute FD-exhaustion backstop — fires regardless of band/infancy (§10.5).
+    if fd_pct >= _FD_DANGER_PCT:
         states.append("strained")
 
-    if lat > _LATENCY_HIGH_MS:
+    # In somatic infancy the felt body is not yet calibrated: stay lenient.
+    if bands.in_infancy():
+        if not states:
+            states.append("clear")
+        return states
+
+    rss_b = bands.band("rss_mb")
+
+    # heavy / spacious — RSS departing above / below its learned band.
+    if rss_b.deviation(rss) > _FELT_MARGIN:
+        states.append("heavy")
+    elif rss_b.deviation(rss) < -_FELT_MARGIN and cpu < 0.3:
+        states.append("spacious")
+
+    # strained — FD or CPU above its band (relative to THIS body's normal).
+    if (bands.deviation("fd_pct", fd_pct) > _FELT_MARGIN
+            or bands.deviation("cpu_util", cpu) > _FELT_MARGIN) and "strained" not in states:
+        states.append("strained")
+
+    # sluggish — a cycle slower than this body's learned normal.
+    if lat > 0.0 and bands.deviation("latency_ms", lat) > _FELT_MARGIN:
         states.append("sluggish")
 
-    if slope > _SLOPE_ACCEL_MB:
+    # swelling — RSS marching one way and not coming back (death-spiral, not breathing).
+    if rss_b.marching():
         states.append("swelling")
 
     if not states:
@@ -257,11 +312,15 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception:
         prior = {}
 
+    bands = _get_bands()
     body_sense = {
         "body_states": felt,
         "vitals": vitals,
         "dominant": felt[0] if felt else "clear",
         "_stress_streak": prior.get("_stress_streak", 0),
+        # Somatic-infancy telemetry: is he still learning this body, and how far in.
+        "somatic_infancy": bands.in_infancy(),
+        "body_converged": round(bands.converged_fraction(), 3),
     }
 
     _update_body_pattern(felt, body_sense)
@@ -277,7 +336,17 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception as _e:
         record_failure("body_sense.update_body_sense", _e)
 
-    log_private(f"[body_sense] {felt} rss={vitals.get('rss_mb',0):.0f}MB cpu={vitals.get('cpu_util',0):.1%}")
+    # Persist the learned bands (cheap; only writes when a band changed).
+    try:
+        bands.save()
+    except Exception as _e:
+        record_failure("body_sense.save_bands", _e)
+
+    log_private(
+        f"[body_sense] {felt} rss={vitals.get('rss_mb',0):.0f}MB cpu={vitals.get('cpu_util',0):.1%} "
+        f"{'infant' if body_sense['somatic_infancy'] else 'calibrated'} "
+        f"({body_sense['body_converged']:.0%})"
+    )
     return body_sense
 
 

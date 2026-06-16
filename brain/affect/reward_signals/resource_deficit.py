@@ -4,15 +4,22 @@ import random
 import math
 from typing import Dict, Any
 
-def update_function_resource_deficit(context: Dict[str, Any], function_name: str) -> None:
+def update_function_usage_fatigue(context: Dict[str, Any], function_name: str) -> None:
     """
+    Per-FUNCTION usage-fatigue counter — a refractory "don't re-pick this function
+    right away" penalty, scored 0..10. This is a DIFFERENT quantity from the global
+    affect_state["resource_deficit"] float ∈ [0,1] (whole-body fatigue): different
+    structure, different range, different purpose. The two were both called
+    "resource_deficit" and that name collision actively misled readers/fixes
+    (embodiment audit §J) — this one is now `function_usage_fatigue`.
+
     Updates in-place:
-      context["function_resource_deficit"][function_name] = {
-        last_used, count, score (0..10), resource_deficit_history
+      context["function_usage_fatigue"][function_name] = {
+        last_used, count, score (0..10), usage_history
       }
     Decay is per-minute and speeds up when motivation/excitement are high.
     """
-    resource_deficit = context.setdefault("function_resource_deficit", {})
+    resource_deficit = context.setdefault("function_usage_fatigue", {})
     now = time.time()
     info = resource_deficit.get(function_name, {"last_used": 0, "count": 0, "score": 0.0, "resource_deficit_history": []})
 
@@ -46,7 +53,7 @@ def update_function_resource_deficit(context: Dict[str, Any], function_name: str
     new_resource_deficit = resource_deficit_after_decay + resource_deficit_gain
 
     # Short history to smooth/detect trends
-    hist = list(info.get("resource_deficit_history", []))
+    hist = list(info.get("usage_history", info.get("resource_deficit_history", [])))
     hist.append((now, new_resource_deficit))
     if len(hist) > 30:
         hist = hist[-30:]
@@ -55,17 +62,18 @@ def update_function_resource_deficit(context: Dict[str, Any], function_name: str
         "last_used": now,
         "count": int(info.get("count", 0)) + 1,
         "score": min(new_resource_deficit, 10.0),
-        "resource_deficit_history": hist,
+        "usage_history": hist,
     })
     resource_deficit[function_name] = info
-    context["function_resource_deficit"] = resource_deficit  # explicit
+    context["function_usage_fatigue"] = resource_deficit  # explicit
 
-def resource_deficit_penalty(context: Dict[str, Any], function_name: str) -> float:
+def function_usage_fatigue_penalty(context: Dict[str, Any], function_name: str) -> float:
     """
-    Returns a *negative* multiplier-style penalty in [-0.6, 0],
-    modulated by motivation (less negative), risk_estimate & stagnation_signal (more negative).
+    Returns a *negative* multiplier-style penalty in [-0.6, 0] from this function's
+    usage-fatigue score (see update_function_usage_fatigue), modulated by motivation
+    (less negative), risk_estimate & stagnation_signal (more negative).
     """
-    resource_deficit = context.get("function_resource_deficit", {})
+    resource_deficit = context.get("function_usage_fatigue", {})
     info = resource_deficit.get(function_name, {"score": 0.0})
     score = float(info.get("score", 0.0))
 
@@ -92,8 +100,10 @@ def resource_deficit_penalty(context: Dict[str, Any], function_name: str) -> flo
 
 def resource_deficit_penalty_from_context(affect_state: Dict[str, float], action_type: str) -> float:
     """
-    Returns a *positive* penalty in [0.0, 1.0] based on emotional resource_deficit/stress/overwhelm
-    (Note: unit differs from resource_deficit_penalty above; callers should not mix them directly.)
+    Returns a *positive* penalty in [0.0, 1.0] based on the GLOBAL affect_state
+    resource_deficit/stress/overwhelm (whole-body fatigue). Distinct from
+    function_usage_fatigue_penalty above (per-function refractory counter); the units
+    differ and callers should not mix them directly.
     """
     resource_deficit_level = float(affect_state.get("resource_deficit") or 0.0)
     stress = float(affect_state.get("stress") or 0.0)

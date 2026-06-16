@@ -11,7 +11,7 @@ from cognition.behavior import extract_last_reflection_topic
 from behavior.behavior_generation import generate_behavior_from_integration
 from behavior.speak import OrrinSpeaker
 from affect.reward_signals.reward_signals import release_reward_signal
-from affect.reward_signals.resource_deficit import update_function_resource_deficit, resource_deficit_penalty_from_context
+from affect.reward_signals.resource_deficit import update_function_usage_fatigue, resource_deficit_penalty_from_context
 from cog_memory.working_memory import update_working_memory
 from registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 from utils.json_utils import save_json, load_json
@@ -705,7 +705,7 @@ def evaluate_and_act_if_needed(
             propose_action(context, best_action, urgency=0.90)
 
         if success:
-            update_function_resource_deficit(context, best_action["type"])
+            update_function_usage_fatigue(context, best_action["type"])
             _emo_core = affect_state.get("core_signals") or affect_state
             motivation = _emo_core.get("motivation", 0.5)
             resource_deficit = float(affect_state.get("resource_deficit") or 0.0)
@@ -808,7 +808,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
             func = meta.get("function")
             result = func(action, context, speaker)
             if result:
-                update_function_resource_deficit(context, action_type)
+                update_function_usage_fatigue(context, action_type)
                 release_reward_signal(
                     context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.5, source=f"action:{action_type}"
                 )
@@ -830,7 +830,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
 
         if action_type == "speak":
             final = speak_text(content, context, speaker)
-            update_function_resource_deficit(context, "speak")
+            update_function_usage_fatigue(context, "speak")
             release_reward_signal(context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.4, source="action:speak")
             update_working_memory({
                 "content": f'Spoke: "{final or content}"',
@@ -847,7 +847,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
 
         elif action_type == "log":
             log_private(content)
-            update_function_resource_deficit(context, "log")
+            update_function_usage_fatigue(context, "log")
             release_reward_signal(context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.3, source="action:log")
             update_working_memory({
                 "content": f"Logged: {content}",
@@ -861,7 +861,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
 
         elif action_type == "update_file" and path and data:
             save_json(path, data)
-            update_function_resource_deficit(context, "update_file")
+            update_function_usage_fatigue(context, "update_file")
             release_reward_signal(context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.6, source="action:update_file")
             update_working_memory({
                 "content": f"Updated file: {path}",
@@ -910,7 +910,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
                 goals.append(goal_data)
                 save_json(GOALS_FILE, goals)
                 context["goals"] = goals
-                update_function_resource_deficit(context, "set_goal")
+                update_function_usage_fatigue(context, "set_goal")
                 release_reward_signal(context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.5, source="action:set_goal")
                 goal_text = goal_data.get("name") or goal_data.get("description") or str(goal_data)
                 update_working_memory({
@@ -956,7 +956,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
         elif action_type == "user_response":
             final = speak_text(content, context, speaker)
             context["last_user_response"] = final or content
-            update_function_resource_deficit(context, "user_response")
+            update_function_usage_fatigue(context, "user_response")
             release_reward_signal(context, "reward_signal", 0.3 + 0.05 * importance, 0.5, 0.4, source="action:user_response")
             update_working_memory({
                 "content": f'User response (to user): "{final or content}"',
@@ -972,7 +972,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
 
         elif action_type == "ask_user":
             final = speak_text(content, context, speaker)
-            update_function_resource_deficit(context, "ask_user")
+            update_function_usage_fatigue(context, "ask_user")
             release_reward_signal(context, "reward_signal", 0.32 + 0.05 * importance, 0.5, 0.4, source="action:ask_user")
             update_working_memory({
                 "content": f'Question to user: "{final or content}"',
@@ -1009,7 +1009,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
                 mode = "a" if append else "w"
                 with file_path.open(mode, encoding="utf-8") as f:
                     f.write(text)
-                update_function_resource_deficit(context, "write_file")
+                update_function_usage_fatigue(context, "write_file")
                 release_reward_signal(context, "reward_signal", 0.35 + 0.05 * importance, 0.5, 0.5, source="action:write_file")
                 update_working_memory({
                     "content": f"Wrote to file: {str(file_path)}",
@@ -1082,7 +1082,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
                 log_result("exception", error=e)
                 return False
             if res.get("status") == "ok":
-                update_function_resource_deficit(context, "execute_python_code")
+                update_function_usage_fatigue(context, "execute_python_code")
                 release_reward_signal(
                     context, "reward_signal", 0.36 + 0.05 * importance, 0.5, 0.6, source="action:execute_python_code"
                 )

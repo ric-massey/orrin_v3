@@ -14,6 +14,16 @@ from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
 
 
+def _record_habituation(result_text: str, context: Dict[str, Any]) -> None:
+    """Feed search_own_files's outcome into its explore/exploit habituation so a barren
+    self-search self-suppresses the same way look_outward does (exploration_value)."""
+    try:
+        from cognition.exploration_value import record_reach_outcome
+        record_reach_outcome("search_own_files", str(result_text), None, context)
+    except Exception:
+        pass
+
+
 def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> str:
     """
     Search Orrin's own files for content matching a derived or explicit query.
@@ -101,13 +111,16 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     if not matches:
         msg = f"No results found for '{query}' in local files."
         update_working_memory({"content": f"I searched myself for '{query}' and found nothing.", "event_type": "search", "importance": 1, "priority": 1})
+        _record_habituation(msg, context)
         return msg
 
     # A repeat search that surfaced nothing new: say so plainly rather than
     # re-reporting the same matches as if they were a fresh discovery.
     if _nov is not None and not _nov.get("novel", True):
-        return (f"I searched myself for '{query}' again and found nothing new "
+        _msg = (f"I searched myself for '{query}' again and found nothing new "
                 f"(this corner of me feels exhausted for now).")
+        _record_habituation(_msg, context)
+        return _msg
 
     # Translate file paths to felt spatial locations — Orrin knows WHERE in himself
     # something lives without knowing the file coordinate.
@@ -167,4 +180,5 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
 
     log_activity(f"[search_own_files] '{query}' → {count} matches")
     log_private(f"[search_own_files] raw: " + "; ".join(f"{m['file']}:{m['line']}" for m in matches[:5]))
+    _record_habituation(summary, context)
     return summary

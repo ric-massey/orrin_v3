@@ -6,7 +6,7 @@
     "action": "prefer_hits",
     "priority": 3,
     "reward": 0.0,
-    "applications": 4876,
+    "applications": 5468,
     "source": "builtin",
     "rationale": "Rules that have been applied more often have proven themselves in practice."
   },
@@ -15,7 +15,7 @@
     "name": "Defer LLM for weak EMOTIONAL queries",
     "condition": "low_conf",
     "action": "defer_llm",
-    "priority": 28,
+    "priority": 30,
     "reward": 0.0,
     "applications": 0,
     "source": "symbolic_self_model",

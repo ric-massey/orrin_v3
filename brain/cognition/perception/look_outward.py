@@ -8,7 +8,6 @@ from __future__ import annotations
 from core.runtime_log import get_logger
 
 import re
-import time
 from typing import Dict, Any
 
 from utils.log import log_activity, log_private
@@ -18,31 +17,52 @@ from cog_memory.long_memory import update_long_memory
 from paths import THREADS_FILE, LONG_MEMORY_FILE
 _log = get_logger(__name__)
 
-_LAST_OUTWARD_TS: float = 0.0
-_MIN_INTERVAL_S: float = 600.0   # at most every 10 minutes
-
-
 def look_outward(context: Dict[str, Any] = None) -> str:
     """
     Cognition function: generate a exploration_drive-driven web search and queue it
     through tool_runner. Returns the query that was queued.
+
+    Rate is no longer governed by a wall-clock cooldown — select_function scores
+    look_outward by its explore/exploit value (cognition.exploration_value), which
+    self-suppresses the drive when reaches stop being informative and keeps it live
+    when they aren't. See EXPLORE_EXPLOIT_VALUE_PLAN_2026-06-16.
     """
     import os
-    if not os.environ.get("SERPER_API_KEY"):
-        log_private("[look_outward] No SERPER_API_KEY — redirecting to search_own_files.")
-        try:
-            from cognition.search_own_files import search_own_files
-            return search_own_files(context)
-        except Exception as _sof_e:
-            log_private(f"[look_outward] search_own_files fallback failed: {_sof_e}")
-            return "No web search configured — tried searching own files."
-
-    global _LAST_OUTWARD_TS
     context = context or {}
-
-    now = time.time()
-    if now - _LAST_OUTWARD_TS < _MIN_INTERVAL_S:
-        return "Already reached outward recently — waiting before looking again."
+    if not os.environ.get("SERPER_API_KEY"):
+        # No SERPER key: reach the WORLD via the keyless Wikipedia/research path
+        # (real new knowledge + honest reward), not an echo of our own files.
+        # search_own_files is only the last-resort fallback. The reach still
+        # habituates via reach_value, so an unconfigured outward drive can't dominate.
+        log_private("[look_outward] No SERPER_API_KEY — reaching outward via Wikipedia/research.")
+        _result = None
+        for _fn_name, _import in (
+            ("wikipedia_search", "cognition.wikipedia_search.wikipedia_search"),
+            ("research_topic", "cognition.web_research.research_topic"),
+        ):
+            try:
+                _mod, _attr = _import.rsplit(".", 1)
+                _fn = getattr(__import__(_mod, fromlist=[_attr]), _attr)
+                _result = _fn(context)
+                if _result and not str(_result).lower().startswith(("❌", "⚠️")):
+                    break
+            except Exception as _e:
+                log_private(f"[look_outward] {_fn_name} fallback failed: {_e}")
+                _result = None
+        if not _result:
+            try:
+                from cognition.search_own_files import search_own_files
+                _result = search_own_files(context)
+            except Exception as _sof_e:
+                log_private(f"[look_outward] search_own_files fallback failed: {_sof_e}")
+                _result = "No web search configured — tried searching own files."
+        # Feed habituation: an empty/echo reach satiates fast; a real wiki summary doesn't.
+        try:
+            from cognition.exploration_value import record_reach_outcome
+            record_reach_outcome("look_outward", str(_result), None, context)
+        except Exception:
+            pass
+        return _result
 
     query = _form_query(context)
     if not query:
@@ -63,7 +83,6 @@ def look_outward(context: Dict[str, Any] = None) -> str:
             ingest_handler="cognition.perception.look_outward.ingest_outward_result",
             context_kwargs={"query": query},
         )
-        _LAST_OUTWARD_TS = now  # only consume the rate-limit slot on successful queue
         log_activity(f"[look_outward] Queued search: {query!r}")
     except Exception as e:
         log_activity(f"[look_outward] tool_runner queue failed: {e}")
@@ -102,12 +121,21 @@ def ingest_outward_result(result_text: str, query: str, context: Dict[str, Any] 
         extra={"source": "outward", "query": query},
     )
     log_private(f"[look_outward:result] {result_text[:200]}")
-    # Feed knowledge graph — extract entities/relations from web result
+    # Feed knowledge graph — extract entities/relations from web result — and use the
+    # graph delta as the information-gain signal that updates look_outward's
+    # habituation (reach_value). A result that grows the graph keeps the outward drive
+    # live; one that adds nothing satiates it.
+    _kg_delta = None
     try:
         from cognition.knowledge_graph import observe as _kg_observe
-        _kg_observe(query + " " + result_text[:600], source="web_search", context=context)
+        _kg_delta = _kg_observe(query + " " + result_text[:600], source="web_search", context=context)
     except Exception as _e:
         record_failure("look_outward.ingest_outward_result", _e)
+    try:
+        from cognition.exploration_value import record_reach_outcome
+        record_reach_outcome("look_outward", result_text, _kg_delta, context)
+    except Exception:
+        pass
 
 
 _QUERY_FILLER = re.compile(

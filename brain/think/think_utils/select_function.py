@@ -417,9 +417,15 @@ _SAFE_TO_EXPLORE_DEFAULT: frozenset = frozenset({
 _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     "stagnation_signal":     {"seek_novelty": 0.9, "search_own_files": 0.82, "look_outward": 0.75,
                     "read_a_book": 0.78, "look_around": 0.70, "grep_files": 0.65,
+                    "wikipedia_search": 0.62, "research_topic": 0.60,
                     "search_files": 0.60, "dream_cycle": 0.60, "generate_intrinsic_goals": 0.55},
+    # Prior hygiene (EXPLORE_EXPLOIT_VALUE_PLAN §6.4 Fix C): the generic curiosity urge
+    # must have a path to REAL outward knowledge (wiki/research), not only to
+    # look_outward / search_own_files — otherwise a research goal's own means score 0
+    # on the dominant exploration_drive prior and lose to the cheap look_outward.
     "exploration_drive":   {"search_own_files": 0.88, "look_outward": 0.85, "look_around": 0.75,
                     "generate_intrinsic_goals": 0.72, "grep_files": 0.68,
+                    "wikipedia_search": 0.66, "research_topic": 0.64,
                     "reflect_on_internal_agents": 0.65, "search_files": 0.60},
     "impasse_signal": {"attempt_regulation": 0.88, "reflect_on_affect": 0.82,
                     "investigate_unexplained_emotions": 0.76, "reflection": 0.72,
@@ -456,7 +462,8 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "investigate_unexplained_emotions": 0.60},
     "expected_gain":        {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
     "wonder":      {"search_own_files": 0.85, "look_outward": 0.80, "look_around": 0.75,
-                    "seek_novelty": 0.70, "leave_note": 0.68, "reflect_on_internal_agents": 0.65},
+                    "seek_novelty": 0.70, "leave_note": 0.68, "reflect_on_internal_agents": 0.65,
+                    "wikipedia_search": 0.66, "research_topic": 0.64},
 }
 
 # ── Phase 4 (function_selection_fix_v2 §5): tag-derived boost sets ────────────
@@ -1592,13 +1599,30 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # Only exclusive "doing" actions are gated; shared/reflective functions stay free.
     _goal_type = "general"
     _mismatch_fn = None
+    _type_family: frozenset = frozenset()   # the committed goal type's instrumental actions
     if _has_committed_goal:
         try:
-            from cognition.planning.goal_types import goal_type_of, is_mismatched_doing_action as _mismatch_fn
+            from cognition.planning.goal_types import (
+                goal_type_of, is_mismatched_doing_action as _mismatch_fn, EXCLUSIVE_DOING,
+            )
             _goal_type = goal_type_of(context.get("committed_goal") or {})
+            # Type-based recruitment (EXPLORE_EXPLOIT_VALUE_PLAN §6.4 Fix A; Miller & Cohen
+            # 2001 guided activation): a strongly-typed goal categorically recruits its OWN
+            # means — e.g. an acquire_knowledge goal pulls research_topic/wikipedia_search —
+            # which fuzzy capability-text overlap fails to distinguish from look_outward.
+            _type_family = EXCLUSIVE_DOING.get(_goal_type, frozenset())
         except Exception as _gte:
             record_failure("select_function.goal_type", _gte)
             _mismatch_fn = None
+
+    # Explore/exploit value governs the outward-exploration reads (replaces the
+    # look_outward wall-clock cooldown + the standing MED outward boost for these fns,
+    # so they are not double-counted). cognition.exploration_value.
+    try:
+        from cognition.exploration_value import reach_value as _reach_value_fn, _OUTWARD_FNS as _REACH_FNS
+    except Exception:
+        _reach_value_fn = None
+        _REACH_FNS = frozenset()
 
     for name in actions:
         definition = defs.get(name, name)
@@ -1639,6 +1663,16 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         s_neuro     = float(_neuro_boost.get(name, 0.0))
         s_emo_mode  = float(_emo_mode_boost.get(name, 0.0))
         s_outward   = float(_outward_boost.get(name, 0.0))
+        # Explore/exploit value for outward reads (habituation + curiosity-gap +
+        # opportunity-cost + boredom). For these fns it REPLACES the standing MED
+        # outward boost (zero s_outward to avoid double-counting).
+        s_reach = 0.0
+        if _reach_value_fn is not None and name in _REACH_FNS:
+            s_reach = _reach_value_fn(name, context)
+            s_outward = 0.0
+        # Type-based recruitment (Fix A): the committed goal type's own means get a
+        # decisive boost, comparable to the emotion prior.
+        s_type_recruit = 0.20 if name in _type_family else 0.0
         s_goal_recruit = float(_goal_recruit.get(name, 0.0))  # §4.2 goal-derived
         s_recruit      = float(_recruit_boost.get(name, 0.0))  # ACC→action recruitment
         s_workspace    = float(_workspace_prior.get(name, 0.0))   # Fix 2: awareness→action
@@ -1655,7 +1689,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             if _nuse < 8:
                 s_curio = 0.18 * (_expl_drive - 0.5) * (1.0 - _nuse / 8.0)
 
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_goal_recruit + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
         # here: pursue_committed_goal is no longer a deliberate candidate (it runs in
@@ -1676,7 +1710,14 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # rankable, just no longer dominant. This is the layer the old 0.4× outward-
         # boost damp was too weak to provide — it only touched s_outward, leaving the
         # far larger s_emo exploration prior (≈0.19 of total) untouched.
-        if _has_committed_goal and name in _BLIND_EXPLORE_FNS and s_goal_recruit <= 0.0:
+        # Fix B (EXPLORE_EXPLOIT_VALUE_PLAN §6.4): exempt from shielding only on
+        # MEANINGFUL goal-relevance, not any positive fuzzy overlap. A blind-explore
+        # read with a spurious ~0.1 capability overlap on a research goal (look_outward
+        # measured at 0.106) used to clear `s_goal_recruit > 0` and compete unshielded —
+        # the goal-neglect leak (Duncan et al. 1996). Require a real overlap floor OR
+        # membership in the goal type's own instrumental family.
+        _meaningfully_relevant = (s_goal_recruit >= 0.15) or (name in _type_family)
+        if _has_committed_goal and name in _BLIND_EXPLORE_FNS and not _meaningfully_relevant:
             total -= min(0.40, 0.15 + 0.20 * _goal_commit + 0.10 * _impasse)
 
         # Goal-type gate: decisively suppress an action that exclusively serves a

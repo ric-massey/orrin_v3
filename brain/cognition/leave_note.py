@@ -17,7 +17,25 @@ def leave_note(context: Dict[str, Any] = None) -> str:
 
     from behavior.express_to_user import build_motive, express_to_user
 
-    motive = build_motive(context, intent="leave_note", recipient="Ric")
+    # Ground a knowledge note in its SUBJECT, not the affect status line
+    # (RUN_AUDIT_REPORT_2026-06-16 Issue 4b). For a degraded acquire_knowledge goal
+    # ("Note what I already know about: X") seed the motive with the topic so the
+    # artifact carries real signal. The seed is a meaning kernel — the expression door
+    # rewords/sanitises it, so the membrane stays intact. Empty seed → unchanged
+    # (affect-kernel) behaviour for every other note.
+    _seed = None
+    _goal = context.get("committed_goal") or {}
+    if isinstance(_goal, dict):
+        _title = str(_goal.get("title") or "")
+        if "what i already know about" in _title.lower():
+            _topic = _title.split(":", 1)[-1].strip()
+            _orig = str(_goal.get("_original_title")
+                        or (_goal.get("_predegrade") or {}).get("title") or "")
+            _subject = _topic or _orig
+            if _subject:
+                _seed = f"what I actually know about {_subject}"
+
+    motive = build_motive(context, intent="leave_note", recipient="Ric", seed=_seed)
     result = express_to_user(motive, "note", context)
     content = (result or {}).get("text") or ""
     if not content:

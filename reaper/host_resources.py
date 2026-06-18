@@ -16,6 +16,8 @@
 #   • hard line crossed  → PAUSE the heavy, memory-hungry cycles (dream + reading)
 # That buys time to reboot on your terms rather than getting ambushed, and the
 # gate auto-resumes once the host recovers past the soft line again (hysteresis).
+# Dream is still restorative in Orrin's felt body; this pause is only about the
+# RAM/swap/disk footprint of consolidation under external host pressure.
 from __future__ import annotations
 from core.runtime_log import get_logger
 from dataclasses import dataclass, field

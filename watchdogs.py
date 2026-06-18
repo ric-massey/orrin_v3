@@ -12,6 +12,7 @@ from reaper.lifespan import LifespanByCycles
 from reaper.no_goals import NoGoalsGuard
 from reaper.memory import MemoryHealthGuard
 from reaper.host_resources import HostResourceGuard
+from reaper.vital_floor import VitalFloorGuard
 from reaper.repeat import RepeatLoopGuard
 from observability.nervous_system import HealthBus, NervousSystem
 from observability.metrics import (
@@ -42,6 +43,10 @@ GetMemoryHealth = Callable[[], Dict[str, float | int]]  # ← already NEW
 GetDiskFreeBytes = Callable[[], float]
 GetSwapUsedBytes = Callable[[], float]
 GetVmemPercent = Callable[[], float]
+
+# Vital-floor provider hints (inward: Orrin's own footprint vs his granted body)
+GetOwnRssBytes = Callable[[], float]
+GetBudgetBytes = Callable[[], float]
 
 class Pulse:
     """Thread-safe pulse counter that the main loop updates."""
@@ -132,6 +137,21 @@ def start_watchdogs(
     vmem_warn_percent: float = 85.0,
     vmem_pause_percent: float = 95.0,
     vmem_sustain_s: float = 15.0,
+    # --------- VITAL-FLOOR REFLEX (inward; Orrin's own footprint vs granted body) ---------
+    get_own_rss_bytes: Optional[GetOwnRssBytes] = None,
+    get_budget_bytes: Optional[GetBudgetBytes] = None,
+    vital_on_warn: Optional[Callable[[str], None]] = None,
+    vital_on_shed: Optional[Callable[[str], None]] = None,
+    vital_on_recover: Optional[Callable[[str], None]] = None,
+    vital_shed_fn: Optional[Callable[[str], None]] = None,
+    vital_warn_frac: float = 0.50,     # calibrated 2026-06-17 (§3.1/§7.2); main.py overrides
+    vital_shed_frac: float = 0.55,
+    vital_recover_frac: float = 0.22,
+    vital_sustain_s: float = 8.0,
+    vital_observe_only: bool = True,   # safe default; main.py arms it via ORRIN_VITAL_FLOOR=act
+    vital_calibration_file: Optional[str] = None,
+    vital_calibration_phase: str = "unspecified",
+    vital_calibration_sample_s: float = 1.0,
     # --------- REPEAT-LOOP GUARD (tunables) ---------
     enable_repeat_guard: bool = True,
     action_window_n: int = 50,
@@ -156,7 +176,7 @@ def start_watchdogs(
     Spin up a daemon thread that continuously checks watchdogs.
     Returns:
       (reaper, detector, errors, liveness, lifespan, no_goals, mem_guard,
-       host_guard, repeat_guard, stop_evt)
+       host_guard, vital_guard, repeat_guard, stop_evt)
     """
     reaper = Reaper(kill=kill_current_process)
 
@@ -245,6 +265,29 @@ def start_watchdogs(
         vmem_sustain_s=vmem_sustain_s,
     )
 
+    # Vital-floor reflex (INWARD; the mirror of the host guard). Watches Orrin's
+    # OWN RSS against his granted body size and sheds load before the OS OOM-killer
+    # does it ungracefully. Like the host guard it does NOT route to reaper.trigger
+    # — it sheds, never suicides. Built only if both providers are present.
+    vital_guard: Optional[VitalFloorGuard] = None
+    if get_own_rss_bytes is not None and get_budget_bytes is not None:
+        vital_guard = VitalFloorGuard(
+            on_warn=vital_on_warn,
+            on_shed=vital_on_shed,
+            on_recover=vital_on_recover,
+            shed_fn=vital_shed_fn,
+            get_own_rss_bytes=get_own_rss_bytes,
+            get_budget_bytes=get_budget_bytes,
+            warn_frac=vital_warn_frac,
+            shed_frac=vital_shed_frac,
+            recover_frac=vital_recover_frac,
+            sustain_s=vital_sustain_s,
+            observe_only=vital_observe_only,
+            calibration_file=vital_calibration_file,
+            calibration_phase=vital_calibration_phase,
+            calibration_sample_s=vital_calibration_sample_s,
+        )
+
     # Repeat-loop guard (optional)
     repeat_guard: Optional[RepeatLoopGuard] = None
     if enable_repeat_guard:
@@ -299,6 +342,8 @@ def start_watchdogs(
                 no_goals.step()
             mem_guard.step()
             host_guard.step()
+            if vital_guard is not None:
+                vital_guard.step()
             if repeat_guard is not None:
                 repeat_guard.step()
 
@@ -445,6 +490,7 @@ def start_watchdogs(
         no_goals,
         mem_guard,
         host_guard,
+        vital_guard,
         repeat_guard,
         stop_evt,
     )

@@ -6,10 +6,11 @@ his own process. body_sense.py already handles per-process vitals (RSS, FDs,
 CPU of the Orrin process itself). This layer adds:
 
   • System-wide CPU + memory pressure (whole machine)
-  • File-system change detection across brain/data/ and brain/cognition/
+  • Home-sense: host vitals and local den/workspace file changes
+  • World-sense: external/unknown file changes and network-facing texture
   • Own-code change detection (did something in brain/ change since last sample?)
   • Activity log tail (what did I just do — proprioceptive awareness)
-  • A derived "environment_mood" that the signal_router can treat as background signal
+  • Derived home/world moods that the signal_router can treat as background signal
 
 The SensoryStream runs as a daemon thread, sampling every SAMPLE_INTERVAL
 seconds. Callers get a snapshot via get_field() — a plain dict, no I/O.
@@ -27,12 +28,20 @@ _log = get_logger(__name__)
 _SAMPLE_INTERVAL = 8  # seconds between sensory refreshes
 
 # Directories to watch for file-system changes
-_WATCH_DIRS: List[str] = [
+_HOME_WATCH_DIRS: List[str] = [
     "brain/data",
     "brain/cognition/self_generated",
     "brain/logs",
+    "docs",
+    "goals",
     "inbox",
+    "memory",
+    "outbox",
 ]
+_WORLD_WATCH_DIRS: List[str] = []
+
+# Back-compat name for older callers/tests that may import it.
+_WATCH_DIRS: List[str] = _HOME_WATCH_DIRS
 
 # Root of repo — two levels up from this file
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -103,15 +112,32 @@ class SensoryStream:
         # System-wide vitals
         field["system"] = self._system_vitals()
 
-        # File-system change detection
-        changes = self._detect_fs_changes()
-        field["fs_changes"] = changes
+        # File-system change detection, split by felt zone. Home is the local
+        # den/workspace; world is outside/unknown. Keep fs_changes as a legacy
+        # merged view while new consumers read home_sense/world_sense.
+        home_changes = self._detect_fs_changes(_HOME_WATCH_DIRS, zone="home")
+        world_changes = self._detect_fs_changes(_WORLD_WATCH_DIRS, zone="world")
+        field["fs_changes"] = (home_changes + world_changes)[-20:]
+        field["home_sense"] = {
+            "system": field["system"],
+            "fs_changes": home_changes,
+            "own_code_modified": False,  # filled after code-change detection
+            "mood": "ambient",
+        }
+        field["world_sense"] = {
+            "fs_changes": world_changes,
+            "mood": "ambient",
+        }
         field["own_code_modified"] = self._detect_code_changes()
+        field["home_sense"]["own_code_modified"] = field["own_code_modified"]
 
         # Activity log tail (proprioception — what did I just do?)
         field["log_tail"] = self._read_log_tail()
+        field["home_sense"]["log_tail"] = field["log_tail"]
 
-        # Derived environment mood
+        # Derived moods. environment_mood remains as the legacy merged field.
+        field["home_sense"]["mood"] = self._derive_home_mood(field)
+        field["world_sense"]["mood"] = self._derive_world_mood(field)
         field["environment_mood"] = self._derive_mood(field)
 
         field["sampled_at"] = time.time()
@@ -152,9 +178,9 @@ class SensoryStream:
     # ------------------------------------------------------------------
     # File-system change detection
 
-    def _detect_fs_changes(self) -> List[Dict[str, Any]]:
+    def _detect_fs_changes(self, watch_dirs: Optional[List[str]] = None, *, zone: str = "home") -> List[Dict[str, Any]]:
         changes: List[Dict[str, Any]] = []
-        for rel in _WATCH_DIRS:
+        for rel in (watch_dirs if watch_dirs is not None else _WATCH_DIRS):
             watch_path = _REPO_ROOT / rel
             if not watch_path.exists():
                 continue
@@ -176,6 +202,7 @@ class SensoryStream:
                             "path": str(entry.relative_to(_REPO_ROOT)),
                             "age_s": round(time.time() - mtime, 1),
                             "dir": rel,
+                            "zone": zone,
                         })
             except Exception as _e:
                 record_failure("sensory_stream.SensoryStream._detect_fs_changes", _e)
@@ -226,21 +253,40 @@ class SensoryStream:
             return []
 
     # ------------------------------------------------------------------
-    # Derive an environment mood from the sampled state
+    # Derive moods from the sampled state
 
-    def _derive_mood(self, field: Dict[str, Any]) -> str:
+    def _derive_home_mood(self, field: Dict[str, Any]) -> str:
         sys = field.get("system", {})
         cpu = sys.get("cpu_percent", 0.0)
         mem = sys.get("memory_percent", 0.0)
-        changes = len(field.get("fs_changes", []))
+        home = field.get("home_sense") or {}
+        changes = len(home.get("fs_changes", []))
         own_changed = field.get("own_code_modified", False)
 
         if own_changed:
             return "transformed"   # own code changed — significant
         if changes > 5:
-            return "active"        # environment is busy
+            return "active"        # the den is busy
         if cpu > 80 or mem > 85:
             return "pressured"     # machine is strained
         if cpu < 20 and mem < 50 and changes == 0:
             return "still"         # quiet, open
         return "ambient"           # baseline
+
+    def _derive_world_mood(self, field: Dict[str, Any]) -> str:
+        world = field.get("world_sense") or {}
+        changes = len(world.get("fs_changes", []))
+        if changes > 5:
+            return "active"
+        if changes:
+            return "stirring"
+        return "distant"
+
+    def _derive_mood(self, field: Dict[str, Any]) -> str:
+        home_mood = ((field.get("home_sense") or {}).get("mood")) or self._derive_home_mood(field)
+        world_mood = ((field.get("world_sense") or {}).get("mood")) or self._derive_world_mood(field)
+        if home_mood in ("transformed", "pressured", "active"):
+            return home_mood
+        if world_mood in ("active", "stirring"):
+            return "active"
+        return home_mood

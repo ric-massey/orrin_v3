@@ -473,8 +473,9 @@ def _apply_relationship_emotion_feedback(
         core = emo.get("core_signals", emo) or {}
 
         if met_count >= 2:
-            core["positive_valence"]  = min(1.0, float(core.get("positive_valence",  0.0) or 0) + 0.06)
-            core["expected_gain"] = min(1.0, float(core.get("expected_gain", 0.0) or 0) + 0.04)
+            from affect.homeostasis import pump_signal
+            pump_signal(core, "positive_valence", 0.06)
+            pump_signal(core, "expected_gain",    0.04)
         elif unmet_count >= 3 and emotion in neg_emotions:
             # All three wants unmet *and* the interaction felt hostile — real disconnection
             core["negative_valence"] = min(1.0, float(core.get("negative_valence", 0.0) or 0) + 0.08)

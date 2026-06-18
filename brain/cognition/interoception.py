@@ -266,6 +266,12 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
             signed = float(latency_ms) - predicted       # >0 costlier (strain), <0 cheaper (ease)
             raw = signed * (_NUDGE_GAIN_UP if signed > 0 else _NUDGE_GAIN_DOWN)
             nudge = max(-_NUDGE_CLAMP, min(_NUDGE_CLAMP, raw))
+            try:
+                from cognition.dreaming.dream_cycle import dreaming_now
+                if dreaming_now() and nudge > 0.0:
+                    nudge = 0.0
+            except Exception:
+                pass
             if abs(nudge) >= _NUDGE_MIN:
                 try:
                     from affect.arbiter import submit_affect

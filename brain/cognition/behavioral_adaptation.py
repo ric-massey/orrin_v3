@@ -36,9 +36,33 @@
 # ──────────────────────────────────────────────────────────────────────────────
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from typing import Dict, Any, List
 
 from utils.log import log_private
+from utils.json_utils import modify_json
+from paths import DATA_DIR
+
+# Append-only, bounded record of every behavioral self-edit, so the dashboard can
+# answer "is he actually learning?" by showing before → after → because. The engine
+# already rewrites behaviour each metacog flush; this is the only place that the
+# rewrite is captured as a structured, human-readable diff (see UI master plan §5.1).
+_CHANGE_LOG_PATH = DATA_DIR / "behavior_changes.json"
+_CHANGE_LOG_CAP = 250
+
+# Per-pattern scientific rationale, kept human-readable for the "because" column.
+_REASONS = {
+    "rut": "Tolman (1932): a blocked habitual path should trigger exploration of "
+           "alternative routes, not more repetition.",
+    "oscillation": "Tolman (1932): flip-flopping between two functions is an unstable "
+                   "loop — inject novelty pressure to settle on a new route.",
+    "goal_avoidance": "Carver & Scheier (1982): the corrective output must change "
+                      "behaviour (act on the goal), not just re-observe the gap.",
+    "reflection_imbalance": "Powers (1973): over-reflection leaves the control error "
+                            "uncorrected — force action to reduce it.",
+    "emotional_stagnation": "A stuck dominant emotion is an attractor state; novelty "
+                            "seeking is the push needed to leave it.",
+}
 
 # How strongly each pattern type nudges action_vs_reflect_bias toward action (0.0–1.0).
 _BIAS_NUDGE = {
@@ -48,16 +72,6 @@ _BIAS_NUDGE = {
     "reflection_imbalance": 0.22,
     "emotional_stagnation": 0.08,
 }
-
-# After this many cycles of _force_action_next still uncleared, release the flag.
-_FORCE_ACTION_MAX_CYCLES = 4
-
-# Once action_debt reaches this, soft pressure has demonstrably failed: stop
-# merely nudging and lock goal-DELIBERATION functions (assess_goal_progress,
-# adapt_subgoals, adjust_goal_weights) out of selection for a cycle, so the only
-# remaining goal-directed option is to actually act on the goal.
-_DELIBERATION_LOCKOUT_DEBT = 5
-
 
 def _classify(observation: str) -> str:
     """Return the pattern category for a metacog observation string."""
@@ -73,6 +87,47 @@ def _classify(observation: str) -> str:
     if "stagnation" in obs or "dominant emotion" in obs:
         return "emotional_stagnation"
     return "unknown"
+
+
+def _describe_state(
+    ptype: str,
+    bias: float,
+    action: bool,
+    context: Dict[str, Any] | None = None,
+) -> str:
+    """Human-readable snapshot of the behavioral posture for the change log.
+
+    `action=False` describes the BEFORE posture (bias only — the levers were not
+    yet pulled); `action=True` describes the AFTER posture including the concrete
+    override this pattern armed, read back from the just-mutated context.
+    """
+    if not action:
+        return f"action-vs-reflect bias {bias:.2f}"
+    parts = [f"action-vs-reflect bias {bias:.2f}"]
+    ctx = context or {}
+    if ptype in ("reflection_imbalance", "goal_avoidance"):
+        if ctx.get("_force_action_next"):
+            parts.append("force-action armed until reward-rate recovery")
+        if ptype == "goal_avoidance":
+            parts.append("goal pressure amplified")
+            if ctx.get("_suppress_goal_deliberation"):
+                parts.append("goal-deliberation locked out")
+    if ptype in ("rut", "oscillation", "emotional_stagnation"):
+        parts.append(f"novelty pressure {float(ctx.get('_novelty_pressure') or 0.0):.2f}")
+    return "; ".join(parts)
+
+
+def _persist_changes(changes: List[Dict[str, Any]]) -> None:
+    """Append behavior-change records to the bounded log. Best-effort: telemetry
+    must never crash the cognitive loop."""
+    try:
+        with modify_json(_CHANGE_LOG_PATH, list) as log:
+            log.extend(changes)
+            overflow = len(log) - _CHANGE_LOG_CAP
+            if overflow > 0:
+                del log[:overflow]
+    except Exception as e:
+        log_private(f"[behavioral_adapt] failed to persist behavior changes: {e}")
 
 
 def apply_behavioral_adaptations(
@@ -98,12 +153,14 @@ def apply_behavioral_adaptations(
 
     current_bias = float(context.get("action_vs_reflect_bias") or 0.5)
     patterns_applied: List[str] = []
+    changes: List[Dict[str, Any]] = []
 
     for obs in observations:
         ptype = _classify(obs)
         if ptype == "unknown":
             continue
 
+        bias_before = current_bias
         nudge = _BIAS_NUDGE.get(ptype, 0.0)
         current_bias = min(0.92, current_bias + nudge)
         patterns_applied.append(ptype)
@@ -112,7 +169,6 @@ def apply_behavioral_adaptations(
             # Powers (1973): the control error is maximal here — we need a strong
             # corrective signal that persists into the next function-selection.
             context["_force_action_next"] = True
-            context["_force_action_remaining"] = _FORCE_ACTION_MAX_CYCLES
             log_private("[behavioral_adapt] force_action_next set — reflection imbalance")
 
         elif ptype == "goal_avoidance":
@@ -124,28 +180,16 @@ def apply_behavioral_adaptations(
             # (one increment per cycle). Escalating it here inflated the counter
             # past the lifetime cycle count (5,724 "cycles" in a 4,193-cycle
             # run) and poisoned every memory/rule formed from it.
-            debt = int(context.get("action_debt") or 0)
-            # Arm the action-forcing override. "Thinking but not doing" is the
-            # textbook case this flag exists for, yet previously only
-            # reflection_imbalance set it — so goal avoidance got only a soft
-            # bandit-feature nudge that boosted goal-DELIBERATION
-            # (assess_goal_progress) as much as goal-EXECUTION, and the rut never
-            # broke. Carver & Scheier (1982): the corrective output must change
-            # behaviour, not just re-observe the gap. _force_action_next is what
-            # actually penalises deliberation and lifts action in select_function.
-            context["_force_action_next"] = True
-            context["_force_action_remaining"] = _FORCE_ACTION_MAX_CYCLES
-            # Debt escalation: once avoidance is entrenched, the soft override is
-            # not enough (deliberation can still win on novelty/energy). Lock the
-            # goal-deliberation functions out entirely for the next selection so
-            # "assess / adapt / re-weight the goal" cannot stand in for doing it.
-            lockout = debt >= _DELIBERATION_LOCKOUT_DEBT
-            if lockout:
+            from cognition.reward_rate import is_stagnating, should_force_switch
+            switched = is_stagnating(context) and should_force_switch(context)
+            if switched:
+                context["_force_action_next"] = True
                 context["_suppress_goal_deliberation"] = True
+                context["_suppress_intrinsic_goals"] = True
+            context.setdefault("_escape_available", True)
             log_private(
-                f"[behavioral_adapt] goal_avoidance → force_action_next set, "
-                f"debt now={debt}"
-                + (", goal-deliberation locked out" if lockout else "")
+                "[behavioral_adapt] goal_avoidance "
+                + ("→ patch-leave switch armed" if switched else "→ leave pressure accruing")
             )
 
         elif ptype in ("rut", "oscillation"):
@@ -159,6 +203,21 @@ def apply_behavioral_adaptations(
             # Stagnant dominant emotion → seek novelty to break the attractor state.
             existing_novelty = float(context.get("_novelty_pressure") or 0.0)
             context["_novelty_pressure"] = min(1.5, existing_novelty + 0.15)
+
+        # Capture the rewrite as a structured before→after→because record. This is
+        # the only place the engine's self-edits become inspectable in the UI.
+        changes.append({
+            "when": datetime.now(timezone.utc).isoformat(),
+            "pattern": ptype,
+            "situation": obs,
+            "old_action": _describe_state(ptype, bias_before, action=False),
+            "new_action": _describe_state(ptype, current_bias, action=True, context=context),
+            "reason": _REASONS.get(ptype, ""),
+            "evidence": obs,
+        })
+
+    if changes:
+        _persist_changes(changes)
 
     if patterns_applied:
         context["action_vs_reflect_bias"] = round(current_bias, 3)
@@ -181,19 +240,18 @@ def decay_behavioral_pressure(context: Dict[str, Any]) -> None:
     if np > 0.0:
         context["_novelty_pressure"] = max(0.0, round(np * 0.75, 3))
 
-    # Tick down _force_action countdown
-    remaining = int(context.get("_force_action_remaining") or 0)
-    if remaining > 0:
-        remaining -= 1
-        context["_force_action_remaining"] = remaining
-        if remaining == 0:
-            context.pop("_force_action_next", None)
-            context.pop("_force_action_remaining", None)
-            log_private("[behavioral_adapt] force_action_next released")
+    from cognition.reward_rate import patch_deficit
+    recovered = patch_deficit(context) < 0.1
+    if recovered:
+        for key in (
+            "_suppress_goal_deliberation",
+            "_suppress_intrinsic_goals",
+            "_force_action_next",
+        ):
+            context.pop(key, None)
+        context["_escape_available"] = True
 
-    # Release goal pressure once action_debt drops below warning threshold
-    debt = int(context.get("action_debt") or 0)
-    if debt < 2 and context.get("_goal_pressure_amplified"):
+    if recovered and context.get("_goal_pressure_amplified"):
         context.pop("_goal_pressure_amplified", None)
 
     # Decay action_vs_reflect_bias back toward baseline (0.5) when no pressure

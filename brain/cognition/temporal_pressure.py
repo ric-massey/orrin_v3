@@ -23,6 +23,7 @@ from typing import Any, Dict, List, Optional
 from utils.log import log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.working_memory import update_working_memory
+from affect.homeostasis import pump_signal
 from paths import GOALS_FILE, SCHEDULED_TASKS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -288,28 +289,28 @@ def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Opt
 
         if progress_signal and goal_in_wm:
             # About to finish → anticipatory satisfaction and relief
-            core["positive_valence"]        = min(1.0, float(core.get("positive_valence", 0))        + 0.07 * ei)
-            core["motivation"] = min(1.0, float(core.get("motivation", 0)) + 0.09 * ei)
-            core["expected_gain"]       = min(1.0, float(core.get("expected_gain", 0))       + 0.06 * ei)
+            pump_signal(core, "positive_valence", 0.07 * ei)
+            pump_signal(core, "motivation",       0.09 * ei)
+            pump_signal(core, "expected_gain",    0.06 * ei)
             fired = "anticipatory_satisfaction"
 
         elif blocked_signal and goal_in_wm:
             # About to face something that's been stuck → mild dread, not resignation
-            core["risk_estimate"]     = min(1.0, float(core.get("risk_estimate", 0))     + 0.06)
-            core["impasse_signal"] = min(1.0, float(core.get("impasse_signal", 0)) + 0.04)
+            pump_signal(core, "risk_estimate",  0.06)
+            pump_signal(core, "impasse_signal", 0.04)
             fired = "anticipatory_dread"
 
         elif dl and dl["phase"] in ("imminent", "approaching"):
             # Deadline close → pressure-excitement mix (not pure risk_estimate)
-            core["risk_estimate"]    = min(1.0, float(core.get("risk_estimate", 0))    + 0.04)
-            core["motivation"] = min(1.0, float(core.get("motivation", 0)) + 0.06 * ei)
-            core["expected_gain"]       = min(1.0, float(core.get("expected_gain", 0))       + 0.03 * ei)
+            pump_signal(core, "risk_estimate", 0.04)
+            pump_signal(core, "motivation",    0.06 * ei)
+            pump_signal(core, "expected_gain", 0.03 * ei)
             fired = "anticipatory_pressure"
 
         else:
             # Default: forward-facing interest in the goal
             if ei > 0.40:
-                core["expected_gain"]      = min(1.0, float(core.get("expected_gain", 0))      + 0.03 * ei)
+                pump_signal(core, "expected_gain", 0.03 * ei)
                 # Only a faint curiosity nudge, and only at STRONG interest. Goal
                 # engagement is not the same as exploration drive — the old +0.025/cycle
                 # fired almost every goal-pursuit cycle and out-paced the homeostatic
@@ -318,7 +319,7 @@ def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Opt
                 # work, letting curiosity ebb to baseline and spike again on genuine
                 # novelty (wonder / prediction-surprise).
                 if ei > 0.6:
-                    core["exploration_drive"] = min(1.0, float(core.get("exploration_drive", 0)) + 0.008 * ei)
+                    pump_signal(core, "exploration_drive", 0.008 * ei)
             fired = "anticipatory_interest"
 
     # Social anticipation — user was recently here
@@ -329,8 +330,8 @@ def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Opt
     cycles_since = int(cycles) - last_user
     if 0 < cycles_since <= 4:
         # Just interacted — warm forward lean, not eager desperation
-        core["expected_gain"]      = min(1.0, float(core.get("expected_gain", 0))      + 0.04)
-        core["exploration_drive"] = min(1.0, float(core.get("exploration_drive", 0)) + 0.03)
+        pump_signal(core, "expected_gain",    0.04)
+        pump_signal(core, "exploration_drive", 0.03)
         if fired is None:
             fired = "social_anticipation"
 

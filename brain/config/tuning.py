@@ -29,6 +29,24 @@ SELECTOR_BASE_W_NOVEL: float = 0.10   # novelty, before stagnation amplification
 SELECTOR_W_BAND: float = 0.25         # bandit/learned hint
 SELECTOR_W_DRIVE: float = 0.15        # net drive-pull bias
 
+# ── Prior outcome-devaluation (LEARNING_DIAGNOSIS_2026-06-16 §5.2) ────────────
+# A static emotion prior must not keep boosting an arm the agent has proven is
+# low-yield. Once a function has enough learned evidence, its prior is decayed
+# in proportion to how far its avg_reward sits below the candidate-pool median.
+# This restores outcome-devaluation sensitivity (model-based override of habit).
+SELECTOR_DEVAL_MIN_PULLS: int = 30    # need a stable estimate before devaluing
+SELECTOR_DEVAL_K: float = 1.2         # devaluation strength per unit reward gap
+SELECTOR_DEVAL_FLOOR: float = 0.25    # prior shrinks to at most 25%, never to 0
+
+# ── Stagnation rut breaker in the real pick (§5.3) ───────────────────────────
+# Mirror of contextual_bandit._stagnation_epsilon_boost, applied to the actual
+# weighted-sum pick. When recent selections concentrate in a few arms, raise the
+# exploration epsilon so the value learner gets control back.
+SELECTOR_RUT_MIN_TOTAL: int = 20      # min selections before checking concentration
+SELECTOR_RUT_TRIP: float = 0.80       # top-3 share that counts as a rut
+SELECTOR_RUT_EPS_GAIN: float = 0.25   # epsilon added at full concentration
+SELECTOR_RUT_EPS_CAP: float = 0.50    # ceiling on the boosted epsilon
+
 # ── Selector attention-mode modulation ──────────────────────────────────────
 # signal_router computes `attention_mode`; these multipliers/boosts are what
 # make that mode actually change which function gets picked. Grouped by mode.

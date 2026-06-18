@@ -10,7 +10,7 @@
 # The environment has rhythms and textures, and Orrin can learn them.
 #
 # Synthesizes:
-#   sensory_stream  — machine vitals, file changes, environment mood
+#   sensory_stream  — home-sense/world-sense, machine vitals, file changes
 #   social_presence — conversational silence, engagement pattern
 #   drive_engine    — current biological drive pressures
 #   own observations — network check, circadian context
@@ -262,7 +262,15 @@ class WorldModel:
                 snap["mem_pct"]          = sys_v.get("memory_percent")
                 snap["mem_avail_gb"]     = sys_v.get("memory_available_gb")
                 snap["disk_pct"]         = sys_v.get("disk_percent")
-                snap["env_mood"]         = field.get("environment_mood", "ambient")
+                home_sense = field.get("home_sense") or {}
+                world_sense = field.get("world_sense") or {}
+                snap["home_sense"]       = home_sense
+                snap["world_sense"]      = world_sense
+                snap["home_mood"]        = home_sense.get("mood", "ambient")
+                snap["world_mood"]       = world_sense.get("mood", "distant")
+                snap["env_mood"]         = field.get("environment_mood", snap["home_mood"])
+                snap["home_changes"]     = len(home_sense.get("fs_changes", []))
+                snap["world_changes"]    = len(world_sense.get("fs_changes", []))
                 snap["fs_changes"]       = len(field.get("fs_changes", []))
                 snap["own_code_changed"] = bool(field.get("own_code_modified"))
                 snap["log_tail"]         = field.get("log_tail", [])[-3:]  # last 3 lines
@@ -381,6 +389,16 @@ class WorldModel:
         if snap.get("own_code_changed"):
             anomalies.append("My own code changed — I may be different now")
 
+        # Home/world texture. Home activity is den-local and learnable; world
+        # activity is external/unknown. Keep separate so the model no longer treats
+        # both as one generic environment twitch.
+        home_changes = int(snap.get("home_changes") or 0)
+        if home_changes > 8:
+            anomalies.append(f"Home unusually active ({home_changes} local changes)")
+        world_changes = int(snap.get("world_changes") or 0)
+        if world_changes > 8:
+            anomalies.append(f"World unusually active ({world_changes} external changes)")
+
         # Sustained silence
         silence = snap.get("silence_s")
         if silence is not None and silence > 7200:
@@ -426,7 +444,7 @@ class WorldModel:
                 "source":         "world_model",
                 "content":        f"[environment] {anomaly}",
                 "signal_strength": 0.60,
-                "tags":           ["environment", "anomaly", "embodiment", "world_model"],
+                "tags":           ["environment", "anomaly", "embodiment", "world_model", *_zone_tags(anomaly)],
             })
 
     # ------------------------------------------------------------------
@@ -554,3 +572,12 @@ class WorldModel:
 def _mean(vals: List[float]) -> Optional[float]:
     filtered = [v for v in vals if v is not None]
     return sum(filtered) / len(filtered) if filtered else None
+
+
+def _zone_tags(text: str) -> List[str]:
+    low = (text or "").lower()
+    if low.startswith("home "):
+        return ["home", "home_sense"]
+    if low.startswith("world "):
+        return ["external", "world_sense"]
+    return []

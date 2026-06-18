@@ -6,6 +6,7 @@ import uuid
 import re
 import random as _rand
 import math as _math
+import statistics as _statistics
 
 from paths import (
     COGNITIVE_FUNCTIONS_LIST_FILE,
@@ -419,14 +420,17 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "read_a_book": 0.78, "look_around": 0.70, "grep_files": 0.65,
                     "wikipedia_search": 0.62, "research_topic": 0.60,
                     "search_files": 0.60, "dream_cycle": 0.60, "generate_intrinsic_goals": 0.55},
-    # Prior hygiene (EXPLORE_EXPLOIT_VALUE_PLAN §6.4 Fix C): the generic curiosity urge
-    # must have a path to REAL outward knowledge (wiki/research), not only to
-    # look_outward / search_own_files — otherwise a research goal's own means score 0
-    # on the dominant exploration_drive prior and lose to the cheap look_outward.
-    "exploration_drive":   {"search_own_files": 0.88, "look_outward": 0.85, "look_around": 0.75,
-                    "generate_intrinsic_goals": 0.72, "grep_files": 0.68,
-                    "wikipedia_search": 0.66, "research_topic": 0.64,
-                    "reflect_on_internal_agents": 0.65, "search_files": 0.60},
+    # Prior realignment (LEARNING_DIAGNOSIS_2026-06-16 §5.1): the curiosity urge was
+    # wired to the cheap diversive scanners (look_outward/look_around, learned q≈0.11–0.14)
+    # over the epistemic explorers (seek_novelty/research_topic/wikipedia_search, q≈0.34–0.59).
+    # The static prior's lift was the entire margin keeping the low-reward arms on top, so
+    # learning could never dig out. Point the prior at what he is actually rewarded for and
+    # demote the scanners below them — turns diversive curiosity into epistemic.
+    "exploration_drive":   {"seek_novelty": 0.85, "research_topic": 0.80,
+                    "wikipedia_search": 0.78, "read_a_book": 0.70,
+                    "grep_files": 0.62, "reflect_on_internal_agents": 0.55,
+                    "generate_intrinsic_goals": 0.55, "search_own_files": 0.50,
+                    "search_files": 0.50, "look_outward": 0.45, "look_around": 0.40},
     "impasse_signal": {"attempt_regulation": 0.88, "reflect_on_affect": 0.82,
                     "investigate_unexplained_emotions": 0.76, "reflection": 0.72,
                     "reflect_on_emotion_model": 0.68, "propose_value_revision": 0.65,
@@ -461,9 +465,11 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "self_review": 0.72, "reflection": 0.65,
                     "investigate_unexplained_emotions": 0.60},
     "expected_gain":        {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
-    "wonder":      {"search_own_files": 0.85, "look_outward": 0.80, "look_around": 0.75,
-                    "seek_novelty": 0.70, "leave_note": 0.68, "reflect_on_internal_agents": 0.65,
-                    "wikipedia_search": 0.66, "research_topic": 0.64},
+    # §5.1: same realignment as exploration_drive — lead with epistemic explorers,
+    # demote look_outward/look_around so the prior stops over-privileging the scanners.
+    "wonder":      {"seek_novelty": 0.82, "research_topic": 0.78, "wikipedia_search": 0.74,
+                    "search_own_files": 0.62, "reflect_on_internal_agents": 0.60,
+                    "leave_note": 0.58, "look_outward": 0.50, "look_around": 0.48},
 }
 
 # ── Phase 4 (function_selection_fix_v2 §5): tag-derived boost sets ────────────
@@ -845,6 +851,40 @@ def _semantic_emotion_prior(actions: List[str], dominant: str) -> Dict[str, floa
     """
     priors = _SEMANTIC_PRIORS.get(dominant.lower(), {})
     return {name: priors[name] for name in actions if name in priors}
+
+
+def _devalue_prior(
+    prior: float,
+    name: str,
+    stats: Dict[str, Dict[str, float]],
+    pool_median: float | None,
+) -> float:
+    """
+    Decay a static emotion prior by how far this fn's learned avg_reward sits
+    below the candidate-pool median (LEARNING_DIAGNOSIS_2026-06-16 §5.2).
+
+    Only applies once the fn has >= SELECTOR_DEVAL_MIN_PULLS of evidence, and is
+    floored at SELECTOR_DEVAL_FLOOR so a prior can never be killed outright (cold
+    re-sampling must stay possible). Restores outcome-devaluation sensitivity:
+    a prior cannot keep boosting an arm the agent has proven is worse than peers.
+    """
+    if prior <= 0.0 or pool_median is None:
+        return prior
+    st = stats.get(name) or {}
+    if int(st.get("count", 0) or 0) < int(_tuning.SELECTOR_DEVAL_MIN_PULLS):
+        return prior
+    gap = pool_median - float(st.get("avg_reward", 0.5) or 0.5)
+    count = int(st.get("count", 0) or 0)
+    avg = float(st.get("avg_reward", 0.5) or 0.5)
+    # A heavily sampled neutral outcome is itself evidence: the action is
+    # predictably boring even when the pool median is also flat.
+    neutral_penalty = min(0.20, 0.02 * (count ** 0.5)) if abs(avg - 0.5) <= 0.04 else 0.0
+    if gap <= 0.0 and neutral_penalty <= 0.0:
+        return prior
+    return prior * max(
+        float(_tuning.SELECTOR_DEVAL_FLOOR),
+        1.0 - float(_tuning.SELECTOR_DEVAL_K) * max(0.0, gap) - neutral_penalty,
+    )
 
 
 def _novelty_score(name: str, recent: List[str]) -> float:
@@ -1624,6 +1664,23 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         _reach_value_fn = None
         _REACH_FNS = frozenset()
 
+    # Prior outcome-devaluation baseline (LEARNING_DIAGNOSIS_2026-06-16 §5.2): the
+    # median learned avg_reward over candidates that have enough evidence. A prior on
+    # an arm whose reward sits below this median is decayed in the loop below, so a
+    # static prior can no longer keep boosting an arm the agent has proven is low-yield.
+    _deval_min = int(_tuning.SELECTOR_DEVAL_MIN_PULLS)
+    _evidenced = [
+        float((_stats.get(a) or {}).get("avg_reward", 0.5) or 0.5)
+        for a in actions
+        if int((_stats.get(a) or {}).get("count", 0) or 0) >= _deval_min
+    ]
+    _pool_median_reward = _statistics.median(_evidenced) if _evidenced else None
+    context["_escape_available"] = any(
+        name != "generate_intrinsic_goals"
+        and name not in _GOAL_DELIBERATION_FNS
+        for name in actions
+    )
+
     for name in actions:
         definition = defs.get(name, name)
         s_dir  = _kw_overlap_score(definition, directive)
@@ -1636,6 +1693,9 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # full prior when map is empty, full learned when prior has no opinion.
         learned = float(emo_pref.get(name, 0.0))
         prior   = float(sem_prior.get(name, 0.0))
+        # Outcome-devaluation (§5.2): decay the static prior if this fn has proven
+        # low-yield relative to its peers (see _devalue_prior).
+        prior = _devalue_prior(prior, name, _stats, _pool_median_reward)
         if learned > 0 and prior > 0:
             s_emo = 0.5 * learned + 0.5 * prior
         elif learned > 0:
@@ -1751,6 +1811,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # resort but ensures any genuine execution option outscores it.
         if context.get("_suppress_goal_deliberation") and name in _GOAL_DELIBERATION_FNS:
             total -= 0.80
+        if context.get("_suppress_intrinsic_goals") and name == "generate_intrinsic_goals":
+            total -= 1.0
 
         # Will/commitment follow-through bias (cognition/will.py): a small,
         # decaying boost to actually pursuing the committed goal, so fresh resolve
@@ -1834,6 +1896,28 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         _expl_eps_base = float(context.get("_exploration_epsilon", 0.10) or 0.0)
         if _expl_eps_base > 0.0:
             _expl_eps = min(0.30, _expl_eps_base + 0.20 * max(0.0, _expl_drive - 0.5))
+            # Metacognitive rut breaker (LEARNING_DIAGNOSIS_2026-06-16 §5.3): the
+            # stagnation detector in contextual_bandit only runs inside bandit.choose(),
+            # which the real (weighted-sum) pick never calls — so the breaker built for
+            # exactly this rut had 0 effect. Replicate its concentration check here and
+            # raise ε when recent picks are dominated by a few arms, handing control back
+            # to the value learner. Mirrors contextual_bandit._stagnation_epsilon_boost.
+            try:
+                _counts = (bandit.get_state() or {}).get("counts", {}) or {}
+                _cand_total = sum(int(_counts.get(a, 0) or 0) for a in actions)
+                if _cand_total >= int(_tuning.SELECTOR_RUT_MIN_TOTAL):
+                    _top3 = sum(sorted(
+                        (int(_counts.get(a, 0) or 0) for a in actions), reverse=True)[:3])
+                    _conc = _top3 / max(_cand_total, 1)
+                    _trip = float(_tuning.SELECTOR_RUT_TRIP)
+                    if _conc > _trip:
+                        _expl_eps = min(
+                            float(_tuning.SELECTOR_RUT_EPS_CAP),
+                            _expl_eps + float(_tuning.SELECTOR_RUT_EPS_GAIN)
+                            * (_conc - _trip) / max(1.0 - _trip, 1e-6),
+                        )
+            except Exception:
+                pass
             if _rand.random() < _expl_eps:
                 _stats_now = _learned_stats()
                 _tail = [

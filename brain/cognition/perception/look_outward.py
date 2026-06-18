@@ -28,6 +28,8 @@ def look_outward(context: Dict[str, Any] = None) -> str:
     when they aren't. See EXPLORE_EXPLOIT_VALUE_PLAN_2026-06-16.
     """
     import os
+    from cognition.exploration_value import ReachOutcome
+
     context = context or {}
     if not os.environ.get("SERPER_API_KEY"):
         # No SERPER key: reach the WORLD via the keyless Wikipedia/research path
@@ -36,6 +38,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
         # habituates via reach_value, so an unconfigured outward drive can't dominate.
         log_private("[look_outward] No SERPER_API_KEY — reaching outward via Wikipedia/research.")
         _result = None
+        _realized_fn = ""
         for _fn_name, _import in (
             ("wikipedia_search", "cognition.wikipedia_search.wikipedia_search"),
             ("research_topic", "cognition.web_research.research_topic"),
@@ -45,6 +48,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
                 _fn = getattr(__import__(_mod, fromlist=[_attr]), _attr)
                 _result = _fn(context)
                 if _result and not str(_result).lower().startswith(("❌", "⚠️")):
+                    _realized_fn = _fn_name
                     break
             except Exception as _e:
                 log_private(f"[look_outward] {_fn_name} fallback failed: {_e}")
@@ -53,20 +57,44 @@ def look_outward(context: Dict[str, Any] = None) -> str:
             try:
                 from cognition.search_own_files import search_own_files
                 _result = search_own_files(context)
+                _realized_fn = "search_own_files"
             except Exception as _sof_e:
                 log_private(f"[look_outward] search_own_files fallback failed: {_sof_e}")
                 _result = "No web search configured — tried searching own files."
-        # Feed habituation: an empty/echo reach satiates fast; a real wiki summary doesn't.
-        try:
-            from cognition.exploration_value import record_reach_outcome
-            record_reach_outcome("look_outward", str(_result), None, context)
-        except Exception:
-            pass
+        # The realized inner action owns the single consummation event.
+        _inner = context.get("_last_reach_outcome")
+        if isinstance(_inner, ReachOutcome) and _inner.inner_fn == _realized_fn:
+            _gain = _inner.info_gain
+        else:
+            try:
+                from cognition.exploration_value import record_reach_outcome
+                _gain = record_reach_outcome("look_outward", str(_result), None, context)
+            except Exception:
+                _gain = 0.0
+        _acted = bool(
+            _result
+            and not str(_result).lstrip().startswith(("❌", "⚠️"))
+            and "Couldn't form" not in str(_result)
+        )
+        context["_last_reach_outcome"] = ReachOutcome(
+            mode="world" if _realized_fn != "search_own_files" else "home",
+            acted=_acted,
+            is_external=_realized_fn != "search_own_files",
+            info_gain=float(_gain),
+            created_memory=False,
+            satisfied_curiosity=_acted and float(_gain) > 0.0,
+            inner_fn=_realized_fn,
+            text=str(_result or ""),
+        )
         return _result
 
     query = _form_query(context)
     if not query:
-        return "Couldn't form a query to look outward with."
+        text = "Couldn't form a query to look outward with."
+        context["_last_reach_outcome"] = ReachOutcome(
+            mode="world", acted=False, is_external=True, inner_fn="web_search", text=text,
+        )
+        return text
 
     # Queue through tool_runner — result arrives on next drain (~30s).
     # The ingest_handler is the full dotted Python path to ingest_outward_result;
@@ -86,7 +114,11 @@ def look_outward(context: Dict[str, Any] = None) -> str:
         log_activity(f"[look_outward] Queued search: {query!r}")
     except Exception as e:
         log_activity(f"[look_outward] tool_runner queue failed: {e}")
-        return f"Wanted to search for '{query}' but tool_runner unavailable."
+        text = f"Wanted to search for '{query}' but tool_runner unavailable."
+        context["_last_reach_outcome"] = ReachOutcome(
+            mode="world", acted=False, is_external=True, inner_fn="web_search", text=text,
+        )
+        return text
 
     # Write the outward intent to long memory now (before the result arrives)
     # so the query itself is part of Orrin's record and queryable.
@@ -100,7 +132,18 @@ def look_outward(context: Dict[str, Any] = None) -> str:
     )
 
     log_private(f"[look_outward] query={query!r}")
-    return f"Searching: {query}"
+    text = f"Searching: {query}"
+    context["_last_reach_outcome"] = ReachOutcome(
+        mode="world",
+        acted=True,
+        is_external=True,
+        info_gain=0.0,
+        created_memory=True,
+        satisfied_curiosity=False,
+        inner_fn="web_search",
+        text=text,
+    )
+    return text
 
 
 def ingest_outward_result(result_text: str, query: str, context: Dict[str, Any] = None) -> None:

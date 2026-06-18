@@ -30,6 +30,8 @@ class RewardAuditor(BasePeer):
     signal_tags = ["peer", "reward_auditor", "internal"]
 
     def should_wake(self, context: Dict[str, Any], cycle: int) -> bool:
+        if context.get("_impasse_reason"):
+            return True
         if cycle % 50 == 0:
             return True
         debt = int(context.get("action_debt", 0) or 0)

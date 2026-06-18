@@ -209,6 +209,35 @@ def load_goals() -> List[Dict]:
 _TERMINAL_STATUSES = {"completed", "failed", "abandoned", "cancelled"}
 
 
+def _flatten_goals(nodes):
+    for node in nodes or []:
+        if not isinstance(node, dict):
+            continue
+        yield node
+        yield from _flatten_goals(node.get("subgoals"))
+
+
+def _reconcile_to_disk_terminal(goal: Dict) -> Dict:
+    """Adopt an existing terminal state before merging a stale in-memory copy."""
+    if not isinstance(goal, dict):
+        return goal
+    gid = goal.get("id") or goal.get("title") or goal.get("name")
+    if not gid:
+        return goal
+    disk_goals = load_json(GOALS_FILE, default_type=list) or []
+    for node in _flatten_goals(disk_goals):
+        node_id = node.get("id") or node.get("title") or node.get("name")
+        if (
+            node_id == gid
+            and str(node.get("status", "")).lower() in _TERMINAL_STATUSES
+        ):
+            goal["status"] = node["status"]
+            if node.get("completed_timestamp"):
+                goal["completed_timestamp"] = node["completed_timestamp"]
+            break
+    return goal
+
+
 def save_goals(goals: List[Dict]) -> None:
     # Terminal-status stickiness (lost-update guard). Many call sites load→mutate→save
     # goals_mem.json WITHOUT the GoalArbiter (the arbiter's own header notes "dozens of
@@ -328,6 +357,8 @@ def merge_updated_goal_into_tree(tree: List[Dict], updated: Dict) -> List[Dict]:
     Merge an updated goal node into the full tree by matching id, then (name, timestamp).
     Replaces the first match found; recurses into subgoals. If not found, appends at top level.
     """
+    updated = _reconcile_to_disk_terminal(updated)
+
     def match(a: Dict, b: Dict) -> bool:
         # Id is authoritative: the same goal re-created at a different hour has a
         # new timestamp, and (name, timestamp) matching appended a duplicate
@@ -676,14 +707,27 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
             _st["status"] = "skipped"
             _st["skip_reason"] = "goal completed"
     _sig = achievement_significance(goal)   # I17 — joy scaled to real significance
-    release_reward_signal(
-        context=context or {},
-        signal_type="reward_signal",
-        actual_reward=round(1.0 * _sig, 3),
-        expected_reward=0.7,
-        effort=0.4,
-        mode="phasic",
-    )
+    _ctx = context or {}
+    try:
+        from cognition.action_accounting import cycle_produced_goal_action
+        _grounded = bool(_ms and all(m.get("met") for m in _ms)) or cycle_produced_goal_action(_ctx)
+    except Exception:
+        _grounded = bool(_ms and all(m.get("met") for m in _ms))
+    _grounded = _grounded or bool(_ctx.get("_verified_artifact_this_cycle"))
+    if _grounded:
+        release_reward_signal(
+            context=_ctx,
+            signal_type="reward_signal",
+            actual_reward=round(1.0 * _sig, 3),
+            expected_reward=0.7,
+            effort=0.4,
+            mode="phasic",
+        )
+    else:
+        log_activity(
+            f"[goals] Completed {(goal.get('title') or goal.get('name') or '?')!r} "
+            "without completion reward: no environment delta or verified artifact."
+        )
     # Archive to completed goals file so Signal B can fire. Replace any prior
     # record with the same id — re-completion of a resurrected goal was appending
     # the same id repeatedly (FINDINGS 2026-06-12 §1B: g_3a933aec31 stored 8×).

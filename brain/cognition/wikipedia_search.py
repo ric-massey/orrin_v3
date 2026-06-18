@@ -67,10 +67,30 @@ def wikipedia_search(context: Dict[str, Any] = None) -> str:
         context=context,
         extra=quarantine_extra({"source": "wikipedia", "query": query, "title": result["title"]}),
     )
+    try:
+        from cognition.knowledge_graph import observe as _kg_observe
+        _kg_observe(
+            f"{result['title']} {result['summary'][:1200]}",
+            source="wikipedia",
+            context=context,
+        )
+    except Exception as _e:
+        record_failure("wikipedia_search.knowledge_graph", _e)
 
     _LAST_WIKI_TS = now
     log_activity(f"[wikipedia_search] {result['title']}")
-    return f"Wikipedia on '{result['title']}': {result['summary'][:200]}"
+    text = f"Wikipedia on '{result['title']}': {result['summary'][:200]}"
+    try:
+        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        gain = record_reach_outcome("wikipedia_search", text, None, context)
+        context["_last_reach_outcome"] = ReachOutcome(
+            "world", acted=True, is_external=True, info_gain=gain,
+            created_memory=True, satisfied_curiosity=gain > 0.0,
+            inner_fn="wikipedia_search", text=text,
+        )
+    except Exception:
+        pass
+    return text
 
 
 def _pick_query(context: Dict[str, Any]) -> str:

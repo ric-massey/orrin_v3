@@ -26,6 +26,42 @@ _DREAM_COUNT: int = 0                     # incremented each run; used for proje
 _IS_DREAMING: bool = False                # re-entry guard: prevents two concurrent dream cycles
 _DREAM_LOCK: threading.Lock = threading.Lock()  # guards all _DREAM_* globals
 
+# ── Sleep-phase flag (SL1) ──────────────────────────────────────────────────
+# A process-local "Orrin is asleep" gate, same module-gate pattern as the host
+# guard's heavy_cycles_paused / vital_floor_shedding. The felt body (body_sense)
+# and the other resource_deficit writers read this to attribute the dream's own
+# RSS/CPU/latency spike to a *sleep* phase rather than to distress (§3.2 SL1).
+#
+# The dream runs on a daemon thread while the main cognitive loop keeps cycling,
+# so the loop needs to know "we're asleep right now" without a handle on the
+# dream. Staleness-guarded: if a dream thread dies mid-run and never clears the
+# flag, dreaming_now() auto-expires it after _DREAM_PHASE_MAX_S so a crashed
+# dream can never permanently mask the felt body (which would hide real distress).
+_DREAM_PHASE: bool = False
+_DREAM_PHASE_TS: float = 0.0
+_DREAM_PHASE_MAX_S: float = 1800.0   # a dream this long is treated as stale, not asleep
+
+
+def set_dreaming(active: bool) -> None:
+    """Mark the sleep phase on/off. Called around the dream cycle; also usable by
+    tests to simulate sleep. Thread-safe."""
+    global _DREAM_PHASE, _DREAM_PHASE_TS
+    with _DREAM_LOCK:
+        _DREAM_PHASE = bool(active)
+        _DREAM_PHASE_TS = time.time() if active else 0.0
+
+
+def dreaming_now() -> bool:
+    """True while a dream cycle is in flight (the felt body should read vitals as
+    normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed
+    dream can't permanently mask the felt body."""
+    with _DREAM_LOCK:
+        if not _DREAM_PHASE:
+            return False
+        if (time.time() - _DREAM_PHASE_TS) > _DREAM_PHASE_MAX_S:
+            return False
+        return True
+
 
 def should_dream(context: Dict[str, Any]) -> bool:
     """True when Orrin has been idle long enough and enough time has passed since last dream.
@@ -67,6 +103,10 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         _LAST_DREAM_TS = time.time()
         _DREAM_COUNT += 1
         _this_count = _DREAM_COUNT
+    # Enter the sleep phase: from here the felt body reads vitals against the
+    # dream-phase band (SL2), so the heavy consolidation below reads as rest, not
+    # distress. Cleared at the end of the cycle (and staleness-guarded if we die).
+    set_dreaming(True)
     context = context or {}
     _dream_completed = False
 
@@ -804,6 +844,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     with _DREAM_LOCK:
         _IS_DREAMING = False
+    set_dreaming(False)   # leave the sleep phase — felt body returns to its wake band
 
     log_activity("[dream] Dream cycle complete (3 sub-cycles written to long memory).")
     return dream_entry

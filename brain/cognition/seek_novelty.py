@@ -18,6 +18,13 @@ from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _VOCAB_PATH = DATA_DIR / "vocabulary.json"
+_SELF_TYPES = frozenset({
+    "dream_insight",
+    "refusal",
+    "stagnation_signal_reflection",
+    "stagnation_signal_question",
+    "stagnation_signal_goal_review",
+})
 
 
 # Built-in fallback pools. vocabulary.json shipped without these sections, so
@@ -81,24 +88,50 @@ def seek_novelty(context: Dict[str, Any] = None) -> str:
     4. Ask alive_brain for an exploration goal
     """
     context = context or {}
+    from cognition.exploration_value import ReachOutcome
 
     mode = _pick_mode(context)
     result = ""
 
     if mode == "memory":
         result = _explore_old_memory(context)
+        outcome = ReachOutcome(
+            "memory", acted=False, is_external=False,
+            created_memory=bool(result), text=str(result or ""),
+        )
     elif mode == "dormant_goal":
         result = _reeval_dormant_goal(context)
+        outcome = ReachOutcome(
+            "dormant_goal", acted=False, is_external=False,
+            created_memory=bool(result), text=str(result or ""),
+        )
     elif mode == "question":
         result = _generate_question(context)
+        outcome = ReachOutcome(
+            "question", acted=False, is_external=False,
+            created_memory=bool(result), text=str(result or ""),
+        )
     else:
         result = _trigger_exploration_goal(context)
+        outcome = context.get("_last_reach_outcome")
+        if not isinstance(outcome, ReachOutcome):
+            outcome = ReachOutcome(
+                "world", acted=False, is_external=True, text=str(result or ""),
+            )
 
+    context["_last_reach_outcome"] = outcome
     _log_stagnation_signal_action(mode, result, context)
     return result
 
 
 def _pick_mode(context: Dict[str, Any]) -> str:
+    try:
+        from cognition.exploration_value import curiosity_gap
+        if curiosity_gap(context) >= 0.6:
+            return "explore"
+    except Exception:
+        pass
+
     long_mem = load_json(LONG_MEMORY_FILE, default_type=list) or []
     # Old memories with low recall are underexplored
     unexamined = [
@@ -106,7 +139,7 @@ def _pick_mode(context: Dict[str, Any]) -> str:
         if isinstance(e, dict)
         and e.get("content")
         and int(e.get("recall_count", 0) or 0) == 0
-        and e.get("event_type", "") not in ("dream_insight", "refusal")
+        and e.get("event_type", "") not in _SELF_TYPES
     ]
     if unexamined:
         return "memory"
@@ -133,7 +166,7 @@ def _explore_old_memory(context: Dict[str, Any]) -> str:
         if isinstance(e, dict)
         and e.get("content")
         and int(e.get("recall_count", 0) or 0) == 0
-        and e.get("event_type", "") not in ("dream_insight",)
+        and e.get("event_type", "") not in _SELF_TYPES
     ]
     if not unexamined:
         return _generate_question(context)
@@ -150,6 +183,19 @@ def _explore_old_memory(context: Dict[str, Any]) -> str:
     reflection = _vocab_phrase("memory_revisit_phrases", content=content[:100])
 
     if reflection:
+        recent_reflections = [
+            str(e.get("content") or "").strip().lower()
+            for e in long_mem[-40:]
+            if isinstance(e, dict)
+            and e.get("event_type") == "stagnation_signal_reflection"
+        ]
+        normalized = reflection.strip().lower()
+        if any(
+            normalized == prior
+            or (normalized[:120] and normalized[:120] == prior[:120])
+            for prior in recent_reflections
+        ):
+            return reflection
         update_long_memory(
             reflection, emotion="exploration_drive",
             event_type="stagnation_signal_reflection", importance=2, context=context,
@@ -198,7 +244,13 @@ def _trigger_exploration_goal(context: Dict[str, Any]) -> str:
     try:
         from cognition.perception.look_outward import look_outward
         result = look_outward(context)
-        if result and "Searching:" in result:
+        outcome = context.get("_last_reach_outcome")
+        reached = bool(outcome and getattr(outcome, "acted", False)) if outcome else bool(
+            result
+            and not str(result).lstrip().startswith(("❌", "⚠️"))
+            and "Couldn't form" not in str(result)
+        )
+        if reached:
             log_activity(f"[stagnation_signal] Exploration via look_outward: {result[:80]}")
             return result
     except Exception as _e:

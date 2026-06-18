@@ -453,10 +453,26 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     )
 
     update_working_memory(f"[research] {topic}: {result_q[:300]}")
+    try:
+        from cognition.knowledge_graph import observe as _kg_observe
+        _kg_observe(f"{topic} {result[:1200]}", source="web_research", context=ctx)
+    except Exception as _e:
+        record_failure("web_research.research_topic.knowledge_graph", _e)
     _last_research = now
     _record_topic_attempt(topic, success=True)
     log_activity(f"[web_research] Stored research on '{topic}' ({len(result)} chars)")
-    return f"Researched '{topic}': {result[:300]}..."
+    text = f"Researched '{topic}': {result[:300]}..."
+    try:
+        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        gain = record_reach_outcome("research_topic", text, None, ctx)
+        ctx["_last_reach_outcome"] = ReachOutcome(
+            "world", acted=True, is_external=True, info_gain=gain,
+            created_memory=True, satisfied_curiosity=gain > 0.0,
+            inner_fn="research_topic", text=text,
+        )
+    except Exception:
+        pass
+    return text
 
 
 def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
@@ -512,9 +528,25 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     )
 
     update_working_memory(f"Read article: {title_q} ({len(text)} chars of content)")
+    try:
+        from cognition.knowledge_graph import observe as _kg_observe
+        _kg_observe(f"{title} {text[:1600]}", source="fetch_and_read", context=ctx)
+    except Exception as _e:
+        record_failure("web_research.fetch_and_read.knowledge_graph", _e)
     _last_fetch = now
     log_activity(f"[web_research] Read '{title}' ({len(text)} chars)")
-    return f"Read '{title}': {text[:400]}..."
+    result_text = f"Read '{title}': {text[:400]}..."
+    try:
+        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        gain = record_reach_outcome("fetch_and_read", result_text, None, ctx)
+        ctx["_last_reach_outcome"] = ReachOutcome(
+            "world", acted=True, is_external=True, info_gain=gain,
+            created_memory=True, satisfied_curiosity=gain > 0.0,
+            inner_fn="fetch_and_read", text=result_text,
+        )
+    except Exception:
+        pass
+    return result_text
 
 
 def _pick_url(context: Dict[str, Any]) -> Optional[str]:

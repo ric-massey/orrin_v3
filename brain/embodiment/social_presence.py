@@ -10,6 +10,7 @@ This module tracks:
   • Engagement pattern (message length, response speed, tone signals)
   • Social confidence — updated when the user responds positively or goes cold
   • Social pressure — a float [0,1] that builds with silence, resets on contact
+  • Door events — one-shot threshold crossings when the user arrives/leaves
 
 The SocialPresenceModel runs as a daemon thread, reading USER_INPUT mtime
 every POLL_INTERVAL seconds. It does NOT read conversation content — only
@@ -17,7 +18,7 @@ timestamps and rough signal quality from working memory metadata.
 
 API:
   start()                       — boot (idempotent)
-  get_state()                   — dict with pressure, silence_s, pattern, signal
+  get_state()                   — dict with pressure, silence_s, pattern, signal, door_event
   mark_user_spoke(quality)      — call when user_input arrives; quality in [0,1]
   mark_orrin_responded()        — call when Orrin outputs a response
 """
@@ -97,6 +98,8 @@ class SocialPresenceModel:
 
         # Pressure
         self._pressure: float = _PRESSURE_FLOOR
+        self._last_pattern: str = "present"
+        self._door_event: Optional[Dict[str, Any]] = None
 
         # Cached USER_INPUT mtime for change detection
         self._last_input_mtime: float = 0.0
@@ -115,15 +118,10 @@ class SocialPresenceModel:
             conf = self._social_confidence
             avg_quality = sum(self._quality_history[-5:]) / max(len(self._quality_history[-5:]), 1)
 
-            # Derive engagement pattern label
-            if silence_s < 60:
-                pattern = "present"
-            elif silence_s < 600:
-                pattern = "nearby"
-            elif silence_s < 3600:
-                pattern = "absent"
-            else:
-                pattern = "distant"
+            pattern = self._pattern_for_silence(silence_s)
+            if pattern != self._last_pattern:
+                self._door_event = self._make_door_event(self._last_pattern, pattern, silence_s)
+                self._last_pattern = pattern
 
             signal = None
             if pressure > 0.40:
@@ -136,6 +134,9 @@ class SocialPresenceModel:
                     "social_pattern": pattern,
                 }
 
+            door_event = self._door_event
+            self._door_event = None
+
             return {
                 "pressure": round(pressure, 3),
                 "silence_s": round(silence_s, 1),
@@ -143,12 +144,14 @@ class SocialPresenceModel:
                 "social_confidence": round(conf, 3),
                 "avg_quality": round(avg_quality, 3),
                 "signal": signal,
+                "door_event": door_event,
             }
 
     def mark_user_spoke(self, quality: float = 0.7) -> None:
         with self._lock:
             now = time.time()
             gap = now - self._last_user_time
+            old_pattern = self._pattern_for_silence(gap)
             self._last_user_time = now
 
             # Log re-engagement gap
@@ -169,6 +172,9 @@ class SocialPresenceModel:
 
             # Reset pressure — someone is here
             self._pressure = _PRESSURE_FLOOR
+            if old_pattern != "present":
+                self._door_event = self._make_door_event(old_pattern, "present", 0.0)
+            self._last_pattern = "present"
 
     def mark_orrin_responded(self) -> None:
         with self._lock:
@@ -198,7 +204,7 @@ class SocialPresenceModel:
             if mtime > self._last_input_mtime + 0.5:
                 content = p.read_text(encoding="utf-8", errors="replace").strip()
                 if content:
-                    pass  # main loop handles mark_user_spoke; daemon only tracks mtime
+                    self.mark_user_spoke()
                 self._last_input_mtime = mtime
         except Exception as _e:
             record_failure("social_presence.SocialPresenceModel._poll_user_input", _e)
@@ -223,3 +229,35 @@ class SocialPresenceModel:
             return f"No one has spoken in {m} minutes. The gap is starting to feel significant."
         else:
             return f"Social presence building — someone is nearby but quiet. Pressure: {pressure:.2f}."
+
+    @staticmethod
+    def _pattern_for_silence(silence_s: float) -> str:
+        if silence_s < 60:
+            return "present"
+        if silence_s < 600:
+            return "nearby"
+        if silence_s < 3600:
+            return "absent"
+        return "distant"
+
+    @staticmethod
+    def _make_door_event(old: str, new: str, silence_s: float) -> Dict[str, Any]:
+        direction = "arrival" if new == "present" else "departure"
+        if new == "nearby":
+            direction = "threshold_quiet"
+        elif new in ("absent", "distant"):
+            direction = "departure"
+        content = (
+            f"[social_boundary] User presence crossed the threshold: "
+            f"{old} -> {new}."
+        )
+        return {
+            "source": "social_presence",
+            "content": content,
+            "signal_strength": 0.62 if direction == "arrival" else 0.48,
+            "tags": ["social", "presence", "door", "threshold_crossing", direction],
+            "from_pattern": old,
+            "to_pattern": new,
+            "direction": direction,
+            "silence_s": round(float(silence_s), 1),
+        }

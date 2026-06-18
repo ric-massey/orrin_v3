@@ -66,28 +66,59 @@ _BAND_SPECS = {
     "fd_pct":     {"min_samples": 80,  "stable_needed": 60},
     "latency_ms": {"min_samples": 80,  "stable_needed": 60},
 }
-_bands: BodyBands | None = None
+
+# Per-phase bands (§3.2 SL2). A body defends a DIFFERENT normal asleep than awake
+# (Sterling 2012 — set-points are state-dependent). Dreaming legitimately spikes
+# Orrin's own RSS/CPU above the idle band because it runs the heavy LLM/replay
+# consolidation; against ONE band (dominated by idle samples) that spike reads as
+# "heavy"/"swelling" and pumps resource_deficit UP, fighting the dream's own
+# recovery nudge — the cycle meant to lower fatigue raises it. The fix is a
+# SEPARATE sleep-phase band, learned only from dream-phase samples, so the dream's
+# spike reads as normal-for-sleeping. Same convergence policy; learned per-machine.
+_WAKE_BANDS_FILE  = "body_bands.json"
+_DREAM_BANDS_FILE = "body_bands_dream.json"
+_bands: BodyBands | None = None          # wake-phase envelope
+_dream_bands: BodyBands | None = None    # sleep-phase envelope
 
 
-def _get_bands() -> BodyBands:
-    global _bands
+def _is_dreaming() -> bool:
+    """True while a dream cycle is in flight. Lazy + fail-safe: if the dream module
+    can't be reached we treat it as awake (the conservative direction — the wake
+    band still alarms on departure)."""
+    try:
+        from cognition.dreaming.dream_cycle import dreaming_now
+        return bool(dreaming_now())
+    except Exception:
+        return False
+
+
+def _get_bands(dreaming: bool = False) -> BodyBands:
+    """Return the active phase's band set, loading it on first use."""
+    global _bands, _dream_bands
+    if dreaming:
+        if _dream_bands is None:
+            _dream_bands = BodyBands(DATA_DIR / _DREAM_BANDS_FILE, specs=_BAND_SPECS).load()
+        return _dream_bands
     if _bands is None:
-        _bands = BodyBands(DATA_DIR / "body_bands.json", specs=_BAND_SPECS).load()
+        _bands = BodyBands(DATA_DIR / _WAKE_BANDS_FILE, specs=_BAND_SPECS).load()
     return _bands
 
 
 def reset_bands_for_resize(reason: str = "") -> None:
     """A budget resize enlarges/shrinks the body, so the learned band is now wrong —
     re-enter a PARTIAL somatic infancy and re-learn this body's normal (§11.4.2).
-    Drops the learned bands and the on-disk file; in_infancy() goes true again and
-    the cortex stays lenient until the new envelope converges. The autonomic reflex
-    is unaffected — it was always absolute and never went lenient (§10.5)."""
-    global _bands
-    try:
-        (DATA_DIR / "body_bands.json").unlink(missing_ok=True)
-    except Exception:
-        pass
-    _bands = BodyBands(DATA_DIR / "body_bands.json", specs=_BAND_SPECS)
+    Drops BOTH learned band sets (wake and sleep — the resize changes the body in
+    every phase) and their on-disk files; in_infancy() goes true again and the
+    cortex stays lenient until the new envelopes converge. The autonomic reflex is
+    unaffected — it was always absolute and never went lenient (§10.5)."""
+    global _bands, _dream_bands
+    for fname in (_WAKE_BANDS_FILE, _DREAM_BANDS_FILE):
+        try:
+            (DATA_DIR / fname).unlink(missing_ok=True)
+        except Exception:
+            pass
+    _bands = BodyBands(DATA_DIR / _WAKE_BANDS_FILE, specs=_BAND_SPECS)
+    _dream_bands = BodyBands(DATA_DIR / _DREAM_BANDS_FILE, specs=_BAND_SPECS)
     log_private(f"[body_sense] re-baselining body after resize ({reason}) — partial infancy")
 
 
@@ -145,8 +176,13 @@ def compute_body_states(vitals: Dict[str, float]) -> List[str]:
     lenient: it emits only the absolute FD-exhaustion backstop and otherwise "clear",
     because there is no trustworthy band to deviate from yet (§10.3). A vital climbing
     one way and never retreating ("swelling") is the death-spiral signature and is
-    alarmed even though a spike that returns is just breathing."""
-    bands = _get_bands()
+    alarmed even though a spike that returns is just breathing.
+
+    Phase-aware (§3.2 SL2): during a dream the vitals are observed into, and
+    measured against, a SEPARATE sleep-phase band, so the dream's own heavy
+    consolidation reads as normal-for-sleeping rather than as distress."""
+    dreaming = _is_dreaming()
+    bands = _get_bands(dreaming)
 
     rss    = vitals.get("rss_mb", 0.0)
     cpu    = vitals.get("cpu_util", 0.0)
@@ -327,13 +363,17 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception:
         prior = {}
 
-    bands = _get_bands()
+    dreaming = _is_dreaming()
+    bands = _get_bands(dreaming)   # the phase compute_body_states just observed into
     body_sense = {
         "body_states": felt,
         "vitals": vitals,
         "dominant": felt[0] if felt else "clear",
         "_stress_streak": prior.get("_stress_streak", 0),
+        # Which felt-body phase is active — wake vs. the dream-phase band (SL2).
+        "phase": "sleep" if dreaming else "wake",
         # Somatic-infancy telemetry: is he still learning this body, and how far in.
+        # Phase-specific: the sleep band converges separately from the wake band.
         "somatic_infancy": bands.in_infancy(),
         "body_converged": round(bands.converged_fraction(), 3),
     }

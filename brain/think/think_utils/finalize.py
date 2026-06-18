@@ -131,10 +131,11 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # action_gate path: __acted_this_tick__ + last_action_taken type (AGENTIC_TYPES).
     is_agentic = is_agentic_action(next_function, behavior_list_path=BEHAVIORAL_FUNCTIONS_LIST_FILE)
     try:
+        from cognition.action_accounting import cycle_produced_goal_action
         from think.think_utils.action_gate import AGENTIC_TYPES
         _acted = bool(context.get("__acted_this_tick__"))
         _acted_type = (context.get("last_action_taken") or {}).get("type")
-        if _acted and _acted_type in AGENTIC_TYPES:
+        if (_acted and _acted_type in AGENTIC_TYPES) or cycle_produced_goal_action(context):
             is_agentic = True
     except Exception:
         pass
@@ -177,7 +178,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         from think.think_utils.select_function import _DELIBERATION_FNS
         if (not is_agentic
                 and next_function in _DELIBERATION_FNS
-                and not context.get("__acted_this_tick__")
+                and not cycle_produced_goal_action(context)
                 and actual_fb > 0.4):
             actual_fb = 0.4 + (actual_fb - 0.4) * 0.5
     except Exception as _e:

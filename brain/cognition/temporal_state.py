@@ -132,7 +132,12 @@ def update_temporal_state(context: Dict[str, Any]) -> Dict[str, Any]:
     state = _load()
     rng   = random.Random()
 
-    has_input = bool((context.get("latest_user_input") or "").strip())
+    social = context.get("social_presence") or {}
+    has_input = bool(
+        (context.get("latest_user_input") or "").strip()
+        or context.get("_user_spoke_this_cycle")
+        or (isinstance(social, dict) and social.get("pattern") == "present")
+    )
     if has_input:
         state["cycles_since_contact"] = 0
         state["session_cycles"]       = state.get("session_cycles", 0) + 1
@@ -419,6 +424,12 @@ def _apply_resource_deficit_nudge(context: Dict[str, Any], felt_cycles: float, d
     that felt short still costs as much as a long one. Past the onset threshold,
     Orrin should prefer consolidation and shorter responses.
     """
+    try:
+        from cognition.dreaming.dream_cycle import dreaming_now
+        if dreaming_now():
+            return
+    except Exception:
+        pass
     if felt_cycles < RESOURCE_DEFICIT_ONSET_FELT_CYCLES:
         return
     rate = RESOURCE_DEFICIT_NUDGE_PER_CYCLE
@@ -645,5 +656,3 @@ def _load() -> Dict[str, Any]:
 
 def _save(state: Dict[str, Any]) -> None:
     save_json(TEMPORAL_STATE_FILE, state)
-
-

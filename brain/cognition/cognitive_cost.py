@@ -26,6 +26,15 @@ _INTROSPECTIVE_FNS = frozenset({
 _INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "dream", "selfhood", "ident", "narrat", "meta")
 
 
+def _dreaming_now() -> bool:
+    """True while the dream daemon is in the sleep phase."""
+    try:
+        from cognition.dreaming.dream_cycle import dreaming_now
+        return bool(dreaming_now())
+    except Exception:
+        return False
+
+
 def is_introspective(fn: str) -> bool:
     """True if the function is purely inward-facing with no external effect."""
     if fn in _INTROSPECTIVE_FNS:
@@ -59,11 +68,12 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         core = emo  # flat format
 
     penalties: list[str] = []
+    sleeping = _dreaming_now()
 
     # ── 1. RECURSIVE THOUGHT → RESOURCE_DEFICIT ────────────────────────────────────────
     # Each consecutive repeat past 2 drains energy. Thinking the same thought
     # again and again isn't free.
-    if repeat_count >= 3:
+    if repeat_count >= 3 and not sleeping:
         drain = min(0.03 * (repeat_count - 1), 0.15)
         # resource_deficit lives at the top level of affect_state, not inside core_signals
         emo["resource_deficit"] = min(1.0, float(emo.get("resource_deficit", 0.0)) + drain)
@@ -88,7 +98,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
     if intr_count >= 5:
         context["_introspection_overload"] = intr_count  # read by action_gate scorer
         # Pump only on ONSET (crossing into overload) or ESCALATION (deeper than before).
-        if intr_count > prev_overload:
+        if intr_count > prev_overload and not sleeping:
             drain = 0.03 * (intr_count - max(prev_overload, 4))
             emo["resource_deficit"] = min(1.0, float(emo.get("resource_deficit", 0.0)) + drain)
             penalties.append(
@@ -106,8 +116,9 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         flow_depth = action_count - 3
         context["_flow_depth"] = flow_depth
         boost = min(0.08, 0.02 * flow_depth)
-        core["motivation"] = min(1.0, float(core.get("motivation", 0.5)) + boost)
-        core["confidence"] = min(1.0, float(core.get("confidence", 0.5)) + boost * 0.5)
+        from affect.homeostasis import pump_signal
+        pump_signal(core, "motivation", boost, default=0.5)
+        pump_signal(core, "confidence", boost * 0.5, default=0.5)
     else:
         context.pop("_flow_depth", None)
 
@@ -132,6 +143,23 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
     # A goal that keeps not getting done builds real impasse_signal.
     goal = context.get("committed_goal")
     if isinstance(goal, dict) and goal.get("title"):
+        from cognition.reward_rate import accrue_leave_pressure, patch_deficit
+
+        deficit = patch_deficit(context)
+        accrue_leave_pressure(context)
+        if context.get("_escape_available", True):
+            current_impasse = float(core.get("impasse_signal", 0.0) or 0.0)
+            core["impasse_signal"] = min(
+                1.0,
+                current_impasse + 0.25 * deficit * (1.0 - current_impasse),
+            )
+            if deficit > 0.0:
+                context["_impasse_reason"] = (
+                    f"local reward rate ~{deficit:.0%} below background (stall)"
+                )
+        else:
+            context["_force_disengage_goal"] = True
+
         goal_id = goal.get("id") or goal.get("name") or goal.get("title")
         cc = context.get("cycle_count") or {}
         cycle = int(cc.get("count", 0) if isinstance(cc, dict) else cc or 0)
@@ -142,19 +170,15 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
             context["_tension_goal_start_cycle"] = cycle
         else:
             cycles_active = cycle - int(context.get("_tension_goal_start_cycle", cycle))
-            # Tension starts after 8 cycles, compounds every 4. NOT habituated: an
-            # unresolved goal's impasse_signal is an HONEST alarm (ACC-style "this
-            # strategy isn't yielding progress"), not noise to damp. It should be
-            # resolved by the goal actually getting done or disengaged — never by
-            # teaching the system to stop feeling it.
-            if cycles_active > 8 and cycles_active % 4 == 0:
-                tension = min(0.03 * ((cycles_active - 8) // 4), 0.15)
-                core["impasse_signal"] = min(1.0, float(core.get("impasse_signal", 0.0)) + tension)
-                core["uncertainty"] = min(1.0, float(core.get("uncertainty", 0.0)) + 0.02)
+            if deficit > 0.0 and context.get("_escape_available", True):
+                core["uncertainty"] = min(
+                    1.0,
+                    float(core.get("uncertainty", 0.0)) + 0.02 * deficit,
+                )
                 title = goal.get("title", "?")[:40]
                 penalties.append(
                     f"unresolved goal '{title}' ({cycles_active} cycles active) "
-                    f"→ impasse_signal +{tension:.2f}, uncertainty +0.02"
+                    f"→ reward-rate deficit {deficit:.0%}"
                 )
     else:
         context.pop("_tension_goal_id", None)

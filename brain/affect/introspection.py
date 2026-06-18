@@ -235,6 +235,12 @@ def _environment_bias(context: Dict[str, Any]) -> Dict[str, float]:
         bias["exploration_drive"]  = bias.get("exploration_drive",  0.0) + 0.45
         bias["risk_estimate"]    = bias.get("risk_estimate",    0.0) + 0.20
 
+    # Home changed → den-relevant curiosity: closer than the outside world, less
+    # alarming than a body change.
+    if "home_touched" in signal_tags:
+        bias["exploration_drive"] = bias.get("exploration_drive", 0.0) + 0.38
+        bias["risk_estimate"] = bias.get("risk_estimate", 0.0) + 0.08
+
     # External world changed → outward exploration_drive, interest
     if "world_changed" in signal_tags:
         bias["exploration_drive"]  = bias.get("exploration_drive",  0.0) + 0.50

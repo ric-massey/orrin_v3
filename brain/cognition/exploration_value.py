@@ -5,8 +5,9 @@
 #
 # Instead of "how long since the last reach?", we ask "is reaching outward worth it
 # right now?" — a value driven by outcome novelty (habituation), an open-question
-# curiosity gap, marginal-value opportunity cost, and a boredom override. The action
-# competes on this value in select_function; there is no gate and no timer.
+# curiosity gap, marginal-value opportunity cost, a three-zone gradient, and a
+# boredom override. The action competes on this value in select_function; there is
+# no gate and no timer.
 #
 # Sources (see the plan §13): Sokolov 1963 (habituation comparator); Charnov 1976
 # (marginal value theorem — opportunity cost); Loewenstein 1994 (curiosity as an
@@ -18,6 +19,7 @@ from __future__ import annotations
 
 import json
 import time
+from dataclasses import dataclass
 from typing import Any, Dict
 
 from paths import DATA_DIR
@@ -39,15 +41,43 @@ _W_NOVELTY = 0.24       # weight on curiosity_gap × expected_novelty (≈ s_emo
 _OPP_CAP = 0.30         # max opportunity-cost penalty
 _BOREDOM_CAP = 0.22     # max boredom re-lift
 
+# W3 three-zone prediction/reward gradient. Self/internal work is not an outward
+# reach; home/den work is learnable and bounded; world work is open-ended and gets
+# the strongest novelty multiplier.
+_ZONE_WEIGHT = {
+    "self": 0.0,
+    "home": 0.72,
+    "world": 1.0,
+}
+
 _OUTWARD_FNS = frozenset({
     "look_outward", "look_around", "seek_novelty",
     "search_own_files", "grep_files", "search_files",
     "wikipedia_search", "research_topic", "fetch_and_read", "read_a_book",
 })
 
+_HOMEWARD_FNS = frozenset({
+    "look_around", "search_own_files", "grep_files", "search_files", "read_a_book",
+})
+_WORLDWARD_FNS = frozenset({
+    "look_outward", "seek_novelty", "wikipedia_search", "research_topic", "fetch_and_read",
+})
+
 # Cached satiety + stats reads (cheap hot path; mirror select_function's ~15s cache).
 _SAT_CACHE: Dict[str, Any] = {"t": 0.0, "data": {}}
 _STATS_CACHE: Dict[str, Any] = {"t": 0.0, "data": {}}
+
+
+@dataclass
+class ReachOutcome:
+    mode: str
+    acted: bool
+    is_external: bool
+    info_gain: float = 0.0
+    created_memory: bool = False
+    satisfied_curiosity: bool = False
+    inner_fn: str = ""
+    text: str = ""
 
 
 def _clamp(x: float, lo: float = 0.0, hi: float = 1.0) -> float:
@@ -140,6 +170,24 @@ def expected_novelty(fn: str, context: Dict[str, Any] = None) -> float:
     return _clamp(1.0 - _decayed_satiety(fn))
 
 
+def zone_for_fn(fn: str) -> str:
+    """Classify an exploration action on the self→home→world slope."""
+    if fn in _HOMEWARD_FNS:
+        return "home"
+    if fn in _WORLDWARD_FNS:
+        return "world"
+    return "self"
+
+
+def zone_gradient(fn: str, context: Dict[str, Any] = None) -> float:
+    """Prediction-error value multiplier by zone.
+
+    Home gets a bounded, learnable reward. World gets the full external novelty
+    reward. Self/internal functions do not receive outward reach value here.
+    """
+    return _ZONE_WEIGHT.get(zone_for_fn(fn), 0.0)
+
+
 def _opportunity_cost(fn: str) -> float:
     """Marginal value theorem (Charnov 1976): penalise reaching when this action pays
     below the ambient reward rate across all actions. [0.._OPP_CAP]."""
@@ -166,7 +214,8 @@ def reach_value(fn: str, context: Dict[str, Any]) -> float:
     """Explore/exploit value of taking outward action `fn` this cycle, as an additive
     selector term (≈ same scale as s_emo / s_outward). Fail-safe → 0.0.
 
-        reach_value = W·curiosity_gap·expected_novelty − opportunity_cost + boredom_push
+        reach_value = W·zone_gradient·curiosity_gap·expected_novelty
+                      − opportunity_cost + boredom_push
 
     Energy/effort cost is handled globally by select_function's s_evc (EVC), not here.
     """
@@ -174,7 +223,7 @@ def reach_value(fn: str, context: Dict[str, Any]) -> float:
         if fn not in _OUTWARD_FNS:
             return 0.0
         ctx = context or {}
-        base = curiosity_gap(ctx) * expected_novelty(fn, ctx)
+        base = zone_gradient(fn, ctx) * curiosity_gap(ctx) * expected_novelty(fn, ctx)
         val = _W_NOVELTY * base - _opportunity_cost(fn) + _boredom_push(ctx)
         return float(round(val, 4))
     except Exception as e:
@@ -203,7 +252,7 @@ def _info_gain(result_text: str, kg_delta: Dict[str, int] | None) -> float:
 
 def record_reach_outcome(fn: str, result_text: str,
                          kg_delta: Dict[str, int] | None = None,
-                         context: Dict[str, Any] = None) -> None:
+                         context: Dict[str, Any] = None) -> float:
     """Update `fn`'s habituation from the realized information gain of a reach. An
     uninformative reach raises satiety fast (drive self-suppresses); an informative
     one barely moves it (drive stays live)."""
@@ -214,5 +263,30 @@ def record_reach_outcome(fn: str, result_text: str,
         new_s = _clamp(cur + _ALPHA * (1.0 - novelty))
         data[fn] = {"satiety": round(new_s, 4), "cycle": int(get_cycle_count())}
         _save_satiety(data)
+        if context is not None and novelty > 0.0:
+            affect = context.get("affect_state") or {}
+            core = affect.get("core_signals") or affect
+            if isinstance(core, dict):
+                current = float(core.get("exploration_drive", 0.0) or 0.0)
+                core["exploration_drive"] = max(0.0, current - 0.20 * novelty)
+            if context.get("committed_goal"):
+                context["action_debt"] = 0
+                context["__acted_this_tick__"] = True
+            context["_reach_consumed_info_gain"] = round(novelty, 4)
+            try:
+                from affect.reward_signals.reward_signals import release_reward_signal
+                release_reward_signal(
+                    context,
+                    signal_type="novelty",
+                    actual_reward=round(0.5 + 0.5 * novelty, 3),
+                    expected_reward=0.5,
+                    effort=0.2,
+                    mode="phasic",
+                    source=f"reach_consummation:{fn}",
+                )
+            except Exception as e:
+                record_failure("exploration_value.reach_consummation", e)
+        return novelty
     except Exception as e:
         record_failure("exploration_value.record_reach_outcome", e)
+        return 0.0

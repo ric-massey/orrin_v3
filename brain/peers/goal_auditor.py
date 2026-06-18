@@ -28,6 +28,8 @@ class GoalAuditor(BasePeer):
     signal_tags = ["peer", "goal_auditor", "internal"]
 
     def should_wake(self, context: Dict[str, Any], cycle: int) -> bool:
+        if context.get("_impasse_reason"):
+            return True
         if cycle % 30 == 0:
             return True
         # Also wake if the active goal list has grown large

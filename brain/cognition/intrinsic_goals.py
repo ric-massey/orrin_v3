@@ -201,6 +201,74 @@ def _classify_tier(title: str, driven_by: str = "", description: str = "") -> st
     return "growth"   # unknown-tier fallback (Fix 1 decision box)
 
 
+_HOMEWARD_HINTS = (
+    "search_own_files", "grep_files", "search_files", "survey_environment",
+    "read_clipboard", "my files", "own files", "local files", "filesystem",
+    "workspace", "computer i live on", "environment i live on", "what files",
+    "what changed", "clipboard", "source code", "my systems", "my machinery",
+)
+_WORLDWARD_HINTS = (
+    "research_topic", "wikipedia_search", "fetch_and_read", "read_rss",
+    "look_outward", "web", "wikipedia", "article", "rss", "external",
+    "current event", "world-knowledge", "world knowledge", "learn about",
+    "research something real", "searches the web",
+)
+_WORLDWARD_DRIVES = {"world_knowledge"}
+_HOMEWARD_DRIVES = {"self_exploration"}
+
+
+def _goal_zone(title: str, driven_by: str = "", description: str = "") -> str:
+    """Classify outward goals on the self/home/world slope.
+
+    `home` means tend/explore the local den: files, clipboard, source, workspace.
+    `world` means an expedition beyond the den: web/research/external knowledge.
+    `self` covers goals that are not outward-facing in this sense.
+    """
+    text = f"{title or ''} {description or ''} {driven_by or ''}".lower()
+    drive = (driven_by or "").lower()
+    if any(h in text for h in _WORLDWARD_HINTS) or drive in _WORLDWARD_DRIVES:
+        return "world"
+    if any(h in text for h in _HOMEWARD_HINTS) or drive in _HOMEWARD_DRIVES:
+        return "home"
+    if any(h in text for h in ("explore", "environment", "search")):
+        return "home"
+    return "self"
+
+
+def _goal_orientation(zone: str) -> str:
+    if zone == "home":
+        return "homeward"
+    if zone == "world":
+        return "worldward"
+    return "selfward"
+
+
+def _zone_tags(zone: str) -> List[str]:
+    if zone == "home":
+        return ["homeward", "home"]
+    if zone == "world":
+        return ["worldward", "external"]
+    return ["selfward"]
+
+
+def _enrich_goal_zone(goal: Dict[str, Any]) -> Dict[str, Any]:
+    """Attach W4 zone/orientation metadata to a goal dict in-place."""
+    zone = _goal_zone(goal.get("title", ""), goal.get("driven_by", ""), goal.get("description", ""))
+    orientation = _goal_orientation(zone)
+    goal["zone"] = zone
+    goal["orientation"] = orientation
+    tags = list(goal.get("tags") or [])
+    for tag in _zone_tags(zone):
+        if tag not in tags:
+            tags.append(tag)
+    goal["tags"] = tags
+    spec = goal.get("spec")
+    if isinstance(spec, dict):
+        spec.setdefault("zone", zone)
+        spec.setdefault("orientation", orientation)
+    return goal
+
+
 def _mk_goal(title: str, description: str, driven_by: str = "world_knowledge",
              priority: int = 3, milestones: List = None) -> Dict:
     """Build a well-formed proposed-goal dict from parts."""
@@ -209,13 +277,14 @@ def _mk_goal(title: str, description: str, driven_by: str = "world_knowledge",
         ({"text": m, "met": False, "met_at": None} if isinstance(m, str) else m)
         for m in (milestones or [])
     ]
-    return {
+    goal = {
         "title": title, "name": title, "description": description,
         "priority": priority, "kind": "generic", "source": "intrinsic",
         "tier": _classify_tier(title, driven_by, description),
         "driven_by": driven_by, "created_ts": ts, "status": "proposed",
         "milestones": ms,
     }
+    return _enrich_goal_zone(goal)
 
 
 def _active_goal_titles() -> set:
@@ -1025,6 +1094,13 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     global _LAST_INTRINSIC_TS
     context = context or {}
 
+    if context.get("_suppress_intrinsic_goals") and context.get("committed_goal"):
+        log_activity("[intrinsic_goals] Skipped while patch-leave suppression is active.")
+        return []
+    if int(context.get("action_debt", 0) or 0) > 0 and context.get("committed_goal"):
+        log_activity("[intrinsic_goals] Skipped while the committed goal has open action debt.")
+        return []
+
     now = time.time()
     has_goal = bool(context.get("committed_goal"))
     interval = _MIN_INTERVAL_S if has_goal else _BOOTSTRAP_INTERVAL_S
@@ -1110,6 +1186,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             # back on by design. Stay quiet rather than manufacture a note goal.
             log_activity("[intrinsic_goals] No symbolic goal this cycle (empty pool, no template).")
             return []
+        _tgoal = _enrich_goal_zone(_tgoal)
         log_activity(f"[intrinsic_goals] Symbolic goal (LLM-free): '{_tgoal['title']}'")
         _LAST_INTRINSIC_TS = now
         proposed = context.setdefault("proposed_goals", [])
@@ -1133,8 +1210,15 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
                 "kind":        "generic",
                 "tier":        _tgoal.get("tier") or _classify_tier(_tgoal["title"], _tgoal.get("driven_by", ""), _tgoal.get("description", "")),
                 "priority":    "NORMAL",
-                "tags":        ["intrinsic", _tgoal.get("driven_by", "exploration_drive")],
-                "spec":        {"description": _tgoal.get("description", ""), "driven_by": _tgoal.get("driven_by", "")},
+                "tags":        ["intrinsic", _tgoal.get("driven_by", "exploration_drive"), *_zone_tags(_tgoal.get("zone", "self"))],
+                "zone":        _tgoal.get("zone", "self"),
+                "orientation": _tgoal.get("orientation", "selfward"),
+                "spec":        {
+                    "description": _tgoal.get("description", ""),
+                    "driven_by": _tgoal.get("driven_by", ""),
+                    "zone": _tgoal.get("zone", "self"),
+                    "orientation": _tgoal.get("orientation", "selfward"),
+                },
                 "next_action": None,
                 "status":      "in_progress",
                 "milestones":  _tgoal.get("milestones", []),
@@ -1300,6 +1384,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             "status":      "proposed",
             "milestones":  milestones,
         }
+        _enrich_goal_zone(goal)
         goals.append(goal)
 
         update_long_memory(
@@ -1331,8 +1416,15 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
                 "kind":       "generic",
                 "tier":       top.get("tier") or _classify_tier(top["title"], top.get("driven_by", ""), top.get("description", "")),
                 "priority":   "NORMAL",
-                "tags":       ["intrinsic", top.get("driven_by", "exploration_drive")],
-                "spec":       {"description": top.get("description", ""), "driven_by": top.get("driven_by", "")},
+                "tags":       ["intrinsic", top.get("driven_by", "exploration_drive"), *_zone_tags(top.get("zone", "self"))],
+                "zone":       top.get("zone", "self"),
+                "orientation": top.get("orientation", "selfward"),
+                "spec":       {
+                    "description": top.get("description", ""),
+                    "driven_by": top.get("driven_by", ""),
+                    "zone": top.get("zone", "self"),
+                    "orientation": top.get("orientation", "selfward"),
+                },
                 "next_action": None,
                 "status":     "in_progress",
                 "milestones": top.get("milestones", []),

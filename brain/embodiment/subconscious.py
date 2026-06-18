@@ -359,7 +359,7 @@ class SubconsciousProcessor:
         try:
             from cog_memory.working_memory import update_working_memory
             from datetime import datetime, timezone
-            update_working_memory({
+            entry = {
                 "content": content,
                 "event_type": event_type,
                 "emotion": emotion,
@@ -367,6 +367,32 @@ class SubconsciousProcessor:
                 "priority": importance,
                 "source": "subconscious",
                 "timestamp": datetime.now(timezone.utc).isoformat(),
-            })
+            }
+            snapshot = self._workspace_snapshot()
+            if snapshot:
+                entry["workspace_origin"] = snapshot
+            update_working_memory(entry)
         except Exception as _e:
             record_failure("subconscious.SubconsciousProcessor._write_to_wm", _e)
+
+    def _workspace_snapshot(self) -> Dict:
+        """Best-effort stamp of the conscious/task state at insight emergence.
+
+        Subconscious threads are async and do not share the live loop context, so
+        the persisted conscious stream is the stable boundary they can read from.
+        """
+        try:
+            from paths import DATA_DIR
+            from utils.json_utils import load_json
+            stream = load_json(DATA_DIR / "conscious_stream.json", default_type=list) or []
+            last = next((m for m in reversed(stream) if isinstance(m, dict)), None)
+            if not last:
+                return {}
+            return {
+                "content": str(last.get("content") or "")[:200],
+                "source": str(last.get("source") or "")[:48],
+                "kind": str(last.get("kind") or "")[:48],
+                "ts": last.get("ts"),
+            }
+        except Exception:
+            return {}

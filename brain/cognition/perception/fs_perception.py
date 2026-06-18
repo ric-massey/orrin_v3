@@ -2,9 +2,10 @@
 # Filesystem perception: polls for file changes each cognitive cycle and injects
 # signals into context["raw_signals"] for the signal_router.
 #
-# Two signal types:
+# Three signal types:
 #   "body_touched"  — Orrin's own code (brain/ dir) was modified externally
-#   "world_changed" — other project files changed
+#   "home_touched"  — the local workspace/den around Orrin changed
+#   "world_changed" — files outside the known body/home zones changed
 #
 # Uses simple mtime-snapshot polling (no external watchdog library needed).
 from __future__ import annotations
@@ -27,8 +28,20 @@ _POLL_INTERVAL_S: float = 30.0     # poll at most every 30 seconds
 # Paths Orrin wrote himself this session (to filter out self-caused changes)
 _self_written: Set[str] = set()
 
-# Directories that define "Orrin's body" vs. external world
+# Directories that define "Orrin's body" vs. the den/home vs. external world.
 _BRAIN_DIRS = {"brain", "reaper", "agency"}
+_HOME_DIRS = {
+    ".claude", ".github", ".vscode",
+    "backend", "build", "dist", "docs", "frontend", "goals", "inbox",
+    "memory", "observability", "outbox", "packaging", "tests", "tmp",
+}
+_HOME_ROOT_FILES = {
+    ".dockerignore", ".env", ".env.example", ".gitignore",
+    "Dockerfile", "LICENSE", "ORRIN_ACTIVITY_REPORT.md", "README.md",
+    "TEMPLATES.md", "docker-compose.yml", "expose_orrin.command", "main.py",
+    "pyproject.toml", "pytest.ini", "requirements.txt", "reset_orrin.py",
+    "run_orrin.bat", "run_orrin.sh", "start_orrin.command", "watchdogs.py",
+}
 
 
 def register_self_write(path: str) -> None:
@@ -58,15 +71,16 @@ def poll_fs_changes(context: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     signals = []
     changed_body: List[str] = []
+    changed_home: List[str] = []
     changed_world: List[str] = []
 
     for rel_path, mtime in current.items():
         if rel_path not in _mtime_snapshot:
-            _categorise(rel_path, "new", changed_body, changed_world)
+            _categorise(rel_path, "new", changed_body, changed_home, changed_world)
         elif mtime > _mtime_snapshot[rel_path] + 0.5:
             if rel_path in _self_written:
                 continue  # Orrin's own write — skip
-            _categorise(rel_path, "modified", changed_body, changed_world)
+            _categorise(rel_path, "modified", changed_body, changed_home, changed_world)
 
     _mtime_snapshot = current
 
@@ -93,6 +107,22 @@ def poll_fs_changes(context: Dict[str, Any]) -> List[Dict[str, Any]]:
         signals.append(sig)
         log_activity(f"[fs_perception] Body touched: {changed_body[:3]}")
 
+    if changed_home:
+        n = len(changed_home)
+        content = (
+            f"Something in my local workspace shifted — "
+            f"{'a familiar room' if n == 1 else str(n) + ' familiar rooms'} changed."
+        )
+        sig = _make_signal(
+            source="fs_perception",
+            content=content,
+            strength=0.62,
+            tags=["fs_perception", "home_touched", "home", "internal"],
+        )
+        context.setdefault("raw_signals", []).append(sig)
+        signals.append(sig)
+        log_activity(f"[fs_perception] Home touched: {changed_home[:3]}")
+
     if changed_world:
         n = len(changed_world)
         content = (
@@ -112,10 +142,12 @@ def poll_fs_changes(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     return signals
 
 
-def _categorise(rel: str, reason: str, body: List, world: List) -> None:
+def _categorise(rel: str, reason: str, body: List, home: List, world: List) -> None:
     parts = Path(rel).parts
     if parts and parts[0] in _BRAIN_DIRS:
         body.append(rel)
+    elif (parts and parts[0] in _HOME_DIRS) or (len(parts) == 1 and rel in _HOME_ROOT_FILES):
+        home.append(rel)
     else:
         world.append(rel)
 

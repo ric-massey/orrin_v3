@@ -133,11 +133,16 @@ class Drive:
         if p < _SIGNAL_THRESHOLD:
             return None
         strength = min(1.0, p * 1.2)  # slight amplification for urgency
+        orientation = {
+            "exploration": ["external", "world"],
+            "world_mastery": ["external", "world"],
+            "social": ["human", "relation"],
+        }.get(self.name, ["internal"])
         return {
             "source": f"drive_{self.name}",
             "content": f"{self.label}: {self.description} (pressure {p:.2f})",
             "signal_strength": strength,
-            "tags": self.tags + ["drive", "internal"],
+            "tags": self.tags + ["drive", *orientation],
             "drive_pressure": p,
             "drive_name": self.name,
         }
@@ -203,6 +208,13 @@ class DriveEngine:
                 description="I want to understand my own systems — how I actually work, what's in my memory, what my tools do.",
                 tags=["mastery", "self_understanding", "exploration", "exploration_drive"],
             ),
+            "world_mastery": Drive(
+                "world_mastery",
+                buildup_per_tick=0.006,
+                label="World mastery drive",
+                description="I want to understand something outside my own machinery.",
+                tags=["mastery", "world_knowledge", "exploration"],
+            ),
         }
         self._thread = threading.Thread(
             target=self._run, name="orrin-drives", daemon=True
@@ -243,42 +255,53 @@ class DriveEngine:
         Called from ORRIN_loop after the cycle completes.
         """
         fn = (fn_name or "").lower()
-        recent = context.get("recent_picks", []) or []
+        reach = context.get("_last_reach_outcome")
+        realized_fn = str(getattr(reach, "inner_fn", "") or "").lower()
+        credit_fn = realized_fn or fn
+        info_gain = float(getattr(reach, "info_gain", 0.0) or 0.0)
 
-        # Exploration: novel function choice
-        if fn and fn not in (recent[-8:] if len(recent) > 8 else recent):
+        # Exploration is consummated by realized information gain, not function variety.
+        if info_gain > 0.0:
             self.satisfy("exploration", 0.20)
-        else:
-            # Repetition builds exploration drive faster
-            self.drives["exploration"].tick()
 
-        # Meaning: action advancing committed goal with positive reward
-        if context.get("committed_goal") and reward > 0.4:
+        # Meaning requires measured progress.
+        if context.get("committed_goal") and (
+            int(context.get("_milestones_ticked_this_cycle", 0) or 0) > 0
+            or float(context.get("_step_delta_reward", 0.0) or 0.0) > 0.5
+            or context.get("_verified_artifact_this_cycle")
+        ):
             self.satisfy("meaning", 0.18)
 
         # Rest: contemplative or dream function
-        _rest_keywords = {"dream", "sit_with", "wonder", "contemplate",
-                          "reflect", "meditate", "integration", "rest"}
+        _rest_keywords = {"dream", "sit_with", "meditate", "integration", "rest"}
         if any(k in fn for k in _rest_keywords):
             self.satisfy("rest", 0.35)
 
         # Social: user sent a message this cycle
         if context.get("_user_spoke_this_cycle"):
             self.satisfy("social", 0.50)
+        elif credit_fn in {"speak", "user_response", "ask_user", "leave_note", "announce_to_dashboard"}:
+            self.satisfy("social", 0.15)
 
         # Mastery: own-system and world-exploration functions satisfy the mastery drive
         _mastery_fns = {"search_own_files", "look_around", "look_outward",
                         "reflect_on_internal_agents", "grep_files", "search_files",
                         "list_directory", "check_predictions", "assess_innovation_outcomes",
                         "research_topic", "fetch_and_read", "wikipedia_search", "read_rss"}
-        if fn in _mastery_fns:
+        _self_mastery_fns = {
+            "search_own_files", "look_around", "reflect_on_internal_agents",
+            "grep_files", "search_files", "list_directory",
+            "check_predictions", "assess_innovation_outcomes",
+        }
+        _world_mastery_fns = {
+            "look_outward", "research_topic", "fetch_and_read",
+            "wikipedia_search", "read_rss",
+        }
+        if credit_fn in _self_mastery_fns:
             self.satisfy("mastery", 0.35)
-            # Web research also satisfies the exploration drive — it's genuinely new territory
-            if fn in {"research_topic", "fetch_and_read", "wikipedia_search", "read_rss"}:
-                self.satisfy("exploration", 0.15)
-        else:
-            # Small buildup when not exploring own systems
-            self.drives["mastery"].tick()
+        if credit_fn in _world_mastery_fns and info_gain > 0.0:
+            self.satisfy("world_mastery", 0.35)
+            self.satisfy("exploration", 0.15)
 
         # Integrity: reward signal correlates with value alignment
         # (high reward from value-connected goal = integrity satisfied)

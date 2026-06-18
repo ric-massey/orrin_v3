@@ -52,6 +52,75 @@ _INHIBIT_RATE = 0.04
 DEFAULT_MAX_L1 = 1.20
 
 
+def update_allostatic_load(state: Dict, core: Dict[str, float]) -> float:
+    """Integrate sustained exploration-drive deviation while forgiving brief spikes."""
+    baseline = float(CORE_BASELINES.get("exploration_drive", 0.0))
+    deviation = max(
+        0.0,
+        float(core.get("exploration_drive", baseline) or baseline) - baseline,
+    )
+    load = float(state.get("allostatic_load", 0.0) or 0.0)
+    load = max(0.0, min(1.0, load + 0.01 * deviation - 0.01 * (1.0 - deviation)))
+    state["allostatic_load"] = round(load, 6)
+    return state["allostatic_load"]
+
+# ── Homeostatic ceilings — the single source of truth ────────────────────────
+# Per-signal soft maxima. Negative/conflicting signals cap lower than positive
+# drives. update_affect_state claws any signal above its ceiling back down at
+# CEILING_RATE per cycle. CRUCIAL: drive/reward *pumps* (cognitive_cost flow,
+# temporal_pressure anticipation, prediction-error surprise) must also respect
+# these via pump_signal() — when they capped at 1.0 instead, they out-ran the
+# once-per-cycle clawback and pinned motivation/confidence/positive_valence near
+# 0.95 with ~zero variance (the "manically content" flatline). One ceiling
+# authority, enforced at every write site.
+EMO_CEILINGS: Dict[str, float] = {
+    "impasse_signal":   0.75,  # negative drive — cap hard so it can't dominate
+    "uncertainty":      0.75,
+    "conflict_signal":  0.65,
+    "threat_level":     0.70,
+    "negative_valence": 0.70,
+    "social_deficit":   0.65,  # chronic but not acute — cap below hijack threshold
+    "exploration_drive": 0.85,  # positive drives — allow higher peaks
+    "motivation":       0.85,
+    "confidence":       0.82,
+    "positive_valence": 0.85,
+    "expected_gain":    0.80,
+    "wonder":           0.85,
+    "stagnation_signal": 0.80,
+}
+DEFAULT_CEILING = 0.85
+CEILING_RATE    = 0.25   # fraction of excess removed per clawback call
+
+
+def ceiling_for(name: str) -> float:
+    """The homeostatic soft ceiling for a signal (DEFAULT_CEILING if unlisted)."""
+    return EMO_CEILINGS.get(name, DEFAULT_CEILING)
+
+
+def pump_signal(core: Dict[str, float], key: str, delta: float, *, default: float = 0.0) -> float:
+    """
+    Additively boost a core signal, but NEVER push it above its homeostatic
+    ceiling. Drive/reward pumps must call this instead of `min(1.0, cur + delta)`:
+    capping at 1.0 let pumps out-run the once-per-cycle ceiling clawback and pin
+    the positive drives near saturation (the flatline). Mutates `core` in place
+    and returns the new value.
+
+    - Positive delta: result is capped at ceiling_for(key). If the signal is
+      ALREADY at/over the ceiling (legacy overshoot), no boost is added — the
+      clawback in update_affect_state owns bringing it back down at its own rate.
+    - Non-positive delta: applied with a hard 0.0 floor (drains are never blocked).
+    """
+    cur = float(core.get(key, default) or default)
+    if delta <= 0.0:
+        core[key] = max(0.0, cur + delta)
+        return core[key]
+    ceiling = ceiling_for(key)
+    if cur >= ceiling:
+        return cur
+    core[key] = min(ceiling, cur + delta)
+    return core[key]
+
+
 def apply_restoring_forces(
     state: Dict,
     core: Dict[str, float],

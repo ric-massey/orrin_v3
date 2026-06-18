@@ -18,8 +18,14 @@ def _record_habituation(result_text: str, context: Dict[str, Any]) -> None:
     """Feed search_own_files's outcome into its explore/exploit habituation so a barren
     self-search self-suppresses the same way look_outward does (exploration_value)."""
     try:
-        from cognition.exploration_value import record_reach_outcome
-        record_reach_outcome("search_own_files", str(result_text), None, context)
+        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        gain = record_reach_outcome("search_own_files", str(result_text), None, context)
+        acted = bool(result_text and not str(result_text).lstrip().startswith(("❌", "⚠️")))
+        context["_last_reach_outcome"] = ReachOutcome(
+            "home", acted=acted, is_external=False, info_gain=gain,
+            created_memory=acted, satisfied_curiosity=gain > 0.0,
+            inner_fn="search_own_files", text=str(result_text or ""),
+        )
     except Exception:
         pass
 

@@ -471,18 +471,19 @@ def bandit_learn(
                 _emo = ctx.get("affect_state") if ctx else None
                 if isinstance(_emo, dict):
                     _core = _emo.get("core_signals") or _emo
+                    from affect.homeostasis import pump_signal
                     if pe > 0:
                         # Positive surprise: reward_signal burst → motivation + exploration_drive (wanting more)
                         _mag = min(0.20, pe * 0.4)
-                        _core["motivation"] = min(1.0, float(_core.get("motivation", 0.3)) + _mag)
-                        _core["exploration_drive"]  = min(1.0, float(_core.get("exploration_drive", 0.25)) + _mag * 0.7)
+                        pump_signal(_core, "motivation",        _mag,        default=0.3)
+                        pump_signal(_core, "exploration_drive", _mag * 0.7,  default=0.25)
                         # Confidence as a small downstream effect of successful prediction
-                        _core["confidence"] = min(1.0, float(_core.get("confidence", 0.45)) + _mag * 0.25)
+                        pump_signal(_core, "confidence",        _mag * 0.25, default=0.45)
                     else:
                         # Negative surprise: reward_signal dip → reduced drive + impasse_signal
                         _mag = min(0.15, abs(pe) * 0.35)
-                        _core["impasse_signal"] = min(1.0, float(_core.get("impasse_signal", 0.05)) + _mag)
-                        _core["motivation"]  = max(0.0, float(_core.get("motivation", 0.3))   - _mag * 0.5)
+                        pump_signal(_core, "impasse_signal", _mag, default=0.05)
+                        pump_signal(_core, "motivation",    -_mag * 0.5, default=0.3)
                     if "core_signals" in _emo:
                         _emo["core_signals"] = _core
                     else:

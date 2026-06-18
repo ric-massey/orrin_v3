@@ -328,6 +328,8 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     emitted = []
     for (kind, content, sal, wants, tgt, delta, structural) in offers:
         eff_sal = sal if structural else round(sal * float(kbias.get(kind, 1.0)), 3)
+        if kind == "idle" and int(context.get("action_debt", 0) or 0) > 0:
+            eff_sal = max(eff_sal, 0.70)
         offer_to_workspace(context, {
             "source": f"monitor:{kind}", "content": content, "salience": eff_sal,
             "wants": wants, "kind": kind, "exempt_habituation": bool(structural),
@@ -491,7 +493,12 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
     debt = int(context.get("action_debt", 0) or 0)
     goal = context.get("committed_goal") or {}
     goal_title = goal.get("title", "") if isinstance(goal, dict) else ""
-    if debt >= _GOAL_DEBT_WARN and goal_title:
+    try:
+        from cognition.action_accounting import cycle_produced_goal_action
+        _acted_on_goal = cycle_produced_goal_action(context)
+    except Exception:
+        _acted_on_goal = False
+    if debt >= _GOAL_DEBT_WARN and goal_title and not _acted_on_goal:
         observations.append(
             f"Goal avoidance: {debt} consecutive cycles without taking action on "
             f"'{goal_title}'. I'm thinking but not doing."

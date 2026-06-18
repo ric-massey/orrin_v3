@@ -298,11 +298,15 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
 
                 if fn:
                     # I9 — charge the (cheap) cost of one executive step. Only
-                    # when a real procedural action ran; idle ticks are free.
+                    # when a real procedural action ran; idle ticks are free. During
+                    # the sleep phase this ordinary procedural cost must not fight
+                    # the dream-rest recovery proposal.
                     try:
-                        from affect.arbiter import submit_affect
-                        submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
-                                      weight=1.0, source="executive_step", ttl_cycles=2)
+                        from cognition.dreaming.dream_cycle import dreaming_now
+                        if not dreaming_now():
+                            from affect.arbiter import submit_affect
+                            submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
+                                          weight=1.0, source="executive_step", ttl_cycles=2)
                     except Exception:
                         pass
                     # Executive-lane learning signal (RUN_ISSUES_2026-06-10 §1

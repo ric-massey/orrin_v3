@@ -10,7 +10,27 @@ from affect.modes_and_affect import get_current_mode, set_current_mode
 from affect.affect import detect_affect
 from cog_memory.working_memory import update_working_memory
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import EMOTION_DRIFT  # Path object
+from paths import AFFECT_STATE_FILE, EMOTION_DRIFT  # Path objects
+
+
+def _mean_abs_dev(context) -> float | None:
+    """Current affect displacement from setpoints, or None when unavailable."""
+    state = (context or {}).get("affect_state") if isinstance(context, dict) else None
+    if not isinstance(state, dict):
+        state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    core = state.get("core_signals") or {}
+    if not isinstance(core, dict):
+        return None
+    try:
+        from affect.setpoints import setpoint
+        deviations = [
+            abs(float(value) - setpoint(name))
+            for name, value in core.items()
+            if isinstance(value, (int, float))
+        ]
+    except Exception:
+        return None
+    return sum(deviations) / len(deviations) if deviations else None
 
 def check_affect_drift(context=None, max_cycles=10):
     """
@@ -28,20 +48,29 @@ def check_affect_drift(context=None, max_cycles=10):
     else:
         drift_tracker = {}
 
-    # Update counter for current mode
-    if current_mode not in drift_tracker:
-        drift_tracker[current_mode] = 1
-    else:
-        drift_tracker[current_mode] = min(drift_tracker[current_mode] + 1, max_cycles)
+    # Persistence alone is not pathology. Intervene only when displacement from
+    # setpoints breaks above its own recent EMA-normalized variability band.
+    drift = _mean_abs_dev(context)
+    prior_mu = float(drift_tracker.get("_drift_mu", drift or 0.0) or 0.0)
+    prior_sd = float(drift_tracker.get("_drift_sd", 0.0) or 0.0)
+    drifting = (
+        drift is not None
+        and "_drift_mu" in drift_tracker
+        and (drift - prior_mu) > 2.0 * (prior_sd + 1e-6)
+    )
+    if drift is not None:
+        alpha = 0.10
+        mu = prior_mu + alpha * (drift - prior_mu)
+        sd = prior_sd + alpha * (abs(drift - prior_mu) - prior_sd)
+        drift_tracker["_drift_mu"] = mu
+        drift_tracker["_drift_sd"] = max(0.0, sd)
+    drift_tracker["_current_mode"] = current_mode
 
-    # Reset other modes
-    for mode in list(drift_tracker.keys()):
-        if mode != current_mode:
-            drift_tracker[mode] = 0
-
-    # Intervention threshold
-    if drift_tracker[current_mode] >= max_cycles:
-        log_private(f"Orrin noticed affective drift: stuck in {current_mode} for {max_cycles} cycles.")
+    if drifting and current_mode != "adaptive":
+        log_private(
+            f"Orrin noticed affective drift in {current_mode}: "
+            f"{drift:.3f} outside recent band {prior_mu:.3f}±{2 * prior_sd:.3f}."
+        )
 
         # Effort modulation from context
         resource_deficit = 0.0
@@ -77,8 +106,6 @@ def check_affect_drift(context=None, max_cycles=10):
                 "emotion": (detect_affect(reflection or "", use_gpt=False) or {}).get("emotion", "neutral"),
             })
             log_activity(f"Shadow self dialogue triggered due to emotional drift in {current_mode}.")
-            drift_tracker[current_mode] = 0
-
             # reward_signal reward for breaking free
             if isinstance(context, dict):
                 release_reward_signal(
@@ -92,7 +119,7 @@ def check_affect_drift(context=None, max_cycles=10):
                 )
 
         # Gentle reflection for stable modes
-        elif current_mode in {"exploratory", "focused", "adaptive", "curious", "quiet"}:
+        elif current_mode in {"exploratory", "focused", "curious", "quiet"}:
             update_working_memory({
                 "content": f"Orrin reflects to break gentle drift in {current_mode} mode.",
                 "event_type": "drift_intervention",
@@ -114,8 +141,6 @@ def check_affect_drift(context=None, max_cycles=10):
                 "emotion": (detect_affect(result or "", use_gpt=False) or {}).get("emotion", "neutral"),
             })
             log_activity(f"Gentle reflection initiated to address drift in {current_mode}.")
-            drift_tracker[current_mode] = 0
-
             # Novelty reward for introspective creativity
             if isinstance(context, dict):
                 release_reward_signal(
@@ -128,9 +153,9 @@ def check_affect_drift(context=None, max_cycles=10):
                     source="introspective creativity"
                 )
 
-        # Reset mode after intervention
-        set_current_mode("adaptive")
-        log_private(f"Orrin reset mode from {current_mode} to adaptive due to emotional drift.")
+        if current_mode != "adaptive":
+            set_current_mode("adaptive")
+            log_private(f"Orrin reset mode from {current_mode} to adaptive due to emotional drift.")
 
     # Persist tracker
     save_json(drift_path, drift_tracker)

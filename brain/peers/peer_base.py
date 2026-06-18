@@ -64,6 +64,7 @@ class BasePeer:
             valid = [s for s in signals if isinstance(s, dict) and s.get("content")]
             if valid:
                 self._last_wake_cycle = cycle
+                self._record_interaction(valid)
             return valid
         except Exception as e:
             log_error(f"[peer:{self.name}] observe failed: {e}")
@@ -86,6 +87,29 @@ class BasePeer:
         )
 
     # ── Registration ──────────────────────────────────────────────────────────
+
+    def _record_interaction(self, signals: List[Dict[str, Any]]) -> None:
+        """Persist what an auditor actually said so its relationship is inspectable."""
+        try:
+            from paths import RELATIONSHIPS_FILE
+            from utils.json_utils import load_json, save_json
+            rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
+            rel = rels.setdefault(f"peer_{self.name}", {
+                "type": "peer",
+                "impression": self.description,
+                "interaction_history": [],
+            })
+            history = rel.setdefault("interaction_history", [])
+            history.append({
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "peer": self.name,
+                "orrin": "",
+                "content": " | ".join(str(s.get("content", "")) for s in signals[:3]),
+            })
+            rel["interaction_history"] = history[-100:]
+            save_json(RELATIONSHIPS_FILE, rels)
+        except Exception as e:
+            log_error(f"[peer:{self.name}] interaction history failed: {e}")
 
     def _register(self) -> None:
         """

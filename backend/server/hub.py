@@ -24,6 +24,13 @@ from .schema import LATEST_WINS_KEYS
 # Persist the metric history across restarts so the System Metrics chart is
 # CONTINUOUS — it doesn't blank out every time the brain/telemetry process bounces.
 _HISTORY_FILE = Path(__file__).resolve().parents[2] / "brain" / "data" / "telemetry_history.json"
+# Append-only long-term archive of every telemetry point. _HISTORY_FILE is a
+# rolling HISTORY_CAP window (sized for the live UI chart); it overwrites old
+# points, so it can never answer "how did valence/arousal/homeostasis/curiosity
+# change over a whole life?". This JSONL archive keeps every point forever (one
+# line per point) so metric history survives past the 240-sample window and
+# across restarts. Best-effort: telemetry must never crash the loop.
+_ARCHIVE_FILE = Path(__file__).resolve().parents[2] / "brain" / "data" / "telemetry_archive.jsonl"
 
 
 def _load_history() -> List[Dict[str, Any]]:
@@ -37,6 +44,18 @@ def _load_history() -> List[Dict[str, Any]]:
 def _save_history(points: List[Dict[str, Any]]) -> None:
     try:
         _HISTORY_FILE.write_text(json.dumps(points[-HISTORY_CAP:]), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def _archive_points(points: List[Dict[str, Any]]) -> None:
+    """Append telemetry points to the uncapped JSONL archive, one line each."""
+    if not points:
+        return
+    try:
+        with _ARCHIVE_FILE.open("a", encoding="utf-8") as fh:
+            for p in points:
+                fh.write(json.dumps(p) + "\n")
     except Exception:
         pass
 
@@ -100,6 +119,7 @@ class Hub:
         if self.history:
             self.state["metric_series"] = list(self.history)[-METRIC_CAP:]
         self._hist_writes = 0
+        self._archive_buf: List[Dict[str, Any]] = []  # points pending archive flush
         # User inputs from the Face awaiting the core loop, and agent replies
         # awaiting Face pickup (the closed integration loop).
         self.inputs: Deque[Dict[str, Any]] = collections.deque(maxlen=INPUT_CAP)
@@ -256,11 +276,16 @@ class Hub:
                 if isinstance(v, (int, float)):
                     point[k] = float(v)
             self.history.append(point)
+            self._archive_buf.append(point)
             # Flush to disk every ~15 points so the chart survives restarts without
-            # hammering the filesystem each cycle.
+            # hammering the filesystem each cycle. Same cadence flushes the buffered
+            # points to the uncapped archive, so long-term metric history is retained
+            # beyond the rolling HISTORY_CAP window.
             self._hist_writes += 1
             if self._hist_writes % 15 == 0:
                 _save_history(list(self.history))
+                _archive_points(self._archive_buf)
+                self._archive_buf = []
 
         s["updated_at"] = time.time()
         return delta

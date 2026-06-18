@@ -19,6 +19,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from typing import Any, Dict, List, Optional
 
@@ -35,6 +36,14 @@ _NOISE = (
     "spoke:", "chose:", "[done]",
 )
 
+_SUBCONSCIOUS_EVENTS = {"subconscious_pattern", "incubated_insight", "emotional_residue"}
+_TOKEN_RE = re.compile(r"[a-zA-Z][a-zA-Z0-9_'-]{2,}")
+_STOPWORDS = {
+    "the", "and", "for", "with", "that", "this", "from", "into", "about", "have",
+    "has", "had", "was", "were", "are", "but", "not", "you", "your", "orrin",
+    "while", "something", "toward", "working", "notice", "connection", "memory",
+}
+
 
 def _f(x: Any, d: float = 0.0) -> float:
     try:
@@ -46,6 +55,49 @@ def _f(x: Any, d: float = 0.0) -> float:
 def _is_noise(c: str) -> bool:
     cl = (c or "").strip().lower()
     return (not cl) or any(m in cl for m in _NOISE)
+
+
+def _tokens(text: str) -> set:
+    return {t.lower() for t in _TOKEN_RE.findall(text or "") if t.lower() not in _STOPWORDS}
+
+
+def _overlap(a: str, b: str) -> float:
+    aa, bb = _tokens(a), _tokens(b)
+    if not aa or not bb:
+        return 0.0
+    return len(aa & bb) / max(1, min(len(aa), len(bb)))
+
+
+def _workspace_reference_text(context: Dict[str, Any]) -> str:
+    parts: List[str] = []
+    for key in ("latest_user_input", "last_function_chosen", "last_function"):
+        val = context.get(key)
+        if val:
+            parts.append(str(val))
+    gw = context.get("global_workspace") or {}
+    if isinstance(gw, dict):
+        parts.append(str(gw.get("content") or ""))
+    cg = context.get("committed_goal")
+    if isinstance(cg, dict):
+        parts.append(str(cg.get("title") or cg.get("name") or ""))
+        parts.append(str(cg.get("description") or ""))
+    for sig in (context.get("top_signals") or [])[:3]:
+        if isinstance(sig, dict):
+            parts.append(str(sig.get("content") or sig.get("summary") or ""))
+    return " ".join(p for p in parts if p)
+
+
+def _subconscious_relevance(candidate: Dict[str, Any], context: Dict[str, Any]) -> Optional[float]:
+    if candidate.get("event_type") not in _SUBCONSCIOUS_EVENTS and candidate.get("source") != "subconscious":
+        return None
+    origin = candidate.get("workspace_origin") or {}
+    if not isinstance(origin, dict):
+        return None
+    origin_text = str(origin.get("content") or "")
+    ref_text = _workspace_reference_text(context)
+    if not origin_text or not ref_text:
+        return None
+    return max(_overlap(origin_text, ref_text), _overlap(str(candidate.get("content") or ""), ref_text) * 0.5)
 
 
 def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -96,7 +148,14 @@ def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     for e in reversed((context.get("working_memory") or [])[-8:]):
         c = str(e.get("content", e) if isinstance(e, dict) else e)
         if len(c) >= 20 and not _is_noise(c):
-            out.append({"source": "thought", "content": c[:160], "salience": 0.35})
+            cand = {"source": "thought", "content": c[:160], "salience": 0.35}
+            if isinstance(e, dict):
+                if e.get("source") == "subconscious" or e.get("event_type") in _SUBCONSCIOUS_EVENTS:
+                    cand["source"] = "subconscious"
+                for key in ("event_type", "workspace_origin"):
+                    if e.get(key) is not None:
+                        cand[key] = e.get(key)
+            out.append(cand)
             break
 
     # Contents OFFERED to consciousness by the Executive / Metacog Monitor
@@ -152,6 +211,15 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         recent = context.get("_gw_recent") or []
 
         for c in cands:
+            rel = _subconscious_relevance(c, context)
+            if rel is not None:
+                c["subconscious_relevance"] = round(rel, 3)
+                if rel >= 0.22:
+                    c["salience"] += 0.16
+                    c["subconscious_gate"] = "relevant"
+                else:
+                    c["salience"] -= 0.22
+                    c["subconscious_gate"] = "stale"
             # I14 (habituation override): a persistent STRUCTURAL breakthrough
             # (stuck step / unmet objective) must NOT fade by repetition — silence
             # -by-habituation on a real problem is a defect. It is exempt from decay;
@@ -183,6 +251,8 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 "salience": round(_f(c.get("salience")), 3),
                 **({"kind": c["kind"]} if c.get("kind") else {}),
                 **({"wants": c["wants"]} if c.get("wants") else {}),
+                **({"subconscious_relevance": c["subconscious_relevance"]} if c.get("subconscious_relevance") is not None else {}),
+                **({"subconscious_gate": c["subconscious_gate"]} if c.get("subconscious_gate") else {}),
             } for c in ranked[:6]]
         except Exception:
             pass
@@ -201,6 +271,9 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             moment["wants"] = winner["wants"]
         if winner.get("kind"):
             moment["kind"] = winner["kind"]
+        if winner.get("subconscious_relevance") is not None:
+            moment["subconscious_relevance"] = winner["subconscious_relevance"]
+            moment["subconscious_gate"] = winner.get("subconscious_gate")
         # Offers are consumed once competed; the Monitor re-offers next cycle if the
         # condition persists (so escalation keeps working).
         context["_workspace_offers"] = []
@@ -223,11 +296,11 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
 def _append_stream(moment: Dict[str, Any]) -> None:
     try:
-        data: List[Dict[str, Any]] = []
-        if _STREAM_FILE.exists():
-            data = json.loads(_STREAM_FILE.read_text(encoding="utf-8")) or []
-        data.append(moment)
-        _STREAM_FILE.write_text(json.dumps(data[-_STREAM_MAX:], indent=1), encoding="utf-8")
+        from utils.json_utils import modify_json
+        with modify_json(_STREAM_FILE, list) as data:
+            data.append(moment)
+            if len(data) > _STREAM_MAX:
+                del data[:-_STREAM_MAX]
     except Exception:
         pass
 

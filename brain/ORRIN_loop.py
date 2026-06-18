@@ -211,10 +211,16 @@ def _emit_affect(context: "Context") -> None:
         homeostasis = 0.8
         try:
             from affect.setpoints import setpoint as _setpoint
-            devs = [abs(float(v) - _setpoint(k))
-                    for k, v in cs.items() if isinstance(v, (int, float))]
-            if devs:
-                homeostasis = _clamp01(1.0 - (sum(devs) / len(devs)) * 1.6)
+            weighted_devs = []
+            for k, v in cs.items():
+                if not isinstance(v, (int, float)):
+                    continue
+                weight = 0.15 if k == "exploration_drive" else 1.0
+                weighted_devs.append((abs(float(v) - _setpoint(k)), weight))
+            weight_total = sum(weight for _, weight in weighted_devs)
+            if weight_total:
+                mean_dev = sum(dev * weight for dev, weight in weighted_devs) / weight_total
+                homeostasis = _clamp01(1.0 - mean_dev * 1.6)
         except Exception:
             pass
 
@@ -228,6 +234,8 @@ def _emit_affect(context: "Context") -> None:
         tb.affect(
             # top-level valence runs roughly -1..1; centre it on 0.5 for the UI.
             valence=_clamp01(0.5 + 0.5 * _f(a.get("valence"))),
+            valence_raw=_f(a.get("valence")),
+            impasse_raw=_clamp01(_f(cs.get("impasse_signal"))),
             arousal=_clamp01(_f(a.get("activation_level"), 0.3)),
             homeostasis=homeostasis,
             energy=_clamp01(1.0 - _f(a.get("resource_deficit"))),
@@ -237,6 +245,7 @@ def _emit_affect(context: "Context") -> None:
             motivation=_clamp01(_f(cs.get("motivation"), 0.5)),
             confidence=_clamp01(_f(cs.get("confidence"), 0.5)),
             curiosity=_clamp01(_f(cs.get("exploration_drive"), 0.3)),
+            allostatic_load=_clamp01(_f(a.get("allostatic_load"))),
             distress=distress,
             stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),
@@ -274,12 +283,6 @@ def _learning_pulse(context: "Context") -> float:
 
 _LAST_GOALS_PUSH = 0.0
 _GOALS_PUSH_INTERVAL = 2.0   # seconds; goals change slowly, don't flood the bridge
-# Cognitive cycles a committed goal may tick ZERO milestones before it's degraded to
-# a simpler achievable form (or disengaged). Bounds honest stalls: a goal whose action
-# keeps failing to produce shouldn't pin impasse indefinitely (Wrosch goal adjustment).
-_GOAL_STALL_MAX = 40
-
-
 def _emit_goals(context: "Context") -> None:
     """
     Push Orrin's actual goal set to the Brain UI: the committed (active) goal
@@ -1318,6 +1321,8 @@ def run_cognitive_loop(
                     context["sensory_field"] = _sf
                     env_mood = _sf.get("environment_mood", "ambient")
                     context["environment_mood"] = env_mood
+                    context["home_sense"] = _sf.get("home_sense") or {}
+                    context["world_sense"] = _sf.get("world_sense") or {}
                     # Own code changed → inject surprise signal
                     if _sf.get("own_code_modified"):
                         context.setdefault("raw_signals", []).append({
@@ -1326,18 +1331,32 @@ def run_cognitive_loop(
                             "signal_strength": 0.75,
                             "tags": ["self_modification", "code_change", "surprise", "internal"],
                         })
-                    # File system activity → ambient awareness
-                    fs_changes = _sf.get("fs_changes", [])
-                    if fs_changes:
-                        _n = len(fs_changes)
+                    # File system activity → ambient awareness, split by felt
+                    # zone. Home changes are den-local; world changes remain
+                    # external/unknown.
+                    home_changes = ((_sf.get("home_sense") or {}).get("fs_changes") or [])
+                    world_changes = ((_sf.get("world_sense") or {}).get("fs_changes") or [])
+                    if home_changes:
+                        _n = len(home_changes)
+                        context.setdefault("raw_signals", []).append({
+                            "source": "sensory_stream",
+                            "content": (
+                                f"Something in my local workspace shifted — "
+                                f"{'one familiar thing' if _n == 1 else str(_n) + ' familiar things'} changed."
+                            ),
+                            "signal_strength": min(0.50, 0.25 + _n * 0.04),
+                            "tags": ["environment", "perception", "change", "home_touched", "home"],
+                        })
+                    if world_changes:
+                        _n = len(world_changes)
                         context.setdefault("raw_signals", []).append({
                             "source": "sensory_stream",
                             "content": (
                                 f"Something in the environment shifted — "
-                                f"{'one thing' if _n == 1 else str(_n) + ' things'} around me changed."
+                                f"{'one thing' if _n == 1 else str(_n) + ' things'} outside my local workspace changed."
                             ),
                             "signal_strength": min(0.50, 0.25 + _n * 0.04),
-                            "tags": ["environment", "perception", "change"],
+                            "tags": ["environment", "perception", "change", "world_changed", "external"],
                         })
             except Exception as _se:
                 record_failure("ORRIN_loop.sensory_read", _se)
@@ -1366,6 +1385,9 @@ def run_cognitive_loop(
                 _soc_sig = _social_state.get("signal")
                 if _soc_sig:
                     context.setdefault("raw_signals", []).append(_soc_sig)
+                _door_event = _social_state.get("door_event")
+                if _door_event:
+                    context.setdefault("raw_signals", []).append(_door_event)
                 # Notify social_presence module when the user spoke
                 if context.get("_user_spoke_this_cycle"):
                     _social_mod.mark_user_spoke()
@@ -1880,6 +1902,12 @@ def run_cognitive_loop(
                 record_failure("ORRIN_loop.run_cognitive_loop.8", _e)
 
             acted_this_cycle = False
+            try:
+                from cognition.action_accounting import reset_cycle_action_flags
+                reset_cycle_action_flags(context)
+                context["_cycle_index"] = int(get_cycle_count())
+            except Exception as _e:
+                record_failure("ORRIN_loop.reset_cycle_action_flags", _e)
             result           = None
             reward           = 0.0
             feats            = {}
@@ -2300,9 +2328,11 @@ def run_cognitive_loop(
                         _emo_post = dict(context.get("affect_state") or {})
 
                         # Post-step: tick milestones, snapshot again, compute reward.
+                        _ticked_n = 0
                         try:
                             if _tick_ms is not None:
                                 _ticked_n = _tick_ms(context)
+                                context["_milestones_ticked_this_cycle"] = int(_ticked_n or 0)
                                 # Complete the COMMITTED goal the moment its milestones
                                 # are all genuinely met. It's excluded from the main-loop
                                 # satiety sweep and the Executive's pursue is unreliable,
@@ -2335,15 +2365,24 @@ def run_cognitive_loop(
                                         except Exception as _mce:
                                             record_failure("ORRIN_loop.complete_on_milestones", _mce)
                                     else:
-                                        # No-progress → degrade/disengage. A goal that ticks NO
-                                        # milestone for _GOAL_STALL_MAX cycles (its action keeps
-                                        # failing to produce — e.g. research that can't reach the
-                                        # web) shouldn't pin impasse forever. Go simpler, or let go.
-                                        _stall = _cyc_now - int(_cgoal.get("_last_progress_cycle") or _cyc_now)
-                                        if _stall >= _GOAL_STALL_MAX:
+                                        # Leave an unproductive goal when its local
+                                        # reward rate has fallen below Orrin's learned
+                                        # global background and the smooth leave hazard fires.
+                                        from cognition.reward_rate import (
+                                            accrue_leave_pressure as _alp,
+                                            is_stagnating as _is_stag,
+                                            should_force_switch as _sfs,
+                                        )
+                                        _alp(context)
+                                        if _is_stag(context) and _sfs(context):
                                             try:
                                                 from cognition.planning.pursue_goal import _degrade_or_disengage as _dod
-                                                _dod(_cgoal, context, (_cgoal.get("title") or "?"), "no progress")
+                                                _dod(
+                                                    _cgoal,
+                                                    context,
+                                                    (_cgoal.get("title") or "?"),
+                                                    "local reward rate below background",
+                                                )
                                             except Exception as _sde:
                                                 record_failure("ORRIN_loop.stall_degrade", _sde)
                             _post_snap = _snap(context) if _snap else {}
@@ -2377,6 +2416,21 @@ def run_cognitive_loop(
                             "ERROR" in _fn_str[:30]
                         )
                         _status_r = 0.1 if _is_failure else 0.5
+                        try:
+                            from cognition.action_accounting import mark_consequential_cognition
+                            _reach = context.get("_last_reach_outcome")
+                            mark_consequential_cognition(
+                                context,
+                                env_r=_env_r,
+                                ticked_n=_ticked_n,
+                                is_failure=_is_failure,
+                                info_gain=(
+                                    getattr(_reach, "info_gain", None)
+                                    if _reach is not None else None
+                                ),
+                            )
+                        except Exception as _e:
+                            record_failure("ORRIN_loop.mark_consequential_cognition", _e)
 
                         # === Agency-based causal learning (Pearl Level 2) — stash ===
                         # Learn what this action does to Orrin's felt state. The felt
@@ -2416,6 +2470,19 @@ def run_cognitive_loop(
                         # Orrin's internal state — the reward signal the bandit was missing.
                         _emo_r = emotional_delta_reward(_emo_pre, _emo_post)
                         base_reward = blend_reward(0.6 * _env_r + 0.4 * _status_r, _emo_r)
+                        _blended_reward = base_reward
+                        try:
+                            from cognition.reward_rate import update_reward_rate
+                            update_reward_rate(
+                                context,
+                                reward=float(_blended_reward),
+                                committed_goal_id=(
+                                    (context.get("committed_goal") or {}).get("id")
+                                ),
+                            )
+                            context["_reward_rate_updated_this_cycle"] = True
+                        except Exception as _e:
+                            record_failure("ORRIN_loop.update_reward_rate", _e)
                         if _is_failure:
                             base_reward = min(base_reward - 0.4, -0.1)
                         # Apply goal-weighted reward on the cognition path, matching
@@ -2830,11 +2897,25 @@ def run_cognitive_loop(
                         acted_this_cycle = True
                         context["last_action_ts"] = time.time()
 
+            if not context.get("_reward_rate_updated_this_cycle"):
+                try:
+                    from cognition.reward_rate import update_reward_rate
+                    update_reward_rate(
+                        context,
+                        reward=float(reward or 0.0),
+                        committed_goal_id=(
+                            (context.get("committed_goal") or {}).get("id")
+                        ),
+                    )
+                    context["_reward_rate_updated_this_cycle"] = True
+                except Exception as _e:
+                    record_failure("ORRIN_loop.update_reward_rate_fallback", _e)
+
             acted_this_cycle = acted_this_cycle or bool(context.pop("__acted_this_tick__", False))
 
             # Emotion drift check always runs — it's unconscious monitoring, not conscious thought
             try:
-                check_affect_drift(max_cycles=10)
+                check_affect_drift(context)
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.25", _e)
 
@@ -2969,12 +3050,14 @@ def run_cognitive_loop(
                 log_error(f"check_predictions failed: {_pe}")
 
             # Dream cycle — fires when idle and 6h have elapsed since last dream.
-            # Skipped while HostResourceGuard has paused the heavy cycles: dreaming
-            # is memory-hungry, and the host is already under disk/swap pressure.
+            # Skipped while HostResourceGuard/VitalFloor has paused heavy cycles:
+            # dream is restorative as felt experience, but its consolidation
+            # footprint is memory-hungry and must yield under host/process pressure.
             try:
                 from cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
                 from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-                if (not _heavy_paused()) and should_dream(context):
+                from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+                if (not _heavy_paused()) and (not _vital_shedding()) and should_dream(context):
                     import threading as _thr
                     _dt = _thr.Thread(
                         target=_dream_cycle, args=(context,),
@@ -3043,9 +3126,10 @@ def run_cognitive_loop(
                         (affect_state.get("core_signals") or affect_state).get("stagnation_signal", 0.0)
                     )
                     # Reading is the other memory-hungry heavy cycle: skip it while
-                    # HostResourceGuard has paused heavies due to host pressure.
+                    # host/process resource guards have paused heavies.
                     from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-                    if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused():
+                    from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+                    if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _vital_shedding():
                         from cognition.language.acquisition import read_a_book as _rab
                         _line = _rab(context, steps=30)
                         if _line:

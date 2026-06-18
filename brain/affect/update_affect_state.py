@@ -22,6 +22,7 @@ from affect.affect_dynamics import (
 from affect.affect_buffer import drain_affect_queue
 from affect.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
+    EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE, update_allostatic_load,
 )
 from affect.setpoints import CORE_BASELINES
 from utils.log import log_activity
@@ -101,6 +102,7 @@ def update_affect_state(context=None, trigger=None):
     for emo in model_emotions:
         if emo not in _NON_EMOTIONS:
             core.setdefault(emo, baseline.get(emo, 0.0))
+    update_allostatic_load(state, core)
 
     # === Interoception — body state as generative emotional prior ===
     # Body state is applied FIRST so it acts as a prior that shapes how all subsequent
@@ -500,26 +502,15 @@ def update_affect_state(context=None, trigger=None):
     apply_cross_inhibition(core)
 
     # === Homeostatic ceiling (applied BEFORE dup-key sync so rewards can't bypass it) ===
-    # Per-emotion soft ceilings: negative/conflicting emotions cap lower than drives.
+    # Per-emotion soft ceilings now live in homeostasis.EMO_CEILINGS (single source
+    # of truth) so drive/reward PUMP sites can respect the same ceiling via
+    # pump_signal() — capping pumps at 1.0 let them out-run this once-per-cycle
+    # clawback and pinned the positive drives near saturation (the flatline).
     # Removal rate 0.25 (25% of excess per call) is strong enough to actually counteract
     # trigger bursts (+0.3) and reward signals — the old 6% rate was too slow.
-    _EMO_CEILINGS = {
-        "impasse_signal":  0.75,  # negative drive — cap hard so it can't dominate
-        "uncertainty":  0.75,
-        "conflict_signal":        0.65,
-        "threat_level":         0.70,
-        "negative_valence":      0.70,
-        "social_deficit":   0.65,  # chronic but not acute — cap below hijack threshold
-        "exploration_drive":    0.85,  # positive drives — allow higher peaks
-        "motivation":   0.85,
-        "confidence":   0.82,
-        "positive_valence":          0.85,
-        "expected_gain":         0.80,
-        "wonder":       0.85,
-        "stagnation_signal":      0.80,
-    }
-    _DEFAULT_CEILING = 0.85
-    _CEILING_RATE    = 0.25   # fraction of excess removed per call
+    _EMO_CEILINGS = EMO_CEILINGS
+    _DEFAULT_CEILING = DEFAULT_CEILING
+    _CEILING_RATE    = CEILING_RATE
     for emo in list(core.keys()):
         try:
             ceiling = _EMO_CEILINGS.get(emo, _DEFAULT_CEILING)
@@ -580,6 +571,60 @@ def update_affect_state(context=None, trigger=None):
                 osc_counts[emo_flag] = 0
     except Exception as _e:
         record_failure("update_affect_state.update_affect_state.5", _e)
+
+    # === Flatline detection — LOW variance at HIGH value (the osc detector's blind spot) ===
+    # The variance detector above fires only on CHAOS (high variance). Its mirror
+    # failure is a positive drive pinned near its ceiling with ~zero variance —
+    # "manically content" while the loop is closed. Reward pumps that out-run decay
+    # produce exactly this (the empirically observed motivation≈0.96, var≈0 pin).
+    # When the positive-drive vector sits high and flat for several cycles, raise
+    # stagnation_signal so the EXISTING novelty machinery treats the sameness as
+    # boredom: select_function routes toward seek_novelty/look_outward and
+    # consciousness_trigger can fire. We deliberately do NOT crush ceilings — that
+    # only flattens arousal toward a low-energy state; boredom→seek-novelty is the
+    # felt wake-up, and it closes its own loop (acting diversifies picks → entropy
+    # rises → stagnation_signal ebbs).
+    _FLAT_WINDOW    = 8        # how many recent cycles must be flat-high
+    _FLAT_VAR_MAX   = 0.0008   # "flat": variance below this (std < ~0.028)
+    _FLAT_HIGH_MEAN = 0.78     # "high": mean drive at/above this (below the 0.82–0.85 ceilings)
+    _FLAT_DRIVES = ("motivation", "confidence", "positive_valence", "exploration_drive")
+    try:
+        hist = state.get("emotion_history", [])
+        if isinstance(hist, list) and len(hist) >= _FLAT_WINDOW:
+            recent_hist = hist[-_FLAT_WINDOW:]
+            flat_high = []
+            for emo in _FLAT_DRIVES:
+                vals = [s[emo] for s in recent_hist if isinstance(s, dict) and emo in s]
+                if len(vals) < _FLAT_WINDOW:
+                    continue
+                m = sum(vals) / len(vals)
+                v = sum((x - m) ** 2 for x in vals) / len(vals)
+                if v <= _FLAT_VAR_MAX and m >= _FLAT_HIGH_MEAN:
+                    flat_high.append(emo)
+            # A single steady drive is healthy; a whole pinned positive vector is the
+            # pathology — require most of them flat-high together.
+            if len(flat_high) >= 3:
+                _flat_streak = int(state.get("_flatline_streak", 0) or 0) + 1
+                state["_flatline_streak"] = _flat_streak
+                cur_stag = float(core.get("stagnation_signal", 0.0) or 0.0)
+                core["stagnation_signal"] = min(0.60, cur_stag + 0.20)
+                if context is not None and (_flat_streak == 1 or _flat_streak % 5 == 0):
+                    update_working_memory({
+                        "content": (
+                            "I've been running hot and flat — "
+                            f"{', '.join(flat_high)} pinned high with almost no movement "
+                            f"for {_FLAT_WINDOW}+ cycles. This sameness is its own signal: "
+                            "I should seek novelty or change what I'm doing."
+                        ),
+                        "event_type": "affect_stagnation",
+                        "emotion": "stagnation_signal",
+                        "importance": 3,
+                        "timestamp": now.isoformat(),
+                    })
+            else:
+                state["_flatline_streak"] = 0
+    except Exception as _e:
+        record_failure("update_affect_state.update_affect_state.flatline", _e)
 
     # === Drain buffered emotion changes BEFORE velocity so buffered deltas are subject
     # to the same velocity constraints as direct emotion writes. Previously this ran

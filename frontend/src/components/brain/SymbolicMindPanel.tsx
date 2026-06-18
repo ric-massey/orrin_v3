@@ -46,6 +46,7 @@ export default function SymbolicMindPanel() {
           <Network className="h-4 w-4" /> <LexText id="symbolic_title" />
           <PanelInfo
             title="Symbolic mind / knowledge"
+            perspective="agent-accessible"
             what="The no-LLM reasoning engine: queries answered purely by his learned symbolic rules, the rule base itself (conditions → conclusion with confidence), and the causal graph built from his own interventions and observations."
             source="brain/data/symbolic_progress.json · symbolic_rules.json · causal_graph.json · world_model_stats.json"
             good="A high share answered without the LLM while rules keep being added AND forgotten (a living rule base). Note: in an LLM-off run the ratio is trivially 100%, so the gauge is suppressed."

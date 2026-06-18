@@ -35,6 +35,7 @@ export default function LearningPanel() {
           <TrendingUp className="h-4 w-4" /> <LexText id="learning_title" />
           <PanelInfo
             title="Learning / reward"
+            perspective="agent-accessible"
             what="The bandit's view of his own cognition: how often each function gets picked, the average reward it has earned (is it 'working'?), which functions are currently suppressed for underperforming, and the raw reward events as they land."
             source="brain/data/decision_stats.json · bandit_state.json · reward_trace.json"
             good="A spread of rewards (not everything pinned at one value), heavy use concentrated on functions that actually earn it, and suppressions that come AND go."

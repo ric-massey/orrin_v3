@@ -61,6 +61,7 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
   const data = telemetry.metricSeries.slice(-120);
   const latest = data.length ? data[data.length - 1] : undefined;
   const active = useMemo(() => METRICS.filter((m) => selected.includes(m.key)), [selected]);
+  const showsRawValence = selected.includes("valence_raw");
 
   // Per-series index of the LAST defined point. With `connectNulls` and sparse
   // series (a metric missing in early history), the rendered last point for a
@@ -88,6 +89,7 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
           System Metrics
           <PanelInfo
             title="System Metrics"
+            perspective="dev-only"
             what="Any of his signals charted over time on one 0–100 scale — pick which series to show with the Metrics button. History is replayed from the server on connect, so the chart is continuous across restarts."
             source="metric series via the telemetry socket (history persisted in brain/data/telemetry_history.json)"
             good="Pick three or four related signals and watch how they interact — e.g. fatigue climbing while motivation decays toward its setpoint."
@@ -221,8 +223,8 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
               </defs>
               {/* Axis on the same 0–100 unit as the values + tooltip. */}
               <YAxis
-                domain={[0, 1]}
-                ticks={[0, 0.5, 1]}
+                domain={showsRawValence ? [-1, 1] : [0, 1]}
+                ticks={showsRawValence ? [-1, 0, 1] : [0, 0.5, 1]}
                 tickFormatter={(v: number) => `${Math.round(v * 100)}`}
                 tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
                 tickLine={false}

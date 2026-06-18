@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Activity, Cpu, Database, HelpCircle, LayoutGrid, Radio, X } from "lucide-react";
+import { Activity, Cpu, Database, HelpCircle, LayoutGrid, Radio, RotateCcw, X } from "lucide-react";
 import { Responsive, useContainerWidth } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import { useTelemetryState } from "@/App";
@@ -158,6 +158,20 @@ export default function Brain() {
   const [layouts, setLayouts] = useLocalStorage<Layouts>("orrin.brain.layout.v1", defaultLayouts(), { sanitize: sanitizeLayouts });
   const { width, containerRef, mounted } = useContainerWidth();
 
+  const resetPanel = (id: PanelId) => {
+    const defaults = defaultLayouts();
+    setLayouts((current) => {
+      const next: Layouts = {};
+      for (const bp of ["lg", "md", "sm"]) {
+        const fallback = defaults[bp].find((item) => item.i === id);
+        next[bp] = current[bp].map((item) =>
+          item.i === id && fallback ? { ...fallback } : item,
+        );
+      }
+      return sanitizeLayouts(next);
+    });
+  };
+
   // On phones the panels stack single-column and touch-dragging a card header
   // fights page scrolling, so arranging is desktop/tablet-only.
   const isPhone = width > 0 && width < 640;
@@ -267,7 +281,18 @@ export default function Brain() {
               onLayoutChange={(_l, all) => setLayouts(sanitizeLayouts(all))}
             >
               {PANEL_IDS.map((id) => (
-                <div key={id} className="overflow-auto">
+                <div key={id} className="group/panel relative overflow-auto">
+                  {!isPhone && (
+                    <button
+                      type="button"
+                      onClick={() => resetPanel(id)}
+                      className="absolute right-2 top-2 z-20 grid h-7 w-7 place-items-center rounded-md border border-border bg-card/95 text-muted-foreground opacity-0 shadow-sm transition hover:text-foreground focus:opacity-100 group-hover/panel:opacity-100"
+                      title={`Reset the ${id} panel position and size`}
+                      aria-label={`Reset ${id} panel`}
+                    >
+                      <RotateCcw className="h-3.5 w-3.5" />
+                    </button>
+                  )}
                   {/* H5: isolate each panel — a malformed data shape that throws
                       in one box degrades that box, instead of white-screening
                       the entire dashboard (the least-visible failure mode). */}

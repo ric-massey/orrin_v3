@@ -12,6 +12,7 @@ import {
   Power,
   Settings as SettingsIcon,
   Sparkles,
+  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ const ROOMS: { path: string; lex: LexId; icon: typeof Activity; research: boolea
   { path: "/life", lex: "nav_life", icon: Activity, research: true },
   { path: "/memory", lex: "nav_memory", icon: Database, research: true },
   { path: "/timeline", lex: "nav_timeline", icon: Clock, research: true },
+  { path: "/learning", lex: "nav_learning", icon: TrendingUp, research: true },
   { path: "/brain", lex: "nav_brain", icon: Network, research: true },
 ];
 

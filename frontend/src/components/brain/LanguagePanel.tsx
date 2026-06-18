@@ -48,6 +48,7 @@ export default function LanguagePanel() {
           <BookOpenText className="h-4 w-4" /> <LexText id="language_title" />
           <PanelInfo
             title="Language organ"
+            perspective="agent-accessible"
             what="The language he's growing from scratch, separate from any external LLM: curated phrase banks, phrases he's learned from use, everything he's actually said (with quality scores once evaluated), the books he's read into his replay corpus, and the native language model + tokenizer artifacts on disk."
             source="GET /api/language over brain/data/vocabulary.json · learned_phrases.json · speech_log.json · language/ (native_lm.pt, tokenizer.json, book_reads.json)"
             good="Phrase banks and learned phrases growing with use, speech quality scores trending up, and the native LM artifact actually present on disk."

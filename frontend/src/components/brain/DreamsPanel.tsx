@@ -32,6 +32,7 @@ export default function DreamsPanel() {
           <MoonStar className="h-4 w-4" /> <LexText id="dreams_title" />
           <PanelInfo
             title="Dreams"
+            perspective="agent-accessible"
             what="What he does while idle: each sleep sweep's consolidation (memories compressed into themes), recombination (distant ideas spliced into something new), and processing notes — plus the symbolic dream engine's analogy-transfer insights. A sweep with nothing to consolidate says so honestly."
             source="GET /api/dreams over brain/data/dream_log.json · symbolic_dream_log.json"
             good="Sweeps that actually produce consolidations/insights as experience accumulates — early in a run 'slept, nothing consolidated' is the TRUE state, not a bug."

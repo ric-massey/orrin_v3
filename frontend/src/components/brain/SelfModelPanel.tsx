@@ -43,6 +43,7 @@ export default function SelfModelPanel() {
           <Fingerprint className="h-4 w-4" /> <LexText id="self_title" />
           <PanelInfo
             title="Self-model / identity"
+            perspective="agent-accessible"
             what="Who he thinks he is: his one-line identity and core directive, per-domain confidence in his own knowledge, named weaknesses, the dated belief revisions (confidence moved after a goal succeeded or failed), and the opinions he's formed from his own experience. One thing is deliberately absent: he has private thoughts, and this dashboard does not read them."
             source="GET /api/self over brain/data/self_model.json · self_belief_revisions.json · opinions.json"
             good="An identity that REVISES — confidence moving with real outcomes, opinions accumulating evidence — rather than a static description."

@@ -9,6 +9,7 @@ import Cognition from "./pages/Cognition";
 import Life from "./pages/Life";
 import Memory from "./pages/Memory";
 import Timeline from "./pages/Timeline";
+import Learning from "./pages/Learning";
 import Settings from "./pages/Settings";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./index.css";
@@ -25,6 +26,7 @@ const routes = [
       { path: "life", element: <Life /> },
       { path: "memory", element: <Memory /> },
       { path: "timeline", element: <Timeline /> },
+      { path: "learning", element: <Learning /> },
       { path: "brain", element: <Brain /> },
       { path: "settings", element: <Settings /> },
       { path: "*", element: <Navigate to="/face" replace /> },

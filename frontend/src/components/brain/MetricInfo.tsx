@@ -3,6 +3,7 @@ import { Code2, X } from "lucide-react";
 import { API } from "@/lib/cognitive";
 import { fetchJSON, TTL } from "@/lib/fetchJSON";
 import { MetricDef, SrcRef } from "@/lib/metricDefs";
+import { PerspectiveBadge } from "./PerspectiveBadge";
 
 // Shared metric info popover (UI_FIXES Fix 6): the full info "page" for one
 // signal — what it is, the terms, how it's measured, the 0–100 scale, and (on
@@ -44,6 +45,7 @@ export default function MetricInfo({ m, onClose, className }: { m: MetricDef; on
       <div className="mb-1.5 flex items-center gap-1.5">
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: m.color }} />
         <span className="text-[13px] font-semibold text-foreground">{m.label}</span>
+        <PerspectiveBadge layer={m.perspective} />
         <button onClick={onClose} aria-label="Close" className="ml-auto rounded p-0.5 text-muted-foreground hover:bg-muted hover:text-foreground">
           <X className="h-3.5 w-3.5" />
         </button>

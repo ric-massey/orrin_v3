@@ -112,12 +112,13 @@ export default function GoalsPanel({ telemetry }: { telemetry: TelemetryState })
   return (
     <Card id="box-goals-panel" className="relative flex h-full flex-col overflow-hidden">
       <CardHeader className="flex-col items-stretch gap-2 space-y-0 pb-2">
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <CardTitle className="flex min-w-0 flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
             <Target className="h-4 w-4 text-signal-accent" /> Goals
             <PanelSubtitle id="goals_sub" />
             <PanelInfo
               title="Goals"
+              perspective="agent-accessible"
               what="What he's trying to do: every goal with its status, plan steps, milestones, and history. Click a goal for the full drawer — including the artifacts he ACTUALLY produced for it, not just the templated plan. The blue 'active' one is the committed goal his deliberate lane is pursuing; the executive lane quietly rotates through the rest of the committed queue."
               source="GET /api/goals over brain/data/goals_mem.json (live committed goal via the socket)"
               good="Goals that close — completed or retired — instead of accumulating; see the Goal health box for the closure funnel."
@@ -130,9 +131,9 @@ export default function GoalsPanel({ telemetry }: { telemetry: TelemetryState })
           </span>
         </div>
         {/* summary chips (metrics-strip style) */}
-        <div className="flex gap-1.5">
+        <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
           {(["active", "open", "failed", "completed"] as Bucket[]).map((b) => (
-            <div key={b} className="flex flex-1 items-center gap-1.5 rounded-md border border-border bg-card/60 px-2 py-1">
+            <div key={b} className="flex min-w-0 items-center gap-1.5 rounded-md border border-border bg-card/60 px-2 py-1">
               <span className="h-2 w-2 rounded-full" style={{ background: BUCKET_COLOR[b] }} />
               <span className="text-[15px] font-semibold tabular-nums leading-none">{counts[b]}</span>
               <span className="text-[9px] uppercase tracking-wide text-muted-foreground">{b === "failed" ? "retry" : b}</span>

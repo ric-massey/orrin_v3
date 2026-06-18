@@ -39,6 +39,7 @@ export default function TensionsPanel() {
           <Waves className="h-4 w-4" /> <LexText id="tensions_title" />
           <PanelInfo
             title="Tensions, rumination & second-order volition"
+            perspective="in-attention"
             what="What he's wrestling with: unresolved tensions (with how long they've been active), rumination loops that keep returning (brooding, problem-solving…), and the second-order volition timeline — periodic reflections where he owns or disowns the desire currently driving him."
             source="brain/data/tensions.json · rumination_loops.json · second_order_volition.json"
             good="Tensions that RESOLVE rather than accumulate, loops whose return counts fall, and volition statements that show real stance-taking — not all 'neutral'."

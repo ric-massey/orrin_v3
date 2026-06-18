@@ -34,6 +34,7 @@ export default function HealthPanel() {
           <HeartPulse className="h-4 w-4" /> <LexText id="health_title" />
           <PanelInfo
             title="System health (ops)"
+            perspective="dev-only"
             what="Is the organism healthy: the watchdog's overall status and healthy streak, the per-site failure counts from the record_failure ledger (every guarded subsystem that's been quietly erroring), and recent incidents with their exception type."
             source="brain/data/health_state.json · failures.jsonl · incidents.jsonl"
             good="Status nominal with a growing streak, an EMPTY failing-sites table, and no fresh incidents. Failures here also stream live into the console's ERROR filter (Fix 10.5)."

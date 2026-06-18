@@ -8,6 +8,7 @@
 // none, 100 = full. For bipolar signals (Valence, Arousal) 50 = neutral.
 
 export type SrcRef = { file: string; start: number; end: number; label: string };
+export type PerspectiveLayer = "dev-only" | "agent-accessible" | "in-attention";
 export type MetricDef = {
   key: string;
   label: string;
@@ -19,13 +20,31 @@ export type MetricDef = {
   long: string;
   terms?: { t: string; d: string }[];
   measure: string;
+  perspective: PerspectiveLayer;
   src?: SrcRef;
 };
 
 export const METRICS: MetricDef[] = [
   {
+    key: "valence_raw", label: "Raw valence", color: "hsl(348 83% 55%)", bipolar: true,
+    desc: "Uncompressed pleasant-unpleasant signal.", lo: "unpleasant", hi: "pleasant",
+    perspective: "dev-only",
+    long: "The direct -1 to +1 valence emitted by the affect system, without the Face's centered 0 to 1 presentation mapping.",
+    measure: "Direct affect_state.valence telemetry; no centering or compression.",
+    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_affect" },
+  },
+  {
+    key: "impasse_raw", label: "Raw impasse", color: "hsl(0 84% 50%)",
+    desc: "Direct unresolved-goal distress signal.", lo: "clear", hi: "blocked",
+    perspective: "agent-accessible",
+    long: "The direct impasse signal, shown separately from aggregate distress so a blocked goal cannot be hidden by normalization.",
+    measure: "Direct core_signals.impasse_signal telemetry, clamped only to 0 to 1.",
+    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_affect" },
+  },
+  {
     key: "valence", label: "Valence", color: "hsl(217 91% 60%)", bipolar: true,
     desc: "His overall pleasant–unpleasant tone.", lo: "unpleasant", hi: "pleasant",
+    perspective: "agent-accessible",
     long: "Valence is the pleasant↔unpleasant axis of core affect (Russell's circumplex). It's not one feeling — it's the net hedonic sign of everything he's feeling at once.",
     terms: [
       { t: "Core affect", d: "The always-on background feeling, summarized on two axes: valence (pleasant↔unpleasant) and arousal (calm↔activated)." },
@@ -37,6 +56,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "arousal", label: "Arousal", color: "hsl(262 83% 62%)", bipolar: true,
     desc: "How activated vs. calm his state is.", lo: "calm", hi: "activated",
+    perspective: "agent-accessible",
     long: "Arousal is the activation↔deactivation axis of core affect — how energized/alert his whole system is, independent of whether it feels good or bad. High arousal + positive = excited; high arousal + negative = stressed.",
     terms: [
       { t: "Activation", d: "Mobilization/alertness — body and mind keyed up (threat, excitement, drive)." },
@@ -48,6 +68,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "homeostasis", label: "Homeostasis", color: "hsl(142 71% 45%)",
     desc: "How close his whole affect sits to rest.", lo: "agitated", hi: "settled",
+    perspective: "agent-accessible",
     long: "A single 'is he settled?' reading: how far his entire affect vector currently sits from its resting setpoints. 100 = everything near its baseline (at peace); it dips when signals deviate (agitation, saturation) and recovers as they decay back.",
     terms: [
       { t: "Setpoint", d: "The resting value each signal drifts back toward when nothing pushes it (e.g. impasse rests at ~0, motivation at ~0.5)." },
@@ -59,6 +80,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "energy", label: "Energy", color: "hsl(38 92% 50%)",
     desc: "Capacity vs. fatigue (1 − resource deficit).", lo: "depleted", hi: "fresh",
+    perspective: "agent-accessible",
     long: "His available cognitive capacity right now — the opposite of fatigue. Sustained hard cognition (recursion, long goal pushes, heavy reflection) accumulates a 'resource deficit' (ego-depletion; Baumeister 1998); rest and easy cycles let it recover. Energy = 1 − that deficit.",
     terms: [
       { t: "Capacity", d: "Headroom for effortful, deliberate work. High capacity → he can plan, reason, persist. Low → he defaults to easy/automatic actions." },
@@ -70,6 +92,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "fatigue", label: "Fatigue", color: "hsl(18 58% 50%)",
     desc: "The accumulating resource deficit he's carrying.", lo: "rested", hi: "depleted",
+    perspective: "agent-accessible",
     long: "The raw drain itself — the exact mirror of Energy, charted directly so you can watch depletion *climb*. Every cycle adds a little load; effortful, deliberate cognition (recursion, long goal pushes, heavy reflection) adds more (ego-depletion; Baumeister 1998). Rather than relaxing back to a fixed baseline, it now settles toward an *allostatic setpoint* — a target the system moves ahead of need (Sterling 2012): it tolerates more deficit under user/critical demand and forces recovery when allostatic load has built up.",
     terms: [
       { t: "Resource deficit", d: "The accumulating drain. Ticks up ~+0.002 every cycle, faster under effortful function use; high values bias him toward easy/automatic actions over deliberate ones." },
@@ -82,6 +105,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "motivation", label: "Motivation", color: "hsl(330 80% 62%)",
     desc: "Drive to act on and pursue goals.", lo: "listless", hi: "driven",
+    perspective: "agent-accessible",
     long: "His appetitive drive — how strongly he wants to act, pursue, and finish. It's lifted by reward (completing things, value-aligned actions) and a flow bonus for sustained action, and decays toward a 0.5 baseline so it doesn't pin at the ceiling.",
     terms: [
       { t: "Appetitive drive", d: "The 'go' signal — wanting to move toward goals (vs. avoid)." },
@@ -93,6 +117,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "confidence", label: "Confidence", color: "hsl(190 85% 50%)",
     desc: "Self-trust in his current footing.", lo: "unsure", hi: "assured",
+    perspective: "agent-accessible",
     long: "How much he trusts his current understanding/plan. It rises with successful, well-predicted actions and falls on surprise (prediction error) and contradiction. Confidence feeds regulation (high confidence → stay the course; low → reflect/verify).",
     terms: [
       { t: "Prediction error", d: "Gap between what he expected and what happened. Big errors cut confidence (and raise curiosity)." },
@@ -104,6 +129,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "curiosity", label: "Curiosity", color: "hsl(280 70% 66%)",
     desc: "Exploration drive — the pull toward the new.", lo: "incurious", hi: "curious",
+    perspective: "agent-accessible",
     long: "His exploration drive: the pull toward novel/uncertain things. It's the same signal that, when high, makes him spawn investigation sub-goals on his own. Driven by novelty (how unlike anything known), uncertainty (poor coverage), and prediction error.",
     terms: [
       { t: "Novelty", d: "How unlike anything in memory a thing is (inverse structural-analogy score)." },
@@ -115,6 +141,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "distress", label: "Distress", color: "hsl(0 72% 56%)",
     desc: "Aggregate negative load — frustration, threat.", lo: "at ease", hi: "distressed",
+    perspective: "agent-accessible",
     long: "A single 'how much is he struggling' reading — the summed weight of his negative signals (impasse/frustration, threat, conflict, risk, rejection). High distress shortens his regulation cadence (he works harder to calm down) and biases him toward regulation functions.",
     terms: [
       { t: "Negative load", d: "Weighted sum of the active distress signals, so one big or several small all register." },
@@ -126,6 +153,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "stability", label: "Stability", color: "hsl(160 60% 46%)",
     desc: "How settled vs. volatile his emotions are.", lo: "volatile", hi: "steady",
+    perspective: "agent-accessible",
     long: "How steady vs. churning his emotions are right now. High when affect is calm and consistent; it drops when negatives dominate or he ping-pongs between states. Stability gates regulation success (it's easier to calm down when you're already fairly steady).",
     terms: [
       { t: "Volatility", d: "Rapid swings / contradictory states — destabilizing (e.g. A↔B↔A cognitive indecision)." },
@@ -137,6 +165,7 @@ export const METRICS: MetricDef[] = [
   {
     key: "learning", label: "Learning", color: "hsl(48 95% 55%)",
     desc: "Share of his recent predictions that came true.", lo: "missing", hi: "on target",
+    perspective: "dev-only",
     long: "Whether his model of the world is actually getting things right: the fraction of his recently-resolved predictions that came true. This is the live readout of the agency-based learning loop — he predicts effects of his actions, checks them, and the confirmed ones crystallize into rules.",
     terms: [
       { t: "Prediction", d: "A falsifiable expectation he commits to (e.g. 'after pursue_goal, impasse falls')." },

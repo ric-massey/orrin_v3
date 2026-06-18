@@ -46,6 +46,7 @@ export default function BenchmarkPanel() {
           <FlaskConical className="h-4 w-4" /> <LexText id="benchmarks_title" />
           <PanelInfo
             title="Benchmarks (B1–B5)"
+            perspective="dev-only"
             what="Five standing capability benchmarks evaluated from real run data: memory boundedness, affect-driven switching, offline (no-LLM) planning, satiety-based goal closure, and self-repair. This is the honest scoreboard — fails and not-yet-run benchmarks are shown as such."
             source="brain/data/benchmark_results.json (evaluator: brain/benchmarks/__init__.py)"
             good="All five green. A FAIL is information, not embarrassment — e.g. B1 failing means long-term memory is still growing instead of plateauing."

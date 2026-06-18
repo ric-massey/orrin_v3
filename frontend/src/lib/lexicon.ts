@@ -99,6 +99,7 @@ export const LEX = {
   nav_life: { bio: "Life Support", eng: "Resource Manager" },
   nav_memory: { bio: "Memory", eng: "Memory" },
   nav_timeline: { bio: "Timeline", eng: "Activity log" },
+  nav_learning: { bio: "Learning", eng: "Behavior changes" },
   nav_brain: { bio: "Brain", eng: "Brain" },
   nav_settings: { bio: "Settings", eng: "Settings" },
 

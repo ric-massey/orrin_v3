@@ -891,6 +891,7 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
           <Cpu className="h-4 w-4" /> <span title={tip("sphere_title")}>{t("sphere_title")}</span>
           <PanelInfo
             title="Cognitive Sphere"
+            perspective="dev-only"
             what="Every cognitive function he can run, as a 3D map grouped by subsystem. The white comet is the deliberate (conscious) pick this cycle; the amber pulse is the executive lane quietly advancing a goal step in the background. Node size grows with real usage; the gray 'roads' are learned transitions between functions. Click any node to read its code and stats."
             source="GET /api/catalog (function registry + live decision_stats) · active lights from the telemetry socket"
             good="Two lanes visibly alive: the comet moving every ~20s cycle, and node sizes growing where he actually spends his cognition."

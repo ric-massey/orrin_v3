@@ -245,11 +245,12 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
   return (
     <Card id="box-memory" className="relative flex h-full flex-col overflow-hidden">
       <CardHeader className="flex-row flex-wrap items-center justify-between gap-2 space-y-0 pb-2">
-        <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+        <CardTitle className="flex min-w-0 flex-1 flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
           <Database className="h-4 w-4" /> <LexText id="memory_title" />
           <PanelSubtitle id="memory_sub" />
           <PanelInfo
             title="Memory Inspector"
+            perspective="agent-accessible"
             what="Two honest views of his memory: Live ops is a sampled ticker of this session's reads/writes (≤4 per operation — it under-reports bulk sweeps by design); Browse store is the real contents on disk, searchable and paged. Chips show true store sizes; each store's ℹ️ explains it and shows its code."
             source="Live ops: telemetry socket · Browse: GET /api/memory over long_memory.json, working_memory.json, knowledge_graph.json, semantic_facts.json"
             good="Long-term growing slowly then PLATEAUING (the reaper working — ties to B1), working memory hovering around its ~25-item cap, and recalls that reference what's actually stored."
@@ -262,7 +263,7 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
             <span className="text-xs text-muted-foreground/60">{storeTotal} stored{q.trim() ? ` · ${storeMatched} match` : ""}</span>
           )}
         </CardTitle>
-        <div className="flex items-center gap-2">
+        <div className="flex w-full flex-wrap items-center gap-2 xl:w-auto">
           {/* Live ops ↔ Browse store: the stream/state split, made honest. */}
           <div className="flex rounded-md border border-border p-0.5">
             {(["live", "store"] as const).map((k) => (
@@ -294,7 +295,7 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={tab === "live" ? "Search live ops…" : "Search the store…"}
-              className="h-7 w-40 rounded-md border border-border bg-background pl-8 pr-2 text-[11px] outline-none placeholder:text-muted-foreground"
+              className="h-7 w-36 rounded-md border border-border bg-background pl-8 pr-2 text-[11px] outline-none placeholder:text-muted-foreground sm:w-40"
             />
           </div>
         </div>

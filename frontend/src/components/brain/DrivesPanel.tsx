@@ -47,6 +47,7 @@ export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
           <BatteryCharging className="h-4 w-4" /> <LexText id="drives_title" />
           <PanelInfo
             title="Drives & body / interoception"
+            perspective="agent-accessible"
             what="His motivational drives (what he wants right now), the current energy mode, real body vitals (memory, CPU), and the interoceptive cost model: the learned expected cost of each cognitive function vs. what it actually cost last time — sustained gaps are felt as strain."
             source="brain/data/motivation_state.json · energy_mode.json · body_sense.json · interoceptive_model.json"
             good="Drives that MOVE over time (a flatlined 1.0 means satiation isn't biting), and expected≈actual cost — big persistent gaps mean his self-model of effort is off."

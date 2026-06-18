@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Code2, Info, X } from "lucide-react";
 import { SrcRef } from "@/lib/metricDefs";
 import { SourceCode } from "./MetricInfo";
+import { PerspectiveBadge, PerspectiveLayer } from "./PerspectiveBadge";
 
 /**
  * Per-panel "About" popover (UI_FIXES Fix 11, seeded for the new-surface
@@ -15,6 +16,7 @@ export default function PanelInfo({
   source,
   good,
   src,
+  perspective,
 }: {
   title: string;
   /** What this box shows, in plain language. */
@@ -25,6 +27,8 @@ export default function PanelInfo({
   good?: string;
   /** Optional code leaf (L5). */
   src?: SrcRef;
+  /** Whose perspective this panel belongs to (UI plan §5.3). */
+  perspective?: PerspectiveLayer;
 }) {
   const [open, setOpen] = useState(false);
   const [showCode, setShowCode] = useState(false);
@@ -41,6 +45,7 @@ export default function PanelInfo({
 
   return (
     <span className="relative" ref={ref}>
+      <PerspectiveBadge layer={perspective} className="mr-0.5 align-middle" />
       <button
         onClick={() => setOpen((v) => !v)}
         className="rounded p-0.5 text-muted-foreground/50 hover:bg-muted hover:text-foreground"
@@ -52,6 +57,7 @@ export default function PanelInfo({
         <div className="absolute left-0 top-5 z-40 max-h-[55vh] w-80 overflow-auto rounded-lg border border-border bg-popover p-3 text-left shadow-2xl">
           <div className="mb-1.5 flex items-center gap-1.5">
             <span className="text-[13px] font-semibold text-foreground">{title}</span>
+            <PerspectiveBadge layer={perspective} />
             <button onClick={() => setOpen(false)} aria-label="Close" className="ml-auto rounded p-0.5 text-muted-foreground hover:bg-muted hover:text-foreground">
               <X className="h-3.5 w-3.5" />
             </button>

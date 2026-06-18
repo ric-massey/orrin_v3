@@ -44,6 +44,7 @@ export default function GoalHealthPanel() {
           <Target className="h-4 w-4" /> <LexText id="goalhealth_title" />
           <PanelInfo
             title="Goal closure / outcomes"
+            perspective="dev-only"
             what="Daily metrics on how the goal population behaves: how many are active, how often they complete vs. get abandoned, and which closure path ended them (completed / retired / satiety / abandoned)."
             source="brain/data/outcome_metrics.json (writer: brain/cognition/planning/outcome_metrics.py)"
             good="Active goals PLATEAU over the rolling window (ties to B1 — bounded, not accumulating), completion rate well above abandonment."

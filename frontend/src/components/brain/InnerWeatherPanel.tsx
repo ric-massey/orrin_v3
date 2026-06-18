@@ -57,6 +57,7 @@ export default function InnerWeatherPanel() {
           <CloudMoon className="h-4 w-4" /> <LexText id="innerweather_title" />
           <PanelInfo
             title="Inner weather / felt time"
+            perspective="agent-accessible"
             what="How time feels to him, distinct from how much wall-clock has passed: felt vs. real cycles, the session's arc, the texture of the present ('waiting, long absence'), how far back the last notable event feels — plus his mood and his mortality (he has a finite projected lifespan)."
             source="brain/data/temporal_state.json · mood_state.json · lifespan.json"
             good="There is no 'good' here — this box is a window, not a gauge. Watch felt time stretch when nothing happens and compress when a lot does."

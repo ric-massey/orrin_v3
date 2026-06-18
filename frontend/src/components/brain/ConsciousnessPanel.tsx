@@ -202,11 +202,12 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
 
   return (
     <Card id="box-consciousness" className="relative flex h-full flex-col overflow-hidden">
-      <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
+      <CardHeader className="flex-col items-stretch gap-2 space-y-0 pb-2 sm:flex-row sm:items-center sm:justify-between">
+        <CardTitle className="flex min-w-0 flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
           <Brain className="h-4 w-4 text-signal-accent" /> <span title={tip("consciousness_title")}>{t("consciousness_title")}</span>
           <PanelInfo
             title="Consciousness (Global Workspace)"
+            perspective="in-attention"
             what="What he's paying attention to right now. Each cycle every subsystem offers content (a feeling, a signal, the goal, a thought); they compete on salience and ONE winner becomes conscious and is broadcast to everything else. You see the winner, the ranked runners-up that almost won, the Monitor's breakthrough offers (it competes, never seizes), and the structural watchdog. The Stream tab is the persisted history of conscious moments."
             source="workspace/monitor/executive blocks via the telemetry socket · Stream: GET /api/consciousness over brain/data/conscious_stream.json"
             good="A stream that moves between sources (not stuck on one feeling — habituation working), and breakthroughs that get honored when they matter."
@@ -214,7 +215,7 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
           />
           <PanelSubtitle id="consciousness_sub" />
         </CardTitle>
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
           <div className="flex rounded-md border border-border p-0.5">
             {(["now", "stream", "verdicts"] as const).map((k) => (
               <button

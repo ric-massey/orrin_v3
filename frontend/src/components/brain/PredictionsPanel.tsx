@@ -5,7 +5,7 @@ import { usePoll } from "@/lib/usePoll";
 import PanelInfo from "./PanelInfo";
 import { LexText, PanelSubtitle } from "./Lex";
 import StaleBadge from "./StaleBadge";
-import { HitMissStrip, MiniBars } from "./viz";
+import { HitMissStrip, MiniBars, Sparkline } from "./viz";
 
 /** Box ④ — Predictions & surprise (active inference). Makes the "minimize
  *  surprise" loop visible: recent predictions vs outcomes, per-domain accuracy,
@@ -22,15 +22,28 @@ interface Prediction {
   basis?: string;
   created_ts?: string;
 }
+interface TrendPoint { brier?: number; exploration_ratio?: number; n?: number; timestamp?: string | number }
+interface ExplorationSummary {
+  explore?: number;
+  exploit?: number;
+  ratio?: number | null;
+  trend?: TrendPoint[];
+}
 
 export default function PredictionsPanel() {
   const data = usePoll<{
     calibration?: { brier?: number; bias?: number; n?: number };
+    calibration_trend?: TrendPoint[];
+    exploration?: ExplorationSummary;
     domains?: Record<string, { accuracy?: number; total?: number; correct?: number }>;
     recent?: Prediction[];
     total?: number;
   }>(`${API}/predictions?n=40`, 15_000);
   const cal = data?.calibration;
+  const calibrationTrend = data?.calibration_trend || [];
+  const exploration = data?.exploration;
+  const explorationTrend = exploration?.trend || [];
+  const lastCalibrationTrend = calibrationTrend[calibrationTrend.length - 1];
   const recent = data?.recent || [];
   const resolved = recent.filter((p) => p.resolved || p.status === "evaluated");
   const hits = resolved.map((p) => (p.outcome ? p.outcome === "correct" : null));
@@ -44,6 +57,7 @@ export default function PredictionsPanel() {
           <Crosshair className="h-4 w-4" /> <LexText id="predictions_title" />
           <PanelInfo
             title="Predictions & surprise"
+            perspective="agent-accessible"
             what="He commits to falsifiable expectations about what his actions will do ('after look_outward, risk_estimate falls'), then checks them. This box shows the recent hit/miss record, per-domain accuracy, and the Brier score — the standard calibration measure (0 = perfectly calibrated, 0.25 = coin-flip confidence)."
             source="brain/data/predictions.json · prediction_domain_stats.json · calibration_state.json"
             good="Brier well under 0.1 with a meaningful n, and a hit strip that's mostly green. Confirmed predictions crystallize into symbolic rules."
@@ -70,6 +84,34 @@ export default function PredictionsPanel() {
           </div>
         ) : (
           <div className="py-4 text-center text-xs text-muted-foreground">No calibration data yet.</div>
+        )}
+
+        {(calibrationTrend.length > 1 || explorationTrend.length > 1) && (
+          <div className="grid gap-2 sm:grid-cols-2">
+            {calibrationTrend.length > 1 && (
+              <div className="rounded-lg border border-border bg-card/50 px-3 py-2">
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Calibration trend</span>
+                  <span className="text-[9px] tabular-nums text-muted-foreground">rolling {lastCalibrationTrend?.n ?? 0}</span>
+                </div>
+                <Sparkline points={calibrationTrend.map((p) => Number(p.brier ?? 0))} width={220} height={30} min={0} max={0.35} color="hsl(var(--signal-info))" />
+              </div>
+            )}
+            {explorationTrend.length > 1 && (
+              <div className="rounded-lg border border-border bg-card/50 px-3 py-2">
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Novelty / exploit</span>
+                  <span className="text-[9px] tabular-nums text-muted-foreground">
+                    {exploration?.explore ?? 0} explore · {exploration?.exploit ?? 0} exploit
+                  </span>
+                </div>
+                <Sparkline points={explorationTrend.map((p) => Number(p.exploration_ratio ?? 0))} width={220} height={30} min={0} max={1} color="hsl(var(--signal-ok))" />
+                <div className="mt-1 text-[9px] text-muted-foreground">
+                  recent explore ratio {exploration?.ratio == null ? "—" : `${Math.round(Number(exploration.ratio) * 100)}%`}
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {hits.length > 0 && (

@@ -83,15 +83,15 @@ export default function LiveConsole({ telemetry }: { telemetry: TelemetryState }
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-xl border bg-[hsl(240_10%_3%)] text-[hsl(0_0%_88%)] shadow-sm">
       {/* toolbar — also the Fix 3 drag handle (this panel has no CardHeader) */}
-      <div className="card-drag flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-3 py-2">
-        <div className="flex items-center gap-2 text-xs font-medium text-white/70">
+      <div className="card-drag flex flex-wrap items-center justify-between gap-2 border-b border-white/10 bg-white/[0.03] px-3 py-2">
+        <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs font-medium text-white/70">
           <Terminal className="h-3.5 w-3.5" />
           Live Console
           <span className="hidden text-[10px] font-normal text-white/30 lg:inline">— everything his subsystems report, live</span>
           <span className="text-white/30">·</span>
           <span className="tabular-nums text-white/40">{visible.length} lines</span>
         </div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
           {LEVELS.slice(0, 4).map((l) => (
             <button
               key={l.key}

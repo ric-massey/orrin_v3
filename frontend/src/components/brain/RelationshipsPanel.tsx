@@ -49,6 +49,7 @@ export default function RelationshipsPanel() {
           <Users className="h-4 w-4" /> <LexText id="people_title" />
           <PanelInfo
             title="Relationships / people"
+            perspective="agent-accessible"
             what="Who he knows: his model of each person (impression, trust, depth, interaction count) and the known-persons registry (how often someone has shown up). His internal peer observers — synthetic voices that audit his rewards, goals and emotions from inside — live in the same store and are shown as a separate group, because they are parts of him, not people."
             source="GET /api/people over brain/data/relationships.json · known_persons.json"
             good="Person models that deepen with real interaction (trust/depth moving, impressions getting specific) — and the peers clearly separated from humans."

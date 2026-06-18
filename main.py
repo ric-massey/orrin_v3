@@ -54,6 +54,7 @@ import webbrowser
 import inspect
 import threading
 import shutil
+import json
 
 _log = get_logger(__name__)
 
@@ -611,10 +612,23 @@ try:
         return float(_psutil.swap_memory().used)
     def _get_vmem_percent() -> float:
         return float(_psutil.virtual_memory().percent)
+    # Inward vital-floor signals: Orrin's OWN footprint vs his GRANTED body size.
+    def _get_own_rss_bytes() -> float:
+        return float(_proc.memory_info().rss)
+    def _get_budget_bytes() -> float:
+        # The same grant metabolism/interoception read — body size and survival
+        # floor can never disagree. Falls back to a conservative full-RAM ceiling
+        # if body_budget is unavailable, so the guard degrades to never-trips.
+        try:
+            from cognition.body_budget import budget_bytes
+            return float(budget_bytes())
+        except Exception:
+            return float(_psutil.virtual_memory().total)
 except ImportError:
     _get_rss_mb = _get_fd_open = _get_fd_limit = None  # type: ignore[assignment]
     _get_sock_open = _get_sock_limit = _get_cpu_util = None  # type: ignore[assignment]
     _get_disk_free_bytes = _get_swap_used_bytes = _get_vmem_percent = None  # type: ignore[assignment]
+    _get_own_rss_bytes = _get_budget_bytes = None  # type: ignore[assignment]
 
 
 # Host-resource escalation → console/dashboard. These are NON-fatal: the host
@@ -642,6 +656,72 @@ def _host_on_resume(msg: str) -> None:
     print(f"[host] resume — {msg}")
     _host_flag("ok", msg)
 
+
+# Vital-floor reflex (inward). Orrin nearing the survival line of his OWN granted
+# body → involuntary load-shedding, never a kill. Armed by default after the S2b
+# calm + dream/reading calibration pass (2026-06-17). Set
+# ORRIN_VITAL_FLOOR=observe to return to calibration-only logging.
+_VITAL_MODE = os.environ.get("ORRIN_VITAL_FLOOR", "act").strip().lower()
+_VITAL_OBSERVE_ONLY = _VITAL_MODE not in ("act", "1", "on", "true")
+
+def _env_float(name: str, default: float) -> float:
+    try:
+        raw = os.environ.get(name)
+        return default if raw is None else float(raw)
+    except Exception:
+        return default
+
+_VITAL_WARN_FRAC = _env_float("ORRIN_VITAL_WARN_FRAC", 0.50)
+_VITAL_SHED_FRAC = _env_float("ORRIN_VITAL_SHED_FRAC", 0.55)
+_VITAL_RECOVER_FRAC = _env_float("ORRIN_VITAL_RECOVER_FRAC", 0.22)
+_VITAL_SUSTAIN_S = _env_float("ORRIN_VITAL_SUSTAIN_S", 8.0)
+_VITAL_CALIBRATION_FILE = os.environ.get("ORRIN_VITAL_CALIBRATION_FILE", "").strip() or None
+_VITAL_CALIBRATION_PHASE = os.environ.get("ORRIN_VITAL_CALIBRATION_PHASE", "unspecified").strip() or "unspecified"
+_VITAL_CALIBRATION_SAMPLE_S = _env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0)
+
+# Keep the hysteresis shape valid even with env overrides.
+_VITAL_WARN_FRAC = max(0.01, min(0.99, _VITAL_WARN_FRAC))
+_VITAL_SHED_FRAC = max(_VITAL_WARN_FRAC + 0.01, min(1.50, _VITAL_SHED_FRAC))
+_VITAL_RECOVER_FRAC = max(0.0, min(_VITAL_WARN_FRAC - 0.01, _VITAL_RECOVER_FRAC))
+_VITAL_SUSTAIN_S = max(0.5, _VITAL_SUSTAIN_S)
+_VITAL_CALIBRATION_SAMPLE_S = max(0.2, _VITAL_CALIBRATION_SAMPLE_S)
+
+def _vital_on_warn(msg: str) -> None:
+    print(f"[vital] WARN {msg}")
+    _host_flag("warn", msg)
+
+def _vital_on_shed(msg: str) -> None:
+    print(f"[vital] SHED — {msg}")
+    _host_flag("pause", msg)
+
+def _vital_on_recover(msg: str) -> None:
+    print(f"[vital] recover — {msg}")
+    _host_flag("ok", msg)
+
+def _vital_shed_action(reason: str) -> None:
+    """The autonomic gasp: let go of the heaviest disposable thing, in priority
+    order, until Orrin is back above his granted-body floor. Reversible, never
+    fatal. Only called when the guard is armed (not observe-only).
+
+    Note: "stop launching new heavy cycles" is handled durably by the guard's own
+    vital_floor_shedding() gate (self-clearing with hysteresis), which the loop
+    checks before dream/reading — so this action does only the one-shot reclaim
+    and must NOT touch the host pause gate (the host guard would never clear it)."""
+    # Force-trim rebuildable working memory if the store exposes a trim.
+    try:
+        from cog_memory import working_memory as _wm
+        for _name in ("force_trim", "shed", "trim_to_floor"):
+            _fn = getattr(_wm, _name, None)
+            if callable(_fn):
+                _fn(); break
+    except Exception as _e:
+        _log.warning("vital shed: wm-trim failed: %s", _e)
+    # Reclaim arena memory the allocator is holding.
+    try:
+        import gc; gc.collect()
+    except Exception as _e:
+        _log.warning("vital shed: gc failed: %s", _e)
+
 try:
     tup = start_watchdogs(
         pulse,
@@ -662,6 +742,20 @@ try:
         host_on_warn=_host_on_warn,
         host_on_pause=_host_on_pause,
         host_on_resume=_host_on_resume,
+        get_own_rss_bytes=_get_own_rss_bytes,
+        get_budget_bytes=_get_budget_bytes,
+        vital_on_warn=_vital_on_warn,
+        vital_on_shed=_vital_on_shed,
+        vital_on_recover=_vital_on_recover,
+        vital_shed_fn=_vital_shed_action,
+        vital_warn_frac=_VITAL_WARN_FRAC,
+        vital_shed_frac=_VITAL_SHED_FRAC,
+        vital_recover_frac=_VITAL_RECOVER_FRAC,
+        vital_sustain_s=_VITAL_SUSTAIN_S,
+        vital_observe_only=_VITAL_OBSERVE_ONLY,
+        vital_calibration_file=_VITAL_CALIBRATION_FILE,
+        vital_calibration_phase=_VITAL_CALIBRATION_PHASE,
+        vital_calibration_sample_s=_VITAL_CALIBRATION_SAMPLE_S,
     )
 except TypeError:
     tup = start_watchdogs(
@@ -678,6 +772,7 @@ except TypeError:
     no_goals,
     mem_guard,
     host_guard,
+    vital_guard,
     repeat_guard,
     stop_evt,
 ) = tup
@@ -1165,6 +1260,90 @@ def _on_signal(signum, _frame) -> None:
         _main_stop and destroys the window so webview.start() returns into the
         same graceful path."""
     _main_stop.set()
+
+
+def _maybe_start_vital_calibration_stress() -> None:
+    mode = os.environ.get("ORRIN_VITAL_CALIBRATION_STRESS", "").strip().lower()
+    if not mode:
+        return
+    delay_s = _env_float("ORRIN_VITAL_CALIBRATION_STRESS_DELAY_S", 20.0)
+    read_steps = int(_env_float("ORRIN_VITAL_CALIBRATION_READING_STEPS", 45.0))
+    sample_s = _env_float(
+        "ORRIN_VITAL_CALIBRATION_STRESS_SAMPLE_S",
+        _env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0),
+    )
+    delay_s = max(0.0, delay_s)
+    read_steps = max(1, read_steps)
+    sample_s = max(0.2, sample_s)
+
+    def _direct_sample(stop: threading.Event, phase: str) -> None:
+        path = os.environ.get("ORRIN_VITAL_CALIBRATION_FILE", "").strip()
+        if not path:
+            return
+        while not stop.is_set():
+            try:
+                rss = float(_get_own_rss_bytes()) if callable(_get_own_rss_bytes) else 0.0
+                budget = float(_get_budget_bytes()) if callable(_get_budget_bytes) else 0.0
+                if rss > 0.0 and budget > 0.0:
+                    rec = {
+                        "ts": time.time(),
+                        "monotonic_s": round(time.monotonic(), 3),
+                        "phase": phase,
+                        "rss_bytes": int(rss),
+                        "budget_bytes": int(budget),
+                        "frac": round(rss / budget, 6),
+                        "level": "stress_sample",
+                        "observe_only": True,
+                    }
+                    with open(path, "a", encoding="utf-8") as fh:
+                        fh.write(json.dumps(rec, sort_keys=True) + "\n")
+            except Exception as _e:
+                _log.warning("vital calibration direct sample failed: %s", _e)
+                return
+            stop.wait(sample_s)
+
+    def _run() -> None:
+        sampler_stop = threading.Event()
+        sampler_thread = None
+        try:
+            time.sleep(delay_s)
+            print(f"[vital-cal] stress={mode} starting", flush=True)
+            phase = os.environ.get("ORRIN_VITAL_CALIBRATION_PHASE", mode) or mode
+            sampler_thread = threading.Thread(
+                target=_direct_sample,
+                args=(sampler_stop, phase),
+                name="orrin-vital-cal-direct-sampler",
+                daemon=True,
+            )
+            sampler_thread.start()
+            ctx = {
+                "calibration_phase": phase,
+                "latest_user_input": "",
+            }
+            if mode in ("reading", "dream_reading", "reading_dream"):
+                try:
+                    from cognition.language.acquisition import read_a_book as _read_a_book
+                    line = _read_a_book(ctx, steps=read_steps)
+                    if line:
+                        print(f"[vital-cal] reading stress: {line[:120]}", flush=True)
+                except Exception as _e:
+                    _log.warning("vital calibration reading stress failed: %s", _e)
+            if mode in ("dream", "dream_reading", "reading_dream"):
+                try:
+                    from cognition.dreaming.dream_cycle import dream_cycle as _dream_cycle
+                    result = _dream_cycle(ctx)
+                    print(f"[vital-cal] dream stress complete: {str(result)[:160]}", flush=True)
+                except Exception as _e:
+                    _log.warning("vital calibration dream stress failed: %s", _e)
+            print(f"[vital-cal] stress={mode} complete", flush=True)
+        except Exception as _e:
+            _log.warning("vital calibration stress thread failed: %s", _e)
+        finally:
+            sampler_stop.set()
+            if sampler_thread is not None:
+                sampler_thread.join(timeout=2.0)
+
+    threading.Thread(target=_run, name="orrin-vital-cal-stress", daemon=True).start()
     try:
         stop_evt.set()
     except Exception:
@@ -1199,6 +1378,7 @@ def run() -> None:
         )
         _cog_thread.start()
         print("[brain] cognitive loop thread started")
+        _maybe_start_vital_calibration_stress()
         try:
             from utils import boot_events as _boot
             _boot.emit("Starting cognition")

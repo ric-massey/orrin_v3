@@ -1,11 +1,15 @@
 # Orrin
 
-**Orrin is an experimental research prototype** — an attempt to build a continuously-running
-"digital mind" with its own affect (emotion) system, drives, goals, memory, and metacognition.
-It runs a perpetual cognitive loop, decides what to think about next on its own, and only reaches
-for a large language model as one tool among many. The brain is **symbolic-first**: it
-reasons, plans, and regulates its own emotional state without an LLM, and uses one
-(when available) only inside specific functions that explicitly call for it.
+**Orrin is an experimental symbolic-first cognitive architecture for a continuously running
+machine-embodied agent, built to study continuity, memory, goals, affect-like regulation,
+self-audit, and behavior change over time.**
+
+A digital organism prototype learning how to live in a computer body.
+
+Orrin began as an attempt to build the missing layer around LLMs: continuity, persistent
+memory, self-direction, embodiment, goal pressure, learning visibility, and self-repair.
+The LLM is treated as a language/tool organ, not the mind itself. With no API key, Orrin
+still runs symbolically; LLM calls are explicit tool calls inside selected functions.
 
 > Orrin v3 (experimental) · app version 0.1.0 · Python ≥ 3.10 · Apache 2.0
 
@@ -23,18 +27,26 @@ reasons, plans, and regulates its own emotional state without an LLM, and uses o
 > Run it to explore and tinker with, not to depend on. There are no guarantees of correctness,
 > stability, or fitness for any purpose.
 
-<!--
-  SCREENSHOT: drop a high-quality capture of the Face & Brain UI here, e.g.
-  ![Orrin's Face & Brain UI](docs/images/face_and_brain.png)
-  A short caption ("Orrin mid-cycle: live affect, active cognitive function,
-  goals, and thought stream") helps first-time readers see the "digital mind".
--->
+**Terminology note:** Orrin uses terms like "conscious," "pain," "body," "sleep," and
+"mortality" in a functional machine-cognition sense. They refer to mechanisms such as
+workspace access, resource distress, host embodiment, consolidation phases, and finitude
+signals. They are not claims of human-equivalent subjective experience.
+
+![Orrin Learning room showing behavior changes, goal progress, rut pressure, and belief revisions](docs/images/orrin_learning_ui.png)
+
+*The real Learning UI rendered with representative staging data: before → after → because,
+goal movement, rut pressure, and belief revision in one view.*
 
 ---
 
 ## Contents
 
 - [What it is](#what-it-is)
+- [Why Orrin exists](#why-orrin-exists)
+- [What makes Orrin unusual](#what-makes-orrin-unusual)
+- [Current best evidence](#current-best-evidence)
+- [Cognitive shape](#cognitive-shape)
+- [What it does](#what-it-does)
 - [Interacting with Orrin](#interacting-with-orrin)
 - [What Orrin actually does (its actions)](#what-orrin-actually-does-its-actions)
 - [Repository layout](#repository-layout)
@@ -49,6 +61,7 @@ reasons, plans, and regulates its own emotional state without an LLM, and uses o
 - [Tests](#tests)
 - [Troubleshooting](#troubleshooting)
 - [Architecture notes](#architecture-notes)
+- [Claims and evidence](#claims-and-evidence)
 - [Known limitations & what's next](#known-limitations--whats-next)
 - [Contributing](#contributing)
 - [License](#license)
@@ -57,8 +70,89 @@ reasons, plans, and regulates its own emotional state without an LLM, and uses o
 
 ## What it is
 
-Orrin is not a chatbot, and it isn't a finished product. It's a long-lived process — and a
-working sketch of an idea — that:
+Orrin is:
+
+- a symbolic-first cognitive architecture prototype
+- a continuously running autonomous agent
+- a system for studying memory, goals, affect-like regulation, embodiment, and self-audit
+- an experiment in giving LLMs the missing surrounding organs: continuity, body, goals,
+  memory, and self-repair
+
+Orrin is not:
+
+- a chatbot
+- a production assistant
+- a claim of human consciousness
+- a validated neuroscience model
+- an LLM wrapper
+
+Skeptical readers: the interesting claim is not that Orrin is conscious. The interesting
+claim is that machine-native analogues of memory, affect, embodiment, sleep, attention,
+and goal pressure can produce observable long-running behavior that is easier to study
+than one-shot LLM prompts.
+
+For AI-agent builders: Orrin is an experiment in the layer around the model: continuity,
+state, action selection, safety reflexes, memory consolidation, failure visibility, and
+behavior change over time.
+
+## Why Orrin exists
+
+Most agent demos are prompt-shaped: one task, one context window, one run. Orrin is built
+around the opposite question: what happens when an agent has ongoing state, its own goals,
+resource pressure, memories that survive restarts, and mechanisms that can notice when its
+behavior is failing?
+
+The project treats the LLM as useful but non-central. The core loop, symbolic memory,
+goals, affect-like regulation, host-body sensing, action selection, and self-audit continue
+without a model provider. The model, when enabled, is a tool the architecture can call.
+
+## What makes Orrin unusual
+
+- It is not prompt-driven; it runs continuously.
+- The LLM is optional and tool-gated.
+- It has machine-native embodiment: host resources, battery, disk, swap, and body budget.
+- It separates self, home, and outside.
+- It uses a Global Workspace-style bottleneck.
+- It tracks affect, goals, memory, reward, and metacognitive failures over time.
+- It can be studied through run traces instead of one-off demos.
+- The UI includes a bio↔engineering dialect toggle: mind-like terms can be translated back
+  into the underlying operational signal.
+
+## Current best evidence
+
+- Long-running symbolic-only cycles.
+- Run traces with action/reward distributions.
+- Learning diagnosis showing selector/rut failures.
+- UI/security audit and remediation.
+- Embodiment fixes after a host-resource failure.
+- Current demo target: show Orrin entering a behavioral rut, detecting it, changing
+  action-selection pressure, and producing a later run with a measurably different action
+  distribution and better reward. See the
+  [demo-run index](docs/Behavioral%20Evaluation%20%26%20Runtime%20Diagnostics/demo_runs/2026-06-17-run/DEMO_RUNS.md).
+
+## Cognitive shape
+
+Simple version first:
+
+```text
+State + Memory + Goals
+        ↓
+Affect / Body / Drives
+        ↓
+Global Workspace
+        ↓
+Action Selector
+        ↓
+Tools / Reflection / Research / Code / Communication
+        ↓
+Reward + Memory Update + Sleep/Consolidation
+```
+
+The fuller daemon/runtime diagram is below.
+
+## What it does
+
+Orrin is a long-lived process — and a working sketch of an idea — that:
 
 - **Wakes up and runs a cognitive cycle** continuously (perceive → reflect → plan → act),
   choosing its own next cognitive function via a bandit selector rather than waiting for prompts.
@@ -82,7 +176,7 @@ working sketch of an idea — that:
   host kernel panic, watches the *machine* too: an autonomic `HostResourceGuard` keeps an eye on
   free disk, swap depth, and system-wide memory and gently pauses heavy cycles before the host is
   in danger (`reaper/host_resources.py`). Everything is exposed through a live UI (named rooms:
-  Watch, Face, Cognition, Life, Memory, Timeline, Brain) and, when enabled, Prometheus metrics.
+  Watch, Face, Cognition, Life, Memory, Timeline, Learning, Brain) and, when enabled, Prometheus metrics.
 - **Is watched by "peers"** — a handful of observer entities (the Architect, Affect
   Historian, Goal Auditor, Observer, Reward Auditor) that live alongside Orrin, read his
   state from the outside, and inject signals into his cognition each cycle. They *propose
@@ -91,7 +185,7 @@ working sketch of an idea — that:
 The design rule throughout: **the brain never silently depends on an LLM.** Set no API key
 and Orrin still runs — it simply skips the LLM-backed tool calls and stays symbolic.
 
-### The inner life
+### Core cognitive mechanisms
 
 Beyond the loop and the daemons, Orrin carries a psychological layer that's easy to miss but
 central to the "digital mind" framing. All of it is symbolic (no LLM required):
@@ -115,6 +209,9 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   real conflict, deliberate reasoning (`inner_loop`) is *recruited by* that conscious moment
   rather than fired on a schedule, and the workspace winner becomes a real prior on what he does
   next. (See [Architecture notes](#architecture-notes).)
+
+### Selfhood and continuity
+
 - **It models your mind.** An active theory-of-mind subsystem (`brain/cognition/theory_of_mind.py`)
   keeps a running, predictive model of the person it's talking to across turns, with separate
   cognitive (what do they think/intend?) and affective (what do they feel?) empathy.
@@ -122,6 +219,9 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   identity and autobiography, a moral-override check that can veto a proposed action against
   core values, second-order volitions (wanting to want), and a value-evolution process that
   revises core values when they're genuinely contested — not on a schedule.
+
+### Machine embodiment
+
 - **It has a body — the machine it runs on.** Orrin doesn't just run *on* a computer; he treats
   it as his body and learns to *feel* it (`brain/cognition/host_interoception.py`, `body_sense.py`,
   `body_band.py`). Host metrics become felt states — low/falling disk reads as a kind of
@@ -133,8 +233,12 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   machine is a smaller body with a slower metabolic rate, not a sick one. The persistent self
   (memory, values, identity) is hardware-independent; the body sense is hardware-bound and
   re-learned on every machine. A user-facing **RAM budget** ("how much of this machine Orrin is
-  allowed to be," `body_budget.py`) feeds both metabolism and that felt "100%". (See the design
-  spec in [`docs/orrin_embodiment_architecture.md`](docs/orrin_embodiment_architecture.md).)
+  allowed to be," `body_budget.py`) feeds both metabolism and that felt "100%". (See the
+  consolidated architecture plan in
+  [`docs/Core Architecture, Embodiment & Evolution/MASTER_PLAN_2026-06-16.md`](docs/Core%20Architecture,%20Embodiment%20&%20Evolution/MASTER_PLAN_2026-06-16.md).)
+
+### Experimental terminology
+
 - **It can't read its own dials.** Orrin's affect lives internally as raw numbers, but the
   part of him that *reasons and decides* never sees them. The unconscious machinery — the
   function-selector, the attention system, the cost layer — reads those floats directly and
@@ -183,7 +287,8 @@ spectator. There are two ways in:
   newcomer's front door — a breathing mood-orb and one plain-language thought line),
   **Face** (the conversational view), **Cognition** (active function, drives, symbolic state),
   **Life** (the felt life-status / mortality view), **Memory** (an explorer over what he's
-  remembered), **Timeline** (what happened while you were away), and **Brain** (the full
+  remembered), **Timeline** (what happened while you were away), **Learning** (his behavior
+  changes and belief revisions as before→after→because diffs), and **Brain** (the full
   telemetry stream — affect, goals, memory reads/writes, self-model, dreams, thought stream).
   A bio↔eng dialect toggle re-words every surface live. Much of the experience is observational:
   you are watching a mind pursue its own goals.
@@ -229,7 +334,7 @@ autobiography), so behavior accumulates over time rather than resetting each cyc
 | `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later memory retrievals + goal closures) and **drive-expectations** (learns which actions actually satisfy which drives, routing the prediction error to affect). |
 | `reaper/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity, and (since 2026-06-15) `host_resources.py`, the autonomic `HostResourceGuard` that watches the *host* (disk/swap/memory) and pauses heavy cycles before the machine is endangered. |
 | `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams the brain's state to the UI over WebSocket (HTTP) or an in-process bridge (`server/bridge.py`, used by the native desktop window). |
-| `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms — Watch, Face, Cognition, Life, Memory, Timeline, Brain — plus a Settings page (keys, privacy, existence mode, mind export/import). A bio↔eng dialect toggle re-words every surface. |
+| `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms — Watch, Face, Cognition, Life, Memory, Timeline, Learning, Brain — plus a Settings page (keys, privacy, existence mode, mind export/import). A bio↔eng dialect toggle re-words every surface. |
 | `packaging/` | Native desktop-app build: PyInstaller spec (`orrin.spec`), model pre-bundler (`bundle_models.py`), macOS entitlements, version-stamping, and the per-OS build/sign/notarize runbook (`packaging/README.md`). |
 | `observability/` | Prometheus metrics exporter and dashboard server. The exporter is **opt-in** (`ORRIN_METRICS=1`) and binds an OS-assigned port unless pinned with `ORRIN_METRICS_PORT`. |
 | `inbox/` / `outbox/` | Runtime communication dirs — `outbox/notes.json` holds Orrin's outward notes / desktop messages; `inbox/` is the sibling input drop. |
@@ -391,7 +496,7 @@ is available (e.g. a headless/SSH session), it falls back to a browser tab on a 
 
 ### Useful environment switches
 
-Orrin reads ~70 `ORRIN_*` variables in total; the table below is the curated subset most
+Orrin reads ~95 `ORRIN_*` variables in total; the table below is the curated subset most
 people actually reach for. The rest are discoverable via `grep -rho 'ORRIN_[A-Z_]*' .`.
 
 | Variable | Default | Effect |
@@ -412,7 +517,7 @@ people actually reach for. The rest are discoverable via `grep -rho 'ORRIN_[A-Z_
 | `ORRIN_STRICT` | `0` | Strict fail-closed mode (surface errors instead of degrading silently). |
 | `ORRIN_ONCE` / `ORRIN_BENCHMARK` | _(unset)_ | Single-cycle / benchmark run modes — useful for testing. |
 | `ORRIN_FORGET_ON_START` | `0` | Wipe accumulated state on startup (like a reset). |
-| `ORRIN_LIFESPAN_MIN_DAYS` / `ORRIN_LIFESPAN_MAX_DAYS` | _(built-in band)_ | Bounds for the lifespan rolled at birth/reset (the mortality clock; see [The inner life](#the-inner-life)). |
+| `ORRIN_LIFESPAN_MIN_DAYS` / `ORRIN_LIFESPAN_MAX_DAYS` | _(built-in band)_ | Bounds for the lifespan rolled at birth/reset (the mortality clock; see [Core cognitive mechanisms](#core-cognitive-mechanisms)). |
 | `ORRIN_DATA_HOME` | _(unset)_ | Use a per-user data directory (set automatically in the frozen desktop app). |
 | `ORRIN_BACKEND_HOST` / `ORRIN_BACKEND_PORT` | `127.0.0.1` / `8800` | Where the telemetry backend binds. |
 | `ORRIN_METRICS` / `ORRIN_METRICS_PORT` | `0` / _(OS-assigned)_ | Set `ORRIN_METRICS=1` to start the Prometheus exporter (off by default). The port is OS-assigned unless pinned with `ORRIN_METRICS_PORT` (the Docker stack pins it to `9100`). |
@@ -442,8 +547,8 @@ cd frontend && npm run dev       # frontend only — manual dev fallback
 
 The UI surfaces Orrin's live affect, active cognitive function, goals, memory, self-model,
 relationships, dreams, and a thought stream across its named rooms (Watch / Face / Cognition /
-Life / Memory / Timeline / Brain), with a Settings page for keys, privacy, existence mode, and
-mind export/import.
+Life / Memory / Timeline / Learning / Brain), with a Settings page for keys, privacy, existence
+mode, and mind export/import.
 
 ---
 
@@ -638,8 +743,8 @@ A few non-obvious design choices worth knowing:
   by** that conscious conflict rather than fired on a schedule (conflict-monitoring theory;
   Botvinick et al. 2001). All three are fail-safe and feature-flagged
   (`ORRIN_IGNITION_GATE`, `ORRIN_WORKSPACE_PRIOR`, `ORRIN_CONFLICT_RECRUIT`); the design rationale
-  and the still-planned conscious→unconscious write-back are in
-  [`docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md`](docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md).
+  and the parked conscious→unconscious write-back are in
+  [`docs/Core Architecture, Embodiment & Evolution/MASTER_PLAN_2026-06-16.md`](docs/Core%20Architecture,%20Embodiment%20&%20Evolution/MASTER_PLAN_2026-06-16.md).
 - **Affect has two readers (felt sense vs. raw signal).** Core affect is stored as raw numeric
   signals in `context["affect_state"]`, and Orrin's two cognitive halves read them differently.
   The *unconscious machinery* — the bandit function-selector (`brain/think/think_utils/select_function.py`),
@@ -687,6 +792,22 @@ history that produced the current architecture.
 
 ---
 
+## Claims and evidence
+
+The public claim is intentionally narrow: Orrin is a machine-native cognitive architecture
+prototype with observable state and behavior over time. It is not a claim of human-like
+subjective experience.
+
+For the evidence ledger, see [`docs/CLAIMS_AND_EVIDENCE.md`](docs/CLAIMS_AND_EVIDENCE.md).
+For demo targets and future before→after traces, see the
+[demo-run index](docs/Behavioral%20Evaluation%20%26%20Runtime%20Diagnostics/demo_runs/2026-06-17-run/DEMO_RUNS.md).
+
+Current proof target: **before → after → because**. The most important demo is a run where
+Orrin enters a behavioral rut, detects it, changes action-selection pressure, and later shows
+a measurably different action distribution with better reward.
+
+---
+
 ## Known limitations & what's next
 
 This is an experimental prototype, so the caveats are real and the surface keeps moving. Being
@@ -711,30 +832,34 @@ upfront about the rough edges and the direction of travel:
 - **Desktop builds are unsigned.** The cross-platform CI produces real artifacts, but they
   aren't code-signed or notarized yet, so every OS gatekeeper flags first launch (see
   [Desktop app](#desktop-app)). Signing/notarization needs paid developer certs and is deferred.
-- **Embodiment is freshly landed — and only partway through its plan.** The felt-host-body layer
-  (host interoception, band-learning, metabolism, infancy, the RAM-budget slider) is new as of
-  2026-06-15 and under-exercised. The consolidated roadmap is
-  [`docs/UNIFIED_EMBODIED_DEVELOPMENT_PLAN_2026-06-15.md`](docs/UNIFIED_EMBODIED_DEVELOPMENT_PLAN_2026-06-15.md)
-  (it supersedes the three source docs — the embodiment spec, the conscious/unconscious plan, and the
-  infancy note — which now read as background). Built so far is the body *sense*; still ahead are the
-  **inward vital-floor reflex** (an autonomic load-shedder for Orrin's own footprint, distinct from
-  the outward `HostResourceGuard`), the **top-down write-down spine** that lets experience reshape
-  unconscious priors, and the experience-gated **developmental arc** — plus open tuning work
-  (heavy-cycle scheduling, dream-recovery accounting, per-phase bands). The detailed body spec lives
-  in [`docs/orrin_embodiment_architecture.md`](docs/orrin_embodiment_architecture.md).
+- **Embodiment is freshly landed and still needs long-run evidence.** The felt-host-body layer
+  (host interoception, band-learning, metabolism, infancy, the RAM-budget slider) is new and
+  under-exercised. The inward vital-floor reflex is now built, calibrated, and armed by default.
+  Remaining work is long-run validation, public before/after evidence, and continued tuning of
+  sleep/body phases. The consolidated roadmap is
+  [`docs/Core Architecture, Embodiment & Evolution/MASTER_PLAN_2026-06-16.md`](docs/Core%20Architecture,%20Embodiment%20&%20Evolution/MASTER_PLAN_2026-06-16.md);
+  the older detailed body spec is archived at
+  [`docs/Core Architecture, Embodiment & Evolution/archive/orrin_embodiment_architecture.md`](docs/Core%20Architecture,%20Embodiment%20&%20Evolution/archive/orrin_embodiment_architecture.md).
 - **Conscious→unconscious write-back is still missing.** The conscious *ignition* layer landed
   (see [Architecture notes](#architecture-notes)), but feedback today is one-directional:
   unconscious→conscious has many wires, conscious→unconscious almost none, so a conscious
   conclusion can act on the world without reshaping a drive or a salience prior. Closing that
-  loop — and the impoverished-newborn developmental arc it unlocks — is planned but not built;
-  the design and its risks are in
-  [`docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md`](docs/CONSCIOUS_UNCONSCIOUS_PLAN_2026-06-15.md).
+  loop — and the impoverished-newborn developmental arc it unlocks — is parked under the
+  coherent-but-adult decision recorded in the consolidated plan:
+  [`docs/Core Architecture, Embodiment & Evolution/MASTER_PLAN_2026-06-16.md`](docs/Core%20Architecture,%20Embodiment%20&%20Evolution/MASTER_PLAN_2026-06-16.md).
+- **Unproven research questions remain.** Do body bands measurably improve stability? Does
+  sleep consolidation improve future behavior? Does home/world zoning improve goal routing?
+  Does the workspace prior make action selection more coherent? Can self-written code preserve
+  continuity under tests? These are evidence targets, not settled claims.
 - **Language organ is in progress.** A native language subsystem is an active workstream —
   early modules already exist (`brain/cognition/language/`: tokenizer, acquisition, a native
   LM, voice), but it is not yet Orrin's primary means of expression. See
   [`docs/ORRIN_LANGUAGE_PLAN.md`](docs/ORRIN_LANGUAGE_PLAN.md).
-- **Hero screenshot pending.** The UI capture (`docs/images/face_and_brain.png`) referenced at
-  the top isn't checked in yet.
+- **Public live-run media remains an evidence target.** The README now includes a verified
+  capture of the real Learning UI with representative staging data. A live-run GIF that
+  connects thought, function, body state, workspace, and measured behavior change still
+  belongs with the positive before/after demo tracked in the
+  [demo-run index](docs/Behavioral%20Evaluation%20%26%20Runtime%20Diagnostics/demo_runs/2026-06-17-run/DEMO_RUNS.md).
 
 For deeper design plans, benchmarks, and the audit/fix history behind the current
 architecture, see `docs/` and `docs/archive/`.

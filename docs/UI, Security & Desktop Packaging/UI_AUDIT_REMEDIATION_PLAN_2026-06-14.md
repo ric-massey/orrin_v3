@@ -4,6 +4,9 @@
 **Source:** `docs/UI_AUDIT_REPORT_2026-06-14.md`
 **Goal:** Close the findings without destabilizing a sound architecture. Localhost dev must stay **zero-config**; the fixes must not break the real UI.
 
+> **Historical plan:** all HIGH/MEDIUM findings and L1-L6 are now closed. Use
+> `UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md` for verified current status.
+
 ---
 
 ## Key constraint that shapes the security fixes

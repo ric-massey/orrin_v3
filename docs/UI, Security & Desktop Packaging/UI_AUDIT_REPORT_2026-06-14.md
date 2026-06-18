@@ -1,5 +1,8 @@
 # Orrin UI — Reliability, Usability & Failure-Visibility Audit
 
+> **Historical audit:** the findings in this report have been remediated. Use
+> `UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md` for verified current status.
+
 **Date:** 2026-06-14
 **Scope:** The "Face & Brain" UI — `frontend/` (React/Vite) + `backend/` (FastAPI telemetry bridge) + the producer client `backend/telemetry_bridge.py` and its wiring in `main.py` / `brain/`.
 **Goal of this review:** Is the UI *reliable*, *dependable*, *easy to use*, and *honest about failure* (easy to see when something is going wrong)?

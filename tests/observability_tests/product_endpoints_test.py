@@ -2,6 +2,7 @@
 # endpoints — egress ledger (§9.4), Life Support (§9.10), activity feed (§9.8), boot
 # sequence (§9.7), memory ordering (§9.5), and Mind export/import (§9.6).
 import io
+import importlib
 import json
 import zipfile
 
@@ -9,6 +10,8 @@ from fastapi.testclient import TestClient
 
 from backend.server.app import app
 from brain.utils import egress, prefs
+
+server_app = importlib.import_module("backend.server.app")
 
 # Loopback client: control endpoints (export/import) are localhost-only without a token.
 client = TestClient(app, client=("127.0.0.1", 0))
@@ -91,6 +94,92 @@ def test_cognition_feeds_never_leak_private_thoughts():
         assert r.status_code == 200, path
         assert "private_thoughts" not in r.text, path
         assert "final_thoughts" not in r.text, path
+
+
+def test_belief_revisions_unifies_self_opinion_and_symbolic(tmp_path, monkeypatch):
+    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    (tmp_path / "self_belief_revisions.json").write_text(json.dumps({
+        "COGNITIVE": {
+            "confidence": 0.8,
+            "events": [{"timestamp": "2026-01-01T00:00:00Z", "goal": "tested", "delta": -0.2, "new_confidence": 0.8}],
+        }
+    }))
+    (tmp_path / "opinions.json").write_text(json.dumps([
+        {"topic": "tools", "view": "Tools matter.", "confidence": 0.6, "updated_at": "2026-01-01T00:01:00Z", "evidence_count": 2}
+    ]))
+    (tmp_path / "symbolic_rules.json").write_text(json.dumps([
+        {"id": "r1", "conclusion": "A implies B", "hits": 3}
+    ]))
+    (tmp_path / "rule_revisions.json").write_text(json.dumps([
+        {"timestamp": "2026-01-01T00:02:00Z", "rule_id": "r1", "rule_conclusion": "A implies B", "confidence": 0.4},
+        {"timestamp": "2026-01-01T00:03:00Z", "rule_id": "r1", "rule_conclusion": "A implies B", "confidence": 0.7},
+    ]))
+
+    r = client.get("/api/belief-revisions?n=10")
+    assert r.status_code == 200
+    body = r.json()
+    kinds = {row["kind"] for row in body["revisions"]}
+    assert {"self", "opinion", "symbolic_rule"} <= kinds
+    assert body["churn"]["self"]["weakened"] == 1
+    assert body["churn"]["symbolic_rule"]["strengthened"] == 1
+    newest = body["revisions"][0]
+    assert newest["kind"] == "symbolic_rule"
+    assert newest["old_confidence"] == 0.4
+    assert newest["new_confidence"] == 0.7
+
+
+def test_predictions_exposes_calibration_and_exploration_trends(tmp_path, monkeypatch):
+    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    (tmp_path / "calibration_state.json").write_text(json.dumps({"brier": 0.1, "bias": 0.0, "n": 2}))
+    (tmp_path / "prediction_domain_stats.json").write_text(json.dumps({}))
+    (tmp_path / "predictions.json").write_text(json.dumps([
+        {"confidence": 0.8, "correct": True, "resolved": True, "checked_ts": "2026-01-01T00:00:00Z"},
+        {"confidence": 0.7, "correct": False, "resolved": True, "checked_ts": "2026-01-01T00:01:00Z"},
+    ]))
+    (tmp_path / "trace.jsonl").write_text(
+        json.dumps({"chosen": "FN:seek_novelty", "ts": 1}) + "\n" +
+        json.dumps({"chosen": "FN:reflect_on_outcomes", "ts": 2}) + "\n"
+    )
+
+    r = client.get("/api/predictions?n=5")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["calibration_trend"]
+    assert body["exploration"]["explore"] == 1
+    assert body["exploration"]["exploit"] == 1
+    assert body["exploration"]["ratio"] == 0.5
+    assert body["exploration"]["trend"]
+
+
+def test_learning_exposes_goal_progress_and_rut(tmp_path, monkeypatch):
+    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    (tmp_path / "decision_stats.json").write_text(json.dumps({}))
+    (tmp_path / "bandit_state.json").write_text(json.dumps({}))
+    (tmp_path / "reward_trace.json").write_text(json.dumps([]))
+    (tmp_path / "goals_mem.json").write_text(json.dumps([
+        {
+            "id": "g1",
+            "title": "Build a thing",
+            "status": "active",
+            "priority": 3,
+            "milestones": [{"text": "one", "met": True}, {"text": "two", "met": False}],
+        }
+    ]))
+    (tmp_path / "comp_goals.json").write_text(json.dumps([]))
+    (tmp_path / "cognition_state.json").write_text(json.dumps({
+        "last_cognition_choice": "seek_novelty",
+        "repeat_count": 3,
+        "recent_picks": ["look_around", "seek_novelty", "seek_novelty", "seek_novelty"],
+    }))
+
+    r = client.get("/api/learning?n=5")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["goal_progress"]["goals"][0]["title"] == "Build a thing"
+    assert body["goal_progress"]["milestones_met"] == 1
+    assert body["goal_progress"]["milestones_total"] == 2
+    assert body["rut"]["function"] == "seek_novelty"
+    assert body["rut"]["consecutive"] == 3
 
 
 def test_mind_export_roundtrips_through_import():

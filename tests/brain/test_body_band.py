@@ -120,6 +120,7 @@ def test_bodybands_discards_foreign_machine_bands(tmp_path):
 def test_body_sense_resting_high_rss_reads_clear_not_heavy():
     import cognition.body_sense as bs
     bs._bands = None  # fresh, isolated by conftest's tmp DATA_DIR
+    bs._dream_bands = None
     g = bs._get_bands()
     for i in range(500):
         g.observe("rss_mb", 920 + 40 * math.sin(i / 9.0))
@@ -142,6 +143,7 @@ def test_body_sense_resting_high_rss_reads_clear_not_heavy():
 def test_body_sense_lenient_during_infancy():
     import cognition.body_sense as bs
     bs._bands = None
+    bs._dream_bands = None
     g = bs._get_bands()
     # Only a handful of samples — bands not converged → infancy → stay clear even
     # though RSS is "high" in absolute terms.
@@ -150,3 +152,88 @@ def test_body_sense_lenient_during_infancy():
     assert g.in_infancy()
     assert bs.compute_body_states({"rss_mb": 1500, "cpu_util": 0.2,
                                    "fd_pct": 0.2, "latency_ms": 0.2}) == ["clear"]
+
+
+def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
+    import cognition.body_sense as bs
+    from cognition.dreaming.dream_cycle import set_dreaming
+
+    monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
+    bs._bands = None
+    bs._dream_bands = None
+
+    wake = bs._get_bands(False)
+    sleep = bs._get_bands(True)
+    for i in range(500):
+        wake.observe("rss_mb", 920 + 40 * math.sin(i / 9.0))
+        wake.observe("cpu_util", 0.20 + 0.05 * math.sin(i / 7.0))
+        wake.observe("fd_pct", 0.20 + 0.03 * math.sin(i / 6.0))
+        wake.observe("latency_ms", 0.21 + 0.05 * math.sin(i / 5.0))
+
+        sleep.observe("rss_mb", 1450 + 80 * math.sin(i / 9.0))
+        sleep.observe("cpu_util", 0.78 + 0.08 * math.sin(i / 7.0))
+        sleep.observe("fd_pct", 0.22 + 0.03 * math.sin(i / 6.0))
+        sleep.observe("latency_ms", 0.34 + 0.05 * math.sin(i / 5.0))
+
+    high_dream_vitals = {
+        "rss_mb": 1450,
+        "cpu_util": 0.78,
+        "fd_pct": 0.22,
+        "latency_ms": 0.34,
+    }
+    try:
+        set_dreaming(False)
+        assert "heavy" in bs.compute_body_states(high_dream_vitals)
+
+        set_dreaming(True)
+        assert bs.compute_body_states(high_dream_vitals) == ["clear"]
+    finally:
+        set_dreaming(False)
+
+
+def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
+    import affect.arbiter as arbiter
+    from affect.arbiter import commit_affect, submit_affect
+    import cognition.body_sense as bs
+    from cognition.dreaming.dream_cycle import set_dreaming
+
+    monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(bs, "BODY_SENSE_FILE", tmp_path / "body_sense.json")
+    bs._bands = None
+    bs._dream_bands = None
+
+    sleep = bs._get_bands(True)
+    for i in range(500):
+        sleep.observe("rss_mb", 1450 + 80 * math.sin(i / 9.0))
+        sleep.observe("cpu_util", 0.78 + 0.08 * math.sin(i / 7.0))
+        sleep.observe("fd_pct", 0.22 + 0.03 * math.sin(i / 6.0))
+        sleep.observe("latency_ms", 0.34 + 0.05 * math.sin(i / 5.0))
+
+    high_dream_vitals = {
+        "rss_mb": 1450,
+        "cpu_util": 0.78,
+        "fd_pct": 0.22,
+        "latency_ms": 0.34,
+    }
+    monkeypatch.setattr(bs, "read_vitals", lambda: dict(high_dream_vitals))
+    with arbiter._inbox_lock:
+        arbiter._inbox.clear()
+
+    context = {"affect_state": {"core_signals": {}, "resource_deficit": 0.55}}
+    before = context["affect_state"]["resource_deficit"]
+    try:
+        set_dreaming(True)
+        body = bs.update_body_sense(context)
+        assert body["phase"] == "sleep"
+        assert body["body_states"] == ["clear"]
+        assert body["vitals"]["rss_mb"] > 1400
+        assert body["vitals"]["cpu_util"] > 0.70
+
+        submit_affect(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
+        commit_affect(context)
+    finally:
+        set_dreaming(False)
+        with arbiter._inbox_lock:
+            arbiter._inbox.clear()
+
+    assert context["affect_state"]["resource_deficit"] < before

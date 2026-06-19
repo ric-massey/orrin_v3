@@ -79,15 +79,21 @@ _DRIVES: Dict[str, Dict] = {
         "strength_fn": lambda emo, core: float(emo.get("affect_stability") or 0.5),
     },
     "usefulness": {
+        # P7 — repointed at actual PRODUCTION / CONTACT, not going-through-the-motions
+        # on any committed goal. The old wants ({pursue_committed_goal,
+        # assess_goal_progress, adapt_subgoals, plan_next_step}) were satisfied by
+        # busywork on an *intake* goal — feeling useful for pursuing rather than for
+        # producing. The drive that should pull toward useful output now actually does.
         "wants": frozenset({
-            "speak", "user_response", "pursue_committed_goal",
-            "assess_goal_progress", "adapt_subgoals", "plan_next_step",
+            "write_tool", "write_cognitive_function", "decide_to_write_code",
+            "leave_note", "respond_to_user", "user_response", "speak",
         }),
         "resists": frozenset({
             "dream_cycle", "simulate_future_selves",
             "reflect_on_internal_agents", "autobiography",
+            "assess_goal_progress",  # going through the motions ≠ being useful
         }),
-        "label": "wants to complete tasks and be helpful",
+        "label": "wants to make things and be genuinely useful",
         "strength_fn": lambda emo, core: float(core.get("motivation") or 0.5),
     },
     "identity_consistency": {

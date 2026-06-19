@@ -51,8 +51,10 @@ docs/images/orrin_learning_run.gif
 
 | Date | Demo | Evidence | Status |
 |---|---|---|---|
-| 2026-06-17 | Full-life run analysis (8,040-cycle life) | `Behavioral Evaluation & Runtime Diagnostics/demo_runs/` — 6 docs (see index below) | Captured |
-| TBD | Rut detection **changes** behavior (positive result) | Link run report + trace summary | Not captured |
+| 2026-06-17 | Full-life run analysis (8,040-cycle life) | `Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-17-run/` — 6 docs (see index below) | Captured |
+| 2026-06-18 | First life **after** the 2026-06-17 fixes (~10,300-cycle life) | `…/demo_runs/2026-06-18-run/` — 4 docs (`DEMO_RUN_2026-06-18.md` index) | Captured |
+| 2026-06-18 | **Rut-mechanism fix lands (positive result)** | `…/2026-06-18-run/2026-06-18_did_the_fixes_land.md` — phantom avoidance loop 2,251→**5** cycles, mode-flap 3,415→**6**, telemetry 240→**10,260** pts | **Captured (mechanism)** |
+| TBD | Rut fix **redistributes effort** (deeper positive result) | Action distribution actually spreads to "make things"/"be useful"; notes carry real content | Not captured (follow-ups queued — see 2026-06-18 `run_analysis.md §6`) |
 | TBD | Body bands reduce false distress | Before/after body-sense run | Not captured |
 | TBD | Workspace prior changes action coherence | Selector trace with/without prior | Not captured |
 | TBD | Home/world zoning changes goal routing | Goal tags + routing comparison | Not captured |

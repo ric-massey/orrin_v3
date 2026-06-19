@@ -1,3 +1,7 @@
+# backend/requirements.txt — compatibility mirror of pyproject.toml's `backend`
+# extra (CODEBASE_CLEANUP_PLAN Phase 2). pyproject.toml is the source of truth;
+# prefer `pip install -e ".[backend]"`. Kept for the Dockerfile and standalone
+# backend installs. 'websockets'/'httptools' come via uvicorn[standard];
+# pydantic via fastapi.
 fastapi>=0.111
 uvicorn[standard]>=0.30
-# 'websockets' and 'httptools' come via uvicorn[standard]; pydantic via fastapi.

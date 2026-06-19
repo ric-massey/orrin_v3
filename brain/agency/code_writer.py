@@ -159,12 +159,27 @@ def _validate_in_sandbox(code: str, name: str = "_anonymous", description: str =
 
 # Write a new cognitive function
 
+def _record_code_effect(kind: str, full_code: str, context, goal_id) -> None:
+    """P0: a written-and-registered function/tool is a real, durable external effect."""
+    try:
+        from agency.effect_ledger import record_effect
+        _row = record_effect(kind, full_code, goal_id=goal_id, context=context)
+        if _row is not None and _row.significance > 0 and isinstance(context, dict):
+            context["_production_effect_this_cycle"] = True
+            context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
+    except Exception as _e:
+        from utils.failure_counter import record_failure
+        record_failure("code_writer.record_effect", _e)
+
+
 def write_cognitive_function(
     name: str,
     description: str,
     body: str,
     *,
     test: bool = True,
+    context: Dict[str, Any] = None,
+    goal_id: str = None,
 ) -> Dict[str, Any]:
     """
     Write a new Python function to custom_cognition/ and register it live.
@@ -232,6 +247,7 @@ def write_cognitive_function(
     _append_manifest(name, "cognitive_function", description, file_path)
 
     update_working_memory(f"Wrote new cognitive function: '{name}' — {description}")
+    _record_code_effect("code_committed", full_code, context, goal_id)
     return {"success": True, "path": str(file_path), "error": None}
 
 # Write a new tool
@@ -242,6 +258,8 @@ def write_tool(
     body: str,
     *,
     test: bool = True,
+    context: Dict[str, Any] = None,
+    goal_id: str = None,
 ) -> Dict[str, Any]:
     """
     Write a new tool function to agency/skills/ and add it to the live tool_registry.
@@ -297,6 +315,7 @@ def write_tool(
     _append_manifest(name, "tool", description, file_path)
 
     update_working_memory(f"Wrote new tool: '{name}' — {description}")
+    _record_code_effect("tool_written", full_code, context, goal_id)
     return {"success": True, "path": str(file_path), "error": None}
 
 # List and delete own code
@@ -410,6 +429,8 @@ def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
         fn_name,
         description=f"Auto-generated: reflect on {topic}",
         body=body,
+        context=ctx,
+        goal_id=(goal.get("id") if isinstance(goal, dict) else None),
     )
     if result["success"]:
         update_working_memory(f"Wrote new function '{fn_name}' for: {topic}")

@@ -23,7 +23,7 @@ from paths import (
     RECENTLY_COMPLETED_FILE, GOALS_FILE,
     ENERGY_MODE_FILE, BODY_SENSE_FILE, DATA_DIR,
 )
-from utils.llm_gate import llm_available, llm_callable_by
+from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -269,9 +269,23 @@ def _enrich_goal_zone(goal: Dict[str, Any]) -> Dict[str, Any]:
     return goal
 
 
-def _mk_goal(title: str, description: str, driven_by: str = "world_knowledge",
-             priority: int = 3, milestones: List = None) -> Dict:
-    """Build a well-formed proposed-goal dict from parts."""
+def _mk_goal(title: str, description: str, driven_by: str = None,
+             priority: int = 3, milestones: List = None,
+             requires_artifact: bool = False, deadline_cycles: int = None) -> Dict:
+    """Build a well-formed proposed-goal dict from parts.
+
+    P5: the default driver is no longer hard-coded to "world_knowledge" — that
+    default was itself part of the monoculture (any generator that forgot to set a
+    driver fed the intake/introspection track). When `driven_by` is omitted we fall
+    back to the fairness-selected starved aspiration's drive (P3) so the path of
+    least resistance stops being world_knowledge.
+
+    requires_artifact (P2): the goal completes ONLY when a matching effect-ledger
+    row exists for it — no self-report can close it. deadline_cycles arms the
+    timeout → mark_goal_failed path.
+    """
+    if not driven_by:
+        driven_by = _fairness_default_drive()
     ts = datetime.now(timezone.utc).isoformat()
     ms = [
         ({"text": m, "met": False, "met_at": None} if isinstance(m, str) else m)
@@ -284,6 +298,15 @@ def _mk_goal(title: str, description: str, driven_by: str = "world_knowledge",
         "driven_by": driven_by, "created_ts": ts, "status": "proposed",
         "milestones": ms,
     }
+    if requires_artifact:
+        goal["requires_artifact"] = True
+        if deadline_cycles is None:
+            try:
+                from cognition.planning.goals import PRODUCTION_DEADLINE_CYCLES as _pdc
+            except Exception:
+                _pdc = 200
+            deadline_cycles = _pdc
+        goal["deadline_cycles"] = int(deadline_cycles)
     return _enrich_goal_zone(goal)
 
 
@@ -477,6 +500,7 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                 f"I know a little about {name}. Use research_topic / wikipedia_search / "
                 f"fetch_and_read to learn something NEW about {name} specifically, then "
                 f"write the new finding to long memory.",
+                driven_by="world_knowledge",
                 milestones=[f"A new angle on {name} was researched.",
                             f"A new fact about {name} was written to long memory."],
             )
@@ -515,6 +539,7 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
                 f"Open question: {q}",
                 f"This question surfaced: '{q}'. Investigate it with research/search/fetch "
                 f"and write what I find to long memory.",
+                driven_by="world_knowledge",
                 milestones=[f"Investigated: {q[:50]}", "A finding was written to long memory."],
             ))
             if len(out) >= limit:
@@ -579,6 +604,7 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
             f"what causes it. Use research_topic / wikipedia_search / fetch_and_read to "
             f"investigate what actually brings '{name}' about, then write what I learn "
             f"to long memory.",
+            driven_by="world_knowledge",
             milestones=[f"A possible cause of '{name}' was investigated.",
                         f"A finding about what brings '{name}' about was written to long memory."],
         )
@@ -677,6 +703,7 @@ def _autobiographical_continuity_goals(limit: int = 2) -> List[Dict]:
             f"I've had an open thread on '{title}' that I haven't advanced lately. "
             f"Where I left off: {state or '(no notes yet)'}. Take it one concrete step "
             f"further and write the new state to long memory.",
+            driven_by="world_knowledge",
             milestones=[f"The thread on '{title[:50]}' was reopened.",
                         "One new observation advanced it, written to long memory."],
         ))
@@ -987,6 +1014,221 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
     return ("Aspiration progress — " + "; ".join(summary)) if summary else ""
 
 
+# ── Phase 3 (P3): aspiration fairness / recruitment pressure ───────────────────
+# A 0%-progress aspiration must stop being invisible to the generator. Pressure
+# rises with time-since-last-contribution and with how far below the mean an
+# aspiration's share sits, so "Make things" at 0% for 10k cycles → high pressure.
+# It is decayed only by a real (effect-backed) contribution timestamp written in
+# mark_aspiration_contribution — bookkeeping closures don't move it.
+_STARVED_IDLE_FULL_S = 6 * 3600.0   # idle this long → full idle pressure component
+
+
+def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
+    """Per-aspiration recruitment weight in [0,1]; higher = more starved."""
+    try:
+        goals = load_json(GOALS_FILE, default_type=list) or []
+    except Exception:
+        return {}
+    asps = [g for g in goals if isinstance(g, dict)
+            and (g.get("_aspiration") or g.get("kind") == "aspiration")]
+    if not asps:
+        return {}
+    counts = {str(g.get("title", "")): int(g.get("contribution_count", 0) or 0) for g in asps}
+    total = sum(counts.values())
+    mean = (total / len(counts)) if counts else 0.0
+    now = time.time()
+    out: Dict[str, float] = {}
+    for g in asps:
+        title = str(g.get("title", ""))
+        share_gap = max(0.0, (mean - counts[title]) / (mean + 1.0))   # below the mean share
+        last = g.get("last_contribution_ts")
+        if last:
+            try:
+                idle = now - datetime.fromisoformat(str(last).replace("Z", "+00:00")).timestamp()
+            except Exception:
+                idle = _STARVED_IDLE_FULL_S
+        else:
+            idle = _STARVED_IDLE_FULL_S       # never contributed → maximal idle pressure
+        idle_norm = min(1.0, max(0.0, idle) / _STARVED_IDLE_FULL_S)
+        out[title] = round(0.5 * share_gap + 0.5 * idle_norm, 4)
+    return out
+
+
+def _fairness_default_drive() -> str:
+    """Drive of the most-starved aspiration (P3) — the new default for an untagged
+    goal, so the path of least resistance stops being world_knowledge."""
+    try:
+        p = aspiration_pressure()
+        if p:
+            top = max(p, key=p.get)
+            for t, d in _ASPIRATIONS:
+                if t == top:
+                    return d
+    except Exception:
+        pass
+    return "world_knowledge"
+
+
+def mark_aspiration_contribution(driven_by: str) -> None:
+    """Stamp last_contribution_ts on the aspiration a drive serves — decays its P3
+    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping
+    closure), so starved directions stay starved until something real lands."""
+    asp_title = _serves_aspiration(str(driven_by or ""))
+    if not asp_title:
+        return
+    try:
+        goals = load_json(GOALS_FILE, default_type=list) or []
+        if not isinstance(goals, list):
+            return
+        ts = datetime.now(timezone.utc).isoformat()
+        changed = False
+        for g in goals:
+            if isinstance(g, dict) and (g.get("_aspiration") or g.get("kind") == "aspiration") \
+                    and str(g.get("title", "")) == asp_title:
+                g["last_contribution_ts"] = ts
+                changed = True
+        if changed:
+            save_json(GOALS_FILE, goals)
+    except Exception as _e:
+        record_failure("intrinsic_goals.mark_aspiration_contribution", _e)
+
+
+# ── Intake → output laddering (P5 / G2) ────────────────────────────────────────
+# Completing an "Understand X" intake goal should ladder INTO making something
+# with X, not loop back into re-understanding X. note_intake_completed queues the
+# topic; _making_goals drains it first.
+_MAKING_BACKLOG_FILE = DATA_DIR / "making_backlog.json"
+_MAKING_BACKLOG_CAP = 20
+
+
+def note_intake_completed(topic: str) -> None:
+    topic = _strip_goal_scaffold(str(topic or "")).strip()
+    if not topic or not _acceptable_goal_subject(topic):
+        return
+    try:
+        backlog = load_json(_MAKING_BACKLOG_FILE, default_type=list) or []
+        if not isinstance(backlog, list):
+            backlog = []
+        low = topic.lower()
+        backlog = [b for b in backlog if isinstance(b, dict)
+                   and str(b.get("topic", "")).lower() != low]
+        backlog.append({"topic": topic, "ts": datetime.now(timezone.utc).isoformat()})
+        save_json(_MAKING_BACKLOG_FILE, backlog[-_MAKING_BACKLOG_CAP:])
+    except Exception as _e:
+        record_failure("intrinsic_goals.note_intake_completed", _e)
+
+
+def _drain_making_backlog(topic: str) -> None:
+    """Remove a topic from the backlog once a making goal for it is generated."""
+    low = str(topic or "").strip().lower()
+    if not low:
+        return
+    try:
+        backlog = load_json(_MAKING_BACKLOG_FILE, default_type=list) or []
+        kept = [b for b in backlog if isinstance(b, dict)
+                and str(b.get("topic", "")).lower() != low]
+        if len(kept) != len(backlog):
+            save_json(_MAKING_BACKLOG_FILE, kept)
+    except Exception:
+        pass
+
+
+def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> List[Dict]:
+    """P5: emit `output_producing` goals whose completion test is an ARTIFACT (P2).
+
+    Seeded from what Orrin ALREADY has — the laddering backlog (topics he just
+    learned) and recent research findings — so making is the natural next step
+    after intake, not a cold task. The artifact (a written synthesis / note with
+    novel content) is producible OFFLINE, so 'make things' can't silently collapse
+    back into empty notes in the native-LM deployment (Guard: offline-degradation).
+    """
+    topics: List[str] = []
+    try:
+        backlog = load_json(_MAKING_BACKLOG_FILE, default_type=list) or []
+        for b in reversed(backlog if isinstance(backlog, list) else []):
+            t = _strip_goal_scaffold(str((b or {}).get("topic", ""))).strip()
+            if t and _acceptable_goal_subject(t):
+                topics.append(t)
+    except Exception:
+        pass
+    if len(topics) < limit:
+        try:
+            for entry in reversed(list(long_mem or [])[-30:]):
+                content = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
+                m = _RESEARCH_FINDING_RE.search(content)
+                if m:
+                    t = _strip_goal_scaffold(m.group(1).strip())[:70].strip()
+                    if t and _acceptable_goal_subject(t):
+                        topics.append(t)
+        except Exception:
+            pass
+    seen, uniq = set(), []
+    for t in topics:
+        k = t.lower()
+        if k not in seen:
+            seen.add(k)
+            uniq.append(t)
+    out: List[Dict] = []
+    for topic in uniq[:limit]:
+        _drain_making_backlog(topic)
+        out.append(_mk_goal(
+            f"Turn what I know about {topic} into a written synthesis",
+            f"I've been learning about {topic}. Make something that didn't exist "
+            f"before: write a clear, novel synthesis of what I now understand about "
+            f"{topic} — in my own words, connecting at least two things I know — and "
+            f"deliver it as a note / write it to long memory. A real artifact, not a "
+            f"restatement of one fact.",
+            driven_by="output_producing",
+            requires_artifact=True,
+            milestones=[f"A novel synthesis about '{topic[:50]}' was produced and delivered."],
+        ))
+    return out
+
+
+def _contact_goals(context: Dict[str, Any], long_mem: list, limit: int = 1) -> List[Dict]:
+    """P5: emit `genuine_contact` goals keyed to a present/recent person. Silent
+    when no peer is around (like the other generators when their pool is empty)."""
+    ctx = context or {}
+    recent_user = bool(ctx.get("user_present_recent")) or bool(str(ctx.get("latest_user_input") or "").strip())
+    if not recent_user:
+        return []
+    out: List[Dict] = []
+    unanswered = str(ctx.get("latest_user_input") or "").strip()
+    if unanswered:
+        out.append(_mk_goal(
+            "Answer Ric's last message",
+            f"Ric said: '{unanswered[:160]}'. Give a real, useful reply — not a "
+            f"deflection — and actually send it.",
+            driven_by="genuine_contact",
+            requires_artifact=True,
+            milestones=["A genuine reply to Ric was composed and delivered."],
+        ))
+    else:
+        topic = None
+        try:
+            for entry in reversed(list(long_mem or [])[-20:]):
+                content = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
+                m = _RESEARCH_FINDING_RE.search(content)
+                if m:
+                    cand = _strip_goal_scaffold(m.group(1).strip())[:60].strip()
+                    if cand and _acceptable_goal_subject(cand):
+                        topic = cand
+                        break
+        except Exception:
+            topic = None
+        if topic:
+            out.append(_mk_goal(
+                f"Share with Ric what I learned about {topic}",
+                f"I recently looked into {topic}. Tell Ric something genuinely "
+                f"interesting about it — share a real finding, or ask him a real "
+                f"question about it — and send it.",
+                driven_by="genuine_contact",
+                requires_artifact=True,
+                milestones=[f"A message about '{topic[:40]}' was shared with Ric."],
+            ))
+    return out[:limit]
+
+
 # Research/web findings are written to long memory by look_outward as
 #   "[world_perception] From searching '<query>': <result>"   (a finding), and
 #   "[world_perception] I reached outward with a question: <query>"  (the intent).
@@ -1030,6 +1272,7 @@ def _goal_from_recent_research(long_mem: list, scan: int = 30) -> Optional[Dict]
             return _mk_goal(
                 f"Follow-up on {topic}",
                 note,
+                driven_by="world_knowledge",
                 milestones=[f"A new angle on '{topic[:50]}' was researched.",
                             "A new finding was written to long memory."],
             )
@@ -1057,6 +1300,11 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
     candidates += _causal_frontier_goals()
     candidates += _tension_goals(context)
     candidates += _autobiographical_continuity_goals()
+    # P5 — polyculture: making + contact generators so the pool can finally serve
+    # ALL FOUR aspirations, not just intake/introspection. These emit artifact-gated
+    # output_producing / genuine_contact goals (fail-able via P2).
+    candidates += _making_goals(context, long_mem)
+    candidates += _contact_goals(context, long_mem)
 
     active = _active_goal_titles()
     now = time.time()
@@ -1080,7 +1328,85 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
 
     if not pool:
         return None   # nothing real to pursue right now — originate nothing, not a template
+    # P3 — bias the pick toward starved aspirations so a 0%-progress direction
+    # ("Make things") actually gets recruited instead of losing every uniform draw
+    # to the abundant intake candidates.
+    try:
+        pressure = aspiration_pressure(context)
+        if pressure:
+            scored = [
+                (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
+                for g in pool
+            ]
+            picked = _weighted_sample(scored, 1)
+            if picked:
+                return picked[0]
+    except Exception:
+        pass
     return random.choice(pool)
+
+
+# ── P7: commitment competition (close the self-commit bypass) ──────────────────
+# generate_intrinsic_goals used to commit the FIRST goal it produced directly into
+# context["committed_goal"], so the competition/arbiter layer was moot and P1's
+# gradient + P3's pressure were evaluated AFTER the choice was already locked.
+# These helpers let the committed goal be CHOSEN among the live proposals, weighted
+# by aspiration pressure + the (rewired) usefulness drive, so an artifact-gated
+# production goal can actually win commitment over a cheap intake goal.
+
+def _proposal_commit_score(g: Dict, pressure: Dict[str, float], strengths: Dict[str, float]) -> float:
+    drive = str(g.get("driven_by") or "")
+    serves = _serves_aspiration(drive)
+    score = 1.0 + 2.0 * float(pressure.get(serves, 0.0))
+    try:
+        score += 0.1 * (float(g.get("priority", 3) or 3) / 3.0)
+    except Exception:
+        pass
+    if drive in ("output_producing", "genuine_contact"):
+        score += float(strengths.get("usefulness", 0.0)) * 0.5
+    return max(0.0, score)
+
+
+def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> Optional[Dict]:
+    cands = [g for g in (proposals or []) if isinstance(g, dict) and g.get("title")]
+    if not cands:
+        return None
+    try:
+        pressure = aspiration_pressure(context)
+    except Exception:
+        pressure = {}
+    strengths = {}
+    try:
+        from cognition.goal_competition import compute_drive_strengths
+        strengths = compute_drive_strengths(context) or {}
+    except Exception:
+        strengths = {}
+    scored = [(g, _proposal_commit_score(g, pressure, strengths)) for g in cands]
+    picked = _weighted_sample(scored, 1)
+    return picked[0] if picked else cands[0]
+
+
+def _build_committed_goal(g: Dict, gid: str) -> Dict:
+    """Build the context committed_goal dict from a proposal — crucially carrying
+    requires_artifact / deadline_cycles so P2's artifact gate + deadline survive
+    the v1 commit path (the old inline blocks dropped them)."""
+    drive = g.get("driven_by", "")
+    cg = {
+        "id": gid, "title": g["title"], "name": g["title"], "kind": "generic",
+        "tier": g.get("tier") or _classify_tier(g["title"], drive, g.get("description", "")),
+        "priority": "NORMAL",
+        "tags": ["intrinsic", g.get("driven_by", "exploration_drive"), *_zone_tags(g.get("zone", "self"))],
+        "zone": g.get("zone", "self"), "orientation": g.get("orientation", "selfward"),
+        "spec": {"description": g.get("description", ""), "driven_by": drive,
+                 "zone": g.get("zone", "self"), "orientation": g.get("orientation", "selfward")},
+        "next_action": None, "status": "in_progress",
+        "milestones": g.get("milestones", []),
+        "serves": _serves_aspiration(drive),
+    }
+    if g.get("requires_artifact"):
+        cg["requires_artifact"] = True
+        cg["deadline_cycles"] = g.get("deadline_cycles")
+    return cg
 
 
 def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
@@ -1104,6 +1430,20 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     now = time.time()
     has_goal = bool(context.get("committed_goal"))
     interval = _MIN_INTERVAL_S if has_goal else _BOOTSTRAP_INTERVAL_S
+    # P4 — habituate goal-spawning against its own track record, the way exploration
+    # already habituates. The run showed generate_intrinsic_goals learned to 0.39
+    # (below neutral) yet was still picked #1 by a mile; stretching the cooldown when
+    # its learned value is sub-neutral makes spawning stop being the free displacement
+    # activity. Only lengthens when there IS already a committed goal (never strands a
+    # cold start). Up to 3× when the action is proven empty.
+    if has_goal:
+        try:
+            _ema = load_json(DATA_DIR / "action_reward_ema.json", default_type=dict) or {}
+            _giv = float(_ema.get("generate_intrinsic_goals", 0.5) or 0.5)
+            if _giv < 0.45:
+                interval *= 1.0 + min(2.0, (0.45 - _giv) * 6.0)
+        except Exception:
+            pass
     if now - _LAST_INTRINSIC_TS < interval:
         return []
     # Don't set _LAST_INTRINSIC_TS until LLM succeeds — a transient failure shouldn't
@@ -1203,39 +1543,21 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         log_activity(f"[intrinsic_goals] Symbolic goal proposed: '{_tgoal['title']}'")
         if not context.get("committed_goal"):
             ts = datetime.now(timezone.utc).isoformat()
-            context["committed_goal"] = {
-                "id":          f"intrinsic-{ts}",
-                "title":       _tgoal["title"],
-                "name":        _tgoal["title"],
-                "kind":        "generic",
-                "tier":        _tgoal.get("tier") or _classify_tier(_tgoal["title"], _tgoal.get("driven_by", ""), _tgoal.get("description", "")),
-                "priority":    "NORMAL",
-                "tags":        ["intrinsic", _tgoal.get("driven_by", "exploration_drive"), *_zone_tags(_tgoal.get("zone", "self"))],
-                "zone":        _tgoal.get("zone", "self"),
-                "orientation": _tgoal.get("orientation", "selfward"),
-                "spec":        {
-                    "description": _tgoal.get("description", ""),
-                    "driven_by": _tgoal.get("driven_by", ""),
-                    "zone": _tgoal.get("zone", "self"),
-                    "orientation": _tgoal.get("orientation", "selfward"),
-                },
-                "next_action": None,
-                "status":      "in_progress",
-                "milestones":  _tgoal.get("milestones", []),
-                # Ladder this short-term goal to the enduring aspiration it serves.
-                "serves":      _serves_aspiration(_tgoal.get("driven_by", "")),
-            }
+            # P7 — choose the committed goal by competition among live proposals
+            # (pressure + usefulness drive), not "first generated wins".
+            _winner = _select_commit_proposal(context.get("proposed_goals"), context) or _tgoal
+            context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
             log_activity(
-                f"[intrinsic_goals] Committed goal: '{_tgoal['title']}'"
-                + (f" (serves: {_serves_aspiration(_tgoal.get('driven_by',''))})"
-                   if _serves_aspiration(_tgoal.get('driven_by','')) else "")
+                f"[intrinsic_goals] Committed goal: '{_winner['title']}'"
+                + (f" (serves: {_serves_aspiration(_winner.get('driven_by',''))})"
+                   if _serves_aspiration(_winner.get('driven_by','')) else "")
             )
             # Form an act of will around the new goal — resolve to see it through,
             # so follow-through is shielded from momentary impulse (the positive
             # half of free will, complementing inhibition).
             try:
                 from cognition.will import form_commitment as _form_commitment
-                _form_commitment(context, f"pursue: {_tgoal['title']}")
+                _form_commitment(context, f"pursue: {_winner['title']}")
             except Exception as _wce:
                 record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)
         return [_tgoal]
@@ -1408,28 +1730,10 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         # This bypasses the GoalsAPI round-trip so Orrin has a goal within the same
         # cycle rather than waiting for sync_proposed_goals → GoalsAPI → get_committed_goal.
         if not context.get("committed_goal"):
-            top = max(goals, key=lambda g: g.get("priority", 3))
-            context["committed_goal"] = {
-                "id":         f"intrinsic-{ts}",
-                "title":      top["title"],
-                "name":       top["title"],
-                "kind":       "generic",
-                "tier":       top.get("tier") or _classify_tier(top["title"], top.get("driven_by", ""), top.get("description", "")),
-                "priority":   "NORMAL",
-                "tags":       ["intrinsic", top.get("driven_by", "exploration_drive"), *_zone_tags(top.get("zone", "self"))],
-                "zone":       top.get("zone", "self"),
-                "orientation": top.get("orientation", "selfward"),
-                "spec":       {
-                    "description": top.get("description", ""),
-                    "driven_by": top.get("driven_by", ""),
-                    "zone": top.get("zone", "self"),
-                    "orientation": top.get("orientation", "selfward"),
-                },
-                "next_action": None,
-                "status":     "in_progress",
-                "milestones": top.get("milestones", []),
-                "serves":     _serves_aspiration(top.get("driven_by", "")),
-            }
-            log_activity(f"[intrinsic_goals] Committed goal: '{top['title']}'")
+            # P7 — competition among live proposals, not highest-priority-first.
+            _winner = _select_commit_proposal(context.get("proposed_goals"), context) \
+                or max(goals, key=lambda g: g.get("priority", 3))
+            context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
+            log_activity(f"[intrinsic_goals] Committed goal: '{_winner['title']}'")
 
     return goals

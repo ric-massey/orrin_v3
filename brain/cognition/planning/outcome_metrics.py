@@ -49,6 +49,7 @@ def _new_session() -> Dict[str, Any]:
         "satiety_closures":      0,
         "abandonment_closures":  0,
         "maintenance_executions": 0,
+        "store_desyncs_repaired": 0,
         # Lists for averaging
         "significances":         [],
         "seconds_to_complete":   [],
@@ -115,6 +116,16 @@ def record_maintenance_execution(n: int = 1) -> None:
         _session["maintenance_executions"] += int(n)
 
 
+def record_store_desync_repair(n: int = 1) -> None:
+    """P6 — count goal-store desync repairs (resurrection / orphan-RUNNING /
+    double-home drift) made by reconcile_goal_stores. A counter that stays >0 cycle
+    after cycle means a real desync source remains and the v1↔v2 unification (§4c)
+    is no longer deferrable."""
+    _reset_session_if_new_day()
+    with _lock:
+        _session["store_desyncs_repaired"] += int(n)
+
+
 def record_goal_population(active_goals: int, average_goal_age: float) -> None:
     _reset_session_if_new_day()
     with _lock:
@@ -144,6 +155,7 @@ def _compute_snapshot() -> Dict:
         satiety     = _session["satiety_closures"]
         abandonment = _session["abandonment_closures"]
         maint       = _session["maintenance_executions"]
+        desyncs     = _session["store_desyncs_repaired"]
         sigs        = list(_session["significances"])
         secs        = list(_session["seconds_to_complete"])
         active      = _session["active_goals"]
@@ -167,6 +179,7 @@ def _compute_snapshot() -> Dict:
         "satiety_closures":           satiety,
         "abandonment_closures":       abandonment,
         "maintenance_selections":     maint,
+        "store_desyncs_repaired":     desyncs,
         "mean_significance":          mean_significance,
         "median_seconds_to_complete": median_seconds,
         "completion_rate":            completion_rate,
@@ -203,7 +216,7 @@ def flush() -> Dict:
 
 _SUMMED = (
     "goals_completed", "goals_failed", "goals_retired", "satiety_closures",
-    "abandonment_closures", "maintenance_selections",
+    "abandonment_closures", "maintenance_selections", "store_desyncs_repaired",
 )
 _LATEST = (
     "active_goals", "average_goal_age", "mean_significance",

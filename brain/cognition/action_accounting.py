@@ -28,6 +28,16 @@ def mark_consequential_cognition(
     if produced and context.get("committed_goal"):
         context["_consequential_cognition_this_cycle"] = True
         context["__acted_this_tick__"] = True
+        # P1 reward split: tag the credit KIND so finalize can pay production more
+        # than intake. A cycle only counts as production when a durable external
+        # effect was actually recorded (effect_ledger returned a non-dedupe row);
+        # consequential cognition (info-gain, milestone tick, env touch) is intake.
+        # We do NOT stop crediting info-gain as progress — the phantom-action-debt
+        # fix stays intact; we only stop paying it the *production* rate.
+        if context.get("_production_effect_this_cycle"):
+            context["_action_kind"] = "production"
+        else:
+            context["_action_kind"] = "intake"
     return bool(produced)
 
 
@@ -48,3 +58,9 @@ def reset_cycle_action_flags(context: Dict[str, Any]) -> None:
     context.pop("_consequential_cognition_this_cycle", None)
     context.pop("_last_reach_outcome", None)
     context.pop("_reward_rate_updated_this_cycle", None)
+    # P1 reward-split per-cycle flags (set by the effect ledger wire-ins and read
+    # by finalize's three-tier reward); must not leak across cycles.
+    context.pop("_production_effect_this_cycle", None)
+    context.pop("_effect_rows_this_cycle", None)
+    context.pop("_action_kind", None)
+    context.pop("_verified_artifact_this_cycle", None)

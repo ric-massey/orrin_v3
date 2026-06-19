@@ -50,11 +50,21 @@ while true; do
         echo "[run] clean exit — not restarting." | tee -a "$LOG"
         break
     fi
-    # 130 = SIGINT (Ctrl-C / kill -2), 143 = SIGTERM (kill). An intentional stop is
-    # not a crash: don't resurrect him. main.py now turns these into a graceful
-    # exit 0, but if one ever escapes ungracefully we still must not auto-restart.
-    if [ $EXIT_CODE -eq 130 ] || [ $EXIT_CODE -eq 143 ]; then
+    # 130 = SIGINT (Ctrl-C / kill -2), 143 = SIGTERM (kill), 137 = SIGKILL (kill -9).
+    # An intentional stop is not a crash: don't resurrect him. main.py turns the
+    # catchable ones into a graceful exit 0, but a SIGKILL can't be trapped — the
+    # child just dies with 137, and auto-respawning it re-creates the very second
+    # process the single-instance lock exists to prevent (the corruption cascade in
+    # final_audit_and_shutdown.md). Treat all three as intentional.
+    if [ $EXIT_CODE -eq 130 ] || [ $EXIT_CODE -eq 143 ] || [ $EXIT_CODE -eq 137 ]; then
         echo "[run] stopped by signal (exit $EXIT_CODE) — intentional, not restarting." | tee -a "$LOG"
+        break
+    fi
+    # 3 = single-instance lock refused (another Orrin already holds brain/data).
+    # Restarting can never succeed while the holder lives — it would busy-respawn
+    # forever — so stop and let the user deal with the running instance.
+    if [ $EXIT_CODE -eq 3 ]; then
+        echo "[run] another Orrin already holds the data lock (exit 3) — not restarting." | tee -a "$LOG"
         break
     fi
     echo "[run] crashed (exit $EXIT_CODE) — restarting in 10s…" | tee -a "$LOG"

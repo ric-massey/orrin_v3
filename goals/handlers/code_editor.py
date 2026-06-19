@@ -72,12 +72,12 @@ def execute(goal, ctx) -> bool:
 
     # Require git so we can branch + revert cleanly
     if not _git_available(repo_root):
-        ctx_note = f"[code-edit] git not found; cannot safely modify code"
+        ctx_note = "[code-edit] git not found; cannot safely modify code"
         setattr(goal, "notes", (getattr(goal, "notes", "") or "") + "\n" + ctx_note)
         return False
 
     if not _ensure_clean(repo_root):
-        ctx_note = f"[code-edit] working tree not clean; commit/stash first"
+        ctx_note = "[code-edit] working tree not clean; commit/stash first"
         setattr(goal, "notes", (getattr(goal, "notes", "") or "") + "\n" + ctx_note)
         return False
 

@@ -3,7 +3,7 @@ from core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Tuple
-from utils.json_utils import load_json, save_json, modify_json, AbortModify
+from utils.json_utils import load_json, modify_json, AbortModify
 from utils.emotion_utils import detect_affect_keyword
 from utils.log import log_error, log_private
 from paths import RELATIONSHIPS_FILE

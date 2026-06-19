@@ -4,6 +4,20 @@
 # brain's `paths` module — it is what keeps the whole suite out of the live
 # brain/data state (DATA_FILE_AUDIT 2026-06-11 §1: unisolated tests overwrote
 # real learned state, e.g. action_reward_ema.json, and pruned live memories).
+#
+# Expected test environment (CODEBASE_CLEANUP_PLAN Phase 0 — hermeticity):
+# the suite controls every variable that would otherwise leak from a developer
+# or CI shell. The state-redirect + isolation vars are SET here for the whole
+# session:
+#   ORRIN_DATA_DIR / ORRIN_LOGS_DIR / ORRIN_THINK_DIR / ORRIN_STATE_DIR
+#       → per-session tmp dirs (never the live brain/data tree)
+#   ORRIN_KEYRING=0      → in-memory secrets, never the real OS keychain
+#   PYSTRAY_BACKEND=dummy → headless tray backend (no display needed)
+# Embedding backend vars (PYTEST_FORCE_HASH_EMBEDDING, MEMORY_IMG_BACKEND,
+# MEMORY_TEXT_FORCE_HASH, MEMORY_IMG_HASH_DIM, …) are NOT set globally; the
+# embedder tests clear and re-set exactly what they need per case (see
+# tests/memory/embedder_test.py::_reload_embedder), so an inherited shell value
+# cannot change the backend out from under them. Run the suite via `make test`.
 import os
 import sys
 import tempfile
@@ -27,6 +41,11 @@ os.environ["ORRIN_STATE_DIR"] = str(_SESSION_STATE / "state")
 # Never touch the developer's real OS keychain from the test suite — force the
 # in-memory secrets backend (utils.secrets) for the whole session.
 os.environ["ORRIN_KEYRING"] = "0"
+# Force pystray's headless 'dummy' backend so `import pystray` in the tray tests
+# (test_tray_fallback) never tries to open a real display. On headless CI the
+# auto-selected Xorg backend raises Xlib DisplayNameError at import time; the
+# tray tests only assert the best-effort fallback contract, not live GUI.
+os.environ.setdefault("PYSTRAY_BACKEND", "dummy")
 
 if "paths" in sys.modules:  # pragma: no cover — defensive
     raise RuntimeError(

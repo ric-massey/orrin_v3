@@ -12,7 +12,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Iterable
 
 _PATH = Path(__file__).resolve().parents[2] / "data" / "language" / "tokenizer.json"
 _VOCAB_SIZE = 8192

@@ -6,7 +6,6 @@ Runs under conftest's ORRIN_DATA_DIR isolation.
 """
 import sys
 
-import pytest
 
 from utils import runtime_python as rp
 from utils import model_assets as ma

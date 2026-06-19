@@ -11,6 +11,7 @@
 from core.runtime_log import get_logger
 from datetime import datetime, timezone
 from statistics import mean
+from typing import Dict
 
 from utils.json_utils import load_json, save_json
 from affect.affect import get_all_affect_names, detect_affect, deliver_affect_based_rewards
@@ -221,24 +222,42 @@ def update_affect_state(context=None, trigger=None):
     state["_ne_proxy"] = round(_ne_proxy, 3)
 
     # === stress_load allostatic load — sustained stress degrades executive function ===
-    # Chronic stress_load impairs PFC working memory and motivation (McEwen 2007; Arnsten 2009).
-    # Body_sense tracks consecutive stressed readings; after 20 cycles the load starts.
+    # Chronic allostatic load impairs PFC working memory and motivation (McEwen 2007;
+    # Arnsten 2009). Two sources feed the SAME load term (we never run two parallel taxes):
+    #   1. physical stress streak  — consecutive stressed body readings (body_sense).
+    #   2. affective fatigue       — a high `resource_deficit` (the felt empty tank).
+    # Load = max(stress_streak_load, resource_deficit_load), so whichever is more depleting
+    # drives the gentle motivation/risk pull. This closes the half of the allostatic loop the
+    # streak path missed: Orrin can no longer be mathematically exhausted yet "manically
+    # content" — a depleted tank now lowers the effective capacity ceiling.
     try:
         _bs            = (context or {}).get("body_sense") or {}
         _stress_streak = int(_bs.get("_stress_streak", 0) or 0)
-        if _stress_streak >= 20:
-            _stress_load_load = min(1.0, (_stress_streak - 20) / 200.0)
+
+        # (1) physical: streak-driven load (unchanged behaviour — starts after 20 cycles).
+        _streak_load = min(1.0, (_stress_streak - 20) / 200.0) if _stress_streak >= 20 else 0.0
+
+        # (2) affective: fatigue-driven load once resource_deficit crosses the fatigue line.
+        # rd_load = (resource_deficit − 0.55) / 0.45, clamped to [0, 1]. Uses the live felt
+        # deficit (the resource_deficit block below refreshes it; this reads the standing value).
+        _rd        = float(state.get("resource_deficit", 0.0) or 0.0)
+        _rd_thresh = 0.55
+        _rd_load   = max(0.0, min(1.0, (_rd - _rd_thresh) / 0.45)) if _rd > _rd_thresh else 0.0
+
+        _load = max(_streak_load, _rd_load)
+        if _load > 0.0:
             if "motivation" in core:
                 _floor = max(0.0, baseline.get("motivation", 0.5) * 0.5)
                 core["motivation"] = max(
                     _floor,
-                    float(core["motivation"]) - _stress_load_load * 0.008
+                    float(core["motivation"]) - _load * 0.008
                 )
             if "risk_estimate" in core:
                 core["risk_estimate"] = min(0.75,
-                    float(core.get("risk_estimate", 0.0)) + _stress_load_load * 0.004
+                    float(core.get("risk_estimate", 0.0)) + _load * 0.004
                 )
-            if _stress_streak == 20 or _stress_streak % 50 == 0:
+            # Surface the streak source on its existing cadence …
+            if _streak_load > 0.0 and (_stress_streak == 20 or _stress_streak % 50 == 0):
                 update_working_memory({
                     "content": (
                         f"[allostatic_load] Sustained stress for {_stress_streak} cycles. "
@@ -248,6 +267,22 @@ def update_affect_state(context=None, trigger=None):
                     "importance": 3,
                     "timestamp": now.isoformat(),
                 })
+            # … and the fatigue source once, on the upward crossing of the fatigue line.
+            _rd_noted = bool(state.get("_rd_fatigue_noted", False))
+            if _rd_load > 0.0 and not _rd_noted:
+                update_working_memory({
+                    "content": (
+                        "[allostatic_load] I'm running on empty — drive is harder to "
+                        f"summon (resource_deficit {_rd:.2f})."
+                    ),
+                    "event_type": "body_pattern",
+                    "importance": 3,
+                    "timestamp": now.isoformat(),
+                })
+                state["_rd_fatigue_noted"] = True
+        # Reset the one-shot fatigue note once recovered below the line (small hysteresis).
+        if _rd <= _rd_thresh - 0.05 and state.get("_rd_fatigue_noted"):
+            state["_rd_fatigue_noted"] = False
     except Exception as _e:
         log_activity(f"[update_affect_state] stress_load allostatic load failed: {_e}")
 

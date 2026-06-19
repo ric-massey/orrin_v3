@@ -187,6 +187,16 @@ def _fade_regular_goals(now_ts: float) -> None:
         nonlocal changed, dormant_transitions
         if goal.get("never_complete"):
             return
+        # P2 — artifact-gated production goals must FAIL loudly at their deadline,
+        # not fade quietly into dormancy. Excluding them from the fade path keeps
+        # the felt-cost channel honest: "Make things" can't escape into a soft
+        # abandonment closure; it either produces or it is failed.
+        if goal.get("requires_artifact") or \
+                str(goal.get("driven_by") or "").lower() == "output_producing":
+            for sub in (goal.get("subgoals") or []):
+                if isinstance(sub, dict):
+                    _fade_node(sub)
+            return
         status = goal.get("status", "pending")
         if status in ("completed", "abandoned", "dormant"):
             return

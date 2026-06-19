@@ -12,7 +12,6 @@
 # path fires SIGINT into the test process. We only assert the rejection path.
 from __future__ import annotations
 
-import pytest
 
 from fastapi.testclient import TestClient
 

@@ -185,6 +185,6 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     )
 
     log_activity(f"[search_own_files] '{query}' → {count} matches")
-    log_private(f"[search_own_files] raw: " + "; ".join(f"{m['file']}:{m['line']}" for m in matches[:5]))
+    log_private("[search_own_files] raw: " + "; ".join(f"{m['file']}:{m['line']}" for m in matches[:5]))
     _record_habituation(summary, context)
     return summary

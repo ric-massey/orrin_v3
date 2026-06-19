@@ -1,7 +1,20 @@
 # Allostatic Capacity Tax — wiring fatigue into emotional capacity
 
-**Status:** design note (not yet built). Companion to the flatline fix shipped
+**Status:** ✅ BUILT 2026-06-19. Companion to the flatline fix shipped
 2026-06-17 (pump-saturation ceiling enforcement + stuck-high stagnation watchdog).
+
+> **Built 2026-06-19 (Claude Code).** Implemented exactly as designed below — the
+> *existing* `stress_load` block in `brain/affect/update_affect_state.py` (no second
+> parallel system) now drives its gentle motivation/risk pull from
+> `load = max(stress_streak_load, resource_deficit_load)`, where
+> `rd_load = clamp01((resource_deficit − 0.55) / 0.45)`. The same `baseline*0.5`
+> motivation floor applies (gentle, floored — not a depression spiral), and a one-shot
+> working-memory note ("I'm running on empty — drive is harder to summon") surfaces on
+> the upward crossing of the 0.55 fatigue line, mirroring the existing `[allostatic_load]`
+> note and resetting with a small hysteresis once recovered below 0.50. Regressions:
+> `tests/brain/test_affect_fatigue_tax.py` (tax lowers motivation under a depleted tank,
+> stays above the floor under max fatigue, note fires exactly once per crossing, no-op
+> below the line). Existing affect invariants/single-writer/sleep-phase tests still pass.
 
 ## The gap
 

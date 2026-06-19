@@ -1,5 +1,5 @@
 # Canonical affect observers + schema normalization (V3 D6/D9).
-from affect.observers import negative_load, normalize_affect_state, core_of, NEGATIVE_SIGNALS
+from affect.observers import negative_load, normalize_affect_state
 
 
 def test_negative_load_sums_negative_signals_nested():

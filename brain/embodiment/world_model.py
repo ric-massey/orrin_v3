@@ -515,7 +515,7 @@ class WorldModel:
                 importance=2,
                 context=context,
             )
-            log_private(f"[world_model] wrote environment snapshot to long memory")
+            log_private("[world_model] wrote environment snapshot to long memory")
         except Exception as e:
             log_error(f"[world_model] long_memory write failed: {e}")
 

@@ -96,6 +96,14 @@ brain/data/*.json
 .predegrade_backups/
 tmp/
 
+# Generated dev artifacts (regenerated on demand; were tracked by mistake).
+repo_tree.txt
+trace.jsonl
+tunnel_url.txt
+
+# Mutable runtime state written by self_reflection (seeded empty, not source).
+brain/prompts_backup.json
+
 # Runtime outbox + logs + temp artifacts
 outbox/*.json
 brain/logs/

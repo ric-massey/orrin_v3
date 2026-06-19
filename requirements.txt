@@ -1,36 +1,43 @@
-# requirements.txt
+# requirements.txt — GENERATED MIRROR of pyproject.toml's `all` extra.
+#
+# pyproject.toml is the single source of truth (CODEBASE_CLEANUP_PLAN Phase 2).
+# Do NOT hand-edit: change the dependency groups in pyproject.toml, then mirror
+# the direct deps here. With pip-tools or uv installed, regenerate a fully
+# pinned lock instead with:
+#
+#   uv pip compile pyproject.toml --all-extras -o requirements.txt
+#
+# This file lists DIRECT dependencies only (preserving the previous format), so
+# `pip install -r requirements.txt` reproduces the full product runtime — the
+# same set as `pip install ".[all]"`. For a leaner install, use the extras:
+#   pip install -e ".[backend,dev]"          # API + tests, no ML/desktop
+#   pip install -e ".[backend,embedding]"    # API + real embeddings
 
-prometheus_client
-numpy
-requests
-beautifulsoup4
-sentence-transformers
-
+# ── core runtime (brain loop + memory/goals daemons) ──
+prometheus_client>=0.20
+numpy>=1.26
+requests>=2.31
+beautifulsoup4>=4.12
 watchdog==6.0.0
-openai>=1.40.0
 python-dotenv>=1.0.1
 psutil>=5.9
 
-# knowledge-graph entity extraction (optional — regex fallback if absent).
-# After install: python -m spacy download en_core_web_sm
-spacy>=3.7
+# ── backend (telemetry/control API + websocket) ──
+fastapi>=0.111
+uvicorn[standard]>=0.30
 
-# Native desktop window (no browser tab, no npm at runtime). Uses the OS webview
-# (WKWebView / WebView2 / WebKitGTK). Falls back to a browser tab if unavailable.
+# ── desktop (native window, tray, OS keychain) ──
 pywebview>=5.0
-
-# Status-bar / menu-bar tray for Always-thinking mode (F1): re-show or quit while the
-# window is closed and the brain keeps running. Best-effort — a missing/failed tray
-# falls back to headless-on-close, so it never traps the user. Pillow draws the icon.
 pystray>=0.19
 Pillow>=10.0
-
-# API keys live in the OS keychain (Keychain / Credential Manager / libsecret),
-# never a plaintext .env in the bundle. Falls back to in-memory if no backend.
 keyring>=24.0
 
-# Optional pluggable LLM providers (Part 11) — imported lazily, only when the user
-# selects that provider in Settings. The brain stays symbolic-first without them, and
-# Local/Custom OpenAI-compatible endpoints reuse the `openai` client (no extra dep).
+# ── embedding / nlp (heavyweight; deterministic hash / regex fallbacks if absent) ──
+# After install (optional): python -m spacy download en_core_web_sm
+sentence-transformers>=2.7
+spacy>=3.7
+
+# ── LLM providers (openai default + Local/Custom endpoints; others lazy) ──
+openai>=1.40.0
 anthropic>=0.40.0
 google-genai>=0.3.0

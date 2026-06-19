@@ -1,484 +1,235 @@
-# goals/goals_daemon.py
-# Orchestrates the Goals subsystem: planning NEW goals, scheduling READY steps, and running them via a worker pool
+# tests/goals_test/test_daemon.py
+# Direct tests for the PRODUCTION goals.goals_daemon.GoalsDaemon.
+#
+# History: this file previously held a ~480-line *copy* of an old goals_daemon
+# (its own GoalsDaemon class + duck-typed helpers) and ZERO test functions — so
+# it exercised nothing and silently drifted from the real daemon
+# (ENGINEERING_STRUCTURE_AUDIT 2026-06-18 §3: "Tests can pass against the test
+# implementation while production is broken"). It now imports the production
+# daemon and drives one scheduling pulse synchronously (no worker threads),
+# covering the behaviours the audit called out: NEW→READY planning,
+# no-handler→FAILED, READY-step gathering with is_blocked, policy-driven step
+# selection, and the FIFO fallback when policy yields nothing.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from pathlib import Path
+from typing import List, Optional, Tuple
 
-import os
-import threading
-import queue
-from dataclasses import replace
-from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+import pytest
 
-from goals.model import Goal, Step, Status
-from goals.handlers.base import GoalHandler, HandlerContext
-from goals import runner as runner_mod
-_log = get_logger(__name__)
+from goals.goals_daemon import GoalsDaemon
+from goals.registry import GoalRegistry
+from goals.store import FileGoalsStore
+from goals.handlers.base import BaseGoalHandler, HandlerContext
+from goals.model import Goal, Step, Status, Priority
 
-UTCNOW = lambda: datetime.now(timezone.utc)
-DEBUG_ON = os.getenv("GOALS_DEBUG", "").strip() not in {"", "0", "false", "False"}
 
+# ── Test doubles ─────────────────────────────────────────────────────────────
 
-def _dbg(*a, **k):
-    if DEBUG_ON:
-        try:
-            print("[GoalsDaemon]", *a, **k)
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
+class _PlanningHandler(BaseGoalHandler):
+    """Plans a fixed number of READY steps; can also report the goal blocked."""
+    kind = "dummy"
 
+    def __init__(self, n_steps: int = 1, blocked: bool = False):
+        self._n = n_steps
+        self._blocked = blocked
 
-# ---------------- duck-typed store helpers ----------------
+    def plan(self, goal: Goal, ctx: HandlerContext) -> List[Step]:
+        return [
+            Step(id=f"{goal.id}-s{i}", goal_id=goal.id, name=f"step{i}",
+                 action={"op": "noop"}, status=Status.READY)
+            for i in range(self._n)
+        ]
 
-def _safe_getattr(obj: Any, name: str, default: Any = None) -> Any:
-    return getattr(obj, name, default) if obj is not None else default
+    def is_blocked(self, goal: Goal, ctx: HandlerContext) -> Tuple[bool, Optional[str]]:
+        return (self._blocked, "blocked-by-test" if self._blocked else None)
 
-
-def _iter_goals(store: Any) -> Iterable[Goal]:
-    if hasattr(store, "iter_goals"):
-        return store.iter_goals()
-    if hasattr(store, "list_goals"):
-        return store.list_goals()
-    if hasattr(store, "all"):
-        return store.all()
-    raise AttributeError("GoalsDaemon: store must expose iter_goals/list_goals/all()")
-
-
-def _get_goal(store: Any, goal_id: str) -> Optional[Goal]:
-    for g in _iter_goals(store):
-        if g.id == goal_id:
-            return g
-    return None
-
-
-def _upsert_goal(store: Any, goal: Goal) -> None:
-    if hasattr(store, "upsert_goal"):
-        store.upsert_goal(goal); return
-    if hasattr(store, "save_goal"):
-        store.save_goal(goal); return
-    if hasattr(store, "update_goal"):
-        store.update_goal(goal); return
-    raise AttributeError("GoalsDaemon: store must expose upsert_goal/save_goal/update_goal()")
-
-
-def _add_steps(store: Any, steps: List[Step]) -> None:
-    if not steps:
-        return
-    if hasattr(store, "add_steps"):
-        store.add_steps(steps); return
-    if hasattr(store, "upsert_step"):
-        for s in steps:
-            store.upsert_step(s)
-        return
-    if hasattr(store, "save_step"):
-        for s in steps:
-            store.save_step(s)
-        return
-    raise AttributeError("GoalsDaemon: store must support add_steps/upsert_step/save_step")
-
-
-def _list_steps(store: Any, goal_id: Optional[str] = None, statuses: Optional[Iterable[Status]] = None) -> List[Step]:
-    # Duck-typed set of store APIs
-    if hasattr(store, "steps_for"):
-        return store.steps_for(goal_id, statuses=statuses)  # type: ignore[arg-type]
-    if hasattr(store, "iter_steps"):
-        out: List[Step] = []
-        for s in store.iter_steps():
-            if goal_id and s.goal_id != goal_id:
-                continue
-            if statuses and s.status not in set(statuses):
-                continue
-            out.append(s)
-        return out
-    if hasattr(store, "list_steps"):
-        return store.list_steps(goal_id=goal_id, statuses=statuses)
-    # If no step API is available yet, return empty to let you wire it later.
-    return []
-
-
-def _deps_satisfied(step: Step, store: Any) -> bool:
-    if not step.deps:
-        return True
-    # If store exposes get_step, check real statuses; otherwise assume satisfied.
-    if hasattr(store, "get_step"):
-        for dep_id in step.deps:
-            dep = store.get_step(dep_id)
-            if not dep or dep.status != Status.DONE:
-                return False
-        return True
-    return True
-
-
-# ---------------- GoalsDaemon ----------------
-
-class GoalsDaemon:
-    """
-    Runs in parallel to Orrin's main loop:
-      - plans NEW goals by calling the appropriate handler.plan()
-      - schedules READY steps fairly (≤1 per goal per pulse) up to runner capacity
-      - executes steps on a worker pool via runner.StepRunner
-    """
-
-    def __init__(
-        self,
-        store: Any,
-        registry: Any,
-        *,
-        workers: int = 3,
-        tick_seconds: float = 0.5,
-        ctx: Optional[HandlerContext] = None,
-        reaper_sink: Optional[Any] = None,
-        memory_writer: Optional[Any] = None,
-    ) -> None:
-        self.store = store
-        self.registry = registry
-        self.tick_seconds = tick_seconds
-        self.ctx: HandlerContext = dict(ctx or {})
-        self.reaper_sink = reaper_sink
-        self.memory_writer = memory_writer
-
-        # Internal coordination
-        self._stop = threading.Event()
-        self._wake = threading.Event()
-        self._thread: Optional[threading.Thread] = None
-
-        # Step queue + runner
-        self._step_q: "queue.Queue[Step]" = queue.Queue()
-        self._runner = runner_mod.StepRunner(
-            store=self.store,
-            registry=self.registry,
-            step_queue=self._step_q,
-            workers=workers,
-            ctx=self.ctx,
-            reaper_sink=self._emit_event,
-        )
-
-        # Health
-        self._last_pulse_at: Optional[datetime] = None
-        self._last_error: Optional[str] = None
-
-    # ---------------- Lifecycle ----------------
-
-    def start(self) -> None:
-        """Start scheduler and worker pool."""
-        _dbg("start() → starting StepRunner and scheduler thread")
-        self._runner.start()
-        self._thread = threading.Thread(target=self._loop, name="GoalsDaemon", daemon=True)
-        self._thread.start()
-        # Wake immediately for a first pulse (helps tests)
-        self._wake.set()
-        self._emit_event({"kind": "GoalsDaemonStarted", "ts": UTCNOW().isoformat()})
-
-    def stop(self) -> None:
-        """Signal shutdown (graceful)."""
-        _dbg("stop() → signaling shutdown")
-        self._stop.set()
-        self._wake.set()
-        try:
-            self._runner.stop()
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-        self._emit_event({"kind": "GoalsDaemonStopping", "ts": UTCNOW().isoformat()})
-
-    def join(self, timeout: Optional[float] = None) -> None:
-        """Wait for scheduler (and runner) to stop."""
-        if self._thread:
-            self._thread.join(timeout=timeout)
-        try:
-            self._runner.join(timeout=timeout)
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-
-    def submit(self, goal_id: str) -> None:
-        """
-        External nudge: mark a goal for prompt consideration.
-        We simply wake the scheduler; the next tick will re-evaluate.
-        """
-        _dbg("submit() → wake scheduler for goal", goal_id)
-        self._wake.set()
-
-    # ---------------- Introspection ----------------
-
-    def health(self) -> Dict[str, Any]:
-        return {
-            "last_pulse_at": self._last_pulse_at.isoformat() if self._last_pulse_at else None,
-            "last_error": self._last_error,
-            "queue_size": self._step_q.qsize(),
-            "workers_active": _safe_getattr(self._runner, "active_workers", 0),
-        }
-
-    # ---------------- Internal loop ----------------
-
-    def _loop(self) -> None:
-        while not self._stop.is_set():
-            try:
-                self._pulse()
-                self._last_error = None
-            except Exception as e:
-                self._last_error = f"{type(e).__name__}: {e}"
-                self._emit_event({"kind": "GoalsDaemonError", "ts": UTCNOW().isoformat(), "error": self._last_error})
-                _dbg("pulse error:", self._last_error)
-            finally:
-                self._last_pulse_at = UTCNOW()
-
-            # Sleep or wake early if submit() was called
-            self._wake.wait(timeout=self.tick_seconds)
-            self._wake.clear()
-
-        # StepRunner.stop() handles worker shutdown.
-
-    # One scheduling pulse
-    def _pulse(self) -> None:
-        # 1) Plan NEW goals
-        planned = self._plan_new_goals()
-        if planned:
-            _dbg("planned NEW goals")
-
-        # 2) Gather candidate steps from READY goals
-        candidates: List[Tuple[Goal, Step]] = self._gather_ready_steps()
-        _dbg("candidates:", [(g.id, s.id, s.status.name) for g, s in candidates])
-
-        # 3) Determine capacity (be defensive)
-        cap = None
-        try:
-            if hasattr(self._runner, "capacity_left"):
-                cap = int(self._runner.capacity_left())
-        except Exception:
-            cap = None
-
-        if not isinstance(cap, int) or cap <= 0:
-            cap = 1 if candidates else 0
-        _dbg("capacity:", cap)
-
-        # 4) Fair pick: at most one step per goal, up to capacity
-        chosen: List[Step] = []
-        if cap > 0:
-            seen_goals: set[str] = set()
-            for g, s in candidates:
-                if len(chosen) >= cap:
-                    break
-                if g.id in seen_goals:
-                    continue
-                chosen.append(s)
-                seen_goals.add(g.id)
-
-        _dbg("chosen:", [s.id for s in chosen])
-
-        # 5) Enqueue selected steps
-        for step in chosen:
-            self._enqueue_step(step)
-        if chosen:
-            _dbg("enqueued:", [s.id for s in chosen], "qsize=", self._step_q.qsize())
-
-        # 6) Finalize goals whose steps reached terminal states
-        #    (Run this even if there were NO candidates; needed for zero-step goals)
-        self._finalize_goals()
-
-    def _plan_new_goals(self) -> bool:
-        """Find NEW goals, call handler.plan(), persist steps, and mark them READY."""
-        planned_any = False
-        for g in list(_iter_goals(self.store)):
-            if g.status != Status.NEW:
-                continue
-            handler = self._get_handler(g)
-            if handler is None:
-                ng = replace(g, status=Status.FAILED, last_error=f"no handler for kind '{g.kind}'", updated_at=UTCNOW())
-                _upsert_goal(self.store, ng)
-                self._emit_goal_event("GoalFailed", ng, extra={"reason": "no_handler"})
-                _dbg("plan: no handler for", g.id)
-                continue
-
-            try:
-                steps = handler.plan(g, self._handler_ctx(g))
-            except Exception as e:
-                ng = replace(g, status=Status.FAILED, last_error=f"plan error: {type(e).__name__}: {e}", updated_at=UTCNOW())
-                _upsert_goal(self.store, ng)
-                self._emit_goal_event("GoalFailed", ng, extra={"reason": "plan_error"})
-                _dbg("plan: handler error for", g.id, "→", e)
-                continue
-
-            try:
-                _add_steps(self.store, steps or [])
-                ng = replace(g, status=Status.READY, updated_at=UTCNOW())
-                _upsert_goal(self.store, ng)
-                self._emit_goal_event("GoalPlanned", ng, extra={"steps": len(steps or [])})
-                planned_any = True
-                _dbg("plan: goal", g.id, "→ READY with", len(steps or []), "steps")
-            except Exception as e:
-                ng = replace(g, status=Status.FAILED, last_error=f"persist steps error: {type(e).__name__}: {e}", updated_at=UTCNOW())
-                _upsert_goal(self.store, ng)
-                self._emit_goal_event("GoalFailed", ng, extra={"reason": "persist_steps_error"})
-                _dbg("plan: persist error for", g.id, "→", e)
-                continue
-        return planned_any
-
-    def _gather_ready_steps(self) -> List[Tuple[Goal, Step]]:
-        """Collect (goal, step) pairs that are READY and dependency-satisfied."""
-        out: List[Tuple[Goal, Step]] = []
-        for g in list(_iter_goals(self.store)):  # list() to avoid mutating during iteration
-            if g.status not in {Status.READY, Status.RUNNING, Status.WAITING, Status.BLOCKED}:
-                continue
-
-            # Goal-level block check
-            handler = self._get_handler(g)
-            if handler:
-                blocked, reason = False, None
-                try:
-                    pending = _list_steps(self.store, goal_id=g.id, statuses=[Status.READY, Status.RUNNING, Status.WAITING])
-                    self.ctx["pending_steps"] = pending
-                    blocked, reason = handler.is_blocked(g, self._handler_ctx(g))
-                except Exception as e:
-                    blocked, reason = True, f"is_blocked error: {type(e).__name__}: {e}"
-
-                if blocked:
-                    if g.status != Status.BLOCKED:
-                        ng = replace(g, status=Status.BLOCKED, updated_at=UTCNOW(), last_error=reason)
-                        _upsert_goal(self.store, ng)
-                        self._emit_goal_event("GoalBlocked", ng, extra={"reason": reason})
-                        _dbg("blocked:", g.id, "reason:", reason)
-                    continue
-                else:
-                    if g.status == Status.BLOCKED:
-                        ng = replace(g, status=Status.READY, updated_at=UTCNOW(), last_error=None)
-                        _upsert_goal(self.store, ng)
-                        self._emit_goal_event("GoalUnblocked", ng, extra={})
-                        _dbg("unblocked:", g.id)
-
-            # Step-level candidates
-            ready_steps = _list_steps(self.store, goal_id=g.id, statuses=[Status.READY])
-            for s in ready_steps:
-                if _deps_satisfied(s, self.store):
-                    out.append((g, s))
-
-        return out
-
-    def _enqueue_step(self, step: Step) -> None:
-        """
-        Submit a step to the runner. Prefer a direct submit() method if available;
-        otherwise put into the shared queue for runners that poll a queue.
-        """
-        submit = _safe_getattr(self._runner, "submit", None)
-        if callable(submit):
-            try:
-                submit(step)
-                return
-            except Exception as _e:
-                _log.warning("silent except: %s", _e)
-        # Fallback: use the queue
-        try:
-            self._step_q.put_nowait(step)
-        except queue.Full:
-            self._step_q.put(step)
-
-    def _finalize_goals(self) -> None:
-        """
-        Flip goals to DONE or FAILED when all their steps are terminal.
-        This keeps progress moving even if the runner doesn't directly update goals.
-        """
-        for g in list(_iter_goals(self.store)):
-            if g.status in {Status.DONE, Status.FAILED, Status.CANCELLED}:
-                continue
-            steps = _list_steps(self.store, goal_id=g.id)
-            if not steps:
-                # No steps → if READY/RUNNING/WATING and handler had nothing, mark DONE (noop)
-                if g.status in {Status.READY, Status.RUNNING, Status.WAITING}:
-                    ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
-                    _upsert_goal(self.store, ng)
-                    self._emit_goal_event("GoalFinished", ng, extra={"reason": "no_steps"})
-                    _dbg("finalize:", g.id, "→ DONE (no steps)")
-                continue
-
-            any_running = any(s.status == Status.RUNNING for s in steps)
-            any_ready = any(s.status == Status.READY for s in steps)
-            any_waiting = any(s.status == Status.WAITING for s in steps)
-            all_done = steps and all(s.status == Status.DONE for s in steps)
-            any_failed = any(s.status == Status.FAILED for s in steps)
-
-            if all_done:
-                if g.status != Status.DONE:
-                    ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
-                    _upsert_goal(self.store, ng)
-                    self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
-                    _dbg("finalize:", g.id, "→ DONE (all steps done)")
-            elif any_failed and not (any_ready or any_running or any_waiting):
-                if g.status != Status.FAILED:
-                    ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(), last_error="step_failure")
-                    _upsert_goal(self.store, ng)
-                    self._emit_goal_event("GoalFailed", ng, extra={"reason": "step_failed"})
-                    _dbg("finalize:", g.id, "→ FAILED (step failed)")
-
-    # ---------------- Helpers ----------------
-
-    def _get_handler(self, goal: Goal) -> Optional[GoalHandler]:
-        """
-        Be liberal in what we accept: try multiple common registry APIs,
-        then peek at typical dict attributes, then dict-like indexing.
-        """
-        reg = self.registry
-        if reg is None:
-            return None
-
-        # Try common method names
-        for meth in ("get", "get_handler", "handler_for", "resolve", "lookup"):
-            fn = getattr(reg, meth, None)
-            if callable(fn):
-                try:
-                    h = fn(goal.kind)
-                    if h:
-                        return h
-                except Exception as _e:
-                    _log.warning("silent except: %s", _e)
-
-        # Peek at common mapping attributes
-        for attr in ("by_kind", "handlers", "registry", "_by_kind", "_handlers"):
-            m = getattr(reg, attr, None)
-            if isinstance(m, dict) and goal.kind in m:
-                try:
-                    return m[goal.kind]
-                except Exception as _e:
-                    _log.warning("silent except: %s", _e)
-
-        # Dict-like registry
-        if isinstance(reg, dict):
-            return reg.get(goal.kind)  # type: ignore[index]
-
+    def tick(self, goal: Goal, step: Step, ctx: HandlerContext) -> Optional[Step]:
         return None
 
-    def _handler_ctx(self, goal: Goal) -> HandlerContext:
-        ctx = dict(self.ctx)
-        ctx["goal"] = goal
-        return ctx
 
-    def _emit_event(self, event: Dict[str, Any]) -> None:
-        sink = self.reaper_sink
-        if callable(sink):
-            try:
-                sink(event)
-            except Exception as _e:
-                _log.warning("silent except: %s", _e)
+class _ExplodingPlanHandler(BaseGoalHandler):
+    """plan() raises — exercises the daemon's plan-error → FAILED path."""
+    kind = "dummy"
 
-    def _emit_goal_event(self, kind: str, goal: Goal, *, extra: Optional[Dict[str, Any]] = None) -> None:
-        evt = {
-            "kind": kind,
-            "ts": UTCNOW().isoformat(),
-            "goal_id": goal.id,
-            "goal_kind": goal.kind,
-            "status": getattr(goal.status, "name", str(goal.status)),
-            "priority": getattr(goal.priority, "name", str(goal.priority)),
-            "title": goal.title,
-            "deadline": goal.deadline.isoformat() if goal.deadline else None,
-            "extra": dict(extra or {}),
-        }
-        self._emit_event(evt)
-        # Optionally mirror into memory
-        mw = self.memory_writer
-        if callable(mw):
-            try:
-                text = f"{kind}: {goal.title} [{goal.kind}/{getattr(goal.priority,'name',goal.priority)}]"
-                meta = {"goal_id": goal.id, "kind": goal.kind, "status": getattr(goal.status, "name", str(goal.status))}
-                mw("goal_event", text, meta)
-            except Exception as _e:
-                _log.warning("silent except: %s", _e)
+    def plan(self, goal: Goal, ctx: HandlerContext) -> List[Step]:
+        raise RuntimeError("boom")
+
+    def tick(self, goal: Goal, step: Step, ctx: HandlerContext) -> Optional[Step]:
+        return None
 
 
-__all__ = ["GoalsDaemon"]
+class _RecordingRunner:
+    """Stand-in for StepRunner: records submitted steps, never starts threads."""
+    active_workers = 0
+
+    def __init__(self, capacity: int):
+        self._cap = capacity
+        self.submitted: List[Step] = []
+
+    def capacity_left(self) -> int:
+        return self._cap
+
+    def submit(self, step: Step) -> None:
+        self.submitted.append(step)
+
+    def start(self) -> None: ...
+    def stop(self) -> None: ...
+    def join(self, timeout=None) -> None: ...
+
+
+def _mk_goal(gid: str, *, kind: str = "dummy", status: Status = Status.NEW) -> Goal:
+    return Goal(id=gid, title=gid, kind=kind, spec={}, priority=Priority.NORMAL, status=status)
+
+
+@pytest.fixture
+def store(tmp_path: Path) -> FileGoalsStore:
+    return FileGoalsStore(data_dir=tmp_path / "goals-data")
+
+
+def _make_daemon(store, registry, *, capacity: int = 3, events: Optional[list] = None) -> GoalsDaemon:
+    daemon = GoalsDaemon(
+        store=store,
+        registry=registry,
+        reaper_sink=(events.append if events is not None else None),
+    )
+    # Swap the real worker pool for a recorder so pulses stay single-threaded
+    # and deterministic. The daemon was never start()ed, so nothing leaks.
+    daemon._runner = _RecordingRunner(capacity)
+    return daemon
+
+
+# ── Planning ─────────────────────────────────────────────────────────────────
+
+def test_plan_new_goals_marks_ready_and_persists_steps(store):
+    reg = GoalRegistry([_PlanningHandler(n_steps=2)])
+    store.upsert_goal(_mk_goal("g1"))
+    daemon = _make_daemon(store, reg)
+
+    planned = daemon._plan_new_goals()
+
+    assert planned is True
+    assert store.get_goal("g1").status == Status.READY
+    assert len(store.steps_for("g1")) == 2
+
+
+def test_plan_new_goal_without_handler_is_failed(store):
+    reg = GoalRegistry([])  # no handler for kind 'dummy'
+    store.upsert_goal(_mk_goal("g1"))
+    events: list = []
+    daemon = _make_daemon(store, reg, events=events)
+
+    daemon._plan_new_goals()
+
+    assert store.get_goal("g1").status == Status.FAILED
+    assert any(e.get("kind") == "GoalFailed" and e.get("extra", {}).get("reason") == "no_handler"
+               for e in events)
+
+
+def test_plan_error_marks_goal_failed(store):
+    reg = GoalRegistry([_ExplodingPlanHandler()])
+    store.upsert_goal(_mk_goal("g1"))
+    events: list = []
+    daemon = _make_daemon(store, reg, events=events)
+
+    daemon._plan_new_goals()
+
+    g = store.get_goal("g1")
+    assert g.status == Status.FAILED
+    assert "plan error" in (g.last_error or "")
+
+
+# ── Gathering READY steps ────────────────────────────────────────────────────
+
+def test_gather_ready_steps_returns_ready_pairs(store):
+    reg = GoalRegistry([_PlanningHandler(n_steps=2)])
+    store.upsert_goal(_mk_goal("g1"))
+    daemon = _make_daemon(store, reg)
+    daemon._plan_new_goals()  # NEW → READY + 2 steps
+
+    pairs = daemon._gather_ready_steps()
+
+    assert len(pairs) == 2
+    assert all(s.status == Status.READY for _g, s in pairs)
+
+
+def test_blocked_handler_marks_goal_blocked_and_yields_no_steps(store):
+    reg = GoalRegistry([_PlanningHandler(n_steps=1, blocked=True)])
+    store.upsert_goal(_mk_goal("g1"))
+    events: list = []
+    daemon = _make_daemon(store, reg, events=events)
+    daemon._plan_new_goals()
+
+    pairs = daemon._gather_ready_steps()
+
+    assert pairs == []
+    assert store.get_goal("g1").status == Status.BLOCKED
+    assert any(e.get("kind") == "GoalBlocked" for e in events)
+
+
+# ── Scheduling: policy + fallback ────────────────────────────────────────────
+
+def test_pulse_uses_policy_choice(store, monkeypatch):
+    import goals.goals_daemon as gd
+
+    reg = GoalRegistry([_PlanningHandler(n_steps=3)])
+    store.upsert_goal(_mk_goal("g1"))
+    daemon = _make_daemon(store, reg, capacity=3)
+
+    # Policy returns only the second candidate; the daemon must honour that
+    # choice rather than fall back to FIFO.
+    def fake_choose(*, candidates, store, ctx, capacity):
+        return [candidates[1]]
+
+    monkeypatch.setattr(gd.policy_mod, "choose_next_steps", fake_choose)
+
+    daemon._pulse()
+
+    submitted = daemon._runner.submitted
+    assert len(submitted) == 1
+    assert submitted[0].name == "step1"
+
+
+def test_pulse_falls_back_to_fifo_when_policy_empty(store, monkeypatch):
+    import goals.goals_daemon as gd
+
+    reg = GoalRegistry([_PlanningHandler(n_steps=3)])
+    store.upsert_goal(_mk_goal("g1"))
+    daemon = _make_daemon(store, reg, capacity=2)
+
+    # Policy yields nothing → daemon falls back to FIFO up to capacity (2).
+    monkeypatch.setattr(gd.policy_mod, "choose_next_steps", lambda **_: [])
+
+    daemon._pulse()
+
+    assert len(daemon._runner.submitted) == 2
+
+
+def test_pulse_fifo_fallback_on_policy_exception(store, monkeypatch):
+    import goals.goals_daemon as gd
+
+    reg = GoalRegistry([_PlanningHandler(n_steps=2)])
+    store.upsert_goal(_mk_goal("g1"))
+    daemon = _make_daemon(store, reg, capacity=5)
+
+    def boom(**_):
+        raise RuntimeError("policy down")
+
+    monkeypatch.setattr(gd.policy_mod, "choose_next_steps", boom)
+
+    daemon._pulse()
+
+    # Both ready steps fall through to FIFO despite the policy raising.
+    assert len(daemon._runner.submitted) == 2
+
+
+# ── Health ───────────────────────────────────────────────────────────────────
+
+def test_health_reports_pulse_and_queue(store):
+    reg = GoalRegistry([_PlanningHandler(n_steps=1)])
+    daemon = _make_daemon(store, reg)
+
+    h = daemon.health()
+
+    assert set(h) >= {"last_pulse_at", "last_error", "queue_size", "workers_active"}
+    assert h["last_error"] is None

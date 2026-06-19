@@ -267,8 +267,6 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
 
 from datetime import datetime, timezone
 from utils.append import append_to_json
-from paths import WORKING_MEMORY_FILE
-from utils.timeutils import now_iso_z
 
 def explore_write_a_cognitive_function_or_tool_that_improves_something():
     """

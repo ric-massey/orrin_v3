@@ -78,9 +78,34 @@ def _ensure_bytes_image(image: Union[bytes, bytearray, memoryview, str, Path, "P
 # ------------------------------
 # Text embedding (primary)
 # ------------------------------
+def _forced_text_hash() -> bool:
+    """
+    True if the text path is explicitly pinned to the deterministic hash
+    fallback via env. Mirrors _forced_img_backend() for the image path.
+
+    Supported flags (any one forces hash):
+      - MEMORY_TEXT_BACKEND=hash
+      - MEMORY_TEXT_FORCE_HASH=1
+
+    Note this is intentionally distinct from PYTEST_FORCE_HASH_EMBEDDING, which
+    only pins the *image* backend — some tests force-hash images while still
+    exercising a real/fake sentence-transformer on the text path. Defaults off,
+    so production text embedding is unchanged.
+    """
+    if (os.getenv("MEMORY_TEXT_BACKEND") or "").strip().lower() == "hash":
+        return True
+    return (os.getenv("MEMORY_TEXT_FORCE_HASH") or "").strip().lower() in {"1", "true", "yes"}
+
+
 def _lazy_init_text() -> None:
     global _text_model, _text_dim, _text_hint
     if _text_model is not None:
+        return
+    # Explicit hash pin (tests / offline determinism) — skip model load entirely.
+    if _forced_text_hash():
+        _text_model = None
+        _text_dim = int(MEMCFG.HASH_FALLBACK_DIM or 256)
+        _text_hint = f"hash-{_text_dim}"
         return
     # Try sentence-transformers locally
     try:

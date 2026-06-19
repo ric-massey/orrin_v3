@@ -878,11 +878,23 @@ def _devalue_prior(
     avg = float(st.get("avg_reward", 0.5) or 0.5)
     # A heavily sampled neutral outcome is itself evidence: the action is
     # predictably boring even when the pool median is also flat.
-    neutral_penalty = min(0.20, 0.02 * (count ** 0.5)) if abs(avg - 0.5) <= 0.04 else 0.0
+    # P4 — give self-knowledge MORE authority over a heavily-sampled, proven-neutral
+    # action. Calibration was near-perfect (Brier 0.010) yet had ~zero authority
+    # over action: generate_intrinsic_goals learned `neutral` and was STILL picked
+    # #1. The neutral-penalty ceiling now rises with evidence (0.20 → 0.40 once an
+    # arm is deeply sampled), and for such an arm the demotion floor drops, so "I
+    # know this is empty" can finally become "so I'll pick it less" — while the
+    # SELECTOR_DEVAL_MIN_PULLS count gate above still protects cold re-sampling of
+    # lightly-sampled arms.
+    neutral_cap = 0.40 if count >= 50 else 0.20
+    neutral_penalty = min(neutral_cap, 0.03 * (count ** 0.5)) if abs(avg - 0.5) <= 0.05 else 0.0
     if gap <= 0.0 and neutral_penalty <= 0.0:
         return prior
+    floor = float(_tuning.SELECTOR_DEVAL_FLOOR)
+    if count >= 50 and neutral_penalty >= 0.30:
+        floor = floor * 0.5   # proven-empty AND heavily sampled → demotable further
     return prior * max(
-        float(_tuning.SELECTOR_DEVAL_FLOOR),
+        floor,
         1.0 - float(_tuning.SELECTOR_DEVAL_K) * max(0.0, gap) - neutral_penalty,
     )
 

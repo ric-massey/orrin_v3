@@ -443,12 +443,12 @@ def decide(
         # Cap think_more_thresh low → rarely triggers; lower output_thresh → acts easily
         think_more_thresh = min(think_more_thresh, 0.28)
         output_thresh     = min(output_thresh, 0.45)
-        log_private(f"[meta_ctrl] energy=high → think_more≤0.28 output≤0.45")
+        log_private("[meta_ctrl] energy=high → think_more≤0.28 output≤0.45")
     elif _energy_state == "low" or _rest_mode or _action_bias < 0.35:
         # Raise think_more_thresh → triggers often; raise output_thresh → needs high confidence
         think_more_thresh = max(think_more_thresh, 0.68)
         output_thresh     = max(output_thresh, 0.78)
-        log_private(f"[meta_ctrl] energy=low/rest → think_more≥0.68 output≥0.78")
+        log_private("[meta_ctrl] energy=low/rest → think_more≥0.68 output≥0.78")
 
     debt     = int(context.get("action_debt", 0) or 0)
     has_goal = bool(context.get("committed_goal"))
@@ -496,7 +496,7 @@ def decide(
             if drafts:
                 latest_content = drafts[-1].get("content", "")
             if latest_content and not simulate_outcome(context, latest_content):
-                log_private(f"[meta_ctrl] simulate_outcome negative → think_more")
+                log_private("[meta_ctrl] simulate_outcome negative → think_more")
                 _emit("think_more", context, round_num, "simulate_negative")
                 return "think_more"
 

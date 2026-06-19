@@ -8,15 +8,16 @@ mechanism exists, but the public before/after evidence is not yet packaged.
 |---|---|---|
 | LLM use is optional | Symbolic-only mode runs without a configured provider; LLM calls are gated tool calls. | Proven |
 | Orrin runs continuously rather than prompt-only | `main.py` starts the cognitive loop and daemons; traces accumulate across cycles. | Proven |
-| Behavior changes are logged as before→after→because | `behavioral_adaptation.py` write path (`brain/data/behavior_changes.json`, created on the first logged change) plus `/api/behavior-changes` and the Learning room. | Proven (mechanism); needs a run that logs one |
+| Behavior changes are logged as before→after→because | `brain/cognition/behavioral_adaptation.py` write path → `brain/data/behavior_changes.json` (250 logged changes from the 2026-06-18 run, each with `old_action`→`new_action`→`reason`→`evidence`) plus `/api/behavior-changes` and the Learning room. | Proven |
 | Belief movement can be inspected across self-beliefs, opinions, and symbolic rules | `/api/belief-revisions` merges those stores with confidence/evidence fields. | Proven |
 | Body bands reduce false distress | Phase-aware `body_sense` and separate sleep bands are implemented. | Needs public before/after demo |
 | Inward vital floor protects Orrin's granted body budget | `reaper/vital_floor.py` is wired, calibrated, and armed by default. | Needs long-run validation |
 | Workspace contents affect action selection | Global Workspace prior is implemented behind `ORRIN_WORKSPACE_PRIOR`. | Needs selector-trace demo |
 | Home/world zoning changes goal routing | Home/world/self zoning and goal tags are implemented. | Needs goal-routing demo |
-| Rut detection changes behavior | Metacognition and behavioral adaptation write suppression/action-pressure changes. | Needs before/after run report |
+| Rut detection changes behavior | Metacognition and behavioral adaptation write suppression/action-pressure changes; the 2026-06-18 run logged `pattern:"rut"` entries shifting action-vs-reflect bias (e.g. 0.75→0.87 with novelty pressure 0.25). | Proven |
 | Sleep consolidation improves future behavior | Dream/consolidation machinery exists and sleep-phase body interpretation is built. | Needs controlled run evidence |
 | Self-modification preserves continuity | Self-code and review paths exist. | Future |
+| Reward is denominated in external production, not just internal intake | Effect ledger (`brain/agency/effect_ledger.py`) + goal reconciliation (`brain/cognition/planning/goal_reconcile.py`); design in `docs/Behavioral Evaluation & Runtime Diagnostics/ORRIN_PRODUCTION_REWARD_PLAN_2026-06-18.md`. | Future |
 
 ## Current Evidence Sources
 

@@ -555,11 +555,61 @@ def decompose_goal(goal: Dict) -> List[Dict]:
     return _rule_based_decompose(goal)
 
 
+# P2 — production goals are artifact-gated and fail-able. The unit is *cycles*
+# (the diagnosed run did ~10⁴ cycles at cycle_sleep≈20s). 200 is long enough that
+# a genuine plan→execute→write attempt isn't guillotined, short enough that a full
+# life surfaces many deadline evaluations so goals_failed actually moves off 0.
+# Reuses the same epoch as the P6 reconciler so there is one cadence constant.
+PRODUCTION_DEADLINE_CYCLES = 200
+
+
+def _is_artifact_gated(goal: Dict) -> bool:
+    """A goal that may complete ONLY when a real durable effect was recorded for it."""
+    if not isinstance(goal, dict):
+        return False
+    return bool(goal.get("requires_artifact")) or \
+        str(goal.get("driven_by") or "").lower() == "output_producing"
+
+
 def try_to_accomplish(goal: Dict) -> bool:
     """
     Attempt an atomic goal. Uses working-memory evidence when LLM unavailable.
     Returns True if succeeded, False if needs decomposition.
     """
+    # P2 — artifact gate. An output_producing / requires_artifact goal completes
+    # ONLY when the effect ledger holds a novel, structurally-significant effect for
+    # it. No LLM self-report and no rule-based accomplish can close it — this is the
+    # felt-cost channel's real bite (a make-things goal that produced nothing simply
+    # is not done, and will eventually fail at its deadline).
+    if _is_artifact_gated(goal):
+        gid = str(goal.get("id") or "")
+        try:
+            from agency.effect_ledger import has_qualifying_effect
+            _produced = bool(gid) and has_qualifying_effect(gid)
+        except Exception:
+            _produced = False
+        now = now_iso_z()
+        if _produced:
+            for m in (goal.get("milestones") or []):
+                if isinstance(m, dict) and not m.get("met"):
+                    m["met"] = True
+                    m["met_at"] = now
+            goal["status"] = "completed"
+            goal["last_updated"] = now
+            goal.setdefault("history", []).append(
+                {"event": "completed", "reason": "artifact_verified", "timestamp": now})
+            update_working_memory(f"✅ Produced artifact for goal: {goal.get('name')}")
+            # P3 — a real, effect-backed contribution decays the served aspiration's
+            # recruitment pressure (a bookkeeping closure would not).
+            try:
+                from cognition.intrinsic_goals import mark_aspiration_contribution
+                mark_aspiration_contribution(goal.get("driven_by", ""))
+            except Exception as _e:
+                record_failure("goals.try_to_accomplish.aspiration", _e)
+            return True
+        goal.setdefault("history", []).append({"event": "awaiting_artifact", "timestamp": now})
+        return False
+
     if not llm_callable_by("goals"):
         success = _rule_based_accomplish(goal)
         if success:
@@ -707,6 +757,17 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
             _st["status"] = "skipped"
             _st["skip_reason"] = "goal completed"
     _sig = achievement_significance(goal)   # I17 — joy scaled to real significance
+    # P8 — for an artifact-gated goal, let the REAL produced-effect significance
+    # drive the recorded metric, so mean_significance reflects produced work rather
+    # than the self-asserted achievement multiplier (which gave the run its 0.0).
+    try:
+        if _is_artifact_gated(goal) and goal.get("id"):
+            from agency.effect_ledger import significance_for_goal
+            _eff_sig = significance_for_goal(str(goal.get("id")))
+            if _eff_sig > 0.0:
+                _sig = max(_sig, _eff_sig)
+    except Exception as _e:
+        record_failure("goals.mark_goal_completed.effsig", _e)
     _ctx = context or {}
     try:
         from cognition.action_accounting import cycle_produced_goal_action
@@ -846,6 +907,24 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     except Exception as _e:
         record_failure("goals.mark_goal_completed.6", _e)
 
+    # P5 / G2 — intake→output laddering. When an intake (world_knowledge) goal
+    # closes, queue its topic so the next making goal turns X into output instead
+    # of the loop re-understanding X once its cooldown lapses.
+    try:
+        if str(goal.get("driven_by") or "").lower() == "world_knowledge":
+            from cognition.intrinsic_goals import note_intake_completed
+            _raw = goal.get("title") or goal.get("name") or ""
+            for _pfx in ("understand ", "follow-up on ", "open question:", "the causes of ",
+                         "pick up my thread on "):
+                if _raw.lower().startswith(_pfx):
+                    _raw = _raw[len(_pfx):]
+                    break
+            _topic = _raw.replace(" more deeply", "").strip(" :?.")
+            if _topic:
+                note_intake_completed(_topic)
+    except Exception as _e:
+        record_failure("goals.mark_goal_completed.ladder", _e)
+
     # Goal-continuity hook: immediately generate and commit the next goal so
     # Orrin doesn't sit idle after completing one. Clear the just-finished goal
     # from context, reset the intrinsic-goals rate-limiter, then call
@@ -983,6 +1062,69 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
         "priority": 3,
     })
     log_activity(f"❌ Goal '{goal_name}' marked failed. Reason: {reason or 'none'}")
+
+
+def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
+    """P2 — timeout → failure for artifact-gated goals. Walks the goal store; an
+    output_producing / requires_artifact goal that has been alive past its
+    deadline_cycles WITHOUT a qualifying effect is routed into the existing
+    mark_goal_failed path (reason="no_artifact_by_deadline"). This is what turns the
+    run's hollow "0 failures" into a meaningful non-zero — a make-things goal that
+    produced nothing is a real, staked failure, not a quiet fade.
+
+    Cadence is measured in cognitive cycles: each goal's first observation cycle is
+    stamped on first sight, and the deadline is measured from there. Run on the same
+    low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."""
+    try:
+        from utils.get_cycle_count import get_cycle_count
+        cur = int(get_cycle_count() or 0)
+    except Exception:
+        return 0
+    try:
+        goals = load_goals()
+    except Exception:
+        return 0
+    if not isinstance(goals, list):
+        return 0
+
+    from agency.effect_ledger import has_qualifying_effect
+    failed: List[Dict] = []
+    changed = False
+
+    def _walk(nodes: List[Dict]) -> None:
+        nonlocal changed
+        for g in nodes:
+            if not isinstance(g, dict):
+                continue
+            status = g.get("status")
+            if _is_artifact_gated(g) and status in ("proposed", "pending", "in_progress", "active", "committed"):
+                seen = g.get("_artifact_first_seen_cycle")
+                if seen is None:
+                    g["_artifact_first_seen_cycle"] = cur
+                    changed = True
+                else:
+                    deadline = int(g.get("deadline_cycles") or PRODUCTION_DEADLINE_CYCLES)
+                    gid = str(g.get("id") or "")
+                    overdue = (cur - int(seen)) > deadline
+                    if overdue and not (gid and has_qualifying_effect(gid)):
+                        failed.append(g)
+            _walk(g.get("subgoals") or [])
+
+    _walk(goals)
+    if changed and not failed:
+        try:
+            save_goals(goals)
+        except Exception as _e:
+            record_failure("goals.fail_overdue_artifact_goals.stamp", _e)
+    for g in failed:
+        try:
+            mark_goal_failed(g, reason="no_artifact_by_deadline", context=context)
+        except Exception as _e:
+            record_failure("goals.fail_overdue_artifact_goals.fail", _e)
+    if failed:
+        log_activity(f"[goals] Failed {len(failed)} artifact-gated goal(s) past deadline "
+                     f"with no produced artifact.")
+    return len(failed)
 
 
 # Focus selection

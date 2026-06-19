@@ -1,6 +1,5 @@
 """I7 — opt-in auto-update wired to the schema spine (§10.7). No real network: the GitHub
 call is monkeypatched. Runs under conftest's ORRIN_DATA_DIR isolation."""
-import io
 import json
 
 import pytest

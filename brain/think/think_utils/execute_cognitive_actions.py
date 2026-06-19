@@ -6,7 +6,6 @@ from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
 from paths import GOALS_FILE
 from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
-from affect.reward_signals.reward_signals import release_reward_signal
 # Canonical reward emitter — single shared wrapper (was a byte-identical private
 # duplicate of finalize.py's _reward).
 from affect.reward_signals.reward_signals import release_reward as _reward
@@ -147,7 +146,7 @@ def execute_cognitive_action(action_dict: Dict[str, Any], context: Optional[dict
             "referenced": 0,
             "timestamp": ts
         })
-        log_activity(f"[execute_cognitive_action] Thought logged to long-term memory.")
+        log_activity("[execute_cognitive_action] Thought logged to long-term memory.")
 
         _reward(context, signal="reward_signal", actual=0.3, expected=0.4, effort=0.2, mode="phasic", source="log_thought")
         return {"ok": True, "action": "log_thought"}

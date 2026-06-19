@@ -18,7 +18,7 @@ import signal
 import threading
 import time
 import uuid
-from typing import Any, AsyncIterator, Callable, Dict, Optional
+from typing import Any, AsyncIterator, Callable, Dict, List, Optional
 
 from pathlib import Path as _Path2
 

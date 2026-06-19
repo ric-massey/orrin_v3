@@ -7,23 +7,45 @@ name = "orrin"
 version = "3.30.0"
 description = "Orrin — an autonomous cognitive agent (brain loop, goals/memory daemons, backend API)."
 requires-python = ">=3.10"
+# ── Dependency model (CODEBASE_CLEANUP_PLAN Phase 2) ─────────────────────────
+# pyproject.toml is the single source of truth. requirements.txt and
+# backend/requirements.txt are compatibility mirrors GENERATED from these
+# groups — do not hand-edit them; update here and re-mirror (see their headers).
+#
+# `dependencies` below is the minimal core the brain loop + memory/goals daemons
+# need to run and to pass the test suite. Everything optional is an extra:
+#   backend    — FastAPI telemetry/control API + websocket
+#   desktop    — native window, tray, OS-keychain secrets
+#   embedding  — real sentence-transformers (else deterministic hash fallback)
+#   nlp        — spaCy entity extraction (else regex fallback; then
+#                `python -m spacy download en_core_web_sm`)
+#   llm        — default OpenAI client (also drives Local/Custom endpoints)
+#   llm-extra  — pluggable Anthropic / Google providers (imported lazily)
+#   dev        — test + lint + coverage tooling
+#   all        — full product runtime (what requirements.txt installs)
+# Heavyweight installs: `embedding` pulls torch (~CPU wheel; CUDA build is ~2 GB
+# — see Dockerfile for the CPU-only index trick), and `nlp` needs a model
+# download. Install just what you need: `pip install -e .[backend,dev]`.
 dependencies = [
-    "prometheus_client",
-    "numpy",
-    "requests",
-    "beautifulsoup4",
-    "sentence-transformers",
+    "prometheus_client>=0.20",
+    "numpy>=1.26",
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
     "watchdog==6.0.0",
-    "openai>=1.40.0",
     "python-dotenv>=1.0.1",
     "psutil>=5.9",
-    # knowledge-graph entity extraction (optional — regex fallback if absent).
-    # After install: python -m spacy download en_core_web_sm
-    "spacy>=3.7",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+backend = ["fastapi>=0.111", "uvicorn[standard]>=0.30"]
+desktop = ["pywebview>=5.0", "pystray>=0.19", "Pillow>=10.0", "keyring>=24.0"]
+embedding = ["sentence-transformers>=2.7"]
+nlp = ["spacy>=3.7"]
+llm = ["openai>=1.40.0"]
+llm-extra = ["anthropic>=0.40.0", "google-genai>=0.3.0"]
+dev = ["pytest>=8.0", "ruff>=0.5", "coverage>=7.4"]
+# Recursive extra: the full runtime a packaged/desktop build ships.
+all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 
 # ── Packaging note (Finding 5) ──────────────────────────────────────────────
 # This declares the project's dependencies and makes the top-level daemon
@@ -42,3 +64,26 @@ dev = ["pytest"]
 # one phase at a time).
 [tool.setuptools]
 packages = ["backend", "brain", "goals", "memory", "observability", "reaper"]
+
+# ── Ruff (CODEBASE_CLEANUP_PLAN Phase 1 — "narrow Ruff configuration") ───────
+# Deliberately narrow: enforce the high-signal pyflakes logical-error rules
+# (undefined names, unused imports, duplicate definitions, referenced-before-
+# assignment, broken f-strings, syntax errors) and keep them green. The noisy
+# mechanical style rules are introduced incrementally in later phases, NOT via
+# a repository-wide auto-fix:
+#   - F841 (unused local variables): 26 findings; ruff's fixes are "unsafe"
+#     (the discarded RHS may have side effects), so this is a manual follow-up.
+#   - E402 / E701 / E702 / E401 / E741 / E731: ~440 mechanical findings; these
+#     are the semicolon/import-order reformatting deferred to Phase 1's
+#     "expand semicolon-compressed statements in small batches".
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+extend-exclude = ["frontend", "build", "dist", ".venv", "data", "brain/data"]
+
+[tool.ruff.lint]
+# "F" = all pyflakes rules (real logical errors). E9 = syntax/IO errors.
+select = ["F", "E9"]
+# Existing debt, enforced incrementally (see note above). Removing an entry
+# here should be paired with fixing the corresponding findings.
+ignore = ["F841"]

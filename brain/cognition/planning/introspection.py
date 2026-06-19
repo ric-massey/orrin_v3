@@ -23,7 +23,6 @@ from paths import (
     GOALS_FILE,
     PRIVATE_THOUGHTS_FILE,
     MODEL_CONFIG_FILE,
-    WORKING_MEMORY_FILE,
 )
 from utils.timeutils import now_iso_z
 from utils.llm_gate import llm_callable_by

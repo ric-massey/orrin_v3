@@ -33,11 +33,12 @@ import json
 import re
 import time
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from utils.self_model import get_self_model, save_self_model
+from utils.failure_counter import record_failure
 from cog_memory.long_memory import update_long_memory
 from paths import VALUE_REVISIONS, LONG_MEMORY_FILE
 _log = get_logger(__name__)
@@ -528,7 +529,6 @@ def _apply_decision(
             )
         except Exception as _e:
             try:
-                from utils.failure_counter import record_failure
                 record_failure("value_evolution.refresh_identity_story", _e)
             except Exception:
                 record_failure("value_evolution._apply_decision", _e)

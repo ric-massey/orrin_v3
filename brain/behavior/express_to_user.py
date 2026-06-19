@@ -21,7 +21,7 @@ unreachable from here. The door consumes a Motive, never raw representation.
 from __future__ import annotations
 
 import dataclasses
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict
 
@@ -269,5 +269,23 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
     }
 
     ok = bool(_ROUTES[channel](text, artifact, context))
+
+    # External-effect ledger (P0): a *delivered* person-facing artifact is a real
+    # outward effect. Content-addressed + deduped, so 100 identical empty notes
+    # collapse to one production. A None return = nothing novel = no credit; the
+    # reward split (P1) keys production reward on a non-None row this cycle.
+    if ok:
+        _kind = {"note": "note_novel", "desktop": "note_novel",
+                 "reply": "message_answered"}.get(channel)
+        if _kind:
+            try:
+                from agency.effect_ledger import record_effect
+                _row = record_effect(_kind, text, goal_id=(motive.goal_id or None), context=context)
+                if _row is not None and _row.significance > 0 and isinstance(context, dict):
+                    context["_production_effect_this_cycle"] = True
+                    context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
+            except Exception as _e:
+                record_failure("express_to_user.record_effect", _e)
+
     log_activity(f"[express_to_user] {channel} ({motive.intent or 'express'}) → {text[:80]}")
     return {"success": ok, "channel": channel, "text": text, "motive": artifact["motive"]}

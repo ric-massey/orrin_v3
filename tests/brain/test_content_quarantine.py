@@ -2,7 +2,6 @@
 # before it reaches memory and the prompts built from it. These tests cover
 # the quarantine utility itself, plus each of the four ingestion points that
 # pull text from the open web (fetch_and_read, research_topic, RSS, Wikipedia).
-import time
 
 import cognition.rss_reader as rss_reader
 import cognition.web_research as web_research

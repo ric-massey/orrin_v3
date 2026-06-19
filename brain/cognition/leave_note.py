@@ -35,6 +35,28 @@ def leave_note(context: Dict[str, Any] = None) -> str:
             if _subject:
                 _seed = f"what I actually know about {_subject}"
 
+    # P4 — ground the note in the FINDING that triggered it, not the ambient affect
+    # status line. The run showed 100 byte-identical empty notes because the body was
+    # the ~40-char affect string; sourcing it from the most recent real finding gives
+    # the artifact content, so record_effect(note_novel) mostly will NOT dedupe.
+    if _seed is None:
+        try:
+            from utils.json_utils import load_json as _lj
+            from paths import LONG_MEMORY_FILE as _LMF
+            _lm = _lj(_LMF, default_type=list) or []
+            for _entry in reversed(_lm[-25:]):
+                _c = str(_entry.get("content", _entry) if isinstance(_entry, dict) else _entry)
+                _lc = _c.lower()
+                if ("from searching" in _lc or "finding was written" in _lc
+                        or "[world_perception]" in _lc):
+                    _payload = _c.split(":", 1)[-1].strip() if ":" in _c else _c
+                    _payload = " ".join(_payload.split())[:240]
+                    if len(_payload) >= 40:
+                        _seed = f"something I actually found out: {_payload}"
+                        break
+        except Exception:
+            pass
+
     motive = build_motive(context, intent="leave_note", recipient="Ric", seed=_seed)
     result = express_to_user(motive, "note", context)
     content = (result or {}).get("text") or ""

@@ -23,7 +23,7 @@ import json
 import time
 import zipfile
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, Tuple
 
 import paths
 

@@ -9,7 +9,6 @@ from behavior.tools.toolkit import evaluate_tool_use
 from cognition.planning.motivations import adjust_goal_weights
 from cog_memory.working_memory import update_working_memory
 from affect.update_affect_state import update_affect_state
-from affect.reward_signals.reward_signals import release_reward_signal
 from think.think_utils.escalate import is_agentic_action
 from paths import (
     ACTION_FILE,
@@ -48,6 +47,17 @@ _OUTWARD_ACTION_FNS = frozenset({
 
 # How many cycles since an outward action to start building pressure
 _OUTWARD_PRESSURE_RAMP = 8
+
+# P1 reward split (ORRIN_PRODUCTION_REWARD_PLAN). Intake stays rewarded — just
+# strictly less than making — so a gradient finally exists from learning → producing.
+# Fixed by an ORDERING, not free choice: intake at 0.5 sits at neutral (the EMA
+# midpoint), leaving +0.5 up to production (1.0, well outside EMA noise → a real
+# gradient) and −0.3 down to cognition-only (0.2). The floor clamps intake when it
+# is modulated down (novelty decay / habituation) so it can never fall below the
+# cognition-only penalty and flip the ordering — a barren production environment
+# must never punish Orrin into paralysis.
+INTAKE_REWARD = 0.5
+INTAKE_REWARD_FLOOR = 0.35
 
 
 def _state_satisfaction(context: dict, is_agentic: bool) -> float:
@@ -139,13 +149,32 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
             is_agentic = True
     except Exception:
         pass
-    if is_agentic:
-        _reward(context, signal="reward_signal", actual=1.0, expected=0.6, effort=0.7, mode="phasic", source="agentic_action")
+
+    # P1 — three-tier reward split (the keystone). Until now consequential
+    # cognition paid the SAME 1.0 as producing a real artifact, so reading
+    # Wikipedia and spawning a goal earned exactly what writing a file earned and
+    # there was no pull from intake → making. Production is *only* an effect-ledger
+    # row that landed this cycle (set by express_to_user / code_writer); engaged
+    # intake (consequential cognition, outward acts that touched the world without
+    # a durable novel artifact) pays the middle rung; pure reflection pays the floor.
+    _production = bool(context.get("_production_effect_this_cycle"))
+    if _production:
+        is_agentic = True  # production is the strongest form of agentic engagement
+        _reward(context, signal="reward_signal", actual=1.0, expected=0.6, effort=0.7, mode="phasic", source="production_effect")
         update_working_memory({
-            "content": f"✅ Rewarded agentic action: {next_function}",
+            "content": f"✅ Rewarded production (durable effect): {next_function}",
             "event_type": "reward",
             "importance": 2,
             "priority": 2
+        })
+    elif is_agentic:
+        _intake = max(INTAKE_REWARD_FLOOR, INTAKE_REWARD)
+        _reward(context, signal="reward_signal", actual=_intake, expected=0.5, effort=0.5, mode="phasic", source="intake")
+        update_working_memory({
+            "content": f"↔ Intake / consequential cognition (below production): {next_function}",
+            "event_type": "reward",
+            "importance": 1,
+            "priority": 1
         })
     else:
         _reward(context, signal="reward_signal", actual=0.2, expected=0.4, effort=0.2, mode="tonic", source="cognition_only")

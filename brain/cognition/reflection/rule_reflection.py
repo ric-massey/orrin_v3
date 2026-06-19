@@ -130,7 +130,7 @@ def reflect_on_rules_used():
             # Rule base is sparse — let the gate decide if LLM is warranted
             prompt = (
                 "I am Orrin. My symbolic rule base is sparse. "
-                f"Recent outcomes suggest these gaps:\n"
+                "Recent outcomes suggest these gaps:\n"
                 + "\n".join(f"- {g.get('if', '')}: {g.get('then', '')}" for g in gaps[:3])
                 + "\nSuggest 1-2 concrete if/then rules for these gaps. "
                 "Respond as JSON: [{\"if\": \"...\", \"then\": \"...\", \"domain\": \"...\"}]"

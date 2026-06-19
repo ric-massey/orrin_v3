@@ -137,7 +137,6 @@ def test_newly_tagged_function_participates(tmp_path, monkeypatch):
 
 
 def test_procedural_manifest_loader_falls_back(monkeypatch, tmp_path):
-    import cognition.planning.step_execution as se
     # Point the loader at a nonexistent repo layout by monkeypatching Path read
     # is awkward; instead verify the live loader yields a non-empty procedural set
     assert _procedural_from_manifest()

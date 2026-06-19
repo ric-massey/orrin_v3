@@ -11,7 +11,7 @@ import inspect
 import traceback
 import warnings
 from datetime import datetime, timezone
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from dotenv import load_dotenv
 _log = get_logger(__name__)
@@ -1245,7 +1245,7 @@ def run_cognitive_loop(
 
         # ── Terminal mode: reaper fired, dying window is open ──────────────
         try:
-            from reaper.reaper import is_dying as _is_dying, dying_reason as _dying_reason
+            from reaper.reaper import is_dying as _is_dying
             if _is_dying():
                 if not _final_reflection_done:
                     _final_reflection_done = True
@@ -3117,6 +3117,24 @@ def run_cognitive_loop(
                         _ca(context)
                     except Exception as _cae:
                         record_failure("ORRIN_loop.run_cognitive_loop.29", _cae)
+
+                # P2 — fail artifact-gated production goals that blew their deadline
+                # with nothing produced (turns the hollow "0 failures" into a real,
+                # staked non-zero). P6 — reconcile the goal stores so the new
+                # executable path can't reopen the resurrect/orphan-RUNNING desync
+                # bugs, and existing-path desyncs become self-healing + measured.
+                # Both run on the same 200-cycle epoch (one cadence constant).
+                if get_cycle_count() % 200 == 0:
+                    try:
+                        from cognition.planning.goals import fail_overdue_artifact_goals as _foag
+                        _foag(context)
+                    except Exception as _fae:
+                        record_failure("ORRIN_loop.run_cognitive_loop.foag", _fae)
+                    try:
+                        from cognition.planning.goal_reconcile import reconcile_goal_stores as _rgs
+                        _rgs(context)
+                    except Exception as _rge:
+                        record_failure("ORRIN_loop.run_cognitive_loop.reconcile", _rge)
 
                 # Bored, not busy → browse the shelf and read a particular book.
                 # Boredom (stagnation) is the pull; this is reading by his own

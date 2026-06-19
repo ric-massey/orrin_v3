@@ -1,6 +1,5 @@
 # Master plan Phase 4 regression tests: differentiated commitment strength,
 # the endorsement gate at the binding moment, and strength-weighted failure.
-import json
 
 import pytest
 

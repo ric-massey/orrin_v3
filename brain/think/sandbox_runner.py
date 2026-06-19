@@ -1,7 +1,7 @@
 # think/sandbox_runner.py
 from __future__ import annotations
 from core.runtime_log import get_logger
-import subprocess, sys, tempfile, os, shutil
+import subprocess, tempfile, os, shutil
 from typing import Dict, Any
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

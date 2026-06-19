@@ -6,6 +6,7 @@ from typing import Optional, Dict, Any
 from utils.timing import get_time_since_last_active
 from utils.json_utils import load_json
 from utils.self_model import get_self_model, save_self_model
+from utils.failure_counter import record_failure
 from paths import LOG_FILE, FEEDBACK_LOG
 _log = get_logger(__name__)
 
@@ -331,7 +332,6 @@ def refresh_identity_story(
             log_activity(f"[identity] story refreshed: {raw[:100]}…")
     except Exception as e:
         try:
-            from utils.failure_counter import record_failure
             record_failure("identity.refresh_identity_story", e)
         except Exception as _e:
             record_failure("identity.refresh_identity_story.2", _e)

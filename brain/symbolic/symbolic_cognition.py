@@ -357,7 +357,7 @@ def generate_goals(self_model: Dict, context: Optional[Dict] = None) -> List[Dic
         result = run_intrinsic_motivation(ctx)
         if isinstance(result, dict) and result.get("label") in ("explore", "investigate"):
             goals.append({
-                "name": f"Explore high-exploration_drive area",
+                "name": "Explore high-exploration_drive area",
                 "description": f"Intrinsic drive suggests investigating: {result.get('query', 'open question')[:80]}",
                 "tier": "mid_term",
             })

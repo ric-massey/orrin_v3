@@ -1,0 +1,435 @@
+# Orrin Codebase Cleanup Plan
+
+**Created:** 2026-06-18  
+**Scope:** engineering cleanup only; preserve Orrin's observable behavior unless a
+separate change explicitly authorizes behavior changes.
+
+Detailed structural findings are recorded in
+`docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
+
+## Implementation status (updated 2026-06-19)
+
+The low-risk, finite, verifiable phases are **done and verified**; the large
+incremental refactors remain open by design (the plan itself warns against
+doing them wholesale). Verification gate: `make verify` — Ruff clean, **890
+passed / 1 skipped**, frontend type-check + build + ESLint green.
+
+- **Phase 0 — Protect the baseline: DONE.** Embedding test made hermetic
+  (root cause was a `DummyST` that rejected production's `device="cpu"` kwarg,
+  not the inherited env the note guessed; added a text-specific force-hash flag
+  `MEMORY_TEXT_FORCE_HASH` + a regression test for inherited overrides). Green
+  baseline recorded. `make` task interface added. Expected test env documented
+  in `tests/conftest.py`.
+- **Phase 1 — Repository & tooling hygiene: DONE (mechanical reformatting
+  deferred).** Stopped tracking `repo_tree.txt`, `trace.jsonl`, `tunnel_url.txt`
+  and the runtime `brain/prompts_backup.json`; removed the stale
+  `DEPENDENCY_GRAPH.md`. Narrow Ruff config in `pyproject.toml` (`select=["F",
+  "E9"]`, `ignore=["F841"]`) — **zero F821**, plus fixed a real `F811` and a
+  real `F823` (an `except` block raised `UnboundLocalError` because
+  `record_failure` was only imported locally). 31 unused imports removed.
+  Minimal frontend ESLint flat config (React-Hooks rules) + `npm run lint`.
+  Replaced the copied-`GoalsDaemon` non-test with 9 tests against the
+  production class. Deleted `observability/ui_build.py` + 12 confirmed dead
+  modules. **Still open:** F841 (26) and the ~440 mechanical E4xx/E7xx
+  semicolon/import-order findings (introduce incrementally, no mass auto-fix).
+- **Phase 2 — Dependency & packaging consolidation: DONE (Docker UI + uv lock
+  deferred).** `pyproject.toml` is now the single source of truth with explicit
+  extras (`backend`, `desktop`, `embedding`, `nlp`, `llm`, `llm-extra`, `dev`,
+  `all`); `requirements.txt` / `backend/requirements.txt` are documented
+  generated mirrors; dev tools (pytest, ruff, coverage) declared; resolution
+  verified for core / extras / recursive `all`. **Still open:** swap the Docker
+  Vite dev server for a static build (needs a headless static-serve mode in
+  `main.py` — an app change, not a dependency one); emit a fully-pinned lock via
+  `uv pip compile`.
+- **Phases 3–7 — NOT STARTED.** Namespace normalization, orchestration
+  decomposition, typed contracts, deep dead-code/v1–v2 settling, and CI
+  enforcement are the multi-week incremental tracks; tackle them behind the now
+  green/hermetic suite, one slice at a time.
+
+## Current baseline
+
+- Python: 860 tests collected; 858 passed, 1 skipped, 1 failed.
+- Current failure:
+  `tests/memory/embedder_test.py::test_text_with_fake_sentence_transformers_success`.
+  The test is environment-sensitive: an inherited
+  `PYTEST_FORCE_HASH_EMBEDDING=1` forces the hash path despite the fake
+  sentence-transformer.
+- Frontend: `npm run typecheck` passes.
+- Ruff: 535 findings:
+  - 199 `E702` multiple statements separated by semicolons
+  - 107 `E402` imports outside the module header
+  - 85 `E701` multiple statements after a colon
+  - 31 unused imports
+  - 26 unused variables
+  - 23 undefined names
+- Tracked source: about 146,000 lines.
+- Largest modules:
+  - `brain/ORRIN_loop.py`: 3,627 lines
+  - `brain/think/think_utils/select_function.py`: 2,196 lines
+  - `backend/server/app.py`: 1,988 lines
+  - `brain/cognition/planning/pursue_goal.py`: 1,673 lines
+  - `main.py`: 1,551 lines
+  - `frontend/src/pages/Settings.tsx`: 1,261 lines
+- Import architecture relies on adding both the repository root and `brain/` to
+  `sys.path`. There are roughly 3,000 bare-package import matches across source
+  and tests.
+- Dependency declarations are split across `pyproject.toml`,
+  `requirements.txt`, and `backend/requirements.txt`, and they do not describe
+  the same complete environment.
+- Generated local files are ignored now, but `repo_tree.txt`, `trace.jsonl`, and
+  `tunnel_url.txt` remain tracked.
+- The checked-in dependency graph is explicitly stale.
+- The working tree already contains unrelated edits. Cleanup work must use
+  narrow commits and avoid mixing with those changes.
+
+## Cleanup rules
+
+1. Preserve behavior before reorganizing it.
+2. Establish a green, deterministic baseline before enforcing new checks.
+3. Separate mechanical cleanup, dependency cleanup, and architectural refactors.
+4. Keep each commit reversible and limited to one concern.
+5. Do not combine cleanup with feature changes or behavioral tuning.
+6. Add boundary tests before splitting large modules.
+7. Prefer deleting compatibility code only after all callers have migrated.
+8. Introduce lint rules incrementally; do not apply a repository-wide auto-fix.
+
+## Phase 0 — Protect the baseline
+
+**Goal:** make cleanup measurable and safe.
+
+### Work
+
+- Resolve the environment-sensitive embedding test:
+  - make `_reload_embedder` explicitly set or clear every relevant embedding
+    environment variable;
+  - ensure tests do not depend on the developer shell;
+  - add a regression test for inherited environment overrides.
+- Run and record:
+  - `pytest -q`
+  - `npm run typecheck`
+  - `npm run build`
+- Add a fast smoke suite marker or script for high-frequency cleanup work.
+- Add coverage reporting, initially informational rather than blocking.
+- Document expected test environment variables in `tests/conftest.py`.
+- Preserve the existing live-state mutation guard.
+
+### Exit criteria
+
+- Full Python suite passes from a clean shell and from a shell containing
+  embedding-related overrides.
+- Frontend type-check and production build pass.
+- A single documented command runs the standard local verification set.
+
+## Phase 1 — Repository and tooling hygiene
+
+**Goal:** remove noise before changing architecture.
+
+### Work
+
+- Stop tracking generated files:
+  - `repo_tree.txt`
+  - `trace.jsonl`
+  - `tunnel_url.txt`
+- Confirm all backup archives, build outputs, caches, runtime state, and local
+  tunnel scripts are either ignored or intentionally versioned.
+- Add Ruff configuration to `pyproject.toml`.
+- Start with high-signal rules:
+  - undefined names
+  - unused imports and variables
+  - duplicate definitions
+  - invalid syntax
+- Exclude intentional bootstrap files from import-order enforcement temporarily.
+- Mechanically expand semicolon-compressed statements in small batches.
+- Add frontend linting with a minimal ESLint configuration, including React
+  Hooks rules.
+- Add `format`, `lint`, `typecheck`, and `test` commands through one documented
+  task interface.
+- Regenerate or remove `docs/archive/DEPENDENCY_GRAPH.md`; do not retain a stale
+  generated artifact as current documentation.
+- Replace `tests/goals_test/test_daemon.py`'s copied `GoalsDaemon`
+  implementation with tests that import the production class.
+- Delete the confirmed stale duplicate `observability/ui_build.py`.
+- Review and remove the high-confidence dead modules listed in the engineering
+  structure audit.
+
+### Exit criteria
+
+- Ruff has no `F821` undefined-name findings.
+- No generated runtime files are tracked.
+- Python and frontend checks have stable, documented commands.
+- Formatting-only commits contain no behavioral changes.
+
+## Phase 2 — Dependency and packaging consolidation
+
+**Goal:** create one authoritative dependency model.
+
+### Work
+
+- Make `pyproject.toml` the source of truth.
+- Split dependencies into explicit groups:
+  - core runtime
+  - backend/API
+  - desktop
+  - optional LLM providers
+  - media/embedding extras
+  - development/test
+- Generate or reduce compatibility requirement files instead of maintaining
+  independent handwritten lists.
+- Add all actual development tools: pytest, Ruff, coverage, and any chosen type
+  checker.
+- Pin direct dependencies to deliberate ranges and document heavyweight optional
+  installs.
+- Verify source install, editable install, Docker build, and PyInstaller build
+  resolve from the same dependency model.
+- Replace Docker's Vite development server with a built static frontend unless
+  hot reload is explicitly required by that image.
+
+### Exit criteria
+
+- A fresh environment can be installed from `pyproject.toml`.
+- Requirements files, if retained, are generated or validated against it.
+- Docker and desktop packaging do not carry undeclared runtime dependencies.
+
+## Phase 3 — Normalize package boundaries
+
+**Goal:** remove the fragile dual-root import model.
+
+### Target structure
+
+Move toward one import namespace, for example:
+
+```text
+orrin/
+  runtime/
+  brain/
+  goals/
+  memory/
+  backend/
+  observability/
+  reaper/
+```
+
+The exact directory move can be deferred; the first requirement is that imports
+behave as if one namespace exists.
+
+### Work
+
+- Inventory bare imports such as `from utils`, `from cognition`, `from affect`,
+  and `from paths`.
+- Define allowed package dependency directions.
+- Convert one leaf package at a time to absolute package imports.
+- Remove test-local `sys.path` mutation as migrated areas become installable.
+- Keep a temporary compatibility layer only where runtime-loaded self-authored
+  modules require it.
+- Add import-contract tests:
+  - modules import after `pip install -e .`;
+  - modules import without adding `brain/` to `PYTHONPATH`;
+  - forbidden reverse dependencies fail an architecture check.
+- Update PyInstaller hidden imports after each package slice.
+
+### Suggested migration order
+
+1. `brain/utils` and `brain/paths`
+2. `brain/affect`
+3. `brain/cog_memory`
+4. `brain/cognition` leaf modules
+5. `brain/think`
+6. runtime entry points and dynamic loaders
+
+### Exit criteria
+
+- Application and tests run with only the repository package root on the import
+  path.
+- `pytest.ini` no longer needs `pythonpath = . brain`.
+- Entry points do not mutate `sys.path` for normal packaged modules.
+
+## Phase 4 — Decompose orchestration modules
+
+**Goal:** make central flows readable and independently testable.
+
+### 4A. `brain/ORRIN_loop.py`
+
+Extract by lifecycle responsibility, not by arbitrary line count:
+
+- boot/context construction
+- cycle sensing and state refresh
+- conscious-ignition decision
+- cognition execution
+- action execution/accounting
+- maintenance scheduling
+- telemetry publication
+- shutdown/finalization
+
+Keep `run_cognitive_loop()` as a thin coordinator. Introduce a typed
+`RuntimeContext` or narrowly scoped state objects instead of passing an
+unbounded dictionary everywhere.
+
+Before this extraction, add import/startup characterization tests and move
+stateful module-import work out of `main.py`, registries, migrations, and path
+modules. Refactoring the loop while imports can mutate state makes failures hard
+to localize.
+
+### 4B. `main.py`
+
+Separate:
+
+- configuration loading
+- process/runtime construction
+- backend/UI launch
+- watchdog construction
+- desktop lifecycle
+- signal handling and shutdown
+
+### 4C. `backend/server/app.py`
+
+Split routers by API domain:
+
+- lifecycle/control
+- cognition/telemetry
+- memory
+- settings/secrets
+- diagnostics/export
+- source inspection
+
+Move request parsing and domain logic out of route functions.
+
+### 4D. Selection and planning
+
+- Split `select_function.py` into candidate generation, feature calculation,
+  policy/scoring, constraints, and selection recording.
+- Split `pursue_goal.py` into planning, execution, adaptation, and persistence.
+- Expose public interfaces rather than cross-module imports of private helpers.
+
+### 4E. Frontend
+
+- Split `Settings.tsx` into provider, runtime, privacy/security, appearance, and
+  diagnostics sections.
+- Separate data hooks from presentation in `CognitiveSphere.tsx`.
+- Consolidate polling, transport state, and local-storage preferences.
+
+### Exit criteria
+
+- Central coordinator modules primarily compose services and stages.
+- Extracted stages have direct unit tests.
+- No new module exceeds an agreed soft limit, initially 600 lines, without a
+  documented reason.
+- Runtime behavior and telemetry contracts remain unchanged.
+
+## Phase 5 — Strengthen types and contracts
+
+**Goal:** replace implicit dictionary protocols with explicit interfaces.
+
+### Work
+
+- Define typed structures for:
+  - runtime context
+  - affect state and proposals
+  - action proposals/results
+  - telemetry frames
+  - goal execution outcomes
+  - persisted state envelopes and schema versions
+- Select a gradual Python type checker and start with new/extracted modules.
+- Remove `type: ignore` comments by category, beginning with real contract
+  mismatches rather than optional-dependency imports.
+- Generate frontend telemetry types from a shared schema or validate both sides
+  against the same fixture.
+- Add schema migration tests for every persisted state envelope.
+
+### Exit criteria
+
+- New modules are type-checked.
+- Backend producers and frontend consumers share a verifiable telemetry contract.
+- Persisted state changes require a schema version and migration test.
+
+## Phase 6 — Dead code, duplication, and API cleanup
+
+**Goal:** delete only after structure and tests can prove code is unused.
+
+### Work
+
+- Run static dead-code analysis and verify every candidate with import/search
+  tracing.
+- Distinguish dynamic registry/provider modules from ordinary dead modules;
+  absence from the static import graph is not sufficient evidence in Orrin.
+- Remove pass-through modules and wildcard re-exports when callers have migrated.
+- Consolidate repeated JSON/state access, environment parsing, logging, and
+  retry logic.
+- Find duplicate function names and near-identical modules.
+- Remove stale compatibility aliases after one release boundary or explicit
+  migration checkpoint.
+- Archive historical plans that no longer describe current behavior and maintain
+  one current architecture document plus focused decision records.
+
+### Exit criteria
+
+- Every deletion is supported by static tracing and passing tests.
+- No current documentation points at deleted or superseded architecture.
+- Compatibility layers have owners and removal dates.
+
+## Cross-cutting engineering constraints
+
+- Imports must not start daemons, acquire process locks, rewrite registries,
+  migrate persisted state, or wipe/seed a mind.
+- Tests must import production implementations rather than copying them.
+- The v1/v2 goals and memory systems require explicit ownership tables before
+  either adapter is simplified.
+- Broad exception handlers must be classified as optional capability, external
+  I/O, data/schema failure, programmer error, or shutdown cleanup.
+- Ambiguous same-name modules should be renamed only after package-boundary
+  normalization, to avoid proliferating compatibility shims.
+
+## Phase 7 — CI enforcement and maintenance policy
+
+**Goal:** prevent the codebase from returning to its current state.
+
+### Work
+
+- CI gates:
+  - Python tests
+  - frontend type-check and build
+  - Ruff
+  - frontend lint
+  - import-boundary checks
+  - generated-file cleanliness
+- Add changed-lines or ratcheted coverage instead of an arbitrary global target.
+- Add a size/complexity report that warns on new large modules.
+- Add dependency vulnerability and outdated-package reporting.
+- Define ownership for architecture, runtime state schemas, packaging, and UI
+  contracts.
+
+### Exit criteria
+
+- Every cleanup invariant is automated.
+- New lint debt cannot be added.
+- Large-module and boundary regressions are visible in pull requests.
+
+## Recommended execution order
+
+1. Phase 0: deterministic green baseline.
+2. Phase 1: repository hygiene and high-signal lint.
+3. Phase 2: dependency consolidation.
+4. Phase 3: package/import normalization.
+5. Phase 4A and 4B: runtime orchestration extraction.
+6. Phase 4C and 4E: backend/frontend decomposition.
+7. Phase 5: types and schemas alongside extracted modules.
+8. Phase 6: dead-code deletion.
+9. Phase 7: enforce the completed standards.
+
+Do not begin with a wholesale `ORRIN_loop.py` rewrite. Its behavior is central,
+its state is broad, and active feature work currently touches nearby surfaces.
+First make the tests hermetic, establish package boundaries, and extract one
+characterized lifecycle stage at a time.
+
+## First cleanup milestone
+
+The first milestone should be a small, low-risk series of commits:
+
+1. Fix embedding-test hermeticity.
+2. Add a standard verification command and record a green baseline.
+3. Stop tracking generated root artifacts.
+4. Add narrow Ruff configuration and eliminate all undefined names.
+5. Consolidate dependency declarations without changing installed behavior.
+6. Regenerate the dependency graph from the current tree.
+
+This milestone creates the safety rails required for the larger namespace and
+orchestration work.

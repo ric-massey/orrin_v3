@@ -33,7 +33,7 @@ def _hard_disengage_enabled() -> bool:
     remembering an env var. Opt out with ORRIN_HARD_DISENGAGE=0."""
     return os.environ.get("ORRIN_HARD_DISENGAGE", "1").strip().lower() not in ("0", "false", "no", "off")
 
-from utils.log import log_private
+from utils.log import log_private, log_activity
 from utils.json_utils import save_json, load_json
 from paths import METACOG_LOG, DATA_DIR
 from utils.failure_counter import record_failure

@@ -20,6 +20,8 @@ ENV_KEYS_OF_INTEREST = [
     "MEMORY_IMG_FORCE_HASH",
     "PYTEST_FORCE_HASH_EMBEDDING",
     "MEMORY_IMG_HASH_DIM",
+    "MEMORY_TEXT_BACKEND",
+    "MEMORY_TEXT_FORCE_HASH",
 ]
 
 def _debug_snapshot(mod=None, note=""):
@@ -84,13 +86,18 @@ def _assert_with_debug(cond, mod, msg):
 # Reload helper
 # ---------------------------
 
-def _reload_embedder(monkeypatch, *, fake_st=None, hash_dim=None, reset=True, force_hash_env=False):
+def _reload_embedder(monkeypatch, *, fake_st=None, hash_dim=None, reset=True,
+                     force_hash_env=False, force_text_hash=False):
     """
     Reload memory.embedder with optional:
       - fake_st: a fake 'sentence_transformers' module injected into sys.modules
       - hash_dim: override MEMCFG.HASH_FALLBACK_DIM before reload
       - reset:    drop existing memory.embedder modules first
-      - force_hash_env: set env to force hash image backend
+      - force_hash_env: set env to force hash *image* backend
+      - force_text_hash: set env to force the deterministic hash *text* path,
+        independent of whether sentence-transformers is installed locally.
+        Required for the text-fallback tests to be hermetic on machines that do
+        have a usable ST model cached.
     """
     # Clean out prior loads of memory.embedder
     if reset:
@@ -98,10 +105,23 @@ def _reload_embedder(monkeypatch, *, fake_st=None, hash_dim=None, reset=True, fo
             if name.startswith("memory.embedder"):
                 sys.modules.pop(name, None)
 
+    # Hermeticity: clear EVERY embedding env var the module consults before
+    # reloading, so an inherited developer/CI shell (e.g. an exported
+    # PYTEST_FORCE_HASH_EMBEDDING=1) can never silently change the backend out
+    # from under the test. The test then opts back in to exactly what it needs.
+    for _k in ENV_KEYS_OF_INTEREST:
+        monkeypatch.delenv(_k, raising=False)
+
     # Optionally force image hash backend through env (several keys supported by code)
     if force_hash_env:
         monkeypatch.setenv("MEMORY_IMG_BACKEND", "hash")
         monkeypatch.setenv("PYTEST_FORCE_HASH_EMBEDDING", "1")
+
+    # Optionally pin the text path to the hash fallback (production env flag),
+    # so a locally-cached sentence-transformer can't turn a "fallback" test into
+    # a real-model test.
+    if force_text_hash:
+        monkeypatch.setenv("MEMORY_TEXT_FORCE_HASH", "1")
 
     import memory.config as config
     if hash_dim is not None:
@@ -135,7 +155,8 @@ def _norm(v):
 # ---------------------------
 
 def test_text_fallback_hash_dims_norm_and_determinism(monkeypatch):
-    mod = _reload_embedder(monkeypatch, fake_st=None, hash_dim=257, force_hash_env=True)
+    mod = _reload_embedder(monkeypatch, fake_st=None, hash_dim=257,
+                           force_hash_env=True, force_text_hash=True)
 
     v1 = mod.get_text_embedding("hello world")
     v2 = mod.get_text_embedding("hello world")
@@ -174,7 +195,10 @@ def test_get_embedding_alias_matches_get_text_embedding(monkeypatch):
 
 def test_text_with_fake_sentence_transformers_success(monkeypatch):
     class DummyST:
-        def __init__(self, name): self.name = name
+        # Accept whatever kwargs production passes to SentenceTransformer(...)
+        # (currently device="cpu"); a stricter signature here silently sends the
+        # text path into the hash fallback and the success assertions never run.
+        def __init__(self, name, **kwargs): self.name = name
         def get_sentence_embedding_dimension(self): return 3
         def encode(self, arr, normalize_embeddings=True, show_progress_bar=False, batch_size=32):
             out = []
@@ -201,9 +225,41 @@ def test_text_with_fake_sentence_transformers_success(monkeypatch):
     _assert_with_debug(mod.text_dim() == 3, mod, "text_dim should be 3 from fake ST\n")
 
 
+def test_inherited_force_hash_env_does_not_break_fake_st_text_path(monkeypatch):
+    """
+    Regression guard for the embedding-test hermeticity fix (CODEBASE_CLEANUP
+    Phase 0). Simulate a developer/CI shell that exported a text-force-hash flag
+    (the kind of inherited env that originally flipped the backend out from
+    under the suite). _reload_embedder must clear it before reload, so a test
+    that injects a working fake sentence-transformer and does NOT opt into
+    force_text_hash still exercises the real text path — not the hash fallback.
+    If the clearing regresses, text_dim() drops to the hash fallback and this
+    fails loudly.
+    """
+    monkeypatch.setenv("MEMORY_TEXT_FORCE_HASH", "1")  # ambient shell leak
+
+    class DummyST:
+        def __init__(self, name, **kwargs): self.name = name
+        def get_sentence_embedding_dimension(self): return 3
+        def encode(self, arr, normalize_embeddings=True, show_progress_bar=False, batch_size=32):
+            return [np.array([1.0, 0.0, 0.0], dtype=np.float32) for _ in arr]
+
+    fake_st = types.ModuleType("sentence_transformers")
+    setattr(fake_st, "SentenceTransformer", DummyST)
+
+    # force_text_hash=False: the inherited MEMORY_TEXT_FORCE_HASH must be
+    # cleared by the helper, leaving the fake ST in control of the text path.
+    mod = _reload_embedder(monkeypatch, fake_st=fake_st, hash_dim=77,
+                           force_hash_env=False, force_text_hash=False)
+
+    v = mod.get_text_embedding("contains x")
+    _assert_with_debug(v.shape == (3,), mod, "inherited force-hash must not divert the text path\n")
+    _assert_with_debug(mod.text_dim() == 3, mod, "text_dim should reflect the fake ST, not the hash fallback\n")
+
+
 def test_text_fake_st_runtime_failure_falls_back_to_hash(monkeypatch):
     class DummyFailST:
-        def __init__(self, name): pass
+        def __init__(self, name, **kwargs): pass
         def get_sentence_embedding_dimension(self): return 5
         def encode(self, *a, **k): raise RuntimeError("simulated encode failure")
 

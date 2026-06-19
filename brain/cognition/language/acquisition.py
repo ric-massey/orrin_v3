@@ -532,7 +532,7 @@ def read_a_book(context=None, steps: int = 45) -> str:
     replay = _update_replay(text)
     block = (text + "\n" + replay) if replay else text
     loss = native_lm.train_on(block, steps=steps)
-    why = f" (it spoke to what I've been turning over)" if topics else ""
+    why = " (it spoke to what I've been turning over)" if topics else ""
     line = f"I was restless, so I picked up “{title}” and read for a while{why}."
     try:
         st = native_lm.status()

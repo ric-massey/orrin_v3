@@ -11,7 +11,7 @@ import inspect
 import traceback
 import warnings
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from dotenv import load_dotenv
 _log = get_logger(__name__)
@@ -191,6 +191,15 @@ def _push_catalog_once() -> None:
         _log.warning("catalog push failed: %s", _e)
 
 
+# Telemetry display constants (provenance for the once-magic numbers the
+# split-consciousness audit flagged, §F1/F3). These govern only how the UI
+# *presents* affect; they do not feed back into cognition.
+_VALENCE_UI_CENTER = 0.5      # brain valence is -1..1; 0 maps to UI 0.5 (neutral)
+_VALENCE_UI_SCALE = 0.5       # ...and ±1 maps to UI 0/1
+_DISTRESS_LOAD_DIVISOR = 2.5  # negative_load can exceed 1; scale to fit the 0..1 chart
+_HOMEOSTASIS_FALLBACK = 0.8   # used only if affect_state carries no homeostasis yet
+
+
 def _emit_affect(context: "Context") -> None:
     """
     Push the current affect state to the UI as valence/arousal/homeostasis
@@ -204,36 +213,33 @@ def _emit_affect(context: "Context") -> None:
         a = context.get("affect_state") or {}
         cs = a.get("core_signals") or a
 
-        # Real homeostasis: how close the WHOLE affect vector sits to its resting
-        # setpoints. 1.0 = everything at rest; falls as signals deviate (agitation
-        # or saturation). This actually "breathes" — unlike the old value, which was
-        # just 1−resource_deficit (now surfaced separately as `energy`).
-        homeostasis = 0.8
-        try:
-            from affect.setpoints import setpoint as _setpoint
-            weighted_devs = []
-            for k, v in cs.items():
-                if not isinstance(v, (int, float)):
-                    continue
-                weight = 0.15 if k == "exploration_drive" else 1.0
-                weighted_devs.append((abs(float(v) - _setpoint(k)), weight))
-            weight_total = sum(weight for _, weight in weighted_devs)
-            if weight_total:
-                mean_dev = sum(dev * weight for dev, weight in weighted_devs) / weight_total
-                homeostasis = _clamp01(1.0 - mean_dev * 1.6)
-        except Exception:
-            pass
+        # Homeostasis ("is he settled?") is now computed by the single authority in
+        # affect.homeostasis and stored on affect_state every cycle, so the chart,
+        # the REST panels and the brain itself share one number. The helper only
+        # READS it here (it no longer invents the value — see
+        # SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2). Fall back to recomputing from
+        # the same authority if the state predates this field.
+        homeostasis = a.get("homeostasis")
+        if not isinstance(homeostasis, (int, float)):
+            try:
+                from affect.homeostasis import homeostasis_index
+                homeostasis = homeostasis_index(cs)
+            except Exception:
+                homeostasis = _HOMEOSTASIS_FALLBACK
 
         distress = 0.0
         try:
             from affect.observers import negative_load
-            distress = _clamp01(negative_load(a) / 2.5)
+            distress = _clamp01(negative_load(a) / _DISTRESS_LOAD_DIVISOR)
         except Exception:
             distress = _clamp01(_f(cs.get("impasse_signal")))
 
         tb.affect(
-            # top-level valence runs roughly -1..1; centre it on 0.5 for the UI.
-            valence=_clamp01(0.5 + 0.5 * _f(a.get("valence"))),
+            # top-level valence runs roughly -1..1; centre it on 0.5 for the UI's
+            # agent-accessible chart. The uncompressed value also ships as
+            # `valence_raw` (dev-only metric), so no number is hidden — the
+            # centering is a presentation choice, not a divergence.
+            valence=_clamp01(_VALENCE_UI_CENTER + _VALENCE_UI_SCALE * _f(a.get("valence"))),
             valence_raw=_f(a.get("valence")),
             impasse_raw=_clamp01(_f(cs.get("impasse_signal"))),
             arousal=_clamp01(_f(a.get("activation_level"), 0.3)),
@@ -308,37 +314,11 @@ def _emit_goals(context: "Context") -> None:
         committed = context.get("committed_goal") if isinstance(context, dict) else None
         committed_id = committed.get("id") if isinstance(committed, dict) else None
 
-        def _summ(g: Dict[str, Any], active: bool = False) -> Dict[str, Any]:
-            plan = g.get("plan") or []
-            steps = [s for s in plan if isinstance(s, dict)]
-            done = sum(1 for s in steps if s.get("status") == "completed")
-            cur = next((str(s.get("step")) for s in steps if s.get("status") == "pending"), None)
-            return {
-                "id": g.get("id"),
-                "title": str(g.get("title") or g.get("name") or "(untitled)")[:160],
-                "status": str(g.get("status") or "unknown"),
-                "tier": str(g.get("tier") or g.get("kind") or ""),
-                "priority": g.get("priority"),
-                "tags": [str(t) for t in (g.get("tags") or [])][:6],
-                "steps_done": done,
-                "steps_total": len(steps),
-                "current_step": (cur[:160] if cur else None),
-                "active": bool(active or (committed_id is not None and g.get("id") == committed_id)),
-                "serves": str(g.get("serves") or "")[:80],
-                "aspiration": bool(g.get("_aspiration") or g.get("kind") == "aspiration"),
-            }
-
-        out: List[Dict[str, Any]] = []
-        seen = set()
-        if isinstance(committed, dict) and (committed.get("title") or committed.get("name")):
-            out.append(_summ(committed, active=True))
-            seen.add(committed.get("id"))
-        for g in goals_raw:
-            if not isinstance(g, dict) or g.get("id") in seen:
-                continue
-            if not (g.get("title") or g.get("name")):
-                continue  # skip malformed/untitled entries — UI noise
-            out.append(_summ(g))
+        from goal_io import summarize_goal_tree
+        out = summarize_goal_tree(
+            goals_raw, committed_id=committed_id,
+            committed=committed if isinstance(committed, dict) else None,
+        )
         tb.update(goals=out[:40])
     except Exception:
         return
@@ -570,6 +550,12 @@ def _boot_context() -> Context:
         from agency.code_writer import AGENCY_CODE_FUNCTIONS
         for k, fn in {**AGENCY_TOOL_FUNCTIONS, **AGENCY_CODE_FUNCTIONS}.items():
             COGNITIVE_FUNCTIONS[k] = {"function": fn, "is_cognition": True}
+        from agency.compose_section import compose_section as _compose_section
+        COGNITIVE_FUNCTIONS["compose_section"] = {
+            "function": _compose_section,
+            "is_cognition": True,
+            "requires_llm": False,
+        }
         # Re-persist so the bandit's JSON list includes the agency function names
         from registry.cognition_registry import persist_names
         persist_names(COGNITIVE_FUNCTIONS)
@@ -1724,9 +1710,31 @@ def run_cognitive_loop(
             except Exception as _dfe:
                 record_failure("ORRIN_loop.run_cognitive_loop.6", _dfe)
 
+            # Install the committed goal's bounded cognitive lens before
+            # perception so relevant signals can compete with affect/novelty.
+            try:
+                from cognition.goal_lens import apply_goal_lens as _apply_goal_lens
+                _apply_goal_lens(context)
+            except Exception as _gle:
+                record_failure("ORRIN_loop.apply_goal_lens.pre_perception", _gle)
+
             top_signals, attention_mode = process_inputs(context)
             context["top_signals"] = top_signals
             context["attention_mode"] = attention_mode
+
+            # Pre-workspace feature binding: cluster this cycle's signals,
+            # feeling, memory, and goal into unified situation candidates. The
+            # atomic candidates remain in the field; binding only adds options.
+            try:
+                from cognition.binding import bind_situation as _bind
+                _bind(context)
+            except Exception as _be:
+                record_failure("ORRIN_loop.bind_situation", _be)
+            try:
+                from cognition.goal_lens import apply_goal_lens as _apply_goal_lens
+                _apply_goal_lens(context)
+            except Exception as _gle:
+                record_failure("ORRIN_loop.apply_goal_lens.post_binding", _gle)
 
             # Fast-path reply: if a Face message is waiting, answer it NOW — early
             # in the cycle, right after the input is parsed — instead of at the end

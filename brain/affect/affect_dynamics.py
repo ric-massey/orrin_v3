@@ -202,6 +202,24 @@ _ACTIVATION_LEVEL: Dict[str, float] = {
     "stagnation_signal":     -0.50,
 }
 
+# Phasic arousers: fast signals whose ONSET should spike activation ABOVE the
+# tonic mean (then subside as they decay). The tonic weighted-mean alone washes
+# any single acute signal out — one alarming event among many calm ones barely
+# shifts the average — which is why arousal sat near-inert (std ~0.008). Real
+# arousal is phasic: a surprising / threatening / urgent event drives the
+# locus-coeruleus noradrenergic burst up over the background, then relaxes
+# (Aston-Jones & Cohen 2005). Value = how strongly each drives that burst.
+_PHASIC_AROUSERS: Dict[str, float] = {
+    "surprise":          1.00,
+    "threat_level":      1.00,
+    "conflict_signal":   0.90,
+    "risk_estimate":     0.85,
+    "impasse_signal":    0.70,
+    "urgency":           1.00,   # absent from core today → harmlessly skipped
+    "temporal_pressure": 0.80,   # ditto; picked up automatically if ever present
+}
+_PHASIC_GAIN = 0.70   # fraction of the above-tonic spike that reaches activation
+
 _QUADRANT: Dict[Tuple[bool, bool], str] = {
     (True,  True):  "active_positive",   # excited, enthusiastic, flow
     (True,  False): "calm_positive",     # content, satisfied, peaceful
@@ -237,7 +255,20 @@ def compute_valence_activation_level(
         return 0.0, 0.0, "calm_positive"
 
     valence = max(-1.0, min(1.0, v_num / v_w))
-    activation_level = max(-1.0, min(1.0, a_num / a_w)) if a_w >= 0.01 else 0.0
+
+    # Activation = TONIC weighted mean + PHASIC spike. We add the strongest
+    # fast-arouser on top of the tonic background rather than letting the mean
+    # dilute it, so an acute event lifts arousal and then subsides as the signal
+    # decays — phasic-on-tonic (Solomon & Corbit 1974; Aston-Jones & Cohen 2005).
+    tonic = a_num / a_w if a_w >= 0.01 else 0.0
+    phasic = 0.0
+    for _sig, _gain in _PHASIC_AROUSERS.items():
+        _inten = core.get(_sig)
+        if isinstance(_inten, (int, float)):
+            phasic = max(phasic, _gain * float(_inten))
+    # Only the part of the spike ABOVE the tonic background lifts arousal: an
+    # acute event raises activation, it never lowers it below the resting mean.
+    activation_level = max(-1.0, min(1.0, tonic + _PHASIC_GAIN * max(0.0, phasic - max(0.0, tonic))))
     quad    = _QUADRANT[(valence > 0.0, activation_level > 0.0)]
     return round(valence, 3), round(activation_level, 3), quad
 

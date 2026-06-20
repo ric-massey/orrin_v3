@@ -92,6 +92,10 @@ export interface WorkspaceConscious {
   salience?: number;     // 0..1 competition winner score
   kind?: string;         // breakthrough kind, when the winner came from the Monitor
   wants?: string;        // route the Monitor asked the deliberate mind to take
+  object?: string;
+  facets?: Record<string, unknown>;
+  members?: string[];
+  referent_links?: string[];
   ts?: number;
 }
 /** A candidate the Monitor offered to the workspace (it never seizes the slot).
@@ -116,7 +120,7 @@ export interface ExecutiveSummary {
 export interface MonitorBlock { recent_breakthroughs?: Breakthrough[]; watchdog?: WatchdogRow[] }
 /** A ranked candidate that competed for the workspace this cycle (Fix 4 —
  *  the "losers": what almost became conscious, and why this won). */
-export interface WorkspaceCandidate { source?: string; content?: string; salience?: number; kind?: string; wants?: string }
+export interface WorkspaceCandidate { source?: string; content?: string; salience?: number; kind?: string; wants?: string; object?: string; facets?: Record<string, unknown>; members?: string[] }
 export interface WorkspaceBlock { conscious?: WorkspaceConscious; candidates?: WorkspaceCandidate[] }
 
 /** The merged client-side view of the system, produced by useTelemetry(). */

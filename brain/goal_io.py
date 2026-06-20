@@ -37,13 +37,106 @@ _api_ref = None   # set by install_event_handler; lets v1 close paths mirror int
 # GoalArbiter); the v2 store knows lifecycle, not plans. Without carrying these
 # over, the per-cycle committed_goal rebuild discarded all plan progress and the
 # milestone gate regenerated the same plan forever (FINDINGS 2026-06-12 §1).
-_PURSUIT_FIELDS = ("plan", "milestones", "_step_attempts", "_replan_count", "_stalled")
+_PURSUIT_FIELDS = (
+    "plan", "milestones", "definition_of_done", "grounded_parts",
+    "requires_artifact", "tracked_work", "tracked_work_path",
+    "_step_attempts", "_replan_count", "_stalled",
+)
 _V1_TERMINAL = {"completed", "failed", "abandoned", "cancelled"}
+
+
+def summarize_goal(goal: Dict[str, Any], *, active: bool = False) -> Dict[str, Any]:
+    """Canonical goal representation for REST and websocket telemetry."""
+    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    plan = [s for s in (goal.get("plan") or spec.get("plan") or []) if isinstance(s, dict)]
+    milestones = []
+    for milestone in (goal.get("milestones") or spec.get("milestones") or []):
+        if not isinstance(milestone, dict):
+            continue
+        row = dict(milestone)
+        row.setdefault("text", str(row.get("milestone") or row.get("criterion") or ""))
+        milestones.append(row)
+    done = sum(1 for s in plan if str(s.get("status") or "").lower() == "completed")
+    current = next(
+        (str(s.get("step") or s.get("name") or "") for s in plan
+         if str(s.get("status") or "pending").lower() not in {"completed", "done"}),
+        None,
+    )
+    return {
+        "id": goal.get("id"),
+        "title": str(goal.get("title") or goal.get("name") or "(untitled)")[:160],
+        "status": str(goal.get("status") or "unknown"),
+        "tier": str(goal.get("tier") or goal.get("kind") or ""),
+        "kind": goal.get("kind"),
+        "priority": goal.get("priority"),
+        "tags": [str(t) for t in (goal.get("tags") or [])][:12],
+        "steps_done": done,
+        "steps_total": len(plan),
+        "current_step": current[:160] if current else None,
+        "active": bool(active),
+        "serves": str(goal.get("serves") or spec.get("serves") or "")[:160],
+        "aspiration": bool(goal.get("_aspiration") or goal.get("kind") == "aspiration"),
+        "description": goal.get("description") or spec.get("description"),
+        "driven_by": goal.get("driven_by") or spec.get("driven_by") or spec.get("driven"),
+        "definition_of_done": goal.get("definition_of_done") or spec.get("definition_of_done") or [],
+        "grounded_parts": goal.get("grounded_parts") or spec.get("grounded_parts") or [],
+        "milestones": milestones,
+        "plan": plan,
+        "history": goal.get("history") or [],
+        "tracked_work": bool(goal.get("tracked_work") or spec.get("tracked_work")),
+        "tracked_work_path": goal.get("tracked_work_path") or spec.get("tracked_work_path"),
+        "completed_timestamp": goal.get("completed_timestamp"),
+        "created_at": goal.get("created_at") or goal.get("created_timestamp"),
+        "last_updated": goal.get("last_updated"),
+    }
+
+
+def summarize_goal_tree(
+    goals: Any,
+    *,
+    committed_id: Any = None,
+    committed: Dict[str, Any] | None = None,
+    limit: int = 40,
+) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    seen: set[str] = set()
+
+    def add(goal: Dict[str, Any], forced_active: bool = False) -> None:
+        if not (goal.get("title") or goal.get("name")):
+            return
+        gid = str(goal.get("id") or goal.get("title") or goal.get("name"))
+        if gid in seen:
+            return
+        seen.add(gid)
+        status = str(goal.get("status") or "").lower()
+        active = forced_active or (committed_id is not None and str(goal.get("id")) == str(committed_id))
+        if committed_id is None:
+            active = status in {"active", "committed", "in_progress", "running"}
+        out.append(summarize_goal(goal, active=active))
+
+    if isinstance(committed, dict):
+        add(committed, True)
+
+    def walk(value: Any) -> None:
+        if len(out) >= limit:
+            return
+        if isinstance(value, dict):
+            if (value.get("title") or value.get("name")) and value.get("status"):
+                add(value)
+            for child in value.get("subgoals") or []:
+                walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+
+    walk(goals)
+    return out[:limit]
 
 
 def _goal_to_v1(g) -> Dict[str, Any]:
     """Shape a v2 Goal object into the v1-compatible dict cognition functions read."""
-    return {
+    spec = dict(g.spec or {})
+    out = {
         "id": g.id,
         "title": g.title,
         "name": g.title,            # v1 compat: functions read "name"
@@ -51,11 +144,19 @@ def _goal_to_v1(g) -> Dict[str, Any]:
         "tier": g.kind,             # v1 compat: focus selection reads "tier"
         "priority": g.priority.name if hasattr(g.priority, "name") else str(g.priority),
         "tags": list(g.tags or []),
-        "spec": dict(g.spec or {}),
+        "spec": spec,
         "next_action": (g.spec or {}).get("next_action"),
         "deadline": g.deadline.isoformat() if g.deadline else None,
         "status": "in_progress",
     }
+    for key in (
+        "definition_of_done", "grounded_parts", "plan", "milestones",
+        "requires_artifact", "tracked_work", "tracked_work_path",
+        "comprehension_source", "comprehended_at",
+    ):
+        if key in spec:
+            out[key] = spec[key]
+    return out
 
 
 def _load_v1_tree() -> List[Dict[str, Any]]:
@@ -190,7 +291,20 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
             if kind in _EXECUTABLE_KINDS:
                 if title in existing:
                     continue  # already exists — skip
-                api.create_goal(title=title, kind=kind, spec=gd.get("spec") or {},
+                try:
+                    from cognition.planning.goal_comprehension import comprehend_goal
+                    gd = comprehend_goal(gd, context)
+                except Exception:
+                    pass
+                spec = dict(gd.get("spec") or {})
+                for key in (
+                    "definition_of_done", "grounded_parts", "plan", "milestones",
+                    "requires_artifact", "tracked_work", "comprehension_source",
+                    "comprehended_at",
+                ):
+                    if key in gd:
+                        spec.setdefault(key, gd[key])
+                api.create_goal(title=title, kind=kind, spec=spec,
                                 priority=gd.get("priority", "NORMAL"), tags=gd.get("tags") or [])
                 existing.add(title)
             # cognitive/internal goals have no v2 handler — left for v1 memory paths

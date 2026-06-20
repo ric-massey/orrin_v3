@@ -49,7 +49,59 @@ _INHIBIT_RATE = 0.04
 # Default per-cycle net velocity cap on the core vector (L1). Tuned so a normal
 # cycle (a few small nudges + gentle decay) passes untouched, but a cycle where
 # many forces fire at once cannot move the whole vector more than this in total.
-DEFAULT_MAX_L1 = 1.20
+#
+# Raised 1.20 → 1.80: at 1.20 a genuine multi-signal event (a real appraisal that
+# legitimately moves valence + a drive + a couple of negatives at once) routinely
+# pushed total L1 over the cap, so every delta got scaled DOWN proportionally and
+# the would-be spike arrived as a ~0.02 nudge — drives never visibly moved. 1.80
+# gives a coherent event the headroom to land a 0.1–0.3 excursion while still
+# bounding a chaotic cycle where a dozen forces fire incoherently.
+DEFAULT_MAX_L1 = 1.80
+
+
+# ── Display homeostasis index — the single owner of "is he settled?" ──────────
+# How close the WHOLE core vector sits to its resting setpoints: 1.0 = everything
+# at rest, falling as signals deviate (agitation or saturation). This used to be
+# computed inline inside the telemetry helper (ORRIN_loop._emit_affect), which
+# meant the number the UI charted existed *only* in the translator — asking the
+# brain "what is your homeostasis" gave a different answer than the chart
+# (SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT_2026-06-19, F2). It now lives here, is
+# written onto affect_state every cycle, and the emit helper merely reads it, so
+# representations A (live state), B (disk) and C (telemetry) share one definition.
+#
+# exploration_drive legitimately rides high while exploring, so its deviation is
+# down-weighted — a curious-but-otherwise-resting mind should still read settled.
+_EXPLORATION_DEV_WEIGHT = 0.15
+# Maps mean per-signal deviation onto the 0..1 index. At gain 1.6 a mean
+# deviation of ~0.625 pins the index to 0 (fully agitated); typical resting
+# deviation (~0.05) reads ~0.92 (clearly settled). Tuned so the index "breathes"
+# across the normal operating band rather than saturating.
+_HOMEOSTASIS_DEVIATION_GAIN = 1.6
+_HOMEOSTASIS_DEFAULT = 0.8
+
+
+def homeostasis_index(core: Dict[str, float]) -> float:
+    """The 0..1 'is his whole affect vector near rest?' reading (1 = settled).
+
+    Weighted mean absolute deviation of every numeric core signal from its
+    resting setpoint, mapped through `_HOMEOSTASIS_DEVIATION_GAIN`. Fail-safe:
+    returns `_HOMEOSTASIS_DEFAULT` if setpoints are unavailable or core is empty.
+    """
+    try:
+        from affect.setpoints import setpoint as _setpoint
+    except Exception:
+        return _HOMEOSTASIS_DEFAULT
+    weighted_devs: List[tuple] = []
+    for k, v in (core or {}).items():
+        if not isinstance(v, (int, float)):
+            continue
+        weight = _EXPLORATION_DEV_WEIGHT if k == "exploration_drive" else 1.0
+        weighted_devs.append((abs(float(v) - _setpoint(k)), weight))
+    weight_total = sum(weight for _, weight in weighted_devs)
+    if not weight_total:
+        return _HOMEOSTASIS_DEFAULT
+    mean_dev = sum(dev * weight for dev, weight in weighted_devs) / weight_total
+    return max(0.0, min(1.0, 1.0 - mean_dev * _HOMEOSTASIS_DEVIATION_GAIN))
 
 
 def update_allostatic_load(state: Dict, core: Dict[str, float]) -> float:

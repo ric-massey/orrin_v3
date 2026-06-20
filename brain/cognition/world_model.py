@@ -51,6 +51,40 @@ _STOP_WORDS = {
 }
 
 
+def extract_entity_names(text: str, known_entities=None) -> set[str]:
+    """Return symbolic entity names mentioned in ``text`` without mutating the
+    world model. ``known_entities`` may be the model's entity keys; callers that
+    process several texts can load/pass that vocabulary once."""
+    if not text:
+        return set()
+
+    text_lower = str(text).lower()
+    words = set(re.findall(r"\b[a-z][a-z0-9_'-]{2,}\b", text_lower))
+    entities = {person for person in _KNOWN_PERSONS if person in words}
+
+    for tok in re.findall(r"\b([A-Z][a-z]{2,})\b", str(text)):
+        key = tok.lower()
+        if key not in _STOP_WORDS:
+            entities.add(key)
+
+    for cid in re.findall(r"\b([a-z][a-z0-9]*(?:_[a-z][a-z0-9]*){1,})\b", text_lower):
+        if len(cid) > 6 and cid not in _STOP_WORDS:
+            entities.add(cid)
+
+    for pattern, _predicate in _RELATION_PATTERNS:
+        for match in re.finditer(pattern, text_lower):
+            for value in match.groups():
+                key = str(value).lower()
+                if key not in _STOP_WORDS and len(key) >= 3:
+                    entities.add(key)
+
+    for value in known_entities or ():
+        key = str(value).lower().strip()
+        if key and key in words:
+            entities.add(key)
+    return entities
+
+
 def _load_vocab() -> dict:
     try:
         return json.loads(_VOCAB_PATH.read_text(encoding="utf-8")).get("world_model_extraction", {})

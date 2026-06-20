@@ -213,6 +213,15 @@ def process_inputs(context, raw_signals=None):
         # === Goal and mode relevance ===
         if any(gw and gw in content for gw in goal_words):
             base += 0.15
+        try:
+            from cognition.goal_lens import relevance as _goal_relevance
+            _lens_rel = _goal_relevance(context.get("goal_lens"), f"{content} {' '.join(tags)}")
+            # Bounded: enough to reorder close candidates, never enough to beat
+            # a high-salience user or emergency signal by itself.
+            base += 0.22 * _lens_rel
+            signal["goal_lens_relevance"] = round(_lens_rel, 3)
+        except Exception:
+            pass
         if mode and mode in content:
             base += 0.1
 
@@ -374,6 +383,11 @@ def process_inputs(context, raw_signals=None):
     context["_active_signal_sources"] = list({
         str(s.get("source") or "unknown") for s in top_signals
     })
+    if context.get("goal_lens"):
+        telemetry = context.setdefault("_goal_lens_telemetry", {})
+        rels = [float(s.get("goal_lens_relevance", 0.0) or 0.0) for s in top_signals]
+        telemetry["top_signal_relevance"] = round(max(rels, default=0.0), 3)
+        telemetry["goal_relevant_top_signals"] = sum(1 for rel in rels if rel >= 0.15)
 
     # Apply learned attention value weights: sources that historically
     # preceded high reward get a credibility bonus here.

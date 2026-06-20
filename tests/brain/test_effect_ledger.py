@@ -56,3 +56,37 @@ def test_unparseable_code_has_zero_significance():
     row = el.record_effect("code_committed", "def broken(:\n  return " + ("x " * 60), goal_id="g5")
     # either rejected outright or recorded with zero significance — never a free win
     assert row is None or row.significance == 0.0
+
+
+def test_tracked_work_requires_progress_metadata():
+    assert el.record_effect("tracked_work", _LONG, goal_id="book") is None
+    row = el.record_effect(
+        "tracked_work",
+        _LONG + " This second section advances a distinct implication.",
+        goal_id="book",
+        metadata={"path": "/tmp/book.md", "section": "Thesis", "completed_sections": 1},
+    )
+    assert row is not None
+    assert row.significance >= 0.5
+    assert el.has_qualifying_effect("book")
+
+
+def test_tracked_work_goal_waits_for_required_sections():
+    goal = {
+        "tracked_work": True,
+        "definition_of_done": [{"criterion": "three sections", "kind": "sections", "target": 3}],
+    }
+    texts = [
+        _LONG + " The first section establishes a concrete thesis about local interactions.",
+        _LONG + " The second section distinguishes coordination from centralized control.",
+        _LONG + " The third section integrates the implications for cognition and agency.",
+    ]
+    for count, text in enumerate(texts, 1):
+        row = el.record_effect(
+            "tracked_work",
+            text,
+            goal_id="book-3",
+            metadata={"path": "/tmp/book.md", "section": f"S{count}", "completed_sections": count},
+        )
+        assert row is not None
+        assert el.has_qualifying_effect("book-3", goal) is (count == 3)

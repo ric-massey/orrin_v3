@@ -34,6 +34,41 @@ _log = get_logger(__name__)
 # plan_next_step, summarize_memory) were never registered under those names.
 FALLBACK_ACTIONS = ["reflect_on_self_beliefs", "assess_goal_progress", "consolidate_from_long_memory"]
 
+
+def _workspace_routes_for(moment: Dict[str, Any]) -> Dict[str, float]:
+    """Map a conscious atomic or bound situation to additive action priors."""
+    source = str(moment.get("source", ""))
+    atomic = {
+        "goal":    {"attend_goal": 1.0, "plan_next_step": 0.8, "assess_goal_progress": 0.6},
+        "affect":  {"reflection": 0.8, "reflect_on_self_beliefs": 0.7, "narrative_update": 0.5},
+        "thought": {"reflection": 0.8, "narrative_update": 0.6},
+        "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
+        "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
+    }
+    if source != "binding":
+        return atomic.get(source, {})
+
+    facets = moment.get("facets") or {}
+    if not isinstance(facets, dict):
+        return {}
+    routes: Dict[str, float] = {}
+
+    def merge(values: Dict[str, float]) -> None:
+        for name, weight in values.items():
+            routes[name] = max(routes.get(name, 0.0), weight)
+
+    if facets.get("goal"):
+        merge(atomic["goal"])
+    if facets.get("affect"):
+        merge(atomic["affect"])
+    if facets.get("memory"):
+        merge(atomic["thought"])
+    if facets.get("event") or facets.get("motion") or facets.get("object"):
+        merge(atomic["signal"])
+    if facets.get("interlocutor"):
+        merge(atomic["user"])
+    return routes
+
 # Directed (uncertainty-seeking) exploration weight. Gershman (2018), "Deconstructing
 # the human algorithms for exploration", Cognition 173:34 — humans add an
 # uncertainty bonus to actions whose value is poorly known, on top of random
@@ -1280,13 +1315,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             _ws_sal = float(_gw_ws.get("salience", 0.0) or 0.0)
             if _ws_src and not _ws_src.startswith("monitor:") and _ws_sal > 0.0:
                 # source → the functions that ACT ON that kind of conscious content.
-                _ws_routes = {
-                    "goal":    {"attend_goal": 1.0, "plan_next_step": 0.8, "assess_goal_progress": 0.6},
-                    "affect":  {"reflection": 0.8, "reflect_on_self_beliefs": 0.7, "narrative_update": 0.5},
-                    "thought": {"reflection": 0.8, "narrative_update": 0.6},
-                    "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
-                    "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
-                }.get(_ws_src, {})
+                _ws_routes = _workspace_routes_for(_gw_ws)
                 # Headroom 0.35: strong enough to be a genuine prior (cf. tension 0.15,
                 # ACC recruit ≤0.6), bounded so it never dominates the arg-max alone.
                 _ws_gain = 0.35 * max(0.0, min(1.0, _ws_sal))
@@ -1761,7 +1790,13 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             if _nuse < 8:
                 s_curio = 0.18 * (_expl_drive - 0.5) * (1.0 - _nuse / 8.0)
 
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
+        s_goal_lens = 0.0
+        try:
+            from cognition.goal_lens import action_prior as _goal_lens_prior
+            s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
+        except Exception:
+            pass
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
         # here: pursue_committed_goal is no longer a deliberate candidate (it runs in
@@ -1882,9 +1917,18 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             except Exception:
                 pass
 
-        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "explore": s_explore}))
+        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore}))
 
     scored.sort(key=lambda t: t[1], reverse=True)
+    if context.get("goal_lens"):
+        try:
+            _lens_ranked = [
+                {"function": nm, "score": round(sc, 3), "lens_prior": round(float(parts.get("goal_lens", 0.0)), 3)}
+                for nm, sc, parts in scored[:8]
+            ]
+            context.setdefault("_goal_lens_telemetry", {})["selection_top"] = _lens_ranked
+        except Exception:
+            pass
 
     # Consume the one-cycle goal-deliberation lockout now that scoring is done,
     # so it affects exactly this selection and not subsequent ones.

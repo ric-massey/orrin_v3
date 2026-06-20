@@ -305,6 +305,11 @@ def save_goals(goals: List[Dict]) -> None:
 def add_goal(goal: Dict, parent_name: Optional[str] = None) -> Dict:
     full = load_goals()
     g = dict(goal)
+    try:
+        from cognition.planning.goal_comprehension import comprehend_goal
+        g = comprehend_goal(g)
+    except Exception:
+        pass
     now = now_iso_z()
     g.setdefault("status", "pending")
     g.setdefault("timestamp", now)
@@ -567,8 +572,84 @@ def _is_artifact_gated(goal: Dict) -> bool:
     """A goal that may complete ONLY when a real durable effect was recorded for it."""
     if not isinstance(goal, dict):
         return False
-    return bool(goal.get("requires_artifact")) or \
-        str(goal.get("driven_by") or "").lower() == "output_producing"
+    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    if bool(goal.get("requires_artifact") or spec.get("requires_artifact")):
+        return True
+    if str(goal.get("driven_by") or spec.get("driven_by") or "").lower() == "output_producing":
+        return True
+    text = " ".join(str(goal.get(k) or spec.get(k) or "") for k in ("title", "name", "description")).lower()
+    return any(word in text for word in (
+        "write ", "build ", "create ", "make ", "compose ", "publish ",
+        "implement ", "produce ", "draft ",
+    ))
+
+
+def _definition_of_done(goal: Dict) -> List[Dict]:
+    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    raw = goal.get("definition_of_done") or spec.get("definition_of_done") or []
+    out: List[Dict] = []
+    for item in raw if isinstance(raw, list) else []:
+        if isinstance(item, dict) and item.get("criterion"):
+            out.append(item)
+        elif str(item or "").strip():
+            out.append({"criterion": str(item).strip(), "kind": "quality", "met": False})
+    return out
+
+
+def _criteria_evidence_met(goal: Dict) -> bool:
+    """Check persisted evidence, never a bare model assertion."""
+    criteria = _definition_of_done(goal)
+    if not criteria:
+        return False
+    gid = str(goal.get("id") or "")
+    produced = False
+    if gid:
+        try:
+            from agency.effect_ledger import has_qualifying_effect
+            produced = has_qualifying_effect(gid, goal)
+        except Exception:
+            pass
+    milestones = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
+    all_milestones = bool(milestones) and all(bool(m.get("met")) for m in milestones)
+    evidence = goal.get("completion_evidence") or {}
+    checks = evidence.get("criteria") if isinstance(evidence, dict) else []
+
+    def _observed(text: str) -> bool:
+        words = {w for w in re.findall(r"[a-zA-Z][a-zA-Z0-9_-]{3,}", text.lower())}
+        if len(words) < 2:
+            return False
+        try:
+            from paths import WORKING_MEMORY_FILE
+            memory = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+        except Exception:
+            memory = []
+        for entry in memory[-40:] if isinstance(memory, list) else []:
+            content = str(entry.get("content", entry) if isinstance(entry, dict) else entry).lower()
+            if len(words & set(re.findall(r"[a-zA-Z][a-zA-Z0-9_-]{3,}", content))) >= 2:
+                return True
+        return False
+
+    checked = {
+        str(row.get("criterion") or ""): (
+            bool(row.get("met"))
+            and bool(row.get("evidence"))
+            and _observed(str(row.get("evidence") or ""))
+        )
+        for row in checks or [] if isinstance(row, dict)
+    }
+    for criterion in criteria:
+        kind = str(criterion.get("kind") or "").lower()
+        text = str(criterion.get("criterion") or "")
+        met = bool(criterion.get("met"))
+        if kind in {"artifact", "sections", "validation"} and produced:
+            met = True
+        if all_milestones:
+            met = True
+        if checked.get(text):
+            met = True
+        if not met:
+            return False
+    return True
 
 
 def try_to_accomplish(goal: Dict) -> bool:
@@ -585,7 +666,7 @@ def try_to_accomplish(goal: Dict) -> bool:
         gid = str(goal.get("id") or "")
         try:
             from agency.effect_ledger import has_qualifying_effect
-            _produced = bool(gid) and has_qualifying_effect(gid)
+            _produced = bool(gid) and has_qualifying_effect(gid, goal)
         except Exception:
             _produced = False
         now = now_iso_z()
@@ -610,9 +691,17 @@ def try_to_accomplish(goal: Dict) -> bool:
         goal.setdefault("history", []).append({"event": "awaiting_artifact", "timestamp": now})
         return False
 
+    if _criteria_evidence_met(goal):
+        goal["status"] = "completed"
+        goal["last_updated"] = now_iso_z()
+        goal.setdefault("history", []).append(
+            {"event": "completed", "reason": "criteria_verified", "timestamp": now_iso_z()})
+        update_working_memory(f"✅ Verified completion criteria for goal: {goal.get('name')}")
+        return True
+
     if not llm_callable_by("goals"):
         success = _rule_based_accomplish(goal)
-        if success:
+        if success and not _definition_of_done(goal):
             goal["status"] = "completed"
             goal["last_updated"] = now_iso_z()
             goal.setdefault("history", []).append({"event": "completed", "timestamp": now_iso_z()})
@@ -621,16 +710,23 @@ def try_to_accomplish(goal: Dict) -> bool:
             goal.setdefault("history", []).append({"event": "failed_attempt", "timestamp": now_iso_z()})
         return success
 
+    criteria = _definition_of_done(goal)
     prompt = (
-        f'Try to accomplish this atomic goal: "{goal.get("name", "")}"\n'
-        'Describe outcome as JSON: {"success": true/false, "details": ""}'
+        f'Evaluate completion evidence for this goal: "{goal.get("name", "")}"\n'
+        f"Criteria: {criteria}\n"
+        "Return JSON only: {\"criteria\": [{\"criterion\": \"exact criterion\", "
+        "\"met\": true/false, \"evidence\": \"specific observed evidence\"}]}. "
+        "A statement of confidence or success is not evidence."
     )
     result = llm_ok(generate_response(prompt, config={"model": get_thinking_model()}), "goals")
     out = extract_json(result or "")
-    if isinstance(out, dict) and out.get("success"):
+    if isinstance(out, dict) and isinstance(out.get("criteria"), list):
+        goal["completion_evidence"] = {"criteria": out["criteria"], "checked_at": now_iso_z()}
+    if _criteria_evidence_met(goal):
         goal["status"] = "completed"
         goal["last_updated"] = now_iso_z()
-        goal.setdefault("history", []).append({"event": "completed", "timestamp": now_iso_z()})
+        goal.setdefault("history", []).append(
+            {"event": "completed", "reason": "criteria_verified", "timestamp": now_iso_z()})
         update_working_memory(f"✅ Accomplished goal: {goal.get('name')}")
         return True
     else:
@@ -1106,7 +1202,7 @@ def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
                     deadline = int(g.get("deadline_cycles") or PRODUCTION_DEADLINE_CYCLES)
                     gid = str(g.get("id") or "")
                     overdue = (cur - int(seen)) > deadline
-                    if overdue and not (gid and has_qualifying_effect(gid)):
+                    if overdue and not (gid and has_qualifying_effect(gid, g)):
                         failed.append(g)
             _walk(g.get("subgoals") or [])
 

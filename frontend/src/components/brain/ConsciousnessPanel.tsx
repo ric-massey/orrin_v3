@@ -37,6 +37,7 @@ const SOURCE_COLOR: Record<string, string> = {
   breakthrough: "#f59e0b",
   action: "#06b6d4",
   thought: "#94a3b8",
+  binding: "#14b8a6",
 };
 const sourceColor = (s?: string) => SOURCE_COLOR[(s || "").toLowerCase()] || "#64748b";
 
@@ -121,6 +122,20 @@ function MomentDrawer({
             <div>
               <span className="mr-2 text-[9px] font-semibold uppercase tracking-wide">Wants</span>
               <span title="The route the offerer asked the deliberate mind to take. It biases the next pick — it never preempts (I7). Whether it was honored shows up in §20.1 dismissal-recalibration (the 'quieted' badges).">→ {moment.wants}</span>
+            </div>
+          )}
+          {moment.source === "binding" && moment.facets && (
+            <div className="mt-2 rounded-md border border-teal-500/20 bg-teal-500/5 p-2">
+              <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-teal-500">
+                Bound situation
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {Object.entries(moment.facets).map(([key, value]) => (
+                  <span key={key} className="rounded-full bg-secondary px-2 py-0.5 text-[9px] text-foreground/80">
+                    {key}: {typeof value === "object" ? JSON.stringify(value) : String(value)}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
           {moment.ts != null && (
@@ -281,6 +296,11 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
                   </p>
                   <div className="mt-2 flex items-center gap-2">
                     <SourceChip source={conscious.source} />
+                    {conscious.source === "binding" && (
+                      <span className="rounded-full bg-teal-500/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-teal-500">
+                        bound situation
+                      </span>
+                    )}
                     {conscious.kind && (
                       <span className="text-[10px] text-muted-foreground">· {conscious.kind}</span>
                     )}

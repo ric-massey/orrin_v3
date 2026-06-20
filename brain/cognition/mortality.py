@@ -414,6 +414,14 @@ def apply_mortality_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
         if real_frac >= 1.0:
             if not data.get("final_thoughts_written"):
                 _write_final_thoughts(context, data)
+                # Seal the end-of-life Life Capsule alongside the final thoughts — the
+                # objective evidence record of the life that just ended (the capsule's
+                # FINAL_THOUGHTS/FINAL_EVIDENCE split keeps voice and evidence separate).
+                try:
+                    from evidence.life_capsule import maybe_build_capsule as _build_capsule
+                    _build_capsule("mortality_end_of_life")
+                except Exception as _e:
+                    log_private(f"[mortality] life_capsule build skipped: {_e}")
             return summary  # caller reads terminate=True and exits
 
         return summary

@@ -151,6 +151,26 @@ class GoalsAPI:
     ) -> Goal:
         gid = _mk_id()
         spec = dict(spec or {})
+        # Goal intake is the one place a label becomes a checkable model. Keep
+        # this fail-safe so the standalone goals package still works without the
+        # brain package on sys.path.
+        try:
+            from cognition.planning.goal_comprehension import comprehend_goal
+            enriched = comprehend_goal({
+                "title": title, "name": title, "kind": kind, "spec": spec,
+                "tags": list(tags or []),
+            })
+            for key in (
+                "definition_of_done", "grounded_parts", "plan", "milestones",
+                "requires_artifact", "tracked_work", "comprehension_source",
+                "comprehended_at",
+            ):
+                if key in enriched:
+                    spec.setdefault(key, enriched[key])
+            if acceptance is None and enriched.get("definition_of_done"):
+                acceptance = {"criteria": enriched["definition_of_done"]}
+        except Exception:
+            pass
         if triggers:
             spec.setdefault("triggers", list(triggers))
         goal = Goal(

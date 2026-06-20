@@ -192,42 +192,13 @@ async def goals_detail() -> JSONResponse:
     try:
         import json as _json
         raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
-        out: list = []
-        seen: set = set()
-
-        def walk(o: Any) -> None:
-            if isinstance(o, dict):
-                if o.get("title") and o.get("status"):
-                    gid = str(o.get("id") or o.get("title"))
-                    if gid not in seen:
-                        seen.add(gid)
-                        spec = o.get("spec") if isinstance(o.get("spec"), dict) else {}
-                        out.append({
-                            "id": o.get("id"),
-                            "title": o.get("title"),
-                            "status": o.get("status"),
-                            "tier": o.get("tier"),
-                            "priority": o.get("priority"),
-                            "kind": o.get("kind"),
-                            "tags": o.get("tags") or [],
-                            "serves": o.get("serves"),
-                            "description": (spec or {}).get("description"),
-                            "driven_by": (spec or {}).get("driven_by") or (spec or {}).get("driven"),
-                            "milestones": o.get("milestones") or [],
-                            "plan": o.get("plan") or [],
-                            "history": o.get("history") or [],
-                            "completed_timestamp": o.get("completed_timestamp"),
-                            "created_at": o.get("created_at") or o.get("created_timestamp"),
-                            "last_updated": o.get("last_updated"),
-                            "raw": o,  # full record so the UI can show the bottom of the data
-                        })
-                for v in o.values():
-                    walk(v)
-            elif isinstance(o, list):
-                for v in o:
-                    walk(v)
-
-        walk(raw)
+        from goal_io import summarize_goal_tree
+        active_id = None
+        for item in (hub.state.get("goals") or []):
+            if isinstance(item, dict) and item.get("active"):
+                active_id = item.get("id")
+                break
+        out = summarize_goal_tree(raw, committed_id=active_id)
         return JSONResponse({"goals": out})
     except Exception as e:
         return JSONResponse({"goals": [], "error": str(e)})
@@ -1357,6 +1328,30 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
     return JSONResponse({"events": events, "summary": summary, "since": since, "now": now})
 
 
+@api.get("/affect")
+async def affect() -> JSONResponse:
+    """Ground-truth affect vector straight from affect_state.json (representation
+    B), so panels can cross-check the transformed telemetry stream (C). Exposes
+    the raw -1..1 valence, the full core_signals vector, and the brain's own
+    homeostasis index — none of which the WS stream carries unmodified.
+    SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §7 rec #3."""
+    a = _read_json("affect_state.json", {})
+    if not isinstance(a, dict):
+        a = {}
+    core = a.get("core_signals") if isinstance(a.get("core_signals"), dict) else {}
+    return JSONResponse({
+        "valence": a.get("valence"),                 # raw -1..1 (no UI centering)
+        "activation_level": a.get("activation_level"),
+        "homeostasis": a.get("homeostasis"),         # the brain's own index
+        "resource_deficit": a.get("resource_deficit"),
+        "allostatic_load": a.get("allostatic_load"),
+        "affect_stability": a.get("affect_stability"),
+        "affect_quadrant": a.get("affect_quadrant"),
+        "core_signals": core,                        # the full vector, raw
+        "last_updated": a.get("last_updated"),
+    })
+
+
 @api.get("/vitals")
 async def vitals() -> JSONResponse:
     """The L0 vital-signs aggregator: every chip computed server-side from one or
@@ -1679,6 +1674,54 @@ async def diagnostics_export(request: Request):
         content=data,
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{_diag.export_filename()}"'},
+    )
+
+
+# ── Life Capsule (the evidence export — Part IX) ─────────────────────────────
+@app.get("/api/life/capsules")
+async def life_capsules(request: Request) -> Dict[str, Any]:
+    """Catalog of sealed Life Capsules (newest first). Owner-only like every control
+    surface."""
+    _authorize_control(request)
+    from brain.evidence import life_capsule as _lc
+    return {"capsules": _lc.list_capsules()}
+
+
+@app.get("/api/life/capsule/summary")
+async def life_capsule_summary(request: Request, run: str = "latest") -> Dict[str, Any]:
+    """The inline-renderable summary for one capsule (executive summary + key metrics +
+    claims) — for rendering in the Capsule panel without downloading the whole zip."""
+    _authorize_control(request)
+    from brain.evidence import life_capsule as _lc
+    summary = _lc.read_capsule_summary(run)
+    if summary is None:
+        raise HTTPException(status_code=404, detail="no capsule found")
+    return summary
+
+
+@app.post("/api/life/capsule/build")
+async def life_capsule_build(request: Request) -> Dict[str, Any]:
+    """Build a capsule from the current data on demand (reason=manual). Read-only over
+    Orrin's state; returns the new capsule's catalog entry."""
+    _authorize_control(request)
+    from brain.evidence import life_capsule as _lc
+    path = _lc.build_life_capsule("manual")
+    return {"ok": True, "file": path.name, "size_bytes": path.stat().st_size}
+
+
+@app.get("/api/life/capsule")
+async def life_capsule_download(request: Request, run: str = "latest"):
+    """Stream a sealed `.orrinlife.zip` (the evidence export). Owner-only."""
+    _authorize_control(request)
+    from fastapi import Response as _Response
+    from brain.evidence import life_capsule as _lc
+    path = _lc.capsule_path(run)
+    if path is None or not path.exists():
+        raise HTTPException(status_code=404, detail="no capsule found")
+    return _Response(
+        content=path.read_bytes(),
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{path.name}"'},
     )
 
 

@@ -156,6 +156,10 @@
     "definition": "ask_llm_for_research(context: 'Dict[str, Any]') -> 'str'\nCognition function: Orrin uses LLM as a research tool.\n    Pulls the research topic from context (committed goal or working memory)."
   },
   {
+    "name": "aspiration_pressure",
+    "definition": "aspiration_pressure(context: 'Dict[str, Any]' = None) -> 'Dict[str, float]'\nPer-aspiration recruitment weight in [0,1]; higher = more starved."
+  },
+  {
     "name": "assess_goal_progress",
     "definition": "assess_goal_progress(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nReview recent pursuit steps and self-assess whether the goal is converging.\n    Sets goal[\"_drift_detected\"] = True if assessment signals off-track, which\n    causes pursue_committed_goal() to replan on the next call."
   },
@@ -584,6 +588,10 @@
     "definition": "fade_goals(context: 'Optional[Dict]' = None) -> 'None'\nDecay motivational_weight for non-lifetime goals that haven't been pursued\n    recently. Goals below the dormant threshold move to status='dormant'.\n    Lifetime goals fade much more slowly and never go dormant.\n\n    Call this periodically (e.g. every 60 cognitive cycles)."
   },
   {
+    "name": "fail_overdue_artifact_goals",
+    "definition": "fail_overdue_artifact_goals(context: 'Optional[Dict]' = None) -> 'int'\nP2 — timeout → failure for artifact-gated goals. Walks the goal store; an\n    output_producing / requires_artifact goal that has been alive past its\n    deadline_cycles WITHOUT a qualifying effect is routed into the existing\n    mark_goal_failed path (reason=\"no_artifact_by_deadline\"). This is what turns the\n    run's hollow \"0 failures\" into a meaningful non-zero — a make-things goal that\n    produced nothing is a real, staked failure, not a quiet fade.\n\n    Cadence is measured in cognitive cycles: each goal's first observation cycle is\n    stamped on first sight, and the deadline is measured from there. Run on the same\n    low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."
+  },
+  {
     "name": "failure_node",
     "definition": "failure_node(capability: 'str') -> 'str'\nCanonical causal-graph node string for \"this capability failed\". Used by BOTH\n    the repair writer (problem_refocus records cause → failure_node) and the\n    abduction reader below, so the loop is guaranteed to close: a confirmed cause\n    recorded after one repair is surfaced as a learned candidate on the next."
   },
@@ -980,6 +988,10 @@
     "definition": "machine_ram_bytes() -> 'float'"
   },
   {
+    "name": "mark_aspiration_contribution",
+    "definition": "mark_aspiration_contribution(driven_by: 'str') -> 'None'\nStamp last_contribution_ts on the aspiration a drive serves — decays its P3\n    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping\n    closure), so starved directions stay starved until something real lands."
+  },
+  {
     "name": "mark_consequential_cognition",
     "definition": "mark_consequential_cognition(context: 'Dict[str, Any]', *, env_r: 'float | None', ticked_n: 'int', is_failure: 'bool', info_gain: 'float | None' = None) -> 'bool'\nCredit cognition only when it changed the environment or produced healthy learning."
   },
@@ -1106,6 +1118,10 @@
   {
     "name": "normalize_entity_name",
     "definition": "normalize_entity_name(name: 'str') -> 'str'\nReduce a name to its bare topic, idempotently: strip goal scaffolding\n    ('Understand …', 'Find out: …', trailing ' more deeply' — repeated). A clean\n    name passes through unchanged. Shared with intrinsic_goals so there is one\n    definition of 'bare topic' across production and consumption."
+  },
+  {
+    "name": "note_intake_completed",
+    "definition": "note_intake_completed(topic: 'str') -> 'None'"
   },
   {
     "name": "notify_user",
@@ -1260,6 +1276,10 @@
     "definition": "recognise_step_action(step_text: 'str') -> 'Optional[str]'\nMap a plan-step intention to a registered cognition-function name, or None\n    when the step is purely internal/deliberative (no motor program — e.g.\n    \"reflect on what was found\"). The caller treats None as a thought, not an act.\n\n    Three tiers (function_selection_fix_v2.md §4.1):\n      1) literal tool name in the step  (strongest signal)\n      2) habitual keyword rules         (fast path)\n      3) semantic fallback over PROCEDURAL fns only — broadens the reachable set\n         past the 8-rule ceiling while staying reversible (the daemon is\n         procedural-only anyway, so no irreversible act can be recruited here and\n         the deliberate/executive mutual-exclusion is preserved — no double-exec).\n    Below the confidence floor it still returns None, so genuinely internal steps\n    stay deliberative (System-1/System-2 split preserved)."
   },
   {
+    "name": "reconcile_goal_stores",
+    "definition": "reconcile_goal_stores(context: 'Optional[Dict[str, Any]]' = None) -> 'int'\nWalk both stores, repair the desync classes, count repairs. Returns the\n    number of repairs made this pass (0 when the stores agree)."
+  },
+  {
     "name": "reconcile_identity",
     "definition": "reconcile_identity(context: 'Dict[str, Any]' = None) -> 'str'\nCognition function: deliberately confront the oldest unresolved contradiction.\n    Orrin chooses a resolution path — and lives with the choice."
   },
@@ -1314,6 +1334,10 @@
   {
     "name": "record_satiety_closure",
     "definition": "record_satiety_closure(n: 'int' = 1) -> 'None'"
+  },
+  {
+    "name": "record_store_desync_repair",
+    "definition": "record_store_desync_repair(n: 'int' = 1) -> 'None'\nP6 — count goal-store desync repairs (resurrection / orphan-RUNNING /\n    double-home drift) made by reconcile_goal_stores. A counter that stays >0 cycle\n    after cycle means a real desync source remains and the v1↔v2 unification (§4c)\n    is no longer deferrable."
   },
   {
     "name": "redirect_goal_plan",
@@ -1925,7 +1949,7 @@
   },
   {
     "name": "write_cognitive_function",
-    "definition": "write_cognitive_function(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True) -> 'Dict[str, Any]'\nWrite a new Python function to custom_cognition/ and register it live.\n\n    Args:\n        name:        Function name (e.g. \"reflect_on_weather\")\n        description: One-line docstring\n        body:        The function body as a string (indented or not — will be normalized)\n        test:        If True, validate in sandbox before writing\n\n    Returns:\n        {\"success\": bool, \"path\": str, \"error\": str|None}"
+    "definition": "write_cognitive_function(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True, context: 'Dict[str, Any]' = None, goal_id: 'str' = None) -> 'Dict[str, Any]'\nWrite a new Python function to custom_cognition/ and register it live.\n\n    Args:\n        name:        Function name (e.g. \"reflect_on_weather\")\n        description: One-line docstring\n        body:        The function body as a string (indented or not — will be normalized)\n        test:        If True, validate in sandbox before writing\n\n    Returns:\n        {\"success\": bool, \"path\": str, \"error\": str|None}"
   },
   {
     "name": "write_desktop_note",
@@ -1937,7 +1961,7 @@
   },
   {
     "name": "write_tool",
-    "definition": "write_tool(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True) -> 'Dict[str, Any]'\nWrite a new tool function to agency/skills/ and add it to the live tool_registry.\n\n    Args:\n        name:        Tool name (e.g. \"fetch_weather\")\n        description: What it does\n        body:        Function body as a string\n        test:        Validate in sandbox first"
+    "definition": "write_tool(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True, context: 'Dict[str, Any]' = None, goal_id: 'str' = None) -> 'Dict[str, Any]'\nWrite a new tool function to agency/skills/ and add it to the live tool_registry.\n\n    Args:\n        name:        Tool name (e.g. \"fetch_weather\")\n        description: What it does\n        body:        Function body as a string\n        test:        Validate in sandbox first"
   },
   {
     "name": "zone_for_fn",

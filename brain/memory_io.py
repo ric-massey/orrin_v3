@@ -201,7 +201,11 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
     if daemon is None:
         return 0
     goal = context.get("committed_goal") or {}
-    goal_text = (goal.get("title") or goal.get("name") or "").strip()
+    lens = context.get("goal_lens") or {}
+    goal_text = " ".join([
+        str(goal.get("title") or goal.get("name") or "").strip(),
+        " ".join(str(x) for x in (lens.get("grounded_parts") or [])[:6]),
+    ]).strip()
     recent_thought = ""
     for entry in reversed((context.get("working_memory") or [])[-8:]):
         text = entry if isinstance(entry, str) else (entry.get("content", "") if isinstance(entry, dict) else "")
@@ -213,6 +217,23 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
     results = query(daemon, q, k=k, use_mmr=True, affect_state=context.get("affect_state"))
     if not results:
         return 0
+    try:
+        from cognition.goal_lens import relevance as _goal_relevance
+        for item in results:
+            if isinstance(item, dict):
+                rel = _goal_relevance(lens, item.get("content") or "")
+                item["goal_lens_relevance"] = round(rel, 3)
+        results.sort(
+            key=lambda row: float(row.get("salience", 0.0) or 0.0)
+            + float(row.get("strength", 0.0) or 0.0)
+            + 0.35 * float(row.get("goal_lens_relevance", 0.0) or 0.0),
+            reverse=True,
+        )
+        telemetry = context.setdefault("_goal_lens_telemetry", {})
+        rels = [float(row.get("goal_lens_relevance", 0.0) or 0.0) for row in results]
+        telemetry["retrieval_mean_relevance"] = round(sum(rels) / len(rels), 3) if rels else 0.0
+    except Exception:
+        pass
     try:
         from cog_memory.reconstruction import reconstruct as _recon
         mood = float((context.get("affect_state") or {}).get("mood") or 0.0)

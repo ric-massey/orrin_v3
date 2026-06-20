@@ -1092,6 +1092,15 @@ def _graceful_shutdown() -> None:
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
+    # Seal a Life Capsule for this run — the evidence export (third sibling of the
+    # mind/diagnostics exporters). Best-effort and disable-able via ORRIN_LIFE_CAPSULE;
+    # done after the WAL flush so the daemon trees are consistent at the captured instant.
+    try:
+        from evidence.life_capsule import maybe_build_capsule as _build_capsule
+        _build_capsule("normal_shutdown")
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+
     if _ui_proc is not None:
         try:
             from backend.server.launcher import stop_ui

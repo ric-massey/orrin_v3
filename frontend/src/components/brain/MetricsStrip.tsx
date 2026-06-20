@@ -10,7 +10,9 @@ import MetricInfo from "./MetricInfo";
 import PanelInfo from "./PanelInfo";
 import { PanelSubtitle } from "./Lex";
 
-const DEFAULT_KEYS = ["valence", "arousal", "homeostasis"];
+// Default to the genuinely-signed valence_raw (−1…+1), not the centered
+// `valence` (0.5 + 0.5·raw) — the centered copy shows half the real amplitude.
+const DEFAULT_KEYS = ["valence_raw", "arousal", "homeostasis"];
 const SEL_KEY = "orrin.metrics.selected";
 const VAL_KEY = "orrin.metrics.showValues";
 
@@ -61,7 +63,10 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
   const data = telemetry.metricSeries.slice(-120);
   const latest = data.length ? data[data.length - 1] : undefined;
   const active = useMemo(() => METRICS.filter((m) => selected.includes(m.key)), [selected]);
-  const showsRawValence = selected.includes("valence_raw");
+  // Switch to a −1…+1 axis whenever any selected series is genuinely signed
+  // (valence_raw, arousal) — so the full amplitude shows and negatives aren't
+  // clipped. A 0…1-only selection keeps the 0…1 axis.
+  const showsSigned = active.some((m) => m.signed);
 
   // Per-series index of the LAST defined point. With `connectNulls` and sparse
   // series (a metric missing in early history), the rendered last point for a
@@ -223,8 +228,8 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
               </defs>
               {/* Axis on the same 0–100 unit as the values + tooltip. */}
               <YAxis
-                domain={showsRawValence ? [-1, 1] : [0, 1]}
-                ticks={showsRawValence ? [-1, 0, 1] : [0, 0.5, 1]}
+                domain={showsSigned ? [-1, 1] : [0, 1]}
+                ticks={showsSigned ? [-1, 0, 1] : [0, 0.5, 1]}
                 tickFormatter={(v: number) => `${Math.round(v * 100)}`}
                 tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
                 tickLine={false}

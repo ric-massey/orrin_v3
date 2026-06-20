@@ -17,6 +17,10 @@ export type MetricDef = {
   lo: string;
   hi: string;
   bipolar?: boolean;
+  /** Emitted in −1…+1 (genuinely signed), not the centered 0…1 presentation.
+   *  When any selected series is `signed`, the chart switches to a −1…+1 axis so
+   *  the signal isn't squashed into the top half (or its negatives clipped). */
+  signed?: boolean;
   long: string;
   terms?: { t: string; d: string }[];
   measure: string;
@@ -26,7 +30,7 @@ export type MetricDef = {
 
 export const METRICS: MetricDef[] = [
   {
-    key: "valence_raw", label: "Raw valence", color: "hsl(348 83% 55%)", bipolar: true,
+    key: "valence_raw", label: "Raw valence", color: "hsl(348 83% 55%)", bipolar: true, signed: true,
     desc: "Uncompressed pleasant-unpleasant signal.", lo: "unpleasant", hi: "pleasant",
     perspective: "dev-only",
     long: "The direct -1 to +1 valence emitted by the affect system, without the Face's centered 0 to 1 presentation mapping.",
@@ -54,7 +58,7 @@ export const METRICS: MetricDef[] = [
     src: { file: "brain/affect/affect_dynamics.py", start: 157, end: 242, label: "compute_valence_activation_level + _VALENCE table" },
   },
   {
-    key: "arousal", label: "Arousal", color: "hsl(262 83% 62%)", bipolar: true,
+    key: "arousal", label: "Arousal", color: "hsl(262 83% 62%)", bipolar: true, signed: true,
     desc: "How activated vs. calm his state is.", lo: "calm", hi: "activated",
     perspective: "agent-accessible",
     long: "Arousal is the activation↔deactivation axis of core affect — how energized/alert his whole system is, independent of whether it feels good or bad. High arousal + positive = excited; high arousal + negative = stressed.",
@@ -62,8 +66,8 @@ export const METRICS: MetricDef[] = [
       { t: "Activation", d: "Mobilization/alertness — body and mind keyed up (threat, excitement, drive)." },
       { t: "Deactivation", d: "Low-energy, settled states (reflection, calm, melancholy)." },
     ],
-    measure: "Intensity-weighted average of active signals × their activation coefficient (conflict +0.9, threat +0.8, positive +0.65 … reflective −0.1, melancholy −0.35), clamped to −1…+1.",
-    src: { file: "brain/affect/affect_dynamics.py", start: 181, end: 242, label: "_ACTIVATION_LEVEL table + compute" },
+    measure: "A TONIC weighted mean of active signals × their activation coefficient (conflict +0.9, threat +0.8 … reflective −0.1, melancholy −0.35), PLUS a phasic spike: the strongest fast-arouser (surprise / threat / conflict / urgency) lifts arousal above the tonic background, then subsides as it decays. Clamped to −1…+1.",
+    src: { file: "brain/affect/affect_dynamics.py", start: 182, end: 263, label: "_ACTIVATION_LEVEL + _PHASIC_AROUSERS + compute" },
   },
   {
     key: "homeostasis", label: "Homeostasis", color: "hsl(142 71% 45%)",
@@ -74,8 +78,8 @@ export const METRICS: MetricDef[] = [
       { t: "Setpoint", d: "The resting value each signal drifts back toward when nothing pushes it (e.g. impasse rests at ~0, motivation at ~0.5)." },
       { t: "Deviation", d: "Distance of a signal from its setpoint right now; summed across the vector." },
     ],
-    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed when affect is pushed to the UI.",
-    src: { file: "brain/ORRIN_loop.py", start: 178, end: 216, label: "_emit_affect — homeostasis + metric push" },
+    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority affect.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/affect and the brain itself read one number (no longer invented in the telemetry helper).",
+    src: { file: "brain/affect/homeostasis.py", start: 74, end: 124, label: "homeostasis_index — the single authority" },
   },
   {
     key: "energy", label: "Energy", color: "hsl(38 92% 50%)",

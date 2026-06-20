@@ -49,6 +49,7 @@ export function boxForSource(source?: string): string | null {
       return "memory";
     case "monitor":
     case "breakthrough":
+    case "binding":
       return "consciousness";
     default:
       return null;

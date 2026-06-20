@@ -164,6 +164,13 @@ def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
         if isinstance(off, dict) and off.get("content"):
             out.append(dict(off))
 
+    # Bound situations are additive candidates: their atomic members remain in
+    # the field and the ordinary workspace competition decides whether the
+    # unified situation is salient enough to ignite.
+    for comp in (context.get("_bound_candidates") or []):
+        if isinstance(comp, dict) and comp.get("content"):
+            out.append(dict(comp))
+
     return out
 
 
@@ -210,6 +217,14 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         recent = context.get("_gw_recent") or []
 
         for c in cands:
+            try:
+                from cognition.goal_lens import relevance as _goal_relevance
+                lens_rel = _goal_relevance(context.get("goal_lens"), c.get("content") or "")
+                if lens_rel:
+                    c["goal_lens_relevance"] = round(lens_rel, 3)
+                    c["salience"] += min(0.18, 0.18 * lens_rel)
+            except Exception:
+                pass
             rel = _subconscious_relevance(c, context)
             if rel is not None:
                 c["subconscious_relevance"] = round(rel, 3)
@@ -250,8 +265,12 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 "salience": round(_f(c.get("salience")), 3),
                 **({"kind": c["kind"]} if c.get("kind") else {}),
                 **({"wants": c["wants"]} if c.get("wants") else {}),
+                **({"facets": c["facets"]} if c.get("facets") else {}),
+                **({"object": c["object"]} if c.get("object") else {}),
+                **({"members": c["members"]} if c.get("members") else {}),
                 **({"subconscious_relevance": c["subconscious_relevance"]} if c.get("subconscious_relevance") is not None else {}),
                 **({"subconscious_gate": c["subconscious_gate"]} if c.get("subconscious_gate") else {}),
+                **({"goal_lens_relevance": c["goal_lens_relevance"]} if c.get("goal_lens_relevance") is not None else {}),
             } for c in ranked[:6]]
         except Exception:
             pass
@@ -270,12 +289,17 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             moment["wants"] = winner["wants"]
         if winner.get("kind"):
             moment["kind"] = winner["kind"]
+        if winner.get("source") == "binding":
+            for key in ("facets", "object", "members", "referent_links"):
+                if winner.get(key) is not None:
+                    moment[key] = winner[key]
         if winner.get("subconscious_relevance") is not None:
             moment["subconscious_relevance"] = winner["subconscious_relevance"]
             moment["subconscious_gate"] = winner.get("subconscious_gate")
         # Offers are consumed once competed; the Monitor re-offers next cycle if the
         # condition persists (so escalation keeps working).
         context["_workspace_offers"] = []
+        context["_bound_candidates"] = []
 
         # ── Broadcast: every subsystem can now read "what I'm aware of". ──
         context["global_workspace"] = moment

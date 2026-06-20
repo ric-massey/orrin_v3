@@ -6,6 +6,17 @@ from affect.modes_and_affect import set_current_mode
 from affect.affect_drift import check_affect_drift
 from affect.reward_signals.reward_signals import release_reward_signal
 
+# Canonical set of core_signals fields that are NOT nameable felt emotions — they
+# are control/appraisal/resource gauges that happen to live in the same dict.
+# Promoted to a module constant so any consumer that needs "the dominant emotion"
+# (dominant-emotion blending here, pre-workspace binding in cognition/binding.py)
+# filters by ONE shared definition instead of each inventing its own taxonomy.
+NON_EMOTION_SIGNALS = frozenset({
+    "confidence", "affect_stability", "resource_deficit", "stability_signal",
+    "connection", "social_deficit", "stagnation_signal", "activation_level",
+})
+
+
 def _parse_iso_ts(ts: str) -> datetime:
     """Robust ISO8601 parser that tolerates 'Z' and returns aware UTC datetimes."""
     if not isinstance(ts, str):
@@ -186,8 +197,7 @@ def apply_affective_feedback(context):
 
     # === F. Dominant Emotion Blending ===
     # Read from core_signals only — top-level state includes resource_deficit, stability_signal, etc.
-    _NON_EMOTIONS = {"confidence", "affect_stability", "resource_deficit", "stability_signal",
-                     "connection", "social_deficit", "stagnation_signal", "activation_level"}
+    _NON_EMOTIONS = NON_EMOTION_SIGNALS
     core_signals_f = affect_state.get("core_signals") or {}
     numeric_emotions = {
         k: float(v)

@@ -24,6 +24,7 @@ from affect.affect_buffer import drain_affect_queue
 from affect.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
     EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE, update_allostatic_load,
+    homeostasis_index,
 )
 from affect.setpoints import CORE_BASELINES
 from utils.log import log_activity
@@ -865,6 +866,14 @@ def update_affect_state(context=None, trigger=None):
     except (TypeError, ValueError):
         _prev_stab = new_stability
     state["affect_stability"] = round(_prev_stab + (new_stability - _prev_stab) * 0.5, 4)
+    # Display homeostasis ("is he settled?") — computed by the single authority in
+    # homeostasis.py and stored on the canonical state so the chart, the REST
+    # panels and the brain itself all read one number (was previously invented in
+    # the telemetry helper; see SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2).
+    try:
+        state["homeostasis"] = round(homeostasis_index(core), 4)
+    except Exception:
+        pass
     state["last_updated"] = now.isoformat()
 
     save_json(AFFECT_STATE_FILE, state)

@@ -12,6 +12,49 @@ interpretation**.
 
 ---
 
+## Run 1 result — 2026-06-19 life: **FAILED** (re-test required)
+
+The first acceptance run happened (born 2026-06-19 22:17 UTC, stopped at cycle
+**11,633**, ~13.9 h, single clean instance, clean graceful death). Evidence:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-19-run/`.
+
+**Verdict: failed the gate — the fix is shipped, not proven.** The new machinery
+(`binding.py` / `goal_lens.py` / `goal_comprehension.py` / `compose_section.py`)
+ran **crashless for 14 h and died clean** — the fail-closed plumbing is proven in
+the wild — but the **production end is fed garbage, so the gate correctly paid
+zero**. The keystone number is **146 → 0**: 146 effect records, every one
+`note_novel` with `novelty 0.0` *and* `significance 0.0`. Note bodies are scraped
+noise (`.lock`/`data` filename fragments + raw prediction-error strings), not a
+comprehended target.
+
+| # | Signal | Pass target | Run 1 | Result |
+|---|---|---|---|---|
+| 1 | Fewer repeated understanding goals | repeats ↓ ≥50% | lean store (9 live goals), different shape | 🟡 indeterminate |
+| 2 | Nonzero goal duration | > 0 | not surfaced | ❓ unverified |
+| 3 | Nonzero satiety closures | > 0 | not reported | ❓ unverified |
+| 4 | Some legitimate failures | > 0 | not reported | ❓ unverified |
+| 5 | Higher mean significance | clearly > 0 | **0.0** (all 146 effects) | 🔴 **FAIL** |
+| 6 | Aspiration diversity | none at 0%, top < 60% | **all four 0%** | 🔴 **FAIL** |
+| 7 | Artifacts useful / reused | ≥1 reused, > 0 distinct | **0 credited, 0 tools, notes junk** | 🔴 **FAIL** |
+| 8 | No resurrection / orphan-RUNNING | repairs → ~0 | single clean instance, clean death | 🟢 likely held |
+| 9 | Selection follows learned value | low-EMA pick-share ↓ | `generate_intrinsic_goals` picked 3,526× (#1) regardless | 🔴 **FAIL** |
+
+Per the decision rule below, **5/6/7/9 failing makes this a failed fix, not a
+matter of interpretation** — even though 8 (the structural fix) held.
+
+**Root cause is upstream of the retune levers in §2.** The content isn't merely
+"too short" (so dropping `MIN_ARTIFACT_CHARS` won't help) — the *source* is noise.
+The fix is to make `compose_section` + `goal_comprehension` feed note/artifact
+bodies from a **comprehended goal target** (what "done" looks like, grounded),
+not from `search_own_files` filename hits or the ambient affect string. Until that
+lands, a re-run will reproduce 146 → 0.
+
+**Re-test gate (Run 2):** signals **5, 6, 7, and 9 must move** (first non-zero
+`effect_ledger` row; at least one aspiration off 0%; a low-EMA action's pick-share
+visibly falling). Until then this doc and its three companions stay live.
+
+---
+
 ## 0. Before you start — run preconditions
 
 These must all hold or the numbers can't be trusted:

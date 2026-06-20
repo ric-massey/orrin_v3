@@ -115,3 +115,7 @@ brain/logs/
 # Runtime pre-corruption backups (json_utils writes these when a store is malformed)
 *.bak
 *.bak_*
+
+# Life Capsules — per-run evidence exports (generated, never source)
+exports/life_capsules/
+*.orrinlife.zip

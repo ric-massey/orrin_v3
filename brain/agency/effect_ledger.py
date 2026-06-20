@@ -55,7 +55,7 @@ MIN_ARTIFACT_CHARS = 120  # set between the failure case (~40-char affect string
 # kinds that correspond to a real outward act already taggable from the activity log
 EFFECT_KINDS = frozenset({
     "file_write", "tool_written", "tool_run_effect", "note_novel",
-    "message_answered", "code_committed", "external_post",
+    "message_answered", "code_committed", "external_post", "tracked_work",
 })
 
 # How many recent same-kind effects to compare against for near-dup detection.
@@ -69,6 +69,7 @@ _recent_by_kind: Dict[str, Deque[Tuple[str, str]]] = {}   # kind -> deque[(hash,
 _reuse_counts: Dict[str, int] = {}                          # content_hash -> times referenced again
 _goal_effects: Dict[str, List[str]] = {}                    # goal_id -> [content_hash, ...]
 _goal_significance: Dict[str, float] = {}                   # goal_id -> max effect significance
+_tracked_progress: Dict[str, int] = {}                      # goal_id -> max completed sections
 _hydrated = False
 
 
@@ -83,6 +84,7 @@ class EffectRow:
     goal_id: Optional[str]
     char_len: int
     dedupe: bool
+    metadata: Optional[Dict[str, Any]] = None
 
     def to_json(self) -> Dict[str, Any]:
         return asdict(self)
@@ -167,7 +169,12 @@ def _compute_novelty(kind: str, normalized: str, content_hash: str) -> float:
     return round(1.0 - sim, 4)
 
 
-def _structural_significance(kind: str, content: str, normalized: str) -> float:
+def _structural_significance(
+    kind: str,
+    content: str,
+    normalized: str,
+    metadata: Optional[Dict[str, Any]] = None,
+) -> float:
     """Tier-1 (immediate, weak) significance: is the artifact well-formed for its kind?
 
     Fails structural → 0 (it's junk, no production credit at all). This is the gate;
@@ -187,6 +194,15 @@ def _structural_significance(kind: str, content: str, normalized: str) -> float:
     if kind == "message_answered":
         # a delivered message to a real peer is structurally meaningful
         return 0.5
+    if kind == "tracked_work":
+        meta = metadata or {}
+        # Credit cumulative work only when it names a durable path and advances
+        # an identifiable section. Anti-duplication and minimum substance still
+        # apply above, so appending boilerplate cannot farm progress.
+        if not meta.get("path") or not meta.get("section"):
+            return 0.0
+        sections = max(1, int(meta.get("completed_sections") or 1))
+        return min(0.9, 0.5 + 0.05 * min(sections, 8))
     # notes / file writes / posts: well-formed = enough real, varied content
     return 0.4 if _unique_token_ratio(normalized) >= 0.4 else 0.25
 
@@ -218,6 +234,23 @@ def _hydrate() -> None:
                         gid = row.get("goal_id")
                         if gid and not row.get("dedupe"):
                             _goal_effects.setdefault(str(gid), []).append(h)
+                            try:
+                                sig = float(row.get("significance") or 0.0)
+                                if sig > 0.0:
+                                    _goal_significance[str(gid)] = max(
+                                        _goal_significance.get(str(gid), 0.0), sig
+                                    )
+                            except Exception:
+                                pass
+                            meta = row.get("metadata") or {}
+                            if row.get("kind") == "tracked_work" and isinstance(meta, dict):
+                                try:
+                                    _tracked_progress[str(gid)] = max(
+                                        _tracked_progress.get(str(gid), 0),
+                                        int(meta.get("completed_sections") or 0),
+                                    )
+                                except Exception:
+                                    pass
                         # recent-by-kind window can't be reconstructed exactly
                         # (we don't persist normalized text); novelty just starts
                         # comparing fresh this process, which is safe.
@@ -261,6 +294,7 @@ def record_effect(
     novelty: Optional[float] = None,
     cycle: Optional[int] = None,
     context: Optional[Dict[str, Any]] = None,
+    metadata: Optional[Dict[str, Any]] = None,
 ) -> Optional[EffectRow]:
     """Record a durable external effect. Returns the EffectRow on a *novel* effect,
     or None when nothing was credited (exact-dup / boilerplate / empty).
@@ -285,7 +319,28 @@ def record_effect(
         # An explicit caller-supplied novelty still can't beat the exact-dup gate.
         if is_dup:
             nov = 0.0
-        sig = 0.0 if nov <= 0.0 else _structural_significance(kind, raw, normalized)
+        sig = 0.0 if nov <= 0.0 else _structural_significance(kind, raw, normalized, metadata)
+        # The active goal's definition of done is the local standard of good.
+        # For prose-like output, structural quality alone is insufficient when
+        # the content has no detectable relationship to the inhabited goal.
+        if sig > 0.0 and isinstance(context, dict) and kind in {
+            "tracked_work", "note_novel", "file_write", "external_post", "message_answered",
+        }:
+            lens = context.get("goal_lens")
+            if isinstance(lens, dict) and (
+                not goal_id or str(lens.get("goal_id") or "") == str(goal_id)
+            ):
+                try:
+                    from cognition.goal_lens import relevance as _goal_relevance
+                    alignment = _goal_relevance(lens, raw)
+                    if alignment < 0.05:
+                        sig = 0.0
+                    else:
+                        sig *= 0.75 + 0.25 * alignment
+                    metadata = dict(metadata or {})
+                    metadata["goal_alignment"] = round(alignment, 4)
+                except Exception:
+                    pass
 
         row = EffectRow(
             ts=now_iso_z(),
@@ -297,6 +352,7 @@ def record_effect(
             goal_id=str(goal_id) if goal_id else None,
             char_len=len(raw),
             dedupe=bool(is_dup or nov <= 0.0),
+            metadata=dict(metadata or {}) or None,
         )
         _append_row(row)
 
@@ -306,19 +362,27 @@ def record_effect(
         dq = _recent_by_kind.setdefault(kind, deque(maxlen=_NOVELTY_WINDOW))
         dq.append((content_hash, normalized))
 
-        if row.dedupe:
+        if row.dedupe or row.significance <= 0.0:
             return None
 
         if goal_id:
             gid = str(goal_id)
             _goal_effects.setdefault(gid, []).append(content_hash)
             _goal_significance[gid] = max(_goal_significance.get(gid, 0.0), row.significance)
+            if kind == "tracked_work":
+                try:
+                    _tracked_progress[gid] = max(
+                        _tracked_progress.get(gid, 0),
+                        int((metadata or {}).get("completed_sections") or 0),
+                    )
+                except Exception:
+                    pass
         _log.debug("effect recorded kind=%s novelty=%.3f sig=%.3f goal=%s",
                    kind, row.novelty, row.significance, goal_id)
         return row
 
 
-def has_qualifying_effect(goal_id: str) -> bool:
+def has_qualifying_effect(goal_id: str, goal: Optional[Dict[str, Any]] = None) -> bool:
     """True if a *novel* (non-dedupe) effect was ever recorded for this goal_id.
 
     This is the artifact gate for P2: an `output_producing` / `requires_artifact`
@@ -328,7 +392,22 @@ def has_qualifying_effect(goal_id: str) -> bool:
         return False
     _hydrate()
     with _lock:
-        return bool(_goal_effects.get(str(goal_id)))
+        gid = str(goal_id)
+        if not _goal_effects.get(gid):
+            return False
+        if isinstance(goal, dict):
+            spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+            if bool(goal.get("tracked_work") or spec.get("tracked_work")):
+                required = 1
+                criteria = goal.get("definition_of_done") or spec.get("definition_of_done") or []
+                for item in criteria if isinstance(criteria, list) else []:
+                    if isinstance(item, dict) and str(item.get("kind") or "").lower() == "sections":
+                        try:
+                            required = max(required, int(item.get("target") or 1))
+                        except Exception:
+                            pass
+                return _tracked_progress.get(gid, 0) >= required
+        return True
 
 
 def effects_for_goal(goal_id: str) -> List[str]:
@@ -366,6 +445,7 @@ def mark_reused(content_hash: str) -> int:
             ts=now_iso_z(), cycle=0, kind="reuse",
             content_hash=content_hash, novelty=0.0,
             significance=1.0, goal_id=None, char_len=0, dedupe=False,
+            metadata=None,
         ))
     except Exception:
         pass
@@ -387,4 +467,5 @@ def reset_for_tests() -> None:
         _reuse_counts.clear()
         _goal_effects.clear()
         _goal_significance.clear()
+        _tracked_progress.clear()
         _hydrated = False

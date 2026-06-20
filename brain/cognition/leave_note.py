@@ -42,7 +42,7 @@ def leave_note(context: Dict[str, Any] = None) -> str:
     if _seed is None:
         try:
             from utils.json_utils import load_json as _lj
-            from paths import LONG_MEMORY_FILE as _LMF
+            from brain.paths import LONG_MEMORY_FILE as _LMF
             _lm = _lj(_LMF, default_type=list) or []
             for _entry in reversed(_lm[-25:]):
                 _c = str(_entry.get("content", _entry) if isinstance(_entry, dict) else _entry)

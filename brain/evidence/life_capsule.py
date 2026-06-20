@@ -40,7 +40,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
-import paths
+import brain.paths as paths
 
 # Bump when the capsule layout changes in a way tools/LLMs must reason about.
 CAPSULE_SCHEMA_VERSION = 1
@@ -1300,9 +1300,9 @@ def _main(argv: List[str]) -> int:
 
 
 if __name__ == "__main__":
-    # Allow running as a standalone script: ensure the brain dir is importable so
-    # `import paths` resolves whether invoked as a module or a file.
-    if "paths" not in sys.modules:
-        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-        import paths  # noqa: F811
+    # Allow running as a standalone script: ensure the repo root is importable so
+    # `import brain.paths` resolves whether invoked as a module or a file.
+    if "brain.paths" not in sys.modules:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+        import brain.paths as paths  # noqa: F811
     raise SystemExit(_main(sys.argv[1:]))

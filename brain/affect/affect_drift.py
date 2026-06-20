@@ -10,7 +10,7 @@ from affect.modes_and_affect import get_current_mode, set_current_mode
 from affect.affect import detect_affect
 from cog_memory.working_memory import update_working_memory
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import AFFECT_STATE_FILE, EMOTION_DRIFT  # Path objects
+from brain.paths import AFFECT_STATE_FILE, EMOTION_DRIFT  # Path objects
 
 
 def _mean_abs_dev(context) -> float | None:

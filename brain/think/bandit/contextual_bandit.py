@@ -31,13 +31,13 @@ _LOCK = threading.Lock()
 
 # Prefer paths.py definitions; fall back to data/bandit_state.json
 try:
-    from paths import BANDIT_STATE_FILE as _BANDIT_PATH  # preferred
+    from brain.paths import BANDIT_STATE_FILE as _BANDIT_PATH  # preferred
 except Exception:
     try:
-        from paths import BANDIT_STATE_JSON as _BANDIT_PATH
+        from brain.paths import BANDIT_STATE_JSON as _BANDIT_PATH
     except Exception:
         try:
-            from paths import DATA_DIR as _DATA_DIR
+            from brain.paths import DATA_DIR as _DATA_DIR
             _BANDIT_PATH = _DATA_DIR / "bandit_state.json"
         except Exception:
             _BANDIT_PATH = Path("data") / "bandit_state.json"

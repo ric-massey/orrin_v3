@@ -32,7 +32,7 @@ import json
 import re
 from typing import Dict, List
 
-from paths import DATA_DIR, LONG_MEMORY_FILE
+from brain.paths import DATA_DIR, LONG_MEMORY_FILE
 from utils.json_utils import load_json
 from utils.log import log_activity
 

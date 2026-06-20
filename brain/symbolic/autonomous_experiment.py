@@ -30,7 +30,7 @@ from typing import Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -365,7 +365,7 @@ def _collect_experiment_goals(ctx: Dict) -> List[Dict]:
 
     # Also check the persisted goals file for uninvestigated high-exploration_drive goals
     try:
-        from paths import DATA_DIR as _DD
+        from brain.paths import DATA_DIR as _DD
         goal_file = _DD / "goals.json"
         stored = load_json(goal_file, default_type=list) or []
         already_run = {e.get("goal_title", "") for e in (load_json(EXPERIMENT_LOG, default_type=list) or [])}

@@ -29,7 +29,7 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from paths import DATA_DIR, LONG_MEMORY_FILE, GOALS_FILE
+from brain.paths import DATA_DIR, LONG_MEMORY_FILE, GOALS_FILE
 from utils.json_utils import load_json, save_json
 
 SAMPLES_FILE = DATA_DIR / "benchmark_samples.jsonl"
@@ -427,7 +427,7 @@ def _eval_b7() -> Dict[str, Any]:
     that generated the events."""
     checks: Dict[str, Any] = {}
     try:
-        from paths import AUTOBIOGRAPHY, NARRATIVE_PRESSURE_FILE
+        from brain.paths import AUTOBIOGRAPHY, NARRATIVE_PRESSURE_FILE
         auto = load_json(AUTOBIOGRAPHY, default_type=dict) or {}
         chapters = auto.get("chapters") or []
         checks["autobiography_nonempty"] = bool(

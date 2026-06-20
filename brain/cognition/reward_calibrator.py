@@ -140,7 +140,7 @@ def check_and_reward_prediction_accuracy(context: Dict[str, Any]) -> float:
     """
     try:
         from utils.json_utils import load_json
-        from paths import PREDICTIONS_FILE
+        from brain.paths import PREDICTIONS_FILE
         preds = load_json(PREDICTIONS_FILE, default_type=list) or []
         if not preds:
             return 0.0
@@ -163,7 +163,7 @@ def check_and_reward_contradiction_resolution(context: Dict[str, Any]) -> int:
     """
     try:
         from utils.json_utils import load_json
-        from paths import CONTRADICTIONS_FILE
+        from brain.paths import CONTRADICTIONS_FILE
         contras = load_json(CONTRADICTIONS_FILE, default_type=list) or []
         resolved = [c for c in contras if isinstance(c, dict) and c.get("status") == "resolved"
                     and not c.get("_reward_issued")]

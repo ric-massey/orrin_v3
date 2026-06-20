@@ -5,7 +5,7 @@ from utils.log import log_activity
 from utils.knowledge_utils import recall_relevant_knowledge
 from think.think_utils.user_input import handle_user_input
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import AFFECT_MODEL_FILE, ATTENTION_HISTORY
+from brain.paths import AFFECT_MODEL_FILE, ATTENTION_HISTORY
 from utils.json_utils import save_json
 from utils.signal_utils import gather_signals
 from utils.failure_counter import record_failure

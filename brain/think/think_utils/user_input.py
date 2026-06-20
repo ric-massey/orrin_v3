@@ -14,7 +14,7 @@ from cog_memory.chat_log import (
 )
 from utils.log import read_recent_errors_txt, read_recent_errors_jsonl
 from cognition.selfhood.boundary_check import check_violates_boundaries
-from paths import CHAT_LOG_FILE, ERROR_FILE, MODEL_FAILURES_FILE, LONG_MEMORY_FILE, LAST_SEEN_USER_INPUT
+from brain.paths import CHAT_LOG_FILE, ERROR_FILE, MODEL_FAILURES_FILE, LONG_MEMORY_FILE, LAST_SEEN_USER_INPUT
 from utils.signal_utils import create_signal  # required to build signal dicts
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

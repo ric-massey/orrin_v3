@@ -46,7 +46,7 @@ _CONGRUENCE_MAP = {
     "jealousy":    "conflict_signal",
 }
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _VOCAB_PATH = DATA_DIR / "vocabulary.json"
 _WEIGHTS_PATH = DATA_DIR / "vocab_weights.json"

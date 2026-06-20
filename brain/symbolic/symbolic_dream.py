@@ -28,7 +28,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR, WORKING_MEMORY_FILE
+from brain.paths import DATA_DIR, WORKING_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

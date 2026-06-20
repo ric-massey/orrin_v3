@@ -334,7 +334,7 @@ class SubconsciousProcessor:
     def _load_wm(self) -> List[Dict]:
         try:
             from utils.json_utils import load_json
-            from paths import WORKING_MEMORY_FILE
+            from brain.paths import WORKING_MEMORY_FILE
             data = load_json(WORKING_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)][-60:]
         except Exception:
@@ -343,7 +343,7 @@ class SubconsciousProcessor:
     def _load_lm(self) -> List[Dict]:
         try:
             from utils.json_utils import load_json
-            from paths import LONG_MEMORY_FILE
+            from brain.paths import LONG_MEMORY_FILE
             data = load_json(LONG_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)]
         except Exception:
@@ -382,7 +382,7 @@ class SubconsciousProcessor:
         the persisted conscious stream is the stable boundary they can read from.
         """
         try:
-            from paths import DATA_DIR
+            from brain.paths import DATA_DIR
             from utils.json_utils import load_json
             stream = load_json(DATA_DIR / "conscious_stream.json", default_type=list) or []
             last = next((m for m in reversed(stream) if isinstance(m, dict)), None)

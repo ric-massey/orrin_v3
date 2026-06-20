@@ -23,7 +23,7 @@ from typing import Any, Dict
 
 from utils.log import log_private
 from utils.json_utils import load_json
-from paths import COGNITION_HISTORY_FILE, DECISION_STATS_FILE, DATA_DIR
+from brain.paths import COGNITION_HISTORY_FILE, DECISION_STATS_FILE, DATA_DIR
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

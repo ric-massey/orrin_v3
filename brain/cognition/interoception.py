@@ -29,7 +29,7 @@ from typing import Any, Dict, Optional
 from core.runtime_log import get_logger
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _log = get_logger(__name__)
 

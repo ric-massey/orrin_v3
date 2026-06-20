@@ -14,7 +14,7 @@ from utils.summarizers import summarize_recent_thoughts
 from utils.self_model import get_self_model
 from think.sandbox_runner import run_python  # <-- NEW
 
-from paths import (
+from brain.paths import (
     LONG_MEMORY_FILE,
     CORE_MEMORY_FILE,
     THINK_MODULE_PY,

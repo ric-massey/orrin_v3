@@ -9,7 +9,7 @@ from typing import Dict, Any
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
-from paths import (
+from brain.paths import (
     LONG_MEMORY_FILE, SELF_MODEL_FILE, FINAL_THOUGHTS,
     WORKING_MEMORY_FILE,
 )
@@ -27,7 +27,7 @@ def _compose_final_reflection(*, death_reason: str, identity: str,
     ]
     # Unfinished goals — the most actionable handoff content.
     try:
-        from paths import GOALS_FILE
+        from brain.paths import GOALS_FILE
         goals = load_json(GOALS_FILE, default_type=list) or []
         open_titles = [
             str(g.get("title") or g.get("name") or "").strip()
@@ -41,7 +41,7 @@ def _compose_final_reflection(*, death_reason: str, identity: str,
         record_failure("terminal._compose_final_reflection", _e)
     # Open tensions — what was unresolved internally.
     try:
-        from paths import DATA_DIR as _DD
+        from brain.paths import DATA_DIR as _DD
         tensions = load_json(_DD / "tensions.json", default_type=list) or []
         open_t = [
             str(t.get("description") or t.get("title") or "").strip()[:90]

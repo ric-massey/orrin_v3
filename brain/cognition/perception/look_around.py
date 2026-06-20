@@ -16,7 +16,7 @@ from utils.log import log_activity, log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
-from paths import WORLD_PERCEPTION_FILE, LONG_MEMORY_FILE
+from brain.paths import WORLD_PERCEPTION_FILE, LONG_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

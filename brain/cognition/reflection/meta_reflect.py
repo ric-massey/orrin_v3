@@ -10,7 +10,7 @@ from cognition.maintenance.self_modeling import self_supervised_repair
 from utils.self_model import ensure_self_model_integrity, get_self_model
 from cognition.introspection.router import introspect
 
-from paths import PRIVATE_THOUGHTS_FILE, LOG_FILE
+from brain.paths import PRIVATE_THOUGHTS_FILE, LOG_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

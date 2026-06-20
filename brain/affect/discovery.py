@@ -5,7 +5,7 @@ from utils.self_model import get_self_model
 from cog_memory.working_memory import update_working_memory
 from affect.reflect_on_affect_model import reflect_on_emotion_model
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import WORKING_MEMORY_FILE, AFFECT_MODEL_FILE, CUSTOM_EMOTION, LONG_MEMORY_FILE
+from brain.paths import WORKING_MEMORY_FILE, AFFECT_MODEL_FILE, CUSTOM_EMOTION, LONG_MEMORY_FILE
 
 def discover_new_emotion(context=None):
     try:

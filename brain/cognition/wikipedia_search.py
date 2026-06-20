@@ -11,7 +11,7 @@ import urllib.parse
 import urllib.request
 from typing import Dict, Any, Optional
 
-from paths import THREADS_FILE
+from brain.paths import THREADS_FILE
 from utils.json_utils import load_json
 from utils.log import log_activity, log_private
 from cog_memory.long_memory import update_long_memory

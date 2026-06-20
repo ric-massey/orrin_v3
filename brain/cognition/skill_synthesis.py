@@ -35,7 +35,7 @@ from typing import Any, Dict, List, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
-from paths import (
+from brain.paths import (
     WORKING_MEMORY_FILE, PROPOSED_TOOLS_JSON, SKILL_SYNTHESIS_FILE,
 )
 from utils.timeutils import now_iso_z

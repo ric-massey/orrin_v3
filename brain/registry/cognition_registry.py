@@ -5,7 +5,7 @@ import inspect
 
 from typing import Dict, Callable, List, Tuple
 from registry.utils import iter_modules, safe_import, extract_callables
-from paths import COGNITIVE_FUNCTIONS_LIST_FILE
+from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
 from utils.json_utils import save_json
 from utils.log import log_error, log_activity
 from utils.failure_counter import record_failure

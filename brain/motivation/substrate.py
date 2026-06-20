@@ -289,7 +289,7 @@ class _MotivationEngine:
 
     def _load_state(self) -> None:
         try:
-            from paths import DATA_DIR
+            from brain.paths import DATA_DIR
             from utils.json_utils import load_json
             p = DATA_DIR / "motivation_state.json"
             saved = load_json(str(p), default_type=dict) or {}
@@ -306,7 +306,7 @@ class _MotivationEngine:
             return
         self._last_save = now
         try:
-            from paths import DATA_DIR
+            from brain.paths import DATA_DIR
             from utils.json_utils import save_json
             import datetime
             with self._lock:

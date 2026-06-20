@@ -9,7 +9,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_error
 from cog_memory.working_memory import update_working_memory
 
-from paths import MODE_FILE, PRIVATE_THOUGHTS_FILE, AFFECT_STATE_FILE
+from brain.paths import MODE_FILE, PRIVATE_THOUGHTS_FILE, AFFECT_STATE_FILE
 
 # Mode arbiter (BEHAVIOR_FIX_PLAN Phase 4): set_current_mode is the ONE mode
 # authority — modes_and_affect's automatic adjustment and update_affect_state's

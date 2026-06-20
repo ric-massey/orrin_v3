@@ -41,7 +41,7 @@ from typing import Dict, Any, List
 
 from utils.log import log_private
 from utils.json_utils import modify_json
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 # Append-only, bounded record of every behavioral self-edit, so the dashboard can
 # answer "is he actually learning?" by showing before → after → because. The engine

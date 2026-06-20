@@ -14,7 +14,7 @@ from utils.log import log_activity, log_private
 from utils.json_utils import load_json
 from utils.failure_counter import record_failure
 from cog_memory.long_memory import update_long_memory
-from paths import THREADS_FILE, LONG_MEMORY_FILE
+from brain.paths import THREADS_FILE, LONG_MEMORY_FILE
 _log = get_logger(__name__)
 
 def look_outward(context: Dict[str, Any] = None) -> str:

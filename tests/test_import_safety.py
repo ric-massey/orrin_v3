@@ -19,6 +19,7 @@
 # into an explicit startup object.
 
 from __future__ import annotations
+import ast
 import os
 import subprocess
 import sys
@@ -33,7 +34,7 @@ _LIVE_LOGS = _REPO_ROOT / "brain" / "logs"
 # Ordinary library modules the audit names as mutating state at import. Importing
 # any of these must NOT touch the live tree once state dirs are redirected.
 _LIBRARY_MODULES = [
-    "paths",
+    "brain.paths",
     "registry.behavior_registry",
     "registry.cognition_registry",
     "cognition.intrinsic_goals",
@@ -41,6 +42,39 @@ _LIBRARY_MODULES = [
     "agency.self_code",
     "memory.config",
 ]
+
+_IMPORT_SCAN_ROOTS = (
+    _REPO_ROOT / "brain",
+    _REPO_ROOT / "backend",
+    _REPO_ROOT / "goals",
+    _REPO_ROOT / "memory",
+    _REPO_ROOT / "tests",
+)
+
+
+def test_paths_has_one_canonical_import_name():
+    """Prevent reintroducing the dual ``paths`` / ``brain.paths`` module identity."""
+    violations: list[str] = []
+    candidates = [_REPO_ROOT / "main.py"]
+    for root in _IMPORT_SCAN_ROOTS:
+        candidates.extend(root.rglob("*.py"))
+
+    for path in candidates:
+        if "__pycache__" in path.parts:
+            continue
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and node.module == "paths":
+                violations.append(f"{path.relative_to(_REPO_ROOT)}:{node.lineno}")
+            elif isinstance(node, ast.Import):
+                for alias in node.names:
+                    if alias.name == "paths":
+                        violations.append(f"{path.relative_to(_REPO_ROOT)}:{node.lineno}")
+
+    assert not violations, (
+        "Use only `brain.paths`; bare `paths` creates a second module instance:\n"
+        + "\n".join(violations)
+    )
 
 
 def _snapshot(root: Path) -> dict[str, tuple[int, int]]:

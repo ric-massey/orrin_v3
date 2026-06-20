@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from utils.log import log_activity, log_error
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 
 def save_note(args=None, **kwargs) -> dict:

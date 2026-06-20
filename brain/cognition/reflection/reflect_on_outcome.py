@@ -7,7 +7,7 @@ from utils.load_utils import load_all_known_json
 from cog_memory.working_memory import update_working_memory
 from utils.log import log_private, log_error
 from utils.log_reflection import log_reflection
-from paths import (
+from brain.paths import (
     OUTCOMES_JSON, SELF_MODEL_BACKUP_JSON,
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, WORKING_MEMORY_FILE,
 )

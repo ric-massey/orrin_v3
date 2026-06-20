@@ -42,7 +42,7 @@ except Exception:
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import BODY_SENSE_FILE, DATA_DIR
+from brain.paths import BODY_SENSE_FILE, DATA_DIR
 from utils.failure_counter import record_failure
 from cognition.body_band import BodyBands
 _log = get_logger(__name__)

@@ -20,7 +20,7 @@ from typing import Any, Dict, List, Optional
 from utils.log import log_activity, log_error
 from cog_memory.working_memory import update_working_memory
 from think.sandbox_runner import run_python
-from paths import ROOT_DIR
+from brain.paths import ROOT_DIR
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 # Orrin's self-written code lives in the writable per-user tree (§10.1), not the

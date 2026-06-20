@@ -4,7 +4,7 @@ import json
 import os
 from typing import Iterable, List
 
-from paths import DATA_DIR as _DATA_DIR
+from brain.paths import DATA_DIR as _DATA_DIR
 
 _MODEL_CONFIG = _DATA_DIR / "model_config.json"
 

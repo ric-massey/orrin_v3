@@ -7,7 +7,7 @@ from affect.affect_buffer import queue_affect_change
 from utils.json_utils import save_json
 from utils.log import log_activity
 from utils.signal_utils import create_signal
-from paths import AFFECT_STATE_FILE, REWARD_TRACE
+from brain.paths import AFFECT_STATE_FILE, REWARD_TRACE
 
 
 def release_reward_signal(

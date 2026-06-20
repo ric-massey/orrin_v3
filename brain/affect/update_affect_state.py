@@ -31,7 +31,7 @@ from utils.log import log_activity
 from affect.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
 from utils.timing import get_time_since_last_active
 
-from paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
+from brain.paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

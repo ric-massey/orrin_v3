@@ -42,7 +42,7 @@ from typing import Any, Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 

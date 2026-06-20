@@ -8,7 +8,7 @@ from utils.json_utils import load_json, extract_json
 from utils.log import log_model_issue, log_error
 from utils.core_utils import extract_lessons
 from utils.timing import update_last_active
-from paths import CORE_MEMORY_FILE, LOG_FILE, PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE
+from brain.paths import CORE_MEMORY_FILE, LOG_FILE, PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE
 
 def moral_override_check(proposed_action: str) -> dict:
     """

@@ -192,7 +192,7 @@ def ask_llm_about_conversation(context: Dict[str, Any]) -> str:
     Pulls the recent user exchange from context.
     """
     from utils.json_utils import load_json
-    from paths import CHAT_LOG_FILE
+    from brain.paths import CHAT_LOG_FILE
 
     try:
         chat_log = load_json(CHAT_LOG_FILE, default_type=list) or []

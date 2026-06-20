@@ -3,7 +3,7 @@
 # Associative learning: maps affect signals to cognitive functions over time.
 # Reinforced associations survive; unreinforced ones decay at DECAY_RATE per update.
 from core.runtime_log import get_logger
-from paths import EMOTION_FUNCTION_MAP_FILE
+from brain.paths import EMOTION_FUNCTION_MAP_FILE
 from utils.json_utils import load_json, save_json
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

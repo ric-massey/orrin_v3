@@ -65,7 +65,7 @@ def backfill_long_memory_to_v2(daemon: Any, max_items: int = 10) -> int:
         return 0
     try:
         from utils.json_utils import load_json
-        from paths import LONG_MEMORY_FILE
+        from brain.paths import LONG_MEMORY_FILE
         from memory.models import Event
         long_mem = load_json(LONG_MEMORY_FILE, default_type=list)
         if not isinstance(long_mem, list) or not long_mem:
@@ -123,7 +123,7 @@ def promote_summaries_to_long_memory(daemon: Any, max_items: int = 5) -> int:
         summary_items = summary_items[:max_items]
 
         from utils.json_utils import load_json, save_json
-        from paths import LONG_MEMORY_FILE
+        from brain.paths import LONG_MEMORY_FILE
         from datetime import datetime, timezone
         long_mem = load_json(LONG_MEMORY_FILE, default_type=list)
         if not isinstance(long_mem, list):

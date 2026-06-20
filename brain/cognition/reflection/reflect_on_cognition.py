@@ -14,7 +14,7 @@ from utils.log_reflection import log_reflection
 from utils.json_utils import load_json, save_json
 from utils.error_router import catch_and_route
 
-from paths import (
+from brain.paths import (
     COGN_SCHEDULE_FILE,
     COGNITION_HISTORY_FILE,
     LOG_FILE,

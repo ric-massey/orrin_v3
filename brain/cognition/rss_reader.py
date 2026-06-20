@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from typing import Dict, Any, List
 
-from paths import RSS_CACHE_FILE, RSS_FEEDS_FILE
+from brain.paths import RSS_CACHE_FILE, RSS_FEEDS_FILE
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from cog_memory.long_memory import update_long_memory

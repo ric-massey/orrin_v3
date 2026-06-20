@@ -13,7 +13,7 @@ from typing import Dict, List, Any
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 _WEIGHTS_PATH = DATA_DIR / "attention_value_weights.json"
 
 _LR_POS = 0.06   # learning rate when reward > threshold

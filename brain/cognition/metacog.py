@@ -35,7 +35,7 @@ def _hard_disengage_enabled() -> bool:
 
 from utils.log import log_private, log_activity
 from utils.json_utils import save_json, load_json
-from paths import METACOG_LOG, DATA_DIR
+from brain.paths import METACOG_LOG, DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -637,7 +637,7 @@ _PATTERN_RULES = {
 def _metacog_candidates_path():
     global _METACOG_RULE_CANDIDATES_FILE
     if _METACOG_RULE_CANDIDATES_FILE is None:
-        from paths import DATA_DIR
+        from brain.paths import DATA_DIR
         _METACOG_RULE_CANDIDATES_FILE = DATA_DIR / "metacog_rule_candidates.json"
     return _METACOG_RULE_CANDIDATES_FILE
 

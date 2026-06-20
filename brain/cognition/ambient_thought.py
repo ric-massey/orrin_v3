@@ -29,7 +29,7 @@ from typing import Any, Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import AMBIENT_FRAGMENTS_FILE, TENSIONS_FILE
+from brain.paths import AMBIENT_FRAGMENTS_FILE, TENSIONS_FILE
 from utils.timeutils import now_iso_z
 
 # ── Constants ─────────────────────────────────────────────────────────────────

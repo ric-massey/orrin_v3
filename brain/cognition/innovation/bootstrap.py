@@ -11,7 +11,7 @@ from utils.summarizers import summarize_self_model, summarize_recent_thoughts
 from utils.log import log_error, log_activity
 from cog_memory.working_memory import update_working_memory
 from utils.self_model import get_self_model
-from paths import PROPOSED_TOOLS_JSON, FOCUS_GOAL, PRIVATE_THOUGHTS_FILE
+from brain.paths import PROPOSED_TOOLS_JSON, FOCUS_GOAL, PRIVATE_THOUGHTS_FILE
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -128,7 +128,7 @@ def bootstrap_self() -> str:
                 try:
                     from utils.signal_utils import create_signal
                     from utils.json_utils import load_json as _lj, save_json as _sj
-                    from paths import CONTEXT
+                    from brain.paths import CONTEXT
                     _ctx = _lj(CONTEXT, default_type=dict) or {}
                     _sig = create_signal(
                         source="bootstrap",

@@ -29,7 +29,7 @@ from typing import Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import PREDICTIONS_FILE, DATA_DIR
+from brain.paths import PREDICTIONS_FILE, DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -233,7 +233,7 @@ def run_intrinsic_motivation(context: Dict) -> Dict:
         # No active query — compute background exploration_drive from recent WM
         try:
             from utils.json_utils import load_json as _lj
-            from paths import WORKING_MEMORY_FILE as _WMF
+            from brain.paths import WORKING_MEMORY_FILE as _WMF
             wm = _lj(_WMF, default_type=list) or []
             recent_texts = [
                 e.get("content", "") for e in wm[-5:] if isinstance(e, dict)

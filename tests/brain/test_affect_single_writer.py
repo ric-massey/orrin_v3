@@ -79,7 +79,7 @@ def test_drain_consolidations_does_not_write_affect_file(monkeypatch):
     monkeypatch.setattr(consolidation, "_save_queue", lambda q: None)
 
     # save_json must NOT be called with the affect file by drain_consolidations.
-    from paths import AFFECT_STATE_FILE
+    from brain.paths import AFFECT_STATE_FILE
     calls = []
     monkeypatch.setattr(consolidation, "save_json", lambda p, d: calls.append(str(p)))
 

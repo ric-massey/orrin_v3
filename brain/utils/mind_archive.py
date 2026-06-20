@@ -25,7 +25,7 @@ import zipfile
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
-import paths
+import brain.paths as paths
 
 # Bump when the on-disk layout changes in a way restore must reason about (§10.7).
 MIND_SCHEMA_VERSION = 1

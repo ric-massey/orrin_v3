@@ -12,7 +12,7 @@ from typing import Any, Dict
 from cog_memory.chat_log import log_raw_user_input, wrap_text
 from utils.log import log_private, log_activity, log_error
 from utils.json_utils import load_json, save_json
-from paths import PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, SPEAKER_STATE_FILE, RELATIONSHIPS_FILE
+from brain.paths import PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, SPEAKER_STATE_FILE, RELATIONSHIPS_FILE
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

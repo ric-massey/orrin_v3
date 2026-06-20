@@ -99,12 +99,13 @@ def capsule(tmp_path, monkeypatch):
     monkeypatch.setenv("ORRIN_DATA_DIR", str(data_dir))
     monkeypatch.setenv("ORRIN_STATE_DIR", str(state_dir))
     # Reload paths so the env overrides take effect, then the builder under it.
-    # We must restore sys.modules on teardown: a reloaded `paths` stays bound to
-    # this (soon-deleted) tmp dir, and leaking it globally breaks every later test
-    # that does `from paths import DATA_DIR`. monkeypatch reverts the env vars but
-    # not the module objects, so we snapshot and restore them ourselves.
-    reload_targets = ("paths", "evidence.life_capsule", "evidence")
+    # Restore both sys.modules and the parent package attribute on teardown:
+    # importing brain.paths rebinds brain.paths to the temporary module, and
+    # restoring only sys.modules would leave later imports using that stale object.
+    reload_targets = ("brain.paths", "evidence.life_capsule", "evidence")
     saved = {name: sys.modules.get(name) for name in reload_targets}
+    import brain
+    saved_brain_paths = getattr(brain, "paths", None)
     for name in reload_targets:
         sys.modules.pop(name, None)
     import importlib
@@ -118,6 +119,10 @@ def capsule(tmp_path, monkeypatch):
                 sys.modules[name] = saved[name]
             else:
                 sys.modules.pop(name, None)
+        if saved_brain_paths is not None:
+            brain.paths = saved_brain_paths
+        elif hasattr(brain, "paths"):
+            delattr(brain, "paths")
 
 
 def test_capsule_is_wellformed_zip(capsule):

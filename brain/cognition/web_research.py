@@ -362,7 +362,7 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
 
     # 3. Active threads (concrete titles only)
     try:
-        from paths import THREADS_FILE
+        from brain.paths import THREADS_FILE
         from utils.json_utils import load_json
         threads = load_json(THREADS_FILE, default_type=list) or []
         for t in threads:
@@ -570,7 +570,7 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
 
     # 2. Pull from RSS cache
     try:
-        from paths import RSS_CACHE_FILE
+        from brain.paths import RSS_CACHE_FILE
         from utils.json_utils import load_json
         cache = load_json(RSS_CACHE_FILE, default_type=dict) or {}
         for feed_name, feed_data in cache.items():

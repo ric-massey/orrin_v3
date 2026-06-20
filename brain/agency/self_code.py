@@ -36,7 +36,7 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any, Dict, List, Optional
 
-from paths import DATA_DIR, ROOT_DIR, SELF_CODE_DIR, SELF_COGNITION_DIR, SELF_SKILLS_DIR
+from brain.paths import DATA_DIR, ROOT_DIR, SELF_CODE_DIR, SELF_COGNITION_DIR, SELF_SKILLS_DIR
 
 # Self-written modules import under a DEDICATED top-level namespace rather than the
 # bundled `cognition.custom_cognition.*` / `agency.skills.*` packages. Relocating the

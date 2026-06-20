@@ -7,7 +7,7 @@ from pathlib import Path
 
 from utils.json_utils import load_json, save_json
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import (
+from brain.paths import (
     AFFECT_STATE_FILE as _AFFECT_STATE_FILE,
     FEEDBACK_LOG_JSON as _FEEDBACK_LOG_JSON,
     REWARD_TRACE_JSON as _REWARD_TRACE_JSON,

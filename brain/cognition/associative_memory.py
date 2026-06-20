@@ -25,7 +25,7 @@ from typing import Any, Dict, List, Optional
 from utils.log import log_private
 from utils.json_utils import load_json
 from cog_memory.working_memory import update_working_memory
-from paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
 
 
 _SURFACE_COOLDOWN_S = 900.0    # minimum gap between spontaneous surfacings

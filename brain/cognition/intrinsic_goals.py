@@ -18,7 +18,7 @@ from utils.generate_response import generate_response, llm_ok
 from utils.log import log_activity, log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.long_memory import update_long_memory
-from paths import (
+from brain.paths import (
     THREADS_FILE, LONG_MEMORY_FILE, VALUE_REVISIONS, COMPLETED_GOALS_FILE,
     RECENTLY_COMPLETED_FILE, GOALS_FILE,
     ENERGY_MODE_FILE, BODY_SENSE_FILE, DATA_DIR,
@@ -624,7 +624,7 @@ def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:
 
     # 1. Concrete contradictions previously logged to disk (specific summaries).
     try:
-        from paths import CONTRADICTIONS_FILE
+        from brain.paths import CONTRADICTIONS_FILE
         for block in reversed((load_json(CONTRADICTIONS_FILE, default_type=list) or [])[-5:]):
             items = block.get("contradictions", []) if isinstance(block, dict) else []
             for c in items:

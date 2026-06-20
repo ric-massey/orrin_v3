@@ -136,7 +136,7 @@ def _acquire_single_instance_lock() -> None:
     # The lock lives WITH the mind (the resolved data dir), not in the program
     # folder — so the packaged app locks per-install in its writable dir.
     try:
-        from paths import DATA_DIR as _lock_data_dir
+        from brain.paths import DATA_DIR as _lock_data_dir
     except Exception:
         _lock_data_dir = Path(__file__).resolve().parent / "brain" / "data"
     lock_path = _lock_data_dir / ".orrin.instance.lock"
@@ -259,7 +259,7 @@ def _forget_everything() -> None:
     known state subtrees, which relocate with ORRIN_STATE_DIR.
     """
     try:
-        from paths import STATE_DIR, MEMORY_DIR, GOALS_DIR
+        from brain.paths import STATE_DIR, MEMORY_DIR, GOALS_DIR
     except Exception:
         STATE_DIR = REPO_ROOT / "data"
         MEMORY_DIR, GOALS_DIR = STATE_DIR / "memory", STATE_DIR / "goals"
@@ -292,7 +292,7 @@ def _seed_if_newborn() -> None:
     seed the bundled config files so a newborn boots. No-op when running in-repo on
     the seed dir itself, or when state already exists (relaunch reuses it)."""
     try:
-        from paths import DATA_DIR
+        from brain.paths import DATA_DIR
     except Exception:
         return
     seed_src = _BRAIN_DIR / "data"
@@ -350,7 +350,7 @@ except Exception as _e:
 # Flag a fresh mind so the UI can show First Wake (§9.2). A newborn has no
 # autobiography / long-term memory yet (seeds are config only, not lived experience).
 try:
-    from paths import DATA_DIR as _DD_NB
+    from brain.paths import DATA_DIR as _DD_NB
     _is_newborn = not (_DD_NB / "long_memory.json").exists() and not (_DD_NB / "autobiography.json").exists()
     from utils import boot_events as _boot
     _boot.set_newborn(_is_newborn)
@@ -419,7 +419,7 @@ get_memory_health = build_memory_health_provider(daemon, store, memory_snapshot)
 # Goals daemon durability dir. Use the shared resolver so it honors ORRIN_GOALS_DIR
 # and (failing that) ORRIN_STATE_DIR, staying co-located with the memory/media tree.
 try:
-    from paths import GOALS_DIR as GOALS_DATA_DIR
+    from brain.paths import GOALS_DIR as GOALS_DATA_DIR
 except Exception:
     GOALS_DATA_DIR = Path(os.environ.get("ORRIN_GOALS_DIR", REPO_ROOT / "data" / "goals")).resolve()
 _goal_store, _goals_api = init_goals(GOALS_DATA_DIR)
@@ -1132,7 +1132,7 @@ def _wipe_to_newborn() -> None:
     wholesale; in brain/data only the non-seed (accumulated) files are removed. Safe
     in-repo (seeds are kept, never self-destructed) and relocated alike."""
     try:
-        from paths import DATA_DIR, STATE_DIR, LOGS_DIR, THINK_DIR, SELF_CODE_DIR
+        from brain.paths import DATA_DIR, STATE_DIR, LOGS_DIR, THINK_DIR, SELF_CODE_DIR
     except Exception:
         DATA_DIR = REPO_ROOT / "brain" / "data"
         STATE_DIR = REPO_ROOT / "data"

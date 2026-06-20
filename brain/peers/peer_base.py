@@ -91,7 +91,7 @@ class BasePeer:
     def _record_interaction(self, signals: List[Dict[str, Any]]) -> None:
         """Persist what an auditor actually said so its relationship is inspectable."""
         try:
-            from paths import RELATIONSHIPS_FILE
+            from brain.paths import RELATIONSHIPS_FILE
             from utils.json_utils import load_json, save_json
             rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
             rel = rels.setdefault(f"peer_{self.name}", {
@@ -126,7 +126,7 @@ class BasePeer:
     def _register_world_model(self) -> None:
         try:
             from utils.json_utils import load_json, save_json
-            from paths import WORLD_MODEL
+            from brain.paths import WORLD_MODEL
             import time as _time
             wm = load_json(WORLD_MODEL, default_type=dict) or {}
             peers = wm.setdefault("peers", {})
@@ -153,7 +153,7 @@ class BasePeer:
     def _register_relationship(self) -> None:
         try:
             from utils.json_utils import load_json, save_json
-            from paths import RELATIONSHIPS_FILE
+            from brain.paths import RELATIONSHIPS_FILE
             rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
             key = f"peer_{self.name}"
             if key not in rels:

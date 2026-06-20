@@ -31,7 +31,7 @@ from typing import Any, Dict, List, Optional
 
 from utils.log import log_private
 from utils.json_utils import load_json, save_json
-from paths import HABITUATION_FILE, WORKING_MEMORY_FILE
+from brain.paths import HABITUATION_FILE, WORKING_MEMORY_FILE
 
 
 _SAVE_EVERY_N = 6    # save habituation counts every N cycles to avoid per-cycle I/O

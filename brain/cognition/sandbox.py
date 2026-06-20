@@ -5,7 +5,7 @@ import json
 from utils.generate_response import generate_response, llm_ok
 from utils.json_utils import save_json, load_json
 from utils.self_model import get_self_model, ensure_self_model_integrity
-from paths import SANDBOX_LOG
+from brain.paths import SANDBOX_LOG
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
-from paths import MEMORY_GRAPH_FILE
+from brain.paths import MEMORY_GRAPH_FILE
 from utils.json_utils import append_jsonl
 from utils.embed_similarity import text_similarity, embeddings_available
 from utils.failure_counter import record_failure

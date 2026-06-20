@@ -120,7 +120,7 @@ def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> 
     these entries used to persist reward=None, so a step that failed 133×
     in a row produced zero learning signal)."""
     try:
-        from paths import COGNITION_HISTORY_FILE
+        from brain.paths import COGNITION_HISTORY_FILE
         from utils.json_utils import load_json, save_json
         from utils.timeutils import now_iso_z
         log = load_json(COGNITION_HISTORY_FILE, default_type=list)

@@ -7,7 +7,7 @@ import re
 import textwrap
 
 from utils.affect_utils import detect_affect_keyword
-import paths
+import brain.paths as paths
 from utils.append import append_to_json
 # generate_response/llm_ok are imported deferred inside summarize_chat_to_long_memory
 # so this L2 storage module does not transitively load cognition (via

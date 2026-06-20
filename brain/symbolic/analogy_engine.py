@@ -28,7 +28,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from utils.json_utils import load_json
 from utils.log import log_activity
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 
 _STOPWORDS: Set[str] = {
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",

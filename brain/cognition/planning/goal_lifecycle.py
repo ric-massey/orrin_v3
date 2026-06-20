@@ -34,7 +34,7 @@ from typing import Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
-from paths import LIFETIME_GOALS_FILE
+from brain.paths import LIFETIME_GOALS_FILE
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 
@@ -174,7 +174,7 @@ def fade_goals(context: Optional[Dict] = None) -> None:
 
 def _fade_regular_goals(now_ts: float) -> None:
     """Decay motivational_weight for regular short/long_term goals."""
-    from paths import GOALS_FILE
+    from brain.paths import GOALS_FILE
 
     goals = load_json(GOALS_FILE, default_type=list)
     if not isinstance(goals, list):
@@ -257,7 +257,7 @@ def pause_goal(goal_id: str, reason: str = "") -> bool:
             return True
 
     # Also check regular goals
-    from paths import GOALS_FILE
+    from brain.paths import GOALS_FILE
     reg_goals = load_json(GOALS_FILE, default_type=list)
     if isinstance(reg_goals, list):
         for g in reg_goals:
@@ -282,7 +282,7 @@ def resume_goal(goal_id: str) -> bool:
             log_activity(f"[goal_lifecycle] Resumed lifetime goal: '{g['title']}'")
             return True
 
-    from paths import GOALS_FILE
+    from brain.paths import GOALS_FILE
     reg_goals = load_json(GOALS_FILE, default_type=list)
     if isinstance(reg_goals, list):
         for g in reg_goals:

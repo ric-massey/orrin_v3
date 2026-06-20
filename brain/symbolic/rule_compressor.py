@@ -17,7 +17,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 
 try:
-    from paths import SYMBOLIC_RULES_FILE
+    from brain.paths import SYMBOLIC_RULES_FILE
 except Exception:
     from pathlib import Path
     SYMBOLIC_RULES_FILE = Path(__file__).resolve().parents[1] / "data" / "symbolic_rules.json"

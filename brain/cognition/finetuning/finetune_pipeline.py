@@ -32,7 +32,7 @@ from typing import Dict, List, Optional, Any
 
 from utils.log import log_activity, log_error
 from utils.json_utils import load_json, save_json
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _TRACE_FILE        = DATA_DIR / "trace_buffer.jsonl"
 _EXPORT_FILE       = DATA_DIR / "training_export.jsonl"

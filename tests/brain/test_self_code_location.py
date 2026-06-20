@@ -8,7 +8,7 @@
 # here touches brain/data.
 from pathlib import Path
 
-import paths
+import brain.paths as paths
 import agency.code_writer as code_writer
 from agency import self_code
 from core.manager import load_custom_cognition

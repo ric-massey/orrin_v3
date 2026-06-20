@@ -13,7 +13,7 @@ from cognition.reflection.reflect_on_cognition import update_cognition_schedule
 from affect.reward_signals.reward_signals import release_reward_signal
 
 # --- Paths (use distinct names so we don't shadow path constants) ---
-from paths import (
+from brain.paths import (
     REF_PROMPTS as REF_PROMPTS_PATH,
     LONG_MEMORY_FILE,
     CONTRADICTIONS_JSON as CONTRADICTIONS_FILE,

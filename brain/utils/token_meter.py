@@ -44,7 +44,7 @@ def _data_dir() -> Path:
     global _data_dir_cache
     if _data_dir_cache is None:
         try:
-            from paths import DATA_DIR
+            from brain.paths import DATA_DIR
             _data_dir_cache = DATA_DIR
         except Exception:
             _data_dir_cache = Path(__file__).resolve().parent.parent / "data"

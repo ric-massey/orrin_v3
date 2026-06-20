@@ -27,7 +27,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_error
 from utils.failure_counter import record_failure
 from cog_memory.working_memory import update_working_memory
-from paths import TOOL_REQUESTS_FILE
+from brain.paths import TOOL_REQUESTS_FILE
 from utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 

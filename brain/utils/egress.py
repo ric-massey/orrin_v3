@@ -24,7 +24,7 @@ import threading
 import time
 from typing import Any, Dict, List, Optional
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _LOG = DATA_DIR / "egress_log.jsonl"
 _LOCK = threading.Lock()

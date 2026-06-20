@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from agency.effect_ledger import MIN_ARTIFACT_CHARS, record_effect
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.generate_response import generate_response, get_thinking_model, llm_ok
 from utils.llm_gate import llm_callable_by
 from utils.timeutils import now_iso_z

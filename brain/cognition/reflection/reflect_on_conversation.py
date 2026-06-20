@@ -5,7 +5,7 @@ from utils.json_utils import load_json
 
 from utils.log import log_private, log_error
 from utils.log_reflection import log_reflection
-from paths import CONTEXT, LOGS_DIR  # <- use paths, not hardcoded folder
+from brain.paths import CONTEXT, LOGS_DIR  # <- use paths, not hardcoded folder
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

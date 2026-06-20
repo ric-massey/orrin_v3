@@ -194,7 +194,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
     except Exception as _e:
         record_failure("express_to_user._route_note.deliver", _e)
     try:
-        from paths import NOTES_FILE
+        from brain.paths import NOTES_FILE
         from utils.json_utils import load_json, save_json
         notes = load_json(NOTES_FILE, default_type=list) or []
         notes.append(artifact)

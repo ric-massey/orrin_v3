@@ -145,7 +145,7 @@ def audit_reflective_claims(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     try:
         from utils.json_utils import load_json
-        from paths import LONG_MEMORY_FILE
+        from brain.paths import LONG_MEMORY_FILE
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
         weak = []
         for entry in (lm or [])[-50:]:
@@ -175,7 +175,7 @@ def validate_claim(claim_id: str, status: str, evidence: str = "") -> bool:
         return False
     try:
         from utils.json_utils import load_json, save_json
-        from paths import LONG_MEMORY_FILE
+        from brain.paths import LONG_MEMORY_FILE
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
         updated = False
         for entry in lm:

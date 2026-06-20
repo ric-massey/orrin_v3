@@ -28,7 +28,7 @@ from urllib.request import Request, urlopen
 
 import os
 
-import paths
+import brain.paths as paths
 from version import current_version
 
 _DEFAULT_REPO = "ric-massey/orrin_v3"

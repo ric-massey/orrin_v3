@@ -179,7 +179,7 @@ def _tag_recent_memories(context: Dict[str, Any]) -> None:
     """
     try:
         from utils.json_utils import load_json, save_json
-        from paths import WORKING_MEMORY_FILE
+        from brain.paths import WORKING_MEMORY_FILE
 
         wm = load_json(WORKING_MEMORY_FILE, default_type=list)
         if not isinstance(wm, list) or not wm:

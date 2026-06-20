@@ -18,7 +18,7 @@ import json
 from typing import Any, Dict, List
 
 from peers.peer_base import BasePeer
-from paths import BANDIT_STATE_FILE, EVALUATOR_WAL, REWARD_TRACE
+from brain.paths import BANDIT_STATE_FILE, EVALUATOR_WAL, REWARD_TRACE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

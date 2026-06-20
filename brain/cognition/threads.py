@@ -12,7 +12,7 @@ from typing import Dict, Any, List
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from cog_memory.long_memory import update_long_memory
-from paths import THREADS_FILE, LONG_MEMORY_FILE
+from brain.paths import THREADS_FILE, LONG_MEMORY_FILE
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

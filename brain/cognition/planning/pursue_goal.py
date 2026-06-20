@@ -35,7 +35,7 @@ from utils.json_utils import load_json
 from utils.log import log_activity, log_error
 from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 from cognition.planning.thinking_depth import choose_depth
 from cognition.planning.goals import (
     get_goal_plan, get_next_pending_step, advance_goal_plan,

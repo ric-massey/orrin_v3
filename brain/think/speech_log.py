@@ -32,7 +32,7 @@ from typing import Any, Dict, List, Optional, Set
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_error
-from paths import SPEECH_LOG_FILE, SPEECH_SCORES_FILE, SPEECH_SEEDS_FILE
+from brain.paths import SPEECH_LOG_FILE, SPEECH_SCORES_FILE, SPEECH_SEEDS_FILE
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

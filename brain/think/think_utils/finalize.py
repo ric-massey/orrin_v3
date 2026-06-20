@@ -10,7 +10,7 @@ from cognition.planning.motivations import adjust_goal_weights
 from cog_memory.working_memory import update_working_memory
 from affect.update_affect_state import update_affect_state
 from think.think_utils.escalate import is_agentic_action
-from paths import (
+from brain.paths import (
     ACTION_FILE,
     COGNITION_STATE_FILE,
     COGNITION_HISTORY_FILE,
@@ -270,7 +270,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         _prev_phrase_hash = context.pop("_pending_vocab_phrase_hash", None)
         if _user_responded and _prev_phrase_hash:
             from utils.json_utils import load_json as _lvj, save_json as _svj
-            from paths import DATA_DIR as _DATA_DIR
+            from brain.paths import DATA_DIR as _DATA_DIR
             _vw_path = _DATA_DIR / "vocab_weights.json"
             _vw = _lvj(_vw_path, default_type=dict) or {}
             _entry = _vw.get(_prev_phrase_hash) or {"uses": 0, "successes": 0, "weight": 1.0}

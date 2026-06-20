@@ -11,7 +11,7 @@ from utils.error import build_error_event, record_error  # from the self-heal pl
 
 from utils.path_redact import redact as _redact
 from utils.json_utils import append_jsonl
-from paths import MODEL_FAILURES_FILE
+from brain.paths import MODEL_FAILURES_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

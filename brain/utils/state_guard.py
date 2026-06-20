@@ -172,7 +172,7 @@ def sanitize_all(paths_module=None) -> Dict[str, int]:
     """
     if paths_module is None:
         try:
-            import paths as paths_module
+            import brain.paths as paths_module
         except Exception:
             return {}
 

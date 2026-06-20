@@ -28,8 +28,8 @@ except Exception:
     revise_think = None
 
 try:
-    from paths import THINK_MODULE_PY as _THINK_MODULE
-    from paths import THINK_DIR as _THINK_DIR
+    from brain.paths import THINK_MODULE_PY as _THINK_MODULE
+    from brain.paths import THINK_DIR as _THINK_DIR
 except Exception:
     _THINK_MODULE = None
     _THINK_DIR = None
@@ -94,7 +94,7 @@ def _recover_json_artifacts() -> None:
     for name, default in candidates:
         p: Optional[Path] = None
         try:
-            import paths as P  # safer than introspecting __dict__
+            import brain.paths as P  # safer than introspecting __dict__
             p = getattr(P, name, None)
             if not isinstance(p, Path):
                 continue  # constant not defined in this build

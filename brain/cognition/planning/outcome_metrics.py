@@ -23,7 +23,7 @@ from typing import Any, Dict
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR, DECISION_STATS_FILE
+from brain.paths import DATA_DIR, DECISION_STATS_FILE
 _log = get_logger(__name__)
 
 OUTCOME_METRICS_FILE = DATA_DIR / "outcome_metrics.json"

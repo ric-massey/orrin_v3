@@ -3,7 +3,7 @@ from core.runtime_log import get_logger
 
 from typing import Optional, Dict, Any, List
 from utils.json_utils import load_json
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

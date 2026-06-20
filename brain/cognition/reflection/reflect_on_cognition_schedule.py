@@ -6,7 +6,7 @@ from utils.json_utils import save_json
 from utils.log import log_error, log_private
 from utils.log_reflection import log_reflection
 from utils.load_utils import load_all_known_json
-from paths import COGN_SCHEDULE_FILE
+from brain.paths import COGN_SCHEDULE_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

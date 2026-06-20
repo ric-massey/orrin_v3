@@ -32,7 +32,7 @@ from utils.self_model import get_self_model, save_self_model
 from utils.log import log_private, log_activity
 from cog_memory.long_memory import update_long_memory
 from cog_memory.working_memory import update_working_memory
-from paths import CONTRADICTIONS_FILE, COGNITION_HISTORY_FILE
+from brain.paths import CONTRADICTIONS_FILE, COGNITION_HISTORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

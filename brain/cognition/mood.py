@@ -32,7 +32,7 @@ from typing import Any, Dict
 
 from utils.log import log_private
 from utils.json_utils import load_json, save_json
-from paths import MOOD_FILE
+from brain.paths import MOOD_FILE
 
 
 _ALPHA      = 0.015    # EMA smoothing — mood drifts ~1.5% per cycle toward current state

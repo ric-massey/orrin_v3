@@ -23,7 +23,7 @@ import zipfile
 from pathlib import Path
 from typing import Any, Dict, List
 
-import paths
+import brain.paths as paths
 
 # Operational log files under DATA_DIR that are safe to share — errors, model/IO
 # failures, incidents, the run-state marker, the schema stamp. Deliberately excludes

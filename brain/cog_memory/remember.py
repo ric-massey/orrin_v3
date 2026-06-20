@@ -5,7 +5,7 @@ from typing import Any, Optional, List
 import uuid
 
 from utils.affect_utils import detect_affect_keyword
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 from utils.embedder import get_embedding
 from utils.json_utils import load_json, save_json
 from utils.log import log_error, log_private

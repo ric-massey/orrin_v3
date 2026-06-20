@@ -21,7 +21,7 @@ from typing import Dict, List
 
 from utils.json_utils import load_json
 from utils.log import log_activity
-from paths import (
+from brain.paths import (
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, CHAT_LOG_FILE, BODY_SENSE_FILE,
     PREDICTIONS_FILE, SPEECH_LOG_FILE, KNOWLEDGE_GRAPH_FILE,
 )

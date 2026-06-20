@@ -12,7 +12,7 @@ from utils.embedder import get_embedding
 from utils.json_utils import load_json, save_json, modify_json, AbortModify
 from utils.log import log_private, log_error
 from cog_memory.summarize_w_memory import summarize_and_promote_working_memory
-from paths import WORKING_MEMORY_FILE, AFFECT_STATE_FILE
+from brain.paths import WORKING_MEMORY_FILE, AFFECT_STATE_FILE
 import os as _os
 _log = get_logger(__name__)
 

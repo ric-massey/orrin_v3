@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 from typing import List, Union, Dict, Any
 
-from paths import ERROR_FILE, MODEL_FAILURE, ACTIVITY_LOG, PRIVATE_THOUGHTS_FILE
+from brain.paths import ERROR_FILE, MODEL_FAILURE, ACTIVITY_LOG, PRIVATE_THOUGHTS_FILE
 from utils.timeutils import now_iso_z
 
 try:

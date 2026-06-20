@@ -21,7 +21,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from paths import EVALUATOR_WAL
+from brain.paths import EVALUATOR_WAL
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

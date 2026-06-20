@@ -1853,7 +1853,7 @@ async def update_settings(payload: Dict[str, Any], request: Request) -> Dict[str
         with contextlib.suppress(Exception):
             from brain.utils import llm_providers as _providers
             from brain.utils.json_utils import load_json as _lj, save_json as _sj
-            from paths import MODEL_CONFIG_FILE as _mcf
+            from brain.paths import MODEL_CONFIG_FILE as _mcf
             _mc = _lj(_mcf, default_type=dict) or {}
             _mc["llm_enabled"] = _providers.selected_id() != "none"
             _sj(_mcf, _mc)

@@ -70,7 +70,7 @@ from config.tuning import (
     CRISIS_CHRONIC_MEAN,
 )
 
-from paths import (
+from brain.paths import (
     RELATIONSHIPS_FILE, MODEL_CONFIG_FILE, CONTEXT, WORKING_MEMORY_FILE,
     LONG_MEMORY_FILE, AFFECT_STATE_FILE, BANDIT_STATE_FILE,
     REFLECTION as REFLECTION_LOG_FILE, CHAT_LOG_FILE,
@@ -272,7 +272,7 @@ def _learning_pulse(context: "Context") -> float:
         return _LAST_LEARNING["val"]
     val = _LAST_LEARNING["val"]
     try:
-        from paths import PREDICTIONS_FILE
+        from brain.paths import PREDICTIONS_FILE
         preds = load_json(PREDICTIONS_FILE, default_type=list) or []
         # Take the 40 most-recent *resolved* predictions, not the last 40 by file
         # order — fresh predictions resolve with a lag, so a trailing slice of raw
@@ -308,7 +308,7 @@ def _emit_goals(context: "Context") -> None:
         _LAST_GOALS_PUSH = now
 
         from utils.json_utils import load_json
-        from paths import GOALS_FILE
+        from brain.paths import GOALS_FILE
 
         goals_raw = load_json(GOALS_FILE, default_type=list) or []
         committed = context.get("committed_goal") if isinstance(context, dict) else None
@@ -498,7 +498,7 @@ def _validate_boot_files() -> None:
     # hard kills strand them and they accumulate in brain/data/ (audit §11).
     try:
         import time as _t
-        from paths import DATA_DIR as _dd
+        from brain.paths import DATA_DIR as _dd
         _cutoff = _t.time() - 86400
         _swept = 0
         for _p in list(_dd.glob("tmp*")) + list(_dd.glob("*.tmp")):
@@ -889,7 +889,7 @@ def _boot_context() -> Context:
 
     # Clear stale user input so Orrin doesn't reply to messages from a previous session
     try:
-        from paths import USER_INPUT
+        from brain.paths import USER_INPUT
         USER_INPUT.write_text("", encoding="utf-8")
     except Exception as _e:
         log_error(f"[boot] Could not clear user_input.txt: {_e}")
@@ -971,7 +971,7 @@ def _boot_context() -> Context:
 
     # ── Death continuity: read previous Orrin's final words ────────────────
     try:
-        from paths import FINAL_THOUGHTS as _FT
+        from brain.paths import FINAL_THOUGHTS as _FT
         if _FT.exists():
             import json as _json
             _ft = _json.loads(_FT.read_text(encoding="utf-8"))
@@ -1661,7 +1661,7 @@ def run_cognitive_loop(
             # ── Value evolution: inject signal when candidates pending ─────
             try:
                 from utils.json_utils import load_json as _lj
-                from paths import VALUE_REVISIONS as _VR
+                from brain.paths import VALUE_REVISIONS as _VR
                 _pending_vals = [c for c in (_lj(_VR, default_type=list) or []) if isinstance(c, dict) and c.get("status", "pending") == "pending"]
                 if _pending_vals:
                     from utils.signal_utils import create_signal as _cs2

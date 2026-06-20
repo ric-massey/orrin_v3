@@ -13,7 +13,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from utils.self_model import get_self_model
 from cog_memory.long_memory import update_long_memory
-from paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, DREAM_LOG, VALUE_REVISIONS
+from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, DREAM_LOG, VALUE_REVISIONS
 from utils.llm_gate import llm_available
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -832,7 +832,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         _allo_load = 0.0
         try:
             from utils.json_utils import load_json as _lj
-            from paths import AFFECT_STATE_FILE as _ASF
+            from brain.paths import AFFECT_STATE_FILE as _ASF
             _allo_load = float((_lj(_ASF, default_type=dict) or {}).get("_allostatic_load", 0.0) or 0.0)
         except Exception:
             _allo_load = 0.0

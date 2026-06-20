@@ -43,7 +43,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from paths import DATA_DIR, WORKING_MEMORY_FILE
+from brain.paths import DATA_DIR, WORKING_MEMORY_FILE
 from utils.log import log_activity, log_error, log_private
 from utils.json_utils import load_json, save_json
 from utils.failure_counter import record_failure

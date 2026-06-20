@@ -53,7 +53,7 @@ from typing import Any, Dict
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import ENERGY_MODE_FILE
+from brain.paths import ENERGY_MODE_FILE
 
 
 # ── Smoothing constants ───────────────────────────────────────────────────────

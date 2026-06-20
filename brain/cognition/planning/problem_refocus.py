@@ -34,7 +34,7 @@ from utils.json_utils import load_json
 from utils.log import log_activity
 from utils.timeutils import now_iso_z
 from cog_memory.working_memory import update_working_memory
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 
 _log = get_logger(__name__)

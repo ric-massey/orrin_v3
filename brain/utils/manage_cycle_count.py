@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, Tuple, Any
 from utils.json_utils import save_json, load_json
-from paths import CYCLE_COUNT_FILE
+from brain.paths import CYCLE_COUNT_FILE
 
 def manage_cycle_count(context: Dict[str, Any] | None) -> Tuple[Dict[str, Any], Dict[str, int]]:
     """

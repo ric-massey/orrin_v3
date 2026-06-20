@@ -12,7 +12,7 @@ from typing import Dict, Any, List
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 
 
 def filter_private(memories: List[Dict]) -> List[Dict]:

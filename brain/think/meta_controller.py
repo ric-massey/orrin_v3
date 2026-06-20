@@ -32,7 +32,7 @@ from typing import Any, Dict, List, Literal, Optional, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

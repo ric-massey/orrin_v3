@@ -10,7 +10,7 @@ from utils.log_reflection import log_reflection
 from utils.json_utils import load_json
 from utils.log import log_error
 from utils.append import append_to_json
-from paths import LONG_MEMORY_FILE
+from brain.paths import LONG_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -41,7 +41,7 @@ def periodic_self_review(n_events: int = 400) -> None:
         # as load-bearing observations (importance=4) so inner_loop reasoning
         # encounters them and can deliberate about deprioritising weak functions.
         try:
-            from paths import DECISION_STATS_FILE as _DSF
+            from brain.paths import DECISION_STATS_FILE as _DSF
             stats = load_json(_DSF, default_type=dict) or {}
             poor_fns: List[tuple] = []
             strong_fns: List[tuple] = []

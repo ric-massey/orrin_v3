@@ -22,7 +22,7 @@ import re
 import time
 from typing import Any, Dict, List, Optional
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.log import log_private
 
 _STREAM_FILE = DATA_DIR / "conscious_stream.json"

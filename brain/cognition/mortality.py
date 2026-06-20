@@ -29,7 +29,7 @@ from typing import Any, Dict, Optional
 
 from utils.log import log_private, log_activity
 from utils.json_utils import load_json, save_json
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 LIFESPAN_FILE = DATA_DIR / "lifespan.json"
 FINAL_THOUGHTS_FILE = DATA_DIR / "final_thoughts.json"

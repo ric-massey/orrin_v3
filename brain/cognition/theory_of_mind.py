@@ -437,7 +437,7 @@ def _compute_confidence(person_id: str, tom: Dict[str, Any], topic_stability: fl
     """
     try:
         from utils.json_utils import load_json
-        from paths import RELATIONSHIPS_FILE
+        from brain.paths import RELATIONSHIPS_FILE
         rels  = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         r     = rels.get(person_id) or {}
         n     = len(r.get("interaction_history", []))
@@ -478,7 +478,7 @@ def _load_tom_state(person_id: str) -> Dict[str, Any]:
         return {}
     try:
         from utils.json_utils import load_json
-        from paths import RELATIONSHIPS_FILE
+        from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("tom_state") or {}
     except Exception:
@@ -490,7 +490,7 @@ def _save_tom_state(person_id: str, state: Dict[str, Any]) -> None:
         return
     try:
         from utils.json_utils import load_json, save_json
-        from paths import RELATIONSHIPS_FILE
+        from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         if person_id not in rels or not isinstance(rels.get(person_id), dict):
             rels[person_id] = {}
@@ -503,7 +503,7 @@ def _save_tom_state(person_id: str, state: Dict[str, Any]) -> None:
 def _person_model_for(person_id: str) -> Dict[str, Any]:
     try:
         from utils.json_utils import load_json
-        from paths import RELATIONSHIPS_FILE
+        from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("person_model") or {}
     except Exception:

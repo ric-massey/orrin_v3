@@ -25,7 +25,7 @@ def _best_user_input_mtime(context):
     """Find user_input.txt mtime; 0.0 if not found."""
     paths = []
     try:
-        from paths import USER_INPUT_FILE as UIF
+        from brain.paths import USER_INPUT_FILE as UIF
         if UIF: paths.append(UIF)
     except Exception:
         pass  # constant is optional; the cwd-relative probes below cover it

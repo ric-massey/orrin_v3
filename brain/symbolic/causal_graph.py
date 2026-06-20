@@ -33,7 +33,7 @@ from typing import Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 CAUSAL_GRAPH_FILE = DATA_DIR / "causal_graph.json"
 

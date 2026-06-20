@@ -19,7 +19,7 @@ from utils.generate_response import generate_response, llm_ok
 from utils.error_router import catch_and_route            # ← routing decorator
 from think.sandbox_runner import run_python               # ← sandboxed exec
 
-from paths import (
+from brain.paths import (
     DATA_DIR,
     LONG_MEMORY_FILE,
     TOOL_CATALOG_JSON,

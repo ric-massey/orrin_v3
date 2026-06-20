@@ -2,7 +2,7 @@ import re
 
 from utils.json_utils import load_json
 from utils.log import log_error
-from paths import RELATIONSHIPS_FILE
+from brain.paths import RELATIONSHIPS_FILE
 
 def check_violates_boundaries(prompt):
     """

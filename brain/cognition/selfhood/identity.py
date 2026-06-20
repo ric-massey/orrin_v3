@@ -7,7 +7,7 @@ from utils.timing import get_time_since_last_active
 from utils.json_utils import load_json
 from utils.self_model import get_self_model, save_self_model
 from utils.failure_counter import record_failure
-from paths import LOG_FILE, FEEDBACK_LOG
+from brain.paths import LOG_FILE, FEEDBACK_LOG
 _log = get_logger(__name__)
 
 _IDENTITY_LOCK = threading.Lock()
@@ -120,7 +120,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # the old path silently failed and affect_state stayed empty.)
     if affect_state is None:
         try:
-            from paths import AFFECT_STATE_FILE
+            from brain.paths import AFFECT_STATE_FILE
             from utils.json_utils import load_json as _lj
             _raw = _lj(AFFECT_STATE_FILE, default_type=dict) or {}
             core = _raw.get("core_signals")
@@ -208,7 +208,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     autobiography_line = ""
     try:
         from utils.json_utils import load_json as _lj
-        from paths import AUTOBIOGRAPHY
+        from brain.paths import AUTOBIOGRAPHY
         _auto = _lj(AUTOBIOGRAPHY, default_type=dict) or {}
         _chapters = _auto.get("chapters") or []
         if _chapters:

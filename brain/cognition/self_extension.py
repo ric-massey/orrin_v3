@@ -34,7 +34,7 @@ from utils.log import log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
-from paths import PROPOSED_TOOLS_JSON, COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE
+from brain.paths import PROPOSED_TOOLS_JSON, COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -556,7 +556,7 @@ def _write_and_register(
         f"  from utils.generate_response import generate_response, llm_ok\n"
         f"  from utils.log import log_private\n"
         f"  from utils.json_utils import load_json, save_json\n"
-        f"  from paths import WORKING_MEMORY_FILE, LONG_MEMORY_FILE\n\n"
+        f"  from brain.paths import WORKING_MEMORY_FILE, LONG_MEMORY_FILE\n\n"
         f"Rules:\n"
         f"  1. Write ONLY the Python file contents (no markdown fences)\n"
         f"  2. Include a module-level docstring and function docstring\n"
@@ -640,7 +640,7 @@ def maybe_integrate_or_atrophy(context: Dict[str, Any]) -> None:
 
 
 def _integrate_or_atrophy(context: Dict[str, Any]) -> None:
-    from paths import COGNITION_HISTORY_FILE
+    from brain.paths import COGNITION_HISTORY_FILE
 
     proposals = _load_proposals()
     changed = False

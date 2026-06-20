@@ -27,7 +27,7 @@ from typing import Any, Dict, Tuple
 
 from utils.json_utils import load_json
 from utils.log import log_private
-from paths import RELATIONSHIPS_FILE
+from brain.paths import RELATIONSHIPS_FILE
 
 # Skip the check when urgency is this high — don't second-guess urgent expression
 _URGENCY_BYPASS_THRESHOLD = 0.85

@@ -32,7 +32,7 @@ from typing import Any, Dict, List, Optional
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from utils.failure_counter import record_failure
-from paths import DATA_DIR, LOGS_DIR, ROOT_DIR
+from brain.paths import DATA_DIR, LOGS_DIR, ROOT_DIR
 
 _log = get_logger(__name__)
 
@@ -85,7 +85,7 @@ def _audit_registered_functions() -> List[str]:
 
     # Selector candidates must be dispatchable: in the registry or behavioral.
     try:
-        from paths import COGNITIVE_FUNCTIONS_LIST_FILE, BEHAVIORAL_FUNCTIONS_LIST_FILE
+        from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE, BEHAVIORAL_FUNCTIONS_LIST_FILE
         listed = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []
         behavioral = load_json(BEHAVIORAL_FUNCTIONS_LIST_FILE, default_type=list) or []
         beh_names = {
@@ -110,7 +110,7 @@ def _audit_path_constants() -> List[str]:
     ever written by any source file is a structure nothing fills."""
     findings: List[str] = []
     try:
-        import paths as paths_mod
+        import brain.paths as paths_mod
     except Exception as e:
         record_failure("map_audit.paths_import", e)
         return findings

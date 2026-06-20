@@ -29,7 +29,7 @@ from typing import Dict, List, Optional, Set
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 PLANS_FILE  = DATA_DIR / "symbolic_plans.json"
 _MAX_DEPTH  = 10

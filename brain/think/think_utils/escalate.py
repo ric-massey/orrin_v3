@@ -1,5 +1,5 @@
 from typing import Iterable, Optional, List, Dict, Any
-from paths import BEHAVIORAL_FUNCTIONS_LIST_FILE
+from brain.paths import BEHAVIORAL_FUNCTIONS_LIST_FILE
 from utils.json_utils import load_json
 
 _DEFAULT_ALLOWED = (

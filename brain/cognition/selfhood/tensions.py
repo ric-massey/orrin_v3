@@ -24,7 +24,7 @@ from typing import Any, Dict, List
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import VALUE_REVISIONS, TENSIONS_FILE
+from brain.paths import VALUE_REVISIONS, TENSIONS_FILE
 from utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 

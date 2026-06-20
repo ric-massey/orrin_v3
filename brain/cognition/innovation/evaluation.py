@@ -12,7 +12,7 @@ from utils.log import log_error, log_activity
 from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
 from utils.self_model import get_self_model
-from paths import PROPOSED_TOOLS_JSON, TOOL_EVALUATIONS_JSON, LONG_MEMORY_FILE, IMPLEMENTED_TOOLS_FILE
+from brain.paths import PROPOSED_TOOLS_JSON, TOOL_EVALUATIONS_JSON, LONG_MEMORY_FILE, IMPLEMENTED_TOOLS_FILE
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -134,7 +134,7 @@ def _inject_implement_signals(evaluations: List[Dict[str, Any]]) -> None:
         try:
             from utils.signal_utils import create_signal
             from utils.json_utils import load_json as _lj, save_json as _sj
-            from paths import CONTEXT
+            from brain.paths import CONTEXT
             _ctx = _lj(CONTEXT, default_type=dict) or {}
             _sig = create_signal(
                 source="innovation_evaluation",

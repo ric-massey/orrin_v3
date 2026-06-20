@@ -88,7 +88,7 @@ from utils.coerce_to_string import coerce_to_string
 # the same pattern utils/response_utils.py uses.
 from utils.log import log_model_issue
 from core.config.settings import model_roles
-from paths import MODEL_CONFIG_FILE, LLM_PROMPT, DATA_DIR
+from brain.paths import MODEL_CONFIG_FILE, LLM_PROMPT, DATA_DIR
 from utils.self_model import get_self_model
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
@@ -281,7 +281,7 @@ def generate_response(
 
         _emo_state: Dict[str, Any] = {}
         try:
-            from paths import AFFECT_STATE_FILE
+            from brain.paths import AFFECT_STATE_FILE
             # Was reading the legacy emotion_state.json (renamed to affect_state.json
             # in the affect rename) → it silently read nothing.
             _raw_emo = load_json(AFFECT_STATE_FILE, default_type=dict)

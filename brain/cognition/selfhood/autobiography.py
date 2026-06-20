@@ -38,7 +38,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from utils.self_model import get_self_model
 from cog_memory.long_memory import update_long_memory
-from paths import (
+from brain.paths import (
     AUTOBIOGRAPHY,
     LONG_MEMORY_FILE,
     NARRATIVE_PRESSURE_FILE,
@@ -554,7 +554,7 @@ def _session_reflection(context: Dict[str, Any], deadline: float) -> str:
     highlights: List[str] = []
     cycles = 0
     try:
-        from paths import WORKING_MEMORY_FILE
+        from brain.paths import WORKING_MEMORY_FILE
         wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
         raw = context.get("cycle_count") or 0
         cycles = int(raw.get("count", 0) if isinstance(raw, dict) else raw)

@@ -24,7 +24,7 @@ import re
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.json_utils import load_json
 from utils.self_model import get_self_model
 from utils.log import log_private

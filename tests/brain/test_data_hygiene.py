@@ -4,7 +4,7 @@
 #   • legacy reward-EMA files are migrated once, then removed
 import json
 
-import paths
+import brain.paths as paths
 from utils.json_utils import cap_jsonl
 import affect.reward_signals.action_reward_ema as aem
 

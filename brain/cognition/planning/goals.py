@@ -14,7 +14,7 @@ from cog_memory.working_memory import update_working_memory
 from utils.log import log_activity
 from affect.reward_signals.reward_signals import release_reward_signal
 
-from paths import GOALS_FILE, COMPLETED_GOALS_FILE, FOCUS_GOAL, SELF_BELIEF_REVISIONS_FILE
+from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, FOCUS_GOAL, SELF_BELIEF_REVISIONS_FILE
 from utils.timeutils import now_iso_z
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
@@ -65,7 +65,7 @@ def _revise_weak_area_beliefs(goal: Dict) -> None:
     if confidence falls below 0.2).
     """
     try:
-        from paths import DATA_DIR
+        from brain.paths import DATA_DIR
         from utils.json_utils import load_json as _load, save_json as _save
 
         sym_path = DATA_DIR / "symbolic_self_model.json"
@@ -520,7 +520,7 @@ def _rule_based_accomplish(goal: Dict) -> bool:
     name_words = {w for w in name.split() if len(w) > 4}
     try:
         from utils.json_utils import load_json as _lj
-        from paths import WORKING_MEMORY_FILE as _WMF
+        from brain.paths import WORKING_MEMORY_FILE as _WMF
         wm = _lj(_WMF, default_type=list) or []
         for e in wm[-15:]:
             txt = str(e.get("content", e) if isinstance(e, dict) else e).lower()
@@ -619,7 +619,7 @@ def _criteria_evidence_met(goal: Dict) -> bool:
         if len(words) < 2:
             return False
         try:
-            from paths import WORKING_MEMORY_FILE
+            from brain.paths import WORKING_MEMORY_FILE
             memory = load_json(WORKING_MEMORY_FILE, default_type=list) or []
         except Exception:
             memory = []

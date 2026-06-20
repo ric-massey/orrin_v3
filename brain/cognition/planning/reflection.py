@@ -11,7 +11,7 @@ from utils.json_utils import extract_json, load_json  # <-- use helper to read F
 from utils.log import log_error, log_private
 from utils.load_utils import load_all_known_json
 from cog_memory.working_memory import update_working_memory
-from paths import LOG_FILE, PRIVATE_THOUGHTS_FILE, FOCUS_GOAL
+from brain.paths import LOG_FILE, PRIVATE_THOUGHTS_FILE, FOCUS_GOAL
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -235,7 +235,7 @@ def record_decision(fn_name, reason, *, reward=None, context=None):
         return
 
     try:
-        from paths import DECISION_STATS_FILE
+        from brain.paths import DECISION_STATS_FILE
         from utils.json_utils import load_json as _lj, save_json as _sj
         from cog_memory.working_memory import update_working_memory as _uwm
 

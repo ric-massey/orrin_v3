@@ -9,7 +9,7 @@ from utils.load_utils import load_all_known_json
 from cog_memory.working_memory import update_working_memory
 from utils.log import log_private, log_error
 from utils.log_reflection import log_reflection
-from paths import (
+from brain.paths import (
     PROMPTS_BACKUP_JSON,
     PRIVATE_THOUGHTS_FILE,
     REF_PROMPTS,

@@ -33,7 +33,7 @@ from typing import Any, Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private
-from paths import RUMINATION_FILE
+from brain.paths import RUMINATION_FILE
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

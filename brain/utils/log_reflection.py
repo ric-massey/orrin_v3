@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from utils.append import append_to_json
 from utils.log import log_model_issue
-from paths import REFLECTION  # Path to data/reflection_log.json
+from brain.paths import REFLECTION  # Path to data/reflection_log.json
 
 
 def _ensure_pathlike(p: Union[str, Path], label: str = "file_path") -> Path:

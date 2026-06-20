@@ -23,7 +23,7 @@ import time
 import uuid
 from typing import Any, Dict, Optional
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.log import log_private
 
 _FILE = DATA_DIR / "commitments.json"

@@ -10,7 +10,7 @@ _log = get_logger(__name__)
 DATA_DIR: Path
 try:
     # Prefer importing exactly what we need
-    from paths import DATA_DIR as _DATA_DIR
+    from brain.paths import DATA_DIR as _DATA_DIR
     DATA_DIR = _DATA_DIR
 except Exception:
     # Search upward for paths.py (up to 8 levels)
@@ -22,7 +22,7 @@ except Exception:
             break
         base = base.parent
     try:
-        from paths import DATA_DIR as _DATA_DIR
+        from brain.paths import DATA_DIR as _DATA_DIR
         DATA_DIR = _DATA_DIR
     except Exception:
         # Final fallback (works even if paths.py is missing)
@@ -30,7 +30,7 @@ except Exception:
 
 # Optional: if you define SANDBOX_TMP_DIR inside paths.py, you can import it explicitly.
 try:
-    from paths import SANDBOX_TMP_DIR as _SANDBOX_TMP_DIR  # optional
+    from brain.paths import SANDBOX_TMP_DIR as _SANDBOX_TMP_DIR  # optional
     SANDBOX_TMP_DIR: Path = _SANDBOX_TMP_DIR
 except Exception:
     SANDBOX_TMP_DIR = DATA_DIR / "sandbox_tmp"

@@ -18,7 +18,7 @@ from core.runtime_log import get_logger
 from typing import Any, Dict, List
 
 from peers.peer_base import BasePeer
-from paths import AFFECT_STATE_FILE
+from brain.paths import AFFECT_STATE_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -147,7 +147,7 @@ class EmotionHistorian(BasePeer):
             if not _maturity_gate_open(context):
                 return
             from utils.json_utils import load_json, save_json
-            from paths import DATA_DIR
+            from brain.paths import DATA_DIR
             path = DATA_DIR / "peer_rule_candidates.json"
             cands = load_json(path, default_type=dict) or {}
             if not isinstance(cands, dict):

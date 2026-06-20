@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Union
-from paths import EVENTS_FILE as _EVENTS_FILE
+from brain.paths import EVENTS_FILE as _EVENTS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

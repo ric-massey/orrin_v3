@@ -9,7 +9,7 @@ import uuid
 from utils.affect_utils import detect_affect_keyword
 # update_values_with_lessons (cognition, L3) is imported deferred at its call site
 # below so this storage module (L2) does not import cognition at load time.
-from paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE
+from brain.paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE
 from utils.json_utils import AbortModify, load_json, modify_json, save_json
 from utils.log import log_error, log_private
 from utils.memory_utils import summarize_memories

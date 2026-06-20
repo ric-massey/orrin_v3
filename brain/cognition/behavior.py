@@ -2,7 +2,7 @@ from core.runtime_log import get_logger
 from typing import Any, Dict, Optional
 from utils.log import log_error
 from utils.json_utils import load_json
-from paths import REFLECTION
+from brain.paths import REFLECTION
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

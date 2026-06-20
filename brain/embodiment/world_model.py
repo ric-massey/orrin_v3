@@ -32,7 +32,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from paths import WORLD_MODEL
+from brain.paths import WORLD_MODEL
 from utils.json_utils import load_json, save_json
 from utils.log import log_error, log_private
 from utils.failure_counter import record_failure

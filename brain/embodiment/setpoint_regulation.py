@@ -44,7 +44,7 @@ _LM_WARN_ENTRIES   = 1500  # long_memory entries → consolidation signal
 _WM_BLOAT_ENTRIES  = 50    # working_memory entries → overflow warning
 _ERROR_SIZE_WARN   = 40_000  # bytes — error_log grew this much since last check
 
-from paths import DATA_DIR as _DATA_DIR, LOGS_DIR as _LOGS_DIR
+from brain.paths import DATA_DIR as _DATA_DIR, LOGS_DIR as _LOGS_DIR
 
 # ── Singleton ────────────────────────────────────────────────────────────────
 

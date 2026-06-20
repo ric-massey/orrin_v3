@@ -22,7 +22,7 @@ import time
 from dataclasses import dataclass
 from typing import Any, Dict
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 from utils.get_cycle_count import get_cycle_count
 

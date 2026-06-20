@@ -5,7 +5,7 @@ from utils.goals import extract_current_focus_goal
 from cog_memory.working_memory import update_working_memory
 from utils.json_utils import load_json  # ✅ correct source
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, FOCUS_GOAL
+from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, FOCUS_GOAL
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

@@ -21,7 +21,7 @@ import random
 from typing import Dict, Any, Iterable, List
 from pathlib import Path
 
-from paths import FUNCTION_BANDIT_JSON, bandit_path
+from brain.paths import FUNCTION_BANDIT_JSON, bandit_path
 from utils.json_utils import load_json, save_json
 
 # Global bandit state file (already a Path from paths.py)

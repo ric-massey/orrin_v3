@@ -12,7 +12,7 @@
 import re
 
 from utils.json_utils import load_json
-from paths import AFFECT_MODEL_FILE, CUSTOM_EMOTION
+from brain.paths import AFFECT_MODEL_FILE, CUSTOM_EMOTION
 
 
 def detect_affect_keyword(text) -> dict:

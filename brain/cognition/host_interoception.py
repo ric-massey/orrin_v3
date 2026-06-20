@@ -27,7 +27,7 @@ from typing import Dict, List, Optional
 
 from core.runtime_log import get_logger
 from utils.log import log_private
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from cognition.body_band import BodyBands
 
 _log = get_logger(__name__)

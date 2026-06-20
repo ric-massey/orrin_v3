@@ -7,7 +7,7 @@ from typing import Dict, List, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.timeutils import now_iso_z
 
 DICT_FILE = DATA_DIR / "symbolic_dictionary.json"

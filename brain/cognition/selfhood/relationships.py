@@ -6,7 +6,7 @@ from typing import Dict, Any, List, Tuple
 from utils.json_utils import load_json, modify_json, AbortModify
 from utils.emotion_utils import detect_affect_keyword
 from utils.log import log_error, log_private
-from paths import RELATIONSHIPS_FILE
+from brain.paths import RELATIONSHIPS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

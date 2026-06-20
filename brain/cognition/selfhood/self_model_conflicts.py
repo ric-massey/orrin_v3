@@ -6,7 +6,7 @@ from typing import Any, Dict
 from utils.json_utils import load_json, extract_json
 from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
 from utils.log import log_model_issue, log_error
-from paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE, LOG_FILE
+from brain.paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE, LOG_FILE
 from cog_memory.working_memory import update_working_memory
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -99,7 +99,7 @@ def _derive_recent_focus() -> list:
     except Exception:
         pass
     try:
-        from paths import WORKING_MEMORY_FILE
+        from brain.paths import WORKING_MEMORY_FILE
         wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
         themes = [
             str(e.get("event_type"))

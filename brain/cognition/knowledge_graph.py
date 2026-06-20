@@ -30,7 +30,7 @@ from typing import Any, Dict, Generator, List, Optional, Set, Tuple
 
 from utils.json_utils import load_json, save_json, safe_extract_json, modify_json, AbortModify
 from utils.log import log_activity, log_private
-from paths import KNOWLEDGE_GRAPH_FILE
+from brain.paths import KNOWLEDGE_GRAPH_FILE
 from utils.timeutils import now_iso_z
 from utils.llm_gate import llm_callable_by
 from utils.embed_similarity import text_similarity, embeddings_available
@@ -1150,7 +1150,7 @@ def consolidate_from_long_memory(context: Optional[Dict] = None) -> Dict:
     """
     context = context or {}
     try:
-        from paths import LONG_MEMORY_FILE as _LMF
+        from brain.paths import LONG_MEMORY_FILE as _LMF
         long_mem = load_json(_LMF, default_type=list) or []
     except Exception:
         return {"skipped": True, "reason": "long_memory_unavailable"}

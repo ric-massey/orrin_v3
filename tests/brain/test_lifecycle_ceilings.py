@@ -6,7 +6,7 @@ import pytest
 
 from utils import lifecycle as lc
 from utils import resource_ceilings as rc
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 
 @pytest.fixture(autouse=True)

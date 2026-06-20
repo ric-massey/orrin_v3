@@ -18,7 +18,7 @@ from utils.json_utils import save_json, load_json
 from utils.log import log_private, log_model_issue, log_activity
 from utils.emotion_utils import log_penalty_signal
 from cognition.selfhood.boundary_check import check_violates_boundaries
-from paths import GOALS_FILE, FOCUS_GOAL
+from brain.paths import GOALS_FILE, FOCUS_GOAL
 
 # === NEW: talk policy (hard/soft gating and reply plumbing) ===
 from think.think_utils.talk_policy import (

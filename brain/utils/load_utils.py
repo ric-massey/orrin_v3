@@ -5,7 +5,7 @@ from typing import Any, Dict, Union
 
 from utils.json_utils import load_json
 from utils.log import log_error, log_model_issue
-from paths import DATA_DIR, CONTEXT, MODEL_CONFIG_FILE
+from brain.paths import DATA_DIR, CONTEXT, MODEL_CONFIG_FILE
 
 
 def load_model_config() -> Dict[str, Any]:

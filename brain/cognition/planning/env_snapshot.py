@@ -222,7 +222,7 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
 def _lm_total(context: Dict[str, Any]) -> int:
     """Read long-memory total count from file (cheap: just len of JSON list)."""
     try:
-        from paths import LONG_MEMORY_FILE
+        from brain.paths import LONG_MEMORY_FILE
         import json as _json
         raw = LONG_MEMORY_FILE.read_bytes()
         # Count top-level array entries without full parse
@@ -240,7 +240,7 @@ def _tool_pending(context: Dict[str, Any]) -> int:
     if isinstance(reqs, list):
         return sum(1 for r in reqs if isinstance(r, dict) and not r.get("executed"))
     try:
-        from paths import TOOL_REQUESTS_FILE
+        from brain.paths import TOOL_REQUESTS_FILE
         import json as _json
         data = _json.loads(TOOL_REQUESTS_FILE.read_bytes())
         if isinstance(data, list):

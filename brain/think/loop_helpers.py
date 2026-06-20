@@ -2,13 +2,13 @@ from __future__ import annotations
 from core.runtime_log import get_logger
 from pathlib import Path
 from typing import Any, Dict, Callable, Mapping, Tuple, List
-from paths import TRACE_FILE
+from brain.paths import TRACE_FILE
 import time
 import json
 
 from utils.log import log_model_issue
 from utils.json_utils import load_json  # ⬅️ read-only
-from paths import COGNITIVE_FUNCTIONS_LIST_FILE, BEHAVIORAL_FUNCTIONS_LIST_FILE
+from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE, BEHAVIORAL_FUNCTIONS_LIST_FILE
 
 # Registries hold the real callables; we only FILTER by what's in the files.
 from registry.cognition_registry import COGNITIVE_FUNCTIONS

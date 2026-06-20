@@ -6,7 +6,7 @@ from collections import Counter
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_error
 from cog_memory.working_memory import update_working_memory
-from paths import (
+from brain.paths import (
     SYMBOLIC_WORLD_MODEL, LONG_MEMORY_FILE, CONCEPTS_FILE,
     WORLD_MODEL_BACKUP, DATA_DIR,
 )
@@ -195,7 +195,7 @@ def _extract_from_text(text: str, entities: dict, relations: list) -> None:
 def _extract_causal_patterns_from_stats(causal_patterns: list) -> None:
     """Pull high/low reward functions from decision_stats as causal patterns."""
     try:
-        from paths import DECISION_STATS_FILE
+        from brain.paths import DECISION_STATS_FILE
         stats = load_json(DECISION_STATS_FILE, default_type=dict) or {}
         for fn, entry in stats.items():
             if not isinstance(entry, dict):
@@ -223,7 +223,7 @@ def _extract_causal_patterns_from_stats(causal_patterns: list) -> None:
 def _extract_self_as_entity(entities: dict) -> None:
     """Orrin should know himself as an entity with properties from self_model."""
     try:
-        from paths import SELF_MODEL_FILE
+        from brain.paths import SELF_MODEL_FILE
         self_m = load_json(SELF_MODEL_FILE, default_type=dict) or {}
         props = {}
         if self_m.get("identity"):

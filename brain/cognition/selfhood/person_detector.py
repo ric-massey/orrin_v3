@@ -41,7 +41,7 @@ from typing import Dict, Any, Optional, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_private, log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 

@@ -15,7 +15,7 @@ from utils.failure_counter import record_failure
 from utils.self_model import get_self_model, ensure_self_model_integrity
 from utils.summarizers import summarize_recent_thoughts, summarize_self_model
 from cog_memory.working_memory import update_working_memory
-from paths import (
+from brain.paths import (
     PRIVATE_THOUGHTS_FILE,
     EVOLUTION_FUTURES,
     GOALS_FILE,

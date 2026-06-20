@@ -13,7 +13,7 @@
 from typing import Dict, List, Any
 from utils.json_utils import load_json, save_json
 from utils.log import log_error, log_activity
-from paths import AFFECT_MODEL_FILE
+from brain.paths import AFFECT_MODEL_FILE
 
 # Packaged default keyword lists, one per core-affect category used in
 # affect_state.json core_signals. These are the seed model: if the on-disk

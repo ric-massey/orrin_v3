@@ -28,10 +28,10 @@ from typing import Any, Dict, List, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 try:
-    from paths import COGNITION_HISTORY_FILE
+    from brain.paths import COGNITION_HISTORY_FILE
 except Exception:
     COGNITION_HISTORY_FILE = DATA_DIR / "cognition_history.json"
 

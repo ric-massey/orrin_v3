@@ -82,7 +82,7 @@ _FAULT_NOTICE_MIN_COUNT = 20
 
 
 def _state_path() -> Path:
-    from paths import DATA_DIR
+    from brain.paths import DATA_DIR
     return DATA_DIR / _HEALTH_STATE_FILE_NAME
 
 
@@ -104,7 +104,7 @@ def _save_state(state: Dict[str, Any]) -> None:
 
 def _file_size(fname: str) -> int:
     """Return the size in bytes of a file in brain/data/, or 0 if missing."""
-    from paths import DATA_DIR
+    from brain.paths import DATA_DIR
     p = DATA_DIR / fname
     try:
         return p.stat().st_size

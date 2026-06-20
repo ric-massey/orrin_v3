@@ -20,7 +20,7 @@ from typing import Any, Dict, Optional
 from utils.log import log_private
 from utils.json_utils import load_json
 from cog_memory.working_memory import update_working_memory
-from paths import WORKING_MEMORY_FILE
+from brain.paths import WORKING_MEMORY_FILE
 from utils.llm_gate import llm_callable_by
 _log = get_logger(__name__)
 

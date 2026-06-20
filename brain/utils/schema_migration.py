@@ -28,7 +28,7 @@ import json
 import time
 from typing import Callable, Dict, List, Optional
 
-import paths
+import brain.paths as paths
 
 # The schema version THIS build writes/expects. Bump whenever an on-disk format changes
 # in a way a migration must reason about, and register the migration below.

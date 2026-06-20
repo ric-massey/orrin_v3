@@ -40,7 +40,7 @@ from utils.log import log_activity, log_private
 from utils.self_model import get_self_model, save_self_model
 from utils.failure_counter import record_failure
 from cog_memory.long_memory import update_long_memory
-from paths import VALUE_REVISIONS, LONG_MEMORY_FILE
+from brain.paths import VALUE_REVISIONS, LONG_MEMORY_FILE
 _log = get_logger(__name__)
 
 _COOLDOWN_S = 90 * 60   # 90 minutes between revision cycles (was 6 hours)
@@ -138,7 +138,7 @@ def _generate_candidate_from_experience(context: Optional[Dict] = None) -> Optio
 
         # ── Source 2: Active formative tensions ────────────────────────────────
         try:
-            from paths import TENSIONS_FILE
+            from brain.paths import TENSIONS_FILE
             tensions_raw = load_json(TENSIONS_FILE, default_type=list) or []
             active_tensions = [
                 t for t in tensions_raw
@@ -548,7 +548,7 @@ def _propagate_to_bandit(decision: str, affected_value: str, new_phrasing: Optio
     try:
         from think.bandit.contextual_bandit import update as _bandit_update
         from utils.json_utils import load_json
-        from paths import COGNITIVE_FUNCTIONS_LIST_FILE
+        from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
 
         fns_raw = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []
         fn_names = [

@@ -10,7 +10,7 @@ from utils.generate_response import generate_response, get_thinking_model, llm_o
 from utils.log import log_model_issue
 from cog_memory.working_memory import update_working_memory
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import (
+from brain.paths import (
     GOAL_TRAJECTORY_LOG_JSON,
     FEEDBACK_LOG,
     LONG_MEMORY_FILE,

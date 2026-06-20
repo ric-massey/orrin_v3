@@ -25,7 +25,7 @@ from cognition.selfhood.relationships import update_relationship_model
 from cognition.selfhood.self_model_conflicts import update_self_model
 from affect.affect_learning import update_affect_function_map
 
-from paths import (
+from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
     COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE,
 )

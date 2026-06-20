@@ -39,7 +39,7 @@ from utils.log import log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.long_memory import update_long_memory
 from cog_memory.working_memory import update_working_memory
-from paths import OPINIONS_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE, LONG_MEMORY_FILE
+from brain.paths import OPINIONS_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE, LONG_MEMORY_FILE
 from utils.llm_gate import llm_callable_by
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

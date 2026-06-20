@@ -11,7 +11,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 
 try:
-    from paths import COGNITION_HISTORY_FILE, DATA_DIR
+    from brain.paths import COGNITION_HISTORY_FILE, DATA_DIR
     _CHAINS_PATH = DATA_DIR / "function_chains.json"
 except Exception:
     COGNITION_HISTORY_FILE = Path(__file__).resolve().parents[2] / "data" / "cognition_history.json"

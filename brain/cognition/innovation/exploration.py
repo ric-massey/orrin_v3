@@ -14,7 +14,7 @@ from utils.append import append_to_json
 from cog_memory.working_memory import update_working_memory
 from utils.log import log_error, log_activity
 
-from paths import (
+from brain.paths import (
     CURIOUS_GEORGE,
     CORE_MEMORY_FILE,
     WORLD_MODEL,

@@ -30,7 +30,7 @@ from typing import Dict, List
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 SELF_MODEL_SYMBOLIC_FILE = DATA_DIR / "symbolic_self_model.json"
 

@@ -18,7 +18,7 @@ import time
 from typing import Any, Dict, List, Optional
 
 from utils.log import log_activity
-from paths import COMPLETED_GOALS_FILE
+from brain.paths import COMPLETED_GOALS_FILE
 from eval.evaluator_wal import load_all, rewrite
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)

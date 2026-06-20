@@ -8,7 +8,7 @@ import random as _rand
 import math as _math
 import statistics as _statistics
 
-from paths import (
+from brain.paths import (
     COGNITIVE_FUNCTIONS_LIST_FILE,
     BEHAVIORAL_FUNCTIONS_LIST_FILE,
     FOCUS_GOAL,
@@ -1411,7 +1411,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     _chain_boost: Dict[str, float] = {}
     try:
         import json as _json
-        from paths import DATA_DIR as _DATA_DIR
+        from brain.paths import DATA_DIR as _DATA_DIR
         _chains_path = _DATA_DIR / "function_chains.json"
         if _chains_path.exists():
             _chains = _json.loads(_chains_path.read_text(encoding="utf-8"))

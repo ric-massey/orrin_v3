@@ -203,7 +203,7 @@ def test_mind_export_meta_carries_state_schema_version():
 def test_diagnostics_bundles_logs_and_state_never_memory_or_thoughts():
     # G1 (§10.7): the diagnostics bundle carries operational logs + the lifecycle state
     # tag, and — by allowlist construction — NEVER memory content or private thoughts.
-    from paths import DATA_DIR
+    from brain.paths import DATA_DIR
     (DATA_DIR / "long_memory.json").write_text(json.dumps([{"text": "SECRET-MEMORY"}]))
     (DATA_DIR / "private_thoughts.txt").write_text("SECRET-THOUGHT")
     (DATA_DIR / "error_log.txt").write_text("a real error line")
@@ -227,7 +227,7 @@ def test_death_endpoint_refuses_while_alive_then_lifts_veil_on_death():
     # and only once death is recorded does it open his complete interior.
     import json
     from datetime import datetime, timezone, timedelta
-    from paths import DATA_DIR
+    from brain.paths import DATA_DIR
 
     # Alive → refused.
     (DATA_DIR / "lifespan.json").write_text(json.dumps({

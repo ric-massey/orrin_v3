@@ -35,7 +35,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from cog_memory.working_memory import update_working_memory
 from cog_memory.long_memory import update_long_memory
-from paths import (
+from brain.paths import (
     EXPERIMENTS_FILE, WORKING_MEMORY_FILE, COGNITION_HISTORY_FILE, COGNITIVE_FUNCTIONS_LIST_FILE,
     SELF_MODEL_FILE, PREDICTIONS_FILE,
 )

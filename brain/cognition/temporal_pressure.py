@@ -24,7 +24,7 @@ from utils.log import log_private
 from utils.json_utils import load_json, save_json
 from cog_memory.working_memory import update_working_memory
 from affect.homeostasis import pump_signal
-from paths import GOALS_FILE, SCHEDULED_TASKS_FILE
+from brain.paths import GOALS_FILE, SCHEDULED_TASKS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

@@ -196,7 +196,7 @@ class SocialPresenceModel:
     def _poll_user_input(self) -> None:
         """Detect new input by watching USER_INPUT mtime."""
         try:
-            from paths import USER_INPUT
+            from brain.paths import USER_INPUT
             p = Path(USER_INPUT)
             if not p.exists():
                 return

@@ -17,7 +17,7 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _GB = 1024 ** 3
 

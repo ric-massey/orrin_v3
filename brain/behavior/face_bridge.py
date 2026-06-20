@@ -55,7 +55,7 @@ def drain_face_inputs() -> None:
         # get_user_input() takes the last non-empty line, so write the most
         # recent message as the active input.
         from pathlib import Path
-        from paths import USER_INPUT
+        from brain.paths import USER_INPUT
         Path(USER_INPUT).write_text(msgs[-1], encoding="utf-8")
         with _lock:
             for it in items:

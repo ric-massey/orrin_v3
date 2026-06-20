@@ -39,7 +39,7 @@ from utils.json_utils import load_json, save_json
 from utils.log import log_activity, log_private
 from utils.signal_utils import create_signal
 from cog_memory.long_memory import update_long_memory
-from paths import PREDICTIONS_FILE, LONG_MEMORY_FILE, WORKING_MEMORY_FILE
+from brain.paths import PREDICTIONS_FILE, LONG_MEMORY_FILE, WORKING_MEMORY_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -101,7 +101,7 @@ def _recent_picks(context: Dict[str, Any], window: int) -> List[str]:
     log = context.get("cognition_log")
     if not isinstance(log, list) or not log:
         try:
-            from paths import COGNITION_HISTORY_FILE
+            from brain.paths import COGNITION_HISTORY_FILE
             log = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
         except Exception:
             log = []
@@ -302,7 +302,7 @@ def generate_predictions(
 
     # --- Source 4: Strategy-shift meta-prediction (Rescorla-Wagner) ---
     try:
-        from paths import DECISION_STATS_FILE
+        from brain.paths import DECISION_STATS_FILE
         stats = load_json(DECISION_STATS_FILE, default_type=dict) or {}
         # Last selected function
         if last_fn and last_fn in stats:
@@ -377,7 +377,7 @@ _CONFIRMS_TO_PROMOTE = 3
 def _candidates_path():
     global _RULE_CANDIDATES_FILE
     if _RULE_CANDIDATES_FILE is None:
-        from paths import DATA_DIR
+        from brain.paths import DATA_DIR
         _RULE_CANDIDATES_FILE = DATA_DIR / "rule_candidates.json"
     return _RULE_CANDIDATES_FILE
 

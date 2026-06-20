@@ -32,7 +32,7 @@ from typing import Dict, List, Tuple
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
 from utils.failure_counter import ContractViolation
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 META_RULES_FILE = DATA_DIR / "meta_rules.json"
 

@@ -43,7 +43,7 @@ _unflushed: int = 0
 
 def _data_dir() -> Path:
     try:
-        from paths import DATA_DIR
+        from brain.paths import DATA_DIR
         return DATA_DIR
     except Exception:
         return Path(__file__).resolve().parent.parent / "data"

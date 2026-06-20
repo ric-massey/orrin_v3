@@ -39,7 +39,7 @@ from collections import deque
 from dataclasses import dataclass, asdict
 from typing import Any, Deque, Dict, List, Optional, Tuple
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.timeutils import now_iso_z
 from utils.failure_counter import record_failure
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 import threading
 from typing import Any, Dict, List, Tuple, Union
 from utils.json_utils import load_json, save_json, modify_json, AbortModify
-from paths import SELF_MODEL_FILE
+from brain.paths import SELF_MODEL_FILE
 
 SelfModel = Dict[str, Any]
 _SELF_MODEL_LOCK = threading.Lock()

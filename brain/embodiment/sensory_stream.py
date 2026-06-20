@@ -238,7 +238,7 @@ class SensoryStream:
 
     def _read_log_tail(self) -> List[str]:
         try:
-            from paths import ACTIVITY_LOG
+            from brain.paths import ACTIVITY_LOG
             log_path = Path(ACTIVITY_LOG)
             if not log_path.exists():
                 return []

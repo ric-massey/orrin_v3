@@ -52,7 +52,7 @@ class Architect(BasePeer):
         # ── Find what files the function is likely to touch ───────────────────
         try:
             from cognition.perception.file_sense import summarise_locations
-            from paths import ROOT_DIR
+            from brain.paths import ROOT_DIR
 
             # Try to find the function's source file
             fn_file = self._find_function_file(fn_name, ROOT_DIR)

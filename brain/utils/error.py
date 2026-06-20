@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional
 from utils.log import log_error, log_model_issue, utc_now as _utc_now
 from utils.path_redact import redact as _redact
 from utils.json_utils import append_jsonl
-from paths import INCIDENTS_FILE
+from brain.paths import INCIDENTS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

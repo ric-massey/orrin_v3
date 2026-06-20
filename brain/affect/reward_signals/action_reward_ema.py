@@ -51,7 +51,7 @@ from __future__ import annotations
 from core.runtime_log import get_logger
 from pathlib import Path
 from utils.json_utils import load_json, save_json
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

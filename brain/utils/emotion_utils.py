@@ -6,7 +6,7 @@ from utils.self_model import get_self_model
 # NOTE: affect.* imports are intentionally deferred into the two functions that
 # need them (detect_affect_keyword, contextual_emotion_priming) so this L1 utils
 # module does not import the L3 affect package at load time.
-from paths import (
+from brain.paths import (
     AFFECT_STATE_FILE,
     WORKING_MEMORY_FILE,
     MODE_FILE,

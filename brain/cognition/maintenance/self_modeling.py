@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional
 from utils.json_utils import load_json, extract_json
 from utils.self_model import get_self_model, save_self_model
 from utils.log import log_model_issue, log_private, log_error
-from paths import FEEDBACK_LOG, LONG_MEMORY_FILE
+from brain.paths import FEEDBACK_LOG, LONG_MEMORY_FILE
 
 
 def _parse_iso_dt(s: str) -> Optional[datetime]:

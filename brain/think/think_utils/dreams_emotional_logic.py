@@ -9,7 +9,7 @@ from cog_memory.working_memory import update_working_memory
 from affect.reward_signals.reward_signals import release_reward_signal
 from affect.reward_signals.resource_deficit import update_function_usage_fatigue
 from utils.json_utils import load_json
-from paths import AFFECT_STATE_FILE
+from brain.paths import AFFECT_STATE_FILE
 import json  # NEW
 
 

@@ -13,7 +13,7 @@ import json
 import threading
 from typing import Any, Dict
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _CONFIG = DATA_DIR / "config.json"
 _LOCK = threading.Lock()

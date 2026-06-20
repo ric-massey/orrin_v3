@@ -18,7 +18,7 @@ from cognition.planning.reflection import (
 from cog_memory.working_memory import update_working_memory
 # You import evolution helpers elsewhere if you use them here later:
 # from cognition.planning.evolution import simulate_future_selves, plan_self_evolution
-from paths import (
+from brain.paths import (
     DEBUG_FAILED_GOAL_RESPONSE_JSON,
     GOALS_FILE,
     PRIVATE_THOUGHTS_FILE,

@@ -57,7 +57,7 @@ from typing import Dict, List, Optional, Tuple
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import CASUAL_RULES, DATA_DIR
+from brain.paths import CASUAL_RULES, DATA_DIR
 
 SYMBOLIC_RULES_FILE = DATA_DIR / "symbolic_rules.json"
 

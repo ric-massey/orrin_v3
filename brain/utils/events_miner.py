@@ -6,7 +6,7 @@ import ast
 from collections import deque
 from pathlib import Path
 from typing import List, Dict, Any
-from paths import EVENTS_FILE  # may be Path or str
+from brain.paths import EVENTS_FILE  # may be Path or str
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

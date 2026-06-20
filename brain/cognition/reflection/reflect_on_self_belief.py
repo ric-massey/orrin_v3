@@ -11,7 +11,7 @@ from affect.update_affect_state import update_affect_state
 from cognition.maintenance.self_modeling import self_model_maintenance_cycle
 from cognition.planning.goals import maybe_complete_goals
 from affect.reward_signals.reward_signals import release_reward_signal
-from paths import (
+from brain.paths import (
     NEUTRAL_REFLECTION_COUNT_JSON,
     LONG_MEMORY_FILE,
     PRIVATE_THOUGHTS_FILE,

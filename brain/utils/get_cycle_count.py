@@ -1,4 +1,4 @@
-from paths import CYCLE_COUNT_FILE
+from brain.paths import CYCLE_COUNT_FILE
 from utils.json_utils import load_json
 
 def get_cycle_count() -> int:

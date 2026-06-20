@@ -21,7 +21,7 @@ def _load_json_safe(path: Path, default=None):
 
 
 def _data_dir() -> Path:
-    from paths import DATA_DIR
+    from brain.paths import DATA_DIR
     return DATA_DIR
 
 

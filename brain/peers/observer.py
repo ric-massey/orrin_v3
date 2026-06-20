@@ -19,7 +19,7 @@ from core.runtime_log import get_logger
 from typing import Any, Dict, List
 
 from peers.peer_base import BasePeer
-from paths import COGNITION_HISTORY_FILE, ATTENTION_HISTORY
+from brain.paths import COGNITION_HISTORY_FILE, ATTENTION_HISTORY
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

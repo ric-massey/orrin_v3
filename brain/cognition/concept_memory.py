@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Optional
 from utils.json_utils import load_json, save_json
 _log = get_logger(__name__)
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _CONCEPTS_PATH = DATA_DIR / "concepts.json"
 _KB_PATH = DATA_DIR / "knowledge_base.json"

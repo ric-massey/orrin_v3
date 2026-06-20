@@ -240,7 +240,7 @@ def committed_goals_v1(api, limit: int = 3) -> List[Dict[str, Any]]:
     # Legacy fallback (only when the GoalsAPI itself failed): v1 focus_goals.json
     try:
         from utils.json_utils import load_json
-        from paths import FOCUS_GOAL
+        from brain.paths import FOCUS_GOAL
         fg = load_json(FOCUS_GOAL, default_type=dict)
         goal = fg.get("short_or_mid") or fg.get("long_term")
         if isinstance(goal, dict) and goal.get("name"):

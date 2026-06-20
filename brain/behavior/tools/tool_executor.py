@@ -2,7 +2,7 @@ import json, time
 from datetime import datetime, timezone
 
 from utils.json_utils import load_json, save_json
-from paths import TOOL_REQUESTS_FILE
+from brain.paths import TOOL_REQUESTS_FILE
 from agency.tool_runner import _LOCK as _TOOL_LOCK  # shared lock — prevents double-execution with ToolRunner
 from behavior.tools.toolkit import tool_registry
 from utils.generate_response import generate_response, llm_ok

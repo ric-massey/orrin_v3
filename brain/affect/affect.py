@@ -5,7 +5,7 @@ from utils.log import log_error
 from utils.coerce_to_string import coerce_to_string
 from utils.affect_utils import detect_affect_keyword
 
-from paths import (
+from brain.paths import (
     AFFECT_STATE_FILE,
     LONG_MEMORY_FILE,
     MODEL_CONFIG_FILE,

@@ -24,7 +24,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

@@ -22,7 +22,7 @@ from typing import Dict, Optional
 
 from utils.json_utils import load_json, save_json
 from utils.log import log_activity
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 GROUND_TRUTH_WAL  = DATA_DIR / "ground_truth.jsonl"
 GROUNDING_STATS   = DATA_DIR / "rule_grounding.json"

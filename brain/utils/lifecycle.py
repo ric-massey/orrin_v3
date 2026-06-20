@@ -19,7 +19,7 @@ import json
 import time
 from typing import Any, Dict
 
-from paths import DATA_DIR
+from brain.paths import DATA_DIR
 
 _RUNSTATE = DATA_DIR / "runstate.json"
 

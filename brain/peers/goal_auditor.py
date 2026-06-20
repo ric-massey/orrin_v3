@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List
 
 from peers.peer_base import BasePeer
-from paths import GOALS_FILE, COMPLETED_GOALS_FILE, RELATIONSHIPS_FILE
+from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, RELATIONSHIPS_FILE
 from utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

@@ -32,6 +32,7 @@ from .demo import run_demo
 from . import state as server_state
 from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_churn
 from .routers import memory as memory_routes
+from .routers import source as source_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -82,6 +83,7 @@ app.add_middleware(
 # like the /ws proxy does (UI_FIXES Fix 5). New endpoints should be born here.
 api = APIRouter()
 api.include_router(memory_routes.router)
+api.include_router(source_routes.router)
 
 
 # ── Health / debug ───────────────────────────────────────────────────────────
@@ -106,11 +108,6 @@ _REPO_ROOT = _Path(__file__).resolve().parents[2]
 # the stale brain/data — the UI then shows an empty/old mind (§13.2 split-brain).
 # Consume the one resolver the brain uses; fall back to the same env logic if it
 # can't be imported (e.g. brain/ not on sys.path).
-
-# /source serves the metric-info pages their cited source — only ever real
-# source/text files. Restrict to these suffixes and forbid dotfiles so the
-# repo-jail can't be used to read .env, .git/*, lockfiles, etc. (UI_AUDIT H1.)
-_SOURCE_OK_SUFFIXES = {".py", ".ts", ".tsx", ".js", ".jsx", ".json", ".md", ".css", ".txt", ".yml", ".yaml"}
 
 
 @api.get("/catalog")
@@ -274,52 +271,6 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
                              "window": {"from": win_lo, "to": win_hi}})
     except Exception as e:
         return JSONResponse({"artifacts": [], "error": str(e)})
-
-
-@api.get("/source")
-async def source(file: str = "", start: int = 1, end: int = 0) -> JSONResponse:
-    """Return a read-only slice of a repo source file (for the metric info pages)."""
-    try:
-        target = (_REPO_ROOT / file).resolve()
-        rel = target.relative_to(_REPO_ROOT)  # repo-jail
-        # Defense-in-depth (H1): forbid dotfiles/dotdirs and non-source types so
-        # the jail can't be turned into a secret reader (.env, .git/*, …).
-        if any(part.startswith(".") for part in rel.parts):
-            return JSONResponse({"error": "forbidden path", "file": file}, status_code=403)
-        if target.suffix.lower() not in _SOURCE_OK_SUFFIXES:
-            return JSONResponse({"error": "unsupported file type", "file": file}, status_code=403)
-        lines = target.read_text("utf-8", errors="replace").splitlines()
-        lo = max(1, int(start))
-        hi = min(len(lines), int(end) if end else len(lines))
-        src = "\n".join(lines[lo - 1 : hi])
-        if len(src) > 80_000:
-            src = src[:80_000] + "\n… (truncated)"
-        return JSONResponse({"file": file, "start": lo, "end": hi, "source": src})
-    except Exception as e:
-        return JSONResponse({"error": str(e), "file": file}, status_code=400)
-
-
-@api.get("/code")
-async def code(fn: str = "") -> JSONResponse:
-    """Return the real source of a cognitive function (read-only)."""
-    cat = hub.state.get("catalog") or {}
-    info = (cat.get("functions") or {}).get(fn)
-    if not info:
-        return JSONResponse({"error": "unknown function", "fn": fn}, status_code=404)
-    rel = str(info.get("file") or "")
-    try:
-        target = (_REPO_ROOT / rel).resolve()
-        # Safety: only serve files inside the repo.
-        target.relative_to(_REPO_ROOT)
-        lines = target.read_text("utf-8", errors="replace").splitlines()
-        lo = max(1, int(info.get("lineno", 1)))
-        hi = min(len(lines), int(info.get("endline", lo)))
-        src = "\n".join(lines[lo - 1 : hi])
-        if len(src) > 60_000:
-            src = src[:60_000] + "\n… (truncated)"
-        return JSONResponse({"fn": fn, "file": rel, "lineno": lo, "endline": hi, "source": src})
-    except Exception as e:
-        return JSONResponse({"error": str(e), "fn": fn}, status_code=500)
 
 
 # ── Consciousness stream: the actual stream the panel is named for (Fix 4) ───

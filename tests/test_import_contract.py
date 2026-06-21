@@ -24,7 +24,7 @@ REPO = Path(__file__).resolve().parent.parent
 CONVERTED = (
     "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
     "behavior", "agency", "registry", "symbolic", "embodiment", "motivation",
-    "peers", "benchmarks", "evidence", "config", "eval",
+    "peers", "benchmarks", "evidence", "config", "eval", "version",
 )
 
 # Source trees that must honor the contract. (Root-level packages like `goals`,

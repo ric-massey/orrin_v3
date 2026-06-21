@@ -42,7 +42,7 @@ def test_version_compare():
 
 def test_current_version_env_override(monkeypatch):
     monkeypatch.setenv("ORRIN_VERSION", "9.9.9")
-    from version import current_version
+    from brain.version import current_version
     assert current_version() == "9.9.9"
 
 

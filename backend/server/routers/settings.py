@@ -37,7 +37,7 @@ async def get_settings(request: Request) -> Dict[str, Any]:
     except Exception:
         _prov_catalog, _selected = [], "openai"
     try:
-        from version import current_version as _ver
+        from brain.version import current_version as _ver
         _version = _ver()
     except Exception:
         _version = ""

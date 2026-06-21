@@ -11,6 +11,19 @@ Detailed structural findings are recorded in
 
 Progress since 2026-06-19:
 
+- **Phase 4E (frontend decomposition) — DONE.** Both oversized React files are
+  split into focused modules, all pure moves verified by `tsc` + build:
+  - `Settings.tsx` 1494 → 75 lines: a thin container + `pages/settings/`
+    (shared helpers/types + 10 section files, each <263 lines; shared
+    `ToggleRow`).
+  - `CognitiveSphere.tsx` 1057 → 294 lines: a container + `cognitiveSphere/`
+    (`layout.ts` pure geometry/settings, `Scene.tsx` the R3F scene cluster,
+    `ControlsPanel.tsx`, `CognitionExplorer.tsx`).
+  **Still open in Phase 4:** 4A `ORRIN_loop.py` (do last, behind char tests),
+  4B `main.py`, 4C `app.py` routers (needs a small DI pass so `_DATA_DIR`/`hub`
+  stay monkeypatchable), 4D `select_function.py` / `pursue_goal.py`.
+
+
 - **Phase 7 (CI enforcement) — STARTED.** `.github/workflows/tests.yml` now
   realizes the full `make verify` gate: Ruff + the hermetic pytest suite +
   frontend type-check/lint/build, plus a repo-hygiene job that fails if a

@@ -7,6 +7,29 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-20)
+
+Progress since 2026-06-19:
+
+- **Phase 7 (CI enforcement) — STARTED.** `.github/workflows/tests.yml` now
+  realizes the full `make verify` gate: Ruff + the hermetic pytest suite +
+  frontend type-check/lint/build, plus a repo-hygiene job that fails if a
+  generated runtime artifact gets re-tracked. The two obsolete embedder
+  deselects were removed (Phase 0 made them hermetic; they pass with the real
+  sentence-transformers installed).
+- **Phase 1 dead-code leftover — DONE.** Deleted the `brain/think/select_function.py`
+  compat shim (zero importers). `llm_stub.py` kept (in the self-code
+  `_BLOCKED_PATHS` list + catalogued in TEMPLATES.md → genuinely
+  review-before-delete).
+- **Phase 3 (import normalization) — FIRST LEAF DONE.** `paths` is fully
+  converted to the single `brain.paths` namespace across source and tests; a new
+  `tests/test_import_contract.py` ratchet fails if a bare import of a converted
+  leaf reappears. This closed a real order-dependent `/api/death` failure whose
+  root cause was the dual-instance hazard (a reloaded bare `paths` leaking a tmp
+  `DATA_DIR`). **Still open:** the remaining leaves — `utils` (~763), `core`
+  (~232), `cog_memory`, `cognition`, `affect`, `think`, `behavior`, `agency`,
+  `registry`, `symbolic` — then dropping `pythonpath = . brain`.
+
 ## Implementation status (updated 2026-06-19)
 
 The low-risk, finite, verifiable phases are **done and verified**; the large

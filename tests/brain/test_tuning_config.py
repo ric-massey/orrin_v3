@@ -58,13 +58,13 @@ def test_selector_source_has_no_leftover_hardcoded_weights():
 
 
 def test_orrin_loop_reads_crisis_and_decay_constants_from_tuning():
-    """ORRIN_loop.py is too heavy to import in tests (193 function-level
-    imports, signal handlers, telemetry threads), so the wiring is pinned by
-    source inspection: the transient-signal decay and the sustained-crisis
-    detection must reference config.tuning's names, and the bare literals
+    """The transient-signal decay + sustained-crisis stage
+    (_apply_transient_signal_decay) was extracted to brain/loop/sense.py in
+    Phase 4A; its wiring is pinned by source inspection there: the decay and the
+    crisis detection must reference config.tuning's names, and the bare literals
     Finding 9 named (0.92 decay; 0.85/0.50/0.70 crisis thresholds) must no
     longer appear in that block."""
-    src = (_REPO_ROOT / "brain" / "ORRIN_loop.py").read_text()
+    src = (_REPO_ROOT / "brain" / "loop" / "sense.py").read_text()
     assert "from brain.config.tuning import (" in src
     for name in (
         "AFFECT_TRANSIENT_DECAY",

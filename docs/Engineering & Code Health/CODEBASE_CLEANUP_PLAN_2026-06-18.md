@@ -21,14 +21,25 @@ Progress since 2026-06-19:
   compat shim (zero importers). `llm_stub.py` kept (in the self-code
   `_BLOCKED_PATHS` list + catalogued in TEMPLATES.md → genuinely
   review-before-delete).
-- **Phase 3 (import normalization) — FIRST LEAF DONE.** `paths` is fully
-  converted to the single `brain.paths` namespace across source and tests; a new
-  `tests/test_import_contract.py` ratchet fails if a bare import of a converted
-  leaf reappears. This closed a real order-dependent `/api/death` failure whose
-  root cause was the dual-instance hazard (a reloaded bare `paths` leaking a tmp
-  `DATA_DIR`). **Still open:** the remaining leaves — `utils` (~763), `core`
-  (~232), `cog_memory`, `cognition`, `affect`, `think`, `behavior`, `agency`,
-  `registry`, `symbolic` — then dropping `pythonpath = . brain`.
+- **Phase 3 (import normalization) — DONE (one runtime tail).** All 18 brain
+  leaf packages (`paths`, `utils`, `core`, `cog_memory`, `cognition`, `affect`,
+  `think`, `behavior`, `agency`, `registry`, `symbolic`, `embodiment`,
+  `motivation`, `peers`, `benchmarks`, `evidence`, `config`, `eval`) are
+  converted to the single `brain.*` namespace across source and tests. This
+  closed a real order-dependent `/api/death` failure whose root cause was the
+  dual-instance hazard (a reloaded bare `paths` leaking a tmp `DATA_DIR`).
+  Coverage went beyond import statements: the cognition/behavior registry walks
+  (`iter_modules("brain.cognition")`), runtime dynamic imports (ORRIN_loop
+  `__import__`, toolkit `agency.skills.*`, look_outward, dynamic_loader), and
+  mock/import strings in tests (`patch("brain....")`). `pytest.ini` now uses
+  `pythonpath = .` and the full suite is green with `brain/` off the path. The
+  `tests/test_import_contract.py` ratchet lists all 18 leaves and rejects bare
+  references in import statements AND in patch/import_module/__import__ strings,
+  so it can't regress. The PyInstaller spec bundles the `brain.*` namespace.
+  **Remaining tail:** `main.py` still inserts `brain/` on `sys.path` at runtime
+  as a compatibility affordance for self-authored code that may emit bare
+  imports; removing it is gated on a self-code import audit + app-launch check
+  (root packages `goals`/`memory`/`reaper` stay top-level by design).
 
 ## Implementation status (updated 2026-06-19)
 

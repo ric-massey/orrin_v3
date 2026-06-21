@@ -1,19 +1,20 @@
 # main.py
 from __future__ import annotations
 
-# --- Bootstrap sys.path BEFORE any brain-rooted import (core.*, think.*, cog_memory.*, …).
-# brain/ must be importable for `from core.runtime_log import …` below to resolve when
-# main.py is launched from the repo root (e.g. via run_orrin.sh). brain/ ends up first so
-# v1 packages resolve there; the repo root stays on the path so v2's memory/, goals/, utils/
-# remain importable too.
+# --- Bootstrap sys.path BEFORE any brain-rooted import.
+# First-party code is fully on the `brain.*` namespace now (Phase 3), so the repo
+# root is all main.py and the rest of the app need to import. brain/ is still added
+# as a compatibility affordance for *self-authored* runtime code, which may emit
+# bare-name imports (`from utils.x import …`); removing it is gated on a self-code
+# import audit. It no longer causes the dual-instance hazard because nothing
+# first-party imports bare (enforced by tests/test_import_contract.py).
 import sys
 from pathlib import Path
 _REPO_ROOT_STR = str(Path(__file__).resolve().parent)
 _BRAIN_DIR = Path(__file__).resolve().parent / "brain"
-# Source runs only: put repo root + brain/ on sys.path so bare-name brain imports
-# resolve. In a FROZEN app (I3) these modules live in the PYZ and are served by
-# PyInstaller's frozen importer — inserting the (partial, bundled) brain/ dir at the
-# front of sys.path instead shadows that importer and breaks `from utils.paths import …`.
+# Source runs only: in a FROZEN app (I3) these modules live in the PYZ and are
+# served by PyInstaller's frozen importer — inserting the (partial, bundled)
+# brain/ dir at the front of sys.path instead shadows that importer.
 if not getattr(sys, "frozen", False):
     if _REPO_ROOT_STR not in sys.path:
         sys.path.insert(0, _REPO_ROOT_STR)

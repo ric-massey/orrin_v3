@@ -430,7 +430,7 @@ _goal_store, _goals_api = init_goals(GOALS_DATA_DIR)
 #   • DEV (ORRIN_UI_DEV=1): Vite dev server + a browser tab + the loopback API.
 #   • FALLBACK: pywebview unavailable → loopback API + a browser tab (one port).
 # Disable the whole UI with ORRIN_UI=0.
-from backend.server.config import ui_dev_enabled as _ui_dev_enabled
+from backend.server.config import ui_dev_enabled as _ui_dev_enabled, open_browser_enabled as _open_browser_enabled
 from brain.utils.paths import resolve_dist as _resolve_dist
 from brain.utils.ui_build import ensure_ui_build as _ensure_ui_build
 
@@ -559,7 +559,7 @@ def _open_browsers(urls: list) -> None:
             print(f"[browser] could not open {label}: {e}")
         time.sleep(0.6)
 
-if _urls_to_open:
+if _urls_to_open and _open_browser_enabled():
     _browser_thread = threading.Thread(
         target=_open_browsers,
         args=(_urls_to_open,),
@@ -567,6 +567,11 @@ if _urls_to_open:
         daemon=True,
     )
     _browser_thread.start()
+elif _urls_to_open:
+    # ORRIN_UI_OPEN=0 — headless/server run (e.g. the Docker static image): serve the
+    # UI but don't try to open a browser. Print the URL so the operator can reach it.
+    for _label, _url in _urls_to_open:
+        print(f"[ui] {_label} ready (browser-open disabled): {_url}")
 
 # ---------- Watchdogs ----------
 pulse = Pulse()

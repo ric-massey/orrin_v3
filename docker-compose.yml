@@ -2,8 +2,9 @@
 #
 #   docker compose up --build
 #
-# Then open the Face & Brain UI at http://localhost:5173
-# (telemetry API on :8800, Prometheus metrics on :9100).
+# Then open the Face & Brain UI at http://localhost:8800
+# (the backend serves the built SPA and the telemetry API/WebSocket on the same
+# port; Prometheus metrics on :9100).
 #
 # API keys are optional. To supply them, create a `.env` file next to this file:
 #   OPENAI_API_KEY=sk-...     # enables LLM tool calls (symbolic-only without it)
@@ -19,17 +20,17 @@ services:
     build: .
     container_name: orrin
     ports:
-      - "5173:5173"   # Face & Brain UI (Vite dev server)
-      - "8800:8800"   # telemetry API + WebSocket
+      - "8800:8800"   # Face & Brain UI (static) + telemetry API + WebSocket
       - "9100:9100"   # Prometheus metrics
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       SERPER_API_KEY: ${SERPER_API_KEY:-}
       ORRIN_BACKEND_HOST: "0.0.0.0"
+      ORRIN_BACKEND_PORT: "8800"
       ORRIN_UI: "1"
-      # Use the web UI (Vite on :5173 + API on :8800). Without this, main.py would
-      # default to the native desktop window, which has no display in a container.
-      ORRIN_UI_DEV: "1"
+      # Serve the built SPA statically from the backend (no Vite dev server, no
+      # native window). ORRIN_UI_DEV is intentionally unset → main.py's static
+      # path. Don't try to open a browser inside the container.
       ORRIN_UI_OPEN: "0"
       # Metrics are opt-in (off by default in a source/desktop run). The container
       # turns them on and pins the port so the published :9100 below actually serves.

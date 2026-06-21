@@ -40,10 +40,26 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   globals — touching only psutil/env/telemetry/working-memory/gc — so it didn't
   need the RuntimeContext work. main.py **1,332 → 1,165**. The boot
   characterization net (which starts the watchdogs in a full boot) + the full
-  suite stayed green. **Still coupled in main.py (needs RuntimeContext):** the
-  stop/shutdown sequence, the re-exec/reset/restart lifecycle, the `_pulse_loop`
-  heartbeat, and `run()` — they read boot-built module state (daemon, store,
-  goals, bridge, stop events).
+  suite stayed green.
+
+- **Phase 4B RuntimeContext restructure — DONE.** The coupled boot core is out
+  of `main.py`. A typed `runtime/context.py::RuntimeContext` (mutable dataclass)
+  captures the boot-produced state; `main.py` runs the boot sequence, builds the
+  context once, wires the Stop/Reset/Restart buttons to it, and calls
+  `runtime.desktop.run(ctx)`. The lifecycle stages that used to close over
+  `main`'s module globals now take `ctx` explicitly:
+  `runtime/lifecycle.py` (heartbeat `pulse_loop`, `stop_cognition`,
+  `graceful_shutdown`, `wipe_to_newborn`/`reexec`/`reset_to_newborn`/
+  `restart_process`, the signal-handler factory, vital-calibration stress) and
+  `runtime/desktop.py` (`run()` — the cognitive-loop start, ORRIN_ONCE watcher,
+  and the pywebview/tray vs headless-heartbeat orchestration). main.py **1,332 →
+  597**; every new module is under the 600-line soft limit. The two mutable
+  teardown guards + the cog-loop handle moved onto the context (no more
+  `global`). Pure moves verified by the boot characterization net (all three
+  paths — single-cycle, lock-refusal, SIGINT — exercise the new
+  `run → desktop → lifecycle` chain end to end) + the full suite **921 passed /
+  1 skipped**, ruff clean. **Phase 4 remaining:** 4A `ORRIN_loop.py` and 4D
+  `select_function.py` / `pursue_goal.py`.
 
 - **Phase 4C (backend/server/app.py) — DONE.** app.py went 1,988 → 225 lines.
   Every route was extracted into focused, sub-600-line modules under

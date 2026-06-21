@@ -46,12 +46,9 @@ except Exception:
 from brain.core.runtime_log import get_logger
 
 import os
-import time
-import signal
 import inspect
 import threading
 import shutil
-import json
 
 _log = get_logger(__name__)
 
@@ -80,13 +77,11 @@ _single_instance.acquire()
 # --- Observability / watchdogs ---
 from watchdogs import Pulse, start_watchdogs
 from observability.metrics import serve_metrics
-from observability import metrics  # Gauge: lifespan_cycles
 
 # --- Memory subsystem ---
 from memory.store.inmem import InMemoryStore
 from memory.memory_daemon import MemoryDaemon
 from memory.health import snapshot as memory_snapshot  # rich snapshot
-from memory.wal import flush as wal_flush
 
 # --- Goals subsystem ---
 from goals.model import Goal  # noqa: F401 (used via API/daemon)
@@ -105,7 +100,6 @@ from brain.utils.alive_brain import AliveBrain, start_fs_watcher
 from brain.utils.memory_health import build_memory_health_provider
 from brain.utils.metrics_sampling import build_fast_sampler
 from brain.utils.goals_feed import init_goals
-from brain.utils.get_cycle_count import get_cycle_count
 
 # --- Tamper guard (already existed as a util) ---
 from brain.utils.tamper_guard import start_reaper_tamper_guard
@@ -418,9 +412,6 @@ _goals_daemon = None
 _alive = None
 _alive_thr = None
 _fs_obs = None
-_cog_thread = None          # the cognitive-loop thread (set in run())
-_cognition_stopped = False  # guards _stop_cognition against double-invocation
-_main_stop = threading.Event()  # set by Ctrl+C/SIGTERM to unwind the heartbeat
 
 def _list_goals_for_brain():
     try:
@@ -545,620 +536,61 @@ def _validate_think_module() -> None:
 _validate_think_module()
 
 
-def _pulse_loop(stop: threading.Event) -> None:
-    """The ~10 Hz heartbeat: tick the Pulse, publish cycle gauges, and sample
-    fast metrics. Runs on the main thread in dev mode and in a daemon thread when
-    the native window owns the main thread."""
-    last_log = 0
-    last_active_rec = 0.0
-    while not stop.is_set():
-        pulse.tick()
-
-        # Stamp 'last alive at' periodically so 'sleep' mode can later credit the
-        # closed interval accurately even after a crash (§10.3).
-        _now_wall = time.time()
-        if _now_wall - last_active_rec > 30.0:
-            try:
-                from brain.cognition.mortality import record_active_now as _rec_active
-                _rec_active()
-            except Exception as _e:
-                _log.warning("silent except: %s", _e)
-            last_active_rec = _now_wall
-
-        n = pulse.read()
-        try:
-            metrics.cycle_gauge.set(float(n))
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-
-        if (n % 5) == 0:  # ~10Hz loop → fire ~2Hz
-            sample_metrics_fast()
-            try:
-                cog_n = get_cycle_count()
-                metrics.lifespan_cycles.set(float(cog_n))
-            except Exception as _e:
-                _log.warning("silent except: %s", _e)
-
-        time.sleep(0.02)
-
-        last_log += 1
-        if last_log >= 100:
-            try:
-                print(f"[main] pulse={n} cog_cycles={get_cycle_count()}")
-            except Exception:
-                print(f"[main] pulse={n}")
-            last_log = 0
 
 
-def _stop_cognition() -> None:
-    """Turn OFF Orrin's *thinking* — the cognitive loop and its daemons — while
-    leaving the UI/window, telemetry hub, and memory store running so you can keep
-    viewing his now-frozen mind. This is what the Stop button does; quitting the
-    app (full shutdown) is a separate action (close the window / Ctrl+C).
+# ---------- Runtime context + lifecycle stages (Phase 4B) ----------
+# Boot is done. Gather the boot-produced state into the typed RuntimeContext the
+# lifecycle/desktop stages run on, so they don't reach back into module globals.
+from runtime.context import RuntimeContext
+from runtime import lifecycle as _lifecycle_stage
+from runtime import desktop as _desktop
 
-    Memory daemon is deliberately KEPT alive so the Memory panels still read his
-    state after he stops. Idempotent."""
-    global _cognition_stopped
-    if _cognition_stopped:
-        return
-    _cognition_stopped = True
-    print("[main] stopping cognition (UI stays up)…")
-    try:
-        stop_evt.set()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    # The loop is a daemon thread; setting stop_evt winds it down. Join briefly so
-    # a healthy loop is fully quiesced before we report stopped, but never block
-    # the UI on a wedged thread.
-    if _cog_thread is not None and _cog_thread.is_alive():
-        _cog_thread.join(timeout=float(os.environ.get("ORRIN_STOP_JOIN_S", "8")))
-    try:
-        if _alive: _alive.stop()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        if _goals_daemon: _goals_daemon.stop()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        if _fs_obs:
-            _fs_obs.stop()
-            _fs_obs.join(timeout=3)
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    # Surface the stop on the live stream so the UI flips to "Stopped".
-    try:
-        from backend.telemetry_bridge import get_bridge as _get_tb
-        _get_tb().log("warn", "control", "Orrin stopped — cognition halted; the view stays up")
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    print("[main] cognition stopped; UI still running.")
+_ctx = RuntimeContext(
+    pulse=pulse,
+    stop_evt=stop_evt,
+    main_stop=threading.Event(),  # set by Ctrl+C/SIGTERM/window-close to unwind run()
+    memory_daemon=daemon,
+    goals_api=_goals_api,
+    goals_daemon=_goals_daemon,
+    alive=_alive,
+    fs_obs=_fs_obs,
+    ui_proc=_ui_proc,
+    bridge=_bridge,
+    bridge_mode=_BRIDGE_MODE,
+    bridge_window_file=_bridge_window_file,
+    wd_inputs=_wd_inputs,
+    sample_metrics_fast=sample_metrics_fast,
+    repo_root=REPO_ROOT,
+)
 
-
-_shutting_down = False  # guards _graceful_shutdown against double-invocation
-
-
-def _graceful_shutdown() -> None:
-    """Full quit: stop every subsystem in dependency order, flush state, and tear
-    down the UI. Runs on window-close / Ctrl+C. A watchdog force-exits if a wedged
-    brain thread keeps shutdown from completing, so quitting always terminates."""
-    global _shutting_down
-    if _shutting_down:
-        return  # window-close + signal can both reach here; run teardown once
-    _shutting_down = True
-    # Runs on the MAIN thread (the signal handler only sets a flag), so I/O here is
-    # safe. This is the line whose absence in the run log proved a stop had skipped
-    # graceful shutdown entirely.
-    print("[main] graceful shutdown — stopping subsystems…", flush=True)
-    # Watchdog: if teardown stalls (e.g. a daemon thread won't honor stop), force a
-    # clean exit so the window never lingers and run_orrin.sh sees a 0 (no restart).
-    _timeout = float(os.environ.get("ORRIN_SHUTDOWN_TIMEOUT_S", "12"))
-    _wd = threading.Timer(_timeout, lambda: (print(f"[main] shutdown exceeded {_timeout}s — forcing exit"), os._exit(0)))
-    _wd.daemon = True
-    _wd.start()
-
-    # Stamp 'last alive at = now' so 'sleep' mode credits the closed interval exactly
-    # from here (§10.3). Cheap and important to do before threads wind down.
-    try:
-        from brain.cognition.mortality import record_active_now as _rec_active
-        _rec_active()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    # This is a graceful quit — mark the run clean so the next launch doesn't read it
-    # as a crash/stall (§10.5).
-    try:
-        from brain.utils import lifecycle as _lifecycle
-        _lifecycle.mark_clean_shutdown()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    try:
-        stop_evt.set()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    if _cog_thread is not None and _cog_thread.is_alive():
-        _cog_thread.join(timeout=15)
-
-    try:
-        if _alive: _alive.stop()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        if _goals_daemon: _goals_daemon.stop()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    try:
-        if _fs_obs:
-            _fs_obs.stop()
-            _fs_obs.join()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    try:
-        daemon.stop(join=True)
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        wal_flush()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    # Seal a Life Capsule for this run — the evidence export (third sibling of the
-    # mind/diagnostics exporters). Best-effort and disable-able via ORRIN_LIFE_CAPSULE;
-    # done after the WAL flush so the daemon trees are consistent at the captured instant.
-    try:
-        from brain.evidence.life_capsule import maybe_build_capsule as _build_capsule
-        _build_capsule("normal_shutdown")
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-    if _ui_proc is not None:
-        try:
-            from backend.server.launcher import stop_ui
-            stop_ui(_ui_proc)
-        except Exception:
-            _log.warning("silent except")
-
-    _wd.cancel()
-    print("[main] shutdown complete.")
-
-
-
-
-def _wipe_to_newborn() -> None:
-    """Delete Orrin's accumulated state so the next boot is a clean newborn, while
-    PRESERVING the bundled config seeds (a newborn's brain/data == the seeds). Wipes
-    the daemon-durability tree, self-written code, logs, and generated think module
-    wholesale; in brain/data only the non-seed (accumulated) files are removed. Safe
-    in-repo (seeds are kept, never self-destructed) and relocated alike."""
-    try:
-        from brain.paths import DATA_DIR, STATE_DIR, LOGS_DIR, THINK_DIR, SELF_CODE_DIR
-    except Exception:
-        DATA_DIR = REPO_ROOT / "brain" / "data"
-        STATE_DIR = REPO_ROOT / "data"
-        LOGS_DIR = REPO_ROOT / "brain" / "logs"
-        THINK_DIR = REPO_ROOT / "brain" / "think"
-        SELF_CODE_DIR = DATA_DIR / "self_code"
-
-    seeds = set(_newborn.SEED_FILES)
-    if DATA_DIR.exists():
-        for p in DATA_DIR.iterdir():
-            if p.name in seeds:
-                continue  # keep the newborn baseline
-            try:
-                shutil.rmtree(p, ignore_errors=True) if p.is_dir() else p.unlink(missing_ok=True)
-            except Exception as e:
-                print(f"[reset] could not remove {p}: {e}")
-    # SELF_CODE_DIR lives under DATA_DIR (already covered), but list it explicitly for
-    # the relocated case; the rest are separate trees.
-    for d in (SELF_CODE_DIR, STATE_DIR, LOGS_DIR, THINK_DIR, REPO_ROOT / "tmp"):
-        try:
-            shutil.rmtree(d, ignore_errors=True)
-        except Exception as e:
-            print(f"[reset] could not remove {d}: {e}")
-    # Recreate the seed baseline where the data dir was relocated (no-op in-repo).
-    _newborn.seed_if_newborn()
-
-
-def _reexec() -> None:
-    """Replace this process image with a fresh launch — the only reliable way to get
-    a true newborn, since the live brain holds his whole mind in RAM and would just
-    re-persist it otherwise."""
-    print("[reset] re-launching as a newborn…", flush=True)
-    try:
-        # Frozen (PyInstaller): sys.argv[0] is already the app binary, so re-pass only
-        # the extra args. From source: sys.argv[0] is the script and must be handed to
-        # the interpreter as its first argument.
-        if getattr(sys, "frozen", False):
-            argv = [sys.executable, *sys.argv[1:]]
-        else:
-            argv = [sys.executable, *sys.argv]
-        os.execv(sys.executable, argv)
-    except Exception as e:
-        # If exec fails, exit non-zero so a supervisor (run_orrin.sh) restarts us.
-        print(f"[reset] re-exec failed ({e}); exiting for supervisor restart", file=sys.stderr)
-        os._exit(42)
-
-
-def _reset_to_newborn() -> None:
-    """The Reset Orrin action: stop thinking, flush + wipe his state to a newborn,
-    then re-launch. Runs on a backend timer thread (off the HTTP response)."""
-    print("[reset] resetting Orrin to a newborn…", flush=True)
-    _stop_cognition()  # idempotent: winds down the loop + goals/alive/fs daemons
-    try:
-        daemon.stop(join=True)
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        wal_flush()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    _wipe_to_newborn()
-    _single_instance.release()
-    _reexec()
-
-
-def _restart_process() -> None:
-    """Restart WITHOUT wiping — used after a Mind Restore swaps his state on disk, so
-    the new mind loads from a clean process. Same machinery as reset, minus the wipe."""
-    print("[restart] restarting Orrin (state preserved)…", flush=True)
-    _stop_cognition()
-    try:
-        daemon.stop(join=True)
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    try:
-        wal_flush()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    _single_instance.release()
-    _reexec()
-
-
-# Register the Stop button → stop-cognition-only handler (UI stays up). Harmless
-# if the app isn't importable (e.g. ORRIN_UI=0); Stop then falls back to a SIGINT.
+# Register the UI control buttons against the context. Each is harmless if the
+# app isn't importable (e.g. ORRIN_UI=0); Stop then falls back to a SIGINT.
+# Stop → stop cognition only (UI stays up); Reset → wipe to newborn + re-launch;
+# Mind-Restore → re-launch WITHOUT wiping.
 try:
     from backend.server.app import set_stop_handler as _set_stop_handler
-    _set_stop_handler(_stop_cognition)
+    _set_stop_handler(lambda: _lifecycle_stage.stop_cognition(_ctx))
 except Exception as _e:
     _log.warning("could not register stop handler: %s", _e)
 
-# Register the Settings → Reset Orrin handler (wipe to newborn + re-launch).
 try:
     from backend.server.app import set_reset_handler as _set_reset_handler
-    _set_reset_handler(_reset_to_newborn)
+    _set_reset_handler(lambda: _lifecycle_stage.reset_to_newborn(_ctx))
 except Exception as _e:
     _log.warning("could not register reset handler: %s", _e)
 
-# Register the Mind-Restore → restart handler (re-launch WITHOUT wiping).
 try:
     from backend.server.app import set_restart_handler as _set_restart_handler
-    _set_restart_handler(_restart_process)
+    _set_restart_handler(lambda: _lifecycle_stage.restart_process(_ctx))
 except Exception as _e:
     _log.warning("could not register restart handler: %s", _e)
 
 
-def _notify_still_thinking() -> None:
-    """Tell the user, via the OS notification path, that Orrin is alive in the
-    background after the window closed (Always-thinking mode). Best-effort."""
-    try:
-        from brain.agency.skills.notify_user import notify_user
-        notify_user({"title": "Orrin is still thinking",
-                     "message": "His window closed, but he keeps living in the background."})
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-
-def _on_signal(signum, _frame) -> None:
-    """Ctrl+C / SIGTERM → request shutdown by setting the stop Events ONLY.
-
-    A signal handler MUST be async-signal-safe. It can fire while the main thread
-    holds a non-reentrant lock — e.g. mid-`print` holding the stdout buffer lock
-    (the pulse loop prints `[main] pulse=…` every 100 ticks). Doing I/O here
-    (print, window.destroy, writing the clean-shutdown marker) can therefore
-    deadlock or raise a reentrant-call error from inside the handler, which is
-    exactly how a stop once died as exit 130 with NO graceful shutdown and got
-    mis-recorded as a crash (then needlessly auto-restarted by run_orrin.sh).
-
-    So we do the one safe thing — set Events (the documented signal-handler
-    pattern) — and let the main thread observe the flag and run the I/O-heavy
-    teardown on a clean stack:
-      • fallback/headless: `_pulse_loop`'s `while not _main_stop.is_set()` exits
-        → `finally: _graceful_shutdown()` (prints, marks the run clean, exits 0).
-      • bridge mode: a shutdown-watcher thread (started in run()) waits on
-        _main_stop and destroys the window so webview.start() returns into the
-        same graceful path."""
-    _main_stop.set()
-
-
-def _maybe_start_vital_calibration_stress() -> None:
-    mode = os.environ.get("ORRIN_VITAL_CALIBRATION_STRESS", "").strip().lower()
-    if not mode:
-        return
-    delay_s = _wd_setup.env_float("ORRIN_VITAL_CALIBRATION_STRESS_DELAY_S", 20.0)
-    read_steps = int(_wd_setup.env_float("ORRIN_VITAL_CALIBRATION_READING_STEPS", 45.0))
-    sample_s = _wd_setup.env_float(
-        "ORRIN_VITAL_CALIBRATION_STRESS_SAMPLE_S",
-        _wd_setup.env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0),
-    )
-    delay_s = max(0.0, delay_s)
-    read_steps = max(1, read_steps)
-    sample_s = max(0.2, sample_s)
-
-    def _direct_sample(stop: threading.Event, phase: str) -> None:
-        path = os.environ.get("ORRIN_VITAL_CALIBRATION_FILE", "").strip()
-        if not path:
-            return
-        while not stop.is_set():
-            try:
-                _rss_fn = _wd_inputs.get_own_rss_bytes
-                _budget_fn = _wd_inputs.get_budget_bytes
-                rss = float(_rss_fn()) if callable(_rss_fn) else 0.0
-                budget = float(_budget_fn()) if callable(_budget_fn) else 0.0
-                if rss > 0.0 and budget > 0.0:
-                    rec = {
-                        "ts": time.time(),
-                        "monotonic_s": round(time.monotonic(), 3),
-                        "phase": phase,
-                        "rss_bytes": int(rss),
-                        "budget_bytes": int(budget),
-                        "frac": round(rss / budget, 6),
-                        "level": "stress_sample",
-                        "observe_only": True,
-                    }
-                    with open(path, "a", encoding="utf-8") as fh:
-                        fh.write(json.dumps(rec, sort_keys=True) + "\n")
-            except Exception as _e:
-                _log.warning("vital calibration direct sample failed: %s", _e)
-                return
-            stop.wait(sample_s)
-
-    def _run() -> None:
-        sampler_stop = threading.Event()
-        sampler_thread = None
-        try:
-            time.sleep(delay_s)
-            print(f"[vital-cal] stress={mode} starting", flush=True)
-            phase = os.environ.get("ORRIN_VITAL_CALIBRATION_PHASE", mode) or mode
-            sampler_thread = threading.Thread(
-                target=_direct_sample,
-                args=(sampler_stop, phase),
-                name="orrin-vital-cal-direct-sampler",
-                daemon=True,
-            )
-            sampler_thread.start()
-            ctx = {
-                "calibration_phase": phase,
-                "latest_user_input": "",
-            }
-            if mode in ("reading", "dream_reading", "reading_dream"):
-                try:
-                    from brain.cognition.language.acquisition import read_a_book as _read_a_book
-                    line = _read_a_book(ctx, steps=read_steps)
-                    if line:
-                        print(f"[vital-cal] reading stress: {line[:120]}", flush=True)
-                except Exception as _e:
-                    _log.warning("vital calibration reading stress failed: %s", _e)
-            if mode in ("dream", "dream_reading", "reading_dream"):
-                try:
-                    from brain.cognition.dreaming.dream_cycle import dream_cycle as _dream_cycle
-                    result = _dream_cycle(ctx)
-                    print(f"[vital-cal] dream stress complete: {str(result)[:160]}", flush=True)
-                except Exception as _e:
-                    _log.warning("vital calibration dream stress failed: %s", _e)
-            print(f"[vital-cal] stress={mode} complete", flush=True)
-        except Exception as _e:
-            _log.warning("vital calibration stress thread failed: %s", _e)
-        finally:
-            sampler_stop.set()
-            if sampler_thread is not None:
-                sampler_thread.join(timeout=2.0)
-
-    threading.Thread(target=_run, name="orrin-vital-cal-stress", daemon=True).start()
-    try:
-        stop_evt.set()
-    except Exception:
-        # Handler context — never do logging I/O here; the main thread reports.
-        pass
-
-
 def run() -> None:
-    # ---------- Cognitive loop (v1 brain) ----------
-    global _cog_thread
-    _cog_thread = None
-    # Install our own SIGINT/SIGTERM handlers now (main thread, after all the heavy
-    # boot imports) so Ctrl+C reliably drives a clean shutdown.
-    for _sig in (signal.SIGINT, signal.SIGTERM):
-        try:
-            signal.signal(_sig, _on_signal)
-        except Exception as _e:
-            _log.warning("could not install %s handler: %s", _sig, _e)
-    try:
-        from brain.ORRIN_loop import run_cognitive_loop
-        _cog_thread = threading.Thread(
-            target=run_cognitive_loop,
-            kwargs={
-                "pulse": pulse,
-                "goals_api": _goals_api,
-                "memory_daemon": daemon,
-                "stop_event": stop_evt,
-                "cycle_sleep": float(os.environ.get("ORRIN_CYCLE_SLEEP", "1")),
-            },
-            name="orrin-brain",
-            daemon=True,
-        )
-        _cog_thread.start()
-        print("[brain] cognitive loop thread started")
-        _maybe_start_vital_calibration_stress()
-        try:
-            from brain.utils import boot_events as _boot
-            _boot.emit("Starting cognition")
-            _boot.mark_ready()  # cognition is live → the wake screen can dissolve
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-    except Exception as e:
-        print(f"[brain] could not start cognitive loop: {e}")
-        try:
-            from brain.utils import boot_events as _boot
-            _boot.emit("Starting cognition", ok=False, note=str(e))
-            _boot.mark_ready()  # don't trap the UI on the wake screen if cognition failed
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-
-    # ---------- Native bridge window (default) vs headless/dev pulse loop ------
-    # A native pywebview window must own the MAIN thread, so the heartbeat moves
-    # to a daemon thread and closing the window returns control here → graceful
-    # shutdown (same path as Ctrl+C). Dev/fallback keep the heartbeat on the main
-    # thread (the UI is a browser tab) and wait on Ctrl+C.
-    _main_stop.clear()
-
-    # ORRIN_ONCE: the cognitive loop breaks after a single tick, but the process
-    # otherwise lives on (pulse heartbeat + daemons), so a "single-cycle" run never
-    # returns on its own. Watch the loop and, once that one cycle is done, trip
-    # _main_stop so both the bridge and headless paths fall into the normal graceful
-    # shutdown (whose own watchdog forces exit if teardown stalls). Armed AFTER
-    # _main_stop.clear() above so the clear can't race the watcher. Only active when
-    # ORRIN_ONCE=1, so steady-state is untouched. The watcher stops on whichever
-    # comes first — the loop thread ending, the cognitive cycle counter advancing, or
-    # a hard deadline — so a slow/blocking loop teardown can't strand the run.
-    if os.getenv("ORRIN_ONCE") == "1" and _cog_thread is not None:
-        print("[brain] ORRIN_ONCE: will stop the process after one cognitive cycle")
-        _once_start_cycles = get_cycle_count()
-        _once_deadline = time.time() + 120.0
-
-        def _once_watcher() -> None:
-            while time.time() < _once_deadline:
-                if not _cog_thread.is_alive():
-                    break
-                if get_cycle_count() > _once_start_cycles:
-                    break
-                time.sleep(0.2)
-            print("[brain] ORRIN_ONCE: single cycle complete → stopping")
-            _main_stop.set()
-        threading.Thread(
-            target=_once_watcher, name="orrin-once-watcher", daemon=True
-        ).start()
-
-    if _BRIDGE_MODE and _bridge_window_file:
-        import webview  # available — bridge mode was only chosen if importable
-        _pulse_thread = threading.Thread(
-            target=_pulse_loop, args=(_main_stop,), name="orrin-pulse", daemon=True
-        )
-        _pulse_thread.start()
-        # "Always thinking" (§10.3): when the window closes on its own, keep the
-        # process — and therefore the brain's daemon threads — ALIVE in the
-        # background instead of shutting down. (Re-opening a window in the same
-        # process isn't possible with pywebview; quitting + relaunch reopens it.)
-        _always_thinking = False
-        try:
-            from brain.utils import prefs as _prefs
-            _always_thinking = _prefs.get("existence_mode", "sleep") == "always"
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-        try:
-            window = webview.create_window(
-                "Orrin", url=_bridge_window_file, js_api=_bridge, width=1440, height=900
-            )
-            _bridge.attach_window(window)
-
-            # Signal → window teardown, off the handler stack. _on_signal only sets
-            # _main_stop (it must stay I/O-free); this watcher does the destroy that
-            # returns webview.start() into _graceful_shutdown. Daemon so it can't keep
-            # the process alive on its own.
-            def _shutdown_watcher() -> None:
-                _main_stop.wait()
-                try:
-                    window.destroy()  # idempotent enough; webview ignores a re-destroy
-                except Exception:
-                    pass
-            threading.Thread(
-                target=_shutdown_watcher, name="orrin-shutdown-watcher", daemon=True
-            ).start()
-
-            # Always-thinking: a status-bar tray (F1) lets the user re-show or quit while
-            # the window is closed and the brain keeps running. If the tray comes up, the
-            # window's close becomes HIDE (he keeps thinking; the view re-attaches via E6)
-            # instead of destroy. If it can't start (missing dep / platform), we keep the
-            # old behavior — closing → headless + a notification — so a failed tray can
-            # never trap the user with a hidden, unreachable window.
-            _tray = None
-            _tray_up = False
-            _quitting = {"v": False}
-            if _always_thinking:
-                from backend.server.tray import Tray
-
-                def _on_tray_show() -> None:
-                    try:
-                        window.show()
-                        _bridge.attach_window(window)  # re-point telemetry at the view
-                    except Exception as _te:
-                        _log.warning("tray show failed: %s", _te)
-
-                def _on_tray_quit() -> None:
-                    _quitting["v"] = True
-                    _main_stop.set()
-                    try:
-                        window.destroy()  # real teardown → webview.start() returns
-                    except Exception as _te:
-                        _log.warning("tray quit destroy failed: %s", _te)
-
-                def _on_closing() -> bool:
-                    # While the tray is up and this isn't a real quit, cancel the destroy
-                    # (return False) and hide instead. If hiding fails, allow the close
-                    # rather than strand the user.
-                    if _tray_up and not _quitting["v"] and not _main_stop.is_set():
-                        try:
-                            window.hide()
-                            _bridge.detach_window()
-                            return False
-                        except Exception:
-                            return True
-                    return True
-
-                window.events.closing += _on_closing
-                _tray = Tray()
-                _tray_up = _tray.start(on_show=_on_tray_show, on_quit=_on_tray_quit)
-                if _tray_up:
-                    print("[existence] Always-thinking — tray active; closing the window "
-                          "hides it (Orrin keeps thinking). Quit from the tray.", flush=True)
-
-            # Blocks until the window is destroyed (with a live tray, close is
-            # cancelled→hidden; destroy then comes from the tray's Quit).
-            webview.start()
-            if _tray is not None:
-                _tray.stop()
-
-            # Without a working tray, preserve headless-on-close: if the window closed by
-            # itself (not Stop/Ctrl+C/tray-Quit, which set _main_stop) and Always-thinking
-            # is on, stay alive headless — the cognitive loop and daemons keep running and
-            # notify_user can still reach the user — until a real termination signal.
-            if _always_thinking and not _tray_up and not _main_stop.is_set():
-                print("[existence] Window closed — Orrin keeps thinking in the background "
-                      "(Always thinking). Ctrl+C / quit to stop him.", flush=True)
-                _notify_still_thinking()
-                _main_stop.wait()  # daemon brain threads keep advancing while we block
-            else:
-                print("\n[main] window closed; shutting down…")
-        except KeyboardInterrupt:
-            print("\n[main] Ctrl+C received; shutting down…")
-        finally:
-            _main_stop.set()
-            _pulse_thread.join(timeout=5)
-            _graceful_shutdown()
-        return
-
-    # No native window (ORRIN_UI=0, dev, or fallback browser tab): heartbeat on the
-    # main thread until a signal (handled by _on_signal) sets _main_stop.
-    try:
-        _pulse_loop(_main_stop)
-    except KeyboardInterrupt:
-        print("\n[main] Ctrl+C received; shutting down…")
-    finally:
-        _main_stop.set()
-        _graceful_shutdown()
+    """Foreground lifetime: cognition + the native window / headless heartbeat,
+    returning into graceful shutdown on stop. The orchestration lives in
+    runtime.desktop; this stays as the documented entrypoint."""
+    _desktop.run(_ctx)
 
 
 if __name__ == "__main__":

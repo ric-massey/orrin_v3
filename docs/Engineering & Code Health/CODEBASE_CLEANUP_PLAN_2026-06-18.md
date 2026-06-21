@@ -35,14 +35,25 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   affect_state)`, with the existing first stage `_apply_transient_signal_decay`
   moved alongside it. `ruff` F821 caught the one real coupling — the prologue
   binds the loop-local `affect_state` that downstream stages read — so the stage
-  returns it and the loop unpacks (exact binding preserved). **ORRIN_loop.py
-  3,709 → 2,173** this run (−41%), split into `brain/loop/{telemetry, invoke,
-  boot, sense}.py`. Still open: the rest of the loop body — conscious-ignition,
-  cognition execution, action execution/accounting, maintenance/finalization.
-  These are denser (interleaved `break`/`continue`, more loop-locals) so each
-  wants the same one-stage-at-a-time, net-verified treatment; the `sense`
-  extraction establishes the pattern (stage returns any loop-locals it binds for
-  downstream stages). Per the plan's "do not begin with a wholesale rewrite."
+  returns it and the loop unpacks (exact binding preserved). Then continued
+  one stage at a time down the cycle: `brain/loop/reflect.py`
+  (`integrate_recall_and_baseline` — post-perception memory recall + signal
+  integration + emotional-baseline snapshot; `tier1_health_check` — the
+  setpoint_regulation interoception read) and `brain/loop/deliberate.py`
+  (`prepare_workspace` — executive lane + metacog→workspace prep;
+  `ignite` — the conscious-ignition gate). Each was a context-mutating stage with
+  no leaked control flow (clean `ruff` F821 each time), verified by the loop net +
+  full suite (**922 passed / 1 skipped**, ruff clean) and committed individually.
+  **ORRIN_loop.py 3,709 → 1,872** (−49%), split into
+  `brain/loop/{telemetry, invoke, boot, sense, reflect, deliberate}.py`.
+  **Remaining (the hard core):** the cognition+action execution (Path A behavior /
+  Path B cognition, ~970 lines) plus its dependent maintenance/finalization
+  stages. Unlike the stages above, this is NOT a clean `context`-only block — it
+  threads ~8 loop-locals in/out (`result`, `reward`, `feats`, `acted_this_cycle`,
+  `_decision_id`, `_evaluator`, `BEH_NAMES`, `COG_MAP`/`BEH_MAP`) and the
+  maintenance stages consume its reward/acted outputs. It wants a small typed
+  per-cycle result object designed deliberately, as its own focused pass — not a
+  mechanical block move. Per the plan's "do not begin with a wholesale rewrite."
 
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added

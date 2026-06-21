@@ -96,7 +96,7 @@ from brain.loop.boot import _boot_context, _verify_production_capability  # noqa
 # Sense / state-refresh stage, extracted to brain/loop/sense.py (Phase 4A).
 from brain.loop.sense import sense_and_refresh, _apply_transient_signal_decay  # noqa: F401
 # Recall + integration stage, extracted to brain/loop/reflect.py (Phase 4A).
-from brain.loop.reflect import integrate_recall_and_baseline
+from brain.loop.reflect import integrate_recall_and_baseline, tier1_health_check
 def run_cognitive_loop(
     pulse=None,
     goals_api=None,
@@ -307,83 +307,7 @@ def run_cognitive_loop(
             reward           = 0.0
             feats            = {}
 
-            # ── Tier 1: setpoint_regulation health check ──────────────────────────────
-            # Read the daemon's latest snapshot. Warnings become raw_signals that
-            # the signal_router weighs in function selection. Critical alerts set a flag
-            # the post-think override block can act on. The daemon itself runs
-            # unconditionally on its own thread — this is just reading its output.
-            #
-            # Compounding stakes: critical alerts that are repeatedly ignored escalate
-            # in signal strength and apply direct emotional cost.
-            # McEwen (1998) allostatic load theory: repeated or unresolved homeostatic
-            # stress produces cumulative physiological cost that escalates nonlinearly —
-            # the body keeps score regardless of whether conscious attention is paid.
-            # Selye (1956) general adaptation syndrome: the alarm → resistance →
-            # exhaustion progression means that ignoring alarm signals does not cancel
-            # them; it accelerates progression toward the exhaustion phase.
-            # Baumeister et al. (1994) ego depletion: unresolved demands consume
-            # regulatory resources each cycle, compounding the load on subsequent regulation.
-            try:
-                from brain.embodiment.setpoint_regulation import get_state as _h1_get
-                _h1 = _h1_get()
-                context["health_score"] = _h1.get("health_score", 1.0)
-                _h1_critical_fn = None
-                _h1_ignored = context.setdefault("_h1_ignored_cycles", {})
-                _h1_active_ids: set = set()
-
-                for _h1_alert in _h1.get("alerts", []):
-                    _aid  = _h1_alert.get("id", "")
-                    _sev  = _h1_alert.get("severity")
-                    _desc = _h1_alert.get("description", "")
-                    _tags = _h1_alert.get("tags", [])
-                    _sfn  = _h1_alert.get("suggested_fn")
-                    _h1_active_ids.add(_aid)
-
-                    if _sev == "critical":
-                        # Accumulate neglect counter
-                        _h1_ignored[_aid] = _h1_ignored.get(_aid, 0) + 1
-                        _ignored_n = _h1_ignored[_aid]
-                        # Signal strength escalates with each ignored cycle (cap 0.99)
-                        _escalated_str = min(0.99, 0.80 + _ignored_n * 0.04)
-                        from brain.utils.signal_utils import create_signal as _cs
-                        context.setdefault("raw_signals", []).append(
-                            _cs(source="setpoint_regulation", content=_desc,
-                                signal_strength=_escalated_str, tags=_tags)
-                        )
-                        context["_tier1_critical"] = True
-                        if _sfn and not _h1_critical_fn:
-                            _h1_critical_fn = _sfn
-                        # Direct emotional cost after 3+ ignored cycles
-                        if _ignored_n >= 3:
-                            try:
-                                _h1_emo  = context.get("affect_state") or {}
-                                _h1_core = _h1_emo.get("core_signals") or _h1_emo
-                                _cost = min(0.06, 0.02 * min(_ignored_n, 10))
-                                _h1_core["risk_estimate"]     = min(1.0, float(_h1_core.get("risk_estimate")     or 0) + _cost)
-                                _h1_core["impasse_signal"] = min(1.0, float(_h1_core.get("impasse_signal") or 0) + _cost * 0.5)
-                                if "core_signals" in _h1_emo:
-                                    _h1_emo["core_signals"] = _h1_core
-                                context["affect_state"] = _h1_emo
-                            except Exception as _e:
-                                record_failure("ORRIN_loop.run_cognitive_loop.9", _e)
-                    elif _sev == "warning":
-                        from brain.utils.signal_utils import create_signal as _cs
-                        context.setdefault("raw_signals", []).append(
-                            _cs(source="setpoint_regulation", content=_desc,
-                                signal_strength=0.65, tags=_tags)
-                        )
-
-                # Clear neglect counters for alerts that have resolved
-                for _stale_id in list(_h1_ignored.keys()):
-                    if _stale_id not in _h1_active_ids:
-                        del _h1_ignored[_stale_id]
-
-                context["_tier1_suggested_fn"] = _h1_critical_fn
-                if _h1_critical_fn is None:
-                    # All critical alerts cleared — reset override pacing state
-                    context.pop("_t1_override_hist", None)
-            except Exception as _h1e:
-                record_failure("ORRIN_loop.setpoint_regulation_read", _h1e)
+            context = tier1_health_check(context)
 
             # ── Executive (procedural lane) — dual_process_loop.md §6.1 ─────────
             # PHASE 1: READ-ONLY DRY RUN. Observes the committed goals' next steps

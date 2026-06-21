@@ -29,6 +29,7 @@ from __future__ import annotations
 import importlib
 import importlib.util
 import json
+import re
 import shutil
 import sys
 import threading
@@ -42,10 +43,42 @@ from brain.paths import DATA_DIR, ROOT_DIR, SELF_CODE_DIR, SELF_COGNITION_DIR, S
 # bundled `cognition.custom_cognition.*` / `agency.skills.*` packages. Relocating the
 # files out of those packages means the old package path no longer resolves them
 # (§13.4); a separate namespace also guarantees a self-written module can never
-# shadow a shipped one. Generated bodies use only absolute imports (resolved via the
-# brain/ sys.path), so the namespace string is purely an identity key.
+# shadow a shipped one. Generated bodies use canonical `brain.*` imports (normalized
+# by normalize_self_code_imports below), so they resolve with only the repo root on
+# sys.path — the namespace string is purely an identity key.
 _NS = "orrin_self_code"
 _PKG = {"custom_cognition": SELF_COGNITION_DIR, "skills": SELF_SKILLS_DIR}
+
+# The brain leaf packages a self-written module might import by bare name, kept in
+# sync with the Phase-3 namespace normalization (tests/test_import_contract.py).
+# Self-authored code is rewritten onto `brain.*` so the runtime no longer needs the
+# legacy `brain/` entry on sys.path to resolve a generated module's own imports.
+_BRAIN_LEAVES = frozenset({
+    "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
+    "behavior", "agency", "registry", "symbolic", "embodiment", "motivation",
+    "peers", "benchmarks", "evidence", "config", "eval",
+})
+_BARE_IMPORT_RE = re.compile(r"^(\s*)(from|import)\s+([A-Za-z_]\w*)")
+
+
+def normalize_self_code_imports(code: str) -> str:
+    """Rewrite bare first-party imports in self-written code onto the canonical
+    `brain.*` namespace — e.g. `from utils.log import x` → `from brain.utils.log
+    import x`, `import cognition.foo` → `import brain.cognition.foo`. stdlib /
+    third-party imports and ones already prefixed with `brain.` are left untouched.
+
+    This is the safety net that lets the runtime drop the legacy `brain/` sys.path
+    affordance: even if an LLM emits a bare first-party import despite the prompt,
+    the written module still resolves with only the repo root on the path."""
+    out = []
+    for line in code.splitlines():
+        m = _BARE_IMPORT_RE.match(line)
+        if m and m.group(3) in _BRAIN_LEAVES:
+            indent, kw = m.group(1), m.group(2)
+            line = f"{indent}{kw} brain.{line[m.start(3):]}"
+        out.append(line)
+    result = "\n".join(out)
+    return result + "\n" if code.endswith("\n") else result
 
 # Manifest lives WITH the code it describes, in the writable tree.
 MANIFEST_FILE = SELF_CODE_DIR / "manifest.json"

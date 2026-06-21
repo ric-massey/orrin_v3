@@ -17,7 +17,7 @@ Periodically flushed by ORRIN_loop. Format is compatible with OpenAI fine-tune
 JSONL (messages array) and with HuggingFace TRL's SFTTrainer.
 
 To use for fine-tuning:
-  python -c "from utils.trace_buffer import export_for_training; export_for_training()"
+  python -c "from brain.utils.trace_buffer import export_for_training; export_for_training()"
   → writes data/training_export.jsonl in chat-completion format
 """
 from __future__ import annotations

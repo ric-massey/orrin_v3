@@ -551,11 +551,11 @@ def _write_and_register(
         f"Description: {description}\n"
         f"Motivation: {motivation}\n\n"
         f"Available imports (use only what you need):\n"
-        f"  from cog_memory.working_memory import update_working_memory\n"
-        f"  from cog_memory.long_memory import update_long_memory\n"
-        f"  from utils.generate_response import generate_response, llm_ok\n"
-        f"  from utils.log import log_private\n"
-        f"  from utils.json_utils import load_json, save_json\n"
+        f"  from brain.cog_memory.working_memory import update_working_memory\n"
+        f"  from brain.cog_memory.long_memory import update_long_memory\n"
+        f"  from brain.utils.generate_response import generate_response, llm_ok\n"
+        f"  from brain.utils.log import log_private\n"
+        f"  from brain.utils.json_utils import load_json, save_json\n"
         f"  from brain.paths import WORKING_MEMORY_FILE, LONG_MEMORY_FILE\n\n"
         f"Rules:\n"
         f"  1. Write ONLY the Python file contents (no markdown fences)\n"
@@ -574,6 +574,12 @@ def _write_and_register(
     if code.startswith("```"):
         lines = code.split("\n")
         code = "\n".join(lines[1:-1] if lines[-1].strip() == "```" else lines[1:])
+
+    # Normalize any bare first-party imports the LLM emitted onto the canonical
+    # `brain.*` namespace so the written module resolves without the legacy brain/
+    # sys.path affordance (Phase 3 tail).
+    from brain.agency.self_code import normalize_self_code_imports
+    code = normalize_self_code_imports(code)
 
     header = (
         f"# self_generated/{fn_name}.py\n"

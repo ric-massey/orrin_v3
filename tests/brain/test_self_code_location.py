@@ -65,3 +65,50 @@ def test_delete_resolves_relative_entry_and_removes_file():
     assert d["success"], d
     assert not fp.exists()
     assert all(e["name"] != "reflect_on_del" for e in self_code.load_manifest())
+
+
+# ── Phase 3 tail: self-written code is normalized onto the brain.* namespace, so it
+# resolves with only the repo root on sys.path (no legacy brain/ path affordance).
+def test_normalize_rewrites_bare_first_party_imports_onto_brain():
+    src = (
+        "from utils.log import log_activity\n"
+        "from cog_memory.working_memory import update_working_memory\n"
+        "import cognition.foo\n"
+        "from paths import WORKING_MEMORY_FILE\n"
+    )
+    out = self_code.normalize_self_code_imports(src)
+    assert "from brain.utils.log import log_activity" in out
+    assert "from brain.cog_memory.working_memory import update_working_memory" in out
+    assert "import brain.cognition.foo" in out
+    assert "from brain.paths import WORKING_MEMORY_FILE" in out
+    # idempotent: a second pass changes nothing
+    assert self_code.normalize_self_code_imports(out) == out
+
+
+def test_normalize_leaves_stdlib_thirdparty_and_brain_imports_untouched():
+    src = (
+        "import os, json, requests\n"
+        "from brain.utils.log import log_activity\n"
+        "from datetime import datetime\n"
+        "    from utils.json_utils import load_json\n"  # indented stays rewritten
+    )
+    out = self_code.normalize_self_code_imports(src)
+    assert "import os, json, requests" in out
+    assert "from brain.utils.log import log_activity" in out
+    assert "from datetime import datetime" in out
+    assert "    from brain.utils.json_utils import load_json" in out
+
+
+def test_written_function_imports_resolve_without_brain_on_syspath():
+    # The generated module must import live under the dedicated namespace with only
+    # the repo root present — which is exactly what the suite runs with (pytest
+    # pythonpath = .). A successful hot-registration proves its brain.* imports load.
+    r = code_writer.write_cognitive_function(
+        "reflect_on_imports", "import-resolution fn", "return 'ok'", test=False
+    )
+    assert r["success"], r
+    body = (self_code.SELF_COGNITION_DIR / "reflect_on_imports.py").read_text()
+    assert "from brain.cog_memory.working_memory import" in body
+    assert "from brain.utils.log import" in body
+    # no bare first-party import survived into the written file
+    assert "\nfrom utils." not in body and "\nfrom cog_memory." not in body

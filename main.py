@@ -2,24 +2,21 @@
 from __future__ import annotations
 
 # --- Bootstrap sys.path BEFORE any brain-rooted import.
-# First-party code is fully on the `brain.*` namespace now (Phase 3), so the repo
-# root is all main.py and the rest of the app need to import. brain/ is still added
-# as a compatibility affordance for *self-authored* runtime code, which may emit
-# bare-name imports (`from utils.x import …`); removing it is gated on a self-code
-# import audit. It no longer causes the dual-instance hazard because nothing
-# first-party imports bare (enforced by tests/test_import_contract.py).
+# First-party code is fully on the `brain.*` namespace (Phase 3), so the repo root is
+# all main.py and the rest of the app need on the path. The legacy `brain/` entry —
+# kept as a compatibility affordance for self-authored runtime code that emitted
+# bare-name imports (`from utils.x import …`) — is gone: self-written code is now
+# normalized onto `brain.*` at write time (agency/self_code.normalize_self_code_imports),
+# so a generated module resolves with only the repo root present.
 import sys
 from pathlib import Path
 _REPO_ROOT_STR = str(Path(__file__).resolve().parent)
-_BRAIN_DIR = Path(__file__).resolve().parent / "brain"
-# Source runs only: in a FROZEN app (I3) these modules live in the PYZ and are
-# served by PyInstaller's frozen importer — inserting the (partial, bundled)
-# brain/ dir at the front of sys.path instead shadows that importer.
+_BRAIN_DIR = Path(__file__).resolve().parent / "brain"  # filesystem anchor (data seed, UI dist, think module) — NOT a sys.path entry
+# Source runs only: in a FROZEN app (I3) these modules live in the PYZ and are served
+# by PyInstaller's frozen importer — touching sys.path would shadow that importer.
 if not getattr(sys, "frozen", False):
     if _REPO_ROOT_STR not in sys.path:
         sys.path.insert(0, _REPO_ROOT_STR)
-    if str(_BRAIN_DIR) not in sys.path:
-        sys.path.insert(0, str(_BRAIN_DIR))
 
 # --- Per-user data home (Phase 3 / Group C) ---
 # A packaged app can't write into its own (read-only) program folder, so route all

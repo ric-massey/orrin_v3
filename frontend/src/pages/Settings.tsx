@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Archive, Download, Eye, FileText, HeartPulse, KeyRound, RefreshCw, RotateCcw, ShieldCheck, Sparkles } from "lucide-react";
+import { Archive, Download, Eye, FileText, HeartPulse, KeyRound, RefreshCw, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -7,6 +7,7 @@ import { apiBase, apiGet, apiPost, getTransport } from "@/lib/transport";
 import { usePolledJSON } from "@/lib/usePolled";
 import { LanguageSection } from "./settings/LanguageSection";
 import { BackupSection } from "./settings/BackupSection";
+import { ResetSection } from "./settings/ResetSection";
 import { controlHeaders, postSettings, postSettingsResult, type SettingsStatus } from "./settings/shared";
 
 export default function Settings() {
@@ -1176,53 +1177,5 @@ function KeyRow({
       <p className="text-xs text-muted-foreground">{help}</p>
       {note && <p className="text-xs text-foreground">{note}</p>}
     </div>
-  );
-}
-
-function ResetSection() {
-  const [busy, setBusy] = useState(false);
-  const [note, setNote] = useState<string | null>(null);
-
-  const reset = async () => {
-    if (busy) return;
-    if (
-      !window.confirm(
-        "Reset Orrin? This permanently erases his memories, goals, identity, and everything he's written, then restarts him as a newborn. This cannot be undone.",
-      )
-    ) {
-      return;
-    }
-    setBusy(true);
-    setNote("Resetting — Orrin is becoming a newborn and will restart…");
-    try {
-      const res = await apiPost(`/api/control/reset`, undefined, { headers: controlHeaders() });
-      if (!res.ok && res.status !== 0) {
-        setBusy(false);
-        setNote(`Couldn't reset (HTTP ${res.status}).`);
-      }
-    } catch {
-      // The process re-execs, so the request often drops mid-flight — that means it
-      // worked. Leave the "restarting…" note up.
-    }
-  };
-
-  return (
-    <Card className="border-destructive/30">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-base">
-          <RotateCcw className="h-4 w-4" /> Reset Orrin
-        </CardTitle>
-        <CardDescription>
-          Erase this mind and begin a brand-new one. His memories, goals, identity, and
-          self-written code are gone for good — there is no undo.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2">
-        <Button variant="destructive" size="sm" onClick={() => void reset()} disabled={busy}>
-          {busy ? "Resetting…" : "Reset Orrin to a newborn"}
-        </Button>
-        {note && <p className="text-xs text-foreground">{note}</p>}
-      </CardContent>
-    </Card>
   );
 }

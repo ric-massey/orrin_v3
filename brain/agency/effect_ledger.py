@@ -225,7 +225,8 @@ def _hydrate() -> None:
                             continue
                         try:
                             row = json.loads(line)
-                        except Exception:
+                        except Exception as exc:
+                            record_failure("effect_ledger.hydrate_jsonl_row", exc)
                             continue
                         h = row.get("content_hash")
                         if not h:
@@ -240,8 +241,8 @@ def _hydrate() -> None:
                                     _goal_significance[str(gid)] = max(
                                         _goal_significance.get(str(gid), 0.0), sig
                                     )
-                            except Exception:
-                                pass
+                            except Exception as exc:
+                                record_failure("effect_ledger.hydrate_significance", exc)
                             meta = row.get("metadata") or {}
                             if row.get("kind") == "tracked_work" and isinstance(meta, dict):
                                 try:
@@ -249,8 +250,8 @@ def _hydrate() -> None:
                                         _tracked_progress.get(str(gid), 0),
                                         int(meta.get("completed_sections") or 0),
                                     )
-                                except Exception:
-                                    pass
+                                except Exception as exc:
+                                    record_failure("effect_ledger.hydrate_tracked_progress", exc)
                         # recent-by-kind window can't be reconstructed exactly
                         # (we don't persist normalized text); novelty just starts
                         # comparing fresh this process, which is safe.
@@ -339,8 +340,8 @@ def record_effect(
                         sig *= 0.75 + 0.25 * alignment
                     metadata = dict(metadata or {})
                     metadata["goal_alignment"] = round(alignment, 4)
-                except Exception:
-                    pass
+                except Exception as exc:
+                    record_failure("effect_ledger.goal_alignment", exc)
 
         row = EffectRow(
             ts=now_iso_z(),
@@ -375,8 +376,8 @@ def record_effect(
                         _tracked_progress.get(gid, 0),
                         int((metadata or {}).get("completed_sections") or 0),
                     )
-                except Exception:
-                    pass
+                except Exception as exc:
+                    record_failure("effect_ledger.record_tracked_progress", exc)
         _log.debug("effect recorded kind=%s novelty=%.3f sig=%.3f goal=%s",
                    kind, row.novelty, row.significance, goal_id)
         return row
@@ -404,8 +405,8 @@ def has_qualifying_effect(goal_id: str, goal: Optional[Dict[str, Any]] = None) -
                     if isinstance(item, dict) and str(item.get("kind") or "").lower() == "sections":
                         try:
                             required = max(required, int(item.get("target") or 1))
-                        except Exception:
-                            pass
+                        except Exception as exc:
+                            record_failure("effect_ledger.required_sections", exc)
                 return _tracked_progress.get(gid, 0) >= required
         return True
 
@@ -447,8 +448,8 @@ def mark_reused(content_hash: str) -> int:
             significance=1.0, goal_id=None, char_len=0, dedupe=False,
             metadata=None,
         ))
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("effect_ledger.mark_reused", exc)
     return n
 
 

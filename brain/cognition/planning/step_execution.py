@@ -38,7 +38,7 @@ from utils.log import log_activity, log_error
 _KNOWN_FN_NAMES = (
     "research_topic", "fetch_and_read", "wikipedia_search",
     "search_own_files", "grep_files", "leave_note", "look_outward",
-    "look_around", "seek_novelty",
+    "look_around", "seek_novelty", "compose_section",
 )
 
 # Habitual intention→act mappings, checked in order (specific before generic).
@@ -56,6 +56,10 @@ _INTENT_RULES: Tuple[Tuple[Tuple[str, ...], str], ...] = (
       # a real file-search ACTION (BEHAVIOR_FIX_PLAN 2.2 — plans cause actions).
       "find the word", "find the phrase", "search for the word",
       "brain file", "in any file"), "search_own_files"),
+    (("compose a section", "draft a section", "draft the section",
+      "manuscript section", "draft a chapter", "write a chapter",
+      "written synthesis", "write a synthesis", "draft a synthesis"),
+     "compose_section"),
     (("write", "record", "note", "document", "jot", "log ", "save",
       "leave a note", "summari"), "leave_note"),
     (("look outward", "observe the", "external world", "look out", "outward"),
@@ -172,7 +176,7 @@ def _semantic_step_match(step_text: str, candidates) -> Tuple[Optional[str], flo
     return (best, best_score)
 
 
-def recognise_step_action(step_text: str) -> Optional[str]:
+def recognise_step_action(step_text: Any) -> Optional[str]:
     """
     Map a plan-step intention to a registered cognition-function name, or None
     when the step is purely internal/deliberative (no motor program — e.g.
@@ -190,6 +194,15 @@ def recognise_step_action(step_text: str) -> Optional[str]:
     """
     if not step_text:
         return None
+    if isinstance(step_text, dict):
+        action = step_text.get("action")
+        if isinstance(action, dict):
+            function = str(action.get("function") or "").strip()
+            if function:
+                return function
+        step_text = step_text.get("step") or ""
+    if not isinstance(step_text, str):
+        step_text = str(step_text)
     s = step_text.lower()
 
     # 0) Code-PRODUCTION intent (write/create a function/tool/code). This MUST be

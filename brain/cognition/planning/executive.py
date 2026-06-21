@@ -23,6 +23,7 @@ from typing import Any, Dict, List, Optional
 from core.runtime_log import get_logger
 from cognition.planning.step_execution import recognise_step_action
 from utils.log import log_private
+from utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -106,8 +107,8 @@ def _emit_fn_executed(fn: Optional[str], context: Dict[str, Any]) -> None:
             return
         cyc = (context.get("cycle_count") or {}).get("count")
         push("function_executed", fn=fn, lane="executive", cycle=cyc)
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("executive.emit_fn_executed", exc)
 
 
 def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> None:
@@ -135,8 +136,8 @@ def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> 
             "reward": reward,
         })
         save_json(COGNITION_HISTORY_FILE, log[-500:])
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("executive.record_history", exc)
 
 
 def _outcome_reward(result: Any) -> float:
@@ -267,7 +268,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
             for _step_i in range(max(1, n_steps)):
                 step = _next_pending_step(target)
                 step_text = step.get("step") if isinstance(step, dict) else None
-                fn = recognise_step_action(step_text) if step_text else None
+                fn = recognise_step_action(step) if step else None
 
                 # Swap the target in for the step-runner, then restore focus.
                 context["committed_goal"] = target
@@ -307,8 +308,8 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                             from affect.arbiter import submit_affect
                             submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
                                           weight=1.0, source="executive_step", ttl_cycles=2)
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_failure("executive.step_resource_cost", exc)
                     # Executive-lane learning signal (RUN_ISSUES_2026-06-10 §1
                     # fix 4): route the step outcome through the RewardEngine so
                     # the per-action EMA learns when a procedural action keeps
@@ -322,8 +323,8 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                         submit_reward(context, actual=_reward, action_type=fn,
                                       kind="reward_signal", effort=0.3,
                                       source="executive_step")
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_failure("executive.step_reward", exc)
                     # Gap 3 (UI_FIXES): this lane's advance becomes visible — a
                     # lane="executive" function_executed for the fn_recent ring,
                     # and a persisted history entry for /history.
@@ -414,7 +415,8 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
     harvested (never the loop's pending affect carried in the loaded snapshot)."""
     try:
         from affect.arbiter import submit_affect
-    except Exception:
+    except Exception as exc:
+        record_failure("executive.harvest_daemon_affect.import", exc)
         return
     for p in (ctx.get("_affect_proposals") or []):
         if not isinstance(p, dict):
@@ -424,8 +426,8 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
                           weight=float(p.get("weight") or 1.0),
                           source=f"daemon:{p.get('source', '')}"[:48],
                           ttl_cycles=int(p.get("ttl") or 3))
-        except Exception:
-            pass
+        except Exception as exc:
+            record_failure("executive.harvest_daemon_affect.proposal", exc)
     st = ctx.get("affect_state")
     if isinstance(st, dict):
         for e in (st.get("_emotion_queue") or []):
@@ -438,8 +440,8 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
                 submit_affect(None, e.get("emotion"), total, weight=1.0,
                               source=f"daemon:{e.get('source', 'reward')}"[:48],
                               ttl_cycles=int(e.get("cycles_left") or 3))
-            except Exception:
-                pass
+            except Exception as exc:
+                record_failure("executive.harvest_daemon_affect.reward", exc)
 
 
 def _daemon_loop(stop_event: "threading.Event") -> None:
@@ -476,8 +478,8 @@ def _daemon_loop(stop_event: "threading.Event") -> None:
                     _summary = ctx.get("_exec_dryrun")
                     if isinstance(_summary, dict):
                         get_bridge().update(executive=_summary)
-                except Exception:
-                    pass
+                except Exception as exc:
+                    record_failure("executive.daemon_telemetry", exc)
         except Exception as exc:
             _log.warning("executive daemon tick failed: %s", exc)
         stop_event.wait(_DAEMON_INTERVAL_S)

@@ -644,8 +644,8 @@ def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:
                 ))
                 if len(out) >= limit:
                     return out
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.contradiction_file_goals", exc)
 
     # 2. Symbolic rule/belief conflicts (no LLM, no persisted file required).
     try:
@@ -669,8 +669,8 @@ def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:
             ))
             if len(out) >= limit:
                 return out
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.symbolic_conflict_goals", exc)
     return out
 
 
@@ -771,7 +771,8 @@ def _load_drive_credit() -> Dict[str, Any]:
         d = load_json(_DRIVE_CREDIT_FILE, default_type=dict) or {}
         if not isinstance(d, dict):
             d = {}
-    except Exception:
+    except Exception as exc:
+        record_failure("intrinsic_goals.load_drive_credit", exc)
         d = {}
     d.setdefault("weights", {})        # {driven_by: {aspiration_title: weight}}
     d.setdefault("credited_ids", [])   # goal ids already folded into the EMA
@@ -781,8 +782,8 @@ def _load_drive_credit() -> Dict[str, Any]:
 def _save_drive_credit(d: Dict[str, Any]) -> None:
     try:
         save_json(_DRIVE_CREDIT_FILE, d)
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.save_drive_credit", exc)
 
 
 def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
@@ -809,8 +810,8 @@ def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
         action = str(goal.get("title") or goal.get("name") or "")
         for e in get_effects(action, min_score=0.0)[:4]:
             parts.append(str(e.get("effect", "")))
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.evidenced_aspiration", exc)
 
     text = " ".join(parts).lower()
     if not text.strip():
@@ -834,8 +835,8 @@ def _goal_completion_reward(goal: Dict[str, Any]) -> float:
         for act, r in ema.items():
             if act and isinstance(r, (int, float)) and act.lower() in title:
                 return max(0.0, min(1.0, float(r)))
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.goal_completion_reward", exc)
     return 0.8
 
 
@@ -908,8 +909,8 @@ def _serves_aspiration(driven_by: str) -> str:
         row = _load_drive_credit()["weights"].get(drive)
         if row:
             return max(row, key=row.get)
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.aspiration_pressure_pick", exc)
     return prior
 
 
@@ -938,8 +939,8 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
         comp = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
         if isinstance(comp, list):
             pools.append(comp)
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("intrinsic_goals.proposal_priority", exc)
     # Phase 4 / Fix C: learn the driven_by → aspiration link from real completions.
     # Each completed goal folds into the EMA exactly once (idempotency ledger).
     learn = _learned_aspiration_enabled()
@@ -1007,8 +1008,8 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
     if changed:
         try:
             save_json(GOALS_FILE, goals)
-        except Exception:
-            pass
+        except Exception as exc:
+            record_failure("intrinsic_goals.spawn_cooldown_ema", exc)
     if summary:
         log_activity("[aspirations] " + " | ".join(summary))
     return ("Aspiration progress — " + "; ".join(summary)) if summary else ""
@@ -1406,7 +1407,12 @@ def _build_committed_goal(g: Dict, gid: str) -> Dict:
     if g.get("requires_artifact"):
         cg["requires_artifact"] = True
         cg["deadline_cycles"] = g.get("deadline_cycles")
-    return cg
+    try:
+        from cognition.planning.goal_comprehension import hydrate_goal_model
+        return hydrate_goal_model(cg)
+    except Exception as exc:
+        record_failure("intrinsic_goals._build_committed_goal.hydrate", exc)
+        return cg
 
 
 def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:

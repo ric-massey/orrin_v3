@@ -27,6 +27,7 @@
   "list_directory": "List the files and folders in a directory.",
 
   "leave_note": "Write a short note to memory recording an observation or message for later.",
+  "compose_section": "Draft and persist a substantive section of the committed long-form goal, advance its structured production plan, and record a tracked-work effect.",
   "write_desktop_note": "Write a visible note file onto the user's desktop so a human can read it.",
   "notify_user": "Actively alert the user with a message that requests their attention.",
   "announce_to_dashboard": "Post a status announcement to the observability dashboard.",

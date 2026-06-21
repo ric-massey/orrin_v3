@@ -10,6 +10,7 @@ import re
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from cognition.global_workspace import _is_noise, _overlap, _tokens
+from utils.failure_counter import record_failure
 
 MAX_ITEMS = 12
 MAX_CLUSTER = 5
@@ -46,7 +47,8 @@ def _known_entities() -> Set[str]:
         model = _load_symbolic_model()
         entities = model.get("entities") or {}
         return {str(key).lower() for key in entities} if isinstance(entities, dict) else set()
-    except Exception:
+    except Exception as exc:
+        record_failure("binding.known_entities", exc)
         return set()
 
 
@@ -55,7 +57,8 @@ def _entities_of(text: str, known_entities: Optional[Iterable[str]] = None) -> S
         from cognition.world_model import extract_entity_names
 
         return set(extract_entity_names(text, known_entities))
-    except Exception:
+    except Exception as exc:
+        record_failure("binding.entities_of", exc)
         return set()
 
 
@@ -405,6 +408,7 @@ def bind_situation(context: dict) -> List[Dict[str, Any]]:
         composites.sort(key=lambda row: row["salience"], reverse=True)
         context["_bound_candidates"] = composites[:MAX_COMPOSITES]
         return context["_bound_candidates"]
-    except Exception:
+    except Exception as exc:
+        record_failure("binding.bind_situation", exc)
         context["_bound_candidates"] = []
         return []

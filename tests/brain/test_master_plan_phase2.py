@@ -143,9 +143,8 @@ def test_eval_b7_resolves_links(monkeypatch, tmp_path):
          "related_memory_ids": ["fail-1", "fail-2"]},
     ]))
 
-    import brain.paths as paths
-    monkeypatch.setattr(paths, "AUTOBIOGRAPHY", auto_file)
-    monkeypatch.setattr(paths, "NARRATIVE_PRESSURE_FILE", pressure_file)
+    monkeypatch.setattr(bench, "AUTOBIOGRAPHY", auto_file)
+    monkeypatch.setattr(bench, "NARRATIVE_PRESSURE_FILE", pressure_file)
     monkeypatch.setattr(bench, "LONG_MEMORY_FILE", lm_file)
 
     res = bench._eval_b7()

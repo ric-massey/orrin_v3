@@ -292,10 +292,10 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                 if title in existing:
                     continue  # already exists — skip
                 try:
-                    from cognition.planning.goal_comprehension import comprehend_goal
-                    gd = comprehend_goal(gd, context)
-                except Exception:
-                    pass
+                    from cognition.planning.goal_comprehension import hydrate_goal_model
+                    gd = hydrate_goal_model(gd, context)
+                except Exception as exc:
+                    record_failure("goal_io.sync_proposed_goals.hydrate", exc)
                 spec = dict(gd.get("spec") or {})
                 for key in (
                     "definition_of_done", "grounded_parts", "plan", "milestones",

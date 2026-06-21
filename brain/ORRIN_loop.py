@@ -74,6 +74,7 @@ from brain.paths import (
     RELATIONSHIPS_FILE, MODEL_CONFIG_FILE, CONTEXT, WORKING_MEMORY_FILE,
     LONG_MEMORY_FILE, AFFECT_STATE_FILE, BANDIT_STATE_FILE,
     REFLECTION as REFLECTION_LOG_FILE, CHAT_LOG_FILE,
+    COGNITIVE_FUNCTIONS_LIST_FILE,
 )
 
 # ── Face & Brain UI telemetry ────────────────────────────────────────────────
@@ -514,9 +515,60 @@ def _validate_boot_files() -> None:
         log_error(f"[boot] Temp-file sweep failed: {e}")
 
 
+def _verify_production_capability(functions: Dict[str, Any]) -> Dict[str, Any]:
+    """Verify the complete compose_section route after runtime registration."""
+    checks: Dict[str, Any] = {}
+    try:
+        meta = functions.get("compose_section")
+        fn = meta.get("function") if isinstance(meta, dict) else meta
+        checks["callable_registry"] = callable(fn)
+
+        manifest = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []
+        names = {
+            str(item.get("name"))
+            for item in manifest
+            if isinstance(item, dict) and item.get("name")
+        }
+        checks["persisted_manifest"] = "compose_section" in names
+
+        from cognition.planning.step_execution import recognise_step_action
+        checks["plan_resolver"] = recognise_step_action({
+            "step": "Draft the thesis section",
+            "action": {"function": "compose_section"},
+        }) == "compose_section"
+
+        from think.think_utils.select_function import (
+            _CAPS_PATH,
+            _is_dispatchable,
+            _load_actions,
+        )
+        checks["dispatchable"] = _is_dispatchable("compose_section")
+        checks["selector_pool"] = "compose_section" in _load_actions()
+
+        import json as _json
+        capabilities = _json.loads(_CAPS_PATH.read_text(encoding="utf-8"))
+        checks["capability_metadata"] = bool(capabilities.get("compose_section"))
+    except Exception as exc:
+        record_failure("ORRIN_loop.production_capability_check", exc)
+        checks["check_error"] = f"{type(exc).__name__}: {exc}"
+
+    checks["reachable"] = all(value is True for key, value in checks.items()
+                              if key != "check_error") and "check_error" not in checks
+    if not checks["reachable"]:
+        missing = [key for key, value in checks.items()
+                   if key != "reachable" and value is not True]
+        exc = RuntimeError(f"production_capability_unreachable: {', '.join(missing)}")
+        record_failure("ORRIN_loop.production_capability_unreachable", exc)
+        log_error(f"[boot] {exc}")
+    else:
+        log_activity("[boot] compose_section production capability reachable end-to-end.")
+    return checks
+
+
 def _boot_context() -> Context:
     """Load and reset context at startup."""
     _validate_boot_files()
+    production_capability_status: Dict[str, Any] = {}
     for path in [RELATIONSHIPS_FILE, MODEL_CONFIG_FILE]:
         path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -560,6 +612,9 @@ def _boot_context() -> Context:
         from registry.cognition_registry import persist_names
         persist_names(COGNITIVE_FUNCTIONS)
         log_activity("Agency functions registered into cognitive loop.")
+        production_capability_status = _verify_production_capability(
+            COGNITIVE_FUNCTIONS
+        )
     except Exception as e:
         log_error(f"Failed to register agency functions: {e}")
 
@@ -882,6 +937,7 @@ def _boot_context() -> Context:
         log_error(f"state_guard sanitize_all failed at boot: {_sg_err}")
 
     context = load_context()
+    context["_production_capability_status"] = production_capability_status
     context.setdefault("committed_goal", None)
     context.setdefault("action_debt", 0)
     context.setdefault("last_action_ts", 0.0)

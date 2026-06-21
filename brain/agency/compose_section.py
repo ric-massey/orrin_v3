@@ -10,6 +10,7 @@ from brain.paths import DATA_DIR
 from utils.generate_response import generate_response, get_thinking_model, llm_ok
 from utils.llm_gate import llm_callable_by
 from utils.timeutils import now_iso_z
+from utils.failure_counter import record_failure
 
 TRACKED_WORK_DIR = DATA_DIR / "tracked_work"
 
@@ -57,7 +58,14 @@ def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dic
     gid = str(goal.get("id") or _slug(str(goal.get("title") or goal.get("name"))))
     plan = [p for p in (goal.get("plan") or []) if isinstance(p, dict)]
     pending = next((p for p in plan if p.get("status") != "completed"), None)
-    section = str(kwargs.get("section") or (pending or {}).get("step") or f"Section {len(plan) + 1}")
+    pending_action = (pending or {}).get("action")
+    action_section = pending_action.get("section") if isinstance(pending_action, dict) else None
+    section = str(
+        kwargs.get("section")
+        or action_section
+        or (pending or {}).get("step")
+        or f"Section {len(plan) + 1}"
+    )
     content = _draft(goal, section, ctx)
     if not re.match(r"^\s*#{1,3}\s+", content):
         content = f"## {section}\n\n{content}"
@@ -81,10 +89,10 @@ def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dic
     try:
         from cognition.planning.goals import load_goals, merge_updated_goal_into_tree, save_goals
         save_goals(merge_updated_goal_into_tree(load_goals(), goal))
-    except Exception:
+    except Exception as exc:
         # The durable manuscript and effect row are authoritative; a goal-store
         # sync failure must not roll back a real external effect.
-        pass
+        record_failure("compose_section.goal_store_sync", exc)
     return {
         "success": row is not None,
         "path": str(path),

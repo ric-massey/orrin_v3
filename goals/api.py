@@ -155,8 +155,8 @@ class GoalsAPI:
         # this fail-safe so the standalone goals package still works without the
         # brain package on sys.path.
         try:
-            from cognition.planning.goal_comprehension import comprehend_goal
-            enriched = comprehend_goal({
+            from cognition.planning.goal_comprehension import hydrate_goal_model
+            enriched = hydrate_goal_model({
                 "title": title, "name": title, "kind": kind, "spec": spec,
                 "tags": list(tags or []),
             })
@@ -169,8 +169,12 @@ class GoalsAPI:
                     spec.setdefault(key, enriched[key])
             if acceptance is None and enriched.get("definition_of_done"):
                 acceptance = {"criteria": enriched["definition_of_done"]}
-        except Exception:
-            pass
+        except Exception as exc:
+            try:
+                from utils.failure_counter import record_failure
+                record_failure("goals.api.create_goal.hydrate", exc)
+            except Exception:
+                _log.warning("Goal hydration failed for %r: %s", title, exc)
         if triggers:
             spec.setdefault("triggers", list(triggers))
         goal = Goal(

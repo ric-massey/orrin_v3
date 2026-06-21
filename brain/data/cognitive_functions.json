@@ -316,6 +316,10 @@
     "definition": "compose_dream(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
   },
   {
+    "name": "compose_section",
+    "definition": "compose_section(context: 'Dict[str, Any] | None' = None, **kwargs: 'Any') -> 'Dict[str, Any]'\nSubstantial, cumulative production for a committed long-form goal. Persists a manuscript section, records a tracked-work effect, and advances the owning structured plan step."
+  },
+  {
     "name": "comprehend",
     "definition": "comprehend(user_text: 'str', context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nParse user input into structured state events.\n    Returns parsed signals. Side-effects: updates Orrin's state."
   },

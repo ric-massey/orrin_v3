@@ -9,8 +9,22 @@ from utils.json_utils import extract_json
 from utils.llm_gate import llm_callable_by
 from utils.timeutils import now_iso_z
 
-_LONG_FORM = re.compile(r"\b(book|manuscript|paper|essay|article|report|guide|chapter)\b", re.I)
+_LONG_FORM = re.compile(
+    r"\b(book|manuscript|paper|essay|article|report|guide|chapter|synthesis)\b",
+    re.I,
+)
 _OUTPUT = re.compile(r"\b(write|build|create|make|compose|publish|implement|produce|draft)\b", re.I)
+_MODEL_FIELDS = (
+    "definition_of_done",
+    "grounded_parts",
+    "plan",
+    "milestones",
+    "requires_artifact",
+    "tracked_work",
+    "artifact_strategy",
+    "comprehension_source",
+    "comprehended_at",
+)
 
 
 def _text(goal: Dict[str, Any]) -> str:
@@ -22,6 +36,44 @@ def _text(goal: Dict[str, Any]) -> str:
 
 def _criterion(text: str, *, kind: str = "quality", target: Any = True) -> Dict[str, Any]:
     return {"criterion": text[:240], "kind": kind, "target": target, "met": False}
+
+
+def _plan_step(text: str, *, production: bool = False) -> Dict[str, Any]:
+    step = {"step": text[:240], "status": "pending", "generated_at": now_iso_z()}
+    if production:
+        step["action"] = {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work",
+            "section": text[:160],
+        }
+    return step
+
+
+def _ensure_production_actions(model: Dict[str, Any]) -> None:
+    """Make long-form production executable without guessing from prose."""
+    if not model.get("tracked_work"):
+        return
+    model["requires_artifact"] = True
+    model["artifact_strategy"] = {
+        "function": "compose_section",
+        "artifact_kind": "tracked_work",
+    }
+    plan = model.get("plan")
+    if not isinstance(plan, list):
+        return
+    for item in plan:
+        if not isinstance(item, dict):
+            continue
+        action = item.get("action")
+        if isinstance(action, dict) and action.get("function"):
+            continue
+        text = str(item.get("step") or "").strip()
+        if text:
+            item["action"] = {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": text[:160],
+            }
 
 
 def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
@@ -49,15 +101,12 @@ def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
             _criterion("A reasoned conclusion directly answers the goal.", kind="quality"),
             _criterion("At least one observable consequence or next decision is identified.", kind="outcome"),
         ]
-    plan = [
-        {"step": f"Establish {part}", "status": "pending", "generated_at": now_iso_z()}
-        for part in parts
-    ]
+    plan = [_plan_step(f"Establish {part}", production=long_form) for part in parts]
     milestones = [
         {"milestone": row["criterion"], "criterion_kind": row["kind"], "met": False}
         for row in criteria
     ]
-    return {
+    model = {
         "definition_of_done": criteria,
         "grounded_parts": parts,
         "plan": plan,
@@ -66,6 +115,8 @@ def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
         "tracked_work": long_form,
         "comprehension_source": "symbolic",
     }
+    _ensure_production_actions(model)
+    return model
 
 
 def _llm_comprehension(goal: Dict[str, Any]) -> Dict[str, Any]:
@@ -104,17 +155,51 @@ def comprehend_goal(goal: Dict[str, Any], context: Dict[str, Any] | None = None)
                 model.update({
                     "grounded_parts": parts[:7],
                     "definition_of_done": criteria[:6],
-                    "plan": [{"step": x, "status": "pending", "generated_at": now_iso_z()} for x in plan_text[:8]],
+                    "plan": [_plan_step(x, production=bool(proposed.get("tracked_work")))
+                             for x in plan_text[:8]],
                     "milestones": [{"milestone": x, "met": False} for x in milestone_text[:8]],
                     "requires_artifact": bool(proposed.get("requires_artifact")),
                     "tracked_work": bool(proposed.get("tracked_work")),
                     "comprehension_source": "llm",
                 })
-        except Exception:
-            pass
+        except Exception as exc:
+            from utils.failure_counter import record_failure
+            record_failure("goal_comprehension.comprehend_goal.llm", exc)
     for key, value in model.items():
         if key in {"plan", "milestones"} and out.get(key):
             continue
         out.setdefault(key, value)
+    _ensure_production_actions(out)
     out["comprehended_at"] = now_iso_z()
+    return out
+
+
+def hydrate_goal_model(
+    goal: Dict[str, Any],
+    context: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """Idempotently expose one complete goal model at both top level and spec."""
+    if not isinstance(goal, dict):
+        return goal
+    out = dict(goal)
+    spec = dict(out.get("spec") or {})
+
+    # Older v2 goals may hold the model only inside spec. Promote it before
+    # deciding whether comprehension is needed.
+    for key in _MODEL_FIELDS:
+        if key not in out and key in spec:
+            out[key] = spec[key]
+
+    required = ("definition_of_done", "grounded_parts", "plan")
+    if any(not out.get(key) for key in required):
+        out = comprehend_goal(out, context)
+    else:
+        _ensure_production_actions(out)
+        out.setdefault("comprehended_at", now_iso_z())
+
+    spec = dict(out.get("spec") or spec)
+    for key in _MODEL_FIELDS:
+        if key in out:
+            spec[key] = out[key]
+    out["spec"] = spec
     return out

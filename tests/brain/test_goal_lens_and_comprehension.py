@@ -1,5 +1,6 @@
 from cognition.goal_lens import action_prior, apply_goal_lens, relevance
-from cognition.planning.goal_comprehension import comprehend_goal
+from cognition.planning.goal_comprehension import comprehend_goal, hydrate_goal_model
+from cognition.planning.step_execution import recognise_step_action
 from cognition.planning import goals
 
 
@@ -15,6 +16,85 @@ def test_comprehension_builds_checkable_long_form_model(monkeypatch):
     assert goal["milestones"]
     assert goal["requires_artifact"] is True
     assert goal["tracked_work"] is True
+    assert goal["artifact_strategy"]["function"] == "compose_section"
+    assert all(
+        step["action"]["function"] == "compose_section"
+        for step in goal["plan"]
+    )
+
+
+def test_hydration_promotes_spec_and_preserves_structured_production_action(monkeypatch):
+    monkeypatch.setattr(
+        "cognition.planning.goal_comprehension.llm_callable_by",
+        lambda _owner: False,
+    )
+    goal = hydrate_goal_model({
+        "id": "synthesis-1",
+        "title": "Write a synthesis of the binding results",
+        "spec": {"description": "Produce durable cumulative prose."},
+    })
+
+    assert goal["definition_of_done"]
+    assert goal["spec"]["definition_of_done"] == goal["definition_of_done"]
+    assert goal["tracked_work"] is True
+    assert recognise_step_action(goal["plan"][0]) == "compose_section"
+
+
+def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
+    from cognition import intrinsic_goals
+
+    monkeypatch.setattr(
+        "cognition.planning.goal_comprehension.llm_callable_by",
+        lambda _owner: False,
+    )
+    goal = intrinsic_goals._build_committed_goal({
+        "title": "Write a synthesis about pre-workspace binding",
+        "description": "Turn the findings into durable prose.",
+        "driven_by": "output_producing",
+        "requires_artifact": True,
+    }, "g-production")
+
+    assert goal["grounded_parts"]
+    assert goal["definition_of_done"]
+    assert goal["tracked_work"] is True
+    assert goal["plan"][0]["action"]["function"] == "compose_section"
+
+
+def test_planned_action_recruitment_does_not_require_impasse():
+    from think.think_utils.select_function import _planned_action_recruitment
+
+    boost = _planned_action_recruitment({
+        "committed_goal": {"_needs_deliberate_action": "compose_section"},
+        "affect_state": {"core_signals": {"impasse_signal": 0.0}},
+    }, ["compose_section", "reflection"])
+
+    assert boost["compose_section"] == 0.22
+
+
+def test_production_capability_is_reachable_through_runtime_surfaces():
+    from agency.compose_section import compose_section
+    from brain.ORRIN_loop import _verify_production_capability
+    from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
+    from registry.cognition_registry import persist_names
+
+    functions = {
+        "compose_section": {"function": compose_section, "is_cognition": True},
+    }
+    prior = (
+        COGNITIVE_FUNCTIONS_LIST_FILE.read_bytes()
+        if COGNITIVE_FUNCTIONS_LIST_FILE.exists()
+        else None
+    )
+    try:
+        persist_names(functions)
+        result = _verify_production_capability(functions)
+    finally:
+        if prior is None:
+            COGNITIVE_FUNCTIONS_LIST_FILE.unlink(missing_ok=True)
+        else:
+            COGNITIVE_FUNCTIONS_LIST_FILE.write_bytes(prior)
+
+    assert result["reachable"] is True
 
 
 def test_goal_lens_is_bounded_and_lifts_on_completion():

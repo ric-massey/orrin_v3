@@ -24,6 +24,7 @@ from typing import Any, Dict, List, Optional
 
 from brain.paths import DATA_DIR
 from utils.log import log_private
+from utils.failure_counter import record_failure
 
 _STREAM_FILE = DATA_DIR / "conscious_stream.json"
 _STREAM_MAX = 200          # persisted stream length
@@ -223,8 +224,8 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 if lens_rel:
                     c["goal_lens_relevance"] = round(lens_rel, 3)
                     c["salience"] += min(0.18, 0.18 * lens_rel)
-            except Exception:
-                pass
+            except Exception as exc:
+                record_failure("global_workspace.goal_lens_relevance", exc)
             rel = _subconscious_relevance(c, context)
             if rel is not None:
                 c["subconscious_relevance"] = round(rel, 3)
@@ -272,8 +273,8 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 **({"subconscious_gate": c["subconscious_gate"]} if c.get("subconscious_gate") else {}),
                 **({"goal_lens_relevance": c["goal_lens_relevance"]} if c.get("goal_lens_relevance") is not None else {}),
             } for c in ranked[:6]]
-        except Exception:
-            pass
+        except Exception as exc:
+            record_failure("global_workspace.candidate_telemetry", exc)
 
         # Record for habituation (bounded window).
         context["_gw_recent"] = (recent + [str(winner["content"]).strip().lower()[:40]])[-6:]
@@ -324,8 +325,8 @@ def _append_stream(moment: Dict[str, Any]) -> None:
             data.append(moment)
             if len(data) > _STREAM_MAX:
                 del data[:-_STREAM_MAX]
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("global_workspace.append_stream", exc)
 
 
 def current_awareness(context: Dict[str, Any]) -> str:

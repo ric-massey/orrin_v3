@@ -1125,7 +1125,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     global _pursuit_call_count
     from cognition.planning.step_execution import recognise_step_action, execute_step_action
 
-    _act_fn = recognise_step_action(next_step)
+    _act_fn = recognise_step_action(next_step_dict)
     _executed = False
     _result_text = ""
     if _act_fn:

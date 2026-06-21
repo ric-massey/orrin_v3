@@ -6,7 +6,7 @@ import re
 import json
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import List, Dict, Optional, Tuple
+from typing import Any, List, Dict, Optional, Tuple
 
 from utils.json_utils import load_json, save_json, extract_json
 from utils.generate_response import generate_response, get_thinking_model, llm_ok
@@ -306,10 +306,10 @@ def add_goal(goal: Dict, parent_name: Optional[str] = None) -> Dict:
     full = load_goals()
     g = dict(goal)
     try:
-        from cognition.planning.goal_comprehension import comprehend_goal
-        g = comprehend_goal(g)
-    except Exception:
-        pass
+        from cognition.planning.goal_comprehension import hydrate_goal_model
+        g = hydrate_goal_model(g)
+    except Exception as exc:
+        record_failure("goals.add_goal.hydrate", exc)
     now = now_iso_z()
     g.setdefault("status", "pending")
     g.setdefault("timestamp", now)
@@ -1367,7 +1367,7 @@ def is_placeholder_step(s: str) -> bool:
     return _normalize_step_text(s) in _PLACEHOLDER_STEPS
 
 
-def set_goal_plan(goal: Dict, steps: List[str]) -> None:
+def set_goal_plan(goal: Dict, steps: List[Any]) -> None:
     """
     Attach a fresh plan to a goal from a list of step description strings.
     Overwrites any existing plan.
@@ -1379,14 +1379,20 @@ def set_goal_plan(goal: Dict, steps: List[str]) -> None:
     ts = now_iso_z()
     plan: List[Dict] = []
     seen: set = set()
-    for s in steps:
+    for raw in steps:
+        source = dict(raw) if isinstance(raw, dict) else {}
+        s = source.get("step") if source else raw
         if not isinstance(s, str) or not s.strip():
             continue
         key = _normalize_step_text(s)
         if not key or key in seen or is_placeholder_step(s):
             continue
         seen.add(key)
-        plan.append({"step": str(s)[:200], "status": "pending", "generated_at": ts})
+        item = {"step": str(s)[:200], "status": "pending", "generated_at": ts}
+        action = source.get("action")
+        if isinstance(action, dict) and action.get("function"):
+            item["action"] = dict(action)
+        plan.append(item)
     goal["plan"] = plan
     goal["last_updated"] = ts
 

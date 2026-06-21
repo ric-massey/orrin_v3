@@ -16,7 +16,7 @@ PYTHON := $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 RUFF   := $(PYTHON) -m ruff
 
 .DEFAULT_GOAL := help
-.PHONY: help verify test lint lint-fix format fe-typecheck fe-build fe-lint frontend
+.PHONY: help verify test lint lint-fix format audit-exceptions fe-typecheck fe-build fe-lint frontend
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?##' $(MAKEFILE_LIST) 2>/dev/null | \
@@ -36,6 +36,9 @@ lint-fix: ## Ruff lint with safe autofixes applied
 
 format: ## Ruff format in place (run deliberately; not part of verify)
 	$(RUFF) format .
+
+audit-exceptions: ## Report broad exception handlers that silently discard failures
+	$(PYTHON) brain/scripts/audit_exception_handlers.py
 
 fe-typecheck: ## Frontend TypeScript type-check
 	cd frontend && npm run typecheck

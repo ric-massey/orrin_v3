@@ -291,7 +291,8 @@ def _capability_descriptions() -> Dict[str, str]:
         return _CAPS_CACHE["data"]
     try:
         _load_manifest()
-    except Exception:
+    except Exception as exc:
+        record_failure("select_function.capability_descriptions", exc)
         _CAPS_CACHE["data"] = _CAPS_CACHE["data"] or {}
     return _CAPS_CACHE["data"]
 
@@ -304,8 +305,8 @@ def _fns_tagged(*tag_names: str) -> frozenset:
     try:
         if _time.time() - _CAPS_CACHE["t"] >= 60.0 or not _CAPS_CACHE["data"]:
             _load_manifest()
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("select_function.capability_tags", exc)
     out: set = set()
     tags = _CAPS_CACHE.get("tags") or {}
     for t in tag_names:
@@ -318,8 +319,8 @@ def _tag_weights(tag_name: str) -> Dict[str, float]:
     try:
         if _time.time() - _CAPS_CACHE["t"] >= 60.0 or not _CAPS_CACHE["data"]:
             _load_manifest()
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("select_function.capability_tag_weights", exc)
     return dict((_CAPS_CACHE.get("tags") or {}).get(tag_name) or {})
 
 
@@ -344,8 +345,8 @@ def _learned_stats() -> Dict[str, Dict[str, float]]:
             for k, v in d.items() if isinstance(v, dict)
         }
         _STATS_CACHE["t"] = _time.time()
-    except Exception:
-        pass
+    except Exception as exc:
+        record_failure("select_function.learned_stats", exc)
     return _STATS_CACHE["data"]
 
 # Meta-rut detection (think-vs-act). The anti-repeat guard only catches a single
@@ -591,7 +592,8 @@ def _load_behavioral_names() -> frozenset:
             elif isinstance(it, str):
                 names.add(it)
         return frozenset(names)
-    except Exception:
+    except Exception as exc:
+        record_failure("select_function.behavioral_names", exc)
         return frozenset()
 
 
@@ -790,6 +792,20 @@ def _get_directive_text() -> str:
     if isinstance(cd, str):
         return cd
     return ""
+
+
+def _planned_action_recruitment(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
+    """Bounded deliberate boost for an explicit Executive handoff."""
+    goal = context.get("committed_goal") or {}
+    need_fn = goal.get("_needs_deliberate_action") if isinstance(goal, dict) else None
+    if not need_fn or need_fn not in actions:
+        return {}
+    impasse = float(
+        ((context.get("affect_state") or {}).get("core_signals") or {}).get(
+            "impasse_signal", 0.0
+        ) or 0.0
+    )
+    return {str(need_fn): min(0.6, 0.22 + 0.5 * impasse)}
 
 
 def _get_focus_goal_text() -> str:
@@ -998,7 +1014,8 @@ def _bandit_hint_scores(actions: List[str], feats: Dict[str, float]) -> Dict[str
         if not raw:
             return {}
         return {k: max(0.0, min(1.0, float(v))) for k, v in raw.items()}
-    except Exception:
+    except Exception as exc:
+        record_failure("select_function.bandit_scores", exc)
         return {}
 
 
@@ -1367,11 +1384,10 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # alarm clears by the goal getting done. Additive bias, never a forced pick (I7).
     _recruit_boost: Dict[str, float] = {}
     try:
-        _cg_recruit = context.get("committed_goal") or {}
-        _need_fn = _cg_recruit.get("_needs_deliberate_action") if isinstance(_cg_recruit, dict) else None
-        _imp_recruit = float(((context.get("affect_state") or {}).get("core_signals") or {}).get("impasse_signal", 0.0) or 0.0)
-        if _need_fn and _need_fn in actions and _imp_recruit > 0.3:
-            _recruit_boost[_need_fn] = min(0.6, 0.25 + 0.5 * _imp_recruit)
+        # An explicit planned handoff is already evidence of relevance. It
+        # should not need to manufacture distress before becoming viable;
+        # impasse amplifies the bounded recruitment instead.
+        _recruit_boost = _planned_action_recruitment(context, actions)
     except Exception as _e:
         record_failure("select_function.select_function.recruit", _e)
 
@@ -1794,8 +1810,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         try:
             from cognition.goal_lens import action_prior as _goal_lens_prior
             s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
-        except Exception:
-            pass
+        except Exception as exc:
+            record_failure("select_function.goal_lens_prior", exc)
         total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
@@ -1914,8 +1930,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                     total *= 0.15
                 else:
                     _supp.pop(name, None)  # cooldown expired
-            except Exception:
-                pass
+            except Exception as exc:
+                record_failure("select_function.fn_suppression", exc)
 
         scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore}))
 
@@ -1927,8 +1943,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                 for nm, sc, parts in scored[:8]
             ]
             context.setdefault("_goal_lens_telemetry", {})["selection_top"] = _lens_ranked
-        except Exception:
-            pass
+        except Exception as exc:
+            record_failure("select_function.goal_lens_telemetry", exc)
 
     # Consume the one-cycle goal-deliberation lockout now that scoring is done,
     # so it affects exactly this selection and not subsequent ones.
@@ -1972,8 +1988,8 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                             _expl_eps + float(_tuning.SELECTOR_RUT_EPS_GAIN)
                             * (_conc - _trip) / max(1.0 - _trip, 1e-6),
                         )
-            except Exception:
-                pass
+            except Exception as exc:
+                record_failure("select_function.rut_exploration", exc)
             if _rand.random() < _expl_eps:
                 _stats_now = _learned_stats()
                 _tail = [

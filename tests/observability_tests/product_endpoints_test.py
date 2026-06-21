@@ -12,6 +12,8 @@ from backend.server.app import app
 from brain.utils import egress, prefs
 
 server_app = importlib.import_module("backend.server.app")
+# _DATA_DIR was factored into backend.server.state (Phase 4C); patch it there.
+server_state = importlib.import_module("backend.server.state")
 
 # Loopback client: control endpoints (export/import) are localhost-only without a token.
 client = TestClient(app, client=("127.0.0.1", 0))
@@ -97,7 +99,7 @@ def test_cognition_feeds_never_leak_private_thoughts():
 
 
 def test_belief_revisions_unifies_self_opinion_and_symbolic(tmp_path, monkeypatch):
-    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    monkeypatch.setattr(server_state, "_DATA_DIR", tmp_path)
     (tmp_path / "self_belief_revisions.json").write_text(json.dumps({
         "COGNITIVE": {
             "confidence": 0.8,
@@ -129,7 +131,7 @@ def test_belief_revisions_unifies_self_opinion_and_symbolic(tmp_path, monkeypatc
 
 
 def test_predictions_exposes_calibration_and_exploration_trends(tmp_path, monkeypatch):
-    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    monkeypatch.setattr(server_state, "_DATA_DIR", tmp_path)
     (tmp_path / "calibration_state.json").write_text(json.dumps({"brier": 0.1, "bias": 0.0, "n": 2}))
     (tmp_path / "prediction_domain_stats.json").write_text(json.dumps({}))
     (tmp_path / "predictions.json").write_text(json.dumps([
@@ -152,7 +154,7 @@ def test_predictions_exposes_calibration_and_exploration_trends(tmp_path, monkey
 
 
 def test_learning_exposes_goal_progress_and_rut(tmp_path, monkeypatch):
-    monkeypatch.setattr(server_app, "_DATA_DIR", tmp_path)
+    monkeypatch.setattr(server_state, "_DATA_DIR", tmp_path)
     (tmp_path / "decision_stats.json").write_text(json.dumps({}))
     (tmp_path / "bandit_state.json").write_text(json.dumps({}))
     (tmp_path / "reward_trace.json").write_text(json.dumps([]))

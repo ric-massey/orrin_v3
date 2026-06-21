@@ -29,9 +29,9 @@ from fastapi.staticfiles import StaticFiles
 
 from .config import RESPONSE_CAP, demo_enabled, trusted_origins
 from .demo import run_demo
-from .hub import Hub
+from . import state as server_state
+from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_churn
 
-hub = Hub()
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
 # loopback telemetry server, so the page resolves its WS/REST from its own origin
@@ -104,11 +104,6 @@ _REPO_ROOT = _Path(__file__).resolve().parents[2]
 # the stale brain/data — the UI then shows an empty/old mind (§13.2 split-brain).
 # Consume the one resolver the brain uses; fall back to the same env logic if it
 # can't be imported (e.g. brain/ not on sys.path).
-try:
-    from brain.paths import DATA_DIR as _DATA_DIR  # noqa: E402
-except Exception:  # pragma: no cover - defensive
-    _env_data = os.environ.get("ORRIN_DATA_DIR")
-    _DATA_DIR = _Path(_env_data).resolve() if _env_data else _REPO_ROOT / "brain" / "data"
 
 # /source serves the metric-info pages their cited source — only ever real
 # source/text files. Restrict to these suffixes and forbid dotfiles so the
@@ -124,7 +119,7 @@ async def catalog() -> JSONResponse:
     stats: Dict[str, Any] = {}
     try:
         import json as _json
-        stats = _json.loads((_DATA_DIR / "decision_stats.json").read_text("utf-8"))
+        stats = _json.loads((server_state._DATA_DIR / "decision_stats.json").read_text("utf-8"))
     except Exception:
         stats = {}
     fns = {}
@@ -140,7 +135,7 @@ async def catalog() -> JSONResponse:
     edges = []
     try:
         import json as _json
-        chains = _json.loads((_DATA_DIR / "function_chains.json").read_text("utf-8"))
+        chains = _json.loads((server_state._DATA_DIR / "function_chains.json").read_text("utf-8"))
         for src, succ in (chains or {}).items():
             if src not in fns or not isinstance(succ, dict):
                 continue
@@ -160,7 +155,7 @@ async def history(n: int = 80) -> JSONResponse:
     whether it was an agentic action. Read from the cognition history log."""
     try:
         import json as _json
-        h = _json.loads((_DATA_DIR / "cognition_history.json").read_text("utf-8"))
+        h = _json.loads((server_state._DATA_DIR / "cognition_history.json").read_text("utf-8"))
         if not isinstance(h, list):
             h = []
         out = []
@@ -191,7 +186,7 @@ async def goals_detail() -> JSONResponse:
     (history) — for the clickable goal panel."""
     try:
         import json as _json
-        raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+        raw = _json.loads((server_state._DATA_DIR / "goals_mem.json").read_text("utf-8"))
         from goal_io import summarize_goal_tree
         active_id = None
         for item in (hub.state.get("goals") or []):
@@ -225,7 +220,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
             return None
 
     try:
-        goals_raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+        goals_raw = _json.loads((server_state._DATA_DIR / "goals_mem.json").read_text("utf-8"))
         target: Dict[str, Any] = {}
 
         def find(o: Any) -> None:
@@ -253,7 +248,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
             title = title.replace(junk, "")
         kws = [w for w in _re.findall(r"[a-z]{4,}", title) if w not in ("about", "with", "from", "what", "that", "this")]
 
-        lm = _json.loads((_DATA_DIR / "long_memory.json").read_text("utf-8"))
+        lm = _json.loads((server_state._DATA_DIR / "long_memory.json").read_text("utf-8"))
         arts = []
         for e in lm:
             if not isinstance(e, dict):
@@ -332,7 +327,7 @@ async def consciousness(n: int = 60) -> JSONResponse:
     moments {content, source, salience, ts} written by global_workspace."""
     try:
         import json as _json
-        data = _json.loads((_DATA_DIR / "conscious_stream.json").read_text("utf-8"))
+        data = _json.loads((server_state._DATA_DIR / "conscious_stream.json").read_text("utf-8"))
         if not isinstance(data, list):
             data = []
         out = [m for m in data[-max(1, min(200, n)):] if isinstance(m, dict)]
@@ -363,7 +358,7 @@ async def memory_store(store: str = "long", q: str = "", n: int = 50, offset: in
         return JSONResponse({"entries": [], "total": 0,
                              "error": f"unknown store; one of {sorted(_MEMORY_STORES)}"}, status_code=400)
     try:
-        raw = _json.loads((_DATA_DIR / fname).read_text("utf-8"))
+        raw = _json.loads((server_state._DATA_DIR / fname).read_text("utf-8"))
         # knowledge_graph.json is {entities, relations, meta} — browse the entities.
         if isinstance(raw, dict):
             ents = raw.get("entities")
@@ -416,7 +411,7 @@ async def memory_counts() -> JSONResponse:
     out: Dict[str, int] = {}
     for key, fname in _MEMORY_STORES.items():
         try:
-            raw = _json.loads((_DATA_DIR / fname).read_text("utf-8"))
+            raw = _json.loads((server_state._DATA_DIR / fname).read_text("utf-8"))
             if isinstance(raw, dict):
                 ents = raw.get("entities")
                 out[key] = len(ents) if isinstance(ents, (list, dict)) else 0
@@ -434,7 +429,7 @@ async def chat_history(n: int = 100) -> JSONResponse:
     shared conversation history instead of an empty localStorage one."""
     try:
         import json as _json
-        data = _json.loads((_DATA_DIR / "chat_log.json").read_text("utf-8"))
+        data = _json.loads((server_state._DATA_DIR / "chat_log.json").read_text("utf-8"))
         if not isinstance(data, list):
             data = []
         out = [m for m in data[-max(1, min(500, n)):] if isinstance(m, dict)]
@@ -448,68 +443,6 @@ async def chat_history(n: int = 100) -> JSONResponse:
 # Every box reads real files; numbers are computed server-side so the L0 row
 # polls ONE endpoint (/vitals) on one timer instead of eleven.
 
-# Files that exist but fail to JSON-parse (corruption) are tracked here so the
-# UI can distinguish "data file unreadable" from "nothing yet" instead of both
-# rendering as an empty panel (UI_AUDIT L6). Surfaced as a /vitals "Data" chip.
-_DATA_PARSE_ERRORS: Dict[str, str] = {}
-
-
-def _read_json(fname: str, default: Any) -> Any:
-    import json as _json
-    try:
-        text = (_DATA_DIR / fname).read_text("utf-8")
-    except FileNotFoundError:
-        _DATA_PARSE_ERRORS.pop(fname, None)  # missing ≠ corrupt
-        return default
-    except Exception:
-        return default
-    try:
-        d = _json.loads(text)
-        _DATA_PARSE_ERRORS.pop(fname, None)  # parsed OK — clear any prior error
-        return d if isinstance(d, type(default)) else default
-    except Exception as e:
-        _DATA_PARSE_ERRORS[fname] = str(e)[:160]
-        return default
-
-
-def _read_jsonl_tail(fname: str, n: int) -> list:
-    import json as _json
-    try:
-        lines = (_DATA_DIR / fname).read_text("utf-8").splitlines()
-        out = []
-        for ln in lines[-max(1, n):]:
-            try:
-                out.append(_json.loads(ln))
-            except Exception:
-                continue
-        return out
-    except Exception:
-        return []
-
-
-def _float_or_none(v: Any) -> Optional[float]:
-    try:
-        return float(v)
-    except Exception:
-        return None
-
-
-def _belief_churn(rows: list[Dict[str, Any]]) -> Dict[str, Dict[str, int]]:
-    churn: Dict[str, Dict[str, int]] = {}
-    for row in rows:
-        kind = str(row.get("kind") or "unknown")
-        rec = churn.setdefault(kind, {"count": 0, "strengthened": 0, "weakened": 0, "unchanged": 0})
-        rec["count"] += 1
-        delta = _float_or_none(row.get("confidence_delta"))
-        if delta is None:
-            rec["unchanged"] += 1
-        elif delta > 0:
-            rec["strengthened"] += 1
-        elif delta < 0:
-            rec["weakened"] += 1
-        else:
-            rec["unchanged"] += 1
-    return churn
 
 
 @api.get("/benchmarks")
@@ -1022,7 +955,7 @@ async def language(n: int = 12) -> JSONResponse:
 
     def _artifact_size(fname: str) -> Any:
         try:
-            return (_DATA_DIR / "language" / fname).stat().st_size
+            return (server_state._DATA_DIR / "language" / fname).stat().st_size
         except Exception:
             return None
 
@@ -1087,16 +1020,16 @@ async def death(request: Request) -> JSONResponse:
     import json as _json
     out: Dict[str, Any] = {"state": "dead"}
     try:
-        out["final_thoughts"] = _json.loads((_DATA_DIR / "final_thoughts.json").read_text("utf-8"))
+        out["final_thoughts"] = _json.loads((server_state._DATA_DIR / "final_thoughts.json").read_text("utf-8"))
     except Exception:
         out["final_thoughts"] = []
     try:
-        out["private_thoughts"] = (_DATA_DIR / "private_thoughts.txt").read_text("utf-8")[-20000:]
+        out["private_thoughts"] = (server_state._DATA_DIR / "private_thoughts.txt").read_text("utf-8")[-20000:]
     except Exception:
         out["private_thoughts"] = ""
     out["autobiography"] = _read_json("autobiography.json", {})
     try:
-        out["conscious_stream"] = _json.loads((_DATA_DIR / "conscious_stream.json").read_text("utf-8"))
+        out["conscious_stream"] = _json.loads((server_state._DATA_DIR / "conscious_stream.json").read_text("utf-8"))
     except Exception:
         out["conscious_stream"] = []
     try:
@@ -1168,7 +1101,7 @@ def _current_interests(limit: int = 6) -> List[str]:
     titles: List[str] = []
     seen: set = set()
     try:
-        raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+        raw = _json.loads((server_state._DATA_DIR / "goals_mem.json").read_text("utf-8"))
 
         def walk(o: Any) -> None:
             if isinstance(o, dict):
@@ -1199,7 +1132,7 @@ async def life() -> JSONResponse:
     try:
         import psutil as _psutil
         vm = _psutil.virtual_memory()
-        du = _psutil.disk_usage(str(_DATA_DIR))
+        du = _psutil.disk_usage(str(server_state._DATA_DIR))
         readings["cpu"] = {
             "available_pct": round(100.0 - _psutil.cpu_percent(interval=None), 1),
             "load_pct": round(_psutil.cpu_percent(interval=None), 1),
@@ -1272,7 +1205,7 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
         events.append({"type": kind, "ts": ts, "label": str(label)[:200]})
 
     try:
-        raw = _json.loads((_DATA_DIR / "goals_mem.json").read_text("utf-8"))
+        raw = _json.loads((server_state._DATA_DIR / "goals_mem.json").read_text("utf-8"))
         seen: set = set()
 
         def walk(o: Any) -> None:
@@ -1442,10 +1375,10 @@ async def vitals() -> JSONResponse:
 
     # Data integrity (L6): a file that exists but fails to parse reads as "empty"
     # everywhere else — surface it loudly here so corruption is visible, not silent.
-    if _DATA_PARSE_ERRORS:
-        n = len(_DATA_PARSE_ERRORS)
+    if server_state._DATA_PARSE_ERRORS:
+        n = len(server_state._DATA_PARSE_ERRORS)
         chip("data", "Data", f"{n} corrupt", "err",
-             "unreadable: " + ", ".join(sorted(_DATA_PARSE_ERRORS)[:6]))
+             "unreadable: " + ", ".join(sorted(server_state._DATA_PARSE_ERRORS)[:6]))
 
     return JSONResponse({"chips": chips, "ts": time.time()})
 

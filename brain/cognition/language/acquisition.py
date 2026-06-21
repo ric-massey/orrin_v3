@@ -22,13 +22,16 @@ from typing import Dict, List
 from brain.utils.json_utils import load_json
 from brain.utils.log import log_activity
 from brain.paths import (
+    DATA_DIR as _DATA_DIR,
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, CHAT_LOG_FILE, BODY_SENSE_FILE,
     PREDICTIONS_FILE, SPEECH_LOG_FILE, KNOWLEDGE_GRAPH_FILE,
 )
 
 from brain.cognition.language import native_lm, library
 
-_REPLAY_FILE = Path(__file__).resolve().parents[2] / "data" / "language" / "replay_corpus.txt"
+# Resolved data dir (honors ORRIN_DATA_DIR) — defaults to brain/data in a dev
+# checkout, but follows the relocated state tree under a packaged app / tests.
+_REPLAY_FILE = _DATA_DIR / "language" / "replay_corpus.txt"
 _MAX_BLOCK = 50000
 _REPLAY_KEEP = 400000
 
@@ -39,7 +42,7 @@ _REPLAY_KEEP = 400000
 # their reconstructed account of those events in their own words — not a sensor
 # feed (reconstructive memory; Conway's self-memory system). So his mechanism is
 # dropped and his felt account is what trains the organ.
-_FELT_FILE = Path(__file__).resolve().parents[2] / "data" / "language" / "felt_experience.txt"
+_FELT_FILE = _DATA_DIR / "language" / "felt_experience.txt"
 _FELT_KEEP = 120000               # cap the felt-narrative corpus (chars)
 _NARRATE_MIN_INTERVAL_S = 90.0    # min seconds between narrations, so the fast (~10s) cognitive cycle can't flood the corpus
 _last_narrate = 0.0

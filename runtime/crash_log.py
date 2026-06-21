@@ -49,7 +49,15 @@ def _log_thread_uncaught(args) -> None:
 def install() -> None:
     """Open the crash log, arm faulthandler, and route uncaught exceptions to the log."""
     global _crash_fp
-    crash_path = _REPO_ROOT / "brain" / "logs" / "crash.log"
+    # Route to the RESOLVED logs dir (honors ORRIN_LOGS_DIR) — defaults to brain/logs
+    # in a dev checkout, but a packaged app's program folder is read-only, so the
+    # crash log must follow the relocated state tree (Group C). Falls back to the
+    # in-repo path if brain.paths can't be imported this early.
+    try:
+        from brain.paths import LOGS_DIR as _logs_dir
+    except Exception:
+        _logs_dir = _REPO_ROOT / "brain" / "logs"
+    crash_path = _logs_dir / "crash.log"
     crash_path.parent.mkdir(parents=True, exist_ok=True)
     _crash_fp = open(crash_path, "a")
     _crash_fp.write(f"--- session start {_datetime.datetime.now().isoformat()} pid={os.getpid()} ---\n")

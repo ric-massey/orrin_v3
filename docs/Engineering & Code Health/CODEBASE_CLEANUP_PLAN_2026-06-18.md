@@ -12,6 +12,25 @@ Detailed structural findings are recorded in
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
 
+- **Phase 4A/4B boot characterization net — DONE.** Before extracting any
+  lifecycle stage out of `main.py`/`ORRIN_loop.py`, added
+  `tests/test_main_boot.py`: subprocess characterization tests that pin the real
+  entrypoint's observable boot→shutdown contract against a redirected (tmp)
+  state dir — (1) a headless single-cycle run (`ORRIN_ONCE=1`, `ORRIN_UI=0`)
+  brings every subsystem up in dependency order, runs one cognitive cycle, and
+  shuts down clean (exit 0 + `runstate.json` flipped clean); (2) the
+  single-instance flock refuses a second boot with exit 3 before any heavy
+  subsystem starts; (3) SIGINT drives the async-signal-safe
+  `_on_signal → _main_stop → _graceful_shutdown` handoff to a clean exit. This
+  is the safety net the RuntimeContext restructure (the coupled half of 4B + 4A)
+  leans on. Writing it surfaced and fixed two real hermeticity/packaging leaks —
+  `runtime/crash_log.py` (`brain/logs/crash.log`) and
+  `brain/cognition/language/acquisition.py` (`felt_experience.txt` /
+  `replay_corpus.txt`) hardcoded `__file__`-relative paths instead of honoring
+  the resolved `LOGS_DIR`/`DATA_DIR`; both now follow the relocated state tree
+  (a no-op for dev checkouts, correct for tests + a read-only packaged program
+  folder). Suite **921 passed / 1 skipped**, ruff clean.
+
 - **Phase 4C (backend/server/app.py) — DONE.** app.py went 1,988 → 225 lines.
   Every route was extracted into focused, sub-600-line modules under
   `backend/server/`: `state.py` (DI/read helpers), `auth.py` (request guards),

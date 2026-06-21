@@ -26,26 +26,33 @@ from PyInstaller.utils.hooks import collect_all, collect_submodules
 ROOT = Path(SPECPATH).resolve().parent          # repo root (SPECPATH = packaging/)
 BRAIN = ROOT / "brain"
 
-# Brain modules import by bare name (`from utils import ...`, `import paths`) because
-# brain/ is on sys.path at runtime. collect_submodules() below runs BEFORE Analysis, so
-# put brain/ on the path now or those bare-name packages won't resolve at build time.
-if str(BRAIN) not in sys.path:
-    sys.path.insert(0, str(BRAIN))
+# First-party code imports under the single `brain.*` namespace (Phase 3), and the
+# v2 stores (`memory/`, `goals/`, `reaper/`) under their bare top-level names. The
+# repo root must be on the path for `brain.*` to resolve when collect_submodules()
+# runs (before Analysis); brain/ stays on too for any self-authored bare imports.
+for _p in (str(ROOT), str(BRAIN)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
-# ── Brain packages: imports use bare names (`from utils import ...`, `from paths
-# import ...`) because brain/ is on sys.path. A frozen app serves NO loose source, and
-# Orrin's deferred/dynamic imports defeat static analysis — so collect each subpackage
-# explicitly. pathex=[brain] lets these bare names resolve at build time.
-_BRAIN_PKGS = [
-    "utils", "cognition", "behavior", "core", "memory", "registry", "symbolic",
-    "agency", "embodiment", "cog_memory", "think", "perception",
+# ── Packages to bundle explicitly: a frozen app serves NO loose source, and Orrin's
+# deferred/dynamic imports defeat PyInstaller's static analysis, so collect each
+# package's submodules by name. Brain leaves are collected under `brain.*`; the v2
+# stores are top-level packages.
+_BRAIN_LEAVES = [
+    "utils", "cognition", "behavior", "core", "registry", "symbolic",
+    "agency", "embodiment", "cog_memory", "think", "evidence", "config",
+    "motivation", "peers", "benchmarks", "eval",
 ]
+_ROOT_PKGS = ["memory", "goals", "reaper"]
 hiddenimports = []
-for _pkg in _BRAIN_PKGS:
+for _pkg in _BRAIN_LEAVES:
     if (BRAIN / _pkg).is_dir():
+        hiddenimports += collect_submodules(f"brain.{_pkg}")
+for _pkg in _ROOT_PKGS:
+    if (ROOT / _pkg).is_dir():
         hiddenimports += collect_submodules(_pkg)
-# Top-level brain modules imported by bare name.
-hiddenimports += ["paths"]
+# Top-level brain module imported as brain.paths.
+hiddenimports += ["brain.paths", "brain"]
 # Optional LLM provider SDKs (Part 11) — included only if installed at build time.
 for _opt in ("anthropic", "google.genai"):
     try:

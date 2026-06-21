@@ -16,7 +16,6 @@ import os
 import signal
 import threading
 import time
-import uuid
 from typing import Any, AsyncIterator, Callable, Dict, List, Optional
 
 from pathlib import Path as _Path2
@@ -26,7 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .config import RESPONSE_CAP, demo_enabled, trusted_origins
+from .config import demo_enabled, trusted_origins
 from .demo import run_demo
 from . import state as server_state
 from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_churn
@@ -35,14 +34,13 @@ from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_ch
 from .auth import (
     authorize_read as _authorize_read,
     authorize_control as _authorize_control,
-    authorize_ingest as _authorize_ingest,
-    reject_untrusted_origin as _reject_untrusted_origin,
     ws_read_authorized as _ws_read_authorized,
 )
 from .routers import memory as memory_routes
 from .routers import source as source_routes
 from .routers import diagnostics as diagnostics_routes
 from .routers import settings as settings_routes
+from .routers import agent as agent_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -1273,6 +1271,7 @@ app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 # directly on the app, NOT under the read-token api router (Phase 4C).
 app.include_router(diagnostics_routes.router)
 app.include_router(settings_routes.router)
+app.include_router(agent_routes.router)
 
 
 # ── Control: stop Orrin from the UI ──────────────────────────────────────────
@@ -1427,72 +1426,6 @@ async def control_reset(request: Request) -> Dict[str, Any]:
 
 
 # ── Producer ingest ──────────────────────────────────────────────────────────
-@app.post("/ingest")
-async def ingest(frame: Dict[str, Any], request: Request) -> Dict[str, Any]:
-    """Producer entry point used by TelemetryBridge. Merge + broadcast a delta."""
-    _authorize_ingest(request)
-    delta = hub.merge(frame or {})
-    await hub.broadcast({"type": "delta", "frame": delta})
-    return {"ok": True}
-
-
-# ── Input pipeline: Face → core loop → Face ──────────────────────────────────
-@app.post("/api/agent/input")
-async def agent_input(body: Dict[str, Any], request: Request) -> Any:
-    """The Face submits a user message; queued for the core loop, surfaced on the Brain stream."""
-    _reject_untrusted_origin(request)
-    message = str((body or {}).get("message", "")).strip()
-    if not message:
-        return JSONResponse({"ok": False, "error": "empty message"}, status_code=400)
-    item = {
-        "id": uuid.uuid4().hex[:12],
-        "message": message,
-        "ts": time.time(),
-        "meta": (body or {}).get("meta") or {},
-    }
-    hub.inputs.append(item)
-    delta = hub.merge({
-        "logs": [{"level": "info", "source": "face", "message": f"user → {message[:140]}"}],
-        "memory": [{"op": "write", "store": "inbox", "key": item["id"], "summary": message[:140]}],
-    })
-    await hub.broadcast({"type": "delta", "frame": delta})
-    return {"ok": True, "id": item["id"]}
-
-
-@app.get("/api/agent/inputs")
-async def agent_inputs(request: Request) -> Dict[str, Any]:
-    """Drain and return all pending Face inputs (used by the core loop)."""
-    _reject_untrusted_origin(request)
-    items = list(hub.inputs)
-    hub.inputs.clear()
-    return {"inputs": items}
-
-
-@app.post("/api/agent/respond")
-async def agent_respond(body: Dict[str, Any], request: Request) -> Any:
-    """The core loop delivers its reply for a given input id; the Face polls for it."""
-    _reject_untrusted_origin(request)
-    rid = str((body or {}).get("id", "")).strip()
-    reply = str((body or {}).get("reply", ""))
-    if not rid:
-        return JSONResponse({"ok": False, "error": "missing id"}, status_code=400)
-    hub.responses[rid] = {"reply": reply, "ts": time.time()}
-    hub.responses.move_to_end(rid)
-    while len(hub.responses) > RESPONSE_CAP:
-        hub.responses.popitem(last=False)  # evict oldest
-    delta = hub.merge({"logs": [{"level": "info", "source": "agent", "message": f"reply → {reply[:140]}"}]})
-    await hub.broadcast({"type": "delta", "frame": delta})
-    return {"ok": True}
-
-
-@app.get("/api/agent/response/{rid}")
-async def agent_response(rid: str, request: Request) -> Dict[str, Any]:
-    """One-shot fetch of the agent's reply for an input id (consumed on read)."""
-    _reject_untrusted_origin(request)
-    r = hub.responses.pop(rid, None)
-    return {"reply": r["reply"] if r else None}
-
-
 # ── Landing page / built UI ──────────────────────────────────────────────────
 @app.get("/", response_class=HTMLResponse)
 async def index():

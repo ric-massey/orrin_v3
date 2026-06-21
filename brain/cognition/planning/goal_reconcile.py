@@ -65,7 +65,7 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
     number of repairs made this pass (0 when the stores agree)."""
     repairs = 0
     try:
-        import goal_io
+        import brain.goal_io as goal_io
         api = getattr(goal_io, "_api_ref", None)
     except Exception as _e:
         record_failure("goal_reconcile.import", _e)

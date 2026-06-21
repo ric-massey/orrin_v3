@@ -155,7 +155,7 @@ def test_execute_step_action_threads_and_clears_motive():
 
 def _emitter_func_sources():
     """Return {name: source} for the three converted emitters."""
-    import ORRIN_loop
+    import brain.ORRIN_loop as ORRIN_loop
     srcs = {}
 
     ln_src = Path(Path(__import__("brain.cognition.leave_note", fromlist=["x"]).__file__)).read_text("utf-8")

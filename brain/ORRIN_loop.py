@@ -315,7 +315,7 @@ def _emit_goals(context: "Context") -> None:
         committed = context.get("committed_goal") if isinstance(context, dict) else None
         committed_id = committed.get("id") if isinstance(committed, dict) else None
 
-        from goal_io import summarize_goal_tree
+        from brain.goal_io import summarize_goal_tree
         out = summarize_goal_tree(
             goals_raw, committed_id=committed_id,
             committed=committed if isinstance(committed, dict) else None,
@@ -1156,7 +1156,7 @@ def run_cognitive_loop(
     _goals_api = goals_api
     if _goals_api:
         try:
-            import goal_io
+            import brain.goal_io as goal_io
             goal_io.install_event_handler(_goals_api)
         except Exception as _gie:
             log_error(f"goal_io.install_event_handler failed: {_gie}")
@@ -1479,7 +1479,7 @@ def run_cognitive_loop(
 
             # Pull committed goals (plural) directly from the single GoalsAPI
             if _goals_api:
-                import goal_io
+                import brain.goal_io as goal_io
                 try:
                     committed_goals = goal_io.committed_goals_v1(_goals_api, limit=3)
                     context["committed_goals"] = committed_goals
@@ -1833,7 +1833,7 @@ def run_cognitive_loop(
             # query so retrieved memories are relevant to what was just said, not
             # just to whatever goal/thought was already active.
             if _mem_daemon:
-                import memory_io
+                import brain.memory_io as memory_io
                 try:
                     _input_concept = (context.get("_last_comprehension") or {}).get("concept") or ""
                     _mem_query = _input_concept.strip() or None
@@ -2853,7 +2853,7 @@ def run_cognitive_loop(
                                 _goal_id = str((context.get("committed_goal") or {}).get("id") or
                                                (context.get("committed_goal") or {}).get("title") or "")
                                 if _mem_daemon:
-                                    import memory_io
+                                    import brain.memory_io as memory_io
                                     memory_io.write(
                                         _mem_daemon, "function_output", _fn_str[:200],
                                         meta={
@@ -3047,7 +3047,7 @@ def run_cognitive_loop(
 
             # Push new goal proposals to the single GoalsAPI
             if _goals_api:
-                import goal_io
+                import brain.goal_io as goal_io
                 try:
                     goal_io.sync_proposed_goals(_goals_api, context)
                 except Exception as e:
@@ -3062,7 +3062,7 @@ def run_cognitive_loop(
 
             # Write memory events to v2 MemoryDaemon
             if _mem_daemon:
-                import memory_io
+                import brain.memory_io as memory_io
                 try:
                     memory_io.flush_working_memory(_mem_daemon, context)
                 except Exception as e:

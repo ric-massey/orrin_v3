@@ -195,7 +195,7 @@ async def goals_detail() -> JSONResponse:
     try:
         import json as _json
         raw = _json.loads((server_state._DATA_DIR / "goals_mem.json").read_text("utf-8"))
-        from goal_io import summarize_goal_tree
+        from brain.goal_io import summarize_goal_tree
         active_id = None
         for item in (hub.state.get("goals") or []):
             if isinstance(item, dict) and item.get("active"):

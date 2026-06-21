@@ -7,7 +7,7 @@
 # is safe to import directly here.
 import pytest
 
-import ORRIN_loop as loop
+import brain.ORRIN_loop as loop
 from brain.config.tuning import (
     AFFECT_TRANSIENT_DECAY,
     CRISIS_ABOVE_HALF_COUNT,

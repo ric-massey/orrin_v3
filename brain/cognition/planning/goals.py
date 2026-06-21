@@ -938,7 +938,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     # the context goal from v2 every cycle, so without this a goal completed on
     # the v1 side is resurrected as "in_progress" forever (FINDINGS 2026-06-12 §1).
     try:
-        import goal_io
+        import brain.goal_io as goal_io
         if goal.get("id"):
             goal_io.close_goal_v2(goal["id"], status="DONE", reason="mark_goal_completed")
     except Exception as _e:
@@ -1064,7 +1064,7 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
     # Mirror into the v2 store (no-op when the failure event CAME from v2 — the
     # goal is already terminal there). Same resurrection guard as completion.
     try:
-        import goal_io
+        import brain.goal_io as goal_io
         if goal.get("id"):
             goal_io.close_goal_v2(goal["id"], status="FAILED", reason=reason or "mark_goal_failed")
     except Exception as _e:

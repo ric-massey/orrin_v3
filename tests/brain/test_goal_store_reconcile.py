@@ -6,7 +6,7 @@
 #   (a) a v2-closed goal resurrected as in_progress in v1, and
 #   (b) a v1-closed goal left RUNNING in v2.
 
-import goal_io
+import brain.goal_io as goal_io
 from brain.cognition.planning.goals import load_goals, save_goals
 from brain.cognition.planning.goal_reconcile import reconcile_goal_stores
 

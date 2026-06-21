@@ -356,154 +356,10 @@ elif _urls_to_open:
 # ---------- Watchdogs ----------
 pulse = Pulse()
 
-# psutil-based resource providers (gracefully absent if psutil not installed)
-try:
-    import psutil as _psutil
-    _proc = _psutil.Process()
-    # `resource` is POSIX-only; absent on Windows. Keep psutil monitoring either way.
-    try:
-        import resource as _resource
-    except Exception:
-        _resource = None  # type: ignore
-    def _get_rss_mb() -> float:
-        return _proc.memory_info().rss / 1024 / 1024
-    def _get_fd_open() -> int:
-        # num_fds() on POSIX, num_handles() on Windows
-        if hasattr(_proc, "num_fds"):
-            return _proc.num_fds()
-        return _proc.num_handles()
-    def _get_fd_limit() -> int:
-        try:
-            if _resource is not None:
-                return min(_resource.getrlimit(_resource.RLIMIT_NOFILE)[0], 1024)
-        except Exception:
-            pass
-        return 1024
-    def _get_sock_open() -> int:
-        try:
-            return len(_proc.net_connections())
-        except Exception:
-            return 0
-    def _get_sock_limit() -> int:
-        return 1024
-    def _get_cpu_util() -> float:
-        return _proc.cpu_percent(interval=None) / 100.0
-    # Host-machine signals (outward-looking, not Orrin's own process).
-    def _get_disk_free_bytes() -> float:
-        return float(_psutil.disk_usage("/").free)
-    def _get_swap_used_bytes() -> float:
-        return float(_psutil.swap_memory().used)
-    def _get_vmem_percent() -> float:
-        return float(_psutil.virtual_memory().percent)
-    # Inward vital-floor signals: Orrin's OWN footprint vs his GRANTED body size.
-    def _get_own_rss_bytes() -> float:
-        return float(_proc.memory_info().rss)
-    def _get_budget_bytes() -> float:
-        # The same grant metabolism/interoception read — body size and survival
-        # floor can never disagree. Falls back to a conservative full-RAM ceiling
-        # if body_budget is unavailable, so the guard degrades to never-trips.
-        try:
-            from brain.cognition.body_budget import budget_bytes
-            return float(budget_bytes())
-        except Exception:
-            return float(_psutil.virtual_memory().total)
-except ImportError:
-    _get_rss_mb = _get_fd_open = _get_fd_limit = None  # type: ignore[assignment]
-    _get_sock_open = _get_sock_limit = _get_cpu_util = None  # type: ignore[assignment]
-    _get_disk_free_bytes = _get_swap_used_bytes = _get_vmem_percent = None  # type: ignore[assignment]
-    _get_own_rss_bytes = _get_budget_bytes = None  # type: ignore[assignment]
-
-
-# Host-resource escalation → console/dashboard. These are NON-fatal: the host
-# guard never kills Orrin (that wouldn't reclaim host swap/disk), it just surfaces
-# the pressure and, at the hard line, pauses the heavy cycles.
-def _host_flag(state: str, msg: str) -> None:
-    try:
-        from backend.telemetry_bridge import get_bridge
-        tb = get_bridge()
-        level = "warn" if state != "ok" else "info"
-        tb.log(level, "host", msg)
-        tb.update(extra={"host_resource_state": state, "host_resource_detail": msg})
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-
-def _host_on_warn(msg: str) -> None:
-    print(f"[host] WARN {msg}")
-    _host_flag("warn", msg)
-
-def _host_on_pause(msg: str) -> None:
-    print(f"[host] PAUSE heavy cycles — {msg}")
-    _host_flag("pause", msg)
-
-def _host_on_resume(msg: str) -> None:
-    print(f"[host] resume — {msg}")
-    _host_flag("ok", msg)
-
-
-# Vital-floor reflex (inward). Orrin nearing the survival line of his OWN granted
-# body → involuntary load-shedding, never a kill. Armed by default after the S2b
-# calm + dream/reading calibration pass (2026-06-17). Set
-# ORRIN_VITAL_FLOOR=observe to return to calibration-only logging.
-_VITAL_MODE = os.environ.get("ORRIN_VITAL_FLOOR", "act").strip().lower()
-_VITAL_OBSERVE_ONLY = _VITAL_MODE not in ("act", "1", "on", "true")
-
-def _env_float(name: str, default: float) -> float:
-    try:
-        raw = os.environ.get(name)
-        return default if raw is None else float(raw)
-    except Exception:
-        return default
-
-_VITAL_WARN_FRAC = _env_float("ORRIN_VITAL_WARN_FRAC", 0.50)
-_VITAL_SHED_FRAC = _env_float("ORRIN_VITAL_SHED_FRAC", 0.55)
-_VITAL_RECOVER_FRAC = _env_float("ORRIN_VITAL_RECOVER_FRAC", 0.22)
-_VITAL_SUSTAIN_S = _env_float("ORRIN_VITAL_SUSTAIN_S", 8.0)
-_VITAL_CALIBRATION_FILE = os.environ.get("ORRIN_VITAL_CALIBRATION_FILE", "").strip() or None
-_VITAL_CALIBRATION_PHASE = os.environ.get("ORRIN_VITAL_CALIBRATION_PHASE", "unspecified").strip() or "unspecified"
-_VITAL_CALIBRATION_SAMPLE_S = _env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0)
-
-# Keep the hysteresis shape valid even with env overrides.
-_VITAL_WARN_FRAC = max(0.01, min(0.99, _VITAL_WARN_FRAC))
-_VITAL_SHED_FRAC = max(_VITAL_WARN_FRAC + 0.01, min(1.50, _VITAL_SHED_FRAC))
-_VITAL_RECOVER_FRAC = max(0.0, min(_VITAL_WARN_FRAC - 0.01, _VITAL_RECOVER_FRAC))
-_VITAL_SUSTAIN_S = max(0.5, _VITAL_SUSTAIN_S)
-_VITAL_CALIBRATION_SAMPLE_S = max(0.2, _VITAL_CALIBRATION_SAMPLE_S)
-
-def _vital_on_warn(msg: str) -> None:
-    print(f"[vital] WARN {msg}")
-    _host_flag("warn", msg)
-
-def _vital_on_shed(msg: str) -> None:
-    print(f"[vital] SHED — {msg}")
-    _host_flag("pause", msg)
-
-def _vital_on_recover(msg: str) -> None:
-    print(f"[vital] recover — {msg}")
-    _host_flag("ok", msg)
-
-def _vital_shed_action(reason: str) -> None:
-    """The autonomic gasp: let go of the heaviest disposable thing, in priority
-    order, until Orrin is back above his granted-body floor. Reversible, never
-    fatal. Only called when the guard is armed (not observe-only).
-
-    Note: "stop launching new heavy cycles" is handled durably by the guard's own
-    vital_floor_shedding() gate (self-clearing with hysteresis), which the loop
-    checks before dream/reading — so this action does only the one-shot reclaim
-    and must NOT touch the host pause gate (the host guard would never clear it)."""
-    # Force-trim rebuildable working memory if the store exposes a trim.
-    try:
-        from brain.cog_memory import working_memory as _wm
-        for _name in ("force_trim", "shed", "trim_to_floor"):
-            _fn = getattr(_wm, _name, None)
-            if callable(_fn):
-                _fn(); break
-    except Exception as _e:
-        _log.warning("vital shed: wm-trim failed: %s", _e)
-    # Reclaim arena memory the allocator is holding.
-    try:
-        import gc; gc.collect()
-    except Exception as _e:
-        _log.warning("vital shed: gc failed: %s", _e)
+# Resource providers + host/vital escalation callbacks + vital-floor config,
+# built outside the coupled boot core (depends only on psutil/env/telemetry).
+from runtime import watchdog_setup as _wd_setup
+_wd_inputs = _wd_setup.build()
 
 try:
     tup = start_watchdogs(
@@ -513,32 +369,7 @@ try:
         memory_daemon=daemon,
         ns_sample_interval_s=0.2,
         ns_summary_interval_s=5.0,
-        get_rss_mb=_get_rss_mb,
-        get_fd_open=_get_fd_open,
-        get_fd_limit=_get_fd_limit,
-        get_sock_open=_get_sock_open,
-        get_sock_limit=_get_sock_limit,
-        get_cpu_util=_get_cpu_util,
-        get_disk_free_bytes=_get_disk_free_bytes,
-        get_swap_used_bytes=_get_swap_used_bytes,
-        get_vmem_percent=_get_vmem_percent,
-        host_on_warn=_host_on_warn,
-        host_on_pause=_host_on_pause,
-        host_on_resume=_host_on_resume,
-        get_own_rss_bytes=_get_own_rss_bytes,
-        get_budget_bytes=_get_budget_bytes,
-        vital_on_warn=_vital_on_warn,
-        vital_on_shed=_vital_on_shed,
-        vital_on_recover=_vital_on_recover,
-        vital_shed_fn=_vital_shed_action,
-        vital_warn_frac=_VITAL_WARN_FRAC,
-        vital_shed_frac=_VITAL_SHED_FRAC,
-        vital_recover_frac=_VITAL_RECOVER_FRAC,
-        vital_sustain_s=_VITAL_SUSTAIN_S,
-        vital_observe_only=_VITAL_OBSERVE_ONLY,
-        vital_calibration_file=_VITAL_CALIBRATION_FILE,
-        vital_calibration_phase=_VITAL_CALIBRATION_PHASE,
-        vital_calibration_sample_s=_VITAL_CALIBRATION_SAMPLE_S,
+        **_wd_inputs.kwargs,
     )
 except TypeError:
     tup = start_watchdogs(
@@ -1047,11 +878,11 @@ def _maybe_start_vital_calibration_stress() -> None:
     mode = os.environ.get("ORRIN_VITAL_CALIBRATION_STRESS", "").strip().lower()
     if not mode:
         return
-    delay_s = _env_float("ORRIN_VITAL_CALIBRATION_STRESS_DELAY_S", 20.0)
-    read_steps = int(_env_float("ORRIN_VITAL_CALIBRATION_READING_STEPS", 45.0))
-    sample_s = _env_float(
+    delay_s = _wd_setup.env_float("ORRIN_VITAL_CALIBRATION_STRESS_DELAY_S", 20.0)
+    read_steps = int(_wd_setup.env_float("ORRIN_VITAL_CALIBRATION_READING_STEPS", 45.0))
+    sample_s = _wd_setup.env_float(
         "ORRIN_VITAL_CALIBRATION_STRESS_SAMPLE_S",
-        _env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0),
+        _wd_setup.env_float("ORRIN_VITAL_CALIBRATION_SAMPLE_S", 1.0),
     )
     delay_s = max(0.0, delay_s)
     read_steps = max(1, read_steps)
@@ -1063,8 +894,10 @@ def _maybe_start_vital_calibration_stress() -> None:
             return
         while not stop.is_set():
             try:
-                rss = float(_get_own_rss_bytes()) if callable(_get_own_rss_bytes) else 0.0
-                budget = float(_get_budget_bytes()) if callable(_get_budget_bytes) else 0.0
+                _rss_fn = _wd_inputs.get_own_rss_bytes
+                _budget_fn = _wd_inputs.get_budget_bytes
+                rss = float(_rss_fn()) if callable(_rss_fn) else 0.0
+                budget = float(_budget_fn()) if callable(_budget_fn) else 0.0
                 if rss > 0.0 and budget > 0.0:
                     rec = {
                         "ts": time.time(),

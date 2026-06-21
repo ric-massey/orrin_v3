@@ -31,6 +31,20 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   (a no-op for dev checkouts, correct for tests + a read-only packaged program
   folder). Suite **921 passed / 1 skipped**, ruff clean.
 
+- **Phase 4B watchdog-construction slice — DONE.** First net-protected
+  extraction out of `main.py`: the ~165-line block of psutil resource providers
+  + host/vital escalation callbacks + vital-floor config moved to
+  `runtime/watchdog_setup.py` (`build()` returns a `WatchdogInputs` bundle whose
+  `.kwargs` splat straight into `start_watchdogs`; the two inward getters are
+  surfaced for the calibration path). It's decoupled from the boot-mutable
+  globals — touching only psutil/env/telemetry/working-memory/gc — so it didn't
+  need the RuntimeContext work. main.py **1,332 → 1,165**. The boot
+  characterization net (which starts the watchdogs in a full boot) + the full
+  suite stayed green. **Still coupled in main.py (needs RuntimeContext):** the
+  stop/shutdown sequence, the re-exec/reset/restart lifecycle, the `_pulse_loop`
+  heartbeat, and `run()` — they read boot-built module state (daemon, store,
+  goals, bridge, stop events).
+
 - **Phase 4C (backend/server/app.py) — DONE.** app.py went 1,988 → 225 lines.
   Every route was extracted into focused, sub-600-line modules under
   `backend/server/`: `state.py` (DI/read helpers), `auth.py` (request guards),

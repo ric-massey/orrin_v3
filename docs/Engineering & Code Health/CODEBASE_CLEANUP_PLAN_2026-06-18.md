@@ -27,12 +27,22 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   paths are unchanged. Each was a pure move, verified by the loop net (which runs
   `_boot_context` + emits telemetry + completes a cycle every run) + the full
   suite (**922 passed / 1 skipped**, ruff clean); three dependent tests were
-  repointed at the new module homes. **ORRIN_loop.py 3,709 → 2,760.** Still open:
-  the hard part — decomposing the ~2,000-line `run_cognitive_loop` body itself
-  (cycle sensing, conscious-ignition, cognition execution, action accounting,
-  maintenance) into stages behind a per-cycle state object. That's the same
-  risk-class as the `main.py` RuntimeContext work and wants its own deliberate
-  pass, not a rushed one (per the plan's "do not begin with a wholesale rewrite").
+  repointed at the new module homes. Then began decomposing the
+  `run_cognitive_loop` **body** itself: the cycle's ~510-line perceive/refresh
+  prologue (reload context, sync working memory, inject the cycle's signals, run
+  `process_inputs` + binding, fast-answer a waiting Face message) became
+  `brain/loop/sense.py::sense_and_refresh(_goals_api, timestamp) -> (context,
+  affect_state)`, with the existing first stage `_apply_transient_signal_decay`
+  moved alongside it. `ruff` F821 caught the one real coupling — the prologue
+  binds the loop-local `affect_state` that downstream stages read — so the stage
+  returns it and the loop unpacks (exact binding preserved). **ORRIN_loop.py
+  3,709 → 2,173** this run (−41%), split into `brain/loop/{telemetry, invoke,
+  boot, sense}.py`. Still open: the rest of the loop body — conscious-ignition,
+  cognition execution, action execution/accounting, maintenance/finalization.
+  These are denser (interleaved `break`/`continue`, more loop-locals) so each
+  wants the same one-stage-at-a-time, net-verified treatment; the `sense`
+  extraction establishes the pattern (stage returns any loop-locals it binds for
+  downstream stages). Per the plan's "do not begin with a wholesale rewrite."
 
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added

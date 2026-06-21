@@ -43,7 +43,8 @@ def test_homeostasis_index_is_deterministic_and_settled_at_rest():
 def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
     """The number the UI charts must equal the brain's own homeostasis, proving
     the value is no longer fabricated inside the translator (audit F2)."""
-    import brain.ORRIN_loop as loop
+    # _emit_affect lives in the loop's telemetry stage now (Phase 4A); test it there.
+    import brain.loop.telemetry as tele
 
     captured: dict = {}
 
@@ -51,8 +52,8 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
         def affect(self, **kw):
             captured.update(kw)
 
-    orig = loop._bridge
-    loop._bridge = lambda: _FakeBridge()
+    orig = tele._bridge
+    tele._bridge = lambda: _FakeBridge()
     try:
         context = {"affect_state": {
             "valence": -0.4,
@@ -60,16 +61,16 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
             "homeostasis": 0.123,  # the brain's stored index; emit must use THIS
             "core_signals": {"motivation": 0.5, "impasse_signal": 0.9},
         }}
-        loop._emit_affect(context)
+        tele._emit_affect(context)
     finally:
-        loop._bridge = orig
+        tele._bridge = orig
 
     # Homeostasis charted == homeostasis the brain holds (no reinvention).
     assert captured["homeostasis"] == 0.123
     # Raw valence is shipped unmodified alongside the centered presentation value.
     assert captured["valence_raw"] == -0.4
     # The centered value round-trips back to raw via the documented mapping.
-    recovered = (captured["valence"] - loop._VALENCE_UI_CENTER) / loop._VALENCE_UI_SCALE
+    recovered = (captured["valence"] - tele._VALENCE_UI_CENTER) / tele._VALENCE_UI_SCALE
     assert abs(recovered - (-0.4)) < 1e-9
 
 

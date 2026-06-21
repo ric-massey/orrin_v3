@@ -2,10 +2,11 @@
 #
 # pyproject.toml is the single source of truth (CODEBASE_CLEANUP_PLAN Phase 2).
 # Do NOT hand-edit: change the dependency groups in pyproject.toml, then mirror
-# the direct deps here. With pip-tools or uv installed, regenerate a fully
-# pinned lock instead with:
+# the direct deps here. For a fully-pinned, reproducible install, use the
+# generated lock instead — requirements.lock (resolved for Linux/CPython 3.11):
 #
-#   uv pip compile pyproject.toml --all-extras -o requirements.txt
+#   uv pip compile pyproject.toml --all-extras \
+#       --python-platform linux --python-version 3.11 --no-header -o requirements.lock
 #
 # This file lists DIRECT dependencies only (preserving the previous format), so
 # `pip install -r requirements.txt` reproduces the full product runtime — the

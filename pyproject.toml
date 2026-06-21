@@ -52,16 +52,12 @@ all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 # packages (goals, memory, reaper, backend, observability) and the `brain`
 # package itself pip-installable as a unit (`pip install -e .`).
 #
-# It does NOT fix the deeper issue Finding 5 describes: brain/'s subpackages
-# (cog_memory, cognition, utils, affect, think, agency, behavior, core,
-# embodiment, registry, symbolic, ...) are imported as bare top-level names
-# (e.g. `import utils.log`, not `brain.utils.log`), which only works because
-# main.py and pytest.ini (`pythonpath = . brain`) both prepend `brain/` onto
-# sys.path at startup. Making that installable cleanly requires collapsing
-# everything under one `orrin/` namespace with absolute imports — a
-# multi-day refactor of the same scope as Finding 1's ORRIN_loop
-# decomposition, deferred for the same reason (do it behind the test suite,
-# one phase at a time).
+# Finding 5's deeper issue is now resolved: brain/'s subpackages are imported
+# under the canonical `brain.*` namespace (Phase 3), pytest.ini uses
+# `pythonpath = .` (repo root only), and main.py no longer prepends `brain/` onto
+# sys.path — self-written code is normalized onto `brain.*` at write time
+# (agency/self_code.normalize_self_code_imports). The package installs and imports
+# with only the repo root present.
 [tool.setuptools]
 packages = ["backend", "brain", "goals", "memory", "observability", "reaper"]
 

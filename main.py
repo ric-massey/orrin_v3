@@ -123,73 +123,8 @@ _boot_config_check()
 # cascade (10k+ .corrupt files in hours). An exclusive advisory lock makes a
 # second launch refuse to start, instead of fighting the first over the 8 GB and
 # the shared JSON state. The fd is kept alive for the whole process lifetime.
-_INSTANCE_LOCK_FD = None
-def _acquire_single_instance_lock() -> None:
-    global _INSTANCE_LOCK_FD
-    try:
-        import fcntl
-    except Exception:
-        return  # non-POSIX: skip the guard rather than block startup
-    # The lock lives WITH the mind (the resolved data dir), not in the program
-    # folder — so the packaged app locks per-install in its writable dir.
-    try:
-        from brain.paths import DATA_DIR as _lock_data_dir
-    except Exception:
-        _lock_data_dir = Path(__file__).resolve().parent / "brain" / "data"
-    lock_path = _lock_data_dir / ".orrin.instance.lock"
-    try:
-        lock_path.parent.mkdir(parents=True, exist_ok=True)
-        fd = open(lock_path, "w")
-        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        fd.write(str(os.getpid()))
-        fd.flush()
-        _INSTANCE_LOCK_FD = fd  # keep alive — closing would release the lock
-        print(f"[boot] single-instance lock acquired (pid {os.getpid()})")
-    except BlockingIOError:
-        # Another Orrin already holds the lock. The common reason for a relaunch is
-        # "I closed his window and want it back" — but in Always-thinking mode he's
-        # still alive in the background, and pywebview can't open a second window in a
-        # new process for the SAME mind. Warn clearly (and notify on a GUI launch where
-        # stderr is invisible) instead of dying with a cryptic refusal.
-        holder = ""
-        try:
-            holder = lock_path.read_text(encoding="utf-8").strip()
-        except Exception:
-            pass
-        always = False
-        try:
-            from brain.utils import prefs as _prefs
-            always = _prefs.get("existence_mode", "sleep") == "always"
-        except Exception:
-            pass
-
-        who = f" (pid {holder})" if holder else ""
-        if always:
-            headline = "Orrin is already thinking in the background."
-            detail = (
-                "He's in 'Always thinking' mode, so he keeps living after his window "
-                "closes. Re-opening his window from a new launch isn't supported yet "
-                "(one window per process). To see him again, quit the running Orrin"
-                f"{(' — e.g. kill ' + holder) if holder else ''} and start him again, "
-                "or switch to 'Sleep when closed' in Settings so closing the window "
-                "stops him cleanly."
-            )
-        else:
-            headline = f"Orrin is already running{who}."
-            detail = "Refusing to start a second brain — two would corrupt his shared state."
-
-        print(f"[boot] {headline}\n[boot] {detail}\n[boot] (lock: {lock_path})", file=sys.stderr)
-        # Best-effort desktop notification so a double-click launch isn't a silent exit.
-        try:
-            from brain.agency.skills.notify_user import notify_user
-            notify_user({"title": "Orrin is already running", "message": headline})
-        except Exception:
-            pass
-        sys.exit(3)
-    except Exception as _e:
-        print(f"[boot] single-instance lock skipped ({_e})")
-
-_acquire_single_instance_lock()
+from runtime import single_instance as _single_instance
+_single_instance.acquire()
 
 # --- Observability / watchdogs ---
 from watchdogs import Pulse, start_watchdogs
@@ -1075,17 +1010,6 @@ def _graceful_shutdown() -> None:
     print("[main] shutdown complete.")
 
 
-def _release_instance_lock() -> None:
-    """Release the single-instance flock so a re-exec'd process can re-acquire it.
-    flock is tied to the open file description, and execv inherits open fds, so the
-    new image would otherwise deadlock against the lock this process still holds."""
-    global _INSTANCE_LOCK_FD
-    try:
-        if _INSTANCE_LOCK_FD is not None:
-            _INSTANCE_LOCK_FD.close()
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
-    _INSTANCE_LOCK_FD = None
 
 
 def _wipe_to_newborn() -> None:
@@ -1157,7 +1081,7 @@ def _reset_to_newborn() -> None:
     except Exception as _e:
         _log.warning("silent except: %s", _e)
     _wipe_to_newborn()
-    _release_instance_lock()
+    _single_instance.release()
     _reexec()
 
 
@@ -1174,7 +1098,7 @@ def _restart_process() -> None:
         wal_flush()
     except Exception as _e:
         _log.warning("silent except: %s", _e)
-    _release_instance_lock()
+    _single_instance.release()
     _reexec()
 
 

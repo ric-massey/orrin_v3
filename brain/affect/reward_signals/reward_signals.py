@@ -39,7 +39,6 @@ def release_reward_signal(
     rpe_noisy = max(min(rpe + noise, 1.0), -1.0)
 
     surprise = max(0.0, rpe_noisy)
-    disappointment = max(0.0, -rpe_noisy)
 
     # --- Effort modulation (clamped) ---
     # resource_deficit is top-level; motivation lives in core_signals (may also be top-level)
@@ -102,9 +101,8 @@ def release_reward_signal(
     # === Novelty ===
     elif signal_type == "novelty":
         base_exploration_drive_gain = 0.03 * strength
-        # stagnation_signal and exploration_drive are core_signals keys
+        # stagnation_signal is a core_signals key
         stagnation_signal   = float(core_emo.get("stagnation_signal",   affect_state.get("stagnation_signal",   0.3)) or 0.3)
-        exploration_drive = float(core_emo.get("exploration_drive", affect_state.get("exploration_drive", 0.5)) or 0.5)
 
         exploration_drive_gain = base_exploration_drive_gain * (1 + 0.5 * stagnation_signal) * (1 - resource_deficit) * _expl_gate
         queue_affect_change(affect_state, "exploration_drive", exploration_drive_gain, source="novelty")

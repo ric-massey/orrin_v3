@@ -129,7 +129,6 @@ def main():
     total = args.epochs * len(blocks)
     print(f"[3/3] pretraining: {len(blocks)} blocks × {args.epochs} epochs = {total} bouts…")
     t0 = time.time()
-    last_loss = None
     idx = 0
     for epoch in range(args.epochs):
         for label, block in blocks:
@@ -138,7 +137,6 @@ def main():
             loss = native_lm.train_on(block, steps=args.steps, batch=args.batch)
             idx += 1
             if loss is not None:
-                last_loss = loss
                 st = native_lm.status()
                 print(f"  e{epoch+1}/{args.epochs} {label} | loss={loss:.3f} | lr={lr:.1e} "
                       f"| tok_seen={st.get('tokens_seen')} | {int(time.time()-t0)}s")

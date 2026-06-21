@@ -33,7 +33,7 @@ _MSGS = [{"role": "system", "content": "be brief"}, {"role": "user", "content": 
 
 # ── Anthropic ────────────────────────────────────────────────────────────────
 def test_anthropic_adapter_matches_real_sdk():
-    anthropic = pytest.importorskip("anthropic")
+    pytest.importorskip("anthropic")
     from anthropic.resources.messages import Messages
     from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 
@@ -100,7 +100,7 @@ def test_anthropic_json_mode_steers_via_system():
 
 # ── Gemini ───────────────────────────────────────────────────────────────────
 def test_gemini_adapter_matches_real_sdk():
-    genai = pytest.importorskip("google.genai")
+    pytest.importorskip("google.genai")
     from google.genai import types as gt
     from google.genai.models import Models
 

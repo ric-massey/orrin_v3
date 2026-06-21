@@ -50,7 +50,7 @@ def test_scalar_target_applied_directly():
 
 
 def test_concurrent_submissions_are_not_lost():
-    ctx = _ctx(motivation=0.0)
+    _ctx(motivation=0.0)
     N = 50
 
     def worker():

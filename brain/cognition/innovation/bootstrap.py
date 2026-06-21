@@ -52,7 +52,7 @@ def bootstrap_self() -> str:
             return "❌ Invalid self model."
 
         recent_reflections = summarize_recent_thoughts()
-        model_summary = summarize_self_model(self_model)  # (not used in prompt text yet; keep computed)
+        model_summary = summarize_self_model(self_model)  # noqa: F841  (not used in prompt text yet; keep computed)
 
         next_actions = load_json(FOCUS_GOAL, default_type=dict)
         if not isinstance(next_actions, dict):

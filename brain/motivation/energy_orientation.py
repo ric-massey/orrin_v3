@@ -259,12 +259,6 @@ def get_orientation(affect_state: Dict[str, Any]) -> EnergyOrientation:
     mot = max(0.0, min(1.0, float(es.get("motivation", 0.5) or 0.5)))
     fat = max(0.0, min(1.0, float(es.get("resource_deficit",    0.3) or 0.3)))
     bor = max(0.0, min(1.0, float(es.get("stagnation_signal",    0.2) or 0.2)))
-    anx = max(0.0, min(1.0, float(
-        (es.get("core_signals") or {}).get("risk_estimate", es.get("risk_estimate", 0.0)) or 0.0
-    )))
-    fru = max(0.0, min(1.0, float(
-        (es.get("core_signals") or {}).get("impasse_signal", es.get("impasse_signal", 0.0)) or 0.0
-    )))
 
     best = max(raw, key=lambda k: raw[k])
     mode = best if raw[best] >= NEUTRAL_FLOOR else "neutral"

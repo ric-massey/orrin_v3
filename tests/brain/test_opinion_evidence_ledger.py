@@ -105,7 +105,7 @@ def test_roots_haircut_when_seed_memories_pruned(tmp_path):
     from brain.utils.json_utils import save_json
     save_json(tmp_path / "wm.json", [])
     save_json(tmp_path / "lm.json", [])
-    oid = _seed(root_memory_ids=["gone-1", "gone-2"])
+    _seed(root_memory_ids=["gone-1", "gone-2"])
     ops = O._load()
     op = ops[0]
     O._ensure_ledger_fields(op)

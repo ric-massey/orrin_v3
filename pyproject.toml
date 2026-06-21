@@ -83,7 +83,7 @@ extend-exclude = ["frontend", "build", "dist", ".venv", "data", "brain/data"]
 
 [tool.ruff.lint]
 # "F" = all pyflakes rules (real logical errors). E9 = syntax/IO errors.
+# F841 (unused locals) is now enforced — the historical debt was cleared in the
+# 2026-06-21 cleanup pass; one intentional "keep computed" site carries `# noqa: F841`.
 select = ["F", "E9"]
-# Existing debt, enforced incrementally (see note above). Removing an entry
-# here should be paired with fixing the corresponding findings.
-ignore = ["F841"]
+ignore = []

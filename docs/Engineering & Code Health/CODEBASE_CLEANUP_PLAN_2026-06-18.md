@@ -7,6 +7,34 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-21)
+
+Closed out the low-risk "finishable tails" so the remaining work is purely the
+large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
+
+- **Phase 0/1 — COMPLETE.** Cleared all 26 `F841` unused-variable findings and
+  flipped ruff to enforce it (`ignore = []`); `F821` was already zero, so the
+  Phase-1 exit criterion is met. The remaining `E5xx`/`E7xx` (line-length,
+  semicolons, import-order) stay deferred-by-design — introduce incrementally,
+  not exit-gating. Also made `test_tray_fallback` skip when the optional
+  `pystray` extra is absent, restoring a deterministic green baseline (Phase 0):
+  full suite **914 passed / 5 skipped**.
+- **Phase 2 tail — DONE.** Added a fully-pinned `requirements.lock` (408 pkgs,
+  `uv pip compile --all-extras`, resolved for Linux/CPython 3.11) tracked via a
+  `.gitignore` negation; `requirements.txt` stays the curated direct mirror.
+  Swapped the Docker image off the Vite dev server onto static serving — the
+  backend already mounts the built dist at `/`, so a multi-stage Dockerfile
+  builds the SPA (Node) and the python runtime serves it on :8800 (no Node at
+  runtime). `ORRIN_UI_OPEN` is now actually wired in `main.py`. *Unvalidated:* a
+  full `docker build`/run (local daemon was down) — code/config verified
+  (`npm run build` green, backend serves index 200, `docker compose config` ok).
+- **Phase 3 tail — DONE.** Removed the legacy `brain/` `sys.path` insert. Self-
+  authored runtime code is now normalized onto `brain.*` at write time
+  (`agency/self_code.normalize_self_code_imports`), the two template/prompt
+  emitters (`code_writer`, `self_extension`) emit `brain.*`, and a latent
+  `repo_root+"/brain"` bug in `goals/handlers/generic` is fixed. Verified every
+  entrypoint imports with only the repo root on the path.
+
 ## Implementation status (updated 2026-06-20)
 
 Progress since 2026-06-19:

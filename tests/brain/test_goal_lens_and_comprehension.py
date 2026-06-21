@@ -6,7 +6,7 @@ from brain.cognition.planning import goals
 
 def test_comprehension_builds_checkable_long_form_model(monkeypatch):
     monkeypatch.setattr(
-        "cognition.planning.goal_comprehension.llm_callable_by",
+        "brain.cognition.planning.goal_comprehension.llm_callable_by",
         lambda _owner: False,
     )
     goal = comprehend_goal({"id": "book-1", "title": "Write a book about emergence"})
@@ -25,7 +25,7 @@ def test_comprehension_builds_checkable_long_form_model(monkeypatch):
 
 def test_hydration_promotes_spec_and_preserves_structured_production_action(monkeypatch):
     monkeypatch.setattr(
-        "cognition.planning.goal_comprehension.llm_callable_by",
+        "brain.cognition.planning.goal_comprehension.llm_callable_by",
         lambda _owner: False,
     )
     goal = hydrate_goal_model({
@@ -44,7 +44,7 @@ def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
     from brain.cognition import intrinsic_goals
 
     monkeypatch.setattr(
-        "cognition.planning.goal_comprehension.llm_callable_by",
+        "brain.cognition.planning.goal_comprehension.llm_callable_by",
         lambda _owner: False,
     )
     goal = intrinsic_goals._build_committed_goal({

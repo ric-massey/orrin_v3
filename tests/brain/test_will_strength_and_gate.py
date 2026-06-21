@@ -83,7 +83,7 @@ def test_failed_committed_goal_costs_in_proportion(monkeypatch, tmp_path):
     monkeypatch.setattr(G, "update_working_memory", lambda *a, **k: None)
     monkeypatch.setattr(G, "release_reward_signal", lambda **k: None)
     monkeypatch.setattr(
-        "cognition.planning.outcome_metrics.record_failure", lambda: None)
+        "brain.cognition.planning.outcome_metrics.record_failure", lambda: None)
 
     def fail(goal_title):
         ctx = {"affect_state": {"core_signals": {

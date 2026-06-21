@@ -12,6 +12,22 @@ Detailed structural findings are recorded in
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
 
+- **Phase 4C (backend/server/app.py) — DONE.** app.py went 1,988 → 225 lines.
+  Every route was extracted into focused, sub-600-line modules under
+  `backend/server/`: `state.py` (DI/read helpers), `auth.py` (request guards),
+  `lifecycle.py` (stop/reset/restart registry, accessed via has_*/safe_* to dodge
+  the runtime-rebind trap), and routers `memory`, `source`, `diagnostics`,
+  `settings`, `agent`, `update`, `control`, `telemetry`, `cognition`,
+  `embodiment`. app.py now holds only app/lifespan setup, router wiring, the WS,
+  and the 3 genuinely app-level routes (death, `/`, `/ws/telemetry`). Each slice
+  was a pure move verified by TestClient (incl. auth 403/200 paths), ruff, and
+  the full suite (914 passed). A Phase-3-tail regression surfaced mid-extraction
+  (bare `version`/`goal_io`/`memory_io`/`ORRIN_loop` imports broken by removing
+  brain/ from sys.path) was fixed and the import-contract ratchet hardened to
+  cover brain-root modules. **Still open in Phase 4:** 4A `ORRIN_loop.py` (do
+  last, behind characterization tests), 4B `main.py`, 4D `select_function.py` /
+  `pursue_goal.py`.
+
 - **Phase 0/1 — COMPLETE.** Cleared all 26 `F841` unused-variable findings and
   flipped ruff to enforce it (`ignore = []`); `F821` was already zero, so the
   Phase-1 exit criterion is met. The remaining `E5xx`/`E7xx` (line-length,

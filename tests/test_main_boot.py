@@ -115,6 +115,32 @@ def test_headless_single_cycle_boots_and_shuts_down_clean(tmp_path):
     assert rs.get("clean") is True, f"graceful shutdown did not mark the run clean: {rs}"
 
 
+def test_single_cycle_advances_cognition_counter(tmp_path):
+    """The cognitive loop's observable contract (Phase 4A net): a single-cycle run
+    must actually execute a cognitive cycle, not merely boot. run_cognitive_loop
+    persists its cycle count to cycle_count.json, and the ORRIN_ONCE watcher only
+    stops once that counter advances — so a refactor of the loop's stages that
+    fails to complete a cycle is caught here, independent of the boot path."""
+    env = _boot_env(tmp_path)
+    env["ORRIN_ONCE"] = "1"
+
+    proc = subprocess.run(
+        [sys.executable, str(_MAIN)],
+        cwd=str(_REPO_ROOT),
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=_BOOT_TIMEOUT_S,
+    )
+    out = proc.stdout + "\n" + proc.stderr
+    assert proc.returncode == 0, f"single-cycle boot exited {proc.returncode}:\n{out}"
+
+    cycle_file = tmp_path / "data" / "cycle_count.json"
+    assert cycle_file.exists(), f"loop never persisted a cycle count:\n{out}"
+    count = json.loads(cycle_file.read_text(encoding="utf-8")).get("count", 0)
+    assert count >= 1, f"cognitive cycle counter did not advance (count={count}):\n{out}"
+
+
 @pytest.mark.skipif(not hasattr(__import__("os"), "fork"), reason="POSIX flock guard")
 def test_single_instance_lock_refuses_second_boot(tmp_path):
     """The single-instance guard: with the advisory lock already held against a

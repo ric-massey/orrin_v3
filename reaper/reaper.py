@@ -2,7 +2,7 @@
 # the kill switch for the main loop
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import os
 import signal
 import sys
@@ -47,7 +47,7 @@ def _log_durably(message: str) -> None:
     except Exception:
         pass
     try:
-        from utils.log import log_activity
+        from brain.utils.log import log_activity
         log_activity(message)
     except Exception:
         pass
@@ -82,7 +82,7 @@ class Reaper:
         # "restarting", not a memorial or "stopped unexpectedly" (§10.5). Best-effort —
         # the reaper must still kill even if telemetry fails.
         try:
-            from utils.lifecycle import mark_stall
+            from brain.utils.lifecycle import mark_stall
             mark_stall(reason)
         except Exception as _e:
             _log.warning("silent except: %s", _e)

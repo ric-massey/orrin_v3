@@ -1,12 +1,12 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import os
 from datetime import datetime, timezone
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 
-from utils.log import log_private, log_error
-from utils.log_reflection import log_reflection
+from brain.utils.log import log_private, log_error
+from brain.utils.log_reflection import log_reflection
 from brain.paths import CONTEXT, LOGS_DIR  # <- use paths, not hardcoded folder
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 CONVERSATION_REFLECTION_LOG = os.path.join(LOGS_DIR, "conversation_reflection.log")
@@ -61,7 +61,7 @@ def reflect_on_conversation_patterns():
         # Symbolic-first: analogy + causal patterns from conversation history
         reflection = None
         try:
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
             _sym = _sfr("conversation", context=None, data=history)
             if _sym:
                 reflection = _sym["text"]
@@ -71,11 +71,11 @@ def reflect_on_conversation_patterns():
 
         if not reflection:
             try:
-                from symbolic.llm_gate import gated_generate
+                from brain.symbolic.llm_gate import gated_generate
                 reflection = gated_generate(prompt, caller="reflect_on_conversation", outcome=0.65)
                 if reflection:
                     try:
-                        from symbolic.crystallization import crystallize as _cryst
+                        from brain.symbolic.crystallization import crystallize as _cryst
                         _cryst(prompt[:300], reflection, outcome=0.65, caller="reflect_on_conversation")
                     except Exception as _e:
                         record_failure("reflect_on_conversation.reflect_on_conversation_patterns.2", _e)

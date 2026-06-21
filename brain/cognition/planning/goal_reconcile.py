@@ -23,12 +23,12 @@
 # full v1↔v2 unification (§4c, GOAL_STORE_UNIFICATION) is no longer deferrable.
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_activity
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -80,7 +80,7 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
         return 0
 
     try:
-        from cognition.planning.goals import load_goals, save_goals
+        from brain.cognition.planning.goals import load_goals, save_goals
         tree = load_goals()
     except Exception as _e:
         record_failure("goal_reconcile.load_goals", _e)
@@ -133,14 +133,14 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
 
     if changed_v1:
         try:
-            from cognition.planning.goals import save_goals
+            from brain.cognition.planning.goals import save_goals
             save_goals(tree)
         except Exception as _e:
             record_failure("goal_reconcile.save_goals", _e)
 
     if repairs:
         try:
-            from cognition.planning.outcome_metrics import record_store_desync_repair
+            from brain.cognition.planning.outcome_metrics import record_store_desync_repair
             record_store_desync_repair(repairs)
         except Exception as _e:
             record_failure("goal_reconcile.metric", _e)

@@ -23,8 +23,8 @@ import hashlib
 import time
 from typing import Any, Dict, List
 
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 
 # Stopwords excluded from keyword matching
 _STOP = frozenset({

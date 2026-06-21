@@ -1,14 +1,14 @@
 from typing import Dict, Any, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_model_issue, log_activity, utc_now as _utc_now_iso
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_model_issue, log_activity, utc_now as _utc_now_iso
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import GOALS_FILE
-from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
+from brain.utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
 # Canonical reward emitter — single shared wrapper (was a byte-identical private
 # duplicate of finalize.py's _reward).
-from affect.reward_signals.reward_signals import release_reward as _reward
+from brain.affect.reward_signals.reward_signals import release_reward as _reward
 
 
 

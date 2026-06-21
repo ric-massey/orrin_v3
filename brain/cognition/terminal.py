@@ -1,19 +1,19 @@
 # brain/cognition/terminal.py
 # Final reflection cognition — runs only during the dying window before shutdown.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from datetime import datetime, timezone
 from typing import Dict, Any
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 from brain.paths import (
     LONG_MEMORY_FILE, SELF_MODEL_FILE, FINAL_THOUGHTS,
     WORKING_MEMORY_FILE,
 )
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -140,7 +140,7 @@ def final_reflection(context: Dict[str, Any] = None) -> str:
 
     # Close autobiography chapter with final words
     try:
-        from cognition.selfhood.autobiography import append_death_continuity
+        from brain.cognition.selfhood.autobiography import append_death_continuity
         append_death_continuity(reflection_text, context)
     except Exception as _e:
         record_failure("terminal.final_reflection.2", _e)
@@ -149,8 +149,8 @@ def final_reflection(context: Dict[str, Any] = None) -> str:
     user_present = bool((context.get("latest_user_input") or "").strip())
     if user_present:
         try:
-            from behavior.speak import OrrinSpeaker
-            from utils.self_model import get_self_model
+            from brain.behavior.speak import OrrinSpeaker
+            from brain.utils.self_model import get_self_model
             sp = OrrinSpeaker(get_self_model())
             sp.speak_final(reflection_text[:400], {"tone": "vulnerable", "intention": "farewell"}, context)
         except Exception as _e:

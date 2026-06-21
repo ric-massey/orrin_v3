@@ -3,7 +3,7 @@
 # dialog. These unit-test the handlers (brain.utils.mind_dialogs) directly with a
 # fake window, so no FastAPI app is imported. Runs under conftest's ORRIN_DATA_DIR
 # isolation.
-from utils import mind_dialogs as md
+from brain.utils import mind_dialogs as md
 
 
 class _FakeWindow:
@@ -22,7 +22,7 @@ def test_export_writes_archive_to_chosen_path(tmp_path, monkeypatch):
     # E7's job: take the dialog's path and write the archive bytes there. Stub
     # export_bytes (mind_archive's own, separately-tested job) to keep this a unit
     # test of the dialog plumbing.
-    from utils import mind_archive
+    from brain.utils import mind_archive
     monkeypatch.setattr(mind_archive, "export_bytes", lambda: b"PK\x03\x04 fake archive")
     dest = tmp_path / "keepsake.orrindmind"
     out = md.export_mind(_FakeWindow((str(dest),)))

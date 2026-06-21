@@ -26,12 +26,12 @@ This module does NOT replace the existing reward signals file — it wraps
 `calibrated_reward()` entry point for high-level cognition.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict
 
-from utils.log import log_activity
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Weight constants (must sum to ≤ 1.0 for primary sources) ──────────────────
@@ -100,7 +100,7 @@ def _release(context: Dict[str, Any], signal_type: str, amount: float, source: s
     # inconsistent baselines in V3_AUDIT §2.1). action_type = signal_type so each
     # calibrated channel learns its own expectation.
     try:
-        from affect.reward_signals.reward_engine import submit_reward
+        from brain.affect.reward_signals.reward_engine import submit_reward
         submit_reward(
             context,
             actual=amount,
@@ -139,7 +139,7 @@ def check_and_reward_prediction_accuracy(context: Dict[str, Any]) -> float:
     Returns accuracy score in [0, 1].
     """
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import PREDICTIONS_FILE
         preds = load_json(PREDICTIONS_FILE, default_type=list) or []
         if not preds:
@@ -162,7 +162,7 @@ def check_and_reward_contradiction_resolution(context: Dict[str, Any]) -> int:
     Returns number resolved.
     """
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import CONTRADICTIONS_FILE
         contras = load_json(CONTRADICTIONS_FILE, default_type=list) or []
         resolved = [c for c in contras if isinstance(c, dict) and c.get("status") == "resolved"
@@ -170,7 +170,7 @@ def check_and_reward_contradiction_resolution(context: Dict[str, Any]) -> int:
         if resolved:
             for c in resolved:
                 c["_reward_issued"] = True
-            from utils.json_utils import save_json
+            from brain.utils.json_utils import save_json
             save_json(CONTRADICTIONS_FILE, contras)
             calibrated_reward(context, contradictions_resolved=len(resolved),
                               source="contradiction_check")

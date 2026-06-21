@@ -3,13 +3,13 @@
 # Reads Orrin's live emotional state and goal, detects the expected response
 # shape from the prompt, and returns a plausible context-aware answer.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import random
 from pathlib import Path
 from typing import Any, Dict, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

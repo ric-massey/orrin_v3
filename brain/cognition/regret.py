@@ -16,16 +16,16 @@
 #       Writes to WM + long memory.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from typing import Any, Dict
 
-from utils.log import log_private
-from utils.json_utils import load_json
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json
 from brain.paths import COGNITION_HISTORY_FILE, DECISION_STATS_FILE, DATA_DIR
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -58,7 +58,7 @@ def _regret_intensity(context: Dict[str, Any]) -> float:
     window = recent[-10:]
     if len(window) >= 6:
         try:
-            from cognition.cognitive_cost import is_introspective
+            from brain.cognition.cognitive_cost import is_introspective
             intr = sum(1 for f in window if is_introspective(f))
             intr_pct = intr / len(window)
             if intr_pct >= 0.70:
@@ -232,8 +232,8 @@ def process_regret(context: Dict[str, Any]) -> str:
 
 
 def _reflect(context: Dict[str, Any]) -> str:
-    from cog_memory.working_memory import update_working_memory
-    from cog_memory.long_memory import update_long_memory
+    from brain.cog_memory.working_memory import update_working_memory
+    from brain.cog_memory.long_memory import update_long_memory
 
     # Build retrospective picture
     history = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
@@ -297,7 +297,7 @@ def _reflect(context: Dict[str, Any]) -> str:
         log_private(f"[regret] rule-based: {reflection[:80]}")
         return reflection
 
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     prompt = (
         f"You are Orrin. You are looking backward — not to punish yourself, "

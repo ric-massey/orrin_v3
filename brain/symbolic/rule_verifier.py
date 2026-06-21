@@ -21,17 +21,17 @@
 #   reasoning_router.route()  → record_firing() after a rule resolves
 #   think/think_utils/finalize.py → apply_outcome() at cycle end
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 FIRINGS_WAL     = DATA_DIR / "rule_firings.jsonl"
@@ -160,7 +160,7 @@ def apply_outcome(
 
     # Scale delta by real-world grounding score
     try:
-        from symbolic.ground_truth import grounding_multiplier as _gm
+        from brain.symbolic.ground_truth import grounding_multiplier as _gm
         delta = round(delta * _gm(rule_id), 5)
     except Exception as _e:
         record_failure("rule_verifier.apply_outcome", _e)
@@ -170,7 +170,7 @@ def apply_outcome(
 
     # Update signal_score pattern weights from this outcome
     try:
-        from symbolic.pattern_scorer import update_pattern_weights, update_world_model, tokenize_query
+        from brain.symbolic.pattern_scorer import update_pattern_weights, update_world_model, tokenize_query
         q_text = entry.get("query_head", query)
         tokens, domain = tokenize_query(q_text)
         update_pattern_weights(domain, tokens, outcome_score)
@@ -190,8 +190,8 @@ def _adjust_confidence(
     firing_entry: Dict,
     outcome_score: float,
 ) -> None:
-    from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-    from utils.json_utils import save_json
+    from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+    from brain.utils.json_utils import save_json
 
     rules = get_all_rules()
     for rule in rules:
@@ -223,7 +223,7 @@ def _adjust_confidence(
         save_json(SYMBOLIC_RULES_FILE, rules)
         # Invalidate cache
         try:
-            from symbolic import rule_engine as _re
+            from brain.symbolic import rule_engine as _re
             _re._rules_cache = []
         except Exception as _e:
             record_failure("rule_verifier._adjust_confidence", _e)

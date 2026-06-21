@@ -922,7 +922,7 @@ def _provenance(reason: str) -> Dict[str, Any]:
     runstate = _read_json(data_dir / "runstate.json", {}) or {}
     orrin_flags = {k: v for k, v in os.environ.items() if k.startswith("ORRIN_")}
     try:
-        from utils import schema_migration as _sm
+        from brain.utils import schema_migration as _sm
         schema_v = _sm.read_version()
     except Exception:
         schema_v = None

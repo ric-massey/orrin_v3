@@ -39,8 +39,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Dict, Any, List
 
-from utils.log import log_private
-from utils.json_utils import modify_json
+from brain.utils.log import log_private
+from brain.utils.json_utils import modify_json
 from brain.paths import DATA_DIR
 
 # Append-only, bounded record of every behavioral self-edit, so the dashboard can
@@ -180,7 +180,7 @@ def apply_behavioral_adaptations(
             # (one increment per cycle). Escalating it here inflated the counter
             # past the lifetime cycle count (5,724 "cycles" in a 4,193-cycle
             # run) and poisoned every memory/rule formed from it.
-            from cognition.reward_rate import is_stagnating, should_force_switch
+            from brain.cognition.reward_rate import is_stagnating, should_force_switch
             switched = is_stagnating(context) and should_force_switch(context)
             if switched:
                 context["_force_action_next"] = True
@@ -240,7 +240,7 @@ def decay_behavioral_pressure(context: Dict[str, Any]) -> None:
     if np > 0.0:
         context["_novelty_pressure"] = max(0.0, round(np * 0.75, 3))
 
-    from cognition.reward_rate import patch_deficit
+    from brain.cognition.reward_rate import patch_deficit
     recovered = patch_deficit(context) < 0.1
     if recovered:
         for key in (

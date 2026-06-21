@@ -31,8 +31,8 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
 CAUSAL_GRAPH_FILE = DATA_DIR / "causal_graph.json"
@@ -334,7 +334,7 @@ def simulate_counterfactual(cause: str, effect: str, *, context: Optional[Dict] 
     Searches for alternative rules producing effect without cause in conditions.
     """
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
     except Exception:
         return {"counterfactual_likely": False, "alternative_rules": [], "action_taken": "skipped"}
 

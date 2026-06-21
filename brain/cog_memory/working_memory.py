@@ -1,5 +1,5 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time as _time
 from datetime import datetime, timezone
@@ -7,11 +7,11 @@ from typing import Any, List, Optional
 import uuid
 import numpy as np
 
-from utils.affect_utils import detect_affect_keyword
-from utils.embedder import get_embedding
-from utils.json_utils import load_json, save_json, modify_json, AbortModify
-from utils.log import log_private, log_error
-from cog_memory.summarize_w_memory import summarize_and_promote_working_memory
+from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.embedder import get_embedding
+from brain.utils.json_utils import load_json, save_json, modify_json, AbortModify
+from brain.utils.log import log_private, log_error
+from brain.cog_memory.summarize_w_memory import summarize_and_promote_working_memory
 from brain.paths import WORKING_MEMORY_FILE, AFFECT_STATE_FILE
 import os as _os
 _log = get_logger(__name__)
@@ -121,7 +121,7 @@ def _content_similarity(a: str, b: str) -> float:
 _MIN_CHUNK_SIM = 0.55
 
 import re as _re
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _CHUNK_WRAP_RE = _re.compile(r"^\s*\[chunk:\s*(.*)\]\s*$", _re.IGNORECASE | _re.DOTALL)
 # A run of leading "[Chunk:" prefixes — catches TRUNCATED nesting where the disk
 # 500-char cap chopped off the closing brackets (e.g. "[Chunk: [Chunk: [Chunk: … /"),
@@ -200,7 +200,7 @@ def _chunk_two_most_similar(memories: list) -> bool:
     # Strip any existing [Chunk: …] wrapper first so the label stays exactly one
     # level deep — without this, re-chunking a chunk nests `[Chunk: [Chunk: …`.
     # Clean (boundary) truncation: a mid-word cut here is re-ingestible garbage.
-    from utils.text_sanity import truncate_clean as _tc
+    from brain.utils.text_sanity import truncate_clean as _tc
     ca = _tc(_strip_chunk_label(str(mem_a.get("content", ""))), _MAX_CONTENT_LABEL)
     cb = _tc(_strip_chunk_label(str(mem_b.get("content", ""))), _MAX_CONTENT_LABEL)
 
@@ -454,7 +454,7 @@ def update_working_memory(
                     # Sentence/whitespace boundary + clean ellipsis — byte-cap cuts
                     # (`"...may need atte]"`) were re-ingested as content (audit §8).
                     if isinstance(_slim.get("content"), str) and len(_slim["content"]) > _MAX_DISK_CONTENT:
-                        from utils.text_sanity import truncate_clean as _tc
+                        from brain.utils.text_sanity import truncate_clean as _tc
                         _slim["content"] = _tc(_slim["content"], _MAX_DISK_CONTENT)
                     _to_disk.append(_slim)
                 else:
@@ -469,7 +469,7 @@ def update_working_memory(
     # residual emotional tint that plays out over subsequent cycles.
     try:
         if int(entry.get("importance") or 0) >= 4:
-            from affect.consolidation import maybe_trigger_from_event
+            from brain.affect.consolidation import maybe_trigger_from_event
             maybe_trigger_from_event(entry)
     except Exception as _e:
         record_failure("working_memory.update_working_memory", _e)
@@ -507,7 +507,7 @@ def update_working_memory(
             if _now - _last_digest_time >= _DIGEST_RATE_LIMIT_S:
                 _last_digest_time = _now
                 try:
-                    from cog_memory.long_memory import update_long_memory as _ulm
+                    from brain.cog_memory.long_memory import update_long_memory as _ulm
                     _topics = list(dict.fromkeys(
                         str(m.get("event_type") or m.get("content", "")[:30])
                         for m in non_salient

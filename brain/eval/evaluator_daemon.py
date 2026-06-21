@@ -12,15 +12,15 @@
 #     _evaluator = EvaluatorDaemon()
 #     _evaluator.tick(context, cycle)
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 from brain.paths import COMPLETED_GOALS_FILE
-from eval.evaluator_wal import load_all, rewrite
-from utils.failure_counter import record_failure
+from brain.eval.evaluator_wal import load_all, rewrite
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 N_RETRIEVAL = 50    # cycles to wait for Signal A
@@ -40,7 +40,7 @@ class EvaluatorDaemon:
             self._resolve(context, cycle)
         except Exception as e:
             try:
-                from utils.log import log_model_issue
+                from brain.utils.log import log_model_issue
                 log_model_issue(f"[evaluator] tick failed: {e}")
             except Exception as _e:
                 record_failure("evaluator_daemon.EvaluatorDaemon.tick", _e)
@@ -116,7 +116,7 @@ class EvaluatorDaemon:
                     else:
                         resolved_ids.append(did or "")
                         try:
-                            from think.thought_stream import emit_thought
+                            from brain.think.thought_stream import emit_thought
                             emit_thought(
                                 phase="outcome",
                                 summary=f"{action} → reward {reward:.2f} ({resolved_by})",
@@ -172,7 +172,7 @@ class EvaluatorDaemon:
         if not origin_goal_id or age > M_GOAL:
             return None
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             completed = load_json(COMPLETED_GOALS_FILE, default_type=list)
             if not isinstance(completed, list):
                 return None
@@ -195,12 +195,12 @@ class EvaluatorDaemon:
         decision_id: Optional[str],
     ) -> bool:
         try:
-            from think.bandit.contextual_bandit import update_delayed
+            from brain.think.bandit.contextual_bandit import update_delayed
             update_delayed(action, features, reward, decision_id=decision_id)
             return True
         except Exception as e:
             try:
-                from utils.log import log_model_issue
+                from brain.utils.log import log_model_issue
                 log_model_issue(f"[evaluator] update_delayed failed for {action}: {e}")
             except Exception as _e:
                 record_failure("evaluator_daemon.EvaluatorDaemon._apply_delayed", _e)

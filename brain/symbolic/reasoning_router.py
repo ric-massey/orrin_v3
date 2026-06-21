@@ -20,12 +20,12 @@
 #     "drive":         dict,
 #   }
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Dict, Optional
 
-from utils.log import log_activity
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -44,7 +44,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
     # Stage -1 — Sub-symbolic signal_score (fastest path, no rules or LLM)
     signal_score: Dict = {}
     try:
-        from symbolic.pattern_scorer import score_signal
+        from brain.symbolic.pattern_scorer import score_signal
         signal_score = score_signal(query, context=ctx)
         result["signal_score"] = signal_score
         ctx["_signal_score"]   = signal_score
@@ -70,7 +70,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
     _self_conf = 0.5
     _high_confidence_domain = False
     try:
-        from symbolic.symbolic_self_model import self_assess
+        from brain.symbolic.symbolic_self_model import self_assess
         _assessment = self_assess(query)
         _self_conf = _assessment["confidence"]
         ctx["_self_assessment"] = _assessment
@@ -87,7 +87,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
         # never routes to the LLM; symbolic stages always try.
         elif not _assessment["trust_symbolic"]:
             try:
-                from utils.generate_response import _llm_tool_only
+                from brain.utils.generate_response import _llm_tool_only
                 _tool_only = _llm_tool_only()
             except Exception:
                 _tool_only = True
@@ -109,8 +109,8 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
 
     # Stage 1 — Rule engine + meta-rule conflict resolution
     try:
-        from symbolic.rule_engine import match_all
-        from symbolic.meta_rules import resolve_conflict
+        from brain.symbolic.rule_engine import match_all
+        from brain.symbolic.meta_rules import resolve_conflict
         matched = match_all(query, threshold=0.40)
         if matched:
             resolution = resolve_conflict(matched, query=query)
@@ -129,7 +129,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
             elif resolution.get("winner"):
                 winner = resolution["winner"]
                 # Apply the rule (bumps hit count)
-                from symbolic.rule_engine import apply as rule_apply
+                from brain.symbolic.rule_engine import apply as rule_apply
                 answer = rule_apply(winner)
                 result.update(
                     resolved=True, answer=answer, source="rule",
@@ -142,7 +142,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
                 )
                 # Record firing for verifier and prediction engine
                 try:
-                    from symbolic.rule_verifier import record_firing as _rf
+                    from brain.symbolic.rule_verifier import record_firing as _rf
                     _rf(winner["id"], query, answer,
                         meta_rule_id=resolution.get("meta_rule_id", ""),
                         context=ctx)
@@ -167,7 +167,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
 
     # Stage 2 — Analogy engine (structural + goal similarity)
     try:
-        from symbolic.analogy_engine import best_analogue_answer
+        from brain.symbolic.analogy_engine import best_analogue_answer
         analogy = best_analogue_answer(query)
         if analogy:
             result.update(resolved=True, answer=analogy, source="analogy")
@@ -179,7 +179,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
 
     # Stage 3 — Symbolic BFS search
     try:
-        from symbolic.symbolic_search import search as sym_search
+        from brain.symbolic.symbolic_search import search as sym_search
         sym_answer = sym_search(query, context=ctx)
         if sym_answer:
             result.update(resolved=True, answer=sym_answer, source="symbolic_search")
@@ -195,14 +195,14 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
 
     # Maybe spawn investigation sub-goal when exploration_drive is high
     try:
-        from symbolic.intrinsic_motivation import maybe_spawn_subgoal
+        from brain.symbolic.intrinsic_motivation import maybe_spawn_subgoal
         maybe_spawn_subgoal(query, ctx)
     except Exception as _e:
         record_failure("reasoning_router.route.2", _e)
 
     # Stage 4.5 — Causal explanation (between motivation and LLM gate)
     try:
-        from symbolic.causal_graph import causal_explanation
+        from brain.symbolic.causal_graph import causal_explanation
         causal = causal_explanation(query)
         if causal:
             result.update(resolved=True, answer=causal, source="causal_graph")
@@ -230,7 +230,7 @@ def route(query: str, *, context: Optional[Dict] = None) -> Dict:
 
 def _set_drive(ctx: Dict, query: str) -> Dict:
     try:
-        from symbolic.intrinsic_motivation import get_drive
+        from brain.symbolic.intrinsic_motivation import get_drive
         drive = get_drive(query, context=ctx)
         ctx["_intrinsic_drive"] = drive
         ctx["exploration_drive_score"] = drive["score"]

@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from symbolic.meta_rules import resolve_conflict
-from utils.failure_counter import ContractViolation, strict_should_reraise
+from brain.symbolic.meta_rules import resolve_conflict
+from brain.utils.failure_counter import ContractViolation, strict_should_reraise
 
 
 def test_resolve_conflict_contract_fires_on_bare_dicts():
@@ -23,7 +23,7 @@ def test_resolve_conflict_still_accepts_valid_pairs():
 
 
 def test_contract_violation_reraised_under_any_strict_mode(monkeypatch):
-    import utils.failure_counter as FC
+    import brain.utils.failure_counter as FC
     monkeypatch.setattr(FC, "_STRICT", "1")
     assert strict_should_reraise(ContractViolation("seam broke"))
     # ...even though it isn't a programmer-error type
@@ -31,8 +31,8 @@ def test_contract_violation_reraised_under_any_strict_mode(monkeypatch):
 
 
 def test_review_failures_internal_surfaces_growing_sites(monkeypatch, tmp_path):
-    import cognition.health_monitor as HM
-    import utils.failure_counter as FC
+    import brain.cognition.health_monitor as HM
+    import brain.utils.failure_counter as FC
 
     monkeypatch.setattr(HM, "_state_path", lambda: tmp_path / "health_state.json")
     monkeypatch.setattr(FC, "_counters", {
@@ -42,7 +42,7 @@ def test_review_failures_internal_surfaces_growing_sites(monkeypatch, tmp_path):
                       "last_error": "IOError: meh"},
     })
     captured = []
-    import cog_memory.working_memory as wm_mod
+    import brain.cog_memory.working_memory as wm_mod
     monkeypatch.setattr(wm_mod, "update_working_memory",
                         lambda e, **k: captured.append(e))
 
@@ -56,11 +56,11 @@ def test_review_failures_internal_surfaces_growing_sites(monkeypatch, tmp_path):
 
 
 def test_map_territory_audit_writes_findings_log(monkeypatch, tmp_path):
-    import cognition.maintenance.map_territory_audit as MA
+    import brain.cognition.maintenance.map_territory_audit as MA
 
     monkeypatch.setattr(MA, "_FINDINGS_LOG", tmp_path / "audit.jsonl")
     monkeypatch.setattr(MA, "_STATE_FILE", tmp_path / "audit_state.json")
-    import cog_memory.working_memory as wm_mod
+    import brain.cog_memory.working_memory as wm_mod
     monkeypatch.setattr(wm_mod, "update_working_memory", lambda *a, **k: None)
 
     msg = MA.audit_map_territory({})
@@ -73,7 +73,7 @@ def test_map_territory_audit_writes_findings_log(monkeypatch, tmp_path):
 
 
 def test_audit_comment_constant_mismatch_detection(monkeypatch, tmp_path):
-    import cognition.maintenance.map_territory_audit as MA
+    import brain.cognition.maintenance.map_territory_audit as MA
 
     bad = tmp_path / "drifty.py"
     bad.write_text("_RETRY_HOURS = 24  # retry after 36 hours\n")

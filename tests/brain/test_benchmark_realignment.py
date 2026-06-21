@@ -1,7 +1,7 @@
 # Benchmark realignment (docs/benchmark_realignment.md F1–F5): the suite must
 # match the dual-process, multi-goal architecture — sample both lanes, commit
 # scenario goals, time per-goal pursuit, and measure concurrent progress (B6).
-import benchmarks as bm
+import brain.benchmarks as bm
 
 
 # ── F1: B2 counts BOTH lanes ──────────────────────────────────────────────────
@@ -99,15 +99,15 @@ def test_b6_honest_when_no_executive_data():
 # ── F4: search-shaped goals get search-shaped plans ──────────────────────────
 
 def test_b3_goal_decomposes_to_search_template():
-    from cognition.planning.goals import _rule_based_decompose
+    from brain.cognition.planning.goals import _rule_based_decompose
     subs = _rule_based_decompose({"name": bm._SCENARIO_GOALS["B3"]["title"]})
     names = " ".join(s["name"].lower() for s in subs)
     assert "search_own_files" in names and "grep_files" in names
 
 
 def test_b3_symbolic_plan_maps_to_executable_fns():
-    from cognition.planning.pursue_goal import _symbolic_plan
-    from cognition.planning.step_execution import recognise_step_action
+    from brain.cognition.planning.pursue_goal import _symbolic_plan
+    from brain.cognition.planning.step_execution import recognise_step_action
     plan = _symbolic_plan(bm._SCENARIO_GOALS["B3"]["title"], {})
     fns = [recognise_step_action(s) for s in plan]
     assert fns[0] == "search_own_files"
@@ -116,7 +116,7 @@ def test_b3_symbolic_plan_maps_to_executable_fns():
 
 
 def test_research_goals_still_hit_research_template():
-    from cognition.planning.pursue_goal import _symbolic_plan
+    from brain.cognition.planning.pursue_goal import _symbolic_plan
     plan = _symbolic_plan("Find out about black holes", {})
     assert "research_topic" in plan[0]
 
@@ -140,7 +140,7 @@ def test_seed_scenario_commits_with_shared_id(monkeypatch, tmp_path):
     monkeypatch.setattr(bm, "_goals_api", lambda: _FakeAPI())
     assert bm.seed_scenario("B3") is True
 
-    from utils.json_utils import load_json
+    from brain.utils.json_utils import load_json
     goals = load_json(goals_file, default_type=list)
     assert goals and goals[0]["id"] == "api-goal-123"     # one id, both stores
     assert goals[0]["benchmark"] == "B3"
@@ -157,6 +157,6 @@ def test_seed_scenario_falls_back_without_api(monkeypatch, tmp_path):
     monkeypatch.setattr(bm, "GOALS_FILE", goals_file)
     monkeypatch.setattr(bm, "_goals_api", lambda: (_ for _ in ()).throw(RuntimeError("no store")))
     assert bm.seed_scenario("B5") is True
-    from utils.json_utils import load_json
+    from brain.utils.json_utils import load_json
     goals = load_json(goals_file, default_type=list)
     assert goals and goals[0]["benchmark"] == "B5"

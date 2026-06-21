@@ -10,13 +10,13 @@
 # the single source of truth for lifecycle/priority; this module is a thin
 # consumer of it + its event stream.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 from collections import deque
 from typing import Any, Dict, List
 
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Goal kinds with registered v2 handlers (executable by GoalsDaemon). Cognitive
@@ -161,7 +161,7 @@ def _goal_to_v1(g) -> Dict[str, Any]:
 
 def _load_v1_tree() -> List[Dict[str, Any]]:
     try:
-        from cognition.planning.goals import load_goals
+        from brain.cognition.planning.goals import load_goals
         return load_goals()
     except Exception as _e:
         record_failure("goal_io._load_v1_tree", _e)
@@ -239,7 +239,7 @@ def committed_goals_v1(api, limit: int = 3) -> List[Dict[str, Any]]:
         record_failure("goal_io.committed_goals_v1", _e)
     # Legacy fallback (only when the GoalsAPI itself failed): v1 focus_goals.json
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import FOCUS_GOAL
         fg = load_json(FOCUS_GOAL, default_type=dict)
         goal = fg.get("short_or_mid") or fg.get("long_term")
@@ -292,7 +292,7 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                 if title in existing:
                     continue  # already exists — skip
                 try:
-                    from cognition.planning.goal_comprehension import hydrate_goal_model
+                    from brain.cognition.planning.goal_comprehension import hydrate_goal_model
                     gd = hydrate_goal_model(gd, context)
                 except Exception as exc:
                     record_failure("goal_io.sync_proposed_goals.hydrate", exc)
@@ -335,7 +335,7 @@ def record_goal_progress(context: Dict[str, Any]) -> None:
             f"Recent cognitive actions: {', '.join(recent_picks) or 'none'}. "
             f"Last thought: {last_thought or '(none)'}")
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(note, emotion="motivation", event_type="goal_progress", importance=2, context=context)
     except Exception as _e:
         record_failure("goal_io.record_goal_progress", _e)
@@ -407,7 +407,7 @@ def drain_failed_goals(api, context: Dict[str, Any]) -> List[Dict[str, Any]]:
         seen.add(gid)
         seen_list.append(gid)
         try:
-            from cognition.planning.goals import mark_goal_failed
+            from brain.cognition.planning.goals import mark_goal_failed
             mark_goal_failed(fg, reason=reason, context=context)
         except Exception as _e:
             _log.warning("mark_goal_failed error: %s", _e)

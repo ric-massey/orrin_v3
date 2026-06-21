@@ -3,8 +3,8 @@
 import json
 from datetime import datetime, timezone, timedelta
 
-from cognition import mortality as m
-from cognition.mortality import LIFESPAN_FILE
+from brain.cognition import mortality as m
+from brain.cognition.mortality import LIFESPAN_FILE
 
 
 def _write_lifespan(**over):

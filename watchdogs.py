@@ -1,5 +1,5 @@
 # watchdogs.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import threading
 import time
 from typing import Tuple, Callable, Dict, List, Optional, Any  # added Any

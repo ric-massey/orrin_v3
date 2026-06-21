@@ -20,8 +20,8 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
 GROUND_TRUTH_WAL  = DATA_DIR / "ground_truth.jsonl"

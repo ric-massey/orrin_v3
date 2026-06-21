@@ -20,17 +20,17 @@
 #   (cooldown: 30 min per topic hash). goal_io.sync_proposed_goals picks these up and
 #   creates real goals in the goal system next cycle.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import PREDICTIONS_FILE, DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ─── Spawn cooldown state ─────────────────────────────────────────────────────
@@ -44,7 +44,7 @@ _INVEST_THRESH   = 0.45
 
 def novelty(query: str) -> float:
     """0 = seen before, 1 = completely new. Inverted structural analogy score."""
-    from symbolic.analogy_engine import find_analogues
+    from brain.symbolic.analogy_engine import find_analogues
     analogues = find_analogues(query, top_n=3, min_score=0.0)
     if not analogues:
         return 1.0
@@ -56,8 +56,8 @@ def novelty(query: str) -> float:
 
 def uncertainty(query: str) -> float:
     """0 = fully covered, 1 = completely unknown."""
-    from symbolic.rule_engine import match_all
-    from symbolic.symbolic_search import can_answer_symbolically
+    from brain.symbolic.rule_engine import match_all
+    from brain.symbolic.symbolic_search import can_answer_symbolically
 
     rules_hit = match_all(query, threshold=0.30)
     rule_cov = min(len(rules_hit) / 3.0, 1.0)
@@ -78,7 +78,7 @@ def prediction_error(context: Optional[Dict] = None) -> float:
     # Try domain-weighted error first (more precise signal)
     if query:
         try:
-            from symbolic.prediction_engine import domain_weighted_prediction_error
+            from brain.symbolic.prediction_engine import domain_weighted_prediction_error
             return domain_weighted_prediction_error(query)
         except Exception as _e:
             record_failure("intrinsic_motivation.prediction_error", _e)
@@ -214,7 +214,7 @@ def maybe_spawn_subgoal(query: str, context: Dict) -> Optional[Dict]:
 
     # Decompose into a multi-step causal plan for longer-horizon tracking
     try:
-        from symbolic.temporal_planner import integrate_goal_plan as _igp
+        from brain.symbolic.temporal_planner import integrate_goal_plan as _igp
         _igp(goal, context=context)
     except Exception as _e:
         record_failure("intrinsic_motivation.maybe_spawn_subgoal", _e)
@@ -232,7 +232,7 @@ def run_intrinsic_motivation(context: Dict) -> Dict:
     if not user_input:
         # No active query — compute background exploration_drive from recent WM
         try:
-            from utils.json_utils import load_json as _lj
+            from brain.utils.json_utils import load_json as _lj
             from brain.paths import WORKING_MEMORY_FILE as _WMF
             wm = _lj(_WMF, default_type=list) or []
             recent_texts = [
@@ -255,7 +255,7 @@ def run_intrinsic_motivation(context: Dict) -> Dict:
     # goal regardless of exploration_drive score — high error = the world model is wrong there.
     domain_spawned: List[Optional[Dict]] = []
     try:
-        from symbolic.prediction_engine import get_domain_error_rates
+        from brain.symbolic.prediction_engine import get_domain_error_rates
         error_rates = get_domain_error_rates()
         for domain, err_rate in error_rates.items():
             if err_rate >= 0.65:

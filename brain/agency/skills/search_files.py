@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from utils.log import log_activity, log_error
+from brain.utils.log import log_activity, log_error
 
 
 def search_files(args=None, **kwargs) -> dict:

@@ -15,7 +15,7 @@
 # Called:     every N cycles from finalize.py
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import platform
 import shutil
@@ -24,12 +24,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private, log_activity
-from utils.json_utils import load_json, save_json
-from cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private, log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import WORLD_MODEL, USER_INPUT, DATA_DIR
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _UPDATE_EVERY_N_CYCLES = 5      # don't run every single cycle
@@ -326,7 +326,7 @@ def _update(context: Dict[str, Any]) -> Dict[str, Any]:
 
     # Sync machine state into knowledge graph so it's queryable alongside entities
     try:
-        from cognition.knowledge_graph import add_entity, add_relation
+        from brain.cognition.knowledge_graph import add_entity, add_relation
         machine_name = platform.node() or f"{platform.system()} machine"
         os_desc = f"{platform.system()} {platform.release()}".strip() or "unknown OS"
         add_entity(machine_name, entity_type="tool",

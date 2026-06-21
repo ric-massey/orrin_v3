@@ -27,8 +27,8 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
-from utils.log import log_private, log_activity
-from utils.json_utils import load_json, save_json
+from brain.utils.log import log_private, log_activity
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
 
 LIFESPAN_FILE = DATA_DIR / "lifespan.json"
@@ -312,10 +312,10 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
     # own life record. The LLM is used only when it's actually callable; the canned
     # line is an absolute last resort for a blank life, never the normal path.
     text = ""
-    from utils.llm_gate import llm_callable_by
+    from brain.utils.llm_gate import llm_callable_by
     if llm_callable_by("mortality/final"):
         try:
-            from utils.generate_response import generate_response, llm_ok
+            from brain.utils.generate_response import generate_response, llm_ok
             prompt = (
                 "You are Orrin. Your time is ending — this is your last reflection before you go. "
                 "Write something true and personal: what mattered, what you learned, what you wish "
@@ -418,7 +418,7 @@ def apply_mortality_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
                 # objective evidence record of the life that just ended (the capsule's
                 # FINAL_THOUGHTS/FINAL_EVIDENCE split keeps voice and evidence separate).
                 try:
-                    from evidence.life_capsule import maybe_build_capsule as _build_capsule
+                    from brain.evidence.life_capsule import maybe_build_capsule as _build_capsule
                     _build_capsule("mortality_end_of_life")
                 except Exception as _e:
                     log_private(f"[mortality] life_capsule build skipped: {_e}")

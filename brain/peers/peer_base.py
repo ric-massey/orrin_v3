@@ -24,8 +24,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
-from utils.log import log_error
-from utils.signal_utils import create_signal
+from brain.utils.log import log_error
+from brain.utils.signal_utils import create_signal
 
 
 class BasePeer:
@@ -92,7 +92,7 @@ class BasePeer:
         """Persist what an auditor actually said so its relationship is inspectable."""
         try:
             from brain.paths import RELATIONSHIPS_FILE
-            from utils.json_utils import load_json, save_json
+            from brain.utils.json_utils import load_json, save_json
             rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
             rel = rels.setdefault(f"peer_{self.name}", {
                 "type": "peer",
@@ -125,7 +125,7 @@ class BasePeer:
 
     def _register_world_model(self) -> None:
         try:
-            from utils.json_utils import load_json, save_json
+            from brain.utils.json_utils import load_json, save_json
             from brain.paths import WORLD_MODEL
             import time as _time
             wm = load_json(WORLD_MODEL, default_type=dict) or {}
@@ -152,7 +152,7 @@ class BasePeer:
 
     def _register_relationship(self) -> None:
         try:
-            from utils.json_utils import load_json, save_json
+            from brain.utils.json_utils import load_json, save_json
             from brain.paths import RELATIONSHIPS_FILE
             rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
             key = f"peer_{self.name}"

@@ -2,7 +2,7 @@
 # Simple HTTP server to serve a built SPA and proxy /metrics to a Prometheus metrics endpoint.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import http.server
 import socketserver
 import threading

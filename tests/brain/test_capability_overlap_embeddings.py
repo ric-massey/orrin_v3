@@ -7,14 +7,14 @@
 # keyword overlap missed, never remove one that already cleared the floor.
 import pytest
 
-from think.think_utils.select_function import (
+from brain.think.think_utils.select_function import (
     _CAP_STOPWORDS,
     _capability_descriptions,
     _capability_overlap,
     _kw_overlap_score,
     _tokenize,
 )
-from utils.embed_similarity import embeddings_available
+from brain.utils.embed_similarity import embeddings_available
 
 _RESEARCH_DESC = "research and investigate a topic by searching the web and reading sources to find out information and learn about something"
 
@@ -42,7 +42,7 @@ def test_capability_overlap_finds_lexical_paraphrase_via_embeddings():
     goal = "look into quantum computing as a topic"
     kw = _kw_only(ref, goal)
     overlap = _capability_overlap(ref, goal)
-    from config.tuning import SEMANTIC_MATCH_FLOOR
+    from brain.config.tuning import SEMANTIC_MATCH_FLOOR
     assert kw < SEMANTIC_MATCH_FLOOR
     # The embedder recognises "research ... searching the web" ~ "look into".
     assert overlap > kw
@@ -53,5 +53,5 @@ def test_capability_overlap_finds_lexical_paraphrase_via_embeddings():
 def test_capability_overlap_unrelated_text_stays_below_semantic_floor():
     ref = _capability_descriptions().get("research_topic") or _RESEARCH_DESC
     goal = "organize my desk and clean the kitchen"
-    from config.tuning import SEMANTIC_MATCH_FLOOR
+    from brain.config.tuning import SEMANTIC_MATCH_FLOOR
     assert _capability_overlap(ref, goal) < SEMANTIC_MATCH_FLOOR

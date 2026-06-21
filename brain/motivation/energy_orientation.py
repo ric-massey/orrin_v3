@@ -51,8 +51,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import ENERGY_MODE_FILE
 
 

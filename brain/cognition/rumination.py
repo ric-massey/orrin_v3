@@ -25,17 +25,17 @@
 # It never writes to working memory. It surfaces as a single aside in the inner
 # loop context (~15% base rate), and only to a max charge of 0.70.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 import uuid
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import RUMINATION_FILE
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
@@ -193,7 +193,7 @@ def update_rumination(context: Dict[str, Any]) -> Dict[str, Any]:
                 and loop.get("charge", 0) > 0.40
                 and not loop.get("escalated")):
             try:
-                from cognition.selfhood.tensions import load_tensions, save_tensions
+                from brain.cognition.selfhood.tensions import load_tensions, save_tensions
                 content = (loop.get("content") or "").strip()
                 title = ("Unresolved rumination: " + content[:40]).strip()
                 tens = load_tensions()
@@ -221,7 +221,7 @@ def update_rumination(context: Dict[str, Any]) -> Dict[str, Any]:
     # events remain invisible background noise as designed.
     if surfaced and surfaced.get("charge", 0) > 0.55 and surfaced.get("return_count", 0) > 4:
         try:
-            from cog_memory.working_memory import update_working_memory as _uwm
+            from brain.cog_memory.working_memory import update_working_memory as _uwm
             _uwm({
                 "content": f"Recurring thought (high charge): {surfaced.get('content', '')[:200]}",
                 "event_type": "rumination",
@@ -302,7 +302,7 @@ def _seed_from_context(
     # The threat_detector biases retrieval toward emotionally congruent content — memories
     # matching the current affective state get priority access (Bower 1981; Kensinger 2008).
     try:
-        from cog_memory.working_memory import get_emotionally_salient_wm
+        from brain.cog_memory.working_memory import get_emotionally_salient_wm
         _activation_level = float((affect_state.get("activation_level") or affect_state.get("_ne_proxy") or 0.5))
         salient_wm = get_emotionally_salient_wm(
             dominant_emotion=dominant_ruminative,
@@ -315,7 +315,7 @@ def _seed_from_context(
 
     # Find the highest-salience qualifying event
     try:
-        from utils.text_sanity import is_corrupt_text as _ict, truncate_clean as _tc
+        from brain.utils.text_sanity import is_corrupt_text as _ict, truncate_clean as _tc
     except Exception:
         _ict, _tc = None, None
 

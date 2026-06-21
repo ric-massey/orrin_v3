@@ -33,8 +33,8 @@ import re
 from typing import Dict, List
 
 from brain.paths import DATA_DIR, LONG_MEMORY_FILE
-from utils.json_utils import load_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity
 
 _BANK_FILE = DATA_DIR / "learned_phrases.json"
 _MAX_BANK = 80            # cap distinct learned openers

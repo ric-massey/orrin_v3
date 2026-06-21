@@ -11,7 +11,7 @@
 # truth — no duplication).
 import re
 
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 from brain.paths import AFFECT_MODEL_FILE, CUSTOM_EMOTION
 
 

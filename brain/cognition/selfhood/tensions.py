@@ -16,16 +16,16 @@
 # Function selection's emotion weight is also amplified for functions that help
 # resolve tensions (reflection, values_check, plan_self_evolution).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 import uuid
 from typing import Any, Dict, List
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import VALUE_REVISIONS, TENSIONS_FILE
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 
 _MAX_ACTIVE         = 5     # cap so working memory isn't overwhelmed
@@ -45,7 +45,7 @@ _TOOL_OUTAGE_MARKERS = ("llm", "language model", "tool unavailable", "api key",
                         "wikipedia", "web_search", "scrape")
 
 import re as _re
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 # Known self-nesting prefixes: re-surfacing must rebuild from the RAW source
 # text, never from an already-prefixed title ("Value under tension: Value
 # under tension: …" — same bug class as "I am blocked: I am blocked").
@@ -109,7 +109,7 @@ def detect_tensions(context: Dict[str, Any] = None) -> List[str]:
 
     # ── Source 2: recurring failures (aspiration/capability gap) ─────────────
     try:
-        from utils.failure_counter import get_summary as _fs
+        from brain.utils.failure_counter import get_summary as _fs
         summary = _fs() or {}  # {site: {"count": N, ...}, ...}
         for site, data in summary.items():
             count = int((data.get("count") or 0) if isinstance(data, dict) else 0)
@@ -132,7 +132,7 @@ def detect_tensions(context: Dict[str, Any] = None) -> List[str]:
 
     # ── Source 3: autobiography chapter theme tension ─────────────────────────
     try:
-        from cognition.selfhood.autobiography import load_autobiography
+        from brain.cognition.selfhood.autobiography import load_autobiography
         auto = load_autobiography()
         chapters = auto.get("chapters") or []
         if chapters:
@@ -270,7 +270,7 @@ def inject_tension_signals(context: Dict[str, Any]) -> None:
             f"to open question: {str(t.get('title'))[:70]}"
         )
         try:
-            from cog_memory.long_memory import update_long_memory
+            from brain.cog_memory.long_memory import update_long_memory
             update_long_memory(
                 f"Open question (was a tension, unresolved after "
                 f"{t.get('cycles_active')} cycles): {_strip_title_prefixes(str(t.get('title')))[:120]}",
@@ -304,7 +304,7 @@ def inject_tension_signals(context: Dict[str, Any]) -> None:
                     + (f" (unresolved for {cycles} cycles)" if cycles > 10 else "")
                 )
                 try:
-                    from cog_memory.working_memory import update_working_memory
+                    from brain.cog_memory.working_memory import update_working_memory
                     update_working_memory(msg)
                 except Exception as _e:
                     record_failure("tensions.inject_tension_signals.2", _e)

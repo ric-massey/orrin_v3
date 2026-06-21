@@ -8,14 +8,14 @@ from __future__ import annotations
 
 from typing import Dict, Any
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 
 
 def leave_note(context: Dict[str, Any] = None) -> str:
     """Compose and deliver a note to the user via the expression door."""
     context = context or {}
 
-    from behavior.express_to_user import build_motive, express_to_user
+    from brain.behavior.express_to_user import build_motive, express_to_user
 
     # Ground a knowledge note in its SUBJECT, not the affect status line
     # (RUN_AUDIT_REPORT_2026-06-16 Issue 4b). For a degraded acquire_knowledge goal
@@ -41,7 +41,7 @@ def leave_note(context: Dict[str, Any] = None) -> str:
     # the artifact content, so record_effect(note_novel) mostly will NOT dedupe.
     if _seed is None:
         try:
-            from utils.json_utils import load_json as _lj
+            from brain.utils.json_utils import load_json as _lj
             from brain.paths import LONG_MEMORY_FILE as _LMF
             _lm = _lj(_LMF, default_type=list) or []
             for _entry in reversed(_lm[-25:]):
@@ -70,7 +70,7 @@ def leave_note(context: Dict[str, Any] = None) -> str:
     # actually written. This writes a marker INTO WM; it never reads raw WM out —
     # the membrane stays intact (EXPRESSION_MEMBRANE_FIX_PLAN §1.4).
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         update_working_memory({
             "content": f"[note_written] {content[:160]}",
             "event_type": "note_written",

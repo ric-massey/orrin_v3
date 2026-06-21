@@ -1,21 +1,21 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 from statistics import mean
 import random
 
-from utils.load_utils import load_all_known_json
-from utils.log import log_private
-from utils.log_reflection import log_reflection
-from utils.coerce_to_string import coerce_to_string
-from affect.discovery import discover_new_emotion
-from affect.reward_signals.reward_signals import release_reward_signal
-from affect.reflect_on_affect_model import reflect_on_emotion_model
-from affect.affect import investigate_unexplained_emotions, detect_affect
-from utils.failure_counter import record_failure
+from brain.utils.load_utils import load_all_known_json
+from brain.utils.log import log_private
+from brain.utils.log_reflection import log_reflection
+from brain.utils.coerce_to_string import coerce_to_string
+from brain.affect.discovery import discover_new_emotion
+from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.affect.reflect_on_affect_model import reflect_on_emotion_model
+from brain.affect.affect import investigate_unexplained_emotions, detect_affect
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def reflect_on_affect(context, self_model, memory):
-    from cog_memory.working_memory import update_working_memory
+    from brain.cog_memory.working_memory import update_working_memory
 
     data = load_all_known_json()
     affect_state = data.get("affect_state", {}) or {}
@@ -107,7 +107,7 @@ def reflect_on_affect(context, self_model, memory):
     trigger_data = [{"emotion": e, "intensity": vals[-1] if vals else 0}
                     for e, vals in emotion_events.items()]
     try:
-        from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+        from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
         _sym = _sfr("emotion", context=None, data=trigger_data)
         if _sym:
             response = _sym["text"]
@@ -117,12 +117,12 @@ def reflect_on_affect(context, self_model, memory):
 
     if not response:
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             prompt = context_for_llm.get("instructions", "")
             response = gated_generate(prompt, caller="reflect_on_affect", outcome=0.65)
             if response and isinstance(response, str):
                 try:
-                    from symbolic.crystallization import crystallize as _cryst
+                    from brain.symbolic.crystallization import crystallize as _cryst
                     prompt_summary = f"emotional reflection: {top_emotions}"
                     _cryst(prompt_summary, response, outcome=0.65, caller="reflect_on_affect")
                 except Exception as _e:

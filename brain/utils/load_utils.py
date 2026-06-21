@@ -3,8 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, Union
 
-from utils.json_utils import load_json
-from utils.log import log_error, log_model_issue
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_error, log_model_issue
 from brain.paths import DATA_DIR, CONTEXT, MODEL_CONFIG_FILE
 
 

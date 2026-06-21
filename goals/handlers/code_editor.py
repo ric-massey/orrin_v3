@@ -1,7 +1,7 @@
 # goals/handlers/code_edit.py
 # Safely edit code using git, applying patches or simple transforms, running tests, and committing if successful.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from pathlib import Path
 import subprocess, tempfile, time
 _log = get_logger(__name__)

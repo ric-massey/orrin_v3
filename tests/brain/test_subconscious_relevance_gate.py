@@ -1,6 +1,6 @@
 def test_subconscious_write_stamps_workspace_origin(monkeypatch):
-    from embodiment.subconscious import SubconsciousProcessor
-    from cog_memory import working_memory
+    from brain.embodiment.subconscious import SubconsciousProcessor
+    from brain.cog_memory import working_memory
 
     written = []
     proc = SubconsciousProcessor()
@@ -19,7 +19,7 @@ def test_subconscious_write_stamps_workspace_origin(monkeypatch):
 
 
 def test_relevant_subconscious_entry_can_surface(monkeypatch):
-    import cognition.global_workspace as gw
+    import brain.cognition.global_workspace as gw
 
     monkeypatch.setattr(gw, "_append_stream", lambda moment: None)
     monkeypatch.setattr(gw, "log_private", lambda *_args, **_kwargs: None)
@@ -42,7 +42,7 @@ def test_relevant_subconscious_entry_can_surface(monkeypatch):
 
 
 def test_stale_subconscious_entry_is_soft_damped(monkeypatch):
-    import cognition.global_workspace as gw
+    import brain.cognition.global_workspace as gw
 
     monkeypatch.setattr(gw, "_append_stream", lambda moment: None)
     monkeypatch.setattr(gw, "log_private", lambda *_args, **_kwargs: None)

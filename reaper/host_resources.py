@@ -19,7 +19,7 @@
 # Dream is still restorative in Orrin's felt body; this pause is only about the
 # RAM/swap/disk footprint of consolidation under external host pressure.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Deque, Optional, Tuple
 from collections import deque

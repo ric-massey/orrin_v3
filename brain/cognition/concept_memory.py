@@ -11,16 +11,16 @@ Provides:
   get_context_for_prompt(text) → formatted string for inner loop injection
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
+from brain.utils.json_utils import load_json, save_json
 _log = get_logger(__name__)
 
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _CONCEPTS_PATH = DATA_DIR / "concepts.json"
 _KB_PATH = DATA_DIR / "knowledge_base.json"
 _concepts_cache: Optional[Dict[str, Any]] = None
@@ -177,7 +177,7 @@ def learn_from_text(text: str, source: str = "conversation") -> None:
     if not text:
         return
     if "[EXTERNAL" in text:
-        from utils.content_quarantine import strip_quarantine
+        from brain.utils.content_quarantine import strip_quarantine
         text = strip_quarantine(text)
     concepts = _load()
     for pattern in _IS_A_PATTERNS:

@@ -1,6 +1,6 @@
 # think/think_utils/select_function.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Dict, List, Tuple, Union, Any
 import uuid
 import re
@@ -16,12 +16,12 @@ from brain.paths import (
     SELF_MODEL_FILE,
     EMOTION_FUNCTION_MAP_FILE
 )
-from utils.json_utils import load_json
-from utils.goals import extract_current_focus_goal
-from think.bandit import contextual_bandit as bandit
-from affect.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
-from utils.embed_similarity import embeddings_available, text_similarity
-from config import tuning as _tuning
+from brain.utils.json_utils import load_json
+from brain.utils.goals import extract_current_focus_goal
+from brain.think.bandit import contextual_bandit as bandit
+from brain.affect.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
+from brain.utils.embed_similarity import embeddings_available, text_similarity
+from brain.config import tuning as _tuning
 _log = get_logger(__name__)
 
 # Emergency-fallback candidates used when the cognitive-functions list is
@@ -240,7 +240,7 @@ _GOAL_DELIBERATION_FNS: frozenset = frozenset({
 # (Fix #3). Refreshed at most every ~15s so we never hit disk in the hot path.
 import time as _time  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _STATS_PATH = _Path(__file__).resolve().parents[2] / "data" / "decision_stats.json"
 _STATS_CACHE: Dict[str, Any] = {"t": 0.0, "data": {}}
 _CAPS_PATH = _Path(__file__).resolve().parents[2] / "data" / "capability_descriptions.json"
@@ -628,7 +628,7 @@ def _is_dispatchable(name: str) -> bool:
     ok = True
     try:
         import inspect
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS  # lazy: avoid import cycle
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS  # lazy: avoid import cycle
         meta = COGNITIVE_FUNCTIONS.get(name)
         fn = meta.get("function") if isinstance(meta, dict) else meta
         if callable(fn):
@@ -1009,7 +1009,7 @@ def _bandit_hint_scores(actions: List[str], feats: Dict[str, float]) -> Dict[str
     Clamping preserves the cold-arm 1.0 as a real positive hint.
     """
     try:
-        from think.bandit.contextual_bandit import get_scores
+        from brain.think.bandit.contextual_bandit import get_scores
         raw = get_scores(actions, feats)
         if not raw:
             return {}
@@ -1134,7 +1134,7 @@ def extract_features(context: Dict) -> Dict[str, float]:
     # Without this feature the reward gradient exists but the bandit cannot see
     # the input that predicts it, so the pattern never generalises.
     try:
-        from affect.observers import negative_load
+        from brain.affect.observers import negative_load
         _distress = negative_load(ctx.get("affect_state") or {})
         if _distress > 0.35:
             features["distress_present"] = min(1.0, _distress / 2.5)
@@ -1166,7 +1166,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # the LLM tool is down — not candidates, no error, no template fallback.
     # When the tool comes back they rejoin the pool automatically.
     try:
-        from utils.llm_gate import filter_llm_dependent
+        from brain.utils.llm_gate import filter_llm_dependent
         filtered = filter_llm_dependent(actions)
         # If filtering empties the pool, fall back to safe defaults — never
         # restore the LLM-dependent candidates (the old `or actions` fallback
@@ -1410,7 +1410,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # apply_drive_tensions() also bumps uncertainty and logs the hottest conflict.
     _drive_pull: Dict[str, float] = {}
     try:
-        from cognition.goal_competition import apply_drive_tensions, compute_drive_strengths, drive_pull_scores
+        from brain.cognition.goal_competition import apply_drive_tensions, compute_drive_strengths, drive_pull_scores
         _conflicts = apply_drive_tensions(context)
         _strengths = context.get("_drive_strengths") or compute_drive_strengths(context)
         # Master plan 4.1: commitment strength is a tie-breaker input to goal
@@ -1444,7 +1444,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # Energy orientation boost: high energy → action functions up; low/rest → reflection up.
     _energy_boost: Dict[str, float] = {}
     try:
-        from motivation.energy_orientation import energy_boost_scores as _ebs
+        from brain.motivation.energy_orientation import energy_boost_scores as _ebs
         _energy_state = str(context.get("energy_state") or "medium")
         _action_bias  = float(context.get("action_vs_reflect_bias") or 0.5)
         _rest_mode    = bool(context.get("_rest_mode"))
@@ -1459,7 +1459,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # bridges them by translating the emotional mode into direct function score boosts.
     _emo_mode_boost: Dict[str, float] = {}
     try:
-        from affect.modes_and_affect import get_current_mode as _gcm
+        from brain.affect.modes_and_affect import get_current_mode as _gcm
         _emo_mode = _gcm()
         # Phase 4: weighted "emo_<mode>:<w>" tags in the capability manifest are
         # the source of truth (literal fallbacks inside _emo_mode_function_map).
@@ -1557,7 +1557,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # risk_estimate → verification; stagnation_signal → novelty; Confidence → prune; etc.
     _emo_route_boost: Dict[str, float] = {}
     try:
-        from cognition.emotion_routing import emotion_bias as _eb
+        from brain.cognition.emotion_routing import emotion_bias as _eb
         _emo_state_full = context.get("affect_state") or {}
         for _fn in actions:
             _bias = _eb(_fn, _emo_state_full)
@@ -1699,7 +1699,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     _type_family: frozenset = frozenset()   # the committed goal type's instrumental actions
     if _has_committed_goal:
         try:
-            from cognition.planning.goal_types import (
+            from brain.cognition.planning.goal_types import (
                 goal_type_of, is_mismatched_doing_action as _mismatch_fn, EXCLUSIVE_DOING,
             )
             _goal_type = goal_type_of(context.get("committed_goal") or {})
@@ -1716,7 +1716,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # look_outward wall-clock cooldown + the standing MED outward boost for these fns,
     # so they are not double-counted). cognition.exploration_value.
     try:
-        from cognition.exploration_value import reach_value as _reach_value_fn, _OUTWARD_FNS as _REACH_FNS
+        from brain.cognition.exploration_value import reach_value as _reach_value_fn, _OUTWARD_FNS as _REACH_FNS
     except Exception:
         _reach_value_fn = None
         _REACH_FNS = frozenset()
@@ -1771,7 +1771,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # et al. (2013). Fail-safe; 0 when disabled.
         s_evc = 0.0
         try:
-            from cognition.interoception import evc_selection_adjust as _evc_adj
+            from brain.cognition.interoception import evc_selection_adjust as _evc_adj
             s_evc = _evc_adj(name, float((_stats.get(name) or {}).get("avg_reward", 0.5) or 0.5), context)
         except Exception:
             s_evc = 0.0
@@ -1808,7 +1808,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
         s_goal_lens = 0.0
         try:
-            from cognition.goal_lens import action_prior as _goal_lens_prior
+            from brain.cognition.goal_lens import action_prior as _goal_lens_prior
             s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
         except Exception as exc:
             record_failure("select_function.goal_lens_prior", exc)
@@ -2008,7 +2008,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                         _acc += _w
                         if _r <= _acc:
                             chosen = _nm
-                            from utils.log import log_activity as _la
+                            from brain.utils.log import log_activity as _la
                             _la(f"[explore] ε-sampled dormant safe fn → {chosen} "
                                 f"(ε={_expl_eps:.2f})")
                             break
@@ -2032,7 +2032,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
             # Only convene the arbiter when there is a real reflex bid to weigh in;
             # otherwise the analytical winner stands unchanged (zero behaviour drift).
             if _amy_sc != "none" and _amy_spike > 0.45 and _mapped in actions:
-                from think.action_arbiter import ActionProposal, resolve as _resolve
+                from brain.think.action_arbiter import ActionProposal, resolve as _resolve
                 # Normalise the top analytical scores to [0,1] (robust to negatives).
                 _tops = [t for _, t, _ in scored[:5]]
                 _lo, _hi = (min(_tops), max(_tops)) if _tops else (0.0, 1.0)
@@ -2053,7 +2053,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                 _winner, _info = _resolve(_props, incumbent=_incumbent, margin=0.10)
                 if _winner and _winner in actions:
                     chosen = _winner
-                    from utils.log import log_activity as _la
+                    from brain.utils.log import log_activity as _la
                     _la(f"[action_arbiter] threat-vote → {chosen} "
                         f"(spike={_amy_spike:.2f}, hysteresis={_info.get('hysteresis')})")
         except Exception as _e:
@@ -2061,7 +2061,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
         # Inhibition: record the emotional cost of not doing what drives wanted
         try:
-            from cognition.inhibition import apply_inhibition_costs
+            from brain.cognition.inhibition import apply_inhibition_costs
             apply_inhibition_costs(context, scored, chosen, _drive_pull)
         except Exception as _e:
             record_failure("select_function.select_function.13", _e)
@@ -2070,7 +2070,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         # Validate the fallback exists in the registry before returning it;
         # an unknown name causes the bandit to penalise a selection it generated.
         try:
-            from registry.cognition_registry import COGNITIVE_FUNCTIONS as _cf_reg
+            from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS as _cf_reg
             _valid = [a for a in actions if a in _cf_reg]
             chosen = _valid[0] if _valid else ""
         except Exception:
@@ -2096,7 +2096,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     })
     _guard_distress_high = False
     try:
-        from affect.observers import negative_load
+        from brain.affect.observers import negative_load
         _guard_distress_high = negative_load(context.get("affect_state") or {}) > 0.55
     except Exception as _e:
         record_failure("select_function.select_function.14", _e)
@@ -2158,7 +2158,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # across cycles via commit_affect — the old top-level writer in think_module
     # never reached core_signals and stayed pinned at 0.000.
     try:
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
         if _repeat_attempt:
             submit_affect(context, "stagnation_signal", +0.06,
                           source="select_repeat", ttl_cycles=4)
@@ -2201,7 +2201,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
                     if _exec_alts and _exec_alts[0][0] != chosen:
                         chosen = _exec_alts[0][0]
                         override_applied = True
-                        from utils.log import log_private as _lp
+                        from brain.utils.log import log_private as _lp
                         _lp(
                             f"[meta_rut] {_META_RUT_WINDOW} deliberation picks with no "
                             f"action → forcing execution: {chosen!r}"

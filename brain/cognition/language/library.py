@@ -18,7 +18,7 @@ import time
 from pathlib import Path
 from typing import List
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 
 _UA = {"User-Agent": "OrrinLanguageLearner/1.0 (personal research; contact: local)"}
 

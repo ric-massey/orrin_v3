@@ -1,7 +1,7 @@
 # Tests for the AffectArbiter convergence layer (affect/arbiter.py).
-from affect.arbiter import submit_affect, commit_affect, STABILITY_BUDGET
-from affect.affect_buffer import drain_affect_queue
-from affect.setpoints import setpoint
+from brain.affect.arbiter import submit_affect, commit_affect, STABILITY_BUDGET
+from brain.affect.affect_buffer import drain_affect_queue
+from brain.affect.setpoints import setpoint
 
 
 def _ctx(**core):

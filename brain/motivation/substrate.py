@@ -10,13 +10,13 @@
 #   satisfy_urge(urge_type, amount)            → manual satisfaction signal
 #   update_dynamics(delta_t)                   → advance dynamics by delta_t seconds
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 import threading
 import time
 from typing import Any, Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -290,7 +290,7 @@ class _MotivationEngine:
     def _load_state(self) -> None:
         try:
             from brain.paths import DATA_DIR
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             p = DATA_DIR / "motivation_state.json"
             saved = load_json(str(p), default_type=dict) or {}
             drives = saved.get("drives") or {}
@@ -307,7 +307,7 @@ class _MotivationEngine:
         self._last_save = now
         try:
             from brain.paths import DATA_DIR
-            from utils.json_utils import save_json
+            from brain.utils.json_utils import save_json
             import datetime
             with self._lock:
                 snapshot = dict(self._drives)
@@ -333,7 +333,7 @@ class _MotivationEngine:
             if not notable:
                 return
             desc = "; ".join(f"{k}={v}" for k, v in sorted(notable.items(), key=lambda x: -x[1]))
-            from cog_memory.long_memory import update_long_memory
+            from brain.cog_memory.long_memory import update_long_memory
             update_long_memory(
                 f"[motivation] High-activation drives: {desc}",
                 emotion="anticipation",

@@ -19,13 +19,13 @@ Suppression conditions (silence or minimal hold):
   very high resource_deficit + no inner thought
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 from typing import Any, Dict, Optional
 
-from utils.log import log_activity, log_error
-from utils.llm_gate import llm_available
+from brain.utils.log import log_activity, log_error
+from brain.utils.llm_gate import llm_available
 _log = get_logger(__name__)
 
 
@@ -189,8 +189,8 @@ def _express(
     The LLM invents nothing — it only translates.
     """
     try:
-        from utils.generate_response import generate_response, llm_ok
-        from affect.affect_summary import describe_dominant_affect as _dfs
+        from brain.utils.generate_response import generate_response, llm_ok
+        from brain.affect.affect_summary import describe_dominant_affect as _dfs
 
         emo  = affect_state or {}
         core = emo.get("core_signals") or emo
@@ -298,7 +298,7 @@ def build_speech(
         #    FORCE_SYMBOLIC_SPEECH=True  → never calls LLM
         #    FORCE_SYMBOLIC_SPEECH=False → tries symbolic first, LLM as fallback
         try:
-            from behavior.speech_pipeline import build_response as _build_response
+            from brain.behavior.speech_pipeline import build_response as _build_response
             reply = (_build_response(user_input, context, affect_state) or "").strip()
             if reply and reply != "I'm here.":
                 log_activity(f"[speech_gate] pipeline → {reply[:60]}")
@@ -315,7 +315,7 @@ def build_speech(
         #    Only reached when: pipeline returned generic "I'm here." AND inner exists
         #    AND LLM is available AND FORCE_SYMBOLIC_SPEECH is False.
         try:
-            from behavior.speech_pipeline import FORCE_SYMBOLIC_SPEECH as _FSS
+            from brain.behavior.speech_pipeline import FORCE_SYMBOLIC_SPEECH as _FSS
         except Exception:
             _FSS = False
         if inner and llm_available() and not _FSS:

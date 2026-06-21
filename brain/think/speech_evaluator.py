@@ -36,7 +36,7 @@ from __future__ import annotations
 import time
 from typing import Any, Dict, Optional
 
-from utils.log import log_activity, log_error
+from brain.utils.log import log_activity, log_error
 
 
 # ── Scoring constants ─────────────────────────────────────────────────────────
@@ -105,7 +105,7 @@ def evaluate_last_reply(
         return None
 
     try:
-        from think.speech_log import get_pending_entry, score_reply
+        from brain.think.speech_log import get_pending_entry, score_reply
 
         pending = get_pending_entry()
         if not pending:

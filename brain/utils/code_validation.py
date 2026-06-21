@@ -1,5 +1,5 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import tempfile
 import os
 import importlib.util
@@ -7,7 +7,7 @@ import traceback
 import sys
 import ast
 from typing import Dict, FrozenSet, List, Optional, Tuple
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

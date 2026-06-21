@@ -1,14 +1,14 @@
 # brain/cognition/reflection/self_reflection.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 import re
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.load_utils import load_all_known_json
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private, log_error
-from utils.log_reflection import log_reflection
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private, log_error
+from brain.utils.log_reflection import log_reflection
 from brain.paths import (
     PROMPTS_BACKUP_JSON,
     PRIVATE_THOUGHTS_FILE,
@@ -16,8 +16,8 @@ from brain.paths import (
     EMOTIONAL_SENSITIVITY_FILE,
     THINK_MODULE_PY,
 )
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -86,7 +86,7 @@ def reflect_on_think():
         else:
             # Symbolic-first gate: check if symbolic engine can assess think() logic
             try:
-                from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+                from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
                 _sym = _sfr("meta", context=None, data={"code_length": len(think_code)})
                 if _sym:
                     response = _sym["text"]
@@ -97,11 +97,11 @@ def reflect_on_think():
             if not response:
                 prompt = context.get("instructions", "")
                 try:
-                    from symbolic.llm_gate import gated_generate
+                    from brain.symbolic.llm_gate import gated_generate
                     response = gated_generate(prompt, caller="reflect_on_think", outcome=0.65)
                     if response and isinstance(response, str):
                         try:
-                            from symbolic.crystallization import crystallize as _cryst
+                            from brain.symbolic.crystallization import crystallize as _cryst
                             _cryst("reflect on think() function logic", response, outcome=0.65, caller="reflect_on_think")
                         except Exception as _e:
                             record_failure("self_reflection.reflect_on_think.2", _e)
@@ -240,7 +240,7 @@ def reflect_on_prompts():
         else:
             # Symbolic-first: check if reflection state suggests prompt changes are needed
             try:
-                from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+                from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
                 _sym = _sfr("meta", context=None, data={"prompt_count": len(prompts)})
                 if _sym:
                     log_private(f"[symbolic] Prompt reflection ({_sym['source']}): {_sym['text'][:80]}")
@@ -250,11 +250,11 @@ def reflect_on_prompts():
             prompt = context.get("instructions", "")
             response = None
             try:
-                from symbolic.llm_gate import gated_generate
+                from brain.symbolic.llm_gate import gated_generate
                 response = gated_generate(prompt, caller="reflect_on_prompts", outcome=0.60)
                 if response and isinstance(response, str):
                     try:
-                        from symbolic.crystallization import crystallize as _cryst
+                        from brain.symbolic.crystallization import crystallize as _cryst
                         _cryst("reflect and revise internal reflection prompts", response, outcome=0.60, caller="reflect_on_prompts")
                     except Exception as _e:
                         record_failure("self_reflection.reflect_on_prompts.2", _e)

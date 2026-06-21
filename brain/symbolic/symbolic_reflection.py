@@ -2,14 +2,14 @@
 # Central symbolic reflection engine — runs before any LLM-based reflection.
 # Attempts to answer reflective queries using local symbolic sources only.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 REFLECTION_STATS_FILE = DATA_DIR / "reflection_stats.json"
@@ -24,7 +24,7 @@ def _build_query(reflection_type: str, data: Any) -> str:
     # [EXTERNAL/UNTRUSTED …] wrappers in memory-derived data, and the sliced
     # tag flowed back into working/long memory via crystallization queries
     # (FINDINGS 2026-06-12 data sweep §9).
-    from utils.text_sanity import truncate_clean as _tc
+    from brain.utils.text_sanity import truncate_clean as _tc
 
     if reflection_type == "outcome":
         if isinstance(data, list) and data:
@@ -74,7 +74,7 @@ def _build_query(reflection_type: str, data: Any) -> str:
 
 def _build_from_self_model(reflection_type: str, data: Any) -> Optional[Dict]:
     try:
-        from symbolic.symbolic_self_model import get_symbolic_self_model
+        from brain.symbolic.symbolic_self_model import get_symbolic_self_model
         model = get_symbolic_self_model()
     except Exception as e:
         log_activity(f"[sym_reflect] self_model load error: {e}")
@@ -186,7 +186,7 @@ def symbolic_first_reflection(
 
     # Stage 1: reasoning router
     try:
-        from symbolic import reasoning_router
+        from brain.symbolic import reasoning_router
         routed = reasoning_router.route(query, context=ctx)
         if routed.get("resolved") and routed.get("answer") and routed.get("source") != "suppressed":
             result = {
@@ -200,7 +200,7 @@ def symbolic_first_reflection(
     # Stage 2: causal explanation (especially for outcome type)
     if result is None:
         try:
-            from symbolic.causal_graph import causal_explanation
+            from brain.symbolic.causal_graph import causal_explanation
             causal = causal_explanation(query)
             if causal:
                 result = {
@@ -214,7 +214,7 @@ def symbolic_first_reflection(
     # Stage 3: analogy engine for conversation type
     if result is None and reflection_type == "conversation":
         try:
-            from symbolic.analogy_engine import best_analogue_answer
+            from brain.symbolic.analogy_engine import best_analogue_answer
             analogy = best_analogue_answer(query)
             if analogy:
                 result = {
@@ -235,7 +235,7 @@ def symbolic_first_reflection(
 
     # Crystallize the symbolic result
     try:
-        from symbolic.crystallization import crystallize
+        from brain.symbolic.crystallization import crystallize
         crystallize(
             query,
             result["text"],

@@ -14,18 +14,18 @@
 # prevents the common failure mode where every LLM call dumps 4 near-identical
 # micro-rules that match nothing useful.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Set, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from symbolic.rule_engine import add_rule, get_all_rules
-from utils.failure_counter import record_failure
+from brain.symbolic.rule_engine import add_rule, get_all_rules
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 CRYSTALLIZED_SKILLS_FILE = DATA_DIR / "crystallized_skills.json"
@@ -172,7 +172,7 @@ def crystallize(
     # (nested chunk headers, unbalanced brackets, mid-word truncations) must
     # never be minted into symbolic rules.
     try:
-        from utils.text_sanity import is_corrupt_text
+        from brain.utils.text_sanity import is_corrupt_text
         if is_corrupt_text(query) or is_corrupt_text(response):
             log_activity(f"[crystallization] Quarantined corrupt source text from '{caller}'")
             return []

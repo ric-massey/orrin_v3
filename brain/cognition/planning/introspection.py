@@ -1,21 +1,21 @@
 # brain/cognition/planning/introspection.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from typing import Any, Dict, List
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.self_model import get_self_model, ensure_self_model_integrity
-from utils.log import log_activity, log_model_issue
-from utils.log_reflection import log_reflection
-from cognition.planning.motivations import update_motivations
-from cognition.planning.reflection import (
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.self_model import get_self_model, ensure_self_model_integrity
+from brain.utils.log import log_activity, log_model_issue
+from brain.utils.log_reflection import log_reflection
+from brain.cognition.planning.motivations import update_motivations
+from brain.cognition.planning.reflection import (
     reflect_on_growth_history,
     reflect_on_effectiveness,
     reflect_on_missed_goals,
 )
-from cog_memory.working_memory import update_working_memory
+from brain.cog_memory.working_memory import update_working_memory
 # You import evolution helpers elsewhere if you use them here later:
 # from cognition.planning.evolution import simulate_future_selves, plan_self_evolution
 from brain.paths import (
@@ -24,9 +24,9 @@ from brain.paths import (
     PRIVATE_THOUGHTS_FILE,
     MODEL_CONFIG_FILE,
 )
-from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -43,7 +43,7 @@ def _symbolic_self_summary() -> str:
     line. Returns '' when the model has nothing to say."""
     parts: List[str] = []
     try:
-        from symbolic.symbolic_self_model import get_symbolic_self_model
+        from brain.symbolic.symbolic_self_model import get_symbolic_self_model
         model = get_symbolic_self_model()
         strong = [s for s in (model.get("strong_areas") or []) if s]
         weak   = [w for w in (model.get("weak_areas") or []) if w]
@@ -131,7 +131,7 @@ def introspective_planning() -> Dict[str, Any]:
             return {"updated_goals": current_goals, "summary": "rule-based error"}
 
     try:
-        from utils.generate_response import generate_response, get_thinking_model, llm_ok
+        from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 
         # Refresh motivations based on your pipeline
         update_motivations()

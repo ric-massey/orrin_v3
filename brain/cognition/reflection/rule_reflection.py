@@ -1,14 +1,14 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json
-from utils.load_utils import load_all_known_json
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private, log_error
-from utils.log_reflection import log_reflection
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private, log_error
+from brain.utils.log_reflection import log_reflection
 from brain.paths import CASUAL_RULES
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -44,7 +44,7 @@ def reflect_on_rules_used():
         # ── Symbolic rule health assessment ───────────────────────────────────
         sym_summary = ""
         try:
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
             _sym = _sfr("rules", context=None, data=recent_outcomes)
             if _sym:
                 sym_summary = _sym["text"]
@@ -54,7 +54,7 @@ def reflect_on_rules_used():
 
         # ── Symbolic rule proposals (primary path — no LLM) ──────────────────
         try:
-            from symbolic.symbolic_cognition import propose_rule_changes as _prc
+            from brain.symbolic.symbolic_cognition import propose_rule_changes as _prc
             proposals = _prc(recent_outcomes)
         except Exception:
             proposals = {"add": [], "revise": [], "remove": []}
@@ -63,7 +63,7 @@ def reflect_on_rules_used():
 
         # Apply revisions directly to symbolic rule engine
         try:
-            from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+            from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
             sym_rules = get_all_rules()
             for r_rev in proposals.get("revise", []):
                 for rule in sym_rules:
@@ -79,7 +79,7 @@ def reflect_on_rules_used():
             if updated:
                 save_json(SYMBOLIC_RULES_FILE, sym_rules)
                 try:
-                    from symbolic import rule_engine as _re
+                    from brain.symbolic import rule_engine as _re
                     _re._rules_cache = []
                 except Exception as _e:
                     record_failure("rule_reflection.reflect_on_rules_used.2", _e)
@@ -136,8 +136,8 @@ def reflect_on_rules_used():
                 "Respond as JSON: [{\"if\": \"...\", \"then\": \"...\", \"domain\": \"...\"}]"
             )
             try:
-                from symbolic.llm_gate import gated_generate
-                from utils.json_utils import extract_json
+                from brain.symbolic.llm_gate import gated_generate
+                from brain.utils.json_utils import extract_json
                 raw      = gated_generate(prompt, caller="reflect_on_rules_used", outcome=0.60)
                 llm_rules = extract_json(raw) or []
                 if isinstance(llm_rules, list):

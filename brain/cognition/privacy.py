@@ -10,8 +10,8 @@ from __future__ import annotations
 
 from typing import Dict, Any, List
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 from brain.paths import LONG_MEMORY_FILE
 
 

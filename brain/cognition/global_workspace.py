@@ -23,8 +23,8 @@ import time
 from typing import Any, Dict, List, Optional
 
 from brain.paths import DATA_DIR
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 
 _STREAM_FILE = DATA_DIR / "conscious_stream.json"
 _STREAM_MAX = 200          # persisted stream length
@@ -219,7 +219,7 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
         for c in cands:
             try:
-                from cognition.goal_lens import relevance as _goal_relevance
+                from brain.cognition.goal_lens import relevance as _goal_relevance
                 lens_rel = _goal_relevance(context.get("goal_lens"), c.get("content") or "")
                 if lens_rel:
                     c["goal_lens_relevance"] = round(lens_rel, 3)
@@ -320,7 +320,7 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
 def _append_stream(moment: Dict[str, Any]) -> None:
     try:
-        from utils.json_utils import modify_json
+        from brain.utils.json_utils import modify_json
         with modify_json(_STREAM_FILE, list) as data:
             data.append(moment)
             if len(data) > _STREAM_MAX:

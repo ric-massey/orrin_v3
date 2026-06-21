@@ -1,6 +1,6 @@
 # Behavioral queue unification (V3 D4): one urgency/veto-ranked resolution path,
 # replacing pending_actions.insert(0) position-hacking.
-from think.think_utils.action_gate import propose_action, resolve_pending_actions
+from brain.think.think_utils.action_gate import propose_action, resolve_pending_actions
 
 
 def test_higher_urgency_resolves_to_front():

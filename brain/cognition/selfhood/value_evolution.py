@@ -27,7 +27,7 @@
 #   3. Cooldown 6h → 90min.
 #   4. dream_cycle seeding still works and adds to the queue.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import re
@@ -35,11 +35,11 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from utils.self_model import get_self_model, save_self_model
-from utils.failure_counter import record_failure
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.utils.self_model import get_self_model, save_self_model
+from brain.utils.failure_counter import record_failure
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import VALUE_REVISIONS, LONG_MEMORY_FILE
 _log = get_logger(__name__)
 
@@ -392,7 +392,7 @@ def propose_value_revision(context: Optional[Dict[str, Any]] = None) -> str:
             f"  reasoning: 2-3 sentences explaining why\n\n"
             f"Return ONLY the JSON. No other text."
         )
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="value_evolution", outcome=0.70) or "").strip()
         if raw:
             if raw.startswith("```"):
@@ -522,7 +522,7 @@ def _apply_decision(
         log_activity(f"[value_evolution] {decision.title()}: {affected_value!r}")
 
         try:
-            from cognition.selfhood.identity import refresh_identity_story
+            from brain.cognition.selfhood.identity import refresh_identity_story
             refresh_identity_story(
                 values_hint=new_phrasing or second_value or "",
                 context=context,
@@ -546,8 +546,8 @@ def _propagate_to_bandit(decision: str, affected_value: str, new_phrasing: Optio
     the changed value so behavioural tendency shifts alongside the belief update.
     """
     try:
-        from think.bandit.contextual_bandit import update as _bandit_update
-        from utils.json_utils import load_json
+        from brain.think.bandit.contextual_bandit import update as _bandit_update
+        from brain.utils.json_utils import load_json
         from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
 
         fns_raw = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []

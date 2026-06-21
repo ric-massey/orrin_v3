@@ -11,11 +11,11 @@
 # Output style: concise and direct; includes the source of confidence;
 # never sounds robotic ("According to rule R-42…"); sounds like Orrin reasoning.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -46,7 +46,7 @@ def generate_symbolic_response(
 
     # Enrich with dictionary definitions for any domain terms found in the response
     try:
-        from symbolic.symbolic_dictionary import enrich_explanation as _enrich
+        from brain.symbolic.symbolic_dictionary import enrich_explanation as _enrich
         raw = _enrich(raw)
     except Exception as _e:
         record_failure("symbolic_fluency.generate_symbolic_response", _e)
@@ -72,7 +72,7 @@ def _explain_from_rule(
     # Fetch rule confidence for qualifier
     conf_qualifier = ""
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         for r in get_all_rules():
             if r.get("id") == rule_id:
                 conf = float(r.get("confidence", 0.75))
@@ -89,7 +89,7 @@ def _explain_from_rule(
     # Try causal enrichment
     causal_note = ""
     try:
-        from symbolic.causal_graph import causal_explanation
+        from brain.symbolic.causal_graph import causal_explanation
         causal_raw = causal_explanation(query)
         if causal_raw:
             # Extract the cause→effect text from the bracketed format
@@ -134,7 +134,7 @@ def _explain_from_search(
     """
     causal_note = ""
     try:
-        from symbolic.causal_graph import causal_explanation
+        from brain.symbolic.causal_graph import causal_explanation
         causal_raw = causal_explanation(query)
         if causal_raw:
             m = re.search(r"'(.+?)' causes '(.+?)'", causal_raw)
@@ -171,7 +171,7 @@ def explain_causal_chain(query: str, max_hops: int = 3) -> str:
     Follows cause→effect chains up to max_hops deep.
     """
     try:
-        from symbolic.causal_graph import get_causes, get_effects
+        from brain.symbolic.causal_graph import get_causes, get_effects
     except Exception:
         return ""
 

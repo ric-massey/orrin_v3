@@ -8,7 +8,7 @@
 #     recent unsigned prediction error and DECAYS when outcomes are predictable.
 #   • Behrens 2007: a volatile action ends up with a higher learning rate than a
 #     stable one, so it tracks change faster.
-import affect.reward_signals.action_reward_ema as aem
+import brain.affect.reward_signals.action_reward_ema as aem
 
 
 def _ctx(monkeypatch):

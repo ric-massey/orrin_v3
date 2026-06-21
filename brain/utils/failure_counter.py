@@ -30,7 +30,7 @@
 #       risky_io()
 # Records any exception under `site` and swallows it (or re-raises per strict mode).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import contextlib
 import json

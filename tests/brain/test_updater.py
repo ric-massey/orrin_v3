@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from utils import updater
-from utils import prefs
+from brain.utils import updater
+from brain.utils import prefs
 
 
 class _FakeResp:
@@ -87,5 +87,5 @@ def test_prepare_update_exports_mind_and_reports_schema():
     from pathlib import Path
     assert Path(out["backup"]).exists() and out["backup"].endswith(".orrindmind")
     # The backup carries the state schema version the new build must understand (G1).
-    from utils import schema_migration as sm
+    from brain.utils import schema_migration as sm
     assert out["state_schema_version"] == sm.read_version()

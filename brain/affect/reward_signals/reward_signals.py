@@ -2,11 +2,11 @@ from datetime import datetime, timezone
 import time
 import random
 
-from affect.reward_signals.reward_spike import log_reward_spike
-from affect.affect_buffer import queue_affect_change
-from utils.json_utils import save_json
-from utils.log import log_activity
-from utils.signal_utils import create_signal
+from brain.affect.reward_signals.reward_spike import log_reward_spike
+from brain.affect.affect_buffer import queue_affect_change
+from brain.utils.json_utils import save_json
+from brain.utils.log import log_activity
+from brain.utils.signal_utils import create_signal
 from brain.paths import AFFECT_STATE_FILE, REWARD_TRACE
 
 
@@ -27,7 +27,7 @@ def release_reward_signal(
     # Ensure we have the full emotion file structure, not just a sparse dict
     affect_state = context.get("affect_state")
     if not isinstance(affect_state, dict) or not affect_state.get("core_signals"):
-        from utils.json_utils import load_json as _load_emo
+        from brain.utils.json_utils import load_json as _load_emo
         affect_state = _load_emo(AFFECT_STATE_FILE, default_type=dict) or {}
         context["affect_state"] = affect_state
     reward_trace = context.setdefault("reward_trace", [])
@@ -363,5 +363,5 @@ def release_reward(context, *, signal, actual, expected, effort, mode, source):
             source=source,
         )
     except Exception as e:
-        from utils.log import log_model_issue
+        from brain.utils.log import log_model_issue
         log_model_issue(f"Reward signal failed ({source}): {e}")

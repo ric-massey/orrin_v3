@@ -41,7 +41,7 @@
 #   L4 — meta-principle ("reduce task size when uncertainty exceeds confidence")
 # ──────────────────────────────────────────────────────────────────────────────
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import time
@@ -49,10 +49,10 @@ import hashlib
 from datetime import datetime, timezone
 from typing import Dict, FrozenSet, List, Optional, Set
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 SYNTHESIS_FILE = DATA_DIR / "rule_synthesis.json"
@@ -267,8 +267,8 @@ def synthesise_rules(*, force: bool = False) -> Dict:
     _last_run = now
 
     try:
-        from symbolic.rule_engine import get_all_rules, add_rule, SYMBOLIC_RULES_FILE
-        from utils.json_utils import save_json as _sj
+        from brain.symbolic.rule_engine import get_all_rules, add_rule, SYMBOLIC_RULES_FILE
+        from brain.utils.json_utils import save_json as _sj
     except Exception as e:
         return {"error": str(e)}
 
@@ -304,7 +304,7 @@ def synthesise_rules(*, force: bool = False) -> Dict:
             if modified:
                 _sj(SYMBOLIC_RULES_FILE, fresh_rules)
                 try:
-                    from symbolic import rule_engine as _re
+                    from brain.symbolic import rule_engine as _re
                     _re._rules_cache = []
                 except Exception as _e:
                     record_failure("rule_synthesis.synthesise_rules", _e)
@@ -342,7 +342,7 @@ def get_principle_for(query: str) -> Optional[Dict]:
     Used by planning and reflection to retrieve principles, not just patterns.
     """
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         rules = [r for r in get_all_rules()
                  if r.get("abstraction_level", 1) >= 3
                  and r.get("source") == "rule_synthesis"]

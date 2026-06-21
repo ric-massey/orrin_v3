@@ -7,8 +7,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List, Any
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 
 try:
     from brain.paths import COGNITION_HISTORY_FILE, DATA_DIR
@@ -58,7 +58,7 @@ def run_episode_replay(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # --- Replay: strengthen bandit weights for each high-reward episode ---
     try:
-        from think.bandit import contextual_bandit as _cb
+        from brain.think.bandit import contextual_bandit as _cb
         features = {"replay": 1.0, "__bias__": 1.0}
         for window in high_reward_windows:
             rewards = [float(c.get("reward", 0.0) or 0.0) for c in window]

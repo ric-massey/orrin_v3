@@ -4,7 +4,7 @@
 # The bandit's per-function expected reward is the forecast; the realized reward
 # is the outcome. Sustained over/under-confidence corrects raw confidence and
 # surfaces a metacognitive observation.
-import cognition.calibration as cal
+import brain.cognition.calibration as cal
 
 
 def _ctx(monkeypatch):

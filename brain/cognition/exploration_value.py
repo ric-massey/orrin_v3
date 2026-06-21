@@ -23,8 +23,8 @@ from dataclasses import dataclass
 from typing import Any, Dict
 
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
-from utils.get_cycle_count import get_cycle_count
+from brain.utils.failure_counter import record_failure
+from brain.utils.get_cycle_count import get_cycle_count
 
 # Per-action habituation store: {fn: {"satiety": float[0..1], "cycle": int}}.
 # Lives beside decision_stats.json (DATA_DIR honours ORRIN_DATA_DIR for test/per-user
@@ -274,7 +274,7 @@ def record_reach_outcome(fn: str, result_text: str,
                 context["__acted_this_tick__"] = True
             context["_reach_consumed_info_gain"] = round(novelty, 4)
             try:
-                from affect.reward_signals.reward_signals import release_reward_signal
+                from brain.affect.reward_signals.reward_signals import release_reward_signal
                 release_reward_signal(
                     context,
                     signal_type="novelty",

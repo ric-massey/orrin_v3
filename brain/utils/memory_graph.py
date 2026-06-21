@@ -11,7 +11,7 @@
 # Threshold tuned so that incidental word sharing (the, is, memory) is filtered
 # by the stopword list and doesn't produce spurious edges.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import re
@@ -20,9 +20,9 @@ from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
 from brain.paths import MEMORY_GRAPH_FILE
-from utils.json_utils import append_jsonl
-from utils.embed_similarity import text_similarity, embeddings_available
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import append_jsonl
+from brain.utils.embed_similarity import text_similarity, embeddings_available
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _STOPWORDS = frozenset({

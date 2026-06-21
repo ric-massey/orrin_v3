@@ -15,8 +15,8 @@ import re
 import time
 from typing import Dict, Optional
 
-from utils.log import log_activity
-from cognition.language import native_lm, library, tokenizer as tok
+from brain.utils.log import log_activity
+from brain.cognition.language import native_lm, library, tokenizer as tok
 
 # Maturity gate — the organ may speak only past ALL of these. Conservative so a
 # half-trained organ never babbles at the user; loosen as schooling progresses.

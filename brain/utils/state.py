@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 from brain.paths import MODE_FILE
 
 def get_current_mode(default: str = "contemplative") -> str:

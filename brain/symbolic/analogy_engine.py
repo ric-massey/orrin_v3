@@ -26,8 +26,8 @@ import re
 import time
 from typing import Dict, List, Optional, Set, Tuple
 
-from utils.json_utils import load_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity
 from brain.paths import LONG_MEMORY_FILE
 
 _STOPWORDS: Set[str] = {
@@ -189,7 +189,7 @@ def find_analogues(
     scored: List[Tuple[float, Dict]] = []
 
     try:
-        from utils.text_sanity import is_corrupt_text as _ict
+        from brain.utils.text_sanity import is_corrupt_text as _ict
     except Exception:
         _ict = None
 

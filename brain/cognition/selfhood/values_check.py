@@ -2,16 +2,16 @@
 # Values-check stage: evaluates user input against Orrin's core values/beliefs
 # before it enters the signal_router. Returns a refuse signal when warranted.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import time
 from typing import Dict, Any, Optional, Tuple
 
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
-from utils.signal_utils import create_signal
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.signal_utils import create_signal
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Rate-limit: don't fire on every cycle for the same input

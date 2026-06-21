@@ -1,4 +1,4 @@
-from utils.log import log_error
+from brain.utils.log import log_error
 
 def _safe_str(x) -> str:
     try:

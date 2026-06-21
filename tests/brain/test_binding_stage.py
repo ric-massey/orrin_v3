@@ -1,5 +1,5 @@
 def test_lexically_related_signals_bind_but_unrelated_signal_stays_out(monkeypatch):
-    import cognition.binding as binding
+    import brain.cognition.binding as binding
 
     monkeypatch.setattr(binding, "_known_entities", lambda: set())
     context = {
@@ -20,7 +20,7 @@ def test_lexically_related_signals_bind_but_unrelated_signal_stays_out(monkeypat
 
 
 def test_unrelated_signals_do_not_bind(monkeypatch):
-    import cognition.binding as binding
+    import brain.cognition.binding as binding
 
     monkeypatch.setattr(binding, "_known_entities", lambda: set())
     context = {
@@ -35,7 +35,7 @@ def test_unrelated_signals_do_not_bind(monkeypatch):
 
 
 def test_event_appraisal_and_named_object_form_bound_facets(monkeypatch):
-    import cognition.binding as binding
+    import brain.cognition.binding as binding
 
     monkeypatch.setattr(binding, "_known_entities", lambda: {"cat"})
     context = {
@@ -63,7 +63,7 @@ def test_event_appraisal_and_named_object_form_bound_facets(monkeypatch):
 
 
 def test_binding_is_fail_safe(monkeypatch):
-    import cognition.binding as binding
+    import brain.cognition.binding as binding
 
     monkeypatch.setattr(binding, "_collect_items", lambda _context: (_ for _ in ()).throw(RuntimeError("boom")))
     context = {"_bound_candidates": [{"content": "stale"}]}
@@ -73,7 +73,7 @@ def test_binding_is_fail_safe(monkeypatch):
 
 
 def test_workspace_composite_competes_broadcasts_facets_and_is_consumed(monkeypatch):
-    import cognition.global_workspace as workspace
+    import brain.cognition.global_workspace as workspace
 
     monkeypatch.setattr(workspace, "_append_stream", lambda _moment: None)
     monkeypatch.setattr(workspace, "log_private", lambda *_args, **_kwargs: None)
@@ -101,7 +101,7 @@ def test_workspace_composite_competes_broadcasts_facets_and_is_consumed(monkeypa
 
 
 def test_bound_workspace_routes_on_multiple_facets():
-    from think.think_utils.select_function import _workspace_routes_for
+    from brain.think.think_utils.select_function import _workspace_routes_for
 
     routes = _workspace_routes_for({
         "source": "binding",

@@ -25,7 +25,7 @@ if str(REPO_ROOT) not in sys.path:
 
 
 def _failure_counts_path() -> Path:
-    import utils.generate_response as gr
+    import brain.utils.generate_response as gr
     return gr.DATA_DIR / "llm_failure_counts.json"
 
 # Strings that must never appear in cognition outputs
@@ -72,7 +72,7 @@ def _force_api_path(mock_client, key: str = "invalid-key"):
     the API *error-handling* path, so we disable both (and clear the response
     cache), ensuring the mocked client is actually reached.
     """
-    import utils.generate_response as _gr
+    import brain.utils.generate_response as _gr
     _gr._GR_CACHE.clear()
     # Reset circuit breakers: the auth breaker (tripped by the 401 tests) stays
     # open for an hour and would fail-fast every later test in the module.
@@ -84,12 +84,12 @@ def _force_api_path(mock_client, key: str = "invalid-key"):
     # The vendor call now goes through the pluggable provider (Part 11): the OpenAI
     # provider builds its OWN client, so patch _get_client at the provider boundary too
     # (and reset the resolver cache so a fresh, configured OpenAIProvider is built).
-    import utils.llm_providers as _providers
+    import brain.utils.llm_providers as _providers
     _providers.reinit()
-    with patch("utils.generate_response._get_client", return_value=mock_client), \
-         patch("utils.llm_providers.openai_provider.OpenAIProvider._get_client", return_value=mock_client), \
-         patch("symbolic.reasoning_router.route", return_value={"resolved": False, "answer": None}), \
-         patch("utils.llm_gate.llm_available", return_value=True), \
+    with patch("brain.utils.generate_response._get_client", return_value=mock_client), \
+         patch("brain.utils.llm_providers.openai_provider.OpenAIProvider._get_client", return_value=mock_client), \
+         patch("brain.symbolic.reasoning_router.route", return_value={"resolved": False, "answer": None}), \
+         patch("brain.utils.llm_gate.llm_available", return_value=True), \
          patch.dict(os.environ, {"OPENAI_API_KEY": key, "ORRIN_LLM_TOOL_ONLY": "0"}):
         yield
     _providers.reinit()
@@ -97,7 +97,7 @@ def _force_api_path(mock_client, key: str = "invalid-key"):
 
 def test_generate_response_returns_error_dict_on_401():
     """generate_response must return status=error, not leak the error as content."""
-    from utils.generate_response import generate_response
+    from brain.utils.generate_response import generate_response
 
     mock_client = _make_401_client()
     with _force_api_path(mock_client):
@@ -115,7 +115,7 @@ def test_generate_response_returns_error_dict_on_401():
 
 def test_llm_ok_returns_none_and_increments_counter_on_error():
     """llm_ok must return None and increment per-caller failure count."""
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     counts_before = _read_failure_counts()
     caller = "test_no_error_leakage.test_caller"
@@ -137,7 +137,7 @@ def test_no_leak_patterns_in_data_files_after_error(tmp_path):
     After a 401 error, no brain/data file created after test start may contain
     leak patterns like 'unavailable', '401', 'Incorrect API key', or 'sk-proj-'.
     """
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     test_start = time.time()
 
@@ -186,7 +186,7 @@ def test_no_leak_patterns_in_data_files_after_error(tmp_path):
 
 def test_generate_response_returns_ok_dict_on_success():
     """On a successful call, result must have status=ok and a non-empty content string."""
-    from utils.generate_response import generate_response
+    from brain.utils.generate_response import generate_response
 
     mock_response = MagicMock()
     mock_response.output_text = "I am thinking carefully."
@@ -207,7 +207,7 @@ def test_cycle_completes_without_raising_on_401():
     A minimal invocation of generate_response with a 401 must not raise —
     the error is captured in the result dict.
     """
-    from utils.generate_response import generate_response
+    from brain.utils.generate_response import generate_response
 
     mock_client = _make_401_client()
     with _force_api_path(mock_client):

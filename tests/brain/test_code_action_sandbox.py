@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-from behavior.tools.sandbox import run_python_sandboxed
+from brain.behavior.tools.sandbox import run_python_sandboxed
 
 
 # --- the sandbox blocks hostile code (AST allowlist) ------------------------

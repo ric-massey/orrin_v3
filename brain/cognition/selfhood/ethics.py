@@ -4,10 +4,10 @@ import json
 from collections import Counter
 from typing import Optional
 
-from utils.json_utils import load_json, extract_json
-from utils.log import log_model_issue, log_error
-from utils.core_utils import extract_lessons
-from utils.timing import update_last_active
+from brain.utils.json_utils import load_json, extract_json
+from brain.utils.log import log_model_issue, log_error
+from brain.utils.core_utils import extract_lessons
+from brain.utils.timing import update_last_active
 from brain.paths import CORE_MEMORY_FILE, LOG_FILE, PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE
 
 def moral_override_check(proposed_action: str) -> dict:
@@ -16,7 +16,7 @@ def moral_override_check(proposed_action: str) -> dict:
     Returns a dict like {"override": bool, "reason": "..."}.
     """
     try:
-        from utils.self_model import get_self_model
+        from brain.utils.self_model import get_self_model
 
         # Core / immutable values
         core_memories = load_json(CORE_MEMORY_FILE, default_type=list)
@@ -47,7 +47,7 @@ def moral_override_check(proposed_action: str) -> dict:
             '{ "override": false }'
         )
 
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         response = gated_generate(prompt, caller="ethics", outcome=0.80)
         decision = extract_json(response) if response else None
         if not isinstance(decision, dict):
@@ -94,7 +94,7 @@ def update_values_with_lessons(long_memory: Optional[list] = None) -> None:
     list instead of re-reading the largest state file from disk on the brain thread.
     """
     try:
-        from utils.self_model import get_self_model, save_self_model
+        from brain.utils.self_model import get_self_model, save_self_model
 
         if long_memory is None:
             long_memory = load_json(LONG_MEMORY_FILE, default_type=list)

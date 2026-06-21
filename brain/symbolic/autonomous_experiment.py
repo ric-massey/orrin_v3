@@ -21,17 +21,17 @@
 #   "causal_probe"    — does the causal graph explain the goal's domain?
 #   "prediction_test" — run symbolic predictions; check internal consistency
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 EXPERIMENT_LOG   = DATA_DIR / "experiments.json"
@@ -129,7 +129,7 @@ def run_sandbox_experiment(experiment: Dict) -> Dict:
 
     for q in queries:
         try:
-            from symbolic.reasoning_router import route as _route
+            from brain.symbolic.reasoning_router import route as _route
             r = _route(q, context={})
             source = r.get("source", "llm_needed")
             if r.get("resolved") and source not in ("llm_needed", "suppressed"):
@@ -147,7 +147,7 @@ def run_sandbox_experiment(experiment: Dict) -> Dict:
     if probe_type in ("analogy_match", "causal_probe"):
         for q in queries[:3]:
             try:
-                from symbolic.analogy_engine import find_analogues
+                from brain.symbolic.analogy_engine import find_analogues
                 analogues = find_analogues(q, top_n=2, min_score=0.25)
                 for a in analogues:
                     analogy_matches.append(a.get("mapped_solution", "")[:60])
@@ -157,7 +157,7 @@ def run_sandbox_experiment(experiment: Dict) -> Dict:
     if probe_type in ("causal_probe", "prediction_test"):
         for q in queries[:3]:
             try:
-                from symbolic.causal_graph import causal_explanation
+                from brain.symbolic.causal_graph import causal_explanation
                 expl = causal_explanation(q)
                 if expl:
                     causal_edges_found.append(expl[:80])
@@ -168,7 +168,7 @@ def run_sandbox_experiment(experiment: Dict) -> Dict:
     domain_error = 0.0
     if domain:
         try:
-            from symbolic.prediction_engine import get_domain_error_rates
+            from brain.symbolic.prediction_engine import get_domain_error_rates
             domain_error = get_domain_error_rates().get(domain, 0.0)
         except Exception as _e:
             record_failure("autonomous_experiment.run_sandbox_experiment.4", _e)
@@ -205,8 +205,8 @@ def _apply_rule_revision(
     experimental outcomes. This is the core learning feedback loop.
     """
     try:
-        from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-        from utils.json_utils import save_json as _sj
+        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        from brain.utils.json_utils import save_json as _sj
     except Exception:
         return
 
@@ -250,7 +250,7 @@ def _apply_rule_revision(
     if changed:
         _sj(SYMBOLIC_RULES_FILE, rules)
         try:
-            from symbolic import rule_engine as _re
+            from brain.symbolic import rule_engine as _re
             _re._rules_cache = []
         except Exception as _e:
             record_failure("autonomous_experiment._apply_rule_revision", _e)
@@ -273,7 +273,7 @@ def _try_crystallize_from_gap(experiment: Dict, domain: str) -> None:
     )
 
     try:
-        from symbolic.crystallization import crystallize
+        from brain.symbolic.crystallization import crystallize
         crystallize(
             prompt=goal_text,
             response=synthetic_response,
@@ -308,7 +308,7 @@ def record_experiment_result(experiment: Dict, result: Dict) -> None:
 
     # ── Causal graph: experiment as coverage evidence ──────────────────────────
     try:
-        from symbolic.causal_graph import update_edge as _ue
+        from brain.symbolic.causal_graph import update_edge as _ue
         cause  = f"investigation:{domain or 'general'}"
         effect = "symbolic_coverage_improved"
         _ue(cause, effect, confirmed=success, counterfactual=(not success), source="experiment")
@@ -318,7 +318,7 @@ def record_experiment_result(experiment: Dict, result: Dict) -> None:
     # ── Ground truth: rules that fired get an outcome stamp ───────────────────
     if rules_fired:
         try:
-            from symbolic.ground_truth import record_action_result as _rar
+            from brain.symbolic.ground_truth import record_action_result as _rar
             for rule_id in rules_fired:
                 _rar(
                     action_type="experiment_probe",
@@ -332,14 +332,14 @@ def record_experiment_result(experiment: Dict, result: Dict) -> None:
 
     # Progress tracker
     try:
-        from symbolic.progress_tracker import record_experiment as _rexp
+        from brain.symbolic.progress_tracker import record_experiment as _rexp
         _rexp(success=success, domain=domain)
     except Exception as _e:
         record_failure("autonomous_experiment.record_experiment_result.3", _e)
 
     # Intuition world model — record experiment outcome per domain
     try:
-        from symbolic.pattern_scorer import update_world_model, update_pattern_weights, tokenize_query
+        from brain.symbolic.pattern_scorer import update_world_model, update_pattern_weights, tokenize_query
         update_world_model(domain or "GENERAL", "experiment", success)
         if goal_text:
             _tokens, _dom = tokenize_query(goal_text)

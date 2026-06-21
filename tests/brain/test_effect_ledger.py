@@ -4,7 +4,7 @@
 # earns nothing, and only a novel+structural effect gates a production goal.
 import pytest
 
-from agency import effect_ledger as el
+from brain.agency import effect_ledger as el
 
 _LONG = ("I worked out that emergence is the way large-scale order and patterns "
          "arise from many small local interactions that individually know nothing "

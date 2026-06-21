@@ -1,5 +1,5 @@
 def test_categorise_splits_body_home_world():
-    import cognition.perception.fs_perception as fs
+    import brain.cognition.perception.fs_perception as fs
 
     body, home, world = [], [], []
     fs._categorise("brain/cognition/body_sense.py", "modified", body, home, world)
@@ -16,7 +16,7 @@ def test_categorise_splits_body_home_world():
 
 
 def test_poll_emits_home_touched_signal(tmp_path, monkeypatch):
-    import cognition.perception.fs_perception as fs
+    import brain.cognition.perception.fs_perception as fs
 
     docs = tmp_path / "docs"
     docs.mkdir()

@@ -61,7 +61,7 @@ _cached_key: Optional[tuple] = None
 
 def selected_id() -> str:
     try:
-        from utils import prefs
+        from brain.utils import prefs
         pid = str(prefs.get("llm_provider", _DEFAULT_ID) or _DEFAULT_ID)
     except Exception:
         pid = _DEFAULT_ID
@@ -74,7 +74,7 @@ def _key_for(provider_id: str) -> Optional[str]:
     if not name:
         return None
     try:
-        from utils import secrets
+        from brain.utils import secrets
         return secrets.get_key(name)
     except Exception:
         return None
@@ -85,7 +85,7 @@ def _build(provider_id: str, *, default_model: Optional[str] = None) -> Optional
         return None
     meta = _meta(provider_id)
     try:
-        from utils import prefs
+        from brain.utils import prefs
         model = str(prefs.get("llm_model", "") or "") or meta.get("default_model") or default_model or ""
         base_url = str(prefs.get("llm_base_url", "") or "") or None
     except Exception:

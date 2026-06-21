@@ -9,11 +9,11 @@
 # Stored on context["_scratchpad"] as a list of entries.
 # Flushed at cycle end — entries are NOT persisted; metacog_flush() handles the summary.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from typing import Any, Dict, List
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -44,7 +44,7 @@ def scratchpad_append(
     # Cross-post a lightweight breadcrumb to metacog if it's active
     if phase:
         try:
-            from cognition.metacog import metacog_note
+            from brain.cognition.metacog import metacog_note
             metacog_note(context, phase, f"[{role}] {str(content)[:120]}")
         except Exception as _e:
             record_failure("scratchpad.scratchpad_append", _e)
@@ -83,7 +83,7 @@ def scratchpad_flush(context: Dict[str, Any]) -> List[Dict[str, Any]]:
         best = revisions[-1]["content"].strip()
         if len(best) > 20:
             try:
-                from cog_memory.working_memory import update_working_memory
+                from brain.cog_memory.working_memory import update_working_memory
                 update_working_memory(f"[scratchpad_revision] {best[:400]}")
             except Exception as _e:
                 record_failure("scratchpad.scratchpad_flush", _e)

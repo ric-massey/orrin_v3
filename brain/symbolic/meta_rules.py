@@ -29,9 +29,9 @@ import hashlib
 from datetime import datetime, timezone
 from typing import Dict, List, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
-from utils.failure_counter import ContractViolation
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import ContractViolation
 from brain.paths import DATA_DIR
 
 META_RULES_FILE = DATA_DIR / "meta_rules.json"
@@ -118,7 +118,7 @@ def _are_contradictory(r1: Dict, r2: Dict) -> bool:
     Two conclusions contradict if one contains negation words and both share
     most content words.
     """
-    from symbolic.analogy_engine import _tokenize, _jaccard
+    from brain.symbolic.analogy_engine import _tokenize, _jaccard
     c1 = r1.get("conclusion", "").lower()
     c2 = r2.get("conclusion", "").lower()
     t1 = _tokenize(c1)

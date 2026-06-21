@@ -5,8 +5,8 @@
 #     cannot fan out to every recent similar at once.
 import logging
 
-import utils.memory_graph as mg
-from utils.json_utils import extract_json, _has_plausible_json_start
+import brain.utils.memory_graph as mg
+from brain.utils.json_utils import extract_json, _has_plausible_json_start
 
 
 # ---------- extract_json prose rejection ----------

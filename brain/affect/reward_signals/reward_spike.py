@@ -1,6 +1,6 @@
 # reward_spike.py
 from datetime import datetime, timezone
-from utils.log import log_private
+from brain.utils.log import log_private
 from typing import Iterable, Optional
 import random
 

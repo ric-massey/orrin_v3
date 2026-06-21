@@ -22,7 +22,7 @@ from __future__ import annotations
 import os
 from typing import Dict, Tuple
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 _log = get_logger(__name__)
 
@@ -72,7 +72,7 @@ def _read_fraction() -> float:
     raw = os.environ.get("ORRIN_BODY_BUDGET_FRACTION")
     if raw is None:
         try:
-            from utils import prefs
+            from brain.utils import prefs
             raw = prefs.get(_PREF_FRACTION, _DEFAULT_FRACTION)
         except Exception:
             raw = _DEFAULT_FRACTION
@@ -154,7 +154,7 @@ def set_budget_fraction(fraction: float) -> Dict:
 
     prev_applied = _DEFAULT_FRACTION
     try:
-        from utils import prefs
+        from brain.utils import prefs
         prev_applied = float(prefs.get(_PREF_APPLIED, prefs.get(_PREF_FRACTION, _DEFAULT_FRACTION)))
         prefs.set(_PREF_FRACTION, fraction)
     except Exception as e:
@@ -167,7 +167,7 @@ def set_budget_fraction(fraction: float) -> Dict:
         _on_resize(prev_applied, fraction)
     # Mark this fraction as the one he is (re)acclimating to.
     try:
-        from utils import prefs
+        from brain.utils import prefs
         prefs.set(_PREF_APPLIED, fraction)
     except Exception:
         pass
@@ -181,7 +181,7 @@ def _on_resize(prev: float, new: float) -> None:
     in_infancy() goes true again and the cortex re-learns the new body's normal. The
     autonomic reflex is untouched (it was always absolute)."""
     try:
-        from cognition.body_sense import reset_bands_for_resize
+        from brain.cognition.body_sense import reset_bands_for_resize
         reset_bands_for_resize(f"budget {prev:.0%}->{new:.0%}")
     except Exception as e:
         _log.warning("body_budget resize re-baseline failed: %s", e)

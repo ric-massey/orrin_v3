@@ -1,16 +1,16 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json
-from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
-from utils.log import log_error, log_private
-from utils.log_reflection import log_reflection
-from cog_memory.working_memory import update_working_memory
-from affect.update_affect_state import update_affect_state
-from cognition.maintenance.self_modeling import self_model_maintenance_cycle
-from cognition.planning.goals import maybe_complete_goals
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
+from brain.utils.log import log_error, log_private
+from brain.utils.log_reflection import log_reflection
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.update_affect_state import update_affect_state
+from brain.cognition.maintenance.self_modeling import self_model_maintenance_cycle
+from brain.cognition.planning.goals import maybe_complete_goals
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
     NEUTRAL_REFLECTION_COUNT_JSON,
     LONG_MEMORY_FILE,
@@ -19,7 +19,7 @@ from brain.paths import (
     GOALS_FILE,
     SELF_BELIEF_REVISIONS_FILE,
 )
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 NEUTRAL_REFLECT_FILE = NEUTRAL_REFLECTION_COUNT_JSON
@@ -57,7 +57,7 @@ def evolve_core_value(self_model: dict) -> str:
             self_model["core_values"] = old_values
 
         # Primary: derive value from causal graph (no LLM)
-        from symbolic.symbolic_cognition import derive_core_value as _dcv
+        from brain.symbolic.symbolic_cognition import derive_core_value as _dcv
         out = _dcv()
 
         # Last resort: gated_generate
@@ -69,8 +69,8 @@ def evolve_core_value(self_model: dict) -> str:
                 'Respond as JSON: {"value": "...", "justification": ""}'
             )
             try:
-                from symbolic.llm_gate import gated_generate
-                from utils.json_utils import extract_json
+                from brain.symbolic.llm_gate import gated_generate
+                from brain.utils.json_utils import extract_json
                 raw = gated_generate(prompt, caller="evolve_core_value", outcome=0.70)
                 out = extract_json(raw) or {}
             except Exception:
@@ -118,7 +118,7 @@ def reflect_on_self_beliefs():
         # ── Step 1: Symbolic belief assessment (primary path) ─────────────────
         response = None
         try:
-            from symbolic.symbolic_cognition import assess_beliefs as _ab
+            from brain.symbolic.symbolic_cognition import assess_beliefs as _ab
             sym = _ab(self_model)
             if sym.get("narrative") and "insufficient" not in sym["narrative"]:
                 response = sym["narrative"]
@@ -129,7 +129,7 @@ def reflect_on_self_beliefs():
         # ── Step 2: symbolic_reflection engine ────────────────────────────────
         if not response:
             try:
-                from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+                from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
                 _sym = _sfr("self_belief", context=None, data={
                     "self_model": self_model,
                     "recent_belief_events": recent_belief_events,
@@ -150,7 +150,7 @@ def reflect_on_self_beliefs():
                 f"SELF MODEL:\n{sm_short}\n\nRECENT BELIEF EVENTS:\n{events_short}"
             )
             try:
-                from symbolic.llm_gate import gated_generate
+                from brain.symbolic.llm_gate import gated_generate
                 response = gated_generate(prompt, caller="reflect_on_self_belief", outcome=0.70)
             except Exception as e:
                 log_error(f"LLM failure in reflect_on_self_beliefs: {e}")
@@ -204,7 +204,7 @@ def reflect_on_self_beliefs():
 
         # ── Step 4: Self-model update — symbolic only, no LLM ────────────────
         try:
-            from symbolic.symbolic_cognition import update_self_model_fields as _usf
+            from brain.symbolic.symbolic_cognition import update_self_model_fields as _usf
             upd = _usf(self_model)
             if upd["updated_fields"]:
                 self_model.update(upd["updated_fields"])
@@ -217,7 +217,7 @@ def reflect_on_self_beliefs():
         # ── Step 5: Goal generation — symbolic only, no LLM ──────────────────
         try:
             goals = load_json(GOALS_FILE, default_type=list) or []
-            from symbolic.symbolic_cognition import generate_goals as _gg
+            from brain.symbolic.symbolic_cognition import generate_goals as _gg
             new_goals    = _gg(self_model)
             now          = datetime.now(timezone.utc).isoformat()
             existing     = {g.get("name", "") for g in goals if isinstance(g, dict)}
@@ -234,7 +234,7 @@ def reflect_on_self_beliefs():
         # ── Step 6: Contradiction detection and resolution goal ───────────────
         try:
             goals = load_json(GOALS_FILE, default_type=list) or []
-            from symbolic.symbolic_cognition import detect_rule_contradictions as _dc
+            from brain.symbolic.symbolic_cognition import detect_rule_contradictions as _dc
             contradictions = _dc(self_model)
             has_contra_goal = any(
                 isinstance(g, dict)
@@ -262,7 +262,7 @@ def reflect_on_self_beliefs():
 
         # ── Long-term memory ───────────────────────────────────────────────────
         try:
-            from cog_memory.remember import remember
+            from brain.cog_memory.remember import remember
             remember({
                 "type": "self_belief_reflection",
                 "reflection": response,

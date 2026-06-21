@@ -6,7 +6,7 @@
 #
 # Pure introspection over the live registries — no behaviour change.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import inspect
 from pathlib import Path
@@ -139,7 +139,7 @@ def _iter_registry() -> List[Tuple[str, Callable, str]]:
     """Yield (name, callable, kind) for cognitive + behavioral functions."""
     out: List[Tuple[str, Callable, str]] = []
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
         for name, meta in (COGNITIVE_FUNCTIONS or {}).items():
             fn = meta.get("function") if isinstance(meta, dict) else meta
             if callable(fn) and isinstance(name, str):
@@ -147,7 +147,7 @@ def _iter_registry() -> List[Tuple[str, Callable, str]]:
     except Exception as e:
         _log.warning("catalog: cognition registry unavailable: %s", e)
     try:
-        from registry.behavior_registry import BEHAVIORAL_FUNCTIONS  # type: ignore
+        from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS  # type: ignore
         for name, meta in (BEHAVIORAL_FUNCTIONS or {}).items():
             fn = meta.get("function") if isinstance(meta, dict) else meta
             if callable(fn) and isinstance(name, str):

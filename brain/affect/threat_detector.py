@@ -1,6 +1,6 @@
 # threat_detector.py — rule-based threat classification (no LLM)
-from utils.emotion_utils import dominant_emotion
-from utils.log import log_activity
+from brain.utils.emotion_utils import dominant_emotion
+from brain.utils.log import log_activity
 
 # Thresholds for threat detection
 _THREAT_LEVEL_THRESHOLD        = 0.70

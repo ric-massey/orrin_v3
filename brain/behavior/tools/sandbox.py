@@ -1,9 +1,9 @@
 # sandbox.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from pathlib import Path
 import sys, time, ast, subprocess, tempfile
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # --- standardized import for project paths (explicit, robust) ---
@@ -93,7 +93,7 @@ def run_python_sandboxed(code: str, *, dry_run: bool = False, timeout_s: int = 5
 
     # Use the embedded CPython when frozen (§10.2 / I1) — sys.executable would be the
     # Orrin host binary in a packaged app, not a Python interpreter.
-    from utils.runtime_python import interpreter as _interp
+    from brain.utils.runtime_python import interpreter as _interp
     cmd = [_interp(), "-I", str(path)]  # isolated mode
     start = time.time()
     try:

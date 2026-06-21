@@ -2,20 +2,20 @@
 # Runs when idle — consolidates recent experience, recombines with old emotional
 # memories, processes unresolved content, and surfaces value-revision candidates.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from datetime import datetime, timezone
 from typing import Dict, Any
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from utils.self_model import get_self_model
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.utils.self_model import get_self_model
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, DREAM_LOG, VALUE_REVISIONS
-from utils.llm_gate import llm_available
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_available
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -117,7 +117,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # weights for those function chains. Must run first so strengthened weights
     # influence the rest of the dream cycle's own function selections.
     try:
-        from cognition.dreaming.episode_replay import run_episode_replay as _rer
+        from brain.cognition.dreaming.episode_replay import run_episode_replay as _rer
         _replay = _rer(context)
         if not _replay.get("skipped"):
             log_activity(
@@ -131,7 +131,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Builds rule chains, analogy transfers, and surfaces contradictions from WM.
     # Done first so its insights are available to the LLM consolidation prompts.
     try:
-        from symbolic.symbolic_dream import run_symbolic_dream as _rsd
+        from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
         _sym_dream_result = _rsd(context)
         log_activity(
             f"[dream] Symbolic pass: chains={_sym_dream_result.get('chains',0)} "
@@ -146,14 +146,14 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Derives relations not directly observed — see symbolic/inference.py.
     # Also re-scores causal edges for confounding (Pearl 2000).
     try:
-        from cognition.world_model import run_inference_cycle as _ric
+        from brain.cognition.world_model import run_inference_cycle as _ric
         _inf_result = _ric()
         log_activity(f"[dream] Inference cycle: {_inf_result.get('inferred', 0)} new relations derived.")
     except Exception as _ine:
         log_activity(f"[dream] inference cycle skipped: {_ine}")
 
     try:
-        from symbolic.causal_graph import check_and_update_confounding as _cauf
+        from brain.symbolic.causal_graph import check_and_update_confounding as _cauf
         _cauf()
         log_activity("[dream] Causal confounding check complete.")
     except Exception as _cafe:
@@ -164,7 +164,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Clusters L3 principle rules → synthesises L4 meta-principle rules.
     # Chase & Simon (1973) chunking; Bartlett (1932) schema; Gentner (1983).
     try:
-        from symbolic.rule_synthesis import synthesise_rules as _synth
+        from brain.symbolic.rule_synthesis import synthesise_rules as _synth
         _synth_result = _synth()
         if not _synth_result.get("skipped"):
             log_activity(f"[dream] Rule synthesis: {_synth_result.get('principles_added', 0)} new principles.")
@@ -237,7 +237,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Primary: symbolic dream insights (no LLM)
     try:
-        from symbolic.symbolic_cognition import analyze_outcomes as _ao, evaluate_cognition as _ec
+        from brain.symbolic.symbolic_cognition import analyze_outcomes as _ao, evaluate_cognition as _ec
         _sym_cons = _ao(
             [{"task": t, "outcome": "recent", "reason": ""} for t in recent_wm[:5]]
         )
@@ -257,7 +257,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     missing = [k for k in ("consolidation", "recombination", "processing") if not results.get(k)]
     if missing and llm_up:
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             prompts = {
                 "consolidation": consolidate_prompt,
                 "recombination": recombine_prompt,
@@ -294,7 +294,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # can act on it — this is the "dream feeds behavior" bridge.  The processing
     # insight (value-revision candidate) surfaces as a lighter note.
     try:
-        from cog_memory.working_memory import update_working_memory as _uwm
+        from brain.cog_memory.working_memory import update_working_memory as _uwm
         if results.get("consolidation"):
             _uwm({
                 "content": f"[dream:consolidation] {results['consolidation'][:300]}",
@@ -324,7 +324,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # insights are written so semantic facts can complement (not replace) the
     # narrative consolidation. No extra LLM call — heuristic over reward + features.
     try:
-        from cognition.dreaming.semantic_extractor import extract_semantic_facts as _esf
+        from brain.cognition.dreaming.semantic_extractor import extract_semantic_facts as _esf
         _sem_summary = _esf()
         if _sem_summary.get("scanned"):
             log_activity(
@@ -379,7 +379,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Check recombination output for wonder triggers
     try:
-        from cognition.wonder import detect_wonder_trigger as _dwt
+        from brain.cognition.wonder import detect_wonder_trigger as _dwt
         if results.get("recombination"):
             _dwt(results["recombination"], context)
     except Exception as _e:
@@ -387,14 +387,14 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Generate intrinsic goals from values + threads + world state
     try:
-        from cognition.intrinsic_goals import generate_intrinsic_goals as _gig
+        from brain.cognition.intrinsic_goals import generate_intrinsic_goals as _gig
         _gig(context)
     except Exception as _ige:
         log_activity(f"[dream] intrinsic goal generation skipped: {_ige}")
 
     # Generate predictions for the next period
     try:
-        from cognition.prediction import generate_predictions as _gen_preds, save_predictions as _sp
+        from brain.cognition.prediction import generate_predictions as _gen_preds, save_predictions as _sp
         _new_preds = _gen_preds(context, recent_wm, emotional_block, identity)
         _sp(_new_preds)
     except Exception as _pe:
@@ -402,7 +402,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Autobiography narrative update — fires when narrative pressure crosses threshold (event-driven)
     try:
-        from cognition.selfhood.autobiography import narrative_update as _narrative_update
+        from brain.cognition.selfhood.autobiography import narrative_update as _narrative_update
         _narrative_update(context)
     except Exception as _ae:
         log_activity(f"[dream] autobiography narrative_update skipped: {_ae}")
@@ -411,12 +411,12 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Dream cycles are the right cadence: too fast and the vector loses stability,
     # too slow and it can't track genuine long-term value shifts.
     try:
-        from cognition.selfhood.latent_identity import update_latent_identity as _uli, identity_drift_warning as _idw
+        from brain.cognition.selfhood.latent_identity import update_latent_identity as _uli, identity_drift_warning as _idw
         _li_result = _uli(context)
         _drift_warn = _idw(context)
         if _drift_warn:
             log_activity(f"[dream] {_drift_warn}")
-            from cog_memory.working_memory import update_working_memory as _uwm
+            from brain.cog_memory.working_memory import update_working_memory as _uwm
             _uwm({"content": f"[identity] {_drift_warn}", "event_type": "identity_drift",
                   "importance": 3, "priority": 2})
         log_activity(
@@ -428,7 +428,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Detect formative tensions from current state of value_revisions, failures, chapter themes
     try:
-        from cognition.selfhood.tensions import detect_tensions as _detect_tensions
+        from brain.cognition.selfhood.tensions import detect_tensions as _detect_tensions
         _detect_tensions(context)
     except Exception as _te:
         log_activity(f"[dream] tension detection skipped: {_te}")
@@ -437,7 +437,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # + entity decay. Runs once per dream cycle so the world model stays up to date
     # without burning LLM tokens every cognitive cycle.
     try:
-        from cognition.knowledge_graph import consolidate_from_long_memory as _kg_consol
+        from brain.cognition.knowledge_graph import consolidate_from_long_memory as _kg_consol
         _kg_consol(context)
     except Exception as _kge:
         log_activity(f"[dream] knowledge graph consolidation skipped: {_kge}")
@@ -445,7 +445,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Language acquisition (tier 3) — learn framing phrases from what he read, so
     # his way of speaking broadens with exposure. Fully symbolic, no LLM.
     try:
-        from cognition.language_acquisition import learn_from_reading as _lfr
+        from brain.cognition.language_acquisition import learn_from_reading as _lfr
         _la = _lfr()
         if _la.get("phrases_seen"):
             log_activity(
@@ -459,7 +459,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # brain does most language consolidation). Trains his own from-scratch model
     # on the day's reading/experience + replay. No LLM.
     try:
-        from cognition.language.acquisition import consolidate_language as _cln
+        from brain.cognition.language.acquisition import consolidate_language as _cln
         _ln = _cln(steps=120)
         if _ln.get("loss") is not None:
             log_activity(
@@ -473,7 +473,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # to address the highest-scoring gap. Verification runs before any code is
     # registered: syntax → safety (AST) → execution → output → LLM behavioral review.
     try:
-        from cognition.skill_synthesis import detect_and_synthesize as _das
+        from brain.cognition.skill_synthesis import detect_and_synthesize as _das
         _synth = _das(context)
         if _synth.get("synthesized"):
             log_activity(f"[dream] skill synthesized: {(_synth.get('result') or {}).get('fn_name', '?')}")
@@ -485,12 +485,12 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Reflection audit — surface ungrounded reflective claims so they can be validated
     # or challenged in subsequent cycles. Prevents closed-loop narrative reinforcement.
     try:
-        from cognition.reflection_metadata import audit_reflective_claims as _arc
+        from brain.cognition.reflection_metadata import audit_reflective_claims as _arc
         _weak_claims = _arc(context)
         if _weak_claims:
             log_activity(f"[dream] {len(_weak_claims)} ungrounded reflective claim(s) flagged.")
             try:
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
                         f"[reflection/audit] {len(_weak_claims)} ungrounded claim(s) need "
@@ -508,7 +508,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Knowledge crystallization — extract permanent rules from dream insights.
     # Runs after skill synthesis so synthesized code and dream text are both available.
     try:
-        from symbolic.crystallization import crystallize_dream_insights as _cdi
+        from brain.symbolic.crystallization import crystallize_dream_insights as _cdi
         _cryst_count = _cdi(dream_entry)
         if _cryst_count:
             log_activity(f"[dream] crystallized {_cryst_count} new symbolic rule(s) from dream insights")
@@ -518,7 +518,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Rule set health audit — prune stale/subsumed rules, log health ratio.
     # Runs every dream cycle (6h+ cadence) to keep the rule set lean.
     try:
-        from symbolic.crystallization import audit_rule_set as _ars
+        from brain.symbolic.crystallization import audit_rule_set as _ars
         _audit = _ars()
         log_activity(
             f"[dream] Rule set audit: total={_audit['total']} "
@@ -530,7 +530,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Symbolic progress flush — persist today's symbolic intelligence growth stats.
     try:
-        from symbolic.progress_tracker import flush as _pt_flush
+        from brain.symbolic.progress_tracker import flush as _pt_flush
         _snap = _pt_flush()
         log_activity(
             f"[dream] Symbolic progress: ratio={_snap.get('symbolic_ratio',0):.1%} "
@@ -543,7 +543,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Closure/lifecycle outcome flush (Phase E) — persist today's goal closure
     # metrics alongside the symbolic progress report.
     try:
-        from cognition.planning.outcome_metrics import report as _om_report
+        from brain.cognition.planning.outcome_metrics import report as _om_report
         _omr = _om_report()
         log_activity(f"[dream] {_omr.get('summary', 'outcome metrics')}")
     except Exception as _ome:
@@ -552,7 +552,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Rule hierarchy abstraction — merge similar rules into parent rules.
     # Enforces its own 4h cooldown; safe to call every dream cycle.
     try:
-        from symbolic.rule_abstraction import abstract_rules as _abr
+        from brain.symbolic.rule_abstraction import abstract_rules as _abr
         _abr_result = _abr()
         if not _abr_result.get("skipped"):
             log_activity(
@@ -565,7 +565,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Rule compression — identify specific rules with shared condition tokens and
     # synthesize abstract meta-rules covering them (prefrontal schema extraction).
     try:
-        from symbolic.rule_compressor import run_rule_compression as _rrc
+        from brain.symbolic.rule_compressor import run_rule_compression as _rrc
         _comp = _rrc()
         if not _comp.get("skipped"):
             log_activity(
@@ -579,7 +579,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Concept formation — every 2nd dream cycle. Clusters rules into named concepts.
     if _this_count % 2 == 0:
         try:
-            from symbolic.concept_formation import form_concepts as _fc
+            from brain.symbolic.concept_formation import form_concepts as _fc
             _fc_result = _fc()
             if not _fc_result.get("skipped"):
                 log_activity(
@@ -591,7 +591,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Symbolic prediction cycle — generate predictions from recent rule firings + chain.
     try:
-        from symbolic.prediction_engine import run_symbolic_prediction_cycle as _rspc
+        from brain.symbolic.prediction_engine import run_symbolic_prediction_cycle as _rspc
         _pred_result = _rspc(context)
         if _pred_result.get("new_predictions"):
             log_activity(
@@ -603,12 +603,12 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Rule verifier review — surface pending rule revisions.
     try:
-        from symbolic.rule_verifier import get_pending_revisions as _gpr
+        from brain.symbolic.rule_verifier import get_pending_revisions as _gpr
         _revisions = _gpr()
         if _revisions:
             log_activity(f"[dream] {len(_revisions)} rule(s) pending revision review.")
             try:
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
                         f"[rule_verifier] {len(_revisions)} rule(s) have degraded confidence "
@@ -627,7 +627,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Symbolic self-model rebuild — reflects on own rule/concept quality symbolically.
     # Generates meta-rules for weak/strong domains and logs the health snapshot.
     try:
-        from symbolic.symbolic_self_model import build_symbolic_self_model as _bssm, generate_self_meta_rules as _gsmr
+        from brain.symbolic.symbolic_self_model import build_symbolic_self_model as _bssm, generate_self_meta_rules as _gsmr
         _ssm = _bssm()
         _new_meta = _gsmr()
         log_activity(
@@ -641,7 +641,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Grounding health audit — log how well-grounded the rule set is against real actions.
     try:
-        from symbolic.ground_truth import audit_grounding_health as _agh
+        from brain.symbolic.ground_truth import audit_grounding_health as _agh
         _gh = _agh()
         log_activity(
             f"[dream] Grounding audit: tracked={_gh['total_tracked']} "
@@ -654,7 +654,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Active experimentation — advance one step of the hypothesis→test→consolidate pipeline.
     # One step per dream cycle keeps the loop from burning tokens all at once.
     try:
-        from cognition.experimentation import run_experiment_cycle as _rec
+        from brain.cognition.experimentation import run_experiment_cycle as _rec
         _exp_result = _rec(context)
         if _exp_result.get("step"):
             log_activity(f"[dream] experiment step: {_exp_result['step']} → {_exp_result.get('status', '?')}")
@@ -663,7 +663,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Symbolic sandbox experiments — high-exploration_drive sub-goals probe the symbolic layer.
     try:
-        from symbolic.autonomous_experiment import run_experiment_cycle as _saec
+        from brain.symbolic.autonomous_experiment import run_experiment_cycle as _saec
         _saexp = _saec(context)
         if _saexp.get("experiments_run"):
             log_activity(
@@ -675,7 +675,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Rule/concept forgetting — idle decay, overfit pruning, concept retirement.
     try:
-        from symbolic.rule_forgetting import run_forgetting_cycle as _rfc
+        from brain.symbolic.rule_forgetting import run_forgetting_cycle as _rfc
         _forget = _rfc(context)
         if _forget.get("total_changes"):
             log_activity(
@@ -683,7 +683,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
                 f"pruned={_forget['pruned']} retired={_forget['retired']}"
             )
         try:
-            from symbolic.progress_tracker import record_forgetting as _rf
+            from brain.symbolic.progress_tracker import record_forgetting as _rf
             _rf(
                 decayed=_forget.get("decayed", 0),
                 pruned=_forget.get("pruned", 0),
@@ -697,7 +697,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Disk-ceiling forgetting (§10.3) — if his mind has grown past the user's ceiling,
     # trim the safe growable stores back under budget. No-op when under the ceiling.
     try:
-        from utils.resource_ceilings import enforce_disk_ceiling as _edc
+        from brain.utils.resource_ceilings import enforce_disk_ceiling as _edc
         _ceil = _edc()
         if _ceil.get("over"):
             log_activity(f"[dream] Over disk ceiling — trimmed {sum(_ceil.get('trimmed', {}).values())} entries to stay under.")
@@ -707,7 +707,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Memory-ceiling eviction (§10.3) — if resident memory is over the user's ceiling,
     # drop the safe-to-recompute in-process caches to give it back. No-op when under.
     try:
-        from utils.resource_ceilings import enforce_memory_ceiling as _emc
+        from brain.utils.resource_ceilings import enforce_memory_ceiling as _emc
         _mem = _emc()
         if _mem.get("over"):
             log_activity(f"[dream] Over memory ceiling — evicted caches: {', '.join(_mem.get('evicted', [])) or 'none'}.")
@@ -717,7 +717,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Symbolic self-improvement — rehabilitate rules, calibrate router thresholds,
     # prune underused meta-rules. Has its own 4h internal cooldown.
     try:
-        from symbolic.self_improvement import run_self_improvement as _rsi
+        from brain.symbolic.self_improvement import run_self_improvement as _rsi
         _si = _rsi(context)
         if not _si.get("skipped") and _si.get("changes_made"):
             log_activity(
@@ -736,7 +736,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Embodied observation — read real system state to ground symbolic rules.
     try:
-        from symbolic.embodied_actions import run_embodied_cycle as _rec_emb
+        from brain.symbolic.embodied_actions import run_embodied_cycle as _rec_emb
         _emb = _rec_emb(context)
         if _emb.get("observations"):
             log_activity(
@@ -749,7 +749,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Benchmark — every 5th dream cycle. Fixed test suite for tracking performance.
     if _this_count % 5 == 0 and _dream_completed:
         try:
-            from symbolic.benchmark import run_benchmark as _rbm, get_benchmark_trend as _gbt
+            from brain.symbolic.benchmark import run_benchmark as _rbm, get_benchmark_trend as _gbt
             _bm = _rbm()
             _trend = _gbt()
             log_activity(
@@ -757,7 +757,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
                 f"({_bm['passed']}/{_bm['total']}) trend={_trend.get('trend','?')}"
             )
             try:
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
                         f"[benchmark] Score={_bm['score']:.2f} "
@@ -776,7 +776,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Long-horizon plan review — surface active plans needing next-step attention.
     try:
-        from symbolic.temporal_planner import get_active_plans as _gap, get_plan_stats as _gps
+        from brain.symbolic.temporal_planner import get_active_plans as _gap, get_plan_stats as _gps
         _active = _gap()
         if _active:
             _ps = _gps()
@@ -791,7 +791,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
             )
             if next_step:
                 try:
-                    from cog_memory.working_memory import update_working_memory as _uwm
+                    from brain.cog_memory.working_memory import update_working_memory as _uwm
                     _uwm({
                         "content": (
                             f"[plan:{oldest['id'][:8]}] Next step: {next_step['conclusion'][:150]}"
@@ -809,7 +809,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # so a crash mid-run doesn't consume the slot without doing the work.
     if _this_count % 3 == 0 and _dream_completed:
         try:
-            from cognition.planning.evolution import check_projection_against_reality as _cpgr
+            from brain.cognition.planning.evolution import check_projection_against_reality as _cpgr
             _cpgr(context)
         except Exception as _ece:
             log_activity(f"[dream] evolution projection check skipped: {_ece}")
@@ -821,7 +821,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # applies it during commit_affect(). resource_deficit is a registered scalar
     # target, so the arbiter applies the reduction directly (clamped, budgeted).
     try:
-        from affect.arbiter import submit_affect as _submit_affect
+        from brain.affect.arbiter import submit_affect as _submit_affect
         # Allostatic recovery scaling (proactive_resource_plan.md Phase 4 / C3):
         # a longer high-load burn earns DEEPER rest — recovery sleep is what
         # discharges allostatic load (McEwen & Wingfield 2003). Read the load from
@@ -831,7 +831,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         # over rest, not instantly), and avoids a cross-thread write race.
         _allo_load = 0.0
         try:
-            from utils.json_utils import load_json as _lj
+            from brain.utils.json_utils import load_json as _lj
             from brain.paths import AFFECT_STATE_FILE as _ASF
             _allo_load = float((_lj(_ASF, default_type=dict) or {}).get("_allostatic_load", 0.0) or 0.0)
         except Exception:

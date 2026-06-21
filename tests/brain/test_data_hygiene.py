@@ -5,8 +5,8 @@
 import json
 
 import brain.paths as paths
-from utils.json_utils import cap_jsonl
-import affect.reward_signals.action_reward_ema as aem
+from brain.utils.json_utils import cap_jsonl
+import brain.affect.reward_signals.action_reward_ema as aem
 
 
 def test_cap_jsonl_trims_to_max_lines(tmp_path):

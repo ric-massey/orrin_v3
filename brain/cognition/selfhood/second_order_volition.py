@@ -25,10 +25,10 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from brain.paths import DATA_DIR
-from utils.json_utils import load_json
-from utils.self_model import get_self_model
-from utils.log import log_private
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json
+from brain.utils.self_model import get_self_model
+from brain.utils.log import log_private
+from brain.cog_memory.working_memory import update_working_memory
 
 _LOG_FILE = DATA_DIR / "second_order_volition.json"
 
@@ -153,7 +153,7 @@ def endorse_intention(
                  "I won't bind my will to it.")
         _record("disown", text[:60], f"I decline to commit to '{text[:80]}': {gloss}")
         try:
-            from cog_memory.long_memory import update_long_memory
+            from brain.cog_memory.long_memory import update_long_memory
             update_long_memory(
                 f"[disowned desire] I refused to form a commitment around '{text[:120]}' — "
                 f"it was a pull I don't endorse being ruled by.",
@@ -198,7 +198,7 @@ def reflect_on_desire(context: Dict[str, Any] = None) -> str:
         # Make the refusal real: damp the feeling via the safe arbiter path.
         if is_affect:
             try:
-                from affect.arbiter import submit_affect
+                from brain.affect.arbiter import submit_affect
                 submit_affect(context, key, -0.06, source="second_order_volition", ttl_cycles=2)
             except Exception:
                 pass

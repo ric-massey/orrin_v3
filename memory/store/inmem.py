@@ -1,6 +1,6 @@
 # memory/store/inmem.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import List, Dict, Optional, Iterable, Tuple, Any
 from collections import deque
 import threading

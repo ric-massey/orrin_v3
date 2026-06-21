@@ -28,8 +28,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Dict, List
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
 SELF_MODEL_SYMBOLIC_FILE = DATA_DIR / "symbolic_self_model.json"
@@ -102,12 +102,12 @@ def build_symbolic_self_model() -> Dict:
     Compute the full symbolic self-model from current state.
     Writes to data/symbolic_self_model.json and returns the dict.
     """
-    from symbolic.rule_engine import get_all_rules
-    from symbolic.concept_formation import get_concepts
-    from symbolic.causal_graph import get_all_edges
-    from symbolic.ground_truth import audit_grounding_health
-    from symbolic.prediction_engine import get_domain_error_rates
-    from symbolic.rule_verifier import get_pending_revisions
+    from brain.symbolic.rule_engine import get_all_rules
+    from brain.symbolic.concept_formation import get_concepts
+    from brain.symbolic.causal_graph import get_all_edges
+    from brain.symbolic.ground_truth import audit_grounding_health
+    from brain.symbolic.prediction_engine import get_domain_error_rates
+    from brain.symbolic.rule_verifier import get_pending_revisions
 
     rules = get_all_rules()
     concepts = get_concepts()
@@ -314,7 +314,7 @@ def generate_self_meta_rules() -> List[Dict]:
     added = []
 
     try:
-        from symbolic.meta_rules import add_meta_rule
+        from brain.symbolic.meta_rules import add_meta_rule
         for domain, stats in kd.items():
             if stats.get("rule_count", 0) < 5:
                 continue

@@ -18,7 +18,7 @@
 #   derive_core_value()                   → dict
 #   evaluate_cognition(wm, lm)           → dict
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import re
@@ -26,9 +26,9 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _FIRINGS_WAL = DATA_DIR / "rule_firings.jsonl"
@@ -44,7 +44,7 @@ def _tok(text: str) -> set:
 
 def _ssm() -> Dict:
     try:
-        from symbolic.symbolic_self_model import build_symbolic_self_model
+        from brain.symbolic.symbolic_self_model import build_symbolic_self_model
         return build_symbolic_self_model()
     except Exception:
         return {}
@@ -52,7 +52,7 @@ def _ssm() -> Dict:
 
 def _rules() -> List[Dict]:
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         return [r for r in get_all_rules() if not r.get("tombstone")]
     except Exception:
         return []
@@ -169,7 +169,7 @@ def analyze_outcomes(recent_outcomes: List[Dict]) -> Dict:
     # Prediction accuracy
     pred_acc = 0.5
     try:
-        from symbolic.prediction_engine import get_domain_error_rates
+        from brain.symbolic.prediction_engine import get_domain_error_rates
         errs = get_domain_error_rates()
         if errs:
             pred_acc = 1.0 - sum(errs.values()) / len(errs)
@@ -337,7 +337,7 @@ def generate_goals(self_model: Dict, context: Optional[Dict] = None) -> List[Dic
 
     # From experiment gaps
     try:
-        from symbolic.autonomous_experiment import get_experiment_stats
+        from brain.symbolic.autonomous_experiment import get_experiment_stats
         stats = get_experiment_stats(days=7)
         low_domains = [d for d, s in stats.get("by_domain", {}).items()
                        if isinstance(s, dict) and s.get("success_rate", 1.0) < 0.40]
@@ -352,7 +352,7 @@ def generate_goals(self_model: Dict, context: Optional[Dict] = None) -> List[Dic
 
     # From intrinsic motivation (high-exploration_drive topics)
     try:
-        from symbolic.intrinsic_motivation import run_intrinsic_motivation
+        from brain.symbolic.intrinsic_motivation import run_intrinsic_motivation
         ctx = context or {}
         result = run_intrinsic_motivation(ctx)
         if isinstance(result, dict) and result.get("label") in ("explore", "investigate"):
@@ -383,7 +383,7 @@ def detect_rule_contradictions(self_model: Dict) -> List[Dict]:
 
     # Meta-rule conflict scan across active rules
     try:
-        from symbolic.meta_rules import resolve_conflict
+        from brain.symbolic.meta_rules import resolve_conflict
         if len(rls) >= 2:
             # resolve_conflict expects (rule, score) pairs sorted best-first —
             # score each rule by its own confidence (no query context here).
@@ -516,7 +516,7 @@ def derive_core_value() -> Dict:
     Returns {value: str, justification: str} or {} if insufficient data.
     """
     try:
-        from symbolic.causal_graph import get_effects, get_all_edges
+        from brain.symbolic.causal_graph import get_effects, get_all_edges
         edges = get_all_edges()
         if not edges:
             # Fall back to get_effects on seed concepts

@@ -10,14 +10,14 @@ these aren't real goals — they're risk_estimate responses."
 Wakes every 30 cycles, or when active goal count grows high.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
-from peers.peer_base import BasePeer
+from brain.peers.peer_base import BasePeer
 from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, RELATIONSHIPS_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -34,7 +34,7 @@ class GoalAuditor(BasePeer):
             return True
         # Also wake if the active goal list has grown large
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             goals = load_json(GOALS_FILE, default_type=list) or []
             if isinstance(goals, list) and len(goals) > 7:
                 return True
@@ -47,7 +47,7 @@ class GoalAuditor(BasePeer):
 
         # ── Stale active goals ────────────────────────────────────────────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             goals = load_json(GOALS_FILE, default_type=list) or []
             completed = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
 
@@ -97,7 +97,7 @@ class GoalAuditor(BasePeer):
 
         # ── Phantom relationship goals ────────────────────────────────────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
             phantom_count = 0
             for uid, r in rels.items():

@@ -18,10 +18,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from utils.json_utils import load_json, save_json
-from utils.text_sanity import is_corrupt_text, ends_mid_word
-from cog_memory.working_memory import _strip_chunk_label
-from cognition.knowledge_graph import is_valid_entity_name
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.text_sanity import is_corrupt_text, ends_mid_word
+from brain.cog_memory.working_memory import _strip_chunk_label
+from brain.cognition.knowledge_graph import is_valid_entity_name
 from brain.paths import (
     WORKING_MEMORY_FILE, LONG_MEMORY_FILE, RUMINATION_FILE, TENSIONS_FILE,
     REFLECTION, KNOWLEDGE_GRAPH_FILE, SYMBOLIC_RULES_FILE,

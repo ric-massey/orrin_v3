@@ -130,7 +130,7 @@ def capability_available(cap: Optional[str], context: Any = None) -> bool:
         # availability is simply whether the LLM is reachable right now. When it's
         # down (e.g. testing), produce_code goals degrade/disengage honestly.
         try:
-            from utils.llm_gate import llm_available
+            from brain.utils.llm_gate import llm_available
             return bool(llm_available())
         except Exception:
             return False

@@ -1,26 +1,26 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from pathlib import Path
 from typing import Any, Dict, Callable, Mapping, Tuple, List
 from brain.paths import TRACE_FILE
 import time
 import json
 
-from utils.log import log_model_issue
-from utils.json_utils import load_json  # ⬅️ read-only
+from brain.utils.log import log_model_issue
+from brain.utils.json_utils import load_json  # ⬅️ read-only
 from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE, BEHAVIORAL_FUNCTIONS_LIST_FILE
 
 # Registries hold the real callables; we only FILTER by what's in the files.
-from registry.cognition_registry import COGNITIVE_FUNCTIONS
-from registry.behavior_registry import BEHAVIORAL_FUNCTIONS
+from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
+from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 
 # Behavior executor
-from think.think_utils.action_gate import take_action
+from brain.think.think_utils.action_gate import take_action
 
 # Bandit + features
-from think.bandit import contextual_bandit as bandit
-from think.think_utils.select_function import extract_features  # NOTE: adds __bias__=1.0
-from utils.failure_counter import record_failure
+from brain.think.bandit import contextual_bandit as bandit
+from brain.think.think_utils.select_function import extract_features  # NOTE: adds __bias__=1.0
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 Context = Dict[str, Any]
@@ -34,7 +34,7 @@ def emit_trace(**payload) -> None:
         payload.setdefault("ts", time.time())
         with open(TRACE_FILE, "a", encoding="utf-8") as _f:
             _f.write(json.dumps(payload, ensure_ascii=False) + "\n")
-        from utils.json_utils import cap_jsonl
+        from brain.utils.json_utils import cap_jsonl
         cap_jsonl(TRACE_FILE, max_lines=3000)
     except Exception as _e:
         log_model_issue(f"Trace emit failed: {_e}")
@@ -471,7 +471,7 @@ def bandit_learn(
                 _emo = ctx.get("affect_state") if ctx else None
                 if isinstance(_emo, dict):
                     _core = _emo.get("core_signals") or _emo
-                    from affect.homeostasis import pump_signal
+                    from brain.affect.homeostasis import pump_signal
                     if pe > 0:
                         # Positive surprise: reward_signal burst → motivation + exploration_drive (wanting more)
                         _mag = min(0.20, pe * 0.4)
@@ -498,8 +498,8 @@ def bandit_learn(
         # and must be surfaced in the trace rather than silently swallowed.
         if isinstance(_primary_e, AttributeError):
             try:
-                from utils.context_key import context_key  # type: ignore
-                from utils.bandit import record_outcome_ctx  # type: ignore
+                from brain.utils.context_key import context_key  # type: ignore
+                from brain.utils.bandit import record_outcome_ctx  # type: ignore
                 record_outcome_ctx(context_key(ctx), tag, reward)
                 emit_trace(type="BANDIT_UPDATE_FALLBACK", action=tag, reward=reward, decision_id=decision_id)
             except Exception as _e:

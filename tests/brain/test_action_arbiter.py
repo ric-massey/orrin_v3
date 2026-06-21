@@ -1,5 +1,5 @@
 # Tests for the ActionArbiter convergence layer (think/action_arbiter.py).
-from think.action_arbiter import ActionProposal as P, resolve
+from brain.think.action_arbiter import ActionProposal as P, resolve
 
 
 def test_no_proposals_returns_none():

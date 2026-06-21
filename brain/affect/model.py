@@ -11,8 +11,8 @@
 #   surface forms of underlying core affect (valence × activation_level) states.
 
 from typing import Dict, List, Any
-from utils.json_utils import load_json, save_json
-from utils.log import log_error, log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_error, log_activity
 from brain.paths import AFFECT_MODEL_FILE
 
 # Packaged default keyword lists, one per core-affect category used in

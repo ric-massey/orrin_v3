@@ -98,31 +98,41 @@ def capsule(tmp_path, monkeypatch):
     _seed_mind(data_dir, state_dir)
     monkeypatch.setenv("ORRIN_DATA_DIR", str(data_dir))
     monkeypatch.setenv("ORRIN_STATE_DIR", str(state_dir))
-    # Reload paths so the env overrides take effect, then the builder under it.
-    # Restore both sys.modules and the parent package attribute on teardown:
-    # importing brain.paths rebinds brain.paths to the temporary module, and
-    # restoring only sys.modules would leave later imports using that stale object.
-    reload_targets = ("brain.paths", "evidence.life_capsule", "evidence")
-    saved = {name: sys.modules.get(name) for name in reload_targets}
-    import brain
-    saved_brain_paths = getattr(brain, "paths", None)
+    # Reload paths + the builder so the env overrides take effect. We must restore
+    # both sys.modules AND the parent-package attribute on teardown: reloading a
+    # submodule (e.g. brain.paths) rebinds it on its parent package (brain), and
+    # restoring only sys.modules would leave later `from brain.paths import X`
+    # resolving the stale temporary module.
+    import importlib
+
+    reload_targets = ("brain.paths", "brain.evidence.life_capsule", "brain.evidence")
+
+    def _snapshot(name):
+        parent, _, leaf = name.rpartition(".")
+        parent_mod = sys.modules.get(parent) if parent else None
+        had = parent_mod is not None and hasattr(parent_mod, leaf)
+        return (sys.modules.get(name), parent_mod, leaf, had,
+                getattr(parent_mod, leaf, None) if had else None)
+
+    saved = {name: _snapshot(name) for name in reload_targets}
     for name in reload_targets:
         sys.modules.pop(name, None)
-    import importlib
-    lc = importlib.import_module("evidence.life_capsule")
+    lc = importlib.import_module("brain.evidence.life_capsule")
     path = lc.build_life_capsule("manual", out_dir=out_dir)
     try:
         yield path
     finally:
         for name in reload_targets:
-            if saved[name] is not None:
-                sys.modules[name] = saved[name]
+            mod, parent_mod, leaf, had, attr_val = saved[name]
+            if mod is not None:
+                sys.modules[name] = mod
             else:
                 sys.modules.pop(name, None)
-        if saved_brain_paths is not None:
-            brain.paths = saved_brain_paths
-        elif hasattr(brain, "paths"):
-            delattr(brain, "paths")
+            if parent_mod is not None:
+                if had:
+                    setattr(parent_mod, leaf, attr_val)
+                elif hasattr(parent_mod, leaf):
+                    delattr(parent_mod, leaf)
 
 
 def test_capsule_is_wellformed_zip(capsule):
@@ -180,7 +190,7 @@ def test_metrics_and_credit(capsule):
 def test_classify_action_fallbacks():
     sys.modules.pop("evidence.life_capsule", None)
     import importlib
-    lc = importlib.import_module("evidence.life_capsule")
+    lc = importlib.import_module("brain.evidence.life_capsule")
     assert lc.classify_action("leave_note") == "communicative"
     assert lc.classify_action("write_tool") == "productive"
     assert lc.classify_action("look_outward") == "orienting"

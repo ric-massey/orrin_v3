@@ -1,5 +1,5 @@
 from brain.paths import CYCLE_COUNT_FILE
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 
 def get_cycle_count() -> int:
     try:

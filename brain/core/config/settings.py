@@ -1,6 +1,6 @@
 
-from utils.load_utils import load_model_config
-from utils.log import log_error  # optional: for diagnostic logging
+from brain.utils.load_utils import load_model_config
+from brain.utils.log import log_error  # optional: for diagnostic logging
 
 model_roles = load_model_config()
 

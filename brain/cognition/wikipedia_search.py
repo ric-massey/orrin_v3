@@ -1,7 +1,7 @@
 # brain/cognition/wikipedia_search.py
 # Looks up Wikipedia summaries using the free REST API (no API key required).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import re
@@ -12,11 +12,11 @@ import urllib.request
 from typing import Dict, Any, Optional
 
 from brain.paths import THREADS_FILE
-from utils.json_utils import load_json
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
-from utils.content_quarantine import quarantine_text, quarantine_extra
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.content_quarantine import quarantine_text, quarantine_extra
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _LAST_WIKI_TS: float = 0.0
@@ -68,7 +68,7 @@ def wikipedia_search(context: Dict[str, Any] = None) -> str:
         extra=quarantine_extra({"source": "wikipedia", "query": query, "title": result["title"]}),
     )
     try:
-        from cognition.knowledge_graph import observe as _kg_observe
+        from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(
             f"{result['title']} {result['summary'][:1200]}",
             source="wikipedia",
@@ -81,7 +81,7 @@ def wikipedia_search(context: Dict[str, Any] = None) -> str:
     log_activity(f"[wikipedia_search] {result['title']}")
     text = f"Wikipedia on '{result['title']}': {result['summary'][:200]}"
     try:
-        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        from brain.cognition.exploration_value import ReachOutcome, record_reach_outcome
         gain = record_reach_outcome("wikipedia_search", text, None, context)
         context["_last_reach_outcome"] = ReachOutcome(
             "world", acted=True, is_external=True, info_gain=gain,
@@ -97,7 +97,7 @@ def _pick_query(context: Dict[str, Any]) -> str:
     # Internal-state strings (self-prompts like "🌓 Shadow question: …", goal
     # titles with dates, provenance wrappers) must never become lookup terms —
     # same gates as web_research (FINDINGS 2026-06-12 data sweep §3/§10).
-    from cognition.web_research import _is_concrete_topic, _is_external_subject
+    from brain.cognition.web_research import _is_concrete_topic, _is_external_subject
 
     # Active thread titles first
     try:
@@ -166,7 +166,7 @@ def _wiki_opensearch(query: str, timeout: int = 8) -> Optional[Dict]:
         if title and snippet:
             # Relevance gate: fuzzy search matches almost anything; only store
             # results whose title shares the query's content words.
-            from cognition.web_research import _title_matches_query
+            from brain.cognition.web_research import _title_matches_query
             if not _title_matches_query(query, title):
                 log_private(f"[wikipedia_search] opensearch match '{title}' irrelevant to '{query}' — discarded")
                 return None

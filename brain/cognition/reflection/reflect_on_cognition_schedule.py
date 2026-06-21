@@ -1,13 +1,13 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 
-from cog_memory.working_memory import update_working_memory
-from utils.json_utils import save_json
-from utils.log import log_error, log_private
-from utils.log_reflection import log_reflection
-from utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import save_json
+from brain.utils.log import log_error, log_private
+from brain.utils.log_reflection import log_reflection
+from brain.utils.load_utils import load_all_known_json
 from brain.paths import COGN_SCHEDULE_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -25,7 +25,7 @@ def reflect_on_cognition_schedule():
         reflection_log: list = []
 
         # === Step 1: Pure statistical rebalancing (symbolic, no LLM) ===
-        from symbolic.symbolic_cognition import rebalance_schedule as _rb
+        from brain.symbolic.symbolic_cognition import rebalance_schedule as _rb
         result = _rb(stat_schedule, history)
         for fn, new_w in result["changes"].items():
             if fn not in protected:
@@ -35,8 +35,8 @@ def reflect_on_cognition_schedule():
 
         # === Step 2: Symbolic self-improvement / self-model hints ===
         try:
-            from symbolic.self_improvement import get_improvement_history as _gih
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+            from brain.symbolic.self_improvement import get_improvement_history as _gih
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
             _proposals  = [p for e in _gih(n=3) for p in e.get("proposals", [])]
             _sym = _sfr("cognition_schedule", context=None,
                         data={"proposals": _proposals, "schedule": stat_schedule})

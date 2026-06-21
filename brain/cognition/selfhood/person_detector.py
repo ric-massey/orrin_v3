@@ -39,11 +39,11 @@ import re
 import uuid
 from typing import Dict, Any, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private, log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private, log_activity
 from brain.paths import DATA_DIR
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 KNOWN_PERSONS_FILE = DATA_DIR / "known_persons.json"
 
@@ -240,7 +240,7 @@ def _link_kg_entity(persons: Dict[str, Any], person_id: str) -> None:
     if not name or name.lower() == "someone":
         return
     try:
-        from cognition.knowledge_graph import add_entity
+        from brain.cognition.knowledge_graph import add_entity
         eid = add_entity(name, entity_type="person",
                          properties={"person_id": person_id}, source="person_detector")
         if eid:

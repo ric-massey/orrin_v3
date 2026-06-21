@@ -24,7 +24,7 @@ from __future__ import annotations
 import re
 from typing import Any, Dict, Optional, Tuple
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 # A topic is "understood enough" at/below this info-gap (uncertainty: 0=covered…1=unknown).
 _UNCERTAINTY_SATED = 0.25
@@ -73,7 +73,7 @@ def _did_exploration_work(goal: Dict[str, Any], goal_id: str) -> bool:
     if any(isinstance(s, dict) and s.get("status") == "completed" for s in plan):
         return True
     try:
-        from cognition import novelty_memory
+        from brain.cognition import novelty_memory
         return novelty_memory.novel_count(goal_id) > 0
     except Exception:
         return False
@@ -93,7 +93,7 @@ def is_sated(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> 
 
         # Proxy 1 — bounded-corpus exploration exhausted (filesystem search goes barren).
         try:
-            from cognition import novelty_memory
+            from brain.cognition import novelty_memory
             exhausted, why = novelty_memory.is_exhausted(goal_id)
             if exhausted:
                 return True, f"novelty_exhausted:{why}"
@@ -108,7 +108,7 @@ def is_sated(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> 
             topic = _topic_of(goal)
             if len(topic) >= 4:
                 try:
-                    from symbolic.intrinsic_motivation import uncertainty
+                    from brain.symbolic.intrinsic_motivation import uncertainty
                     u = float(uncertainty(topic))
                     if u <= _UNCERTAINTY_SATED:
                         return True, f"uncertainty={u:.2f}"

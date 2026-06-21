@@ -30,7 +30,7 @@ Safety constraints
 - Errors are caught and returned as structured failure dicts — never raised.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import getpass
 import os
@@ -44,9 +44,9 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from brain.paths import DATA_DIR, WORKING_MEMORY_FILE
-from utils.log import log_activity, log_error, log_private
-from utils.json_utils import load_json, save_json
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_error, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -162,7 +162,7 @@ def _capture_screen(path: str) -> tuple[bool, str]:
             # §10.6 graceful degradation: if Screen Recording is positively off, say so
             # honestly instead of shelling out and writing a black/empty image.
             try:
-                from utils.os_permissions import is_denied, off_message
+                from brain.utils.os_permissions import is_denied, off_message
                 if is_denied("screen_recording"):
                     return False, off_message("screen_recording")
             except Exception:
@@ -291,7 +291,7 @@ def _persist_observation(content: str, event_type: str = "environment", importan
     if event_type == "environment" and (now - _last_env_lm_write) < _ENV_LM_INTERVAL:
         return
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(content, event_type=event_type, importance=importance)
         if event_type == "environment":
             _last_env_lm_write = now

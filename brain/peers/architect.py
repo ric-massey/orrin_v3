@@ -11,13 +11,13 @@ who says "this will break X, you haven't thought about Y."
 Wakes when the selected function touches self-modification territory.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from pathlib import Path
 from typing import Any, Dict, List
 
-from peers.peer_base import BasePeer
-from utils.failure_counter import record_failure
+from brain.peers.peer_base import BasePeer
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -51,7 +51,7 @@ class Architect(BasePeer):
 
         # ── Find what files the function is likely to touch ───────────────────
         try:
-            from cognition.perception.file_sense import summarise_locations
+            from brain.cognition.perception.file_sense import summarise_locations
             from brain.paths import ROOT_DIR
 
             # Try to find the function's source file

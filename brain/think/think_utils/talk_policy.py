@@ -1,9 +1,9 @@
 # think/think_utils/talk_policy.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import os, sys, time
-from utils.log import log_activity, log_model_issue
-from behavior.speak import _derive_tone
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_model_issue
+from brain.behavior.speak import _derive_tone
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ===== Public constants (tweak as you like) =====
@@ -130,7 +130,7 @@ def _emit_reply_line(text: str) -> None:
             # Deliver back to the Face UI message that prompted this (no-op when
             # nothing is awaiting — i.e. spontaneous speech). Closes brain→Face.
             try:
-                from behavior.face_bridge import deliver_reply as _deliver_reply
+                from brain.behavior.face_bridge import deliver_reply as _deliver_reply
                 _deliver_reply(text)
             except Exception as _de:
                 record_failure("talk_policy._emit_reply_line", _de)
@@ -171,7 +171,7 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
             # from firing whenever the inner loop hasn't run yet, leaving Orrin
             # with nothing to say in no-LLM mode.
             try:
-                from behavior.speech_gate import build_speech as _build_speech
+                from brain.behavior.speech_gate import build_speech as _build_speech
                 _gate_reply = (_build_speech(user_input, context, emo) or "").strip()
                 if _gate_reply:
                     txt = _gate_reply  # replace raw content; should_speak handles the rest
@@ -187,8 +187,8 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
             # as a meaning kernel (seed) and reworded by the same composer that
             # builds replies; speakability is enforced so no backend tag ships.
             try:
-                from behavior.express_to_user import build_motive, compose_from_motive
-                from behavior.speakability import is_speakable
+                from brain.behavior.express_to_user import build_motive, compose_from_motive
+                from brain.behavior.speakability import is_speakable
                 _self_motive = build_motive(
                     context, intent="express_state", recipient="self", seed=txt)
                 _composed = compose_from_motive(_self_motive, context)
@@ -214,7 +214,7 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
             # synthesize a minimal one instead of logging empty fields — the
             # construction-grammar scores can't learn from blank buckets.
             try:
-                from think.speech_log import log_reply as _log_reply
+                from brain.think.speech_log import log_reply as _log_reply
                 _self_motive = context.pop("_self_motive", None)
                 if not _speech_plan:
                     _speech_plan = {

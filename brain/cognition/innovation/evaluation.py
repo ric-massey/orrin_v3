@@ -1,20 +1,20 @@
 # evaluation.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from typing import Any, Dict, List
 
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.log import utc_now as _utc_now
-from utils.json_utils import load_json, save_json, safe_extract_json
-from utils.log import log_error, log_activity
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
-from utils.self_model import get_self_model
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.log import utc_now as _utc_now
+from brain.utils.json_utils import load_json, save_json, safe_extract_json
+from brain.utils.log import log_error, log_activity
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.self_model import get_self_model
 from brain.paths import PROPOSED_TOOLS_JSON, TOOL_EVALUATIONS_JSON, LONG_MEMORY_FILE, IMPLEMENTED_TOOLS_FILE
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -132,8 +132,8 @@ def _inject_implement_signals(evaluations: List[Dict[str, Any]]) -> None:
             record_failure("evaluation._inject_implement_signals", _e)
 
         try:
-            from utils.signal_utils import create_signal
-            from utils.json_utils import load_json as _lj, save_json as _sj
+            from brain.utils.signal_utils import create_signal
+            from brain.utils.json_utils import load_json as _lj, save_json as _sj
             from brain.paths import CONTEXT
             _ctx = _lj(CONTEXT, default_type=dict) or {}
             _sig = create_signal(
@@ -192,7 +192,7 @@ def _track_implemented_tools(evaluations: List[Dict[str, Any]]) -> None:
 def _get_bandit_count(name: str) -> int:
     """Return how many times the bandit has selected this function name, or 0."""
     try:
-        from think.bandit.contextual_bandit import get_state
+        from brain.think.bandit.contextual_bandit import get_state
         st = get_state()
         return int((st.get("counts") or {}).get(name, 0))
     except Exception:
@@ -224,7 +224,7 @@ def assess_innovation_outcomes(context: Dict[str, Any] = None) -> str:
         return "All implemented tools already assessed."
 
     try:
-        from think.bandit.contextual_bandit import get_state
+        from brain.think.bandit.contextual_bandit import get_state
         bandit_st = get_state()
     except Exception:
         return "assess_innovation_outcomes: could not read bandit state."

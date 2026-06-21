@@ -28,7 +28,7 @@ if not getattr(sys, "frozen", False):
 #   • frozen (PyInstaller) → the OS per-user dir
 #   • running from source  → leave unset → in-repo brain/data (unchanged for devs)
 import os as _os_early
-from utils.paths import user_data_home as _user_data_home, apply_user_data_env as _apply_user_data_env
+from brain.utils.paths import user_data_home as _user_data_home, apply_user_data_env as _apply_user_data_env
 _data_home = _os_early.environ.get("ORRIN_DATA_HOME")
 if _data_home:
     _apply_user_data_env(Path(_data_home))
@@ -39,13 +39,13 @@ elif getattr(sys, "frozen", False):
 # torch/sentence-transformers/spaCy import, so a frozen Orrin boots with zero network.
 # No-op in a dev checkout (no bundle / no ORRIN_MODELS_DIR).
 try:
-    from utils.model_assets import apply_offline_env as _apply_offline_env
+    from brain.utils.model_assets import apply_offline_env as _apply_offline_env
     if _apply_offline_env():
         print("[boot] using bundled ML weights (offline mode)")
 except Exception:
     pass
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import time
@@ -106,7 +106,7 @@ def _boot_config_check() -> None:
     # loaded just above, keeps precedence; this only fills what's absent — so a
     # packaged app with no `.env` still picks up keys pasted in Settings last session.
     try:
-        from utils.secrets import load_into_env as _load_secrets_env
+        from brain.utils.secrets import load_into_env as _load_secrets_env
         _load_secrets_env()
     except Exception as _e:
         print(f"[boot] keychain load skipped ({_e})")
@@ -161,7 +161,7 @@ def _acquire_single_instance_lock() -> None:
             pass
         always = False
         try:
-            from utils import prefs as _prefs
+            from brain.utils import prefs as _prefs
             always = _prefs.get("existence_mode", "sleep") == "always"
         except Exception:
             pass
@@ -184,7 +184,7 @@ def _acquire_single_instance_lock() -> None:
         print(f"[boot] {headline}\n[boot] {detail}\n[boot] (lock: {lock_path})", file=sys.stderr)
         # Best-effort desktop notification so a double-click launch isn't a silent exit.
         try:
-            from agency.skills.notify_user import notify_user
+            from brain.agency.skills.notify_user import notify_user
             notify_user({"title": "Orrin is already running", "message": headline})
         except Exception:
             pass
@@ -216,16 +216,16 @@ except Exception:
     _HAVE_GOALS_DAEMON = False
 
 # --- Utils ---
-from utils.paths import compute_repo_root
-from utils.sys_events import record_event
-from utils.alive_brain import AliveBrain, start_fs_watcher
-from utils.memory_health import build_memory_health_provider
-from utils.metrics_sampling import build_fast_sampler
-from utils.goals_feed import init_goals
+from brain.utils.paths import compute_repo_root
+from brain.utils.sys_events import record_event
+from brain.utils.alive_brain import AliveBrain, start_fs_watcher
+from brain.utils.memory_health import build_memory_health_provider
+from brain.utils.metrics_sampling import build_fast_sampler
+from brain.utils.goals_feed import init_goals
 from brain.utils.get_cycle_count import get_cycle_count
 
 # --- Tamper guard (already existed as a util) ---
-from utils.tamper_guard import start_reaper_tamper_guard
+from brain.utils.tamper_guard import start_reaper_tamper_guard
 
 # ---------- Metrics endpoint (Prometheus) ----------
 # Off by default so a packaged launch opens no listening port. Enable with
@@ -328,11 +328,11 @@ _seed_if_newborn()
 # (a downgrade) → refuse to load rather than corrupt the mind. A newborn just gets
 # stamped at the current version. Runs after seeding so a fresh dir is already coherent.
 try:
-    from utils.schema_migration import SchemaTooNewError as _SchemaTooNewError
+    from brain.utils.schema_migration import SchemaTooNewError as _SchemaTooNewError
 except Exception:
     _SchemaTooNewError = None  # don't let an import hiccup crash boot before migration runs
 try:
-    from utils import schema_migration as _schema
+    from brain.utils import schema_migration as _schema
     _mig = _schema.check_and_migrate()
     if _mig.get("action") == "migrated":
         print(
@@ -352,7 +352,7 @@ except Exception as _e:
 try:
     from brain.paths import DATA_DIR as _DD_NB
     _is_newborn = not (_DD_NB / "long_memory.json").exists() and not (_DD_NB / "autobiography.json").exists()
-    from utils import boot_events as _boot
+    from brain.utils import boot_events as _boot
     _boot.set_newborn(_is_newborn)
 except Exception as _e:
     _log.warning("silent except: %s", _e)
@@ -361,7 +361,7 @@ except Exception as _e:
 # rolls a lifespan or the cognitive loop reads its cadence. Explicit env always wins
 # (dev override), so these use setdefault.
 try:
-    from utils import prefs as _prefs
+    from brain.utils import prefs as _prefs
     _band = _prefs.get("lifespan_band", [365, 730])
     if isinstance(_band, (list, tuple)) and len(_band) == 2:
         # The lifespan band sets the ODDS; mortality still rolls at random inside it.
@@ -383,7 +383,7 @@ try:
         os.environ.setdefault("ORRIN_MEMORY_CEILING_GB", str(_mem_ceiling))
     if _prefs.get("existence_mode", "sleep") == "sleep":
         # Closed time costs no life: credit the interval since he was last active.
-        from cognition.mortality import credit_sleep_since_last_active as _credit_sleep
+        from brain.cognition.mortality import credit_sleep_since_last_active as _credit_sleep
         _credited = _credit_sleep()
         if _credited > 0:
             print(f"[existence] Sleep mode — credited {_credited / 3600:.1f}h of closed time (no life lost)")
@@ -393,7 +393,7 @@ except Exception as _e:
 # Lifecycle tag (§10.5): record whether the previous run ended cleanly (→ tell death /
 # crash-stall / normal apart on the next launch), then mark THIS run in-progress.
 try:
-    from utils import lifecycle as _lifecycle
+    from brain.utils import lifecycle as _lifecycle
     _lifecycle.mark_running()
 except Exception as _e:
     _log.warning("silent except: %s", _e)
@@ -407,7 +407,7 @@ print("[memory] MemoryDaemon started with InMemoryStore")
 # Boot sequence (§9.7) — emit each milestone AFTER it actually comes up, so the
 # wake-up screen reflects real readiness. Best-effort; never let it break boot.
 try:
-    from utils import boot_events as _boot
+    from brain.utils import boot_events as _boot
     _boot.emit("Loading memory")
 except Exception as _e:
     _log.warning("silent except: %s", _e)
@@ -433,8 +433,8 @@ _goal_store, _goals_api = init_goals(GOALS_DATA_DIR)
 #   • FALLBACK: pywebview unavailable → loopback API + a browser tab (one port).
 # Disable the whole UI with ORRIN_UI=0.
 from backend.server.config import ui_dev_enabled as _ui_dev_enabled
-from utils.paths import resolve_dist as _resolve_dist
-from utils.ui_build import ensure_ui_build as _ensure_ui_build
+from brain.utils.paths import resolve_dist as _resolve_dist
+from brain.utils.ui_build import ensure_ui_build as _ensure_ui_build
 
 
 def _resolve_ui_index():
@@ -620,7 +620,7 @@ try:
         # floor can never disagree. Falls back to a conservative full-RAM ceiling
         # if body_budget is unavailable, so the guard degrades to never-trips.
         try:
-            from cognition.body_budget import budget_bytes
+            from brain.cognition.body_budget import budget_bytes
             return float(budget_bytes())
         except Exception:
             return float(_psutil.virtual_memory().total)
@@ -709,7 +709,7 @@ def _vital_shed_action(reason: str) -> None:
     and must NOT touch the host pause gate (the host guard would never clear it)."""
     # Force-trim rebuildable working memory if the store exposes a trim.
     try:
-        from cog_memory import working_memory as _wm
+        from brain.cog_memory import working_memory as _wm
         for _name in ("force_trim", "shed", "trim_to_floor"):
             _fn = getattr(_wm, _name, None)
             if callable(_fn):
@@ -886,14 +886,14 @@ if _HAVE_GOALS_DAEMON:
         _fs_obs, _fs_handler = start_fs_watcher(REPO_ROOT)
         print("[alive] goals daemon + brain started")
         try:
-            from utils import boot_events as _boot
+            from brain.utils import boot_events as _boot
             _boot.emit("Activating goals & observers")
         except Exception as _e:
             _log.warning("silent except: %s", _e)
     except Exception as e:
         print(f"[alive] not started: {e}")
         try:
-            from utils import boot_events as _boot
+            from brain.utils import boot_events as _boot
             _boot.emit("Activating goals & observers", ok=False, note=str(e))
         except Exception as _e:
             _log.warning("silent except: %s", _e)
@@ -945,7 +945,7 @@ def _pulse_loop(stop: threading.Event) -> None:
         _now_wall = time.time()
         if _now_wall - last_active_rec > 30.0:
             try:
-                from cognition.mortality import record_active_now as _rec_active
+                from brain.cognition.mortality import record_active_now as _rec_active
                 _rec_active()
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
@@ -1046,7 +1046,7 @@ def _graceful_shutdown() -> None:
     # Stamp 'last alive at = now' so 'sleep' mode credits the closed interval exactly
     # from here (§10.3). Cheap and important to do before threads wind down.
     try:
-        from cognition.mortality import record_active_now as _rec_active
+        from brain.cognition.mortality import record_active_now as _rec_active
         _rec_active()
     except Exception as _e:
         _log.warning("silent except: %s", _e)
@@ -1054,7 +1054,7 @@ def _graceful_shutdown() -> None:
     # This is a graceful quit — mark the run clean so the next launch doesn't read it
     # as a crash/stall (§10.5).
     try:
-        from utils import lifecycle as _lifecycle
+        from brain.utils import lifecycle as _lifecycle
         _lifecycle.mark_clean_shutdown()
     except Exception as _e:
         _log.warning("silent except: %s", _e)
@@ -1096,7 +1096,7 @@ def _graceful_shutdown() -> None:
     # mind/diagnostics exporters). Best-effort and disable-able via ORRIN_LIFE_CAPSULE;
     # done after the WAL flush so the daemon trees are consistent at the captured instant.
     try:
-        from evidence.life_capsule import maybe_build_capsule as _build_capsule
+        from brain.evidence.life_capsule import maybe_build_capsule as _build_capsule
         _build_capsule("normal_shutdown")
     except Exception as _e:
         _log.warning("silent except: %s", _e)
@@ -1242,7 +1242,7 @@ def _notify_still_thinking() -> None:
     """Tell the user, via the OS notification path, that Orrin is alive in the
     background after the window closed (Always-thinking mode). Best-effort."""
     try:
-        from agency.skills.notify_user import notify_user
+        from brain.agency.skills.notify_user import notify_user
         notify_user({"title": "Orrin is still thinking",
                      "message": "His window closed, but he keeps living in the background."})
     except Exception as _e:
@@ -1331,7 +1331,7 @@ def _maybe_start_vital_calibration_stress() -> None:
             }
             if mode in ("reading", "dream_reading", "reading_dream"):
                 try:
-                    from cognition.language.acquisition import read_a_book as _read_a_book
+                    from brain.cognition.language.acquisition import read_a_book as _read_a_book
                     line = _read_a_book(ctx, steps=read_steps)
                     if line:
                         print(f"[vital-cal] reading stress: {line[:120]}", flush=True)
@@ -1339,7 +1339,7 @@ def _maybe_start_vital_calibration_stress() -> None:
                     _log.warning("vital calibration reading stress failed: %s", _e)
             if mode in ("dream", "dream_reading", "reading_dream"):
                 try:
-                    from cognition.dreaming.dream_cycle import dream_cycle as _dream_cycle
+                    from brain.cognition.dreaming.dream_cycle import dream_cycle as _dream_cycle
                     result = _dream_cycle(ctx)
                     print(f"[vital-cal] dream stress complete: {str(result)[:160]}", flush=True)
                 except Exception as _e:
@@ -1389,7 +1389,7 @@ def run() -> None:
         print("[brain] cognitive loop thread started")
         _maybe_start_vital_calibration_stress()
         try:
-            from utils import boot_events as _boot
+            from brain.utils import boot_events as _boot
             _boot.emit("Starting cognition")
             _boot.mark_ready()  # cognition is live → the wake screen can dissolve
         except Exception as _e:
@@ -1397,7 +1397,7 @@ def run() -> None:
     except Exception as e:
         print(f"[brain] could not start cognitive loop: {e}")
         try:
-            from utils import boot_events as _boot
+            from brain.utils import boot_events as _boot
             _boot.emit("Starting cognition", ok=False, note=str(e))
             _boot.mark_ready()  # don't trap the UI on the wake screen if cognition failed
         except Exception as _e:
@@ -1449,7 +1449,7 @@ def run() -> None:
         # process isn't possible with pywebview; quitting + relaunch reopens it.)
         _always_thinking = False
         try:
-            from utils import prefs as _prefs
+            from brain.utils import prefs as _prefs
             _always_thinking = _prefs.get("existence_mode", "sleep") == "always"
         except Exception as _e:
             _log.warning("silent except: %s", _e)

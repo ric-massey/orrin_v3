@@ -25,7 +25,7 @@ import os
 from pathlib import Path
 from typing import Optional
 
-from utils.runtime_python import _bundle_root  # reuse the frozen-bundle locator
+from brain.utils.runtime_python import _bundle_root  # reuse the frozen-bundle locator
 
 
 def models_dir() -> Optional[Path]:

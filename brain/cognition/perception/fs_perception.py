@@ -9,15 +9,15 @@
 #
 # Uses simple mtime-snapshot polling (no external watchdog library needed).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import time
 from pathlib import Path
 from typing import Dict, Any, List, Set
 
-from utils.log import log_activity
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Snapshot of {rel_path: mtime} from the last poll
@@ -88,7 +88,7 @@ def poll_fs_changes(context: Dict[str, Any]) -> List[Dict[str, Any]]:
         # Translate paths to spatial felt descriptions — Orrin senses WHERE in
         # himself something shifted, not which file changed.
         try:
-            from cognition.perception.file_sense import summarise_locations
+            from brain.cognition.perception.file_sense import summarise_locations
             where = summarise_locations(changed_body)
         except Exception:
             where = "somewhere in my structure"
@@ -190,7 +190,7 @@ def _find_world_root(context: Dict[str, Any]) -> Path:
 
 def _make_signal(source: str, content: str, strength: float, tags: List[str]) -> Dict[str, Any]:
     try:
-        from utils.signal_utils import create_signal
+        from brain.utils.signal_utils import create_signal
         return create_signal(source=source, content=content,
                              signal_strength=strength, tags=tags)
     except Exception:

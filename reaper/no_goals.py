@@ -1,7 +1,7 @@
 # reaper/no_goals.py
 # Trips if no goal progress, retry saturation, or circuit breakers open too long / too many.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional, Deque, Tuple
 from collections import deque

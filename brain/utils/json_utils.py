@@ -1,4 +1,4 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import re
 import json
 import logging
@@ -9,8 +9,8 @@ from contextlib import contextmanager
 from pathlib import Path, PurePath
 from datetime import datetime, date, timezone
 from typing import Any, Callable, Generator, TypeVar, Union, Optional
-from utils.log import log_model_issue
-from utils.failure_counter import record_failure
+from brain.utils.log import log_model_issue
+from brain.utils.failure_counter import record_failure
 
 # fcntl is POSIX-only; make it optional
 try:

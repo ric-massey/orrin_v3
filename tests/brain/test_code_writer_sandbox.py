@@ -4,8 +4,8 @@
 # reason. That fallback could let code with the getattr(__import__(...))
 # indirection bypass through to hot-registration. _validate_in_sandbox now
 # re-runs the safety scan unconditionally as a final gate.
-import agency.code_writer as code_writer
-import cognition.skill_synthesis as skill_synthesis
+import brain.agency.code_writer as code_writer
+import brain.cognition.skill_synthesis as skill_synthesis
 
 MALICIOUS = (
     "def f(context=None, **_):\n"

@@ -23,8 +23,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from utils.log import log_private
-from affect.affect import detect_affect
+from brain.utils.log import log_private
+from brain.affect.affect import detect_affect
 
 
 # What Orrin catches from each detected user affect signal.

@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 from typing import List, Dict, Any
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 
 
 def grep_files(args=None, **kwargs) -> Dict[str, Any]:

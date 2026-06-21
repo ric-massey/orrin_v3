@@ -55,8 +55,8 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import CASUAL_RULES, DATA_DIR
 
 SYMBOLIC_RULES_FILE = DATA_DIR / "symbolic_rules.json"

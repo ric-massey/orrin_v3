@@ -2,7 +2,7 @@
 # Orchestrates the Goals subsystem: planning NEW goals, scheduling READY steps, and running them via a worker pool
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import queue

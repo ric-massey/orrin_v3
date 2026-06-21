@@ -1,19 +1,19 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Any, List, Optional
 import re
 import uuid
 
-from utils.affect_utils import detect_affect_keyword
+from brain.utils.affect_utils import detect_affect_keyword
 # update_values_with_lessons (cognition, L3) is imported deferred at its call site
 # below so this storage module (L2) does not import cognition at load time.
 from brain.paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE
-from utils.json_utils import AbortModify, load_json, modify_json, save_json
-from utils.log import log_error, log_private
-from utils.memory_utils import summarize_memories
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import AbortModify, load_json, modify_json, save_json
+from brain.utils.log import log_error, log_private
+from brain.utils.memory_utils import summarize_memories
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Constants defining behaviour
@@ -171,7 +171,7 @@ def update_long_memory(
     # Boundary-safe: a raw slice can cut through an [EXTERNAL/UNTRUSTED …]
     # wrapper and store a corrupt, re-ingestible tag fragment.
     if len(entry.get("content", "")) > 2000:
-        from utils.text_sanity import truncate_clean
+        from brain.utils.text_sanity import truncate_clean
         entry["content"] = truncate_clean(entry["content"], 2000)
 
     # Embeddings are indexed by the v2 memory daemon and not stored in this file
@@ -218,7 +218,7 @@ def update_long_memory(
     # Side effects stay outside the lock so file contention stays low.
     # Memory graph: link semantically similar entries by word overlap (Jaccard ≥ 0.18)
     try:
-        from utils.memory_graph import add_edges
+        from brain.utils.memory_graph import add_edges
         add_edges(entry, _edge_window)  # compare against up to 20 preceding entries
     except Exception as _e:
         record_failure("long_memory.update_long_memory", _e)
@@ -226,7 +226,7 @@ def update_long_memory(
     # Optionally trigger a reward signal for important/priority memories
     if context is not None and (importance >= 2 or priority >= 2 or referenced >= 3):
         try:
-            from affect.reward_signals.reward_signals import release_reward_signal
+            from brain.affect.reward_signals.reward_signals import release_reward_signal
             intensity = min(1.0, importance * 0.5 + priority * 0.5 + 0.1 * referenced)
             release_reward_signal(
                 context=context,
@@ -466,7 +466,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
         return
 
     if removed:
-        from cognition.selfhood.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
+        from brain.cognition.selfhood.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
         # Pass the in-memory list so value-learning doesn't re-read the largest
         # state file from disk on the brain thread during a prune. Runs outside
         # the lock to keep file contention low.

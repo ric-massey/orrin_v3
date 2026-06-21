@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from utils.log import log_activity, log_error
+from brain.utils.log import log_activity, log_error
 from brain.paths import DATA_DIR
 
 

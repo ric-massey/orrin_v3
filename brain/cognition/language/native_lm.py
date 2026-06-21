@@ -20,8 +20,8 @@ import time
 from pathlib import Path
 from typing import Dict, Optional
 
-from utils.log import log_private
-from cognition.language import tokenizer as tok
+from brain.utils.log import log_private
+from brain.cognition.language import tokenizer as tok
 
 try:
     import torch
@@ -202,7 +202,7 @@ def train_tokenizer_on_library(vocab_size: int = 8192, min_chars: int = 200000,
     experience (his conversations/memories) so his vocabulary is represented too.
     No-op if there isn't enough text."""
     try:
-        from cognition.language import library
+        from brain.cognition.language import library
     except Exception:
         return False
     texts = []

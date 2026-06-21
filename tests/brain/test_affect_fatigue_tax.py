@@ -7,8 +7,8 @@
 import json
 from datetime import datetime, timezone
 
-import affect.update_affect_state as uas
-import cog_memory.working_memory as wm
+import brain.affect.update_affect_state as uas
+import brain.cog_memory.working_memory as wm
 
 
 def _seed(path, core_overrides, resource_deficit, extra=None):

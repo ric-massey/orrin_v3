@@ -25,8 +25,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from affect.reward_signals.action_reward_ema import get_expected, update_expected
-from affect.reward_signals.reward_signals import release_reward
+from brain.affect.reward_signals.action_reward_ema import get_expected, update_expected
+from brain.affect.reward_signals.reward_signals import release_reward
 
 
 def submit_reward(

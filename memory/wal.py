@@ -2,7 +2,7 @@
 # Append-only Write-Ahead Log (WAL) for Orrin2.0 memory: JSONL logs for Events and MemoryItems, safe rotation, replay helpers, and basic stats.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Iterator, Optional, Dict, Any

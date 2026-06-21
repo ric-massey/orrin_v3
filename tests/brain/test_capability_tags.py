@@ -8,8 +8,8 @@
 # and participation (a newly tagged function joins the right boosts).
 import json
 
-import think.think_utils.select_function as sf
-from cognition.planning.step_execution import (
+import brain.think.think_utils.select_function as sf
+from brain.cognition.planning.step_execution import (
     _PROCEDURAL_DEFAULT,
     _PROCEDURAL_FNS,
     _procedural_from_manifest,

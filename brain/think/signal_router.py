@@ -1,14 +1,14 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone, timedelta
-from utils.load_utils import load_json
-from utils.log import log_activity
-from utils.knowledge_utils import recall_relevant_knowledge
-from think.think_utils.user_input import handle_user_input
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.load_utils import load_json
+from brain.utils.log import log_activity
+from brain.utils.knowledge_utils import recall_relevant_knowledge
+from brain.think.think_utils.user_input import handle_user_input
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 from brain.paths import AFFECT_MODEL_FILE, ATTENTION_HISTORY
-from utils.json_utils import save_json
-from utils.signal_utils import gather_signals
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import save_json
+from brain.utils.signal_utils import gather_signals
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -214,7 +214,7 @@ def process_inputs(context, raw_signals=None):
         if any(gw and gw in content for gw in goal_words):
             base += 0.15
         try:
-            from cognition.goal_lens import relevance as _goal_relevance
+            from brain.cognition.goal_lens import relevance as _goal_relevance
             _lens_rel = _goal_relevance(context.get("goal_lens"), f"{content} {' '.join(tags)}")
             # Bounded: enough to reorder close candidates, never enough to beat
             # a high-salience user or emergency signal by itself.
@@ -266,7 +266,7 @@ def process_inputs(context, raw_signals=None):
     if emergency_action:
         context["emergency_action"] = emergency_action
         try:
-            from cog_memory.long_memory import update_long_memory as _ulm_emerg
+            from brain.cog_memory.long_memory import update_long_memory as _ulm_emerg
             _ulm_emerg(
                 f"[emergency] Shutdown triggered by: {emergency_action.get('reason', 'unknown')[:200]}",
                 emotion="threat_level",
@@ -293,7 +293,7 @@ def process_inputs(context, raw_signals=None):
 
     # === Apply 3-slot attention cap with affective hijacking ===
     try:
-        from cognition.attention import apply_attention_filter as _aaf
+        from brain.cognition.attention import apply_attention_filter as _aaf
         top_signals = _aaf(prioritized, context)
     except Exception:
         top_signals = prioritized[:5]
@@ -392,7 +392,7 @@ def process_inputs(context, raw_signals=None):
     # Apply learned attention value weights: sources that historically
     # preceded high reward get a credibility bonus here.
     try:
-        from think.attention_weights import get_source_weight as _gsw
+        from brain.think.attention_weights import get_source_weight as _gsw
         for _s in top_signals:
             _src = str(_s.get("source") or "unknown")
             _learned_w = _gsw(_src)

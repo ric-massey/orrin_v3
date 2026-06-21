@@ -20,7 +20,7 @@ assess_goal_progress():
   - Stores both _drift_detected (bool) and _drift_score (float 0.0–1.0).
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import copy
 import json as _json
@@ -30,20 +30,20 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.generate_response import generate_response, generate_reasoning_chain, llm_ok
-from utils.json_utils import load_json
-from utils.log import log_activity, log_error
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.generate_response import generate_response, generate_reasoning_chain, llm_ok
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity, log_error
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import LONG_MEMORY_FILE
-from cognition.planning.thinking_depth import choose_depth
-from cognition.planning.goals import (
+from brain.cognition.planning.thinking_depth import choose_depth
+from brain.cognition.planning.goals import (
     get_goal_plan, get_next_pending_step, advance_goal_plan,
     set_goal_plan, insert_plan_step, prune_satisfied_steps,
     reprioritize_pending_steps, unmet_milestone_texts, _plan_step_tokens,
 )
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -248,7 +248,7 @@ def _symbolic_plan(goal_title: str, context: Dict[str, Any]) -> List[str]:
     # specific tool within it and grounds the choice in the goal's own words.
     candidates = _intent_candidates(goal_title)
     try:
-        from think.think_utils.select_function import _capability_descriptions, _capability_overlap
+        from brain.think.think_utils.select_function import _capability_descriptions, _capability_overlap
         descs = _capability_descriptions()
     except Exception:
         descs = {}
@@ -302,7 +302,7 @@ def _causal_first_step(goal_title: str) -> Optional[str]:
     if len(title) < 5:
         return None
     try:
-        from symbolic.causal_graph import get_causes
+        from brain.symbolic.causal_graph import get_causes
         causes = get_causes(title, min_score=_CAUSAL_LEAD_MIN_SCORE) or []
         if not causes:
             return None
@@ -453,8 +453,8 @@ def redirect_goal_plan(context: Optional[Dict[str, Any]] = None) -> str:
     goal.pop("_step_attempts", None)
     goal.pop("_completion_attempts", None)
     try:
-        from cognition.planning.goals import merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="redirect_goal_plan")
     except Exception as _e:
@@ -476,8 +476,8 @@ def abandon_goal(context: Optional[Dict[str, Any]] = None) -> str:
     if not _stuck_enough(goal):
         return f"'{title}' is still progressing — not abandoning it."
     try:
-        from cognition.planning.goals import mark_goal_failed, merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import mark_goal_failed, merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         mark_goal_failed(goal, reason="released by deliberate decision (stuck)", context=context)
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="abandon_goal")
@@ -552,14 +552,14 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
     if _gid:
         _FINALIZED_IDS[_gid] = _nowt
     try:
-        from cognition.planning.goals import mark_goal_completed, merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import mark_goal_completed, merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         # completion_signal fires BEFORE mark_goal_completed so the achievement is
         # attributed to THIS goal, not the next one spawned by the continuity hook
         # inside mark_goal_completed (Berridge 1996 — liking at arrival).
         try:
-            from affect.reward_signals.reward_signals import release_reward_signal as _rrs
-            from cognition.planning.goals import achievement_significance as _achv
+            from brain.affect.reward_signals.reward_signals import release_reward_signal as _rrs
+            from brain.cognition.planning.goals import achievement_significance as _achv
             _sig = _achv(goal)   # I17 — felt achievement ∝ significance, not flat
             _rrs(context, signal_type="completion_signal", actual_reward=round(1.0 * _sig, 3),
                  expected_reward=0.5, effort=0.8, mode="phasic", source="goal_completion")
@@ -578,7 +578,7 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
         context["_last_bootstrap_ts"] = 0.0
         log_activity(f"[pursue_goal] Goal '{goal_title}' closed ({reason}).")
         try:
-            from cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
+            from brain.cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
             _RECENTLY_COMPLETED[goal_title.strip().lower()] = time.time()
             _persist_recently_completed()
         except Exception as _e:
@@ -604,7 +604,7 @@ def _maybe_close_on_tier(goal: Dict[str, Any], goal_title: str, next_step: str,
     tier = str(goal.get("tier") or goal.get("kind") or "").lower()
     # (b) see just-met milestones before deciding.
     try:
-        from cognition.planning.env_snapshot import apply_milestone_updates
+        from brain.cognition.planning.env_snapshot import apply_milestone_updates
         apply_milestone_updates(context)
     except Exception as _e:
         record_failure("pursue_goal._maybe_close_on_tier", _e)
@@ -622,7 +622,7 @@ def _maybe_close_on_tier(goal: Dict[str, Any], goal_title: str, next_step: str,
         # legacy or unknown tier (e.g. the pre-existing "short_term" goals already in
         # the store) → satiety-gated. `growth` is the unknown-tier fallback (Fix 1
         # decision box), so anything not explicitly trivial/aspiration lands here.
-        from cognition.planning.goal_satiety import is_sated
+        from brain.cognition.planning.goal_satiety import is_sated
         sated, sreason = is_sated(goal, context)
         if sated:
             close, why = True, f"satiety:{sreason}"
@@ -645,9 +645,9 @@ def _degrade_or_disengage(goal: Dict[str, Any], context: Dict[str, Any],
     short human cue (e.g. "needs llm (unavailable)" or "no progress"). Returns a status
     dict, or None to fall through to normal handling."""
     try:
-        from cognition.planning.goal_types import reduced_goal_spec
-        from cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goal_types import reduced_goal_spec
+        from brain.cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
+        from brain.cognition.planning import goal_arbiter
     except Exception:
         return None
 
@@ -709,7 +709,7 @@ def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bo
     if not isinstance(goal, dict) or not goal.get("_degraded"):
         return False
     try:
-        from cognition.planning.goal_types import required_capability, capability_available
+        from brain.cognition.planning.goal_types import required_capability, capability_available
     except Exception:
         return False
 
@@ -763,8 +763,8 @@ def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bo
     )
     log_activity(f"[pursue_goal] Re-promoted recovered goal → {orig_title[:50]}")
     try:
-        from cognition.planning.goals import merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="pursue_goal.repromote")
     except Exception as _e:
@@ -867,7 +867,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # If this goal was just adopted with no plan, generate one immediately and
     # write a prominent WM note so the adoption is visible and auditable.
     if not get_goal_plan(goal):
-        from cognition.planning.step_execution import recognise_step_action
+        from brain.cognition.planning.step_execution import recognise_step_action
         _milestone_texts = [
             str(m.get("text", m) if isinstance(m, dict) else m).strip()
             for m in (goal.get("milestones") or [])
@@ -918,7 +918,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
 
                 if fail_count >= 3:
                     # Give up — use mark_goal_failed for proper emotion/memory handling
-                    from cognition.planning.goals import mark_goal_failed
+                    from brain.cognition.planning.goals import mark_goal_failed
                     mark_goal_failed(goal, reason=f"plan_generation_failed_{fail_count}x", context=context)
                     context["committed_goal"] = None
                     update_working_memory(
@@ -937,8 +937,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
                 # Without this save the count resets to 0 every cycle and the goal
                 # is never abandoned.
                 try:
-                    from cognition.planning.goals import merge_updated_goal_into_tree
-                    from cognition.planning import goal_arbiter
+                    from brain.cognition.planning.goals import merge_updated_goal_into_tree
+                    from brain.cognition.planning import goal_arbiter
                     goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                                        source="pursue_goal.plan_fail_count")
                 except Exception as _pf_e:
@@ -981,8 +981,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         if drift_score > 0.40:
             # Deep drift: use inner_loop for a reasoned replan
             try:
-                from think.inner_loop import run_inner_loop as _ril
-                from think.scratchpad import scratchpad_init as _sci
+                from brain.think.inner_loop import run_inner_loop as _ril
+                from brain.think.scratchpad import scratchpad_init as _sci
                 _sci(context)
 
                 goal_desc = (goal.get("spec") or {}).get("description", goal.get("description", ""))
@@ -1123,7 +1123,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # and marking it done. James (1890) ideomotor; Powers (1973) perceptual
     # control: the step is satisfied only if the act produced an effect.
     global _pursuit_call_count
-    from cognition.planning.step_execution import recognise_step_action, execute_step_action
+    from brain.cognition.planning.step_execution import recognise_step_action, execute_step_action
 
     _act_fn = recognise_step_action(next_step_dict)
     _executed = False
@@ -1146,7 +1146,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         # now, don't nag the conscious mind toward an impossible act — reduce to an
         # achievable sub-goal (go simpler) or disengage (abandon). Never stub.
         try:
-            from cognition.planning.goal_types import required_capability, capability_available
+            from brain.cognition.planning.goal_types import required_capability, capability_available
             _cap = required_capability(goal)
             if _cap and not capability_available(_cap, context):
                 _handled = _degrade_or_disengage(goal, context, goal_title, f"needs {_cap} (unavailable)")
@@ -1167,7 +1167,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         context["committed_goal"] = goal
 
         if _rounds >= _DELIBERATE_MAX_ROUNDS:
-            from cognition.planning.goals import mark_goal_failed
+            from brain.cognition.planning.goals import mark_goal_failed
             mark_goal_failed(goal, reason=f"unmet_after_{_rounds}_deliberate_rounds", context=context)
             context["committed_goal"] = None
             update_working_memory(
@@ -1185,8 +1185,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
             event_type="goal_needs_deliberate_action", importance=3,
         )
         try:
-            from cognition.planning.goals import merge_updated_goal_into_tree
-            from cognition.planning import goal_arbiter
+            from brain.cognition.planning.goals import merge_updated_goal_into_tree
+            from brain.cognition.planning import goal_arbiter
             goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                                source="pursue_goal.awaiting_deliberate")
         except Exception as _e:
@@ -1211,8 +1211,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
                 f"(attempt {_n}/{_STEP_MAX_ATTEMPTS}) — {next_step[:80]}"
             )
             try:
-                from cognition.planning.goals import merge_updated_goal_into_tree
-                from cognition.planning import goal_arbiter
+                from brain.cognition.planning.goals import merge_updated_goal_into_tree
+                from brain.cognition.planning import goal_arbiter
                 # Atomic load→merge→save through the GoalArbiter (no uncoordinated
                 # load_goals/save_goals race; daemon-ready). dual_process_loop.md Phase 1.
                 goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
@@ -1244,8 +1244,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
 
     # Persist mid-pursuit step progress to disk so it survives restarts.
     try:
-        from cognition.planning.goals import merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         # Atomic load→merge→save through the GoalArbiter (daemon-ready). Phase 1.
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="pursue_goal.step_progress")
@@ -1266,7 +1266,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         _WRITE_KEYWORDS = ("write", "record", "note", "observ", "document", "jot", "log")
         if any(k in _step_lower for k in _WRITE_KEYWORDS):
             try:
-                from cognition.leave_note import leave_note as _ln
+                from brain.cognition.leave_note import leave_note as _ln
                 _note_result = _ln(context) or ""
                 # A note actually written to the outbox is an external act — it
                 # must discharge action_debt like any other act, or symbolic-mode
@@ -1328,7 +1328,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # self-repair loop) — never a false success.
     if remaining == 0:
         try:
-            from cognition.planning.env_snapshot import apply_milestone_updates
+            from brain.cognition.planning.env_snapshot import apply_milestone_updates
             apply_milestone_updates(context)
         except Exception as _e:
             record_failure("pursue_goal.pursue_committed_goal.5", _e)
@@ -1341,8 +1341,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
                 # NB: set_goal_plan is already a module-level import (top of file) —
                 # don't re-import it here or it becomes a function-local and shadows
                 # the earlier uses (UnboundLocalError).
-                from cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
-                from cognition.planning import goal_arbiter
+                from brain.cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
+                from brain.cognition.planning import goal_arbiter
                 if _attempts < 2:
                     set_goal_plan(goal, _symbolic_plan(goal_title, context))
                     log_activity(f"[pursue_goal] '{goal_title}': steps done but {len(_unmet)} "
@@ -1618,7 +1618,7 @@ def adapt_subgoals(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
 
     # 1. Tick any milestones now satisfied in working memory.
     try:
-        from cognition.planning.env_snapshot import apply_milestone_updates
+        from brain.cognition.planning.env_snapshot import apply_milestone_updates
         ticked = apply_milestone_updates(context)
         if ticked:
             changes.append(f"ticked {ticked} milestone(s)")
@@ -1657,8 +1657,8 @@ def adapt_subgoals(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     # Persist: context (live slot) + goal tree (survives restart).
     context["committed_goal"] = goal
     try:
-        from cognition.planning.goals import merge_updated_goal_into_tree
-        from cognition.planning import goal_arbiter
+        from brain.cognition.planning.goals import merge_updated_goal_into_tree
+        from brain.cognition.planning import goal_arbiter
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="adapt_subgoals")
     except Exception as _e:

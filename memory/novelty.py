@@ -2,7 +2,7 @@
 # Novelty scoring for memory ingest: fast cosine-to-novelty with vector cache support and batch helpers (no external deps).
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Iterable, List
 import os
 import math

@@ -2,7 +2,7 @@
 # Lightweight metrics for Orrin2.0 memory (Prometheus if available; safe no-op fallback). Counters/Gauges/Histograms + helpers and a timer() context.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Optional, Any, Iterable
 from contextlib import contextmanager
 import time

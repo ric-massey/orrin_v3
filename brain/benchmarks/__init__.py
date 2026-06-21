@@ -36,7 +36,7 @@ from brain.paths import (
     LONG_MEMORY_FILE,
     NARRATIVE_PRESSURE_FILE,
 )
-from utils.json_utils import load_json, save_json
+from brain.utils.json_utils import load_json, save_json
 
 SAMPLES_FILE = DATA_DIR / "benchmark_samples.jsonl"
 RESULTS_FILE = DATA_DIR / "benchmark_results.json"
@@ -157,7 +157,7 @@ def record_sample(context: Optional[Dict[str, Any]]) -> None:
     if not _enabled():
         return
     try:
-        from utils.get_cycle_count import get_cycle_count
+        from brain.utils.get_cycle_count import get_cycle_count
         cyc = int(get_cycle_count() or 0)
         af = (context or {}).get("affect_state") or {}
         core = af.get("core_signals") if isinstance(af.get("core_signals"), dict) else af
@@ -302,7 +302,7 @@ def _scenario_goal(tag: str) -> Optional[Dict[str, Any]]:
 
 def _current_cycle() -> int:
     try:
-        from utils.get_cycle_count import get_cycle_count
+        from brain.utils.get_cycle_count import get_cycle_count
         return int(get_cycle_count() or 0)
     except Exception:
         return 0
@@ -375,7 +375,7 @@ def _eval_b4() -> Dict[str, Any]:
     status = str(g.get("status") or "")
     barren = -1
     try:
-        from cognition import novelty_memory
+        from brain.cognition import novelty_memory
         gid = str(g.get("id") or g.get("title") or "")
         # novel_count flattening is the satiety signal; expose it if available.
         barren = novelty_memory.novel_count(gid)
@@ -531,7 +531,7 @@ _SCENARIO_GOALS: Dict[str, Dict[str, Any]] = {
 def _goals_api():
     """Build the same GoalsAPI the loop uses (same store dir as main.py)."""
     from pathlib import Path
-    from utils.goals_feed import init_goals
+    from brain.utils.goals_feed import init_goals
     repo_root = DATA_DIR.parent.parent          # brain/data → brain → repo root
     goals_dir = Path(os.environ.get("ORRIN_GOALS_DIR", repo_root / "data" / "goals")).resolve()
     _store, api = init_goals(goals_dir)

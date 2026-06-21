@@ -1,19 +1,19 @@
 # bootstrap.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.json_utils import load_json, safe_extract_json
-from utils.log import utc_now as _utc_now
-from utils.summarizers import summarize_self_model, summarize_recent_thoughts
-from utils.log import log_error, log_activity
-from cog_memory.working_memory import update_working_memory
-from utils.self_model import get_self_model
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.json_utils import load_json, safe_extract_json
+from brain.utils.log import utc_now as _utc_now
+from brain.utils.summarizers import summarize_self_model, summarize_recent_thoughts
+from brain.utils.log import log_error, log_activity
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.self_model import get_self_model
 from brain.paths import PROPOSED_TOOLS_JSON, FOCUS_GOAL, PRIVATE_THOUGHTS_FILE
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -113,7 +113,7 @@ def bootstrap_self() -> str:
 
             # Also write to long_memory so the pattern persists across restarts
             try:
-                from cog_memory.long_memory import update_long_memory
+                from brain.cog_memory.long_memory import update_long_memory
                 update_long_memory(
                     f"[bootstrap] {rationale[:300]}" + (f" | meta-ability: {ability[:100]}" if ability else ""),
                     emotion="exploration_drive",
@@ -126,8 +126,8 @@ def bootstrap_self() -> str:
             # Inject a signal so the next cognition step can route toward implementation
             if ability:
                 try:
-                    from utils.signal_utils import create_signal
-                    from utils.json_utils import load_json as _lj, save_json as _sj
+                    from brain.utils.signal_utils import create_signal
+                    from brain.utils.json_utils import load_json as _lj, save_json as _sj
                     from brain.paths import CONTEXT
                     _ctx = _lj(CONTEXT, default_type=dict) or {}
                     _sig = create_signal(

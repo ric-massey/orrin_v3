@@ -9,9 +9,9 @@
 from pathlib import Path
 
 import brain.paths as paths
-import agency.code_writer as code_writer
-from agency import self_code
-from core.manager import load_custom_cognition
+import brain.agency.code_writer as code_writer
+from brain.agency import self_code
+from brain.core.manager import load_custom_cognition
 
 
 def test_written_function_lands_in_writable_tree_not_program_folder():

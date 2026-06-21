@@ -8,7 +8,7 @@ from __future__ import annotations
 import platform
 import shutil
 import subprocess
-from utils.log import log_activity, log_error
+from brain.utils.log import log_activity, log_error
 
 _PLATFORM = platform.system()
 

@@ -11,15 +11,15 @@ shape seen by all other code stays correct. Only fixes broken values; never adds
 missing keys or changes structurally valid data.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_model_issue, log_activity
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_model_issue, log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

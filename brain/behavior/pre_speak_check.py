@@ -25,8 +25,8 @@ from __future__ import annotations
 import random
 from typing import Any, Dict, Tuple
 
-from utils.json_utils import load_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_private
 from brain.paths import RELATIONSHIPS_FILE
 
 # Skip the check when urgency is this high — don't second-guess urgent expression

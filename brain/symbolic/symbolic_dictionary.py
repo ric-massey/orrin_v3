@@ -5,10 +5,10 @@ from __future__ import annotations
 import re
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 
 DICT_FILE = DATA_DIR / "symbolic_dictionary.json"
 
@@ -144,7 +144,7 @@ def auto_populate_from_rules() -> None:
     if len(d) > 50:
         return
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         rules = get_all_rules()
         for rule in rules:
             if rule.get("source") != "tombstoned":

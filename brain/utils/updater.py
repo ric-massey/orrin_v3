@@ -41,7 +41,7 @@ def update_repo() -> str:
 def check_enabled() -> bool:
     """Opt-in: nothing reaches the network unless the user turned this on."""
     try:
-        from utils import prefs
+        from brain.utils import prefs
         return bool(prefs.get("auto_update_check", False))
     except Exception:
         return False
@@ -99,8 +99,8 @@ def prepare_update() -> Dict[str, Any]:
     makes auto-update tolerable given how fast the schema moves. Returns the keepsake path
     and the state schema version the new build must be able to load."""
     try:
-        from utils import mind_archive as _ma
-        from utils import schema_migration as _sm
+        from brain.utils import mind_archive as _ma
+        from brain.utils import schema_migration as _sm
 
         snap_dir = paths.DATA_DIR / "_backups"
         snap_dir.mkdir(parents=True, exist_ok=True)

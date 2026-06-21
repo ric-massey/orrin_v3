@@ -2,7 +2,7 @@
 # Working→long compaction and clustering with summary generation.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass
 from typing import List, Dict
 import time

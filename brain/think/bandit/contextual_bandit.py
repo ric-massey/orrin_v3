@@ -18,7 +18,7 @@
 #     "counts":  { action: int },          # total selections (stagnation detector)
 #     "suppressed": { action: cycles } }
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 import math
@@ -44,8 +44,8 @@ except Exception:
 
 BANDIT_STATE_PATH: Path = Path(_BANDIT_PATH)
 
-from utils.json_utils import load_json, save_json  # uses your locking/logging
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json  # uses your locking/logging
+from brain.utils.failure_counter import record_failure
 
 # ---------- affect buckets ----------
 BUCKETS: Tuple[str, ...] = ("exploration_drive", "impasse_signal", "social_deficit", "stable")
@@ -349,7 +349,7 @@ def update_delayed(
     l2: float = 0.001,
 ) -> None:
     """Apply a delayed reward to a previously chosen action (same math as update)."""
-    from think.loop_helpers import emit_trace
+    from brain.think.loop_helpers import emit_trace
     update(action, features, reward, lr=lr, l2=l2)
     try:
         emit_trace(

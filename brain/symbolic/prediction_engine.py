@@ -26,15 +26,15 @@
 # Data: data/predictions.json (extends existing schema — backward compat)
 #       data/prediction_domain_stats.json (domain accuracy ledger)
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import PREDICTIONS_FILE, DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 DOMAIN_STATS_FILE = DATA_DIR / "prediction_domain_stats.json"
@@ -224,7 +224,7 @@ def resolve_prediction(
             rule_id = pred.get("rule_id")
             if rule_id and mismatch_score is not None and mismatch_score > 0.4:
                 try:
-                    from symbolic.rule_verifier import weaken_rule_confidence as _wrc
+                    from brain.symbolic.rule_verifier import weaken_rule_confidence as _wrc
                     _wrc(rule_id, amount=mismatch_score * 0.05)
                 except Exception as _e:
                     record_failure("prediction_engine.resolve_prediction", _e)
@@ -234,12 +234,12 @@ def resolve_prediction(
     # Feed outcome into causal graph and signal_score world model
     if matched_pred:
         try:
-            from symbolic.causal_graph import update_from_prediction_outcome as _ucpo
+            from brain.symbolic.causal_graph import update_from_prediction_outcome as _ucpo
             _ucpo(matched_pred, correct)
         except Exception as _e:
             record_failure("prediction_engine.resolve_prediction.2", _e)
         try:
-            from symbolic.pattern_scorer import update_pattern_weights, update_world_model, tokenize_query
+            from brain.symbolic.pattern_scorer import update_pattern_weights, update_world_model, tokenize_query
             _text = matched_pred.get("text", "")
             _tokens, _domain = tokenize_query(_text)
             update_pattern_weights(_domain, _tokens, 1.0 if correct else 0.0)
@@ -262,7 +262,7 @@ def chain_from_verified_prediction(pred: Dict) -> Optional[Dict]:
         return None
 
     try:
-        from symbolic.rule_engine import match
+        from brain.symbolic.rule_engine import match
         chained_rule = match(conclusion_text, threshold=0.40)
         if not chained_rule or chained_rule.get("confidence", 0) < 0.55:
             return None

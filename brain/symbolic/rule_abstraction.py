@@ -21,17 +21,17 @@
 # Data written to data/rule_abstractions.json (parent→children map).
 # Runs once per dream cycle (cadence enforced by _COOLDOWN_S).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import time
 from datetime import datetime, timezone
 from typing import Dict, FrozenSet, List, Set
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 ABSTRACTIONS_FILE = DATA_DIR / "rule_abstractions.json"
@@ -172,8 +172,8 @@ def abstract_rules(*, force: bool = False) -> Dict:
         return {"skipped": True, "reason": "cooldown"}
     _last_run = now
 
-    from symbolic.rule_engine import get_all_rules, add_rule, SYMBOLIC_RULES_FILE
-    from utils.json_utils import save_json as _sj
+    from brain.symbolic.rule_engine import get_all_rules, add_rule, SYMBOLIC_RULES_FILE
+    from brain.utils.json_utils import save_json as _sj
 
     rules = get_all_rules()
     clusters = _cluster_rules(rules)
@@ -237,7 +237,7 @@ def abstract_rules(*, force: bool = False) -> Dict:
         if modified:
             _sj(SYMBOLIC_RULES_FILE, all_rules)
             try:
-                from symbolic import rule_engine as _re
+                from brain.symbolic import rule_engine as _re
                 _re._rules_cache = []
             except Exception as _e:
                 record_failure("rule_abstraction.abstract_rules", _e)

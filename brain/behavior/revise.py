@@ -2,17 +2,17 @@ from __future__ import annotations
 from pathlib import Path
 import json
 
-from cognition.reflection.meta_reflect import meta_reflect
-from utils.code_validation import validate_think_code, check_think_alignment
-from utils.log import utc_now as _utc_now
-from cog_memory.working_memory import update_working_memory
-from utils.json_utils import load_json, extract_code_block
-from utils.append import append_to_json
-from utils.log import log_error, log_private
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.summarizers import summarize_recent_thoughts
-from utils.self_model import get_self_model
-from think.sandbox_runner import run_python  # <-- NEW
+from brain.cognition.reflection.meta_reflect import meta_reflect
+from brain.utils.code_validation import validate_think_code, check_think_alignment
+from brain.utils.log import utc_now as _utc_now
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json, extract_code_block
+from brain.utils.append import append_to_json
+from brain.utils.log import log_error, log_private
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.summarizers import summarize_recent_thoughts
+from brain.utils.self_model import get_self_model
+from brain.think.sandbox_runner import run_python  # <-- NEW
 
 from brain.paths import (
     LONG_MEMORY_FILE,

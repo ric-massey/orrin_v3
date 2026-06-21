@@ -1,13 +1,13 @@
 # goals_schema.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 import time
 import json
 import re
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

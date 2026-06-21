@@ -3,7 +3,7 @@
 # the weakest voice and can never flip a view on its own.
 import pytest
 
-import cognition.opinions as O
+import brain.cognition.opinions as O
 
 
 @pytest.fixture(autouse=True)
@@ -102,7 +102,7 @@ def test_neighbor_disturbance_marks_needs_review(monkeypatch):
 
 
 def test_roots_haircut_when_seed_memories_pruned(tmp_path):
-    from utils.json_utils import save_json
+    from brain.utils.json_utils import save_json
     save_json(tmp_path / "wm.json", [])
     save_json(tmp_path / "lm.json", [])
     oid = _seed(root_memory_ids=["gone-1", "gone-2"])

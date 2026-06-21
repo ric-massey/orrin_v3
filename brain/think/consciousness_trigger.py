@@ -21,7 +21,7 @@ genuine idle time between thoughts.
 from __future__ import annotations
 from typing import Tuple
 
-from utils.get_cycle_count import get_cycle_count
+from brain.utils.get_cycle_count import get_cycle_count
 
 
 # ── Tuneable thresholds ───────────────────────────────────────────────────────

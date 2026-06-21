@@ -3,13 +3,13 @@
 # Affective drift detection and intervention.
 # Monitors how long Orrin has been in the same cognitive/affective mode and
 # triggers shadow dialogue or reflection to break prolonged negative drift.
-from utils.json_utils import load_json, save_json
-from utils.log import log_private, log_activity
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from affect.modes_and_affect import get_current_mode, set_current_mode
-from affect.affect import detect_affect
-from cog_memory.working_memory import update_working_memory
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private, log_activity
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.affect.modes_and_affect import get_current_mode, set_current_mode
+from brain.affect.affect import detect_affect
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 from brain.paths import AFFECT_STATE_FILE, EMOTION_DRIFT  # Path objects
 
 
@@ -22,7 +22,7 @@ def _mean_abs_dev(context) -> float | None:
     if not isinstance(core, dict):
         return None
     try:
-        from affect.setpoints import setpoint
+        from brain.affect.setpoints import setpoint
         deviations = [
             abs(float(value) - setpoint(name))
             for name, value in core.items()

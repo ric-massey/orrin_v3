@@ -26,9 +26,9 @@ from __future__ import annotations
 import os
 from typing import Any, Dict, Optional
 
-from core.runtime_log import get_logger
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.core.runtime_log import get_logger
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
 
 _log = get_logger(__name__)
@@ -84,14 +84,14 @@ def _class_prior(fn: str) -> float:
     """Cold-start expected cost from the function's class (I9: procedural cheap,
     deliberate dear). Fail-safe to a mid prior."""
     try:
-        from cognition.planning.step_execution import is_procedural
+        from brain.cognition.planning.step_execution import is_procedural
         if is_procedural(fn):
             return _PROCEDURAL_PRIOR_MS
     except Exception:
         pass
     try:
-        from motivation.energy_orientation import REFLECT_FUNCTIONS
-        from cognition.cognitive_cost import is_introspective
+        from brain.motivation.energy_orientation import REFLECT_FUNCTIONS
+        from brain.cognition.cognitive_cost import is_introspective
         if fn in REFLECT_FUNCTIONS or is_introspective(fn):
             return _DELIBERATE_PRIOR_MS
     except Exception:
@@ -267,14 +267,14 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
             raw = signed * (_NUDGE_GAIN_UP if signed > 0 else _NUDGE_GAIN_DOWN)
             nudge = max(-_NUDGE_CLAMP, min(_NUDGE_CLAMP, raw))
             try:
-                from cognition.dreaming.dream_cycle import dreaming_now
+                from brain.cognition.dreaming.dream_cycle import dreaming_now
                 if dreaming_now() and nudge > 0.0:
                     nudge = 0.0
             except Exception:
                 pass
             if abs(nudge) >= _NUDGE_MIN:
                 try:
-                    from affect.arbiter import submit_affect
+                    from brain.affect.arbiter import submit_affect
                     submit_affect(context, "resource_deficit", nudge,
                                   weight=0.5, source="interoception:pe", ttl_cycles=3)
                 except Exception:

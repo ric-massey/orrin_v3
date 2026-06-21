@@ -2,7 +2,7 @@
 # Handler registry mapping goal kinds to handlers (lookup + registration utilities)
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 from typing import Dict, Iterable, List, Optional

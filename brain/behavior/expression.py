@@ -6,7 +6,7 @@ the vocabulary database (brain/data/vocabulary.json). No LLM — language
 is learned and grows over time through the vocabulary system.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import json
@@ -14,8 +14,8 @@ import random
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from think.cycle_state import CycleState
-from utils.log import log_private
+from brain.think.cycle_state import CycleState
+from brain.utils.log import log_private
 _log = get_logger(__name__)
 
 _MIN_URGENCY = 0.20
@@ -47,7 +47,7 @@ _CONGRUENCE_MAP = {
 }
 
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _VOCAB_PATH = DATA_DIR / "vocabulary.json"
 _WEIGHTS_PATH = DATA_DIR / "vocab_weights.json"
 _vocab_cache: Optional[Dict] = None
@@ -74,7 +74,7 @@ def _phrase_hash(phrase: str) -> str:
 
 def _load_weights() -> Dict[str, Any]:
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         w = load_json(_WEIGHTS_PATH, default_type=dict)
         return w if isinstance(w, dict) else {}
     except Exception:

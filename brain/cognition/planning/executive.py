@@ -20,10 +20,10 @@ import os
 import threading
 from typing import Any, Dict, List, Optional
 
-from core.runtime_log import get_logger
-from cognition.planning.step_execution import recognise_step_action
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.core.runtime_log import get_logger
+from brain.cognition.planning.step_execution import recognise_step_action
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -122,8 +122,8 @@ def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> 
     in a row produced zero learning signal)."""
     try:
         from brain.paths import COGNITION_HISTORY_FILE
-        from utils.json_utils import load_json, save_json
-        from utils.timeutils import now_iso_z
+        from brain.utils.json_utils import load_json, save_json
+        from brain.utils.timeutils import now_iso_z
         log = load_json(COGNITION_HISTORY_FILE, default_type=list)
         if not isinstance(log, list):
             log = []
@@ -258,7 +258,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
         context["_exec_rr"] = rr + 1     # rotates tie-breaking among equal tiers
         allocation = _allocate_steps(queue, rr, budget)
 
-        from cognition.planning.pursue_goal import pursue_committed_goal as _pursue
+        from brain.cognition.planning.pursue_goal import pursue_committed_goal as _pursue
         primary = context.get("committed_goal")
         primary_id = primary.get("id") if isinstance(primary, dict) else None
         advanced: List[Dict[str, Any]] = []
@@ -303,9 +303,9 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     # the sleep phase this ordinary procedural cost must not fight
                     # the dream-rest recovery proposal.
                     try:
-                        from cognition.dreaming.dream_cycle import dreaming_now
+                        from brain.cognition.dreaming.dream_cycle import dreaming_now
                         if not dreaming_now():
-                            from affect.arbiter import submit_affect
+                            from brain.affect.arbiter import submit_affect
                             submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
                                           weight=1.0, source="executive_step", ttl_cycles=2)
                     except Exception as exc:
@@ -318,7 +318,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     # daemon mode); the EMA file write is flock+atomic.
                     _reward: Optional[float] = None
                     try:
-                        from affect.reward_signals.reward_engine import submit_reward
+                        from brain.affect.reward_signals.reward_engine import submit_reward
                         _reward = _outcome_reward(result)
                         submit_reward(context, actual=_reward, action_type=fn,
                                       kind="reward_signal", effort=0.3,
@@ -414,7 +414,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
     Caller clears these collections BEFORE the tick, so only this tick's affect is
     harvested (never the loop's pending affect carried in the loaded snapshot)."""
     try:
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
     except Exception as exc:
         record_failure("executive.harvest_daemon_affect.import", exc)
         return
@@ -445,7 +445,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
 
 
 def _daemon_loop(stop_event: "threading.Event") -> None:
-    from utils.load_utils import load_context
+    from brain.utils.load_utils import load_context
     while not stop_event.is_set():
         try:
             ctx = load_context()

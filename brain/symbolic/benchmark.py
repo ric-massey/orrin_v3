@@ -19,16 +19,16 @@
 # Entry point: run_benchmark() → {score, passed, total, domain_scores, timestamp}
 # Called from dream_cycle every 5th cycle.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 BENCHMARK_FILE = DATA_DIR / "benchmark_history.json"
@@ -181,7 +181,7 @@ def _run_one(test: Dict) -> Dict:
     answer          = ""
 
     try:
-        from symbolic.reasoning_router import route as _route
+        from brain.symbolic.reasoning_router import route as _route
         ctx = {}
         r = _route(query, context=ctx)
         actual_source = r.get("source", "unresolved")

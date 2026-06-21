@@ -84,7 +84,7 @@ def status() -> Dict[str, Any]:
     state = "alive"
     info: Dict[str, Any] = {}
     try:
-        from cognition.mortality import life_status, lifespan_rolled, real_deadline_passed
+        from brain.cognition.mortality import life_status, lifespan_rolled, real_deadline_passed
         if lifespan_rolled():
             ls = life_status()
             info.update({"born_at": ls.get("born_at"), "age_days": ls.get("age_days"), "phase": ls.get("phase")})

@@ -1,8 +1,8 @@
 # manager.py
 from typing import Callable, Dict
 
-from utils.log import log_model_issue, log_private
-from agency.self_code import SELF_COGNITION_DIR, ensure_tree, load_module_from
+from brain.utils.log import log_model_issue, log_private
+from brain.agency.self_code import SELF_COGNITION_DIR, ensure_tree, load_module_from
 
 def load_custom_cognition() -> Dict[str, Callable]:
     """

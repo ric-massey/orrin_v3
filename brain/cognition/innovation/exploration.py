@@ -1,18 +1,18 @@
 # exploration.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
 
-from utils.core_utils import extract_questions, rate_satisfaction
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.json_utils import extract_json, load_json, save_json
-from utils.append import append_to_json
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_error, log_activity
+from brain.utils.core_utils import extract_questions, rate_satisfaction
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.json_utils import extract_json, load_json, save_json
+from brain.utils.append import append_to_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_error, log_activity
 
 from brain.paths import (
     CURIOUS_GEORGE,
@@ -22,9 +22,9 @@ from brain.paths import (
     PRIVATE_THOUGHTS_FILE,
     ensure_files,
 )
-from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

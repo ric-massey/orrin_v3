@@ -1,8 +1,8 @@
-from cognition.dreaming.dream_cycle import set_dreaming
+from brain.cognition.dreaming.dream_cycle import set_dreaming
 
 
 def test_cognitive_cost_does_not_add_resource_deficit_during_sleep():
-    from cognition.cognitive_cost import apply_cognitive_costs
+    from brain.cognition.cognitive_cost import apply_cognitive_costs
 
     ctx = {
         "affect_state": {"core_signals": {}, "resource_deficit": 0.40},
@@ -19,7 +19,7 @@ def test_cognitive_cost_does_not_add_resource_deficit_during_sleep():
 
 
 def test_interoception_positive_latency_nudge_is_suppressed_during_sleep(monkeypatch):
-    import cognition.interoception as interoception
+    import brain.cognition.interoception as interoception
 
     calls = []
     monkeypatch.setattr(interoception, "_affect_enabled", lambda: True)

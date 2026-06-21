@@ -25,10 +25,10 @@ API:
   apply_plasticity(fn_name, context, reward)  — call post-cycle from ORRIN_loop
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # How strongly emotion→function associations reinforce vs the standard path
@@ -98,7 +98,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
     increment = float(reward) * dom_intensity * _HEBBIAN_SCALE
 
     try:
-        from affect.affect_learning import update_affect_function_map
+        from brain.affect.affect_learning import update_affect_function_map
         update_affect_function_map(dominant, fn_name, reward_signal=increment)
     except Exception as _e:
         record_failure("plasticity._hebbian_update", _e)
@@ -110,7 +110,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
         if second_val > 0.40:
             secondary_increment = float(reward) * second_val * _HEBBIAN_SCALE * 0.5
             try:
-                from affect.affect_learning import update_affect_function_map
+                from brain.affect.affect_learning import update_affect_function_map
                 update_affect_function_map(second_emo, fn_name, reward_signal=secondary_increment)
             except Exception as _e:
                 record_failure("plasticity._hebbian_update.2", _e)
@@ -156,7 +156,7 @@ def _find_related_functions(fn_parts: set, exclude: str) -> List[str]:
     """
     related: List[str] = []
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
         for name in COGNITIVE_FUNCTIONS:
             if name == exclude:
                 continue
@@ -178,7 +178,7 @@ def _tag_recent_memories(context: Dict[str, Any]) -> None:
     Only tags entries that don't already have emotional metadata.
     """
     try:
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         from brain.paths import WORKING_MEMORY_FILE
 
         wm = load_json(WORKING_MEMORY_FILE, default_type=list)

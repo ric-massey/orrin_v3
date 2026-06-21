@@ -24,7 +24,7 @@ import uuid
 from typing import Any, Dict, Optional
 
 from brain.paths import DATA_DIR
-from utils.log import log_private
+from brain.utils.log import log_private
 
 _FILE = DATA_DIR / "commitments.json"
 _DECAY_PER_CYCLE = 0.012     # base rate; scaled by how dearly the resolve is held
@@ -44,8 +44,8 @@ def _drive_alignment(intention: str) -> float:
     """Does an active drive want this? The strongest pressure among drives
     whose name/tags share ground with the intention (master plan 4.1)."""
     try:
-        from embodiment import drive_engine
-        from cognition.selfhood.second_order_volition import _tokens
+        from brain.embodiment import drive_engine
+        from brain.cognition.selfhood.second_order_volition import _tokens
         state = drive_engine.get_state() or {}
         tags = drive_engine.get_drive_tags() or {}
         toks = _tokens(intention)
@@ -64,7 +64,7 @@ def _value_alignment(intention: str) -> float:
     """Token overlap between intention and core_values — the same _tokens
     machinery second_order_volition already uses (master plan 4.1)."""
     try:
-        from cognition.selfhood.second_order_volition import _tokens, _values_text
+        from brain.cognition.selfhood.second_order_volition import _tokens, _values_text
         toks = _tokens(intention)
         vals = _tokens(_values_text())
         if not toks or not vals:
@@ -94,7 +94,7 @@ def compute_commitment_strength(
     if stance == "ambivalent":
         strength *= 0.5   # proceed, held lightly — exactly as designed
     try:
-        from cognition.reflection.review_failures import failure_pattern_discount
+        from brain.cognition.reflection.review_failures import failure_pattern_discount
         strength -= failure_pattern_discount(intention)
     except Exception:
         pass
@@ -128,7 +128,7 @@ def form_commitment(
     stance, gloss = "endorse", "I stand behind this."
     if strength is None:
         try:
-            from cognition.selfhood.second_order_volition import endorse_intention
+            from brain.cognition.selfhood.second_order_volition import endorse_intention
             stance, gloss = endorse_intention(intention, context)
         except Exception as _e:
             log_private(f"[will] endorsement gate unavailable, proceeding plain: {_e}")
@@ -149,7 +149,7 @@ def form_commitment(
     }
     context["_commitment"] = c
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         if stance == "ambivalent":
             content = (f"[will] I resolve (held lightly, strength {strength:.2f}) to: "
                        f"{c['intention']} — {gloss}")
@@ -221,7 +221,7 @@ def _iter_goals(nodes):
 
 def _link_commitment_to_goal(intention: str) -> None:
     """Ensure an active goal exists for this commitment; create one if missing."""
-    from cognition.planning.goals import load_goals, add_goal
+    from brain.cognition.planning.goals import load_goals, add_goal
     bare = _bare_intention(intention)
     if not bare:
         return
@@ -251,7 +251,7 @@ def check_orphaned_commitments() -> int:
     if not isinstance(log, list):
         return 0
     try:
-        from cognition.planning.goals import load_goals
+        from brain.cognition.planning.goals import load_goals
         titles = {
             " ".join(str(g.get("title") or g.get("name") or "").lower().split())
             for g in _iter_goals(load_goals())

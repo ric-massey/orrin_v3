@@ -1,6 +1,6 @@
 # brain/behavior/speak.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 import json
@@ -9,12 +9,12 @@ import re
 from datetime import datetime, timezone
 from typing import Any, Dict
 
-from cog_memory.chat_log import log_raw_user_input, wrap_text
-from utils.log import log_private, log_activity, log_error
-from utils.json_utils import load_json, save_json
+from brain.cog_memory.chat_log import log_raw_user_input, wrap_text
+from brain.utils.log import log_private, log_activity, log_error
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, SPEAKER_STATE_FILE, RELATIONSHIPS_FILE
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -26,7 +26,7 @@ def _opinion_hook(thought: str, context: dict) -> str:
     if random.random() > 0.30:
         return ""
     try:
-        from cognition.opinions import get_all_opinions
+        from brain.cognition.opinions import get_all_opinions
         opinions = get_all_opinions()
         if not opinions:
             return ""
@@ -42,7 +42,7 @@ def _opinion_hook(thought: str, context: dict) -> str:
                 if view and len(view) > 10:
                     # Master plan 3.4: voicing an opinion raises its stake.
                     try:
-                        from cognition.opinions import mark_opinion_used
+                        from brain.cognition.opinions import mark_opinion_used
                         mark_opinion_used(op.get("id"))
                     except Exception:
                         pass
@@ -415,12 +415,12 @@ class OrrinSpeaker:
 
         # v1 long memory — strip private entries before user-facing hook
         try:
-            from cognition.privacy import filter_private as _fp
+            from brain.cognition.privacy import filter_private as _fp
             _public_lm = _fp(self.long_memory)
         except Exception:
             _public_lm = self.long_memory
         try:
-            from utils.text_sanity import is_corrupt_text as _ict
+            from brain.utils.text_sanity import is_corrupt_text as _ict
         except Exception:
             _ict = None
 
@@ -502,7 +502,7 @@ class OrrinSpeaker:
 
         # Body sense: color voice when body state is notable
         try:
-            from cognition.body_sense import body_sense_voice_hint as _bsvh
+            from brain.cognition.body_sense import body_sense_voice_hint as _bsvh
             _body_hint = _bsvh(context)
             if _body_hint == "effortful" and tone == "neutral":
                 tone = "hesitant"; hesitation = max(hesitation, 0.4)

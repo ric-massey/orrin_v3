@@ -3,18 +3,18 @@
 # Threads live in threads.json, are referenced in self_model["active_threads"],
 # and inject thread_continue signals when they go stale.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import uuid
 from datetime import datetime, timezone
 from typing import Dict, Any, List
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import THREADS_FILE, LONG_MEMORY_FILE
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # A thread is stale after this many cycles without engagement
@@ -139,7 +139,7 @@ def continue_thread(thread: Dict[str, Any], context: Dict[str, Any] = None) -> s
     new_state = current_state
     if llm_callable_by("threads"):
         try:
-            from utils.generate_response import generate_response, llm_ok
+            from brain.utils.generate_response import generate_response, llm_ok
             new_state = (llm_ok(generate_response(prompt), "threads") or "").strip() or current_state
         except Exception as e:
             log_activity(f"[thread] LLM unavailable for thread continuation: {e}")
@@ -246,7 +246,7 @@ def inject_thread_signals(context: Dict[str, Any]) -> None:
     # Inject signal for the most important stale thread
     thread = stale[0]
     try:
-        from utils.signal_utils import create_signal
+        from brain.utils.signal_utils import create_signal
         sig = create_signal(
             source="thread_of_attention",
             content=f"thread_continue: {thread['title']}",

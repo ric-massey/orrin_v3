@@ -37,12 +37,12 @@
 #   signal is ready-made, not reconstructed from scratch each cycle.
 # ──────────────────────────────────────────────────────────────────────────────
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Dict, Any, List, Optional
 
-from utils.log import log_activity, log_private
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_private
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ─── Pattern templates ────────────────────────────────────────────────────────
@@ -190,7 +190,7 @@ def _query_causal_context(pattern_key: str) -> List[str]:
     Returns a list of supporting evidence strings for the confidence estimate.
     """
     try:
-        from symbolic.causal_graph import get_causes, get_effects
+        from brain.symbolic.causal_graph import get_causes, get_effects
         causes  = get_causes(pattern_key)[:2]
         effects = get_effects(pattern_key)[:2]
         evidence = []
@@ -256,7 +256,7 @@ def form_structured_knowledge(
     existing: List[Dict] = []
     prior_hits = 0
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         _claim = template["causal_claim"]
         existing = [r for r in get_all_rules()
                     if r.get("source") == "knowledge_formation"
@@ -274,7 +274,7 @@ def form_structured_knowledge(
         # "rule formed" log spam).
         rule = existing[0]
         try:
-            from symbolic.rule_engine import reinforce_rule
+            from brain.symbolic.rule_engine import reinforce_rule
             rule = reinforce_rule(rule["id"], confidence=confidence) or rule
         except Exception as _e:
             record_failure("knowledge_formation.form_structured_knowledge.reinforce", _e)
@@ -292,7 +292,7 @@ def form_structured_knowledge(
 
     # Write the structured rule — this is the EBL output
     try:
-        from symbolic.rule_engine import add_rule
+        from brain.symbolic.rule_engine import add_rule
         rule = add_rule(
             conditions=template["conditions"],
             conclusion=conclusion[:500],
@@ -309,7 +309,7 @@ def form_structured_knowledge(
 
     # Feed causal claim back into the causal graph so it accumulates evidence
     try:
-        from symbolic.causal_graph import update_edge
+        from brain.symbolic.causal_graph import update_edge
         cc = template["causal_claim"]
         update_edge(
             cc["cause"][:80], cc["effect"][:80],
@@ -352,7 +352,7 @@ def get_recommendation_for_pattern(pattern_key: str) -> Optional[str]:
     if not template:
         # Check the rule engine for a stored rule
         try:
-            from symbolic.rule_engine import get_all_rules
+            from brain.symbolic.rule_engine import get_all_rules
             rules = [r for r in get_all_rules()
                      if r.get("source") == "knowledge_formation"
                      and pattern_key in r.get("conclusion", "").lower()

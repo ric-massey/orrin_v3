@@ -1,6 +1,6 @@
 # utils/generate_response.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib as _gr_hashlib
 import os
@@ -81,17 +81,17 @@ def _gr_cache_put(key: str, content: str) -> None:
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from utils.json_utils import load_json, save_json
-from utils.coerce_to_string import coerce_to_string
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.coerce_to_string import coerce_to_string
 # build_system_prompt is imported deferred at its call site (see below) to keep
 # this L1 utils module free of a load-time utils→cognition (L1→L3) import cycle —
 # the same pattern utils/response_utils.py uses.
-from utils.log import log_model_issue
-from core.config.settings import model_roles
+from brain.utils.log import log_model_issue
+from brain.core.config.settings import model_roles
 from brain.paths import MODEL_CONFIG_FILE, LLM_PROMPT, DATA_DIR
-from utils.self_model import get_self_model
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.self_model import get_self_model
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 # LLM-as-tool-only is the DEFAULT (set ORRIN_LLM_TOOL_ONLY=0 to disable).
 # The LLM is one tool in the registry — same standing as Wikipedia or web
@@ -145,7 +145,7 @@ def reinit_client() -> None:
     # Also drop the cached pluggable provider (Part 11) so a newly-saved key, provider,
     # or model takes effect on the next call without a restart.
     try:
-        from utils import llm_providers as _providers
+        from brain.utils import llm_providers as _providers
         _providers.reinit()
     except Exception:
         pass
@@ -290,7 +290,7 @@ def generate_response(
         except Exception as _e:
             record_failure("generate_response.generate_response", _e)
 
-        from cognition.selfhood.identity import build_system_prompt  # deferred: avoid L1→L3 load cycle
+        from brain.cognition.selfhood.identity import build_system_prompt  # deferred: avoid L1→L3 load cycle
         sys_prompt_raw = selected_cfg.get(
             "system_prompt",
             build_system_prompt(get_self_model(), affect_state=_emo_state or None),
@@ -337,13 +337,13 @@ def generate_response(
                 and not isinstance(prompt, list)
                 and len(_prompt_str) < 1200):
             try:
-                from symbolic.reasoning_router import route as _sym_route
+                from brain.symbolic.reasoning_router import route as _sym_route
                 _sym_result = _sym_route(_prompt_str)
                 if _sym_result.get("resolved") and _sym_result.get("answer"):
                     # Render the structured answer as natural language
                     _sym_answer = _sym_result["answer"]
                     try:
-                        from symbolic.symbolic_fluency import generate_symbolic_response as _gsr
+                        from brain.symbolic.symbolic_fluency import generate_symbolic_response as _gsr
                         _fluent = _gsr(_sym_result, _prompt_str).strip()
                         if _fluent:
                             _sym_answer = _fluent
@@ -366,14 +366,14 @@ def generate_response(
         # explicit tool entry points (_LLM_TOOL_CALLERS) may call out.
         if _llm_tool_only() and caller not in _LLM_TOOL_CALLERS:
             return _err("tool unavailable: llm (tool-only: cognition uses the symbolic path)")
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         if not llm_available():
             return _err("tool unavailable: llm")
 
         # Resolve the user-selected provider (Part 11). "none" ⇒ symbolic-only; an
         # unconfigured provider (no key / no endpoint) is a normal "tool unavailable",
         # not an error. For OpenAI this resolves to today's path verbatim.
-        from utils import llm_providers as _providers
+        from brain.utils import llm_providers as _providers
         provider = _providers.resolve(default_model=model_name)
         if provider is None:
             return _err("tool unavailable: llm (provider: none — symbolic-only)")
@@ -439,7 +439,7 @@ def generate_response(
             return _err("LLM returned empty response")
 
         try:
-            from utils.token_meter import record_call as _record_tokens
+            from brain.utils.token_meter import record_call as _record_tokens
             _usage = pr.get("usage") or {}
             _in = int(_usage.get("input", 0) or 0)
             _out = int(_usage.get("output", 0) or 0)
@@ -448,7 +448,7 @@ def generate_response(
             # Egress ledger (§9.4): one outbound call, tagged by the active provider
             # (§11.1 — "Nothing leaves your machine" for none/local). Counts/tokens
             # only — never the prompt or response.
-            from utils.egress import record as _egress
+            from brain.utils.egress import record as _egress
             if not provider.local:
                 _egress(provider.egress_name, approx_tokens=(_in + _out) or None)
         except Exception as _e:
@@ -474,7 +474,7 @@ def generate_response(
         })
         if caller not in _cryst_skip and not isinstance(prompt, list) and reply:
             try:
-                from symbolic.crystallization import crystallize as _cryst
+                from brain.symbolic.crystallization import crystallize as _cryst
                 _cryst(_prompt_str, reply, outcome=0.65, caller=caller)
             except Exception as _e:
                 record_failure("generate_response.generate_response.10", _e)

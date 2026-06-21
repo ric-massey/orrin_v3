@@ -28,8 +28,8 @@ from __future__ import annotations
 import threading
 from typing import Any, Callable, Dict, List, Optional
 
-from cognition.planning.goals import load_goals, save_goals
-from utils.log import log_activity
+from brain.cognition.planning.goals import load_goals, save_goals
+from brain.utils.log import log_activity
 
 # Reentrant so a mutator that itself calls back into apply() (or a convenience
 # helper that wraps apply) does not deadlock.

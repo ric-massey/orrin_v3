@@ -16,14 +16,14 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
-from utils.log import log_activity, log_error
-from utils.get_cycle_count import get_cycle_count
+from brain.utils.log import log_activity, log_error
+from brain.utils.get_cycle_count import get_cycle_count
 
-from peers.observer import Observer
-from peers.reward_auditor import RewardAuditor
-from peers.goal_auditor import GoalAuditor
-from peers.emotion_historian import EmotionHistorian
-from peers.architect import Architect
+from brain.peers.observer import Observer
+from brain.peers.reward_auditor import RewardAuditor
+from brain.peers.goal_auditor import GoalAuditor
+from brain.peers.emotion_historian import EmotionHistorian
+from brain.peers.architect import Architect
 
 
 # Module-level instances — one each, stateless between wakes.

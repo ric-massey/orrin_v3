@@ -1,6 +1,6 @@
 # cognition/cognition_schedule.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from pathlib import Path
@@ -8,11 +8,11 @@ from datetime import datetime, timezone
 from collections import Counter
 from typing import Any, Dict, List, Optional
 
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private, log_error
-from utils.log_reflection import log_reflection
-from utils.json_utils import load_json, save_json
-from utils.error_router import catch_and_route
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private, log_error
+from brain.utils.log_reflection import log_reflection
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.error_router import catch_and_route
 
 from brain.paths import (
     COGN_SCHEDULE_FILE,
@@ -20,14 +20,14 @@ from brain.paths import (
     LOG_FILE,
     PRIVATE_THOUGHTS_FILE,
 )
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 __all__ = ["update_cognition_schedule", "reflect_on_cognition_patterns"]
 
 # --- small numeric helper (inline fallback) ---------------------------------
 try:
-    from utils.num import safe_float  # type: ignore
+    from brain.utils.num import safe_float  # type: ignore
 except Exception:  # pragma: no cover
     def safe_float(x: Any, default: float = 0.0) -> float:
         try:

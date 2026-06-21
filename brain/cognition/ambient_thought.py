@@ -27,10 +27,10 @@ import random
 import uuid
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import AMBIENT_FRAGMENTS_FILE, TENSIONS_FILE
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 MAX_FRAGMENTS         = 5       # DMN rarely runs more distinct threads simultaneously

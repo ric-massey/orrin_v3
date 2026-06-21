@@ -1,35 +1,35 @@
 # think/think_module.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import sys
 import time
 from typing import Any, Dict, List
 
-from utils.json_utils import load_json
-from utils.emotion_utils import dominant_emotion
-from utils.log import log_error
+from brain.utils.json_utils import load_json
+from brain.utils.emotion_utils import dominant_emotion
+from brain.utils.log import log_error
 
-from utils.manage_cycle_count import manage_cycle_count
-from think.think_utils.dreams_emotional_logic import dreams_and_emotional_logic
-from think.think_utils.reflect_on_directive import reflect_on_directive
-from think.think_utils.select_function import select_function  # NEW API supports legacy triple if kwargs passed
-from think.think_utils.finalize import finalize_cycle
-from think.think_utils.execute_cognitive_actions import execute_cognitive_action
-from think.scratchpad import scratchpad_init, scratchpad_flush
-from cognition.metacog import metacog_init, metacog_flush
-from think.thought_stream import emit_thought
+from brain.utils.manage_cycle_count import manage_cycle_count
+from brain.think.think_utils.dreams_emotional_logic import dreams_and_emotional_logic
+from brain.think.think_utils.reflect_on_directive import reflect_on_directive
+from brain.think.think_utils.select_function import select_function  # NEW API supports legacy triple if kwargs passed
+from brain.think.think_utils.finalize import finalize_cycle
+from brain.think.think_utils.execute_cognitive_actions import execute_cognitive_action
+from brain.think.scratchpad import scratchpad_init, scratchpad_flush
+from brain.cognition.metacog import metacog_init, metacog_flush
+from brain.think.thought_stream import emit_thought
 
-from behavior.speak import OrrinSpeaker
-from cognition.selfhood.relationships import update_relationship_model
-from cognition.selfhood.self_model_conflicts import update_self_model
-from affect.affect_learning import update_affect_function_map
+from brain.behavior.speak import OrrinSpeaker
+from brain.cognition.selfhood.relationships import update_relationship_model
+from brain.cognition.selfhood.self_model_conflicts import update_self_model
+from brain.affect.affect_learning import update_affect_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
     COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE,
 )
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # --- UI bridge: turn OrrinSpeaker output into REPLY lines without requiring .speak() ---
@@ -56,7 +56,7 @@ def _emit_reply_from_speaker(speaker: OrrinSpeaker, text: str, context: Dict[str
         record_failure("think_module._emit_reply_from_speaker", _e)
     # Deliver to the Face message awaiting a reply (no-op if nothing pending).
     try:
-        from behavior.face_bridge import deliver_reply as _deliver_reply
+        from brain.behavior.face_bridge import deliver_reply as _deliver_reply
         _deliver_reply(utterance)
     except Exception as _de:
         record_failure("think_module._emit_reply_from_speaker.2", _de)
@@ -119,14 +119,14 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Ground truth continues to drive unconscious machinery (attention, rewards, drives).
         # The perceived state is what enters the system prompt and inner loop reasoning.
         try:
-            from affect.introspection import compute_perceived_state as _cps
+            from brain.affect.introspection import compute_perceived_state as _cps
             _introspection = _cps(context)
             context["perceived_affect_state"]          = _introspection["perceived_affect_state"]
             context["introspection_clarity"]              = _introspection["introspection_clarity"]
             context["introspection_uncertain"]            = _introspection["uncertain"]
             context["introspection_granularity_failure"]  = _introspection.get("granularity_failure", False)
             # Sync into runtime_ctx so build_system_prompt() can access it without threading context
-            from utils.runtime_ctx import get_cycle_context as _gcc
+            from brain.utils.runtime_ctx import get_cycle_context as _gcc
             _rtx = _gcc()
             if isinstance(_rtx, dict):
                 _rtx["perceived_affect_state"]         = _introspection["perceived_affect_state"]
@@ -140,7 +140,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Background fragments generated from emotional state, unresolved goals,
         # tensions. Suppressed during high cognitive load; surfaces during wandering.
         try:
-            from cognition.ambient_thought import update_ambient as _ua, surface_text as _st
+            from brain.cognition.ambient_thought import update_ambient as _ua, surface_text as _st
             _ambient_result = _ua(context)
             context["ambient_texture"]  = _ambient_result.get("surfaced", [])
             context["_ambient_surface_text"] = _st(_ambient_result.get("surfaced", []))
@@ -152,7 +152,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Unlike ambient thought: one specific topic, partially intrudes even during
         # alert mode, amplified by suppression (Wegner rebound), never self-extinguishes.
         try:
-            from cognition.rumination import update_rumination as _ur, surface_text as _rst, mark_resolved as _mr
+            from brain.cognition.rumination import update_rumination as _ur, surface_text as _rst, mark_resolved as _mr
             _rum_result = _ur(context)
             _surfaced_loop = _rum_result.get("surfaced")
             context["ruminative_loop"] = _surfaced_loop
@@ -178,7 +178,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Distinct from person_model (static trait prior): ToM is per-turn live inference.
         # Only runs when there is user input; returns None on autonomous cycles.
         try:
-            from cognition.theory_of_mind import simulate as _tom_sim
+            from brain.cognition.theory_of_mind import simulate as _tom_sim
             _tom_result = _tom_sim(context)
             context["theory_of_mind"]     = _tom_result
             context["_tom_text"]          = (_tom_result or {}).get("surface_text", "")
@@ -190,7 +190,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Time as experienced density and weight, not just a timestamp.
         # Informed by event density, cycles since last contact, and activation_level modulation.
         try:
-            from cognition.temporal_state import update_temporal_state as _uft
+            from brain.cognition.temporal_state import update_temporal_state as _uft
             _ftime_result = _uft(context)
             context["temporal_state"]      = _ftime_result
             context["_ftime_text"]    = _ftime_result.get("surface_text", "")
@@ -205,7 +205,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # and _energy_mode_text on context — these drive select_function biases and
         # surface as a line in the inner loop.
         try:
-            from motivation.energy_orientation import inject_into_context as _iem
+            from brain.motivation.energy_orientation import inject_into_context as _iem
             _iem(context)
         except Exception:
             context.setdefault("energy_mode", "neutral")
@@ -219,12 +219,12 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Keeps a persistent world model of people, projects, concepts Orrin encounters.
         # LLM-assisted consolidation happens separately during dream_cycle.
         try:
-            from cognition.knowledge_graph import observe as _kg_observe, get_context_for_prompt as _kg_ctx
+            from brain.cognition.knowledge_graph import observe as _kg_observe, get_context_for_prompt as _kg_ctx
             _kg_user_text = (context.get("latest_user_input") or "").strip()
             if _kg_user_text:
                 _kg_observe(_kg_user_text, source="user_input", context=context)
                 try:
-                    from cognition.concept_memory import learn_from_text as _cm_learn
+                    from brain.cognition.concept_memory import learn_from_text as _cm_learn
                     _cm_learn(_kg_user_text, source="user_input")
                 except Exception as _e:
                     record_failure("think_module.think.2", _e)
@@ -236,7 +236,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # === 2i) Concept memory — inject definitions for words in user input ===
         # Provides structured semantic knowledge (dog, earth, emotion, etc.) without LLM.
         try:
-            from cognition.concept_memory import get_context_for_prompt as _cm_ctx
+            from brain.cognition.concept_memory import get_context_for_prompt as _cm_ctx
             _cm_query = (context.get("latest_user_input") or "").strip() or _kg_query
             context["_concept_text"] = _cm_ctx(_cm_query, limit=4) if _cm_query else ""
         except Exception:
@@ -264,17 +264,17 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
 
         # === 3b) Salience map — snapshot what's active before reasoning begins ===
         try:
-            from think.state_processor import compute_cycle_state as _cs
+            from brain.think.state_processor import compute_cycle_state as _cs
             context["_cycle_state"] = _cs(context, user_input=context.get("latest_user_input", ""))
         except Exception as _e:
             record_failure("think_module.think.4", _e)
 
         # === 3c) Latent identity drift — surface to working memory if significant ===
         try:
-            from cognition.selfhood.latent_identity import identity_drift_warning as _idw
+            from brain.cognition.selfhood.latent_identity import identity_drift_warning as _idw
             _drift_warning = _idw(context)
             if _drift_warning:
-                from cog_memory.working_memory import update_working_memory as _uwm_drift
+                from brain.cog_memory.working_memory import update_working_memory as _uwm_drift
                 _uwm_drift({
                     "content": _drift_warning,
                     "event_type": "identity_drift",
@@ -366,7 +366,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # replacement for the raw decision telemetry (now dropped from training).
         # Throttled + symbolic; FUTURE: native_lm writes this once fluent.
         try:
-            from cognition.language.acquisition import narrate_experience as _narrate
+            from brain.cognition.language.acquisition import narrate_experience as _narrate
             _narrate(context)
         except Exception as _ne:
             record_failure("think_module.think.narrate", _ne)
@@ -419,14 +419,14 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
                 )
                 _last_delib = int(context.get("_last_deliberation_cycle", -99) or -99)
                 if _conflict and (cycle_count - _last_delib) >= 2:
-                    from cognition.global_workspace import current_awareness as _aware
+                    from brain.cognition.global_workspace import current_awareness as _aware
                     _topic = (_aware(context) or "").strip()
                     if not _topic:
                         _tns = context.get("active_tensions") or []
                         _topic = ((_tns[0].get("title") if _tns else "")
                                   or (context.get("committed_goal") or {}).get("title", ""))
                     if _topic:
-                        from think.inner_loop import run_inner_loop as _ril
+                        from brain.think.inner_loop import run_inner_loop as _ril
                         _ctext = "\n".join(
                             str(e.get("content", e) if isinstance(e, dict) else e)[:120]
                             for e in (context.get("working_memory") or [])[-4:]
@@ -448,7 +448,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         context["_inner_meta"] = _inner_meta
 
         # === 8) Basal ganglia: evaluate + maybe act ===
-        from think.think_utils.action_gate import evaluate_and_act_if_needed
+        from brain.think.think_utils.action_gate import evaluate_and_act_if_needed
         _ = evaluate_and_act_if_needed(
             context,
             affect_state=affect_state,

@@ -1,11 +1,11 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
-from utils.load_utils import load_all_known_json
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private
-from utils.log_reflection import log_reflection
-from affect.reward_signals.reward_signals import release_reward_signal
-from utils.failure_counter import record_failure
+from brain.utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private
+from brain.utils.log_reflection import log_reflection
+from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def reflect_on_emotion_model(context, self_model, memory):
@@ -58,7 +58,7 @@ def reflect_on_emotion_model(context, self_model, memory):
     # Symbolic-first gate: check if symbolic engine can assess emotion model
     response = None
     try:
-        from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+        from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
         _sym = _sfr("emotion", context=None, data=emotion_model)
         if _sym:
             response = _sym["text"]
@@ -68,12 +68,12 @@ def reflect_on_emotion_model(context, self_model, memory):
 
     if not response:
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             prompt = prompt_ctx.get("instructions", "")
             response = gated_generate(prompt, caller="reflect_on_emotion_model", outcome=0.60)
             if response and isinstance(response, str):
                 try:
-                    from symbolic.crystallization import crystallize as _cryst
+                    from brain.symbolic.crystallization import crystallize as _cryst
                     _cryst(f"reflect on emotion model vocabulary ({len(emotion_model)} emotions)", response, outcome=0.60, caller="reflect_on_emotion_model")
                 except Exception as _e:
                     record_failure("reflect_on_affect_model.reflect_on_emotion_model.2", _e)

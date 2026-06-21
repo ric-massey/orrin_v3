@@ -3,7 +3,7 @@
 # build embeddings, and return an Event for the daemon.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass
 from typing import Optional, Dict, List, Tuple, Union
 from pathlib import Path

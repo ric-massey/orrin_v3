@@ -1,13 +1,13 @@
 # utils/tamper_guard.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import hashlib
 import inspect
 import os
 import threading
 import time
 from typing import Optional, Iterable
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

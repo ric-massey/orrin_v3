@@ -1,14 +1,14 @@
-from cognition.dreaming import compose_dream  # ✅ use compose_dream(self_model, recent)
-from affect.affect_drift import check_affect_drift
-from behavior.behavior_generation import generate_behavior_from_integration
-from affect.update_affect_state import update_affect_state
-from affect.reflect_on_affect import reflect_on_affect
-from affect.apply_affective_feedback import apply_affective_feedback
-from affect.threat_detector import process_affective_signals
-from cog_memory.working_memory import update_working_memory
-from affect.reward_signals.reward_signals import release_reward_signal
-from affect.reward_signals.resource_deficit import update_function_usage_fatigue
-from utils.json_utils import load_json
+from brain.cognition.dreaming import compose_dream  # ✅ use compose_dream(self_model, recent)
+from brain.affect.affect_drift import check_affect_drift
+from brain.behavior.behavior_generation import generate_behavior_from_integration
+from brain.affect.update_affect_state import update_affect_state
+from brain.affect.reflect_on_affect import reflect_on_affect
+from brain.affect.apply_affective_feedback import apply_affective_feedback
+from brain.affect.threat_detector import process_affective_signals
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.affect.reward_signals.resource_deficit import update_function_usage_fatigue
+from brain.utils.json_utils import load_json
 from brain.paths import AFFECT_STATE_FILE
 import json  # NEW
 

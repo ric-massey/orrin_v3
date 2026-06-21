@@ -1,6 +1,6 @@
 # goals/handlers/generic.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import sys
 import uuid
 from typing import List, Optional
@@ -16,7 +16,7 @@ def _llm_call(prompt: str, ctx: HandlerContext) -> str:
         repo_root = ctx.get("repo_root", "")
         if repo_root and repo_root not in sys.path:
             sys.path.insert(0, repo_root + "/brain")
-        from utils.generate_response import generate_response, llm_ok  # type: ignore
+        from brain.utils.generate_response import generate_response, llm_ok  # type: ignore
         result = generate_response(prompt)
         return (llm_ok(result, "generic_handler") or "").strip()
     except Exception as e:
@@ -28,7 +28,7 @@ def _log_private(text: str, ctx: HandlerContext) -> None:
         repo_root = ctx.get("repo_root", "")
         if repo_root and repo_root + "/brain" not in sys.path:
             sys.path.insert(0, repo_root + "/brain")
-        from utils.log import log_private  # type: ignore
+        from brain.utils.log import log_private  # type: ignore
         log_private(text)
     except Exception as _e:
         _log.warning("silent except: %s", _e)

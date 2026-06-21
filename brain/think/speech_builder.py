@@ -18,7 +18,7 @@ import random
 import re
 from typing import Any, Dict, List, Optional
 
-from think.speech_coherence import cohere, cohere_topic, is_compatible
+from brain.think.speech_coherence import cohere, cohere_topic, is_compatible
 
 # ── Template library ──────────────────────────────────────────────────────────
 #
@@ -591,7 +591,7 @@ def _fill(template: str, slots: Dict[str, str]) -> str:
 def _construction_score(response_type: str, tone: str) -> float:
     """Return the learned quality score for this (response_type, tone) bucket."""
     try:
-        from think.speech_log import get_construction_score
+        from brain.think.speech_log import get_construction_score
         return get_construction_score(response_type, tone)
     except Exception:
         return 0.5
@@ -746,7 +746,7 @@ def build_reply(
     # openers, and never stacked onto a base that already opens with a connective.
     if base and response_type in ("answer", "share_finding", "express_state"):
         try:
-            from cognition.language_acquisition import learned_openers as _lo
+            from brain.cognition.language_acquisition import learned_openers as _lo
             _openers = _lo()
             if _openers and random.random() < 0.35:
                 _b0 = base.lstrip()

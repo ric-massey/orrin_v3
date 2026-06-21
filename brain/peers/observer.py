@@ -14,13 +14,13 @@ Wakes when:
   - OR the same function has been selected 5+ consecutive times.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List
 
-from peers.peer_base import BasePeer
+from brain.peers.peer_base import BasePeer
 from brain.paths import COGNITION_HISTORY_FILE, ATTENTION_HISTORY
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -53,7 +53,7 @@ class Observer(BasePeer):
 
         # ── Repetition signal ─────────────────────────────────────────────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             history = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
             if isinstance(history, list) and len(history) >= 6:
                 recent_fns = [
@@ -66,7 +66,7 @@ class Observer(BasePeer):
                     top = max(set(recent_fns), key=recent_fns.count)
                     freq = recent_fns.count(top) / len(recent_fns)
                     if freq >= 0.60:
-                        from cognition.perception.file_sense import path_to_felt_location
+                        from brain.cognition.perception.file_sense import path_to_felt_location
                         felt = path_to_felt_location(f"cognition/{top}", is_self=True)
                         signals.append(self._signal(
                             f"Something in {felt} keeps being reached for — "
@@ -81,7 +81,7 @@ class Observer(BasePeer):
 
         # ── Sustained attention-mode signal ───────────────────────────────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             attn_hist = load_json(ATTENTION_HISTORY, default_type=list) or []
             if isinstance(attn_hist, list) and len(attn_hist) >= 10:
                 recent_modes = [

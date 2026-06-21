@@ -13,7 +13,7 @@ BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
 if str(BRAIN_DIR) not in sys.path:
     sys.path.insert(0, str(BRAIN_DIR))
 
-from think.bandit.contextual_bandit import (
+from brain.think.bandit.contextual_bandit import (
     _validate_state, _context_bucket, update, choose, expected_reward,
 )
 
@@ -27,7 +27,7 @@ def _write_state(tmp_path: Path, state: dict) -> Path:
 
 
 def _patch_path(monkeypatch, new_path: Path):
-    import think.bandit.contextual_bandit as _cb
+    import brain.think.bandit.contextual_bandit as _cb
     monkeypatch.setattr(_cb, "BANDIT_STATE_PATH", new_path)
 
 

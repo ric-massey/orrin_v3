@@ -13,8 +13,8 @@ from collections import Counter
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Set, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 
 try:
     from brain.paths import SYMBOLIC_RULES_FILE

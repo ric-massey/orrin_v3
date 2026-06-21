@@ -1,7 +1,7 @@
 # §10.6 — OS capability grant-state for the Trust screen + graceful degradation.
 # These exercise the cross-platform state logic and the honest-failure contract
 # without touching real TCC (the macOS probe is monkeypatched).
-from utils import os_permissions as op
+from brain.utils import os_permissions as op
 
 
 def test_status_lists_the_body_capabilities():

@@ -1,18 +1,18 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Dict, Optional, Callable
 from functools import wraps
 import traceback
 import inspect
 import json as _json
 
-from utils.log import log_error, log_model_issue
-from utils.error import build_error_event, record_error  # from the self-heal plumbing
+from brain.utils.log import log_error, log_model_issue
+from brain.utils.error import build_error_event, record_error  # from the self-heal plumbing
 
-from utils.path_redact import redact as _redact
-from utils.json_utils import append_jsonl
+from brain.utils.path_redact import redact as _redact
+from brain.utils.json_utils import append_jsonl
 from brain.paths import MODEL_FAILURES_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 

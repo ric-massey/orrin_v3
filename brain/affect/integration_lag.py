@@ -31,7 +31,7 @@ from __future__ import annotations
 import random
 from typing import Any, Dict, List
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 _IMMEDIATE_FRACTION = 0.40   # portion applied right away
 _DEFERRED_FRACTION  = 0.60   # portion that arrives later

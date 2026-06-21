@@ -1,15 +1,15 @@
 import json, time
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import TOOL_REQUESTS_FILE
-from agency.tool_runner import _LOCK as _TOOL_LOCK  # shared lock — prevents double-execution with ToolRunner
-from behavior.tools.toolkit import tool_registry
-from utils.generate_response import generate_response, llm_ok
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
-from utils.log import log_model_issue, log_private
-from utils.events import emit_event, ACTION_START
+from brain.agency.tool_runner import _LOCK as _TOOL_LOCK  # shared lock — prevents double-execution with ToolRunner
+from brain.behavior.tools.toolkit import tool_registry
+from brain.utils.generate_response import generate_response, llm_ok
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.log import log_model_issue, log_private
+from brain.utils.events import emit_event, ACTION_START
 
 def run_tool(tool, reason):
     emit_event(ACTION_START, {"tool": tool, "reason": reason})

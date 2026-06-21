@@ -1,6 +1,6 @@
 # memory/integrations.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Callable, Any, Dict, Optional
 import time
 _log = get_logger(__name__)

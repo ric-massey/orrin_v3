@@ -16,7 +16,7 @@
 #   2. External ingest:          look_outward.ingest_outward_result feeds web results
 #   3. LLM-assisted (dream):     consolidate_from_long_memory — richer structured extraction
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import getpass
 import hashlib
@@ -28,14 +28,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Generator, List, Optional, Set, Tuple
 
-from utils.json_utils import load_json, save_json, safe_extract_json, modify_json, AbortModify
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json, safe_extract_json, modify_json, AbortModify
+from brain.utils.log import log_activity, log_private
 from brain.paths import KNOWLEDGE_GRAPH_FILE
-from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_callable_by
-from utils.embed_similarity import text_similarity, embeddings_available
-from utils.content_quarantine import PROMPT_NOTE as _EXTERNAL_CONTENT_NOTE, is_quarantined
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.embed_similarity import text_similarity, embeddings_available
+from brain.utils.content_quarantine import PROMPT_NOTE as _EXTERNAL_CONTENT_NOTE, is_quarantined
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -370,7 +370,7 @@ def normalize_entity_name(name: str) -> str:
     # (audit §5: a concept named '[EXTERNAL/UNTRUSTED source=https' was learned).
     if "[EXTERNAL" in out:
         try:
-            from utils.content_quarantine import strip_quarantine
+            from brain.utils.content_quarantine import strip_quarantine
             out = strip_quarantine(out)
         except Exception:
             out = re.sub(r"\[/?EXTERNAL[^\]]*\]?", " ", out).strip()
@@ -562,7 +562,7 @@ def _validate_candidate(
     # entities ("Photosynthesis", "cyanobacteria"). Unbalanced brackets and chunk
     # headers are the precise, name-appropriate signatures.
     try:
-        from utils.text_sanity import has_unbalanced_brackets
+        from brain.utils.text_sanity import has_unbalanced_brackets
         if has_unbalanced_brackets(name) or "[chunk" in name.lower():
             return False, 0.0, "corrupt_text"
     except Exception:
@@ -729,7 +729,7 @@ def _get_nlp():
         import spacy
         # Load from the BUNDLED model path when frozen (I2 — offline first-run), else
         # the pip-installed package by name in a dev checkout.
-        from utils.model_assets import spacy_model as _spacy_model
+        from brain.utils.model_assets import spacy_model as _spacy_model
         _SPACY_NLP = spacy.load(_spacy_model("en_core_web_sm"))  # full pipeline (lemmas + parse)
         _log.info("[kg] spaCy en_core_web_sm loaded for entity extraction")
     except Exception as exc:
@@ -1205,7 +1205,7 @@ def consolidate_from_long_memory(context: Optional[Dict] = None) -> Dict:
         if any(is_quarantined(t) for t in recent):
             prompt = f"{_EXTERNAL_CONTENT_NOTE}\n\n{prompt}"
         try:
-            from utils.generate_response import generate_response, llm_ok
+            from brain.utils.generate_response import generate_response, llm_ok
             raw = llm_ok(generate_response(prompt, caller="knowledge_graph/consolidation"), "knowledge_graph") or ""
             if raw:
                 data = safe_extract_json(raw, default={}, dict_only=True)

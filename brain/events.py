@@ -1,7 +1,7 @@
 # brain/events.py
 # Minimal event recording and wait/notify queue.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import hashlib, json, time, queue
 _log = get_logger(__name__)
 

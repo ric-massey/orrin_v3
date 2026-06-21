@@ -6,8 +6,8 @@
 # disagreement as an introspection_miss working-memory event.
 import pytest
 
-import cognition.prediction as pred_mod
-import cognition.calibration as cal
+import brain.cognition.prediction as pred_mod
+import brain.cognition.calibration as cal
 
 
 @pytest.fixture(autouse=True)
@@ -136,7 +136,7 @@ def test_trust_scales_affect_trend_confidence(monkeypatch, tmp_path):
 # ── 1.4 disagreement is an event ─────────────────────────────────────────────
 
 def test_introspection_miss_writes_wm_event(monkeypatch):
-    import cog_memory.working_memory as wm_mod
+    import brain.cog_memory.working_memory as wm_mod
     captured = []
     monkeypatch.setattr(wm_mod, "update_working_memory",
                         lambda entry, *a, **k: captured.append(entry))

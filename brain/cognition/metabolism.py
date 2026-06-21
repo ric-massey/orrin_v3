@@ -20,8 +20,8 @@ from __future__ import annotations
 
 from typing import Dict
 
-from core.runtime_log import get_logger
-from cognition.body_budget import budget_bytes, cpu_count
+from brain.core.runtime_log import get_logger
+from brain.cognition.body_budget import budget_bytes, cpu_count
 
 _log = get_logger(__name__)
 

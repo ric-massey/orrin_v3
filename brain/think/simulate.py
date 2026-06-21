@@ -21,15 +21,15 @@
 #
 # Both functions are defensive: return safe defaults on any error.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 from typing import Any, Dict, List
 
-from utils.llm_router import routed_response
-from utils.llm_gate import llm_callable_by
-from utils.log import log_activity, log_error
-from utils.failure_counter import record_failure
+from brain.utils.llm_router import routed_response
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.log import log_activity, log_error
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _MAX_SIMULATE_CHARS = 1200   # cap context injected into simulation prompts
@@ -323,7 +323,7 @@ def run_debate(
     # Also check total in-flight calls so a deep-thinking inner loop can't
     # accidentally trigger a debate that brings concurrent calls to ~12.
     try:
-        from utils.token_meter import active_call_count as _acc
+        from brain.utils.token_meter import active_call_count as _acc
         if _acc() >= _MAX_CONCURRENT_DEBATE_CALLS:
             _DEBATE_SEMAPHORE.release()
             log_activity(f"[simulate/debate] Skipped — {_acc()} calls already in flight.")

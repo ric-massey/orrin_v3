@@ -2,7 +2,7 @@
 # Concrete handler for research/googling/reading/synthesis tasks; uses ctx hooks for web+llm
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import uuid

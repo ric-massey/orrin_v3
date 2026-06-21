@@ -16,19 +16,19 @@
 # present, write long memory with event_type=intent so the cognition layer
 # can later query by semantic role rather than always seeing "tool_use".
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import importlib
 import threading
 import uuid
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_error
-from utils.failure_counter import record_failure
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_error
+from brain.utils.failure_counter import record_failure
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import TOOL_REQUESTS_FILE
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 
 _LOCK = threading.Lock()
@@ -36,7 +36,7 @@ _LOCK = threading.Lock()
 # Tool registry import (deferred to avoid circular at module load)
 
 def _get_registry() -> Dict[str, Any]:
-    from behavior.tools.toolkit import tool_registry
+    from brain.behavior.tools.toolkit import tool_registry
     return tool_registry
 
 
@@ -53,7 +53,7 @@ def _append_long_memory(
 ) -> None:
     """Write a tool execution record to long memory with the semantic intent tag."""
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         merged_extra: Dict[str, Any] = {}
         if origin:
             merged_extra["origin"] = origin
@@ -233,7 +233,7 @@ def drain_queue() -> int:
         elif handler and not result.get("success"):
             # Custom handler exists but the tool failed — write the error so it's traceable.
             try:
-                from cog_memory.long_memory import update_long_memory as _ulm_fail
+                from brain.cog_memory.long_memory import update_long_memory as _ulm_fail
                 _ulm_fail(
                     f"[tool_failure] {tool} (handler={handler}) failed: "
                     f"{result.get('error', result_text or 'unknown error')[:200]}",

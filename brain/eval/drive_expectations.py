@@ -13,14 +13,14 @@
 # about which actions actually satisfy which drives.
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 import os
 import tempfile
 import threading
 from pathlib import Path
 from typing import Any, Dict, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -113,7 +113,7 @@ def _bump_affect_file(emotion: str, amount: float) -> None:
     commit_affect, so update_affect_state remains the sole file writer.
     """
     try:
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
         submit_affect(None, emotion, float(amount), source="drive_expect", ttl_cycles=2)
     except Exception as _e:
         record_failure("drive_expectations._bump_affect_file", _e)
@@ -146,7 +146,7 @@ def _route_affect(
         # Disappointment: reached out, expected relief, got less.
         _bump_affect_file("negative_valence", magnitude)
         try:
-            from utils.log import log_activity
+            from brain.utils.log import log_activity
             log_activity(
                 f"[drive_exp] {action}→{drive}: actual {actual:.2f} < expected "
                 f"{expected:.2f} (gap {gap:.2f}) → negative_valence +{magnitude:.2f}"
@@ -157,7 +157,7 @@ def _route_affect(
         # Delight: contact landed better than expected.
         _bump_affect_file("positive_valence", magnitude)
         try:
-            from utils.log import log_activity
+            from brain.utils.log import log_activity
             log_activity(
                 f"[drive_exp] {action}→{drive}: actual {actual:.2f} > expected "
                 f"{expected:.2f} (gap +{gap:.2f}) → positive_valence +{magnitude:.2f}"

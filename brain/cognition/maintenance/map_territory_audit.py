@@ -20,7 +20,7 @@
 # silent repair. The record of the drift is itself part of the faithful
 # record.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import re
@@ -29,9 +29,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.utils.failure_counter import record_failure
 from brain.paths import DATA_DIR, LOGS_DIR, ROOT_DIR
 
 _log = get_logger(__name__)
@@ -65,7 +65,7 @@ def _audit_registered_functions() -> List[str]:
     in the territory."""
     findings: List[str] = []
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
     except Exception as e:
         record_failure("map_audit.registry_import", e)
         return findings
@@ -279,7 +279,7 @@ def audit_map_territory(context: Optional[Dict[str, Any]] = None) -> str:
 
     if findings:
         try:
-            from cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.working_memory import update_working_memory
             for finding in findings[:6]:   # surface the worst; the log holds all
                 update_working_memory({
                     "content": f"[map drift] {finding}",

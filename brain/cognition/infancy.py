@@ -28,9 +28,9 @@ from __future__ import annotations
 import os
 from typing import Dict
 
-from core.runtime_log import get_logger
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.core.runtime_log import get_logger
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
 
 _log = get_logger(__name__)
@@ -57,13 +57,13 @@ def somatic_infancy() -> bool:
     converged. True on first boot and after a move to new hardware; false on a plain
     restart where converged bands reload."""
     try:
-        from cognition.body_sense import _get_bands
+        from brain.cognition.body_sense import _get_bands
         if _get_bands().in_infancy():
             return True
     except Exception:
         pass
     try:
-        from cognition.host_interoception import _bands
+        from brain.cognition.host_interoception import _bands
         if _bands().in_infancy():
             return True
     except Exception:
@@ -78,7 +78,7 @@ def developmental_infancy() -> bool:
     if state.get("complete"):
         return False
     try:
-        from cognition.mortality import lifespan_rolled, life_status
+        from brain.cognition.mortality import lifespan_rolled, life_status
         if not lifespan_rolled():
             return True  # not even born yet
         age_days = float(life_status().get("age_days", 0.0) or 0.0)
@@ -112,7 +112,7 @@ def scenario() -> str:
 def infancy_status() -> Dict:
     """Telemetry/UI view of where Orrin is developmentally and somatically."""
     try:
-        from cognition.body_sense import _get_bands
+        from brain.cognition.body_sense import _get_bands
         som_frac = _get_bands().converged_fraction()
     except Exception:
         som_frac = 0.0

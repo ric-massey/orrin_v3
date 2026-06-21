@@ -1,18 +1,18 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 
-from utils.json_utils import load_json, save_json
-from utils.self_model import get_self_model, save_self_model
-from utils.load_utils import load_all_known_json
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private, log_error
-from utils.log_reflection import log_reflection
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.self_model import get_self_model, save_self_model
+from brain.utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private, log_error
+from brain.utils.log_reflection import log_reflection
 from brain.paths import (
     OUTCOMES_JSON, SELF_MODEL_BACKUP_JSON,
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, WORKING_MEMORY_FILE,
 )
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -63,13 +63,13 @@ def reflect_on_outcomes():
         ]
 
         # ── Symbolic analysis (primary path) ─────────────────────────────────
-        from symbolic.symbolic_cognition import analyze_outcomes as _ao
+        from brain.symbolic.symbolic_cognition import analyze_outcomes as _ao
         sym_result = _ao(recent_unreviewed)
         reflection = sym_result["narrative"] if sym_result.get("quality_score", 0) >= 0.3 else None
 
         if not reflection:
             try:
-                from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+                from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
                 _sym = _sfr("outcome", context=None, data=recent_unreviewed)
                 if _sym:
                     reflection = _sym["text"]
@@ -91,7 +91,7 @@ def reflect_on_outcomes():
                 "Respond with a brief narrative insight."
             )
             try:
-                from symbolic.llm_gate import gated_generate
+                from brain.symbolic.llm_gate import gated_generate
                 reflection = gated_generate(prompt, caller="reflect_on_outcome", outcome=0.65)
             except Exception as e:
                 log_error(f"reflect_on_outcomes gated_generate error: {e}")
@@ -107,7 +107,7 @@ def reflect_on_outcomes():
 
         # ── Persist to long memory ─────────────────────────────────────────────
         try:
-            from cog_memory.long_memory import update_long_memory as _ulm
+            from brain.cog_memory.long_memory import update_long_memory as _ulm
             _ulm(reflection, emotion="reflective", event_type="reflection",
                  agent="orrin", importance=3, priority=2)
         except Exception:
@@ -133,9 +133,9 @@ def reflect_on_outcomes():
         if len(failures) >= 3:
             update_working_memory("⚠️ Repeated failures — revising symbolic rules directly.")
             try:
-                from symbolic.symbolic_cognition import propose_rule_changes as _prc
-                from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-                from utils.json_utils import save_json as _sj
+                from brain.symbolic.symbolic_cognition import propose_rule_changes as _prc
+                from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+                from brain.utils.json_utils import save_json as _sj
                 proposals = _prc(recent_unreviewed)
                 rules = get_all_rules()
                 changed = False
@@ -154,7 +154,7 @@ def reflect_on_outcomes():
         if sym_result.get("quality_score", 0.5) < 0.35:
             try:
                 sm = get_self_model()
-                from symbolic.symbolic_cognition import update_self_model_fields as _usf
+                from brain.symbolic.symbolic_cognition import update_self_model_fields as _usf
                 upd = _usf(sm)
                 if upd["updated_fields"]:
                     sm.update(upd["updated_fields"])
@@ -178,7 +178,7 @@ def evaluate_recent_cognition():
         wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
         lm = load_json(LONG_MEMORY_FILE,    default_type=list) or []
 
-        from symbolic.symbolic_cognition import evaluate_cognition as _ec
+        from brain.symbolic.symbolic_cognition import evaluate_cognition as _ec
         result = _ec(wm[-10:], lm[-20:])
 
         update_working_memory(

@@ -62,7 +62,7 @@ def llm_available() -> bool:
     except Exception:
         pass
     try:
-        from utils import llm_providers as _providers
+        from brain.utils import llm_providers as _providers
         _prov = _providers.resolve()
         if _prov is None or not _prov.is_configured():
             return False
@@ -73,14 +73,14 @@ def llm_available() -> bool:
             return False
 
     try:
-        from utils.generate_response import _cb_is_open
+        from brain.utils.generate_response import _cb_is_open
         if _cb_is_open():
             return False
     except Exception:
         pass  # breaker unreadable → don't block
 
     try:
-        from utils.llm_router import routed_response as _rr  # noqa: F401
+        from brain.utils.llm_router import routed_response as _rr  # noqa: F401
         return True
     except ImportError:
         return False
@@ -99,7 +99,7 @@ def llm_callable_by(caller: str) -> bool:
     if not llm_available():
         return False
     try:
-        from utils.generate_response import _llm_tool_only, _LLM_TOOL_CALLERS
+        from brain.utils.generate_response import _llm_tool_only, _LLM_TOOL_CALLERS
         if _llm_tool_only() and caller not in _LLM_TOOL_CALLERS:
             return False
     except Exception:
@@ -158,7 +158,7 @@ def fn_requires_llm(name: str, fn=None) -> bool:
         return True
     if fn is None:
         try:
-            from registry.cognition_registry import COGNITIVE_FUNCTIONS
+            from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
             meta = COGNITIVE_FUNCTIONS.get(name)
             if isinstance(meta, dict):
                 if meta.get("requires_llm"):
@@ -181,7 +181,7 @@ def filter_llm_dependent(names: Iterable[str]) -> List[str]:
     # must be filtered here too — otherwise (the old llm_available()-only check)
     # they stayed in the pool, got selected, and ran-and-degraded every cycle.
     try:
-        from utils.generate_response import _llm_tool_only
+        from brain.utils.generate_response import _llm_tool_only
         cognition_can_call = llm_available() and not _llm_tool_only()
     except Exception:
         cognition_can_call = llm_available()

@@ -13,7 +13,7 @@
 #       core_signals (convergence path must not silently regress).
 import pytest
 
-import utils.failure_counter as fc
+import brain.utils.failure_counter as fc
 
 
 class _StubBridge:
@@ -42,8 +42,8 @@ _CONTRADICTORY_RULES = [
 
 
 def test_detect_rule_contradictions_no_failure_tick(monkeypatch):
-    import symbolic.symbolic_cognition as sc
-    import symbolic.meta_rules as mr
+    import brain.symbolic.symbolic_cognition as sc
+    import brain.symbolic.meta_rules as mr
 
     monkeypatch.setattr(sc, "_rules", lambda: list(_CONTRADICTORY_RULES))
     monkeypatch.setattr(mr, "_record_application", lambda *a, **k: None)
@@ -60,8 +60,8 @@ def test_detect_rule_contradictions_no_failure_tick(monkeypatch):
 
 
 def test_detect_rule_contradictions_handles_non_contradictory_rules(monkeypatch):
-    import symbolic.symbolic_cognition as sc
-    import symbolic.meta_rules as mr
+    import brain.symbolic.symbolic_cognition as sc
+    import brain.symbolic.meta_rules as mr
 
     rules = [
         {"id": "a", "conclusion": "reading books deepens understanding", "confidence": 0.9},
@@ -81,8 +81,8 @@ def test_detect_rule_contradictions_handles_non_contradictory_rules(monkeypatch)
 def _quiet_goals(monkeypatch):
     """Silence mark_goal_failed's live side-channels and capture the ones the
     test asserts on (long-memory write, WM write)."""
-    import cognition.planning.goals as goals
-    import cog_memory.long_memory as lm
+    import brain.cognition.planning.goals as goals
+    import brain.cog_memory.long_memory as lm
 
     written = {"long_memory": [], "working_memory": []}
     monkeypatch.setattr(goals, "release_reward_signal", lambda *a, **k: None)
@@ -95,8 +95,8 @@ def _quiet_goals(monkeypatch):
 
 
 def test_mark_goal_failed_survives_metrics_raise(monkeypatch, _quiet_goals):
-    import cognition.planning.goals as goals
-    import cognition.planning.outcome_metrics as om
+    import brain.cognition.planning.goals as goals
+    import brain.cognition.planning.outcome_metrics as om
 
     def _boom():
         raise RuntimeError("metrics exploded")
@@ -118,8 +118,8 @@ def test_mark_goal_failed_survives_metrics_raise(monkeypatch, _quiet_goals):
 
 
 def test_mark_goal_failed_survives_metrics_import_failure(monkeypatch, _quiet_goals):
-    import cognition.planning.goals as goals
-    import cognition.planning.outcome_metrics as om
+    import brain.cognition.planning.goals as goals
+    import brain.cognition.planning.outcome_metrics as om
 
     # `from ... import record_failure as record_outcome_failure` now raises
     # ImportError; the handler must hit the real failure counter, not
@@ -139,9 +139,9 @@ def test_mark_goal_failed_survives_metrics_import_failure(monkeypatch, _quiet_go
 # ── 0.3 regulation affect_stability routing ──────────────────────────────────
 
 def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
-    import affect.regulation as reg
-    import cog_memory.working_memory as wm
-    from affect.arbiter import commit_affect
+    import brain.affect.regulation as reg
+    import brain.cog_memory.working_memory as wm
+    from brain.affect.arbiter import commit_affect
 
     log_state = {}
     monkeypatch.setattr(reg, "_load_log", lambda: log_state)

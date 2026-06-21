@@ -28,19 +28,19 @@
 #   No LLM interpretation — purely structural comparison.
 #
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from utils.signal_utils import create_signal
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.utils.signal_utils import create_signal
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import PREDICTIONS_FILE, LONG_MEMORY_FILE, WORKING_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -175,7 +175,7 @@ def generate_predictions(
     # working_memory). Strip any that slip through so predictions read cleanly and
     # don't poison ToM / self-model downstream.
     try:
-        from cog_memory.working_memory import _strip_chunk_label as _san
+        from brain.cog_memory.working_memory import _strip_chunk_label as _san
     except Exception:
         def _san(s):
             return s
@@ -217,7 +217,7 @@ def generate_predictions(
 
     if last_fn:
         try:
-            from symbolic.causal_graph import get_effects
+            from brain.symbolic.causal_graph import get_effects
             _affect2 = context.get("affect_state") or {}
             _core2 = _affect2.get("core_signals") or _affect2
             effects = get_effects(last_fn, min_score=0.35)[:2]
@@ -286,7 +286,7 @@ def generate_predictions(
                 # affect-derived claims are believed as much as the receipts
                 # say introspection has earned.
                 try:
-                    from cognition.calibration import get_introspection_trust
+                    from brain.cognition.calibration import get_introspection_trust
                     _conf3 = 0.30 + 0.60 * get_introspection_trust("INTERNAL")
                 except Exception:
                     _conf3 = 0.60
@@ -456,8 +456,8 @@ def _distill_confirmed_prediction(pred: Dict, came_true: bool) -> None:
 
         if rec["confirms"] >= _CONFIRMS_TO_PROMOTE and not rec.get("promoted"):
             try:
-                from symbolic.rule_engine import add_rule
-                from symbolic.ground_truth import grounding_score as _gs
+                from brain.symbolic.rule_engine import add_rule
+                from brain.symbolic.ground_truth import grounding_score as _gs
                 try:
                     _g = float(_gs(pattern))
                 except Exception:
@@ -541,7 +541,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
                 _stat_weight = 0.5   # self-report alone earns at most half-weight
             else:
                 try:
-                    from cognition.calibration import update_introspection_trust
+                    from brain.cognition.calibration import update_introspection_trust
                     update_introspection_trust(pred.get("domain") or "INTERNAL",
                                                bool(_felt) == bool(_behaved))
                 except Exception as _e:
@@ -551,7 +551,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
 
         # Update domain accuracy stats
         try:
-            from symbolic.prediction_engine import update_domain_stats, classify_domain
+            from brain.symbolic.prediction_engine import update_domain_stats, classify_domain
             domain = pred.get("domain") or classify_domain(pred.get("prediction", ""))
             update_domain_stats(domain, came_true, basis=pred.get("basis", "symbolic"),
                                 mismatch_score=mismatch, weight=_stat_weight)
@@ -560,7 +560,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
 
         # Feed back to causal graph
         try:
-            from symbolic.causal_graph import update_from_prediction_outcome
+            from brain.symbolic.causal_graph import update_from_prediction_outcome
             update_from_prediction_outcome(pred, came_true)
         except Exception as _e:
             record_failure("prediction.check_predictions.2", _e)
@@ -573,7 +573,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
         # was graded); outer ones are already scored against observables.
         try:
             if (not _is_inner) or (_behaved is not None):
-                from cognition.opinions import ingest_prediction_outcome
+                from brain.cognition.opinions import ingest_prediction_outcome
                 ingest_prediction_outcome(
                     pred.get("prediction", ""), came_true,
                     ref_id=str(pred.get("id") or pred.get("created_ts") or ts),
@@ -614,7 +614,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
             if _ema > 0.6 and _gs["pred_runs"] >= 3:
                 _gs["stall"] = int(_gs.get("stall", 0)) + 2
                 _gs["pred_runs"] = 0   # re-accumulate; don't bump every cycle
-                from utils.log import log_private as _lp
+                from brain.utils.log import log_private as _lp
                 _lp(f"[prediction] sustained mismatch EMA={_ema} on '{_gid}' → +2 stall (Fix 6 → Fix 2).")
     except Exception as _e:
         record_failure("prediction.check_predictions.3", _e)
@@ -751,7 +751,7 @@ def _fire_introspection_miss(pred: Dict, context: Dict[str, Any]) -> None:
         f"but behavior disagreed (expected: {receipt.get('expected', '?')})."
     )
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         update_working_memory({
             "content": text,
             "event_type": "introspection_miss",
@@ -761,7 +761,7 @@ def _fire_introspection_miss(pred: Dict, context: Dict[str, Any]) -> None:
     except Exception as _e:
         record_failure("prediction._fire_introspection_miss", _e)
     try:
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
         submit_affect(context, "exploration_drive", +0.04, source="introspection_miss")
         submit_affect(context, "confidence", -0.03, source="introspection_miss")
     except Exception as _e:

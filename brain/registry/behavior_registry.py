@@ -1,13 +1,13 @@
 # registry/behavior_registry.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import inspect
 from typing import Dict, Callable, List, Tuple
-from registry.utils import iter_modules, safe_import, extract_callables
+from brain.registry.utils import iter_modules, safe_import, extract_callables
 from brain.paths import BEHAVIORAL_FUNCTIONS_LIST_FILE
-from utils.json_utils import save_json
-from utils.log import log_error, log_activity
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import save_json
+from brain.utils.log import log_error, log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _ALLOWED_PREFIXES: Tuple[str, ...] = ("act_", "tool_", "execute_", "say_", "report_", "sandbox_", "call_")
@@ -34,7 +34,7 @@ def discover_behavioral_functions() -> Dict[str, Dict[str, object]]:
     Private helpers (names starting with '_') are excluded.
     """
     funcs: Dict[str, Dict[str, object]] = {}
-    for mod_name in iter_modules("behavior"):
+    for mod_name in iter_modules("brain.behavior"):
         mod = safe_import(mod_name)
         if not mod:
             continue

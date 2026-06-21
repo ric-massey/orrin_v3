@@ -18,15 +18,15 @@
 #   context["_pursue_goal_depth"]; ORRIN_loop calls update_depth(depth, reward)
 #   after the env snapshot so the bandit trains on real state change, not text.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 from typing import Dict
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _DEPTH_STATS_FILE = DATA_DIR / "depth_stats.json"

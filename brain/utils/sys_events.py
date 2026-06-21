@@ -2,10 +2,10 @@
 # Tiny in-process event bus for fast wakeups
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import time, queue
 from typing import Optional, Dict, List
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _EVENTS: List[Dict] = []

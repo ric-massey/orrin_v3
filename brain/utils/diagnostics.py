@@ -59,13 +59,13 @@ def _state_tag() -> Dict[str, Any]:
     thing in a diagnostics bundle. Felt-only mortality; never the true lifespan."""
     out: Dict[str, Any] = {"captured_at": time.time()}
     try:
-        from utils import lifecycle as _lc
+        from brain.utils import lifecycle as _lc
 
         out["lifecycle"] = _lc.status()
     except Exception as e:
         out["lifecycle"] = {"error": str(e)}
     try:
-        from utils import schema_migration as _sm
+        from brain.utils import schema_migration as _sm
 
         out["state_schema_version"] = _sm.read_version()
     except Exception:

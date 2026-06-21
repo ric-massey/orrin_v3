@@ -3,7 +3,7 @@
 
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Dict, Optional
 from functools import wraps

@@ -6,13 +6,13 @@
 # detect_wonder_trigger(text, context)  — call on each user input and memory
 # apply_wonder_bias(context)            — call from signal_router/loop to bias selection
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Dict, Any
 
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Keyword clusters for trigger detection (fast path — no LLM needed)
@@ -72,7 +72,7 @@ def detect_wonder_trigger(text: str, context: Dict[str, Any]) -> float:
 
     # Persist so future sessions can learn what kinds of things spark wonder
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             f"[wonder] Sparked by {triggered_by}: {text[:200]}",
             emotion="wonder",
@@ -92,7 +92,7 @@ def _apply_spike(spike: float, context: Dict[str, Any]) -> None:
     current = float(core.get("wonder", 0.0) or 0.0)
     core["wonder"] = min(_WONDER_MAX, current + spike)
     # Wonder also nudges exploration_drive up and stagnation_signal down
-    from affect.homeostasis import pump_signal
+    from brain.affect.homeostasis import pump_signal
     pump_signal(core, "exploration_drive", spike * 0.4)
     core["stagnation_signal"]   = max(0.0, float(core.get("stagnation_signal", 0.0)) - spike * 0.3)
     if "core_signals" in emo:
@@ -117,7 +117,7 @@ def apply_wonder_bias(context: Dict[str, Any]) -> None:
 
     # Signal that biases signal_router toward reflection
     try:
-        from utils.signal_utils import create_signal
+        from brain.utils.signal_utils import create_signal
         sig = create_signal(
             source="wonder",
             content="wonder_high: sitting with something I can't immediately resolve",

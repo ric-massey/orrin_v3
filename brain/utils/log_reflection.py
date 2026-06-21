@@ -3,8 +3,8 @@ from pathlib import Path
 from typing import Any, Union
 from datetime import datetime, timezone
 
-from utils.append import append_to_json
-from utils.log import log_model_issue
+from brain.utils.append import append_to_json
+from brain.utils.log import log_model_issue
 from brain.paths import REFLECTION  # Path to data/reflection_log.json
 
 

@@ -46,7 +46,7 @@ def disk_ceiling_gb() -> float:
         except Exception:
             pass
     try:
-        from utils.prefs import get as _pref
+        from brain.utils.prefs import get as _pref
         return float(_pref("disk_ceiling_gb", 5))
     except Exception:
         return 5.0
@@ -107,7 +107,7 @@ def enforce_disk_ceiling() -> Dict[str, Any]:
         if n:
             trimmed[name] = n
     try:
-        from utils.json_utils import cap_jsonl
+        from brain.utils.json_utils import cap_jsonl
         for name, max_lines in _TRIMMABLE_JSONL.items():
             p = DATA_DIR / name
             if p.exists():
@@ -133,7 +133,7 @@ def memory_ceiling_gb() -> float:
         except Exception:
             pass
     try:
-        from utils.prefs import get as _pref
+        from brain.utils.prefs import get as _pref
         return float(_pref("memory_ceiling_gb", 4))
     except Exception:
         return 4.0
@@ -168,20 +168,20 @@ def _evict_caches() -> List[str]:
     """Clear the safe-to-drop in-process caches. Each is best-effort and independent."""
     cleared: List[str] = []
     try:
-        from utils import generate_response as _gr
+        from brain.utils import generate_response as _gr
         _gr._GR_CACHE.clear()
         cleared.append("llm_response_cache")
     except Exception:
         pass
     try:
-        from utils import embed_similarity as _es
+        from brain.utils import embed_similarity as _es
         # The embedding cache is an lru_cache on _embed (up to 8192 vectors).
         _es._embed.cache_clear()
         cleared.append("embedding_cache")
     except Exception:
         pass
     try:
-        from utils import llm_providers as _p
+        from brain.utils import llm_providers as _p
         _p.reinit()
         cleared.append("provider")
     except Exception:

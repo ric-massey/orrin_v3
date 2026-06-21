@@ -13,7 +13,7 @@ def mark_consequential_cognition(
     info_gain: float | None = None,
 ) -> bool:
     """Credit cognition only when it changed the environment or produced healthy learning."""
-    from cognition.reward_rate import is_stagnating
+    from brain.cognition.reward_rate import is_stagnating
 
     external = (not is_failure) and (
         int(ticked_n or 0) > 0

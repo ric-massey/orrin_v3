@@ -27,8 +27,8 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Set
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
 PLANS_FILE  = DATA_DIR / "symbolic_plans.json"
@@ -168,7 +168,7 @@ def _build_plan(seed_text: str, requested_horizon: str) -> List[Dict]:
 
 def _step_from_rule(text: str) -> Optional[Dict]:
     try:
-        from symbolic.rule_engine import match as _match
+        from brain.symbolic.rule_engine import match as _match
         rule = _match(text, threshold=0.35)
         if not rule:
             return None
@@ -186,7 +186,7 @@ def _step_from_rule(text: str) -> Optional[Dict]:
 
 def _steps_from_causal(text: str, visited: Set[str]) -> List[Dict]:
     try:
-        from symbolic.causal_graph import get_effects
+        from brain.symbolic.causal_graph import get_effects
         effects = get_effects(text, min_score=_MIN_SCORE)
         results = []
         for e in effects[:_BEAM_WIDTH]:
@@ -209,7 +209,7 @@ def _steps_from_causal(text: str, visited: Set[str]) -> List[Dict]:
 
 def _step_from_analogy(text: str) -> Optional[Dict]:
     try:
-        from symbolic.analogy_engine import best_analogue_answer
+        from brain.symbolic.analogy_engine import best_analogue_answer
         solution = best_analogue_answer(text)
         if not solution:
             return None

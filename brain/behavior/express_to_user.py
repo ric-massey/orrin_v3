@@ -25,9 +25,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict
 
-from behavior.speakability import assert_speakable, strip_internal
-from utils.failure_counter import record_failure
-from utils.log import log_activity
+from brain.behavior.speakability import assert_speakable, strip_internal
+from brain.utils.failure_counter import record_failure
+from brain.utils.log import log_activity
 
 
 @dataclass
@@ -50,7 +50,7 @@ class Motive:
 
 def _dominant_emotion(context: Dict[str, Any]) -> str:
     try:
-        from behavior import expression
+        from brain.behavior import expression
         return expression._dominant_emotion(context)
     except Exception:
         return "neutral"
@@ -83,7 +83,7 @@ def _meaning_seed(context: Dict[str, Any]) -> str:
     is 'raw signal wanting expression', not telemetry. Composed/reworded by the
     door, never copied. Empty on any failure (the door composes from affect)."""
     try:
-        from think.state_processor import compute_cycle_state
+        from brain.think.state_processor import compute_cycle_state
         salience = compute_cycle_state(context)
         return str(getattr(salience, "output_seed", "") or "")
     except Exception:
@@ -130,8 +130,8 @@ def compose_from_motive(motive: Motive, context: Dict[str, Any]) -> str:
     symbolic/telemetry field; the only content kernel it sees is the motive's
     own (sanitized) seed.
     """
-    from think.cycle_state import CycleState
-    from behavior import expression
+    from brain.think.cycle_state import CycleState
+    from brain.behavior import expression
 
     # The seed is meaning, but a caller may have handed in something with a
     # leaked tag — sanitize before composition so a kernel is reworded, never a
@@ -174,8 +174,8 @@ def compose_from_motive(motive: Motive, context: Dict[str, Any]) -> str:
 
 def _route_reply(text: str, context: Dict[str, Any]) -> bool:
     try:
-        from think.think_utils.talk_policy import speak_text
-        from behavior.speak import OrrinSpeaker
+        from brain.think.think_utils.talk_policy import speak_text
+        from brain.behavior.speak import OrrinSpeaker
         rendered = speak_text(text, context, OrrinSpeaker())
         return bool(rendered)
     except Exception as _e:
@@ -188,14 +188,14 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
     polls (so it is actually seen — fixes E4), plus a durable outbox copy."""
     delivered = False
     try:
-        from embodiment.system_presence import announce_presence
+        from brain.embodiment.system_presence import announce_presence
         r = announce_presence(text, kind="note")
         delivered = bool(r.get("success"))
     except Exception as _e:
         record_failure("express_to_user._route_note.deliver", _e)
     try:
         from brain.paths import NOTES_FILE
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         notes = load_json(NOTES_FILE, default_type=list) or []
         notes.append(artifact)
         if len(notes) > 100:
@@ -208,7 +208,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
 
 def _route_desktop(text: str) -> bool:
     try:
-        from embodiment.system_presence import write_to_desktop_note
+        from brain.embodiment.system_presence import write_to_desktop_note
         r = write_to_desktop_note("Orrin's note", text)
         return bool(r.get("success"))
     except Exception as _e:
@@ -218,7 +218,7 @@ def _route_desktop(text: str) -> bool:
 
 def _route_dashboard(text: str) -> bool:
     try:
-        from embodiment.system_presence import announce_presence
+        from brain.embodiment.system_presence import announce_presence
         r = announce_presence(text, kind="presence")
         return bool(r.get("success"))
     except Exception as _e:
@@ -228,7 +228,7 @@ def _route_dashboard(text: str) -> bool:
 
 def _route_notify(text: str) -> bool:
     try:
-        from agency.skills.notify_user import notify_user
+        from brain.agency.skills.notify_user import notify_user
         r = notify_user({"message": text[:200], "title": "Orrin"})
         return bool(r.get("success", True)) if isinstance(r, dict) else True
     except Exception as _e:
@@ -279,7 +279,7 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
                  "reply": "message_answered"}.get(channel)
         if _kind:
             try:
-                from agency.effect_ledger import record_effect
+                from brain.agency.effect_ledger import record_effect
                 _row = record_effect(_kind, text, goal_id=(motive.goal_id or None), context=context)
                 if _row is not None and _row.significance > 0 and isinstance(context, dict):
                     context["_production_effect_this_cycle"] = True

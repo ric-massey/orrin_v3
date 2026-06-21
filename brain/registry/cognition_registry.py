@@ -1,14 +1,14 @@
 # registry/cognition_registry.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import inspect
 
 from typing import Dict, Callable, List, Tuple
-from registry.utils import iter_modules, safe_import, extract_callables
+from brain.registry.utils import iter_modules, safe_import, extract_callables
 from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
-from utils.json_utils import save_json
-from utils.log import log_error, log_activity
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import save_json
+from brain.utils.log import log_error, log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Narrow, intentional entry-point prefixes for cognition functions
@@ -42,7 +42,7 @@ def _requires_llm(name: str, fn: Callable) -> bool:
     if getattr(fn, "_requires_llm", False):
         return True
     try:
-        from utils.llm_gate import REQUIRES_LLM_FUNCTIONS
+        from brain.utils.llm_gate import REQUIRES_LLM_FUNCTIONS
         return name in REQUIRES_LLM_FUNCTIONS
     except Exception:
         return False
@@ -53,7 +53,7 @@ def _merge_custom(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[str, ob
     Accepts either {name: callable} or {name: {"function": callable, ...}}.
     """
     try:
-        from core.manager import load_custom_cognition  # type: ignore
+        from brain.core.manager import load_custom_cognition  # type: ignore
     except Exception:
         return funcs
 
@@ -120,7 +120,7 @@ def _patch_with_router(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[st
     trigger the same handler within the same cooldown window.
     """
     try:
-        from cognition.introspection.router import introspect as _ir
+        from brain.cognition.introspection.router import introspect as _ir
         for fn_name, trigger in _ROUTER_FN_MAP.items():
             if fn_name in funcs:
                 _t = trigger  # capture for closure
@@ -145,7 +145,7 @@ def discover_cognitive_functions() -> Dict[str, Dict[str, object]]:
     Private helpers (names starting with '_') are excluded.
     """
     funcs: Dict[str, Dict[str, object]] = {}
-    for mod_name in iter_modules("cognition"):
+    for mod_name in iter_modules("brain.cognition"):
         mod = safe_import(mod_name)
         if not mod:
             continue

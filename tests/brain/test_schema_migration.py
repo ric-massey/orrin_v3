@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from utils import schema_migration as sm
+from brain.utils import schema_migration as sm
 from brain.paths import DATA_DIR
 
 _STAMP = DATA_DIR / "schema_version.json"

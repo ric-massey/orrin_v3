@@ -20,7 +20,12 @@ REPO = Path(__file__).resolve().parent.parent
 
 # Leaf packages whose bare-import conversion to `brain.<pkg>` is complete.
 # Append a name here only once `make verify` is green with zero bare imports.
-CONVERTED = ("paths",)
+# (Root-level `goals`, `memory`, `reaper` are legitimately top-level — not leaves.)
+CONVERTED = (
+    "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
+    "behavior", "agency", "registry", "symbolic", "embodiment", "motivation",
+    "peers", "benchmarks", "evidence", "config", "eval",
+)
 
 # Source trees that must honor the contract. (Root-level packages like `goals`,
 # `memory`, and `reaper` are legitimately top-level and are not brain leaves.)
@@ -41,19 +46,28 @@ def _py_files():
             yield p
 
 
+_LEAF_ALT = "|".join(CONVERTED)
+# Bare import statements: `from <leaf>[.x] import` / `import <leaf>[.x][ as A]`.
+_STMT_RE = re.compile(
+    rf"^[ \t]*(?:from ({_LEAF_ALT})(?:\.|\s+import\b)|import ({_LEAF_ALT})(?:\.|\s+as\b|\s*$|\s*#))",
+    re.M,
+)
+# Dynamic module-path strings that bypass import statements but still create a
+# distinct (bare-named) module object: mock targets and runtime imports.
+_DYN_RE = re.compile(
+    rf"(?:patch|import_module|__import__)\(\s*['\"](?:{_LEAF_ALT})\.",
+)
+
+
 def test_converted_leaves_use_brain_namespace():
     offenders = []
-    patterns = {
-        name: re.compile(rf"^[ \t]*(?:from {name} import\b|import {name}(?:\s+as\b|\s*$|\s*#))", re.M)
-        for name in CONVERTED
-    }
     for p in _py_files():
         text = p.read_text(encoding="utf-8", errors="ignore")
-        for name, pat in patterns.items():
+        for pat in (_STMT_RE, _DYN_RE):
             for m in pat.finditer(text):
                 line_no = text.count("\n", 0, m.start()) + 1
                 offenders.append(f"{p.relative_to(REPO)}:{line_no}: {m.group(0).strip()}")
     assert not offenders, (
-        "bare imports of converted leaf package(s) — use `brain.<pkg>`:\n"
-        + "\n".join(offenders)
+        "bare references to converted leaf package(s) — use `brain.<pkg>`:\n"
+        + "\n".join(sorted(offenders))
     )

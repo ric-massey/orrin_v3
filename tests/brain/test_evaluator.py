@@ -15,8 +15,8 @@ if str(BRAIN_DIR) not in sys.path:
 
 def test_wal_append_and_load(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all
         append_pending("did-1", "reflect", {"a": 1.0}, cycle=5)
         append_pending("did-2", "dream", {"b": 0.5}, cycle=6)
         entries = load_all()
@@ -29,8 +29,8 @@ def test_wal_append_and_load(tmp_path):
 
 def test_wal_rewrite(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all, rewrite
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all, rewrite
         append_pending("did-1", "reflect", {}, cycle=1)
         append_pending("did-2", "dream", {}, cycle=2)
         entries = load_all()
@@ -44,8 +44,8 @@ def test_wal_rewrite(tmp_path):
 
 def test_wal_appends_goal_id(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all
         append_pending("did-3", "plan", {"x": 1.0}, cycle=10, committed_goal_id="goal-abc")
         entries = load_all()
     assert entries[0]["committed_goal_id"] == "goal-abc"
@@ -61,16 +61,16 @@ def _make_retrieved_item(decision_id: str):
 
 def test_signal_a_fires_when_memory_retrieved(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all
-        from eval.evaluator_daemon import EvaluatorDaemon
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all
+        from brain.eval.evaluator_daemon import EvaluatorDaemon
 
         append_pending("did-x", "reflect", {"a": 0.5}, cycle=1)
         ctx = {"retrieved_memories": [_make_retrieved_item("did-x")]}
 
         ev = EvaluatorDaemon()
-        with patch("think.bandit.contextual_bandit.update_delayed"), \
-             patch("think.loop_helpers.emit_trace"):
+        with patch("brain.think.bandit.contextual_bandit.update_delayed"), \
+             patch("brain.think.loop_helpers.emit_trace"):
             ev.tick(ctx, cycle=3)
 
         entries = load_all()
@@ -82,9 +82,9 @@ def test_signal_a_fires_when_memory_retrieved(tmp_path):
 
 def test_signal_a_does_not_fire_when_no_match(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all
-        from eval.evaluator_daemon import EvaluatorDaemon
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all
+        from brain.eval.evaluator_daemon import EvaluatorDaemon
 
         append_pending("did-y", "dream", {}, cycle=1)
         ctx = {"retrieved_memories": [_make_retrieved_item("did-z")]}  # different id
@@ -98,9 +98,9 @@ def test_signal_a_does_not_fire_when_no_match(tmp_path):
 
 def test_old_entries_pruned(tmp_path):
     wal_file = tmp_path / "test_wal.jsonl"
-    with patch("eval.evaluator_wal.EVALUATOR_WAL", wal_file):
-        from eval.evaluator_wal import append_pending, load_all
-        from eval.evaluator_daemon import EvaluatorDaemon
+    with patch("brain.eval.evaluator_wal.EVALUATOR_WAL", wal_file):
+        from brain.eval.evaluator_wal import append_pending, load_all
+        from brain.eval.evaluator_daemon import EvaluatorDaemon
 
         append_pending("did-old", "reflect", {}, cycle=1)
         ctx = {"retrieved_memories": []}
@@ -119,8 +119,8 @@ def test_old_entries_pruned(tmp_path):
 # update_delayed wiring
 
 def test_update_delayed_calls_bandit_update(tmp_path):
-    from think.bandit.contextual_bandit import update_delayed
-    with patch("think.bandit.contextual_bandit.update") as mock_update, \
-         patch("think.loop_helpers.emit_trace"):
+    from brain.think.bandit.contextual_bandit import update_delayed
+    with patch("brain.think.bandit.contextual_bandit.update") as mock_update, \
+         patch("brain.think.loop_helpers.emit_trace"):
         update_delayed("reflect", {"a": 1.0}, 0.75, decision_id="did-test")
         mock_update.assert_called_once_with("reflect", {"a": 1.0}, 0.75, lr=0.1, l2=0.001)

@@ -29,8 +29,8 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional, Tuple
 
-from config.tuning import SEMANTIC_MATCH_FLOOR
-from utils.log import log_activity, log_error
+from brain.config.tuning import SEMANTIC_MATCH_FLOOR
+from brain.utils.log import log_activity, log_error
 
 
 # Literal registered function names: if a step explicitly names a tool, that is
@@ -160,7 +160,7 @@ def _semantic_step_match(step_text: str, candidates) -> Tuple[Optional[str], flo
     similarity call later without changing the interface.
     """
     try:
-        from think.think_utils.select_function import (
+        from brain.think.think_utils.select_function import (
             _capability_descriptions, _capability_overlap,
         )
     except Exception:
@@ -293,7 +293,7 @@ def execute_step_action(fn_name: str, context: Dict[str, Any],
     try:
         # Lazy import: the registry discovers this package, so importing it at
         # module top would create a cycle during cognition discovery.
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
     except Exception as e:
         log_error(f"[step_exec] registry unavailable: {e}")
         return (False, "")
@@ -309,7 +309,7 @@ def execute_step_action(fn_name: str, context: Dict[str, Any],
     # composes from it; cleared in finally so it never leaks to a later act.
     _motive_set = False
     try:
-        from behavior.express_to_user import EXPRESSIVE_FUNCTIONS
+        from brain.behavior.express_to_user import EXPRESSIVE_FUNCTIONS
         if fn_name in EXPRESSIVE_FUNCTIONS:
             g = goal if isinstance(goal, dict) else (context.get("committed_goal") or {})
             spec = g.get("spec") if isinstance(g.get("spec"), dict) else {}

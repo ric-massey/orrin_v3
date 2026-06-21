@@ -16,14 +16,14 @@
 
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import time
 from typing import Any, Dict
 
-from utils.log import log_activity, log_private
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
-from utils.llm_gate import llm_available
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.llm_gate import llm_available
 
 _log = get_logger(__name__)
 
@@ -128,7 +128,7 @@ def ask_llm(
     prompt = frame.format(query=query)
 
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         response = llm_ok(generate_response(prompt, caller="ask_llm"), "ask_llm")
     except Exception as e:
         log_activity(f"[ask_llm] LLM call failed: {e}")
@@ -191,7 +191,7 @@ def ask_llm_about_conversation(context: Dict[str, Any]) -> str:
     Cognition function: Orrin uses LLM to understand something from a conversation.
     Pulls the recent user exchange from context.
     """
-    from utils.json_utils import load_json
+    from brain.utils.json_utils import load_json
     from brain.paths import CHAT_LOG_FILE
 
     try:

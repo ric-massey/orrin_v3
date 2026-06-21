@@ -1,17 +1,17 @@
 # self_review.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import List
 
-from utils.events_miner import last_n_events, summarize_outcomes
-from utils.log import utc_now as _utc_now
-from utils.log_reflection import log_reflection
-from utils.json_utils import load_json
-from utils.log import log_error
-from utils.append import append_to_json
+from brain.utils.events_miner import last_n_events, summarize_outcomes
+from brain.utils.log import utc_now as _utc_now
+from brain.utils.log_reflection import log_reflection
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_error
+from brain.utils.append import append_to_json
 from brain.paths import LONG_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -77,7 +77,7 @@ def periodic_self_review(n_events: int = 400) -> None:
                 })
                 # Nudge bandit: soft penalty so poor functions compete less aggressively
                 try:
-                    from think.bandit import contextual_bandit as _cb
+                    from brain.think.bandit import contextual_bandit as _cb
                     for fn, avg, _ in poor_fns[:3]:
                         if hasattr(_cb, "penalise"):
                             _cb.penalise(fn, magnitude=0.08)
@@ -115,7 +115,7 @@ def periodic_self_review(n_events: int = 400) -> None:
         # Master plan 5.3: the map-territory audit rides self_review on a
         # monthly gate — drift in the self-record is a self-review concern.
         try:
-            from cognition.maintenance.map_territory_audit import audit_if_due
+            from brain.cognition.maintenance.map_territory_audit import audit_if_due
             audit_if_due()
         except Exception as _e:
             record_failure("self_review.map_audit", _e)

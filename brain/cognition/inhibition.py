@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Tuple
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 
 _WANT_THRESHOLD  = 0.32   # drive pull above this registers as a real want

@@ -6,7 +6,7 @@
 # the code_edit goal-kind was silently disabled. This adapts that proven
 # implementation to the BaseGoalHandler interface the daemon expects.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import uuid
 from dataclasses import replace

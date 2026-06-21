@@ -4,13 +4,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, List
 
-from utils.json_utils import load_json, safe_extract_json
-from utils.log import log_private, log_error, log_activity
-from utils.timeutils import now_iso_z
-from utils.generate_response import generate_response, llm_ok
-from utils.llm_gate import llm_callable_by
-from utils.goals import extract_current_focus_goal
-from cognition.behavior import extract_last_reflection_topic
+from brain.utils.json_utils import load_json, safe_extract_json
+from brain.utils.log import log_private, log_error, log_activity
+from brain.utils.timeutils import now_iso_z
+from brain.utils.generate_response import generate_response, llm_ok
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.goals import extract_current_focus_goal
+from brain.cognition.behavior import extract_last_reflection_topic
 from brain.paths import PROPOSED_GOALS, FOCUS_GOAL, ensure_files
 
 # NOTE (Phase 5 / Option A): this module used to synthesize a Python stub into
@@ -160,7 +160,7 @@ def generate_behavior_from_integration(context: Dict[str, Any]) -> List[Dict[str
         # Symbolic decomposition (LLM-free, real engine): concrete tool-bound
         # subgoals rather than collapsing the whole topic into a single step.
         try:
-            from cognition.planning.goals import _rule_based_decompose
+            from brain.cognition.planning.goals import _rule_based_decompose
             subgoals = [s.get("name", "") for s in _rule_based_decompose({"name": topic}) if s.get("name")]
         except Exception:
             subgoals = []

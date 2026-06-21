@@ -5,7 +5,7 @@
 # velocity passes it runs each cycle.
 import json
 
-import affect.update_affect_state as uas
+import brain.affect.update_affect_state as uas
 
 
 def _seed_affect_state(path, core_overrides):

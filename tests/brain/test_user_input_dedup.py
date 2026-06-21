@@ -10,8 +10,8 @@ import types
 
 import pytest
 
-import think.think_utils.user_input as ui_mod
-from think.think_utils.user_input import handle_user_input, log_user_input_once
+import brain.think.think_utils.user_input as ui_mod
+from brain.think.think_utils.user_input import handle_user_input, log_user_input_once
 
 
 @pytest.fixture
@@ -30,7 +30,7 @@ def patched(monkeypatch, tmp_path):
         calls.summarize += 1
     monkeypatch.setattr(ui_mod, "summarize_chat_to_long_memory", _summarize)
 
-    import think.speech_evaluator as se_mod
+    import brain.think.speech_evaluator as se_mod
 
     def _eval(*a, **k):
         calls.eval_reply += 1
@@ -42,14 +42,14 @@ def patched(monkeypatch, tmp_path):
     monkeypatch.setattr(ui_mod, "read_recent_errors_txt", lambda *a, **k: [])
     monkeypatch.setattr(ui_mod, "read_recent_errors_jsonl", lambda *a, **k: [])
 
-    import cognition.wonder as wonder_mod
+    import brain.cognition.wonder as wonder_mod
     monkeypatch.setattr(wonder_mod, "detect_wonder_trigger", lambda *a, **k: None)
-    import cognition.comprehension as comp_mod
+    import brain.cognition.comprehension as comp_mod
     monkeypatch.setattr(comp_mod, "comprehend", lambda *a, **k: None)
-    import cognition.selfhood.values_check as vc_mod
+    import brain.cognition.selfhood.values_check as vc_mod
     monkeypatch.setattr(vc_mod, "evaluate_input_against_self",
                         lambda *a, **k: (False, ""))
-    import utils.self_model as sm_mod
+    import brain.utils.self_model as sm_mod
     monkeypatch.setattr(sm_mod, "get_self_model", lambda *a, **k: {})
 
     return calls

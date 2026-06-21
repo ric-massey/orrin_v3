@@ -32,19 +32,19 @@
 #     "confidence":       float,
 #   }
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.llm_router import routed_response, get_deep_model
-from utils.llm_gate import llm_callable_by
-from utils.log import log_activity, log_error
-from think.scratchpad import scratchpad_append, scratchpad_latest
-from think.meta_controller import decide as meta_decide
-from think.thought_stream import emit_thought
-from utils.failure_counter import record_failure
+from brain.utils.llm_router import routed_response, get_deep_model
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.log import log_activity, log_error
+from brain.think.scratchpad import scratchpad_append, scratchpad_latest
+from brain.think.meta_controller import decide as meta_decide
+from brain.think.thought_stream import emit_thought
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
@@ -96,7 +96,7 @@ def _draft_prompt(
     prior_revision  = scratchpad_latest(context, "revision")  if round_num > 1 else ""
 
     try:
-        from affect.affect_summary import format_goal_state as _gfo
+        from brain.affect.affect_summary import format_goal_state as _gfo
         goal_line = _gfo(context.get("committed_goal") or {})
         goal_line = (goal_line + "\n") if goal_line else ""
     except Exception:
@@ -114,7 +114,7 @@ def _draft_prompt(
 
     felt_line = ""
     try:
-        from affect.affect_summary import describe_dominant_affect as _dfs
+        from brain.affect.affect_summary import describe_dominant_affect as _dfs
         _sense = _dfs(context.get("affect_state") or {})
         if _sense:
             felt_line = f"Right now I notice: {_sense}\n"
@@ -150,7 +150,7 @@ def _draft_prompt(
 
 def _critique_primary(draft: str, topic: str, context: Dict[str, Any]) -> str:
     try:
-        from cognition.reflection.reflect_on_internal_agents import critique_draft as _ext
+        from brain.cognition.reflection.reflect_on_internal_agents import critique_draft as _ext
         result = _ext(draft, context)
         if result and len(result.strip()) > 20:
             return result.strip()
@@ -418,7 +418,7 @@ def run_inner_loop(
     # fall back to Fix E's honest typed defer so nothing silently no-ops.
     if not llm_callable_by("inner_loop"):
         try:
-            from think.inner_loop_symbolic import (
+            from brain.think.inner_loop_symbolic import (
                 run_inner_loop_symbolic, symbolic_inner_loop_enabled,
             )
             if symbolic_inner_loop_enabled():
@@ -441,7 +441,7 @@ def run_inner_loop(
     _caller_specified = max_rounds is not None
     if max_rounds is None:
         try:
-            from think.depth_bandit import choose_rounds as _cr
+            from brain.think.depth_bandit import choose_rounds as _cr
             max_rounds = _cr()
         except Exception:
             max_rounds = _DEFAULT_ROUNDS
@@ -574,7 +574,7 @@ def run_inner_loop(
                     emit_thought("debating", "3-voice sub-agent debate triggered",
                                  depth=round_num, goal=goal_title)
                     try:
-                        from think.simulate import run_debate as _rd
+                        from brain.think.simulate import run_debate as _rd
                         debate_result = _rd(topic, context, n_voices=3)
                         synthesis = debate_result.get("synthesis", "")
                         if synthesis and len(synthesis) > 20:
@@ -640,7 +640,7 @@ def run_inner_loop(
     # ── Optional debate enrichment ─────────────────────────────────────────────
     if use_debate and content:
         try:
-            from think.simulate import run_debate
+            from brain.think.simulate import run_debate
             debate_result = run_debate(topic, context)
             synthesis = debate_result.get("synthesis", "")
             if synthesis and len(synthesis) > 20:
@@ -664,7 +664,7 @@ def run_inner_loop(
     # ── Report to depth bandit ─────────────────────────────────────────────────
     elapsed = time.time() - cycle_start
     try:
-        from think.depth_bandit import record_outcome as _ro
+        from brain.think.depth_bandit import record_outcome as _ro
         # Reward uses self-reflected quality score + efficiency bonus.
         # loop_quality comes from the LLM meta-reflection (or falls back to confidence).
         eff_bonus     = max(0.0, 1.0 - elapsed / INNER_LOOP_MAX_S) * 0.15

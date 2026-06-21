@@ -19,14 +19,14 @@ import time
 from pathlib import Path
 from typing import Dict, List
 
-from utils.json_utils import load_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity
 from brain.paths import (
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, CHAT_LOG_FILE, BODY_SENSE_FILE,
     PREDICTIONS_FILE, SPEECH_LOG_FILE, KNOWLEDGE_GRAPH_FILE,
 )
 
-from cognition.language import native_lm, library
+from brain.cognition.language import native_lm, library
 
 _REPLAY_FILE = Path(__file__).resolve().parents[2] / "data" / "language" / "replay_corpus.txt"
 _MAX_BLOCK = 50000
@@ -240,7 +240,7 @@ def grounded_experience(max_chars: int = 8000) -> str:
 
     # 2) Exteroception — the world he's embedded in (live world model only).
     try:
-        from embodiment import world_model
+        from brain.embodiment import world_model
         narr = (world_model.describe() or "").strip()
         if narr and "haven't" not in narr.lower():
             lines.append(narr.rstrip(".") + ".")
@@ -430,7 +430,7 @@ def narrate_experience(context) -> str:
     if not perceived:
         return ""
     try:
-        from affect.affect_summary import describe_dominant_affect
+        from brain.affect.affect_summary import describe_dominant_affect
         feel = (describe_dominant_affect(perceived) or "").strip()
     except Exception:
         feel = ""

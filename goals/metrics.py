@@ -2,7 +2,7 @@
 # Prometheus metrics for the Goals subsystem: counters/gauges/histograms + helpers to refresh/set/observe
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from collections import Counter
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, Optional

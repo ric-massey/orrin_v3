@@ -27,7 +27,7 @@
 #   swelling — RSS marching one way and not retreating (the death-spiral signature)
 #   clear    — all vitals inside their bands (or still in infancy)
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import platform
@@ -40,11 +40,11 @@ try:
 except Exception:
     resource = None  # type: ignore
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import BODY_SENSE_FILE, DATA_DIR
-from utils.failure_counter import record_failure
-from cognition.body_band import BodyBands
+from brain.utils.failure_counter import record_failure
+from brain.cognition.body_band import BodyBands
 _log = get_logger(__name__)
 
 # Absolute backstops (NOT felt-state triggers). FD genuinely near the OS limit is
@@ -86,7 +86,7 @@ def _is_dreaming() -> bool:
     can't be reached we treat it as awake (the conservative direction — the wake
     band still alarms on departure)."""
     try:
-        from cognition.dreaming.dream_cycle import dreaming_now
+        from brain.cognition.dreaming.dream_cycle import dreaming_now
         return bool(dreaming_now())
     except Exception:
         return False
@@ -335,7 +335,7 @@ def _update_body_pattern(felt: List[str], body_sense: Dict) -> None:
         should_write = (streak == _PATTERN_THRESHOLD) or (streak % 100 == 0 and streak > _PATTERN_THRESHOLD)
         if should_write:
             try:
-                from cog_memory.long_memory import update_long_memory
+                from brain.cog_memory.long_memory import update_long_memory
                 update_long_memory(
                     f"[body_sense_pattern] Feeling '{dominant}' for {streak} consecutive readings. "
                     f"This may indicate sustained resource pressure or inefficiency.",

@@ -1,12 +1,12 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import time
 import threading
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any
-from utils.timing import get_time_since_last_active
-from utils.json_utils import load_json
-from utils.self_model import get_self_model, save_self_model
-from utils.failure_counter import record_failure
+from brain.utils.timing import get_time_since_last_active
+from brain.utils.json_utils import load_json
+from brain.utils.self_model import get_self_model, save_self_model
+from brain.utils.failure_counter import record_failure
 from brain.paths import LOG_FILE, FEEDBACK_LOG
 _log = get_logger(__name__)
 
@@ -121,7 +121,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     if affect_state is None:
         try:
             from brain.paths import AFFECT_STATE_FILE
-            from utils.json_utils import load_json as _lj
+            from brain.utils.json_utils import load_json as _lj
             _raw = _lj(AFFECT_STATE_FILE, default_type=dict) or {}
             core = _raw.get("core_signals")
             affect_state = {**_raw, **core} if isinstance(core, dict) else _raw
@@ -133,13 +133,13 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # Uses the *perceived* state (what Orrin thinks he feels) rather than ground truth —
     # the actual state drives unconscious machinery and is never directly reported here.
     try:
-        from affect.affect_summary import render_affect_state as _dfs
+        from brain.affect.affect_summary import render_affect_state as _dfs
         _body_tokens = []
         _perceived_emo = None
         _clarity = 1.0
         _uncertain = False
         try:
-            from utils.runtime_ctx import get_cycle_context as _gcc
+            from brain.utils.runtime_ctx import get_cycle_context as _gcc
             _rtx = _gcc() or {}
             _bs = _rtx.get("body_sense") or {}
             _body_tokens = list(_bs.get("states", []) or [])
@@ -152,7 +152,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
         emotion_line = "Internal state: " + _dfs(_emo_for_prompt or {}, _body_tokens)
         # When introspection is unclear, add a phenomenological uncertainty note
         try:
-            from affect.introspection import get_uncertainty_note as _gun
+            from brain.affect.introspection import get_uncertainty_note as _gun
             _gran_fail = bool(_rtx.get("introspection_granularity_failure", False))
             _note = _gun(_clarity, _uncertain, granularity_failure=_gran_fail)
             if _note:
@@ -165,7 +165,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # --- Retrieved memories (injected from cycle context via runtime_ctx) ---
     memory_section = ""
     try:
-        from utils.runtime_ctx import get_cycle_context
+        from brain.utils.runtime_ctx import get_cycle_context
         _rtx = get_cycle_context()
         _memories = _rtx.get("retrieved_memories") or []
         _formatted = _format_retrieved_memories(_memories)
@@ -177,10 +177,10 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # --- Relationship context for the current user ---
     relationship_line = ""
     try:
-        from utils.runtime_ctx import get_cycle_context
+        from brain.utils.runtime_ctx import get_cycle_context
         _rtx = get_cycle_context()
         _user_id = _rtx.get("user_id") or _rtx.get("speaker") or "user"
-        from cognition.selfhood.relationships import get_relationship_context_for_prompt
+        from brain.cognition.selfhood.relationships import get_relationship_context_for_prompt
         relationship_line = get_relationship_context_for_prompt(_user_id)
         if relationship_line:
             relationship_line = f" {relationship_line}"
@@ -190,8 +190,8 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # --- Active goal as felt orientation (not a task label) ---
     goal_line = ""
     try:
-        from utils.runtime_ctx import get_cycle_context
-        from affect.affect_summary import format_goal_state as _gfo
+        from brain.utils.runtime_ctx import get_cycle_context
+        from brain.affect.affect_summary import format_goal_state as _gfo
         _rtx = get_cycle_context()
         _goal = _rtx.get("committed_goal") or {}
         _orientation = _gfo(_goal)
@@ -207,7 +207,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # --- Autobiography excerpt — grounds identity in actual recent experience ---
     autobiography_line = ""
     try:
-        from utils.json_utils import load_json as _lj
+        from brain.utils.json_utils import load_json as _lj
         from brain.paths import AUTOBIOGRAPHY
         _auto = _lj(AUTOBIOGRAPHY, default_type=dict) or {}
         _chapters = _auto.get("chapters") or []
@@ -224,7 +224,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # --- Active tensions as felt language ---
     tension_line = ""
     try:
-        from utils.runtime_ctx import get_cycle_context
+        from brain.utils.runtime_ctx import get_cycle_context
         _rtx = get_cycle_context()
         _tensions = _rtx.get("active_tensions") or []
         if _tensions:
@@ -237,7 +237,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     kg_section = ""
     concept_section = ""
     try:
-        from utils.runtime_ctx import get_cycle_context as _gcc2
+        from brain.utils.runtime_ctx import get_cycle_context as _gcc2
         _rtx2 = _gcc2() or {}
         _kg = (_rtx2.get("_kg_text") or "").strip()
         _cm = (_rtx2.get("_concept_text") or "").strip()
@@ -320,8 +320,8 @@ def refresh_identity_story(
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
-        from utils.log import log_activity
+        from brain.symbolic.llm_gate import gated_generate
+        from brain.utils.log import log_activity
         raw = (gated_generate(prompt, caller="refresh_identity_story", outcome=0.70) or "").strip()
         if raw and len(raw) > 20:
             with _IDENTITY_LOCK:

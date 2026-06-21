@@ -11,7 +11,7 @@ def _curious_ctx():
 
 
 def test_zone_for_fn_splits_homeward_and_worldward():
-    import cognition.exploration_value as ev
+    import brain.cognition.exploration_value as ev
 
     assert ev.zone_for_fn("search_own_files") == "home"
     assert ev.zone_for_fn("look_around") == "home"
@@ -21,7 +21,7 @@ def test_zone_for_fn_splits_homeward_and_worldward():
 
 
 def test_worldward_reach_value_exceeds_homeward_when_other_terms_equal(monkeypatch):
-    import cognition.exploration_value as ev
+    import brain.cognition.exploration_value as ev
 
     monkeypatch.setattr(ev, "_decayed_satiety", lambda fn: 0.0)
     monkeypatch.setattr(ev, "_opportunity_cost", lambda fn: 0.0)
@@ -34,7 +34,7 @@ def test_worldward_reach_value_exceeds_homeward_when_other_terms_equal(monkeypat
 
 
 def test_self_or_non_outward_actions_get_no_reach_value(monkeypatch):
-    import cognition.exploration_value as ev
+    import brain.cognition.exploration_value as ev
 
     monkeypatch.setattr(ev, "_decayed_satiety", lambda fn: 0.0)
     monkeypatch.setattr(ev, "_opportunity_cost", lambda fn: 0.0)

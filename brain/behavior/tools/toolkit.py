@@ -12,12 +12,12 @@ from typing import Any, Dict, List, Optional, Tuple
 import requests
 from bs4 import BeautifulSoup
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.log import log_activity, log_error, log_model_issue, log_private
-from utils.core_utils import get_thinking_model
-from utils.generate_response import generate_response, llm_ok
-from utils.error_router import catch_and_route            # ← routing decorator
-from think.sandbox_runner import run_python               # ← sandboxed exec
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.log import log_activity, log_error, log_model_issue, log_private
+from brain.utils.core_utils import get_thinking_model
+from brain.utils.generate_response import generate_response, llm_ok
+from brain.utils.error_router import catch_and_route            # ← routing decorator
+from brain.think.sandbox_runner import run_python               # ← sandboxed exec
 
 from brain.paths import (
     DATA_DIR,
@@ -28,7 +28,7 @@ from brain.paths import (
     ROOT_DIR,                                            # cwd for sandbox so imports resolve
     ensure_files,
 )
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 
 # Set once after the first web_search call finds no SERPER_API_KEY, so the
 # expected "key not set" state is noted a single time rather than per call.
@@ -225,7 +225,7 @@ def web_search(query: str) -> Dict[str, Any]:
     resp.raise_for_status()
     # Egress ledger (§9.4): one Serper search left the device. Query is never stored.
     try:
-        from utils.egress import record as _egress
+        from brain.utils.egress import record as _egress
         _egress("serper")
     except Exception:
         pass
@@ -248,7 +248,7 @@ def scrape_text(url: str) -> str:
     resp.raise_for_status()
     # Egress ledger (§9.4): a page fetch left the device (URL not stored).
     try:
-        from utils.egress import record as _egress
+        from brain.utils.egress import record as _egress
         _egress("web")
     except Exception:
         pass
@@ -355,7 +355,7 @@ def tool_thinking() -> None:
 def _load_skill(module_name: str, fn_name: str):
     """Lazy-load a skill from agency/skills/ — fail silently if missing."""
     try:
-        mod = importlib.import_module(f"agency.skills.{module_name}")
+        mod = importlib.import_module(f"brain.agency.skills.{module_name}")
         return getattr(mod, fn_name, None)
     except Exception:
         return None
@@ -364,7 +364,7 @@ def _load_skill(module_name: str, fn_name: str):
 def _load_system_presence(fn_name: str):
     """Lazy-load a system-presence capability — fail silently if unavailable."""
     try:
-        from embodiment import system_presence as _sp
+        from brain.embodiment import system_presence as _sp
         return getattr(_sp, fn_name, None)
     except Exception:
         return None
@@ -377,7 +377,7 @@ def ask_llm_tool(query: str = "", purpose: str = "question") -> str:
     is disabled/unreachable it returns a plain "tool unavailable" message,
     exactly like a dead web fetch — a result to route around, not an error."""
     try:
-        from cognition.tools.ask_llm import ask_llm
+        from brain.cognition.tools.ask_llm import ask_llm
         return ask_llm({}, query=query, purpose=purpose)
     except Exception as e:
         return f"LLM tool unavailable: {e}"

@@ -86,7 +86,7 @@ def force_reply(context) -> None:
         user_input = (context.get("latest_user_input") or "").strip()
         if not user_input:
             return
-        from behavior.speech_gate import build_speech
+        from brain.behavior.speech_gate import build_speech
         emo = context.get("affect_state") or {}
         reply = (build_speech(user_input, context, emo) or "").strip()
         if not reply:
@@ -96,13 +96,13 @@ def force_reply(context) -> None:
         sys.stdout.write(f"REPLY: {reply}\n")
         sys.stdout.flush()
         try:
-            from utils.log import log_activity
+            from brain.utils.log import log_activity
             log_activity(f"REPLY: {reply[:200]}")
         except Exception:
             pass
         # Log it so the evaluator scores it next turn (feeds the learning loop).
         try:
-            from think.speech_log import log_reply
+            from brain.think.speech_log import log_reply
             log_reply(user_input, reply,
                       context.get("_last_speech_plan", {}) or {},
                       context.get("_last_speech_comprehension", {}) or {})

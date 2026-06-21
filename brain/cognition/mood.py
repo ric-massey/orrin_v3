@@ -30,8 +30,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any, Dict
 
-from utils.log import log_private
-from utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import MOOD_FILE
 
 

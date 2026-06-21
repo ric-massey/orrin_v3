@@ -8,7 +8,7 @@ import json
 
 import pytest
 
-import utils.failure_counter as fc
+import brain.utils.failure_counter as fc
 
 
 class _StubBridge:

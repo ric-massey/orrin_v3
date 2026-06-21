@@ -146,7 +146,7 @@ def _sym_dict_lookup(topics: List[str]) -> str:
     if not topics:
         return ""
     try:
-        from symbolic.symbolic_dictionary import define
+        from brain.symbolic.symbolic_dictionary import define
         for topic in topics:
             for token in topic.lower().split():
                 if len(token) > 3:
@@ -354,7 +354,7 @@ def _plan_core(
         # learning/up to?" deserves a real answer. Surface a recent finding by
         # recency rather than collapsing to a terse mood report.
         try:
-            from think.speech_memory import recent_findings as _recent_findings
+            from brain.think.speech_memory import recent_findings as _recent_findings
             _rf = _recent_findings(2)
         except Exception:
             _rf = []

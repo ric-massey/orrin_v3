@@ -147,7 +147,7 @@ def _felt_intensity(
     value if the adaptation machinery can't be loaded, so attention never fails
     closed."""
     try:
-        from affect.affect_dynamics import effective_intensity as _ei
+        from brain.affect.affect_dynamics import effective_intensity as _ei
         return _ei(emotion, val, hedonic_baselines or {})
     except Exception:
         return val

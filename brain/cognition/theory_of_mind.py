@@ -60,14 +60,14 @@
 #
 # Storage: `tom_state` field in relationships.json under the person's record.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Any, Dict, Optional, Tuple
 
-from utils.log import log_private
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Linguistic signal detectors ───────────────────────────────────────────────
@@ -436,7 +436,7 @@ def _compute_confidence(person_id: str, tom: Dict[str, Any], topic_stability: fl
        inference confidence; topic broke → brief confidence dip.
     """
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import RELATIONSHIPS_FILE
         rels  = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         r     = rels.get(person_id) or {}
@@ -477,7 +477,7 @@ def _load_tom_state(person_id: str) -> Dict[str, Any]:
     if not person_id:
         return {}
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("tom_state") or {}
@@ -489,7 +489,7 @@ def _save_tom_state(person_id: str, state: Dict[str, Any]) -> None:
     if not person_id:
         return
     try:
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         if person_id not in rels or not isinstance(rels.get(person_id), dict):
@@ -502,7 +502,7 @@ def _save_tom_state(person_id: str, state: Dict[str, Any]) -> None:
 
 def _person_model_for(person_id: str) -> Dict[str, Any]:
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("person_model") or {}

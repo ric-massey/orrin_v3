@@ -21,9 +21,9 @@ import ast
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from think.scratchpad import scratchpad_append
-from utils.llm_router import routed_response
-from utils.log import log_activity, log_private
+from brain.think.scratchpad import scratchpad_append
+from brain.utils.llm_router import routed_response
+from brain.utils.log import log_activity, log_private
 
 
 def think_generate(

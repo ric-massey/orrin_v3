@@ -10,10 +10,10 @@ import types
 
 import pytest
 
-from utils import llm_providers as providers
-from utils.llm_providers.openai_provider import OpenAIProvider, OpenAICompatibleProvider
-from utils.llm_providers.anthropic_provider import AnthropicProvider, tools_openai_to_anthropic
-from utils.llm_providers.gemini_provider import GeminiProvider, tools_openai_to_gemini
+from brain.utils import llm_providers as providers
+from brain.utils.llm_providers.openai_provider import OpenAIProvider, OpenAICompatibleProvider
+from brain.utils.llm_providers.anthropic_provider import AnthropicProvider, tools_openai_to_anthropic
+from brain.utils.llm_providers.gemini_provider import GeminiProvider, tools_openai_to_gemini
 
 _TOOLS = [{
     "type": "function",
@@ -142,13 +142,13 @@ def _reset_provider_state():
     providers.reinit()
     yield
     providers.reinit()
-    from utils import prefs
+    from brain.utils import prefs
     prefs.set("llm_provider", "openai")
     prefs.set("llm_model", "")
 
 
 def test_resolver_defaults_to_openai_for_backcompat():
-    from utils import prefs, secrets
+    from brain.utils import prefs, secrets
     prefs.set("llm_provider", "openai")
     secrets.set_key("openai", "sk-live")
     providers.reinit()
@@ -158,14 +158,14 @@ def test_resolver_defaults_to_openai_for_backcompat():
 
 
 def test_resolver_none_is_symbolic_only():
-    from utils import prefs
+    from brain.utils import prefs
     prefs.set("llm_provider", "none")
     providers.reinit()
     assert providers.resolve() is None
 
 
 def test_resolver_selects_anthropic_with_keychain_key():
-    from utils import prefs, secrets
+    from brain.utils import prefs, secrets
     prefs.set("llm_provider", "anthropic")
     prefs.set("llm_model", "claude-opus-4-8")
     secrets.set_key("anthropic", "ak-live")

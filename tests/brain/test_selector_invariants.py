@@ -10,8 +10,8 @@
 # A selector return value that fails this check is a silent dispatch failure.
 import random
 
-import think.think_utils.select_function as sf
-from registry.cognition_registry import COGNITIVE_FUNCTIONS
+import brain.think.think_utils.select_function as sf
+from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
 
 
 def _assert_dispatchable(name):

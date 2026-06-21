@@ -11,7 +11,7 @@
 #   resolved_by : str|null  — "retrieval_A" | "goal_B" | "pruned"
 #   resolved_ts : float|null
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import os
@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from brain.paths import EVALUATOR_WAL
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _lock = threading.Lock()
@@ -45,7 +45,7 @@ def _atomic_append(path: Path, obj: Dict[str, Any]) -> None:
     except Exception as _unlink_err:
         # Log but don't crash — orphan tmp files are a minor disk-hygiene issue, not a data loss.
         try:
-            from utils.log import log_model_issue as _lmi
+            from brain.utils.log import log_model_issue as _lmi
             _lmi(f"[evaluator_wal] Failed to clean up tmp file {tmp_name}: {_unlink_err}")
         except Exception as _e:
             record_failure("evaluator_wal._atomic_append", _e)

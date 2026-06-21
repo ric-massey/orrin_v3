@@ -20,16 +20,16 @@
 # All changes are logged to data/self_improvement_log.json for transparency.
 # Entry point: run_self_improvement(context) → {changes_made, proposals}
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 IMPROVEMENT_LOG  = DATA_DIR / "self_improvement_log.json"
@@ -84,8 +84,8 @@ def run_self_improvement(context: Optional[Dict] = None) -> Dict:
 
 def _rule_rehabilitation(changes: List[Dict]) -> int:
     try:
-        from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-        from symbolic.ground_truth import grounding_score as _gs
+        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        from brain.symbolic.ground_truth import grounding_score as _gs
     except Exception:
         return 0
 
@@ -137,7 +137,7 @@ def _rule_rehabilitation(changes: List[Dict]) -> int:
     if count:
         save_json(SYMBOLIC_RULES_FILE, rules)
         try:
-            from symbolic import rule_engine as _re
+            from brain.symbolic import rule_engine as _re
             _re._rules_cache = []
         except Exception as _e:
             record_failure("self_improvement._rule_rehabilitation", _e)
@@ -154,8 +154,8 @@ def _router_calibration(changes: List[Dict], proposals: List[Dict]) -> int:
     Also inject calibration signals into the self-model's weak/strong lists.
     """
     try:
-        from symbolic.symbolic_self_model import get_symbolic_self_model
-        from symbolic.prediction_engine import get_domain_error_rates
+        from brain.symbolic.symbolic_self_model import get_symbolic_self_model
+        from brain.symbolic.prediction_engine import get_domain_error_rates
     except Exception:
         return 0
 
@@ -200,7 +200,7 @@ def _router_calibration(changes: List[Dict], proposals: List[Dict]) -> int:
 
 def _meta_rule_pruning(changes: List[Dict]) -> int:
     try:
-        from symbolic.meta_rules import get_meta_rule_stats, _load_meta_rules, _save_meta_rules
+        from brain.symbolic.meta_rules import get_meta_rule_stats, _load_meta_rules, _save_meta_rules
     except Exception:
         return 0
 

@@ -18,12 +18,12 @@
 # speech_pipeline.py computes both before calling here so the work is never
 # duplicated — intent classification and memory retrieval each happen once.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_activity, log_error
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_error
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -53,7 +53,7 @@ def generate_speech(
     try:
         # ── Stage 1: Comprehension ────────────────────────────────────────────
         if comprehension is None:
-            from think.speech_comprehension import parse_input
+            from brain.think.speech_comprehension import parse_input
             comprehension = parse_input(user_input, context)
         log_activity(
             f"[speech] S1 intent={comprehension['intent']} "
@@ -62,7 +62,7 @@ def generate_speech(
 
         # ── Stage 2: Memory Retrieval ─────────────────────────────────────────
         if memories is None:
-            from think.speech_memory import retrieve_relevant
+            from brain.think.speech_memory import retrieve_relevant
             memories = retrieve_relevant(
                 comprehension["topics"], n=5, affect_state=affect_state
             )
@@ -70,7 +70,7 @@ def generate_speech(
         log_activity(f"[speech] S2 retrieved={len(memories)} top_score={top_score}")
 
         # ── Stage 3: Response Planning ────────────────────────────────────────
-        from think.speech_planner import plan_response
+        from brain.think.speech_planner import plan_response
         goal = context.get("committed_goal") or {}
         plan = plan_response(
             comprehension, memories, inner, affect_state, goal,
@@ -85,7 +85,7 @@ def generate_speech(
         # ── Stage 4: Sentence Construction ────────────────────────────────────
         exemplars: list = []
         try:
-            from think.speech_log import get_exemplars
+            from brain.think.speech_log import get_exemplars
             exemplars = get_exemplars(
                 topics    = comprehension["topics"],
                 min_score = 0.40,
@@ -98,7 +98,7 @@ def generate_speech(
         except Exception as _e:
             record_failure("speech_generator.generate_speech", _e)
 
-        from think.speech_builder import build_reply
+        from brain.think.speech_builder import build_reply
         reply = build_reply(plan, comprehension, exemplars=exemplars)
         log_activity(f"[speech] S4 → {reply[:80]}")
 
@@ -107,7 +107,7 @@ def generate_speech(
         # no-op until schooling makes the organ fluent; then he speaks in his own
         # learned voice, with the template reply as the safe fallback.
         try:
-            from cognition.language.voice import lm_draft
+            from brain.cognition.language.voice import lm_draft
             own = lm_draft(context, plan, comprehension)
             if own:
                 reply = own

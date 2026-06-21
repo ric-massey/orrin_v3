@@ -6,8 +6,8 @@ import math
 
 import pytest
 
-from cognition import body_budget as bb
-from cognition import metabolism as mb
+from brain.cognition import body_budget as bb
+from brain.cognition import metabolism as mb
 
 
 _GB = float(1024 * 1024 * 1024)
@@ -79,7 +79,7 @@ def test_small_body_slows_the_clock():
 # --------------------------------------------------------- host interoception ---
 
 def test_host_interoception_silent_in_infancy(monkeypatch):
-    import cognition.host_interoception as hi
+    import brain.cognition.host_interoception as hi
     hi._host_bands = None
     # Force a tiny sample set → host bands not converged → infancy → no felt stress.
     monkeypatch.setattr(hi, "read_host_vitals", lambda: {
@@ -92,7 +92,7 @@ def test_host_interoception_silent_in_infancy(monkeypatch):
 
 
 def test_host_interoception_feels_departure_after_convergence(monkeypatch):
-    import cognition.host_interoception as hi
+    import brain.cognition.host_interoception as hi
     hi._host_bands = None
     g = hi._bands()
     # Converge the bands on a calm, breathing host.
@@ -110,7 +110,7 @@ def test_host_interoception_feels_departure_after_convergence(monkeypatch):
 
 
 def test_battery_drain_is_felt_gently(monkeypatch):
-    import cognition.host_interoception as hi
+    import brain.cognition.host_interoception as hi
     hi._host_bands = None
     g = hi._bands()
     for i in range(400):
@@ -129,7 +129,7 @@ def test_battery_drain_is_felt_gently(monkeypatch):
 # -------------------------------------------------------------------- infancy ---
 
 def test_infancy_scenarios(monkeypatch):
-    import cognition.infancy as inf
+    import brain.cognition.infancy as inf
     # true birth: no learned body AND no life
     monkeypatch.setattr(inf, "somatic_infancy", lambda: True)
     monkeypatch.setattr(inf, "developmental_infancy", lambda: True)

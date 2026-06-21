@@ -53,16 +53,16 @@
 #     the capacity to locate oneself at a point in subjective time and feel the
 #     continuity between past-now-future. Stabilizes as the session deepens.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 from typing import Any, Dict, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import TEMPORAL_STATE_FILE
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Constants ──────────────────────────────────────────────────────────────────
@@ -425,7 +425,7 @@ def _apply_resource_deficit_nudge(context: Dict[str, Any], felt_cycles: float, d
     Orrin should prefer consolidation and shorter responses.
     """
     try:
-        from cognition.dreaming.dream_cycle import dreaming_now
+        from brain.cognition.dreaming.dream_cycle import dreaming_now
         if dreaming_now():
             return
     except Exception:

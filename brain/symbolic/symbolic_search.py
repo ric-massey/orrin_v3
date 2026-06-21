@@ -8,13 +8,13 @@
 # This replaces "ask the LLM what it knows" for questions that are answerable
 # from Orrin's local symbolic world model.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Dict, List, Optional, Set
 
-from utils.log import log_activity
-from symbolic.rule_engine import match_all
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.symbolic.rule_engine import match_all
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _MAX_DEPTH   = 3    # BFS hops from seed entities
@@ -28,7 +28,7 @@ def search(query: str, *, context: Optional[Dict] = None) -> Optional[str]:
     Returns a compact answer string if sufficient coverage found, else None.
     """
     try:
-        from cognition.knowledge_graph import query_relevant, get_neighbors
+        from brain.cognition.knowledge_graph import query_relevant, get_neighbors
     except Exception as e:
         log_activity(f"[symbolic_search] kg import failed: {e}")
         return None
@@ -101,7 +101,7 @@ def search(query: str, *, context: Optional[Dict] = None) -> Optional[str]:
 def can_answer_symbolically(query: str, *, min_facts: int = 2) -> bool:
     """Quick check: does the knowledge graph have enough coverage for this query?"""
     try:
-        from cognition.knowledge_graph import query_relevant
+        from brain.cognition.knowledge_graph import query_relevant
         seeds = query_relevant(query, limit=min_facts)
         seeds = [e for e in seeds if e.get("confidence", 1.0) >= _MIN_CONF]
         return len(seeds) >= min_facts

@@ -2,7 +2,7 @@
 # Cooperative in-process lock manager for named exclusive resources (TTL, reentrancy, simple fairness)
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 import threading

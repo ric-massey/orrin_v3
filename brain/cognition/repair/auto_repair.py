@@ -1,29 +1,29 @@
 # cognition/repair/auto_repair.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Dict, Optional, Tuple
 from pathlib import Path
 import shutil
 
-from utils.log import log_activity, log_model_issue
-from utils.json_utils import load_json, save_json
-from cognition.reflection.meta_reflect import meta_reflect
-from cog_memory.working_memory import update_working_memory
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_model_issue
+from brain.utils.json_utils import load_json, save_json
+from brain.cognition.reflection.meta_reflect import meta_reflect
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.failure_counter import record_failure
 
 # Registries (support hot-reload)
 try:
-    from registry.cognition_registry import refresh as refresh_cog
+    from brain.registry.cognition_registry import refresh as refresh_cog
 except Exception:
     refresh_cog = None
 try:
-    from registry.behavior_registry import refresh as refresh_beh
+    from brain.registry.behavior_registry import refresh as refresh_beh
 except Exception:
     refresh_beh = None
 
 # Think revision & paths
 try:
-    from behavior.revise import revise_think
+    from brain.behavior.revise import revise_think
 except Exception:
     revise_think = None
 
@@ -39,7 +39,7 @@ _log = get_logger(__name__)
 def _clear_selector_cache() -> None:
     """Clear any cached action list in the selector (if present)."""
     try:
-        from think.think_utils.select_function import _load_actions  # type: ignore
+        from brain.think.think_utils.select_function import _load_actions  # type: ignore
         if hasattr(_load_actions, "cache_clear"):
             _load_actions.cache_clear()  # only if wrapped in lru_cache
     except Exception as _e:
@@ -115,7 +115,7 @@ def _recover_json_artifacts() -> None:
     # Sanitize null/non-finite values inside emotion, bandit, and cycle-count state.
     # This catches the float(None) crash pattern that shape-only checks miss.
     try:
-        from utils.state_guard import sanitize_all
+        from brain.utils.state_guard import sanitize_all
         sanitize_all()
     except Exception as e:
         log_model_issue(f"[auto_repair] state_guard sanitize_all failed: {e}")
@@ -180,7 +180,7 @@ def reflect_on_error(ev: Dict[str, Any]) -> None:
         update_working_memory(f"🛠️ Repair plan: {str(plan)[:400]}")
     except Exception as _e:
         try:
-            from utils.log import log_model_issue
+            from brain.utils.log import log_model_issue
             log_model_issue(f"[reflect_on_error] repair reflection failed: {_e}")
         except Exception as _e:
             record_failure("auto_repair.reflect_on_error", _e)

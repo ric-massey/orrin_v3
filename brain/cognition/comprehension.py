@@ -13,13 +13,13 @@ working memory events, goal relevance signals. He doesn't understand words.
 He feels what they do to him.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict
 
-from utils.log import log_private
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -55,8 +55,8 @@ def _parse(user_text: str) -> Dict[str, Any]:
     if not llm_callable_by("comprehension"):
         return _fallback(user_text)
     try:
-        from utils.llm_router import routed_response
-        from utils.json_utils import extract_json
+        from brain.utils.llm_router import routed_response
+        from brain.utils.json_utils import extract_json
         raw = (routed_response(
             _PARSE_PROMPT.format(text=user_text[:500]),
             "comprehension/parse",
@@ -89,7 +89,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
     # Emotional contagion from parsed emotion (more precise than raw keyword detection)
     if emotion not in ("neutral", "unknown", "") and intensity > 0.05:
         try:
-            from cognition.contagion import apply_emotional_contagion
+            from brain.cognition.contagion import apply_emotional_contagion
             apply_emotional_contagion(user_text, context)
         except Exception as _e:
             record_failure("comprehension._apply_to_state", _e)
@@ -99,7 +99,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
     # that arrives 5-8 cycles later. Below threshold: contagion handles it directly.
     if emotion not in ("neutral", "unknown", "") and intensity > 0.05:
         try:
-            from affect.integration_lag import maybe_apply_integration_lag
+            from brain.affect.integration_lag import maybe_apply_integration_lag
             maybe_apply_integration_lag(
                 emotion, intensity, user_text[:80], context
             )
@@ -108,7 +108,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
 
     # Working memory event — what arrived, as a structured signal not English narration
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         update_working_memory({
             "content":    f"[input/{intent}] {concept}",
             "event_type": "user_input",
@@ -134,7 +134,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
 
 def _fallback(user_text: str) -> Dict[str, Any]:
     """Rule-based fallback when LLM parse fails."""
-    from affect.affect import detect_affect
+    from brain.affect.affect import detect_affect
     result    = detect_affect(user_text, use_gpt=False)
     emotion   = "neutral"
     intensity = 0.0

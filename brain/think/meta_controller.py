@@ -24,16 +24,16 @@
 #     many rounds it should run (separate from depth_bandit, which uses harder
 #     outcome data).  Based on current EWMA success rate.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 import time
 from typing import Any, Dict, List, Literal, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 MetaDecision = Literal["think_more", "act", "output", "defer"]
@@ -185,7 +185,7 @@ def _draft_confidence(context: Dict[str, Any]) -> float:
     # confident, correct the reading so "think more vs act" uses a calibrated
     # number (Nelson & Narens 1990 monitoring → control).
     try:
-        from cognition.calibration import recalibrate_confidence
+        from brain.cognition.calibration import recalibrate_confidence
         return recalibrate_confidence(context, raw)
     except Exception:
         return raw
@@ -194,7 +194,7 @@ def _draft_confidence(context: Dict[str, Any]) -> float:
 def _depth_preference() -> float:
     """0.0–1.0 preference for deep thinking from the thinking_depth bandit."""
     try:
-        from cognition.planning.thinking_depth import depth_as_signal
+        from brain.cognition.planning.thinking_depth import depth_as_signal
         return depth_as_signal()
     except Exception:
         return 0.5
@@ -202,7 +202,7 @@ def _depth_preference() -> float:
 
 def _emit(decision: str, context: Dict[str, Any], round_num: int, reason: str = "") -> None:
     try:
-        from think.thought_stream import emit_thought
+        from brain.think.thought_stream import emit_thought
         goal       = (context.get("committed_goal") or {}).get("title", "")
         confidence = round(_draft_confidence(context), 2)
         debt       = int(context.get("action_debt", 0) or 0)
@@ -255,7 +255,7 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
 
         # 1) Direct causal forward model: what does this action tend to cause?
         try:
-            from symbolic.causal_graph import get_effects
+            from brain.symbolic.causal_graph import get_effects
             for e in get_effects(intent, min_score=0.4)[:6]:
                 conclusions.append(str(e.get("effect", "")).lower())
                 confs.append(float(e.get("causal_score", 0.5)))
@@ -264,7 +264,7 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
 
         # 2) Rule/causal chain rollout — skip analogy steps (no valence signal).
         try:
-            from symbolic.temporal_planner import plan as _tplan
+            from brain.symbolic.temporal_planner import plan as _tplan
             proj = _tplan(intent, horizon="short")
             for s in (proj.get("steps") or []):
                 if s.get("type") in ("rule", "causal_edge"):
@@ -283,7 +283,7 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
 
         # Temper by how reliable predictions are in this domain.
         try:
-            from symbolic.prediction_engine import domain_weighted_prediction_error
+            from brain.symbolic.prediction_engine import domain_weighted_prediction_error
             reliability = 1.0 - min(1.0, domain_weighted_prediction_error(intent))
         except Exception:
             reliability = 0.6
@@ -311,7 +311,7 @@ def simulate_outcome(context: Dict[str, Any], content: str) -> bool:
     Below 0.35, skips simulation — too uncertain for the result to be trustworthy.
     """
     try:
-        from think.simulate import simulate_lookahead
+        from brain.think.simulate import simulate_lookahead
         goal_title  = (context.get("committed_goal") or {}).get("title", "")
         intent      = (f"Output toward goal '{goal_title}': {content[:200]}"
                        if goal_title else f"Output: {content[:200]}")
@@ -410,7 +410,7 @@ def decide(
 
     # ── 0. External UI control signal ─────────────────────────────────────────
     try:
-        from think.thought_stream import consume_meta_control
+        from brain.think.thought_stream import consume_meta_control
         ui_cmd = consume_meta_control()
         if ui_cmd == "pause":
             log_private("[meta_ctrl] UI pause → defer")

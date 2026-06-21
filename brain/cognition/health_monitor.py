@@ -24,15 +24,15 @@
 # injects a mild distress signal so Orrin knows something is off.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import time
 from pathlib import Path
 from typing import Any, Dict
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private, log_activity
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private, log_activity
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Thresholds ─────────────────────────────────────────────────────────────────
@@ -167,7 +167,7 @@ def _apply_emotional_drain(context: Dict[str, Any], delta: float = 0.06) -> None
 def _inject_bandit_reward(reward: float) -> None:
     """Give the bandit a positive setpoint_regulation reward tagged to the virtual action 'setpoint_regulation'."""
     try:
-        from think.bandit.contextual_bandit import update as _bandit_update
+        from brain.think.bandit.contextual_bandit import update as _bandit_update
         _bandit_update("setpoint_regulation_reward", features={"health_bonus": 1.0}, reward=reward)
     except Exception as _e:
         log_private(f"[health] bandit reward injection failed: {_e}")
@@ -185,7 +185,7 @@ def review_failures_internal(context: Dict[str, Any]) -> int:
     Returns the number of sites flagged.
     """
     try:
-        from utils.failure_counter import get_summary
+        from brain.utils.failure_counter import get_summary
         summary = get_summary()
     except Exception as _e:
         record_failure("health_monitor.review_failures_internal", _e)
@@ -203,7 +203,7 @@ def review_failures_internal(context: Dict[str, Any]) -> int:
         prev = int(last_counts.get(site) or 0)
         if count >= _FAULT_NOTICE_MIN_COUNT and count > prev:
             try:
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
                         f"[internal fault] Part of me keeps failing quietly: '{site}' "
@@ -236,7 +236,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
     """
     # ── Read current health score from setpoint_regulation daemon ─────────────────────
     try:
-        from embodiment.setpoint_regulation import get_state as _h1_get
+        from brain.embodiment.setpoint_regulation import get_state as _h1_get
         _h1 = _h1_get()
         health_score = float(_h1.get("health_score", 1.0) or 1.0)
     except Exception:
@@ -283,7 +283,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
 
                 # Working memory note — Orrin should *know* he feels well
                 try:
-                    from cog_memory.working_memory import update_working_memory as _uwm
+                    from brain.cog_memory.working_memory import update_working_memory as _uwm
                     _uwm({
                         "content": f"[setpoint_regulation] {note}",
                         "event_type": "setpoint_regulation_reward",
@@ -315,7 +315,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
         if state["sick_streak"] >= _SICK_STREAK_REQ:
             _apply_emotional_drain(context)
             try:
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
                         f"[health] I've had {state['sick_streak']} consecutive low-health cycles "

@@ -1,13 +1,13 @@
 # brain/cognition/selfhood/relationships.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Tuple
-from utils.json_utils import load_json, modify_json, AbortModify
-from utils.emotion_utils import detect_affect_keyword
-from utils.log import log_error, log_private
+from brain.utils.json_utils import load_json, modify_json, AbortModify
+from brain.utils.emotion_utils import detect_affect_keyword
+from brain.utils.log import log_error, log_private
 from brain.paths import RELATIONSHIPS_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 MAX_HISTORY = 50
@@ -141,7 +141,7 @@ def _update_arc(r: Dict[str, Any], context: Dict[str, Any]) -> None:
     # you don't have an "established" relationship with someone whose name you
     # don't know (audit §4: forming→established in 16 minutes with "someone").
     try:
-        from cognition.selfhood.person_detector import get_person_type
+        from brain.cognition.selfhood.person_detector import get_person_type
         _pid = str(context.get("person_id") or context.get("user_id") or "")
         if _pid and get_person_type(_pid) == "unknown" and phase not in ("forming", "strained"):
             phase = "forming"
@@ -159,7 +159,7 @@ def _update_arc(r: Dict[str, Any], context: Dict[str, Any]) -> None:
     # Surface phase transitions to working memory
     if phase != prev_phase and prev_phase:
         try:
-            from cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.working_memory import update_working_memory
             update_working_memory({
                 "content": (
                     f"[relationship/arc] Relationship phase shifted: "
@@ -314,7 +314,7 @@ def update_relationship_model(context):
 
         # working memory note on notable change
         if notable_change:
-            from cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.working_memory import update_working_memory
             update_working_memory(
                 f"[Relationship/{display}] impression='{r.get('impression','')}', "
                 f"influence={r.get('influence_score',0.5):.2f}, "
@@ -473,7 +473,7 @@ def _apply_relationship_emotion_feedback(
         core = emo.get("core_signals", emo) or {}
 
         if met_count >= 2:
-            from affect.homeostasis import pump_signal
+            from brain.affect.homeostasis import pump_signal
             pump_signal(core, "positive_valence", 0.06)
             pump_signal(core, "expected_gain",    0.04)
         elif unmet_count >= 3 and emotion in neg_emotions:
@@ -545,7 +545,7 @@ def update_person_model(user_id: str) -> None:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="relationships", outcome=0.65) or "").strip()
         if raw.startswith("```"):
             raw = raw.split("```")[1]
@@ -621,7 +621,7 @@ def update_your_world(user_id: str) -> None:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="relationships", outcome=0.65) or "").strip()
         if raw.startswith("```"):
             raw = raw.split("```")[1]

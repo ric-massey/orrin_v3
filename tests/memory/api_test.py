@@ -1,5 +1,5 @@
 # tests/memory_tests/api_test.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import numpy as np
 import pytest
 

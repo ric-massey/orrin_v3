@@ -1,5 +1,5 @@
 def test_goal_zone_classifies_homeward_and_worldward():
-    import cognition.intrinsic_goals as ig
+    import brain.cognition.intrinsic_goals as ig
 
     assert ig._goal_zone(
         "Explore my local workspace",
@@ -19,7 +19,7 @@ def test_goal_zone_classifies_homeward_and_worldward():
 
 
 def test_mk_goal_stamps_zone_orientation_and_tags():
-    import cognition.intrinsic_goals as ig
+    import brain.cognition.intrinsic_goals as ig
 
     home = ig._mk_goal(
         "Inspect my files for recent changes",

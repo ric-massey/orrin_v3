@@ -5,15 +5,15 @@
 # tool_runner. The result arrives asynchronously and gets tagged
 # kind="world_perception" source="outward" in long memory.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Dict, Any
 
-from utils.log import log_activity, log_private
-from utils.json_utils import load_json
-from utils.failure_counter import record_failure
-from cog_memory.long_memory import update_long_memory
+from brain.utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json
+from brain.utils.failure_counter import record_failure
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import THREADS_FILE, LONG_MEMORY_FILE
 _log = get_logger(__name__)
 
@@ -28,7 +28,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
     when they aren't. See EXPLORE_EXPLOIT_VALUE_PLAN_2026-06-16.
     """
     import os
-    from cognition.exploration_value import ReachOutcome
+    from brain.cognition.exploration_value import ReachOutcome
 
     context = context or {}
     if not os.environ.get("SERPER_API_KEY"):
@@ -40,8 +40,8 @@ def look_outward(context: Dict[str, Any] = None) -> str:
         _result = None
         _realized_fn = ""
         for _fn_name, _import in (
-            ("wikipedia_search", "cognition.wikipedia_search.wikipedia_search"),
-            ("research_topic", "cognition.web_research.research_topic"),
+            ("wikipedia_search", "brain.cognition.wikipedia_search.wikipedia_search"),
+            ("research_topic", "brain.cognition.web_research.research_topic"),
         ):
             try:
                 _mod, _attr = _import.rsplit(".", 1)
@@ -55,7 +55,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
                 _result = None
         if not _result:
             try:
-                from cognition.search_own_files import search_own_files
+                from brain.cognition.search_own_files import search_own_files
                 _result = search_own_files(context)
                 _realized_fn = "search_own_files"
             except Exception as _sof_e:
@@ -67,7 +67,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
             _gain = _inner.info_gain
         else:
             try:
-                from cognition.exploration_value import record_reach_outcome
+                from brain.cognition.exploration_value import record_reach_outcome
                 _gain = record_reach_outcome("look_outward", str(_result), None, context)
             except Exception:
                 _gain = 0.0
@@ -101,7 +101,7 @@ def look_outward(context: Dict[str, Any] = None) -> str:
     # drain_queue() will call it when the search result arrives so the result is
     # written to long memory as event_type="world_perception", not "tool_use".
     try:
-        from agency.tool_runner import request as _request
+        from brain.agency.tool_runner import request as _request
         _request(
             tool_name="web_search",
             reason=f"[look_outward] exploration_drive-driven: {query}",
@@ -170,12 +170,12 @@ def ingest_outward_result(result_text: str, query: str, context: Dict[str, Any] 
     # live; one that adds nothing satiates it.
     _kg_delta = None
     try:
-        from cognition.knowledge_graph import observe as _kg_observe
+        from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_delta = _kg_observe(query + " " + result_text[:600], source="web_search", context=context)
     except Exception as _e:
         record_failure("look_outward.ingest_outward_result", _e)
     try:
-        from cognition.exploration_value import record_reach_outcome
+        from brain.cognition.exploration_value import record_reach_outcome
         record_reach_outcome("look_outward", result_text, _kg_delta, context)
     except Exception:
         pass

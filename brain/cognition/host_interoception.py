@@ -25,10 +25,10 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 
-from core.runtime_log import get_logger
-from utils.log import log_private
+from brain.core.runtime_log import get_logger
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from cognition.body_band import BodyBands
+from brain.cognition.body_band import BodyBands
 
 _log = get_logger(__name__)
 
@@ -72,7 +72,7 @@ def read_host_vitals() -> Dict[str, float]:
 def _nudge(context: Dict, key: str, delta: float, source: str) -> None:
     """Gentle, capped, TTL'd affect nudge via the arbiter (single-writer discipline)."""
     try:
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
         submit_affect(context, key, delta, weight=0.5, source=source, ttl_cycles=3)
     except Exception:
         pass

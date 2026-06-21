@@ -20,7 +20,7 @@
 #   - self_extension.py   → verify_skill(name, code, description, llm_review=True)
 #   - knowledge_graph.py  → gaps and synthesized tools are added as entities
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 _log = get_logger(__name__)
 
 
@@ -33,14 +33,14 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 from brain.paths import (
     WORKING_MEMORY_FILE, PROPOSED_TOOLS_JSON, SKILL_SYNTHESIS_FILE,
 )
-from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 
 _SELF_GENERATED_DIR = Path(__file__).resolve().parent / "self_generated"
 _SYNTHESIZE_COOLDOWN_S = 3 * 3600    # max one synthesis attempt per 3h
@@ -250,7 +250,7 @@ def _run_execution_check(name: str, code: str) -> Tuple[bool, str, str]:
     """)
 
     try:
-        from think.sandbox_runner import run_python
+        from brain.think.sandbox_runner import run_python
         result = run_python(harness, timeout=8.0)
     except Exception as e:
         return False, "", str(e)
@@ -294,7 +294,7 @@ def _run_behavioral_review(name: str, code: str, description: str) -> Tuple[bool
         f'{{\"rating\": 0-10, \"assessment\": \"2-3 sentences\", \"safe\": true/false}}'
     )
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="skill_synthesis/review"), "skill_synthesis") or ""
         import json as _json
         m = re.search(r'\{.*\}', raw, re.DOTALL)
@@ -482,7 +482,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
     # Pull KG context relevant to this gap
     kg_context = ""
     try:
-        from cognition.knowledge_graph import get_context_for_prompt as _kg_ctx
+        from brain.cognition.knowledge_graph import get_context_for_prompt as _kg_ctx
         kg_context = _kg_ctx(gap_text, limit=3)
     except Exception as _e:
         record_failure("skill_synthesis.synthesize_skill", _e)
@@ -497,7 +497,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
     prompt = _build_synthesis_prompt(fn_name, description, gap_text, kg_context, wm_recent)
 
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="skill_synthesis/synthesize"), "skill_synthesis") or ""
     except Exception as e:
         return {"success": False, "fn_name": fn_name, "error": f"LLM unavailable: {e}"}
@@ -549,7 +549,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
         spec.loader.exec_module(mod)
         fn = getattr(mod, fn_name, None)
         if callable(fn):
-            from registry.cognition_registry import COGNITIVE_FUNCTIONS
+            from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
             COGNITIVE_FUNCTIONS[fn_name] = {"function": fn, "is_cognition": True}
             log_activity(f"[skill_synthesis] registered: {fn_name}")
         else:
@@ -561,7 +561,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
 
     # Inject into self_extension's proposal lifecycle as "committed"
     try:
-        from cognition.self_extension import _proposal_id as _pid
+        from brain.cognition.self_extension import _proposal_id as _pid
         proposals = load_json(PROPOSED_TOOLS_JSON, default_type=list) or []
         if isinstance(proposals, list):
             proposals.append({
@@ -584,7 +584,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
 
     # Record in knowledge graph
     try:
-        from cognition.knowledge_graph import add_entity, add_relation
+        from brain.cognition.knowledge_graph import add_entity, add_relation
         add_entity(fn_name, "tool", properties={"synthesized": "true", "description": description[:60]},
                    confidence=0.65, source="skill_synthesis")
         add_relation("Orrin", "created", fn_name, confidence=0.80, source="skill_synthesis")
@@ -646,7 +646,7 @@ def detect_and_synthesize(context: Dict[str, Any]) -> Dict[str, Any]:
 
     # Record all gaps as knowledge graph concepts
     try:
-        from cognition.knowledge_graph import add_entity
+        from brain.cognition.knowledge_graph import add_entity
         for g in gaps[:3]:
             snippet = g["snippet"][:40].replace(" ", "_")
             add_entity(f"gap:{snippet}", "concept",

@@ -1,10 +1,10 @@
-from utils.json_utils import load_json, extract_json, save_json
-from utils.log import log_model_issue
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.self_model import get_self_model
-from cog_memory.working_memory import update_working_memory
-from affect.reflect_on_affect_model import reflect_on_emotion_model
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.json_utils import load_json, extract_json, save_json
+from brain.utils.log import log_model_issue
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.self_model import get_self_model
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.reflect_on_affect_model import reflect_on_emotion_model
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 from brain.paths import WORKING_MEMORY_FILE, AFFECT_MODEL_FILE, CUSTOM_EMOTION, LONG_MEMORY_FILE
 
 def discover_new_emotion(context=None):

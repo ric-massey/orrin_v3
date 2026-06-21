@@ -28,7 +28,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 _THRESHOLD_START = 0.45   # stagnation_signal must exceed this to increment counter
 _THRESHOLD_RESET = 0.30   # below this → reset
@@ -74,7 +74,7 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         return  # not yet acute
 
     # Prepare signal injection
-    from utils.signal_utils import create_signal as _cs
+    from brain.utils.signal_utils import create_signal as _cs
 
     if cycles < _PENALTY_SIGNAL_THRESHOLD:
         # Mild discomfort

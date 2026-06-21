@@ -2,10 +2,10 @@
 # Build a fast metric sampler that emits change events to the Alive bus
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Callable, Optional
 from .sys_events import record_event
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def build_fast_sampler(get_memory_health: Callable[[], dict]):

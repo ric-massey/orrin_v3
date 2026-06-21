@@ -1,11 +1,11 @@
 # utils/signal_utils.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def _clamp01(x: float) -> float:

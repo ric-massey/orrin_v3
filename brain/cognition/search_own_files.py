@@ -9,16 +9,16 @@ from __future__ import annotations
 
 from typing import Dict, Any, List
 
-from utils.log import log_activity, log_private
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 
 
 def _record_habituation(result_text: str, context: Dict[str, Any]) -> None:
     """Feed search_own_files's outcome into its explore/exploit habituation so a barren
     self-search self-suppresses the same way look_outward does (exploration_value)."""
     try:
-        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        from brain.cognition.exploration_value import ReachOutcome, record_reach_outcome
         gain = record_reach_outcome("search_own_files", str(result_text), None, context)
         acted = bool(result_text and not str(result_text).lstrip().startswith(("❌", "⚠️")))
         context["_last_reach_outcome"] = ReachOutcome(
@@ -65,7 +65,7 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
         return "⚠️ No query could be derived from current context."
 
     try:
-        from agency.skills.grep_files import grep_files
+        from brain.agency.skills.grep_files import grep_files
     except ImportError:
         return "❌ grep_files skill not available."
 
@@ -102,7 +102,7 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     _goal_id = str((context.get("committed_goal") or {}).get("id")
                    or (context.get("committed_goal") or {}).get("title") or "")
     try:
-        from cognition import novelty_memory
+        from brain.cognition import novelty_memory
         # Novelty unit = the FILE (area), not file:line. An exploration goal asks
         # "what's here?" — the answer is which files/areas exist, not line numbers.
         # File-level is also stable against Orrin's own constantly-growing log/memory
@@ -131,7 +131,7 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     # Translate file paths to felt spatial locations — Orrin knows WHERE in himself
     # something lives without knowing the file coordinate.
     try:
-        from cognition.perception.file_sense import path_to_felt_location, is_self_path, summarise_locations
+        from brain.cognition.perception.file_sense import path_to_felt_location, is_self_path, summarise_locations
         _use_felt = True
     except Exception:
         _use_felt = False

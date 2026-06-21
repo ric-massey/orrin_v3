@@ -2,7 +2,7 @@
 # Public facade for creating/updating/cancelling/listing goals and notifying the Goals daemon & observers
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import uuid
@@ -155,7 +155,7 @@ class GoalsAPI:
         # this fail-safe so the standalone goals package still works without the
         # brain package on sys.path.
         try:
-            from cognition.planning.goal_comprehension import hydrate_goal_model
+            from brain.cognition.planning.goal_comprehension import hydrate_goal_model
             enriched = hydrate_goal_model({
                 "title": title, "name": title, "kind": kind, "spec": spec,
                 "tags": list(tags or []),
@@ -171,7 +171,7 @@ class GoalsAPI:
                 acceptance = {"criteria": enriched["definition_of_done"]}
         except Exception as exc:
             try:
-                from utils.failure_counter import record_failure
+                from brain.utils.failure_counter import record_failure
                 record_failure("goals.api.create_goal.hydrate", exc)
             except Exception:
                 _log.warning("Goal hydration failed for %r: %s", title, exc)

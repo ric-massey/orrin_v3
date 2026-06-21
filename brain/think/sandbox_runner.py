@@ -1,9 +1,9 @@
 # think/sandbox_runner.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import subprocess, tempfile, os, shutil
 from typing import Dict, Any
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def run_python(code: str, timeout: float = 5.0, cwd: str | None = None) -> Dict[str, Any]:
@@ -15,7 +15,7 @@ def run_python(code: str, timeout: float = 5.0, cwd: str | None = None) -> Dict[
         return {"ok": False, "stdout": "", "stderr": "code must be str", "returncode": -1}
 
     # Embedded CPython when frozen (§10.2 / I1); sys.executable in a dev checkout.
-    from utils.runtime_python import interpreter as _interp
+    from brain.utils.runtime_python import interpreter as _interp
     py = _interp()
     env = {"PYTHONIOENCODING": "utf-8"}  # no secrets
 

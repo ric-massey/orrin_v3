@@ -4,7 +4,7 @@
 # recently modified files, files Orrin has touched vs. files that are new.
 # Output writes to working memory tagged kind="world_perception".
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import time
@@ -12,12 +12,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Any, List, Tuple
 
-from utils.log import log_activity, log_private
-from utils.json_utils import load_json, save_json
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import WORLD_PERCEPTION_FILE, LONG_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _LAST_LOOK_TS: float = 0.0
@@ -48,7 +48,7 @@ def look_around(context: Dict[str, Any] = None) -> str:
     # Include world model narrative — the interpreted environment state
     env_narrative = ""
     try:
-        from embodiment.world_model import describe as _wm_describe
+        from brain.embodiment.world_model import describe as _wm_describe
         env_narrative = _wm_describe()
     except Exception as _e:
         record_failure("look_around.look_around", _e)
@@ -101,7 +101,7 @@ def look_around(context: Dict[str, Any] = None) -> str:
 
     # Register the world root and any new files in the persistent location map
     try:
-        from cognition.perception.environment import register_location
+        from brain.cognition.perception.environment import register_location
         register_location(str(world_root), label="world root", context_note="look_around survey")
         for p, _ in recent_mods[:5]:
             register_location(str(world_root / p), context_note="recently modified")

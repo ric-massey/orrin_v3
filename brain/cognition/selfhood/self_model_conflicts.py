@@ -1,14 +1,14 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 import json
 from typing import Any, Dict
 
-from utils.json_utils import load_json, extract_json
-from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
-from utils.log import log_model_issue, log_error
+from brain.utils.json_utils import load_json, extract_json
+from brain.utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
+from brain.utils.log import log_model_issue, log_error
 from brain.paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE, LOG_FILE
-from cog_memory.working_memory import update_working_memory
-from utils.failure_counter import record_failure
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # With the LLM tool down, gated_generate returns a truthy non-JSON echo that
@@ -23,7 +23,7 @@ _last_skip_notice = 0.0
 def _llm_ready(caller: str) -> bool:
     global _last_skip_notice
     try:
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         if llm_available():
             return True
     except Exception:
@@ -88,7 +88,7 @@ def _derive_recent_focus() -> list:
     not narrated. Deterministic, no LLM."""
     focus: list = []
     try:
-        from cognition.planning.goals import load_goals
+        from brain.cognition.planning.goals import load_goals
         for g in load_goals():
             if str(g.get("status", "")).lower() in ("active", "in_progress", "pending"):
                 t = str(g.get("title") or g.get("name") or "").strip()
@@ -136,7 +136,7 @@ def update_self_model():
 
     # Primary: symbolic field update (no LLM)
     try:
-        from symbolic.symbolic_cognition import update_self_model_fields as _usf
+        from brain.symbolic.symbolic_cognition import update_self_model_fields as _usf
         upd = _usf(self_model)
         if upd["updated_fields"]:
             updated_model = dict(self_model)
@@ -170,7 +170,7 @@ def update_self_model():
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         response = gated_generate(prompt, caller="update_self_model", outcome=0.65)
     except Exception as e:
         log_model_issue(f"[update_self_model] gated_generate error: {e}")
@@ -234,7 +234,7 @@ def resolve_conflicts():
 
     # Primary: symbolic contradiction detection + direct resolution
     try:
-        from symbolic.symbolic_cognition import detect_rule_contradictions as _dc
+        from brain.symbolic.symbolic_cognition import detect_rule_contradictions as _dc
         contradictions = _dc(self_model)
         if contradictions:
             # Mark contradictions that match known conflicts as resolvable
@@ -255,7 +255,7 @@ def resolve_conflicts():
     # Secondary: symbolic_reflection engine
     if not response:
         try:
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
             _sym = _sfr("meta", context=None, data={"conflicts": conflicts, "self_model": self_model})
             if _sym:
                 response = _sym["text"]
@@ -278,7 +278,7 @@ def resolve_conflicts():
             "If you cannot change anything now, reply with a short paragraph (no JSON)."
         )
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             response = gated_generate(prompt, caller="resolve_conflicts", outcome=0.65)
         except Exception as e:
             log_error(f"[resolve_conflicts] gated_generate error: {e}")

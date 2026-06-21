@@ -4,7 +4,7 @@
 # Goals are marked source="intrinsic" and injected into context["proposed_goals"]
 # for goal_io to pick up. Runs from dream cycle on slower cadence.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import os
@@ -14,17 +14,17 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 
-from utils.generate_response import generate_response, llm_ok
-from utils.log import log_activity, log_private
-from utils.json_utils import load_json, save_json
-from cog_memory.long_memory import update_long_memory
+from brain.utils.generate_response import generate_response, llm_ok
+from brain.utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import (
     THREADS_FILE, LONG_MEMORY_FILE, VALUE_REVISIONS, COMPLETED_GOALS_FILE,
     RECENTLY_COMPLETED_FILE, GOALS_FILE,
     ENERGY_MODE_FILE, BODY_SENSE_FILE, DATA_DIR,
 )
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -302,7 +302,7 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
         goal["requires_artifact"] = True
         if deadline_cycles is None:
             try:
-                from cognition.planning.goals import PRODUCTION_DEADLINE_CYCLES as _pdc
+                from brain.cognition.planning.goals import PRODUCTION_DEADLINE_CYCLES as _pdc
             except Exception:
                 _pdc = 200
             deadline_cycles = _pdc
@@ -313,7 +313,7 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
 def _active_goal_titles() -> set:
     """Lowercased titles of goals currently active in the tree (for dedup)."""
     try:
-        from cognition.planning.goals import load_goals as _lg
+        from brain.cognition.planning.goals import load_goals as _lg
 
         def _collect(nodes):
             s = set()
@@ -406,7 +406,7 @@ def _strip_goal_scaffold(s: str) -> str:
     definition shared by KG ingestion (production) and goal phrasing (consumption);
     falls back to a local strip if that module can't be imported."""
     try:
-        from cognition.knowledge_graph import normalize_entity_name
+        from brain.cognition.knowledge_graph import normalize_entity_name
         return normalize_entity_name(s)
     except Exception:
         out = (s or "").strip()
@@ -452,7 +452,7 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
     'Understand X more deeply more deeply'.
     """
     try:
-        from cognition.knowledge_graph import _load_graph
+        from brain.cognition.knowledge_graph import _load_graph
         g = _load_graph()
         # Gather clean, distinct concept candidates with their recurrence.
         cands: List = []
@@ -488,7 +488,7 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
         scored: List = []
         for name, relevance, conf in cands:
             try:
-                from symbolic.intrinsic_motivation import uncertainty as _uncertainty
+                from brain.symbolic.intrinsic_motivation import uncertainty as _uncertainty
                 gap = float(_uncertainty(name))          # 0=fully covered, 1=unknown
             except Exception:
                 gap = max(0.0, 1.0 - 0.8 * conf)         # fallback: low conf = bigger gap
@@ -567,7 +567,7 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     Simon means-ends: the gap itself is the motivation.)
     """
     try:
-        from symbolic.causal_graph import get_all_edges
+        from brain.symbolic.causal_graph import get_all_edges
         edges = get_all_edges()
     except Exception:
         return []
@@ -649,7 +649,7 @@ def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:
 
     # 2. Symbolic rule/belief conflicts (no LLM, no persisted file required).
     try:
-        from symbolic.symbolic_cognition import detect_rule_contradictions
+        from brain.symbolic.symbolic_cognition import detect_rule_contradictions
         for c in detect_rule_contradictions(context.get("self_model") or {}):
             if c.get("type") != "belief_rule_conflict":
                 continue
@@ -806,7 +806,7 @@ def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
     parts += [str(c) for c in (goal.get("recent_contributions") or [])[:3]]
     # The causal effects of the goal's action are an outcome signal too.
     try:
-        from symbolic.causal_graph import get_effects
+        from brain.symbolic.causal_graph import get_effects
         action = str(goal.get("title") or goal.get("name") or "")
         for e in get_effects(action, min_score=0.0)[:4]:
             parts.append(str(e.get("effect", "")))
@@ -885,7 +885,7 @@ def _ensure_aspirations() -> None:
         # be summarized/faded out of long memory. Fires once per aspiration (only
         # when newly created), so it never floods.
         try:
-            from cog_memory.long_memory import remember_foundational
+            from brain.cog_memory.long_memory import remember_foundational
             remember_foundational(f"[aspiration] An enduring direction I hold: {title}.")
         except Exception as _af_e:
             record_failure("intrinsic_goals._ensure_aspirations", _af_e)
@@ -1378,7 +1378,7 @@ def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> O
         pressure = {}
     strengths = {}
     try:
-        from cognition.goal_competition import compute_drive_strengths
+        from brain.cognition.goal_competition import compute_drive_strengths
         strengths = compute_drive_strengths(context) or {}
     except Exception:
         strengths = {}
@@ -1408,7 +1408,7 @@ def _build_committed_goal(g: Dict, gid: str) -> Dict:
         cg["requires_artifact"] = True
         cg["deadline_cycles"] = g.get("deadline_cycles")
     try:
-        from cognition.planning.goal_comprehension import hydrate_goal_model
+        from brain.cognition.planning.goal_comprehension import hydrate_goal_model
         return hydrate_goal_model(cg)
     except Exception as exc:
         record_failure("intrinsic_goals._build_committed_goal.hydrate", exc)
@@ -1562,7 +1562,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             # so follow-through is shielded from momentary impulse (the positive
             # half of free will, complementing inhibition).
             try:
-                from cognition.will import form_commitment as _form_commitment
+                from brain.cognition.will import form_commitment as _form_commitment
                 _form_commitment(context, f"pursue: {_winner['title']}")
             except Exception as _wce:
                 record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)
@@ -1661,7 +1661,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         return titles
 
     try:
-        from cognition.planning.goals import load_goals as _load_goals_ig
+        from brain.cognition.planning.goals import load_goals as _load_goals_ig
         _existing_titles = _collect_active_titles(_load_goals_ig())
     except Exception:
         _existing_titles = set()

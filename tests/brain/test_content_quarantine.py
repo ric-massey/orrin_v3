@@ -3,10 +3,10 @@
 # the quarantine utility itself, plus each of the four ingestion points that
 # pull text from the open web (fetch_and_read, research_topic, RSS, Wikipedia).
 
-import cognition.rss_reader as rss_reader
-import cognition.web_research as web_research
-import cognition.wikipedia_search as wikipedia_search
-from utils.content_quarantine import (
+import brain.cognition.rss_reader as rss_reader
+import brain.cognition.web_research as web_research
+import brain.cognition.wikipedia_search as wikipedia_search
+from brain.utils.content_quarantine import (
     EXTERNAL_TRUST,
     is_external,
     is_quarantined,

@@ -1,6 +1,6 @@
 # RewardEngine: one RPE definition, single EMA-based expected baseline (V3 D5).
-import affect.reward_signals.reward_engine as re_mod
-from affect.reward_signals.action_reward_ema import get_expected, _DEFAULT
+import brain.affect.reward_signals.reward_engine as re_mod
+from brain.affect.reward_signals.action_reward_ema import get_expected, _DEFAULT
 
 
 def test_submit_reward_uses_ema_expected(monkeypatch):

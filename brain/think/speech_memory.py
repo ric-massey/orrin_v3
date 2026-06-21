@@ -21,7 +21,7 @@ import re
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Set
 
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
 
 # Shared stopword set (mirrors speech_comprehension — kept local to avoid import)

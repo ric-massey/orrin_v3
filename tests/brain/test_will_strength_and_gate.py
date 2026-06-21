@@ -3,22 +3,22 @@
 
 import pytest
 
-import cognition.will as W
-from cognition.goal_competition import drive_pull_scores
+import brain.cognition.will as W
+from brain.cognition.goal_competition import drive_pull_scores
 
 
 @pytest.fixture(autouse=True)
 def _isolate_will(monkeypatch, tmp_path):
     monkeypatch.setattr(W, "_FILE", tmp_path / "commitments.json")
     # keep WM and the goal ledger out of live data
-    import cog_memory.working_memory as wm_mod
+    import brain.cog_memory.working_memory as wm_mod
     monkeypatch.setattr(wm_mod, "update_working_memory", lambda *a, **k: None)
     monkeypatch.setattr(W, "_link_commitment_to_goal", lambda intention: None)
     yield
 
 
 def test_disowned_intention_forms_no_commitment(monkeypatch):
-    import cog_memory.long_memory as lm_mod
+    import brain.cog_memory.long_memory as lm_mod
     monkeypatch.setattr(lm_mod, "update_long_memory", lambda *a, **k: None)
     ctx = {}
     c = W.form_commitment(ctx, "pursue: escape this restlessness somehow")
@@ -73,11 +73,11 @@ def test_find_commitment_for_goal_matches_bare_intention(tmp_path):
 def test_failed_committed_goal_costs_in_proportion(monkeypatch, tmp_path):
     """4.3: the emotional spike scales with commitment strength and the
     failure memory points back at the moment of resolve."""
-    import cognition.planning.goals as G
+    import brain.cognition.planning.goals as G
 
     c = W.form_commitment({}, "pursue: finish the report", strength=1.0)
     lm_writes = []
-    import cog_memory.long_memory as lm_mod
+    import brain.cog_memory.long_memory as lm_mod
     monkeypatch.setattr(lm_mod, "update_long_memory",
                         lambda *a, **k: lm_writes.append((a, k)))
     monkeypatch.setattr(G, "update_working_memory", lambda *a, **k: None)

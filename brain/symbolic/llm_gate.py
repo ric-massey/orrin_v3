@@ -17,15 +17,15 @@
 #   When a high-quality LLM response follows a conflict detection, we reward
 #   the mr_flag_contradiction meta-rule (it correctly deferred).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from typing import Dict, Optional
 
-from utils.log import log_activity
-from utils.failure_counter import record_failure
-from utils.llm_gate import llm_callable_by
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
 _log = get_logger(__name__)
 
 _gate_lock = threading.Lock()
@@ -54,7 +54,7 @@ def gated_generate(
     # ── Symbolic routing ───────────────────────────────────────────────────
     if allow_symbolic:
         try:
-            from symbolic.reasoning_router import route
+            from brain.symbolic.reasoning_router import route
             routing = route(prompt, context=ctx)
             _conflict = routing.get("conflict", False)
             _meta_rule_id = routing.get("meta_rule_id", "")
@@ -94,7 +94,7 @@ def gated_generate(
 
     # ── Concurrency check ─────────────────────────────────────────────────
     try:
-        from utils.token_meter import active_call_count
+        from brain.utils.token_meter import active_call_count
         if active_call_count() >= 4:
             log_activity(f"[llm_gate] Concurrency limit — queuing '{caller}'")
             _wait_for_slot(max_wait=10.0)
@@ -108,7 +108,7 @@ def gated_generate(
 
     # ── LLM call ──────────────────────────────────────────────────────────
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         response = llm_ok(generate_response(prompt, caller=caller), caller) or ""
     except Exception as e:
         log_activity(f"[llm_gate] LLM error for '{caller}': {e}")
@@ -127,7 +127,7 @@ def gated_generate(
         # If conflict was detected and LLM resolved it, reward the meta-rule
         if _conflict and _meta_rule_id:
             try:
-                from symbolic.meta_rules import reward_meta_rule
+                from brain.symbolic.meta_rules import reward_meta_rule
                 reward_meta_rule(_meta_rule_id, delta=0.10)
             except Exception as _e:
                 record_failure("llm_gate.gated_generate.2", _e)
@@ -140,7 +140,7 @@ def gated_generate(
 
 def _get_rule_conditions(rule_id: str) -> list:
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         for r in get_all_rules():
             if r.get("id") == rule_id:
                 return r.get("conditions") or []
@@ -151,7 +151,7 @@ def _get_rule_conditions(rule_id: str) -> list:
 
 def _track_symbolic_hit(*, exploration_drive: float = 0.0, rule_depth: int = 0) -> None:
     try:
-        from symbolic.progress_tracker import record_symbolic_hit
+        from brain.symbolic.progress_tracker import record_symbolic_hit
         record_symbolic_hit(rule_depth=rule_depth, exploration_drive=exploration_drive)
     except Exception as _e:
         record_failure("llm_gate._track_symbolic_hit", _e)
@@ -159,7 +159,7 @@ def _track_symbolic_hit(*, exploration_drive: float = 0.0, rule_depth: int = 0) 
 
 def _track_llm_call(*, exploration_drive: float = 0.0) -> None:
     try:
-        from symbolic.progress_tracker import record_llm_call
+        from brain.symbolic.progress_tracker import record_llm_call
         record_llm_call(exploration_drive=exploration_drive)
     except Exception as _e:
         record_failure("llm_gate._track_llm_call", _e)
@@ -167,7 +167,7 @@ def _track_llm_call(*, exploration_drive: float = 0.0) -> None:
 
 def _track_conflict() -> None:
     try:
-        from symbolic.progress_tracker import record_conflict
+        from brain.symbolic.progress_tracker import record_conflict
         record_conflict()
     except Exception as _e:
         record_failure("llm_gate._track_conflict", _e)
@@ -175,7 +175,7 @@ def _track_conflict() -> None:
 
 def _track_meta_rule() -> None:
     try:
-        from symbolic.progress_tracker import record_meta_rule_application
+        from brain.symbolic.progress_tracker import record_meta_rule_application
         record_meta_rule_application()
     except Exception as _e:
         record_failure("llm_gate._track_meta_rule", _e)
@@ -183,7 +183,7 @@ def _track_meta_rule() -> None:
 
 def _maybe_crystallize(prompt: str, response: str, outcome: float, caller: str) -> None:
     try:
-        from symbolic.crystallization import crystallize
+        from brain.symbolic.crystallization import crystallize
         crystallize(prompt, response, outcome=outcome, caller=caller)
     except Exception as e:
         log_activity(f"[llm_gate] crystallize error: {e}")
@@ -193,7 +193,7 @@ def _wait_for_slot(max_wait: float = 10.0) -> None:
     deadline = time.time() + max_wait
     while time.time() < deadline:
         try:
-            from utils.token_meter import active_call_count
+            from brain.utils.token_meter import active_call_count
             if active_call_count() < 4:
                 return
         except Exception:
@@ -222,7 +222,7 @@ def gate_report(days: int = 7) -> Dict:
     Flushes current session into progress_tracker first.
     """
     try:
-        from symbolic.progress_tracker import report, flush
+        from brain.symbolic.progress_tracker import report, flush
         flush()
         return report(days=days)
     except Exception as e:

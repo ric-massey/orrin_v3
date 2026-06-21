@@ -2,7 +2,7 @@
 # Create/restore compact JSONL snapshots of goals (and steps) with optional WAL rotation
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import gzip
 import json

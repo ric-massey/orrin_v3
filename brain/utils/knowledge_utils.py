@@ -1,8 +1,8 @@
 import threading
 import numpy as np
 from typing import Any, Dict, List, Sequence, Optional, Tuple
-from utils.json_utils import load_json, save_json
-from utils.embedder import get_embedding
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.embedder import get_embedding
 from brain.paths import KNOWLEDGE, WORKING_MEMORY_FILE, LONG_MEMORY_FILE
 
 _RECALL_LOCK = threading.Lock()

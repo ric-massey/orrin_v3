@@ -4,12 +4,12 @@ from datetime import datetime, timezone
 from typing import Any, Optional, List
 import uuid
 
-from utils.affect_utils import detect_affect_keyword
+from brain.utils.affect_utils import detect_affect_keyword
 from brain.paths import LONG_MEMORY_FILE
-from utils.embedder import get_embedding
-from utils.json_utils import load_json, save_json
-from utils.log import log_error, log_private
-from cog_memory.long_memory import DUPLICATE_WINDOW
+from brain.utils.embedder import get_embedding
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_error, log_private
+from brain.cog_memory.long_memory import DUPLICATE_WINDOW
 
 def _emotion_name(e: Any) -> str:
     """Coerce detect_affect output into a lowercase string."""
@@ -124,7 +124,7 @@ def remember(
 
     # Route through update_long_memory for dedup, max-size enforcement, and reward signals
     try:
-        from cog_memory.long_memory import update_long_memory as _ulm
+        from brain.cog_memory.long_memory import update_long_memory as _ulm
         _ulm(entry, embedding=emb, context=context)
     except Exception:
         # Fallback to direct append if update_long_memory unavailable

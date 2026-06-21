@@ -8,35 +8,35 @@
 #   and other things called emotion." Psychological Review, 106(3), 631–657.
 #   Barrett (2017) — "How Emotions Are Made." Houghton Mifflin Harcourt.
 #   "Neutral" is the absence of affective signal, not a discrete emotion.
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 from statistics import mean
 from typing import Dict
 
-from utils.json_utils import load_json, save_json
-from affect.affect import get_all_affect_names, detect_affect, deliver_affect_based_rewards
-from affect.affect_dynamics import (
+from brain.utils.json_utils import load_json, save_json
+from brain.affect.affect import get_all_affect_names, detect_affect, deliver_affect_based_rewards
+from brain.affect.affect_dynamics import (
     decay_habituation, capture_prev_core, get_habit_factor, record_habit,
     apply_velocity_dynamics, compute_valence_activation_level, update_mood,
     update_hedonic_baselines,
 )
-from affect.affect_buffer import drain_affect_queue
-from affect.homeostasis import (
+from brain.affect.affect_buffer import drain_affect_queue
+from brain.affect.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
     EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE, update_allostatic_load,
     homeostasis_index,
 )
-from affect.setpoints import CORE_BASELINES
-from utils.log import log_activity
-from affect.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
-from utils.timing import get_time_since_last_active
+from brain.affect.setpoints import CORE_BASELINES
+from brain.utils.log import log_activity
+from brain.affect.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
+from brain.utils.timing import get_time_since_last_active
 
 from brain.paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def update_affect_state(context=None, trigger=None):
-    from cog_memory.working_memory import update_working_memory
+    from brain.cog_memory.working_memory import update_working_memory
 
     # Prefer in-memory state from context (authoritative); only read disk when truly absent.
     # Previously fell back to disk if core_signals was missing — this discarded transient
@@ -55,7 +55,7 @@ def update_affect_state(context=None, trigger=None):
             state["core_signals"] = _disk["core_signals"]
     # Pin the canonical schema (D9): nested core_signals + required scalars. As the
     # sole writer, normalizing here means the canonical layout is what gets persisted.
-    from affect.observers import normalize_affect_state
+    from brain.affect.observers import normalize_affect_state
     state = normalize_affect_state(state)
     working = load_json(WORKING_MEMORY_FILE, default_type=list)
 
@@ -111,7 +111,7 @@ def update_affect_state(context=None, trigger=None):
     # appraisal and trigger processing is interpreted — matching the role of insula/ACC
     # in biasing affective processing before cortical evaluation (Craig 2003; Damasio 1994).
     try:
-        from cognition.body_sense import interoceptive_deltas
+        from brain.cognition.body_sense import interoceptive_deltas
         _body_sense = context.get("body_sense") if context else None
         if _body_sense and isinstance(_body_sense, dict):
             _body_states = _body_sense.get("body_states") or []
@@ -500,7 +500,7 @@ def update_affect_state(context=None, trigger=None):
     # Complements the keyword trigger loop with goal-relevance × congruence × agency.
     # Mood modulates appraisal sensitivity: good mood dampens negative events, bad amplifies.
     try:
-        from affect.appraisal import appraise_working_memory as _appraise
+        from brain.affect.appraisal import appraise_working_memory as _appraise
         _cg   = (context or {}).get("committed_goal") or {}
         _cgs  = (context or {}).get("committed_goals") or ([_cg] if _cg else [])
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]
@@ -757,7 +757,7 @@ def update_affect_state(context=None, trigger=None):
     # process, Solomon & Corbit 1974; allostasis), instead of a stuck maxed state.
     # Negatives clear a touch faster so distress doesn't linger between spikes.
     try:
-        from affect.setpoints import setpoint as _setpoint
+        from brain.affect.setpoints import setpoint as _setpoint
         _NEG_SIGNALS = {
             "impasse_signal", "conflict_signal", "threat_level", "negative_valence",
             "risk_estimate", "social_deficit", "social_penalty", "rejection_signal",
@@ -804,7 +804,7 @@ def update_affect_state(context=None, trigger=None):
     # (2003) allostatic load. Falls back to 0.15 when disabled/absent.
     # Decay rate 0.025; if resource_deficit is very high (>0.75), decay is faster.
     try:
-        from cognition.interoception import allostatic_setpoint as _allo_tau
+        from brain.cognition.interoception import allostatic_setpoint as _allo_tau
         _resource_deficit_baseline = _allo_tau(context, state)
     except Exception:
         _resource_deficit_baseline = 0.15
@@ -842,7 +842,7 @@ def update_affect_state(context=None, trigger=None):
     # the chronic negatives toward their setpoints AFTER the budget so distress can
     # always bleed off between acute spikes.
     try:
-        from affect.setpoints import setpoint as _sp_drain
+        from brain.affect.setpoints import setpoint as _sp_drain
         for _nk in ("impasse_signal", "conflict_signal", "threat_level",
                     "negative_valence", "risk_estimate", "uncertainty"):
             if _nk in core and isinstance(core.get(_nk), (int, float)):

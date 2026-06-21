@@ -19,7 +19,7 @@
 #   defer          — acknowledged but not resolved; stays open, cost persists
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import time
@@ -27,13 +27,13 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
-from utils.json_utils import load_json, save_json
-from utils.self_model import get_self_model, save_self_model
-from utils.log import log_private, log_activity
-from cog_memory.long_memory import update_long_memory
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.self_model import get_self_model, save_self_model
+from brain.utils.log import log_private, log_activity
+from brain.cog_memory.long_memory import update_long_memory
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import CONTRADICTIONS_FILE, COGNITION_HISTORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _DETECTION_COOLDOWN_S  = 10 * 3600   # detect at most once per 10 h
@@ -237,7 +237,7 @@ def detect_self_model_conflicts(context: Dict[str, Any] = None) -> str:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="fragmentation/detect", outcome=0.65) or "").strip()
         if raw.startswith("```"):
             raw = raw.split("```")[1]
@@ -345,7 +345,7 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="fragmentation/reconcile", outcome=0.65) or "").strip()
         if raw.startswith("```"):
             raw = raw.split("```")[1]
@@ -402,7 +402,7 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
         _reward(context, 0.50, "reconcile_commit")
         # Register the commitment as a narrative tension to track
         try:
-            from cognition.selfhood.tensions import _make as _make_tension, load_tensions, save_tensions
+            from brain.cognition.selfhood.tensions import _make as _make_tension, load_tensions, save_tensions
             tensions = load_tensions()
             tensions.append(_make_tension(
                 f"Commitment: {commitment[:60]}",
@@ -467,7 +467,7 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
 
 def _reward(context: Dict, amount: float, source: str) -> None:
     try:
-        from affect.reward_signals.reward_signals import release_reward_signal
+        from brain.affect.reward_signals.reward_signals import release_reward_signal
         release_reward_signal(context, "reward_signal", amount, 0.4, 0.6, source=source)
     except Exception as _e:
         record_failure("fragmentation._reward", _e)

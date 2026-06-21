@@ -7,8 +7,8 @@ Runs under conftest's ORRIN_DATA_DIR isolation.
 import sys
 
 
-from utils import runtime_python as rp
-from utils import model_assets as ma
+from brain.utils import runtime_python as rp
+from brain.utils import model_assets as ma
 
 
 # ── I1: embedded interpreter resolver ────────────────────────────────────────
@@ -37,7 +37,7 @@ def test_embedded_python_override_ignored_when_missing(monkeypatch, tmp_path):
 
 def test_sandbox_uses_resolved_interpreter():
     # The sandbox actually runs code through the resolver — a trivial snippet returns ok.
-    from behavior.tools.sandbox import run_python_sandboxed
+    from brain.behavior.tools.sandbox import run_python_sandboxed
     out = run_python_sandboxed("print(1 + 1)", timeout_s=10)
     assert out["status"] == "ok"
     assert out["stdout"].strip() == "2"

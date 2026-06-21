@@ -17,7 +17,7 @@ from __future__ import annotations
 import random
 from typing import Any, Dict, List
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 
 _QUEUE_KEY = "_emotion_queue"
 

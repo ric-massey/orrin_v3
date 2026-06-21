@@ -6,14 +6,14 @@
 #   decay_awaiting(context)     — each cycle, age the unanswered question; resolve after N cycles
 #   inject_await_signal(context) — signal_router boost: bump priority of user_input when awaiting
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Dict, Any
 
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _DECAY_CYCLES    = 8    # mark unanswered after this many cycles without reply
@@ -40,7 +40,7 @@ def check_for_answer(context: Dict[str, Any]) -> bool:
     # Bind answer to thread if one exists
     if thread_id:
         try:
-            from cognition.threads import load_threads, save_threads
+            from brain.cognition.threads import load_threads, save_threads
             threads = load_threads()
             for t in threads:
                 if t.get("id") == thread_id:
@@ -67,7 +67,7 @@ def check_for_answer(context: Dict[str, Any]) -> bool:
 
     # Inject immediately into working_memory so this cycle's cognition can act on the answer
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         update_working_memory(
             f"[answer_received] I asked: '{question[:100]}' — they said: '{user_input[:150]}'"
         )
@@ -120,7 +120,7 @@ def inject_await_signal(context: Dict[str, Any]) -> None:
 
     # Inject a high-priority signal tagging this as an answer
     try:
-        from utils.signal_utils import create_signal
+        from brain.utils.signal_utils import create_signal
         sig = create_signal(
             source="awaiting_response",
             content=f"answer_received: {user_input[:120]}",

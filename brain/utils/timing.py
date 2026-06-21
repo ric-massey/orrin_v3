@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
-from utils.log import log_error
-from utils.json_utils import load_json, save_json
-from utils.timeutils import now_iso_z
+from brain.utils.log import log_error
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.timeutils import now_iso_z
 from brain.paths import LAST_ACTIVE_FILE  # pathlib.Path
 
 def update_last_active():

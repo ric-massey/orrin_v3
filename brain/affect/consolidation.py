@@ -35,15 +35,15 @@
 #     "created_ts":      str
 #   }
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import uuid
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 
 _CONSOLIDATION_FILE = DATA_DIR / "consolidation_queue.json"
@@ -118,7 +118,7 @@ def drain_consolidations(context: Dict[str, Any]) -> None:
     if not queue:
         return
 
-    from affect.arbiter import submit_affect
+    from brain.affect.arbiter import submit_affect
 
     remaining = []
     for entry in queue:

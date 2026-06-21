@@ -17,9 +17,9 @@ from pathlib import Path
 
 import pytest
 
-import behavior.express_to_user as door
-from behavior.express_to_user import Motive, build_motive, compose_from_motive, express_to_user
-from behavior.speakability import (
+import brain.behavior.express_to_user as door
+from brain.behavior.express_to_user import Motive, build_motive, compose_from_motive, express_to_user
+from brain.behavior.speakability import (
     is_speakable, assert_speakable, strip_internal, SpeakabilityError,
     INTERNAL_MARKERS,
 )
@@ -105,7 +105,7 @@ def test_leave_note_composes_and_does_not_leak_working_memory(monkeypatch):
         return True
 
     monkeypatch.setitem(door._ROUTES, "note", fake_route)
-    import cognition.leave_note as ln
+    import brain.cognition.leave_note as ln
 
     ctx = {
         "affect_state": {"core_signals": {"impasse_signal": 0.8, "negative_valence": 0.5}},
@@ -126,8 +126,8 @@ def test_leave_note_composes_and_does_not_leak_working_memory(monkeypatch):
 # ── E6: the goal's motive is threaded across the execution boundary ──────────
 
 def test_execute_step_action_threads_and_clears_motive():
-    import cognition.planning.step_execution as se
-    from registry.cognition_registry import COGNITIVE_FUNCTIONS
+    import brain.cognition.planning.step_execution as se
+    from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
 
     seen = {}
 
@@ -158,7 +158,7 @@ def _emitter_func_sources():
     import ORRIN_loop
     srcs = {}
 
-    ln_src = Path(Path(__import__("cognition.leave_note", fromlist=["x"]).__file__)).read_text("utf-8")
+    ln_src = Path(Path(__import__("brain.cognition.leave_note", fromlist=["x"]).__file__)).read_text("utf-8")
     srcs["leave_note"] = ln_src
 
     loop_src = Path(ORRIN_loop.__file__).read_text("utf-8")
@@ -185,7 +185,7 @@ def test_emitter_does_not_read_working_memory(name):
 # ── Sanity: the shared internal-marker list is the single source of truth ─────
 
 def test_speech_pipeline_uses_shared_marker_list():
-    src = Path(__import__("behavior.speech_pipeline", fromlist=["x"]).__file__).read_text("utf-8")
-    assert "from behavior.speakability import INTERNAL_MARKERS" in src
+    src = Path(__import__("brain.behavior.speech_pipeline", fromlist=["x"]).__file__).read_text("utf-8")
+    assert "from brain.behavior.speakability import INTERNAL_MARKERS" in src
     # and it is non-trivial
     assert len(INTERNAL_MARKERS) > 5

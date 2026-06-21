@@ -48,11 +48,11 @@
 # Associability lives in a sibling file action_associability.json.
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from pathlib import Path
-from utils.json_utils import load_json, save_json
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Canonical location: the brain's data dir, alongside all other cognition state.
@@ -118,7 +118,7 @@ def _flag_unknown_action(action_type: str) -> None:
     if action_type in _KNOWN_PSEUDO_ACTIONS:
         return
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
         if COGNITIVE_FUNCTIONS and action_type not in COGNITIVE_FUNCTIONS:
             _log.warning(
                 "action_reward_ema: first reward for action %r, which is not a "

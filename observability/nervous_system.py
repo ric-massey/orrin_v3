@@ -1,6 +1,6 @@
 # observability/nervous_system.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import time, threading, math
 from collections import deque
 from dataclasses import dataclass
@@ -12,7 +12,7 @@ except Exception:
     Event = None  # type: ignore
 
 try:
-    from utils.failure_counter import record_failure as _record_failure
+    from brain.utils.failure_counter import record_failure as _record_failure
 except ImportError:
     def _record_failure(site: str, exc: Exception) -> None:  # type: ignore[misc]
         pass

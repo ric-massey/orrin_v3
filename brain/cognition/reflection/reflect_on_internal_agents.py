@@ -1,17 +1,17 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import extract_json
-from utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
-from utils.load_utils import load_all_known_json, load_context
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_private
-from utils.log_reflection import log_reflection
-from utils.error_router import catch_and_route  # routed, structured exception handling
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import extract_json
+from brain.utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
+from brain.utils.load_utils import load_all_known_json, load_context
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private
+from brain.utils.log_reflection import log_reflection
+from brain.utils.error_router import catch_and_route  # routed, structured exception handling
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # -----------------------------
@@ -165,7 +165,7 @@ def reflect_on_internal_agents() -> Optional[bool]:
         # Symbolic-first: try to update view from symbolic self-model
         sym_view = None
         try:
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
             _sym = _sfr("meta", context=None, data={"agent": name, "belief": belief})
             if _sym:
                 sym_view = _sym["text"]
@@ -177,13 +177,13 @@ def reflect_on_internal_agents() -> Optional[bool]:
             updated_view = True
         else:
             try:
-                from symbolic.llm_gate import gated_generate
+                from brain.symbolic.llm_gate import gated_generate
                 response = gated_generate(instructions, caller="reflect_on_internal_agents", outcome=0.60)
                 if isinstance(response, str) and response.strip():
                     agent["current_view"] = response.strip()
                     updated_view = True
                     try:
-                        from symbolic.crystallization import crystallize as _cryst
+                        from brain.symbolic.crystallization import crystallize as _cryst
                         _cryst(instructions[:300], response.strip(), outcome=0.60, caller="reflect_on_internal_agents")
                     except Exception as _e:
                         record_failure("reflect_on_internal_agents.reflect_on_internal_agents.2", _e)
@@ -259,7 +259,7 @@ def reflect_as_agents(topic: Optional[str] = None,
     # Symbolic-first: try to generate agent synthesis symbolically
     sym_result = None
     try:
-        from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+        from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
         _sym = _sfr("meta", context=context, data={"topic": topic, "agent_count": len(agents)})
         if _sym:
             sym_result = {"agent_responses": [], "synthesis": _sym["text"]}
@@ -272,11 +272,11 @@ def reflect_as_agents(topic: Optional[str] = None,
     else:
         response = None
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             response = gated_generate(prompt, caller="reflect_as_agents", outcome=0.65)
             if response and isinstance(response, str):
                 try:
-                    from symbolic.crystallization import crystallize as _cryst
+                    from brain.symbolic.crystallization import crystallize as _cryst
                     _cryst(prompt[:300], response, outcome=0.65, caller="reflect_as_agents")
                 except Exception as _e:
                     record_failure("reflect_on_internal_agents.reflect_as_agents.2", _e)
@@ -340,7 +340,7 @@ def reflect_on_internal_voices() -> Optional[bool]:
     # Symbolic-first: check if symbolic engine detects an emerging voice pattern
     new_agent_data = None
     try:
-        from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+        from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
         _sym = _sfr("meta", context=None, data={"recent_thoughts": recent_thoughts[:5]})
         if _sym:
             log_private(f"[symbolic] Internal voices check ({_sym['source']}): {_sym['text'][:80]}")
@@ -349,11 +349,11 @@ def reflect_on_internal_voices() -> Optional[bool]:
 
     if new_agent_data is None:
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             response = gated_generate(instructions, caller="reflect_on_internal_voices", outcome=0.55)
             if response and isinstance(response, str):
                 try:
-                    from symbolic.crystallization import crystallize as _cryst
+                    from brain.symbolic.crystallization import crystallize as _cryst
                     _cryst(instructions[:300], response, outcome=0.55, caller="reflect_on_internal_voices")
                 except Exception as _e:
                     record_failure("reflect_on_internal_agents.reflect_on_internal_voices.2", _e)
@@ -418,7 +418,7 @@ def critique_draft(draft: str, context: Optional[Dict[str, Any]] = None) -> str:
             "Each agent should briefly identify ONE weakness, gap, or missing consideration. "
             "Then give a single-sentence combined critique. 2-4 sentences total. No preamble."
         )
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         result = gated_generate(prompt, caller="critique_draft", outcome=0.65)
         return (result or "").strip()
     except Exception:

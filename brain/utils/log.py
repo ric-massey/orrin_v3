@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Union, Dict, Any
 
 from brain.paths import ERROR_FILE, MODEL_FAILURE, ACTIVITY_LOG, PRIVATE_THOUGHTS_FILE
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 
 try:
     import fcntl as _fcntl
@@ -13,7 +13,7 @@ except ImportError:
     _fcntl = None  # type: ignore
 
 try:
-    from utils.path_redact import redact as _redact
+    from brain.utils.path_redact import redact as _redact
 except Exception:
     def _redact(t: str) -> str:  # noqa: F811
         return t
@@ -100,7 +100,7 @@ def read_recent_errors_txt(path: Union[str, Path], max_lines: int = 5) -> List[s
         return [f"⚠️ Failed to read {path}: {e}"]
 
 def read_recent_errors_json(path: Union[str, Path], max_items: int = 5) -> List[Dict[str, Any]]:
-    from utils.json_utils import load_json
+    from brain.utils.json_utils import load_json
     try:
         data = load_json(path, default_type=list)
         return data[-max_items:] if isinstance(data, list) else []

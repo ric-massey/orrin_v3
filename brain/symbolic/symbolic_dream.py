@@ -21,15 +21,15 @@
 # Output is written to data/symbolic_dream_log.json and injected into WM.
 # No API calls, no side effects beyond file writes.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Set, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR, WORKING_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 SYMBOLIC_DREAM_LOG = DATA_DIR / "symbolic_dream_log.json"
@@ -81,7 +81,7 @@ def run_symbolic_dream(context: Optional[Dict] = None) -> Dict:
     # ── Write insights to WM ────────────────────────────────────────────────
     if insights:
         try:
-            from cog_memory.working_memory import update_working_memory as _uwm
+            from brain.cog_memory.working_memory import update_working_memory as _uwm
             for ins in insights:
                 _uwm({
                     "content":    f"[sym_dream:{ins['type']}] {ins['text'][:300]}",
@@ -130,7 +130,7 @@ def _counterfactual_pass(max_edges: int = 8) -> List[Dict]:
     """
     insights: List[Dict] = []
     try:
-        from symbolic.causal_graph import get_all_edges, simulate_counterfactual
+        from brain.symbolic.causal_graph import get_all_edges, simulate_counterfactual
     except Exception:
         return insights
 
@@ -171,7 +171,7 @@ def _rule_chain_pass(seeds: List[str]) -> Tuple[List[Dict], List[List[Dict]]]:
     visited_conclusions: Set[str] = set()
 
     try:
-        from symbolic.rule_engine import match_all, apply as rule_apply
+        from brain.symbolic.rule_engine import match_all, apply as rule_apply
     except Exception:
         return insights, raw_chains
 
@@ -223,8 +223,8 @@ def _follow_chain(
 def _analogy_transfer_pass(seeds: List[str]) -> List[Dict]:
     insights = []
     try:
-        from symbolic.analogy_engine import find_analogues
-        from symbolic.rule_engine import match_all
+        from brain.symbolic.analogy_engine import find_analogues
+        from brain.symbolic.rule_engine import match_all
     except Exception:
         return insights
 
@@ -261,8 +261,8 @@ def _analogy_transfer_pass(seeds: List[str]) -> List[Dict]:
 def _contradiction_pass(seeds: List[str]) -> List[Dict]:
     insights = []
     try:
-        from symbolic.rule_engine import match_all
-        from symbolic.meta_rules import _are_contradictory
+        from brain.symbolic.rule_engine import match_all
+        from brain.symbolic.meta_rules import _are_contradictory
     except Exception:
         return insights
 
@@ -308,7 +308,7 @@ def _causal_discovery_pass(
     """
     insights: List[Dict] = []
     try:
-        from symbolic.causal_graph import (
+        from brain.symbolic.causal_graph import (
             discover_from_rule_chain,
             discover_from_wm_sequence,
         )

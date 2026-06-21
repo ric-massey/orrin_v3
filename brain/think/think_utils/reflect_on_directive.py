@@ -1,12 +1,12 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
-from utils.knowledge_utils import recall_relevant_knowledge
-from utils.goals import extract_current_focus_goal
-from cog_memory.working_memory import update_working_memory
-from utils.json_utils import load_json  # ✅ correct source
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.knowledge_utils import recall_relevant_knowledge
+from brain.utils.goals import extract_current_focus_goal
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json  # ✅ correct source
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, FOCUS_GOAL
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def reflect_on_directive(self_model, context=None):
@@ -55,7 +55,7 @@ def reflect_on_directive(self_model, context=None):
     # Symbolic-first gate: assess directive alignment via symbolic engine
     reflection = None
     try:
-        from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
+        from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr
         _sym = _sfr("meta", context=context, data={"directive": stmt, "goal": current_goal_str})
         if _sym:
             reflection = _sym["text"]
@@ -64,11 +64,11 @@ def reflect_on_directive(self_model, context=None):
 
     if not reflection:
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             reflection = gated_generate(prompt, caller="reflect_on_directive", outcome=0.65)
             if reflection and isinstance(reflection, str) and len(reflection.strip()) > 2:
                 try:
-                    from symbolic.crystallization import crystallize as _cryst
+                    from brain.symbolic.crystallization import crystallize as _cryst
                     _cryst(prompt[:300], reflection, outcome=0.65, caller="reflect_on_directive")
                 except Exception as _e:
                     record_failure("reflect_on_directive.reflect_on_directive.2", _e)

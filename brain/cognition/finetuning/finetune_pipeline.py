@@ -30,8 +30,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
-from utils.log import log_activity, log_error
-from utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_error
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
 
 _TRACE_FILE        = DATA_DIR / "trace_buffer.jsonl"
@@ -107,7 +107,7 @@ def submit_finetune_job(
     # Consent gate (§9.4): fine-tuning UPLOADS conversation content (the user's words)
     # to OpenAI and spends on their account. It must never run without explicit opt-in.
     try:
-        from utils.prefs import get as _pref
+        from brain.utils.prefs import get as _pref
         if not _pref("allow_finetune", False):
             log_activity("[finetune] skipped — fine-tuning is off (enable it in Settings → Privacy & Trust).")
             return None
@@ -131,7 +131,7 @@ def submit_finetune_job(
         # UPLOADS conversation content. Log it as a distinct service so the Trust
         # screen shows it apart from per-call request volume.
         try:
-            from utils.egress import record as _egress
+            from brain.utils.egress import record as _egress
             _egress("finetune")
         except Exception:
             pass
@@ -270,7 +270,7 @@ def run_pipeline(force: bool = False) -> Dict[str, Any]:
 
 def get_status() -> Dict[str, Any]:
     """Quick status check — how many traces, any pending jobs."""
-    from utils.trace_buffer import get_stats
+    from brain.utils.trace_buffer import get_stats
     trace_stats = get_stats()
     log_entries = load_json(_FINETUNE_LOG_FILE, default_type=list) or []
     cfg = load_json(_MODEL_CONFIG_FILE, default_type=dict) or {}

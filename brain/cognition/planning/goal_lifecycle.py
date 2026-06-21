@@ -27,16 +27,16 @@
 # ─────────────────────────────────────────────────────────────────────────────
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
 from brain.paths import LIFETIME_GOALS_FILE
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -113,8 +113,8 @@ def record_lifetime_progress(goal_id: str, note: str, context: Optional[Dict] = 
 
     if context is not None:
         try:
-            from affect.reward_signals.reward_signals import release_reward_signal
-            from affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
+            from brain.affect.reward_signals.reward_signals import release_reward_signal
+            from brain.affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
             _act = _LIFETIME_PROGRESS_REWARD_SIGNAL
             release_reward_signal(
                 context,
@@ -238,7 +238,7 @@ def _fade_regular_goals(now_ts: float) -> None:
     # Phase E outcome metric — dormant transition is the abandonment gradient firing.
     if dormant_transitions:
         try:
-            from cognition.planning.outcome_metrics import record_abandonment_closure
+            from brain.cognition.planning.outcome_metrics import record_abandonment_closure
             record_abandonment_closure(dormant_transitions)
         except Exception as _e:
             record_failure("goal_lifecycle._fade_regular_goals", _e)

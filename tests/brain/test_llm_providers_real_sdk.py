@@ -17,8 +17,8 @@ import inspect
 
 import pytest
 
-from utils.llm_providers.anthropic_provider import AnthropicProvider
-from utils.llm_providers.gemini_provider import GeminiProvider
+from brain.utils.llm_providers.anthropic_provider import AnthropicProvider
+from brain.utils.llm_providers.gemini_provider import GeminiProvider
 
 _TOOLS = [{
     "type": "function",

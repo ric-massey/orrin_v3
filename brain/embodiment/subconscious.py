@@ -22,13 +22,13 @@ None of these block or interfere with the main cognitive loop.
 The loop reads their outputs through working memory — no special API needed.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from collections import Counter
 from typing import Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _PATTERN_INTERVAL  = 300   # 5 min
@@ -78,7 +78,7 @@ class SubconsciousProcessor:
                 self._detect_patterns()
             except Exception as _e:
                 try:
-                    from utils.log import log_error as _le
+                    from brain.utils.log import log_error as _le
                     _le(f"[subconscious:pattern] {_e}")
                 except Exception as _e:
                     record_failure("subconscious.SubconsciousProcessor._pattern_loop", _e)
@@ -152,7 +152,7 @@ class SubconsciousProcessor:
                 self._incubate()
             except Exception as _e:
                 try:
-                    from utils.log import log_error as _le
+                    from brain.utils.log import log_error as _le
                     _le(f"[subconscious:incubate] {_e}")
                 except Exception as _e:
                     record_failure("subconscious.SubconsciousProcessor._incubate_loop", _e)
@@ -263,7 +263,7 @@ class SubconsciousProcessor:
         )
         result = None
         try:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             result = gated_generate(prompt, caller="subconscious/incubation", outcome=0.60)
         except Exception as _e:
             record_failure("subconscious.SubconsciousProcessor._llm_incubation", _e)
@@ -286,7 +286,7 @@ class SubconsciousProcessor:
                 self._process_residue()
             except Exception as _e:
                 try:
-                    from utils.log import log_error as _le
+                    from brain.utils.log import log_error as _le
                     _le(f"[subconscious:residue] {_e}")
                 except Exception as _e:
                     record_failure("subconscious.SubconsciousProcessor._residue_loop", _e)
@@ -333,7 +333,7 @@ class SubconsciousProcessor:
 
     def _load_wm(self) -> List[Dict]:
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             from brain.paths import WORKING_MEMORY_FILE
             data = load_json(WORKING_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)][-60:]
@@ -342,7 +342,7 @@ class SubconsciousProcessor:
 
     def _load_lm(self) -> List[Dict]:
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             from brain.paths import LONG_MEMORY_FILE
             data = load_json(LONG_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)]
@@ -357,7 +357,7 @@ class SubconsciousProcessor:
         importance: int = 2,
     ) -> None:
         try:
-            from cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.working_memory import update_working_memory
             from datetime import datetime, timezone
             entry = {
                 "content": content,
@@ -383,7 +383,7 @@ class SubconsciousProcessor:
         """
         try:
             from brain.paths import DATA_DIR
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             stream = load_json(DATA_DIR / "conscious_stream.json", default_type=list) or []
             last = next((m for m in reversed(stream) if isinstance(m, dict)), None)
             if not last:

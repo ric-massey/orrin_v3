@@ -10,8 +10,8 @@ import json
 
 import pytest
 
-import cognition.selfhood.autobiography as auto_mod
-import cognition.reflection.review_failures as rvf
+import brain.cognition.selfhood.autobiography as auto_mod
+import brain.cognition.reflection.review_failures as rvf
 
 
 @pytest.fixture
@@ -42,7 +42,7 @@ def test_session_epilogue_appends_without_closing_chapter(_iso_autobio, monkeypa
     })
     # Force the rule-based path.
     monkeypatch.setattr(rvf, "load_json", rvf.load_json)  # no-op; keep imports honest
-    import utils.llm_gate as gate
+    import brain.utils.llm_gate as gate
     monkeypatch.setattr(gate, "llm_available", lambda: False)
 
     auto_mod.session_epilogue({"cycle_count": 42})
@@ -82,7 +82,7 @@ def test_review_failures_gate_holds_below_threshold(_iso_review):
 
 
 def test_review_failures_emits_pattern_with_links(_iso_review, monkeypatch):
-    import cog_memory.long_memory as lm_mod
+    import brain.cog_memory.long_memory as lm_mod
     written = []
     monkeypatch.setattr(lm_mod, "update_long_memory",
                         lambda content, **k: written.append((content, k)))
@@ -129,7 +129,7 @@ def test_failure_pattern_discount(_iso_review):
 
 def test_eval_b7_resolves_links(monkeypatch, tmp_path):
     import brain.benchmarks as bm  # noqa: F401 — module path is `benchmarks` on sys.path
-    import benchmarks as bench
+    import brain.benchmarks as bench
 
     auto_file = tmp_path / "autobiography.json"
     pressure_file = tmp_path / "pressure.json"

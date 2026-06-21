@@ -1,12 +1,12 @@
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Union
 from brain.paths import EVENTS_FILE as _EVENTS_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Event types
@@ -34,7 +34,7 @@ def emit_event(event_type: str, payload: Dict[str, Any] | None) -> None:
         with EVENTS_FILE.open("a", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
         # Bound the telemetry log so it can't grow without limit.
-        from utils.json_utils import cap_jsonl
+        from brain.utils.json_utils import cap_jsonl
         cap_jsonl(EVENTS_FILE, max_lines=3000)
     except Exception as _e:
         record_failure("events.emit_event", _e)

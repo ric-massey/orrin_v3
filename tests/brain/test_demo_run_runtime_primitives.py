@@ -1,13 +1,13 @@
 import pytest
 
-import cognition.reward_rate as rr
-from affect.homeostasis import update_allostatic_load
-from cognition.action_accounting import (
+import brain.cognition.reward_rate as rr
+from brain.affect.homeostasis import update_allostatic_load
+from brain.cognition.action_accounting import (
     cycle_produced_goal_action,
     mark_consequential_cognition,
     reset_cycle_action_flags,
 )
-from cognition.cognitive_cost import apply_cognitive_costs
+from brain.cognition.cognitive_cost import apply_cognitive_costs
 
 
 def test_consequential_cognition_credits_environment_change():

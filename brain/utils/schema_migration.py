@@ -80,7 +80,7 @@ def _auto_export_before_migrate() -> Optional[str]:
     snapshot failure must not block a migration the user needs, but we record that it
     didn't happen."""
     try:
-        from utils import mind_archive as _ma
+        from brain.utils import mind_archive as _ma
 
         snap_dir = paths.DATA_DIR / "_backups"
         snap_dir.mkdir(parents=True, exist_ok=True)

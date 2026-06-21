@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private, log_error, log_activity
-from utils.self_model import get_self_model
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private, log_error, log_activity
+from brain.utils.self_model import get_self_model
 # NOTE: affect.* imports are intentionally deferred into the two functions that
 # need them (detect_affect_keyword, contextual_emotion_priming) so this L1 utils
 # module does not import the L3 affect package at load time.
@@ -43,7 +43,7 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
     # Live-context path: submit a proposal to the convergence layer and return.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
         try:
-            from affect.arbiter import submit_affect
+            from brain.affect.arbiter import submit_affect
             submit_affect(context, emotion, scaled_amount, source=(reason or "adjust")[:40])
             context.setdefault("raw_signals", []).append({
                 "source": "emotion",
@@ -104,7 +104,7 @@ _warned_no_emotion_keywords = False
 
 
 def detect_affect_keyword(text: str) -> str:
-    from affect.model import load_emotion_keywords  # deferred (keeps utils L1 at load time)
+    from brain.affect.model import load_emotion_keywords  # deferred (keeps utils L1 at load time)
     global _warned_no_emotion_keywords
     text = (text or "").lower()
     emotion_keywords = load_emotion_keywords()
@@ -131,7 +131,7 @@ def log_penalty_signal(context, emotion: str = "impasse_signal", increment: floa
     falls back to a direct file write only for genuinely context-less callers."""
     # Live-context path: propose the increment to the convergence layer.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
-        from affect.arbiter import submit_affect
+        from brain.affect.arbiter import submit_affect
         submit_affect(context, emotion, float(increment), source="penalty_signal", ttl_cycles=2)
         log_private(f"⚠️ penalty_signal proposal: {emotion} += {round(float(increment), 4)}")
         context.setdefault("raw_signals", []).append({
@@ -160,7 +160,7 @@ def log_uncertainty_spike(context, increment: float = 0.2):
 
 def contextual_emotion_priming(context, persist: bool = True):
     """Affective priming based on working memory, triggers, goals, and mode."""
-    from affect.reward_signals.reward_signals import release_reward_signal  # deferred (keeps utils L1)
+    from brain.affect.reward_signals.reward_signals import release_reward_signal  # deferred (keeps utils L1)
     # Use in-memory state from context to avoid overwriting concurrent updates
     affect_state = context.get("affect_state") if isinstance(context, dict) else None
     if not isinstance(affect_state, dict) or not affect_state.get("core_signals"):
@@ -244,7 +244,7 @@ def contextual_emotion_priming(context, persist: bool = True):
     # keeps priming on the single convergence path (no last-writer race). The
     # effective (clamped) delta is what we propose, so behaviour matches the old
     # prev→clamp(prev+delta*0.2) step.
-    from affect.arbiter import submit_affect
+    from brain.affect.arbiter import submit_affect
     total_delta = 0.0
     for em, delta in influence_map.items():
         prev = float(core_signals.get(em, 0.5))
@@ -259,7 +259,7 @@ def contextual_emotion_priming(context, persist: bool = True):
     # the five inconsistent baselines in V3_AUDIT §2.1).
     reward_strength = min(1.0, total_delta / max(len(influence_map), 1))
     try:
-        from affect.reward_signals.reward_engine import submit_reward as _submit_reward
+        from brain.affect.reward_signals.reward_engine import submit_reward as _submit_reward
         _submit_reward(
             context,
             actual=reward_strength,

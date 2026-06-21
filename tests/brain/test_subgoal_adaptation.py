@@ -4,8 +4,8 @@
 # adapt_subgoals() lives in cognition/planning/pursue_goal.py. All operations
 # are symbolic (no LLM) and must be progress-preserving: completed steps are
 # never removed or reordered, only the pending tail is adapted.
-import cognition.planning.pursue_goal as pg
-from cognition.planning.goals import (
+import brain.cognition.planning.pursue_goal as pg
+from brain.cognition.planning.goals import (
     insert_plan_step,
     skip_pending_steps,
     reprioritize_pending_steps,
@@ -150,7 +150,7 @@ def test_adapt_prunes_and_fills(monkeypatch, tmp_path):
     _reset_cooldown()
     # Avoid touching the real goal tree on disk.
     monkeypatch.setattr(pg, "_save_plan_version", lambda *a, **k: None)
-    import cognition.planning.goals as goals_mod
+    import brain.cognition.planning.goals as goals_mod
     monkeypatch.setattr(goals_mod, "load_goals", lambda: [])
     monkeypatch.setattr(goals_mod, "save_goals", lambda *a, **k: None)
 
@@ -171,7 +171,7 @@ def test_adapt_prunes_and_fills(monkeypatch, tmp_path):
 def test_adapt_inserts_blocker_step(monkeypatch):
     _reset_cooldown()
     monkeypatch.setattr(pg, "_save_plan_version", lambda *a, **k: None)
-    import cognition.planning.goals as goals_mod
+    import brain.cognition.planning.goals as goals_mod
     monkeypatch.setattr(goals_mod, "load_goals", lambda: [])
     monkeypatch.setattr(goals_mod, "save_goals", lambda *a, **k: None)
 

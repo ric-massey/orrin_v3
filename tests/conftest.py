@@ -104,7 +104,7 @@ def _isolate_llm_failure_counts(monkeypatch, tmp_path):
     problem_refocus diffs to detect real outages).
     """
     try:
-        import utils.generate_response as gr
+        import brain.utils.generate_response as gr
     except Exception:
         yield
         return

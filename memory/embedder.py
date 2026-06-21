@@ -2,7 +2,7 @@
 # Text & image embedding adapters (offline-first). Uses sentence-transformers/CLIP if available, else a deterministic hash fallback.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Union, List, Optional, TYPE_CHECKING
 from functools import lru_cache
 from pathlib import Path

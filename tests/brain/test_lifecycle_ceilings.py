@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from utils import lifecycle as lc
-from utils import resource_ceilings as rc
+from brain.utils import lifecycle as lc
+from brain.utils import resource_ceilings as rc
 from brain.paths import DATA_DIR
 
 

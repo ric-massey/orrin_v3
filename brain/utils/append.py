@@ -1,7 +1,7 @@
 import os
 import json
 import tempfile
-from utils.log import log_error
+from brain.utils.log import log_error
 
 def append_to_json(file_path: str, new_entry):
     """

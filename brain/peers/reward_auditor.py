@@ -12,14 +12,14 @@ Wakes every 50 cycles, or when action_debt is high (stalled on a goal
 without learning anything from it).
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from typing import Any, Dict, List
 
-from peers.peer_base import BasePeer
+from brain.peers.peer_base import BasePeer
 from brain.paths import BANDIT_STATE_FILE, EVALUATOR_WAL, REWARD_TRACE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -74,7 +74,7 @@ class RewardAuditor(BasePeer):
 
         # ── Reward variance (flat signal = bandit can't differentiate) ────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             trace = load_json(REWARD_TRACE, default_type=list) or []
             if isinstance(trace, list) and len(trace) >= 15:
                 recent_rewards = []
@@ -101,7 +101,7 @@ class RewardAuditor(BasePeer):
 
         # ── Bandit imbalance: one arm dominating counts ───────────────────────
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             bstate = load_json(BANDIT_STATE_FILE, default_type=dict) or {}
             counts = bstate.get("counts") or bstate.get("n") or {}
             if isinstance(counts, dict) and len(counts) >= 4:

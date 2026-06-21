@@ -33,11 +33,11 @@ from collections import Counter
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 
-from utils.failure_counter import record_failure
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from utils.self_model import get_self_model
-from cog_memory.long_memory import update_long_memory
+from brain.utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.utils.self_model import get_self_model
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import (
     AUTOBIOGRAPHY,
     LONG_MEMORY_FILE,
@@ -46,7 +46,7 @@ from brain.paths import (
     THREADS_FILE,
     COMPLETED_GOALS_FILE,
 )
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 
 _NARRATIVE_MIN_INTERVAL_S   = 18 * 3600   # earliest an update can fire (18 h)
 _NARRATIVE_MAX_INTERVAL_S   = 36 * 3600   # latest Orrin will go without updating (36 h)
@@ -62,7 +62,7 @@ def load_autobiography() -> Dict[str, Any]:
     if not data.get("_identity_hash"):
         # Seed the hash so the first real identity change is detectable.
         try:
-            from utils.self_model import get_self_model as _gsm
+            from brain.utils.self_model import get_self_model as _gsm
             _sm = _gsm() or {}
             _story = _sm.get("identity_story") or _sm.get("identity") or ""
             data["_identity_hash"] = hashlib.md5(_story.encode()).hexdigest()[:8]
@@ -339,7 +339,7 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
     long_mem = load_json(LONG_MEMORY_FILE, default_type=list) or []
     recent_memories = _select_significant_memories(long_mem, last_ts, max_results=40)
     try:
-        from cog_memory.reconstruction import reconstruct as _recon
+        from brain.cog_memory.reconstruction import reconstruct as _recon
         _current_mood = float((self_model.get("mood") or 0.0))
     except Exception:
         _recon        = lambda e, **kw: str(e.get("content", ""))
@@ -400,9 +400,9 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw = (gated_generate(prompt, caller="autobiography", outcome=0.65) or "").strip()
-        from utils.json_utils import extract_json as _ej
+        from brain.utils.json_utils import extract_json as _ej
         result = _ej(raw)
         if not isinstance(result, dict):
             raise ValueError(f"expected dict, got {type(result).__name__}")
@@ -485,7 +485,7 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
 
     # Refresh the living identity narrative — autobiography is the richest trigger
     try:
-        from cognition.selfhood.identity import refresh_identity_story
+        from brain.cognition.selfhood.identity import refresh_identity_story
         refresh_identity_story(
             narrative_hint=narrative,
             context=context,
@@ -577,9 +577,9 @@ def _session_reflection(context: Dict[str, Any], deadline: float) -> str:
         )
 
     try:
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         if llm_available() and (deadline - time.monotonic()) > 6.0:
-            from symbolic.llm_gate import gated_generate
+            from brain.symbolic.llm_gate import gated_generate
             prompt = (
                 "My session is ending normally (not death — just a pause). In 2-3 "
                 "first-person sentences, reflect on what this session held and what "

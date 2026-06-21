@@ -22,9 +22,9 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private
-from utils.json_utils import load_json
-from cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
 
 

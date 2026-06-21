@@ -19,17 +19,17 @@
 #
 # Returns the same dict as run_inner_loop, plus "mode": "symbolic".
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import time
 from typing import Any, Dict, Tuple
 
-from utils.log import log_activity
-from think.scratchpad import scratchpad_append, scratchpad_latest
-from think.meta_controller import decide as meta_decide
-from think.thought_stream import emit_thought
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.think.scratchpad import scratchpad_append, scratchpad_latest
+from brain.think.meta_controller import decide as meta_decide
+from brain.think.thought_stream import emit_thought
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Constants are kept local (not imported from inner_loop) to avoid a circular
@@ -72,7 +72,7 @@ def _symbolic_draft(
 
     if use_router:
         try:
-            from symbolic import reasoning_router
+            from brain.symbolic import reasoning_router
             routed = reasoning_router.route(q, context=context)
             ans = (routed.get("answer") or "").strip()
             if routed.get("resolved") and ans and routed.get("source") not in ("suppressed", "llm_needed"):
@@ -82,7 +82,7 @@ def _symbolic_draft(
             record_failure("inner_loop_symbolic._symbolic_draft.router", e)
 
     try:
-        from symbolic.symbolic_search import search as _sym_search
+        from brain.symbolic.symbolic_search import search as _sym_search
         s = (_sym_search(q, context=context) or "").strip()
         if s:
             parts.append(s)
@@ -91,7 +91,7 @@ def _symbolic_draft(
         record_failure("inner_loop_symbolic._symbolic_draft.search", e)
 
     try:
-        from symbolic.causal_graph import causal_explanation
+        from brain.symbolic.causal_graph import causal_explanation
         c = causal_explanation(q)
         if c:
             parts.append(c)
@@ -103,8 +103,8 @@ def _symbolic_draft(
         # Widen: inference over the KG model + nearest analogy. This is the
         # symbolic analogue of "switch to the deep model" — more reach, no LLM.
         try:
-            from symbolic.inference import infer_and_explain
-            from symbolic.symbolic_self_model import get_symbolic_self_model
+            from brain.symbolic.inference import infer_and_explain
+            from brain.symbolic.symbolic_self_model import get_symbolic_self_model
             inf = infer_and_explain(q, get_symbolic_self_model())
             if inf:
                 parts.append(str(inf))
@@ -112,7 +112,7 @@ def _symbolic_draft(
         except Exception as e:
             record_failure("inner_loop_symbolic._symbolic_draft.inference", e)
         try:
-            from symbolic.analogy_engine import best_analogue_answer
+            from brain.symbolic.analogy_engine import best_analogue_answer
             an = best_analogue_answer(q)
             if an:
                 parts.append(str(an))
@@ -139,13 +139,13 @@ def _symbolic_confidence(topic: str, draft: str) -> float:
         return 0.0
     cov = 0.5
     try:
-        from symbolic.intrinsic_motivation import uncertainty
+        from brain.symbolic.intrinsic_motivation import uncertainty
         cov = 1.0 - float(uncertainty(topic))      # 0=unknown, 1=fully covered
     except Exception:
         pass
     sa = 0.5
     try:
-        from symbolic.symbolic_self_model import self_assess
+        from brain.symbolic.symbolic_self_model import self_assess
         sa = float(self_assess(topic).get("confidence", 0.5))
     except Exception:
         pass
@@ -160,7 +160,7 @@ def _symbolic_confidence(topic: str, draft: str) -> float:
 
 def _critique_coverage(topic: str, draft: str, context: Dict[str, Any]) -> str:
     try:
-        from symbolic.symbolic_self_model import self_assess
+        from brain.symbolic.symbolic_self_model import self_assess
         a = self_assess(topic)
         if not a.get("trust_symbolic", False):
             return (f"Weak symbolic coverage in domain '{a.get('domain')}' "
@@ -168,7 +168,7 @@ def _critique_coverage(topic: str, draft: str, context: Dict[str, Any]) -> str:
     except Exception as e:
         record_failure("inner_loop_symbolic._critique_coverage", e)
     try:
-        from symbolic.intrinsic_motivation import uncertainty
+        from brain.symbolic.intrinsic_motivation import uncertainty
         if float(uncertainty(topic)) > 0.6:
             return "High uncertainty: little rule/KG coverage for this topic; gather more before asserting."
     except Exception:
@@ -184,7 +184,7 @@ _NEG_MARKERS = (" not ", " never ", "n't ", " no ", " isn't", " aren't", " false
 def _critique_contradiction(draft: str, topic: str, context: Dict[str, Any]) -> str:
     # a) self-model rule / belief conflicts (pure symbolic).
     try:
-        from symbolic.symbolic_cognition import detect_rule_contradictions
+        from brain.symbolic.symbolic_cognition import detect_rule_contradictions
         for c in detect_rule_contradictions(context.get("self_model") or {}):
             if c.get("type") == "belief_rule_conflict":
                 return (f"Belief/rule conflict: '{c.get('belief')}' is opposed by "
@@ -196,7 +196,7 @@ def _critique_contradiction(draft: str, topic: str, context: Dict[str, Any]) -> 
     # b) KG-relation negation: the draft appears to negate a high-confidence
     #    relation Orrin holds ("rest reduces fatigue" vs draft "rest does not reduce fatigue").
     try:
-        from cognition.knowledge_graph import _load_graph
+        from brain.cognition.knowledge_graph import _load_graph
         dl = f" {draft.lower()} "
         if any(n in dl for n in _NEG_MARKERS):
             for rel in (_load_graph().get("relations") or []):
@@ -293,7 +293,7 @@ def run_inner_loop_symbolic(
 
     if max_rounds is None:
         try:
-            from think.depth_bandit import choose_rounds as _cr
+            from brain.think.depth_bandit import choose_rounds as _cr
             max_rounds = _cr()
         except Exception:
             max_rounds = _DEFAULT_ROUNDS
@@ -381,7 +381,7 @@ def run_inner_loop_symbolic(
     elapsed = time.time() - cycle_start
     loop_quality = final_conf
     try:
-        from think.depth_bandit import record_outcome as _ro
+        from brain.think.depth_bandit import record_outcome as _ro
         eff_bonus = max(0.0, 1.0 - elapsed / _INNER_LOOP_MAX_S) * 0.15
         reward = min(1.0, loop_quality + eff_bonus) * 2 - 1.0   # → [-1, 1]
         _ro(max(1, round_num), reward)

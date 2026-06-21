@@ -23,13 +23,13 @@ API:
   mark_orrin_responded()        — call when Orrin outputs a response
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _POLL_INTERVAL = 15      # seconds between presence polls

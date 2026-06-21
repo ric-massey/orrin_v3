@@ -8,7 +8,7 @@
 #   - All code is validated in the sandbox before being registered
 #   - A manifest is kept so Orrin knows what he has written
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import ast
 import re
@@ -17,16 +17,16 @@ import threading
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_activity, log_error
-from cog_memory.working_memory import update_working_memory
-from think.sandbox_runner import run_python
+from brain.utils.log import log_activity, log_error
+from brain.cog_memory.working_memory import update_working_memory
+from brain.think.sandbox_runner import run_python
 from brain.paths import ROOT_DIR
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 # Orrin's self-written code lives in the writable per-user tree (§10.1), not the
 # read-only program folder. self_code owns those dirs, the import namespace, and the
 # manifest (relative paths) — this module just asks it to write/load/record.
-from agency.self_code import (
+from brain.agency.self_code import (
     SELF_COGNITION_DIR,
     SELF_SKILLS_DIR,
     ensure_tree,
@@ -126,7 +126,7 @@ def _validate_in_sandbox(code: str, name: str = "_anonymous", description: str =
     Returns {"ok": bool, "stdout": str, "stderr": str, "stages": dict}.
     """
     try:
-        from cognition.skill_synthesis import verify_skill as _vsk
+        from brain.cognition.skill_synthesis import verify_skill as _vsk
         result = _vsk(name, code, description, llm_review=False)
         out = {
             "ok": result["passed"],
@@ -144,7 +144,7 @@ def _validate_in_sandbox(code: str, name: str = "_anonymous", description: str =
     # does not — re-run it here unconditionally as a final independent gate
     # before any code is written or hot-registered.
     try:
-        from cognition.skill_synthesis import check_code_safety as _safety
+        from brain.cognition.skill_synthesis import check_code_safety as _safety
         safe, violations = _safety(code)
         if not safe:
             out["ok"] = False
@@ -162,13 +162,13 @@ def _validate_in_sandbox(code: str, name: str = "_anonymous", description: str =
 def _record_code_effect(kind: str, full_code: str, context, goal_id) -> None:
     """P0: a written-and-registered function/tool is a real, durable external effect."""
     try:
-        from agency.effect_ledger import record_effect
+        from brain.agency.effect_ledger import record_effect
         _row = record_effect(kind, full_code, goal_id=goal_id, context=context)
         if _row is not None and _row.significance > 0 and isinstance(context, dict):
             context["_production_effect_this_cycle"] = True
             context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
     except Exception as _e:
-        from utils.failure_counter import record_failure
+        from brain.utils.failure_counter import record_failure
         record_failure("code_writer.record_effect", _e)
 
 
@@ -237,7 +237,7 @@ def write_cognitive_function(
         mod = load_module_from(file_path, "custom_cognition")
         fn = getattr(mod, name, None) if mod is not None else None
         if callable(fn):
-            from registry.cognition_registry import COGNITIVE_FUNCTIONS
+            from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
             COGNITIVE_FUNCTIONS[name] = {"function": fn, "is_cognition": True}
             log_activity(f"Orrin wrote and registered new function: {name}")
     except Exception as e:
@@ -306,7 +306,7 @@ def write_tool(
         mod = load_module_from(file_path, "skills")
         fn = getattr(mod, name, None) if mod is not None else None
         if callable(fn):
-            from behavior.tools.toolkit import tool_registry
+            from brain.behavior.tools.toolkit import tool_registry
             tool_registry[name] = fn
             log_activity(f"Orrin wrote and registered new tool: {name}")
     except Exception as e:
@@ -346,12 +346,12 @@ def delete_own_code(name: str) -> Dict[str, Any]:
 
     # Remove from live registries
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
         COGNITIVE_FUNCTIONS.pop(name, None)
     except Exception as _e:
         record_failure("code_writer.delete_own_code", _e)
     try:
-        from behavior.tools.toolkit import tool_registry
+        from brain.behavior.tools.toolkit import tool_registry
         tool_registry.pop(name, None)
     except Exception as _e:
         record_failure("code_writer.delete_own_code.2", _e)
@@ -370,7 +370,7 @@ def synthesize_from_gap(context: Dict[str, Any] = None, **_) -> str:
     """
     ctx = context or {}
     try:
-        from cognition.skill_synthesis import detect_and_synthesize as _das
+        from brain.cognition.skill_synthesis import detect_and_synthesize as _das
         result = _das(ctx)
         if result.get("synthesized"):
             fn = (result.get("result") or {}).get("fn_name", "?")
@@ -407,7 +407,7 @@ def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
     # unavailable message, which _clean_llm_code_body() maps to None below → no stub.
     body = None
     try:
-        from cognition.tools.ask_llm import ask_llm
+        from brain.cognition.tools.ask_llm import ask_llm
         query = f"Write the body of a Python function named '{fn_name}'. It should: {topic}."
         body = _clean_llm_code_body(ask_llm(ctx, query=query, purpose="write_code", force=True))
     except Exception as _e:

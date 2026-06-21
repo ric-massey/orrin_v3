@@ -6,13 +6,13 @@
 # formula commit_affect uses internally.
 import random
 
-from affect.arbiter import (
+from brain.affect.arbiter import (
     commit_affect,
     submit_affect,
     STABILITY_BUDGET,
     _AWAY_COST_MULTIPLIER,
 )
-from affect.setpoints import setpoint
+from brain.affect.setpoints import setpoint
 
 SIGNALS = ["threat_level", "motivation", "uncertainty", "positive_valence", "impasse_signal"]
 

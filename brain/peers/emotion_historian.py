@@ -13,13 +13,13 @@ Wakes when any core affect signal exceeds 0.75, or when affective
 stability falls below 0.40.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List
 
-from peers.peer_base import BasePeer
+from brain.peers.peer_base import BasePeer
 from brain.paths import AFFECT_STATE_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -48,7 +48,7 @@ class EmotionHistorian(BasePeer):
         signals = []
 
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
             core = state.get("core_signals") or {}
             stability = float(state.get("affect_stability", 1.0) or 1.0)
@@ -143,10 +143,10 @@ class EmotionHistorian(BasePeer):
         required so a single noisy wave doesn't mint a rule.
         """
         try:
-            from cognition.metacog import _maturity_gate_open
+            from brain.cognition.metacog import _maturity_gate_open
             if not _maturity_gate_open(context):
                 return
-            from utils.json_utils import load_json, save_json
+            from brain.utils.json_utils import load_json, save_json
             from brain.paths import DATA_DIR
             path = DATA_DIR / "peer_rule_candidates.json"
             cands = load_json(path, default_type=dict) or {}
@@ -156,7 +156,7 @@ class EmotionHistorian(BasePeer):
             rec = cands.get(key) or {"count": 0, "promoted": False}
             rec["count"] = int(rec.get("count", 0)) + 1
             if rec["count"] >= self._RULE_RECUR_THRESHOLD and not rec.get("promoted"):
-                from symbolic.rule_engine import add_rule
+                from brain.symbolic.rule_engine import add_rule
                 add_rule(
                     conditions=[f"affect_chronic:{trigger}"],
                     conclusion=(

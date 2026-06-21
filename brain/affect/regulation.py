@@ -38,16 +38,16 @@
 #   across psychopathology: A meta-analytic review." Clinical Psychology Review,
 #   30(2), 217–237. Reappraisal > suppression for long-term outcomes.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _REGULATION_LOG_FILE = DATA_DIR / "regulation_log.json"
@@ -377,7 +377,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     before = dict(core)
     _apply_strategy(core, emotion, strategy, succeeded)
 
-    from affect.arbiter import submit_affect
+    from brain.affect.arbiter import submit_affect
     for _emo, _new in core.items():
         # Absent-before keys start from 0.0 (a signal not in core_signals is at
         # rest), so a side-effect that introduces one still produces its delta.
@@ -417,7 +417,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     )
     if succeeded:
         try:
-            from cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.working_memory import update_working_memory
             update_working_memory({
                 "content": (
                     f"[regulation] Applied {label}: {strategy['description'][:100]}"

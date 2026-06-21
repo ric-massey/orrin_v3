@@ -2,7 +2,7 @@
 # Pytest for FileGoalsStore CRUD, indexing, filtering, and WAL behavior
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from pathlib import Path

@@ -9,7 +9,7 @@ import math
 
 import pytest
 
-from cognition.body_band import Band, BodyBands
+from brain.cognition.body_band import Band, BodyBands
 
 
 def _breathe(band: Band, center=920.0, amp=40.0, period=9.0, n=500):
@@ -118,7 +118,7 @@ def test_bodybands_discards_foreign_machine_bands(tmp_path):
 # ------------------------------------------------------- body_sense wiring ---
 
 def test_body_sense_resting_high_rss_reads_clear_not_heavy():
-    import cognition.body_sense as bs
+    import brain.cognition.body_sense as bs
     bs._bands = None  # fresh, isolated by conftest's tmp DATA_DIR
     bs._dream_bands = None
     g = bs._get_bands()
@@ -141,7 +141,7 @@ def test_body_sense_resting_high_rss_reads_clear_not_heavy():
 
 
 def test_body_sense_lenient_during_infancy():
-    import cognition.body_sense as bs
+    import brain.cognition.body_sense as bs
     bs._bands = None
     bs._dream_bands = None
     g = bs._get_bands()
@@ -155,8 +155,8 @@ def test_body_sense_lenient_during_infancy():
 
 
 def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
-    import cognition.body_sense as bs
-    from cognition.dreaming.dream_cycle import set_dreaming
+    import brain.cognition.body_sense as bs
+    from brain.cognition.dreaming.dream_cycle import set_dreaming
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
     bs._bands = None
@@ -192,10 +192,10 @@ def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
 
 
 def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
-    import affect.arbiter as arbiter
-    from affect.arbiter import commit_affect, submit_affect
-    import cognition.body_sense as bs
-    from cognition.dreaming.dream_cycle import set_dreaming
+    import brain.affect.arbiter as arbiter
+    from brain.affect.arbiter import commit_affect, submit_affect
+    import brain.cognition.body_sense as bs
+    from brain.cognition.dreaming.dream_cycle import set_dreaming
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
     monkeypatch.setattr(bs, "BODY_SENSE_FILE", tmp_path / "body_sense.json")

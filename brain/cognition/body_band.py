@@ -305,7 +305,7 @@ class BodyBands:
     # ---------------------------------------------------------- persistence ---
     def load(self) -> "BodyBands":
         try:
-            from utils.json_utils import load_json
+            from brain.utils.json_utils import load_json
             raw = load_json(self.path, default_type=dict) or {}
         except Exception:
             raw = {}
@@ -322,7 +322,7 @@ class BodyBands:
         if not self._dirty:
             return
         try:
-            from utils.json_utils import save_json
+            from brain.utils.json_utils import save_json
             save_json(self.path, {
                 "fingerprint": self.fingerprint,
                 "bands": {n: b.to_dict() for n, b in self.bands.items()},

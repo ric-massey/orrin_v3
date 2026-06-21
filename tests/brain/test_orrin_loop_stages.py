@@ -8,7 +8,7 @@
 import pytest
 
 import ORRIN_loop as loop
-from config.tuning import (
+from brain.config.tuning import (
     AFFECT_TRANSIENT_DECAY,
     CRISIS_ABOVE_HALF_COUNT,
     CRISIS_ABOVE_HALF_THRESHOLD,

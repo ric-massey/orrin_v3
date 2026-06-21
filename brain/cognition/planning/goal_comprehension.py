@@ -4,10 +4,10 @@ from __future__ import annotations
 import re
 from typing import Any, Dict, List
 
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.json_utils import extract_json
-from utils.llm_gate import llm_callable_by
-from utils.timeutils import now_iso_z
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.json_utils import extract_json
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.timeutils import now_iso_z
 
 _LONG_FORM = re.compile(
     r"\b(book|manuscript|paper|essay|article|report|guide|chapter|synthesis)\b",
@@ -163,7 +163,7 @@ def comprehend_goal(goal: Dict[str, Any], context: Dict[str, Any] | None = None)
                     "comprehension_source": "llm",
                 })
         except Exception as exc:
-            from utils.failure_counter import record_failure
+            from brain.utils.failure_counter import record_failure
             record_failure("goal_comprehension.comprehend_goal.llm", exc)
     for key, value in model.items():
         if key in {"plan", "milestones"} and out.get(key):

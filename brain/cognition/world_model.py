@@ -1,17 +1,17 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 import re
 from collections import Counter
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_error
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_error
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import (
     SYMBOLIC_WORLD_MODEL, LONG_MEMORY_FILE, CONCEPTS_FILE,
     WORLD_MODEL_BACKUP, DATA_DIR,
 )
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 MAX_ENTITIES  = 80
@@ -378,7 +378,7 @@ def simulate_event(event: str) -> dict:
     model = _load_symbolic_model()
 
     try:
-        from symbolic.causal_graph import get_causal_effects
+        from brain.symbolic.causal_graph import get_causal_effects
         effects = get_causal_effects(event) or []
     except Exception:
         effects = []
@@ -432,7 +432,7 @@ def query_world_model(query: str) -> dict:
     similar_entities: list = []
     entity_schema: dict = {}
     try:
-        from symbolic.inference import infer_and_explain, find_similar_entities, get_entity_schema
+        from brain.symbolic.inference import infer_and_explain, find_similar_entities, get_entity_schema
         inferred_explanation = infer_and_explain(query, model)
         # Return schema for the best-matched entity
         if matching_entities:
@@ -464,7 +464,7 @@ def run_inference_cycle() -> dict:
     """
     model = _load_symbolic_model()
     try:
-        from symbolic.inference import run_inference
+        from brain.symbolic.inference import run_inference
         new_relations = run_inference(model)
     except Exception as e:
         log_error(f"[inference] run_inference failed: {e}")

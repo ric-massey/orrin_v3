@@ -1,22 +1,22 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 
-from utils.json_utils import load_json, save_json
-from utils.timing import get_time_since_last_active
-from utils.log import log_private, log_model_issue
-from utils.events import emit_event, DECISION
-from behavior.tools.toolkit import evaluate_tool_use
-from cognition.planning.motivations import adjust_goal_weights
-from cog_memory.working_memory import update_working_memory
-from affect.update_affect_state import update_affect_state
-from think.think_utils.escalate import is_agentic_action
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.timing import get_time_since_last_active
+from brain.utils.log import log_private, log_model_issue
+from brain.utils.events import emit_event, DECISION
+from brain.behavior.tools.toolkit import evaluate_tool_use
+from brain.cognition.planning.motivations import adjust_goal_weights
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.update_affect_state import update_affect_state
+from brain.think.think_utils.escalate import is_agentic_action
 from brain.paths import (
     ACTION_FILE,
     COGNITION_STATE_FILE,
     COGNITION_HISTORY_FILE,
     BEHAVIORAL_FUNCTIONS_LIST_FILE,  # use the real constant
 )
-from utils.timeutils import now_iso_z
+from brain.utils.timeutils import now_iso_z
 _log = get_logger(__name__)
 
 # NEW: ensure we can display and score 'reason' whether it's a dict or a string
@@ -30,8 +30,8 @@ def _reason_text(reason) -> str:
 
 # Delegate to the canonical reward emitter (affect.reward_signals.release_reward)
 # so the wrapper logic lives in exactly one place.
-from affect.reward_signals.reward_signals import release_reward as _reward
-from utils.failure_counter import record_failure
+from brain.affect.reward_signals.reward_signals import release_reward as _reward
+from brain.utils.failure_counter import record_failure
 
 # Functions that constitute genuine outward action — coupling cognition to the
 # world. These receive a standing reward bonus so the bandit learns to value
@@ -141,8 +141,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # action_gate path: __acted_this_tick__ + last_action_taken type (AGENTIC_TYPES).
     is_agentic = is_agentic_action(next_function, behavior_list_path=BEHAVIORAL_FUNCTIONS_LIST_FILE)
     try:
-        from cognition.action_accounting import cycle_produced_goal_action
-        from think.think_utils.action_gate import AGENTIC_TYPES
+        from brain.cognition.action_accounting import cycle_produced_goal_action
+        from brain.think.think_utils.action_gate import AGENTIC_TYPES
         _acted = bool(context.get("__acted_this_tick__"))
         _acted_type = (context.get("last_action_taken") or {}).get("type")
         if (_acted and _acted_type in AGENTIC_TYPES) or cycle_produced_goal_action(context):
@@ -204,7 +204,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # downstream effect this cycle (an action taken), their reward is compressed
     # toward neutral so the bandit/EMA can't learn "always pick reflection".
     try:
-        from think.think_utils.select_function import _DELIBERATION_FNS
+        from brain.think.think_utils.select_function import _DELIBERATION_FNS
         if (not is_agentic
                 and next_function in _DELIBERATION_FNS
                 and not cycle_produced_goal_action(context)
@@ -217,7 +217,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # rather than a hardcoded expected=0.5. action_type is the cycle's chosen
     # function so each function learns its own expectation.
     try:
-        from affect.reward_signals.reward_engine import submit_reward as _submit_reward
+        from brain.affect.reward_signals.reward_engine import submit_reward as _submit_reward
         _act_key = str(context.get("last_function_chosen") or "cycle")
         # Calibration: record the forecast (per-function expected reward) against
         # the realized reward BEFORE submit_reward updates the EMA. Nelson &
@@ -227,8 +227,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         # improving (controlled-refinement exemption, Fix #4).
         _ema_before = None
         try:
-            from affect.reward_signals.action_reward_ema import get_expected as _get_exp
-            from cognition.calibration import record as _cal_record
+            from brain.affect.reward_signals.action_reward_ema import get_expected as _get_exp
+            from brain.cognition.calibration import record as _cal_record
             _ema_before = _get_exp(context, _act_key)
             _cal_record(context, _ema_before, actual_fb)
         except Exception as _ce:
@@ -244,7 +244,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         )
         if _ema_before is not None:
             try:
-                from affect.reward_signals.action_reward_ema import get_expected as _get_exp2
+                from brain.affect.reward_signals.action_reward_ema import get_expected as _get_exp2
                 context.setdefault("_fn_ema_delta", {})[_act_key] = (
                     _get_exp2(context, _act_key) - _ema_before
                 )
@@ -258,7 +258,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # Attention value learning: sources that were active this cycle get credit
     # or penalty based on whether the cycle produced high reward.
     try:
-        from think.attention_weights import update_attention_weights as _uaw
+        from brain.think.attention_weights import update_attention_weights as _uaw
         _uaw(context, actual_fb)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.5", _e)
@@ -269,7 +269,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         _user_responded = bool((context.get("latest_user_input") or "").strip())
         _prev_phrase_hash = context.pop("_pending_vocab_phrase_hash", None)
         if _user_responded and _prev_phrase_hash:
-            from utils.json_utils import load_json as _lvj, save_json as _svj
+            from brain.utils.json_utils import load_json as _lvj, save_json as _svj
             from brain.paths import DATA_DIR as _DATA_DIR
             _vw_path = _DATA_DIR / "vocab_weights.json"
             _vw = _lvj(_vw_path, default_type=dict) or {}
@@ -290,7 +290,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
 
     # Rule verifier outcome — adjust confidence of any rule that fired this cycle.
     try:
-        from symbolic.rule_verifier import apply_outcome as _rva
+        from brain.symbolic.rule_verifier import apply_outcome as _rva
         _user_q = (context.get("latest_user_input") or context.get("user_input") or "").strip()
         _rva(actual_fb, query=_user_q, context=context)
     except Exception as _e:
@@ -303,7 +303,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         _last_resp = (context.get("_last_responded_input") or "").strip()
         _orrin_resp = (context.get("_last_spoken") or context.get("_last_reply") or "").strip()
         if _user_in and _orrin_resp and actual_fb >= 0.55:
-            from utils.trace_buffer import record_trace as _rt
+            from brain.utils.trace_buffer import record_trace as _rt
             _sys_prompt = (context.get("system_prompt") or "")[:800]
             _rt(
                 user_input=_user_in,
@@ -424,19 +424,19 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     repeat_count = (cog_state.get("repeat_count", 0) + 1) if last_choice == next_function else 1
 
     try:
-        from cognition.cognitive_cost import apply_cognitive_costs
+        from brain.cognition.cognitive_cost import apply_cognitive_costs
         apply_cognitive_costs(context, next_function, repeat_count)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.12", _e)
 
     try:
-        from cognition.temporal_pressure import apply_temporal_pressure
+        from brain.cognition.temporal_pressure import apply_temporal_pressure
         apply_temporal_pressure(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.13", _e)
 
     try:
-        from cognition.mortality import apply_mortality_pressure
+        from brain.cognition.mortality import apply_mortality_pressure
         _mortality = apply_mortality_pressure(context)
         if _mortality.get("terminate"):
             context["_orrin_dying"] = True
@@ -444,7 +444,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.14", _e)
 
     try:
-        from cognition.selfhood.fragmentation import apply_fragmentation_cost
+        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost
         apply_fragmentation_cost(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.15", _e)
@@ -453,7 +453,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # This runs AFTER agentic/env-delta rewards to avoid double-counting but ensures
     # external-grounding signals actually feed the bandit on cycles where they fire.
     try:
-        from cognition.reward_calibrator import (
+        from brain.cognition.reward_calibrator import (
             check_and_reward_goal_closure as _cgc,
             check_and_reward_prediction_accuracy as _cpa,
             check_and_reward_contradiction_resolution as _ccr,
@@ -465,43 +465,43 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.16", _e)
 
     try:
-        from cognition.perception.environment import update_environment_state
+        from brain.cognition.perception.environment import update_environment_state
         update_environment_state(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.17", _e)
 
     try:
-        from cognition.associative_memory import maybe_surface_association
+        from brain.cognition.associative_memory import maybe_surface_association
         maybe_surface_association(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.18", _e)
 
     try:
-        from cognition.habituation import apply_habituation
+        from brain.cognition.habituation import apply_habituation
         apply_habituation(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.19", _e)
 
     try:
-        from cognition.self_generated.autogenerated_thoughts import maybe_generate_thought
+        from brain.cognition.self_generated.autogenerated_thoughts import maybe_generate_thought
         maybe_generate_thought(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.20", _e)
 
     try:
-        from cognition.opinions import maybe_form_opinion
+        from brain.cognition.opinions import maybe_form_opinion
         maybe_form_opinion(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.21", _e)
 
     try:
-        from cognition.mood import update_mood
+        from brain.cognition.mood import update_mood
         update_mood(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.22", _e)
 
     try:
-        from cognition.regret import maybe_surface_regret
+        from brain.cognition.regret import maybe_surface_regret
         maybe_surface_regret(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.23", _e)
@@ -509,7 +509,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # Emotional regulation: attempt a regulation strategy when a negative
     # emotion is intense enough. Rate-limited to every ~10 cycles internally.
     try:
-        from affect.regulation import attempt_regulation as _attempt_reg
+        from brain.affect.regulation import attempt_regulation as _attempt_reg
         _attempt_reg(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.24", _e)

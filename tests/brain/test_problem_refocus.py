@@ -12,7 +12,7 @@
 #
 # Failure detection and capability health are seam-injected via monkeypatch so
 # no real LLM/network is touched.
-import cognition.planning.problem_refocus as pr
+import brain.cognition.planning.problem_refocus as pr
 
 
 def _ctx(goal_title="Research black holes", **extra):
@@ -40,7 +40,7 @@ def _seed_baseline(ctx, monkeypatch, llm=0, sites=None):
 
 def _no_goal_tree_writes(monkeypatch):
     """Keep the background path off the live goals_mem.json file."""
-    import cognition.planning.goals as goals_mod
+    import brain.cognition.planning.goals as goals_mod
     monkeypatch.setattr(goals_mod, "add_goal", lambda g, parent_name=None: g)
     monkeypatch.setattr(goals_mod, "mark_goal_status_by_name", lambda n, s: True)
 
@@ -172,7 +172,7 @@ def test_workaround_when_no_fixable_cause(monkeypatch):
     # Abduction finds only an unfixable cause → the honest decision is "work
     # around it and note it for the operator"; the goal completes like any other.
     _no_goal_tree_writes(monkeypatch)
-    import cognition.planning.diagnosis as diag
+    import brain.cognition.planning.diagnosis as diag
     monkeypatch.setattr(diag, "abduce", lambda cap, ctx, description="": [
         {"key": "persistent_outage", "cause": "a persistent outage", "fixable": False,
          "cost": 0.9, "confirmed": True, "source": "fault_model"},
@@ -198,7 +198,7 @@ def test_transient_cause_is_repaired_then_resolves(monkeypatch):
     # A confirmed FIXABLE cause is repaired; when the capability heals, the
     # episode ends. This is the abductive repair loop, run in the background.
     _no_goal_tree_writes(monkeypatch)
-    import cognition.planning.diagnosis as diag
+    import brain.cognition.planning.diagnosis as diag
     monkeypatch.setattr(diag, "abduce", lambda cap, ctx, description="": [
         {"key": "transient_network", "cause": "a transient network problem",
          "fixable": True, "cost": 0.2, "confirmed": True, "source": "fault_model"},

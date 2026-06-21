@@ -11,10 +11,10 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List
 
 from brain.paths import RSS_CACHE_FILE, RSS_FEEDS_FILE
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
-from utils.content_quarantine import quarantine_text, quarantine_extra
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.content_quarantine import quarantine_text, quarantine_extra
 
 _LAST_RSS_TS: float = 0.0
 _MIN_INTERVAL_S: float = 1800.0  # at most every 30 minutes

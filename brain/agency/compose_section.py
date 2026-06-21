@@ -5,12 +5,12 @@ import re
 from pathlib import Path
 from typing import Any, Dict
 
-from agency.effect_ledger import MIN_ARTIFACT_CHARS, record_effect
+from brain.agency.effect_ledger import MIN_ARTIFACT_CHARS, record_effect
 from brain.paths import DATA_DIR
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.llm_gate import llm_callable_by
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 TRACKED_WORK_DIR = DATA_DIR / "tracked_work"
 
@@ -87,7 +87,7 @@ def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dic
         pending["status"] = "completed"
         pending["completed_at"] = now_iso_z()
     try:
-        from cognition.planning.goals import load_goals, merge_updated_goal_into_tree, save_goals
+        from brain.cognition.planning.goals import load_goals, merge_updated_goal_into_tree, save_goals
         save_goals(merge_updated_goal_into_tree(load_goals(), goal))
     except Exception as exc:
         # The durable manuscript and effect row are authoritative; a goal-store

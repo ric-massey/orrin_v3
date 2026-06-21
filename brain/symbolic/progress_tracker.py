@@ -20,16 +20,16 @@
 # Rolling window: keeps 90 days of daily snapshots.
 # Session metrics are accumulated in memory and flushed to disk on report().
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 from datetime import date
 from typing import Any, Dict
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 PROGRESS_FILE = DATA_DIR / "symbolic_progress.json"
@@ -141,7 +141,7 @@ def _compute_snapshot() -> Dict:
 
     # Rule set stats (read from disk)
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         rules = get_all_rules()
         rules_total = len(rules)
         # Rules added today
@@ -170,7 +170,7 @@ def _compute_snapshot() -> Dict:
 
     # Meta-rule stats
     try:
-        from symbolic.meta_rules import get_meta_rule_stats
+        from brain.symbolic.meta_rules import get_meta_rule_stats
         meta_stats = get_meta_rule_stats()
         meta_apps_total = sum(m["applications"] for m in meta_stats)
         top_meta = max(meta_stats, key=lambda m: m["applications"], default={})
@@ -183,10 +183,10 @@ def _compute_snapshot() -> Dict:
     # Avg concept depth: mean number of active rules per concept
     avg_concept_depth = 0.0
     try:
-        from symbolic.concept_formation import get_concepts as _gac
+        from brain.symbolic.concept_formation import get_concepts as _gac
         concepts = _gac() or []
         if concepts:
-            from symbolic.rule_engine import get_all_rules as _gar
+            from brain.symbolic.rule_engine import get_all_rules as _gar
             active_rules = _gar()
             depth_vals = []
             for c in concepts:
@@ -204,7 +204,7 @@ def _compute_snapshot() -> Dict:
     # Causal graph density: edges / unique nodes
     causal_density = 0.0
     try:
-        from symbolic.causal_graph import get_all_edges as _gae
+        from brain.symbolic.causal_graph import get_all_edges as _gae
         edges = _gae()
         if edges:
             nodes: set = set()
@@ -230,7 +230,7 @@ def _compute_snapshot() -> Dict:
     # Experiment success rate (from log)
     experiment_success_rate = 0.0
     try:
-        from symbolic.autonomous_experiment import get_experiment_stats as _ges
+        from brain.symbolic.autonomous_experiment import get_experiment_stats as _ges
         _estats = _ges(days=7)
         experiment_success_rate = _estats.get("success_rate", 0.0)
     except Exception as _e:
@@ -239,7 +239,7 @@ def _compute_snapshot() -> Dict:
     # Forgetting rate: rules retired/decayed in last 7 days
     forgetting_rate_7d = 0
     try:
-        from symbolic.rule_forgetting import get_forgetting_stats as _gfs
+        from brain.symbolic.rule_forgetting import get_forgetting_stats as _gfs
         _fstats = _gfs(days=7)
         forgetting_rate_7d = _fstats.get("total_decayed", 0) + _fstats.get("total_pruned", 0)
     except Exception as _e:
@@ -355,7 +355,7 @@ def report(days: int = 7) -> Dict:
     # Benchmark trend
     bm_str = ""
     try:
-        from symbolic.benchmark import get_benchmark_trend as _gbt
+        from brain.symbolic.benchmark import get_benchmark_trend as _gbt
         _bt = _gbt(days=days)
         bm_str = f" | Benchmark: {_bt.get('latest', 0):.2f} ({_bt.get('trend','?')})"
     except Exception as _e:
@@ -364,7 +364,7 @@ def report(days: int = 7) -> Dict:
     # Intuition stats
     pattern_stats_str = ""
     try:
-        from symbolic.pattern_scorer import get_pattern_stats as _gis
+        from brain.symbolic.pattern_scorer import get_pattern_stats as _gis
         _is = _gis()
         pattern_stats_str = (
             f" | Intuition: {_is['total_pattern_tokens']} tokens "

@@ -1,5 +1,5 @@
 # tests/memory_tests/media_test.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from types import SimpleNamespace
 from pathlib import Path
 import os

@@ -23,7 +23,7 @@
 #   get_state()     — current world_state dict (last refresh)
 #   describe()      — human-readable environment narrative (for look_around, speak)
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import socket
 import threading
@@ -33,9 +33,9 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from brain.paths import WORLD_MODEL
-from utils.json_utils import load_json, save_json
-from utils.log import log_error, log_private
-from utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_error, log_private
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _HISTORY_CAP    = 100   # max snapshots in rolling history
@@ -254,7 +254,7 @@ class WorldModel:
 
         # Sensory field (daemon — no I/O, just reads cached field)
         try:
-            from embodiment import sensory_stream as _ss
+            from brain.embodiment import sensory_stream as _ss
             field = _ss.get_field()
             if field:
                 sys_v = field.get("system", {})
@@ -279,7 +279,7 @@ class WorldModel:
 
         # Social presence (daemon)
         try:
-            from embodiment import social_presence as _sp
+            from brain.embodiment import social_presence as _sp
             soc = _sp.get_state()
             snap["social_pressure"] = soc.get("pressure")
             snap["silence_s"]       = soc.get("silence_s")
@@ -289,7 +289,7 @@ class WorldModel:
 
         # Drive pressures (daemon)
         try:
-            from embodiment import drive_engine as _de
+            from brain.embodiment import drive_engine as _de
             drives = _de.get_state()
             snap["drive_exploration"] = drives.get("exploration")
             snap["drive_meaning"]     = drives.get("meaning")
@@ -507,7 +507,7 @@ class WorldModel:
         self._last_lm_write = now
         try:
             narrative = self.describe()
-            from cog_memory.long_memory import update_long_memory
+            from brain.cog_memory.long_memory import update_long_memory
             update_long_memory(
                 f"[world_model] {narrative}",
                 emotion="reflective",

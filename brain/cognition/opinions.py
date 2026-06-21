@@ -25,7 +25,7 @@
 # Stored in opinions.json. Retrievable during speech and introspection.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import json
@@ -35,13 +35,13 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set
 
-from utils.log import log_private
-from utils.json_utils import load_json, save_json
-from cog_memory.long_memory import update_long_memory
-from cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.long_memory import update_long_memory
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import OPINIONS_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE, LONG_MEMORY_FILE
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -373,7 +373,7 @@ def _drop_with_costs(
     )
     if isinstance(context, dict):
         try:
-            from affect.arbiter import submit_affect
+            from brain.affect.arbiter import submit_affect
             submit_affect(context, "negative_valence", round(0.10 + 0.25 * stake, 3),
                           source="opinion_reversal", ttl_cycles=2)
         except Exception as e:
@@ -484,7 +484,7 @@ def _concept_words(text: str) -> Set[str]:
     """Concepts this text attaches to, via concept_memory (no invented
     similarity measure). Empty set when the store is sparse."""
     try:
-        from cognition.concept_memory import query as concept_query
+        from brain.cognition.concept_memory import query as concept_query
         return {c.get("word", "") for c in concept_query(text, limit=5) if c.get("word")}
     except Exception:
         return set()
@@ -550,7 +550,7 @@ def _extract_topics(wm_entries: List[Dict]) -> Dict[str, int]:
         # Topics come from the quoted content, never from the trust wrapper
         # (audit §5: opinions formed on 'external/untrusted', 'source=https').
         if "[EXTERNAL" in text:
-            from utils.content_quarantine import strip_quarantine
+            from brain.utils.content_quarantine import strip_quarantine
             text = strip_quarantine(text)
         words = [w.strip(".,!?;:\"'()[]{}—-").lower() for w in text.split()]
         for i, w in enumerate(words):
@@ -569,7 +569,7 @@ def _conceptualize(topic: str) -> Optional[str]:
     attach to concepts, not substrings. Returns the canonical concept word when
     one matches, None when the store has no purchase on this topic."""
     try:
-        from cognition.concept_memory import lookup, query
+        from brain.cognition.concept_memory import lookup, query
         for word in topic.split():
             hit = lookup(word)
             if hit:
@@ -809,7 +809,7 @@ def _form(context: Dict[str, Any]) -> Optional[str]:
         return topic
 
     # LLM path
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
     values = sm.get("core_values") or []
@@ -1007,7 +1007,7 @@ def reflect_on_opinions(context: Dict[str, Any]) -> str:
         log_private(f"[opinions] symbolic reflect held '{topic}' (conf={conf:.2f})")
         return summary
 
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     prompt = (
         f"You are Orrin. You hold this opinion:\n"

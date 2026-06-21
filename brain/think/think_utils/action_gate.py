@@ -1,27 +1,27 @@
 # think/think_utils/action_gate.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import random
 import json
 from datetime import datetime, timezone
 import time
 from pathlib import Path
 
-from think.think_utils.escalate import escalate_with_behavior_list
-from cognition.behavior import extract_last_reflection_topic
-from behavior.behavior_generation import generate_behavior_from_integration
-from behavior.speak import OrrinSpeaker
-from affect.reward_signals.reward_signals import release_reward_signal
-from affect.reward_signals.resource_deficit import update_function_usage_fatigue, resource_deficit_penalty_from_context
-from cog_memory.working_memory import update_working_memory
-from registry.behavior_registry import BEHAVIORAL_FUNCTIONS
-from utils.json_utils import save_json, load_json
-from utils.log import log_private, log_model_issue, log_activity
-from utils.emotion_utils import log_penalty_signal
-from cognition.selfhood.boundary_check import check_violates_boundaries
+from brain.think.think_utils.escalate import escalate_with_behavior_list
+from brain.cognition.behavior import extract_last_reflection_topic
+from brain.behavior.behavior_generation import generate_behavior_from_integration
+from brain.behavior.speak import OrrinSpeaker
+from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.affect.reward_signals.resource_deficit import update_function_usage_fatigue, resource_deficit_penalty_from_context
+from brain.cog_memory.working_memory import update_working_memory
+from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
+from brain.utils.json_utils import save_json, load_json
+from brain.utils.log import log_private, log_model_issue, log_activity
+from brain.utils.emotion_utils import log_penalty_signal
+from brain.cognition.selfhood.boundary_check import check_violates_boundaries
 from brain.paths import GOALS_FILE, FOCUS_GOAL
 
 # === NEW: talk policy (hard/soft gating and reply plumbing) ===
-from think.think_utils.talk_policy import (
+from brain.think.think_utils.talk_policy import (
     SPEAK_TYPES,
     RECENT_USER_CYCLES,
     refresh_last_user_cycle,
@@ -29,7 +29,7 @@ from think.think_utils.talk_policy import (
     talk_policy_score_bias,
     speak_text,
 )
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Action Gate
@@ -116,7 +116,7 @@ def _stamp_outcome(ctx: dict, outcome: dict) -> None:
         # Ground rule outcomes against real action results
         if action_type:
             try:
-                from symbolic.ground_truth import record_action_result as _rar
+                from brain.symbolic.ground_truth import record_action_result as _rar
                 rule_id = ""
                 for firing in (ctx.get("_recent_rule_firings") or [])[-1:]:
                     rule_id = firing.get("rule_id", "")
@@ -178,7 +178,7 @@ def generate_clarification_question(context, action):
         "What is the single most important question I should ask the user to get unstuck? Reply only with the question."
     )
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         return gated_generate(prompt, caller="action_gate/clarify", outcome=0.60)
     except Exception:
         return None
@@ -258,8 +258,8 @@ def _maybe_inject_spontaneous_expression(context: dict, affect_state: dict) -> N
     if _sil > 3600:
         return
     try:
-        from think.state_processor import compute_cycle_state as _ccs
-        from behavior.expression import express as _express
+        from brain.think.state_processor import compute_cycle_state as _ccs
+        from brain.behavior.expression import express as _express
         salience = _ccs(context)
         if not salience.output_triggered or salience.output_pressure < 0.50:
             return
@@ -347,8 +347,8 @@ def _maybe_inject_user_response(context: dict, affect_state: dict) -> None:
 
     # Normal path: architecture → cycle state → speech pipeline → expression fallback
     try:
-        from think.state_processor import compute_cycle_state as _ccs
-        from behavior.expression import express as _express
+        from brain.think.state_processor import compute_cycle_state as _ccs
+        from brain.behavior.expression import express as _express
         salience = _ccs(context, user_input=user_input)
         # Attach inner-loop reasoning conclusion from this cycle if available
         _il_output = (context.get("_inner_loop_output") or "").strip()
@@ -365,7 +365,7 @@ def _maybe_inject_user_response(context: dict, affect_state: dict) -> None:
 
         # Anticipatory self-consciousness: adapt to person's register before speaking
         try:
-            from behavior.pre_speak_check import pre_speak_check as _psc
+            from brain.behavior.pre_speak_check import pre_speak_check as _psc
             response_content, _disposition = _psc(
                 response_content, context, urgency=salience.output_pressure
             )
@@ -561,7 +561,7 @@ def evaluate_and_act_if_needed(
         overload_penalty = 0.0
         if context.get("_introspection_overload"):
             try:
-                from cognition.cognitive_cost import is_introspective
+                from brain.cognition.cognitive_cost import is_introspective
                 if is_introspective(action.get("type", "")):
                     overload_penalty = -0.20
             except Exception as _e:
@@ -609,7 +609,7 @@ def evaluate_and_act_if_needed(
     agentic_actions = [a for a in filtered_actions if a["type"] in AGENTIC_TYPES]
     if cur >= dynamic_max_cycles and agentic_actions:
         log_private(f"🚨 Stagnation: Forcing agentic action after {cur} cycles (max {dynamic_max_cycles})")
-        from affect.affect_learning import update_affect_function_map
+        from brain.affect.affect_learning import update_affect_function_map
         update_affect_function_map("impasse_signal", "agentic_action")
         context["stagnation_signal_count"] = 0
         context["cycles_since_agentic_action"] = 0
@@ -720,8 +720,8 @@ def evaluate_and_act_if_needed(
             })
             if "goal_name" in best_action:
                 try:
-                    from cognition.planning.goals import mark_goal_completed
-                    from cognition.planning import goal_arbiter
+                    from brain.cognition.planning.goals import mark_goal_completed
+                    from brain.cognition.planning import goal_arbiter
                     _gname = best_action["goal_name"]
                     # Atomic load→complete→save through the GoalArbiter, with an
                     # idempotency guard (status != "completed") so a goal already
@@ -884,7 +884,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
                 log_result("fail")
                 return False
             try:
-                from cognition.temporal_pressure import set_goal_deadline
+                from brain.cognition.temporal_pressure import set_goal_deadline
                 ok = set_goal_deadline(goal_ref, hours, context=context)
             except Exception as _e:
                 log_model_issue(f"set_deadline failed: {_e}")
@@ -1070,7 +1070,7 @@ def take_action(action, context, speaker: OrrinSpeaker):
                 log_result("fail")
                 return False
             try:
-                from behavior.tools.sandbox import run_python_sandboxed
+                from brain.behavior.tools.sandbox import run_python_sandboxed
                 res = run_python_sandboxed(code, timeout_s=5)
             except ValueError as e:
                 # AST allowlist rejection (disallowed import / builtin).
@@ -1129,7 +1129,7 @@ def _current_focus_name():
     try:
         data = load_json(FOCUS_GOAL)
         if isinstance(data, dict):
-            from utils.goals import extract_current_focus_goal
+            from brain.utils.goals import extract_current_focus_goal
             return extract_current_focus_goal(data)
     except Exception as _e:
         record_failure("action_gate._current_focus_name", _e)

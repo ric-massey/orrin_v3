@@ -1,6 +1,6 @@
 # goals.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import json
@@ -8,16 +8,16 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any, List, Dict, Optional, Tuple
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from cog_memory.working_memory import update_working_memory
-from utils.log import log_activity
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.log import log_activity
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 
 from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, FOCUS_GOAL, SELF_BELIEF_REVISIONS_FILE
-from utils.timeutils import now_iso_z
-from utils.llm_gate import llm_callable_by
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.llm_gate import llm_callable_by
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 MAX_GOALS = 15
@@ -66,7 +66,7 @@ def _revise_weak_area_beliefs(goal: Dict) -> None:
     """
     try:
         from brain.paths import DATA_DIR
-        from utils.json_utils import load_json as _load, save_json as _save
+        from brain.utils.json_utils import load_json as _load, save_json as _save
 
         sym_path = DATA_DIR / "symbolic_self_model.json"
         revisions_path = SELF_BELIEF_REVISIONS_FILE
@@ -306,7 +306,7 @@ def add_goal(goal: Dict, parent_name: Optional[str] = None) -> Dict:
     full = load_goals()
     g = dict(goal)
     try:
-        from cognition.planning.goal_comprehension import hydrate_goal_model
+        from brain.cognition.planning.goal_comprehension import hydrate_goal_model
         g = hydrate_goal_model(g)
     except Exception as exc:
         record_failure("goals.add_goal.hydrate", exc)
@@ -338,7 +338,7 @@ def create_micro_goal_for_action(action_desc: str, parent_name: Optional[str] = 
 def mark_goal_status_by_name(name: str, new_status: str) -> bool:
     # Atomic load→mutate→save through the GoalArbiter (status write; daemon-ready).
     # Deferred import avoids the goals↔goal_arbiter import cycle. Phase 1.
-    from cognition.planning import goal_arbiter
+    from brain.cognition.planning import goal_arbiter
     found = {"ok": False}
 
     def _mut(full):
@@ -519,7 +519,7 @@ def _rule_based_accomplish(goal: Dict) -> bool:
     name = (goal.get("name") or "").lower()
     name_words = {w for w in name.split() if len(w) > 4}
     try:
-        from utils.json_utils import load_json as _lj
+        from brain.utils.json_utils import load_json as _lj
         from brain.paths import WORKING_MEMORY_FILE as _WMF
         wm = _lj(_WMF, default_type=list) or []
         for e in wm[-15:]:
@@ -605,7 +605,7 @@ def _criteria_evidence_met(goal: Dict) -> bool:
     produced = False
     if gid:
         try:
-            from agency.effect_ledger import has_qualifying_effect
+            from brain.agency.effect_ledger import has_qualifying_effect
             produced = has_qualifying_effect(gid, goal)
         except Exception:
             pass
@@ -665,7 +665,7 @@ def try_to_accomplish(goal: Dict) -> bool:
     if _is_artifact_gated(goal):
         gid = str(goal.get("id") or "")
         try:
-            from agency.effect_ledger import has_qualifying_effect
+            from brain.agency.effect_ledger import has_qualifying_effect
             _produced = bool(gid) and has_qualifying_effect(gid, goal)
         except Exception:
             _produced = False
@@ -683,7 +683,7 @@ def try_to_accomplish(goal: Dict) -> bool:
             # P3 — a real, effect-backed contribution decays the served aspiration's
             # recruitment pressure (a bookkeeping closure would not).
             try:
-                from cognition.intrinsic_goals import mark_aspiration_contribution
+                from brain.cognition.intrinsic_goals import mark_aspiration_contribution
                 mark_aspiration_contribution(goal.get("driven_by", ""))
             except Exception as _e:
                 record_failure("goals.try_to_accomplish.aspiration", _e)
@@ -828,7 +828,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     _ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
     if _ms and not all(m.get("met") for m in _ms):
         try:
-            from cognition.planning.env_snapshot import apply_milestone_updates
+            from brain.cognition.planning.env_snapshot import apply_milestone_updates
             if context:
                 apply_milestone_updates(context)
                 _ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
@@ -858,7 +858,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     # than the self-asserted achievement multiplier (which gave the run its 0.0).
     try:
         if _is_artifact_gated(goal) and goal.get("id"):
-            from agency.effect_ledger import significance_for_goal
+            from brain.agency.effect_ledger import significance_for_goal
             _eff_sig = significance_for_goal(str(goal.get("id")))
             if _eff_sig > 0.0:
                 _sig = max(_sig, _eff_sig)
@@ -866,7 +866,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
         record_failure("goals.mark_goal_completed.effsig", _e)
     _ctx = context or {}
     try:
-        from cognition.action_accounting import cycle_produced_goal_action
+        from brain.cognition.action_accounting import cycle_produced_goal_action
         _grounded = bool(_ms and all(m.get("met") for m in _ms)) or cycle_produced_goal_action(_ctx)
     except Exception:
         _grounded = bool(_ms and all(m.get("met") for m in _ms))
@@ -945,7 +945,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
         record_failure("goals.mark_goal_completed.v2sync", _e)
     # Phase E outcome metric — record at this single completion chokepoint.
     try:
-        from cognition.planning.outcome_metrics import record_completion
+        from brain.cognition.planning.outcome_metrics import record_completion
         _secs = None
         _created = goal.get("created_at") or goal.get("timestamp")
         if isinstance(_created, str) and _created:
@@ -970,7 +970,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
                 for w in _goal_name.split()
                 if len(w) > 3
             }
-            from cognition.threads import load_threads, resolve_thread
+            from brain.cognition.threads import load_threads, resolve_thread
             _threads = load_threads()
             _ctx = context or {}
             for _t in _threads:
@@ -995,7 +995,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     # still honours _RECENTLY_COMPLETED.
     try:
         import time as _time
-        from cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
+        from brain.cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
         _done_title = (goal.get("title") or goal.get("name") or "").strip().lower()
         if _done_title:
             _RECENTLY_COMPLETED[_done_title] = _time.time()
@@ -1008,7 +1008,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     # of the loop re-understanding X once its cooldown lapses.
     try:
         if str(goal.get("driven_by") or "").lower() == "world_knowledge":
-            from cognition.intrinsic_goals import note_intake_completed
+            from brain.cognition.intrinsic_goals import note_intake_completed
             _raw = goal.get("title") or goal.get("name") or ""
             for _pfx in ("understand ", "follow-up on ", "open question:", "the causes of ",
                          "pick up my thread on "):
@@ -1028,7 +1028,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     try:
         _ctx = context or {}
         _ctx["committed_goal"] = None  # slot is now open
-        import cognition.intrinsic_goals as _ig
+        import brain.cognition.intrinsic_goals as _ig
         _ig._LAST_INTRINSIC_TS = 0.0   # bypass rate limiter for this one call
         _new_goals = _ig.generate_intrinsic_goals(_ctx)
         if _new_goals:
@@ -1076,7 +1076,7 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
     # the metrics call would explode inside this handler and skip the
     # long-memory write and emotional penalty below.
     try:
-        from cognition.planning.outcome_metrics import record_failure as record_outcome_failure
+        from brain.cognition.planning.outcome_metrics import record_failure as record_outcome_failure
         record_outcome_failure()
     except Exception as _e:
         record_failure("goals.mark_goal_failed", _e)
@@ -1091,7 +1091,7 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
     penalty_scale = 1.0
     commitment_refs: Optional[List[str]] = None
     try:
-        from cognition.will import find_commitment_for_goal
+        from brain.cognition.will import find_commitment_for_goal
         commitment = find_commitment_for_goal(str(goal_name), context)
         if isinstance(commitment, dict):
             _cstrength = float(
@@ -1112,7 +1112,7 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
     # Write to long-term memory so it's never forgotten
     # Uses update_long_memory so emotional_context snapshot and importance boost apply.
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         content = f"Failed goal: {goal_name}. Reason: {reason or 'no reason recorded'}."
         if commitment is not None:
             content += f" (a commitment was broken — strength {penalty_scale - 0.5:.2f})"
@@ -1172,7 +1172,7 @@ def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
     stamped on first sight, and the deadline is measured from there. Run on the same
     low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."""
     try:
-        from utils.get_cycle_count import get_cycle_count
+        from brain.utils.get_cycle_count import get_cycle_count
         cur = int(get_cycle_count() or 0)
     except Exception:
         return 0
@@ -1183,7 +1183,7 @@ def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
     if not isinstance(goals, list):
         return 0
 
-    from agency.effect_ledger import has_qualifying_effect
+    from brain.agency.effect_ledger import has_qualifying_effect
     failed: List[Dict] = []
     changed = False
 
@@ -1341,7 +1341,7 @@ def advance_goal_plan(goal: Dict, step: Dict) -> None:
     # Metric hook (Phase 4 / audit §9): a completed concrete step credits the
     # matching knowledge domain so domain scores respond to action.
     try:
-        from symbolic.symbolic_self_model import credit_domain_action
+        from brain.symbolic.symbolic_self_model import credit_domain_action
         credit_domain_action(str(step.get("step", "")))
     except Exception as _e:
         record_failure("goals.advance_goal_plan", _e)

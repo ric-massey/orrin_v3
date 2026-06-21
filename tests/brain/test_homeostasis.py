@@ -1,9 +1,9 @@
 # HomeostasisManager: single decay law + net velocity budget (V3 D3/D8).
-from affect.homeostasis import (
+from brain.affect.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget,
     DEFAULT_MAX_L1,
 )
-from affect.setpoints import setpoint, CORE_BASELINES
+from brain.affect.setpoints import setpoint, CORE_BASELINES
 
 
 def test_decay_pulls_toward_baseline_not_half():

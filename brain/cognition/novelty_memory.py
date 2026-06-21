@@ -26,8 +26,8 @@ import hashlib
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
 
 _STORE_FILE = DATA_DIR / "novelty_memory.json"

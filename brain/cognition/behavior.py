@@ -1,9 +1,9 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Dict, Optional
-from utils.log import log_error
-from utils.json_utils import load_json
+from brain.utils.log import log_error
+from brain.utils.json_utils import load_json
 from brain.paths import REFLECTION
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 def extract_last_reflection_topic(

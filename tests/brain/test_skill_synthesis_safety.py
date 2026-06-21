@@ -3,7 +3,7 @@
 # directly. _SafetyVisitor (Stage 2 of verify_skill) was hardened to ban bare
 # references (not just calls) to introspection builtins and to ban dunder
 # attribute access generally. These tests pin that behavior.
-from cognition.skill_synthesis import check_code_safety, _run_safety_check
+from brain.cognition.skill_synthesis import check_code_safety, _run_safety_check
 
 
 def test_check_code_safety_is_run_safety_check():

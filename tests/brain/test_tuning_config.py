@@ -7,10 +7,10 @@
 # parallel copy of the same constant.
 from pathlib import Path
 
-import affect.arbiter as arbiter
-import config.tuning as tuning
-from cognition.planning import step_execution
-from think.think_utils import select_function as sf
+import brain.affect.arbiter as arbiter
+import brain.config.tuning as tuning
+from brain.cognition.planning import step_execution
+from brain.think.think_utils import select_function as sf
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -65,7 +65,7 @@ def test_orrin_loop_reads_crisis_and_decay_constants_from_tuning():
     Finding 9 named (0.92 decay; 0.85/0.50/0.70 crisis thresholds) must no
     longer appear in that block."""
     src = (_REPO_ROOT / "brain" / "ORRIN_loop.py").read_text()
-    assert "from config.tuning import (" in src
+    assert "from brain.config.tuning import (" in src
     for name in (
         "AFFECT_TRANSIENT_DECAY",
         "CRISIS_ACUTE_PEAK",

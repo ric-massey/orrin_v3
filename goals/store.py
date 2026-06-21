@@ -2,7 +2,7 @@
 # File-backed goals store: loads on start, persists to JSONL + WAL, provides filtering/indexing APIs.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 from dataclasses import asdict, is_dataclass

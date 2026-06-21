@@ -29,11 +29,11 @@
 # that can fail.
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Callable, Dict, List, Optional
 
-from utils.log import log_activity
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -46,8 +46,8 @@ FIX_TRIES_PER_CAUSE = 2
 
 def _llm_disabled_in_config(context: Dict[str, Any]) -> bool:
     try:
-        from utils.llm_gate import llm_available
-        from utils.generate_response import _cb_is_open
+        from brain.utils.llm_gate import llm_available
+        from brain.utils.generate_response import _cb_is_open
         # disabled-by-config looks like: not available AND the breaker is NOT open
         # (an open breaker is a transient network condition, handled separately).
         return (not llm_available()) and (not _cb_is_open())
@@ -57,7 +57,7 @@ def _llm_disabled_in_config(context: Dict[str, Any]) -> bool:
 
 def _llm_circuit_open(context: Dict[str, Any]) -> bool:
     try:
-        from utils.generate_response import _cb_is_open
+        from brain.utils.generate_response import _cb_is_open
         return bool(_cb_is_open())
     except Exception:
         return False
@@ -178,7 +178,7 @@ def abduce(capability: str, context: Dict[str, Any], description: str = "") -> L
     # recorded by past repairs (problem_refocus) and observation. Query the
     # canonical failure node so prior learning is reliably surfaced.
     try:
-        from symbolic.causal_graph import get_causes
+        from brain.symbolic.causal_graph import get_causes
         known_keys = {h["key"] for h in hyps}
         for edge in (get_causes(failure_node(capability)) or [])[:2]:
             cause_txt = str(edge.get("cause", "")).strip()

@@ -1,20 +1,20 @@
 # self_evolution.py
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 from collections import Counter
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.log import utc_now as _utc_now
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.log import log_model_issue, log_error, log_activity
-from utils.failure_counter import record_failure
-from utils.self_model import get_self_model, ensure_self_model_integrity
-from utils.summarizers import summarize_recent_thoughts, summarize_self_model
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.log import utc_now as _utc_now
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.log import log_model_issue, log_error, log_activity
+from brain.utils.failure_counter import record_failure
+from brain.utils.self_model import get_self_model, ensure_self_model_integrity
+from brain.utils.summarizers import summarize_recent_thoughts, summarize_self_model
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import (
     PRIVATE_THOUGHTS_FILE,
     EVOLUTION_FUTURES,
@@ -321,7 +321,7 @@ def simulate_future_selves(
     # requires_llm: skipped cleanly when the LLM tool is down — no error, no
     # half-output (selection already filters this fn; this guards direct calls).
     try:
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         if not llm_available():
             return {"futures": [], "preferred": "", "reason": "tool unavailable: llm",
                     "recommended_goals": []}
@@ -537,7 +537,7 @@ def check_projection_against_reality(context: Optional[Dict] = None) -> Dict[str
 
         reflection = response.strip()
 
-        from cog_memory.long_memory import update_long_memory as _ulm
+        from brain.cog_memory.long_memory import update_long_memory as _ulm
         _ulm(
             f"[evolution_check] Projection ({projection_ts}): '{preferred_future[:100]}'. "
             f"Current assessment: {reflection}",

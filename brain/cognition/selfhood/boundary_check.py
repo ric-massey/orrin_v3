@@ -1,7 +1,7 @@
 import re
 
-from utils.json_utils import load_json
-from utils.log import log_error
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_error
 from brain.paths import RELATIONSHIPS_FILE
 
 def check_violates_boundaries(prompt):

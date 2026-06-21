@@ -16,16 +16,16 @@
 #   update_world_model(domain, event_type, success)
 #   decay_patterns()   ← called from rule_forgetting.run_forgetting_cycle()
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 import re
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.log import log_activity
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 PATTERN_FILE  = DATA_DIR / "intuition_patterns.json"
@@ -89,7 +89,7 @@ def _load_cache() -> None:
     if now - _cache_ts < _CACHE_TTL and _patterns is not None:
         return
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         _patterns = load_json(PATTERN_FILE, default_type=dict) or {}
         _world    = load_json(WORLD_FILE,   default_type=dict) or {}
     except Exception:
@@ -101,7 +101,7 @@ def _load_cache() -> None:
 def _save_patterns() -> None:
     global _cache_ts
     try:
-        from utils.json_utils import save_json
+        from brain.utils.json_utils import save_json
         save_json(PATTERN_FILE, _patterns)
         _cache_ts = 0.0   # invalidate cache so next read picks up fresh data
     except Exception as _e:
@@ -111,7 +111,7 @@ def _save_patterns() -> None:
 def _save_world() -> None:
     global _cache_ts
     try:
-        from utils.json_utils import save_json
+        from brain.utils.json_utils import save_json
         save_json(WORLD_FILE, _world)
         _cache_ts = 0.0
     except Exception as _e:

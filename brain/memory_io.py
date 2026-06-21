@@ -10,10 +10,10 @@
 # ingest/query the v2 MemoryDaemon (embedding, salience, compaction). The daemon
 # is passed in by the caller — this module holds no global state.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _MOOD_KEYS = ("impasse_signal", "negative_valence", "exploration_drive",
@@ -64,7 +64,7 @@ def backfill_long_memory_to_v2(daemon: Any, max_items: int = 10) -> int:
     if daemon is None:
         return 0
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import LONG_MEMORY_FILE
         from memory.models import Event
         long_mem = load_json(LONG_MEMORY_FILE, default_type=list)
@@ -122,7 +122,7 @@ def promote_summaries_to_long_memory(daemon: Any, max_items: int = 5) -> int:
         )
         summary_items = summary_items[:max_items]
 
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         from brain.paths import LONG_MEMORY_FILE
         from datetime import datetime, timezone
         long_mem = load_json(LONG_MEMORY_FILE, default_type=list)
@@ -218,7 +218,7 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
     if not results:
         return 0
     try:
-        from cognition.goal_lens import relevance as _goal_relevance
+        from brain.cognition.goal_lens import relevance as _goal_relevance
         for item in results:
             if isinstance(item, dict):
                 rel = _goal_relevance(lens, item.get("content") or "")
@@ -235,7 +235,7 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
     except Exception:
         pass
     try:
-        from cog_memory.reconstruction import reconstruct as _recon
+        from brain.cog_memory.reconstruction import reconstruct as _recon
         mood = float((context.get("affect_state") or {}).get("mood") or 0.0)
         for item in results:
             if isinstance(item, dict):

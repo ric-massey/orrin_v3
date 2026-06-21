@@ -1,5 +1,5 @@
 # brain/cognition/planning/reflection.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from statistics import mean
 from datetime import datetime, timezone
@@ -7,12 +7,12 @@ from typing import Any, Dict, List
 
 import time as _time
 
-from utils.json_utils import extract_json, load_json  # <-- use helper to read FOCUS_GOAL safely
-from utils.log import log_error, log_private
-from utils.load_utils import load_all_known_json
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import extract_json, load_json  # <-- use helper to read FOCUS_GOAL safely
+from brain.utils.log import log_error, log_private
+from brain.utils.load_utils import load_all_known_json
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import LOG_FILE, PRIVATE_THOUGHTS_FILE, FOCUS_GOAL
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _underperformer_last_written: dict = {}  # fn_name -> epoch seconds of last LM write
@@ -109,7 +109,7 @@ def reflect_on_growth_history():
             'Return JSON: { "agent_responses": [], "synthesis": "" }'
         )
 
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         raw_response = gated_generate(prompt, caller="reflect_on_growth_history", outcome=0.65)
         try:
             result = extract_json(raw_response or "")
@@ -166,7 +166,7 @@ def reflect_on_missed_goals():
             "Be honest. Suggest changes in planning, mindset, or structure.\n"
         )
 
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         response = gated_generate(instructions, caller="reflect_on_missed_goals", outcome=0.65)
 
         if not response or not isinstance(response, str) or len(response.strip()) < 5:
@@ -236,8 +236,8 @@ def record_decision(fn_name, reason, *, reward=None, context=None):
 
     try:
         from brain.paths import DECISION_STATS_FILE
-        from utils.json_utils import load_json as _lj, save_json as _sj
-        from cog_memory.working_memory import update_working_memory as _uwm
+        from brain.utils.json_utils import load_json as _lj, save_json as _sj
+        from brain.cog_memory.working_memory import update_working_memory as _uwm
 
         stats = _lj(DECISION_STATS_FILE, default_type=dict) or {}
         entry = stats.get(fn_name) or {"count": 0, "total_reward": 0.0, "avg_reward": 0.0}
@@ -260,7 +260,7 @@ def record_decision(fn_name, reason, *, reward=None, context=None):
                 log_private(insight)
                 _uwm({"content": insight, "event_type": "decision_insight", "importance": 3, "priority": 2})
                 try:
-                    from cog_memory.long_memory import update_long_memory as _ulm
+                    from brain.cog_memory.long_memory import update_long_memory as _ulm
                     _ulm(insight, emotion="concern", event_type="decision_underperformer", importance=3)
                 except Exception as _e:
                     record_failure("reflection.record_decision", _e)

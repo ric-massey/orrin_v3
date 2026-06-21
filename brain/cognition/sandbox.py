@@ -1,13 +1,13 @@
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import random
 import json
 
-from utils.generate_response import generate_response, llm_ok
-from utils.json_utils import save_json, load_json
-from utils.self_model import get_self_model, ensure_self_model_integrity
+from brain.utils.generate_response import generate_response, llm_ok
+from brain.utils.json_utils import save_json, load_json
+from brain.utils.self_model import get_self_model, ensure_self_model_integrity
 from brain.paths import SANDBOX_LOG
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -35,7 +35,7 @@ def run_sandbox_experiments(context=None):
     # firing a series of blocked round-trips that all return empty. (It's also
     # tagged requires_llm, so select_function won't pick it; this guards the
     # direct dream-cycle call path too.)
-    from utils.llm_gate import llm_callable_by
+    from brain.utils.llm_gate import llm_callable_by
     if not llm_callable_by("sandbox"):
         _log.info("[sandbox] skipped — LLM not callable for cognition")
         return {"timestamp": now_iso_z(), "results": [], "overall_rating": "", "skipped": True}
@@ -141,8 +141,8 @@ def reflect_on_sandbox_experiment(context):
     Reflect on the impact of a recent sandbox experiment and log the results
     to both working and long-term memory using the new memory conventions.
     """
-    from cog_memory.remember import remember
-    from cog_memory.working_memory import update_working_memory
+    from brain.cog_memory.remember import remember
+    from brain.cog_memory.working_memory import update_working_memory
 
     prompt = (
         "You just ran a wild sandbox experiment. What did you learn? Was anything surprising or disturbing? "

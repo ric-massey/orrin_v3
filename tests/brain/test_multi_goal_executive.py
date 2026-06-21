@@ -4,7 +4,7 @@
 # conscious focus stays singular and is restored after the tick.
 from typing import Any, Dict
 
-import cognition.planning.executive as ex
+import brain.cognition.planning.executive as ex
 
 
 def _goal(gid: str, tier: str = "growth", steps: int = 2) -> Dict[str, Any]:
@@ -67,7 +67,7 @@ def _run_tick(monkeypatch, goals, primary=None, pursue=None):
                 break
         return {"status": "ok", "next_step": "x", "goal": goal.get("title")}
 
-    import cognition.planning.pursue_goal as pg
+    import brain.cognition.planning.pursue_goal as pg
     monkeypatch.setattr(pg, "pursue_committed_goal", _fake_pursue)
     monkeypatch.setattr(ex, "recognise_step_action", lambda s: "search_own_files" if s else None)
     monkeypatch.setattr(ex, "_record_history", lambda *a, **k: None)

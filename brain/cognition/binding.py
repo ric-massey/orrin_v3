@@ -9,8 +9,8 @@ from __future__ import annotations
 import re
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
-from cognition.global_workspace import _is_noise, _overlap, _tokens
-from utils.failure_counter import record_failure
+from brain.cognition.global_workspace import _is_noise, _overlap, _tokens
+from brain.utils.failure_counter import record_failure
 
 MAX_ITEMS = 12
 MAX_CLUSTER = 5
@@ -42,7 +42,7 @@ def _text(value: Any) -> str:
 
 def _known_entities() -> Set[str]:
     try:
-        from cognition.world_model import _load_symbolic_model
+        from brain.cognition.world_model import _load_symbolic_model
 
         model = _load_symbolic_model()
         entities = model.get("entities") or {}
@@ -54,7 +54,7 @@ def _known_entities() -> Set[str]:
 
 def _entities_of(text: str, known_entities: Optional[Iterable[str]] = None) -> Set[str]:
     try:
-        from cognition.world_model import extract_entity_names
+        from brain.cognition.world_model import extract_entity_names
 
         return set(extract_entity_names(text, known_entities))
     except Exception as exc:
@@ -99,7 +99,7 @@ def _dominant_affect(context: Dict[str, Any]) -> Optional[Tuple[str, float, str]
     # bind a NON-emotion as "a strong sense of <x>" and feed it to the appraisal/
     # hijack links, which key off the emotion name. Use the one canonical set.
     try:
-        from affect.apply_affective_feedback import NON_EMOTION_SIGNALS as _skip
+        from brain.affect.apply_affective_feedback import NON_EMOTION_SIGNALS as _skip
     except Exception:
         _skip = frozenset()
     numeric = {

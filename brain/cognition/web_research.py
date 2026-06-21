@@ -8,7 +8,7 @@
 #   research_topic(context)   — search DuckDuckGo + Wikipedia for a topic
 #   fetch_and_read(context)   — fetch and read any URL (RSS links, Wikipedia pages, etc.)
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import random
@@ -19,11 +19,11 @@ import urllib.parse
 import urllib.request
 from typing import Any, Dict, Optional
 
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
-from cog_memory.working_memory import update_working_memory
-from utils.content_quarantine import quarantine_text, quarantine_extra
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
+from brain.cog_memory.working_memory import update_working_memory
+from brain.utils.content_quarantine import quarantine_text, quarantine_extra
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _UA = "Mozilla/5.0 Orrin/1.0 (educational AI research agent)"
@@ -322,7 +322,7 @@ def _topic_from_knowledge_graph() -> str:
     echoing a goal title. Returns '' if no suitable concept exists yet.
     """
     try:
-        from cognition.knowledge_graph import _load_graph
+        from brain.cognition.knowledge_graph import _load_graph
         g = _load_graph()
         concepts = [
             e for e in (g.get("entities") or {}).values()
@@ -363,7 +363,7 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
     # 3. Active threads (concrete titles only)
     try:
         from brain.paths import THREADS_FILE
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         threads = load_json(THREADS_FILE, default_type=list) or []
         for t in threads:
             if isinstance(t, dict) and t.get("status") == "alive":
@@ -454,7 +454,7 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
 
     update_working_memory(f"[research] {topic}: {result_q[:300]}")
     try:
-        from cognition.knowledge_graph import observe as _kg_observe
+        from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{topic} {result[:1200]}", source="web_research", context=ctx)
     except Exception as _e:
         record_failure("web_research.research_topic.knowledge_graph", _e)
@@ -463,7 +463,7 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     log_activity(f"[web_research] Stored research on '{topic}' ({len(result)} chars)")
     text = f"Researched '{topic}': {result[:300]}..."
     try:
-        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        from brain.cognition.exploration_value import ReachOutcome, record_reach_outcome
         gain = record_reach_outcome("research_topic", text, None, ctx)
         ctx["_last_reach_outcome"] = ReachOutcome(
             "world", acted=True, is_external=True, info_gain=gain,
@@ -529,7 +529,7 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
 
     update_working_memory(f"Read article: {title_q} ({len(text)} chars of content)")
     try:
-        from cognition.knowledge_graph import observe as _kg_observe
+        from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{title} {text[:1600]}", source="fetch_and_read", context=ctx)
     except Exception as _e:
         record_failure("web_research.fetch_and_read.knowledge_graph", _e)
@@ -537,7 +537,7 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     log_activity(f"[web_research] Read '{title}' ({len(text)} chars)")
     result_text = f"Read '{title}': {text[:400]}..."
     try:
-        from cognition.exploration_value import ReachOutcome, record_reach_outcome
+        from brain.cognition.exploration_value import ReachOutcome, record_reach_outcome
         gain = record_reach_outcome("fetch_and_read", result_text, None, ctx)
         ctx["_last_reach_outcome"] = ReachOutcome(
             "world", acted=True, is_external=True, info_gain=gain,
@@ -571,7 +571,7 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
     # 2. Pull from RSS cache
     try:
         from brain.paths import RSS_CACHE_FILE
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         cache = load_json(RSS_CACHE_FILE, default_type=dict) or {}
         for feed_name, feed_data in cache.items():
             if feed_name.startswith("_"):

@@ -31,7 +31,7 @@ def export_mind(window: Any) -> Dict[str, Any]:
         return {"ok": False, "error": "no window"}
     try:
         import webview
-        from utils import mind_archive as _ma
+        from brain.utils import mind_archive as _ma
         result = window.create_file_dialog(
             webview.FileDialog.SAVE,
             save_filename=_ma.export_filename(),

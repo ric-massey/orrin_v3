@@ -2,7 +2,7 @@
 # Concrete handler for recurring maintenance/cleanup tasks; snapshots, WAL pruning, logs, lint/tests
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import gzip
 import json

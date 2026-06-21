@@ -1,7 +1,7 @@
-from cognition.goal_lens import action_prior, apply_goal_lens, relevance
-from cognition.planning.goal_comprehension import comprehend_goal, hydrate_goal_model
-from cognition.planning.step_execution import recognise_step_action
-from cognition.planning import goals
+from brain.cognition.goal_lens import action_prior, apply_goal_lens, relevance
+from brain.cognition.planning.goal_comprehension import comprehend_goal, hydrate_goal_model
+from brain.cognition.planning.step_execution import recognise_step_action
+from brain.cognition.planning import goals
 
 
 def test_comprehension_builds_checkable_long_form_model(monkeypatch):
@@ -41,7 +41,7 @@ def test_hydration_promotes_spec_and_preserves_structured_production_action(monk
 
 
 def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
-    from cognition import intrinsic_goals
+    from brain.cognition import intrinsic_goals
 
     monkeypatch.setattr(
         "cognition.planning.goal_comprehension.llm_callable_by",
@@ -61,7 +61,7 @@ def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
 
 
 def test_planned_action_recruitment_does_not_require_impasse():
-    from think.think_utils.select_function import _planned_action_recruitment
+    from brain.think.think_utils.select_function import _planned_action_recruitment
 
     boost = _planned_action_recruitment({
         "committed_goal": {"_needs_deliberate_action": "compose_section"},
@@ -72,10 +72,10 @@ def test_planned_action_recruitment_does_not_require_impasse():
 
 
 def test_production_capability_is_reachable_through_runtime_surfaces():
-    from agency.compose_section import compose_section
+    from brain.agency.compose_section import compose_section
     from brain.ORRIN_loop import _verify_production_capability
     from brain.paths import COGNITIVE_FUNCTIONS_LIST_FILE
-    from registry.cognition_registry import persist_names
+    from brain.registry.cognition_registry import persist_names
 
     functions = {
         "compose_section": {"function": compose_section, "is_cognition": True},

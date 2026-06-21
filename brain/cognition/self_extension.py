@@ -21,7 +21,7 @@
 #                                 sustained crisis conditions are met.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import sys
@@ -30,13 +30,13 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private
-from utils.json_utils import load_json, save_json
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import PROPOSED_TOOLS_JSON, COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE, SELF_MODEL_FILE
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Constants ──────────────────────────────────────────────────────────────────
@@ -139,7 +139,7 @@ def propose_extension(context: Dict[str, Any]) -> str:
 
 def _propose(context: Dict[str, Any]) -> str:
     global _last_propose_ts
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
     import json as _json
 
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
@@ -233,7 +233,7 @@ def review_extension(context: Dict[str, Any]) -> str:
 
 
 def _review(context: Dict[str, Any]) -> str:
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
     import json as _json
 
     proposals = _load_proposals()
@@ -417,7 +417,7 @@ def emergency_self_modification(context: Dict[str, Any]) -> str:
 
 
 def _emergency(context: Dict[str, Any]) -> str:
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
     import json as _json
 
     gs = _read_gate_state(context)
@@ -537,7 +537,7 @@ def _write_and_register(
     emergency: bool = False,
 ) -> Optional[str]:
     """Write the Python file and register it. Returns file path or None on failure."""
-    from utils.generate_response import generate_response, llm_ok
+    from brain.utils.generate_response import generate_response, llm_ok
 
     fn_name     = proposal["name"]
     description = proposal["description"]
@@ -587,7 +587,7 @@ def _write_and_register(
     # syntax → safety (AST) → execution (sandbox) → output → LLM behavioral review.
     # Nothing is written if any stage fails.
     try:
-        from cognition.skill_synthesis import verify_skill as _vsk
+        from brain.cognition.skill_synthesis import verify_skill as _vsk
         _vresult = _vsk(fn_name, full_code, description, llm_review=not emergency)
         if not _vresult["passed"]:
             log_private(f"[self_extension] verification failed for {fn_name}: {_vresult['notes']}")
@@ -618,7 +618,7 @@ def _write_and_register(
     # just wrote under cognition/self_generated/). refresh() merges into the
     # shared registry dict in place, so every existing import sees the new fn.
     try:
-        from registry.cognition_registry import refresh as refresh_cog
+        from brain.registry.cognition_registry import refresh as refresh_cog
         refresh_cog()
     except Exception as e:
         log_private(f"[self_extension] registry refresh failed: {e}")
@@ -700,7 +700,7 @@ def _integrate_or_atrophy(context: Dict[str, Any]) -> None:
 def _remove_extension(name: str, file_path: str) -> None:
     """Remove a self-generated function from registry and disk."""
     try:
-        from registry.cognition_registry import COGNITIVE_FUNCTIONS
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
         COGNITIVE_FUNCTIONS.pop(name, None)
     except Exception as _e:
         record_failure("self_extension._remove_extension", _e)
@@ -729,7 +729,7 @@ def _remove_extension(name: str, file_path: str) -> None:
 
 def _apply_fragmentation_cost(context: Dict, amount: float) -> None:
     try:
-        from cognition.selfhood.fragmentation import apply_fragmentation_cost as _afc
+        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost as _afc
         _afc(context, override_cost=amount)
     except Exception:
         emo = context.get("affect_state") or {}

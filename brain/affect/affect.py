@@ -1,9 +1,9 @@
 from datetime import datetime, timezone
-from utils.generate_response import generate_response, get_thinking_model, llm_ok
-from utils.json_utils import load_json, save_json, extract_json
-from utils.log import log_error
-from utils.coerce_to_string import coerce_to_string
-from utils.affect_utils import detect_affect_keyword
+from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.log import log_error
+from brain.utils.coerce_to_string import coerce_to_string
+from brain.utils.affect_utils import detect_affect_keyword
 
 from brain.paths import (
     AFFECT_STATE_FILE,
@@ -17,15 +17,15 @@ def _llm_available() -> bool:
     """True when an LLM is enabled and reachable; mirrors the guard used at the
     other symbolic-first call sites (cf. self_model_conflicts._llm_ready)."""
     try:
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         return bool(llm_available())
     except Exception:
         return False
 
 
 def investigate_unexplained_emotions(context, self_model, memory):
-    from cog_memory.working_memory import update_working_memory
-    from affect.reward_signals.reward_signals import release_reward_signal
+    from brain.cog_memory.working_memory import update_working_memory
+    from brain.affect.reward_signals.reward_signals import release_reward_signal
 
     affect_state = load_json(AFFECT_STATE_FILE, default_type=dict)
     if not isinstance(affect_state, dict):
@@ -222,7 +222,7 @@ def detect_affect(text, use_gpt=True):
 
 
 def deliver_affect_based_rewards(context, core_signals, stability):
-    from affect.reward_signals.reward_signals import release_reward_signal
+    from brain.affect.reward_signals.reward_signals import release_reward_signal
 
     if not core_signals or not isinstance(core_signals, dict):
         return

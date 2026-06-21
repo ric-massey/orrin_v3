@@ -10,8 +10,8 @@ from __future__ import annotations
 
 from typing import Dict, List, Any
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 
 from brain.paths import DATA_DIR
 _WEIGHTS_PATH = DATA_DIR / "attention_value_weights.json"

@@ -3,11 +3,11 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
-from utils.memory_utils import summarize_memories
-from utils.affect_utils import detect_affect_keyword
-from cog_memory.long_memory import update_long_memory
-from utils.embedder import get_embedding
-from utils.log import log_private, log_error
+from brain.utils.memory_utils import summarize_memories
+from brain.utils.affect_utils import detect_affect_keyword
+from brain.cog_memory.long_memory import update_long_memory
+from brain.utils.embedder import get_embedding
+from brain.utils.log import log_private, log_error
 
 def _emotion_name(e: Any) -> str:
     if isinstance(e, dict):

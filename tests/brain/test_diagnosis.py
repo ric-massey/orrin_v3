@@ -2,7 +2,7 @@
 #
 # Peirce 1903 abduction; de Kleer & Williams 1987 model-based diagnosis;
 # Heckerman et al. 1995 cheapest-promising-repair-first.
-import cognition.planning.diagnosis as diag
+import brain.cognition.planning.diagnosis as diag
 
 
 def test_abduce_ranks_confirmed_fixable_first(monkeypatch):
@@ -51,7 +51,7 @@ def test_unknown_key_is_safe():
 
 def test_causal_augmentation_is_guarded(monkeypatch):
     # If the causal graph errors, abduction still returns the fault-model causes.
-    import symbolic.causal_graph as cg
+    import brain.symbolic.causal_graph as cg
     monkeypatch.setattr(cg, "get_causes", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom")))
     hyps = diag.abduce("llm", {})
     assert len(hyps) >= 1

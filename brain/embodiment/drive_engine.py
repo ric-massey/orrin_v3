@@ -26,12 +26,12 @@ Callers use:
   evaluate_cycle(fn_name, context, reward) — auto-satisfy based on cycle outcome
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import threading
 import time
 from typing import Any, Dict, List, Optional
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _TICK_INTERVAL   = 10    # seconds between drive ticks

@@ -1,17 +1,17 @@
 # brain/cognition/reflection/meta_reflect.py
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
 
-from utils.load_utils import load_all_known_json
-from utils.log import log_error, log_private
-from cognition.selfhood.self_model_conflicts import resolve_conflicts, update_self_model
-from cognition.maintenance.self_modeling import self_supervised_repair
-from utils.self_model import ensure_self_model_integrity, get_self_model
-from cognition.introspection.router import introspect
+from brain.utils.load_utils import load_all_known_json
+from brain.utils.log import log_error, log_private
+from brain.cognition.selfhood.self_model_conflicts import resolve_conflicts, update_self_model
+from brain.cognition.maintenance.self_modeling import self_supervised_repair
+from brain.utils.self_model import ensure_self_model_integrity, get_self_model
+from brain.cognition.introspection.router import introspect
 
 from brain.paths import PRIVATE_THOUGHTS_FILE, LOG_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Reflection triggers handled by the router (ordered for dependency)
@@ -73,10 +73,10 @@ def meta_reflect(context: dict = None):
 
         # === Symbolic pre-pass (zero LLM) ===
         try:
-            from symbolic.symbolic_reflection import symbolic_first_reflection as _sfr, get_reflection_stats as _grs
-            from symbolic.symbolic_self_model import build_symbolic_self_model as _bssm
-            from symbolic.self_improvement import run_self_improvement as _rsi
-            import symbolic.self_improvement as _si_m; _si_m._last_run = 0.0  # allow run in meta
+            from brain.symbolic.symbolic_reflection import symbolic_first_reflection as _sfr, get_reflection_stats as _grs
+            from brain.symbolic.symbolic_self_model import build_symbolic_self_model as _bssm
+            from brain.symbolic.self_improvement import run_self_improvement as _rsi
+            import brain.symbolic.self_improvement as _si_m; _si_m._last_run = 0.0  # allow run in meta
             _ssm = _bssm()
             _si  = _rsi(context)
             _stats = _grs()

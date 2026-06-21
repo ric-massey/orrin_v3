@@ -15,7 +15,7 @@ from typing import Optional
 
 import numpy as np
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 _log = get_logger(__name__)
 

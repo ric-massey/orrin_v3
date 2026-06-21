@@ -10,8 +10,8 @@
 # devaluation, §5.3 rut breaker wired into the real pick).
 import statistics
 
-import think.think_utils.select_function as sf
-from config import tuning as t
+import brain.think.think_utils.select_function as sf
+from brain.config import tuning as t
 
 
 # ── §5.1: prior realignment (diversive → epistemic curiosity) ────────────────

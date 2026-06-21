@@ -27,7 +27,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 _CONFIDENCE_SOURCES = {
     "working_memory": 0.40,    # derived from WM — recent but volatile
@@ -111,7 +111,7 @@ def store_reflective_claim(
     wrapped["importance"] = importance
 
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             claim_text,
             emotion=emotion,
@@ -121,7 +121,7 @@ def store_reflective_claim(
             context=context,
         )
         # Also write metadata-rich version to WM so current cycle can see it
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
         meta = wrapped.get("metadata", {})
         conf = meta.get("confidence", 0.0)
         grounding = meta.get("grounding_needed", False)
@@ -144,7 +144,7 @@ def audit_reflective_claims(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     Returns list of entries that need external grounding.
     """
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import LONG_MEMORY_FILE
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
         weak = []
@@ -174,7 +174,7 @@ def validate_claim(claim_id: str, status: str, evidence: str = "") -> bool:
     if status not in ("partially_validated", "validated", "refuted"):
         return False
     try:
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         from brain.paths import LONG_MEMORY_FILE
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
         updated = False

@@ -26,7 +26,7 @@
 #   Desirable difficulties: infrequently-fired rules lose confidence, but can
 #   recover if re-encountered — mirroring spaced-repetition consolidation.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import time
@@ -34,10 +34,10 @@ from collections import Counter
 from datetime import datetime, timezone
 from typing import Dict, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _IDLE_DAYS_THRESH    = 21          # no firing in this many days → start decay
@@ -59,7 +59,7 @@ def run_forgetting_cycle(context: Optional[Dict] = None) -> Dict:
     # Decay signal_score pattern weights in sync with rule forgetting
     patterns_pruned = 0
     try:
-        from symbolic.pattern_scorer import decay_patterns as _dp
+        from brain.symbolic.pattern_scorer import decay_patterns as _dp
         patterns_pruned = _dp()
         if patterns_pruned:
             log_activity(f"[forgetting] Intuition: {patterns_pruned} pattern tokens pruned")
@@ -103,7 +103,7 @@ def _last_firing_times() -> Dict[str, float]:
 
 def decay_idle_rules(days_threshold: int = _IDLE_DAYS_THRESH) -> int:
     try:
-        from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
     except Exception:
         return 0
 
@@ -163,7 +163,7 @@ def prune_overfitted_rules(
     min_hits: int = _MIN_HITS_PRUNE,
 ) -> int:
     try:
-        from symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
     except Exception:
         return 0
 
@@ -215,8 +215,8 @@ def retire_stale_concepts() -> int:
     Uses add_entity with a 'retired' tag rather than deletion to preserve history.
     """
     try:
-        from symbolic.rule_engine import get_all_rules
-        from cognition.knowledge_graph import add_entity
+        from brain.symbolic.rule_engine import get_all_rules
+        from brain.cognition.knowledge_graph import add_entity
     except Exception:
         return 0
 
@@ -230,7 +230,7 @@ def retire_stale_concepts() -> int:
 
     # Query KG for concept-type entities
     try:
-        from cognition.knowledge_graph import _load_graph
+        from brain.cognition.knowledge_graph import _load_graph
         g = _load_graph()
         entities = [
             e for e in g.get("entities", {}).values()
@@ -270,7 +270,7 @@ def retire_stale_concepts() -> int:
 
 def _invalidate_rule_cache() -> None:
     try:
-        from symbolic import rule_engine as _re
+        from brain.symbolic import rule_engine as _re
         _re._rules_cache = []
     except Exception as _e:
         record_failure("rule_forgetting._invalidate_rule_cache", _e)

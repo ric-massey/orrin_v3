@@ -7,8 +7,8 @@
 #   (b) a v1-closed goal left RUNNING in v2.
 
 import goal_io
-from cognition.planning.goals import load_goals, save_goals
-from cognition.planning.goal_reconcile import reconcile_goal_stores
+from brain.cognition.planning.goals import load_goals, save_goals
+from brain.cognition.planning.goal_reconcile import reconcile_goal_stores
 
 
 class _FakeStatus:

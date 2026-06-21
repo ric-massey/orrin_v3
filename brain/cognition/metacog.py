@@ -18,7 +18,7 @@
 #   findings." The Psychology of Learning and Motivation, 26, 125–173.
 #   Meta-level monitoring → object-level control (suppression feedback loop).
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import random
@@ -33,10 +33,10 @@ def _hard_disengage_enabled() -> bool:
     remembering an env var. Opt out with ORRIN_HARD_DISENGAGE=0."""
     return os.environ.get("ORRIN_HARD_DISENGAGE", "1").strip().lower() not in ("0", "false", "no", "off")
 
-from utils.log import log_private, log_activity
-from utils.json_utils import save_json, load_json
+from brain.utils.log import log_private, log_activity
+from brain.utils.json_utils import save_json, load_json
 from brain.paths import METACOG_LOG, DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -51,7 +51,7 @@ def metacog_init(context: Dict[str, Any]) -> None:
     # Tick down the bandit's per-cycle suppression counters so muted actions
     # eventually return to the candidate pool.
     try:
-        from think.bandit.contextual_bandit import tick_suppression
+        from brain.think.bandit.contextual_bandit import tick_suppression
         _remaining = tick_suppression()
         if _remaining:
             log_private(
@@ -176,7 +176,7 @@ def _plan_progress_sig(goal: Dict[str, Any]):
     met = sum(1 for m in ms if isinstance(m, dict) and m.get("met"))
     novel = 0
     try:
-        from cognition import novelty_memory
+        from brain.cognition import novelty_memory
         novel = novelty_memory.novel_count(
             str(goal.get("id") or goal.get("title") or "goal"))
     except Exception:
@@ -190,11 +190,11 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     milestone / idle, with a dumb watchdog (I12) for stalls. Fail-safe; mutates no
     goal/reward state."""
     try:
-        from cognition.global_workspace import offer_to_workspace
+        from brain.cognition.global_workspace import offer_to_workspace
     except Exception:
         return
     try:
-        from affect.arbiter import submit_affect as _submit_affect
+        from brain.affect.arbiter import submit_affect as _submit_affect
     except Exception:
         _submit_affect = None
 
@@ -236,7 +236,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
         # scaled to the goal's significance, not a flat per-milestone drip.
         if met > int(gs.get("met", 0)):
             try:
-                from cognition.planning.goals import achievement_significance as _achv
+                from brain.cognition.planning.goals import achievement_significance as _achv
                 _msig = _achv(goal)
             except Exception:
                 _msig = 1.0
@@ -285,8 +285,8 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
         if _hard_disengage_enabled() and int(gs.get("stall", 0)) >= _WATCHDOG_CYCLES * 3:
             _stalled = int(gs.get("stall", 0))
             try:
-                from cognition.planning.goals import mark_goal_failed, merge_updated_goal_into_tree
-                from cognition.planning import goal_arbiter
+                from brain.cognition.planning.goals import mark_goal_failed, merge_updated_goal_into_tree
+                from brain.cognition.planning import goal_arbiter
                 mark_goal_failed(
                     goal,
                     reason=f"hard-disengage: {_stalled} cycles with no real progress, soft offers un-honored",
@@ -342,7 +342,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
                 pass
         if eff_sal >= _HIJACK_SALIENCE:
             try:
-                from cognition.attention import request_attention_hijack
+                from brain.cognition.attention import request_attention_hijack
                 request_attention_hijack(context, content=content, intensity=eff_sal,
                                          tags=["monitor", kind], source="monitor")
             except Exception:
@@ -420,7 +420,7 @@ def _try_suppress(action: str, n_cycles: int, reason: str,
         except Exception:
             pass
     try:
-        from think.bandit.contextual_bandit import suppress_action as _suppress
+        from brain.think.bandit.contextual_bandit import suppress_action as _suppress
         _suppress(action, n_cycles)
         log_private(f"[metacog/suppress] '{action}' muted for {n_cycles} cycles — {reason}")
     except Exception as _e:
@@ -494,7 +494,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
     goal = context.get("committed_goal") or {}
     goal_title = goal.get("title", "") if isinstance(goal, dict) else ""
     try:
-        from cognition.action_accounting import cycle_produced_goal_action
+        from brain.cognition.action_accounting import cycle_produced_goal_action
         _acted_on_goal = cycle_produced_goal_action(context)
     except Exception:
         _acted_on_goal = False
@@ -577,7 +577,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
     # Self-monitoring of how well predicted outcomes match reality. Sustained
     # over/under-confidence becomes an observation (Nelson & Narens 1990).
     try:
-        from cognition.calibration import calibration_observation, get_calibration
+        from brain.cognition.calibration import calibration_observation, get_calibration
         _cal_obs = calibration_observation(context)
         if _cal_obs:
             # Rate-limit: this fired every cycle once |bias| crossed the
@@ -649,7 +649,7 @@ def _maturity_gate_open(context: Dict[str, Any]) -> bool:
     if cycle < _GATE_MIN_CYCLES:
         return False
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         n_confirmed = sum(
             1 for r in get_all_rules() if r.get("source") == "confirmed_prediction"
         )
@@ -666,7 +666,7 @@ def _distill_metacog_patterns(observations: List[str], context: Dict[str, Any]) 
     if not observations or not _maturity_gate_open(context):
         return
     try:
-        from utils.json_utils import load_json, save_json
+        from brain.utils.json_utils import load_json, save_json
         cands = load_json(_metacog_candidates_path(), default_type=dict) or {}
         if not isinstance(cands, dict):
             cands = {}
@@ -678,7 +678,7 @@ def _distill_metacog_patterns(observations: List[str], context: Dict[str, Any]) 
                     rec["count"] = int(rec.get("count", 0)) + 1
                     if rec["count"] >= _METACOG_PATTERN_RECUR and not rec.get("promoted"):
                         try:
-                            from symbolic.rule_engine import add_rule
+                            from brain.symbolic.rule_engine import add_rule
                             add_rule(
                                 conditions=[cond],
                                 conclusion=conclusion,
@@ -729,7 +729,7 @@ def metacog_flush(context: Dict[str, Any]) -> str:
     observations: List[str] = []
 
     try:
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
 
         # Write the per-cycle trace (low importance — it's plumbing)
         if introspection:
@@ -756,7 +756,7 @@ def metacog_flush(context: Dict[str, Any]) -> str:
         # Carver & Scheier (1982): discrepancy → corrective output, not just belief.
         if observations:
             try:
-                from cognition.behavioral_adaptation import apply_behavioral_adaptations
+                from brain.cognition.behavioral_adaptation import apply_behavioral_adaptations
                 apply_behavioral_adaptations(context, observations)
             except Exception as _e:
                 record_failure("metacog.metacog_flush", _e)
@@ -765,7 +765,7 @@ def metacog_flush(context: Dict[str, Any]) -> str:
             # Stores the explanation, not just the label.
             # Mitchell et al. (1986) EBL; Tulving (1972) episodic→semantic.
             try:
-                from cognition.knowledge_formation import form_from_observations
+                from brain.cognition.knowledge_formation import form_from_observations
                 form_from_observations(observations, context)
             except Exception as _e:
                 record_failure("metacog.metacog_flush.2", _e)
@@ -778,7 +778,7 @@ def metacog_flush(context: Dict[str, Any]) -> str:
 
     # Append to rolling metacog log
     try:
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         existing = load_json(METACOG_LOG, default_type=list) or []
         existing.append({
             "ts":       mc.get("cycle_start", ""),

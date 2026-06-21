@@ -4,13 +4,13 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 
-from utils.json_utils import load_json, save_json, extract_json
-from utils.log import log_error, log_private, log_model_issue, log_activity
-from utils.log_reflection import log_reflection
-from utils.load_utils import load_all_known_json
-from affect.feedback_log import log_feedback
-from cognition.reflection.reflect_on_cognition import update_cognition_schedule
-from affect.reward_signals.reward_signals import release_reward_signal
+from brain.utils.json_utils import load_json, save_json, extract_json
+from brain.utils.log import log_error, log_private, log_model_issue, log_activity
+from brain.utils.log_reflection import log_reflection
+from brain.utils.load_utils import load_all_known_json
+from brain.affect.feedback_log import log_feedback
+from brain.cognition.reflection.reflect_on_cognition import update_cognition_schedule
+from brain.affect.reward_signals.reward_signals import release_reward_signal
 
 # --- Paths (use distinct names so we don't shadow path constants) ---
 from brain.paths import (
@@ -66,14 +66,14 @@ def reflect_on_cognition_rhythm():
             ),
         }
 
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         instructions = context.get("instructions", "")
         response = gated_generate(instructions, caller="repair/schedule", outcome=0.65)
         changes = extract_json(response)
 
         # --- Always log reflection to working & long memory ---
-        from cog_memory.working_memory import update_working_memory
-        from cog_memory.remember import remember
+        from brain.cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.remember import remember
 
         timestamp = datetime.now(timezone.utc).isoformat()
         reflection_entry = {
@@ -108,7 +108,7 @@ def reflect_on_cognition_rhythm():
 
     except Exception as e:
         # Best-effort structured failure memory
-        from cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.working_memory import update_working_memory
 
         log_error(f"reflect_on_cognition_rhythm ERROR: {e}")
         update_working_memory({
@@ -144,7 +144,7 @@ def detect_memory_contradictions():
         "{ \"contradictions\": [ {\"summary\": \"\", \"source\": \"\", \"suggested_fix\": \"\"} ] }"
     )
 
-    from symbolic.llm_gate import gated_generate
+    from brain.symbolic.llm_gate import gated_generate
     result = gated_generate(prompt, caller="repair/detect_memory_contradictions", outcome=0.65)
     contradictions = extract_json(result)
 
@@ -158,8 +158,8 @@ def detect_memory_contradictions():
         log_activity("🧠 Contradiction detected and logged.")
 
         # --- Update working/long memory with structured reflection ---
-        from cog_memory.working_memory import update_working_memory
-        from cog_memory.remember import remember
+        from brain.cog_memory.working_memory import update_working_memory
+        from brain.cog_memory.remember import remember
 
         contradiction_content = "\n".join(
             f"- {c.get('summary', '')} (Source: {c.get('source', '')}, Fix: {c.get('suggested_fix', '')})"
@@ -221,7 +221,7 @@ def repair_contradictions():
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         response = gated_generate(prompt, caller="repair/inspect_thought", outcome=0.65)
         result = extract_json(response)
         if not isinstance(result, dict):
@@ -229,8 +229,8 @@ def repair_contradictions():
 
         # Log as a memory entry for traceability
         if result.get("contradictions") or result.get("repair_attempt"):
-            from cog_memory.working_memory import update_working_memory
-            from cog_memory.remember import remember
+            from brain.cog_memory.working_memory import update_working_memory
+            from brain.cog_memory.remember import remember
 
             contradiction_content = "\n".join(f"- {c}" for c in result.get("contradictions", []))
             entry = {

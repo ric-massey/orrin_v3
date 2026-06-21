@@ -12,13 +12,13 @@
 #   The signal strength is graded rather than binary, mirroring Metcalfe &
 #   Shimamura (1994) who found FOK varies continuously with cue familiarity.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from typing import Dict, Any, List
 
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Cue patterns that suggest an internal-knowledge lookup is warranted.
@@ -107,7 +107,7 @@ def inject_local_search_signal(context: Dict[str, Any]) -> float:
         return 0.0
 
     try:
-        from utils.signal_utils import create_signal
+        from brain.utils.signal_utils import create_signal
         sig = create_signal(
             source="local_search_monitor",
             content="local_search_intent: context suggests looking inside own files",

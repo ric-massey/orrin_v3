@@ -87,7 +87,7 @@ def _state_schema_version() -> int:
     format version. Restore uses it to refuse an archive whose mind layout is newer
     than the importing build understands."""
     try:
-        from utils import schema_migration as _sm
+        from brain.utils import schema_migration as _sm
         return int(_sm.read_version())
     except Exception:
         return 1
@@ -151,7 +151,7 @@ def validate(archive: bytes) -> Tuple[bool, str, Dict[str, Any]]:
     # the migration spine brings it forward on the next boot.
     ssv = int(meta.get("state_schema_version") or 1)
     try:
-        from utils import schema_migration as _sm
+        from brain.utils import schema_migration as _sm
         cur = _sm.CURRENT_SCHEMA_VERSION
     except Exception:
         cur = 1

@@ -85,7 +85,7 @@ def ensure_tree() -> None:
         # parent with a __path__ (keeps relative imports working if Orrin ever writes
         # one). Harmless if already present.
         _register_namespace_packages()
-        # So bundled-skill lazy-loading (toolkit `import_module("agency.skills.<x>")`)
+        # So bundled-skill lazy-loading (toolkit `import_module("brain.agency.skills.<x>")`)
         # also finds self-written tools after a restart: extend the shipped package's
         # search path to include the writable skills dir. Best-effort.
         _extend_bundled_skills_path()
@@ -109,7 +109,7 @@ def _register_namespace_packages() -> None:
 
 def _extend_bundled_skills_path() -> None:
     try:
-        import agency.skills as _bundled_skills  # noqa: F401
+        import brain.agency.skills as _bundled_skills  # noqa: F401
         p = str(SELF_SKILLS_DIR)
         if p not in _bundled_skills.__path__:  # type: ignore[attr-defined]
             _bundled_skills.__path__.append(p)  # type: ignore[attr-defined]
@@ -234,7 +234,7 @@ def append_manifest(name: str, kind: str, description: str, path: Path) -> None:
     """Record a newly-written function/tool with its path stored RELATIVE to the
     self-code root."""
     try:
-        from utils.timeutils import now_iso_z
+        from brain.utils.timeutils import now_iso_z
         written_at = now_iso_z()
     except Exception:
         written_at = ""

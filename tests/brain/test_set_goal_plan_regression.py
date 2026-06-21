@@ -8,8 +8,8 @@
 import ast
 from pathlib import Path
 
-import cognition.planning.pursue_goal as pg
-from cognition.planning.goals import set_goal_plan, insert_plan_step
+import brain.cognition.planning.pursue_goal as pg
+from brain.cognition.planning.goals import set_goal_plan, insert_plan_step
 
 
 def test_no_local_shadowing_of_set_goal_plan():
@@ -32,9 +32,9 @@ def test_no_local_shadowing_of_set_goal_plan():
 
 def test_redirect_goal_plan_does_not_raise(monkeypatch):
     """Dynamic check: the re-plan path runs set_goal_plan without UnboundLocalError."""
-    import cognition.planning.goal_arbiter as ga
+    import brain.cognition.planning.goal_arbiter as ga
     monkeypatch.setattr(ga, "apply", lambda fn, source="": None)
-    import cog_memory.working_memory as wm
+    import brain.cog_memory.working_memory as wm
     monkeypatch.setattr(wm, "update_working_memory", lambda *a, **k: None)
 
     ctx = {"committed_goal": {"title": "Understand the world more deeply",

@@ -2,7 +2,7 @@
 # V1 cognitive loop extracted as a callable for integration with v2's main.py.
 # Call run_cognitive_loop(...) in a daemon thread from main.py.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import os
 import signal
@@ -25,11 +25,11 @@ warnings.filterwarnings(
     module="transformers",
 )
 
-from think.think_module import think
-from think.signal_router import process_inputs
-from think.think_utils.action_gate import take_action
+from brain.think.think_module import think
+from brain.think.signal_router import process_inputs
+from brain.think.think_utils.action_gate import take_action
 
-from think.loop_helpers import (
+from brain.think.loop_helpers import (
     emit_trace,
     compute_reward,
     emotional_delta_reward,
@@ -41,28 +41,28 @@ from think.loop_helpers import (
     bandit_learn,
 )
 
-from core.manager import load_custom_cognition
-from registry.cognition_registry import COGNITIVE_FUNCTIONS, refresh as refresh_cog
-from registry.behavior_registry import BEHAVIORAL_FUNCTIONS, refresh as refresh_beh
+from brain.core.manager import load_custom_cognition
+from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS, refresh as refresh_cog
+from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS, refresh as refresh_beh
 
-from affect.update_affect_state import update_affect_state
-from affect.reflect_on_affect import reflect_on_affect
-from affect.affect_drift import check_affect_drift
+from brain.affect.update_affect_state import update_affect_state
+from brain.affect.reflect_on_affect import reflect_on_affect
+from brain.affect.affect_drift import check_affect_drift
 
-from cognition.planning.reflection import record_decision
+from brain.cognition.planning.reflection import record_decision
 
-from utils.get_cycle_count import get_cycle_count
-from utils.load_utils import load_context
-from utils.json_utils import load_json, save_json
-from utils.log import log_error, log_private, log_activity, log_model_issue
-from utils.emotion_utils import log_penalty_signal, log_uncertainty_spike
+from brain.utils.get_cycle_count import get_cycle_count
+from brain.utils.load_utils import load_context
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_error, log_private, log_activity, log_model_issue
+from brain.utils.emotion_utils import log_penalty_signal, log_uncertainty_spike
 
-from utils.error_router import route_exception
-from cognition.repair.auto_repair import try_auto_repair
-from utils.failure_counter import record_failure, dump_summary as _dump_failure_summary
-from utils.token_meter import dump_summary as _dump_token_summary
+from brain.utils.error_router import route_exception
+from brain.cognition.repair.auto_repair import try_auto_repair
+from brain.utils.failure_counter import record_failure, dump_summary as _dump_failure_summary
+from brain.utils.token_meter import dump_summary as _dump_token_summary
 
-from config.tuning import (
+from brain.config.tuning import (
     AFFECT_TRANSIENT_DECAY,
     CRISIS_ABOVE_HALF_COUNT,
     CRISIS_ABOVE_HALF_THRESHOLD,
@@ -185,7 +185,7 @@ def _push_catalog_once() -> None:
     if tb is None:
         return
     try:
-        from registry.function_catalog import build_catalog
+        from brain.registry.function_catalog import build_catalog
         tb.update(catalog=build_catalog())
         _CATALOG_PUSHED = True
     except Exception as _e:
@@ -223,14 +223,14 @@ def _emit_affect(context: "Context") -> None:
         homeostasis = a.get("homeostasis")
         if not isinstance(homeostasis, (int, float)):
             try:
-                from affect.homeostasis import homeostasis_index
+                from brain.affect.homeostasis import homeostasis_index
                 homeostasis = homeostasis_index(cs)
             except Exception:
                 homeostasis = _HOMEOSTASIS_FALLBACK
 
         distress = 0.0
         try:
-            from affect.observers import negative_load
+            from brain.affect.observers import negative_load
             distress = _clamp01(negative_load(a) / _DISTRESS_LOAD_DIVISOR)
         except Exception:
             distress = _clamp01(_f(cs.get("impasse_signal")))
@@ -308,7 +308,7 @@ def _emit_goals(context: "Context") -> None:
             return
         _LAST_GOALS_PUSH = now
 
-        from utils.json_utils import load_json
+        from brain.utils.json_utils import load_json
         from brain.paths import GOALS_FILE
 
         goals_raw = load_json(GOALS_FILE, default_type=list) or []
@@ -490,7 +490,7 @@ def _validate_boot_files() -> None:
     # Emotion keyword model: an empty affect_model.json silently turns all
     # affect detection neutral. Seed it from the packaged defaults (logs once).
     try:
-        from affect.model import seed_default_emotion_keywords
+        from brain.affect.model import seed_default_emotion_keywords
         seed_default_emotion_keywords()
     except Exception as e:
         log_error(f"[boot] Could not seed emotion keywords: {e}")
@@ -531,13 +531,13 @@ def _verify_production_capability(functions: Dict[str, Any]) -> Dict[str, Any]:
         }
         checks["persisted_manifest"] = "compose_section" in names
 
-        from cognition.planning.step_execution import recognise_step_action
+        from brain.cognition.planning.step_execution import recognise_step_action
         checks["plan_resolver"] = recognise_step_action({
             "step": "Draft the thesis section",
             "action": {"function": "compose_section"},
         }) == "compose_section"
 
-        from think.think_utils.select_function import (
+        from brain.think.think_utils.select_function import (
             _CAPS_PATH,
             _is_dispatchable,
             _load_actions,
@@ -598,18 +598,18 @@ def _boot_context() -> Context:
 
     # Register agency functions (tool use + self-modification)
     try:
-        from agency.tool_runner import AGENCY_TOOL_FUNCTIONS
-        from agency.code_writer import AGENCY_CODE_FUNCTIONS
+        from brain.agency.tool_runner import AGENCY_TOOL_FUNCTIONS
+        from brain.agency.code_writer import AGENCY_CODE_FUNCTIONS
         for k, fn in {**AGENCY_TOOL_FUNCTIONS, **AGENCY_CODE_FUNCTIONS}.items():
             COGNITIVE_FUNCTIONS[k] = {"function": fn, "is_cognition": True}
-        from agency.compose_section import compose_section as _compose_section
+        from brain.agency.compose_section import compose_section as _compose_section
         COGNITIVE_FUNCTIONS["compose_section"] = {
             "function": _compose_section,
             "is_cognition": True,
             "requires_llm": False,
         }
         # Re-persist so the bandit's JSON list includes the agency function names
-        from registry.cognition_registry import persist_names
+        from brain.registry.cognition_registry import persist_names
         persist_names(COGNITIVE_FUNCTIONS)
         log_activity("Agency functions registered into cognitive loop.")
         production_capability_status = _verify_production_capability(
@@ -620,29 +620,29 @@ def _boot_context() -> Context:
 
     # Register thread-of-attention cognition
     try:
-        from cognition.threads import handle_thread_continue as _htc
+        from brain.cognition.threads import handle_thread_continue as _htc
         COGNITIVE_FUNCTIONS["thread_continue"] = {"function": _htc, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register thread_continue: {e}")
 
     # Register value evolution cognition
     try:
-        from cognition.selfhood.value_evolution import propose_value_revision as _pvr
+        from brain.cognition.selfhood.value_evolution import propose_value_revision as _pvr
         COGNITIVE_FUNCTIONS["propose_value_revision"] = {"function": _pvr, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register propose_value_revision: {e}")
 
     # Register autobiography cognition
     try:
-        from cognition.selfhood.autobiography import narrative_update as _nu
+        from brain.cognition.selfhood.autobiography import narrative_update as _nu
         COGNITIVE_FUNCTIONS["narrative_update"] = {"function": _nu, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register narrative_update: {e}")
 
     # Register world-perception cognition functions
     try:
-        from cognition.perception.look_around import look_around as _la
-        from cognition.perception.look_outward import look_outward as _lo
+        from brain.cognition.perception.look_around import look_around as _la
+        from brain.cognition.perception.look_outward import look_outward as _lo
         COGNITIVE_FUNCTIONS["look_around"]  = {"function": _la, "is_cognition": True}
         COGNITIVE_FUNCTIONS["look_outward"] = {"function": _lo, "is_cognition": True}
     except Exception as e:
@@ -650,28 +650,28 @@ def _boot_context() -> Context:
 
     # Register intrinsic goal generation
     try:
-        from cognition.intrinsic_goals import generate_intrinsic_goals as _gig
+        from brain.cognition.intrinsic_goals import generate_intrinsic_goals as _gig
         COGNITIVE_FUNCTIONS["generate_intrinsic_goals"] = {"function": _gig, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register generate_intrinsic_goals: {e}")
 
     # Register privacy cognition
     try:
-        from cognition.privacy import mark_private as _mp
+        from brain.cognition.privacy import mark_private as _mp
         COGNITIVE_FUNCTIONS["mark_private"] = {"function": _mp, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register mark_private: {e}")
 
     # Register metacognition channel flush (callable by LLM as introspection)
     try:
-        from cognition.metacog import metacog_flush as _mcfn
+        from brain.cognition.metacog import metacog_flush as _mcfn
         COGNITIVE_FUNCTIONS["metacog_flush"] = {"function": _mcfn, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register metacog_flush: {e}")
 
     # Register active goal pursuit and progress assessment
     try:
-        from cognition.planning.pursue_goal import (
+        from brain.cognition.planning.pursue_goal import (
             pursue_committed_goal as _pcg, assess_goal_progress as _agp,
             adapt_subgoals as _asg, attend_goal as _attg,
             redirect_goal_plan as _rgp, abandon_goal as _abg,
@@ -694,42 +694,42 @@ def _boot_context() -> Context:
 
     # Register innovation outcome assessment
     try:
-        from cognition.innovation.evaluation import assess_innovation_outcomes as _aio
+        from brain.cognition.innovation.evaluation import assess_innovation_outcomes as _aio
         COGNITIVE_FUNCTIONS["assess_innovation_outcomes"] = {"function": _aio, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register assess_innovation_outcomes: {e}")
 
     # Register file content search (grep own data/source files)
     try:
-        from cognition.search_own_files import search_own_files as _sof
+        from brain.cognition.search_own_files import search_own_files as _sof
         COGNITIVE_FUNCTIONS["search_own_files"] = {"function": _sof, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register search_own_files: {e}")
 
     # Register active experimentation (hypothesis → test → consolidate)
     try:
-        from cognition.experimentation import run_active_experiment as _rae
+        from brain.cognition.experimentation import run_active_experiment as _rae
         COGNITIVE_FUNCTIONS["run_active_experiment"] = {"function": _rae, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_active_experiment: {e}")
 
     # Register latent identity update (stable numeric identity anchor)
     try:
-        from cognition.selfhood.latent_identity import update_latent_identity as _uli
+        from brain.cognition.selfhood.latent_identity import update_latent_identity as _uli
         COGNITIVE_FUNCTIONS["update_latent_identity"] = {"function": _uli, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register update_latent_identity: {e}")
 
     # Register reflection audit (scan for ungrounded reflective claims)
     try:
-        from cognition.reflection_metadata import audit_reflective_claims as _arc
+        from brain.cognition.reflection_metadata import audit_reflective_claims as _arc
         COGNITIVE_FUNCTIONS["audit_reflective_claims"] = {"function": _arc, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register audit_reflective_claims: {e}")
 
     # Register symbolic reasoning router (check local knowledge before LLM)
     try:
-        from symbolic.reasoning_router import route as _sym_route
+        from brain.symbolic.reasoning_router import route as _sym_route
         def _sym_route_fn(context=None, **kw):
             user_input = (context or {}).get("user_input", "")
             if not user_input:
@@ -744,39 +744,39 @@ def _boot_context() -> Context:
 
     # Register intrinsic motivation driver (spawns sub-goals on high exploration_drive)
     try:
-        from symbolic.intrinsic_motivation import run_intrinsic_motivation as _rim
+        from brain.symbolic.intrinsic_motivation import run_intrinsic_motivation as _rim
         COGNITIVE_FUNCTIONS["run_intrinsic_motivation"] = {"function": _rim, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_intrinsic_motivation: {e}")
 
     # Register autonomous experimentation (sandbox probes for high-exploration_drive goals)
     try:
-        from symbolic.autonomous_experiment import run_experiment_cycle as _raec
+        from brain.symbolic.autonomous_experiment import run_experiment_cycle as _raec
         COGNITIVE_FUNCTIONS["run_symbolic_experiments"] = {"function": _raec, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_symbolic_experiments: {e}")
 
     # Register embodied observation (read-only real-world grounding)
     try:
-        from symbolic.embodied_actions import run_embodied_cycle as _remc
+        from brain.symbolic.embodied_actions import run_embodied_cycle as _remc
         COGNITIVE_FUNCTIONS["run_embodied_observation"] = {"function": _remc, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_embodied_observation: {e}")
 
     # Register symbolic self-improvement loop
     try:
-        from symbolic.self_improvement import run_self_improvement as _rsim
+        from brain.symbolic.self_improvement import run_self_improvement as _rsim
         COGNITIVE_FUNCTIONS["run_self_improvement"] = {"function": _rsim, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_self_improvement: {e}")
 
     # Register agency skills (file search, notifications, notes)
     try:
-        from agency.skills.grep_files import grep_files as _gf
-        from agency.skills.list_directory import list_directory as _ld
-        from agency.skills.search_files import search_files as _sf
-        from agency.skills.notify_user import notify_user as _nu2
-        from agency.skills.save_note import save_note as _sn
+        from brain.agency.skills.grep_files import grep_files as _gf
+        from brain.agency.skills.list_directory import list_directory as _ld
+        from brain.agency.skills.search_files import search_files as _sf
+        from brain.agency.skills.notify_user import notify_user as _nu2
+        from brain.agency.skills.save_note import save_note as _sn
         COGNITIVE_FUNCTIONS["grep_files"]     = {"function": _gf,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["list_directory"] = {"function": _ld,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["search_files"]   = {"function": _sf,  "is_cognition": True}
@@ -787,7 +787,7 @@ def _boot_context() -> Context:
 
     # Register leave_note — writes an observation to the user-facing outbox
     try:
-        from cognition.leave_note import leave_note as _leave_note
+        from brain.cognition.leave_note import leave_note as _leave_note
         COGNITIVE_FUNCTIONS["leave_note"] = {"function": _leave_note, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register leave_note: {e}")
@@ -802,20 +802,20 @@ def _boot_context() -> Context:
         # the _write_desktop_note and _announce wrappers compose through the one
         # expression door (behavior.express_to_user), which routes to them
         # internally (EXPRESSION_MEMBRANE_FIX_PLAN E2/E3).
-        from embodiment.system_presence import (
+        from brain.embodiment.system_presence import (
             get_system_state   as _gss,
             check_user_active  as _cua,
             read_clipboard     as _rcb,
         )
         def _survey_env(context=None):
             s = _gss()
-            from cog_memory.working_memory import update_working_memory as _uwm
+            from brain.cog_memory.working_memory import update_working_memory as _uwm
             _uwm({"content": f"[survey] System state: {str(s)[:300]}", "event_type": "system_survey", "priority": 2})
             return s
         def _write_desktop_note(context=None):
             # Compose through the one expression door — never scrape working
             # memory (EXPRESSION_MEMBRANE_FIX_PLAN E2).
-            from behavior.express_to_user import build_motive, express_to_user
+            from brain.behavior.express_to_user import build_motive, express_to_user
             ctx = context or {}
             motive = build_motive(ctx, intent="write_desktop_note", recipient="Ric")
             return express_to_user(motive, "desktop", ctx)
@@ -824,14 +824,14 @@ def _boot_context() -> Context:
         def _announce(context=None):
             # Compose through the one expression door — never ship the last WM
             # entry to the dashboard (EXPRESSION_MEMBRANE_FIX_PLAN E3).
-            from behavior.express_to_user import build_motive, express_to_user
+            from brain.behavior.express_to_user import build_motive, express_to_user
             ctx = context or {}
             motive = build_motive(ctx, intent="announce", recipient="dashboard")
             return express_to_user(motive, "dashboard", ctx)
         def _read_clip(context=None):
             r = _rcb()
             if r.get("content"):
-                from cog_memory.working_memory import update_working_memory as _uwm
+                from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({"content": f"[clipboard] I noticed: {r['content'][:200]}", "event_type": "clipboard_observation", "priority": 2})
             return r
         COGNITIVE_FUNCTIONS["survey_environment"]   = {"function": _survey_env,       "is_cognition": True}
@@ -844,7 +844,7 @@ def _boot_context() -> Context:
 
     # Register self-modification functions (write/list/delete own code)
     try:
-        from agency.code_writer import (
+        from brain.agency.code_writer import (
             write_cognitive_function as _wcf,
             write_tool as _wt,
             list_own_code as _loc,
@@ -859,11 +859,11 @@ def _boot_context() -> Context:
 
     # Register cognition repair functions
     try:
-        from cognition.repair.repair import (
+        from brain.cognition.repair.repair import (
             detect_memory_contradictions as _dc,
             repair_contradictions as _rc,
         )
-        from cognition.introspection.router import introspect as _ir
+        from brain.cognition.introspection.router import introspect as _ir
         # No real prompt exists for this fn — it routes to the introspection
         # repair pass. Tagged requires_llm so the 0.3 gate keeps it out of the
         # candidate pool whenever the LLM tool is down (BEHAVIOR_FIX_PLAN §5).
@@ -872,25 +872,25 @@ def _boot_context() -> Context:
         COGNITIVE_FUNCTIONS["detect_memory_contradictions"] = {"function": _dc,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["repair_contradictions"]       = {"function": _rc,  "is_cognition": True}
         # Phase 2.2: the failure ledger — failures read together, not one at a time.
-        from cognition.reflection.review_failures import review_failures as _rvf
+        from brain.cognition.reflection.review_failures import review_failures as _rvf
         COGNITIVE_FUNCTIONS["review_failures"]             = {"function": _rvf, "is_cognition": True}
         # Phase 5.3: the map that notices its own drift — deliberately invocable.
-        from cognition.maintenance.map_territory_audit import audit_map_territory as _mta
+        from brain.cognition.maintenance.map_territory_audit import audit_map_territory as _mta
         COGNITIVE_FUNCTIONS["audit_map_territory"]         = {"function": _mta, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register cognition repair functions: {e}")
 
     # Register emotion top-level callable functions
     try:
-        from affect.regulation import attempt_regulation as _ar
-        from affect.affect_drift import check_affect_drift as _ced
-        from affect.reflect_on_affect import reflect_on_affect as _roe
-        from affect.update_affect_state import update_affect_state as _ues
-        from affect.apply_affective_feedback import apply_affective_feedback as _aef
-        from affect.modes_and_affect import affect_driven_mode_shift as _edms
-        from affect.affect import investigate_unexplained_emotions as _iue
-        from affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
-        from affect.reflect_on_affect_model import reflect_on_emotion_model as _roem
+        from brain.affect.regulation import attempt_regulation as _ar
+        from brain.affect.affect_drift import check_affect_drift as _ced
+        from brain.affect.reflect_on_affect import reflect_on_affect as _roe
+        from brain.affect.update_affect_state import update_affect_state as _ues
+        from brain.affect.apply_affective_feedback import apply_affective_feedback as _aef
+        from brain.affect.modes_and_affect import affect_driven_mode_shift as _edms
+        from brain.affect.affect import investigate_unexplained_emotions as _iue
+        from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
+        from brain.affect.reflect_on_affect_model import reflect_on_emotion_model as _roem
         COGNITIVE_FUNCTIONS["attempt_regulation"]            = {"function": _ar,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["check_affect_drift"]           = {"function": _ced,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["reflect_on_affect"]           = {"function": _roe,  "is_cognition": True}
@@ -905,12 +905,12 @@ def _boot_context() -> Context:
 
     # Register symbolic cycle functions
     try:
-        from symbolic.benchmark import run_benchmark as _rb
-        from symbolic.prediction_engine import run_symbolic_prediction_cycle as _rspc
-        from symbolic.rule_forgetting import run_forgetting_cycle as _rfc
-        from symbolic.rule_compressor import run_rule_compression as _rrc
-        from symbolic.symbolic_dream import run_symbolic_dream as _rsd
-        from symbolic.embodied_actions import run_embodied_cycle as _rec2
+        from brain.symbolic.benchmark import run_benchmark as _rb
+        from brain.symbolic.prediction_engine import run_symbolic_prediction_cycle as _rspc
+        from brain.symbolic.rule_forgetting import run_forgetting_cycle as _rfc
+        from brain.symbolic.rule_compressor import run_rule_compression as _rrc
+        from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
+        from brain.symbolic.embodied_actions import run_embodied_cycle as _rec2
         COGNITIVE_FUNCTIONS["run_benchmark"]                 = {"function": _rb,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_symbolic_prediction_cycle"] = {"function": _rspc, "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_forgetting_cycle"]          = {"function": _rfc,  "is_cognition": True}
@@ -922,7 +922,7 @@ def _boot_context() -> Context:
 
     # Re-persist cognition list so LLM sees all new functions
     try:
-        from registry.cognition_registry import persist_names as _pn
+        from brain.registry.cognition_registry import persist_names as _pn
         _pn(COGNITIVE_FUNCTIONS)
     except Exception as e:
         log_error(f"Failed to re-persist cognition names: {e}")
@@ -931,7 +931,7 @@ def _boot_context() -> Context:
     # Coerces null/non-finite float values to safe defaults so no
     # float(None) crashes occur during boot or the first few cycles.
     try:
-        from utils.state_guard import sanitize_all
+        from brain.utils.state_guard import sanitize_all
         sanitize_all()
     except Exception as _sg_err:
         log_error(f"state_guard sanitize_all failed at boot: {_sg_err}")
@@ -978,7 +978,7 @@ def _boot_context() -> Context:
     except Exception as _e:
         record_failure("ORRIN_loop._boot_context", _e)
 
-    from cog_memory.working_memory import update_working_memory
+    from brain.cog_memory.working_memory import update_working_memory
     if "emergency_action" in context:
         update_working_memory("Orrin is recovering from emergency shutdown. Residual uncertainty present.")
         affect_state["uncertainty"] = min(affect_state.get("uncertainty", 0.0) + 0.35, 1.0)
@@ -1168,7 +1168,7 @@ def run_cognitive_loop(
     _tool_runner = None
     _ToolRunner_cls = None
     try:
-        from agency.tool_runner import ToolRunner as _ToolRunner_cls
+        from brain.agency.tool_runner import ToolRunner as _ToolRunner_cls
         _tool_runner = _ToolRunner_cls(interval_s=30.0)
         _tool_runner.start()
     except Exception as e:
@@ -1177,7 +1177,7 @@ def run_cognitive_loop(
     # Evaluator daemon (delayed reward signals)
     _evaluator = None
     try:
-        from eval.evaluator_daemon import EvaluatorDaemon
+        from brain.eval.evaluator_daemon import EvaluatorDaemon
         _evaluator = EvaluatorDaemon()
     except Exception as e:
         log_error(f"EvaluatorDaemon failed to init: {e}")
@@ -1186,35 +1186,35 @@ def run_cognitive_loop(
     # These run independently of the cognitive loop. The loop reads their
     # state each cycle — it does not trigger them.
     try:
-        from embodiment import setpoint_regulation as _setpoint_regulation_mod
+        from brain.embodiment import setpoint_regulation as _setpoint_regulation_mod
         _setpoint_regulation_mod.start()
         log_activity("[embodiment] setpoint_regulation daemon started.")
     except Exception as _e0:
         log_error(f"[embodiment] setpoint_regulation failed to start: {_e0}")
 
     try:
-        from embodiment import sensory_stream as _sensory_mod
+        from brain.embodiment import sensory_stream as _sensory_mod
         _sensory_mod.start()
         log_activity("[embodiment] sensory_stream started.")
     except Exception as _e0:
         log_error(f"[embodiment] sensory_stream failed to start: {_e0}")
 
     try:
-        from embodiment import drive_engine as _drive_mod
+        from brain.embodiment import drive_engine as _drive_mod
         _drive_mod.start()
         log_activity("[embodiment] drive_engine started.")
     except Exception as _e0:
         log_error(f"[embodiment] drive_engine failed to start: {_e0}")
 
     try:
-        from embodiment import social_presence as _social_mod
+        from brain.embodiment import social_presence as _social_mod
         _social_mod.start()
         log_activity("[embodiment] social_presence started.")
     except Exception as _e0:
         log_error(f"[embodiment] social_presence failed to start: {_e0}")
 
     try:
-        from embodiment import subconscious as _subcon_mod
+        from brain.embodiment import subconscious as _subcon_mod
         _subcon_mod.start()
         log_activity("[embodiment] subconscious started.")
     except Exception as _e0:
@@ -1226,7 +1226,7 @@ def run_cognitive_loop(
     # interleaved call below is skipped (mutual exclusion) so goals advance
     # continuously off the 20s cycle without double execution.
     try:
-        from cognition.planning import executive as _executive_mod
+        from brain.cognition.planning import executive as _executive_mod
         if _executive_mod.start(stop_event) is not None:
             log_activity("[executive] continuous Executive daemon started (Phase 5).")
     except Exception as _e0:
@@ -1236,7 +1236,7 @@ def run_cognitive_loop(
 
     # Boot-time scratchpad audit: warn about cognition modules that bypass the wrapper
     try:
-        from think.think_generate import audit_direct_callers as _audit
+        from brain.think.think_generate import audit_direct_callers as _audit
         _audit(warn_only=True)
     except Exception as _audit_e:
         log_error(f"[boot] scratchpad audit failed: {_audit_e}")
@@ -1271,7 +1271,7 @@ def run_cognitive_loop(
         _cycle_num += 1
         if _evaluator is None and _cycle_num % 100 == 0:
             try:
-                from eval.evaluator_daemon import EvaluatorDaemon as _ED_retry
+                from brain.eval.evaluator_daemon import EvaluatorDaemon as _ED_retry
                 _evaluator = _ED_retry()
                 log_activity("[evaluator] EvaluatorDaemon re-init succeeded.")
             except Exception as _ed_retry_e:
@@ -1293,7 +1293,7 @@ def run_cognitive_loop(
                     _final_reflection_done = True
                     log_activity("[terminal] Dying window active — running final reflection.")
                     try:
-                        from cognition.terminal import final_reflection as _final_reflection
+                        from brain.cognition.terminal import final_reflection as _final_reflection
                         _final_reflection(context if "context" in dir() else {})
                     except Exception as _e:
                         log_error(f"final_reflection failed: {_e}")
@@ -1357,7 +1357,7 @@ def run_cognitive_loop(
             # ── Layer 0 reads: inject embodiment state into this cycle ─────────
             # Sensory field — environment mood and file-system changes
             try:
-                from embodiment import sensory_stream as _sensory_mod
+                from brain.embodiment import sensory_stream as _sensory_mod
                 _sf = _sensory_mod.get_field()
                 if _sf:
                     context["sensory_field"] = _sf
@@ -1405,7 +1405,7 @@ def run_cognitive_loop(
 
             # Drive signals — biological pressure injection
             try:
-                from embodiment import drive_engine as _drive_mod
+                from brain.embodiment import drive_engine as _drive_mod
                 _drive_signals = _drive_mod.get_signals(context)
                 if _drive_signals:
                     context.setdefault("raw_signals", []).extend(_drive_signals)
@@ -1415,7 +1415,7 @@ def run_cognitive_loop(
 
             # Social presence — user engagement pressure
             try:
-                from embodiment import social_presence as _social_mod
+                from brain.embodiment import social_presence as _social_mod
                 _social_state = _social_mod.get_state()
                 context["social_presence"] = _social_state
                 # Mark whether the user spoke this cycle (for drive satisfaction)
@@ -1438,21 +1438,21 @@ def run_cognitive_loop(
 
             # World model — synthesize sensory + social + drives into interpreted env state
             try:
-                from embodiment import world_model as _wm_mod
+                from brain.embodiment import world_model as _wm_mod
                 _wm_mod.refresh(context)  # injects context["world_state"]
             except Exception as _wme:
                 record_failure("ORRIN_loop.world_model", _wme)
 
             # Motivational substrate — subsymbolic drive activations into context
             try:
-                from motivation import substrate as _motiv_mod
+                from brain.motivation import substrate as _motiv_mod
                 _motiv_mod.inject_into_context(context)
             except Exception as _me:
                 record_failure("ORRIN_loop.motivation_substrate", _me)
 
             # Energy orientation — derive action vs reflect bias from emotional state
             try:
-                from motivation import energy_orientation as _eo_mod
+                from brain.motivation import energy_orientation as _eo_mod
                 _eo_mod.inject_into_context(context)
             except Exception as _eoe:
                 record_failure("ORRIN_loop.energy_orientation", _eoe)
@@ -1462,7 +1462,7 @@ def run_cognitive_loop(
             # reflection, self-examination, and long-term thinking.
             try:
                 if context.get("_rest_mode") and not context.get("committed_goal"):
-                    from utils.signal_utils import create_signal as _cs
+                    from brain.utils.signal_utils import create_signal as _cs
                     _rest_note = (
                         context.get("_rest_mode_note")
                         or "Rest mode active — time for deep reflection, value alignment, and long-term thinking."
@@ -1506,7 +1506,7 @@ def run_cognitive_loop(
             # isn't. Runs after the committed-goal slot is resolved so it can
             # deliberately override the focus (the human "drop everything" reflex).
             try:
-                from cognition.planning.problem_refocus import handle_problem_refocus
+                from brain.cognition.planning.problem_refocus import handle_problem_refocus
                 handle_problem_refocus(context)
             except Exception as _pr_e:
                 record_failure("ORRIN_loop.problem_refocus", _pr_e)
@@ -1521,7 +1521,7 @@ def run_cognitive_loop(
                 if _now_bt - _last_bt >= 90.0:
                     context["_last_bootstrap_ts"] = _now_bt
                     try:
-                        from cognition.intrinsic_goals import generate_intrinsic_goals as _gig
+                        from brain.cognition.intrinsic_goals import generate_intrinsic_goals as _gig
                         _gig(context)
                     except Exception as _gie:
                         log_error(f"intrinsic goal bootstrap failed: {_gie}")
@@ -1583,7 +1583,7 @@ def run_cognitive_loop(
                     # writes, so this competes with (and nets against) every other
                     # affect source this cycle instead of clobbering them.
                     try:
-                        from affect.arbiter import submit_affect as _submit_affect
+                        from brain.affect.arbiter import submit_affect as _submit_affect
                         _submit_affect(context, "impasse_signal", +0.04, source="goal_stall")
                         _submit_affect(context, "motivation",     -0.03, source="goal_stall")
                         _submit_affect(context, "stagnation_signal", +0.03, source="goal_stall")
@@ -1592,7 +1592,7 @@ def run_cognitive_loop(
 
                     # Enriched WM signal every 5 cycles — keeps situation salient
                     if get_cycle_count() % 5 == 0:
-                        from cog_memory.working_memory import update_working_memory as _uwm_stall
+                        from brain.cog_memory.working_memory import update_working_memory as _uwm_stall
                         _uwm_stall(
                             f"[Goal stalled] '{_sg_title}' — {_sg_replans} replans, "
                             f"{_steps_done} step(s) completed, stalled {_sg_stall_cycles} cycle(s)."
@@ -1604,14 +1604,14 @@ def run_cognitive_loop(
 
             # ── Metacognition channel: init per-cycle trace ───────────────
             try:
-                from cognition.metacog import metacog_init as _mci
+                from brain.cognition.metacog import metacog_init as _mci
                 _mci(context)
             except Exception as e:
                 record_failure("ORRIN_loop.metacog_init", e)
 
             # ── Body sense: translate process vitals into felt states ──────
             try:
-                from cognition.body_sense import update_body_sense as _ubs
+                from brain.cognition.body_sense import update_body_sense as _ubs
                 _ubs(context)
             except Exception as _bse:
                 log_error(f"body_sense update failed: {_bse}")
@@ -1621,7 +1621,7 @@ def run_cognitive_loop(
             # bands — the outward gaze the inward body_sense (and the 2026-06-15 crash)
             # missed. A separate system from the autonomic reflex (HostResourceGuard).
             try:
-                from cognition.host_interoception import update_host_interoception as _uhi
+                from brain.cognition.host_interoception import update_host_interoception as _uhi
                 _uhi(context)
             except Exception as _hie:
                 log_error(f"host_interoception update failed: {_hie}")
@@ -1637,7 +1637,7 @@ def run_cognitive_loop(
                     for s in (context.get("raw_signals") or [])
                 )
                 if _stagnation_signal > 0.5 and not _has_user and not _has_priority_signal:
-                    from utils.signal_utils import create_signal as _cs
+                    from brain.utils.signal_utils import create_signal as _cs
                     _bsig = _cs(
                         source="stagnation_signal",
                         content="stagnation_signal_seek: I need something real to engage with.",
@@ -1646,7 +1646,7 @@ def run_cognitive_loop(
                     )
                     context.setdefault("raw_signals", []).append(_bsig)
                     COGNITIVE_FUNCTIONS.setdefault("seek_novelty", {
-                        "function": __import__("cognition.seek_novelty", fromlist=["seek_novelty"]).seek_novelty,
+                        "function": __import__("brain.cognition.seek_novelty", fromlist=["seek_novelty"]).seek_novelty,
                         "is_cognition": True,
                     })
             except Exception as _be:
@@ -1667,7 +1667,7 @@ def run_cognitive_loop(
                     for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "negative_valence"]
                 )
                 if _neg_sum > 0.55:
-                    from utils.signal_utils import create_signal as _cs_neg
+                    from brain.utils.signal_utils import create_signal as _cs_neg
                     context.setdefault("raw_signals", []).append(_cs_neg(
                         source="distress_pressure",
                         content="distress accumulating — regulation or reflection needed to discharge it",
@@ -1679,14 +1679,14 @@ def run_cognitive_loop(
 
             # ── Wonder: apply sitting-with bias when wonder is elevated ──
             try:
-                from cognition.wonder import apply_wonder_bias as _awb
+                from brain.cognition.wonder import apply_wonder_bias as _awb
                 _awb(context)
             except Exception as e:
                 record_failure("ORRIN_loop.wonder_bias", e)
 
             # ── awaiting_response: check for answer, decay, boost signal ──
             try:
-                from cognition.awaiting_response import (
+                from brain.cognition.awaiting_response import (
                     check_for_answer as _cfa,
                     decay_awaiting as _da,
                     inject_await_signal as _ias,
@@ -1699,14 +1699,14 @@ def run_cognitive_loop(
 
             # ── Filesystem perception: detect external file changes ───────
             try:
-                from cognition.perception.fs_perception import poll_fs_changes as _pfc
+                from brain.cognition.perception.fs_perception import poll_fs_changes as _pfc
                 _pfc(context)
             except Exception as _fse:
                 log_error(f"fs_perception poll failed: {_fse}")
 
             # ── Thread-of-attention: inject signal for stale threads ──────
             try:
-                from cognition.threads import inject_thread_signals as _its, archive_dead_threads as _adt
+                from brain.cognition.threads import inject_thread_signals as _its, archive_dead_threads as _adt
                 _its(context)
                 _cycle_for_threads = get_cycle_count()
                 if _cycle_for_threads > 0 and _cycle_for_threads % 50 == 0:
@@ -1716,11 +1716,11 @@ def run_cognitive_loop(
 
             # ── Value evolution: inject signal when candidates pending ─────
             try:
-                from utils.json_utils import load_json as _lj
+                from brain.utils.json_utils import load_json as _lj
                 from brain.paths import VALUE_REVISIONS as _VR
                 _pending_vals = [c for c in (_lj(_VR, default_type=list) or []) if isinstance(c, dict) and c.get("status", "pending") == "pending"]
                 if _pending_vals:
-                    from utils.signal_utils import create_signal as _cs2
+                    from brain.utils.signal_utils import create_signal as _cs2
                     _vsig = _cs2(
                         source="value_evolution",
                         content="value_revision_pending: a core value may need deliberate revision",
@@ -1734,7 +1734,7 @@ def run_cognitive_loop(
             # Wake peer entities before signal_router runs so their signals
             # flow through the full prioritization pipeline.
             try:
-                from peers.peer_registry import wake_peers as _wake_peers
+                from brain.peers.peer_registry import wake_peers as _wake_peers
                 _peer_sigs = _wake_peers(context)
                 if _peer_sigs:
                     context["_peer_signals"] = _peer_sigs
@@ -1744,7 +1744,7 @@ def run_cognitive_loop(
             # Resolve who is speaking this cycle.
             # Sets context["person_id"], context["user_id"] (alias), context["person_type"].
             try:
-                from cognition.selfhood.person_detector import detect_and_set_person_id as _detect_pid
+                from brain.cognition.selfhood.person_detector import detect_and_set_person_id as _detect_pid
                 _detect_pid(context)
             except Exception as _pd_e:
                 log_error(f"[person_detector] failed: {_pd_e}")
@@ -1761,7 +1761,7 @@ def run_cognitive_loop(
             # channel before we read it, so a Face message is processed exactly
             # like a locally-typed line. Closes the Face→brain half of the loop.
             try:
-                from behavior.face_bridge import drain_face_inputs as _drain_face
+                from brain.behavior.face_bridge import drain_face_inputs as _drain_face
                 _drain_face()
             except Exception as _dfe:
                 record_failure("ORRIN_loop.run_cognitive_loop.6", _dfe)
@@ -1769,7 +1769,7 @@ def run_cognitive_loop(
             # Install the committed goal's bounded cognitive lens before
             # perception so relevant signals can compete with affect/novelty.
             try:
-                from cognition.goal_lens import apply_goal_lens as _apply_goal_lens
+                from brain.cognition.goal_lens import apply_goal_lens as _apply_goal_lens
                 _apply_goal_lens(context)
             except Exception as _gle:
                 record_failure("ORRIN_loop.apply_goal_lens.pre_perception", _gle)
@@ -1782,12 +1782,12 @@ def run_cognitive_loop(
             # feeling, memory, and goal into unified situation candidates. The
             # atomic candidates remain in the field; binding only adds options.
             try:
-                from cognition.binding import bind_situation as _bind
+                from brain.cognition.binding import bind_situation as _bind
                 _bind(context)
             except Exception as _be:
                 record_failure("ORRIN_loop.bind_situation", _be)
             try:
-                from cognition.goal_lens import apply_goal_lens as _apply_goal_lens
+                from brain.cognition.goal_lens import apply_goal_lens as _apply_goal_lens
                 _apply_goal_lens(context)
             except Exception as _gle:
                 record_failure("ORRIN_loop.apply_goal_lens.post_binding", _gle)
@@ -1800,7 +1800,7 @@ def run_cognitive_loop(
             # end-of-cycle force_reply stays as a backstop and no-ops once this
             # delivers (deliver_reply clears the pending queue).
             try:
-                from behavior.face_bridge import has_pending as _fp_pending, force_reply as _fp_reply
+                from brain.behavior.face_bridge import has_pending as _fp_pending, force_reply as _fp_reply
                 if _fp_pending() and (context.get("latest_user_input") or "").strip():
                     _fp_reply(context)
             except Exception as _fpe:
@@ -1817,7 +1817,7 @@ def run_cognitive_loop(
             # inject a graded "local_search" signal so select_function can route
             # toward search_own_files (Nelson & Narens, 1990 monitoring framework).
             try:
-                from cognition.local_search_signal import inject_local_search_signal as _ils
+                from brain.cognition.local_search_signal import inject_local_search_signal as _ils
                 _ils(context)
             except Exception as _lse:
                 log_error(f"local_search_signal injection failed: {_lse}")
@@ -1864,14 +1864,14 @@ def run_cognitive_loop(
                             "Consider whether this pattern should shape the current approach."
                         )
                         context["memory_pattern"] = {"type": _dom_type, "count": _dom_count}
-                        from cog_memory.working_memory import update_working_memory as _uwm
+                        from brain.cog_memory.working_memory import update_working_memory as _uwm
                         _uwm(_pattern)
             except Exception as _mpe:
                 record_failure("ORRIN_loop.memory_pattern", _mpe)
 
             # Formative tensions: inject active tensions into context and working memory.
             try:
-                from cognition.selfhood.tensions import inject_tension_signals as _its2
+                from brain.cognition.selfhood.tensions import inject_tension_signals as _its2
                 _its2(context)
             except Exception as _tse:
                 record_failure("ORRIN_loop.inject_tension_signals", _tse)
@@ -1882,7 +1882,7 @@ def run_cognitive_loop(
             try:
                 _tc_tens = get_cycle_count()
                 if _tc_tens > 0 and _tc_tens % 30 == 0:
-                    from cognition.selfhood.tensions import detect_tensions as _dt2
+                    from brain.cognition.selfhood.tensions import detect_tensions as _dt2
                     _dt2(context)
             except Exception as _dte:
                 record_failure("ORRIN_loop.detect_tensions_periodic", _dte)
@@ -1890,7 +1890,7 @@ def run_cognitive_loop(
             # Emotional consolidation drain: apply one tick of gradual emotional
             # residue from significant past events.
             try:
-                from affect.consolidation import drain_consolidations as _drain_consol
+                from brain.affect.consolidation import drain_consolidations as _drain_consol
                 _drain_consol(context)
             except Exception as _consol_e:
                 record_failure("ORRIN_loop.drain_consolidations", _consol_e)
@@ -1898,7 +1898,7 @@ def run_cognitive_loop(
             # Integration lag drain: apply deferred emotional deltas when their
             # cycles-left counter reaches 0 (the "it hits you later" effect).
             try:
-                from affect.integration_lag import process_integration_queue as _piq
+                from brain.affect.integration_lag import process_integration_queue as _piq
                 _piq(context)
             except Exception as _iq_e:
                 record_failure("ORRIN_loop.process_integration_queue", _iq_e)
@@ -1906,7 +1906,7 @@ def run_cognitive_loop(
             # stagnation_signal escalation: track consecutive bored cycles and inject
             # escalating pressure/penalty_signal signals when stagnation_signal compounds.
             try:
-                from affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
+                from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
                 _ube(context)
             except Exception as _be_e:
                 record_failure("ORRIN_loop.stagnation_signal_escalation", _be_e)
@@ -1917,7 +1917,7 @@ def run_cognitive_loop(
             _cycle_n_sm = get_cycle_count()
             if _cycle_n_sm % 10 == 0:
                 try:
-                    from utils.self_model import get_self_model as _gsm
+                    from brain.utils.self_model import get_self_model as _gsm
                     context["self_model"] = _gsm()
                 except Exception as e:
                     record_failure("ORRIN_loop.refresh_self_model", e)
@@ -1925,7 +1925,7 @@ def run_cognitive_loop(
             # Make the current context available to build_system_prompt() via the
             # process-local store, without threading context through every call chain.
             try:
-                from utils.runtime_ctx import set_cycle_context as _scc
+                from brain.utils.runtime_ctx import set_cycle_context as _scc
                 _scc(context)
             except Exception as e:
                 record_failure("ORRIN_loop.set_cycle_context", e)
@@ -1953,7 +1953,7 @@ def run_cognitive_loop(
                         if isinstance(_nv, (int, float)) and abs(_nv - _pv) > abs(_dd):
                             _dd, _sig = (_nv - _pv), _k
                     if _sig is not None and abs(_dd) >= 0.04:
-                        from symbolic.causal_graph import (
+                        from brain.symbolic.causal_graph import (
                             record_intervention as _rec_iv,
                             is_established as _is_est,
                         )
@@ -1967,7 +1967,7 @@ def run_cognitive_loop(
 
             acted_this_cycle = False
             try:
-                from cognition.action_accounting import reset_cycle_action_flags
+                from brain.cognition.action_accounting import reset_cycle_action_flags
                 reset_cycle_action_flags(context)
                 context["_cycle_index"] = int(get_cycle_count())
             except Exception as _e:
@@ -1993,7 +1993,7 @@ def run_cognitive_loop(
             # Baumeister et al. (1994) ego depletion: unresolved demands consume
             # regulatory resources each cycle, compounding the load on subsequent regulation.
             try:
-                from embodiment.setpoint_regulation import get_state as _h1_get
+                from brain.embodiment.setpoint_regulation import get_state as _h1_get
                 _h1 = _h1_get()
                 context["health_score"] = _h1.get("health_score", 1.0)
                 _h1_critical_fn = None
@@ -2014,7 +2014,7 @@ def run_cognitive_loop(
                         _ignored_n = _h1_ignored[_aid]
                         # Signal strength escalates with each ignored cycle (cap 0.99)
                         _escalated_str = min(0.99, 0.80 + _ignored_n * 0.04)
-                        from utils.signal_utils import create_signal as _cs
+                        from brain.utils.signal_utils import create_signal as _cs
                         context.setdefault("raw_signals", []).append(
                             _cs(source="setpoint_regulation", content=_desc,
                                 signal_strength=_escalated_str, tags=_tags)
@@ -2036,7 +2036,7 @@ def run_cognitive_loop(
                             except Exception as _e:
                                 record_failure("ORRIN_loop.run_cognitive_loop.9", _e)
                     elif _sev == "warning":
-                        from utils.signal_utils import create_signal as _cs
+                        from brain.utils.signal_utils import create_signal as _cs
                         context.setdefault("raw_signals", []).append(
                             _cs(source="setpoint_regulation", content=_desc,
                                 signal_strength=0.65, tags=_tags)
@@ -2061,7 +2061,7 @@ def run_cognitive_loop(
             # executes nothing — placed before think() so the cycle order
             # (Executive → … → think) is already correct for Phase 2+. Fail-safe.
             try:
-                from cognition.planning import executive as _exec_mod
+                from brain.cognition.planning import executive as _exec_mod
                 # Skip the interleaved tick when the Phase-5 continuous daemon owns
                 # execution (mutual exclusion — no double execution, I3).
                 _exec_summary = None if _exec_mod.is_daemon_running() else _exec_mod.executive_tick(context)
@@ -2087,12 +2087,12 @@ def run_cognitive_loop(
             # (I7). Fail-safe; the end-of-cycle update_workspace still runs to
             # capture the post-action conscious moment.
             try:
-                from cognition.metacog import metacog_monitor as _mon
+                from brain.cognition.metacog import metacog_monitor as _mon
                 _mon(context, _exec_summary if "_exec_summary" in dir() else None)
             except Exception as _mone:
                 record_failure("ORRIN_loop.metacog_monitor", _mone)
             try:
-                from cognition.global_workspace import update_workspace as _uw_pre
+                from brain.cognition.global_workspace import update_workspace as _uw_pre
                 _uw_pre(context)
                 # Mirror the §19.1 monitor + workspace blocks to the UI (fail-safe).
                 _tb_mon = _bridge()
@@ -2135,7 +2135,7 @@ def run_cognitive_loop(
             _ignited, _ign_reason = True, "always_on"
             if os.environ.get("ORRIN_IGNITION_GATE", "1") != "0":
                 try:
-                    from think.consciousness_trigger import should_think as _should_think
+                    from brain.think.consciousness_trigger import should_think as _should_think
                     _ignited, _ign_reason = _should_think(context)
                 except Exception as _ige:
                     record_failure("ORRIN_loop.ignition_gate", _ige)
@@ -2172,7 +2172,7 @@ def run_cognitive_loop(
                 speaker = context.get("speaker")
                 action_type = action.get("type")
                 try:
-                    from cognition.metacog import metacog_note as _mn
+                    from brain.cognition.metacog import metacog_note as _mn
                     _mn(context, "action", f"chose action {action_type!r}")
                 except Exception as e:
                     record_failure("ORRIN_loop.metacog_note_action", e)
@@ -2194,7 +2194,7 @@ def run_cognitive_loop(
                                     reward=reward, context=context)
                     if _evaluator:
                         try:
-                            from eval.evaluator_wal import append_pending as _ew_append_ua
+                            from brain.eval.evaluator_wal import append_pending as _ew_append_ua
                             _ew_append_ua(_decision_id, str(action_type or "unknown_action"), feats, get_cycle_count(),
                                           committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                         except Exception as _e:
@@ -2222,7 +2222,7 @@ def run_cognitive_loop(
                             # This is the most important write: every real exchange with
                             # Ric needs to persist. Without this, Orrin has no history.
                             try:
-                                from cog_memory.long_memory import update_long_memory as _ulm
+                                from brain.cog_memory.long_memory import update_long_memory as _ulm
                                 _user_said  = (context.get("latest_user_input") or "").strip()
                                 _orrin_said = (action.get("content") or context.get("_last_spoken") or "").strip()
                                 if _user_said and _orrin_said:
@@ -2243,7 +2243,7 @@ def run_cognitive_loop(
                                 log_error(f"[long_memory] conversation write failed: {_lm_e}")
 
                             try:
-                                from symbolic.ground_truth import grounding_score as _gs
+                                from brain.symbolic.ground_truth import grounding_score as _gs
                                 _gs_val = _gs(action_type)
                                 # Blend: 60% base, 40% grounding signal so variance is real
                                 # _gs_val=0.5 neutral → 0.8; _gs_val=0.2 poor → 0.56; _gs_val=0.8 good → 0.92
@@ -2252,7 +2252,7 @@ def run_cognitive_loop(
                                 record_failure("ORRIN_loop.run_cognitive_loop.12", _e)
                         # Weight by goal progress when a goal is active
                         try:
-                            from cognition.planning.goal_progress import goal_weighted_reward as _gwr
+                            from brain.cognition.planning.goal_progress import goal_weighted_reward as _gwr
                             reward = _gwr(base_reward, context, action_was_taken=acted_this_cycle, fn_name=action_type)
                         except Exception:
                             reward = base_reward
@@ -2264,7 +2264,7 @@ def run_cognitive_loop(
                                         reward=reward, context=context)
                         if _evaluator:
                             try:
-                                from eval.evaluator_wal import append_pending as _ew_append_a
+                                from brain.eval.evaluator_wal import append_pending as _ew_append_a
                                 _ew_append_a(_decision_id, action_type, feats, get_cycle_count(),
                                              committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                             except Exception as _ewa_e:
@@ -2282,7 +2282,7 @@ def run_cognitive_loop(
                                         reward=reward, context=context)
                         if _evaluator:
                             try:
-                                from eval.evaluator_wal import append_pending as _ew_append_ae
+                                from brain.eval.evaluator_wal import append_pending as _ew_append_ae
                                 _ew_append_ae(_decision_id, str(action_type or "unknown_action"), feats or {}, get_cycle_count(),
                                               committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                             except Exception as _ewa_e2:
@@ -2343,7 +2343,7 @@ def run_cognitive_loop(
                     record_failure("ORRIN_loop.run_cognitive_loop.13", _e)
 
                 try:
-                    from cognition.metacog import metacog_note as _mn
+                    from brain.cognition.metacog import metacog_note as _mn
                     _mn(context, "selection", f"selected function {fn_name!r}")
                 except Exception as e:
                     record_failure("ORRIN_loop.metacog_note_selection", e)
@@ -2357,7 +2357,7 @@ def run_cognitive_loop(
                         _tick_ms = None
                         _env_delta = None
                         try:
-                            from cognition.planning.env_snapshot import (
+                            from brain.cognition.planning.env_snapshot import (
                                 take_snapshot as _snap,
                                 apply_milestone_updates as _tick_ms,
                                 delta_reward as _env_delta,
@@ -2379,7 +2379,7 @@ def run_cognitive_loop(
                         )
                         try:
                             _lat_ms = (time.perf_counter() - _intero_t0) * 1000.0
-                            from cognition.interoception import observe as _intero_observe
+                            from brain.cognition.interoception import observe as _intero_observe
                             _io = _intero_observe(fn_name, _lat_ms, context)
                             _tb_io = _bridge()
                             if _tb_io is not None and _io:
@@ -2414,11 +2414,11 @@ def run_cognitive_loop(
                                         _cgoal["_last_progress_cycle"] = _cyc_now
                                     if _gms and all(m.get("met") for m in _gms):
                                         try:
-                                            from cognition.planning.goals import (
+                                            from brain.cognition.planning.goals import (
                                                 mark_goal_completed as _mgc,
                                                 merge_updated_goal_into_tree as _mugit,
                                             )
-                                            from cognition.planning import goal_arbiter as _ga
+                                            from brain.cognition.planning import goal_arbiter as _ga
                                             _mgc(_cgoal, context=context)
                                             if _cgoal.get("status") == "completed":
                                                 _ga.apply((lambda _g: (lambda _t: _mugit(_t, _g)))(_cgoal),
@@ -2432,7 +2432,7 @@ def run_cognitive_loop(
                                         # Leave an unproductive goal when its local
                                         # reward rate has fallen below Orrin's learned
                                         # global background and the smooth leave hazard fires.
-                                        from cognition.reward_rate import (
+                                        from brain.cognition.reward_rate import (
                                             accrue_leave_pressure as _alp,
                                             is_stagnating as _is_stag,
                                             should_force_switch as _sfs,
@@ -2440,7 +2440,7 @@ def run_cognitive_loop(
                                         _alp(context)
                                         if _is_stag(context) and _sfs(context):
                                             try:
-                                                from cognition.planning.pursue_goal import _degrade_or_disengage as _dod
+                                                from brain.cognition.planning.pursue_goal import _degrade_or_disengage as _dod
                                                 _dod(
                                                     _cgoal,
                                                     context,
@@ -2481,7 +2481,7 @@ def run_cognitive_loop(
                         )
                         _status_r = 0.1 if _is_failure else 0.5
                         try:
-                            from cognition.action_accounting import mark_consequential_cognition
+                            from brain.cognition.action_accounting import mark_consequential_cognition
                             _reach = context.get("_last_reach_outcome")
                             mark_consequential_cognition(
                                 context,
@@ -2523,7 +2523,7 @@ def run_cognitive_loop(
                         # recent WM window periodically while awake too. Pure reuse.
                         try:
                             if get_cycle_count() % 20 == 0:
-                                from symbolic.causal_graph import discover_from_wm_sequence as _dfs
+                                from brain.symbolic.causal_graph import discover_from_wm_sequence as _dfs
                                 _recent_wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
                                 _dfs([e for e in _recent_wm[-25:] if isinstance(e, dict)])
                         except Exception as _e:
@@ -2536,7 +2536,7 @@ def run_cognitive_loop(
                         base_reward = blend_reward(0.6 * _env_r + 0.4 * _status_r, _emo_r)
                         _blended_reward = base_reward
                         try:
-                            from cognition.reward_rate import update_reward_rate
+                            from brain.cognition.reward_rate import update_reward_rate
                             update_reward_rate(
                                 context,
                                 reward=float(_blended_reward),
@@ -2553,7 +2553,7 @@ def run_cognitive_loop(
                         # the action path — so the bandit learns that cognition which
                         # doesn't advance the committed goal is worth less.
                         try:
-                            from cognition.planning.goal_progress import goal_weighted_reward as _gwr_cog
+                            from brain.cognition.planning.goal_progress import goal_weighted_reward as _gwr_cog
                             reward = _gwr_cog(base_reward, context, action_was_taken=not _is_failure, fn_name=fn_name)
                         except Exception:
                             reward = base_reward
@@ -2769,7 +2769,7 @@ def run_cognitive_loop(
                         )
                         if not _is_failure and _is_significant_completion and _fn_str:
                             try:
-                                from cog_memory.working_memory import update_working_memory as _uwm_comp
+                                from brain.cog_memory.working_memory import update_working_memory as _uwm_comp
                                 _uwm_comp(f"[done] {fn_name}: {_fn_str[:80].strip().rstrip('.')}")
                             except Exception as _e:
                                 record_failure("ORRIN_loop.run_cognitive_loop.22", _e)
@@ -2815,7 +2815,7 @@ def run_cognitive_loop(
                         _pg_depth = context.pop("_pursue_goal_depth", None)
                         if _pg_depth is not None:
                             try:
-                                from cognition.planning.thinking_depth import update_depth as _ud
+                                from brain.cognition.planning.thinking_depth import update_depth as _ud
                                 _ud(_pg_depth, reward)
                             except Exception as e:
                                 record_failure("ORRIN_loop.update_depth", e)
@@ -2839,7 +2839,7 @@ def run_cognitive_loop(
                                 key=lambda k: float(_core_pre.get(k) or 0.0),
                             ) if _core_pre else ""
                             if _dom_emo:
-                                from affect.affect_learning import update_affect_function_map as _uefm
+                                from brain.affect.affect_learning import update_affect_function_map as _uefm
                                 _uefm(_dom_emo, fn_name, reward_signal=reward)
                         except Exception as e:
                             record_failure("ORRIN_loop.emotion_function_map", e)
@@ -2866,7 +2866,7 @@ def run_cognitive_loop(
                                                [{"id": fn_name, "summary": _fn_str[:140]}],
                                                store="long")
                                 if _evaluator:
-                                    from eval.evaluator_wal import append_pending as _ew_append
+                                    from brain.eval.evaluator_wal import append_pending as _ew_append
                                     _ew_append(_decision_id, fn_name, feats, _cur_cycle,
                                                committed_goal_id=_goal_id or None)
                             except Exception as _ew_e:
@@ -2886,7 +2886,7 @@ def run_cognitive_loop(
                                         reward=reward, context=context)
                         if _evaluator:
                             try:
-                                from eval.evaluator_wal import append_pending as _ew_append_ufn
+                                from brain.eval.evaluator_wal import append_pending as _ew_append_ufn
                                 _ew_append_ufn(_decision_id, fn_name, feats, get_cycle_count(),
                                                committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                             except Exception as _e:
@@ -2910,7 +2910,7 @@ def run_cognitive_loop(
                 _fb_decision_id = str(_uuid_fb.uuid4())
                 sel = None
                 try:
-                    from think.think_utils.select_function import select_function
+                    from brain.think.think_utils.select_function import select_function
                     sel = select_function(context)
                 except Exception as _e:
                     log_model_issue(f"select_function failed: {_e}")
@@ -2939,7 +2939,7 @@ def run_cognitive_loop(
                                     reward=reward, context=context)
                     if _evaluator:
                         try:
-                            from eval.evaluator_wal import append_pending as _ew_append_c1
+                            from brain.eval.evaluator_wal import append_pending as _ew_append_c1
                             _ew_append_c1(_fb_decision_id, "reflect_on_self_beliefs", feats or {}, get_cycle_count(),
                                           committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                         except Exception as _ewc1_e:
@@ -2952,7 +2952,7 @@ def run_cognitive_loop(
                                     reward=reward, context=context)
                     if _evaluator:
                         try:
-                            from eval.evaluator_wal import append_pending as _ew_append_c2
+                            from brain.eval.evaluator_wal import append_pending as _ew_append_c2
                             _ew_append_c2(_fb_decision_id, sel, feats or {}, get_cycle_count(),
                                           committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
                         except Exception as _ewc2_e:
@@ -2963,7 +2963,7 @@ def run_cognitive_loop(
 
             if not context.get("_reward_rate_updated_this_cycle"):
                 try:
-                    from cognition.reward_rate import update_reward_rate
+                    from brain.cognition.reward_rate import update_reward_rate
                     update_reward_rate(
                         context,
                         reward=float(reward or 0.0),
@@ -3100,7 +3100,7 @@ def run_cognitive_loop(
             # (confirmed) → rules → understanding.
             try:
                 if get_cycle_count() % 5 == 0:
-                    from cognition.prediction import generate_predictions as _gp, save_predictions as _sp
+                    from brain.cognition.prediction import generate_predictions as _gp, save_predictions as _sp
                     _recent_wm_p = load_json(WORKING_MEMORY_FILE, default_type=list) or []
                     _sp(_gp(context, _recent_wm_p[-15:]))
             except Exception as _ge:
@@ -3108,7 +3108,7 @@ def run_cognitive_loop(
 
             # Prediction check — evaluate pending predictions, fire surprise signals
             try:
-                from cognition.prediction import check_predictions as _cp
+                from brain.cognition.prediction import check_predictions as _cp
                 _cp(context)
             except Exception as _pe:
                 log_error(f"check_predictions failed: {_pe}")
@@ -3118,7 +3118,7 @@ def run_cognitive_loop(
             # dream is restorative as felt experience, but its consolidation
             # footprint is memory-hungry and must yield under host/process pressure.
             try:
-                from cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
+                from brain.cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
                 from reaper.host_resources import heavy_cycles_paused as _heavy_paused
                 from reaper.vital_floor import vital_floor_shedding as _vital_shedding
                 if (not _heavy_paused()) and (not _vital_shedding()) and should_dream(context):
@@ -3136,7 +3136,7 @@ def run_cognitive_loop(
             # the continuous stream of experience. Makes him one experiencer
             # rather than a committee of subsystems.
             try:
-                from cognition.global_workspace import update_workspace as _uw
+                from brain.cognition.global_workspace import update_workspace as _uw
                 _moment = _uw(context)
                 if _moment:
                     tb = _bridge()
@@ -3150,7 +3150,7 @@ def run_cognitive_loop(
             # against his values — self-authorship, not just acting on impulse.
             try:
                 if get_cycle_count() % 20 == 0:
-                    from cognition.selfhood.second_order_volition import reflect_on_desire as _rod
+                    from brain.cognition.selfhood.second_order_volition import reflect_on_desire as _rod
                     _rod(context)
             except Exception as _rve:
                 record_failure("ORRIN_loop.run_cognitive_loop.27", _rve)
@@ -3158,7 +3158,7 @@ def run_cognitive_loop(
             # Will/commitment: decay the active resolve and expose its
             # follow-through bias (cleared automatically when goal done/faded).
             try:
-                from cognition.will import tick_commitment as _tick_commit
+                from brain.cognition.will import tick_commitment as _tick_commit
                 _tick_commit(context)
             except Exception as _twe:
                 record_failure("ORRIN_loop.run_cognitive_loop.28", _twe)
@@ -3169,7 +3169,7 @@ def run_cognitive_loop(
             try:
                 _lang_user = bool((context.get("latest_user_input") or "").strip())
                 if (not _lang_user) and get_cycle_count() % 100 == 0:
-                    from cognition.language.acquisition import consolidate_language as _cl
+                    from brain.cognition.language.acquisition import consolidate_language as _cl
                     _cl(steps=12)
 
                 # Roll completed short-term goals up into the long-term aspirations
@@ -3177,7 +3177,7 @@ def run_cognitive_loop(
                 # wrongly completed — so long-term goals actually advance.
                 if get_cycle_count() % 25 == 0:
                     try:
-                        from cognition.intrinsic_goals import credit_aspirations as _ca
+                        from brain.cognition.intrinsic_goals import credit_aspirations as _ca
                         _ca(context)
                     except Exception as _cae:
                         record_failure("ORRIN_loop.run_cognitive_loop.29", _cae)
@@ -3190,12 +3190,12 @@ def run_cognitive_loop(
                 # Both run on the same 200-cycle epoch (one cadence constant).
                 if get_cycle_count() % 200 == 0:
                     try:
-                        from cognition.planning.goals import fail_overdue_artifact_goals as _foag
+                        from brain.cognition.planning.goals import fail_overdue_artifact_goals as _foag
                         _foag(context)
                     except Exception as _fae:
                         record_failure("ORRIN_loop.run_cognitive_loop.foag", _fae)
                     try:
-                        from cognition.planning.goal_reconcile import reconcile_goal_stores as _rgs
+                        from brain.cognition.planning.goal_reconcile import reconcile_goal_stores as _rgs
                         _rgs(context)
                     except Exception as _rge:
                         record_failure("ORRIN_loop.run_cognitive_loop.reconcile", _rge)
@@ -3212,7 +3212,7 @@ def run_cognitive_loop(
                     from reaper.host_resources import heavy_cycles_paused as _heavy_paused
                     from reaper.vital_floor import vital_floor_shedding as _vital_shedding
                     if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _vital_shedding():
-                        from cognition.language.acquisition import read_a_book as _rab
+                        from brain.cognition.language.acquisition import read_a_book as _rab
                         _line = _rab(context, steps=30)
                         if _line:
                             context["last_thought"] = _line
@@ -3233,7 +3233,7 @@ def run_cognitive_loop(
                 # active tree via the deterministic prune path (NOT bandit-selectable).
                 if _mcycle > 0 and _mcycle % 50 == 0:
                     try:
-                        from cognition.planning.goals import (
+                        from brain.cognition.planning.goals import (
                             load_goals, prune_goals, save_goals,
                         )
                         def _flat(_gs):
@@ -3254,7 +3254,7 @@ def run_cognitive_loop(
                         # Population gauge — record active count + mean age (Phase E).
                         try:
                             from datetime import datetime as _dt, timezone as _tz
-                            from cognition.planning.outcome_metrics import (
+                            from brain.cognition.planning.outcome_metrics import (
                                 record_retired, record_goal_population,
                                 record_maintenance_execution,
                             )
@@ -3282,9 +3282,9 @@ def run_cognitive_loop(
                 # fade_goals is self-contained and records abandonment closures.
                 if _mcycle > 0 and _mcycle % 60 == 0:
                     try:
-                        from cognition.planning.goal_lifecycle import fade_goals
+                        from brain.cognition.planning.goal_lifecycle import fade_goals
                         fade_goals(context)
-                        from cognition.planning.outcome_metrics import (
+                        from brain.cognition.planning.outcome_metrics import (
                             record_maintenance_execution, flush as _om_flush,
                         )
                         record_maintenance_execution()
@@ -3299,15 +3299,15 @@ def run_cognitive_loop(
                 # and mark_goal_completed's hollow guard remain in force.
                 if _mcycle > 0 and _mcycle % 40 == 0:
                     try:
-                        from cognition.planning.goals import (
+                        from brain.cognition.planning.goals import (
                             load_goals, mark_goal_completed, merge_updated_goal_into_tree,
                             _TERMINAL_STATUSES,
                         )
-                        from cognition.planning import goal_arbiter
-                        from cognition.planning.goal_satiety import (
+                        from brain.cognition.planning import goal_arbiter
+                        from brain.cognition.planning.goal_satiety import (
                             is_sated, _is_filesystem_exploration,
                         )
-                        from cognition.planning.outcome_metrics import (
+                        from brain.cognition.planning.outcome_metrics import (
                             record_satiety_closure, record_maintenance_execution,
                         )
                         _explore_markers = (
@@ -3372,7 +3372,7 @@ def run_cognitive_loop(
 
             # Flush metacog trace to working memory as introspection
             try:
-                from cognition.metacog import metacog_flush as _mcf
+                from brain.cognition.metacog import metacog_flush as _mcf
                 _mcf(context)
             except Exception as e:
                 record_failure("ORRIN_loop.metacog_flush", e)
@@ -3381,7 +3381,7 @@ def run_cognitive_loop(
             # Corrective signals should attenuate as the discrepancy is addressed,
             # not persist indefinitely. See behavioral_adaptation.py.
             try:
-                from cognition.behavioral_adaptation import decay_behavioral_pressure as _dbp
+                from brain.cognition.behavioral_adaptation import decay_behavioral_pressure as _dbp
                 _dbp(context)
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.36", _e)
@@ -3392,7 +3392,7 @@ def run_cognitive_loop(
             # Sustained sick cycles → mild distress signal + WM note.
             try:
                 if _cycle_num % 5 == 0:
-                    from cognition.health_monitor import check_and_reward as _health_check
+                    from brain.cognition.health_monitor import check_and_reward as _health_check
                     _health_check(context)
             except Exception as _hm_e:
                 record_failure("ORRIN_loop.health_monitor", _hm_e)
@@ -3410,7 +3410,7 @@ def run_cognitive_loop(
             # per-cycle (stagnation_signal, chosen function) for B2 and, every 100
             # cycles, long-memory size + RSS for B1. See brain/benchmarks/.
             try:
-                from benchmarks import record_sample as _bench_sample
+                from brain.benchmarks import record_sample as _bench_sample
                 _bench_sample(context)
             except Exception as _be:
                 record_failure("ORRIN_loop.run_cognitive_loop.37", _be)
@@ -3424,17 +3424,17 @@ def run_cognitive_loop(
                 context["_outward_debt"] = min(30, int(context.get("_outward_debt", 0) or 0) + 1)
 
             try:
-                from embodiment import plasticity as _plasticity_mod
+                from brain.embodiment import plasticity as _plasticity_mod
                 _plasticity_mod.apply_plasticity(_cycle_fn, context, reward)
             except Exception as _pe:
                 record_failure("ORRIN_loop.plasticity", _pe)
             try:
-                from embodiment import drive_engine as _drive_mod
+                from brain.embodiment import drive_engine as _drive_mod
                 _drive_mod.evaluate_cycle(_cycle_fn, context, reward)
             except Exception as _dse:
                 record_failure("ORRIN_loop.drive_satisfy", _dse)
             try:
-                from motivation import substrate as _motiv_mod
+                from brain.motivation import substrate as _motiv_mod
                 _motiv_mod.evaluate_cycle_satisfaction(_cycle_fn, reward)
             except Exception as _mse:
                 record_failure("ORRIN_loop.motivation_satisfy", _mse)
@@ -3442,7 +3442,7 @@ def run_cognitive_loop(
             try:
                 arm_id = context.get("_meta_ctrl_arm")
                 if arm_id is not None:
-                    from think.meta_controller import record_outcome as _mc_record
+                    from brain.think.meta_controller import record_outcome as _mc_record
                     _mc_record(int(arm_id), reward)
             except Exception as _mcre:
                 record_failure("ORRIN_loop.meta_ctrl_record", _mcre)
@@ -3452,7 +3452,7 @@ def run_cognitive_loop(
                     isinstance(r, dict) and r.get("type") in {"speak", "respond", "reply"}
                     for r in [result] if isinstance(result, dict)
                 ):
-                    from embodiment import social_presence as _social_mod
+                    from brain.embodiment import social_presence as _social_mod
                     _social_mod.mark_orrin_responded()
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.38", _e)
@@ -3460,7 +3460,7 @@ def run_cognitive_loop(
             # Backstop: guarantee a Face message gets answered this cycle even if
             # the action gate didn't pick a speak action. No-op if already replied.
             try:
-                from behavior.face_bridge import force_reply as _force_reply
+                from brain.behavior.face_bridge import force_reply as _force_reply
                 _force_reply(context)
             except Exception as _fre:
                 record_failure("ORRIN_loop.run_cognitive_loop.39", _fre)
@@ -3496,7 +3496,7 @@ def run_cognitive_loop(
             # through next cycle's update_affect_state. This is the single commit
             # point that replaces the old last-writer-wins races.
             try:
-                from affect.arbiter import commit_affect as _commit_affect
+                from brain.affect.arbiter import commit_affect as _commit_affect
                 _commit_affect(context)
             except Exception as _aae:
                 record_failure("ORRIN_loop.affect_commit", _aae)
@@ -3558,7 +3558,7 @@ def run_cognitive_loop(
             try:
                 _cons_cycle = get_cycle_count()
                 if _cons_cycle > 0 and _cons_cycle % 5 == 0:
-                    from cog_memory.long_memory import update_long_memory as _ulm_cons
+                    from brain.cog_memory.long_memory import update_long_memory as _ulm_cons
                     _wm_now = context.get("working_memory") or []
                     for _wme in _wm_now[-10:]:
                         if not isinstance(_wme, dict):
@@ -3625,7 +3625,7 @@ def run_cognitive_loop(
                 except Exception as _e:
                     record_failure("ORRIN_loop.run_cognitive_loop.43", _e)
                 try:
-                    from cognition.self_extension import maybe_integrate_or_atrophy as _mia
+                    from brain.cognition.self_extension import maybe_integrate_or_atrophy as _mia
                     _mia(context)
                 except Exception as _miae:
                     record_failure("ORRIN_loop.integrate_or_atrophy", _miae)
@@ -3633,7 +3633,7 @@ def run_cognitive_loop(
                 # the gate — the function itself runs nothing unless ≥3 new
                 # failures accumulated since the last review (event-driven).
                 try:
-                    from cognition.reflection.review_failures import review_failures as _rvf
+                    from brain.cognition.reflection.review_failures import review_failures as _rvf
                     _rvf(context)
                 except Exception as _rvfe:
                     record_failure("ORRIN_loop.review_failures", _rvfe)
@@ -3643,7 +3643,7 @@ def run_cognitive_loop(
             # Fine-tuning is how Orrin's generation actually changes over time.
             if cycle_num > 0 and cycle_num % 500 == 0:
                 try:
-                    from cognition.finetuning.finetune_pipeline import check_pending_jobs as _cpj
+                    from brain.cognition.finetuning.finetune_pipeline import check_pending_jobs as _cpj
                     _ft_updates = _cpj()
                     if _ft_updates:
                         log_activity(f"[finetune] Job updates: {_ft_updates}")
@@ -3655,7 +3655,7 @@ def run_cognitive_loop(
             # machine and compresses it on a large one. Not distress, just a smaller
             # heart at a lower rate. Fails safe to ×1.0.
             try:
-                from cognition.metabolism import cadence_multiplier as _cad
+                from brain.cognition.metabolism import cadence_multiplier as _cad
                 _cycle_sleep_eff = cycle_sleep * _cad()
             except Exception:
                 _cycle_sleep_eff = cycle_sleep
@@ -3688,7 +3688,7 @@ def run_cognitive_loop(
     # inside session_epilogue itself — it can never block shutdown, so the
     # corrigibility guarantee stays true.
     try:
-        from cognition.selfhood.autobiography import session_epilogue
+        from brain.cognition.selfhood.autobiography import session_epilogue
         session_epilogue(context)
     except Exception as e:
         record_failure("ORRIN_loop.session_epilogue", e)
@@ -3699,7 +3699,7 @@ def run_cognitive_loop(
     # interpreter exit. Release the embedder model explicitly so its tokenizer
     # parallelism and any lib-internal pools tear down before exit.
     try:
-        import utils.embedder as _emb
+        import brain.utils.embedder as _emb
         for _attr in ("_model", "model", "_MODEL"):
             if hasattr(_emb, _attr):
                 setattr(_emb, _attr, None)

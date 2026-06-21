@@ -12,7 +12,7 @@
 #   - Session age + time of day      → written to context for inner_loop
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 import time
@@ -20,12 +20,12 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private
-from utils.json_utils import load_json, save_json
-from cog_memory.working_memory import update_working_memory
-from affect.homeostasis import pump_signal
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.homeostasis import pump_signal
 from brain.paths import GOALS_FILE, SCHEDULED_TASKS_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -153,7 +153,7 @@ def set_goal_deadline(
     # Reward the act of committing — it takes something to make a real promise
     if context is not None:
         try:
-            from affect.reward_signals.reward_signals import release_reward_signal
+            from brain.affect.reward_signals.reward_signals import release_reward_signal
             release_reward_signal(context, "reward_signal", 0.4, 0.3, 0.3,
                                   source="self_imposed_deadline")
         except Exception as _e:

@@ -27,15 +27,15 @@
 # never itself trigger another refocus (no nesting).
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from typing import Any, Dict, List, Optional, Tuple
 
-from utils.json_utils import load_json
-from utils.log import log_activity
-from utils.timeutils import now_iso_z
-from cog_memory.working_memory import update_working_memory
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity
+from brain.utils.timeutils import now_iso_z
+from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -85,7 +85,7 @@ def _llm_fail_total() -> int:
 def _site_fail_totals() -> Dict[str, int]:
     """Per-site cumulative failure counts from the live in-memory counter."""
     try:
-        from utils.failure_counter import get_summary
+        from brain.utils.failure_counter import get_summary
         summary = get_summary() or {}
         return {site: int(data.get("count", 0) or 0) for site, data in summary.items()}
     except Exception:
@@ -140,8 +140,8 @@ def _capability_healthy(capability: str, ap: Optional[Dict[str, Any]] = None) ->
     """
     if capability == "llm":
         try:
-            from utils.llm_gate import llm_available
-            from utils.generate_response import _cb_is_open
+            from brain.utils.llm_gate import llm_available
+            from brain.utils.generate_response import _cb_is_open
         except Exception:
             return True  # can't tell → don't block resumption
         if not llm_available() or _cb_is_open():
@@ -201,8 +201,8 @@ def _bump_problem_affect(context: Dict[str, Any], tool: bool = False) -> None:
 
 def _release(context: Dict[str, Any], actual: float, source: str) -> None:
     try:
-        from affect.reward_signals.reward_signals import release_reward_signal
-        from affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
+        from brain.affect.reward_signals.reward_signals import release_reward_signal
+        from brain.affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
         release_reward_signal(
             context,
             signal_type="reward_signal",
@@ -262,7 +262,7 @@ def _build_fix_goal(
             f"Decide whether the {label} problem is something I can fix or must work around.",
         ]
     try:
-        from cognition.planning.goals import set_goal_plan
+        from brain.cognition.planning.goals import set_goal_plan
         set_goal_plan(goal, steps)
     except Exception as _e:
         record_failure("problem_refocus._build_fix_goal", _e)
@@ -281,7 +281,7 @@ def _start_fix(
     # Abduction (Peirce 1903): generate ranked candidate causes for the failure.
     hypotheses: List[Dict[str, Any]] = []
     try:
-        from cognition.planning.diagnosis import abduce
+        from brain.cognition.planning.diagnosis import abduce
         hypotheses = abduce(capability, context, description=desc)
     except Exception as _e:
         record_failure("problem_refocus._start_fix", _e)
@@ -312,7 +312,7 @@ def _start_fix(
         # so it competes for attention normally (capped weight) instead of
         # holding the focus slot.
         try:
-            from cognition.planning.goals import add_goal
+            from brain.cognition.planning.goals import add_goal
             add_goal(dict(fix_goal))
         except Exception as _e:
             record_failure("problem_refocus._start_fix.2", _e)
@@ -371,7 +371,7 @@ def _advance_fix(context: Dict[str, Any], ap: Dict[str, Any]) -> Dict[str, Any]:
     # unfixable cause, move straight to the next candidate. When no fixable
     # candidate remains (or the overall budget is spent), route around it.
     try:
-        from cognition.planning.diagnosis import (
+        from brain.cognition.planning.diagnosis import (
             check_cause, apply_fix, FIX_TRIES_PER_CAUSE,
         )
         hyps: List[Dict[str, Any]] = ap.get("hypotheses") or []
@@ -425,8 +425,8 @@ def _record_repair_belief(ap: Dict[str, Any], capability: str, workaround: bool)
     if not cause:
         return
     try:
-        from cognition.planning.diagnosis import failure_node
-        from symbolic.causal_graph import update_edge
+        from brain.cognition.planning.diagnosis import failure_node
+        from brain.symbolic.causal_graph import update_edge
         update_edge(
             cause, failure_node(capability),
             confirmed=True,
@@ -483,7 +483,7 @@ def _finish(context: Dict[str, Any], ap: Dict[str, Any], workaround: bool) -> Di
         # curiosity goal done in the tree so it completes like any other goal
         # (no eternal half-done state).
         try:
-            from cognition.planning.goals import mark_goal_status_by_name
+            from brain.cognition.planning.goals import mark_goal_status_by_name
             mark_goal_status_by_name(
                 str(fix_goal.get("title") or fix_goal.get("name") or ""), "completed")
         except Exception as _e:

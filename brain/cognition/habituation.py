@@ -29,8 +29,8 @@ import hashlib
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from utils.log import log_private
-from utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
 from brain.paths import HABITUATION_FILE, WORKING_MEMORY_FILE
 
 

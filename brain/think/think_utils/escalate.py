@@ -1,6 +1,6 @@
 from typing import Iterable, Optional, List, Dict, Any
 from brain.paths import BEHAVIORAL_FUNCTIONS_LIST_FILE
-from utils.json_utils import load_json
+from brain.utils.json_utils import load_json
 
 _DEFAULT_ALLOWED = (
     "ask", "diagnose", "propose", "revise", "skip", "retry", "execute", "run", "tool"
@@ -74,7 +74,7 @@ def escalate_with_behavior_list(
         # with only one choice and then inserting it (which could produce a duplicate if ask_user
         # was already added by another path this cycle).
         if not any(a.get("type") == "ask_user" for a in context.get("pending_actions", [])[:1]):
-            from think.think_utils.action_gate import propose_action
+            from brain.think.think_utils.action_gate import propose_action
             propose_action(context, {
                 "type": "ask_user",
                 "content": "I'm stuck after multiple retries. Please advise.",
@@ -92,7 +92,7 @@ def escalate_with_behavior_list(
     #    user. Bandit: among actionable options, pick the highest past value.
     #    ask_user is the last-resort default. Outcomes feed back via the
     #    "escalation" bandit context as they're recorded.
-    from utils import bandit
+    from brain.utils import bandit
     actionable = [o for o in options if o["type"] != "ask_user"]
     picked = None
     if actionable:
@@ -109,7 +109,7 @@ def escalate_with_behavior_list(
         reason = f"Stuck after {retries} attempts with no actionable option — asking for help."
 
     # 6) Enqueue chosen action (high urgency — resolved at the front next cycle)
-    from think.think_utils.action_gate import propose_action
+    from brain.think.think_utils.action_gate import propose_action
     propose_action(context, {
         "type": picked["type"],
         "content": reason,

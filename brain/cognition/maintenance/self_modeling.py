@@ -5,9 +5,9 @@ import json
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
-from utils.json_utils import load_json, extract_json
-from utils.self_model import get_self_model, save_self_model
-from utils.log import log_model_issue, log_private, log_error
+from brain.utils.json_utils import load_json, extract_json
+from brain.utils.self_model import get_self_model, save_self_model
+from brain.utils.log import log_model_issue, log_private, log_error
 from brain.paths import FEEDBACK_LOG, LONG_MEMORY_FILE
 
 
@@ -144,7 +144,7 @@ def self_supervised_repair() -> str:
 
     # Primary: symbolic contradiction detection + direct field update
     try:
-        from symbolic.symbolic_cognition import detect_rule_contradictions as _dc, update_self_model_fields as _usf
+        from brain.symbolic.symbolic_cognition import detect_rule_contradictions as _dc, update_self_model_fields as _usf
         contradictions = _dc(self_model)
         upd = _usf(self_model)
         if upd["updated_fields"] or contradictions:
@@ -165,7 +165,7 @@ def self_supervised_repair() -> str:
     # Last resort: gated_generate — only when the LLM tool is actually up.
     # Tool absence is normal: skip cleanly, no model-issue logging.
     try:
-        from utils.llm_gate import llm_available
+        from brain.utils.llm_gate import llm_available
         if not llm_available():
             return "ℹ️ Symbolic repair found nothing to change (LLM tool unavailable)."
     except Exception:
@@ -189,7 +189,7 @@ def self_supervised_repair() -> str:
     )
 
     try:
-        from symbolic.llm_gate import gated_generate
+        from brain.symbolic.llm_gate import gated_generate
         response = gated_generate(prompt, caller="self_supervised_repair", outcome=0.65)
     except Exception as e:
         log_model_issue(f"[self_supervised_repair] gated_generate error: {e}")

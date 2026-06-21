@@ -3,11 +3,11 @@
 # Closes the loop: trial-and-error (experiments) and repairs (problem_refocus)
 # write causal edges; abductive diagnosis and goal planning read them back.
 # Pearl levels of evidence; Newell & Simon (1972) means-ends analysis.
-import cognition.experimentation as exp
-import cognition.planning.pursue_goal as pg
-import cognition.planning.diagnosis as diag
-import cognition.planning.problem_refocus as pr
-import symbolic.causal_graph as cg
+import brain.cognition.experimentation as exp
+import brain.cognition.planning.pursue_goal as pg
+import brain.cognition.planning.diagnosis as diag
+import brain.cognition.planning.problem_refocus as pr
+import brain.symbolic.causal_graph as cg
 
 
 # ── WRITE: confirmed experiments → causal edges ─────────────────────────────────

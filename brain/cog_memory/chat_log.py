@@ -6,15 +6,15 @@ from typing import Any, Dict, Optional, Union
 import re
 import textwrap
 
-from utils.affect_utils import detect_affect_keyword
+from brain.utils.affect_utils import detect_affect_keyword
 import brain.paths as paths
-from utils.append import append_to_json
+from brain.utils.append import append_to_json
 # generate_response/llm_ok are imported deferred inside summarize_chat_to_long_memory
 # so this L2 storage module does not transitively load cognition (via
 # generate_response → cognition.selfhood.identity) at import time.
-from utils.json_utils import load_json, save_json
-from utils.log import log_error
-from utils.timeutils import now_iso_z
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_error
+from brain.utils.timeutils import now_iso_z
 
 # Tokens that will cause an entry to be ignored when logging (case-insensitive)
 _NOISE_TOKENS = {
@@ -205,7 +205,7 @@ def summarize_chat_to_long_memory(
     if cycle_count % 5:
         return
 
-    from utils.generate_response import generate_response, llm_ok  # deferred (keeps cog_memory L2 at load)
+    from brain.utils.generate_response import generate_response, llm_ok  # deferred (keeps cog_memory L2 at load)
     try:
         chat_log: list[dict[str, Any]] = load_json(chat_log_file, default_type=list)
         if not isinstance(chat_log, list):
@@ -218,7 +218,7 @@ def summarize_chat_to_long_memory(
 
         # Symbolic-primary: in tool-only cognition the summary is extractive over
         # the actual turns; the LLM is used only when it's genuinely callable.
-        from utils.llm_gate import llm_callable_by
+        from brain.utils.llm_gate import llm_callable_by
         if llm_callable_by("chat_log"):
             prompt = (
                 "Summarize the following recent conversation concisely and meaningfully, "
@@ -243,7 +243,7 @@ def summarize_chat_to_long_memory(
         dominant_emotion = max(set(labels), key=labels.count) if labels else "neutral"
 
         # Route through update_long_memory for dedup and size enforcement
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             str(summary).strip(),
             emotion=dominant_emotion,

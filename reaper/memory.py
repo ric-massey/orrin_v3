@@ -1,7 +1,7 @@
 # reaper/memory.py
 # Resource & subsystem health watchdog. Trips Reaper if any sustained condition holds.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Deque, Optional, Tuple, Dict, Any
 from collections import deque

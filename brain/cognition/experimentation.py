@@ -23,7 +23,7 @@
 # Consolidation writes insights to long_memory, knowledge_graph, and seeds
 # new predictions so the loop stays productive across sessions.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import hashlib
 import json
@@ -31,16 +31,16 @@ import re
 import time
 from typing import Any, Dict, List, Optional
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from cog_memory.working_memory import update_working_memory
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.working_memory import update_working_memory
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import (
     EXPERIMENTS_FILE, WORKING_MEMORY_FILE, COGNITION_HISTORY_FILE, COGNITIVE_FUNCTIONS_LIST_FILE,
     SELF_MODEL_FILE, PREDICTIONS_FILE,
 )
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ─── Constants ────────────────────────────────────────────────────────────────
@@ -139,7 +139,7 @@ def _generate_hypothesis(context: Dict[str, Any]) -> Optional[Dict]:
         '"why_interesting": "...", "predicted_outcome": "..."}'
     )
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="experimentation/hypothesize"), "experimentation") or ""
         m = re.search(r'\{.*\}', raw, re.DOTALL)
         if not m:
@@ -213,7 +213,7 @@ def _design_behavioral_test(hyp: str, context: Dict) -> Dict:
         "\nReturn ONLY the JSON."
     )
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="experimentation/design_behavioral"), "experimentation") or ""
         m = re.search(r'\{.*\}', raw, re.DOTALL)
         if not m:
@@ -244,7 +244,7 @@ def _design_pattern_test(hyp: str, context: Dict) -> Dict:
         "\nReturn ONLY the JSON."
     )
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="experimentation/design_pattern"), "experimentation") or ""
         m = re.search(r'\{.*\}', raw, re.DOTALL)
         if not m:
@@ -272,7 +272,7 @@ def _design_capability_test(hyp: str, context: Dict) -> Dict:
         "\nReturn ONLY the JSON. Keep task_prompt under 150 words."
     )
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="experimentation/design_capability"), "experimentation") or ""
         m = re.search(r'\{.*\}', raw, re.DOTALL)
         if not m:
@@ -347,7 +347,7 @@ def _run_behavioral_test(experiment: Dict, context: Dict[str, Any]) -> Dict:
     picks = []
     classifications = []
     try:
-        from think.think_utils.select_function import select_function as _sel
+        from brain.think.think_utils.select_function import select_function as _sel
         for _ in range(reps):
             sim_ctx = _build_sim_context(emotion, level, attn, has_goal, user_present, noise=0.08)
             try:
@@ -458,7 +458,7 @@ def _run_capability_test(experiment: Dict, context: Dict[str, Any]) -> Dict:
         return {"error": "no task prompt", "rating": 0, "confirmed": False}
 
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
         identity = sm.get("identity_story", "an evolving reflective AI")
         task_with_identity = f"You are Orrin — {identity}.\n\n{task_prompt}"
@@ -564,7 +564,7 @@ def _write_causal_edge_from_experiment(experiment: Dict, verdict: str) -> Option
         return None
     cause, effect = ce
     try:
-        from symbolic.causal_graph import update_edge
+        from brain.symbolic.causal_graph import update_edge
         return update_edge(
             cause, effect,
             confirmed=(verdict == "confirmed"),
@@ -608,7 +608,7 @@ def _consolidate(experiment: Dict, context: Dict[str, Any]) -> str:
     insight = belief_update = follow_up = ""
     confidence = 0.5
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="experimentation/consolidate"), "experimentation") or ""
         m = re.search(r'\{.*\}', raw, re.DOTALL)
         if m:
@@ -638,7 +638,7 @@ def _consolidate(experiment: Dict, context: Dict[str, Any]) -> str:
 
     # Feed knowledge graph with the insight as a self_insight entity
     try:
-        from cognition.knowledge_graph import add_entity, add_relation
+        from brain.cognition.knowledge_graph import add_entity, add_relation
         slug = f"insight:{hyp[:40].replace(' ', '_')}"
         add_entity(slug, "concept", properties={
             "verdict": verdict,
@@ -658,7 +658,7 @@ def _consolidate(experiment: Dict, context: Dict[str, Any]) -> str:
     # opinion can receive — a seeded contrary verdict must visibly move
     # even a high-mention opinion.
     try:
-        from cognition.opinions import ingest_experiment_verdict
+        from brain.cognition.opinions import ingest_experiment_verdict
         ingest_experiment_verdict(hyp, verdict, experiment["id"], context=context)
     except Exception as _e:
         record_failure("experimentation.opinion_evidence", _e)
@@ -738,7 +738,7 @@ def run_experiment_cycle(context: Dict[str, Any]) -> Dict[str, Any]:
     # than firing blocked round-trips. (Also tagged requires_llm for the selection
     # path; this guards the direct dream-cycle call.) The SYMBOLIC experiment
     # runner (symbolic.autonomous_experiment) covers the LLM-off case separately.
-    from utils.llm_gate import llm_callable_by
+    from brain.utils.llm_gate import llm_callable_by
     if not llm_callable_by("experimentation"):
         return {"step": "skip", "reason": "llm_unavailable"}
 

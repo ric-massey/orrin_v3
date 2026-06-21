@@ -2,18 +2,18 @@
 # Triggered by stagnation_signal_seek signal — Orrin acts on stagnation_signal with genuine exploration_drive,
 # not just a decay reset. Logs what it chose to the stagnation_signal log.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import json
 import random
 from datetime import datetime, timezone
 from typing import Dict, Any
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity, log_private
-from cog_memory.long_memory import update_long_memory
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity, log_private
+from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import LONG_MEMORY_FILE, STAGNATION_SIGNAL_LOG, DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _VOCAB_PATH = DATA_DIR / "vocabulary.json"
@@ -87,7 +87,7 @@ def seek_novelty(context: Dict[str, Any] = None) -> str:
     4. Ask alive_brain for an exploration goal
     """
     context = context or {}
-    from cognition.exploration_value import ReachOutcome
+    from brain.cognition.exploration_value import ReachOutcome
 
     mode = _pick_mode(context)
     result = ""
@@ -125,7 +125,7 @@ def seek_novelty(context: Dict[str, Any] = None) -> str:
 
 def _pick_mode(context: Dict[str, Any]) -> str:
     try:
-        from cognition.exploration_value import curiosity_gap
+        from brain.cognition.exploration_value import curiosity_gap
         if curiosity_gap(context) >= 0.6:
             return "explore"
     except Exception:
@@ -241,7 +241,7 @@ def _generate_question(context: Dict[str, Any]) -> str:
 def _trigger_exploration_goal(context: Dict[str, Any]) -> str:
     # Try look_outward as the primary exploration path
     try:
-        from cognition.perception.look_outward import look_outward
+        from brain.cognition.perception.look_outward import look_outward
         result = look_outward(context)
         outcome = context.get("_last_reach_outcome")
         reached = bool(outcome and getattr(outcome, "acted", False)) if outcome else bool(

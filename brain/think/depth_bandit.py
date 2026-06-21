@@ -15,15 +15,15 @@
 #   UCB1 formula: score = avg_reward + C * sqrt(log(N) / n_i)
 #   where _UCB_C = 1.4 is the exploration coefficient.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import math
 from typing import Dict, List
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_private
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _STATS_FILE = DATA_DIR / "inner_loop_depth_stats.json"

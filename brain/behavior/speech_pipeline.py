@@ -19,13 +19,13 @@ LLM role (when used):
   - Never sees the full context unfiltered; prompt is constrained to mode+seeds
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import random
 from typing import Any, Dict, List
 
-from utils.log import log_activity, log_error
-from utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_error
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # ── Voice architecture toggle ─────────────────────────────────────────────────
@@ -103,7 +103,7 @@ def _get_person_register(context: Dict[str, Any]) -> str:
     Used to size and tone content before building — not as a post-hoc truncation.
     """
     try:
-        from behavior.pre_speak_check import _get_person_context, _register_for_person
+        from brain.behavior.pre_speak_check import _get_person_context, _register_for_person
         user_id = (context.get("person_id") or context.get("user_id") or "")
         return _register_for_person(_get_person_context(user_id))
     except Exception as _e:
@@ -116,7 +116,7 @@ def _get_person_register(context: Dict[str, Any]) -> str:
 def _comprehend(user_input: str, context: Dict[str, Any]) -> Dict[str, Any]:
     """Run parse_input once.  Fallback to a minimal dict on failure."""
     try:
-        from think.speech_comprehension import parse_input
+        from brain.think.speech_comprehension import parse_input
         return parse_input(user_input, context)
     except Exception as e:
         _log.warning("[speech_pipeline] parse_input failed: %s", e)
@@ -261,14 +261,14 @@ def _retrieve(
     affect_state = context.get("affect_state") or {}
     memories: List[Dict] = []
     try:
-        from think.speech_memory import retrieve_relevant
+        from brain.think.speech_memory import retrieve_relevant
         memories = retrieve_relevant(topics, n=5, affect_state=affect_state)
     except Exception as e:
         _log.warning("[speech_pipeline] retrieve_relevant failed: %s", e)
 
     # Opinion injection
     try:
-        from cognition.opinions import get_all_opinions
+        from brain.cognition.opinions import get_all_opinions
         lower = user_input.lower()
         for op in (get_all_opinions() or []):
             if float(op.get("confidence") or 0) < 0.50:
@@ -286,7 +286,7 @@ def _retrieve(
                     })
                     # Master plan 3.4: using an opinion raises its stake.
                     try:
-                        from cognition.opinions import mark_opinion_used
+                        from brain.cognition.opinions import mark_opinion_used
                         mark_opinion_used(op.get("id"))
                     except Exception:
                         pass
@@ -308,7 +308,7 @@ def _retrieve(
     # embedded these verbatim were the "telemetry leak" both audits flagged.
     # Single source of truth shared with the expression door — one list, no
     # per-emitter drift (EXPRESSION_MEMBRANE_FIX_PLAN E7).
-    from behavior.speakability import INTERNAL_MARKERS as _INTERNAL
+    from brain.behavior.speakability import INTERNAL_MARKERS as _INTERNAL
     memories = [
         m for m in memories
         if not any(t in str(m.get("_excerpt") or m.get("content") or "").lower()
@@ -346,7 +346,7 @@ def _symbolic_compose(
     memories, theory_of_mind, and register so no work is repeated.
     """
     try:
-        from think.speech_generator import generate_speech
+        from brain.think.speech_generator import generate_speech
         tom = context.get("theory_of_mind") or None
         reply = generate_speech(
             user_input, h["inner"], affect_state, context,
@@ -389,7 +389,7 @@ def _llm_draft(
 ) -> str:
     """LLM is a tool here — fills a narrow gap when symbolic returns empty."""
     try:
-        from utils.generate_response import generate_response, llm_ok
+        from brain.utils.generate_response import generate_response, llm_ok
 
         instruct    = _MODE_INSTRUCT.get(mode, "Respond naturally. 1-2 sentences.")
         length_note = _length_instruction(h)

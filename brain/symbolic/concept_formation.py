@@ -18,7 +18,7 @@
 # Runs at most once per 8h (concept formation is slower than rule abstraction).
 # Wire into dream_cycle every 2nd cycle.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 import time
@@ -26,10 +26,10 @@ from collections import Counter
 from datetime import datetime, timezone
 from typing import Dict, FrozenSet, List, Optional, Set
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 CONCEPTS_SYMBOLIC_FILE = DATA_DIR / "symbolic_concepts.json"
@@ -139,7 +139,7 @@ def form_concepts(*, force: bool = False) -> Dict:
         return {"skipped": True, "reason": "cooldown"}
     _last_run = now
 
-    from symbolic.rule_engine import get_all_rules
+    from brain.symbolic.rule_engine import get_all_rules
     rules = get_all_rules()
     if not rules:
         return {"concepts_formed": 0}
@@ -159,7 +159,7 @@ def form_concepts(*, force: bool = False) -> Dict:
 
         ctype = _classify_type(dominant)
         # Pull best conditions and conclusion from cluster
-        from symbolic.rule_abstraction import _parent_conditions, _parent_conclusion
+        from brain.symbolic.rule_abstraction import _parent_conditions, _parent_conclusion
         conditions = _parent_conditions(cluster)
         conclusion = _parent_conclusion(cluster)
         definition = _concept_definition(conditions, conclusion)
@@ -188,7 +188,7 @@ def form_concepts(*, force: bool = False) -> Dict:
 
 def _register_in_kg(concept: Dict) -> None:
     try:
-        from cognition.knowledge_graph import add_entity, add_relation
+        from brain.cognition.knowledge_graph import add_entity, add_relation
         add_entity(
             name=concept["name"],
             entity_type="concept",

@@ -30,7 +30,7 @@
 # file, you cannot fabricate your future self choosing to use it.
 from __future__ import annotations
 
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import hashlib
 import json
 import re
@@ -40,8 +40,8 @@ from dataclasses import dataclass, asdict
 from typing import Any, Deque, Dict, List, Optional, Tuple
 
 from brain.paths import DATA_DIR
-from utils.timeutils import now_iso_z
-from utils.failure_counter import record_failure
+from brain.utils.timeutils import now_iso_z
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -332,7 +332,7 @@ def record_effect(
                 not goal_id or str(lens.get("goal_id") or "") == str(goal_id)
             ):
                 try:
-                    from cognition.goal_lens import relevance as _goal_relevance
+                    from brain.cognition.goal_lens import relevance as _goal_relevance
                     alignment = _goal_relevance(lens, raw)
                     if alignment < 0.05:
                         sig = 0.0

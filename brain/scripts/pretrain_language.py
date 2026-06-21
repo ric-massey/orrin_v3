@@ -31,7 +31,7 @@ _BRAIN = Path(__file__).resolve().parents[1]
 if str(_BRAIN) not in sys.path:
     sys.path.insert(0, str(_BRAIN))
 
-from cognition.language import library, tokenizer as tok, native_lm, acquisition  # noqa: E402
+from brain.cognition.language import library, tokenizer as tok, native_lm, acquisition  # noqa: E402
 
 _CHUNK = 50000   # chars per training block
 

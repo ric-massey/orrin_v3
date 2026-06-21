@@ -18,16 +18,16 @@
 # Trigger: event-driven, not a timer — the review runs only when the durable
 # failure count has risen by >= _TRIGGER_DELTA since the last review.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set
 
-from utils.json_utils import load_json, save_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR, LONG_MEMORY_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -118,7 +118,7 @@ def review_failures(context: Optional[Dict[str, Any]] = None) -> str:
 
     emitted = 0
     try:
-        from cog_memory.long_memory import update_long_memory
+        from brain.cog_memory.long_memory import update_long_memory
         for cluster in clusters:
             ids = [f["id"] for f in cluster if f.get("id")]
             content = (
@@ -140,7 +140,7 @@ def review_failures(context: Optional[Dict[str, Any]] = None) -> str:
 
     if emitted:
         try:
-            from cognition.selfhood.autobiography import add_narrative_pressure
+            from brain.cognition.selfhood.autobiography import add_narrative_pressure
             add_narrative_pressure(0.25, f"{emitted} failure pattern(s) consolidated")
         except Exception as e:
             record_failure("review_failures.pressure", e)

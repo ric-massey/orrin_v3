@@ -2,7 +2,7 @@
 # Background memory service that runs beside Reaper: captures all events, embeds, stores, extracts definitions, promotes/compacts, and serves retrieval.
 
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 import threading, queue, time
 from typing import Optional, List, Dict, Tuple
 from datetime import datetime, timezone

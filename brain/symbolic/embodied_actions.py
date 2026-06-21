@@ -21,15 +21,15 @@
 #
 # Entry point: run_embodied_cycle(context) — callable as a cognitive function.
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from utils.json_utils import load_json
-from utils.log import log_activity
+from brain.utils.json_utils import load_json
+from brain.utils.log import log_activity
 from brain.paths import DATA_DIR, WORKING_MEMORY_FILE, PREDICTIONS_FILE
-from utils.failure_counter import record_failure
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 _SAFE_READ_ROOTS = {str(DATA_DIR)}   # only read from data dir and below
@@ -140,7 +140,7 @@ def _act_observe_data_dir(ctx: Dict) -> Optional[Dict]:
 
 def _act_check_rule_health(ctx: Dict) -> Optional[Dict]:
     try:
-        from symbolic.rule_engine import get_all_rules
+        from brain.symbolic.rule_engine import get_all_rules
         rules = get_all_rules()
         active     = [r for r in rules if r.get("source") != "tombstoned"]
         tombstoned = [r for r in rules if r.get("source") == "tombstoned"]
@@ -217,7 +217,7 @@ def _ingest_observation(obs: Dict, ctx: Dict) -> None:
         return
 
     try:
-        from cog_memory.working_memory import update_working_memory as _uwm
+        from brain.cog_memory.working_memory import update_working_memory as _uwm
         _uwm({
             "content":    f"[embodied:{action}] {summary}",
             "event_type": "embodied_observation",
@@ -269,7 +269,7 @@ def _ground_rule_health(result: Dict) -> None:
             return
         unfired_ratio = zero_hit / active
         # Treat high unfired ratio as counterfactual evidence for "rules are useful"
-        from symbolic.causal_graph import update_edge as _ue
+        from brain.symbolic.causal_graph import update_edge as _ue
         _ue(
             "symbolic_rules_present", "symbolic_coverage",
             confirmed=(unfired_ratio < 0.5),
@@ -283,7 +283,7 @@ def _ground_rule_health(result: Dict) -> None:
 def _ground_prediction_accuracy(result: Dict) -> None:
     try:
         acc = float(result.get("accuracy", 0.5))
-        from symbolic.causal_graph import update_edge as _ue
+        from brain.symbolic.causal_graph import update_edge as _ue
         _ue(
             "symbolic_prediction_active", "prediction_accuracy_high",
             confirmed=(acc >= 0.6),

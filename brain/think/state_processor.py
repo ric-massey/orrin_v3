@@ -9,13 +9,13 @@ Orrin's architecture already knows what's active, what's unresolved, and
 whether something is pressing for expression.
 """
 from __future__ import annotations
-from core.runtime_log import get_logger
+from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, Tuple
 
-from think.cycle_state import CycleState
-from utils.log import log_private
-from utils.failure_counter import record_failure
+from brain.think.cycle_state import CycleState
+from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
@@ -38,7 +38,7 @@ def compute_cycle_state(
     dominant_emotion = ""
     dominant_intensity = 0.0
     try:
-        from affect.affect_summary import (
+        from brain.affect.affect_summary import (
             render_affect_state as _dfs,
             valence_summary_line as _acl,
         )
@@ -58,7 +58,7 @@ def compute_cycle_state(
     goal_stuck = False
     goal_progress = 0.0
     try:
-        from affect.affect_summary import format_goal_state as _gfo
+        from brain.affect.affect_summary import format_goal_state as _gfo
         goal = context.get("committed_goal") or {}
         goal_orientation = _gfo(goal)
         goal_stuck = bool(goal.get("stuck") or goal.get("blocked"))
@@ -77,7 +77,7 @@ def compute_cycle_state(
     try:
         memories = context.get("retrieved_memories") or []
         if memories:
-            from cog_memory.reconstruction import reconstruct as _recon
+            from brain.cog_memory.reconstruction import reconstruct as _recon
             mood = float(emo_state.get("mood") or 0.0)
             relevant_memory = _recon(memories[0], current_mood=mood)[:200]
     except Exception as _e:
@@ -156,7 +156,7 @@ def _compute_output_seed(
     # Strong affect presses for expression
     if dominant_intensity > 0.60:
         try:
-            from affect.affect_summary import describe_dominant_affect as _dom
+            from brain.affect.affect_summary import describe_dominant_affect as _dom
             sense = _dom(emo_state)
             if sense:
                 seeds.append(sense)

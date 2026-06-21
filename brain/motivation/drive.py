@@ -1,9 +1,9 @@
 # brain/core/drive.py
 import random
 from datetime import datetime, timezone
-from utils.log import log_private, log_error
-from cog_memory.working_memory import update_working_memory
-from affect.threat_detector import process_affective_signals
+from brain.utils.log import log_private, log_error
+from brain.cog_memory.working_memory import update_working_memory
+from brain.affect.threat_detector import process_affective_signals
 
 # Affect → preferred function when affectively dysregulated
 _EMO_DRIVE_MAP = {
@@ -59,7 +59,7 @@ def persistent_drive_loop(context, self_model, memory):
             available_functions = context.get("available_functions", {}) or {}
             chosen = shortcut
             try:
-                from think.action_arbiter import ActionProposal, resolve as _resolve
+                from brain.think.action_arbiter import ActionProposal, resolve as _resolve
                 baseline = _symbolic_drive_choice(context, available_functions)
                 recent = [c.get("choice", "") for c in (context.get("cognition_log") or [])[-3:]
                           if isinstance(c, dict)]

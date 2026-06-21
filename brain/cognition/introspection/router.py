@@ -31,8 +31,8 @@ from __future__ import annotations
 import time
 from typing import Any, Callable, Dict, Optional
 
-from core.runtime_log import get_logger
-from utils.log import log_private, log_error
+from brain.core.runtime_log import get_logger
+from brain.utils.log import log_private, log_error
 
 _log = get_logger(__name__)
 
@@ -64,18 +64,18 @@ _last_run: dict[str, float] = {}
 # Lazy handler loader (prevents circular imports at module level)
 # ---------------------------------------------------------------------------
 def _load_handlers() -> dict[str, Callable[[], Any]]:
-    from cognition.reflection.reflect_on_cognition import reflect_on_cognition_patterns
-    from cognition.reflection.reflect_on_cognition_schedule import reflect_on_cognition_schedule
-    from cognition.reflection.reflect_on_conversation import reflect_on_conversation_patterns
-    from cognition.reflection.reflect_on_internal_agents import reflect_on_internal_agents
-    from cognition.reflection.reflect_on_outcome import reflect_on_outcomes
-    from cognition.reflection.reflect_on_self_belief import reflect_on_self_beliefs
-    from cognition.reflection.rule_reflection import reflect_on_rules_used
-    from cognition.reflection.self_reflection import reflect_on_think
-    from cognition.planning.reflection import reflect_on_missed_goals, reflect_on_effectiveness
-    from cognition.planning.introspection import introspective_planning
-    from cognition.repair.repair import reflect_on_cognition_rhythm
-    from cognition.world_model import update_world_model
+    from brain.cognition.reflection.reflect_on_cognition import reflect_on_cognition_patterns
+    from brain.cognition.reflection.reflect_on_cognition_schedule import reflect_on_cognition_schedule
+    from brain.cognition.reflection.reflect_on_conversation import reflect_on_conversation_patterns
+    from brain.cognition.reflection.reflect_on_internal_agents import reflect_on_internal_agents
+    from brain.cognition.reflection.reflect_on_outcome import reflect_on_outcomes
+    from brain.cognition.reflection.reflect_on_self_belief import reflect_on_self_beliefs
+    from brain.cognition.reflection.rule_reflection import reflect_on_rules_used
+    from brain.cognition.reflection.self_reflection import reflect_on_think
+    from brain.cognition.planning.reflection import reflect_on_missed_goals, reflect_on_effectiveness
+    from brain.cognition.planning.introspection import introspective_planning
+    from brain.cognition.repair.repair import reflect_on_cognition_rhythm
+    from brain.cognition.world_model import update_world_model
 
     return {
         "cognition":          reflect_on_cognition_patterns,

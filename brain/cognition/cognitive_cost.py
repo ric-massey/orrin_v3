@@ -12,7 +12,7 @@
 from __future__ import annotations
 from typing import Dict, Any
 
-from utils.log import log_private
+from brain.utils.log import log_private
 
 # Functions that are purely inward-facing (no external effect)
 _INTROSPECTIVE_FNS = frozenset({
@@ -29,7 +29,7 @@ _INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "dream", "selfhood", "ident"
 def _dreaming_now() -> bool:
     """True while the dream daemon is in the sleep phase."""
     try:
-        from cognition.dreaming.dream_cycle import dreaming_now
+        from brain.cognition.dreaming.dream_cycle import dreaming_now
         return bool(dreaming_now())
     except Exception:
         return False
@@ -116,7 +116,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         flow_depth = action_count - 3
         context["_flow_depth"] = flow_depth
         boost = min(0.08, 0.02 * flow_depth)
-        from affect.homeostasis import pump_signal
+        from brain.affect.homeostasis import pump_signal
         pump_signal(core, "motivation", boost, default=0.5)
         pump_signal(core, "confidence", boost * 0.5, default=0.5)
     else:
@@ -143,7 +143,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
     # A goal that keeps not getting done builds real impasse_signal.
     goal = context.get("committed_goal")
     if isinstance(goal, dict) and goal.get("title"):
-        from cognition.reward_rate import accrue_leave_pressure, patch_deficit
+        from brain.cognition.reward_rate import accrue_leave_pressure, patch_deficit
 
         deficit = patch_deficit(context)
         accrue_leave_pressure(context)

@@ -156,17 +156,21 @@ def test_execute_step_action_threads_and_clears_motive():
 def _emitter_func_sources():
     """Return {name: source} for the three converted emitters."""
     import brain.ORRIN_loop as ORRIN_loop
+    import brain.loop.boot as loop_boot
     srcs = {}
 
     ln_src = Path(Path(__import__("brain.cognition.leave_note", fromlist=["x"]).__file__)).read_text("utf-8")
     srcs["leave_note"] = ln_src
 
-    loop_src = Path(ORRIN_loop.__file__).read_text("utf-8")
-    tree = ast.parse(loop_src)
-    loop_lines = loop_src.splitlines()
-    for node in ast.walk(tree):
-        if isinstance(node, ast.FunctionDef) and node.name in ("_write_desktop_note", "_announce"):
-            srcs[node.name] = "\n".join(loop_lines[node.lineno - 1: node.end_lineno])
+    # _write_desktop_note / _announce are nested in the loop's boot/context stage,
+    # which Phase 4A split into brain/loop/boot.py — scan both modules so the test
+    # finds them wherever the extraction left them.
+    for mod in (ORRIN_loop, loop_boot):
+        mod_src = Path(mod.__file__).read_text("utf-8")
+        mod_lines = mod_src.splitlines()
+        for node in ast.walk(ast.parse(mod_src)):
+            if isinstance(node, ast.FunctionDef) and node.name in ("_write_desktop_note", "_announce"):
+                srcs[node.name] = "\n".join(mod_lines[node.lineno - 1: node.end_lineno])
     return srcs
 
 

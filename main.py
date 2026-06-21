@@ -59,64 +59,15 @@ _log = get_logger(__name__)
 # faulthandler catches native (C-level) crashes from torch/spaCy/numpy on
 # SIGSEGV/SIGABRT/SIGFPE — crashes no Python hook can see. The file handle must
 # stay open for the process lifetime: closing it disarms the handler.
-import faulthandler
-import datetime as _datetime
-_CRASH_LOG_PATH = Path(__file__).resolve().parent / "brain" / "logs" / "crash.log"
-_CRASH_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-_crash_fp = open(_CRASH_LOG_PATH, "a")
-_crash_fp.write(f"--- session start {_datetime.datetime.now().isoformat()} pid={os.getpid()} ---\n")
-_crash_fp.flush()
-faulthandler.enable(file=_crash_fp, all_threads=True)
-
-# Uncaught Python exceptions — including in the daemon thread the brain loop
-# runs in — must land in orrin_runtime.log at CRITICAL, not only on a terminal
-# that may be gone by morning. (The 2026-06-11 run died silently at 16:42:28
-# because the default threading.excepthook printed to a lost stderr.)
-import traceback as _traceback
-
-def _log_uncaught(exc_type, exc_value, exc_tb) -> None:
-    if issubclass(exc_type, KeyboardInterrupt):
-        sys.__excepthook__(exc_type, exc_value, exc_tb)
-        return
-    tb_text = "".join(_traceback.format_exception(exc_type, exc_value, exc_tb))
-    _log.critical("UNCAUGHT EXCEPTION (main thread):\n%s", tb_text)
-    sys.__excepthook__(exc_type, exc_value, exc_tb)
-
-def _log_thread_uncaught(args) -> None:
-    if args.exc_type is SystemExit:
-        return
-    tb_text = "".join(
-        _traceback.format_exception(args.exc_type, args.exc_value, args.exc_traceback)
-    )
-    name = args.thread.name if args.thread is not None else "<unknown>"
-    _log.critical("UNCAUGHT EXCEPTION in thread %r:\n%s", name, tb_text)
-
-sys.excepthook = _log_uncaught
-threading.excepthook = _log_thread_uncaught
+# Crash + uncaught-exception logging: native faulthandler to brain/logs/crash.log
+# plus sys/threading excepthooks routing tracebacks to the runtime log at CRITICAL
+# (a lost terminal/stderr otherwise swallows a daemon-thread death silently).
+from runtime import crash_log as _crash_log
+_crash_log.install()
 
 # --- Boot config check (fast, no LLM call) ---
-def _boot_config_check() -> None:
-    """Verify critical paths and config files exist before subsystems start."""
-    from dotenv import load_dotenv as _load_dotenv
-    _load_dotenv(override=True)
-    # Hydrate API keys the user saved in the OS keychain (Phase 4). A dev `.env`,
-    # loaded just above, keeps precedence; this only fills what's absent — so a
-    # packaged app with no `.env` still picks up keys pasted in Settings last session.
-    try:
-        from brain.utils.secrets import load_into_env as _load_secrets_env
-        _load_secrets_env()
-    except Exception as _e:
-        print(f"[boot] keychain load skipped ({_e})")
-    brain_dir = Path(__file__).resolve().parent / "brain"
-    if not brain_dir.exists():
-        print(f"[boot] FAILED: brain/ directory not found at {brain_dir}", file=sys.stderr)
-        sys.exit(2)
-    # Warn (don't block) if LLM key is absent — Orrin runs symbolically without it
-    if not os.getenv("OPENAI_API_KEY"):
-        print("[boot] WARNING: OPENAI_API_KEY not set — LLM tool calls will be skipped; symbolic-only mode")
-    print("[boot] config check OK")
-
-_boot_config_check()
+from runtime import preflight as _preflight
+_preflight.boot_config_check()
 
 # --- Single-instance guard ---
 # Two Orrin processes writing the same brain/data files caused a corruption

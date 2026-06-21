@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
-import hmac
 import os
 import signal
 import threading
@@ -31,6 +30,15 @@ from .config import RESPONSE_CAP, demo_enabled, trusted_origins
 from .demo import run_demo
 from . import state as server_state
 from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_churn
+# Request auth guards live in auth.py (Phase 4C) so domain routers can guard
+# themselves without importing app.py. Keep the historical underscore names here.
+from .auth import (
+    authorize_read as _authorize_read,
+    authorize_control as _authorize_control,
+    authorize_ingest as _authorize_ingest,
+    reject_untrusted_origin as _reject_untrusted_origin,
+    ws_read_authorized as _ws_read_authorized,
+)
 from .routers import memory as memory_routes
 from .routers import source as source_routes
 
@@ -1252,27 +1260,6 @@ async def vitals() -> JSONResponse:
     return JSONResponse({"chips": chips, "ts": time.time()})
 
 
-# ── Optional read-token guard (UI_FIXES new-surfaces security note) ──────────
-# Every read endpoint is unauthenticated by default (localhost dev). The new
-# surfaces raise the stakes (/memory, /chat, /consciousness are his memory,
-# conversations, and stream of awareness) — so when ORRIN_READ_TOKEN is set,
-# all reads require the X-Orrin-Read-Token header; loopback stays open so
-# localhost dev is zero-config, exactly like _authorize_control. When unset,
-# behavior is unchanged — the tunnel URL is then the only secret.
-_READ_TOKEN = os.environ.get("ORRIN_READ_TOKEN", "").strip()
-
-
-def _authorize_read(request: Request) -> None:
-    if not _READ_TOKEN:
-        return
-    client_host = (request.client.host if request.client else "") or ""
-    if client_host in ("127.0.0.1", "::1", "localhost"):
-        return
-    supplied = (request.headers.get("X-Orrin-Read-Token") or "").strip()
-    if not hmac.compare_digest(supplied, _READ_TOKEN):
-        raise HTTPException(status_code=403, detail="invalid or missing read token")
-
-
 # Mount the read API twice: bare paths (back-compat) and under /api (the proxied
 # prefix that makes remote/tunnel REST work — Fix 5).
 from fastapi import Depends as _Depends  # noqa: E402
@@ -1282,50 +1269,6 @@ app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 
 
 # ── Control: stop Orrin from the UI ──────────────────────────────────────────
-_CONTROL_TOKEN = os.environ.get("ORRIN_CONTROL_TOKEN", "").strip()
-_INGEST_TOKEN = os.environ.get("ORRIN_INGEST_TOKEN", "").strip()
-_LOOPBACK_HOSTS = frozenset({"127.0.0.1", "::1", "localhost"})
-
-
-def _reject_untrusted_origin(request: Request) -> None:
-    """Reject browser requests carrying an Origin we don't trust (UI_AUDIT H2/H3).
-
-    The shutdown / ingest / agent endpoints are side-effecting "simple requests"
-    that CORS does NOT stop (no preflight, the side effect fires server-side even
-    though the browser can't read the response). So a hostile page on evil.com
-    could otherwise POST to 127.0.0.1 and shut Orrin down or inject input. We
-    distinguish the real UI from a hostile page by the Origin header: the UI's
-    own origin is allowlisted; a foreign Origin is rejected; native clients (the
-    in-process producer, curl) send no Origin and pass through.
-    """
-    origin = (request.headers.get("origin") or "").strip()
-    if origin and origin not in set(trusted_origins()):
-        raise HTTPException(status_code=403, detail="untrusted origin")
-
-
-def _authorize_control(request: Request) -> None:
-    """Guard /api/control/* — destructive, so it must not be triggerable by any
-    network caller (UI_AUDIT H3). Layered:
-      • reject any untrusted browser Origin (blocks cross-site CSRF even from a
-        loopback-reaching page — UI_AUDIT H2);
-      • ORRIN_CONTROL_TOKEN set → require matching X-Orrin-Control-Token header;
-      • not set → allow loopback clients only (localhost dev), reject the rest
-        with guidance to configure a token for remote use.
-    """
-    _reject_untrusted_origin(request)
-    if _CONTROL_TOKEN:
-        supplied = (request.headers.get("X-Orrin-Control-Token") or "").strip()
-        if not hmac.compare_digest(supplied, _CONTROL_TOKEN):
-            raise HTTPException(status_code=403, detail="invalid or missing control token")
-        return
-    client_host = (request.client.host if request.client else "") or ""
-    if client_host not in _LOOPBACK_HOSTS:
-        raise HTTPException(
-            status_code=403,
-            detail="control endpoint is localhost-only; set ORRIN_CONTROL_TOKEN to allow remote control",
-        )
-
-
 # A "stop Orrin" handler the orchestrator (main.py) registers. When present, the
 # Stop button halts ONLY cognition (loop + daemons) and leaves the UI/window up,
 # so you can keep viewing his frozen mind. Absent (e.g. standalone `backend/main.py`),
@@ -1336,19 +1279,6 @@ _stop_handler: "Optional[Callable[[], None]]" = None
 def set_stop_handler(fn: "Callable[[], None]") -> None:
     global _stop_handler
     _stop_handler = fn
-
-
-def _authorize_ingest(request: Request) -> None:
-    """Guard /ingest — the producer entry point (UI_AUDIT H3). Reject hostile
-    browser Origins (a page should never spoof the brain's telemetry), and when
-    ORRIN_INGEST_TOKEN is set require the matching header so a remote-exposed
-    backend only accepts frames from the real cognitive loop. Unset → loopback
-    dev is zero-config; the in-process producer sends no Origin and passes."""
-    _reject_untrusted_origin(request)
-    if _INGEST_TOKEN:
-        supplied = (request.headers.get("X-Orrin-Ingest-Token") or "").strip()
-        if not hmac.compare_digest(supplied, _INGEST_TOKEN):
-            raise HTTPException(status_code=403, detail="invalid or missing ingest token")
 
 
 @app.post("/api/control/shutdown")
@@ -1802,13 +1732,9 @@ async def ws_telemetry(ws: WebSocket) -> None:
     # logs, narrative, affect), so apply the same policy here (UI_AUDIT H4).
     # Browsers can't set handshake headers, so the token rides as a query param;
     # loopback stays open so localhost dev is zero-config, matching _authorize_read.
-    if _READ_TOKEN:
-        client_host = (ws.client.host if ws.client else "") or ""
-        if client_host not in ("127.0.0.1", "::1", "localhost"):
-            supplied = (ws.query_params.get("token") or "").strip()
-            if not hmac.compare_digest(supplied, _READ_TOKEN):
-                await ws.close(code=4403)
-                return
+    if not _ws_read_authorized(ws):
+        await ws.close(code=4403)
+        return
     await hub.connect(ws)
     try:
         while True:

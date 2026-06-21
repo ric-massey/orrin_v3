@@ -48,7 +48,6 @@ from brain.core.runtime_log import get_logger
 import os
 import time
 import signal
-import webbrowser
 import inspect
 import threading
 import shutil
@@ -431,18 +430,7 @@ _goal_store, _goals_api = init_goals(GOALS_DATA_DIR)
 #   • FALLBACK: pywebview unavailable → loopback API + a browser tab (one port).
 # Disable the whole UI with ORRIN_UI=0.
 from backend.server.config import ui_dev_enabled as _ui_dev_enabled, open_browser_enabled as _open_browser_enabled
-from brain.utils.paths import resolve_dist as _resolve_dist
-from brain.utils.ui_build import ensure_ui_build as _ensure_ui_build
-
-
-def _resolve_ui_index():
-    """Resolve the built UI's index.html (building the dist if missing). Returns a
-    Path, or None if no build is available. Honors ORRIN_UI_DIST."""
-    dist = _resolve_dist("ORRIN_UI_DIST", _BRAIN_DIR.parent / "frontend" / "dist")
-    if _ensure_ui_build("orrin", dist):
-        return dist / "index.html"
-    return None
-
+from runtime.ui_launch import resolve_ui_index as _resolve_ui_index
 
 _UI_DEV = _ui_dev_enabled()
 _ui_proc = None
@@ -529,35 +517,7 @@ except Exception as e:
     print(f"[ui] not started: {e}")
 
 # ---------- Open browser ----------
-def _wait_for_port(url: str, timeout_s: float = 30.0) -> bool:
-    """Poll the URL's host:port until it accepts a TCP connection, so we don't
-    open a browser tab onto a connection-refused page while Vite is still
-    cold-starting / installing deps (first-run friction — UI_AUDIT L4)."""
-    import socket
-    from urllib.parse import urlsplit
-    parts = urlsplit(url)
-    host = parts.hostname or "127.0.0.1"
-    port = parts.port or (443 if parts.scheme == "https" else 80)
-    deadline = time.time() + timeout_s
-    while time.time() < deadline:
-        try:
-            with socket.create_connection((host, port), timeout=1.0):
-                return True
-        except OSError:
-            time.sleep(0.5)
-    return False
-
-
-def _open_browsers(urls: list) -> None:
-    for label, url in urls:
-        if not _wait_for_port(url):
-            print(f"[browser] {label} not ready after wait; opening anyway: {url}")
-        try:
-            webbrowser.open(url)
-            print(f"[browser] opened {label}: {url}")
-        except Exception as e:
-            print(f"[browser] could not open {label}: {e}")
-        time.sleep(0.6)
+from runtime.ui_launch import open_browsers as _open_browsers  # noqa: E402
 
 if _urls_to_open and _open_browser_enabled():
     _browser_thread = threading.Thread(

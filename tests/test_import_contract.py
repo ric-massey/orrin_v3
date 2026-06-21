@@ -1,0 +1,59 @@
+"""Phase-3 import-normalization ratchet.
+
+The runtime puts both the repo root and `brain/` on sys.path, so a brain module
+can be imported under two names (`paths` and `brain.paths`). Those are two
+distinct module objects with independent module-level constants — the dual-root
+hazard that produced an order-dependent `/api/death` failure (a reloaded `paths`
+leaked a tmp DATA_DIR into every later test).
+
+The fix is to converge each leaf package on the single `brain.<pkg>` spelling.
+As each leaf is fully converted (every `from <pkg> import` / `import <pkg>` in
+source AND tests), add it to ``CONVERTED`` below. This test then fails if any
+bare import of an already-converted leaf reappears, so the migration can only
+move forward.
+"""
+
+import re
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+
+# Leaf packages whose bare-import conversion to `brain.<pkg>` is complete.
+# Append a name here only once `make verify` is green with zero bare imports.
+CONVERTED = ("paths",)
+
+# Source trees that must honor the contract. (Root-level packages like `goals`,
+# `memory`, and `reaper` are legitimately top-level and are not brain leaves.)
+SRC_DIRS = ("brain", "backend", "tests", "observability")
+
+# This file intentionally contains the patterns as data; never scan it.
+_SELF = Path(__file__).resolve()
+
+
+def _py_files():
+    for d in SRC_DIRS:
+        root = REPO / d
+        if not root.exists():
+            continue
+        for p in root.rglob("*.py"):
+            if "__pycache__" in p.parts or p.resolve() == _SELF:
+                continue
+            yield p
+
+
+def test_converted_leaves_use_brain_namespace():
+    offenders = []
+    patterns = {
+        name: re.compile(rf"^[ \t]*(?:from {name} import\b|import {name}(?:\s+as\b|\s*$|\s*#))", re.M)
+        for name in CONVERTED
+    }
+    for p in _py_files():
+        text = p.read_text(encoding="utf-8", errors="ignore")
+        for name, pat in patterns.items():
+            for m in pat.finditer(text):
+                line_no = text.count("\n", 0, m.start()) + 1
+                offenders.append(f"{p.relative_to(REPO)}:{line_no}: {m.group(0).strip()}")
+    assert not offenders, (
+        "bare imports of converted leaf package(s) — use `brain.<pkg>`:\n"
+        + "\n".join(offenders)
+    )

@@ -7,13 +7,13 @@ read helpers in state.py. Routes are moved here in cohesive domain batches.
 """
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict, List
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from .. import state as server_state
-from ..state import _read_json
+from ..state import _read_json, _read_jsonl_tail
 
 router = APIRouter()
 
@@ -128,3 +128,152 @@ async def permissions() -> JSONResponse:
         return JSONResponse(_perm_status())
     except Exception as e:
         return JSONResponse({"platform": "", "capabilities": [], "error": str(e)})
+
+
+# ── Benchmarks / outcomes / symbolic mind ───────────────────────────────────
+@router.get("/benchmarks")
+async def benchmarks(samples: int = 0) -> JSONResponse:
+    """B1–B5 from benchmark_results.json — the headline 'is he actually working'
+    answer, previously visible only by reading the file. Renders fail/not_run
+    states first-class. ?samples=N also tails benchmark_samples.jsonl (L3/L4)."""
+    res = _read_json("benchmark_results.json", {})
+    out: dict = {"evaluated_at": res.get("evaluated_at"),
+                 "sample_count": res.get("sample_count"),
+                 "benchmarks": {k: v for k, v in res.items()
+                                if k.startswith("B") and isinstance(v, dict)}}
+    if samples:
+        out["samples"] = _read_jsonl_tail("benchmark_samples.jsonl", min(200, samples))
+    return JSONResponse(out)
+
+
+@router.get("/outcomes")
+async def outcomes() -> JSONResponse:
+    """Daily goal-closure metrics (outcome_metrics.json) — the closure-remediation
+    story: does the goal population stay bounded, and HOW do goals close."""
+    hist = _read_json("outcome_metrics.json", [])
+    return JSONResponse({"history": hist[-90:], "latest": (hist[-1] if hist else None)})
+
+
+@router.get("/innerweather")
+async def innerweather() -> JSONResponse:
+    """Felt time + mood + mortality (temporal_state / mood_state / lifespan) —
+    the strongest personhood data in brain/data, fully hidden until now."""
+    t = dict(_read_json("temporal_state.json", {}))
+    t.pop("density_buffer", None)  # internal ring, large and meaningless to render
+    return JSONResponse({
+        "temporal": t,
+        "mood": _read_json("mood_state.json", {}),
+        "lifespan": _read_json("lifespan.json", {}),
+    })
+
+
+@router.get("/symbolic")
+async def symbolic(n: int = 12, q: str = "") -> JSONResponse:
+    """The symbolic mind: no-LLM reasoning ratio, learned rules, causal edges,
+    per-domain rule coverage. Honesty caveat handled CLIENT-side too, but flagged
+    here: when llm_calls == 0 the ratio is trivially 1.0 (LLM-off run)."""
+    import json as _json
+    prog = _read_json("symbolic_progress.json", [])
+    latest = prog[-1] if prog else {}
+    rules = [r for r in _read_json("symbolic_rules.json", []) if isinstance(r, dict)]
+    needle = (q or "").strip().lower()
+    if needle:
+        rules = [r for r in rules if needle in _json.dumps(r, ensure_ascii=False).lower()]
+    rules_sorted = sorted(rules, key=lambda r: (r.get("hits") or 0, r.get("confidence") or 0), reverse=True)
+    edges = [e for e in _read_json("causal_graph.json", []) if isinstance(e, dict)]
+    edges_sorted = sorted(edges, key=lambda e: e.get("causal_score") or e.get("strength") or 0, reverse=True)
+    cap = max(1, min(60, n))
+    return JSONResponse({
+        "progress": latest,
+        "history": prog[-30:],
+        "llm_off": bool(latest) and not latest.get("llm_calls"),
+        "rules_total": len(_read_json("symbolic_rules.json", [])),
+        "rules": rules_sorted[:cap],
+        "causal_total": len(edges),
+        "causal": edges_sorted[:cap],
+        "domains": _read_json("world_model_stats.json", {}),
+    })
+
+
+# ── Introspection: tensions / health / self / people ────────────────────────
+@router.get("/tensions")
+async def tensions(n: int = 20) -> JSONResponse:
+    """What he's wrestling with: active tensions, rumination loops, and the
+    second-order volition timeline (what he wants to WANT — stance · desire ·
+    statement, dated)."""
+    return JSONResponse({
+        "tensions": _read_json("tensions.json", [])[-max(1, min(50, n)):],
+        "rumination": _read_json("rumination_loops.json", [])[-max(1, min(50, n)):],
+        "volition": _read_json("second_order_volition.json", [])[-max(1, min(50, n)):],
+    })
+
+
+@router.get("/health")
+async def health_box(n: int = 10) -> JSONResponse:
+    """The ops view: health_state + per-site failure counts (failures.jsonl, the
+    record_failure ledger) + recent incidents — 'what is quietly broken' without
+    tailing four log files."""
+    fails = _read_jsonl_tail("failures.jsonl", 2000)
+    by_site: Dict[str, Dict[str, Any]] = {}
+    for f in fails:
+        site = str(f.get("site") or "?")
+        rec = by_site.setdefault(site, {"site": site, "count": 0, "last_error": "", "last_ts": ""})
+        rec["count"] += 1
+        rec["last_error"] = str(f.get("error") or "")[:200]
+        rec["last_ts"] = str(f.get("ts") or "")
+    top_failing = sorted(by_site.values(), key=lambda r: r["count"], reverse=True)
+    return JSONResponse({
+        "health": _read_json("health_state.json", {}),
+        "failing_sites": top_failing[:max(1, min(50, n))],
+        "failure_lines": len(fails),
+        "incidents": [
+            {k: (str(v)[:300] if k == "trace" else v) for k, v in i.items()}
+            for i in _read_jsonl_tail("incidents.jsonl", max(1, min(30, n))) if isinstance(i, dict)
+        ],
+    })
+
+
+@router.get("/self")
+async def self_box(n: int = 20) -> JSONResponse:
+    """Who he is and how it revises (box ⑦): the self-model's identity / values /
+    traits / knowledge domains, the dated belief-confidence revisions, formed
+    opinions, and the autobiography. private_thoughts / final_thoughts stay
+    excluded by design (see ui_fixes.md §Deliberate exclusions)."""
+    sm = dict(_read_json("self_model.json", {}))
+    sm.pop("latent_identity_vector", None)  # internal embedding, meaningless to render
+    revisions: List[Dict[str, Any]] = []
+    for dom, rec in (_read_json("self_belief_revisions.json", {}) or {}).items():
+        if not isinstance(rec, dict):
+            continue
+        for ev in rec.get("events") or []:
+            if isinstance(ev, dict):
+                revisions.append({"domain": dom, "confidence": rec.get("confidence"), **ev})
+    revisions.sort(key=lambda r: str(r.get("timestamp") or ""))
+    cap = max(1, min(100, n))
+    opinions = [o for o in _read_json("opinions.json", []) if isinstance(o, dict)]
+    return JSONResponse({
+        "model": sm,
+        "revisions": revisions[-cap:],
+        "opinions": opinions[-cap:],
+        "autobiography": _read_json("autobiography.json", {}),
+    })
+
+
+@router.get("/people")
+async def people() -> JSONResponse:
+    """Who he knows (box ⑧): person models from relationships.json + the known-
+    persons registry. His internal peer observers live in the same file — they
+    are returned as a DISTINCT `peers` group, never mixed in with people."""
+    persons: List[Dict[str, Any]] = []
+    peers: List[Dict[str, Any]] = []
+    for name, rec in (_read_json("relationships.json", {}) or {}).items():
+        if not isinstance(rec, dict):
+            continue
+        row = {"name": name, **{k: v for k, v in rec.items() if k != "interaction_history"}}
+        hist = rec.get("interaction_history")
+        row["interactions"] = len(hist) if isinstance(hist, list) else 0
+        (peers if rec.get("type") == "peer" else persons).append(row)
+    known = [{"id": pid, **rec}
+             for pid, rec in (_read_json("known_persons.json", {}) or {}).items()
+             if isinstance(rec, dict)]
+    return JSONResponse({"people": persons, "peers": peers, "known": known})

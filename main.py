@@ -176,84 +176,18 @@ else:
 # ---------- Repo root ----------
 REPO_ROOT = compute_repo_root(__file__)
 
-# ---- Forget-on-start (stateless boot) ----
-def _is_subpath(child: Path, parent: Path) -> bool:
-    try:
-        child.resolve().relative_to(parent.resolve())
-        return True
-    except Exception:
-        return False
-
-def _forget_everything() -> None:
-    """
-    DANGER: Deletes Orrin's daemon-durability state (the resolved state tree) so he
-    boots fresh. Controlled by ORRIN_FORGET_ON_START=1|true|yes. Targets only the
-    known state subtrees, which relocate with ORRIN_STATE_DIR.
-    """
-    try:
-        from brain.paths import STATE_DIR, MEMORY_DIR, GOALS_DIR
-    except Exception:
-        STATE_DIR = REPO_ROOT / "data"
-        MEMORY_DIR, GOALS_DIR = STATE_DIR / "memory", STATE_DIR / "goals"
-    for p in (MEMORY_DIR, GOALS_DIR, STATE_DIR / "logs", REPO_ROOT / "tmp"):
-        try:
-            if p.exists():
-                print(f"[forget] removing {p}")
-                shutil.rmtree(p, ignore_errors=True)
-        except Exception as e:
-            print(f"[forget] could not remove {p}: {e}")
-    for p in (STATE_DIR, STATE_DIR / "logs", REPO_ROOT / "tmp"):
-        try:
-            p.mkdir(parents=True, exist_ok=True)
-        except Exception as _e:
-            _log.warning("silent except: %s", _e)
-
-
-# Bundled config seeds — the minimum a newborn needs to boot coherently. Shipped in
-# the program folder's brain/data; copied into a fresh (relocated) data dir on first
-# launch so the brain doesn't error on missing model_config / vocabulary / etc.
-_SEED_FILES = (
-    "affect_model.json", "behavioral_functions_list.json",
-    "capability_descriptions.json", "cognitive_functions.json",
-    "meta_rules.json", "model_config.json", "vocab_weights.json", "vocabulary.json",
-)
-
-
-def _seed_if_newborn() -> None:
-    """If the resolved data dir is a fresh/empty install (no model_config.json yet),
-    seed the bundled config files so a newborn boots. No-op when running in-repo on
-    the seed dir itself, or when state already exists (relaunch reuses it)."""
-    try:
-        from brain.paths import DATA_DIR
-    except Exception:
-        return
-    seed_src = _BRAIN_DIR / "data"
-    if DATA_DIR.resolve() == seed_src.resolve():
-        return  # in-repo: the data dir IS the seed source
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    if (DATA_DIR / "model_config.json").exists():
-        return  # already a living mind here — reuse it
-    copied = 0
-    for name in _SEED_FILES:
-        src, dst = seed_src / name, DATA_DIR / name
-        try:
-            if src.exists() and not dst.exists():
-                shutil.copy2(src, dst)
-                copied += 1
-        except Exception as e:
-            print(f"[seed] could not seed {name}: {e}")
-    print(f"[seed] newborn data dir → seeded {copied} config file(s) into {DATA_DIR}")
-
+# ---- Forget-on-start (stateless boot) + first-launch seeding ----
+from runtime import newborn as _newborn
 
 FORGET_FLAG = os.getenv("ORRIN_FORGET_ON_START", "").strip().lower()
 if FORGET_FLAG in ("1", "true", "yes"):
     print("[forget] ORRIN_FORGET_ON_START enabled → wiping persisted state before boot")
-    _forget_everything()
+    _newborn.forget_everything()
 else:
     print("[forget] ORRIN_FORGET_ON_START not set → keeping previous state")
 
 # First-launch seeding: a fresh/relocated data dir boots a coherent newborn.
-_seed_if_newborn()
+_newborn.seed_if_newborn()
 
 # Schema migration spine (§10.7): reconcile the on-disk state version with this build
 # BEFORE any subsystem reads state. Older → auto-export then migrate forward; newer
@@ -1027,7 +961,7 @@ def _wipe_to_newborn() -> None:
         THINK_DIR = REPO_ROOT / "brain" / "think"
         SELF_CODE_DIR = DATA_DIR / "self_code"
 
-    seeds = set(_SEED_FILES)
+    seeds = set(_newborn.SEED_FILES)
     if DATA_DIR.exists():
         for p in DATA_DIR.iterdir():
             if p.name in seeds:
@@ -1044,7 +978,7 @@ def _wipe_to_newborn() -> None:
         except Exception as e:
             print(f"[reset] could not remove {d}: {e}")
     # Recreate the seed baseline where the data dir was relocated (no-op in-repo).
-    _seed_if_newborn()
+    _newborn.seed_if_newborn()
 
 
 def _reexec() -> None:

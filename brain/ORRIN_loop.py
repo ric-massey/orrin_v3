@@ -95,6 +95,8 @@ from brain.loop.boot import _boot_context, _verify_production_capability  # noqa
 
 # Sense / state-refresh stage, extracted to brain/loop/sense.py (Phase 4A).
 from brain.loop.sense import sense_and_refresh, _apply_transient_signal_decay  # noqa: F401
+# Recall + integration stage, extracted to brain/loop/reflect.py (Phase 4A).
+from brain.loop.reflect import integrate_recall_and_baseline
 def run_cognitive_loop(
     pulse=None,
     goals_api=None,
@@ -292,142 +294,7 @@ def run_cognitive_loop(
                 log_private(f"EMERGENCY ACTION: {emergency}")
                 break
 
-            # Query v2 MemoryDaemon for semantically relevant memories.
-            # When comprehension parsed an input concept this cycle, use it as the
-            # query so retrieved memories are relevant to what was just said, not
-            # just to whatever goal/thought was already active.
-            if _mem_daemon:
-                import brain.memory_io as memory_io
-                try:
-                    _input_concept = (context.get("_last_comprehension") or {}).get("concept") or ""
-                    _mem_query = _input_concept.strip() or None
-                    injected = memory_io.inject_into_context(_mem_daemon, context, query_text=_mem_query, k=6)
-                    if not injected:
-                        context.setdefault("retrieved_memories", [])
-                    _ui_memory("read", context.get("retrieved_memories"), store="long")
-                except Exception:
-                    context.setdefault("retrieved_memories", [])
-            else:
-                context.setdefault("retrieved_memories", [])
-
-            # Memory pattern: when retrieved memories share a theme, inject a
-            # pattern insight into working_memory so inner_loop reasoning picks it up.
-            try:
-                _memories = context.get("retrieved_memories") or []
-                if len(_memories) >= 2:
-                    from collections import Counter as _Counter
-                    _types = _Counter(
-                        (m.get("event_type") or (m.get("meta") or {}).get("event_type") or "")
-                        for m in _memories
-                        if isinstance(m, dict)
-                    )
-                    _dom_type, _dom_count = (_types.most_common(1)[0] if _types else ("", 0))
-                    if _dom_count >= 2 and _dom_type:
-                        _pattern = (
-                            f"[Memory pattern] {_dom_count} recent memories involve '{_dom_type}'. "
-                            "Consider whether this pattern should shape the current approach."
-                        )
-                        context["memory_pattern"] = {"type": _dom_type, "count": _dom_count}
-                        from brain.cog_memory.working_memory import update_working_memory as _uwm
-                        _uwm(_pattern)
-            except Exception as _mpe:
-                record_failure("ORRIN_loop.memory_pattern", _mpe)
-
-            # Formative tensions: inject active tensions into context and working memory.
-            try:
-                from brain.cognition.selfhood.tensions import inject_tension_signals as _its2
-                _its2(context)
-            except Exception as _tse:
-                record_failure("ORRIN_loop.inject_tension_signals", _tse)
-            context.setdefault("active_tensions", [])
-
-            # Periodic tension detection: scan for NEW tensions outside dream cycle.
-            # Dream-only detection means tensions could go unnoticed for hours between sleeps.
-            try:
-                _tc_tens = get_cycle_count()
-                if _tc_tens > 0 and _tc_tens % 30 == 0:
-                    from brain.cognition.selfhood.tensions import detect_tensions as _dt2
-                    _dt2(context)
-            except Exception as _dte:
-                record_failure("ORRIN_loop.detect_tensions_periodic", _dte)
-
-            # Emotional consolidation drain: apply one tick of gradual emotional
-            # residue from significant past events.
-            try:
-                from brain.affect.consolidation import drain_consolidations as _drain_consol
-                _drain_consol(context)
-            except Exception as _consol_e:
-                record_failure("ORRIN_loop.drain_consolidations", _consol_e)
-
-            # Integration lag drain: apply deferred emotional deltas when their
-            # cycles-left counter reaches 0 (the "it hits you later" effect).
-            try:
-                from brain.affect.integration_lag import process_integration_queue as _piq
-                _piq(context)
-            except Exception as _iq_e:
-                record_failure("ORRIN_loop.process_integration_queue", _iq_e)
-
-            # stagnation_signal escalation: track consecutive bored cycles and inject
-            # escalating pressure/penalty_signal signals when stagnation_signal compounds.
-            try:
-                from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
-                _ube(context)
-            except Exception as _be_e:
-                record_failure("ORRIN_loop.stagnation_signal_escalation", _be_e)
-
-            # Refresh self_model from disk every 10 cycles so value/belief changes
-            # made by cognition functions (value_evolution, etc.) propagate to the
-            # system prompt without requiring a restart.
-            _cycle_n_sm = get_cycle_count()
-            if _cycle_n_sm % 10 == 0:
-                try:
-                    from brain.utils.self_model import get_self_model as _gsm
-                    context["self_model"] = _gsm()
-                except Exception as e:
-                    record_failure("ORRIN_loop.refresh_self_model", e)
-
-            # Make the current context available to build_system_prompt() via the
-            # process-local store, without threading context through every call chain.
-            try:
-                from brain.utils.runtime_ctx import set_cycle_context as _scc
-                _scc(context)
-            except Exception as e:
-                record_failure("ORRIN_loop.set_cycle_context", e)
-
-            # ── Snapshot emotional baseline for spike detection ────────────────
-            try:
-                _emo_now  = context.get("affect_state") or {}
-                _emo_core = _emo_now.get("core_signals") or _emo_now
-                context["_emo_pre_cycle"] = {
-                    k: float(v) for k, v in _emo_core.items()
-                    if isinstance(v, (int, float))
-                }
-                # Agency-based causal learning — attribute the felt change. Last
-                # cycle's action stashed (fn, pre-affect); its consequences have now
-                # drained into this cycle's start-affect. Record the dominant signal
-                # that moved as a do(action)→effect edge (Pearl Level 2). Only the
-                # single dominant, clearly-above-drift change → salient links, not
-                # noise; the causal graph's evidence/confound machinery refines it.
-                _iv = context.pop("_iv_pending", None)
-                if isinstance(_iv, dict) and _iv.get("fn") and isinstance(_iv.get("core"), dict):
-                    _prev = _iv["core"]
-                    _sig, _dd = None, 0.0
-                    for _k, _pv in _prev.items():
-                        _nv = context["_emo_pre_cycle"].get(_k)
-                        if isinstance(_nv, (int, float)) and abs(_nv - _pv) > abs(_dd):
-                            _dd, _sig = (_nv - _pv), _k
-                    if _sig is not None and abs(_dd) >= 0.04:
-                        from brain.symbolic.causal_graph import (
-                            record_intervention as _rec_iv,
-                            is_established as _is_est,
-                        )
-                        _effect = f"{_sig} {'rises' if _dd > 0 else 'falls'}"
-                        # Don't keep re-intervening on established ground truth —
-                        # it burns cycles and adds noise to the world model.
-                        if not _is_est(_iv["fn"], _effect):
-                            _rec_iv(_iv["fn"], _effect)
-            except Exception as _e:
-                record_failure("ORRIN_loop.run_cognitive_loop.8", _e)
+            context = integrate_recall_and_baseline(context, _mem_daemon)
 
             acted_this_cycle = False
             try:

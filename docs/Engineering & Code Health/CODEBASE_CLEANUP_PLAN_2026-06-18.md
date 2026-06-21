@@ -12,6 +12,28 @@ Detailed structural findings are recorded in
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
 
+- **Phase 4A `ORRIN_loop.py` — cleanly-separable stages extracted (loop-body
+  decomposition still open).** Extended the boot net with
+  `test_single_cycle_advances_cognition_counter` (a single-cycle run must persist
+  an advanced `cycle_count.json` — proof a cognitive cycle actually executed, not
+  just booted), then extracted three cohesive lifecycle stages into a new
+  `brain/loop/` package (placed there, not under the registry-walked
+  `brain.cognition`): `telemetry.py` (the fail-safe UI/telemetry emit helpers —
+  4A's "telemetry publication"), `invoke.py` (`_invoke_cognition` +
+  `_build_kwargs_for`, the single cognitive-dispatch point), and `boot.py` (4A's
+  "boot/context construction": `_validate_boot_files`,
+  `_verify_production_capability`, the ~490-line `_boot_context`).
+  `run_cognitive_loop` re-imports what it calls, so call sites and external import
+  paths are unchanged. Each was a pure move, verified by the loop net (which runs
+  `_boot_context` + emits telemetry + completes a cycle every run) + the full
+  suite (**922 passed / 1 skipped**, ruff clean); three dependent tests were
+  repointed at the new module homes. **ORRIN_loop.py 3,709 → 2,760.** Still open:
+  the hard part — decomposing the ~2,000-line `run_cognitive_loop` body itself
+  (cycle sensing, conscious-ignition, cognition execution, action accounting,
+  maintenance) into stages behind a per-cycle state object. That's the same
+  risk-class as the `main.py` RuntimeContext work and wants its own deliberate
+  pass, not a rushed one (per the plan's "do not begin with a wholesale rewrite").
+
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added
   `tests/test_main_boot.py`: subprocess characterization tests that pin the real

@@ -41,6 +41,7 @@ from .auth import (
 )
 from .routers import memory as memory_routes
 from .routers import source as source_routes
+from .routers import diagnostics as diagnostics_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -1267,6 +1268,10 @@ from fastapi import Depends as _Depends  # noqa: E402
 app.include_router(api, dependencies=[_Depends(_authorize_read)])
 app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 
+# Control surfaces that self-authorize (auth.authorize_control) and so are mounted
+# directly on the app, NOT under the read-token api router (Phase 4C).
+app.include_router(diagnostics_routes.router)
+
 
 # ── Control: stop Orrin from the UI ──────────────────────────────────────────
 # A "stop Orrin" handler the orchestrator (main.py) registers. When present, the
@@ -1356,21 +1361,6 @@ def _safe_restart() -> None:
 
 
 # ── Mind export / import (§9.6) ──────────────────────────────────────────────
-@app.get("/api/mind/export")
-async def mind_export(request: Request):
-    """Stream the full mind as one portable archive (both state trees, atomically).
-    Guarded like every control surface."""
-    _authorize_control(request)
-    from fastapi import Response as _Response
-    from brain.utils import mind_archive as _ma
-    data = _ma.export_bytes()
-    return _Response(
-        content=data,
-        media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{_ma.export_filename()}"'},
-    )
-
-
 @app.post("/api/mind/import")
 async def mind_import(request: Request) -> Dict[str, Any]:
     """Restore a mind from a raw archive (request body = the .orrindmind bytes). The
@@ -1389,72 +1379,6 @@ async def mind_import(request: Request) -> Dict[str, Any]:
         threading.Timer(0.4, _safe_restart).start()
         result["restarting"] = True
     return result
-
-
-# ── Diagnostics export (§10.7) ───────────────────────────────────────────────
-@app.get("/api/diagnostics")
-async def diagnostics_export(request: Request):
-    """Stream an opt-in diagnostics bundle: recent operational logs + the boot/death/
-    crash state tag (§10.5) and schema version — NEVER memory content or private
-    thoughts (the module enforces an allowlist). Owner-only, guarded like every control
-    surface; no silent telemetry — the user chooses to send it."""
-    _authorize_control(request)
-    from fastapi import Response as _Response
-    from brain.utils import diagnostics as _diag
-    data = _diag.export_bytes()
-    return _Response(
-        content=data,
-        media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{_diag.export_filename()}"'},
-    )
-
-
-# ── Life Capsule (the evidence export — Part IX) ─────────────────────────────
-@app.get("/api/life/capsules")
-async def life_capsules(request: Request) -> Dict[str, Any]:
-    """Catalog of sealed Life Capsules (newest first). Owner-only like every control
-    surface."""
-    _authorize_control(request)
-    from brain.evidence import life_capsule as _lc
-    return {"capsules": _lc.list_capsules()}
-
-
-@app.get("/api/life/capsule/summary")
-async def life_capsule_summary(request: Request, run: str = "latest") -> Dict[str, Any]:
-    """The inline-renderable summary for one capsule (executive summary + key metrics +
-    claims) — for rendering in the Capsule panel without downloading the whole zip."""
-    _authorize_control(request)
-    from brain.evidence import life_capsule as _lc
-    summary = _lc.read_capsule_summary(run)
-    if summary is None:
-        raise HTTPException(status_code=404, detail="no capsule found")
-    return summary
-
-
-@app.post("/api/life/capsule/build")
-async def life_capsule_build(request: Request) -> Dict[str, Any]:
-    """Build a capsule from the current data on demand (reason=manual). Read-only over
-    Orrin's state; returns the new capsule's catalog entry."""
-    _authorize_control(request)
-    from brain.evidence import life_capsule as _lc
-    path = _lc.build_life_capsule("manual")
-    return {"ok": True, "file": path.name, "size_bytes": path.stat().st_size}
-
-
-@app.get("/api/life/capsule")
-async def life_capsule_download(request: Request, run: str = "latest"):
-    """Stream a sealed `.orrinlife.zip` (the evidence export). Owner-only."""
-    _authorize_control(request)
-    from fastapi import Response as _Response
-    from brain.evidence import life_capsule as _lc
-    path = _lc.capsule_path(run)
-    if path is None or not path.exists():
-        raise HTTPException(status_code=404, detail="no capsule found")
-    return _Response(
-        content=path.read_bytes(),
-        media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{path.name}"'},
-    )
 
 
 # ── Auto-update (§10.7 / I7) ─────────────────────────────────────────────────

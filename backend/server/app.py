@@ -13,10 +13,8 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import os
-import signal
-import threading
 import time
-from typing import Any, AsyncIterator, Callable, Dict, List, Optional
+from typing import Any, AsyncIterator, Dict, List, Optional
 
 from pathlib import Path as _Path2
 
@@ -33,7 +31,6 @@ from .state import hub, _read_json, _read_jsonl_tail, _float_or_none, _belief_ch
 # themselves without importing app.py. Keep the historical underscore names here.
 from .auth import (
     authorize_read as _authorize_read,
-    authorize_control as _authorize_control,
     ws_read_authorized as _ws_read_authorized,
 )
 from .routers import memory as memory_routes
@@ -42,6 +39,7 @@ from .routers import diagnostics as diagnostics_routes
 from .routers import settings as settings_routes
 from .routers import agent as agent_routes
 from .routers import update as update_routes
+from .routers import control as control_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -1274,134 +1272,19 @@ app.include_router(diagnostics_routes.router)
 app.include_router(settings_routes.router)
 app.include_router(agent_routes.router)
 app.include_router(update_routes.router)
+app.include_router(control_routes.router)
+
+# ── Control: lifecycle handlers (stop / reset / restart) ─────────────────────
+# The registry + the routes that drive it now live in lifecycle.py and
+# routers/control.py (Phase 4C). Re-export the setters here: main.py and the tests
+# register handlers via `from backend.server.app import set_*_handler`.
+from .lifecycle import (  # noqa: E402,F401
+    set_stop_handler,
+    set_reset_handler,
+    set_restart_handler,
+)
 
 
-# ── Control: stop Orrin from the UI ──────────────────────────────────────────
-# A "stop Orrin" handler the orchestrator (main.py) registers. When present, the
-# Stop button halts ONLY cognition (loop + daemons) and leaves the UI/window up,
-# so you can keep viewing his frozen mind. Absent (e.g. standalone `backend/main.py`),
-# Stop falls back to a full-process SIGINT, preserving the old behavior.
-_stop_handler: "Optional[Callable[[], None]]" = None
-
-
-def set_stop_handler(fn: "Callable[[], None]") -> None:
-    global _stop_handler
-    _stop_handler = fn
-
-
-@app.post("/api/control/shutdown")
-async def control_shutdown(request: Request) -> Dict[str, Any]:
-    """
-    Stop Orrin from the UI.
-
-    When the orchestrator registered a stop handler (the normal `python main.py`
-    run), the Stop button halts ONLY cognition — the loop and its daemons — and
-    leaves the UI/window running so you can keep viewing his (now-frozen) mind.
-    Quitting the app is a separate action: close the window.
-
-    Without a handler (standalone `backend/main.py`), there's nothing but the
-    server to stop, so it falls back to a full-process SIGINT (the old behavior).
-
-    The action fires on a short delay so this HTTP response reaches the UI first.
-    """
-    _authorize_control(request)
-    await hub.broadcast({"type": "delta", "frame": hub.merge(
-        {"logs": [{"level": "warn", "source": "control", "message": "stop requested from UI"}]}
-    )})
-
-    if _stop_handler is not None:
-        threading.Timer(0.2, _safe_stop).start()
-        return {"ok": True, "stopping": True, "scope": "cognition"}
-
-    def _trigger() -> None:
-        # Default SIGINT handler raises KeyboardInterrupt in the main thread,
-        # which both the embedded launcher and standalone uvicorn.run() handle.
-        with contextlib.suppress(Exception):
-            os.kill(os.getpid(), signal.SIGINT)
-
-    threading.Timer(0.4, _trigger).start()
-    return {"ok": True, "stopping": True, "scope": "process"}
-
-
-def _safe_stop() -> None:
-    """Invoke the registered stop handler, swallowing any error."""
-    with contextlib.suppress(Exception):
-        if _stop_handler is not None:
-            _stop_handler()
-
-
-# A "reset Orrin" handler the orchestrator (main.py) registers — wipes his state to a
-# newborn and re-launches the process. Absent (standalone backend) → reset is
-# unavailable rather than a no-op, so the UI can report honestly.
-_reset_handler: "Optional[Callable[[], None]]" = None
-
-
-def set_reset_handler(fn: "Callable[[], None]") -> None:
-    global _reset_handler
-    _reset_handler = fn
-
-
-def _safe_reset() -> None:
-    with contextlib.suppress(Exception):
-        if _reset_handler is not None:
-            _reset_handler()
-
-
-# A "restart Orrin" handler (stop + re-launch, NO wipe) the orchestrator registers —
-# used after a Mind Restore swaps his state on disk so the new mind loads clean.
-_restart_handler: "Optional[Callable[[], None]]" = None
-
-
-def set_restart_handler(fn: "Callable[[], None]") -> None:
-    global _restart_handler
-    _restart_handler = fn
-
-
-def _safe_restart() -> None:
-    with contextlib.suppress(Exception):
-        if _restart_handler is not None:
-            _restart_handler()
-
-
-# ── Mind export / import (§9.6) ──────────────────────────────────────────────
-@app.post("/api/mind/import")
-async def mind_import(request: Request) -> Dict[str, Any]:
-    """Restore a mind from a raw archive (request body = the .orrindmind bytes). The
-    current mind is snapshotted FIRST; a bad/foreign/newer archive is refused and the
-    running mind is left untouched. On success Orrin restarts so the new state loads."""
-    _authorize_control(request)
-    from brain.utils import mind_archive as _ma
-    body = await request.body()
-    if not body:
-        raise HTTPException(status_code=400, detail="empty body — send the archive bytes")
-    try:
-        result = _ma.import_archive(body)
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    if _restart_handler is not None:
-        threading.Timer(0.4, _safe_restart).start()
-        result["restarting"] = True
-    return result
-
-
-# ── Auto-update (§10.7 / I7) ─────────────────────────────────────────────────
-@app.post("/api/control/reset")
-async def control_reset(request: Request) -> Dict[str, Any]:
-    """Wipe Orrin to a newborn and re-launch. Destructive — same guard as shutdown,
-    and the UI gates it behind an explicit confirm. The actual wipe/reseed/restart is
-    the orchestrator's job (main.py registered the handler); fires on a short delay so
-    this response reaches the UI first."""
-    _authorize_control(request)
-    if _reset_handler is None:
-        raise HTTPException(status_code=503, detail="reset is unavailable in this run mode")
-    await hub.broadcast({"type": "delta", "frame": hub.merge(
-        {"logs": [{"level": "warn", "source": "control", "message": "reset requested from UI — Orrin is becoming a newborn"}]}
-    )})
-    threading.Timer(0.3, _safe_reset).start()
-    return {"ok": True, "resetting": True}
-
-
-# ── Producer ingest ──────────────────────────────────────────────────────────
 # ── Landing page / built UI ──────────────────────────────────────────────────
 @app.get("/", response_class=HTMLResponse)
 async def index():

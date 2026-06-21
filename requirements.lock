@@ -1,0 +1,422 @@
+# requirements.lock — FULLY-PINNED lock of pyproject.toml's full runtime
+# (`--all-extras`), resolved for the deployment target (Linux / CPython 3.11, the
+# Dockerfile base). CODEBASE_CLEANUP_PLAN Phase 2.
+#
+# This is the reproducible-install artifact; requirements.txt remains the curated
+# DIRECT-dependency mirror. Regenerate after any dependency change in pyproject:
+#
+#   uv pip compile pyproject.toml --all-extras \
+#       --python-platform linux --python-version 3.11 \
+#       --no-header -o requirements.lock
+#
+# torch is pinned to the same version published on both PyPI and PyTorch's CPU
+# index — install it from the CPU index (see Dockerfile) to get the slim CPU
+# variant of that exact version instead of the ~2 GB CUDA build.
+annotated-doc==0.0.4
+    # via
+    #   fastapi
+    #   typer
+annotated-types==0.7.0
+    # via pydantic
+anthropic==0.111.0
+    # via orrin (pyproject.toml)
+anyio==4.14.0
+    # via
+    #   anthropic
+    #   google-genai
+    #   httpx
+    #   openai
+    #   starlette
+    #   watchfiles
+backports-tarfile==1.2.0
+    # via jaraco-context
+beautifulsoup4==4.15.0
+    # via orrin (pyproject.toml)
+blis==1.3.3
+    # via thinc
+bottle==0.13.4
+    # via pywebview
+catalogue==2.0.10
+    # via
+    #   spacy
+    #   srsly
+    #   thinc
+certifi==2026.6.17
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
+cffi==2.0.0
+    # via cryptography
+charset-normalizer==3.4.7
+    # via requests
+click==8.4.1
+    # via
+    #   huggingface-hub
+    #   typer
+    #   uvicorn
+cloudpathlib==0.24.0
+    # via weasel
+confection==1.3.3
+    # via
+    #   spacy
+    #   thinc
+    #   weasel
+coverage==7.14.2
+    # via orrin (pyproject.toml)
+cryptography==49.0.0
+    # via
+    #   google-auth
+    #   secretstorage
+cuda-bindings==13.3.1
+    # via torch
+cuda-pathfinder==1.5.5
+    # via cuda-bindings
+cuda-toolkit==13.0.2
+    # via torch
+cymem==2.0.13
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
+distro==1.9.0
+    # via
+    #   anthropic
+    #   google-genai
+    #   openai
+docstring-parser==0.18.0
+    # via anthropic
+fastapi==0.138.0
+    # via orrin (pyproject.toml)
+filelock==3.29.4
+    # via
+    #   huggingface-hub
+    #   torch
+fsspec==2026.6.0
+    # via
+    #   huggingface-hub
+    #   torch
+google-auth==2.55.0
+    # via google-genai
+google-genai==2.9.0
+    # via orrin (pyproject.toml)
+h11==0.16.0
+    # via
+    #   httpcore
+    #   uvicorn
+hf-xet==1.5.1
+    # via huggingface-hub
+httpcore==1.0.9
+    # via httpx
+httptools==0.8.0
+    # via uvicorn
+httpx==0.28.1
+    # via
+    #   anthropic
+    #   google-genai
+    #   huggingface-hub
+    #   openai
+    #   weasel
+huggingface-hub==1.20.1
+    # via
+    #   sentence-transformers
+    #   tokenizers
+    #   transformers
+idna==3.18
+    # via
+    #   anyio
+    #   httpx
+    #   requests
+importlib-metadata==9.0.0
+    # via keyring
+iniconfig==2.3.0
+    # via pytest
+jaraco-classes==3.4.0
+    # via keyring
+jaraco-context==6.1.2
+    # via keyring
+jaraco-functools==4.5.0
+    # via keyring
+jeepney==0.9.0
+    # via
+    #   keyring
+    #   secretstorage
+jinja2==3.1.6
+    # via
+    #   spacy
+    #   torch
+jiter==0.15.0
+    # via
+    #   anthropic
+    #   openai
+joblib==1.5.3
+    # via scikit-learn
+keyring==25.7.0
+    # via orrin (pyproject.toml)
+markdown-it-py==4.2.0
+    # via rich
+markupsafe==3.0.3
+    # via jinja2
+mdurl==0.1.2
+    # via markdown-it-py
+more-itertools==11.1.0
+    # via
+    #   jaraco-classes
+    #   jaraco-functools
+mpmath==1.3.0
+    # via sympy
+murmurhash==1.0.15
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
+narwhals==2.22.1
+    # via scikit-learn
+networkx==3.6.1
+    # via torch
+numpy==2.4.6
+    # via
+    #   orrin (pyproject.toml)
+    #   blis
+    #   scikit-learn
+    #   scipy
+    #   sentence-transformers
+    #   spacy
+    #   thinc
+    #   transformers
+nvidia-cublas==13.1.1.3
+    # via
+    #   nvidia-cudnn-cu13
+    #   nvidia-cusolver
+    #   torch
+nvidia-cuda-cupti==13.0.85
+    # via cuda-toolkit
+nvidia-cuda-nvrtc==13.0.88
+    # via
+    #   cuda-toolkit
+    #   nvidia-cublas
+nvidia-cuda-runtime==13.0.96
+    # via cuda-toolkit
+nvidia-cudnn-cu13==9.20.0.48
+    # via torch
+nvidia-cufft==12.0.0.61
+    # via cuda-toolkit
+nvidia-cufile==1.15.1.6
+    # via cuda-toolkit
+nvidia-curand==10.4.0.35
+    # via cuda-toolkit
+nvidia-cusolver==12.0.4.66
+    # via cuda-toolkit
+nvidia-cusparse==12.6.3.3
+    # via
+    #   cuda-toolkit
+    #   nvidia-cusolver
+nvidia-cusparselt-cu13==0.8.1
+    # via torch
+nvidia-nccl-cu13==2.29.7
+    # via torch
+nvidia-nvjitlink==13.0.88
+    # via
+    #   cuda-toolkit
+    #   nvidia-cufft
+    #   nvidia-cusolver
+    #   nvidia-cusparse
+nvidia-nvshmem-cu13==3.4.5
+    # via torch
+nvidia-nvtx==13.0.85
+    # via cuda-toolkit
+openai==2.43.0
+    # via orrin (pyproject.toml)
+packaging==26.2
+    # via
+    #   huggingface-hub
+    #   pytest
+    #   spacy
+    #   thinc
+    #   transformers
+    #   weasel
+pillow==12.2.0
+    # via
+    #   orrin (pyproject.toml)
+    #   pystray
+pluggy==1.6.0
+    # via pytest
+preshed==3.0.13
+    # via
+    #   spacy
+    #   thinc
+prometheus-client==0.25.0
+    # via orrin (pyproject.toml)
+proxy-tools==0.1.0
+    # via pywebview
+psutil==7.2.2
+    # via orrin (pyproject.toml)
+pyasn1==0.6.3
+    # via pyasn1-modules
+pyasn1-modules==0.4.2
+    # via google-auth
+pycparser==3.0
+    # via cffi
+pydantic==2.13.4
+    # via
+    #   anthropic
+    #   fastapi
+    #   google-genai
+    #   openai
+    #   spacy
+    #   thinc
+    #   weasel
+pydantic-core==2.46.4
+    # via pydantic
+pygments==2.20.0
+    # via
+    #   pytest
+    #   rich
+pystray==0.19.5
+    # via orrin (pyproject.toml)
+pytest==9.1.1
+    # via orrin (pyproject.toml)
+python-dotenv==1.2.2
+    # via
+    #   orrin (pyproject.toml)
+    #   uvicorn
+python-xlib==0.33
+    # via pystray
+pywebview==6.2.1
+    # via orrin (pyproject.toml)
+pyyaml==6.0.3
+    # via
+    #   huggingface-hub
+    #   transformers
+    #   uvicorn
+regex==2026.5.9
+    # via transformers
+requests==2.34.2
+    # via
+    #   orrin (pyproject.toml)
+    #   google-auth
+    #   google-genai
+    #   spacy
+rich==15.0.0
+    # via typer
+ruff==0.15.18
+    # via orrin (pyproject.toml)
+safetensors==0.8.0
+    # via transformers
+scikit-learn==1.9.0
+    # via sentence-transformers
+scipy==1.17.1
+    # via
+    #   scikit-learn
+    #   sentence-transformers
+secretstorage==3.5.0
+    # via keyring
+sentence-transformers==5.6.0
+    # via orrin (pyproject.toml)
+setuptools==81.0.0
+    # via
+    #   spacy
+    #   thinc
+    #   torch
+shellingham==1.5.4
+    # via typer
+six==1.17.0
+    # via
+    #   pystray
+    #   python-xlib
+smart-open==7.6.1
+    # via weasel
+sniffio==1.3.1
+    # via
+    #   anthropic
+    #   google-genai
+    #   openai
+soupsieve==2.8.4
+    # via beautifulsoup4
+spacy==3.8.14
+    # via orrin (pyproject.toml)
+spacy-legacy==3.0.12
+    # via spacy
+spacy-loggers==1.0.5
+    # via spacy
+srsly==2.5.3
+    # via
+    #   spacy
+    #   thinc
+    #   weasel
+starlette==1.3.1
+    # via fastapi
+sympy==1.14.0
+    # via torch
+tenacity==9.1.4
+    # via google-genai
+thinc==8.3.13
+    # via spacy
+threadpoolctl==3.6.0
+    # via scikit-learn
+tokenizers==0.22.2
+    # via transformers
+torch==2.12.1
+    # via sentence-transformers
+tqdm==4.68.3
+    # via
+    #   huggingface-hub
+    #   openai
+    #   sentence-transformers
+    #   spacy
+    #   transformers
+transformers==5.12.1
+    # via sentence-transformers
+triton==3.7.1
+    # via torch
+typer==0.25.1
+    # via
+    #   huggingface-hub
+    #   spacy
+    #   transformers
+    #   weasel
+typing-extensions==4.15.0
+    # via
+    #   anthropic
+    #   anyio
+    #   beautifulsoup4
+    #   fastapi
+    #   google-genai
+    #   huggingface-hub
+    #   openai
+    #   pydantic
+    #   pydantic-core
+    #   pywebview
+    #   sentence-transformers
+    #   starlette
+    #   torch
+    #   typing-inspection
+typing-inspection==0.4.2
+    # via
+    #   fastapi
+    #   pydantic
+urllib3==2.7.0
+    # via requests
+uvicorn==0.49.0
+    # via orrin (pyproject.toml)
+uvloop==0.22.1
+    # via uvicorn
+wasabi==1.1.3
+    # via
+    #   spacy
+    #   thinc
+    #   weasel
+watchdog==6.0.0
+    # via orrin (pyproject.toml)
+watchfiles==1.2.0
+    # via uvicorn
+weasel==1.0.0
+    # via spacy
+websockets==16.0
+    # via
+    #   google-genai
+    #   uvicorn
+wrapt==2.2.2
+    # via smart-open
+zipp==4.1.0
+    # via importlib-metadata

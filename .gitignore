@@ -39,6 +39,8 @@ build/
 
 # Advisory lock files (V3 stable-inode flock design keeps these; never commit)
 *.lock
+# …but the pinned dependency lock IS tracked (Phase 2; not a runtime data lock).
+!requirements.lock
 
 
 # Runtime telemetry & rolling logs (regenerated each run; not version-controlled state)

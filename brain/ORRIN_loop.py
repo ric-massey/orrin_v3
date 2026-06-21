@@ -66,7 +66,7 @@ from brain.paths import (
 # brain/loop/telemetry.py (Phase 4A). The bridge buffers on a daemon thread and
 # never raises, so cognition never blocks or crashes on telemetry.
 from brain.loop.telemetry import (
-    _bridge, _push_event, _ui_stage, _ui_memory,
+    _bridge, _push_event, _ui_memory,
 )
 
 
@@ -98,7 +98,7 @@ from brain.loop.sense import sense_and_refresh, _apply_transient_signal_decay  #
 # Recall + integration stage, extracted to brain/loop/reflect.py (Phase 4A).
 from brain.loop.reflect import integrate_recall_and_baseline, tier1_health_check
 # Deliberation-prep stages (executive lane, metacog→workspace), Phase 4A.
-from brain.loop.deliberate import prepare_workspace
+from brain.loop.deliberate import prepare_workspace, ignite
 def run_cognitive_loop(
     pulse=None,
     goals_api=None,
@@ -313,40 +313,7 @@ def run_cognitive_loop(
 
             context = prepare_workspace(context)
 
-            # ── Conscious ignition gate (Dehaene 2014; Baars 1988; Kahneman 2011) ─
-            # Consciousness is a threshold crossing ("ignition"), not a metronome.
-            # The unconscious substrate above (affect, embodiment, signals,
-            # subconscious threads, workspace competition) ran this cycle REGARDLESS.
-            # But only a salient / uncertain / conflicted cycle IGNITES into full
-            # deliberate cognition. should_think() is the bar; the periodic floor
-            # (MAX_SILENT_CYCLES) guarantees he never goes fully dormant.
-            #
-            # On a quiet (non-ignited) cycle Orrin stays in low-power default mode:
-            # think() still runs for bookkeeping + cheap symbolic selection, but
-            # deliberate System-2 recruitment (inner_loop) is withheld (see
-            # think_module §7) and the selector damps expensive deliberate functions
-            # (see select_function "unconscious damp"). This restores the
-            # conscious/unconscious distinction that "always_on" had collapsed.
-            # Disable with ORRIN_IGNITION_GATE=0 → exact old always-on behaviour.
-            _ignited, _ign_reason = True, "always_on"
-            if os.environ.get("ORRIN_IGNITION_GATE", "1") != "0":
-                try:
-                    from brain.think.consciousness_trigger import should_think as _should_think
-                    _ignited, _ign_reason = _should_think(context)
-                except Exception as _ige:
-                    record_failure("ORRIN_loop.ignition_gate", _ige)
-                    _ignited, _ign_reason = True, "ignition_error_failopen"
-            context["_conscious_cycle"] = bool(_ignited)
-            context["_ignition_reason"] = str(_ign_reason)
-            if _ignited:
-                log_activity(f"[consciousness] ignited: {_ign_reason}")
-                # Only an ignited cycle resets the silent-run counter, so the
-                # periodic floor in should_think() actually measures quiet time.
-                context["_last_think_cycle"] = get_cycle_count()
-                _ui_stage("plan", "Planning — deliberating the next move.")
-            else:
-                log_activity(f"[consciousness] quiet — unconscious cycle ({_ign_reason})")
-                _ui_stage("plan", "Idling — below the threshold of deliberate thought.")
+            context = ignite(context)
             result = think(context)
 
             _decision_id = (context.get("last_decision") or {}).get("reason", {}).get("decision_id")

@@ -41,6 +41,7 @@ from .routers import source as source_routes
 from .routers import diagnostics as diagnostics_routes
 from .routers import settings as settings_routes
 from .routers import agent as agent_routes
+from .routers import update as update_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -1272,6 +1273,7 @@ app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 app.include_router(diagnostics_routes.router)
 app.include_router(settings_routes.router)
 app.include_router(agent_routes.router)
+app.include_router(update_routes.router)
 
 
 # ── Control: stop Orrin from the UI ──────────────────────────────────────────
@@ -1383,32 +1385,6 @@ async def mind_import(request: Request) -> Dict[str, Any]:
 
 
 # ── Auto-update (§10.7 / I7) ─────────────────────────────────────────────────
-@app.get("/api/update")
-async def update_check(request: Request, force: bool = False) -> Dict[str, Any]:
-    """Is a newer Orrin published? Opt-in (pref `auto_update_check`) unless `force=1` (an
-    explicit 'Check now'). Reports only — never downloads or swaps. Owner-guarded since it
-    reaches the network."""
-    _authorize_control(request)
-    from brain.utils import updater
-    return updater.check_for_update(force=bool(force))
-
-
-@app.post("/api/update/prepare")
-async def update_prepare(request: Request) -> Dict[str, Any]:
-    """Export the mind to a keepsake BEFORE any update is applied (§10.7) — so even a
-    failed update/migration leaves a restorable copy. Returns the backup path + the state
-    schema version the new build must understand. The actual binary swap is the platform
-    installer's job (Sparkle/Squirrel/zsync), handed off via graceful shutdown."""
-    _authorize_control(request)
-    from brain.utils import updater
-    return updater.prepare_update()
-
-
-# ── Settings: API keys (kept in the OS keychain) ─────────────────────────────
-# The one small WRITE surface Part 4 introduces. Guarded exactly like /api/control/*
-# (untrusted Origin rejected; loopback-only unless a control token is configured), so
-# a hostile page can't read which keys exist or change them. Values are never
-# returned — only booleans — and never logged.
 @app.post("/api/control/reset")
 async def control_reset(request: Request) -> Dict[str, Any]:
     """Wipe Orrin to a newborn and re-launch. Destructive — same guard as shutdown,

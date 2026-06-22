@@ -74,11 +74,14 @@ Detailed structural findings are recorded in
   slice verified by the selector/goal suites + full suite. **All of Phase 4
   (4A–4E) is now done.**
 
-With **all of Phase 4 (4A–4E) now complete**, the only remaining work is
-Phase 5 (types & contracts), Phase 6 (dead code / duplication / API cleanup),
-and finishing Phase 7 (CI enforcement — the `make verify` gate is in; the
-coverage ratchet, size/complexity report, dependency-vulnerability reporting,
-and ownership tables remain).
+With **all of Phase 4 (4A–4E) now complete**, the remaining work is
+**Phase 4.5** (finish the decomposition gaps a 2026-06-22 file-level audit found:
+`select_function()` is still a single 1,120-line function, a few Phase-4-extracted
+modules exceed the 600-line limit, and ~30 other modules over 600 lines were
+never in Phase 4's scope), then Phase 5 (types & contracts), Phase 6 (dead code /
+duplication / API cleanup), and finishing Phase 7 (CI enforcement — the
+`make verify` gate is in; the coverage ratchet, size/complexity report,
+dependency-vulnerability reporting, and ownership tables remain).
 
 - **Phase 4A `ORRIN_loop.py` — cleanly-separable stages extracted (loop-body
   decomposition still open).** Extended the boot net with
@@ -281,10 +284,28 @@ Progress since 2026-06-19:
   `tests/test_import_contract.py` ratchet lists all 18 leaves and rejects bare
   references in import statements AND in patch/import_module/__import__ strings,
   so it can't regress. The PyInstaller spec bundles the `brain.*` namespace.
-  **Remaining tail:** `main.py` still inserts `brain/` on `sys.path` at runtime
-  as a compatibility affordance for self-authored code that may emit bare
-  imports; removing it is gated on a self-code import audit + app-launch check
-  (root packages `goals`/`memory`/`reaper` stay top-level by design).
+
+  **Remaining tail (re-audited 2026-06-22 — supersedes the earlier "main.py
+  inserts brain/" note, which is now stale):** `main.py` and `backend/main.py`
+  insert only the *repo root* on `sys.path` (main.py explicitly does NOT add
+  `brain/` — it comments that doing so "would shadow the frozen importer"), so
+  the dual-root hazard is gone at the entry points; removing even the repo-root
+  bootstrap is gated on committing to editable-install-only. Genuine residuals:
+  (1) **No package dependency-direction / layering check exists** — the plan's
+  "define allowed dependency directions / forbidden reverse deps fail an
+  architecture check" item was never built; `test_boundary_contracts_and_audit.py`
+  enforces *runtime data contracts at function seams*, not package layering, so
+  nothing prevents an import cycle (e.g. `brain/utils` → `brain/cognition`). This
+  is the one checklist item actually missed. (2) `goals/handlers/generic.py`
+  does a guarded runtime `sys.path.insert` to reach `brain.*` (a consequence of
+  `goals` being an intentional top-level package; defensible). (3) ~7 test files
+  still `sys.path.insert` (several insert `BRAIN_DIR`, the old dual-root
+  spelling) — harmless while they use `brain.*` imports, but a cleanup tail.
+  Correctly exempt (not residuals): `life_capsule.py` (guarded by `__main__`,
+  never runs on import), `brain/scripts/*` (standalone-script bootstraps), and
+  `self_code`/`dynamic_loader`/`sandbox` (the self-authored-code machinery the
+  plan explicitly exempts). Root packages `goals`/`memory`/`reaper` stay
+  top-level by design.
 
 ## Implementation status (updated 2026-06-19)
 
@@ -594,31 +615,205 @@ Move request parsing and domain logic out of route functions.
   documented reason.
 - Runtime behavior and telemetry contracts remain unchanged.
 
+## Phase 4.5 — Finish the decomposition Phase 4 left open
+
+**Why this exists.** A 2026-06-22 audit of the actual files (not the status
+notes) found that Phase 4 succeeded for four of its five named targets but
+overstated "done" in two ways: one target still contains a monolithic function,
+a few freshly-extracted modules already exceed the 600-line soft limit, and
+Phase 4's scope never touched the ~30 other oversized modules in the tree. This
+phase closes those gaps. It is still **engineering-only** — preserve observable
+behavior and telemetry contracts; every slice is a pure move/extraction verified
+green by the existing suites, same as Phase 4.
+
+### 4.5A. Break up the `select_function()` body (the survived monolith)
+
+`select_function.py` went 2,268 → 1,488 lines, but the file is now a **single
+1,120-line function**. The helpers were extracted cleanly into `selection/`; the
+coordinator itself was not. "Coordinator by nature" is only half true — it is a
+linear scoring accumulator over one `scores` dict, which is exactly the shape
+that decomposes into ordered, individually-testable scoring stages.
+
+- Extract each contributing section (emotion prefs, semantic priors, novelty,
+  devaluation, bandit hint, constraint masking, routing) into a
+  `selection/score_*.py` step with the signature
+  `apply(scores: dict, ctx: SelectionContext) -> None` (or returns a delta dict).
+- `select_function()` becomes an explicit pipeline: build context once, run the
+  ordered list of scoring steps, then pick. Target the coordinator under ~250
+  lines.
+- Each scoring step gets a direct unit test asserting its contribution to
+  `scores` in isolation — the current single-function shape makes that
+  impossible today.
+
+### 4.5B. Bring over-limit extracted modules under the soft limit
+
+Phase 4's own extraction produced modules above the 600-line limit it set.
+Re-split these (or document a concrete exemption per the exit criteria):
+
+- `brain/loop/execute.py` — **855 → 579 DONE** (reward shaping → `cognition_reward.py`)
+- `brain/loop/boot.py` — **631**
+- `brain/loop/sense.py` — **628**
+- `brain/cognition/planning/goal_execution.py` — **647 → 573 DONE** (milestone
+  gate `_bootstrap_goal_plan` → `goal_planning.py`, beside `_generate_plan`)
+- `brain/think/think_utils/finalize.py` — **630**
+
+### 4.5C. Decompose the monolithic modules Phase 4 never scoped
+
+Phase 4 only aimed at five named files. A repo-wide scan still shows **32 source
+modules over 600 lines**. Prioritize the largest, applying the same bottom-up,
+re-export-the-public-API method that worked in 4C/4D:
+
+- `brain/cognition/intrinsic_goals.py` — **1,745**
+- `brain/cognition/planning/goals.py` — **1,652** (sits beside the already-split
+  `pursue_goal`; same package, opposite state)
+- `brain/evidence/life_capsule.py` — **1,308**
+- `brain/cognition/knowledge_graph.py` — **1,239**
+- `brain/think/think_utils/action_gate.py` — **1,136**
+- `brain/cognition/opinions.py` — **1,114**
+- then the long tail (`update_affect_state.py` 882, `prediction.py` 867,
+  `dream_cycle.py` 862, `theory_of_mind.py` 828, … down to 600).
+
+Work largest-first, one module per change, each verified by the relevant suite
+plus the full suite before moving on. Do not batch — the value is that each
+landing is independently revertible.
+
+### 4.5D. Add the package dependency-direction check Phase 3 missed
+
+A 2026-06-22 re-audit found Phase 3 delivered its real goal (the dual-root
+import hazard is gone, 0 bare imports, locked by the `test_import_contract.py`
+ratchet) but **never built one of its own checklist items**: "define allowed
+package dependency directions / forbidden reverse dependencies fail an
+architecture check." The ratchet guards import *naming*, not *direction* — so
+nothing today prevents an import cycle such as `brain/utils` → `brain/cognition`.
+`test_boundary_contracts_and_audit.py` is unrelated (it enforces runtime data
+contracts at function seams, not package layering). This belongs in 4.5 because
+decomposition (4.5A–C) is exactly when new cross-package edges get introduced;
+the check should exist before the monoliths are carved up, not after.
+
+- Define the allowed dependency directions explicitly (a layered ordering, e.g.
+  `paths`/`utils` → `core`/`config` → `affect`/`cog_memory` → `cognition` →
+  `think` → `loop`/entry points; `goals`/`memory`/`reaper` as top-level
+  consumers of `brain.*`, never the reverse).
+- Add an architecture test (extend the existing import-contract test, or add a
+  sibling) that parses each module's imports and **fails on any edge that points
+  against the declared order** — i.e. a lower layer importing a higher one, or
+  any back-edge from `brain.*` into `goals`/`memory`/`reaper`.
+- Wire it into `make verify` so a forbidden reverse dependency breaks the build,
+  the same way the bare-import ratchet already does.
+- While here, retire the small Phase-3 `sys.path` tail the re-audit catalogued
+  (the ~7 test files inserting `BRAIN_DIR`; the guarded `goals/handlers/generic.py`
+  insert) where doing so doesn't fight the intentional top-level packaging.
+
+### Exit criteria
+
+- `select_function()` is a pipeline of ordered scoring steps, each unit-tested;
+  the coordinator is under ~250 lines.
+- No Phase-4-extracted module exceeds 600 lines without a documented exemption.
+- The count of source modules over 600 lines is tracked and trending down; every
+  reduction is a pure structural move with unchanged behavior/telemetry.
+- A size/complexity report (Phase 7) is wired in so this list cannot silently
+  regrow.
+- Allowed package dependency directions are declared and enforced by a test in
+  `make verify`; a forbidden reverse dependency or import cycle fails the build.
+  The residual Phase-3 `sys.path` tail is retired except where it serves the
+  intentional top-level packaging.
+
 ## Phase 5 — Strengthen types and contracts
 
-**Goal:** replace implicit dictionary protocols with explicit interfaces.
+**Goal:** replace Orrin's pervasive implicit-`dict` protocols with explicit,
+machine-checked interfaces. The defining symptom is signatures like
+`select_function(context: Dict, *args: Any, **kwargs: Any)`: nobody can tell what
+`context` holds, so nothing is checkable and every refactor is a guess. This
+phase makes the contracts explicit *and enforces them in CI*, so the structural
+gains from Phase 4/4.5 can't silently rot.
 
-### Work
+**Sequencing — interleave with Phase 4.5, do not run after it.** Phase 4.5
+re-splits the same modules Phase 5 would type, so type-checking them first is
+wasted churn and re-splitting them is easier *with* types. Therefore:
 
-- Define typed structures for:
-  - runtime context
+1. **Do 5.0 (checker + gate) first, before the bulk of 4.5.** Standing up the
+   type checker and wiring it into `make verify` is the prerequisite that makes
+   every subsequent move verifiable.
+2. **Then type each module as 4.5 carves it up** — a 4.5 re-split lands already
+   typed and checked, rather than being re-touched in a later phase.
+
+The remaining Phase 5 items (telemetry contract, persisted-state migrations) are
+independent and can proceed in parallel.
+
+### 5.0 Adopt and gate a type checker (decided, not deferred)
+
+- **Use `mypy`** (Python-native, no Node toolchain dependency; matches the
+  existing `make`-driven gate). Pyright was considered and rejected to avoid a
+  second language runtime in the Python CI path.
+- Configure it in `pyproject.toml` with a **per-module strictness allowlist**:
+  global config is lenient (so the untyped legacy tree doesn't explode the
+  build), and each module that has been typed is added to a `strict = true`
+  override block. New/extracted modules join the strict list as they land.
+- Add a `py-typecheck` target and fold it into `make verify` alongside the
+  existing tests/ruff/`fe-typecheck`. This is the enforcement spine — without
+  the gate, the rest of the phase decays.
+
+### 5.1 Define typed structures (and close the `**kwargs` boundary)
+
+- Define explicit types — `@dataclass(slots=True)` for owned mutable state,
+  `TypedDict` for dict-shaped payloads that must stay JSON-serializable,
+  `Protocol` for the service interfaces the coordinators depend on — for:
+  - runtime/cycle context (the real-world name today is `cycle_state.py`; there
+    is no `RuntimeContext` — reconcile to one named type)
   - affect state and proposals
   - action proposals/results
   - telemetry frames
   - goal execution outcomes
   - persisted state envelopes and schema versions
-- Select a gradual Python type checker and start with new/extracted modules.
-- Remove `type: ignore` comments by category, beginning with real contract
-  mismatches rather than optional-dependency imports.
-- Generate frontend telemetry types from a shared schema or validate both sides
-  against the same fixture.
-- Add schema migration tests for every persisted state envelope.
+- **Tighten the call boundaries that defeat typing.** Defining the structs is
+  worthless while call sites still splat `*args: Any, **kwargs: Any` — the splat
+  erases the type at every hop. For each coordinator (`select_function`,
+  `pursue_committed_goal`, the loop stages), replace the `Dict`+`**kwargs`
+  signature with the explicit context type and remove the passthrough. This is
+  the item most likely to be skipped and the one that makes the rest real.
+
+### 5.2 Make the FE↔BE telemetry boundary a real contract
+
+Telemetry crosses both a process and a language boundary, so static types alone
+give false confidence — they describe intent, not what actually crosses the wire.
+Build a contract with two layers:
+
+- **Static (codegen, not snapshot).** Author the telemetry frames as the
+  single source of truth (pydantic models) and **generate** the TypeScript types
+  from their JSON Schema. A shared *fixture* test was considered and rejected: a
+  fixture drifts silently and only catches shapes someone remembered to add.
+- **Runtime (boundary validation).** Validate on emit (pydantic on the backend
+  producer) and on parse (a schema guard such as zod on the frontend consumer),
+  so a malformed or version-skewed frame fails loudly at the boundary instead of
+  corrupting the UI state downstream.
+
+### 5.3 `type: ignore` cleanup (gated by 5.0, not freestanding)
+
+Once the checker runs, triage the ~33 `type: ignore` comments by category — real
+contract mismatches first (fix them), optional-dependency imports last (keep,
+but narrow to `[import-untyped]`/specific codes rather than blanket ignores). Do
+this per module as it enters the strict allowlist, not as a separate sweep.
+
+### 5.4 Persisted-state schema + migrations
+
+- Build on the **existing** spine — `brain/utils/schema_migration.py`
+  (`CURRENT_SCHEMA_VERSION`) and `test_schema_migration.py` already exist from
+  the Desktop "Group G" work; this is not greenfield.
+- Bring every persisted envelope under that single global version (the
+  knowledge-graph store still versions itself in isolation — subsume it), and
+  require a **round-trip migration test per envelope** (old fixture → migrate →
+  asserted new shape) whenever a format changes.
 
 ### Exit criteria
 
-- New modules are type-checked.
-- Backend producers and frontend consumers share a verifiable telemetry contract.
-- Persisted state changes require a schema version and migration test.
+- `make verify` fails on a type error in any allowlisted (strict) module; the
+  strict list grows monotonically and is never shrunk to make a change pass.
+- No coordinator on the typed path still takes `Dict` + `**kwargs: Any`; the
+  context type is explicit and checked.
+- Telemetry TS types are generated from the backend schema (not hand-authored),
+  and both producer and consumer validate frames at runtime.
+- Every persisted state change requires a schema-version bump and a round-trip
+  migration test; the per-store version is subsumed by the global one.
 
 ## Phase 6 — Dead code, duplication, and API cleanup
 
@@ -690,7 +885,12 @@ Move request parsing and domain logic out of route functions.
 4. Phase 3: package/import normalization.
 5. Phase 4A and 4B: runtime orchestration extraction.
 6. Phase 4C and 4E: backend/frontend decomposition.
-7. Phase 5: types and schemas alongside extracted modules.
+7. Phase 5.0 first (type checker + `make verify` gate), then Phase 4.5
+   interleaved with the rest of Phase 5: finish the `select_function()` body,
+   bring over-limit extracted modules under the soft limit, and decompose the
+   out-of-scope monoliths (largest-first, one module per change) — typing each
+   module as it is re-split rather than in a later pass. Telemetry contract (5.2)
+   and persisted-state migrations (5.4) proceed in parallel.
 8. Phase 6: dead-code deletion.
 9. Phase 7: enforce the completed standards.
 

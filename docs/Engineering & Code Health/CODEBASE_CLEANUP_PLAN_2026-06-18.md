@@ -717,7 +717,15 @@ re-export-the-public-API method that worked in 4C/4D:
     the token-budgeted LLM bundle (derived→interpreted).
   - `life_capsule.py` keeps the SQLite/CSV assembly, raw copy, provenance, the
     `build_life_capsule` orchestrator, the reader API, and the CLI.
-- `brain/cognition/knowledge_graph.py` — **1,239**
+- `brain/cognition/knowledge_graph.py` — **1,239 → 338 DONE** (now under the
+  limit). Split into a 3-module package, public API re-exported:
+  - `knowledge_graph_core.py` (491) — schema/vocab/bootstrap constants,
+    extraction patterns, utils, graph I/O, low-level in-place entity/relation ops
+    (the leaf).
+  - `knowledge_graph_extract.py` (473) — text→graph extraction (regex + spaCy NER
+    + definitional), building on the core.
+  - `knowledge_graph.py` keeps the public entity/query/ingest/maintenance API and
+    LLM dream consolidation.
 - `brain/think/think_utils/action_gate.py` — **1,136**
 - `brain/cognition/opinions.py` — **1,114**
 - then the long tail (`update_affect_state.py` 882, `prediction.py` 867,

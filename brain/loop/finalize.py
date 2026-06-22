@@ -13,10 +13,11 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from typing import Any, Dict
 from brain.utils.get_cycle_count import get_cycle_count
-from brain.utils.json_utils import save_json
-from brain.utils.log import log_model_issue
+from brain.utils.json_utils import save_json, load_json
+from brain.utils.log import log_model_issue, log_activity, log_error
 from brain.utils.failure_counter import record_failure
 from brain.loop.constants import _OUTWARD_FNS
+from brain.loop.telemetry import _bridge
 from brain.paths import (
     CONTEXT, WORKING_MEMORY_FILE,
 )
@@ -224,5 +225,191 @@ def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context
                     _wme["_promoted_to_lm"] = True
     except Exception as _cons_e:
         record_failure("ORRIN_loop.lm_consolidation", _cons_e)
+
+    return context
+
+
+def persist_and_periodic(context, _goals_api, _mem_daemon, _evaluator, affect_state) -> Context:
+    """Per-cycle persistence + periodic background work, run after the action is
+    accounted and before the maintenance tier: sync proposed goals + record goal
+    progress, flush working memory to the v2 daemon (with periodic v1<->v2
+    backfill), tick the evaluator, generate/check predictions, fire the dream
+    cycle when idle, and converge the global workspace into one conscious moment.
+    Mutates context in place; fail-safe.
+    """
+    # Push new goal proposals to the single GoalsAPI
+    if _goals_api:
+        import brain.goal_io as goal_io
+        try:
+            goal_io.sync_proposed_goals(_goals_api, context)
+        except Exception as e:
+            log_error(f"goal_io.sync_proposed_goals failed: {e}")
+
+        # Record goal progress note every 5 cycles so long memory has a trail
+        if context.get("committed_goal"):
+            try:
+                goal_io.record_goal_progress(context)
+            except Exception as e:
+                log_error(f"goal_io.record_goal_progress failed: {e}")
+
+    # Write memory events to v2 MemoryDaemon
+    if _mem_daemon:
+        import brain.memory_io as memory_io
+        try:
+            memory_io.flush_working_memory(_mem_daemon, context)
+        except Exception as e:
+            log_error(f"memory_io.flush_working_memory failed: {e}")
+
+        _cycle_n = get_cycle_count()
+        # Every 10 cycles: backfill v2 compaction summaries → v1 long_memory.json
+        if _cycle_n > 0 and _cycle_n % 10 == 0:
+            try:
+                added = memory_io.promote_summaries_to_long_memory(_mem_daemon, max_items=5)
+                if added:
+                    log_activity(f"Promoted {added} v2 summary item(s) to long memory.")
+            except Exception as e:
+                log_error(f"memory_io.promote_summaries_to_long_memory failed: {e}")
+        # Every 5 cycles: backfill recent long_memory.json entries → v2 so they're searchable
+        if _cycle_n > 0 and _cycle_n % 5 == 0:
+            try:
+                ingested = memory_io.backfill_long_memory_to_v2(_mem_daemon, max_items=10)
+                if ingested:
+                    log_activity(f"Backfilled {ingested} long memory item(s) to v2.")
+            except Exception as e:
+                log_error(f"memory_io.backfill_long_memory_to_v2 failed: {e}")
+
+    # Evaluator tick — resolve pending delayed rewards from the WAL
+    if _evaluator:
+        try:
+            _evaluator.tick(context, get_cycle_count())
+        except Exception as _ev_e:
+            log_model_issue(f"evaluator.tick failed: {_ev_e}")
+
+    # Prediction generation — turn the causal model (now fed by agency-based
+    # intervention edges) into falsifiable predictions while AWAKE, not only
+    # during dreams. Rate-limited so predictions.json doesn't flood. This is
+    # the consumer that closes the learning loop: edges → predictions →
+    # (confirmed) → rules → understanding.
+    try:
+        if get_cycle_count() % 5 == 0:
+            from brain.cognition.prediction import generate_predictions as _gp, save_predictions as _sp
+            _recent_wm_p = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+            _sp(_gp(context, _recent_wm_p[-15:]))
+    except Exception as _ge:
+        log_error(f"generate_predictions failed: {_ge}")
+
+    # Prediction check — evaluate pending predictions, fire surprise signals
+    try:
+        from brain.cognition.prediction import check_predictions as _cp
+        _cp(context)
+    except Exception as _pe:
+        log_error(f"check_predictions failed: {_pe}")
+
+    # Dream cycle — fires when idle and 6h have elapsed since last dream.
+    # Skipped while HostResourceGuard/VitalFloor has paused heavy cycles:
+    # dream is restorative as felt experience, but its consolidation
+    # footprint is memory-hungry and must yield under host/process pressure.
+    try:
+        from brain.cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
+        from reaper.host_resources import heavy_cycles_paused as _heavy_paused
+        from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+        if (not _heavy_paused()) and (not _vital_shedding()) and should_dream(context):
+            import threading as _thr
+            _dt = _thr.Thread(
+                target=_dream_cycle, args=(context,),
+                name="orrin-dream", daemon=True,
+            )
+            _dt.start()
+    except Exception as _de:
+        log_error(f"dream_cycle check failed: {_de}")
+
+    # Global workspace (unity layer): converge this cycle's parallel
+    # contents into a single conscious moment, broadcast it, and extend
+    # the continuous stream of experience. Makes him one experiencer
+    # rather than a committee of subsystems.
+    try:
+        from brain.cognition.global_workspace import update_workspace as _uw
+        _moment = _uw(context)
+        if _moment:
+            tb = _bridge()
+            if tb is not None:
+                tb.update(extra={"awareness": _moment.get("content", "")})
+    except Exception as _gwe:
+        record_failure("ORRIN_loop.run_cognitive_loop.26", _gwe)
+
+    # Second-order volition (free will): periodically reflect on the
+    # desire currently in consciousness and either own or disown it
+    # against his values — self-authorship, not just acting on impulse.
+    try:
+        if get_cycle_count() % 20 == 0:
+            from brain.cognition.selfhood.second_order_volition import reflect_on_desire as _rod
+            _rod(context)
+    except Exception as _rve:
+        record_failure("ORRIN_loop.run_cognitive_loop.27", _rve)
+
+    # Will/commitment: decay the active resolve and expose its
+    # follow-through bias (cleared automatically when goal done/faded).
+    try:
+        from brain.cognition.will import tick_commitment as _tick_commit
+        _tick_commit(context)
+    except Exception as _twe:
+        record_failure("ORRIN_loop.run_cognitive_loop.28", _twe)
+
+    # Native language faculty (#4): a LIGHT learning bout during idle
+    # stretches, on top of the big consolidation in sleep. Idle-only and
+    # infrequent so it never lags a conversation or hogs the 8 GB.
+    try:
+        _lang_user = bool((context.get("latest_user_input") or "").strip())
+        if (not _lang_user) and get_cycle_count() % 100 == 0:
+            from brain.cognition.language.acquisition import consolidate_language as _cl
+            _cl(steps=12)
+
+        # Roll completed short-term goals up into the long-term aspirations
+        # they serve, and protect those aspirations from being lost or
+        # wrongly completed — so long-term goals actually advance.
+        if get_cycle_count() % 25 == 0:
+            try:
+                from brain.cognition.intrinsic_goals import credit_aspirations as _ca
+                _ca(context)
+            except Exception as _cae:
+                record_failure("ORRIN_loop.run_cognitive_loop.29", _cae)
+
+        # P2 — fail artifact-gated production goals that blew their deadline
+        # with nothing produced (turns the hollow "0 failures" into a real,
+        # staked non-zero). P6 — reconcile the goal stores so the new
+        # executable path can't reopen the resurrect/orphan-RUNNING desync
+        # bugs, and existing-path desyncs become self-healing + measured.
+        # Both run on the same 200-cycle epoch (one cadence constant).
+        if get_cycle_count() % 200 == 0:
+            try:
+                from brain.cognition.planning.goals import fail_overdue_artifact_goals as _foag
+                _foag(context)
+            except Exception as _fae:
+                record_failure("ORRIN_loop.run_cognitive_loop.foag", _fae)
+            try:
+                from brain.cognition.planning.goal_reconcile import reconcile_goal_stores as _rgs
+                _rgs(context)
+            except Exception as _rge:
+                record_failure("ORRIN_loop.run_cognitive_loop.reconcile", _rge)
+
+        # Bored, not busy → browse the shelf and read a particular book.
+        # Boredom (stagnation) is the pull; this is reading by his own
+        # restlessness, not a schedule. Throttled so it never hogs the CPU.
+        if not _lang_user:
+            _stag = float(
+                (affect_state.get("core_signals") or affect_state).get("stagnation_signal", 0.0)
+            )
+            # Reading is the other memory-hungry heavy cycle: skip it while
+            # host/process resource guards have paused heavies.
+            from reaper.host_resources import heavy_cycles_paused as _heavy_paused
+            from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+            if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _vital_shedding():
+                from brain.cognition.language.acquisition import read_a_book as _rab
+                _line = _rab(context, steps=30)
+                if _line:
+                    context["last_thought"] = _line
+    except Exception as _lge:
+        record_failure("ORRIN_loop.run_cognitive_loop.30", _lge)
+
 
     return context

@@ -62,17 +62,26 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   boundary was corrected to leave loop-control in the loop. Shared `_OUTWARD_FNS`
   moved to `brain/loop/constants.py` to avoid a circular import.
 
-  **ORRIN_loop.py 3,709 → 467 (−87%).** `run_cognitive_loop`'s body is now a thin
-  staged coordinator — `sense_and_refresh → integrate_recall_and_baseline →
-  tier1_health_check → prepare_workspace → ignite → think → dispatch(A/B/C) →
-  account_action → persist_and_periodic → run_maintenance_tier → finalize_cycle →
-  pulse/sleep` — with only genuine coordination (dispatch branching, decision-id,
-  reward-rate, loop control) left inline. Eleven stage modules under `brain/loop/`,
-  each verified by the loop net (every stage runs in a real cycle) + the full
-  suite (**923 passed / 1 skipped**, ruff clean). Soft-limit exceptions:
-  `boot.py` (631, one ~490-line `_boot_context`) and `execute.py` (855, Path B is
-  ~610 lines) — both single-function intact moves, sub-divisible in a later pass.
-  **Phase 4 remaining:** 4D `select_function.py` / `pursue_goal.py`.
+  Finally pulled the loop's setup/teardown out too: `services.py`
+  (`start_background_services` — ToolRunner/Evaluator/Layer-0 embodiment/Executive
+  bring-up returning the handles the loop needs; `shutdown_loop` — ToolRunner stop
+  + session epilogue + embedder release) and `maintenance.py::periodic_housekeeping`
+  (the end-of-cycle GC/summaries/finetune cadence).
+
+  **ORRIN_loop.py 3,709 → 314 (−92%).** `run_cognitive_loop` is now a 233-line
+  coordinator — signal/goals/memory wiring → `start_background_services` →
+  `_boot_context` → the staged `while` pipeline (`sense_and_refresh →
+  integrate_recall_and_baseline → tier1_health_check → prepare_workspace → ignite
+  → think → dispatch(A/B/C) → account_action → persist_and_periodic →
+  run_maintenance_tier → finalize_cycle → periodic_housekeeping → pulse/sleep`) →
+  `shutdown_loop` — with only genuine coordination (dispatch branching,
+  decision-id, reward-rate, loop control) left inline. Twelve stage modules under
+  `brain/loop/`, each verified by the loop net (every stage runs in a real cycle)
+  + the full suite (**923 passed / 1 skipped**, ruff clean). Soft-limit
+  exceptions: `boot.py` (631, one ~490-line `_boot_context`) and `execute.py`
+  (855, Path B is ~610 lines) — both single-function intact moves, sub-divisible
+  in a later pass. **4A is complete; Phase 4 remaining:** 4D `select_function.py`
+  / `pursue_goal.py`.
 
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added

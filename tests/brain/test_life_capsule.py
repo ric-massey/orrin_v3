@@ -16,10 +16,6 @@ from pathlib import Path
 
 import pytest
 
-BRAIN = Path(__file__).resolve().parents[2] / "brain"
-if str(BRAIN) not in sys.path:
-    sys.path.insert(0, str(BRAIN))
-
 
 def _seed_mind(data_dir: Path, state_dir: Path) -> None:
     data_dir.mkdir(parents=True, exist_ok=True)

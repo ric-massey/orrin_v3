@@ -5,13 +5,7 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
-
-# Ensure brain/ is on the path
-BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
 
 from brain.think.bandit.contextual_bandit import (
     _validate_state, _context_bucket, update, choose, expected_reward,

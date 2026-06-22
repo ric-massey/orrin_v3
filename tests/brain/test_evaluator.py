@@ -1,14 +1,7 @@
 # tests/brain/test_evaluator.py
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from unittest.mock import patch, MagicMock
-
-
-BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
 
 
 # WAL tests

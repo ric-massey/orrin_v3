@@ -16,14 +16,6 @@
 #      number): raw is recoverable, and is also exposed straight via /api/affect.
 from __future__ import annotations
 
-import sys
-from pathlib import Path
-
-REPO = Path(__file__).resolve().parents[2]
-for p in (REPO, REPO / "brain"):
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
-
 
 def test_homeostasis_index_is_deterministic_and_settled_at_rest():
     from brain.affect.homeostasis import homeostasis_index

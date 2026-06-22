@@ -5,20 +5,14 @@ from __future__ import annotations
 
 import json
 import os
-import sys
 import time
 import pytest
 from contextlib import contextmanager
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
-# Ensure brain/ is on the path
+# brain/data path base for the leak-scan below (imports resolve via pythonpath=.).
 BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-REPO_ROOT  = Path(__file__).resolve().parent.parent.parent
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
 
 # NOTE: the root conftest points utils.generate_response.DATA_DIR at a per-test
 # tmp dir, so failure counts land there — never in live brain/data state.

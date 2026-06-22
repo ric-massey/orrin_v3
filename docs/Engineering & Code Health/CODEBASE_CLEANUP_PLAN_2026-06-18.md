@@ -74,8 +74,11 @@ Detailed structural findings are recorded in
   slice verified by the selector/goal suites + full suite. **All of Phase 4
   (4A–4E) is now done.**
 
-Closed out the low-risk "finishable tails" so the remaining work is purely the
-large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
+With **all of Phase 4 (4A–4E) now complete**, the only remaining work is
+Phase 5 (types & contracts), Phase 6 (dead code / duplication / API cleanup),
+and finishing Phase 7 (CI enforcement — the `make verify` gate is in; the
+coverage ratchet, size/complexity report, dependency-vulnerability reporting,
+and ownership tables remain).
 
 - **Phase 4A `ORRIN_loop.py` — cleanly-separable stages extracted (loop-body
   decomposition still open).** Extended the boot net with
@@ -145,8 +148,8 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   + the full suite (**923 passed / 1 skipped**, ruff clean). Soft-limit
   exceptions: `boot.py` (631, one ~490-line `_boot_context`) and `execute.py`
   (855, Path B is ~610 lines) — both single-function intact moves, sub-divisible
-  in a later pass. **4A is complete; Phase 4 remaining:** 4D `select_function.py`
-  / `pursue_goal.py`.
+  in a later pass. **4A is complete** (and, as recorded above, so is 4D — all of
+  Phase 4 is now done).
 
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added

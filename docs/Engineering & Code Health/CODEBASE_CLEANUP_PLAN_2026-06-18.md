@@ -653,7 +653,8 @@ Re-split these (or document a concrete exemption per the exit criteria):
 - `brain/loop/execute.py` — **855 → 579 DONE** (reward shaping → `cognition_reward.py`)
 - `brain/loop/boot.py` — **631 → 527 DONE** (preflight validators
   `_validate_boot_files` / `_verify_production_capability` → `boot_checks.py`)
-- `brain/loop/sense.py` — **628**
+- `brain/loop/sense.py` — **628 → 564 DONE** (affect-decay stage
+  `_apply_transient_signal_decay` → `signal_decay.py`)
 - `brain/cognition/planning/goal_execution.py` — **647 → 573 DONE** (milestone
   gate `_bootstrap_goal_plan` → `goal_planning.py`, beside `_generate_plan`)
 - `brain/think/think_utils/finalize.py` — **630**

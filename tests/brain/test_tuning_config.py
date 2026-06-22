@@ -59,12 +59,12 @@ def test_selector_source_has_no_leftover_hardcoded_weights():
 
 def test_orrin_loop_reads_crisis_and_decay_constants_from_tuning():
     """The transient-signal decay + sustained-crisis stage
-    (_apply_transient_signal_decay) was extracted to brain/loop/sense.py in
-    Phase 4A; its wiring is pinned by source inspection there: the decay and the
-    crisis detection must reference config.tuning's names, and the bare literals
-    Finding 9 named (0.92 decay; 0.85/0.50/0.70 crisis thresholds) must no
-    longer appear in that block."""
-    src = (_REPO_ROOT / "brain" / "loop" / "sense.py").read_text()
+    (_apply_transient_signal_decay) was extracted to brain/loop/signal_decay.py
+    in Phase 4.5B (it lived in brain/loop/sense.py after Phase 4A); its wiring is
+    pinned by source inspection there: the decay and the crisis detection must
+    reference config.tuning's names, and the bare literals Finding 9 named (0.92
+    decay; 0.85/0.50/0.70 crisis thresholds) must no longer appear in that block."""
+    src = (_REPO_ROOT / "brain" / "loop" / "signal_decay.py").read_text()
     assert "from brain.config.tuning import (" in src
     for name in (
         "AFFECT_TRANSIENT_DECAY",

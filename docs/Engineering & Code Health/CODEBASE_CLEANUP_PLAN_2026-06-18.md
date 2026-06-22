@@ -657,7 +657,12 @@ Re-split these (or document a concrete exemption per the exit criteria):
   `_apply_transient_signal_decay` → `signal_decay.py`)
 - `brain/cognition/planning/goal_execution.py` — **647 → 573 DONE** (milestone
   gate `_bootstrap_goal_plan` → `goal_planning.py`, beside `_generate_plan`)
-- `brain/think/think_utils/finalize.py` — **630**
+- `brain/think/think_utils/finalize.py` — **630 → 572 DONE** (rule-based
+  `_state_satisfaction` + its outward-action constants → `satisfaction.py`)
+
+**4.5B complete** — all five Phase-4-extracted over-limit modules are now under
+the 600-line soft limit, each by a single bottom-up extraction with the public
+API re-exported from the original module.
 
 ### 4.5C. Decompose the monolithic modules Phase 4 never scoped
 

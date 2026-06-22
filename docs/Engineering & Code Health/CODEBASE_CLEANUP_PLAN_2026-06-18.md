@@ -9,8 +9,7 @@ Detailed structural findings are recorded in
 
 ## Implementation status (updated 2026-06-22)
 
-- **Phase 4D — IN PROGRESS (both files substantially decomposed; the two
-  central functions remain).** Both selection/planning files are dense with
+- **Phase 4D — DONE.** Both selection/planning files are dense with
   import-time-computed constants whose helpers cross-reference each other, so the
   safe order is bottom-up: extract the dependency *base* first, then layer
   scoring/features on top. Each slice is a pure move re-imported to preserve the
@@ -42,23 +41,38 @@ Detailed structural findings are recorded in
     re-promote; the `_FINALIZED_IDS` dedup dict moved here and re-imported as the
     same object so finalize-once stays coherent).
 
-  **Net:** the two originals went **2,268 → 1,519** and **1,673 → 1,091**; eleven
-  focused modules now hold the selection/planning layers (`selection/{text,
-  catalog, state, constants, scoring, features, candidates}.py`;
-  `planning/{plan_versioning, goal_planning, goal_closure}.py`). The plan's
-  helper-layer split (candidate generation / feature calculation / policy-scoring /
-  constraints for selection; planning / persistence / closure for pursuit) is
-  **done**, with public names re-exported so no caller changed.
+  Then finished both files:
+  - `select_function.py` **→ 1,488**: `_workspace_routes_for` → `routing.py`
+    (the last cohesive helper); `select_function()` stays as the selection
+    coordinator (the plan keeps the coordinator, like `run_cognitive_loop`) with
+    its policy frozenset constants, every helper layer now in
+    `selection/{text, catalog, state, constants, scoring, features, candidates,
+    routing}.py`. Its body is a single scoring accumulator (every section mutates
+    one shared `scores` dict + ~15 locals), so it's coordinator-by-nature rather
+    than a sequence of extractable stages.
+  - `pursue_goal.py` **→ 228** (a thin facade): the two coordinator functions
+    split into their own modules — `goal_execution.py` (`pursue_committed_goal`
+    + the counters it exclusively owns: `_last_pursuit_ts`/`_COOLDOWN_S`/
+    `_pursuit_call_count`/`_DELIBERATE_MAX_ROUNDS`/`_STEP_MAX_ATTEMPTS`) and
+    `goal_adaptation.py` (`assess_goal_progress` / `adapt_subgoals` + their
+    blocker/milestone helpers + `_last_adapt_ts`/`_ADAPT_COOLDOWN_S`). Verified no
+    cross-calls between the groups so the `global`-reassigned counters travel
+    cleanly with their sole writer; `pursue_goal.py` keeps the deliberate
+    goal-action commands (`attend_goal`/`redirect_goal_plan`/`abandon_goal`/
+    `_stuck_enough`) and re-exports the rest, so every caller path is unchanged.
+    The subgoal-adaptation test now patches `_save_plan_version` + the cooldown
+    counter in `goal_adaptation` (their new home).
 
-  **Remaining 4D — the coordinator function bodies only:** `select_function()`
-  (~1,120 lines) and `pursue_committed_goal()` (~600) + `assess_goal_progress` /
-  `adapt_subgoals`. These are the orchestrators the plan says to *keep* as
-  coordinators (like `run_cognitive_loop`); decomposing their bodies further, or
-  relocating them into `execution`/`adaptation` modules, is not a pure move —
-  they reassign module-level counters via `global` (`_pursuit_call_count`,
-  `_last_adapt_ts`), so the writer + its state must travel together with
-  per-counter reader verification. That's a deliberate behaviour-touching pass,
-  not an end-of-session mechanical move — left as the final, well-isolated step.
+  **Net:** `select_function.py` **2,268 → 1,488**, `pursue_goal.py`
+  **1,673 → 228**; thirteen focused modules now hold the selection/planning
+  layers (`selection/{text, catalog, state, constants, scoring, features,
+  candidates, routing}.py`; `planning/{plan_versioning, goal_planning,
+  goal_closure, goal_execution, goal_adaptation}.py`). The plan's full split —
+  candidate generation / feature calculation / policy-scoring / constraints for
+  selection; planning / execution / adaptation / persistence (+ closure) for
+  pursuit — is complete, all public names re-exported so no caller changed, every
+  slice verified by the selector/goal suites + full suite. **All of Phase 4
+  (4A–4E) is now done.**
 
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).

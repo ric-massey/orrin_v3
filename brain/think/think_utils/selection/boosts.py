@@ -12,12 +12,15 @@ from __future__ import annotations
 
 from typing import Dict, List
 
+from brain.config import tuning as _tuning
 from brain.utils.failure_counter import record_failure
 from brain.think.think_utils.selection.routing import _workspace_routes_for
 from brain.think.think_utils.selection.catalog import _capability_descriptions
 from brain.think.think_utils.selection.text import _capability_overlap
 from brain.think.think_utils.selection.tag_sets import (
     _USER_HELPFUL_FUNCTIONS, _INTROSPECTION_FUNCTIONS,
+    _MODE_ALERT_FNS, _MODE_ENGAGED_FNS, _MODE_WANDERING_FNS,
+    _MODE_WANDERING_REFLECT_FNS, _MODE_DROWSY_FNS,
     _NEURO_NE_FOCUS, _NEURO_NE_SUPPRESS, _NEURO_CALM_SUPPRESS,
     _NEURO_STRESS_SUPPRESS, _NEURO_STRESS_RESTORE,
     _OUTWARD_HIGH, _OUTWARD_MED, _OUTWARD_LOW,
@@ -386,3 +389,95 @@ def compute_goal_recruit(context: Dict, actions: List[str], defs: Dict) -> Dict[
     except Exception as _e:
         record_failure("select_function.select_function.11", _e)
     return _goal_recruit
+
+
+def apply_attention_mode(
+    attention_mode: str, w_dir: float, w_goal: float, w_emo: float, w_novel: float
+) -> "tuple[float, float, float, float, Dict[str, float]]":
+    """Attention-mode modulation (signal_router → selection).
+
+    The signal_router computes attention_mode from signal priority; here that mode
+    actually changes what gets picked by adjusting the dir/goal/emo/novel weights
+    and adding per-function affinities. Without this the mode is cosmetic. Returns
+    the (possibly-adjusted) weights and the per-function _attn_fn_boost map.
+    """
+    _attn_fn_boost: Dict[str, float] = {}
+
+    # Attention-mode multipliers/caps/boosts live in config.tuning (Finding 9).
+    if attention_mode == "alert":
+        # User is present: strongly bias toward helpful, goal-directed functions.
+        # The emotion prior for reflection (e.g. impasse_signal→reflection at 0.85)
+        # otherwise wins — the boosts here must overpower that pull.
+        w_goal  = min(_tuning.ATTN_ALERT_GOAL_CAP, w_goal  * _tuning.ATTN_ALERT_GOAL_MULT)
+        w_novel = max(_tuning.ATTN_ALERT_NOVEL_FLOOR, w_novel * _tuning.ATTN_ALERT_NOVEL_MULT)
+        w_emo   = max(_tuning.ATTN_ALERT_EMO_FLOOR, w_emo   * _tuning.ATTN_ALERT_EMO_MULT)  # reduce emotion's pull on function choice
+        # E6: pursue_committed_goal removed — it is in _ALWAYS_EXCLUDE, never in
+        # `actions`, so boosting it here was dead. Goal-specific routing now comes
+        # from the §4.2 goal-recruit block below. Phase 4: membership is the
+        # "mode_alert" tag in the capability manifest.
+        for fn in _MODE_ALERT_FNS:
+            _attn_fn_boost[fn] = _tuning.ATTN_ALERT_FN_BOOST
+        # Suppress pure introspection — user is here, it can wait
+        for fn in _INTROSPECTION_FUNCTIONS:
+            _attn_fn_boost[fn] = _attn_fn_boost.get(fn, 0.0) + _tuning.ATTN_ALERT_INTROSPECTION_PENALTY
+
+    elif attention_mode == "engaged":
+        # High-priority signal but no direct user input: moderate goal + emotion lift.
+        w_goal = min(_tuning.ATTN_ENGAGED_GOAL_CAP, w_goal * _tuning.ATTN_ENGAGED_GOAL_MULT)
+        w_emo  = min(_tuning.ATTN_ENGAGED_EMO_CAP, w_emo  * _tuning.ATTN_ENGAGED_EMO_MULT)
+        for fn in _MODE_ENGAGED_FNS:  # Phase 4: "mode_engaged" tag (E6: pursue dropped)
+            _attn_fn_boost[fn] = _tuning.ATTN_ENGAGED_FN_BOOST
+
+    elif attention_mode == "wandering":
+        # Internal signals dominate — but proactive/outward before pure introspection.
+        # Reflection is valuable but should not be the default when nothing is urgent.
+        w_novel = min(_tuning.ATTN_WANDERING_NOVEL_CAP, w_novel * _tuning.ATTN_WANDERING_NOVEL_MULT)
+        w_dir   = max(_tuning.ATTN_WANDERING_DIR_FLOOR, w_dir   * _tuning.ATTN_WANDERING_DIR_MULT)
+        w_goal  = max(_tuning.ATTN_WANDERING_GOAL_FLOOR, w_goal  * _tuning.ATTN_WANDERING_GOAL_MULT)
+        # Tier 1: proactive outward engagement (Phase 4: "mode_wandering" tag)
+        for fn in _MODE_WANDERING_FNS:
+            _attn_fn_boost[fn] = _tuning.ATTN_WANDERING_OUTWARD_BOOST
+        # Tier 2: introspection (useful but not the default; "mode_wandering_reflect")
+        for fn in _MODE_WANDERING_REFLECT_FNS:
+            _attn_fn_boost[fn] = _tuning.ATTN_WANDERING_REFLECT_BOOST
+
+    elif attention_mode == "drowsy":
+        # No signals at all: consolidation / rest over active cognition.
+        w_novel = max(_tuning.ATTN_DROWSY_NOVEL_FLOOR, w_novel * _tuning.ATTN_DROWSY_NOVEL_MULT)
+        w_emo   = max(_tuning.ATTN_DROWSY_EMO_FLOOR, w_emo   * _tuning.ATTN_DROWSY_EMO_MULT)
+        w_dir   = min(_tuning.ATTN_DROWSY_DIR_CAP, w_dir   * _tuning.ATTN_DROWSY_DIR_MULT)
+        for fn in _MODE_DROWSY_FNS:  # Phase 4: "mode_drowsy" tag
+            _attn_fn_boost[fn] = _tuning.ATTN_DROWSY_FN_BOOST
+
+    return w_dir, w_goal, w_emo, w_novel, _attn_fn_boost
+
+
+def apply_monitor_route(context: Dict, attn_fn_boost: Dict[str, float]) -> None:
+    """React to a Metacog Monitor breakthrough that WON consciousness.
+
+    The Global Workspace broadcast carries the requested route ("wants"); bias the
+    deliberate pick toward acting on it (diagnose / re-plan / decide / savor /
+    pick-new-goal). BIASES, never forces (I7). Mutates attn_fn_boost in place and
+    sets context["_bt_pending"] for the §20.1 dismissal-recalibration verdict.
+    """
+    _gw_now = context.get("global_workspace") or {}
+    context.pop("_bt_pending", None)   # only set when a monitor breakthrough is live this cycle
+    if str(_gw_now.get("source", "")).startswith("monitor:"):
+        _route = {
+            "re-plan":       {"redirect_goal_plan": 0.34, "adapt_subgoals": 0.30,
+                              "assess_goal_progress": 0.22},
+            "diagnose":      {"search_own_files": 0.30, "assess_goal_progress": 0.24,
+                              "reflect_on_self_beliefs": 0.20},
+            "decide":        {"attend_goal": 0.34},
+            "savor":         {"narrative_update": 0.18},
+            "comprehend":    {"narrative_update": 0.28, "reflect_on_self_beliefs": 0.18},
+            "release":       {"abandon_goal": 0.40},   # guarded: only abandons a stuck goal
+            "pick-new-goal": {"generate_intrinsic_goals": 0.34},
+        }.get(_gw_now.get("wants"), {})
+        for _rfn, _rb in _route.items():
+            attn_fn_boost[_rfn] = attn_fn_boost.get(_rfn, 0.0) + _rb
+        # §20.1 dismissal-recalibration: remember which functions would HONOR this
+        # breakthrough's route, so the final pick can be judged honored vs dismissed
+        # (the Monitor reads the verdict next cycle to quiet crying-wolf kinds).
+        if _route:
+            context["_bt_pending"] = {"kind": _gw_now.get("kind"), "route_fns": list(_route.keys())}

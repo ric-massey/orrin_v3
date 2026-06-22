@@ -557,27 +557,10 @@ def _load_actions() -> List[str]:
     return names or FALLBACK_ACTIONS
 
 
-def _dominant_emotion() -> str:
-    emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
-    core = emo.get("core_signals", {})
-    if isinstance(core, dict) and core:
-        try:
-            return max(core.items(), key=lambda kv: kv[1])[0]
-        except Exception as _e:
-            record_failure("select_function._dominant_emotion", _e)
-    return str(emo.get("dominant", "neutral"))
-
-
-def _focus_goal_name() -> str:
-    fg = load_json(FOCUS_GOAL, default_type=dict) or {}
-    try:
-        s = extract_current_focus_goal(fg)
-        if s:
-            return str(s)
-    except Exception as _e:
-        record_failure("select_function._focus_goal_name", _e)
-    return str(fg.get("name", ""))
-
+# Current-state readers, extracted to selection/state.py (Phase 4D).
+from brain.think.think_utils.selection.state import (  # noqa: F401
+    _dominant_emotion, _focus_goal_name,
+)
 
 # -------------------- small helpers (additive) --------------------
 # Text/keyword-overlap utilities, extracted to selection/text.py (Phase 4D).

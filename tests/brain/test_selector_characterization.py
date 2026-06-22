@@ -111,6 +111,29 @@ _CASES = {
         {"_exploration_epsilon": 0.0, "attention_mode": "wandering"},
         "seek_novelty",
     ),
+    # Post-pick tail: these exercise the scoring loop's repeat/penalty paths and
+    # the post-pick refinements (ε-exploration, threat arbiter, anti-repeat,
+    # meta-rut breaker) — paths the empty-recent cases above never reach.
+    "repeat_run": (
+        {"recent_picks": ["leave_note", "leave_note", "leave_note"], "attention_mode": "engaged"},
+        "generate_intrinsic_goals",
+    ),
+    "meta_rut": (
+        {
+            "recent_picks": ["assess_goal_progress", "reflection", "self_review",
+                             "narrative_update", "abduce"],
+            "committed_goal": _GOAL_RESEARCH,
+        },
+        "research_topic",
+    ),
+    "threat_spike": (
+        {"threat_detector_response": {"shortcut_function": "dream", "spike_intensity": 0.9}},
+        "dream_cycle",
+    ),
+    "suppress_intrinsic": (
+        {"_suppress_intrinsic_goals": True, "attention_mode": "wandering"},
+        "seek_novelty",
+    ),
 }
 
 

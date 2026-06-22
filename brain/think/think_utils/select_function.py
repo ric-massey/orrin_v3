@@ -7,20 +7,19 @@ import random as _rand
 import math as _math
 import statistics as _statistics
 
-from brain.paths import (
-    FOCUS_GOAL,
-    AFFECT_STATE_FILE,
-    SELF_MODEL_FILE
-)
-from brain.utils.json_utils import load_json
-from brain.utils.goals import extract_current_focus_goal
 from brain.think.bandit import contextual_bandit as bandit
 from brain.affect.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
 from brain.config import tuning as _tuning
 # Shared constants + scoring layer, extracted to selection/ (Phase 4D).
 from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS, _ALWAYS_EXCLUDE  # noqa: F401
 # Candidate generation + dispatch constraints, extracted to selection/candidates.py (Phase 4D).
+from brain.think.think_utils.selection.scoring import _emo_mode_function_map  # noqa: F401
+from brain.think.think_utils.selection.state import (  # noqa: F401
+    _get_directive_text, _get_focus_goal_text,
+    _dominant_emotion_and_stagnation_signal, _recent_picks_from_ctx,
+)
 from brain.think.think_utils.selection.candidates import (  # noqa: F401
+    _planned_action_recruitment,
     _is_selectable_name, _is_dispatchable, _load_behavioral_names,
     _load_actions, _load_action_defs,
 )
@@ -338,20 +337,6 @@ _OUTWARD_LOW = _tagged_or(("outward_sense",), frozenset({
     "run_embodied_observation"}))
 
 
-def _emo_mode_function_map() -> Dict[str, Dict[str, float]]:
-    """Emotional-mode → per-fn boost map. Weighted "emo_<mode>:<w>" tags in the
-    manifest are the source of truth; each mode falls back to its literal map.
-    (E6: the dead pursue_committed_goal 0.20 entry under "focused" was removed.)"""
-    defaults: Dict[str, Dict[str, float]] = {
-        "focused":       {"assess_goal_progress": 0.15, "plan_next_step": 0.10},
-        "creative":      {"generate_intrinsic_goals": 0.18, "look_outward": 0.15, "narrative_update": 0.12},
-        "exploratory":   {"seek_novelty": 0.20, "search_own_files": 0.15, "look_around": 0.12},
-        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "dream_cycle": 0.10},
-        "critical":      {"detect_memory_contradictions": 0.18, "self_review": 0.15, "attempt_regulation": 0.10},
-        "cautious":      {"attempt_regulation": 0.20, "reflection": 0.15, "self_review": 0.10},
-        "analytical":    {"search_own_files": 0.18, "grep_files": 0.15, "self_review": 0.10},
-    }
-    return {mode: (_tag_weights(f"emo_{mode}") or dflt) for mode, dflt in defaults.items()}
 
 
 # -------------------- basic loaders (unchanged API) --------------------
@@ -395,64 +380,14 @@ from brain.think.think_utils.selection.text import (  # noqa: E402,F401
 
 
 
-def _get_directive_text() -> str:
-    sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
-    cd = sm.get("core_directive")
-    if isinstance(cd, dict):
-        return str(cd.get("statement", "")) or ""
-    if isinstance(cd, str):
-        return cd
-    return ""
 
 
-def _planned_action_recruitment(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
-    """Bounded deliberate boost for an explicit Executive handoff."""
-    goal = context.get("committed_goal") or {}
-    need_fn = goal.get("_needs_deliberate_action") if isinstance(goal, dict) else None
-    if not need_fn or need_fn not in actions:
-        return {}
-    impasse = float(
-        ((context.get("affect_state") or {}).get("core_signals") or {}).get(
-            "impasse_signal", 0.0
-        ) or 0.0
-    )
-    return {str(need_fn): min(0.6, 0.22 + 0.5 * impasse)}
 
 
-def _get_focus_goal_text() -> str:
-    fg = load_json(FOCUS_GOAL, default_type=dict) or {}
-    try:
-        s = extract_current_focus_goal(fg)
-        if s:
-            return str(s)
-    except Exception as _e:
-        record_failure("select_function._get_focus_goal_text", _e)
-    name = str(fg.get("name", "") or "")
-    desc = str(fg.get("description", "") or "")
-    return (name + " " + desc).strip()
 
 
-def _dominant_emotion_and_stagnation_signal(context: Dict[str, Any] | None = None) -> Tuple[str, float]:
-    # Prefer in-memory context so function selection uses the current cycle's
-    # emotional state, not the stale disk file from the previous cycle.
-    if context is not None:
-        emo = context.get("affect_state") or {}
-    else:
-        emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
-    core = emo.get("core_signals", {}) or {}
-    stagnation_signal = float(core.get("stagnation_signal", emo.get("stagnation_signal", 0.0)) or 0.0)
-    dom = None
-    try:
-        if isinstance(core, dict) and core:
-            dom = max(core.items(), key=lambda kv: kv[1])[0]
-    except Exception:
-        dom = None
-    return (dom or str(emo.get("dominant", "neutral"))), max(0.0, min(1.0, stagnation_signal))
 
 
-def _recent_picks_from_ctx(ctx: Dict[str, Any]) -> List[str]:
-    rp = ctx.get("recent_picks", [])
-    return rp if isinstance(rp, list) else []
 
 
 

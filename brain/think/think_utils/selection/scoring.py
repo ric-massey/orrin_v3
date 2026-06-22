@@ -18,6 +18,7 @@ from brain.utils.failure_counter import record_failure
 from brain.paths import AFFECT_STATE_FILE, EMOTION_FUNCTION_MAP_FILE
 from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS
 from brain.think.think_utils.selection.state import _dominant_emotion
+from brain.think.think_utils.selection.catalog import _tag_weights
 
 
 _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
@@ -259,3 +260,19 @@ def _ensure_min_candidates(actions: List[str]) -> List[str]:
         return list(dict.fromkeys(actions))  # de-dupe preserve order
     seeded = list(dict.fromkeys([*actions, *FALLBACK_ACTIONS]))
     return seeded[:2] if len(seeded) >= 2 else seeded
+
+
+def _emo_mode_function_map() -> Dict[str, Dict[str, float]]:
+    """Emotional-mode → per-fn boost map. Weighted "emo_<mode>:<w>" tags in the
+    manifest are the source of truth; each mode falls back to its literal map.
+    (E6: the dead pursue_committed_goal 0.20 entry under "focused" was removed.)"""
+    defaults: Dict[str, Dict[str, float]] = {
+        "focused":       {"assess_goal_progress": 0.15, "plan_next_step": 0.10},
+        "creative":      {"generate_intrinsic_goals": 0.18, "look_outward": 0.15, "narrative_update": 0.12},
+        "exploratory":   {"seek_novelty": 0.20, "search_own_files": 0.15, "look_around": 0.12},
+        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "dream_cycle": 0.10},
+        "critical":      {"detect_memory_contradictions": 0.18, "self_review": 0.15, "attempt_regulation": 0.10},
+        "cautious":      {"attempt_regulation": 0.20, "reflection": 0.15, "self_review": 0.10},
+        "analytical":    {"search_own_files": 0.18, "grep_files": 0.15, "self_review": 0.10},
+    }
+    return {mode: (_tag_weights(f"emo_{mode}") or dflt) for mode, dflt in defaults.items()}

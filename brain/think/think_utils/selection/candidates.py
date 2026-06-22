@@ -10,7 +10,7 @@ so no cycle back to the core selector, which re-imports these names.
 """
 from __future__ import annotations
 
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
@@ -161,3 +161,17 @@ def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
                 names.append(fb)
                 defs[fb] = fb
     return names, defs
+
+
+def _planned_action_recruitment(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
+    """Bounded deliberate boost for an explicit Executive handoff."""
+    goal = context.get("committed_goal") or {}
+    need_fn = goal.get("_needs_deliberate_action") if isinstance(goal, dict) else None
+    if not need_fn or need_fn not in actions:
+        return {}
+    impasse = float(
+        ((context.get("affect_state") or {}).get("core_signals") or {}).get(
+            "impasse_signal", 0.0
+        ) or 0.0
+    )
+    return {str(need_fn): min(0.6, 0.22 + 0.5 * impasse)}

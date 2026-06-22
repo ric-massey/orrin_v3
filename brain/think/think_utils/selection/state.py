@@ -8,10 +8,12 @@ cycle. Re-imported into select_function for its internal callers.
 """
 from __future__ import annotations
 
+from typing import Any, Dict, List, Tuple
+
 from brain.utils.json_utils import load_json
 from brain.utils.goals import extract_current_focus_goal
 from brain.utils.failure_counter import record_failure
-from brain.paths import FOCUS_GOAL, AFFECT_STATE_FILE
+from brain.paths import FOCUS_GOAL, AFFECT_STATE_FILE, SELF_MODEL_FILE
 
 
 def _dominant_emotion() -> str:
@@ -34,3 +36,49 @@ def _focus_goal_name() -> str:
     except Exception as _e:
         record_failure("select_function._focus_goal_name", _e)
     return str(fg.get("name", ""))
+
+
+def _get_directive_text() -> str:
+    sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
+    cd = sm.get("core_directive")
+    if isinstance(cd, dict):
+        return str(cd.get("statement", "")) or ""
+    if isinstance(cd, str):
+        return cd
+    return ""
+
+
+def _get_focus_goal_text() -> str:
+    fg = load_json(FOCUS_GOAL, default_type=dict) or {}
+    try:
+        s = extract_current_focus_goal(fg)
+        if s:
+            return str(s)
+    except Exception as _e:
+        record_failure("select_function._get_focus_goal_text", _e)
+    name = str(fg.get("name", "") or "")
+    desc = str(fg.get("description", "") or "")
+    return (name + " " + desc).strip()
+
+
+def _dominant_emotion_and_stagnation_signal(context: Dict[str, Any] | None = None) -> Tuple[str, float]:
+    # Prefer in-memory context so function selection uses the current cycle's
+    # emotional state, not the stale disk file from the previous cycle.
+    if context is not None:
+        emo = context.get("affect_state") or {}
+    else:
+        emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    core = emo.get("core_signals", {}) or {}
+    stagnation_signal = float(core.get("stagnation_signal", emo.get("stagnation_signal", 0.0)) or 0.0)
+    dom = None
+    try:
+        if isinstance(core, dict) and core:
+            dom = max(core.items(), key=lambda kv: kv[1])[0]
+    except Exception:
+        dom = None
+    return (dom or str(emo.get("dominant", "neutral"))), max(0.0, min(1.0, stagnation_signal))
+
+
+def _recent_picks_from_ctx(ctx: Dict[str, Any]) -> List[str]:
+    rp = ctx.get("recent_picks", [])
+    return rp if isinstance(rp, list) else []

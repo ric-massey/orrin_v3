@@ -31,13 +31,34 @@ Detailed structural findings are recorded in
     snapshot/rollback) and `goal_planning.py` (intent classification + symbolic
     plan + causal first-step + plan assembly). `_causal_first_step` re-exported
     for the causal-closure test.
-  **Remaining 4D:** the two large central functions — `select_function()` itself
-  (with its candidate/constraint helpers `_is_dispatchable`/`_load_actions`/
-  `_workspace_routes_for`/`_planned_action_recruitment` and the tag-derived
-  frozenset constants) and `pursue_committed_goal()` + `assess_goal_progress` /
-  `adapt_subgoals` (execution/adaptation) + the closure helpers. These are the
-  most-coupled cores and warrant their own careful pass; the base/policy layers
-  now in place make them the only things left.
+  Then extracted the remaining helper layers, each verified green:
+  - `select_function.py` **→ 1,519**: `candidates.py` (selectability +
+    dispatchability + cognition-only candidate loaders, with the shared
+    `_ALWAYS_EXCLUDE` joining `constants.py`); the leftover small readers folded
+    into `state.py`, `_emo_mode_function_map` into `scoring.py`,
+    `_planned_action_recruitment` into `candidates.py`.
+  - `pursue_goal.py` **→ 1,091**: `goal_closure.py` (survival preempt,
+    idempotent completion, tier-satiety close, Wrosch degrade/disengage +
+    re-promote; the `_FINALIZED_IDS` dedup dict moved here and re-imported as the
+    same object so finalize-once stays coherent).
+
+  **Net:** the two originals went **2,268 → 1,519** and **1,673 → 1,091**; eleven
+  focused modules now hold the selection/planning layers (`selection/{text,
+  catalog, state, constants, scoring, features, candidates}.py`;
+  `planning/{plan_versioning, goal_planning, goal_closure}.py`). The plan's
+  helper-layer split (candidate generation / feature calculation / policy-scoring /
+  constraints for selection; planning / persistence / closure for pursuit) is
+  **done**, with public names re-exported so no caller changed.
+
+  **Remaining 4D — the coordinator function bodies only:** `select_function()`
+  (~1,120 lines) and `pursue_committed_goal()` (~600) + `assess_goal_progress` /
+  `adapt_subgoals`. These are the orchestrators the plan says to *keep* as
+  coordinators (like `run_cognitive_loop`); decomposing their bodies further, or
+  relocating them into `execution`/`adaptation` modules, is not a pure move —
+  they reassign module-level counters via `global` (`_pursuit_call_count`,
+  `_last_adapt_ts`), so the writer + its state must travel together with
+  per-counter reader verification. That's a deliberate behaviour-touching pass,
+  not an end-of-session mechanical move — left as the final, well-isolated step.
 
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).

@@ -645,6 +645,16 @@ that decomposes into ordered, individually-testable scoring stages.
   `scores` in isolation — the current single-function shape makes that
   impossible today.
 
+**Progress:** the per-function boost computations were already extracted to
+`selection/boosts.py` and the post-pick refinement to `selection/pick.py`. The
+~195-line per-action scoring loop (the accumulator heart) is now extracted to
+`selection/score_actions.py` as `score_candidates(actions, defs, ScoreInputs,
+context)` — the loop body is byte-for-byte unchanged (the 29 selector
+characterization/invariant tests pin it), with its ~38 inputs bundled in a
+`ScoreInputs` dataclass that makes the loop independently testable.
+`select_function.py` 779 → 591. Remaining: the pre-loop setup that builds
+`ScoreInputs` still keeps the coordinator above the ~250-line target.
+
 ### 4.5B. Bring over-limit extracted modules under the soft limit
 
 Phase 4's own extraction produced modules above the 600-line limit it set.

@@ -46,14 +46,33 @@ large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).
   full suite (**922 passed / 1 skipped**, ruff clean) and committed individually.
   **ORRIN_loop.py 3,709 → 1,872** (−49%), split into
   `brain/loop/{telemetry, invoke, boot, sense, reflect, deliberate}.py`.
-  **Remaining (the hard core):** the cognition+action execution (Path A behavior /
-  Path B cognition, ~970 lines) plus its dependent maintenance/finalization
-  stages. Unlike the stages above, this is NOT a clean `context`-only block — it
-  threads ~8 loop-locals in/out (`result`, `reward`, `feats`, `acted_this_cycle`,
-  `_decision_id`, `_evaluator`, `BEH_NAMES`, `COG_MAP`/`BEH_MAP`) and the
-  maintenance stages consume its reward/acted outputs. It wants a small typed
-  per-cycle result object designed deliberately, as its own focused pass — not a
-  mechanical block move. Per the plan's "do not begin with a wholesale rewrite."
+  Then completed the loop-body decomposition, one net-verified stage per commit:
+  the three dispatch paths into `brain/loop/execute.py`
+  (`execute_behavior_action` / `execute_cognition_function` / `execute_fallback`,
+  each returning `(context, reward, acted_this_cycle)` — `ruff` F821 caught that
+  the earlier path extractions had orphaned `acted_this_cycle`, which feeds
+  `action_debt`, so each path now returns exactly what its inline code computed);
+  `brain/loop/account.py` (`account_action` — acted recovery, drift, action-debt,
+  stall watchdog, trace); `brain/loop/maintenance.py` (`run_maintenance_tier` —
+  the cadence-driven closure tier); and `brain/loop/finalize.py`
+  (`persist_and_periodic` — goal/memory sync, evaluator, prediction, dream,
+  workspace; `finalize_cycle` — health monitor, plasticity, affect convergence,
+  long-memory consolidation). An import-time SyntaxError caught a loop-level
+  `break` (the ORRIN_ONCE exit) an indent-grep had missed, so the finalize
+  boundary was corrected to leave loop-control in the loop. Shared `_OUTWARD_FNS`
+  moved to `brain/loop/constants.py` to avoid a circular import.
+
+  **ORRIN_loop.py 3,709 → 467 (−87%).** `run_cognitive_loop`'s body is now a thin
+  staged coordinator — `sense_and_refresh → integrate_recall_and_baseline →
+  tier1_health_check → prepare_workspace → ignite → think → dispatch(A/B/C) →
+  account_action → persist_and_periodic → run_maintenance_tier → finalize_cycle →
+  pulse/sleep` — with only genuine coordination (dispatch branching, decision-id,
+  reward-rate, loop control) left inline. Eleven stage modules under `brain/loop/`,
+  each verified by the loop net (every stage runs in a real cycle) + the full
+  suite (**923 passed / 1 skipped**, ruff clean). Soft-limit exceptions:
+  `boot.py` (631, one ~490-line `_boot_context`) and `execute.py` (855, Path B is
+  ~610 lines) — both single-function intact moves, sub-divisible in a later pass.
+  **Phase 4 remaining:** 4D `select_function.py` / `pursue_goal.py`.
 
 - **Phase 4A/4B boot characterization net — DONE.** Before extracting any
   lifecycle stage out of `main.py`/`ORRIN_loop.py`, added

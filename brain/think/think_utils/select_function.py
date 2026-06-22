@@ -27,6 +27,12 @@ from brain.think.think_utils.selection.candidates import (  # noqa: F401
 )
 # Feature extraction, extracted to selection/features.py (Phase 4D).
 from brain.think.think_utils.selection.features import extract_features  # noqa: F401
+# Per-function scoring boosts, extracted to selection/boosts.py (Phase 4.5A).
+from brain.think.think_utils.selection.boosts import (
+    compute_workspace_prior, compute_unconscious_damp, compute_drive_pull,
+    compute_chain_boost, compute_energy_boost, compute_emo_mode_boost,
+    compute_emo_route_boost,
+)
 from brain.think.think_utils.selection.scoring import (  # noqa: F401
     _SEMANTIC_PRIORS, _emotion_pref_scores_for_dominant, _semantic_emotion_prior,
     _devalue_prior, _novelty_score, _bandit_pick_with_info, _bandit_hint_scores,
@@ -543,24 +549,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # NOT a hard override (I7: bias, never preempt). Monitor breakthroughs are
     # already routed above, so they're skipped here to avoid double-counting.
     # Disable with ORRIN_WORKSPACE_PRIOR=0.
-    _workspace_prior: Dict[str, float] = {}
-    try:
-        import os as _os_wp
-        if _os_wp.environ.get("ORRIN_WORKSPACE_PRIOR", "1") != "0":
-            _gw_ws  = context.get("global_workspace") or {}
-            _ws_src = str(_gw_ws.get("source", ""))
-            _ws_sal = float(_gw_ws.get("salience", 0.0) or 0.0)
-            if _ws_src and not _ws_src.startswith("monitor:") and _ws_sal > 0.0:
-                # source → the functions that ACT ON that kind of conscious content.
-                _ws_routes = _workspace_routes_for(_gw_ws)
-                # Headroom 0.35: strong enough to be a genuine prior (cf. tension 0.15,
-                # ACC recruit ≤0.6), bounded so it never dominates the arg-max alone.
-                _ws_gain = 0.35 * max(0.0, min(1.0, _ws_sal))
-                for _wfn, _wwt in _ws_routes.items():
-                    if _wfn in actions:
-                        _workspace_prior[_wfn] = _ws_gain * _wwt
-    except Exception as _wpe:
-        record_failure("select_function.workspace_prior", _wpe)
+    _workspace_prior = compute_workspace_prior(context, actions)
 
     # ── Unconscious damp (Fix 1 teeth; Dehaene 2014 ignition is all-or-none) ────
     # On a non-ignited cycle the loop stayed in low-power default mode: deliberate
@@ -569,20 +558,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # (light reflection, rest) instead of spinning up planning/codegen/research.
     # Graded penalty, never a lockout — the floor still forces ignition eventually.
     # Disable with ORRIN_IGNITION_GATE=0 (the gate itself sets _conscious_cycle).
-    _unconscious_damp: Dict[str, float] = {}
-    try:
-        if context.get("_conscious_cycle") is False:
-            _EFFORTFUL_FNS = frozenset({
-                "plan_next_step", "plan_self_evolution", "redirect_goal_plan",
-                "adapt_subgoals", "generate_intrinsic_goals", "decide_to_write_code",
-                "write_cognitive_function", "skill_synthesis", "self_review",
-                "web_research", "look_outward", "search_own_files",
-            })
-            for _efn in _EFFORTFUL_FNS:
-                if _efn in actions:
-                    _unconscious_damp[_efn] = -0.30
-    except Exception as _ude:
-        record_failure("select_function.unconscious_damp", _ude)
+    _unconscious_damp = compute_unconscious_damp(context, actions)
 
     # Tension boost: when active tensions exist, nudge resolution-oriented functions
     _tension_boost: Dict[str, float] = {}
@@ -628,64 +604,22 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
     # Drive competition: compute per-function pull from competing motivations.
     # apply_drive_tensions() also bumps uncertainty and logs the hottest conflict.
-    _drive_pull: Dict[str, float] = {}
-    try:
-        from brain.cognition.goal_competition import apply_drive_tensions, compute_drive_strengths, drive_pull_scores
-        _conflicts = apply_drive_tensions(context)
-        _strengths = context.get("_drive_strengths") or compute_drive_strengths(context)
-        # Master plan 4.1: commitment strength is a tie-breaker input to goal
-        # competition — a dearly-held vow pulls toward pursuit functions.
-        _c = context.get("_commitment")
-        _cs = float(_c.get("strength", 0.0)) if isinstance(_c, dict) else 0.0
-        _drive_pull = drive_pull_scores(actions, _strengths, commitment_strength=_cs)
-    except Exception as _e:
-        record_failure("select_function.select_function.5", _e)
+    _drive_pull = compute_drive_pull(context, actions)
 
     # Function chaining bonus: if the previous function has a known high-reward
     # successor in function_chains.json, add its stored bonus to that successor.
     # This implements basal-ganglia-style procedural chunking learned during dream.
-    _chain_boost: Dict[str, float] = {}
-    try:
-        import json as _json
-        from brain.paths import DATA_DIR as _DATA_DIR
-        _chains_path = _DATA_DIR / "function_chains.json"
-        if _chains_path.exists():
-            _chains = _json.loads(_chains_path.read_text(encoding="utf-8"))
-            _last_fn = (recent[-1] if recent else None)
-            if _last_fn and _last_fn in _chains:
-                for _succ, _entry in (_chains[_last_fn] or {}).items():
-                    if _succ in actions:
-                        _chain_boost[_succ] = float(
-                            _entry.get("bonus", 0.0) if isinstance(_entry, dict) else 0.0
-                        )
-    except Exception as _e:
-        record_failure("select_function.select_function.6", _e)
+    _chain_boost = compute_chain_boost(recent, actions)
 
     # Energy orientation boost: high energy → action functions up; low/rest → reflection up.
-    _energy_boost: Dict[str, float] = {}
-    try:
-        from brain.motivation.energy_orientation import energy_boost_scores as _ebs
-        _energy_state = str(context.get("energy_state") or "medium")
-        _action_bias  = float(context.get("action_vs_reflect_bias") or 0.5)
-        _rest_mode    = bool(context.get("_rest_mode"))
-        _energy_boost = _ebs(actions, _energy_state, _action_bias, _rest_mode)
-    except Exception as _e:
-        record_failure("select_function.select_function.7", _e)
+    _energy_boost = compute_energy_boost(context, actions)
 
     # === Emotional mode → function selection translation ===
     # recommend_mode_from_affect_state() returns "focused"/"creative"/"exploratory" etc.
     # select_function reads attention_mode ("alert"/"wandering"/"drowsy") from signal_router.
     # These are two different vocabularies that never talked to each other — this block
     # bridges them by translating the emotional mode into direct function score boosts.
-    _emo_mode_boost: Dict[str, float] = {}
-    try:
-        from brain.affect.modes_and_affect import get_current_mode as _gcm
-        _emo_mode = _gcm()
-        # Phase 4: weighted "emo_<mode>:<w>" tags in the capability manifest are
-        # the source of truth (literal fallbacks inside _emo_mode_function_map).
-        _emo_mode_boost = _emo_mode_function_map().get(_emo_mode, {})
-    except Exception as _e:
-        record_failure("select_function.select_function.8", _e)
+    _emo_mode_boost = compute_emo_mode_boost()
 
     # Compute goal status before neuromodulator block — used at line 749.
     # Was previously defined at line 815, causing NameError inside the try block
@@ -775,16 +709,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
     # Emotion routing — deep cognitive policy signal (not just prompt influence).
     # risk_estimate → verification; stagnation_signal → novelty; Confidence → prune; etc.
-    _emo_route_boost: Dict[str, float] = {}
-    try:
-        from brain.cognition.emotion_routing import emotion_bias as _eb
-        _emo_state_full = context.get("affect_state") or {}
-        for _fn in actions:
-            _bias = _eb(_fn, _emo_state_full)
-            if _bias != 0.0:
-                _emo_route_boost[_fn] = _bias
-    except Exception as _e:
-        record_failure("select_function.select_function.10", _e)
+    _emo_route_boost = compute_emo_route_boost(context, actions)
 
     # Standing outward-presence boost: Orrin should engage with his environment
     # regularly, not just compute internally. These functions couple cognition to the

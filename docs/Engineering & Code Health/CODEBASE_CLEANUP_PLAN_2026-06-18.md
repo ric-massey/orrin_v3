@@ -7,7 +7,30 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
-## Implementation status (updated 2026-06-21)
+## Implementation status (updated 2026-06-22)
+
+- **Phase 4D — STARTED (foundational slices in, bulk remains).** Both selection
+  /planning files are dense with import-time-computed constants whose helpers
+  cross-reference each other, so the safe order is bottom-up: extract the
+  dependency *base* first, then layer scoring/features on top. Done so far, each
+  a pure move re-imported to preserve the public API (`from
+  …select_function import …` / `…pursue_goal import …`) and verified by the
+  selector/goal test suites + full suite (**923 passed / 1 skipped**, ruff clean):
+  - `select_function.py` 2,268 → 2,114: `selection/text.py` (tokenize / keyword
+    overlap / `_capability_overlap`) and `selection/catalog.py` (the manifest
+    cache + loaders + learned-stats — the selector's dependency base, cycle-free).
+    Two suite-caught bugs fixed: tests monkeypatched the old module's cache
+    (repointed at `catalog`), and `catalog.py` sitting one dir deeper made the
+    `parents[2]` data-paths resolve wrong (→ `parents[3]`).
+  - `pursue_goal.py` 1,673 → 1,616: `plan_versioning.py` (drift scoring + plan
+    snapshot/rollback).
+  **Remaining 4D:** select_function's scoring/priors + `extract_features` +
+  the main `select_function`/constants (the bandit/novelty helpers and the
+  tag-derived frozensets — these need the shared `FALLBACK_ACTIONS`/`bandit`
+  singleton handled to avoid a cycle, likely a `selection/constants.py`); and
+  pursue_goal's planning / execution (`pursue_committed_goal`) / adaptation
+  (`adapt_subgoals`) split. The base layers (`catalog`, `text`) now make those
+  upper-layer extractions cycle-free.
 
 Closed out the low-risk "finishable tails" so the remaining work is purely the
 large incremental decompositions (Phase 4A/B/D, 5, 6) plus CI hardening (7).

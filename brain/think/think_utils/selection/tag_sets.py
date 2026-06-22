@@ -24,7 +24,7 @@ from brain.think.think_utils.selection.catalog import _tagged_or
 # "goal-progress"), so a newly tagged function participates without touching this
 # list. (E6 cleanup: the dead pursue_committed_goal entry was dropped — it runs
 # in the Executive lane and is never in the pool.)
-_USER_HELPFUL_DEFAULT: frozenset = frozenset({
+_USER_HELPFUL_DEFAULT: frozenset[str] = frozenset({
     "plan_next_step",
     "assess_goal_progress",
     "adapt_subgoals",
@@ -44,7 +44,7 @@ _USER_HELPFUL_DEFAULT: frozenset = frozenset({
 
 # Pure introspection — valuable, but should yield to helpfulness when user is present.
 # Phase 4 fallback for the "introspective" tag.
-_INTROSPECTION_DEFAULT: frozenset = frozenset({
+_INTROSPECTION_DEFAULT: frozenset[str] = frozenset({
     "dream_cycle",
     "narrative_update",
     "reflection",
@@ -58,7 +58,7 @@ _INTROSPECTION_DEFAULT: frozenset = frozenset({
 # When avoidance is entrenched (behavioral_adaptation sets _suppress_goal_deliberation
 # at high action_debt) these are locked out for a cycle so "assess / adapt / re-weight
 # the goal" can no longer be chosen in place of actually doing it.
-_GOAL_DELIBERATION_FNS: frozenset = frozenset({
+_GOAL_DELIBERATION_FNS: frozenset[str] = frozenset({
     "assess_goal_progress",
     "adapt_subgoals",
     "adjust_goal_weights",
@@ -69,14 +69,14 @@ _GOAL_DELIBERATION_FNS: frozenset = frozenset({
 # never executes (assess → adjust → abduce → adapt → assess …). These two sets let
 # the selector measure the think/act ratio over the recent window and force an
 # execution function when deliberation has crowded out doing.
-_DELIBERATION_FNS: frozenset = frozenset({
+_DELIBERATION_FNS: frozenset[str] = frozenset({
     "assess_goal_progress", "adapt_subgoals", "adjust_goal_weights",
     "abduce", "reflection", "self_review", "narrative_update",
     "reflect_on_directive", "reflect_on_affect", "metacog_flush",
     "detect_memory_contradictions", "propose_value_revision",
     "introspective_planning", "associative_recall", "plan_next_step",
 })
-_EXECUTION_FNS: frozenset = frozenset({
+_EXECUTION_FNS: frozenset[str] = frozenset({
     # Phase 4 / E6 cleanup: pursue_committed_goal dropped — it never appears in
     # `recent` (not selectable), so it could never satisfy the think/act check.
     "research_topic", "wikipedia_search",
@@ -97,7 +97,7 @@ _EXECUTION_FNS: frozenset = frozenset({
 # graded, never a lockout. research_topic / wikipedia_search / fetch_and_read are
 # deliberately EXCLUDED: those are how a research goal is actually pursued, so
 # goal-relevant outward work is never shielded against.
-_BLIND_EXPLORE_FNS: frozenset = frozenset({
+_BLIND_EXPLORE_FNS: frozenset[str] = frozenset({
     "search_own_files", "search_files", "grep_files",
     "look_outward", "look_around", "seek_novelty",
     "read_a_book", "read_book",
@@ -118,7 +118,7 @@ _BLIND_EXPLORE_FNS: frozenset = frozenset({
 # select_focus_goals, maybe_complete_goals, generate_intrinsic_goals,
 # generate_absurd_goal, plan_self_evolution, self_supervised_repair, and the
 # record_*/commit_*/propose_extension goal-state mutations.
-_SAFE_TO_EXPLORE_DEFAULT: frozenset = frozenset({
+_SAFE_TO_EXPLORE_DEFAULT: frozenset[str] = frozenset({
     # procedural reads / observations (mirror of step_execution._PROCEDURAL_FNS,
     # extended with the reversible read-only tools in the live pool)
     "research_topic", "fetch_and_read", "wikipedia_search", "fetch_wikipedia",
@@ -160,9 +160,9 @@ _SAFE_TO_EXPLORE_DEFAULT: frozenset = frozenset({
 # ~15 hardcoded name-lists. Every set keeps its literal default as fallback
 # (_tagged_or), so a missing/corrupt manifest degrades to the pre-Phase-4
 # behavior instead of collapsing selection.
-_USER_HELPFUL_FUNCTIONS: frozenset = _tagged_or(("outward", "goal-progress"), _USER_HELPFUL_DEFAULT)
-_INTROSPECTION_FUNCTIONS: frozenset = _tagged_or(("introspective",), _INTROSPECTION_DEFAULT)
-_SAFE_TO_EXPLORE: frozenset = _tagged_or(("safe_to_explore",), _SAFE_TO_EXPLORE_DEFAULT)
+_USER_HELPFUL_FUNCTIONS: frozenset[str] = _tagged_or(("outward", "goal-progress"), _USER_HELPFUL_DEFAULT)
+_INTROSPECTION_FUNCTIONS: frozenset[str] = _tagged_or(("introspective",), _INTROSPECTION_DEFAULT)
+_SAFE_TO_EXPLORE: frozenset[str] = _tagged_or(("safe_to_explore",), _SAFE_TO_EXPLORE_DEFAULT)
 
 # Attention-mode per-fn affinity sets (the literal tuples that lived inline in
 # the attention_mode blocks).

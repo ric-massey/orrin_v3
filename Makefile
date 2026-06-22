@@ -14,22 +14,26 @@
 
 PYTHON := $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 RUFF   := $(PYTHON) -m ruff
+MYPY   := $(PYTHON) -m mypy
 
 .DEFAULT_GOAL := help
-.PHONY: help verify test lint lint-fix format audit-exceptions fe-typecheck fe-build fe-lint frontend
+.PHONY: help verify test lint lint-fix format py-typecheck audit-exceptions fe-typecheck fe-build fe-lint frontend
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?##' $(MAKEFILE_LIST) 2>/dev/null | \
 		awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-14s\033[0m %s\n", $$1, $$2}' || \
 		echo "see the header of this Makefile for targets"
 
-verify: lint test fe-typecheck fe-build ## Full local verification set (== CI gate)
+verify: lint py-typecheck test fe-typecheck fe-build ## Full local verification set (== CI gate)
 
 test: ## Run the Python test suite (hermetic)
 	$(PYTHON) -m pytest -q
 
 lint: ## Ruff lint (high-signal rules; must be green)
 	$(RUFF) check .
+
+py-typecheck: ## mypy strict check of the typed-module allowlist (pyproject [tool.mypy].files)
+	$(MYPY)
 
 lint-fix: ## Ruff lint with safe autofixes applied
 	$(RUFF) check --fix .

@@ -43,7 +43,7 @@ embedding = ["sentence-transformers>=2.7"]
 nlp = ["spacy>=3.7"]
 llm = ["openai>=1.40.0"]
 llm-extra = ["anthropic>=0.40.0", "google-genai>=0.3.0"]
-dev = ["pytest>=8.0", "ruff>=0.5", "coverage>=7.4"]
+dev = ["pytest>=8.0", "ruff>=0.5", "coverage>=7.4", "mypy>=1.8"]
 # Recursive extra: the full runtime a packaged/desktop build ships.
 all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 
@@ -83,3 +83,22 @@ extend-exclude = ["frontend", "build", "dist", ".venv", "data", "brain/data"]
 # 2026-06-21 cleanup pass; one intentional "keep computed" site carries `# noqa: F841`.
 select = ["F", "E9"]
 ignore = []
+
+# ── mypy (CODEBASE_CLEANUP_PLAN Phase 5.0) ──────────────────────────────────
+# Type-checking gate, folded into `make verify`. The codebase is largely
+# untyped, so rather than a lenient whole-tree pass (which would never have
+# teeth), this is a STRICT check of an explicit, growing allowlist: `files`
+# below lists every module that has been brought up to `--strict`. Running
+# `mypy` with no args checks exactly those files; legacy modules are only
+# imported (follow_imports = silent), never deep-checked. As Phase 5 types each
+# module it joins this list — which grows monotonically and is never shrunk to
+# make a change pass (the Phase-5 exit criterion).
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+follow_imports = "silent"
+files = [
+    "brain/loop/constants.py",
+    "brain/think/think_utils/selection/tag_sets.py",
+]

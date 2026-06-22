@@ -9,6 +9,10 @@
 import json
 
 import brain.think.think_utils.select_function as sf
+# The manifest cache + loaders moved to selection/catalog.py (Phase 4D); the
+# select_function names are re-exports that read catalog's globals, so the
+# monkeypatches below target catalog (the owner) to actually affect the loader.
+import brain.think.think_utils.selection.catalog as catalog
 from brain.cognition.planning.step_execution import (
     _PROCEDURAL_DEFAULT,
     _PROCEDURAL_FNS,
@@ -104,8 +108,8 @@ def test_manifest_supports_both_formats(tmp_path, monkeypatch):
         "new_style_fn": {"desc": "tagged function", "tags": ["outward", "emo_focused:0.33"]},
         "tagged_only_fn": {"desc": "", "tags": ["procedural"]},
     }))
-    monkeypatch.setattr(sf, "_CAPS_PATH", p)
-    monkeypatch.setattr(sf, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
+    monkeypatch.setattr(catalog, "_CAPS_PATH", p)
+    monkeypatch.setattr(catalog, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
     descs = sf._capability_descriptions()
     assert descs["old_style_fn"] == "plain description string"
     assert descs["new_style_fn"] == "tagged function"
@@ -117,8 +121,8 @@ def test_manifest_supports_both_formats(tmp_path, monkeypatch):
 
 def test_broken_manifest_falls_back_to_literals(tmp_path, monkeypatch):
     p = tmp_path / "missing.json"   # does not exist
-    monkeypatch.setattr(sf, "_CAPS_PATH", p)
-    monkeypatch.setattr(sf, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
+    monkeypatch.setattr(catalog, "_CAPS_PATH", p)
+    monkeypatch.setattr(catalog, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
     fallback = frozenset({"a", "b"})
     assert sf._tagged_or(("outward",), fallback) == fallback
 
@@ -130,8 +134,8 @@ def test_newly_tagged_function_participates(tmp_path, monkeypatch):
     p.write_text(json.dumps({
         "brand_new_probe": {"desc": "a new outward act", "tags": ["outward"]},
     }))
-    monkeypatch.setattr(sf, "_CAPS_PATH", p)
-    monkeypatch.setattr(sf, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
+    monkeypatch.setattr(catalog, "_CAPS_PATH", p)
+    monkeypatch.setattr(catalog, "_CAPS_CACHE", {"t": 0.0, "data": {}, "tags": {}})
     derived = sf._tagged_or(("outward", "goal-progress"), sf._USER_HELPFUL_DEFAULT)
     assert "brand_new_probe" in derived
 

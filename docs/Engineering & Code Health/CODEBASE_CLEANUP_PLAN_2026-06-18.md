@@ -726,7 +726,13 @@ re-export-the-public-API method that worked in 4C/4D:
     + definitional), building on the core.
   - `knowledge_graph.py` keeps the public entity/query/ingest/maintenance API and
     LLM dream consolidation.
-- `brain/think/think_utils/action_gate.py` — **1,136**
+- `brain/think/think_utils/action_gate.py` — **1,136 → 427 DONE** (now under the
+  limit). Split into a 3-module package, public API re-exported:
+  - `action_gate_helpers.py` (377) — the support leaf (pending-action queue,
+    novelty/outcome stamping, reflection, adaptive context, injectors,
+    `_current_focus_name`, and the action constants).
+  - `action_gate_execute.py` (388) — `take_action` (action dispatch/execution).
+  - `action_gate.py` keeps the `evaluate_and_act_if_needed` decision orchestrator.
 - `brain/cognition/opinions.py` — **1,114**
 - then the long tail (`update_affect_state.py` 882, `prediction.py` 867,
   `dream_cycle.py` 862, `theory_of_mind.py` 828, … down to 600).

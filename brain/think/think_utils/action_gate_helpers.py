@@ -10,8 +10,21 @@ from datetime import datetime, timezone
 
 from brain.cognition.selfhood.boundary_check import check_violates_boundaries
 from brain.utils.failure_counter import record_failure
+from brain.utils.json_utils import load_json
+from brain.paths import FOCUS_GOAL
 
 _log = get_logger(__name__)
+
+
+def _current_focus_name():
+    try:
+        data = load_json(FOCUS_GOAL)
+        if isinstance(data, dict):
+            from brain.utils.goals import extract_current_focus_goal
+            return extract_current_focus_goal(data)
+    except Exception as _e:
+        record_failure("action_gate._current_focus_name", _e)
+    return None
 
 _NOISE: frozenset = frozenset({"", ".", "...", "ok", "okay", "yes", "no", "hi", "hello"})
 AGENTIC_TYPES = {

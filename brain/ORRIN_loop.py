@@ -29,15 +29,11 @@ from brain.think.think_utils.action_gate import take_action
 
 from brain.think.loop_helpers import (
     emit_trace,
-    compute_reward,
-    reason_string,
     names,
     discover_callable_maps,
-    execute_action_via_registries,
     bandit_learn,
 )
 
-from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
 from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 
 from brain.affect.affect_drift import check_affect_drift
@@ -47,7 +43,6 @@ from brain.cognition.planning.reflection import record_decision
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_error, log_private, log_activity, log_model_issue
-from brain.utils.emotion_utils import log_uncertainty_spike
 
 from brain.utils.error_router import route_exception
 from brain.cognition.repair.auto_repair import try_auto_repair
@@ -87,7 +82,7 @@ from brain.loop.reflect import integrate_recall_and_baseline, tier1_health_check
 # Deliberation-prep stages (executive lane, metacog→workspace), Phase 4A.
 from brain.loop.deliberate import prepare_workspace, ignite
 # Action/cognition execution stages (Path A/B), Phase 4A.
-from brain.loop.execute import execute_behavior_action, execute_cognition_function
+from brain.loop.execute import execute_behavior_action, execute_cognition_function, execute_fallback
 def run_cognitive_loop(
     pulse=None,
     goals_api=None,
@@ -296,7 +291,6 @@ def run_cognitive_loop(
                 record_failure("ORRIN_loop.reset_cycle_action_flags", _e)
             result           = None
             reward           = 0.0
-            feats            = {}
 
             context = tier1_health_check(context)
 
@@ -320,69 +314,13 @@ def run_cognitive_loop(
 
             # Path A: behavior action
             if isinstance(result, dict) and "action" in result:
-                context, reward = execute_behavior_action(context, result, _decision_id, _evaluator, BEH_NAMES)
+                context, reward, acted_this_cycle = execute_behavior_action(context, result, _decision_id, _evaluator, BEH_NAMES)
 
             # Path B: cognition function
             elif isinstance(result, dict) and "next_function" in result:
-                context, reward = execute_cognition_function(context, result, _decision_id, _evaluator, _mem_daemon, affect_state)
+                context, reward, acted_this_cycle = execute_cognition_function(context, result, _decision_id, _evaluator, _mem_daemon, affect_state)
             elif result is not None:
-                log_model_issue("No valid instruction from think(). Fallback to selector.")
-                log_uncertainty_spike(context, increment=0.1)
-                import uuid as _uuid_fb
-                _fb_decision_id = str(_uuid_fb.uuid4())
-                sel = None
-                try:
-                    from brain.think.think_utils.select_function import select_function
-                    sel = select_function(context)
-                except Exception as _e:
-                    log_model_issue(f"select_function failed: {_e}")
-
-                if not sel or not isinstance(sel, str):
-                    fb_meta_or_fn = COGNITIVE_FUNCTIONS.get("reflect_on_self_beliefs")
-                    fb_fn = (fb_meta_or_fn.get("function") if isinstance(fb_meta_or_fn, dict) else fb_meta_or_fn)
-                    if callable(fb_fn):
-                        try:
-                            fb_fn()
-                            log_activity("Fallback executed: reflect_on_self_beliefs")
-                            reward = 0.5
-                        except Exception as e:
-                            route_exception(e, phase="cognition", context=context,
-                                            extra={"fn": "reflect_on_self_beliefs"})
-                            _ = try_auto_repair({"type": e.__class__.__name__, "msg": str(e),
-                                                 "trace": "", "phase": "cognition"}, context)
-                            log_error(f"Fallback function crashed: {e}")
-                            reward = 0.0
-                    else:
-                        log_model_issue("No fallback function available.")
-                        reward = 0.0
-                    feats = bandit_learn("reflect_on_self_beliefs", context, reward, decision_id=_fb_decision_id)
-                    record_decision("reflect_on_self_beliefs",
-                                    reason_string({"status": "fallback"}, reward, feats, "fallback.fn"),
-                                    reward=reward, context=context)
-                    if _evaluator:
-                        try:
-                            from brain.eval.evaluator_wal import append_pending as _ew_append_c1
-                            _ew_append_c1(_fb_decision_id, "reflect_on_self_beliefs", feats or {}, get_cycle_count(),
-                                          committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
-                        except Exception as _ewc1_e:
-                            log_model_issue(f"[evaluator] Path C WAL append failed: {_ewc1_e}")
-                else:
-                    exec_result = execute_action_via_registries(sel, context, COG_MAP)
-                    reward = compute_reward(exec_result)
-                    feats = bandit_learn(sel, context, reward, decision_id=_fb_decision_id)
-                    record_decision(sel, reason_string(exec_result, reward, feats, "fallback.sel"),
-                                    reward=reward, context=context)
-                    if _evaluator:
-                        try:
-                            from brain.eval.evaluator_wal import append_pending as _ew_append_c2
-                            _ew_append_c2(_fb_decision_id, sel, feats or {}, get_cycle_count(),
-                                          committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
-                        except Exception as _ewc2_e:
-                            log_model_issue(f"[evaluator] Path C (sel) WAL append failed: {_ewc2_e}")
-                    if isinstance(exec_result, dict) and exec_result.get("success"):
-                        acted_this_cycle = True
-                        context["last_action_ts"] = time.time()
-
+                context, reward, acted_this_cycle = execute_fallback(context, _evaluator, COG_MAP)
             if not context.get("_reward_rate_updated_this_cycle"):
                 try:
                     from brain.cognition.reward_rate import update_reward_rate
@@ -435,7 +373,10 @@ def run_cognitive_loop(
                                     _wd_reward = 0.8 if ok else 0.0
                                     import uuid as _uuid_wd
                                     _wd_decision_id = str(_uuid_wd.uuid4())
-                                    feats = bandit_learn(mv_type, context, _wd_reward, decision_id=_wd_decision_id)
+                                    # Learn from the watchdog action; the returned feats
+                                    # are not consumed here (record_decision below omits
+                                    # them), so don't bind them.
+                                    bandit_learn(mv_type, context, _wd_reward, decision_id=_wd_decision_id)
                                     record_decision(mv_type, "watchdog minimum viable action",
                                                     reward=_wd_reward, context=context)
                                 except Exception as _e:

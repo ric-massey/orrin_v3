@@ -651,7 +651,8 @@ Phase 4's own extraction produced modules above the 600-line limit it set.
 Re-split these (or document a concrete exemption per the exit criteria):
 
 - `brain/loop/execute.py` — **855 → 579 DONE** (reward shaping → `cognition_reward.py`)
-- `brain/loop/boot.py` — **631**
+- `brain/loop/boot.py` — **631 → 527 DONE** (preflight validators
+  `_validate_boot_files` / `_verify_production_capability` → `boot_checks.py`)
 - `brain/loop/sense.py` — **628**
 - `brain/cognition/planning/goal_execution.py` — **647 → 573 DONE** (milestone
   gate `_bootstrap_goal_plan` → `goal_planning.py`, beside `_generate_plan`)

@@ -687,7 +687,10 @@ Phase 4 only aimed at five named files. A repo-wide scan still shows **32 source
 modules over 600 lines**. Prioritize the largest, applying the same bottom-up,
 re-export-the-public-API method that worked in 4C/4D:
 
-- `brain/cognition/intrinsic_goals.py` — **1,745**
+- `brain/cognition/intrinsic_goals.py` — **1,745 → 1,361 (in progress)**; the
+  aspiration subsystem (enduring aspirations + learned driven_by→aspiration credit
+  + P3 fairness pressure) extracted to `intrinsic_aspirations.py` (404 lines).
+  Still over the limit — the symbolic goal generators are the next cluster.
 - `brain/cognition/planning/goals.py` — **1,652** (sits beside the already-split
   `pursue_goal`; same package, opposite state)
 - `brain/evidence/life_capsule.py` — **1,308**

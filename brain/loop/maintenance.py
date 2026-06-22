@@ -13,8 +13,9 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from typing import Any, Dict
 from brain.utils.get_cycle_count import get_cycle_count
-from brain.utils.log import log_activity
-from brain.utils.failure_counter import record_failure
+from brain.utils.log import log_activity, log_private
+from brain.utils.failure_counter import record_failure, dump_summary as _dump_failure_summary
+from brain.utils.token_meter import dump_summary as _dump_token_summary
 
 _log = get_logger(__name__)
 Context = Dict[str, Any]
@@ -187,6 +188,72 @@ def run_maintenance_tier(context) -> Context:
         _dbp(context)
     except Exception as _e:
         record_failure("ORRIN_loop.run_cognitive_loop.36", _e)
+
+
+    return context
+
+
+def periodic_housekeeping(context) -> Context:
+    """End-of-cycle cadence housekeeping, keyed off the cognitive cycle count:
+    the per-cycle 'cycle complete' status print, a forced GC every 50 cycles
+    (release torch/heap back to the OS), failure/token summaries + self-extension
+    integrate-or-atrophy + failure-ledger review every 100, and the fine-tuning
+    job check every 500. Mutates context in place; fail-safe.
+    """
+    cycle_num = get_cycle_count()
+    print(f"Orrin cognitive cycle {cycle_num} complete.")
+
+    # Periodic GC: force Python to release heap back to OS every 50 cycles.
+    # SentenceTransformer's PyTorch allocator expands the heap; gc.collect()
+    # ensures Python's reference-counted objects are cleaned up promptly.
+    if cycle_num > 0 and cycle_num % 50 == 0:
+        try:
+            import gc as _gc
+            _gc.collect()
+            try:
+                import torch as _torch
+                if _torch.cuda.is_available():
+                    _torch.cuda.empty_cache()
+            except Exception as _e:
+                record_failure("ORRIN_loop.run_cognitive_loop.40", _e)
+            log_private(f"[loop] GC pass at cycle {cycle_num}")
+        except Exception as _e:
+            record_failure("ORRIN_loop.run_cognitive_loop.41", _e)
+
+    if cycle_num > 0 and cycle_num % 100 == 0:
+        try:
+            _dump_failure_summary()
+        except Exception as _e:
+            record_failure("ORRIN_loop.run_cognitive_loop.42", _e)
+        try:
+            _dump_token_summary()
+        except Exception as _e:
+            record_failure("ORRIN_loop.run_cognitive_loop.43", _e)
+        try:
+            from brain.cognition.self_extension import maybe_integrate_or_atrophy as _mia
+            _mia(context)
+        except Exception as _miae:
+            record_failure("ORRIN_loop.integrate_or_atrophy", _miae)
+        # Phase 2.2: failure-ledger review. The cadence here only polls
+        # the gate — the function itself runs nothing unless ≥3 new
+        # failures accumulated since the last review (event-driven).
+        try:
+            from brain.cognition.reflection.review_failures import review_failures as _rvf
+            _rvf(context)
+        except Exception as _rvfe:
+            record_failure("ORRIN_loop.review_failures", _rvfe)
+
+    # Every 500 cycles (~2-3 hours at 20s/cycle): check for completed
+    # fine-tuning jobs and update model_config if one succeeded.
+    # Fine-tuning is how Orrin's generation actually changes over time.
+    if cycle_num > 0 and cycle_num % 500 == 0:
+        try:
+            from brain.cognition.finetuning.finetune_pipeline import check_pending_jobs as _cpj
+            _ft_updates = _cpj()
+            if _ft_updates:
+                log_activity(f"[finetune] Job updates: {_ft_updates}")
+        except Exception as _fte:
+            record_failure("ORRIN_loop.finetune_check", _fte)
 
 
     return context

@@ -18,6 +18,8 @@ from brain.think.think_utils.selection.state import (  # noqa: F401
     _get_directive_text, _get_focus_goal_text,
     _dominant_emotion_and_stagnation_signal, _recent_picks_from_ctx,
 )
+# Workspace→action routing, extracted to selection/routing.py (Phase 4D).
+from brain.think.think_utils.selection.routing import _workspace_routes_for  # noqa: F401
 from brain.think.think_utils.selection.candidates import (  # noqa: F401
     _planned_action_recruitment,
     _is_selectable_name, _is_dispatchable, _load_behavioral_names,
@@ -42,39 +44,6 @@ _log = get_logger(__name__)
 # plan_next_step, summarize_memory) were never registered under those names.
 
 
-def _workspace_routes_for(moment: Dict[str, Any]) -> Dict[str, float]:
-    """Map a conscious atomic or bound situation to additive action priors."""
-    source = str(moment.get("source", ""))
-    atomic = {
-        "goal":    {"attend_goal": 1.0, "plan_next_step": 0.8, "assess_goal_progress": 0.6},
-        "affect":  {"reflection": 0.8, "reflect_on_self_beliefs": 0.7, "narrative_update": 0.5},
-        "thought": {"reflection": 0.8, "narrative_update": 0.6},
-        "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
-        "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
-    }
-    if source != "binding":
-        return atomic.get(source, {})
-
-    facets = moment.get("facets") or {}
-    if not isinstance(facets, dict):
-        return {}
-    routes: Dict[str, float] = {}
-
-    def merge(values: Dict[str, float]) -> None:
-        for name, weight in values.items():
-            routes[name] = max(routes.get(name, 0.0), weight)
-
-    if facets.get("goal"):
-        merge(atomic["goal"])
-    if facets.get("affect"):
-        merge(atomic["affect"])
-    if facets.get("memory"):
-        merge(atomic["thought"])
-    if facets.get("event") or facets.get("motion") or facets.get("object"):
-        merge(atomic["signal"])
-    if facets.get("interlocutor"):
-        merge(atomic["user"])
-    return routes
 
 # Directed (uncertainty-seeking) exploration weight. Gershman (2018), "Deconstructing
 # the human algorithms for exploration", Cognition 173:34 — humans add an

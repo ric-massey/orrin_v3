@@ -78,10 +78,13 @@ def test_failed_committed_goal_costs_in_proportion(monkeypatch, tmp_path):
     c = W.form_commitment({}, "pursue: finish the report", strength=1.0)
     lm_writes = []
     import brain.cog_memory.long_memory as lm_mod
+    # mark_goal_failed lives in goal_outcomes (Phase 4.5C split); patch its
+    # top-level side-channels there.
+    import brain.cognition.planning.goal_outcomes as GO
     monkeypatch.setattr(lm_mod, "update_long_memory",
                         lambda *a, **k: lm_writes.append((a, k)))
-    monkeypatch.setattr(G, "update_working_memory", lambda *a, **k: None)
-    monkeypatch.setattr(G, "release_reward_signal", lambda **k: None)
+    monkeypatch.setattr(GO, "update_working_memory", lambda *a, **k: None)
+    monkeypatch.setattr(GO, "release_reward_signal", lambda **k: None)
     monkeypatch.setattr(
         "brain.cognition.planning.outcome_metrics.record_failure", lambda: None)
 

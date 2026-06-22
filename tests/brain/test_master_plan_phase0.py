@@ -81,13 +81,16 @@ def test_detect_rule_contradictions_handles_non_contradictory_rules(monkeypatch)
 def _quiet_goals(monkeypatch):
     """Silence mark_goal_failed's live side-channels and capture the ones the
     test asserts on (long-memory write, WM write)."""
-    import brain.cognition.planning.goals as goals
+    # mark_goal_failed lives in goal_outcomes (Phase 4.5C split); patch its
+    # top-level side-channels there. update_long_memory is a lazy import in the
+    # handler, so patching the source module still captures it.
+    import brain.cognition.planning.goal_outcomes as goal_outcomes
     import brain.cog_memory.long_memory as lm
 
     written = {"long_memory": [], "working_memory": []}
-    monkeypatch.setattr(goals, "release_reward_signal", lambda *a, **k: None)
-    monkeypatch.setattr(goals, "log_activity", lambda *a, **k: None)
-    monkeypatch.setattr(goals, "update_working_memory",
+    monkeypatch.setattr(goal_outcomes, "release_reward_signal", lambda *a, **k: None)
+    monkeypatch.setattr(goal_outcomes, "log_activity", lambda *a, **k: None)
+    monkeypatch.setattr(goal_outcomes, "update_working_memory",
                         lambda entry, *a, **k: written["working_memory"].append(entry))
     monkeypatch.setattr(lm, "update_long_memory",
                         lambda content, **k: written["long_memory"].append((content, k)))

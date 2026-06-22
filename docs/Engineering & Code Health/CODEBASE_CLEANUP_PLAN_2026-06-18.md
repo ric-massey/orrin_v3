@@ -698,8 +698,17 @@ re-export-the-public-API method that worked in 4C/4D:
   - `intrinsic_generators.py` (553) — the symbolic (LLM-free) goal generators.
   - `intrinsic_goals.py` keeps the load gate, cadence, P7 commitment competition,
     and the `generate_intrinsic_goals` orchestrator.
-- `brain/cognition/planning/goals.py` — **1,652** (sits beside the already-split
-  `pursue_goal`; same package, opposite state)
+- `brain/cognition/planning/goals.py` — **1,652 → 453 DONE** (now under the
+  limit). Split into a package by concern, each re-exported so the ~55 external
+  callers keep their import paths:
+  - `goal_store.py` (334) — the goal-tree read/write/mutate leaf (load/save,
+    add, merge, prune, status marking).
+  - `goal_plan_ops.py` (285) — plan/step operations + dynamic subgoal adaptation.
+  - `goal_outcomes.py` (475) — completion/failure/significance transitions.
+  - `goal_criteria.py` (106) — artifact / completion-criteria gating.
+  - `goal_belief.py` (133) — self-belief falsification on goal success.
+  - `goals.py` keeps decomposition, pursuit, focus selection, and the
+    `maybe_complete_goals` sweeper.
 - `brain/evidence/life_capsule.py` — **1,308**
 - `brain/cognition/knowledge_graph.py` — **1,239**
 - `brain/think/think_utils/action_gate.py` — **1,136**

@@ -9,7 +9,7 @@ separate from the scoring loop so each stays focused and under the size limit.
 from __future__ import annotations
 
 import statistics as _statistics
-from typing import Any, Dict, List
+from typing import Any, Callable, Dict, List, Optional
 
 from brain.config import tuning as _tuning
 from brain.utils.failure_counter import record_failure
@@ -34,7 +34,7 @@ from brain.think.think_utils.selection.score_actions import ScoreInputs
 
 
 def build_score_inputs(
-    actions: List[str], defs: Dict[str, Any], context: Dict, feats: Dict[str, Any]
+    actions: List[str], defs: Dict[str, Any], context: Dict[str, Any], feats: Dict[str, Any]
 ) -> ScoreInputs:
     """Compute the selector's per-cycle scoring inputs once: directive/goal text,
     emotion + bandit priors, the multi-factor weights (with attention-mode
@@ -216,13 +216,14 @@ def build_score_inputs(
     # on the wrong end-state. Classify once here; penalise mismatches in the loop.
     # Only exclusive "doing" actions are gated; shared/reflective functions stay free.
     _goal_type = "general"
-    _mismatch_fn = None
-    _type_family: frozenset = frozenset()   # the committed goal type's instrumental actions
+    _mismatch_fn: Optional[Callable[[str, str], bool]] = None
+    _type_family: frozenset[str] = frozenset()   # the committed goal type's instrumental actions
     if _has_committed_goal:
         try:
             from brain.cognition.planning.goal_types import (
-                goal_type_of, is_mismatched_doing_action as _mismatch_fn, EXCLUSIVE_DOING,
+                goal_type_of, is_mismatched_doing_action, EXCLUSIVE_DOING,
             )
+            _mismatch_fn = is_mismatched_doing_action
             _goal_type = goal_type_of(context.get("committed_goal") or {})
             # Type-based recruitment (EXPLORE_EXPLOIT_VALUE_PLAN §6.4 Fix A; Miller & Cohen
             # 2001 guided activation): a strongly-typed goal categorically recruits its OWN
@@ -236,8 +237,12 @@ def build_score_inputs(
     # Explore/exploit value governs the outward-exploration reads (replaces the
     # look_outward wall-clock cooldown + the standing MED outward boost for these fns,
     # so they are not double-counted). cognition.exploration_value.
+    _reach_value_fn: Optional[Callable[[str, Dict[str, Any]], float]] = None
+    _REACH_FNS: frozenset[str] = frozenset()
     try:
-        from brain.cognition.exploration_value import reach_value as _reach_value_fn, _OUTWARD_FNS as _REACH_FNS
+        from brain.cognition.exploration_value import reach_value, _OUTWARD_FNS
+        _reach_value_fn = reach_value
+        _REACH_FNS = _OUTWARD_FNS
     except Exception:
         _reach_value_fn = None
         _REACH_FNS = frozenset()

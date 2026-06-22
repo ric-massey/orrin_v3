@@ -25,10 +25,10 @@ _NON_SELECTABLE_PREFIXES: Tuple[str, ...] = (
     "reset_", "migrate_", "coerce_", "normalize_", "sync_", "flush_", "gc_",
     "get_", "set_", "has_", "should_",
 )
-_SELECTABLE_PREFIX_EXCEPTIONS: frozenset = frozenset({
+_SELECTABLE_PREFIX_EXCEPTIONS: frozenset[str] = frozenset({
     "update_world_model",   # genuine cognition entry point (router-wrapped)
 })
-_NON_SELECTABLE_EXACT: frozenset = frozenset({
+_NON_SELECTABLE_EXACT: frozenset[str] = frozenset({
     # trivial-name leaks from over-broad public-function discovery
     "available", "exists", "get", "start", "stop", "status", "report",
     "flush", "generate", "simulate", "commit", "size_chars", "vocab_size",
@@ -55,10 +55,10 @@ def _is_selectable_name(name: str) -> bool:
     return not name.startswith(_NON_SELECTABLE_PREFIXES)
 
 
-def _load_behavioral_names() -> frozenset:
+def _load_behavioral_names() -> frozenset[str]:
     """Return the set of behavioral function names from the persisted list."""
     try:
-        items = load_json(BEHAVIORAL_FUNCTIONS_LIST_FILE, default_type=list) or []
+        items: list[Any] = load_json(BEHAVIORAL_FUNCTIONS_LIST_FILE, default_type=list) or []
         names = set()
         for it in items:
             if isinstance(it, dict) and "name" in it:
@@ -71,7 +71,7 @@ def _load_behavioral_names() -> frozenset:
         return frozenset()
 
 
-_SUPPLYABLE_ARGS: frozenset = frozenset({
+_SUPPLYABLE_ARGS: frozenset[str] = frozenset({
     "context", "ctx", "self_model", "affect_state", "emotions", "relationships",
     "long_memory", "working_memory", "recent", "recent_memories",
     "retrieved_memories", "speaker",
@@ -106,7 +106,7 @@ def _is_dispatchable(name: str) -> bool:
 
 def _load_actions() -> List[str]:
     """Load cognitive function names, excluding behavioral and bookkeeping functions."""
-    items = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
+    items: list[Any] = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
     if not isinstance(items, list) or not items:
         return FALLBACK_ACTIONS
     beh_names = _load_behavioral_names()
@@ -133,7 +133,7 @@ def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
       - [{'name': 'fn', 'definition': '...'}, ...]
     Falls back to using the name as the definition.
     """
-    items = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
+    items: list[Any] = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
     if not isinstance(items, list) or not items:
         return (list(FALLBACK_ACTIONS), {n: n for n in FALLBACK_ACTIONS})
 

@@ -10,7 +10,7 @@
 # caps stay in select_function()'s scoring loop, which is the combiner.
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Any, Dict, List
 
 from brain.config import tuning as _tuning
 from brain.utils.failure_counter import record_failure
@@ -27,7 +27,7 @@ from brain.think.think_utils.selection.tag_sets import (
 )
 
 
-def compute_workspace_prior(context: Dict, actions: List[str]) -> Dict[str, float]:
+def compute_workspace_prior(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Awareness→action coupling (Fix 2; Redgrave, Prescott & Gurney 1999).
 
     The Global Workspace already chose ONE conscious content this cycle; make it
@@ -57,7 +57,7 @@ def compute_workspace_prior(context: Dict, actions: List[str]) -> Dict[str, floa
     return _workspace_prior
 
 
-def compute_unconscious_damp(context: Dict, actions: List[str]) -> Dict[str, float]:
+def compute_unconscious_damp(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Unconscious damp (Fix 1 teeth; Dehaene 2014 ignition is all-or-none).
 
     On a non-ignited cycle, damp the expensive/generative deliberate functions so
@@ -82,7 +82,7 @@ def compute_unconscious_damp(context: Dict, actions: List[str]) -> Dict[str, flo
     return _unconscious_damp
 
 
-def compute_drive_pull(context: Dict, actions: List[str]) -> Dict[str, float]:
+def compute_drive_pull(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Per-function pull from competing motivations (drive competition).
 
     apply_drive_tensions() also bumps uncertainty and logs the hottest conflict
@@ -128,7 +128,7 @@ def compute_chain_boost(recent: List[str], actions: List[str]) -> Dict[str, floa
     return _chain_boost
 
 
-def compute_energy_boost(context: Dict, actions: List[str]) -> Dict[str, float]:
+def compute_energy_boost(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Energy orientation: high energy → action fns up; low/rest → reflection up."""
     _energy_boost: Dict[str, float] = {}
     try:
@@ -162,7 +162,7 @@ def compute_emo_mode_boost() -> Dict[str, float]:
     return _emo_mode_boost
 
 
-def compute_emo_route_boost(context: Dict, actions: List[str]) -> Dict[str, float]:
+def compute_emo_route_boost(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Emotion routing — deep cognitive policy signal (not just prompt influence).
 
     risk_estimate → verification; stagnation_signal → novelty; Confidence → prune; etc.
@@ -180,7 +180,7 @@ def compute_emo_route_boost(context: Dict, actions: List[str]) -> Dict[str, floa
     return _emo_route_boost
 
 
-def compute_tension_boost(context: Dict) -> Dict[str, float]:
+def compute_tension_boost(context: Dict[str, Any]) -> Dict[str, float]:
     """Tension + deadline urgency boost (folded into s_emo, capped, then ×w_emo).
 
     Active tensions nudge resolution-oriented functions; imminent/overdue
@@ -214,7 +214,7 @@ def compute_tension_boost(context: Dict) -> Dict[str, float]:
     return _tension_boost
 
 
-def compute_neuro_boost(context: Dict, has_committed_goal: bool) -> Dict[str, float]:
+def compute_neuro_boost(context: Dict[str, Any], has_committed_goal: bool) -> Dict[str, float]:
     """Neuromodulator-driven function selection boosts.
 
     Translates chemical state (NE / stability_signal / stress_load) directly into
@@ -266,7 +266,7 @@ def compute_neuro_boost(context: Dict, has_committed_goal: bool) -> Dict[str, fl
     return _neuro_boost
 
 
-def update_attention_debt(context: Dict) -> "tuple[bool, int]":
+def update_attention_debt(context: Dict[str, Any]) -> "tuple[bool, int]":
     """User attention debt: grows when user is present but no reply was generated.
 
     Mutates context["_user_attention_debt"] in place (escalating social pressure)
@@ -307,7 +307,7 @@ def compute_helpfulness_boost(actions: List[str], user_spoke: bool, attention_de
     return _helpfulness_boost
 
 
-def compute_outward_boost(context: Dict, actions: List[str], stats: Dict, has_committed_goal: bool) -> Dict[str, float]:
+def compute_outward_boost(context: Dict[str, Any], actions: List[str], stats: Dict[str, Any], has_committed_goal: bool) -> Dict[str, float]:
     """Standing outward-presence boost (embodied/situated cognition).
 
     Graded by artifact-producing vs exploration vs sensing tiers, reward-damped
@@ -352,7 +352,7 @@ def compute_outward_boost(context: Dict, actions: List[str], stats: Dict, has_co
     return _outward_boost
 
 
-def compute_goal_recruit(context: Dict, actions: List[str], defs: Dict) -> Dict[str, float]:
+def compute_goal_recruit(context: Dict[str, Any], actions: List[str], defs: Dict[str, Any]) -> Dict[str, float]:
     """Goal-specific recruitment (function_selection_fix_v2.md §4.2).
 
     Derive which functions THIS goal needs from its OWN title/description/tags via
@@ -452,7 +452,7 @@ def apply_attention_mode(
     return w_dir, w_goal, w_emo, w_novel, _attn_fn_boost
 
 
-def apply_monitor_route(context: Dict, attn_fn_boost: Dict[str, float]) -> None:
+def apply_monitor_route(context: Dict[str, Any], attn_fn_boost: Dict[str, float]) -> None:
     """React to a Metacog Monitor breakthrough that WON consciousness.
 
     The Global Workspace broadcast carries the requested route ("wants"); bias the
@@ -460,7 +460,7 @@ def apply_monitor_route(context: Dict, attn_fn_boost: Dict[str, float]) -> None:
     pick-new-goal). BIASES, never forces (I7). Mutates attn_fn_boost in place and
     sets context["_bt_pending"] for the §20.1 dismissal-recalibration verdict.
     """
-    _gw_now = context.get("global_workspace") or {}
+    _gw_now: Dict[str, Any] = context.get("global_workspace") or {}
     context.pop("_bt_pending", None)   # only set when a monitor breakthrough is live this cycle
     if str(_gw_now.get("source", "")).startswith("monitor:"):
         _route = {
@@ -473,7 +473,7 @@ def apply_monitor_route(context: Dict, attn_fn_boost: Dict[str, float]) -> None:
             "comprehend":    {"narrative_update": 0.28, "reflect_on_self_beliefs": 0.18},
             "release":       {"abandon_goal": 0.40},   # guarded: only abandons a stuck goal
             "pick-new-goal": {"generate_intrinsic_goals": 0.34},
-        }.get(_gw_now.get("wants"), {})
+        }.get(str(_gw_now.get("wants") or ""), {})
         for _rfn, _rb in _route.items():
             attn_fn_boost[_rfn] = attn_fn_boost.get(_rfn, 0.0) + _rb
         # §20.1 dismissal-recalibration: remember which functions would HONOR this

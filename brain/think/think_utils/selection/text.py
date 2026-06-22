@@ -36,7 +36,7 @@ def _kw_overlap_score(candidate_text: str, ref_text: str) -> float:
 # inflated by these shared tokens (a goal and an unrelated description both
 # contain "the"/"and"), which mis-ranked the goal→capability recruitment. The
 # capability matcher below strips them so the match keys off CONTENT words only.
-_CAP_STOPWORDS: frozenset = frozenset({
+_CAP_STOPWORDS: frozenset[str] = frozenset({
     "the", "a", "an", "and", "or", "of", "to", "for", "in", "on", "at", "by",
     "with", "is", "are", "be", "am", "my", "i", "me", "it", "its", "that",
     "this", "what", "how", "do", "does", "into", "from", "about", "as", "so",

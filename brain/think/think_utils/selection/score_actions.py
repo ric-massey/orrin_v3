@@ -87,7 +87,7 @@ class ScoreInputs:
     goal_commit: float
     impasse: float
     # Explore/exploit reach value (outward reads)
-    reach_value_fn: Optional[Callable[[str, Dict], float]]
+    reach_value_fn: Optional[Callable[[str, Dict[str, Any]], float]]
     reach_fns: FrozenSet[str]
     # Carried through for the reason payload (not read by the scoring loop)
     dominant: str
@@ -97,7 +97,7 @@ class ScoreInputs:
 
 
 def score_candidates(
-    actions: List[str], defs: Dict[str, Any], si: ScoreInputs, context: Dict
+    actions: List[str], defs: Dict[str, Any], si: ScoreInputs, context: Dict[str, Any]
 ) -> List[Tuple[str, float, Dict[str, float]]]:
     """Score every candidate, returning (name, total, component_scores) tuples
     (unsorted). See module docstring for the component/gate breakdown."""

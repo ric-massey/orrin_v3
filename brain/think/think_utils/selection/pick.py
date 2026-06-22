@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import math as _math
 import random as _rand
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 from brain.think.bandit import contextual_bandit as bandit
 from brain.config import tuning as _tuning
@@ -31,7 +31,7 @@ def apply_exploration_and_reflex(
     scored: List[Tuple[str, float, Dict[str, float]]],
     actions: List[str],
     recent: List[str],
-    context: Dict,
+    context: Dict[str, Any],
     expl_drive: float,
     drive_pull: Dict[str, float],
 ) -> str:
@@ -160,7 +160,7 @@ def apply_antirepeat_and_metarut(
     chosen: str,
     scored: List[Tuple[str, float, Dict[str, float]]],
     recent: List[str],
-    context: Dict,
+    context: Dict[str, Any],
 ) -> "Tuple[str, bool, bool]":
     """Anti-repeat tracking + stagnation signal + meta-rut breaker.
 

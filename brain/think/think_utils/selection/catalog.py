@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import time as _time
 from pathlib import Path as _Path
-from typing import Any, Dict
+from typing import Any, Dict, cast
 
 from brain.utils.failure_counter import record_failure
 
@@ -67,16 +67,16 @@ def _capability_descriptions() -> Dict[str, str]:
     kept the executive lane stuck at 8 reachable functions. Cached ~60s; fails
     open to {} so a missing/broken file degrades to the keyword fallbacks."""
     if _time.time() - _CAPS_CACHE["t"] < 60.0 and _CAPS_CACHE["data"]:
-        return _CAPS_CACHE["data"]
+        return cast(Dict[str, str], _CAPS_CACHE["data"])
     try:
         _load_manifest()
     except Exception as exc:
         record_failure("select_function.capability_descriptions", exc)
         _CAPS_CACHE["data"] = _CAPS_CACHE["data"] or {}
-    return _CAPS_CACHE["data"]
+    return cast(Dict[str, str], _CAPS_CACHE["data"])
 
 
-def _fns_tagged(*tag_names: str) -> frozenset:
+def _fns_tagged(*tag_names: str) -> frozenset[str]:
     """Union of functions carrying ANY of `tag_names` in the capability manifest
     (Phase 4). Empty when the manifest is missing/untagged — callers must pair
     with a literal fallback via _tagged_or so a broken data file can never
@@ -86,7 +86,7 @@ def _fns_tagged(*tag_names: str) -> frozenset:
             _load_manifest()
     except Exception as exc:
         record_failure("select_function.capability_tags", exc)
-    out: set = set()
+    out: set[str] = set()
     tags = _CAPS_CACHE.get("tags") or {}
     for t in tag_names:
         out.update((tags.get(t) or {}).keys())
@@ -103,7 +103,7 @@ def _tag_weights(tag_name: str) -> Dict[str, float]:
     return dict((_CAPS_CACHE.get("tags") or {}).get(tag_name) or {})
 
 
-def _tagged_or(tag_names, default: frozenset) -> frozenset:
+def _tagged_or(tag_names: tuple[str, ...], default: frozenset[str]) -> frozenset[str]:
     """Tag-derived set with a literal fallback: the manifest is the source of
     truth (a newly tagged function participates automatically), but if it is
     missing or carries none of these tags, the in-code literal set still
@@ -114,7 +114,7 @@ def _tagged_or(tag_names, default: frozenset) -> frozenset:
 
 def _learned_stats() -> Dict[str, Dict[str, float]]:
     if _time.time() - _STATS_CACHE["t"] < 15.0 and _STATS_CACHE["data"]:
-        return _STATS_CACHE["data"]
+        return cast(Dict[str, Dict[str, float]], _STATS_CACHE["data"])
     try:
         import json as _json
         d = _json.loads(_STATS_PATH.read_text("utf-8"))
@@ -126,4 +126,4 @@ def _learned_stats() -> Dict[str, Dict[str, float]]:
         _STATS_CACHE["t"] = _time.time()
     except Exception as exc:
         record_failure("select_function.learned_stats", exc)
-    return _STATS_CACHE["data"]
+    return cast(Dict[str, Dict[str, float]], _STATS_CACHE["data"])

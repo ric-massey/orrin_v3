@@ -100,5 +100,19 @@ ignore_missing_imports = true
 follow_imports = "silent"
 files = [
     "brain/loop/constants.py",
+    # selection/ package — the recently-extracted selector core (Phase 4.5A),
+    # typed leaf-first (Phase 5.1).
     "brain/think/think_utils/selection/tag_sets.py",
+    "brain/think/think_utils/selection/constants.py",
+    "brain/think/think_utils/selection/routing.py",
+    "brain/think/think_utils/selection/text.py",
+    "brain/think/think_utils/selection/catalog.py",
+    "brain/think/think_utils/selection/state.py",
+    "brain/think/think_utils/selection/features.py",
+    "brain/think/think_utils/selection/scoring.py",
+    "brain/think/think_utils/selection/candidates.py",
+    "brain/think/think_utils/selection/boosts.py",
+    "brain/think/think_utils/selection/score_actions.py",
+    "brain/think/think_utils/selection/score_setup.py",
+    "brain/think/think_utils/selection/pick.py",
 ]

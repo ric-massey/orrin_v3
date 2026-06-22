@@ -63,7 +63,7 @@ Context = Dict[str, Any]
 
 # Boot / context construction, extracted to brain/loop/boot.py (Phase 4A).
 from brain.loop.boot import _boot_context, _verify_production_capability  # noqa: F401
-from brain.loop.services import start_background_services
+from brain.loop.services import start_background_services, shutdown_loop
 
 # Sense / state-refresh stage, extracted to brain/loop/sense.py (Phase 4A).
 from brain.loop.sense import sense_and_refresh, _apply_transient_signal_decay  # noqa: F401
@@ -311,34 +311,4 @@ def run_cognitive_loop(
             log_private("Top-level crash signal.")
             time.sleep(cycle_sleep)
 
-    if _tool_runner is not None:
-        try:
-            _tool_runner.stop()
-        except Exception as e:
-            record_failure("ORRIN_loop.tool_runner_stop", e)
-
-    # Session epilogue (master plan Phase 2.1): an ordinary shutdown writes a
-    # short reflection and a session_close autobiography entry, so a routine
-    # restart stops being a small amnesia. Budgeted (≤10 s) and crash-proof
-    # inside session_epilogue itself — it can never block shutdown, so the
-    # corrigibility guarantee stays true.
-    try:
-        from brain.cognition.selfhood.autobiography import session_epilogue
-        session_epilogue(context)
-    except Exception as e:
-        record_failure("ORRIN_loop.session_epilogue", e)
-
-    # Shutdown hygiene (BEHAVIOR_FIX_PLAN §5, "semaphore leak at shutdown"):
-    # the project spawns no multiprocessing pools of its own — the leaked
-    # semaphore warnings come from sentence-transformers/torch worker state at
-    # interpreter exit. Release the embedder model explicitly so its tokenizer
-    # parallelism and any lib-internal pools tear down before exit.
-    try:
-        import brain.utils.embedder as _emb
-        for _attr in ("_model", "model", "_MODEL"):
-            if hasattr(_emb, _attr):
-                setattr(_emb, _attr, None)
-        import gc as _gc
-        _gc.collect()
-    except Exception as e:
-        record_failure("ORRIN_loop.embedder_release", e)
+    shutdown_loop(context, _tool_runner)

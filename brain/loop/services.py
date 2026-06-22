@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_error, log_activity
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -88,3 +89,43 @@ def start_background_services(stop_event):
         log_error(f"[executive] daemon failed to start: {_e0}")
 
     return _tool_runner, _ToolRunner_cls, _evaluator
+
+
+def shutdown_loop(context, _tool_runner) -> None:
+    """Loop teardown after the while-loop exits: stop the ToolRunner, write the
+    session epilogue (a short reflection + session_close autobiography entry, so a
+    routine restart isn't a small amnesia — budgeted and crash-proof so it can
+    never block shutdown), and release the embedder model to avoid the
+    sentence-transformers/torch semaphore leak at interpreter exit. Fail-safe.
+    """
+    if _tool_runner is not None:
+        try:
+            _tool_runner.stop()
+        except Exception as e:
+            record_failure("ORRIN_loop.tool_runner_stop", e)
+
+    # Session epilogue (master plan Phase 2.1): an ordinary shutdown writes a
+    # short reflection and a session_close autobiography entry, so a routine
+    # restart stops being a small amnesia. Budgeted (≤10 s) and crash-proof
+    # inside session_epilogue itself — it can never block shutdown, so the
+    # corrigibility guarantee stays true.
+    try:
+        from brain.cognition.selfhood.autobiography import session_epilogue
+        session_epilogue(context)
+    except Exception as e:
+        record_failure("ORRIN_loop.session_epilogue", e)
+
+    # Shutdown hygiene (BEHAVIOR_FIX_PLAN §5, "semaphore leak at shutdown"):
+    # the project spawns no multiprocessing pools of its own — the leaked
+    # semaphore warnings come from sentence-transformers/torch worker state at
+    # interpreter exit. Release the embedder model explicitly so its tokenizer
+    # parallelism and any lib-internal pools tear down before exit.
+    try:
+        import brain.utils.embedder as _emb
+        for _attr in ("_model", "model", "_MODEL"):
+            if hasattr(_emb, _attr):
+                setattr(_emb, _attr, None)
+        import gc as _gc
+        _gc.collect()
+    except Exception as e:
+        record_failure("ORRIN_loop.embedder_release", e)

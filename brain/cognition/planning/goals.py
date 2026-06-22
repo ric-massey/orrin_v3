@@ -42,6 +42,12 @@ from brain.cognition.planning.goal_store import (  # noqa: F401
     merge_updated_goal_into_tree, prune_goals, ensure_immediate_actions_bucket,
     _find_goal_by_name, _attach_child, _flatten_goals, _reconcile_to_disk_terminal,
 )
+# Artifact / completion-criteria gating extracted to goal_criteria.py (Phase
+# 4.5C); re-imported for the pursuit + outcome logic below + external callers.
+from brain.cognition.planning.goal_criteria import (  # noqa: F401
+    PRODUCTION_DEADLINE_CYCLES, _is_artifact_gated, _definition_of_done,
+    _criteria_evidence_met,
+)
 _log = get_logger(__name__)
 
 
@@ -155,97 +161,6 @@ def decompose_goal(goal: Dict) -> List[Dict]:
         } for s in subgoals]
     return _rule_based_decompose(goal)
 
-
-# P2 — production goals are artifact-gated and fail-able. The unit is *cycles*
-# (the diagnosed run did ~10⁴ cycles at cycle_sleep≈20s). 200 is long enough that
-# a genuine plan→execute→write attempt isn't guillotined, short enough that a full
-# life surfaces many deadline evaluations so goals_failed actually moves off 0.
-# Reuses the same epoch as the P6 reconciler so there is one cadence constant.
-PRODUCTION_DEADLINE_CYCLES = 200
-
-
-def _is_artifact_gated(goal: Dict) -> bool:
-    """A goal that may complete ONLY when a real durable effect was recorded for it."""
-    if not isinstance(goal, dict):
-        return False
-    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
-    if bool(goal.get("requires_artifact") or spec.get("requires_artifact")):
-        return True
-    if str(goal.get("driven_by") or spec.get("driven_by") or "").lower() == "output_producing":
-        return True
-    text = " ".join(str(goal.get(k) or spec.get(k) or "") for k in ("title", "name", "description")).lower()
-    return any(word in text for word in (
-        "write ", "build ", "create ", "make ", "compose ", "publish ",
-        "implement ", "produce ", "draft ",
-    ))
-
-
-def _definition_of_done(goal: Dict) -> List[Dict]:
-    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
-    raw = goal.get("definition_of_done") or spec.get("definition_of_done") or []
-    out: List[Dict] = []
-    for item in raw if isinstance(raw, list) else []:
-        if isinstance(item, dict) and item.get("criterion"):
-            out.append(item)
-        elif str(item or "").strip():
-            out.append({"criterion": str(item).strip(), "kind": "quality", "met": False})
-    return out
-
-
-def _criteria_evidence_met(goal: Dict) -> bool:
-    """Check persisted evidence, never a bare model assertion."""
-    criteria = _definition_of_done(goal)
-    if not criteria:
-        return False
-    gid = str(goal.get("id") or "")
-    produced = False
-    if gid:
-        try:
-            from brain.agency.effect_ledger import has_qualifying_effect
-            produced = has_qualifying_effect(gid, goal)
-        except Exception:
-            pass
-    milestones = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
-    all_milestones = bool(milestones) and all(bool(m.get("met")) for m in milestones)
-    evidence = goal.get("completion_evidence") or {}
-    checks = evidence.get("criteria") if isinstance(evidence, dict) else []
-
-    def _observed(text: str) -> bool:
-        words = {w for w in re.findall(r"[a-zA-Z][a-zA-Z0-9_-]{3,}", text.lower())}
-        if len(words) < 2:
-            return False
-        try:
-            from brain.paths import WORKING_MEMORY_FILE
-            memory = load_json(WORKING_MEMORY_FILE, default_type=list) or []
-        except Exception:
-            memory = []
-        for entry in memory[-40:] if isinstance(memory, list) else []:
-            content = str(entry.get("content", entry) if isinstance(entry, dict) else entry).lower()
-            if len(words & set(re.findall(r"[a-zA-Z][a-zA-Z0-9_-]{3,}", content))) >= 2:
-                return True
-        return False
-
-    checked = {
-        str(row.get("criterion") or ""): (
-            bool(row.get("met"))
-            and bool(row.get("evidence"))
-            and _observed(str(row.get("evidence") or ""))
-        )
-        for row in checks or [] if isinstance(row, dict)
-    }
-    for criterion in criteria:
-        kind = str(criterion.get("kind") or "").lower()
-        text = str(criterion.get("criterion") or "")
-        met = bool(criterion.get("met"))
-        if kind in {"artifact", "sections", "validation"} and produced:
-            met = True
-        if all_milestones:
-            met = True
-        if checked.get(text):
-            met = True
-        if not met:
-            return False
-    return True
 
 
 def try_to_accomplish(goal: Dict) -> bool:

@@ -5,6 +5,9 @@
 # are symbolic (no LLM) and must be progress-preserving: completed steps are
 # never removed or reordered, only the pending tail is adapted.
 import brain.cognition.planning.pursue_goal as pg
+# adapt_subgoals was extracted to goal_adaptation.py (Phase 4D) and resolves
+# _save_plan_version there, so patch that module (pg re-exports adapt_subgoals).
+import brain.cognition.planning.goal_adaptation as adapt_mod
 from brain.cognition.planning.goals import (
     insert_plan_step,
     skip_pending_steps,
@@ -126,7 +129,8 @@ def test_milestone_token_helpers():
 # ── adapt_subgoals orchestrator ─────────────────────────────────────────────────
 
 def _reset_cooldown():
-    pg._last_adapt_ts = 0.0
+    # _last_adapt_ts lives in goal_adaptation now (where adapt_subgoals reads it).
+    adapt_mod._last_adapt_ts = 0.0
 
 
 def test_adapt_noop_without_goal():
@@ -149,7 +153,7 @@ def test_adapt_respects_cooldown():
 def test_adapt_prunes_and_fills(monkeypatch, tmp_path):
     _reset_cooldown()
     # Avoid touching the real goal tree on disk.
-    monkeypatch.setattr(pg, "_save_plan_version", lambda *a, **k: None)
+    monkeypatch.setattr(adapt_mod, "_save_plan_version", lambda *a, **k: None)
     import brain.cognition.planning.goals as goals_mod
     monkeypatch.setattr(goals_mod, "load_goals", lambda: [])
     monkeypatch.setattr(goals_mod, "save_goals", lambda *a, **k: None)
@@ -170,7 +174,7 @@ def test_adapt_prunes_and_fills(monkeypatch, tmp_path):
 
 def test_adapt_inserts_blocker_step(monkeypatch):
     _reset_cooldown()
-    monkeypatch.setattr(pg, "_save_plan_version", lambda *a, **k: None)
+    monkeypatch.setattr(adapt_mod, "_save_plan_version", lambda *a, **k: None)
     import brain.cognition.planning.goals as goals_mod
     monkeypatch.setattr(goals_mod, "load_goals", lambda: [])
     monkeypatch.setattr(goals_mod, "save_goals", lambda *a, **k: None)

@@ -645,15 +645,22 @@ that decomposes into ordered, individually-testable scoring stages.
   `scores` in isolation — the current single-function shape makes that
   impossible today.
 
-**Progress:** the per-function boost computations were already extracted to
+**DONE.** The per-function boost computations were already extracted to
 `selection/boosts.py` and the post-pick refinement to `selection/pick.py`. The
-~195-line per-action scoring loop (the accumulator heart) is now extracted to
-`selection/score_actions.py` as `score_candidates(actions, defs, ScoreInputs,
-context)` — the loop body is byte-for-byte unchanged (the 29 selector
-characterization/invariant tests pin it), with its ~38 inputs bundled in a
-`ScoreInputs` dataclass that makes the loop independently testable.
-`select_function.py` 779 → 591. Remaining: the pre-loop setup that builds
-`ScoreInputs` still keeps the coordinator above the ~250-line target.
+remaining monolith was decomposed into an explicit pipeline:
+- `selection/score_actions.py` — the ~195-line per-action scoring loop as
+  `score_candidates(actions, defs, ScoreInputs, context)`; the loop body is
+  byte-for-byte unchanged (its ~42 inputs bundled in a `ScoreInputs` dataclass
+  that makes the loop independently testable).
+- `selection/score_setup.py` — `build_score_inputs(...)`, the per-cycle assembly
+  of weights/priors/boost maps that produces the `ScoreInputs`.
+- `select_function()` is now a thin coordinator: build context once, build score
+  inputs, run the loop, pick, assemble the reason payload — **162 lines** (well
+  under the ~250 target).
+
+`select_function.py` 779 → 345; the two new modules are 340 and 281 lines (both
+under the 600 soft limit). The scoring math is pinned unchanged by the 29
+selector characterization/invariant tests; full `make verify` green.
 
 ### 4.5B. Bring over-limit extracted modules under the soft limit
 

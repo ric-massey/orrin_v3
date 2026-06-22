@@ -89,6 +89,11 @@ class ScoreInputs:
     # Explore/exploit reach value (outward reads)
     reach_value_fn: Optional[Callable[[str, Dict], float]]
     reach_fns: FrozenSet[str]
+    # Carried through for the reason payload (not read by the scoring loop)
+    dominant: str
+    stagnation_signal: float
+    attention_mode: str
+    user_spoke: bool
 
 
 def score_candidates(

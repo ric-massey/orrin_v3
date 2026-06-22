@@ -10,7 +10,7 @@ from pathlib import Path
 import brain.affect.arbiter as arbiter
 import brain.config.tuning as tuning
 from brain.cognition.planning import step_execution
-from brain.think.think_utils import select_function as sf
+from brain.think.think_utils.selection import score_setup
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -25,7 +25,8 @@ def test_step_execution_semantic_floor_sourced_from_tuning():
 
 
 def test_selector_base_weights_sourced_from_tuning():
-    assert sf._tuning is tuning
+    # The selector's weight wiring moved to selection/score_setup.py (Phase 4.5A).
+    assert score_setup._tuning is tuning
     assert tuning.SELECTOR_W_DIR == 0.22
     assert tuning.SELECTOR_W_GOAL == 0.22
     assert tuning.SELECTOR_W_EMO == 0.26
@@ -47,9 +48,10 @@ def test_selector_attention_mode_constants_match_documented_multipliers():
 
 def test_selector_source_has_no_leftover_hardcoded_weights():
     """Guard against the base weights drifting back into two places: the
-    literal float assignments select_function.py used to have for w_dir/
-    w_goal/w_emo/w_band/w_drive must now be config.tuning lookups."""
-    src = (_REPO_ROOT / "brain" / "think" / "think_utils" / "select_function.py").read_text()
+    literal float assignments the selector used to have for w_dir/
+    w_goal/w_emo/w_band/w_drive must now be config.tuning lookups. The weight
+    wiring lives in selection/score_setup.py (Phase 4.5A)."""
+    src = (_REPO_ROOT / "brain" / "think" / "think_utils" / "selection" / "score_setup.py").read_text()
     assert "w_dir = _tuning.SELECTOR_W_DIR" in src
     assert "w_goal = _tuning.SELECTOR_W_GOAL" in src
     assert "w_emo = _tuning.SELECTOR_W_EMO" in src

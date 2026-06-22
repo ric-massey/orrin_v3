@@ -7,13 +7,20 @@
 # aspiration default-drive and stdlib/lazy lookups — no back-dependency on
 # intrinsic_goals, so both it and the generators import from here.
 from __future__ import annotations
+from brain.core.runtime_log import get_logger
 
 import re
 import random
+import time
 from datetime import datetime, timezone
 from typing import Dict, Any, List
 
+from brain.utils.json_utils import load_json, save_json
+from brain.utils.failure_counter import record_failure
+from brain.paths import RECENTLY_COMPLETED_FILE, COMPLETED_GOALS_FILE
 from brain.cognition.intrinsic_aspirations import _fairness_default_drive
+
+_log = get_logger(__name__)
 
 
 # Fix 6.1 (explore_loop_fix_plan.md) — assign a SCALE/tier to each generated goal
@@ -286,3 +293,89 @@ def _weighted_sample(scored: List, k: int) -> List[str]:
         else:
             out.append(items.pop()[0])
     return out
+
+
+# ── Recently-completed cooldown ledger (Phase 4.5C, from intrinsic_goals) ──────
+# Shared completion state: the cooldown dict that stops a just-finished goal
+# from being re-spawned. External callers (goal_closure, goals) mutate the dict
+# and call _persist; the symbolic generators read it. Runs the one-time
+# comp_goals migration at import.
+# Cooldown: track recently-completed goal titles so the same goal isn't
+# immediately re-spawned. Maps title (lowercased) → completion timestamp.
+# Loaded from disk on startup so restarts don't lose the cooldown state.
+# 6 hours, up from 10 minutes — the short window produced the completion/
+# respawn zombie loop where the same intrinsic goal completed, respawned,
+# and re-completed several times a day without any new work happening.
+_COOLDOWN_S: float = 6 * 60 * 60
+
+_VALID_COMPLETED_STATUSES = frozenset({"completed", "failed", "abandoned"})
+
+
+def _migrate_comp_goals() -> None:
+    """One-time, idempotent migration separating the cooldown dict from the
+    completion archive list. Guarded by the existence of RECENTLY_COMPLETED_FILE:
+    once that file exists, the migration has already run and is skipped.
+
+    - If comp_goals.json currently holds a dict {title: ts}, move it into
+      RECENTLY_COMPLETED_FILE and reset comp_goals.json to a list.
+    - Normalize comp_goals.json to the list archive schema: drop any entry whose
+      status is not completed/failed/abandoned (e.g. stray aspiration dicts).
+    """
+    try:
+        if RECENTLY_COMPLETED_FILE.exists():
+            return  # already migrated
+    except Exception:
+        return
+
+    cooldown: dict = {}
+    archive: list = []
+    try:
+        raw = load_json(COMPLETED_GOALS_FILE, default_type=dict)
+    except Exception:
+        raw = None
+
+    if isinstance(raw, dict):
+        # Old combined file held the cooldown dict — preserve it.
+        cooldown = {k: v for k, v in raw.items() if isinstance(v, (int, float))}
+    elif isinstance(raw, list):
+        dropped = 0
+        for g in raw:
+            if isinstance(g, dict) and g.get("status") in _VALID_COMPLETED_STATUSES:
+                archive.append(g)
+            else:
+                dropped += 1
+        if dropped:
+            _log.info("comp_goals migration: dropped %d non-completion entries", dropped)
+
+    try:
+        save_json(RECENTLY_COMPLETED_FILE, cooldown)
+        save_json(COMPLETED_GOALS_FILE, archive)
+        _log.info(
+            "comp_goals migration: cooldown=%d archived=%d",
+            len(cooldown), len(archive),
+        )
+    except Exception as _e:
+        _log.warning("comp_goals migration failed: %s", _e)
+
+
+_migrate_comp_goals()
+
+
+def _load_recently_completed() -> dict:
+    try:
+        raw = load_json(RECENTLY_COMPLETED_FILE, default_type=dict) or {}
+        cutoff = time.time() - _COOLDOWN_S
+        return {k: v for k, v in raw.items() if isinstance(v, (int, float)) and v > cutoff}
+    except Exception:
+        return {}
+
+_RECENTLY_COMPLETED: dict = _load_recently_completed()
+
+
+# ── LLM gate ─────────────────────────────────────────────────────────────────
+
+def _persist_recently_completed() -> None:
+    try:
+        save_json(RECENTLY_COMPLETED_FILE, _RECENTLY_COMPLETED)
+    except Exception as _e:
+        record_failure("intrinsic_goals._persist_recently_completed", _e)

@@ -8,8 +8,6 @@ import math as _math
 import statistics as _statistics
 
 from brain.paths import (
-    COGNITIVE_FUNCTIONS_LIST_FILE,
-    BEHAVIORAL_FUNCTIONS_LIST_FILE,
     FOCUS_GOAL,
     AFFECT_STATE_FILE,
     SELF_MODEL_FILE
@@ -20,7 +18,12 @@ from brain.think.bandit import contextual_bandit as bandit
 from brain.affect.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
 from brain.config import tuning as _tuning
 # Shared constants + scoring layer, extracted to selection/ (Phase 4D).
-from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS  # noqa: F401
+from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS, _ALWAYS_EXCLUDE  # noqa: F401
+# Candidate generation + dispatch constraints, extracted to selection/candidates.py (Phase 4D).
+from brain.think.think_utils.selection.candidates import (  # noqa: F401
+    _is_selectable_name, _is_dispatchable, _load_behavioral_names,
+    _load_actions, _load_action_defs,
+)
 # Feature extraction, extracted to selection/features.py (Phase 4D).
 from brain.think.think_utils.selection.features import extract_features  # noqa: F401
 from brain.think.think_utils.selection.scoring import (  # noqa: F401
@@ -87,49 +90,6 @@ _W_EXPLORE = 0.12
 # belong in the same bandit pool as real cognition choices.
 # BEH_NAMES is the authoritative source; this is a belt-and-suspenders
 # fallback for any that leak through before the file is read.
-_ALWAYS_EXCLUDE = frozenset({
-    "apply_cognitive_costs", "apply_drive_tensions",
-    "apply_inhibition_costs",
-    "speak", "respond", "respond_to_user",
-    # Require injected args — cannot be dispatched bare by the selector
-    "add_goal", "add_entity", "add_relation",
-    "advance_goal_plan", "adjust_priority",
-    "apply_attention_filter", "apply_emotional_contagion",
-    "apply_emotion_routing", "append_death_continuity",
-    "set_goal_plan", "mark_goal_completed", "mark_goal_failed",
-    "mark_goal_status_by_name", "merge_updated_goal_into_tree",
-    "get_next_pending_step", "get_goal_plan",
-    # Dual-process Phase 2: goal-step EXECUTION is owned by the Executive
-    # (cognition/planning/executive.py), which runs pursue_committed_goal in the
-    # background before think(). Excluding it from DELIBERATE selection frees the
-    # conscious slot and prevents double execution (I3). The thin `attend_goal`
-    # act remains selectable for "consciously deciding to focus" without executing.
-    "pursue_committed_goal",
-    "decompose_goal", "create_micro_goal_for_action",
-    # Dynamic subgoal-adaptation primitives — operate on a passed goal dict and
-    # are orchestrated by adapt_subgoals(); never dispatch them bare.
-    "insert_plan_step", "skip_pending_steps", "reprioritize_pending_steps",
-    "prune_satisfied_steps", "met_milestone_tokens", "unmet_milestone_texts",
-    # Per-cycle UPKEEP that already runs automatically every cycle and was ALSO
-    # competing as a deliberate "choice" (~22% of all selections), double-applying
-    # when picked: update_affect_state runs at ~9 sites; the apply_* pressures run
-    # in finalize.py each cycle. Excluding them from SELECTION loses no behaviour —
-    # they still run automatically — and frees those cycles for real cognition.
-    "update_affect_state",
-    "apply_mortality_pressure", "apply_temporal_pressure",
-    "apply_habituation", "apply_fragmentation_cost",
-    # Closure/maintenance UPKEEP now runs deterministically on a slow cadence in
-    # ORRIN_loop's maintenance block (retirement/fade/satiety), NOT as a deliberate
-    # emotion-cued choice. fade_goals is dispatchable and was in the bandit pool but
-    # never won (no prior, cold-start starvation). Excluding it follows the same
-    # precedent as update_affect_state/apply_* — it still runs automatically every
-    # cadence window, and selection stays honest (only deliberate cognition competes).
-    "fade_goals",
-    # Need injected args the dispatcher can't supply bare (name/description/body),
-    # yet slipped the signature filter — they were selected then skipped, filling
-    # error_log.txt. They're invoked with explicit args by their own orchestrators.
-    "write_tool", "write_cognitive_function",
-})
 
 # ---------------------------------------------------------------------------
 # Shape-based selectability filter (function_selection_fix_v2.md Phase 1).
@@ -152,44 +112,11 @@ _ALWAYS_EXCLUDE = frozenset({
 # is_*/maybe_* are deliberately NOT denied as a class — maybe_form_opinion and
 # some is_* may be real cognition. Confirmed-plumbing accessors go in
 # _NON_SELECTABLE_EXACT individually instead.
-_NON_SELECTABLE_PREFIXES: Tuple[str, ...] = (
-    "explore_",
-    "apply_", "update_", "compute_", "recompute_", "decay_", "ensure_",
-    "build_", "init_", "load_", "save_", "persist_", "register_", "refresh_",
-    "reset_", "migrate_", "coerce_", "normalize_", "sync_", "flush_", "gc_",
-    "get_", "set_", "has_", "should_",
-)
 
 # Functions that start with a denied prefix but ARE real behaviors — keep them.
-_SELECTABLE_PREFIX_EXCEPTIONS: frozenset = frozenset({
-    "update_world_model",   # genuine cognition entry point (router-wrapped)
-})
-
-_NON_SELECTABLE_EXACT: frozenset = frozenset({
-    # trivial-name leaks from over-broad public-function discovery
-    "available", "exists", "get", "start", "stop", "status", "report",
-    "flush", "generate", "simulate", "commit", "size_chars", "vocab_size",
-    "lm_ready", "poll_fs_changes",
-    # internal reward/calibration calc that surfaced as "choices"
-    "calibrated_reward", "calibration_observation", "check_and_reward",
-    "check_and_reward_contradiction_resolution", "check_and_reward_goal_closure",
-    "check_and_reward_prediction_accuracy", "train_tokenizer_on_library",
-    "reflect_on_prompts", "build_system_prompt", "ensure_tokenizer",
-})
 
 
-def _is_selectable_name(name: str) -> bool:
-    """False for plumbing/junk that must never enter the selector pool (Phase 1).
 
-    Exact denials and curated prefix-exceptions are checked before the prefix
-    sweep, so a real behavior that happens to start with a denied prefix
-    (e.g. update_world_model) is kept while the plumbing it resembles is dropped.
-    """
-    if name in _NON_SELECTABLE_EXACT:
-        return False
-    if name in _SELECTABLE_PREFIX_EXCEPTIONS:
-        return True
-    return not name.startswith(_NON_SELECTABLE_PREFIXES)
 
 
 # Functions that directly serve the user or produce external value.
@@ -429,20 +356,6 @@ def _emo_mode_function_map() -> Dict[str, Dict[str, float]]:
 
 # -------------------- basic loaders (unchanged API) --------------------
 
-def _load_behavioral_names() -> frozenset:
-    """Return the set of behavioral function names from the persisted list."""
-    try:
-        items = load_json(BEHAVIORAL_FUNCTIONS_LIST_FILE, default_type=list) or []
-        names = set()
-        for it in items:
-            if isinstance(it, dict) and "name" in it:
-                names.add(str(it["name"]))
-            elif isinstance(it, str):
-                names.add(it)
-        return frozenset(names)
-    except Exception as exc:
-        record_failure("select_function.behavioral_names", exc)
-        return frozenset()
 
 
 # Mirrors ORRIN_loop._build_kwargs_for's mapping keys — the arg names the
@@ -460,52 +373,10 @@ def _load_behavioral_names() -> frozenset:
 # filter, then get skipped at dispatch whenever there was no goal — the bulk of
 # error_log.txt and a false-impasse drip. Goal pursuit itself runs via
 # pursue_committed_goal (needs only `context`), which is unaffected.
-_SUPPLYABLE_ARGS: frozenset = frozenset({
-    "context", "ctx", "self_model", "affect_state", "emotions", "relationships",
-    "long_memory", "working_memory", "recent", "recent_memories",
-    "retrieved_memories", "speaker",
-})
-_dispatchable_cache: Dict[str, bool] = {}
 
 
-def _is_dispatchable(name: str) -> bool:
-    """True unless the registered callable needs a required arg the dispatcher
-    can't supply. Cached; fails open (keeps the candidate) if anything's unclear."""
-    if name in _dispatchable_cache:
-        return _dispatchable_cache[name]
-    ok = True
-    try:
-        import inspect
-        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS  # lazy: avoid import cycle
-        meta = COGNITIVE_FUNCTIONS.get(name)
-        fn = meta.get("function") if isinstance(meta, dict) else meta
-        if callable(fn):
-            for p in inspect.signature(fn).parameters.values():
-                if (p.kind in (p.POSITIONAL_ONLY, p.POSITIONAL_OR_KEYWORD)
-                        and p.default is p.empty
-                        and p.name not in ("self", "cls")
-                        and p.name not in _SUPPLYABLE_ARGS):
-                    ok = False
-                    break
-    except Exception:
-        ok = True  # unsure → keep it; never drop a candidate by accident
-    _dispatchable_cache[name] = ok
-    return ok
 
 
-def _load_actions() -> List[str]:
-    """Load cognitive function names, excluding behavioral and bookkeeping functions."""
-    items = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
-    if not isinstance(items, list) or not items:
-        return FALLBACK_ACTIONS
-    beh_names = _load_behavioral_names()
-    excluded = beh_names | _ALWAYS_EXCLUDE
-    names: List[str] = []
-    for it in items:
-        name = str(it["name"]) if isinstance(it, dict) and "name" in it else (it if isinstance(it, str) else "")
-        if name and name not in excluded and _is_selectable_name(name) and _is_dispatchable(name):
-            names.append(name)
-    return names or FALLBACK_ACTIONS
 
 
 # Current-state readers, extracted to selection/state.py (Phase 4D).
@@ -522,48 +393,6 @@ from brain.think.think_utils.selection.text import (  # noqa: E402,F401
 )
 
 
-def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
-    """
-    Returns (names, defs) for COGNITIVE functions only.
-
-    Behavioral functions (outward-facing: speak, respond_to_user, etc.)
-    and bookkeeping utilities (apply_cognitive_costs, apply_drive_tensions)
-    are excluded so they never compete in the same bandit pool as genuine
-    cognition choices.  They enter separately via Path A in ORRIN_loop.py.
-
-    Supports:
-      - ['name', ...]
-      - [{'name': 'fn', 'definition': '...'}, ...]
-    Falls back to using the name as the definition.
-    """
-    items = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
-    if not isinstance(items, list) or not items:
-        return (list(FALLBACK_ACTIONS), {n: n for n in FALLBACK_ACTIONS})
-
-    beh_names = _load_behavioral_names()
-    excluded  = beh_names | _ALWAYS_EXCLUDE
-
-    names: List[str] = []
-    defs: Dict[str, str] = {}
-    for it in items:
-        if isinstance(it, dict) and "name" in it:
-            nm = str(it["name"])
-            if nm in excluded or not _is_selectable_name(nm) or not _is_dispatchable(nm):
-                continue
-            names.append(nm)
-            defs[nm] = str(it.get("definition") or nm)
-        elif isinstance(it, str):
-            if it in excluded or not _is_selectable_name(it) or not _is_dispatchable(it):
-                continue
-            names.append(it)
-            defs[it] = it
-
-    if len(names) < 2:
-        for fb in FALLBACK_ACTIONS:
-            if fb not in names and fb not in excluded:
-                names.append(fb)
-                defs[fb] = fb
-    return names, defs
 
 
 def _get_directive_text() -> str:

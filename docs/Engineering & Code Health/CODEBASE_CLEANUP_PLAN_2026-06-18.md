@@ -709,7 +709,14 @@ re-export-the-public-API method that worked in 4C/4D:
   - `goal_belief.py` (133) — self-belief falsification on goal success.
   - `goals.py` keeps decomposition, pursuit, focus selection, and the
     `maybe_complete_goals` sweeper.
-- `brain/evidence/life_capsule.py` — **1,308**
+- `brain/evidence/life_capsule.py` — **1,308 → 550 DONE** (now under the limit).
+  Split along the capsule's raw→cleaned→derived→interpreted layering:
+  - `life_capsule_ingest.py` (452) — constants, `classify_action`, IO/hash/time
+    helpers, and the per-stream parsers (the raw→cleaned leaf).
+  - `life_capsule_metrics.py` (355) — `_compute_metrics`, the claims ledger, and
+    the token-budgeted LLM bundle (derived→interpreted).
+  - `life_capsule.py` keeps the SQLite/CSV assembly, raw copy, provenance, the
+    `build_life_capsule` orchestrator, the reader API, and the CLI.
 - `brain/cognition/knowledge_graph.py` — **1,239**
 - `brain/think/think_utils/action_gate.py` — **1,136**
 - `brain/cognition/opinions.py` — **1,114**

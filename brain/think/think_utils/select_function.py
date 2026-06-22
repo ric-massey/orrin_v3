@@ -31,7 +31,9 @@ from brain.think.think_utils.selection.features import extract_features  # noqa:
 from brain.think.think_utils.selection.boosts import (
     compute_workspace_prior, compute_unconscious_damp, compute_drive_pull,
     compute_chain_boost, compute_energy_boost, compute_emo_mode_boost,
-    compute_emo_route_boost,
+    compute_emo_route_boost, compute_tension_boost, compute_neuro_boost,
+    update_attention_debt, compute_helpfulness_boost, compute_outward_boost,
+    compute_goal_recruit,
 )
 from brain.think.think_utils.selection.scoring import (  # noqa: F401
     _SEMANTIC_PRIORS, _emotion_pref_scores_for_dominant, _semantic_emotion_prior,
@@ -383,15 +385,9 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     # Disable with ORRIN_IGNITION_GATE=0 (the gate itself sets _conscious_cycle).
     _unconscious_damp = compute_unconscious_damp(context, actions)
 
-    # Tension boost: when active tensions exist, nudge resolution-oriented functions
-    _tension_boost: Dict[str, float] = {}
-    try:
-        active_tensions = context.get("active_tensions") or []
-        if active_tensions:
-            for fn in ("reflection", "propose_value_revision", "plan_self_evolution", "self_review", "narrative_update"):
-                _tension_boost[fn] = 0.15
-    except Exception as _e:
-        record_failure("select_function.select_function.3", _e)
+    # Tension boost (active tensions → resolution fns) + deadline urgency
+    # (imminent/overdue → goal-pursuit fns), folded into one map.
+    _tension_boost = compute_tension_boost(context)
 
     # ── ACC→dlPFC control recruitment ───────────────────────────────────────
     # When the committed goal is blocked on a deliberate/generative action the
@@ -409,21 +405,6 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         _recruit_boost = _planned_action_recruitment(context, actions)
     except Exception as _e:
         record_failure("select_function.select_function.recruit", _e)
-
-    # Deadline urgency: imminent/overdue deadlines strongly bias toward goal pursuit
-    try:
-        _tp_alerts = (context.get("_temporal_pressure") or {}).get("deadline_alerts") or []
-        if _tp_alerts:
-            _phases = {a.get("phase", "") for a in _tp_alerts if isinstance(a, dict)}
-            # E6: pursue_committed_goal lines dropped (dead — not in `actions`).
-            # The deadline urgency now lands on the real selectable goal fns.
-            if "overdue" in _phases or "imminent" in _phases:
-                _tension_boost["assess_goal_progress"]  = max(_tension_boost.get("assess_goal_progress", 0), 0.25)
-                _tension_boost["plan_next_step"]        = max(_tension_boost.get("plan_next_step", 0), 0.20)
-            elif "approaching" in _phases:
-                _tension_boost["assess_goal_progress"]  = max(_tension_boost.get("assess_goal_progress", 0), 0.15)
-    except Exception as _e:
-        record_failure("select_function.select_function.4", _e)
 
     # Drive competition: compute per-function pull from competing motivations.
     # apply_drive_tensions() also bumps uncertainty and logs the hottest conflict.
@@ -455,142 +436,31 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
     )
 
     # === Neuromodulator-driven function selection boosts ===
-    # These translate chemical state directly into behavioral choice — the mechanism
-    # by which NE, stability_signal, and stress_load actually change what Orrin does next.
-    # Without this block these signals stay in affect_state and do nothing.
-    _neuro_boost: Dict[str, float] = {}
-    try:
-        _emo_full      = context.get("affect_state") or {}
-        _ne_level      = float(_emo_full.get("_ne_proxy") or _emo_full.get("activation_level") or 0.0)
-        _sero_level    = float(_emo_full.get("_stability_signal_proxy") or 0.0)
-        _bs_nb         = context.get("body_sense") or {}
-        _stress_streak = int(_bs_nb.get("_stress_streak", 0) or 0)
-        _stress_load_load = min(1.0, max(0, _stress_streak - 20) / 200.0)
+    # These translate chemical state (NE / stability_signal / stress_load) directly
+    # into behavioral choice — without this these signals stay in affect_state and
+    # do nothing.
+    _neuro_boost = compute_neuro_boost(context, _has_committed_goal)
 
-        # gain_signal (Sara 2009): high activation_level narrows attention to the goal at hand.
-        # Suppresses exploration and mind-wandering; pushes pursuit and assessment up.
-        # Phase 4: membership via "neuro_*" tags. E6: pursue_committed_goal
-        # dropped from the focus list (dead — never in `actions`).
-        if _ne_level > 0.45:
-            _ne_scale = (_ne_level - 0.45) / 0.55  # 0→1 above threshold
-            for fn in _NEURO_NE_FOCUS:
-                _neuro_boost[fn] = _neuro_boost.get(fn, 0.0) + _ne_scale * 0.22
-            for fn in _NEURO_NE_SUPPRESS:
-                _neuro_boost[fn] = _neuro_boost.get(fn, 0.0) - _ne_scale * 0.15
+    # User attention debt: grows when user is present but no reply was generated;
+    # feeds the helpfulness bias so unanswered presence escalates pressure to engage.
+    # (Mutates context["_user_attention_debt"]; returns _user_spoke for the reason payload.)
+    _user_spoke, _attention_debt = update_attention_debt(context)
 
-        # stability_signal (Dayan & Huys 2009): promotes patience and persistence.
-        # High stability_signal → stay on the current goal, don't reflexively switch to regulation.
-        # E6: the persistence boost used to land on pursue_committed_goal, which is
-        # never in the pool — moved to attend_goal, the thin selectable "consciously
-        # stay with the goal" proxy (same relocation as the commitment bias).
-        if _sero_level > 0.12 and _has_committed_goal:
-            _sero_scale = min(1.0, (_sero_level - 0.12) / 0.38)
-            _neuro_boost["attend_goal"] = (
-                _neuro_boost.get("attend_goal", 0.0) + _sero_scale * 0.18
-            )
-            for fn in _NEURO_CALM_SUPPRESS:
-                _neuro_boost[fn] = _neuro_boost.get(fn, 0.0) - _sero_scale * 0.10
-
-        # stress_load allostatic load (McEwen 2007): sustained stress impairs executive function.
-        # Suppress high-cost planning; push toward simple, restorative actions.
-        if _stress_load_load > 0.10:
-            for fn in _NEURO_STRESS_SUPPRESS:
-                _neuro_boost[fn] = _neuro_boost.get(fn, 0.0) - _stress_load_load * 0.28
-            for fn in _NEURO_STRESS_RESTORE:
-                _neuro_boost[fn] = _neuro_boost.get(fn, 0.0) + _stress_load_load * 0.12
-    except Exception as _e:
-        record_failure("select_function.select_function.9", _e)
-
-    # User attention debt: grows when user is present but no reply was generated.
-    # Feeds into helpfulness bias so unresponded-to presence creates escalating pressure to engage.
-    _user_spoke = bool((context.get("latest_user_input") or "").strip())
-    _last_responded = (context.get("_last_responded_input") or "").strip()
-    _latest_input   = (context.get("latest_user_input") or "").strip()
-    if _user_spoke and _latest_input != _last_responded:
-        # User spoke but hasn't been answered yet — increment debt
-        _debt = int(context.get("_user_attention_debt", 0) or 0)
-        context["_user_attention_debt"] = min(_debt + 1, 10)
-    elif not _user_spoke:
-        # User is quiet — slowly forgive the debt
-        _debt = int(context.get("_user_attention_debt", 0) or 0)
-        if _debt > 0:
-            context["_user_attention_debt"] = max(0, _debt - 1)
-    _attention_debt = int(context.get("_user_attention_debt", 0) or 0)
-
-    # Usefulness/helpfulness boost: when the user has spoken this cycle, helpful
-    # functions get a strong additive boost that overrides intrinsic exploration_drive and
-    # reflection pull. Pure introspection functions are dampened — they can wait.
-    # Attention debt makes the social pull escalate until Orrin actually replies.
-    _helpfulness_boost: Dict[str, float] = {}
-    _debt_bonus = min(0.50, 0.10 * _attention_debt)  # up to +0.50 after 5 ignored cycles
-    if _user_spoke or _attention_debt > 0:
-        for fn in actions:
-            if fn in _USER_HELPFUL_FUNCTIONS:
-                _helpfulness_boost[fn] = 0.45 + _debt_bonus  # persistent social pull
-            elif fn in _INTROSPECTION_FUNCTIONS:
-                _helpfulness_boost[fn] = -0.25  # introspection must wait when user is present
+    # Usefulness/helpfulness boost: when the user has spoken (or debt is owed),
+    # helpful functions get a strong additive boost over intrinsic exploration/
+    # reflection pull, and pure introspection is dampened — it can wait.
+    _helpfulness_boost = compute_helpfulness_boost(actions, _user_spoke, _attention_debt)
 
     # Emotion routing — deep cognitive policy signal (not just prompt influence).
     # risk_estimate → verification; stagnation_signal → novelty; Confidence → prune; etc.
     _emo_route_boost = compute_emo_route_boost(context, actions)
 
-    # Standing outward-presence boost: Orrin should engage with his environment
-    # regularly, not just compute internally. These functions couple cognition to the
-    # world and should be structurally preferred regardless of emotional state.
-    # Clark (1997) embodied cognition: acting on the environment is constitutive of
-    # cognition. Lave (1988) situated action: knowledge is constituted in use.
-    # Boost is graded: highest for acts that produce external artifacts (notes, code),
-    # then exploration (search, look_outward), then sensing (read_clipboard, survey).
-    # Phase 4: tiers come from the "outward_artifact"/"outward_explore"/
-    # "outward_sense" tags (module-level _OUTWARD_HIGH/MED/LOW). E6: the dead
-    # pursue_committed_goal entry in the old inline MED tier was dropped.
-    _outward_boost: Dict[str, float] = {}
-    for _fn in actions:
-        if _fn in _OUTWARD_HIGH:
-            _outward_boost[_fn] = 0.20
-        elif _fn in _OUTWARD_MED:
-            _outward_boost[_fn] = 0.13
-        elif _fn in _OUTWARD_LOW:
-            _outward_boost[_fn] = 0.07
-
-    # Reward-aware damping (Fix #2): the standing outward boost must not keep
-    # floating reads that consistently return little. Scale each boost by how well
-    # the function has actually paid off — full boost at avg_reward ≥ 0.5, fading to
-    # 0.3× by avg_reward ≤ 0.1. So low-yield reads (look_outward ~0.09, search_own_files
-    # ~0.07) get only a small nudge and their REAL reward governs how often he reaches
-    # for them; high-yield outward acts keep their full boost. Self-correcting: if a
-    # read starts paying off again, its boost recovers automatically.
+    # Standing outward-presence boost (embodied/situated cognition): graded tiers
+    # (artifact > exploration > sensing), reward-damped, outward-debt-amplified, and
+    # goal-shielded so curiosity reads don't crowd out goal work. `_stats` is fetched
+    # once here and reused by the scoring loop below.
     _stats = _learned_stats()
-    for _fn in list(_outward_boost.keys()):
-        _ar = float((_stats.get(_fn) or {}).get("avg_reward", 0.5))
-        _rf = max(0.3, min(1.0, (_ar - 0.1) / 0.4))
-        _outward_boost[_fn] *= _rf
-
-    # Amplify outward boost when outward-debt is high (too many internal-only cycles).
-    _od = int(context.get("_outward_debt", 0) or 0)
-    if _od >= 8:
-        _od_scale = min(2.0, 1.0 + (_od - 8) * 0.07)
-        _outward_boost = {k: v * _od_scale for k, v in _outward_boost.items()}
-
-    # Goal shielding (Shah, Friedman & Kruglanski 2002): while a committed goal is
-    # active, curiosity/exploration reads should not crowd out the goal work
-    # itself. Scale DOWN the standing outward boost for pure-exploration reads when
-    # pursue_committed_goal is on the table — leaving pursue_committed_goal's own
-    # outward boost intact (it *is* the goal work). This is what stops look_outward
-    # from monopolising cycles despite goal pursuit being the higher-reward action.
-    # E6: gate on _has_committed_goal alone. The old `"pursue_committed_goal" in
-    # actions` test was always False (pursue_committed_goal is in _ALWAYS_EXCLUDE),
-    # so this goal-shielding never actually fired — exploration reads were never
-    # damped during goal pursuit. Gating on the goal's presence restores the
-    # intended Shah/Friedman/Kruglanski (2002) shielding behavior.
-    if _has_committed_goal:
-        _EXPLORE_READS = frozenset({
-            "look_outward", "seek_novelty", "look_around",
-            "search_own_files", "grep_files", "search_files",
-        })
-        for _fn in list(_outward_boost.keys()):
-            if _fn in _EXPLORE_READS:
-                _outward_boost[_fn] *= 0.4
+    _outward_boost = compute_outward_boost(context, actions, _stats, _has_committed_goal)
 
     # No-goal suppression: pursue_committed_goal and assess_goal_progress are
     # useless (and waste a full LLM cycle) when there is no committed goal.
@@ -602,40 +472,9 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
     # Goal-specific recruitment (function_selection_fix_v2.md §4.2): derive which
     # functions THIS goal needs from its OWN title/description/tags via the curated
-    # capability descriptions, instead of a static hardcoded name-list. This is
-    # what makes different goal TYPES recruit visibly different function sets (a
-    # research goal pulls research_topic/fetch_and_read/wikipedia_search; a
-    # self-model goal pulls reflect_on_self_beliefs/propose_value_revision/...),
-    # rather than every goal collapsing onto assess_goal_progress. Capped at +0.40
-    # so it is comparable to s_attn and never dominates the score on its own.
-    _goal_recruit: Dict[str, float] = {}
-    try:
-        _grg = context.get("committed_goal") or {}
-        if isinstance(_grg, dict):
-            _grg_text = " ".join(
-                str(_grg.get(k, "") or "") for k in ("title", "name", "description")
-            ).strip()
-            # Goals created by generate_intrinsic_goals carry their description
-            # nested at spec.description (often naming the exact functions to
-            # use, e.g. "Use write_cognitive_function or write_tool ...") —
-            # without it the recruiter only ever sees the title.
-            _grg_spec = _grg.get("spec") or {}
-            if isinstance(_grg_spec, dict):
-                _spec_desc = str(_grg_spec.get("description") or "").strip()
-                if _spec_desc:
-                    _grg_text = (_grg_text + " " + _spec_desc).strip()
-            _grg_tags = _grg.get("tags") or []
-            if isinstance(_grg_tags, list) and _grg_tags:
-                _grg_text = (_grg_text + " " + " ".join(str(t) for t in _grg_tags)).strip()
-            if _grg_text:
-                _caps = _capability_descriptions()
-                for _nm in actions:
-                    _ref = _caps.get(_nm) or defs.get(_nm, _nm)
-                    _sim = _capability_overlap(_ref, _grg_text)
-                    if _sim > 0.0:
-                        _goal_recruit[_nm] = min(0.40, 0.6 * _sim)
-    except Exception as _e:
-        record_failure("select_function.select_function.11", _e)
+    # capability descriptions, so different goal TYPES recruit visibly different
+    # function sets rather than collapsing onto assess_goal_progress.
+    _goal_recruit = compute_goal_recruit(context, actions, defs)
 
     # Score each action
     scored: List[Tuple[str, float, Dict[str, float]]] = []

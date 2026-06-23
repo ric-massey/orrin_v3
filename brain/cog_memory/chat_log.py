@@ -81,15 +81,6 @@ def _create_chat_entry(
         "ts": ts,
     }
 
-def log_user_message(content: str) -> None:
-    """
-    Append a single user message to the chat log if it is not noise.
-    (Kept for compatibility, but dispatcher below will IGNORE string-only writes.)
-    """
-    clean = _clean_content(content)
-    if not _is_noise(clean):
-        append_to_json(paths.CHAT_LOG_FILE, _create_chat_entry("user", clean))
-
 def log_dialogue_pair(user: str, orrin: str, timestamp: Optional[str] = None) -> None:
     """
     Append a user/orrin dialogue pair to the chat log. Messages that are empty,

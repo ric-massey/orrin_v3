@@ -38,6 +38,7 @@ from types import ModuleType
 from typing import Any, Dict, List, Optional
 
 from brain.paths import DATA_DIR, ROOT_DIR, SELF_CODE_DIR, SELF_COGNITION_DIR, SELF_SKILLS_DIR
+from brain.utils.failure_counter import record_failure
 
 # Self-written modules import under a DEDICATED top-level namespace rather than the
 # bundled `cognition.custom_cognition.*` / `agency.skills.*` packages. Relocating the
@@ -107,8 +108,8 @@ def ensure_tree() -> None:
             if not init.exists():
                 try:
                     init.write_text("# package marker for Orrin's self-written code\n", encoding="utf-8")
-                except Exception:
-                    pass
+                except Exception as exc:  # package-marker write failed — record
+                    record_failure("self_code.ensure_tree.marker", exc)
         # Put the self-code root on sys.path (plan §10.1) so the namespace packages
         # below — and any future cross-imports between self-written modules — resolve.
         root = str(SELF_CODE_DIR)
@@ -146,8 +147,8 @@ def _extend_bundled_skills_path() -> None:
         p = str(SELF_SKILLS_DIR)
         if p not in _bundled_skills.__path__:  # type: ignore[attr-defined]
             _bundled_skills.__path__.append(p)  # type: ignore[attr-defined]
-    except Exception:
-        pass  # bundled package not importable in this context — non-fatal
+    except ImportError:  # intentional: bundled package not importable here — non-fatal
+        pass
 
 
 # ── dynamic import of a self-written module ──────────────────────────────────
@@ -211,7 +212,8 @@ def _migrate_legacy_manifest() -> None:
         return  # not the in-repo mind the legacy code belongs to — leave it alone
     try:
         legacy = json.loads(_LEGACY_MANIFEST.read_text(encoding="utf-8"))
-    except Exception:
+    except Exception as exc:  # legacy manifest unreadable/bad — record, skip migration
+        record_failure("self_code._migrate_legacy_manifest.read", exc)
         return
     if not isinstance(legacy, list):
         return
@@ -231,7 +233,8 @@ def _migrate_legacy_manifest() -> None:
             elif not dst.exists():
                 # File already gone (e.g. the stale test probe) — drop the entry.
                 continue
-        except Exception:
+        except Exception as exc:  # copy failed for one entry — record, drop it
+            record_failure("self_code._migrate_legacy_manifest.copy", exc)
             continue
         entry = {**entry, "path": _rel(dst)}
         migrated.append(entry)
@@ -242,10 +245,10 @@ def _migrate_legacy_manifest() -> None:
         # on a read-only program folder this fails harmlessly (no legacy file ships).
         try:
             _LEGACY_MANIFEST.rename(_LEGACY_MANIFEST.with_suffix(".json.migrated"))
-        except Exception:
+        except OSError:  # intentional: read-only program folder — harmless, no legacy ships
             pass
-    except Exception:
-        pass
+    except Exception as exc:  # writing the migrated manifest failed — record
+        record_failure("self_code._migrate_legacy_manifest.write", exc)
 
 
 def load_manifest() -> List[Dict[str, Any]]:
@@ -253,7 +256,8 @@ def load_manifest() -> List[Dict[str, Any]]:
     try:
         data = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
         return data if isinstance(data, list) else []
-    except Exception:
+    except Exception as exc:  # manifest unreadable/bad — record, treat as empty
+        record_failure("self_code.load_manifest", exc)
         return []
 
 

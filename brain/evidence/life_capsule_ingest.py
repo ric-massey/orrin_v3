@@ -151,7 +151,7 @@ def _now_iso() -> str:
 def _read_json(path: Path, default: Any = None) -> Any:
     try:
         return json.loads(path.read_text("utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/bad file → default
         return default
 
 
@@ -167,12 +167,12 @@ def _iter_jsonl(path: Path, *, limit: Optional[int] = None) -> Iterable[dict]:
                     continue
                 try:
                     yield json.loads(line)
-                except Exception:
+                except json.JSONDecodeError:  # intentional: skip a malformed line
                     continue
                 n += 1
                 if limit is not None and n >= limit:
                     return
-    except Exception:
+    except OSError:  # intentional: unreadable stream → stop iterating
         return
 
 
@@ -186,7 +186,7 @@ def _sha256_file(path: Path) -> str:
         with path.open("rb") as f:
             for chunk in iter(lambda: f.read(1 << 20), b""):
                 h.update(chunk)
-    except Exception:
+    except OSError:  # intentional: unreadable file → empty hash
         return ""
     return h.hexdigest()
 
@@ -199,7 +199,7 @@ def _iso_to_epoch(s: Any) -> Optional[float]:
     try:
         txt = str(s).replace("Z", "+00:00")
         return datetime.fromisoformat(txt).timestamp()
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 
@@ -231,7 +231,7 @@ def _git_sha(repo_root: Path) -> str:
             timeout=5,
         )
         return out.stdout.strip() if out.returncode == 0 else ""
-    except Exception:
+    except (OSError, subprocess.SubprocessError):  # intentional: git absent/timeout → no sha
         return ""
 
 
@@ -240,7 +240,7 @@ def _redact_home(text: str) -> str:
     try:
         home = str(Path.home())
         text = text.replace(home, "~")
-    except Exception:
+    except RuntimeError:  # intentional: home undeterminable — regex fallback still runs
         pass
     return re.sub(r"/Users/[^/\s\"']+", "~", text)
 

@@ -65,7 +65,7 @@ def extract_json(text: str) -> Optional[Union[dict, list]]:
                 if salv:
                     try:
                         return json.loads(salv)
-                    except Exception:
+                    except json.JSONDecodeError:  # expected: speculative parse in heal chain
                         pass
 
         # 2) any fenced block
@@ -83,7 +83,7 @@ def extract_json(text: str) -> Optional[Union[dict, list]]:
                     if salv:
                         try:
                             return json.loads(salv)
-                        except Exception:
+                        except json.JSONDecodeError:  # expected: speculative parse in heal chain
                             pass
 
         # 3) scan for top-level {...} or [...]
@@ -96,28 +96,28 @@ def extract_json(text: str) -> Optional[Union[dict, list]]:
             healed = _heal_json_fragment(frag)
             try:
                 return json.loads(healed)
-            except Exception:
+            except json.JSONDecodeError:  # expected: speculative parse in heal chain
                 pass
             # salvage top-level object specifically (handles cut off like "..., \"emerging_conflicts\": [")
             salv = _salvage_top_level_object(frag)
             if salv:
                 try:
                     return json.loads(salv)
-                except Exception:
+                except json.JSONDecodeError:  # expected: speculative parse in salvage chain
                     pass
 
         # 4) whole text attempts
         healed_all = _heal_json_fragment(s)
         try:
             return json.loads(healed_all)
-        except Exception:
+        except json.JSONDecodeError:  # expected: speculative parse in heal chain
             pass
 
         salv_all = _salvage_top_level_object(s)
         if salv_all:
             try:
                 return json.loads(salv_all)
-            except Exception:
+            except json.JSONDecodeError:  # expected: speculative parse in salvage chain
                 pass
 
     except Exception as e:
@@ -321,6 +321,6 @@ def _log_salvage_miss(exc: Exception, snippet: str) -> None:
             if "json_utils" not in fname:
                 caller = f"{fname.rsplit('/', 1)[-1]}:{frame.lineno} ({frame.function})"
                 break
-    except Exception:
-        pass
+    except Exception:  # intentional: caller introspection is best-effort debug detail
+        caller = "?"
     _log.debug("salvage failed: %s | caller=%s | snippet=%r", exc, caller, snippet[:160])

@@ -26,6 +26,7 @@ from __future__ import annotations
 from typing import Any, Dict, Optional
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
 from brain.utils.env import env_bool
@@ -87,14 +88,14 @@ def _class_prior(fn: str) -> float:
         from brain.cognition.planning.step_execution import is_procedural
         if is_procedural(fn):
             return _PROCEDURAL_PRIOR_MS
-    except Exception:
+    except ImportError:  # intentional: classifier optional — fall through to next prior
         pass
     try:
         from brain.motivation.energy_orientation import REFLECT_FUNCTIONS
         from brain.cognition.cognitive_cost import is_introspective
         if fn in REFLECT_FUNCTIONS or is_introspective(fn):
             return _DELIBERATE_PRIOR_MS
-    except Exception:
+    except ImportError:  # intentional: classifier optional — fall through to default
         pass
     return _DEFAULT_COST_MS
 
@@ -141,8 +142,8 @@ def _avg_reward(fn: str) -> float:
         stats = load_json(DATA_DIR / "decision_stats.json", default_type=dict)
         if isinstance(stats, dict) and isinstance(stats.get(fn), dict):
             return float(stats[fn].get("avg_reward", 0.5) or 0.5)
-    except Exception:
-        pass
+    except Exception as exc:  # stats unreadable — record, use neutral prior
+        record_failure("interoception._avg_reward", exc)
     return 0.5
 
 
@@ -153,7 +154,7 @@ def would_be_evc(fn: str, context: Dict[str, Any], lam: float = 0.0006) -> float
     rd = 0.0
     try:
         rd = float((context.get("affect_state") or {}).get("resource_deficit", 0.0) or 0.0)
-    except Exception:
+    except (TypeError, ValueError, AttributeError):  # intentional: bad/absent deficit → rd=0
         pass
     return round(_avg_reward(fn) - lam * predict_cost(fn, context) * (1.0 + rd), 4)
 
@@ -200,7 +201,8 @@ def evc_selection_adjust(fn: str, avg_reward: float, context: Dict[str, Any]) ->
         rd = float((context.get("affect_state") or {}).get("resource_deficit", 0.0) or 0.0)
         penalty = _EVC_LAMBDA * cost_norm * reward_factor * (1.0 + 0.5 * rd)
         return -round(min(_EVC_CAP, penalty), 4)
-    except Exception:
+    except Exception as exc:  # selection must not crash — record, no adjustment
+        record_failure("interoception.evc_selection_adjust", exc)
         return 0.0
 
 
@@ -217,8 +219,8 @@ def setpoint_candidate(context: Dict[str, Any]) -> float:
             tau = 0.30
         elif context.get("_rest_mode") or context.get("energy_mode") == "rest":
             tau = 0.12
-    except Exception:
-        pass
+    except Exception as exc:  # bad context shape — record, keep baseline τ
+        record_failure("interoception.setpoint_candidate", exc)
     return max(0.10, min(0.45, tau))
 
 
@@ -270,7 +272,7 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
                 from brain.cognition.dreaming.dream_cycle import dreaming_now
                 if dreaming_now() and nudge > 0.0:
                     nudge = 0.0
-            except Exception:
+            except ImportError:  # intentional: dream-cycle optional — keep nudge as-is
                 pass
             if abs(nudge) >= _NUDGE_MIN:
                 try:

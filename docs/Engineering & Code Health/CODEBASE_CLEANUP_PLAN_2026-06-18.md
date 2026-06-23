@@ -7,6 +7,36 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22c)
+
+- **Phase 6 — STARTED (static dead-code analysis + first verified removals).**
+  Adopted `vulture` as the dead-code candidate generator (dev tool, not wired
+  into `make verify`); ran it across `brain/backend/runtime/goals/memory/reaper/
+  observability`. Confirmed the plan's warning holds: the 60%-confidence list is
+  dominated by dynamic-dispatch false positives (FastAPI route handlers, DI
+  setters, the JS-RPC bridge methods, and registry-walked cognition/behavior
+  functions), so every candidate is verified by import/grep tracing before any
+  deletion. Landed four behavior-preserving removals, each its own revertible
+  commit, full gate green after (**964 passed / 1 skipped**, mypy 50 clean, ruff
+  clean — unchanged from baseline):
+  - unreachable `return {}` in `mortality.evaluate` (try/except both always
+    return);
+  - the ~127-line dead `contextual_emotion_priming()` in `emotion_utils.py`
+    (zero callers anywhere; only an archived-doc reference) + its four
+    now-orphaned imports;
+  - the dead `long_memory_file` param of `summarize_chat_to_long_memory()`
+    (the value was accepted and ignored — `update_long_memory()` owns the path),
+    and the caller's now-unused `LONG_MEMORY_FILE` import;
+  - the dead `goals/auto/seeder.py` stub (abandoned since the initial commit, no
+    `__init__.py`, not on any dynamic-load path) + its now-empty directory.
+  Deliberately left out of scope: `contextual_bandit.update_with_pe`'s ignored
+  `lr`/`l2`/`pe_lr` params — the caller passes `lr=_ach_lr` expecting it to be
+  used, so that is a latent behavior bug, not dead code (Phase 6 rule 5: no
+  behavioral tuning), to be addressed separately. **Remaining Phase 6:** the
+  bulk dead-function triage (262 brain/-side vulture candidates, each needing
+  caller tracing), duplication consolidation (JSON/state/env/logging/retry),
+  pass-through/re-export removal, stale-alias cleanup, and doc archival.
+
 ## Implementation status (updated 2026-06-22b)
 
 - **Phase 5.1 — selection/ and planning/ packages fully strict-typed.** The mypy

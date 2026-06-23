@@ -3,10 +3,15 @@
 
 from __future__ import annotations
 
+import uuid
 from abc import ABC, abstractmethod
 from typing import Protocol, runtime_checkable, Optional, Tuple, List, Dict, Any, Union
 
-from ..model import Goal, Step
+from brain.core.runtime_log import get_logger
+
+from ..model import Goal, Step, Status
+
+_log = get_logger(__name__)
 
 # Public type alias for anything we pass around to handlers (services, paths, config, clients, etc.)
 HandlerContext = Dict[str, Any]
@@ -83,4 +88,55 @@ class BaseGoalHandler(ABC):
         return bool(result), {}
         
 
-__all__ = ["GoalHandler", "BaseGoalHandler", "HandlerContext", "HandlerResult"]
+# ── Shared handler helpers ────────────────────────────────────────────────────
+# Step construction and the lock acquire/release dance were copy-pasted across the
+# coding/research/housekeeping handlers (structure audit §8). They live here, on
+# the handler base, so every handler shares one implementation.
+
+def new_step(
+    goal_id: str,
+    name: str,
+    action: Dict[str, Any],
+    *,
+    max_attempts: int = 3,
+    deps: Optional[List[str]] = None,
+) -> Step:
+    """Construct a READY Step with a fresh id."""
+    return Step(
+        id=f"s_{uuid.uuid4().hex[:10]}",
+        goal_id=goal_id,
+        name=name,
+        action=action,
+        max_attempts=max_attempts,
+        deps=list(deps or []),
+        status=Status.READY,
+    )
+
+
+def acquire_lock(ctx: HandlerContext, name: str, goal_id: str) -> bool:
+    """Try to take the named lock for `goal_id`. Returns True (proceed) when no
+    lock manager is configured in ctx; False if a configured acquire fails."""
+    locks = ctx.get("locks")
+    if not locks:
+        return True  # no lock manager configured; proceed
+    try:
+        return locks.acquire(name, goal_id)
+    except Exception:
+        return False
+
+
+def release_lock(ctx: HandlerContext, name: str, goal_id: str) -> None:
+    """Release the named lock for `goal_id`; best-effort, no-op without a manager."""
+    locks = ctx.get("locks")
+    if not locks:
+        return
+    try:
+        locks.release(name, goal_id)
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+
+
+__all__ = [
+    "GoalHandler", "BaseGoalHandler", "HandlerContext", "HandlerResult",
+    "new_step", "acquire_lock", "release_lock",
+]

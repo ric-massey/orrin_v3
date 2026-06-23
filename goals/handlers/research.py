@@ -5,32 +5,19 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 import json
-import uuid
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from ..model import Goal, Step, Status
-from .base import BaseGoalHandler, HandlerContext
+from .base import BaseGoalHandler, HandlerContext, new_step as _new_step
 _log = get_logger(__name__)
 
 UTCNOW = lambda: datetime.now(timezone.utc)
 
 
 # ---------- tiny utilities ----------
-
-def _new_step(goal_id: str, name: str, action: Dict[str, Any], *, max_attempts: int = 3, deps: Optional[List[str]] = None) -> Step:
-    return Step(
-        id=f"s_{uuid.uuid4().hex[:10]}",
-        goal_id=goal_id,
-        name=name,
-        action=action,
-        max_attempts=max_attempts,
-        deps=list(deps or []),
-        status=Status.READY,
-    )
-
 
 def _artifacts_dir(ctx: HandlerContext, goal: Goal) -> Path:
     base = Path(ctx.get("artifacts_dir") or "data/goals/artifacts").resolve()

@@ -8,31 +8,24 @@ import gzip
 import json
 import shutil
 import subprocess
-import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from ..model import Goal, Step, Status
-from .base import BaseGoalHandler, HandlerContext
+from .base import (
+    BaseGoalHandler,
+    HandlerContext,
+    new_step as _new_step,
+    acquire_lock as _acquire,
+    release_lock as _release,
+)
 _log = get_logger(__name__)
 
 UTCNOW = lambda: datetime.now(timezone.utc)
 
 
 # ---------- small helpers ----------
-
-def _new_step(goal_id: str, name: str, action: Dict[str, Any], *, max_attempts: int = 2, deps: Optional[List[str]] = None) -> Step:
-    return Step(
-        id=f"s_{uuid.uuid4().hex[:10]}",
-        goal_id=goal_id,
-        name=name,
-        action=action,
-        max_attempts=max_attempts,
-        deps=list(deps or []),
-        status=Status.READY,
-    )
-
 
 def _artifacts_dir(ctx: HandlerContext, goal: Goal) -> Path:
     base = Path(ctx.get("artifacts_dir") or "data/goals/artifacts").resolve()
@@ -58,26 +51,6 @@ def _ctx_path(ctx: HandlerContext, key: str, default: str) -> Path:
     if key in ctx:
         return Path(ctx[key]).resolve()
     return Path(default).resolve()
-
-
-def _acquire(ctx: HandlerContext, name: str, goal_id: str) -> bool:
-    locks = ctx.get("locks")
-    if not locks:
-        return True
-    try:
-        return locks.acquire(name, goal_id)
-    except Exception:
-        return False
-
-
-def _release(ctx: HandlerContext, name: str, goal_id: str) -> None:
-    locks = ctx.get("locks")
-    if not locks:
-        return
-    try:
-        locks.release(name, goal_id)
-    except Exception as _e:
-        _log.warning("silent except: %s", _e)
 
 
 def _which(bin_name: str) -> Optional[str]:
@@ -129,7 +102,9 @@ class HousekeepingHandler(BaseGoalHandler):
         prev_id: Optional[str] = None
         for t in tasks:
             action = {"op": t, "opts": opts.get(t, {})}
-            s = _new_step(goal.id, t.replace("_", " "), action, deps=([prev_id] if prev_id else None))
+            # max_attempts=2 preserves this handler's historical default (the shared
+            # new_step defaults to 3); housekeeping ops are cheap to retry-cap lower.
+            s = _new_step(goal.id, t.replace("_", " "), action, max_attempts=2, deps=([prev_id] if prev_id else None))
             steps.append(s)
             prev_id = s.id
         return steps

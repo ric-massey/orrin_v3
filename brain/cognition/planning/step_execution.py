@@ -123,7 +123,7 @@ def _procedural_from_manifest() -> frozenset[str]:
             if isinstance(v, dict) and "procedural" in (v.get("tags") or [])
         )
         return tagged or _PROCEDURAL_DEFAULT
-    except Exception:
+    except (OSError, ValueError, AttributeError):  # intentional: missing/malformed manifest → safe literal default
         return _PROCEDURAL_DEFAULT
 
 
@@ -163,7 +163,7 @@ def _semantic_step_match(step_text: str, candidates: Iterable[str]) -> Tuple[Opt
         from brain.think.think_utils.select_function import (
             _capability_descriptions, _capability_overlap,
         )
-    except Exception:
+    except ImportError:  # intentional: optional select_function backend absent → no semantic match
         return (None, 0.0)
     descs = _capability_descriptions()
     best: Optional[str] = None

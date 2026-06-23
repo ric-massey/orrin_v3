@@ -41,8 +41,8 @@ def prepare_workspace(context: Context) -> Context:
         if _tb_exec is not None and isinstance(_exec_summary, dict):
             try:
                 _tb_exec.update(executive=_exec_summary)
-            except Exception:
-                pass
+            except Exception as _e:  # executive-block telemetry best-effort — record
+                record_failure("ORRIN_loop.executive_telemetry", _e)
     except Exception as _exe:
         record_failure("ORRIN_loop.executive_tick", _exe)
 
@@ -81,8 +81,8 @@ def prepare_workspace(context: Context) -> Context:
                         "candidates": context.get("_workspace_candidates") or [],
                     },
                 )
-            except Exception:
-                pass
+            except Exception as _e:  # monitor/workspace telemetry best-effort — record
+                record_failure("ORRIN_loop.monitor_telemetry", _e)
     except Exception as _uwe:
         record_failure("ORRIN_loop.workspace_pre_think", _uwe)
 

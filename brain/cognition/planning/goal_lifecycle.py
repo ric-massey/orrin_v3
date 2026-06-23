@@ -52,7 +52,8 @@ def load_lifetime_goals() -> List[Dict[str, Any]]:
     try:
         goals: List[Any] = load_json(LIFETIME_GOALS_FILE, default_type=list)
         return goals if isinstance(goals, list) else []
-    except Exception:
+    except Exception as exc:  # lifetime goals unreadable — record, none
+        record_failure("goal_lifecycle.load_lifetime_goals", exc)
         return []
 
 
@@ -206,7 +207,7 @@ def _fade_regular_goals(now_ts: float) -> None:
             return
         try:
             last_ts = datetime.fromisoformat(last_str.replace("Z", "+00:00")).timestamp()
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unparseable timestamp → skip
             return
 
         secs_idle = now_ts - last_ts

@@ -80,7 +80,8 @@ def choose_depth() -> int:
         log_private(f"[depth_bandit] chose depth={best_depth} (UCB scores: "
                     + ", ".join(f"d{d}={stats[str(d)]['avg_reward']:.2f}" for d in _DEPTHS) + ")")
         return best_depth
-    except Exception:
+    except Exception as exc:  # depth-bandit choice failed — record, shallowest default
+        record_failure("thinking_depth.choose_depth", exc)
         return 1
 
 
@@ -119,7 +120,8 @@ def depth_as_signal() -> float:
         if deep_n < 2 or shal_n < 2:
             return 0.5  # not enough data to have a view
         return max(0.0, min(1.0, 0.5 + (deep_avg - shal_avg)))
-    except Exception:
+    except Exception as exc:  # depth-signal compute failed — record, neutral signal
+        record_failure("thinking_depth.depth_as_signal", exc)
         return 0.5
 
 

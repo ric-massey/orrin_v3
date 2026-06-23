@@ -20,7 +20,7 @@ from brain.utils.failure_counter import record_failure
 def _build_kwargs_for(fn: Callable[..., Any], name: str, ctx: Dict[str, Any]) -> Dict[str, Any]:
     try:
         sig = inspect.signature(fn)
-    except Exception:
+    except (TypeError, ValueError):  # intentional: unintrospectable callable → no kwargs
         return {}
     wm = ctx.get("working_memory", []) or []
     lm = ctx.get("long_memory", []) or []
@@ -88,7 +88,7 @@ def _invoke_cognition(
                 _ud = ctx.setdefault("_undispatchable_fns", [])
                 if name not in _ud:
                     _ud.append(name)
-            except Exception:
+            except (AttributeError, TypeError):  # intentional: bad ctx shape → skip the note
                 pass
             return {"status": "error", "error": f"unsatisfiable_args: {unsatisfied}"}
     except Exception as _e:

@@ -424,11 +424,13 @@ def fail_overdue_artifact_goals(context: Optional[Dict[str, Any]] = None) -> int
     try:
         from brain.utils.get_cycle_count import get_cycle_count
         cur = int(get_cycle_count() or 0)
-    except Exception:
+    except Exception as _e:
+        record_failure("goals.fail_overdue_artifact_goals.cycle", _e)
         return 0
     try:
         goals = load_goals()
-    except Exception:
+    except Exception as _e:
+        record_failure("goals.fail_overdue_artifact_goals.load", _e)
         return 0
     if not isinstance(goals, list):
         return 0

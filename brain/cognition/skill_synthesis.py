@@ -219,6 +219,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
         from brain.utils.generate_response import generate_response, llm_ok
         raw = llm_ok(generate_response(prompt, caller="skill_synthesis/synthesize"), "skill_synthesis") or ""
     except Exception as e:
+        record_failure("skill_synthesis.synthesize.llm", e)
         return {"success": False, "fn_name": fn_name, "error": f"LLM unavailable: {e}"}
 
     if not raw or len(raw.strip()) < 40:
@@ -256,6 +257,7 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
     try:
         file_path.write_text(full_code, encoding="utf-8")
     except Exception as e:
+        record_failure("skill_synthesis.synthesize.write", e)
         return {"success": False, "fn_name": fn_name, "error": f"file write failed: {e}"}
 
     # Hot-register into live COGNITIVE_FUNCTIONS

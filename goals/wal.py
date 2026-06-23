@@ -61,7 +61,7 @@ def iter_lines(path: Union[str, Path]) -> Iterator[Dict[str, Any]]:
                 continue
             try:
                 yield json.loads(s)
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip a malformed WAL line
                 continue
 
 
@@ -76,13 +76,13 @@ def tail(path: Union[str, Path], n: int = 200) -> List[Dict[str, Any]]:
     try:
         # Simple approach: read all and slice. Adequate for typical WAL sizes between rotations.
         lines = p.read_text(encoding="utf-8").splitlines()
-    except Exception:
+    except OSError:  # intentional: unreadable WAL → empty tail
         return []
     out: List[Dict[str, Any]] = []
     for s in lines[-n:]:
         try:
             out.append(json.loads(s))
-        except Exception:
+        except json.JSONDecodeError:  # intentional: skip a malformed WAL line
             continue
     return out
 
@@ -125,8 +125,7 @@ def follow(
                     continue
                 try:
                     yield json.loads(line)
-                except Exception:
-                    # tolerate malformed lines
+                except json.JSONDecodeError:  # intentional: tolerate malformed lines
                     continue
 
 
@@ -233,7 +232,7 @@ def _parse_iso(s: Optional[str]) -> Optional[datetime]:
     try:
         dt = datetime.fromisoformat(ss)
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 __all__ = [

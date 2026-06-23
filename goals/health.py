@@ -40,14 +40,14 @@ def _iter_steps(store: Any) -> Iterable[Step]:
 def _status_name(x: Any) -> str:
     try:
         return str(x.name)  # Enum
-    except Exception:
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
 def _priority_name(x: Any) -> str:
     try:
         return str(x.name)  # Enum
-    except Exception:
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
@@ -103,7 +103,7 @@ def snapshot(
             continue
         try:
             overdue_sec = (now - dl).total_seconds()
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
         if overdue_sec > 0:
             overdue_items.append({
@@ -125,7 +125,7 @@ def snapshot(
             continue
         try:
             in_sec = (dl - now).total_seconds()
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
         if in_sec > 0:
             upcoming.append({
@@ -150,7 +150,7 @@ def snapshot(
     def _dt(x: Any) -> datetime:
         try:
             return cast(datetime, x if x.tzinfo else x.replace(tzinfo=timezone.utc))
-        except Exception:
+        except AttributeError:  # intentional: not a datetime → fall back to now
             return UTCNOW()
 
     recent_errors: List[Dict[str, Any]] = []

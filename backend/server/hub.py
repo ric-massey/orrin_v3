@@ -20,6 +20,8 @@ from fastapi import WebSocket
 
 import logging
 
+from brain.utils.failure_counter import record_failure
+
 from .config import HISTORY_CAP, INPUT_CAP, LOG_CAP, LOOP_NODES, MEMORY_CAP, METRIC_CAP
 from .schema import LATEST_WINS_KEYS, validate_frame
 
@@ -41,15 +43,15 @@ def _load_history() -> List[Dict[str, Any]]:
     try:
         d = json.loads(_HISTORY_FILE.read_text("utf-8"))
         return d if isinstance(d, list) else []
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/bad history on first run → empty
         return []
 
 
 def _save_history(points: List[Dict[str, Any]]) -> None:
     try:
         _HISTORY_FILE.write_text(json.dumps(points[-HISTORY_CAP:]), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # history persist best-effort — record
+        record_failure("hub._save_history", exc)
 
 
 def _archive_points(points: List[Dict[str, Any]]) -> None:
@@ -60,8 +62,8 @@ def _archive_points(points: List[Dict[str, Any]]) -> None:
         with _ARCHIVE_FILE.open("a", encoding="utf-8") as fh:
             for p in points:
                 fh.write(json.dumps(p) + "\n")
-    except Exception:
-        pass
+    except Exception as exc:  # archive append best-effort — record
+        record_failure("hub._archive_points", exc)
 
 
 def clamp01(v: Any) -> float:
@@ -153,8 +155,8 @@ class Hub:
         for fn in list(self._sinks):
             try:
                 fn(payload)
-            except Exception:
-                pass
+            except Exception as exc:  # injected sink raised — record, fan out to the rest
+                record_failure("hub.publish_sync", exc)
 
     # ── connection lifecycle ─────────────────────────────────────────────────
     async def connect(self, ws: WebSocket) -> None:
@@ -172,7 +174,8 @@ class Hub:
         try:
             await ws.send_json(payload)
             return True
-        except Exception:
+        except Exception:  # client gone/unwritable — prune it (any send error means dead)
+            _log.debug("telemetry client send failed; pruning")
             return False
 
     async def broadcast(self, payload: Dict[str, Any]) -> None:

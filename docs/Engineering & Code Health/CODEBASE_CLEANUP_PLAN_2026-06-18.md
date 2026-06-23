@@ -7,6 +7,66 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22e)
+
+- **Phase 6 — remaining work COMPLETE (duplication, re-exports, aliases, docs).**
+  Worked the rest of the phase past the env-flag slice; net result is that the
+  remaining veins were either consolidated or found already-dry, each finding
+  recorded rather than left implicit.
+  - **Duplicate helper implementations (structure audit §8) — all consolidated,**
+    one behavior-preserving move per commit, full `make verify` green after the
+    batch (**987 passed / 1 skipped**, mypy 50 clean, ruff clean):
+    - reaper `_slope` + the also-duplicated `_trim`/`_window_ok` →
+      `reaper/trend.py` (new; numeric trend helpers live in reaper). Locals
+      `swap_slope`/`mem_slope` renamed to avoid shadowing the imported `slope()`.
+      Added `reaper_tests/trend_test.py`.
+    - goal/step deserialization (`goals/store.py` ↔ `goals/wal.py`) → canonical
+      `goals.model.{to_status,to_priority,goal_from_dict,step_from_dict}`
+      (serialization next to the model); the goal→JSON encoder
+      (`brain/utils/goals_feed.py` ↔ `goals/cli.py`) →
+      `goals.model.goal_to_jsonable` (re-exported / aliased so no call site
+      changed). `model` imports `parse_iso` from the stdlib-only `goals.utils`
+      (no cycle).
+    - emotion snapshot (`brain/cog_memory/long_memory.py` ↔ `remember.py`) →
+      `remember` imports the three helpers from `long_memory` (canonical owner).
+    - handler step/lock helpers across coding/research/housekeeping →
+      `goals/handlers/base.py` (`new_step`/`acquire_lock`/`release_lock`); each
+      handler imports them under its existing local name. Housekeeping's
+      `max_attempts=2` default preserved by passing it explicitly at the one call
+      site.
+    - `ui_build` near-copies — already resolved in Phase 1 (observability copy
+      deleted). CLI `_print_table` left separate by design (different shape).
+  - **JSON / logging / retry consolidation — found already-done or not worth a
+    helper.** JSON file IO already goes through `brain.utils.json_utils`
+    (`load_json`/`save_json`, 200+ callers); the 2–4 raw `json.load` sites read
+    inside `with open()` with deliberately *different* (hard-fail) error
+    semantics, so folding them into `load_json` would change behavior — left
+    as-is. Logging already goes through `brain.core.runtime_log.get_logger`
+    (~220 callers; the only raw `logging.getLogger` are the helper itself and
+    backend `hub.py`). Retry is a single `_retry` in `generate_response.py` plus
+    one ad-hoc toolkit loop — no duplication to consolidate.
+  - **Pass-through / re-export-module removal — nothing to remove.** No wildcard
+    re-exports (`import *`) anywhere in source; the Phase-4.5 facades are the
+    intended public API with callers deliberately *not* migrated (plan rule 7);
+    the one genuinely dead compat shim (`brain/think/select_function.py`) was
+    already deleted in Phase 1.
+  - **Stale-alias cleanup — none actionable.** The surviving "backward compat"
+    markers are all *live runtime data-field aliases* (e.g. `user_id`↔`person_id`,
+    `their_state`) — owned data contracts, not stale code; removing them would be
+    a behavior change.
+  - **Historical-doc archival — already current.** Completed plans are already
+    under `docs/**/archive/`; the ~9 non-archived docs are the genuinely current
+    set (2026-06-16…20). No *current* doc points at deleted/superseded
+    architecture — the only references to the Phase-1-deleted modules live inside
+    this plan and the structure audit, which are the accurate historical/decision
+    records of those deletions. Exit criterion met.
+
+  **Phase 6 is functionally complete.** Remaining dead-API deletions still require
+  an explicit owner decision (the deferred unused-API surface noted in 2026-06-22c,
+  candidate list reproducible via `vulture` + the zero-ref trace) and the v1/v2
+  goals+memory ownership decision (audit §5, a product/architecture call, not
+  mechanical cleanup).
+
 ## Implementation status (updated 2026-06-22d)
 
 - **Phase 6 duplication consolidation — env-flag idiom DONE (first slice).** The

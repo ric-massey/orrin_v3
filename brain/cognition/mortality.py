@@ -429,6 +429,3 @@ def apply_mortality_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception as e:
         log_private(f"[mortality] error: {e}")
         return {"terminate": False}
-
-
-    return {}

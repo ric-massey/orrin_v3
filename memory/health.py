@@ -42,7 +42,7 @@ def collect_store_stats(store) -> StoreStats:
     """
     # If the store provides a native stats() method, prefer it.
     if hasattr(store, "stats") and callable(getattr(store, "stats")):
-        d = dict(store.stats())  # type: ignore
+        d = dict(store.stats())
         ss = StoreStats()
         ss.items_total = int(d.get("items_total", 0))
         ss.items_by_layer = dict(d.get("items_by_layer", {"working": 0, "long": 0, "summary": 0}))

@@ -10,7 +10,7 @@ from typing import Any, Dict, Iterable, Optional
 try:
     from prometheus_client import Counter as _Counter, Gauge as _Gauge, Histogram as _Histogram
 except Exception as _e:  # pragma: no cover
-    _Counter = _Gauge = _Histogram = None  # type: ignore
+    _Counter = _Gauge = _Histogram = None  # type: ignore[assignment,misc]
 
 from .model import Goal, Step, Priority
 _log = get_logger(__name__)
@@ -22,20 +22,20 @@ UTCNOW = lambda: datetime.now(timezone.utc)
 # ------------------------------
 _METRICS_INITIALIZED = False
 
-goals_events_total: _Counter  # type: ignore
-steps_events_total: _Counter  # type: ignore
-goals_latency_seconds: _Histogram  # type: ignore
-steps_exec_seconds: _Histogram  # type: ignore
+goals_events_total: _Counter
+steps_events_total: _Counter
+goals_latency_seconds: _Histogram
+steps_exec_seconds: _Histogram
 
-goals_status_total: _Gauge  # type: ignore
-goals_priority_total: _Gauge  # type: ignore
-goals_kind_total: _Gauge  # type: ignore
-goals_overdue_total: _Gauge  # type: ignore
+goals_status_total: _Gauge
+goals_priority_total: _Gauge
+goals_kind_total: _Gauge
+goals_overdue_total: _Gauge
 
-steps_status_total: _Gauge  # type: ignore
+steps_status_total: _Gauge
 
-goals_queue_depth: _Gauge  # type: ignore
-goals_workers_active: _Gauge  # type: ignore
+goals_queue_depth: _Gauge
+goals_workers_active: _Gauge
 
 
 def init_metrics() -> None:
@@ -286,7 +286,7 @@ def _priority_name(x: Any) -> str:
         return str(x)
 
 
-def _set_labeled_gauge(gauge: _Gauge, label: str, counts: Counter) -> None:  # type: ignore
+def _set_labeled_gauge(gauge: _Gauge, label: str, counts: Counter) -> None:  # type: ignore[type-arg]
     try:
         seen = set()
         for k, v in counts.items():

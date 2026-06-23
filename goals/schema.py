@@ -7,11 +7,11 @@ from typing import Any, Dict, Optional, List
 
 try:
     # Prefer modern draft validator if present
-    from jsonschema import Draft202012Validator as _Validator  # type: ignore
+    from jsonschema import Draft202012Validator as _Validator
     _JSONSCHEMA_AVAILABLE = True
 except Exception:  # pragma: no cover
     _JSONSCHEMA_AVAILABLE = False
-    _Validator = None  # type: ignore
+    _Validator = None
 
 
 # ---------------------------

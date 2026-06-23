@@ -10,12 +10,12 @@ import numpy as np
 
 try:
     # Optional: mirror how embedder reads config
-    from .config import MEMCFG  # type: ignore
+    from .config import MEMCFG
 except Exception:  # pragma: no cover
     class _Dummy:
         NOVELTY_FLOOR = 0.05
         NOVELTY_TEMPERATURE = 1.0
-    MEMCFG = _Dummy()  # type: ignore
+    MEMCFG = _Dummy()  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 

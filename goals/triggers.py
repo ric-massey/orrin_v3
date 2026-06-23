@@ -10,9 +10,9 @@ from datetime import datetime, timezone, timedelta, time as dtime
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 try:  # optional: nicer cron scheduling if installed
-    from croniter import croniter  # type: ignore
+    from croniter import croniter
 except Exception:  # pragma: no cover
-    croniter = None  # type: ignore
+    croniter = None
 
 UTCNOW = lambda: datetime.now(timezone.utc)
 

@@ -25,15 +25,15 @@ _log = get_logger(__name__)
 # Optional deps — all guarded
 # ----------------------------
 try:
-    from PIL import Image, ExifTags  # type: ignore
+    from PIL import Image, ExifTags
     _HAS_PIL = True
 except Exception:
     Image = None          # ensure module-level symbol exists (tests monkeypatch this)
-    ExifTags = None       # type: ignore
+    ExifTags = None  # type: ignore[assignment]
     _HAS_PIL = False
 
 try:
-    import pytesseract  # type: ignore
+    import pytesseract
     _HAS_TESS = True
 except Exception:
     _HAS_TESS = False

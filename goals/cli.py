@@ -18,15 +18,15 @@ from .model import Goal, Status, Priority, goal_to_jsonable as _goal_to_jsonable
 
 # Optional store/daemon imports (provide clear error if missing)
 try:
-    from .store import FileGoalsStore  # type: ignore
+    from .store import FileGoalsStore
 except Exception as e:  # pragma: no cover
-    FileGoalsStore = None  # type: ignore
+    FileGoalsStore = None  # type: ignore[assignment,misc]
     _STORE_IMPORT_ERR = e
 
 try:
-    from .goals_daemon import GoalsDaemon  # type: ignore
+    from .goals_daemon import GoalsDaemon
 except Exception:
-    GoalsDaemon = None  # type: ignore
+    GoalsDaemon = None  # type: ignore[assignment,misc]
 
 
 # ----------------------------- globals/helpers -----------------------------

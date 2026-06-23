@@ -64,7 +64,7 @@ def _ensure_bytes_image(image: Union[bytes, bytearray, memoryview, str, Path, "P
             return f.read()
     # PIL path (optional dependency)
     try:
-        from PIL import Image  # type: ignore
+        from PIL import Image
         if isinstance(image, Image.Image):
             buf = io.BytesIO()
             image.save(buf, format="PNG", optimize=False)  # deterministic enough for hashing
@@ -109,7 +109,7 @@ def _lazy_init_text() -> None:
         return
     # Try sentence-transformers locally
     try:
-        from sentence_transformers import SentenceTransformer  # type: ignore
+        from sentence_transformers import SentenceTransformer
         name = MEMCFG.TEXT_EMBED_MODEL or "bge-small-en-v1.5"
         # Pin to CPU: MPS auto-selection deadlocks when encode() is called
         # from the brain's background thread (synchronous Metal dispatch hangs).
@@ -246,7 +246,7 @@ def _lazy_init_image() -> None:
 
     # Try HuggingFace transformers CLIP
     try:
-        from transformers import CLIPModel, CLIPProcessor  # type: ignore
+        from transformers import CLIPModel, CLIPProcessor
         model_id = "openai/clip-vit-base-patch32"
         _image_model = CLIPModel.from_pretrained(model_id)
         _image_processor = CLIPProcessor.from_pretrained(model_id)
@@ -259,7 +259,7 @@ def _lazy_init_image() -> None:
 
     # Try open_clip
     try:
-        import open_clip  # type: ignore
+        import open_clip
         model_name, pretrained = "ViT-B-32", "laion2b_s34b_b79k"
         _image_model, _, _image_processor = open_clip.create_model_and_transforms(model_name, pretrained=pretrained)
         _image_dim = int(getattr(_image_model.visual, "output_dim", 512))
@@ -291,7 +291,7 @@ def get_image_embedding(
 
     # CLIP / open_clip path
     try:
-        from PIL import Image  # type: ignore
+        from PIL import Image
         if isinstance(image, (bytes, bytearray, memoryview)):
             image = Image.open(io.BytesIO(bytes(image))).convert("RGB")
         elif isinstance(image, (str, Path)):
@@ -300,7 +300,7 @@ def get_image_embedding(
 
         # transformers CLIP
         if _image_hint and _image_hint.startswith("openai/clip"):
-            import torch  # type: ignore
+            import torch
             inputs = _image_processor(images=image, return_tensors="pt")
             with torch.no_grad():
                 feats = _image_model.get_image_features(**inputs)  # type: ignore[attr-defined]
@@ -309,7 +309,7 @@ def get_image_embedding(
 
         # open_clip
         try:
-            import torch  # type: ignore
+            import torch
             image_tensor = _image_processor(image).unsqueeze(0)  # preprocess -> [1, C, H, W]
             with torch.no_grad():
                 v = _image_model.encode_image(image_tensor)  # type: ignore[attr-defined]

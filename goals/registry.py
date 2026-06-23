@@ -73,33 +73,33 @@ def build_default_registry() -> GoalRegistry:
 
     # Existing handlers
     try:
-        from .handlers.coding import CodingHandler  # type: ignore
+        from .handlers.coding import CodingHandler
         handlers.append(CodingHandler())
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
     try:
-        from .handlers.research import ResearchHandler  # type: ignore
+        from .handlers.research import ResearchHandler
         handlers.append(ResearchHandler())
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
     try:
-        from .handlers.housekeeping import HousekeepingHandler  # type: ignore
+        from .handlers.housekeeping import HousekeepingHandler
         handlers.append(HousekeepingHandler())
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
     # NEW: generic investigator (read-only reports: deps/lint/mypy/todos, etc.)
     try:
-        from .handlers.generic import GenericHandler  # type: ignore
+        from .handlers.generic import GenericHandler
         handlers.append(GenericHandler())
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
     # NEW: safe, test-gated code edits (branch-first, revert-on-fail)
     try:
-        from .handlers.code_edit import CodeEditHandler  # type: ignore
+        from .handlers.code_edit import CodeEditHandler
         handlers.append(CodeEditHandler())
     except Exception as _e:
         _log.warning("silent except: %s", _e)

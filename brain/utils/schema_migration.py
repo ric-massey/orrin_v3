@@ -29,6 +29,7 @@ import time
 from typing import Callable, Dict, List, Optional
 
 import brain.paths as paths
+from brain.utils.failure_counter import record_failure
 
 # The schema version THIS build writes/expects. Bump whenever an on-disk format changes
 # in a way a migration must reason about, and register the migration below.
@@ -53,7 +54,7 @@ def read_version() -> int:
     try:
         data = json.loads(_STAMP_FILE.read_text(encoding="utf-8"))
         return int(data.get("state_schema_version", _BASELINE_VERSION))
-    except Exception:
+    except (OSError, ValueError):  # intentional: unstamped/unreadable mind → baseline
         return _BASELINE_VERSION
 
 
@@ -64,8 +65,8 @@ def stamp_version(version: int = CURRENT_SCHEMA_VERSION) -> None:
             json.dumps({"state_schema_version": int(version), "updated_at": time.time()}, indent=2),
             encoding="utf-8",
         )
-    except Exception:
-        pass
+    except Exception as exc:  # stamp write failed — record (migration tracking may degrade)
+        record_failure("schema_migration.stamp_version", exc)
 
 
 # ── Migration registry ───────────────────────────────────────────────────────
@@ -87,7 +88,8 @@ def _auto_export_before_migrate() -> Optional[str]:
         snap = snap_dir / f"pre-migrate-{time.strftime('%Y%m%d-%H%M%S')}.orrindmind"
         snap.write_bytes(_ma.export_bytes())
         return str(snap)
-    except Exception:
+    except Exception as exc:  # snapshot failed — record that it didn't happen, don't block
+        record_failure("schema_migration._auto_export_before_migrate", exc)
         return None
 
 

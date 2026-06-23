@@ -203,16 +203,16 @@ def train_tokenizer_on_library(vocab_size: int = 8192, min_chars: int = 200000,
     No-op if there isn't enough text."""
     try:
         from brain.cognition.language import library
-    except Exception:
+    except ImportError:  # intentional: library module optional — can't seed vocab
         return False
     texts = []
     try:
         for f in sorted(library._LIB.glob("*.txt")):
             try:
                 texts.append(f.read_text(encoding="utf-8", errors="ignore"))
-            except Exception:
+            except OSError:  # intentional: unreadable book → skip it
                 continue
-    except Exception:
+    except OSError:  # intentional: library dir unreadable → can't seed
         return False
     if extra_texts:
         texts += [t for t in extra_texts if isinstance(t, str) and t.strip()]

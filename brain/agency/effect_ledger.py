@@ -188,7 +188,7 @@ def _structural_significance(
         try:
             import ast
             ast.parse(content)
-        except Exception:
+        except (SyntaxError, ValueError):  # intentional: code that won't parse isn't significant
             return 0.0
         return 0.6
     if kind == "message_answered":
@@ -273,14 +273,14 @@ def _cycle_from(context: Optional[Dict[str, Any]], cycle: Optional[int]) -> int:
     if cycle is not None:
         try:
             return int(cycle)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-int cycle → 0
             return 0
     if isinstance(context, dict):
         cc = context.get("cycle_count")
         if isinstance(cc, dict):
             try:
                 return int(cc.get("count", 0) or 0)
-            except Exception:
+            except (TypeError, ValueError):  # intentional: non-int count → 0
                 return 0
     return 0
 

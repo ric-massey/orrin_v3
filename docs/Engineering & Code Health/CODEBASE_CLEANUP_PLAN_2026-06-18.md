@@ -7,11 +7,32 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
-## Implementation status (updated 2026-06-22g)
+## Implementation status (updated 2026-06-23)
 
-- **Phase 5.3 — `type: ignore` triage substantially DONE (reaper strict +
-  backend/singletons narrowed); only goals/ & memory/ remain, coupled to their
-  strict adoption.** Surveyed every blanket (uncoded) `# type: ignore` in the
+- **Phase 5.3 — `type: ignore` triage COMPLETE. Zero blanket (uncoded)
+  `# type: ignore` remain anywhere in the tree.** Finished the goals/ (28) +
+  memory/ (13) tail without needing to first make those big subtrees strict:
+  determined each blanket ignore's fate empirically (strip → run `mypy --strict`
+  on the files → map the suppressed code, if any, back per line, verified by
+  `warn_unused_ignores`). **35 removed as unused** — optional-dependency
+  import-line guards now covered by the global `ignore_missing_imports`
+  (PIL/sentence_transformers/transformers/open_clip/torch/croniter/jsonschema/
+  prometheus/pytesseract, plus the `.store`/`.goals_daemon`/`.handlers`/`.config`
+  guards) and a block of prometheus metric-object annotations that no longer
+  error. **6 narrowed to coded ignores** — the `None`/shim fallbacks
+  (`FileGoalsStore`, `GoalsDaemon`, `_Counter=_Gauge=_Histogram`, `MEMCFG`,
+  `ExifTags` → `[assignment]`/`[assignment,misc]`) and `_set_labeled_gauge`'s
+  bare-`Counter` param (`[type-arg]`). Comment-only changes; gate green: ruff
+  clean, mypy 78 files clean, 987 passed / 1 skipped. Note: goals/ and memory/
+  are still not in the strict allowlist (212/97 strict errors — a separate typing
+  effort), so their now-coded ignores are verified-but-not-yet-gate-enforced;
+  they will be locked in when those subtrees enter strict. **All of Phase 5 is
+  now done** (5.0–5.4); the only remaining cleanup work is Phase 7's reporting/
+  ownership items.
+
+- **Phase 5.3 — earlier progress (2026-06-22g): reaper strict +
+  backend/singletons narrowed.** Surveyed every blanket (uncoded) `# type: ignore`
+  in the
   tree. The 64 already-strict files had **zero** blanket ignores (strict's
   `warn_unused_ignores` had already forced coding as each entered). Of the 60
   blanket ignores outside that set:

@@ -5,6 +5,7 @@ from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Deque, Optional, Tuple, Dict, Any
 from collections import deque
+from .trend import trim, window_ok, slope
 import time
 
 # Optional metrics (safe if missing)
@@ -196,12 +197,12 @@ class MemoryHealthGuard:
     def _check_memory(self, now: float) -> None:
         if not self._mem_samples:
             return
-        self._trim(self._mem_samples, now - self.mem_sustain_s)
-        if not self._window_ok(self._mem_samples, self.mem_sustain_s):
+        trim(self._mem_samples, now - self.mem_sustain_s)
+        if not window_ok(self._mem_samples, self.mem_sustain_s):
             return
 
-        slope = self._slope(self._mem_samples)  # MB / sec over the full window
-        if slope is None or slope <= self.mem_slope_mb_per_s:
+        mem_slope = slope(self._mem_samples)  # MB / sec over the full window
+        if mem_slope is None or mem_slope <= self.mem_slope_mb_per_s:
             return
 
         # Robustness gate (added 2026-06-12): a single allocation STEP inside the
@@ -221,8 +222,8 @@ class MemoryHealthGuard:
             from collections import deque as _dq
             first_half = _dq(list(self._mem_samples)[:mid])
             second_half = _dq(list(self._mem_samples)[mid:])
-            s1 = self._slope(first_half)
-            s2 = self._slope(second_half)
+            s1 = slope(first_half)
+            s2 = slope(second_half)
             # Both halves must individually exceed the limit → genuinely sustained
             # climb, not a step that only the full-window fit smears into a slope.
             if not (s1 is not None and s2 is not None
@@ -237,15 +238,15 @@ class MemoryHealthGuard:
             return
 
         self._trip("HARD:memory_leak_slope",
-                   f"slope={slope:.3f} MB/s limit={self.mem_slope_mb_per_s:.3f} "
+                   f"slope={mem_slope:.3f} MB/s limit={self.mem_slope_mb_per_s:.3f} "
                    f"sustain={self.mem_sustain_s:.1f}s net_rise={net_rise:.0f}MB "
                    f"rss={last_rss:.0f}MB")
 
     def _check_fd_socket(self, now: float) -> None:
         # FDs
         if self._fd_samples:
-            self._trim(self._fd_samples, now - self.fd_sustain_s)
-            if self._window_ok(self._fd_samples, self.fd_sustain_s):
+            trim(self._fd_samples, now - self.fd_sustain_s)
+            if window_ok(self._fd_samples, self.fd_sustain_s):
                 if all(pct > self.fd_pct_threshold for _, pct in self._fd_samples):
                     last = self._fd_samples[-1][1]
                     self._trip("HARD:fd_pressure",
@@ -253,8 +254,8 @@ class MemoryHealthGuard:
 
         # Sockets (optional)
         if self._sock_samples:
-            self._trim(self._sock_samples, now - self.fd_sustain_s)
-            if self._window_ok(self._sock_samples, self.fd_sustain_s):
+            trim(self._sock_samples, now - self.fd_sustain_s)
+            if window_ok(self._sock_samples, self.fd_sustain_s):
                 if all(pct > self.fd_pct_threshold for _, pct in self._sock_samples):
                     last = self._sock_samples[-1][1]
                     self._trip("HARD:socket_pressure",
@@ -264,20 +265,20 @@ class MemoryHealthGuard:
         if not self._cpu_samples:
             return
         # Trim both CPU and latency with the same sustain window
-        self._trim(self._cpu_samples, now - self.cpu_sustain_s)
+        trim(self._cpu_samples, now - self.cpu_sustain_s)
         if self._lat_samples:
-            self._trim(self._lat_samples, now - self.cpu_sustain_s)
+            trim(self._lat_samples, now - self.cpu_sustain_s)
 
         # Require CPU sustained high
-        if not self._window_ok(self._cpu_samples, self.cpu_sustain_s):
+        if not window_ok(self._cpu_samples, self.cpu_sustain_s):
             return
         if not all(util >= self.cpu_util_threshold for _, util in self._cpu_samples):
             return
 
         # Then require latency either rising (slope) OR high mean
         lat_ok = False
-        if self._lat_samples and self._window_ok(self._lat_samples, self.cpu_sustain_s):
-            lat_slope = self._slope(self._lat_samples) or 0.0  # ms / sec
+        if self._lat_samples and window_ok(self._lat_samples, self.cpu_sustain_s):
+            lat_slope = slope(self._lat_samples) or 0.0  # ms / sec
             lat_mean = sum(v for _, v in self._lat_samples) / max(1, len(self._lat_samples))
             if lat_slope >= self.latency_slope_ms_per_s or lat_mean >= self.latency_mean_ms_threshold:
                 lat_ok = True
@@ -298,8 +299,8 @@ class MemoryHealthGuard:
 
         # Index lag sustained high
         if self._idxlag_samples:
-            self._trim(self._idxlag_samples, now - self.idx_lag_sustain_s)
-            if self._window_ok(self._idxlag_samples, self.idx_lag_sustain_s):
+            trim(self._idxlag_samples, now - self.idx_lag_sustain_s)
+            if window_ok(self._idxlag_samples, self.idx_lag_sustain_s):
                 if all(v > float(self.idx_lag_threshold) for _, v in self._idxlag_samples):
                     last = self._idxlag_samples[-1][1]
                     self._trip("HARD:mem_index_lag",
@@ -307,8 +308,8 @@ class MemoryHealthGuard:
 
         # Working cache sustained high
         if self._workcache_samples:
-            self._trim(self._workcache_samples, now - self.working_cache_sustain_s)
-            if self._window_ok(self._workcache_samples, self.working_cache_sustain_s):
+            trim(self._workcache_samples, now - self.working_cache_sustain_s)
+            if window_ok(self._workcache_samples, self.working_cache_sustain_s):
                 if all(v > float(self.working_cache_threshold) for _, v in self._workcache_samples):
                     last = self._workcache_samples[-1][1]
                     self._trip("HARD:mem_working_cache_pressure",
@@ -330,8 +331,8 @@ class MemoryHealthGuard:
 
         # WAL failures (rate or total)
         if len(self._wal_fail_samples) >= 2:
-            self._trim(self._wal_fail_samples, now - self.wal_error_sustain_s)
-            if self._window_ok(self._wal_fail_samples, self.wal_error_sustain_s):
+            trim(self._wal_fail_samples, now - self.wal_error_sustain_s)
+            if window_ok(self._wal_fail_samples, self.wal_error_sustain_s):
                 first_t, first_v = self._wal_fail_samples[0]
                 last_t, last_v = self._wal_fail_samples[-1]
                 dt = max(1e-6, last_t - first_t)
@@ -341,33 +342,6 @@ class MemoryHealthGuard:
                                f"rate={rate_per_min:.1f}/min limit={self.wal_error_rate_per_min:.1f}/min total={last_v:.0f} max_total={self.wal_error_total_limit}")
 
     # ------------------- helpers -------------------
-
-    @staticmethod
-    def _trim(dq: Deque[Tuple[float, float]], cutoff: float) -> None:
-        while dq and dq[0][0] < cutoff:
-            dq.popleft()
-
-    @staticmethod
-    def _window_ok(dq: Deque[Tuple[float, float]], need_s: float) -> bool:
-        if len(dq) < 2:
-            return False
-        span = dq[-1][0] - dq[0][0]
-        return span >= need_s * 0.95  # slack against sampling jitter
-
-    @staticmethod
-    def _slope(dq: Deque[Tuple[float, float]]) -> Optional[float]:
-        # simple least-squares slope over (t, v)
-        n = len(dq)
-        if n < 2:
-            return None
-        sx = sy = sxx = sxy = 0.0
-        for t, v in dq:
-            sx += t; sy += v
-            sxx += t * t; sxy += t * v
-        denom = n * sxx - sx * sx
-        if abs(denom) < 1e-12:
-            return None
-        return (n * sxy - sx * sy) / denom
 
     def _trip(self, key: str, details: str) -> None:
         if errors_total is not None:

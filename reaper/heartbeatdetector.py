@@ -14,7 +14,7 @@ try:
         hb_avg_period_ms, hb_fast_streak, hb_slow_streak, hb_interval_ms
     )
 except Exception:
-    hb_avg_period_ms = hb_fast_streak = hb_slow_streak = hb_interval_ms = None  # type: ignore
+    hb_avg_period_ms = hb_fast_streak = hb_slow_streak = hb_interval_ms = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 PulseProvider = Callable[[], int]
@@ -53,6 +53,10 @@ class HeartbeatDetector:
             self._last_pulse = pulse
             self._last_ts = now
             return
+
+        # Invariant: _last_ts is set together with _last_pulse above, so once
+        # _last_pulse is not None neither is _last_ts.
+        assert self._last_ts is not None
 
         if pulse != self._last_pulse:
             dt_ms = (now - self._last_ts) * 1000.0

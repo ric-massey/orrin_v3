@@ -3,21 +3,21 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
-from typing import Callable, Dict, List, Optional, Deque, Tuple
+from typing import Any, Callable, Dict, List, Optional, Deque, Tuple
 from collections import deque
 import time
 
 try:
     from observability.metrics import errors_total
 except Exception:
-    errors_total = None  # type: ignore
+    errors_total = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 GetPulse = Callable[[], int]
 OnViolation = Callable[[str], None]
-GetGoals = Callable[[], List[Dict]]
+GetGoals = Callable[[], List[Dict[str, Any]]]
 GetRetryRate = Callable[[], float]
-GetBreakers = Callable[[], List[Dict]]
+GetBreakers = Callable[[], List[Dict[str, Any]]]
 
 @dataclass
 class NoGoalsGuard:

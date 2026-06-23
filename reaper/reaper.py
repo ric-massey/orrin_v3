@@ -15,7 +15,7 @@ from typing import Callable
 try:
     from observability.metrics import reaper_trips_total
 except Exception:
-    reaper_trips_total = None  # type: ignore
+    reaper_trips_total = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 KillFn = Callable[[str], None]
@@ -98,7 +98,7 @@ class Reaper:
         _dying_reason = reason
         _dying_since = time.time()
 
-        def _deferred_kill():
+        def _deferred_kill() -> None:
             time.sleep(self.dying_window_s)
             print(f"[REAPER] Dying window elapsed — executing kill ({reason})", file=sys.stderr)
             _log_durably(f"[REAPER] Dying window elapsed — executing kill ({reason})")

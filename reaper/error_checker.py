@@ -15,7 +15,7 @@ try:
         errors_total, error_rate_trips_total, error_threshold_trips_total
     )
 except Exception:
-    errors_total = error_rate_trips_total = error_threshold_trips_total = None  # type: ignore
+    errors_total = error_rate_trips_total = error_threshold_trips_total = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 OnViolation = Callable[[str], None]
@@ -111,10 +111,7 @@ class ErrorChecker:
                 kdq.clear()
 
     def report(self, key: str, severity: int, *, details: Optional[str] = None) -> None:
-        class _Evt:
-            __slots__ = ("key", "severity")
-            def __init__(self, k, s): self.key, self.severity = k, s
-        self.observe(_Evt(key, severity), details=details)
+        self.observe(ErrorEvent(key=key, severity=severity), details=details)
 
     def set_any_rate_limit(self, count: int, window_s: float) -> None:
         self.any_rate_count = int(count)
@@ -138,4 +135,5 @@ class ErrorChecker:
                 if s == severity:
                     self._events.pop((k, s), None)
             return
+        assert key is not None and severity is not None
         self._events.pop((key, severity), None)

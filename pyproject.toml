@@ -116,6 +116,22 @@ files = [
     "brain/loop/boot.py",
     "brain/loop/finalize.py",
     "brain/loop/execute.py",
+    # reaper/ — the watchdog suite; brought strict + its optional-metric import
+    # fallbacks narrowed from blanket to [assignment] ignores (Phase 5.3).
+    "reaper/__init__.py",
+    "reaper/errors.py",
+    "reaper/trend.py",
+    "reaper/repeat.py",
+    "reaper/lifespan.py",
+    "reaper/no_goals.py",
+    "reaper/heartbeatdetector.py",
+    "reaper/error_checker.py",
+    "reaper/liveness_cycle.py",
+    "reaper/reaper.py",
+    "reaper/host_resources.py",
+    "reaper/memory.py",
+    "reaper/vital_floor.py",
+    "reaper/vital_floor_calibration.py",
     # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
     "brain/utils/num.py",
     "brain/utils/log.py",

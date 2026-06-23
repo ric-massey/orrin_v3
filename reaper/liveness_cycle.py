@@ -5,14 +5,14 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
-from typing import Callable, Dict, Optional
+from typing import Any, Callable, Dict, Literal, Optional
 from functools import wraps
 
 # optional metrics hook (safe if not present)
 try:
     from observability.metrics import errors_total
 except Exception:
-    errors_total = None  # type: ignore
+    errors_total = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 GetPulse = Callable[[], int]
@@ -79,16 +79,18 @@ class LivenessByCycles:
 
     # --- ergonomics: decorator & context manager ---
 
-    def required(self, max_missed_cycles: Optional[int] = None, name: Optional[str] = None):
+    def required(
+        self, max_missed_cycles: Optional[int] = None, name: Optional[str] = None,
+    ) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
         """
         Decorate a function that should run at least every N cycles.
         If max_missed_cycles is None, uses DEFAULT_MAX_MISSED_CYCLES (10k).
         """
-        def deco(fn):
+        def deco(fn: Callable[..., Any]) -> Callable[..., Any]:
             sec_name = name or f"{fn.__module__}.{fn.__qualname__}"
             self.register(sec_name, max_missed_cycles or DEFAULT_MAX_MISSED_CYCLES)
             @wraps(fn)
-            def wrapper(*args, **kwargs):
+            def wrapper(*args: Any, **kwargs: Any) -> Any:
                 try:
                     return fn(*args, **kwargs)
                 finally:
@@ -99,12 +101,12 @@ class LivenessByCycles:
     class _AliveCtx:
         def __init__(self, outer: "LivenessByCycles", name: str):
             self.outer = outer; self.name = name
-        def __enter__(self): return None
-        def __exit__(self, exc_type, exc, tb):
+        def __enter__(self) -> None: return None
+        def __exit__(self, exc_type: Any, exc: Any, tb: Any) -> Literal[False]:
             self.outer.touch(self.name)
             return False  # don't swallow exceptions
 
-    def alive(self, name: str, *, max_missed_cycles: Optional[int] = None):
+    def alive(self, name: str, *, max_missed_cycles: Optional[int] = None) -> "LivenessByCycles._AliveCtx":
         """
         Context manager: guarantees a touch after the block.
         If name not registered, you can set max_missed_cycles here.

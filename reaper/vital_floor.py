@@ -40,7 +40,7 @@ import time
 try:
     from observability.metrics import errors_total
 except Exception:
-    errors_total = None  # type: ignore
+    errors_total = None  # type: ignore[assignment]
 
 _log = get_logger(__name__)
 

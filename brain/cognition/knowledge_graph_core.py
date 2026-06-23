@@ -229,7 +229,7 @@ def _recency_weight(last_updated_iso: str) -> float:
         ts = datetime.fromisoformat(last_updated_iso.replace("Z", "+00:00"))
         days_old = (datetime.now(timezone.utc) - ts).total_seconds() / 86400.0
         return math.exp(-days_old * math.log(2.0) / _RECENCY_HALFLIFE_DAYS)
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: bad timestamp → mid weight
         return 0.3
 
 
@@ -429,8 +429,8 @@ def _add_entity_inplace(
         try:  # surface new entities into the Brain Memory Inspector (knowledge store)
             from backend.telemetry_bridge import mirror_memory as _mm
             _mm("write", store="knowledge", key=name, summary=f"{etype}: {name}", salience=confidence)
-        except Exception:
-            pass
+        except Exception as exc:  # UI mirror best-effort — record
+            record_failure("knowledge_graph_core.add_entity.mirror", exc)
         # Evict oldest low-confidence entities if at cap
         if len(g["entities"]) > _ENTITY_CAP:
             candidates = sorted(
@@ -486,8 +486,8 @@ def _add_relation_inplace(
         from backend.telemetry_bridge import mirror_memory as _mm
         _mm("write", store="knowledge", key=f"{source_name} {relation} {target_name}"[:80],
             summary=f"{source_name} —[{relation}]→ {target_name}", salience=confidence)
-    except Exception:
-        pass
+    except Exception as exc:  # UI mirror best-effort — record
+        record_failure("knowledge_graph_core.add_relation.mirror", exc)
     if len(g["relations"]) > _RELATION_CAP:
         g["relations"].sort(key=lambda r: r.get("last_updated", ""), reverse=True)
         g["relations"] = g["relations"][:int(_RELATION_CAP * 0.85)]

@@ -178,7 +178,8 @@ def _active_goal_titles() -> set:
                 s |= _collect(n.get("subgoals") or [])
             return s
         return _collect(_lg())
-    except Exception:
+    except Exception as exc:  # goal enumeration failed — record, no active titles
+        record_failure("intrinsic_goals._active_goal_titles", exc)
         return set()
 
 
@@ -324,7 +325,7 @@ def _migrate_comp_goals() -> None:
     try:
         if RECENTLY_COMPLETED_FILE.exists():
             return  # already migrated
-    except Exception:
+    except OSError:  # intentional: stat error → skip migration this boot
         return
 
     cooldown: dict = {}
@@ -366,7 +367,8 @@ def _load_recently_completed() -> dict:
         raw = load_json(RECENTLY_COMPLETED_FILE, default_type=dict) or {}
         cutoff = time.time() - _COOLDOWN_S
         return {k: v for k, v in raw.items() if isinstance(v, (int, float)) and v > cutoff}
-    except Exception:
+    except Exception as exc:  # cooldown read failed — record, treat as empty
+        record_failure("intrinsic_goals._load_recently_completed", exc)
         return {}
 
 _RECENTLY_COMPLETED: dict = _load_recently_completed()

@@ -315,8 +315,8 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
             created_memory=True, satisfied_curiosity=gain > 0.0,
             inner_fn="research_topic", text=text,
         )
-    except Exception:
-        pass
+    except Exception as exc:  # reach-value accounting optional — record
+        record_failure("web_research.research_topic.reach", exc)
     return text
 
 
@@ -345,7 +345,7 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
 
     try:
         html = raw.decode("utf-8", errors="ignore")
-    except Exception:
+    except (AttributeError, UnicodeDecodeError):  # intentional: non-bytes/undecodable body
         return f"Could not decode content from {url}"
 
     text = _html_to_text(html, max_chars=3000)
@@ -389,8 +389,8 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
             created_memory=True, satisfied_curiosity=gain > 0.0,
             inner_fn="fetch_and_read", text=result_text,
         )
-    except Exception:
-        pass
+    except Exception as exc:  # reach-value accounting optional — record
+        record_failure("web_research.fetch_and_read.reach", exc)
     return result_text
 
 

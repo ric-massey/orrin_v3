@@ -141,13 +141,13 @@ def _symbolic_confidence(topic: str, draft: str) -> float:
     try:
         from brain.symbolic.intrinsic_motivation import uncertainty
         cov = 1.0 - float(uncertainty(topic))      # 0=unknown, 1=fully covered
-    except Exception:
+    except ImportError:  # intentional: uncertainty model optional — keep default coverage
         pass
     sa = 0.5
     try:
         from brain.symbolic.symbolic_self_model import self_assess
         sa = float(self_assess(topic).get("confidence", 0.5))
-    except Exception:
+    except ImportError:  # intentional: self-assess model optional — keep default
         pass
     # Bonus for grounded, retrieved facts in the draft (vs. a bare statement).
     facts = draft.count("[symbolic]") + draft.count("[rule]") + draft.count("[causal]")
@@ -171,7 +171,7 @@ def _critique_coverage(topic: str, draft: str, context: Dict[str, Any]) -> str:
         from brain.symbolic.intrinsic_motivation import uncertainty
         if float(uncertainty(topic)) > 0.6:
             return "High uncertainty: little rule/KG coverage for this topic; gather more before asserting."
-    except Exception:
+    except ImportError:  # intentional: uncertainty model optional — no coverage critique
         pass
     return ""
 

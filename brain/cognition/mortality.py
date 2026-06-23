@@ -28,6 +28,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
 from brain.utils.log import log_private, log_activity
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
 
@@ -145,7 +146,7 @@ def _parse_dt(s: Any) -> Optional[datetime]:
     try:
         dt = datetime.fromisoformat(s)
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 
@@ -276,8 +277,8 @@ def _symbolic_final_thoughts(data: Dict) -> str:
             lines.append("What I held onto: " + "; ".join(asp[:3]) + ".")
         if themes:
             lines.append("The shape it took: " + themes[-1] + ".")
-    except Exception:
-        pass
+    except Exception as exc:  # autobiography unreadable — record, omit this line
+        record_failure("mortality.summary.autobiography", exc)
 
     # The moments that weighed the most.
     try:
@@ -297,8 +298,8 @@ def _symbolic_final_thoughts(data: Dict) -> str:
         top = [c for _, c in scored[:2]]
         if top:
             lines.append("What stays with me: " + " ".join(f"\"{t[:120]}\"" for t in top) + ".")
-    except Exception:
-        pass
+    except Exception as exc:  # long-memory unreadable — record, omit this line
+        record_failure("mortality.summary.long_memory", exc)
 
     return " ".join(lines)
 

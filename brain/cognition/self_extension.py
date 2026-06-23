@@ -171,7 +171,7 @@ def _propose(context: Dict[str, Any]) -> str:
         fn_name = str(result.get("function_name") or "").strip().replace(" ", "_").lower()
         description = str(result.get("description") or "").strip()
         motivation = str(result.get("motivation") or "").strip()
-    except Exception:
+    except (ValueError, AttributeError, TypeError):  # intentional: unparseable LLM JSON
         return "propose_extension: could not parse LLM response"
 
     if not fn_name or len(fn_name) < 4 or not description:
@@ -271,7 +271,7 @@ def _review(context: Dict[str, Any]) -> str:
         result = _json.loads(clean)
         approved = bool(result.get("approved"))
         critique = str(result.get("critique") or "").strip()
-    except Exception:
+    except (ValueError, AttributeError, TypeError):  # intentional: unparseable LLM JSON
         return "review_extension: could not parse review"
 
     proposal["critique"] = critique
@@ -458,7 +458,7 @@ def _emergency(context: Dict[str, Any]) -> str:
         fn_name = str(result.get("function_name") or "").strip().replace(" ", "_").lower()
         description = str(result.get("description") or "").strip()
         motivation = str(result.get("motivation") or "").strip()
-    except Exception:
+    except (ValueError, AttributeError, TypeError):  # intentional: unparseable LLM JSON
         return "emergency_self_modification: could not parse response"
 
     if not fn_name or len(fn_name) < 4:

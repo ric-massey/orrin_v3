@@ -119,8 +119,8 @@ def _persist_kind_bias() -> None:
     if _kind_bias_dirty and _kind_bias is not None:
         try:
             save_json(_KIND_BIAS_FILE, _kind_bias)
-        except Exception:
-            pass
+        except Exception as exc:  # bias persist failed — record (recalibration may reset)
+            record_failure("metacog._persist_kind_bias", exc)
         _kind_bias_dirty = False
 
 
@@ -194,7 +194,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     goal/reward state."""
     try:
         from brain.cognition.global_workspace import offer_to_workspace
-    except Exception:
+    except ImportError:  # intentional: no workspace → the monitor can't offer; skip
         return
     try:
         from brain.affect.arbiter import submit_affect as _submit_affect
@@ -341,15 +341,15 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
             try:
                 _submit_affect(context, tgt, delta, weight=0.6,
                                source=f"monitor:{kind}", ttl_cycles=4)
-            except Exception:
-                pass
+            except Exception as exc:  # affect nudge best-effort — record
+                record_failure("metacog.metacog_monitor.affect", exc)
         if eff_sal >= _HIJACK_SALIENCE:
             try:
                 from brain.cognition.attention import request_attention_hijack
                 request_attention_hijack(context, content=content, intensity=eff_sal,
                                          tags=["monitor", kind], source="monitor")
-            except Exception:
-                pass
+            except Exception as exc:  # attention hijack best-effort — record
+                record_failure("metacog.metacog_monitor.hijack", exc)
         emitted.append((kind, content, eff_sal, wants))
 
     _persist_kind_bias()  # flush any threshold change from this cycle's recalibration
@@ -367,8 +367,8 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     if offers:
         try:
             log_private("[monitor] " + ", ".join(f"{o[0]}({o[2]:.2f}→{o[3]})" for o in offers))
-        except Exception:
-            pass
+        except Exception as exc:  # monitor summary log best-effort — record
+            record_failure("metacog.metacog_monitor.log", exc)
 
 
 # ── Pattern detection ─────────────────────────────────────────────────────────
@@ -423,7 +423,8 @@ def _maturity_gate_open(context: Dict[str, Any]) -> bool:
             1 for r in get_all_rules() if r.get("source") == "confirmed_prediction"
         )
         return n_confirmed >= _GATE_MIN_CONFIRMED_RULES
-    except Exception:
+    except Exception as exc:  # rule base unavailable — record, gate stays closed
+        record_failure("metacog._maturity_gate_open", exc)
         return False
 
 

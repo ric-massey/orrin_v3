@@ -46,7 +46,7 @@ def get_user_input() -> str:
     try:
         p = Path(paths.USER_INPUT)
         txt = p.read_text(encoding="utf-8")
-    except Exception:
+    except OSError:  # intentional: no input file yet → empty
         return ""
     lines = [ln.strip() for ln in txt.splitlines() if ln.strip()]
     return lines[-1] if lines else ""
@@ -101,7 +101,7 @@ def log_dialogue_pair(user: str, orrin: str, timestamp: Optional[str] = None) ->
         try:
             from backend.telemetry_bridge import mirror_memory as _mm
             _mm("write", store="conversation", key=who, summary=text)
-        except Exception:
+        except ImportError:  # intentional: backend absent — no UI mirror
             pass
 
     # Write user only if it's meaningful

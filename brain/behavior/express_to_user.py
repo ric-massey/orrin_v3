@@ -52,7 +52,7 @@ def _dominant_emotion(context: Dict[str, Any]) -> str:
     try:
         from brain.behavior import expression
         return expression._dominant_emotion(context)
-    except Exception:
+    except ImportError:  # intentional: expression module optional → neutral
         return "neutral"
 
 
@@ -86,7 +86,8 @@ def _meaning_seed(context: Dict[str, Any]) -> str:
         from brain.think.state_processor import compute_cycle_state
         salience = compute_cycle_state(context)
         return str(getattr(salience, "output_seed", "") or "")
-    except Exception:
+    except Exception as exc:  # door composes from affect on any failure — record
+        record_failure("express_to_user._meaning_seed", exc)
         return ""
 
 

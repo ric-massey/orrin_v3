@@ -125,7 +125,7 @@ def _proposal_commit_score(g: Dict, pressure: Dict[str, float], strengths: Dict[
     score = 1.0 + 2.0 * float(pressure.get(serves, 0.0))
     try:
         score += 0.1 * (float(g.get("priority", 3) or 3) / 3.0)
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric priority → no bonus
         pass
     if drive in ("output_producing", "genuine_contact"):
         score += float(strengths.get("usefulness", 0.0)) * 0.5
@@ -212,7 +212,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             _giv = float(_ema.get("generate_intrinsic_goals", 0.5) or 0.5)
             if _giv < 0.45:
                 interval *= 1.0 + min(2.0, (0.45 - _giv) * 6.0)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad EMA value → no backoff
             pass
     if now - _LAST_INTRINSIC_TS < interval:
         return []

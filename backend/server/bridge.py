@@ -25,6 +25,8 @@ from typing import Any, Dict, List, Optional
 
 from starlette.testclient import TestClient
 
+from brain.utils.failure_counter import record_failure
+
 from .app import app, hub
 
 
@@ -66,8 +68,8 @@ class OrrinBridge:
             return
         try:
             win.evaluate_js(f"window.__orrinPush && window.__orrinPush({json.dumps(json.dumps(payload))})")
-        except Exception:
-            pass
+        except Exception as exc:  # window gone/unwritable — record, drop the push
+            record_failure("bridge._push", exc)
 
     # ── REST proxy (BridgeTransport.fetch → here) ─────────────────────────────
     def request(self, payload: Dict[str, Any]) -> Dict[str, Any]:
@@ -94,6 +96,7 @@ class OrrinBridge:
                 "contentType": resp.headers.get("content-type", "application/json"),
             }
         except Exception as e:
+            record_failure("bridge.request", e)
             return {"status": 502, "body": json.dumps({"error": str(e)}), "contentType": "application/json"}
 
     # ── live telemetry stream (BridgeTransport.connectTelemetry → here) ────────

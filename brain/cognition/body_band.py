@@ -313,7 +313,7 @@ class BodyBands:
             for name, bd in (raw.get("bands") or {}).items():
                 try:
                     self.bands[name] = Band.from_dict(bd)
-                except Exception:
+                except (KeyError, TypeError, ValueError):  # intentional: bad band dict → skip
                     pass
         # else: different machine (or empty) → start fresh; he re-learns this body.
         return self
@@ -328,5 +328,5 @@ class BodyBands:
                 "bands": {n: b.to_dict() for n, b in self.bands.items()},
             })
             self._dirty = False
-        except Exception:
+        except (OSError, TypeError, ValueError):  # intentional: band persist best-effort
             pass

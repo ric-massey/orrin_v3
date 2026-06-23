@@ -11,6 +11,8 @@ from __future__ import annotations
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from brain.utils.failure_counter import record_failure
+
 from .. import state as server_state
 
 router = APIRouter()
@@ -40,6 +42,7 @@ async def source(file: str = "", start: int = 1, end: int = 0) -> JSONResponse:
             src = src[:80_000] + "\n… (truncated)"
         return JSONResponse({"file": file, "start": lo, "end": hi, "source": src})
     except Exception as e:
+        record_failure("routers.source.file", e)
         return JSONResponse({"error": str(e), "file": file}, status_code=400)
 
 
@@ -63,4 +66,5 @@ async def code(fn: str = "") -> JSONResponse:
             src = src[:60_000] + "\n… (truncated)"
         return JSONResponse({"fn": fn, "file": rel, "lineno": lo, "endline": hi, "source": src})
     except Exception as e:
+        record_failure("routers.source.code", e)
         return JSONResponse({"error": str(e), "fn": fn}, status_code=500)

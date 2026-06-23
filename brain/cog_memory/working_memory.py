@@ -82,8 +82,8 @@ def _effective_working_cap() -> int:
             _a = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
             rd = float(_a.get("resource_deficit", 0.5) or 0.5)
             _wm_cap_cached_energy = max(0.0, min(1.0, 1.0 - rd))
-        except Exception:
-            pass  # keep last good energy reading
+        except (TypeError, ValueError):  # intentional: bad affect value → keep last energy
+            pass
     # Target centred on base: energy 0.5 → base, 1.0 → ceil, 0.0 → floor.
     target = MAX_WORKING_LOGS + _WM_CAP_SPAN * (_wm_cap_cached_energy - 0.5)
     target = max(float(_WM_CAP_FLOOR), min(float(_WM_CAP_CEIL), target))
@@ -95,7 +95,7 @@ def _effective_working_cap() -> int:
                 f"[working_memory] WM cap → {cap} (energy={_wm_cap_cached_energy:.2f}, "
                 f"base {MAX_WORKING_LOGS}); fatigue narrows, freshness widens."
             )
-        except Exception:
+        except OSError:  # intentional: cap-change log best-effort
             pass
         _wm_cap_logged = cap
     return cap

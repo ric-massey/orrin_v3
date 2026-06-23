@@ -7,6 +7,37 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22d)
+
+- **Phase 6 duplication consolidation — env-flag idiom DONE (first slice).** The
+  boolean-flag idiom `os.getenv(name, d).strip().lower() in (...)` / `not in (...)`
+  was hand-rolled **17 times** across `brain/`, `backend/`, and `main.py` with
+  *divergent* token tuples (some listed `"off"`, some didn't; some `"on"`, some
+  didn't). Added `brain/utils/env.py::env_bool(name, default)` — a leaf helper
+  (imports only `os`) recognizing the full standard token set, with the
+  meaning composed at the call site via the `default` arg (default-on =
+  `env_bool(X, True)`, default-off = `env_bool(X)`, disabled-flag =
+  `not env_bool(X, True)`). Behavior-preserving on every realistic input: each
+  prior site already fell through to its default for empty/unrecognized values
+  (none listed `""`), so the only change is canonicalizing the literal
+  `on`/`off`/`yes` tokens a few sites historically omitted — verified no test or
+  runtime path feeds those. Migrated all 17 sites + dropped six now-orphaned
+  `import os` lines and `prediction.py`'s inline `import os as _os`; also retired
+  `backend/server/config.py`'s local `_flag` helper. New `tests/brain/test_env_bool.py`
+  (19 cases) pins the contract. Two revertible commits (helper+tests, then
+  migration). Gate green: **983 passed / 1 skipped** (964 baseline + 19 new),
+  mypy 50 clean, ruff clean.
+  **Deliberately NOT consolidated:** the `int(os.getenv(...))` / `float(os.getenv(...))`
+  idioms (6 + 9 sites). Unlike the uniform bool idiom these are non-uniform —
+  each has a different fallback shape (`or "0"`, `or _pick_free_port()`,
+  `or _CONST`, default-in-`getenv`) and different malformed-value tolerance — so a
+  shared `env_int`/`env_float` would need fallback-callable/tolerance flags and
+  would not read cleaner than the inline form. Left as-is per the
+  "preserve behavior / don't over-engineer" rules.
+  **Remaining Phase 6 consolidation targets:** JSON/state access, logging, retry;
+  plus pass-through/re-export-module removal, stale-alias cleanup, historical-doc
+  archival.
+
 ## Implementation status (updated 2026-06-22c)
 
 - **Phase 6 — STARTED (static dead-code analysis + first verified removals).**

@@ -11,9 +11,11 @@ from typing import Any, Dict
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from brain.core.runtime_log import get_logger
 from .. import state as server_state
 
 router = APIRouter()
+_log = get_logger(__name__)
 
 # ── Memory store browsing: the store, not the stream (Fix 8) ─────────────────
 _MEMORY_STORES = {
@@ -80,6 +82,7 @@ async def memory_store(store: str = "long", q: str = "", n: int = 50, offset: in
     except FileNotFoundError:
         return JSONResponse({"entries": [], "total": 0, "matched": 0, "store": store, "offset": 0})
     except Exception as e:
+        _log.warning("memory store read failed for %r: %s", store, e)
         return JSONResponse({"entries": [], "total": 0, "error": str(e)})
 
 

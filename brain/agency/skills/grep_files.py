@@ -72,7 +72,7 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
                 if file_path.stat().st_size > 500_000:
                     continue
                 lines = file_path.read_text(encoding="utf-8", errors="ignore").splitlines()
-            except Exception:
+            except OSError:  # intentional: skip unreadable/oversized file
                 continue
 
             for i, line in enumerate(lines):

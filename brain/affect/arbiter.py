@@ -106,7 +106,7 @@ def _apply_lane_subcaps(proposals: List[Dict[str, Any]]) -> List[Dict[str, Any]]
     try:
         log_activity("[affect_arbiter] lane sub-cap: " +
                      ", ".join(f"{l}×{s:.2f}" for l, s in lane_scale.items()))
-    except Exception:
+    except (ValueError, TypeError, OSError):  # best-effort lane-cap telemetry log
         pass
     return out
 

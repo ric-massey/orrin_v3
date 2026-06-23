@@ -584,7 +584,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # the telemetry helper; see SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2).
     try:
         state["homeostasis"] = round(homeostasis_index(core), 4)
-    except Exception:
+    except (ImportError, ValueError, TypeError):  # best-effort: homeostasis metric optional
         pass
     state["last_updated"] = now.isoformat()
 

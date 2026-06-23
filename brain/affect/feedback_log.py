@@ -32,7 +32,7 @@ _REWARD_TRACE = "reward_trace"
 def _to_float(x: Any, default: float = 0.0) -> float:
     try:
         return float(x)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-numeric → default
         return default
 
 def _clamp01(x: float) -> float:

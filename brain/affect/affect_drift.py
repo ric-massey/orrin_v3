@@ -32,7 +32,7 @@ def _mean_abs_dev(context) -> float | None:
             for name, value in core.items()
             if isinstance(value, (int, float))
         ]
-    except Exception:
+    except (ImportError, ValueError, TypeError):  # intentional: setpoints unavailable/bad value → no drift
         return None
     return sum(deviations) / len(deviations) if deviations else None
 

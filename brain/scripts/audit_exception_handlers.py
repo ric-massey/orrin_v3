@@ -16,7 +16,7 @@ ROOTS = ("brain", "backend", "goals", "memory", "reaper", "observability", "main
 # It freezes the count when the ratchet landed; it may only ever be *lowered*, in
 # the same commit that reclassifies the handlers (log / narrow / re-raise / annotate)
 # that bring the real count down. New silent handlers cannot be added.
-CEILING = 114
+CEILING = 102
 OBSERVABILITY_CALLS = {
     "record_failure",
     "log_error",

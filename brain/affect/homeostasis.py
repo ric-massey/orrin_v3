@@ -89,7 +89,7 @@ def homeostasis_index(core: Dict[str, float]) -> float:
     """
     try:
         from brain.affect.setpoints import setpoint as _setpoint
-    except Exception:
+    except ImportError:  # intentional: setpoints unavailable → fail-safe default
         return _HOMEOSTASIS_DEFAULT
     weighted_devs: List[tuple] = []
     for k, v in (core or {}).items():

@@ -341,7 +341,7 @@ def delete_own_code(name: str) -> Dict[str, Any]:
 
         try:
             path.unlink(missing_ok=True)
-        except Exception as e:
+        except OSError as e:  # intentional: filesystem delete failure → reported to caller
             return {"success": False, "error": str(e)}
 
         manifest = [e for e in manifest if e["name"] != name]

@@ -173,7 +173,8 @@ def _ensure_aspirations() -> None:
         goals = load_json(GOALS_FILE, default_type=list) or []
         if not isinstance(goals, list):
             return
-    except Exception:
+    except Exception as exc:  # goals unreadable — record, skip ensuring aspirations
+        record_failure("intrinsic_goals._ensure_aspirations.load", exc)
         return
     have = {str(g.get("title", "")).lower() for g in goals if isinstance(g, dict)}
     ts = datetime.now(timezone.utc).isoformat()
@@ -203,8 +204,8 @@ def _ensure_aspirations() -> None:
         try:
             save_json(GOALS_FILE, goals)
             log_activity("[intrinsic_goals] ensured long-term aspirations exist")
-        except Exception:
-            pass
+        except Exception as exc:  # aspiration persist failed — record
+            record_failure("intrinsic_goals._ensure_aspirations.save", exc)
 
 
 def _serves_aspiration(driven_by: str) -> str:
@@ -238,7 +239,8 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
         goals = load_json(GOALS_FILE, default_type=list) or []
         if not isinstance(goals, list):
             return ""
-    except Exception:
+    except Exception as exc:  # goals unreadable — record, nothing to credit
+        record_failure("intrinsic_goals.credit_aspirations", exc)
         return ""
 
     # Tally completed short-term contributions per aspiration, across both stores.
@@ -337,7 +339,8 @@ def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
     """Per-aspiration recruitment weight in [0,1]; higher = more starved."""
     try:
         goals = load_json(GOALS_FILE, default_type=list) or []
-    except Exception:
+    except Exception as exc:  # goals unreadable — record, no pressure signal
+        record_failure("intrinsic_goals.aspiration_pressure", exc)
         return {}
     asps = [g for g in goals if isinstance(g, dict)
             and (g.get("_aspiration") or g.get("kind") == "aspiration")]
@@ -374,8 +377,8 @@ def _fairness_default_drive() -> str:
             for t, d in _ASPIRATIONS:
                 if t == top:
                     return d
-    except Exception:
-        pass
+    except Exception as exc:  # pressure unavailable — record, default drive
+        record_failure("intrinsic_goals._fairness_default_drive", exc)
     return "world_knowledge"
 
 

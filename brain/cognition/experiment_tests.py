@@ -13,6 +13,7 @@ import re
 from typing import Any, Dict
 
 from brain.utils.json_utils import load_json
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_private
 from brain.paths import (
     COGNITIVE_FUNCTIONS_LIST_FILE, WORKING_MEMORY_FILE,
@@ -98,7 +99,8 @@ def _design_behavioral_test(hyp: str, context: Dict) -> Dict:
             "reps": _BEHAVIORAL_REPS,
             "success_criterion": f"≥ {int(_CONFIRMED_THRESHOLD * 100)}% of selections match expected_class",
         }
-    except Exception:
+    except Exception as exc:  # test design failed — record, no design
+        record_failure("experiment_tests._design_behavioral_test", exc)
         return {}
 
 
@@ -125,7 +127,8 @@ def _design_pattern_test(hyp: str, context: Dict) -> Dict:
             "window": min(5, max(1, int(params.get("window", 3)))),
             "success_criterion": f"conditional hit rate ≥ {_CONFIRMED_THRESHOLD:.0%}",
         }
-    except Exception:
+    except Exception as exc:  # test design failed — record, no design
+        record_failure("experiment_tests._design_pattern_test", exc)
         return {}
 
 
@@ -153,7 +156,8 @@ def _design_capability_test(hyp: str, context: Dict) -> Dict:
             "pass_threshold": int(params.get("pass_threshold", 7)),
             "success_criterion": f"LLM rating ≥ {params.get('pass_threshold', 7)}/10 on rubric",
         }
-    except Exception:
+    except Exception as exc:  # test design failed — record, no design
+        record_failure("experiment_tests._design_capability_test", exc)
         return {}
 
 
@@ -232,6 +236,7 @@ def _run_behavioral_test(experiment: Dict, context: Dict[str, Any]) -> Dict:
             else:
                 classifications.append("other")
     except Exception as e:
+        record_failure("experiment_tests.run_behavioral", e)
         return {"error": str(e), "picks": [], "hit_rate": 0.0, "confirmed": False}
 
     if expected == "either":
@@ -332,6 +337,7 @@ def _run_capability_test(experiment: Dict, context: Dict[str, Any]) -> Dict:
         task_with_identity = f"You are Orrin — {identity}.\n\n{task_prompt}"
         output = llm_ok(generate_response(task_with_identity, caller="experimentation/capability_task"), "experimentation") or ""
     except Exception as e:
+        record_failure("experiment_tests.run_capability", e)
         return {"error": str(e), "rating": 0, "confirmed": False}
 
     # Rate the output

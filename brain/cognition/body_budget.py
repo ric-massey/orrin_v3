@@ -23,6 +23,7 @@ import os
 from typing import Dict, Tuple
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -55,15 +56,17 @@ def machine_ram_bytes() -> float:
     try:
         import psutil
         return float(psutil.virtual_memory().total)
-    except Exception:
+    except Exception as exc:
         # Fall back to a conservative 8 GB so we never divide by zero or over-grant.
+        record_failure("body_budget.machine_ram_bytes", exc)
         return 8.0 * _GB
 
 
 def cpu_count() -> int:
     try:
         return os.cpu_count() or 4
-    except Exception:
+    except Exception as exc:  # cpu probe failed — record, assume 4
+        record_failure("body_budget.cpu_count", exc)
         return 4
 
 
@@ -93,7 +96,7 @@ def min_viable_body_bytes() -> float:
         env = os.environ.get("ORRIN_MIN_VIABLE_GB")
         if env:
             return float(env) * _GB
-    except Exception:
+    except (TypeError, ValueError):  # intentional: malformed env override → default
         pass
     return _MIN_VIABLE_ABS
 
@@ -158,6 +161,7 @@ def set_budget_fraction(fraction: float) -> Dict:
         prev_applied = float(prefs.get(_PREF_APPLIED, prefs.get(_PREF_FRACTION, _DEFAULT_FRACTION)))
         prefs.set(_PREF_FRACTION, fraction)
     except Exception as e:
+        record_failure("body_budget.set_budget_fraction", e)
         return {"ok": False, "reason": f"could not persist: {e}"}
 
     resized = abs(fraction - prev_applied) >= _RESIZE_EPS
@@ -169,8 +173,8 @@ def set_budget_fraction(fraction: float) -> Dict:
     try:
         from brain.utils import prefs
         prefs.set(_PREF_APPLIED, fraction)
-    except Exception:
-        pass
+    except Exception as exc:  # applied-fraction mark best-effort — record
+        record_failure("body_budget.set_budget_fraction.applied", exc)
 
     return {"ok": True, "fraction": fraction, "resized": resized, **budget_status()}
 

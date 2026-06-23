@@ -5,6 +5,7 @@ import os
 from typing import Iterable, List
 
 from brain.paths import DATA_DIR as _DATA_DIR
+from brain.utils.failure_counter import record_failure
 
 _MODEL_CONFIG = _DATA_DIR / "model_config.json"
 
@@ -34,7 +35,8 @@ def _llm_enabled_in_config() -> bool:
         _cfg_cache["mtime"] = st.st_mtime
         _cfg_cache["enabled"] = enabled
         return enabled
-    except Exception:
+    except Exception as exc:  # torn/unreadable config — record, reuse last good (fail-closed)
+        record_failure("llm_gate._llm_enabled_in_config", exc)
         return _cfg_cache["enabled"]
 
 
@@ -59,7 +61,7 @@ def llm_available() -> bool:
     try:
         from dotenv import load_dotenv
         load_dotenv()
-    except Exception:
+    except ImportError:  # intentional: python-dotenv optional — env already in os.environ
         pass
     try:
         from brain.utils import llm_providers as _providers
@@ -76,8 +78,8 @@ def llm_available() -> bool:
         from brain.utils.generate_response import _cb_is_open
         if _cb_is_open():
             return False
-    except Exception:
-        pass  # breaker unreadable → don't block
+    except Exception as exc:  # breaker unreadable → record, don't block
+        record_failure("llm_gate.llm_available.breaker", exc)
 
     try:
         from brain.utils.llm_router import routed_response as _rr  # noqa: F401
@@ -102,8 +104,8 @@ def llm_callable_by(caller: str) -> bool:
         from brain.utils.generate_response import _llm_tool_only, _LLM_TOOL_CALLERS
         if _llm_tool_only() and caller not in _LLM_TOOL_CALLERS:
             return False
-    except Exception:
-        pass
+    except Exception as exc:  # tool-only refinement unreadable — record, fall through
+        record_failure("llm_gate.llm_callable_by", exc)
     return True
 
 
@@ -164,8 +166,8 @@ def fn_requires_llm(name: str, fn=None) -> bool:
                 if meta.get("requires_llm"):
                     return True
                 fn = meta.get("function")
-        except Exception:
-            pass
+        except Exception as exc:  # registry lookup failed — record, fall back to attr check
+            record_failure("llm_gate.fn_requires_llm", exc)
     return bool(getattr(fn, "_requires_llm", False))
 
 

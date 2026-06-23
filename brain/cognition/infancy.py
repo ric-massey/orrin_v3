@@ -29,6 +29,7 @@ import os
 from typing import Dict
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
 from brain.paths import DATA_DIR
@@ -48,7 +49,7 @@ def _has_lived() -> bool:
     try:
         return ((DATA_DIR / "autobiography.json").exists()
                 or (DATA_DIR / "long_memory.json").exists())
-    except Exception:
+    except OSError:  # intentional: stat error → treat as no life behind him
         return False
 
 
@@ -60,14 +61,14 @@ def somatic_infancy() -> bool:
         from brain.cognition.body_sense import _get_bands
         if _get_bands().in_infancy():
             return True
-    except Exception:
-        pass
+    except Exception as exc:  # band-learner unavailable — record, try host bands
+        record_failure("infancy.somatic_infancy.body", exc)
     try:
         from brain.cognition.host_interoception import _bands
         if _bands().in_infancy():
             return True
-    except Exception:
-        pass
+    except Exception as exc:  # host bands unavailable — record, assume converged
+        record_failure("infancy.somatic_infancy.host", exc)
     return False
 
 
@@ -82,7 +83,8 @@ def developmental_infancy() -> bool:
         if not lifespan_rolled():
             return True  # not even born yet
         age_days = float(life_status().get("age_days", 0.0) or 0.0)
-    except Exception:
+    except Exception as exc:  # mortality unreadable — record, stay in developmental infancy
+        record_failure("infancy.developmental_infancy.mortality", exc)
         return True
     if _has_lived() and age_days >= _DEV_MIN_DAYS:
         # The self has a record behind it and has lived past the sensitive window —
@@ -91,8 +93,8 @@ def developmental_infancy() -> bool:
         state["completed_age_days"] = round(age_days, 2)
         try:
             save_json(_DEV_FILE, state)
-        except Exception:
-            pass
+        except Exception as exc:  # latch persist failed — record (may re-latch next boot)
+            record_failure("infancy.developmental_infancy.persist", exc)
         log_private(f"[infancy] developmental infancy complete at {age_days:.1f}d")
         return False
     return True

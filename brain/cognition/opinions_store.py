@@ -458,7 +458,7 @@ def _concept_words(text: str) -> Set[str]:
     try:
         from brain.cognition.concept_memory import query as concept_query
         return {c.get("word", "") for c in concept_query(text, limit=5) if c.get("word")}
-    except Exception:
+    except ImportError:  # intentional: concept store optional → no attachments
         return set()
 
 

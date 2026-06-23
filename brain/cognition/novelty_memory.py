@@ -57,7 +57,7 @@ def _load() -> Dict[str, Any]:
     try:
         store = load_json(_STORE_FILE, default_type=dict)
         return store if isinstance(store, dict) else {}
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/malformed store → {}
         return {}
 
 

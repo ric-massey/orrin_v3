@@ -119,7 +119,7 @@ def _learned_stats() -> Dict[str, Dict[str, float]]:
             for k, v in d.items() if isinstance(v, dict)
         }
         _STATS_CACHE["t"] = time.time()
-    except Exception:
+    except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed stats → keep prior cache
         pass
     return _STATS_CACHE["data"]
 

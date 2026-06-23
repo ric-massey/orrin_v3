@@ -251,7 +251,7 @@ def consolidate_from_long_memory(context: Optional[Dict] = None) -> Dict:
     try:
         from brain.paths import LONG_MEMORY_FILE as _LMF
         long_mem = load_json(_LMF, default_type=list) or []
-    except Exception:
+    except (ImportError, OSError, ValueError):  # intentional: long memory unavailable → skip
         return {"skipped": True, "reason": "long_memory_unavailable"}
 
     # Phase 1 (locked): collect new world_perception/dream_insight entries since

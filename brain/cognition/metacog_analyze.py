@@ -64,7 +64,7 @@ def _try_suppress(action: str, n_cycles: int, reason: str,
         try:
             _cc = int((context.get("cycle_count") or {}).get("count", 0) or 0)
             context.setdefault("_fn_suppression", {})[action] = _cc + int(n_cycles)
-        except Exception:
+        except (ValueError, TypeError, AttributeError):  # intentional: bad cycle data → skip suppression
             pass
     try:
         from brain.think.bandit.contextual_bandit import suppress_action as _suppress

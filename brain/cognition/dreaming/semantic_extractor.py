@@ -48,7 +48,7 @@ _REWARD_FAILURE = 0.10  # below this is a failure (rewards are typically [-0.3, 
 def _classify_outcome(reward: float) -> str:
     try:
         r = float(reward)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-numeric reward → neutral
         return "neutral"
     if r >= _REWARD_SUCCESS:
         return "success"

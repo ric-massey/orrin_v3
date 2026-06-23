@@ -9,45 +9,14 @@ from brain.paths import LONG_MEMORY_FILE
 from brain.utils.embedder import get_embedding
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_error, log_private
-from brain.cog_memory.long_memory import DUPLICATE_WINDOW
-
-def _emotion_name(e: Any) -> str:
-    """Coerce detect_affect output into a lowercase string."""
-    if isinstance(e, dict):
-        return str(e.get("emotion", "neutral")).lower()
-    return str(e or "neutral").lower()
-
-def _snapshot_emotion(context: Optional[dict]) -> dict:
-    """
-    Extract key emotion intensities from context["affect_state"] for storage.
-    Returns a compact dict so we know how Orrin felt when this memory was formed.
-    """
-    if not context:
-        return {}
-    emo = context.get("affect_state") or {}
-    core = emo.get("core_signals") or emo
-    if not isinstance(core, dict):
-        return {}
-    keys = ("positive_valence", "negative_valence", "exploration_drive", "impasse_signal", "confidence",
-            "motivation", "stagnation_signal", "expected_gain", "threat_level", "social_penalty")
-    snapshot = {k: round(float(core.get(k) or 0.0), 3) for k in keys if float(core.get(k) or 0.0) >= 0.05}
-    stability = emo.get("affect_stability")
-    if stability is not None:
-        snapshot["affect_stability"] = round(float(stability), 3)
-    return snapshot
-
-
-def _emotion_importance_boost(emotional_snapshot: dict) -> int:
-    """Return 0–2 importance bonus for memories formed during high-emotion moments."""
-    if not emotional_snapshot:
-        return 0
-    high_emotion_keys = ("impasse_signal", "negative_valence", "positive_valence", "threat_level", "social_penalty", "exploration_drive")
-    peak = max((emotional_snapshot.get(k, 0.0) for k in high_emotion_keys), default=0.0)
-    if peak >= 0.6:
-        return 2
-    if peak >= 0.35:
-        return 1
-    return 0
+# Emotion snapshot helpers live in long_memory (the canonical owner); imported
+# here so the two storage paths share one implementation (structure audit §8).
+from brain.cog_memory.long_memory import (
+    DUPLICATE_WINDOW,
+    _emotion_name,
+    _snapshot_emotion,
+    _emotion_importance_boost,
+)
 
 
 def remember(

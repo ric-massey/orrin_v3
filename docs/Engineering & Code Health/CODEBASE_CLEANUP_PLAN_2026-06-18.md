@@ -7,6 +7,36 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22g)
+
+- **Phase 5.3 — `type: ignore` triage substantially DONE (reaper strict +
+  backend/singletons narrowed); only goals/ & memory/ remain, coupled to their
+  strict adoption.** Surveyed every blanket (uncoded) `# type: ignore` in the
+  tree. The 64 already-strict files had **zero** blanket ignores (strict's
+  `warn_unused_ignores` had already forced coding as each entered). Of the 60
+  blanket ignores outside that set:
+  - **reaper/ (8) — narrowed with full enforcement.** Brought the whole reaper
+    suite into the strict allowlist (files 64 → 78); its `errors_total = None`
+    optional-metric fallbacks are now `# type: ignore[assignment]`, verified by
+    `warn_unused_ignores`. (Same commit fixed reaper's 14 strict errors —
+    signature annotations, a heartbeat None-guard, `__exit__ -> Literal[False]`,
+    and replacing a duck-typed `_Evt` with the real `ErrorEvent`.)
+  - **backend + singletons (12) — narrowed/removed, each ad-hoc verified.**
+    Optional-import fallbacks (`_fcntl_gr`/`inspect`/`_PREEXEC`/`_resource`,
+    schema.py's pydantic shim) narrowed to their real codes
+    (`[assignment]`/`[assignment,misc]`/`[no-redef]`); two ignores removed as
+    now-unused (`auto_repair`'s `_load_actions` import — resolved by the 5.1
+    re-export — and `telemetry_bridge`'s `import requests`, covered by
+    `ignore_missing_imports`).
+  - **Remaining: goals/ (28) + memory/ (13).** These two subtrees are not yet
+    strict (212 and 97 strict errors respectively — a large typing effort), so per
+    the plan their blanket ignores are narrowed *as the subtree enters the
+    allowlist*, not blind-narrowed in inert files. They are the sole 5.3 tail and
+    are bundled with the (separate, sizeable) goals/memory strict-typing work.
+
+  No blanket `# type: ignore` remains anywhere outside goals/ and memory/. Gate
+  green throughout: ruff clean, **mypy 78 files clean**, 987 passed / 1 skipped.
+
 ## Implementation status (updated 2026-06-22f)
 
 - **Phase 5.1 tail — loop-stage typing DONE.** Brought the entire `brain/loop/`

@@ -32,10 +32,31 @@ Detailed structural findings are recorded in
   Deliberately left out of scope: `contextual_bandit.update_with_pe`'s ignored
   `lr`/`l2`/`pe_lr` params — the caller passes `lr=_ach_lr` expecting it to be
   used, so that is a latent behavior bug, not dead code (Phase 6 rule 5: no
-  behavioral tuning), to be addressed separately. **Remaining Phase 6:** the
-  bulk dead-function triage (262 brain/-side vulture candidates, each needing
-  caller tracing), duplication consolidation (JSON/state/env/logging/retry),
-  pass-through/re-export removal, stale-alias cleanup, and doc archival.
+  behavioral tuning), to be addressed separately. Removed two further
+  grep-confirmed-dead helpers (each its own commit, gate green): the
+  self-documented stale `log_user_message()` compat shim in `chat_log.py` (the
+  live `log_raw_user_input` dispatcher is finalized-pair-only) and the unused
+  `print_cycle_complete()` debug banner.
+
+  **Triage finding — the dead-function vein is mostly dry.** Auto-traced all 265
+  vulture function/method candidates for zero non-`def` references repo-wide
+  (source + tests): 96 had none. But on inspection the overwhelming majority are
+  NOT cruft and were deliberately KEPT: (a) framework/protocol callbacks invoked
+  by base classes, never by name — `on_modified` (watchdog), `log_message`
+  (http.server), lock-API methods; (b) clean unused convenience/telemetry API for
+  *live* data — e.g. the concurrency-safe `core_values` CRUD in `self_model.py`
+  (the field is read in ~20 places, all direct), `cache_stats`/`gate_stats`
+  (dashboard-intended), `record_exception`, `get_human_model` (a live,
+  finetune-managed model role). Deleting intended API surface is a product/owner
+  decision, not mechanical dead-code removal, so it's deferred per the plan's
+  "compatibility layers have owners and removal dates" rule rather than swept.
+  Net: mass dead-function deletion is NOT where Phase 6's remaining value is.
+
+  **Remaining Phase 6 (reprioritized):** duplication consolidation
+  (JSON/state/env/logging/retry), pass-through/re-export-module removal now that
+  Phase 4.5 created facades, stale-alias cleanup, and historical-doc archival.
+  Any further unused-API deletions need an explicit owner decision (candidate
+  list reproducible via `vulture` + the zero-ref trace).
 
 ## Implementation status (updated 2026-06-22b)
 

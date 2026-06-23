@@ -113,14 +113,14 @@ def _user_active_recently(window_s: float = 300.0) -> bool:
     try:
         mtime = USER_INPUT.stat().st_mtime
         return (time.time() - mtime) < window_s
-    except Exception:
+    except OSError:  # intentional: no input file → not recently active
         return False
 
 
 def _user_input_mtime() -> Optional[float]:
     try:
         return USER_INPUT.stat().st_mtime
-    except Exception:
+    except OSError:  # intentional: no input file → unknown mtime
         return None
 
 

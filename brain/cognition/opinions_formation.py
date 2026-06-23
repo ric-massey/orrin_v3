@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set
 
 from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import WORKING_MEMORY_FILE, SELF_MODEL_FILE
@@ -84,8 +85,8 @@ def _conceptualize(topic: str) -> Optional[str]:
         hits = query(topic, limit=1)
         if hits:
             return str(hits[0].get("word") or "") or None
-    except Exception:
-        pass
+    except Exception as exc:  # vocab query failed — record, no grounded word
+        record_failure("opinions_formation._grounded_word", exc)
     return None
 
 
@@ -356,7 +357,7 @@ def _form(context: Dict[str, Any]) -> Optional[str]:
         result = json.loads(clean.strip())
         view = str(result.get("view") or "").strip()
         confidence = float(result.get("confidence") or _MIN_CONFIDENCE)
-    except Exception:
+    except (ValueError, TypeError, AttributeError, IndexError):  # intentional: unparseable LLM JSON
         return None
 
     if not view or len(view) < 10:

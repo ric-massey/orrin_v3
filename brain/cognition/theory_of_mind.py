@@ -269,7 +269,8 @@ def _load_tom_state(person_id: str) -> Dict[str, Any]:
         from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("tom_state") or {}
-    except Exception:
+    except Exception as exc:  # relationships unreadable — record, no ToM state
+        record_failure("theory_of_mind._load_tom_state", exc)
         return {}
 
 
@@ -294,7 +295,8 @@ def _person_model_for(person_id: str) -> Dict[str, Any]:
         from brain.paths import RELATIONSHIPS_FILE
         rels = load_json(RELATIONSHIPS_FILE, default_type=dict) or {}
         return (rels.get(person_id) or {}).get("person_model") or {}
-    except Exception:
+    except Exception as exc:  # relationships unreadable — record, no person model
+        record_failure("theory_of_mind._person_model_for", exc)
         return {}
 
 

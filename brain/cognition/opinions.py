@@ -33,6 +33,7 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_private
 from brain.utils.json_utils import load_json
 from brain.cog_memory.long_memory import update_long_memory
@@ -83,7 +84,8 @@ def _check_roots(op: Dict) -> bool:
             str(e.get("id")) for e in (load_json(LONG_MEMORY_FILE, default_type=list) or [])
             if isinstance(e, dict)
         }
-    except Exception:
+    except Exception as exc:  # memory read failed — record, can't confirm roots lost
+        record_failure("opinions._roots_lost", exc)
         return False
     if any(r in wm_ids or r in lm_ids for r in roots):
         return False
@@ -186,7 +188,7 @@ def reflect_on_opinions(context: Dict[str, Any]) -> str:
             if clean.startswith("json"):
                 clean = clean[4:]
         result = json.loads(clean.strip())
-    except Exception:
+    except (ValueError, AttributeError, IndexError):  # intentional: unparseable LLM reflection
         return "could not parse reflection"
 
     changed     = bool(result.get("changed"))

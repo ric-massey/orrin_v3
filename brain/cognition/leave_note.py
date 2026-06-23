@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import Dict, Any
 
 from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 
 
 def leave_note(context: Dict[str, Any] = None) -> str:
@@ -54,8 +55,8 @@ def leave_note(context: Dict[str, Any] = None) -> str:
                     if len(_payload) >= 40:
                         _seed = f"something I actually found out: {_payload}"
                         break
-        except Exception:
-            pass
+        except Exception as exc:  # memory scan for a seed best-effort — record
+            record_failure("leave_note.seed_scan", exc)
 
     motive = build_motive(context, intent="leave_note", recipient="Ric", seed=_seed)
     result = express_to_user(motive, "note", context)
@@ -76,7 +77,7 @@ def leave_note(context: Dict[str, Any] = None) -> str:
             "event_type": "note_written",
             "importance": 2,
         })
-    except Exception:
-        pass
+    except Exception as exc:  # reafference WM write best-effort — record
+        record_failure("leave_note.reafference", exc)
 
     return f"Left a note: {content[:120]}"

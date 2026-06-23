@@ -14,6 +14,7 @@ from brain.cognition.knowledge_graph_core import (
     ENTITY_TYPES, _KG_NOISE, _STOPWORDS, _IS_A_RE, _CREATED_RE, _WORKS_RE, _USES_RE, _CARES_RE, _PROPER_RE, _TYPE_HINTS,
     _LOWERCASE_IS_A_RE, _infer_type, _add_entity_inplace, _add_relation_inplace,
 )
+from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
@@ -82,7 +83,7 @@ def _validate_candidate(
         from brain.utils.text_sanity import has_unbalanced_brackets
         if has_unbalanced_brackets(name) or "[chunk" in name.lower():
             return False, 0.0, "corrupt_text"
-    except Exception:
+    except ImportError:  # intentional: sanity helper optional — skip the bracket check
         pass
     if name.lower() in _STOPWORDS:
         return False, 0.0, "stopword"
@@ -380,8 +381,8 @@ def _extract_with_spacy(g: Dict, text: str, source: str) -> Tuple[int, int]:
                                          confidence=0.4, source=source + ":cooc"):
                     relations_n += 1
                     _cooc_added += 1
-    except Exception:
-        pass
+    except Exception as exc:  # NLP co-occurrence pass failed — record, keep what we have
+        record_failure("knowledge_graph_extract.cooccurrence", exc)
 
     # 3) Proper-noun chunks NER missed (weakest signal)
     for chunk in doc.noun_chunks:

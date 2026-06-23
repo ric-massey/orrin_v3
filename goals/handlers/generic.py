@@ -3,7 +3,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 import sys
 import uuid
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 from dataclasses import replace
 from ..model import Goal, Step, Status
 from .base import BaseGoalHandler, HandlerContext
@@ -61,7 +61,7 @@ class GenericHandler(BaseGoalHandler):
         # --- Reflection goal (low emotional stability) ---
         if spec.get("reflect"):
             trigger = spec.get("trigger", "internal")
-            emo_state = {}
+            emo_state: Dict[str, Any] = {}
             try:
                 get_emo = ctx.get("get_emotional_state")
                 if callable(get_emo):

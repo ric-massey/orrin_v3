@@ -15,11 +15,12 @@ from . import wal as WAL
 from .utils import ensure_dir, iso as _iso, append_jsonl, iter_jsonl
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 def _jsonable(obj: Any) -> Any:
-    if is_dataclass(obj):
+    if is_dataclass(obj) and not isinstance(obj, type):
         obj = asdict(obj)
     if isinstance(obj, dict):
         out = {}
@@ -154,7 +155,7 @@ class FileGoalsStore:
         # sort
         rev = sort.startswith("-")
         key = sort[1:] if rev else sort
-        def _key(g: Goal):
+        def _key(g: Goal) -> Any:
             v = getattr(g, key, None)
             if isinstance(v, datetime):
                 return v.timestamp()

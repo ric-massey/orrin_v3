@@ -14,7 +14,8 @@ from ..model import Goal, Step, Status
 from .base import BaseGoalHandler, HandlerContext, new_step as _new_step
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 # ---------- tiny utilities ----------

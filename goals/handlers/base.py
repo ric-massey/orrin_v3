@@ -120,7 +120,7 @@ def acquire_lock(ctx: HandlerContext, name: str, goal_id: str) -> bool:
     if not locks:
         return True  # no lock manager configured; proceed
     try:
-        return locks.acquire(name, goal_id)
+        return bool(locks.acquire(name, goal_id))
     except Exception:
         return False
 

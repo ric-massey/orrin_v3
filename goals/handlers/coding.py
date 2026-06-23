@@ -21,7 +21,8 @@ from .base import (
 )
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 def _repo_path(ctx: HandlerContext, goal: Goal) -> Path:

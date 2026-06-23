@@ -11,12 +11,13 @@ import tempfile
 from dataclasses import asdict, is_dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Iterable, Iterator, Optional
+from typing import Any, Dict, Iterable, Iterator, Optional, cast
 
 from .model import Goal, Step  # only for type hints; code is duck-typed at runtime
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 # -----------------------------
@@ -80,7 +81,7 @@ def load_state(path: str | Path) -> Iterator[Dict[str, Any]]:
     """
     p = Path(path)
     if not p.exists():
-        return iter(())
+        return
     with p.open("r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
@@ -155,24 +156,25 @@ def checkpoint(
 # -----------------------------
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     return []
 
 
 def _iter_steps(store: Any) -> Iterable[Step]:
     if hasattr(store, "iter_steps"):
-        return store.iter_steps()
+        return cast(Iterable[Step], store.iter_steps())
     if hasattr(store, "list_steps"):
-        return store.list_steps()
+        return cast(Iterable[Step], store.list_steps())
     if hasattr(store, "steps_for"):
         # Some stores want a goal_id; we fall back to listing all by passing None if allowed
         try:
-            return store.steps_for(None)  # type: ignore[arg-type]
+            return cast(Iterable[Step], store.steps_for(None))
         except Exception:
             return []
     return []
@@ -184,14 +186,14 @@ def _jsonable(obj: Any) -> Dict[str, Any]:
     - Datetimes → ISO strings
     - Enums → their .name (fallback to str)
     """
-    if is_dataclass(obj):
+    if is_dataclass(obj) and not isinstance(obj, type):
         d = asdict(obj)
     elif hasattr(obj, "__dict__"):
         d = dict(obj.__dict__)
     else:
         # Last resort: try to coerce to dict via json round-trip
         try:
-            return json.loads(json.dumps(obj))  # type: ignore[arg-type]
+            return cast(Dict[str, Any], json.loads(json.dumps(obj)))
         except Exception:
             return {"value": str(obj)}
 

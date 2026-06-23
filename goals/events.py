@@ -11,7 +11,8 @@ from typing import Any, Dict, Optional, Tuple
 
 from .model import Goal, Step
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 EVENT_VERSION = 1
 
 
@@ -119,7 +120,7 @@ def to_memory_note(ev: BaseEvent) -> Tuple[str, str, Dict[str, Any]]:
     """
     if isinstance(ev, GoalEvent):
         content = f"{ev.kind}: {ev.title} [{ev.goal_kind}/{ev.priority}]"
-        meta = {"goal_id": ev.goal_id, "status": ev.status, "priority": ev.priority, "deadline": ev.deadline}
+        meta: Dict[str, Any] = {"goal_id": ev.goal_id, "status": ev.status, "priority": ev.priority, "deadline": ev.deadline}
         return "goal_event", content, meta
     if isinstance(ev, StepEvent):
         content = f"{ev.kind}: {ev.name} ({ev.step_id}) [{ev.status}]"
@@ -146,10 +147,10 @@ def event_from_wal_line(line: str) -> Dict[str, Any]:
     Parse a WAL JSON line back to a dict (typed reconstruction optional upstream).
     """
     try:
-        return json.loads(line)
+        return dict(json.loads(line))
     except Exception:
         # tolerate escaped newlines
-        return json.loads(line.replace("\\n", "\n"))
+        return dict(json.loads(line.replace("\\n", "\n")))
 
 
 __all__ = [

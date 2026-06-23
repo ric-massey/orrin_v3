@@ -10,7 +10,8 @@ from typing import Any, Dict, List, Optional
 
 from .utils import parse_iso
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 class Status(str, Enum):
@@ -51,7 +52,7 @@ class Step:
     id: str
     goal_id: str
     name: str
-    action: Dict
+    action: Dict[str, Any]
     status: Status = Status.READY
     attempts: int = 0
     max_attempts: int = 3
@@ -69,7 +70,7 @@ class Goal:
     id: str
     title: str
     kind: str
-    spec: Dict
+    spec: Dict[str, Any]
 
     priority: Priority = Priority.NORMAL
     status: Status = Status.NEW
@@ -82,7 +83,7 @@ class Goal:
     tags: List[str] = field(default_factory=list)
 
     progress: Progress = field(default_factory=Progress)
-    acceptance: Dict = field(default_factory=dict)
+    acceptance: Dict[str, Any] = field(default_factory=dict)
 
     last_error: Optional[str] = None
     step_order: List[str] = field(default_factory=list)
@@ -176,11 +177,11 @@ def goal_to_jsonable(g: Goal) -> Dict[str, Any]:
     d = g.__dict__.copy()
     d["status"] = getattr(g.status, "name", str(g.status))
     d["priority"] = getattr(g.priority, "name", str(g.priority))
-    if d.get("deadline"):    d["deadline"]    = g.deadline.isoformat()
+    if g.deadline:    d["deadline"]    = g.deadline.isoformat()
     if d.get("created_at"):  d["created_at"]  = g.created_at.isoformat()
     if d.get("updated_at"):  d["updated_at"]  = g.updated_at.isoformat()
     pr = d.get("progress")
-    if is_dataclass(pr):
+    if is_dataclass(pr) and not isinstance(pr, type):
         d["progress"] = asdict(pr)
     if d.get("acceptance") is not None:
         d["acceptance"] = dict(d["acceptance"])

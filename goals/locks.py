@@ -8,7 +8,7 @@ import time
 import threading
 from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Dict, Optional, List, Any, Tuple
+from typing import Dict, Iterator, Optional, List, Any, Tuple
 _log = get_logger(__name__)
 
 def _now() -> float:
@@ -171,7 +171,7 @@ class LockManager:
     # -------- context manager --------
 
     @contextmanager
-    def session(self, name: str, holder_id: str, *, timeout: Optional[float] = None, poll_interval: float = 0.05):
+    def session(self, name: str, holder_id: str, *, timeout: Optional[float] = None, poll_interval: float = 0.05) -> "Iterator[None]":
         ok = self.acquire_blocking(name, holder_id, timeout=timeout, poll_interval=poll_interval)
         if not ok:
             raise TimeoutError(f"timeout acquiring lock '{name}' for holder '{holder_id}'")

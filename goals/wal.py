@@ -12,7 +12,8 @@ from typing import Any, Dict, Generator, Iterable, Iterator, List, Optional, Uni
 
 from .model import goal_from_dict, step_from_dict
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 # -----------------------------------------------------------------------------

@@ -5,7 +5,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from collections import Counter
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional, cast
 
 try:
     from prometheus_client import Counter as _Counter, Gauge as _Gauge, Histogram as _Histogram
@@ -15,7 +15,8 @@ except Exception as _e:  # pragma: no cover
 from .model import Goal, Step, Priority
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 # ------------------------------
 # Metric objects (initialized once via init_metrics)
@@ -184,7 +185,8 @@ def observe_step_event(event: Dict[str, Any]) -> None:
             dur = None
             extra = event.get("extra") or {}
             try:
-                dur = float(extra.get("duration_sec"))
+                _dur = extra.get("duration_sec")
+                dur = float(_dur) if _dur is not None else None
             except Exception:
                 dur = None
             gkind = str(event.get("goal_kind") or "unknown")
@@ -255,33 +257,34 @@ def refresh_from_store(store: Any, *, now: Optional[datetime] = None) -> None:
 # ------------------------------
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     return []  # graceful fallback
 
 
 def _iter_steps(store: Any) -> Iterable[Step]:
     if hasattr(store, "iter_steps"):
-        return store.iter_steps()
+        return cast(Iterable[Step], store.iter_steps())
     if hasattr(store, "list_steps"):
-        return store.list_steps()
+        return cast(Iterable[Step], store.list_steps())
     return []
 
 
 def _status_name(x: Any) -> str:
     try:
-        return x.name  # Enum
+        return str(x.name)  # Enum
     except Exception:
         return str(x)
 
 
 def _priority_name(x: Any) -> str:
     try:
-        return x.name  # Enum
+        return str(x.name)  # Enum
     except Exception:
         return str(x)
 

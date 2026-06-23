@@ -8,7 +8,6 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
-import os
 import time
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
@@ -16,6 +15,7 @@ from typing import Dict, Any, List, Optional
 from brain.utils.log import log_activity
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
 from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, DATA_DIR
 
 _log = get_logger(__name__)
@@ -72,7 +72,7 @@ _ASPIRATION_KEYWORDS = {
 
 
 def _learned_aspiration_enabled() -> bool:
-    return os.getenv("ORRIN_LEARNED_ASPIRATION", "1").strip().lower() not in ("0", "false", "no")
+    return env_bool("ORRIN_LEARNED_ASPIRATION", True)
 
 
 def _load_drive_credit() -> Dict[str, Any]:

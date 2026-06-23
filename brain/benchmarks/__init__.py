@@ -37,6 +37,7 @@ from brain.paths import (
     NARRATIVE_PRESSURE_FILE,
 )
 from brain.utils.json_utils import load_json, save_json
+from brain.utils.env import env_bool
 
 SAMPLES_FILE = DATA_DIR / "benchmark_samples.jsonl"
 RESULTS_FILE = DATA_DIR / "benchmark_results.json"
@@ -124,7 +125,7 @@ BENCHMARKS: Dict[str, Dict[str, Any]] = {
 
 
 def _enabled() -> bool:
-    return os.environ.get("ORRIN_BENCHMARK", "").strip().lower() in ("1", "true", "yes", "on")
+    return env_bool("ORRIN_BENCHMARK", False)
 
 
 # ─── Passive per-cycle sampling (B1, B2) ──────────────────────────────────────

@@ -23,6 +23,8 @@ from __future__ import annotations
 import os
 from typing import Dict, Optional
 
+from brain.utils.env import env_bool
+
 # The keychain service name and the canonical env-var each secret maps to. The short
 # UI name ("openai"/"serper") is what callers pass; the env var is what the rest of
 # the brain reads (generate_response → OPENAI_API_KEY, the web tools → SERPER_API_KEY).
@@ -42,7 +44,7 @@ _MEM: Dict[str, str] = {}
 
 
 def _keyring_disabled() -> bool:
-    return os.getenv("ORRIN_KEYRING", "1").strip().lower() in ("0", "false", "no")
+    return not env_bool("ORRIN_KEYRING", True)
 
 
 def _keyring():

@@ -11,13 +11,13 @@ the same object, so finalize-once stays coherent across both modules).
 from __future__ import annotations
 
 import copy
-import os
 import time
 from typing import Any, Dict, Optional, Tuple
 
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
 from brain.cog_memory.working_memory import update_working_memory
 from brain.cognition.planning.goals import set_goal_plan
 
@@ -30,11 +30,11 @@ _FINALIZED_IDS: Dict[str, float] = {}
 
 def _tier_closure_enabled() -> bool:
     """Flag gate (house pattern). OFF ⇒ legacy plan-completion gate only."""
-    return os.environ.get("ORRIN_TIER_CLOSURE", "").strip().lower() in ("1", "true", "yes", "on")
+    return env_bool("ORRIN_TIER_CLOSURE", False)
 
 
 def _survival_preempt_enabled() -> bool:
-    return os.environ.get("ORRIN_SURVIVAL_PREEMPT", "").strip().lower() in ("1", "true", "yes", "on")
+    return env_bool("ORRIN_SURVIVAL_PREEMPT", False)
 
 
 def _survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:

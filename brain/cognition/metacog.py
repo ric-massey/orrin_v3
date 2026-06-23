@@ -20,7 +20,6 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
-import os
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 
@@ -28,13 +27,14 @@ from typing import Dict, Any, List, Optional
 # Re-imported so metacog_flush + external callers (calibration,
 # behavioral_adaptation, life_capsule_ingest) keep their reference.
 from brain.cognition.metacog_analyze import metacog_analyze  # noqa: F401
+from brain.utils.env import env_bool
 
 
 def _hard_disengage_enabled() -> bool:
     """Fix 2 flag gate (house pattern). Default ON — the 133-failure rut is the
     documented catastrophic mode and its strongest defense should not require
     remembering an env var. Opt out with ORRIN_HARD_DISENGAGE=0."""
-    return os.environ.get("ORRIN_HARD_DISENGAGE", "1").strip().lower() not in ("0", "false", "no", "off")
+    return env_bool("ORRIN_HARD_DISENGAGE", True)
 
 from brain.utils.log import log_private, log_activity
 from brain.utils.json_utils import save_json, load_json

@@ -9,6 +9,8 @@ from __future__ import annotations
 import os
 import socket
 
+from brain.utils.env import env_bool
+
 # The four canonical cognitive-loop stages the Brain graph renders.
 LOOP_NODES = ("perceive", "reflect", "plan", "act")
 
@@ -21,37 +23,33 @@ INPUT_CAP = 1000     # pending Face inputs awaiting the core loop
 RESPONSE_CAP = 300   # agent replies awaiting Face pickup
 
 
-def _flag(name: str, default: str = "") -> bool:
-    return os.getenv(name, default).strip().lower() in ("1", "true", "yes")
-
-
 def demo_enabled() -> bool:
     """Whether the synthetic demo generator should run (ORRIN_TELEMETRY_DEMO=1)."""
-    return _flag("ORRIN_TELEMETRY_DEMO")
+    return env_bool("ORRIN_TELEMETRY_DEMO")
 
 
 def ui_enabled() -> bool:
     """Whether the UI stack should run at all (ORRIN_UI defaults to on)."""
-    return os.getenv("ORRIN_UI", "1").strip().lower() not in ("0", "false", "no")
+    return env_bool("ORRIN_UI", True)
 
 
 def ui_dev_enabled() -> bool:
     """Developer path: run the Vite dev server + open a browser tab instead of the
     native window (ORRIN_UI_DEV=1). Off by default — the packaged app opens a
     native pywebview window and never spawns npm at runtime."""
-    return _flag("ORRIN_UI_DEV")
+    return env_bool("ORRIN_UI_DEV")
 
 
 def open_browser_enabled() -> bool:
     """Whether the launcher should open a browser tab (ORRIN_UI_OPEN defaults to on)."""
-    return os.getenv("ORRIN_UI_OPEN", "1").strip().lower() not in ("0", "false", "no")
+    return env_bool("ORRIN_UI_OPEN", True)
 
 
 def metrics_enabled() -> bool:
     """Whether the Prometheus metrics exporter should bind a port (ORRIN_METRICS=1).
     Off by default: a shipped desktop app should open no listening port unless the
     user explicitly opts in to observability/remote tooling."""
-    return _flag("ORRIN_METRICS")
+    return env_bool("ORRIN_METRICS")
 
 
 def pick_free_port(host: str = "127.0.0.1") -> int:

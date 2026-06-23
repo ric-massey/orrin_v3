@@ -83,6 +83,7 @@ from dotenv import load_dotenv
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.coerce_to_string import coerce_to_string
+from brain.utils.env import env_bool
 # build_system_prompt is imported deferred at its call site (see below) to keep
 # this L1 utils module free of a load-time utils→cognition (L1→L3) import cycle —
 # the same pattern utils/response_utils.py uses.
@@ -108,7 +109,7 @@ _LLM_TOOL_CALLERS: frozenset = frozenset({
 })
 
 def _llm_tool_only() -> bool:
-    return os.getenv("ORRIN_LLM_TOOL_ONLY", "1").strip().lower() not in ("0", "false", "no")
+    return env_bool("ORRIN_LLM_TOOL_ONLY", True)
 
 # --- Client singleton (lazy) ---
 _client: Optional[OpenAI] = None

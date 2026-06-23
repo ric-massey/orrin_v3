@@ -45,6 +45,8 @@ import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional
 
+from brain.utils.env import env_bool
+
 _DEFAULT_URL = "http://127.0.0.1:8800"
 _FLUSH_INTERVAL = 0.10   # seconds between coalesced flushes
 _LOG_CAP = 500           # bounded ring — oldest logs dropped on overflow
@@ -113,7 +115,7 @@ class TelemetryBridge:
         _tok = os.getenv("ORRIN_INGEST_TOKEN", "").strip()
         self._ingest_headers: Dict[str, str] = {"X-Orrin-Ingest-Token": _tok} if _tok else {}
         if enabled is None:
-            enabled = os.getenv("ORRIN_TELEMETRY_DISABLED", "").strip().lower() not in ("1", "true", "yes")
+            enabled = not env_bool("ORRIN_TELEMETRY_DISABLED", False)
         self.enabled = bool(enabled)
         self._flush_interval = flush_interval
 

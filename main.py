@@ -96,6 +96,7 @@ except Exception:
 # --- Utils ---
 from brain.utils.paths import compute_repo_root
 from brain.utils.sys_events import record_event
+from brain.utils.env import env_bool
 from brain.utils.alive_brain import AliveBrain, start_fs_watcher
 from brain.utils.memory_health import build_memory_health_provider
 from brain.utils.metrics_sampling import build_fast_sampler
@@ -254,7 +255,7 @@ _bridge_window_file: str | None = None  # file:// URL for the bridge window
 _bridge = None
 _BRIDGE_MODE = False
 try:
-    if os.getenv("ORRIN_UI", "1").strip().lower() in ("0", "false", "no"):
+    if not env_bool("ORRIN_UI", True):
         print("[ui] ORRIN_UI=0 → Face & Brain UI not started")
     else:
         ORRIN_HOST = os.environ.get("ORRIN_BACKEND_HOST", "127.0.0.1")

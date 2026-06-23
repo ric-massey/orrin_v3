@@ -39,6 +39,7 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
 from brain.paths import PREDICTIONS_FILE, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
 # Leaf support helpers (behavioral receipts, rule distillation, surprise firing +
 # observable-state gathering) extracted to prediction_helpers.py (Phase 4.5C).
 # Re-imported (noqa F401) so the internal callers below + the master-plan-phase1
@@ -394,10 +395,9 @@ def check_predictions(context: Dict[str, Any]) -> int:
     # would need new scoped state (noted in the plan's Fix 6 caveat). Flag-gated with
     # the same switch as the hard escalator it feeds.
     try:
-        import os as _os
         # Default ON (opt out with ORRIN_HARD_DISENGAGE=0) — same gate as metacog's
         # hard escalator this feeds.
-        _on = _os.environ.get("ORRIN_HARD_DISENGAGE", "1").strip().lower() not in ("0", "false", "no", "off")
+        _on = env_bool("ORRIN_HARD_DISENGAGE", True)
         _gd = context.get("committed_goal") if isinstance(context, dict) else None
         if _on and _evaluated_mismatches and isinstance(_gd, dict) and (_gd.get("id") or _gd.get("title")):
             _miss = sum(_evaluated_mismatches) / len(_evaluated_mismatches)

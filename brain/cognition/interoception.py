@@ -23,12 +23,12 @@
 #     would-be context-adaptive set-point τ logged here; applied in Phase 2).
 from __future__ import annotations
 
-import os
 from typing import Any, Dict, Optional
 
 from brain.core.runtime_log import get_logger
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
+from brain.utils.env import env_bool
 from brain.paths import DATA_DIR
 
 _log = get_logger(__name__)
@@ -52,7 +52,7 @@ _NUDGE_MIN = 0.0005           # ignore negligible surprises
 
 
 def _affect_enabled() -> bool:
-    return os.environ.get("ORRIN_INTEROCEPTIVE_AFFECT", "1").strip().lower() not in ("0", "false", "no", "off")
+    return env_bool("ORRIN_INTEROCEPTIVE_AFFECT", True)
 
 # Class priors (ms) for cold-start — this IS dual_process_loop's I9 "automaticity
 # is cheap": procedural/gathering steps are predicted cheap, deliberate/effortful
@@ -173,7 +173,7 @@ _EVC_CAP = 0.20           # max |penalty| per candidate
 
 
 def _evc_enabled() -> bool:
-    return os.environ.get("ORRIN_EVC_GATING", "1").strip().lower() not in ("0", "false", "no", "off")
+    return env_bool("ORRIN_EVC_GATING", True)
 
 
 # C5 corrigibility (proactive_resource_plan.md): the energy/EVC layer must NEVER
@@ -223,7 +223,7 @@ def setpoint_candidate(context: Dict[str, Any]) -> float:
 
 
 def _allostatic_enabled() -> bool:
-    return os.environ.get("ORRIN_ALLOSTATIC_SETPOINT", "1").strip().lower() not in ("0", "false", "no", "off")
+    return env_bool("ORRIN_ALLOSTATIC_SETPOINT", True)
 
 
 def allostatic_setpoint(context: Dict[str, Any], state: Dict[str, Any]) -> float:

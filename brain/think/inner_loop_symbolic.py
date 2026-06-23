@@ -21,7 +21,6 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
-import os
 import time
 from typing import Any, Dict, Tuple
 
@@ -30,6 +29,7 @@ from brain.think.scratchpad import scratchpad_append, scratchpad_latest
 from brain.think.meta_controller import decide as meta_decide
 from brain.think.thought_stream import emit_thought
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
 _log = get_logger(__name__)
 
 # Constants are kept local (not imported from inner_loop) to avoid a circular
@@ -45,7 +45,7 @@ def symbolic_inner_loop_enabled() -> bool:
     """Symbolic mode is on by default whenever inner_loop falls here (LLM not
     callable). Set ORRIN_INNER_LOOP_SYMBOLIC=0 to fall back to Fix E's honest
     defer if symbolic quality ever regresses."""
-    return os.getenv("ORRIN_INNER_LOOP_SYMBOLIC", "1").strip().lower() not in ("0", "false", "no")
+    return env_bool("ORRIN_INNER_LOOP_SYMBOLIC", True)
 
 
 # ── Draft: the unified symbolic stack ─────────────────────────────────────────

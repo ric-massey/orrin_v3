@@ -92,7 +92,8 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
             )
             for name in chosen
         ]
-    except Exception:
+    except Exception as exc:  # KG unavailable/bad — record, originate nothing here
+        record_failure("intrinsic_goals._concept_deepening_goals", exc)
         return []
 
 
@@ -155,7 +156,8 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     try:
         from brain.symbolic.causal_graph import get_all_edges
         edges = get_all_edges()
-    except Exception:
+    except Exception as exc:  # causal graph unavailable — record, no frontier goals
+        record_failure("intrinsic_goals._causal_frontier_goals", exc)
         return []
     # Group edges by effect; keep the best (max) causal_score and total evidence.
     by_effect: Dict[str, Dict] = {}
@@ -271,7 +273,8 @@ def _autobiographical_continuity_goals(limit: int = 2) -> List[Dict]:
     active = _active_goal_titles()
     try:
         threads = load_json(THREADS_FILE, default_type=list) or []
-    except Exception:
+    except Exception as exc:  # threads unreadable — record, no continuity goals
+        record_failure("intrinsic_goals._autobiographical_continuity_goals", exc)
         return []
     alive = [t for t in threads if isinstance(t, dict) and t.get("status") == "alive"]
     # Oldest-touched first — the threads most at risk of silently dropping.
@@ -336,8 +339,8 @@ def _drain_making_backlog(topic: str) -> None:
                 and str(b.get("topic", "")).lower() != low]
         if len(kept) != len(backlog):
             save_json(_MAKING_BACKLOG_FILE, kept)
-    except Exception:
-        pass
+    except Exception as exc:  # backlog I/O best-effort — record
+        record_failure("intrinsic_goals._drain_making_backlog", exc)
 
 
 def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> List[Dict]:
@@ -356,8 +359,8 @@ def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> Li
             t = _strip_goal_scaffold(str((b or {}).get("topic", ""))).strip()
             if t and _acceptable_goal_subject(t):
                 topics.append(t)
-    except Exception:
-        pass
+    except Exception as exc:  # backlog read best-effort — record, fall through
+        record_failure("intrinsic_goals._making_goals.backlog", exc)
     if len(topics) < limit:
         try:
             for entry in reversed(list(long_mem or [])[-30:]):
@@ -367,8 +370,8 @@ def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> Li
                     t = _strip_goal_scaffold(m.group(1).strip())[:70].strip()
                     if t and _acceptable_goal_subject(t):
                         topics.append(t)
-        except Exception:
-            pass
+        except Exception as exc:  # long-memory scan best-effort — record, fall through
+            record_failure("intrinsic_goals._making_goals.research", exc)
     seen, uniq = set(), []
     for t in topics:
         k = t.lower()
@@ -483,7 +486,8 @@ def _goal_from_recent_research(long_mem: list, scan: int = 30) -> Optional[Dict]
                 milestones=[f"A new angle on '{topic[:50]}' was researched.",
                             "A new finding was written to long memory."],
             )
-    except Exception:
+    except Exception as exc:  # long-memory scan failed — record, no follow-up goal
+        record_failure("intrinsic_goals._goal_from_recent_research", exc)
         return None
     return None
 
@@ -548,6 +552,6 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
             picked = _weighted_sample(scored, 1)
             if picked:
                 return picked[0]
-    except Exception:
-        pass
+    except Exception as exc:  # aspiration weighting optional — record, pick at random
+        record_failure("intrinsic_goals._varied_symbolic_goal.pressure", exc)
     return random.choice(pool)

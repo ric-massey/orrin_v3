@@ -16,6 +16,10 @@
     "definition": "achievement_significance(goal: 'Optional[Dict]') -> 'float'\nI17 — felt achievement scaled to real significance, so completion/milestone joy\n    reflects what was *actually* accomplished (objective-met × difficulty × novelty),\n    never a flat per-step drip that rebuilds \"feels productive without accomplishing\".\n    Returns a multiplier centred ~1.0, clamped to [0.4, 1.3]. Objective-met is the gate\n    (enforced by mark_goal_completed); this only shapes the *magnitude*."
   },
   {
+    "name": "action_prior",
+    "definition": "action_prior(lens: 'Dict[str, Any] | None', action: 'str', description: 'str' = '') -> 'float'"
+  },
+  {
     "name": "active_commitment",
     "definition": "active_commitment(context: 'Dict[str, Any]') -> 'Optional[str]'"
   },
@@ -60,16 +64,8 @@
     "definition": "advance_step(goal_id: 'Any', step_index: 'int', *, result: 'str' = '', source: 'str' = '') -> 'List[Dict]'\nMark a plan step completed and stamp its result, atomically."
   },
   {
-    "name": "affect_driven_mode_shift",
-    "definition": "affect_driven_mode_shift() -> 'None'\nAutomatically adjusts Orrin's operating mode based on emotional state."
-  },
-  {
     "name": "allostatic_setpoint",
     "definition": "allostatic_setpoint(context: 'Dict[str, Any]', state: 'Dict[str, Any]') -> 'float'\nPhase 2 (C3): the context-adaptive recovery target τ for resource_deficit,\n    REPLACING the fixed 0.15 baseline. Recover deeper when idle; tolerate more\n    deficit during a live / critical exchange — predictive regulation, not a static\n    set-point (Sterling 2012, allostasis). Sustained high deficit accrues\n    ALLOSTATIC LOAD that forces τ back down (McEwen & Wingfield 2003), so \"permit\n    acute burn\" can never become a permanent run-ragged state. Smoothed (C4) so it\n    doesn't thrash. Returns τ ∈ [0.10, 0.45]; falls back to 0.15 when disabled or\n    context/state is absent. Mutates `state` to persist allostatic load + smoothed τ."
-  },
-  {
-    "name": "announce_to_dashboard",
-    "definition": "announce_to_dashboard(context=None)"
   },
   {
     "name": "append_death_continuity",
@@ -78,10 +74,6 @@
   {
     "name": "apply",
     "definition": "apply(mutator: 'Mutator', *, source: 'str' = '') -> 'List[Dict]'\nAtomically load → mutate → save the goal store under the arbiter lock.\n\n    `mutator(goals) -> goals` must be pure-ish: mutate the list in place (or return\n    a new one) and return the list to persist. Returns the persisted goals.\n\n    This is the chokepoint: every goal write should ultimately go through here so\n    no two writers can interleave a load/save."
-  },
-  {
-    "name": "apply_affective_feedback",
-    "definition": "apply_affective_feedback(context)\nSimulates realistic affective dynamics including domain-specific confidence,\n    emotional memory decay, narrative feedback, suppression, and dominant emotion blending.\n    Now logs emotional narratives and feedback into working memory for traceability."
   },
   {
     "name": "apply_attention_filter",
@@ -114,6 +106,10 @@
   {
     "name": "apply_fragmentation_cost",
     "definition": "apply_fragmentation_cost(context: 'Dict[str, Any]') -> 'None'\nCalled once per cycle from finalize.py.\n    - Increments cycles_unresolved for active contradictions\n    - Deducts from affect_stability proportional to fragmentation\n    - Bumps social_penalty/uncertainty\n    - Surfaces hottest contradiction to working memory (rate-limited)\n    - Sets context[\"_fragmentation_score\"]"
+  },
+  {
+    "name": "apply_goal_lens",
+    "definition": "apply_goal_lens(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nPopulate or clear context['goal_lens']; never overrides reflex/safety routing."
   },
   {
     "name": "apply_habituation",
@@ -172,10 +168,6 @@
     "definition": "associative_recall(context: 'Dict[str, Any]') -> 'str'\nOrrin deliberately opens to associative recall — not searching for anything\n    specific, just letting the current state draw something forward.\n\n    Unlike maybe_surface_association: bypasses the cooldown, scores more\n    memories, and surfaces up to 2 results. Writes to WM."
   },
   {
-    "name": "attempt_regulation",
-    "definition": "attempt_regulation(context: 'Dict[str, Any]') -> 'bool'\nAttempt one regulation event if conditions are met.\n    Mutates affect_state in context and saves to disk.\n    Returns True if a regulation attempt was made (success or failure)."
-  },
-  {
     "name": "attend_goal",
     "definition": "attend_goal(context: 'Optional[Dict[str, Any]]' = None) -> 'str'\nThin DELIBERATE act (dual_process_loop.md §6.3): consciously focus on the\n    committed goal WITHOUT executing its steps. Step execution is owned by the\n    Executive (which runs pursue_committed_goal in the background) — so this keeps\n    \"deciding to concentrate\" available to the conscious slot without double\n    execution (I3). Surfaces the goal and its next step into working memory so the\n    deliberate mind can think about, supervise, or recommit to it."
   },
@@ -194,6 +186,10 @@
   {
     "name": "available",
     "definition": "available() -> 'bool'"
+  },
+  {
+    "name": "bind_situation",
+    "definition": "bind_situation(context: 'dict') -> 'List[Dict[str, Any]]'\nBind this cycle's contents by shared referent.\n\n    Fail-safe contract: every error returns ``[]`` and writes\n    ``context[\"_bound_candidates\"] = []``."
   },
   {
     "name": "body_sense_voice_hint",
@@ -234,10 +230,6 @@
   {
     "name": "capability_available",
     "definition": "capability_available(cap: 'Optional[str]', context: 'Any' = None) -> 'bool'\nIs `cap` available right now? Used to decide degrade-vs-pursue. A goal whose\n    required capability is down can't be done as-is — better to reduce it to an\n    achievable sub-goal or disengage than to nag/fake."
-  },
-  {
-    "name": "check_affect_drift",
-    "definition": "check_affect_drift(context=None, max_cycles=10)\nDetects emotional drift and intervenes using shadow dialogue or reflection.\n    Rewards successful mode recovery using reward_signal/novelty signals."
   },
   {
     "name": "check_and_reward",
@@ -284,10 +276,6 @@
     "definition": "check_projection_against_reality(context: 'Optional[Dict]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from dream_cycle every few dream runs."
   },
   {
-    "name": "check_user_presence",
-    "definition": "check_user_presence(context=None)"
-  },
-  {
     "name": "check_violates_boundaries",
     "definition": "check_violates_boundaries(prompt)\nReturn a list of boundary rules that the prompt appears to violate.\n    Returns [] when no violations are found, and None only on hard failure.\n    Supports string rules (substring match). If a rule dict has {\"regex\": \"...\"},\n    it will be applied as a regex."
   },
@@ -316,12 +304,12 @@
     "definition": "compose_dream(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
   },
   {
-    "name": "compose_section",
-    "definition": "compose_section(context: 'Dict[str, Any] | None' = None, **kwargs: 'Any') -> 'Dict[str, Any]'\nSubstantial, cumulative production for a committed long-form goal. Persists a manuscript section, records a tracked-work effect, and advances the owning structured plan step."
-  },
-  {
     "name": "comprehend",
     "definition": "comprehend(user_text: 'str', context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nParse user input into structured state events.\n    Returns parsed signals. Side-effects: updates Orrin's state."
+  },
+  {
+    "name": "comprehend_goal",
+    "definition": "comprehend_goal(goal: 'Dict[str, Any]', context: 'Dict[str, Any] | None' = None) -> 'Dict[str, Any]'\nReturn a copy enriched with a definition of done, grounded parts and derived plan."
   },
   {
     "name": "compute_body_states",
@@ -420,32 +408,12 @@
     "definition": "decay_old_entities() -> 'Dict'\nErode confidence of idle entities; prune those below floor.\n    Safe to call during dream_cycle without corrupting active entities.\n    Never decays never_decay=True entries (Orrin, bootstrap identities)."
   },
   {
-    "name": "decide_to_run_code",
-    "definition": "decide_to_run_code(context: 'Dict[str, Any]' = None, **_) -> 'None'\nOrrin writes and runs a small Python script to explore or compute something."
-  },
-  {
-    "name": "decide_to_search",
-    "definition": "decide_to_search(context: 'Dict[str, Any]' = None, **_) -> 'None'\nOrrin performs a web search based on his current goal or working memory."
-  },
-  {
-    "name": "decide_to_use_tools",
-    "definition": "decide_to_use_tools(context: 'Dict[str, Any]' = None, **_) -> 'None'\nOrrin scans his current context and decides whether to use a tool.\n    Rule-based — works without LLM."
-  },
-  {
-    "name": "decide_to_write_code",
-    "definition": "decide_to_write_code(context: 'Dict[str, Any]' = None, **_) -> 'None'\nWrite a new cognitive function for the current goal — but ONLY when the\n    code-writing tool can supply a genuine function body. Writing code is a\n    generative act that needs the LLM tool; in tool-only mode (the default) this\n    background caller is not on the LLM allow-list, so it gets nothing. That is the\n    honest outcome: NO do-nothing stub is written and NO milestone is faked. The\n    goal's production milestone then stays unmet, so the goal honestly degrades or\n    disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win."
-  },
-  {
     "name": "decode",
     "definition": "decode(ids) -> 'str'"
   },
   {
     "name": "decompose_goal",
     "definition": "decompose_goal(goal: 'Dict') -> 'List[Dict]'\nBreak a complex goal into actionable subgoals.\n    Uses rule-based decomposition when LLM is unavailable."
-  },
-  {
-    "name": "delete_own_code",
-    "definition": "delete_own_code(name: 'str') -> 'Dict[str, Any]'\nDelete a function or tool Orrin wrote (cannot delete core files)."
   },
   {
     "name": "delta_reward",
@@ -466,10 +434,6 @@
   {
     "name": "detect_and_synthesize",
     "definition": "detect_and_synthesize(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nDream cycle entry point.\n    1. Scans WM for capability gaps and records candidates.\n    2. If a high-scoring candidate exists and cooldown allows: synthesizes it.\n    Returns a summary dict."
-  },
-  {
-    "name": "detect_memory_contradictions",
-    "definition": "detect_memory_contradictions()\nScan recent long-memory thoughts for contradictions and log them (LLM path).\n    Returns the parsed contradictions JSON (or None/{} if not available).\n\n    One of three distinct contradiction checkers (honest names, F6):\n    this one reads long memory; `symbolic_cognition.detect_rule_contradictions`\n    scans symbolic rules; `fragmentation.detect_self_model_conflicts` checks the\n    self-model."
   },
   {
     "name": "detect_self_model_conflicts",
@@ -580,6 +544,10 @@
     "definition": "export_training_file(traces: 'List[Dict]') -> 'int'\nWrite traces to JSONL in OpenAI fine-tune format. Returns count written."
   },
   {
+    "name": "extract_entity_names",
+    "definition": "extract_entity_names(text: str, known_entities=None) -> set[str]\nReturn symbolic entity names mentioned in ``text`` without mutating the\n    world model. ``known_entities`` may be the model's entity keys; callers that\n    process several texts can load/pass that vocabulary once."
+  },
+  {
     "name": "extract_last_reflection_topic",
     "definition": "extract_last_reflection_topic(context: Optional[Dict[str, Any]] = None, reflection_log_path: str = PosixPath('/Users/ricmassey/orrin_v3/brain/data/reflection_log.json')) -> str\nAttempts to find the most recent reflection topic from:\n    1. Working memory entries tagged with reflection-related types.\n    2. Reflection log file.\n    3. Emotional state fallback."
   },
@@ -638,10 +606,6 @@
   {
     "name": "form_from_observations",
     "definition": "form_from_observations(observations: 'List[str]', context: 'Dict[str, Any]') -> 'List[Dict]'\nProcess a list of metacognitive observations and form structured knowledge\n    for each one that can be classified.\n    Called from metacog_flush after apply_behavioral_adaptations."
-  },
-  {
-    "name": "form_opinion",
-    "definition": "form_opinion(context: 'Dict[str, Any]') -> 'Optional[str]'\nCalled each cycle from finalize.py. Rate-limited.\n    Returns the topic string if an opinion was formed, else None."
   },
   {
     "name": "form_structured_knowledge",
@@ -768,10 +732,6 @@
     "definition": "goal_weighted_reward(base_reward: 'float', context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '', goal_weight: 'float' = 0.6) -> 'float'\nBlend base reward with goal progress when a committed goal is active.\n\n    When a goal is active:\n        final = (1 - goal_weight) * base_reward + goal_weight * goal_progress\n    When no goal is active:\n        final = base_reward (unchanged)\n\n    goal_weight=0.60 means 60% of the reward is determined by whether the\n    cycle actually moved toward the goal, 40% by the function's own quality.\n    This creates a strong incentive to stay goal-directed."
   },
   {
-    "name": "grep_files",
-    "definition": "grep_files(args=None, **kwargs) -> 'Dict[str, Any]'\nSearch file contents for a keyword or regex pattern.\n\n    Args (dict or positional string):\n        query       (str, required) — substring or regex to search for\n        root        (str)  — directory to search under (default: brain/data/)\n        pattern     (str)  — glob to filter files (default: \"*.json,*.txt,*.py\")\n        max_results (int)  — max matching lines to return (default: 50)\n        context_lines (int)— lines of context before/after each match (default: 1)\n        case_sensitive (bool) — default False\n\n    Returns:\n        {\"success\": bool, \"query\": str, \"matches\": [...], \"count\": int}\n        Each match: {\"file\": str, \"line\": int, \"text\": str, \"context\": [str]}"
-  },
-  {
     "name": "grounded_experience",
     "definition": "grounded_experience(max_chars: 'int' = 8000) -> 'str'\nBind his WORDS to his actual world — the grounding→language coupling.\n    Turns his current felt body state (body_sense), his world-model narrative\n    (the environment he senses), and recently resolved predictions (what he\n    expected vs. what happened) into plain sentences he learns from. This is how\n    'heavy' or 'quiet evening' or 'I was right' come to mean something, instead of\n    being ungrounded tokens. Read-only; safe in any process."
   },
@@ -790,6 +750,10 @@
   {
     "name": "heavy_cycle_frequency",
     "definition": "heavy_cycle_frequency() -> 'float'\nScales how often dream/reading (the memory-hungry cycles) are permitted. A small\n    body dreams less often because it cannot afford the footprint as frequently.\n\n    DEFERRED — computed but NOT yet consumed (no callers). The dream cycle still fires\n    on the fixed ~6h interval in ORRIN_loop.py, so dream/reading cadence does not yet\n    scale with body size. Folding this into the dream/reading scheduler was kept out of\n    the embodiment pass to avoid touching dream cadence logic (see PART X of\n    docs/orrin_embodiment_architecture.md). Wire here when picking that up."
+  },
+  {
+    "name": "hydrate_goal_model",
+    "definition": "hydrate_goal_model(goal: 'Dict[str, Any]', context: 'Dict[str, Any] | None' = None) -> 'Dict[str, Any]'\nIdempotently expose one complete goal model at both top level and spec."
   },
   {
     "name": "identity_drift_warning",
@@ -846,10 +810,6 @@
   {
     "name": "invent_new_value",
     "definition": "invent_new_value(context)"
-  },
-  {
-    "name": "investigate_unexplained_emotions",
-    "definition": "investigate_unexplained_emotions(context, self_model, memory)"
   },
   {
     "name": "is_daemon_running",
@@ -926,14 +886,6 @@
   {
     "name": "list_books",
     "definition": "list_books() -> 'List[dict]'\nThe shelf: every book/article he can choose, with size and how often he's\n    read it. Sorted simplest-first (curriculum order, then the rest)."
-  },
-  {
-    "name": "list_directory",
-    "definition": "list_directory(args=None, **kwargs) -> 'dict'\nList files and folders in a directory.\n    args: path string, or dict with key 'path'.\n    Returns {\"success\": bool, \"entries\": [...], \"path\": str}"
-  },
-  {
-    "name": "list_own_code",
-    "definition": "list_own_code() -> 'List[Dict[str, Any]]'\nReturn everything Orrin has written."
   },
   {
     "name": "lm_draft",
@@ -1128,10 +1080,6 @@
     "definition": "note_intake_completed(topic: 'str') -> 'None'"
   },
   {
-    "name": "notify_user",
-    "definition": "notify_user(args=None, **kwargs) -> 'dict'\nSend a desktop notification (macOS / Windows / Linux).\n    args: str message, or dict with keys message/title/subtitle"
-  },
-  {
     "name": "novel_count",
     "definition": "novel_count(goal_id: 'str', action: 'Optional[str]' = None) -> 'int'\nMonotonic count of distinct items surfaced for this goal (Fix 3 reads this).\n    When `action` is None, sums across all actions recorded for the goal."
   },
@@ -1248,10 +1196,6 @@
     "definition": "read_book(selector: 'Path | str | None' = None, max_chars: 'int' = 50000, topics: 'List[str] | None' = None) -> 'tuple[str, str]'\nSettle in with a particular book and return (title, text). Marks it read,\n    so novelty later steers him toward books he hasn't opened. `selector` may be a\n    Path, a filename, or None (let one draw him via `pick_book`)."
   },
   {
-    "name": "read_clipboard",
-    "definition": "read_clipboard(context=None)"
-  },
-  {
     "name": "read_host_vitals",
     "definition": "read_host_vitals() -> 'Dict[str, float]'\nHost-wide metrics (the WHOLE machine, tabs included — not Orrin's RSS). Same\n    psutil calls HostResourceGuard uses; this is the felt-body read of them."
   },
@@ -1277,7 +1221,7 @@
   },
   {
     "name": "recognise_step_action",
-    "definition": "recognise_step_action(step_text: 'str') -> 'Optional[str]'\nMap a plan-step intention to a registered cognition-function name, or None\n    when the step is purely internal/deliberative (no motor program — e.g.\n    \"reflect on what was found\"). The caller treats None as a thought, not an act.\n\n    Three tiers (function_selection_fix_v2.md §4.1):\n      1) literal tool name in the step  (strongest signal)\n      2) habitual keyword rules         (fast path)\n      3) semantic fallback over PROCEDURAL fns only — broadens the reachable set\n         past the 8-rule ceiling while staying reversible (the daemon is\n         procedural-only anyway, so no irreversible act can be recruited here and\n         the deliberate/executive mutual-exclusion is preserved — no double-exec).\n    Below the confidence floor it still returns None, so genuinely internal steps\n    stay deliberative (System-1/System-2 split preserved)."
+    "definition": "recognise_step_action(step_text: 'Any') -> 'Optional[str]'\nMap a plan-step intention to a registered cognition-function name, or None\n    when the step is purely internal/deliberative (no motor program — e.g.\n    \"reflect on what was found\"). The caller treats None as a thought, not an act.\n\n    Three tiers (function_selection_fix_v2.md §4.1):\n      1) literal tool name in the step  (strongest signal)\n      2) habitual keyword rules         (fast path)\n      3) semantic fallback over PROCEDURAL fns only — broadens the reachable set\n         past the 8-rule ceiling while staying reversible (the daemon is\n         procedural-only anyway, so no irreversible act can be recruited here and\n         the deliberate/executive mutual-exclusion is preserved — no double-exec).\n    Below the confidence floor it still returns None, so genuinely internal steps\n    stay deliberative (System-1/System-2 split preserved)."
   },
   {
     "name": "reconcile_goal_stores",
@@ -1356,16 +1300,8 @@
     "definition": "reflect_as_agents(topic: 'Optional[str]' = None, context: 'Optional[Dict[str, Any]]' = None) -> 'Optional[Dict[str, Any]]'\nInvokes internal agent dialogue about a topic.\n    If topic isn't provided, infer it from persisted context.\n    Returns {\"agent_responses\": [...], \"synthesis\": \"...\"} or None."
   },
   {
-    "name": "reflect_on_affect",
-    "definition": "reflect_on_affect(context, self_model, memory)"
-  },
-  {
     "name": "reflect_on_cognition_patterns",
     "definition": "reflect_on_cognition_patterns(t='cognition')"
-  },
-  {
-    "name": "reflect_on_cognition_rhythm",
-    "definition": "reflect_on_cognition_rhythm()"
   },
   {
     "name": "reflect_on_cognition_schedule",
@@ -1382,10 +1318,6 @@
   {
     "name": "reflect_on_effectiveness",
     "definition": "reflect_on_effectiveness(t='effectiveness')"
-  },
-  {
-    "name": "reflect_on_emotion_model",
-    "definition": "reflect_on_emotion_model(context, self_model, memory)\nReflect on the current emotion model and optionally trigger reward signals.\n    - Uses load_all_known_json() to fetch the latest emotion model.\n    - Logs a concise summary to working memory.\n    - Rewards successful reflection; smaller reward on failure."
   },
   {
     "name": "reflect_on_emotion_sensitivity",
@@ -1448,8 +1380,8 @@
     "definition": "register_self_write(path: 'str') -> 'None'\nCall this whenever Orrin writes a file, so we don't signal on our own changes."
   },
   {
-    "name": "repair_contradictions",
-    "definition": "repair_contradictions()\nAttempt to repair the most recent contradiction in the CONTRADICTIONS_FILE.\n    If none found, tries the latest substantial long-memory entry."
+    "name": "relevance",
+    "definition": "relevance(lens: 'Dict[str, Any] | None', value: 'Any') -> 'float'"
   },
   {
     "name": "report",
@@ -1516,18 +1448,6 @@
     "definition": "run_active_experiment(context: 'Dict[str, Any]' = None, **_) -> 'str'\nCognition function: advance the experimentation pipeline by one step.\n    Can be selected by the bandit during autonomous operation."
   },
   {
-    "name": "run_benchmark",
-    "definition": "run_benchmark(suite: 'Optional[List[Dict]]' = None) -> 'Dict'\nRun the test suite through the symbolic reasoning layer (no LLM).\n    Returns a result dict and appends to benchmark_history.json."
-  },
-  {
-    "name": "run_embodied_cycle",
-    "definition": "run_embodied_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
-  },
-  {
-    "name": "run_embodied_observation",
-    "definition": "run_embodied_observation(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
-  },
-  {
     "name": "run_episode_replay",
     "definition": "run_episode_replay(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nHippocampal-style replay during dream cycle.\n\n    1. Load cognition_history.json (list of {choice, reward, is_agentic, timestamp}).\n    2. Slide a window of _WINDOW_SIZE cycles. When mean reward > _REWARD_THRESHOLD,\n       it's a high-reward episode.\n    3. For each episode, call contextual_bandit.update() for each function in the\n       sequence with a discounted replay reward (backward propagation: earlier\n       functions get slightly less credit).\n    4. Extract all consecutive pairs from all high-reward windows. Pairs that\n       appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so\n       select_function can apply a chain bonus.\n\n    Returns a summary dict for dream_cycle logging."
   },
@@ -1536,44 +1456,20 @@
     "definition": "run_experiment_cycle(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nDream cycle entry point. Advances the experiment pipeline by ONE step:\n    - If no pending experiments and cooldown elapsed: generate a new hypothesis\n    - If proposed: design the test\n    - If designed: run the test\n    - If testing: consolidate\n    Returns a summary dict."
   },
   {
-    "name": "run_forgetting_cycle",
-    "definition": "run_forgetting_cycle(context: 'Optional[Dict]' = None) -> 'Dict'"
-  },
-  {
     "name": "run_inference_cycle",
     "definition": "run_inference_cycle() -> dict\nPeriodically derive new symbolic relations via forward chaining\n    and persist them back to the world model.\n\n    Called from dream cycle or scheduled maintenance — NOT every loop.\n    Scientific basis: Johnson-Laird (1983), Description Logic (Baader 2003),\n    Gärdenfors Conceptual Spaces (2000)."
-  },
-  {
-    "name": "run_intrinsic_motivation",
-    "definition": "run_intrinsic_motivation(context: 'Dict') -> 'Dict'\nCognitive-loop entry point — called from ORRIN_loop as a registered\n    cognitive function.  Checks exploration_drive on the current user input (if any)\n    and spawns sub-goals when warranted.  Returns a summary dict."
   },
   {
     "name": "run_pipeline",
     "definition": "run_pipeline(force: 'bool' = False) -> 'Dict[str, Any]'\nFull pipeline: load traces → export → submit job.\n    Returns a status dict."
   },
   {
-    "name": "run_rule_compression",
-    "definition": "run_rule_compression() -> 'Dict[str, Any]'\nMain entry point, called during dream cycle.\n\n    Scans symbolic_rules.json for clusters of specific rules with shared condition\n    tokens. Generates a meta-rule per cluster and tombstones the source rules.\n\n    Returns a summary dict."
-  },
-  {
     "name": "run_sandbox_experiments",
     "definition": "run_sandbox_experiments(context=None)\nOrrin enters a 'sandbox' and runs 1–3 random experiments.\n    All actions, results, and self-evaluations are logged to SANDBOX_LOG."
   },
   {
-    "name": "run_self_improvement",
-    "definition": "run_self_improvement(context: 'Optional[Dict]' = None) -> 'Dict'"
-  },
-  {
-    "name": "run_symbolic_dream",
-    "definition": "run_symbolic_dream(context: 'Optional[Dict]' = None) -> 'Dict'\nZero-LLM dream pass.  Returns summary of insights generated."
-  },
-  {
-    "name": "run_symbolic_experiments",
-    "definition": "run_symbolic_experiments(context: 'Optional[Dict]' = None) -> 'Dict'\nMain entry point — called from ORRIN_loop as a registered cognitive function.\n    Picks pending high-exploration_drive goals, designs and runs one experiment each."
-  },
-  {
-    "name": "run_symbolic_prediction_cycle",
-    "definition": "run_symbolic_prediction_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nFull cycle:\n      1. Check recently fired rules and generate symbolic predictions.\n      2. Resolve any pending symbolic predictions that are now evaluable.\n      3. Chain from verified predictions.\n    Returns summary."
+    "name": "run_symbolic_maintenance",
+    "definition": "run_symbolic_maintenance(context, dream_entry, this_count, dream_completed)\nRun the dream cycle's symbolic-maintenance phases (fail-safe, in order)."
   },
   {
     "name": "save_autobiography",
@@ -1590,10 +1486,6 @@
   {
     "name": "save_neutral_count",
     "definition": "save_neutral_count(count: int) -> None"
-  },
-  {
-    "name": "save_note",
-    "definition": "save_note(args=None, **kwargs) -> 'dict'\nSave a timestamped note to data/notes/.\n    args: str content, or dict with 'content' and optional 'title'.\n    Returns {\"success\": bool, \"path\": str}"
   },
   {
     "name": "save_predictions",
@@ -1618,10 +1510,6 @@
   {
     "name": "schedule_task",
     "definition": "schedule_task(content: 'str', fire_at: 'str', event_type: 'str' = 'scheduled_reminder', importance: 'int' = 2) -> 'str'\nQueue a delayed task that fires when fire_at (ISO UTC string) is reached.\n    Returns the task id."
-  },
-  {
-    "name": "search_files",
-    "definition": "search_files(args=None, **kwargs) -> 'dict'\nRecursively search for files matching a glob pattern under a root directory.\n    args: str pattern (e.g. '*.py'), or dict with 'pattern' and optional 'root'.\n    Returns {\"success\": bool, \"matches\": [str, ...], \"count\": int}"
   },
   {
     "name": "search_own_files",
@@ -1661,7 +1549,7 @@
   },
   {
     "name": "set_goal_plan",
-    "definition": "set_goal_plan(goal: 'Dict', steps: 'List[str]') -> 'None'\nAttach a fresh plan to a goal from a list of step description strings.\n    Overwrites any existing plan.\n\n    Steps are de-duplicated by normalized text (a duplicate is never appended,\n    regardless of status — audit §7 found the same step 5× in one plan) and\n    placeholder steps are rejected outright."
+    "definition": "set_goal_plan(goal: 'Dict', steps: 'List[Any]') -> 'None'\nAttach a fresh plan to a goal from a list of step description strings.\n    Overwrites any existing plan.\n\n    Steps are de-duplicated by normalized text (a duplicate is never appended,\n    regardless of status — audit §7 found the same step 5× in one plan) and\n    placeholder steps are rejected outright."
   },
   {
     "name": "set_lr",
@@ -1757,19 +1645,11 @@
   },
   {
     "name": "survey_environment",
-    "definition": "survey_environment(context=None)"
+    "definition": "survey_environment(context: 'Dict[str, Any]' = None) -> 'str'\nCognition function: Orrin actively surveys his environment and updates his\n    mental map. Called when he wants to understand where he is and what's changed."
   },
   {
     "name": "survival_reserve_bytes",
     "definition": "survival_reserve_bytes() -> 'float'"
-  },
-  {
-    "name": "symbolic_route",
-    "definition": "symbolic_route(context=None, **kw)"
-  },
-  {
-    "name": "synthesize_from_gap",
-    "definition": "synthesize_from_gap(context: 'Dict[str, Any]' = None, **_) -> 'str'\nCognition function: scan for the highest-priority capability gap in working\n    memory and synthesize a verified skill to address it. Uses the skill_synthesis\n    pipeline (syntax → safety → execution → LLM behavioral review) before\n    registering anything. Faster path than the full self_extension gestation cycle."
   },
   {
     "name": "synthesize_skill",
@@ -1782,10 +1662,6 @@
   {
     "name": "take_snapshot",
     "definition": "take_snapshot(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nCapture a lightweight state bundle before or after a cognition step."
-  },
-  {
-    "name": "thread_continue",
-    "definition": "thread_continue(context: 'Dict[str, Any]') -> 'str'\nCognition function: called when thread_continue signal fires.\n    Looks up the pending thread from context and runs a continuation pass."
   },
   {
     "name": "tick_commitment",
@@ -1818,10 +1694,6 @@
   {
     "name": "unmet_milestone_texts",
     "definition": "unmet_milestone_texts(goal: 'Dict') -> 'List[str]'\nText of milestones that are not yet met."
-  },
-  {
-    "name": "update_affect_state",
-    "definition": "update_affect_state(context=None, trigger=None)"
   },
   {
     "name": "update_ambient",
@@ -1892,10 +1764,6 @@
     "definition": "update_self_model()\nUpdate self-model from symbolic data; gated_generate only as last resort."
   },
   {
-    "name": "update_stagnation_signal_escalation",
-    "definition": "update_stagnation_signal_escalation(context: 'Dict[str, Any]') -> 'None'\nCall once per cycle. Reads stagnation_signal from affect_state, updates counter,\n    and injects urgency/penalty_signal signals as stagnation_signal compounds.\n\n    Mutates context[\"_cycles_bored\"] and context[\"affect_state\"]."
-  },
-  {
     "name": "update_temporal_state",
     "definition": "update_temporal_state(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nMain cycle function. Call once per cycle after emotional state is updated.\n\n    Returns:\n      felt_duration_label    : str\n      time_texture           : str — \"dense\"|\"normal\"|\"thin\"|\"waiting_[phase]\"\n      internal_clock_rate    : float\n      surface_text           : str — phenomenological line for inner loop\n      cycles_since_contact   : int\n      session_arc            : str\n      landmark               : Optional[dict]\n      retrospective_feel     : str — \"rich\"|\"moderate\"|\"sparse\"|\"none\"\n      temporal_self_location : str — felt sense of where in the session"
   },
@@ -1952,20 +1820,8 @@
     "definition": "wrap_reflective_claim(claim_text: 'str', context: 'Dict[str, Any]', sources: 'Optional[List[str]]' = None, counterexample_search: 'bool' = True) -> 'Dict[str, Any]'\nAttach structured metadata to a reflective claim string.\n\n    Returns a dict with 'content' + metadata fields ready for long_memory."
   },
   {
-    "name": "write_cognitive_function",
-    "definition": "write_cognitive_function(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True, context: 'Dict[str, Any]' = None, goal_id: 'str' = None) -> 'Dict[str, Any]'\nWrite a new Python function to custom_cognition/ and register it live.\n\n    Args:\n        name:        Function name (e.g. \"reflect_on_weather\")\n        description: One-line docstring\n        body:        The function body as a string (indented or not — will be normalized)\n        test:        If True, validate in sandbox before writing\n\n    Returns:\n        {\"success\": bool, \"path\": str, \"error\": str|None}"
-  },
-  {
-    "name": "write_desktop_note",
-    "definition": "write_desktop_note(context=None)"
-  },
-  {
     "name": "write_person_note",
     "definition": "write_person_note(person_id: 'str', note: 'str') -> 'None'\nLet Orrin append a social observation to a person's record."
-  },
-  {
-    "name": "write_tool",
-    "definition": "write_tool(name: 'str', description: 'str', body: 'str', *, test: 'bool' = True, context: 'Dict[str, Any]' = None, goal_id: 'str' = None) -> 'Dict[str, Any]'\nWrite a new tool function to agency/skills/ and add it to the live tool_registry.\n\n    Args:\n        name:        Tool name (e.g. \"fetch_weather\")\n        description: What it does\n        body:        Function body as a string\n        test:        Validate in sandbox first"
   },
   {
     "name": "zone_for_fn",

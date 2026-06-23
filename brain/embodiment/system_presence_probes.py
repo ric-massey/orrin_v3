@@ -44,7 +44,7 @@ def _run(cmd: List[str], *, timeout: int = _SUBPROCESS_TIMEOUT) -> Optional[str]
             timeout=timeout,
         )
         return result.stdout.strip() if result.returncode == 0 else None
-    except Exception:
+    except (OSError, subprocess.SubprocessError):  # intentional: timeout/missing binary → None
         return None
 
 
@@ -56,7 +56,8 @@ def _battery() -> tuple[Optional[int], Optional[bool]]:
     try:
         import psutil
         batt = psutil.sensors_battery()
-    except Exception:
+    except Exception as exc:  # optional dep absent / probe failed — record, unknown
+        record_failure("system_presence._battery", exc)
         return None, None
     if batt is None:
         return None, None
@@ -70,7 +71,7 @@ def _network_ok() -> bool:
     try:
         with socket.create_connection(("8.8.8.8", 53), timeout=2):
             return True
-    except Exception:
+    except OSError:  # intentional: no network → not reachable
         return False
 
 
@@ -95,14 +96,14 @@ def _running_apps() -> List[str]:
     # Windows / Linux (and macOS fallback): distinct process names via psutil.
     try:
         import psutil
-    except Exception:
+    except ImportError:  # intentional: optional dep absent — no app list
         return []
     names = []
     seen = set()
     for proc in psutil.process_iter(["name"]):
         try:
             name = (proc.info.get("name") or "").strip()
-        except Exception:
+        except psutil.Error:  # intentional: process vanished mid-iteration → skip
             continue
         if name and name not in seen:
             names.append(name)
@@ -120,7 +121,7 @@ def _capture_screen(path: str) -> tuple[bool, str]:
                 from brain.utils.os_permissions import is_denied, off_message
                 if is_denied("screen_recording"):
                     return False, off_message("screen_recording")
-            except Exception:
+            except ImportError:  # intentional: permission helper optional — try capture
                 pass
             r = subprocess.run(["screencapture", "-x", path],
                                capture_output=True, text=True, timeout=_SUBPROCESS_TIMEOUT)
@@ -151,7 +152,8 @@ def _capture_screen(path: str) -> tuple[bool, str]:
                 if r.returncode == 0 and Path(path).exists():
                     return True, ""
         return False, "no screenshot tool available (install gnome-screenshot, scrot, or imagemagick)"
-    except Exception as exc:
+    except Exception as exc:  # capture I/O failed — record, report to caller
+        record_failure("system_presence._capture_screen", exc)
         return False, str(exc)
 
 
@@ -177,7 +179,8 @@ def _read_clipboard_text() -> tuple[bool, str]:
                 if r.returncode == 0:
                     return True, r.stdout
         return False, ""
-    except Exception:
+    except Exception as exc:  # clipboard read I/O failed — record, report empty
+        record_failure("system_presence._read_clipboard_text", exc)
         return False, ""
 
 
@@ -212,7 +215,8 @@ def _idle_seconds() -> Optional[float]:
             if out and out.strip().isdigit():
                 return int(out.strip()) / 1000.0
         return None
-    except Exception:
+    except Exception as exc:  # idle probe I/O failed — record, unknown
+        record_failure("system_presence._idle_seconds", exc)
         return None
 
 

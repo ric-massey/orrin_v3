@@ -40,7 +40,7 @@ def _read_json(fname: str, default: Any) -> Any:
     except FileNotFoundError:
         _DATA_PARSE_ERRORS.pop(fname, None)  # missing ≠ corrupt
         return default
-    except Exception:
+    except OSError:  # intentional: unreadable (permission/IO) → default
         return default
     try:
         d = _json.loads(text)
@@ -58,17 +58,17 @@ def _read_jsonl_tail(fname: str, n: int) -> list:
         for ln in lines[-max(1, n):]:
             try:
                 out.append(_json.loads(ln))
-            except Exception:
+            except _json.JSONDecodeError:  # intentional: skip a malformed line
                 continue
         return out
-    except Exception:
+    except OSError:  # intentional: unreadable file → empty tail
         return []
 
 
 def _float_or_none(v: Any) -> Optional[float]:
     try:
         return float(v)
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric → None
         return None
 
 

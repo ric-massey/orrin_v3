@@ -19,6 +19,8 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+from brain.utils.failure_counter import record_failure
+
 
 def _make_image():
     """A small generated icon (a filled indigo dot) — no asset file to ship/resolve."""
@@ -48,14 +50,14 @@ class Tray:
         tray can't run, so the caller can fall back to the safe headless path."""
         try:
             from pystray import Icon, Menu, MenuItem
-        except Exception:
+        except ImportError:  # intentional: pystray absent → headless fallback
             return False
         try:
             def _show(_icon, _item):
                 try:
                     on_show()
-                except Exception:
-                    pass
+                except Exception as exc:  # show callback raised — record
+                    record_failure("tray.on_show", exc)
 
             def _quit(icon, _item):
                 try:
@@ -63,8 +65,8 @@ class Tray:
                 finally:
                     try:
                         icon.stop()
-                    except Exception:
-                        pass
+                    except Exception as exc:  # best-effort tray teardown — record
+                        record_failure("tray.quit_stop", exc)
 
             menu = Menu(
                 MenuItem("Show Orrin", _show, default=True),
@@ -82,6 +84,6 @@ class Tray:
         if self._icon is not None:
             try:
                 self._icon.stop()
-            except Exception:
-                pass
+            except Exception as exc:  # best-effort tray teardown — record
+                record_failure("tray.stop", exc)
             self._icon = None

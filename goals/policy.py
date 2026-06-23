@@ -163,7 +163,7 @@ def _effective_priority(goal: Goal, now: datetime) -> int:
         # Fallback for non-enum custom priorities
         try:
             return int(getattr(goal, "priority", Priority.NORMAL))
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-int priority → NORMAL
             return int(Priority.NORMAL)
 
 
@@ -179,7 +179,7 @@ def _deadline_urgency(goal: Goal, now: datetime) -> float:
     try:
         # seconds positive if now past deadline
         delta_sec = (now - dl).total_seconds()
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad deadline type → no urgency
         return 0.0
 
     if delta_sec >= 0:
@@ -225,7 +225,7 @@ def _locks_available_hint(ctx: Dict[str, Any], step: Step, *, holder: str) -> fl
                 ok_all = False
                 break
         return 1.0 if ok_all else 0.0
-    except Exception:
+    except (AttributeError, TypeError):  # intentional: missing locks/action shape → unknown
         return 0.5
 
 
@@ -243,7 +243,7 @@ def _ts_safe(dt: Optional[datetime]) -> float:
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
         return dt.timestamp()
-    except Exception:
+    except (AttributeError, ValueError, OverflowError):  # intentional: bad datetime → 0
         return 0.0
 
 

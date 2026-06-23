@@ -25,6 +25,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from brain.paths import DATA_DIR
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 from brain.utils.self_model import get_self_model
 from brain.utils.log import log_private
@@ -103,16 +104,16 @@ def _record(stance: str, key: str, msg: str) -> None:
         log: List[Dict] = load_json(_LOG_FILE, default_type=list) or []
         log.append({"ts": time.time(), "stance": stance, "desire": key, "statement": msg})
         _LOG_FILE.write_text(json.dumps(log[-200:], indent=1), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # volition-log write best-effort — record
+        record_failure("second_order_volition._record.persist", exc)
     try:
         update_working_memory({
             "content": f"[volition] {msg}",
             "event_type": "second_order_volition",
             "importance": 3, "priority": 2,
         })
-    except Exception:
-        pass
+    except Exception as exc:  # working-memory write best-effort — record
+        record_failure("second_order_volition._record.wm", exc)
     log_private(f"[volition:{stance}] {key}")
 
 
@@ -162,8 +163,8 @@ def endorse_intention(
                 importance=3,
                 context=context,
             )
-        except Exception:
-            pass
+        except Exception as exc:  # disowned-desire memory best-effort — record
+            record_failure("second_order_volition.endorse_intention", exc)
         return "disown", gloss
 
     if toks & _tokens(_values_text()):
@@ -200,8 +201,8 @@ def reflect_on_desire(context: Dict[str, Any] = None) -> str:
             try:
                 from brain.affect.arbiter import submit_affect
                 submit_affect(context, key, -0.06, source="second_order_volition", ttl_cycles=2)
-            except Exception:
-                pass
+            except Exception as exc:  # affect damp best-effort — record
+                record_failure("second_order_volition.reflect_on_desire", exc)
     elif stance == "endorse":
         msg = f"I reflect on my pull toward {gloss} — and I choose it. It's mine."
     else:

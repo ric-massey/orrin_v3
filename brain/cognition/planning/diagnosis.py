@@ -51,7 +51,7 @@ def _llm_disabled_in_config(context: Dict[str, Any]) -> bool:
         # disabled-by-config looks like: not available AND the breaker is NOT open
         # (an open breaker is a transient network condition, handled separately).
         return (not llm_available()) and (not _cb_is_open())
-    except Exception:
+    except ImportError:  # intentional: gate/breaker unavailable → not a config-disable
         return False
 
 
@@ -59,7 +59,7 @@ def _llm_circuit_open(context: Dict[str, Any]) -> bool:
     try:
         from brain.utils.generate_response import _cb_is_open
         return bool(_cb_is_open())
-    except Exception:
+    except ImportError:  # intentional: breaker unavailable → treat as closed
         return False
 
 
@@ -213,7 +213,8 @@ def check_cause(capability: str, key: str, context: Dict[str, Any]) -> bool:
         return False
     try:
         return bool(m["check"](context))
-    except Exception:
+    except Exception as exc:  # cause-check predicate raised — record, treat as not-present
+        record_failure("diagnosis.check_cause", exc)
         return False
 
 
@@ -228,5 +229,6 @@ def apply_fix(capability: str, key: str, context: Dict[str, Any]) -> bool:
         return False
     try:
         return bool(m["fix"](context))
-    except Exception:
+    except Exception as exc:  # fix action raised — record, report no fix taken
+        record_failure("diagnosis.apply_fix", exc)
         return False

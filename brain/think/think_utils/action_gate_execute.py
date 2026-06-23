@@ -8,6 +8,7 @@ from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 import time
 from pathlib import Path
+from typing import Optional
 
 from brain.behavior.speak import OrrinSpeaker
 from brain.affect.reward_signals.reward_signals import release_reward_signal
@@ -28,7 +29,7 @@ _log = get_logger(__name__)
 MAX_RETRIES = 3
 
 
-def take_action(action, context, speaker: OrrinSpeaker):
+def take_action(action, context, speaker: Optional[OrrinSpeaker]):
     action_type = action.get("type")
     content = action.get("content", "")
     data = action.get("data")

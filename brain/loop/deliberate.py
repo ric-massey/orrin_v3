@@ -22,7 +22,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def prepare_workspace(context) -> Context:
+def prepare_workspace(context: Context) -> Context:
     # ── Executive (procedural lane) — dual_process_loop.md §6.1 ─────────
     # PHASE 1: READ-ONLY DRY RUN. Observes the committed goals' next steps
     # and records what the background "dribble" WOULD advance, on
@@ -89,7 +89,7 @@ def prepare_workspace(context) -> Context:
     return context
 
 
-def ignite(context) -> Context:
+def ignite(context: Context) -> Context:
     """Conscious ignition gate (Dehaene 2014; Baars 1988): the unconscious
     substrate ran regardless this cycle, but only a salient / uncertain /
     conflicted cycle IGNITES into full deliberate cognition (should_think is the

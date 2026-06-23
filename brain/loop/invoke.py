@@ -11,13 +11,13 @@ falls back through a few call shapes. run_cognitive_loop re-imports
 from __future__ import annotations
 
 import inspect
-from typing import Any, Dict
+from typing import Any, Callable, Dict, Optional, Sequence
 
 from brain.utils.log import log_error
 from brain.utils.failure_counter import record_failure
 
 
-def _build_kwargs_for(fn, name: str, ctx: Dict[str, Any]) -> Dict[str, Any]:
+def _build_kwargs_for(fn: Callable[..., Any], name: str, ctx: Dict[str, Any]) -> Dict[str, Any]:
     try:
         sig = inspect.signature(fn)
     except Exception:
@@ -48,7 +48,7 @@ def _build_kwargs_for(fn, name: str, ctx: Dict[str, Any]) -> Dict[str, Any]:
         "goal": ctx.get("committed_goal") or ctx.get("focus_goal"),
         "focus_goal": ctx.get("focus_goal") or ctx.get("committed_goal"),
     }
-    built = {}
+    built: Dict[str, Any] = {}
     for p in sig.parameters.values():
         if p.kind in (inspect.Parameter.VAR_POSITIONAL, inspect.Parameter.VAR_KEYWORD):
             continue
@@ -56,7 +56,14 @@ def _build_kwargs_for(fn, name: str, ctx: Dict[str, Any]) -> Dict[str, Any]:
             built[p.name] = mapping[p.name]
     return built
 
-def _invoke_cognition(fn, name: str, ctx: Dict[str, Any], *, args=None, kwargs=None):
+def _invoke_cognition(
+    fn: Callable[..., Any],
+    name: str,
+    ctx: Dict[str, Any],
+    *,
+    args: Optional[Sequence[Any]] = None,
+    kwargs: Optional[Dict[str, Any]] = None,
+) -> Any:
     if isinstance(args, (list, tuple)) or isinstance(kwargs, dict):
         return fn(*(args or ()), **(kwargs or {}))
     built = _build_kwargs_for(fn, name, ctx)
@@ -86,12 +93,13 @@ def _invoke_cognition(fn, name: str, ctx: Dict[str, Any], *, args=None, kwargs=N
             return {"status": "error", "error": f"unsatisfiable_args: {unsatisfied}"}
     except Exception as _e:
         record_failure("ORRIN_loop._invoke_cognition", _e)
-    for attempt in (
+    attempts: Sequence[Callable[[], Any]] = (
         lambda: fn(**built),
         lambda: fn(ctx),
         lambda: fn({"type": name, "name": name}, ctx),
         lambda: fn(),
-    ):
+    )
+    for attempt in attempts:
         try:
             return attempt()
         except TypeError:

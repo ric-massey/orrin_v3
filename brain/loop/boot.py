@@ -198,7 +198,7 @@ def _boot_context() -> Context:
     # Register symbolic reasoning router (check local knowledge before LLM)
     try:
         from brain.symbolic.reasoning_router import route as _sym_route
-        def _sym_route_fn(context=None, **kw):
+        def _sym_route_fn(context: Any = None, **kw: Any) -> Any:
             user_input = (context or {}).get("user_input", "")
             if not user_input:
                 return None
@@ -275,28 +275,28 @@ def _boot_context() -> Context:
             check_user_active  as _cua,
             read_clipboard     as _rcb,
         )
-        def _survey_env(context=None):
+        def _survey_env(context: Any = None) -> Any:
             s = _gss()
             from brain.cog_memory.working_memory import update_working_memory as _uwm
             _uwm({"content": f"[survey] System state: {str(s)[:300]}", "event_type": "system_survey", "priority": 2})
             return s
-        def _write_desktop_note(context=None):
+        def _write_desktop_note(context: Any = None) -> Any:
             # Compose through the one expression door — never scrape working
             # memory (EXPRESSION_MEMBRANE_FIX_PLAN E2).
             from brain.behavior.express_to_user import build_motive, express_to_user
             ctx = context or {}
             motive = build_motive(ctx, intent="write_desktop_note", recipient="Ric")
             return express_to_user(motive, "desktop", ctx)
-        def _check_user(context=None):
+        def _check_user(context: Any = None) -> Any:
             return _cua()
-        def _announce(context=None):
+        def _announce(context: Any = None) -> Any:
             # Compose through the one expression door — never ship the last WM
             # entry to the dashboard (EXPRESSION_MEMBRANE_FIX_PLAN E3).
             from brain.behavior.express_to_user import build_motive, express_to_user
             ctx = context or {}
             motive = build_motive(ctx, intent="announce", recipient="dashboard")
             return express_to_user(motive, "dashboard", ctx)
-        def _read_clip(context=None):
+        def _read_clip(context: Any = None) -> Any:
             r = _rcb()
             if r.get("content"):
                 from brain.cog_memory.working_memory import update_working_memory as _uwm

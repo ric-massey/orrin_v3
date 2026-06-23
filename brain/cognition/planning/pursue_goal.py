@@ -34,7 +34,8 @@ _log = get_logger(__name__)
 # Goal closure / survival / disengagement, extracted to goal_closure.py (Phase 4D).
 from brain.cognition.planning.goal_closure import (  # noqa: F401
     _FINALIZED_IDS, _tier_closure_enabled, _survival_preempt_enabled, _survival_critical,
-    _finalize_goal_completion, _maybe_close_on_tier, _degrade_or_disengage,
+    _finalize_goal_completion, _maybe_close_on_tier,
+    _degrade_or_disengage as _degrade_or_disengage,
     _repromote_if_recovered,
 )
 
@@ -73,7 +74,8 @@ from brain.cognition.planning.goal_execution import (  # noqa: F401
 )
 # Goal adaptation, extracted to goal_adaptation.py (Phase 4D).
 from brain.cognition.planning.goal_adaptation import (  # noqa: F401
-    assess_goal_progress, adapt_subgoals,
+    assess_goal_progress as assess_goal_progress,
+    adapt_subgoals as adapt_subgoals,
 )
 
 

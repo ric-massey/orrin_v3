@@ -27,7 +27,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context:
+def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any, _cycle_num: Any) -> Context:
     # ── Health streak monitor: track sustained health, fire setpoint_regulation reward ──
     # Runs every 5 cycles (cheap: reads one JSON, writes one JSON).
     # Positive health streak → emotional uplift + bandit reward.
@@ -229,7 +229,7 @@ def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context
     return context
 
 
-def persist_and_periodic(context, _goals_api, _mem_daemon, _evaluator, affect_state) -> Context:
+def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _evaluator: Any, affect_state: Any) -> Context:
     """Per-cycle persistence + periodic background work, run after the action is
     accounted and before the maintenance tier: sync proposed goals + record goal
     progress, flush working memory to the v2 daemon (with periodic v1<->v2
@@ -293,7 +293,7 @@ def persist_and_periodic(context, _goals_api, _mem_daemon, _evaluator, affect_st
     try:
         if get_cycle_count() % 5 == 0:
             from brain.cognition.prediction import generate_predictions as _gp, save_predictions as _sp
-            _recent_wm_p = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+            _recent_wm_p: list[Any] = load_json(WORKING_MEMORY_FILE, default_type=list) or []
             _sp(_gp(context, _recent_wm_p[-15:]))
     except Exception as _ge:
         log_error(f"generate_predictions failed: {_ge}")

@@ -26,7 +26,7 @@ from brain.utils.failure_counter import record_failure
 # (finalize.credit_aspirations, goals.mark_aspiration_contribution) keep their
 # existing `from …intrinsic_goals import …` paths.
 from brain.cognition.intrinsic_aspirations import (  # noqa: F401
-    credit_aspirations, aspiration_pressure,
+    credit_aspirations as credit_aspirations, aspiration_pressure,
     mark_aspiration_contribution as mark_aspiration_contribution,
     _serves_aspiration, _fairness_default_drive, _ensure_aspirations,
     _ASPIRATIONS, _DRIVE_TO_ASPIRATION,

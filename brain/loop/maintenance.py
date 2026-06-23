@@ -11,7 +11,7 @@ upkeep), keyed off the cycle count. Pure `context -> context`; fail-safe.
 from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
-from typing import Any, Dict
+from typing import Any, Dict, Iterator
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.log import log_activity, log_private
 from brain.utils.failure_counter import record_failure, dump_summary as _dump_failure_summary
@@ -21,7 +21,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def run_maintenance_tier(context) -> Context:
+def run_maintenance_tier(context: Context) -> Context:
     # ── Deterministic closure/maintenance tier (RECONCILED plan B/C/E) ──
     # Closure machinery already exists but was selection-starved — the
     # emotion-cued bandit never picked it (no prior, cold-start trap). Run
@@ -39,7 +39,7 @@ def run_maintenance_tier(context) -> Context:
                 from brain.cognition.planning.goals import (
                     load_goals, prune_goals, save_goals,
                 )
-                def _flat(_gs):
+                def _flat(_gs: Any) -> Iterator[Dict[str, Any]]:
                     for _g in _gs:
                         if isinstance(_g, dict):
                             yield _g
@@ -193,7 +193,7 @@ def run_maintenance_tier(context) -> Context:
     return context
 
 
-def periodic_housekeeping(context) -> Context:
+def periodic_housekeeping(context: Context) -> Context:
     """End-of-cycle cadence housekeeping, keyed off the cognitive cycle count:
     the per-cycle 'cycle complete' status print, a forced GC every 50 cycles
     (release torch/heap back to the OS), failure/token summaries + self-extension

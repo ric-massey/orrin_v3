@@ -29,7 +29,7 @@ def _validate_boot_files() -> None:
     Check critical state files for schema correctness at startup.
     Logs a loud warning and reinitialises to safe defaults if a file is wrong type.
     """
-    checks = [
+    checks: list[tuple[Any, type, Any]] = [
         (LONG_MEMORY_FILE,      list,  []),
         (WORKING_MEMORY_FILE,   list,  []),
         # reflection_log / chat_log are list-typed too; previously they only
@@ -88,7 +88,7 @@ def _verify_production_capability(functions: Dict[str, Any]) -> Dict[str, Any]:
         fn = meta.get("function") if isinstance(meta, dict) else meta
         checks["callable_registry"] = callable(fn)
 
-        manifest = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []
+        manifest: list[Any] = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list) or []
         names = {
             str(item.get("name"))
             for item in manifest
@@ -122,9 +122,9 @@ def _verify_production_capability(functions: Dict[str, Any]) -> Dict[str, Any]:
     if not checks["reachable"]:
         missing = [key for key, value in checks.items()
                    if key != "reachable" and value is not True]
-        exc = RuntimeError(f"production_capability_unreachable: {', '.join(missing)}")
-        record_failure("ORRIN_loop.production_capability_unreachable", exc)
-        log_error(f"[boot] {exc}")
+        err = RuntimeError(f"production_capability_unreachable: {', '.join(missing)}")
+        record_failure("ORRIN_loop.production_capability_unreachable", err)
+        log_error(f"[boot] {err}")
     else:
         log_activity("[boot] compose_section production capability reachable end-to-end.")
     return checks

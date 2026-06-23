@@ -51,7 +51,7 @@ from brain.utils.timeutils import now_iso_z
 # (loop.services, terminal, selection.constants).
 from brain.cognition.selfhood.autobiography_epilogue import (  # noqa: F401
     _MACHINE_TAG_RE, _sanitize_prose, append_death_continuity,
-    _session_reflection, session_epilogue,
+    _session_reflection, session_epilogue as session_epilogue,
 )
 
 _NARRATIVE_MIN_INTERVAL_S   = 18 * 3600   # earliest an update can fire (18 h)

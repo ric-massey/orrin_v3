@@ -22,8 +22,15 @@ Context = Dict[str, Any]
 
 
 def shape_cognition_reward(
-    context, fn_name, fn_str, emo_pre, emo_post, env_r, status_r, is_failure,
-):
+    context: Context,
+    fn_name: str,
+    fn_str: str,
+    emo_pre: Dict[str, Any],
+    emo_post: Dict[str, Any],
+    env_r: float,
+    status_r: float,
+    is_failure: bool,
+) -> float:
     """Return the shaped scalar reward for a completed cognition call."""
     # Preserve the original in-function local names so the moved body is verbatim.
     _fn_str = fn_str
@@ -312,4 +319,4 @@ def shape_cognition_reward(
     except Exception as _e:
         record_failure("ORRIN_loop.run_cognitive_loop.23", _e)
 
-    return reward
+    return float(reward)

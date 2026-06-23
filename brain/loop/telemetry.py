@@ -12,7 +12,7 @@ run_cognitive_loop imports `_bridge`, `_push_event`, `_emit_affect`, `_emit_goal
 """
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from brain.core.runtime_log import get_logger
 from brain.utils.json_utils import load_json
@@ -26,7 +26,7 @@ _TB = None              # cached TelemetryBridge singleton (None until first use
 _TB_UNAVAILABLE = False  # set once if the bridge import fails, to stop retrying
 
 
-def _bridge():
+def _bridge() -> Any:
     """Return the process-wide TelemetryBridge, or None if unavailable."""
     global _TB, _TB_UNAVAILABLE
     if _TB is not None or _TB_UNAVAILABLE:
@@ -40,7 +40,7 @@ def _bridge():
     return _TB
 
 
-def _f(x, default: float = 0.0) -> float:
+def _f(x: Any, default: float = 0.0) -> float:
     """Best-effort float coercion that never raises."""
     try:
         return float(x)
@@ -56,7 +56,7 @@ def _clamp01(x: float) -> float:
     return x
 
 
-def _push_event(kind: str, **payload) -> None:
+def _push_event(kind: str, **payload: Any) -> None:
     """
     Forward a coarse loop event to the Face & Brain UI.
 
@@ -113,7 +113,7 @@ def _push_event(kind: str, **payload) -> None:
         return
 
 
-_RECENT_FNS: list = []
+_RECENT_FNS: List[Dict[str, Any]] = []
 _CATALOG_PUSHED = False
 
 def _push_catalog_once() -> None:
@@ -214,7 +214,7 @@ def _learning_pulse(context: "Context") -> float:
     val = _LAST_LEARNING["val"]
     try:
         from brain.paths import PREDICTIONS_FILE
-        preds = load_json(PREDICTIONS_FILE, default_type=list) or []
+        preds: List[Any] = load_json(PREDICTIONS_FILE, default_type=list) or []
         # Take the 40 most-recent *resolved* predictions, not the last 40 by file
         # order — fresh predictions resolve with a lag, so a trailing slice of raw
         # entries is mostly still-pending and would flatline this signal to 0.
@@ -251,7 +251,7 @@ def _emit_goals(context: "Context") -> None:
         from brain.utils.json_utils import load_json
         from brain.paths import GOALS_FILE
 
-        goals_raw = load_json(GOALS_FILE, default_type=list) or []
+        goals_raw: List[Any] = load_json(GOALS_FILE, default_type=list) or []
         committed = context.get("committed_goal") if isinstance(context, dict) else None
         committed_id = committed.get("id") if isinstance(committed, dict) else None
 
@@ -278,7 +278,7 @@ def _ui_stage(node: str, narrative: str) -> None:
         tb.set_node(node, narrative=narrative)
     except Exception:
         return
-def _ui_memory(op: str, mems, *, store: str = "working", limit: int = 4) -> None:
+def _ui_memory(op: str, mems: Any, *, store: str = "working", limit: int = 4) -> None:
     """
     Mirror memory read/write activity into the Brain Memory Inspector. `mems` is a
     memory dict or a list of them; only the first `limit` are surfaced to avoid

@@ -17,8 +17,8 @@ from brain.think.think_utils.selection.state import (  # noqa: F401
 from brain.think.think_utils.selection.routing import _workspace_routes_for  # noqa: F401
 from brain.think.think_utils.selection.candidates import (  # noqa: F401
     _planned_action_recruitment,
-    _is_selectable_name, _is_dispatchable, _load_behavioral_names,
-    _load_actions, _load_action_defs,
+    _is_selectable_name, _is_dispatchable as _is_dispatchable, _load_behavioral_names,
+    _load_actions as _load_actions, _load_action_defs,
 )
 # Feature extraction, extracted to selection/features.py (Phase 4D).
 from brain.think.think_utils.selection.features import extract_features  # noqa: F401
@@ -104,7 +104,7 @@ from brain.utils.failure_counter import record_failure
 # (Phase 4D). Cache dicts are shared singletons; re-export (noqa F401) for the
 # direct-cache readers below + external importers of _capability_descriptions.
 from brain.think.think_utils.selection.catalog import (  # noqa: E402,F401
-    _STATS_PATH, _STATS_CACHE, _CAPS_PATH, _CAPS_CACHE,
+    _STATS_PATH, _STATS_CACHE, _CAPS_PATH as _CAPS_PATH, _CAPS_CACHE,
     _load_manifest, _capability_descriptions as _capability_descriptions,
     _fns_tagged, _tag_weights, _tagged_or, _learned_stats,
 )

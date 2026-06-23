@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
 import time
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 from brain.think.signal_router import process_inputs
 from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
 from brain.affect.update_affect_state import update_affect_state
@@ -40,10 +40,10 @@ from brain.loop.signal_decay import _apply_transient_signal_decay  # noqa: F401
 _log = get_logger(__name__)
 Context = Dict[str, Any]
 
-_SEEN_WM_IDS: set = set()  # working-memory ids already mirrored to the inspector
+_SEEN_WM_IDS: set[str] = set()  # working-memory ids already mirrored to the inspector
 
 
-def sense_and_refresh(_goals_api, timestamp):
+def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     context = load_context()
     context.setdefault("committed_goal", None)
     context.setdefault("action_debt", 0)
@@ -54,7 +54,7 @@ def sense_and_refresh(_goals_api, timestamp):
     # Strip embeddings from the in-memory copy — they're large (~6KB each) and
     # only needed for similarity search which loads from file directly.
     try:
-        wm_from_file = load_json(WORKING_MEMORY_FILE, default_type=list)
+        wm_from_file: Any = load_json(WORKING_MEMORY_FILE, default_type=list)
         if isinstance(wm_from_file, list):
             context["working_memory"] = [
                 {k: v for k, v in m.items() if k != "embedding"} if isinstance(m, dict) else m
@@ -454,7 +454,8 @@ def sense_and_refresh(_goals_api, timestamp):
     try:
         from brain.utils.json_utils import load_json as _lj
         from brain.paths import VALUE_REVISIONS as _VR
-        _pending_vals = [c for c in (_lj(_VR, default_type=list) or []) if isinstance(c, dict) and c.get("status", "pending") == "pending"]
+        _vr_raw: Any = _lj(_VR, default_type=list) or []
+        _pending_vals = [c for c in _vr_raw if isinstance(c, dict) and c.get("status", "pending") == "pending"]
         if _pending_vals:
             from brain.utils.signal_utils import create_signal as _cs2
             _vsig = _cs2(

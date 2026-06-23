@@ -37,7 +37,8 @@ from brain.utils.timeutils import now_iso_z
 # propose/review/commit/emergency decision logic + external callers keep their refs.
 from brain.cognition.self_extension_codegen import (  # noqa: F401
     _load_proposals, _save_proposals, _proposal_id, _write_and_register,
-    _apply_fragmentation_cost, _parse_ts, maybe_integrate_or_atrophy,
+    _apply_fragmentation_cost, _parse_ts,
+    maybe_integrate_or_atrophy as maybe_integrate_or_atrophy,
 )
 _log = get_logger(__name__)
 

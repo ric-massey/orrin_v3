@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
 import time
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 from brain.think.think_utils.action_gate import take_action
 from brain.think.loop_helpers import (
     reason_string,
@@ -42,7 +42,9 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def execute_behavior_action(context, result, _decision_id, _evaluator, BEH_NAMES):
+def execute_behavior_action(
+    context: Context, result: Any, _decision_id: Any, _evaluator: Any, BEH_NAMES: Any,
+) -> Tuple[Context, Any, bool]:
     acted_this_cycle = False
     action = result["action"]
     speaker = context.get("speaker")
@@ -168,7 +170,9 @@ def execute_behavior_action(context, result, _decision_id, _evaluator, BEH_NAMES
     # loop's action-debt accounting sees the same value the inline code did.
     return context, reward, acted_this_cycle
 
-def execute_cognition_function(context, result, _decision_id, _evaluator, _mem_daemon, affect_state):
+def execute_cognition_function(
+    context: Context, result: Any, _decision_id: Any, _evaluator: Any, _mem_daemon: Any, affect_state: Any,
+) -> Tuple[Context, Any, bool]:
     reward = 0.0
     feats = {}
     fn_name = result["next_function"]
@@ -234,9 +238,9 @@ def execute_cognition_function(context, result, _decision_id, _evaluator, _mem_d
     try:
         if callable(fn):
             # Pre-step environment snapshot for delta-based reward.
-            _snap = None
-            _tick_ms = None
-            _env_delta = None
+            _snap: Any = None
+            _tick_ms: Any = None
+            _env_delta: Any = None
             try:
                 from brain.cognition.planning.env_snapshot import (
                     take_snapshot as _snap,
@@ -330,7 +334,7 @@ def execute_cognition_function(context, result, _decision_id, _evaluator, _mem_d
                                     )
                                 except Exception as _sde:
                                     record_failure("ORRIN_loop.stall_degrade", _sde)
-                _post_snap = _snap(context) if _snap else {}
+                _post_snap: Dict[str, Any] = _snap(context) if _snap else {}
                 _env_r = _env_delta(_pre_snap, _post_snap) if _env_delta else 0.5
             except Exception:
                 _env_r = 0.5
@@ -405,7 +409,7 @@ def execute_cognition_function(context, result, _decision_id, _evaluator, _mem_d
             try:
                 if get_cycle_count() % 20 == 0:
                     from brain.symbolic.causal_graph import discover_from_wm_sequence as _dfs
-                    _recent_wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+                    _recent_wm: list[Any] = load_json(WORKING_MEMORY_FILE, default_type=list) or []
                     _dfs([e for e in _recent_wm[-25:] if isinstance(e, dict)])
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.15", _e)
@@ -515,7 +519,7 @@ def execute_cognition_function(context, result, _decision_id, _evaluator, _mem_d
     return context, reward, False
 
 
-def execute_fallback(context, _evaluator, COG_MAP):
+def execute_fallback(context: Context, _evaluator: Any, COG_MAP: Any) -> Tuple[Context, Any, bool]:
     reward = 0.0
     feats = {}
     acted_this_cycle = False

@@ -99,7 +99,23 @@ strict = true
 ignore_missing_imports = true
 follow_imports = "silent"
 files = [
+    # loop/ stage modules — the cognitive-loop coordinator's extracted stages,
+    # typed leaf-first (Phase 5.1 tail).
     "brain/loop/constants.py",
+    "brain/loop/signal_decay.py",
+    "brain/loop/invoke.py",
+    "brain/loop/cognition_reward.py",
+    "brain/loop/telemetry.py",
+    "brain/loop/account.py",
+    "brain/loop/reflect.py",
+    "brain/loop/deliberate.py",
+    "brain/loop/services.py",
+    "brain/loop/boot_checks.py",
+    "brain/loop/maintenance.py",
+    "brain/loop/sense.py",
+    "brain/loop/boot.py",
+    "brain/loop/finalize.py",
+    "brain/loop/execute.py",
     # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
     "brain/utils/num.py",
     "brain/utils/log.py",

@@ -11,6 +11,7 @@
 from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 from statistics import mean
+from typing import Any
 
 from brain.utils.json_utils import load_json, save_json
 from brain.affect.affect import get_all_affect_names, deliver_affect_based_rewards
@@ -38,7 +39,7 @@ from brain.affect.affect_patterns import (
 )
 _log = get_logger(__name__)
 
-def update_affect_state(context=None, trigger=None):
+def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     from brain.cog_memory.working_memory import update_working_memory
 
     # Prefer in-memory state from context (authoritative); only read disk when truly absent.

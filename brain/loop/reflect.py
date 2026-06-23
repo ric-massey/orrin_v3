@@ -22,7 +22,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def integrate_recall_and_baseline(context, _mem_daemon) -> Context:
+def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context:
     # Query v2 MemoryDaemon for semantically relevant memories.
     # When comprehension parsed an input concept this cycle, use it as the
     # query so retrieved memories are relevant to what was just said, not
@@ -163,7 +163,7 @@ def integrate_recall_and_baseline(context, _mem_daemon) -> Context:
     return context
 
 
-def tier1_health_check(context) -> Context:
+def tier1_health_check(context: Context) -> Context:
     """Tier-1 interoception: read the setpoint_regulation daemon's latest
     snapshot and fold it into the cycle — warnings/criticals become escalating
     raw_signals the selector weighs, repeated-neglect criticals add direct
@@ -193,7 +193,7 @@ def tier1_health_check(context) -> Context:
         context["health_score"] = _h1.get("health_score", 1.0)
         _h1_critical_fn = None
         _h1_ignored = context.setdefault("_h1_ignored_cycles", {})
-        _h1_active_ids: set = set()
+        _h1_active_ids: set[str] = set()
 
         for _h1_alert in _h1.get("alerts", []):
             _aid  = _h1_alert.get("id", "")

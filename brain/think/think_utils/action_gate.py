@@ -43,7 +43,7 @@ from brain.think.think_utils.action_gate_helpers import (  # noqa: E402,F401
 )
 # Action execution (take_action) extracted to action_gate_execute.py (Phase 4.5C);
 # re-imported so evaluate_and_act_if_needed below + external callers reach it.
-from brain.think.think_utils.action_gate_execute import take_action  # noqa: E402,F401
+from brain.think.think_utils.action_gate_execute import take_action as take_action  # noqa: E402,F401
 
 
 def evaluate_and_act_if_needed(

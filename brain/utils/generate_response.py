@@ -394,7 +394,7 @@ def generate_response(
         try:
             import fcntl as _fcntl_gr
         except ImportError:
-            _fcntl_gr = None  # type: ignore
+            _fcntl_gr = None  # type: ignore[assignment]
 
         with lp.open("a", encoding="utf-8") as f:
             if _fcntl_gr is not None:

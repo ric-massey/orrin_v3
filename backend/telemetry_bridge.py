@@ -59,7 +59,7 @@ def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5,
     data = json.dumps(payload).encode("utf-8")
     hdrs = {"Content-Type": "application/json", **(headers or {})}
     try:
-        import requests  # type: ignore
+        import requests
         requests.post(url, data=data, headers=hdrs, timeout=timeout)
         return
     except ModuleNotFoundError:
@@ -77,7 +77,7 @@ def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5,
 def _get_json(url: str, timeout: float = 1.0) -> Any:
     """GET JSON, preferring requests, falling back to urllib. Returns None on any error."""
     try:
-        import requests  # type: ignore
+        import requests
         r = requests.get(url, timeout=timeout)
         return r.json()
     except ModuleNotFoundError:

@@ -272,7 +272,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
     try:
         import inspect  # local to avoid any import-cycle edge cases
     except Exception:
-        inspect = None  # type: ignore
+        inspect = None  # type: ignore[assignment]
 
     # 0) Explicit args/kwargs provided by the selector/think()
     try:

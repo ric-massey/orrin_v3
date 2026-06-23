@@ -30,14 +30,14 @@ try:
     from pydantic import BaseModel, ConfigDict, Field, ValidationError
     _HAS_PYDANTIC = True
 except Exception:  # pragma: no cover - pydantic always present with fastapi
-    BaseModel = object  # type: ignore
-    ValidationError = Exception  # type: ignore
+    BaseModel = object  # type: ignore[assignment,misc]
+    ValidationError = Exception  # type: ignore[assignment,misc]
     _HAS_PYDANTIC = False
 
-    def Field(default=None, **_kwargs):  # type: ignore
+    def Field(default: Any = None, **_kwargs: Any) -> Any:  # type: ignore[no-redef]
         return default
 
-    def ConfigDict(**_kwargs):  # type: ignore
+    def ConfigDict(**_kwargs: Any) -> Any:  # type: ignore[no-redef]
         return {}
 
 

@@ -59,7 +59,7 @@ try:
     _PREEXEC = _limit_resources  # used only on POSIX
 except Exception:
     resource = None
-    _PREEXEC = None  # type: ignore
+    _PREEXEC = None  # type: ignore[assignment]
 
 ALLOWED_MODULES = {
     "math","random","statistics","json","re","itertools","functools",

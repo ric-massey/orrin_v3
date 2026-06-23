@@ -40,7 +40,7 @@ try:
     from brain.utils.model_assets import apply_offline_env as _apply_offline_env
     if _apply_offline_env():
         print("[boot] using bundled ML weights (offline mode)")
-except Exception:
+except ImportError:  # intentional: no bundle in a dev checkout — stay online
     pass
 
 from brain.core.runtime_log import get_logger
@@ -417,7 +417,9 @@ _fs_obs = None
 def _list_goals_for_brain():
     try:
         return _goals_api.list_goals()
-    except Exception:
+    except Exception as exc:  # goals API unavailable — record, no goals for the brain view
+        from brain.utils.failure_counter import record_failure
+        record_failure("main._list_goals_for_brain", exc)
         return []
 
 if _HAVE_GOALS_DAEMON:
@@ -455,7 +457,7 @@ if _HAVE_GOALS_DAEMON:
                     merged.update(core)
                     return merged
                 return data
-            except Exception:
+            except (OSError, ValueError, AttributeError):  # intentional: missing/bad state → empty
                 return {}
 
         _goals_daemon = GoalsDaemon(

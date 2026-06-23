@@ -89,7 +89,7 @@ def load_state(path: str | Path) -> Iterator[Dict[str, Any]]:
                 continue
             try:
                 yield json.loads(line)
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip a malformed line
                 continue
 
 
@@ -175,7 +175,7 @@ def _iter_steps(store: Any) -> Iterable[Step]:
         # Some stores want a goal_id; we fall back to listing all by passing None if allowed
         try:
             return cast(Iterable[Step], store.steps_for(None))
-        except Exception:
+        except (TypeError, AttributeError):  # intentional: store doesn't accept None → none
             return []
     return []
 
@@ -194,7 +194,7 @@ def _jsonable(obj: Any) -> Dict[str, Any]:
         # Last resort: try to coerce to dict via json round-trip
         try:
             return cast(Dict[str, Any], json.loads(json.dumps(obj)))
-        except Exception:
+        except (TypeError, ValueError):  # intentional: not JSON-coercible → string value
             return {"value": str(obj)}
 
     def conv(x: Any) -> Any:

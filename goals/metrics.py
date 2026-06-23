@@ -240,7 +240,7 @@ def refresh_from_store(store: Any, *, now: Optional[datetime] = None) -> None:
         try:
             if _status_name(g.status) not in terminal and (now - dl).total_seconds() > 0:
                 overdue += 1
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
     try:
         goals_overdue_total.set(overdue)
@@ -278,14 +278,14 @@ def _iter_steps(store: Any) -> Iterable[Step]:
 def _status_name(x: Any) -> str:
     try:
         return str(x.name)  # Enum
-    except Exception:
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
 def _priority_name(x: Any) -> str:
     try:
         return str(x.name)  # Enum
-    except Exception:
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 

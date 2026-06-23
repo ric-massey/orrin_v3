@@ -100,7 +100,7 @@ class Goal:
         now = now or UTCNOW()
         try:
             return (now - self.deadline).total_seconds() > 0
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → not overdue
             return False
 
 
@@ -115,7 +115,7 @@ def to_status(x: Any) -> Status:
         return x
     try:
         return Status[str(x).upper()]
-    except Exception:
+    except (KeyError, ValueError):  # intentional: unknown status name → READY
         return Status.READY
 
 
@@ -127,7 +127,7 @@ def to_priority(x: Any) -> Priority:
     except Exception:
         try:
             return Priority(int(x))
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unknown priority → NORMAL
             return Priority.NORMAL
 
 

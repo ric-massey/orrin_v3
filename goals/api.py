@@ -40,7 +40,7 @@ def _parse_deadline(deadline: Optional[Any]) -> Optional[datetime]:
                 s = s[:-1] + "+00:00"
             dt = datetime.fromisoformat(s)
             return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unparseable timestamp → None
             return None
     return None
 
@@ -56,7 +56,7 @@ def _to_priority(p: Any) -> Priority:
         try:
             # allow "0/1/2/3" strings
             return Priority(int(s))
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unknown priority → NORMAL
             return Priority.NORMAL
     if isinstance(p, (int, float)):
         # Clamp into the enum's range: v1 cognition uses a 1–5 priority scale,
@@ -323,7 +323,8 @@ class GoalsAPI:
         for cb in subs:
             try:
                 cb(event)
-            except Exception:
+            except Exception as _e:  # a subscriber raised — log, keep notifying the rest
+                _log.warning("goal-event subscriber raised: %s", _e)
                 continue
         # Send to reaper/observability if provided
         if callable(self.reaper_sink):

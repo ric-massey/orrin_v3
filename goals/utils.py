@@ -36,7 +36,7 @@ def parse_iso(s: Optional[str]) -> Optional[datetime]:
     try:
         dt = datetime.fromisoformat(ss)
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 def human_secs(sec: float) -> str:
@@ -104,7 +104,7 @@ def read_json(path: Union[str, Path], *, default: Any = None) -> Any:
         return default
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: unreadable/bad json → default
         return default
 
 def append_jsonl(path: Union[str, Path], records: Iterable[Dict[str, Any]]) -> Path:
@@ -126,7 +126,7 @@ def iter_jsonl(path: Union[str, Path]) -> Iterator[Dict[str, Any]]:
                 continue
             try:
                 yield json.loads(line)
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip a malformed line
                 continue
 
 def write_text(path: Union[str, Path], text: str, *, atomic: bool = True) -> Path:

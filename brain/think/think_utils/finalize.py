@@ -24,7 +24,7 @@ def _reason_text(reason) -> str:
     if isinstance(reason, dict):
         try:
             return json.dumps(reason, ensure_ascii=False)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: unserializable reason → str()
             return str(reason)
     return str(reason)
 
@@ -89,8 +89,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         _acted_type = (context.get("last_action_taken") or {}).get("type")
         if (_acted and _acted_type in AGENTIC_TYPES) or cycle_produced_goal_action(context):
             is_agentic = True
-    except Exception:
-        pass
+    except Exception as _e:  # best-effort agentic detection — never break finalize
+        record_failure("finalize.agentic_detect", _e)
 
     # P1 — three-tier reward split (the keystone). Until now consequential
     # cognition paid the SAME 1.0 as producing a real artifact, so reading

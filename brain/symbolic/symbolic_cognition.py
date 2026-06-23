@@ -46,7 +46,7 @@ def _ssm() -> Dict:
     try:
         from brain.symbolic.symbolic_self_model import build_symbolic_self_model
         return build_symbolic_self_model()
-    except Exception:
+    except ImportError:  # intentional: symbolic self-model optional → empty
         return {}
 
 
@@ -54,7 +54,7 @@ def _rules() -> List[Dict]:
     try:
         from brain.symbolic.rule_engine import get_all_rules
         return [r for r in get_all_rules() if not r.get("tombstone")]
-    except Exception:
+    except ImportError:  # intentional: rule engine optional → no rules
         return []
 
 

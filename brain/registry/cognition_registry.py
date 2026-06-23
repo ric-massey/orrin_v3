@@ -44,7 +44,7 @@ def _requires_llm(name: str, fn: Callable) -> bool:
     try:
         from brain.utils.llm_gate import REQUIRES_LLM_FUNCTIONS
         return name in REQUIRES_LLM_FUNCTIONS
-    except Exception:
+    except ImportError:  # intentional: llm_gate optional → treat as not requiring LLM
         return False
 
 def _merge_custom(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[str, object]]:
@@ -54,7 +54,7 @@ def _merge_custom(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[str, ob
     """
     try:
         from brain.core.manager import load_custom_cognition
-    except Exception:
+    except ImportError:  # intentional: no custom-cognition module → registry unchanged
         return funcs
 
     try:

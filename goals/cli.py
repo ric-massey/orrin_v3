@@ -102,7 +102,7 @@ def _priority_from_arg(x: Optional[str]) -> Priority:
         return mapping[s]
     try:
         return Priority(int(s))
-    except Exception:
+    except ValueError:  # intentional: unknown priority token → NORMAL
         return Priority.NORMAL
 
 def _status_from_arg(x: Optional[str]) -> Optional[Status]:
@@ -126,7 +126,7 @@ def _deadline_from_arg(x: Optional[str]) -> Optional[str]:
         if dt.tzinfo:
             return dt.isoformat()
         return dt.replace(tzinfo=timezone.utc).isoformat()
-    except Exception:
+    except ValueError:  # intentional: unparseable → pass raw to API
         return s  # let API try to parse
 
 def _print_table(goals: Sequence[Goal]) -> None:

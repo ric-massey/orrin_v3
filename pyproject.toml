@@ -188,4 +188,85 @@ files = [
     "brain/cognition/planning/evolution.py",
     "brain/cognition/planning/goal_store.py",
     "brain/cognition/planning/goal_outcomes.py",
+    # memory/ — the v2 memory engine, brought fully strict (Phase 5.3 tail): its
+    # Phase-5.3 coded ignores are now gate-enforced. get_embedding gained overloads
+    # so single-text callers get np.ndarray; the prometheus/PIL optional-dep shims
+    # are typed Any.
+    "memory/__init__.py",
+    "memory/compaction.py",
+    "memory/config.py",
+    "memory/embedder.py",
+    "memory/health.py",
+    "memory/ingest.py",
+    "memory/integrations.py",
+    "memory/lexicon/__init__.py",
+    "memory/lexicon/api.py",
+    "memory/lexicon/patterns.py",
+    "memory/media.py",
+    "memory/memory_daemon.py",
+    "memory/metrics.py",
+    "memory/models.py",
+    "memory/novelty.py",
+    "memory/retrieval.py",
+    "memory/store/__init__.py",
+    "memory/store/base.py",
+    "memory/store/inmem.py",
+    "memory/strength.py",
+    "memory/wal.py",
+    # goals/ — the v2 goal stack, brought fully strict (Phase 5.3 tail). Duck-typed
+    # store/registry accessors cast to their declared contract; UTCNOW lambdas became
+    # typed defs; the prometheus shim is typed Any. Phase-5.3 coded ignores now enforced.
+    "goals/__init__.py",
+    "goals/api.py",
+    "goals/cli.py",
+    "goals/events.py",
+    "goals/goals_daemon.py",
+    "goals/handlers/__init__.py",
+    "goals/handlers/base.py",
+    "goals/handlers/code_edit.py",
+    "goals/handlers/code_editor.py",
+    "goals/handlers/coding.py",
+    "goals/handlers/dummy.py",
+    "goals/handlers/generic.py",
+    "goals/handlers/housekeeping.py",
+    "goals/handlers/research.py",
+    "goals/health.py",
+    "goals/locks.py",
+    "goals/metrics.py",
+    "goals/model.py",
+    "goals/policy.py",
+    "goals/registry.py",
+    "goals/runner.py",
+    "goals/schema.py",
+    "goals/snapshot.py",
+    "goals/snapshots.py",
+    "goals/store.py",
+    "goals/triggers.py",
+    "goals/utils.py",
+    "goals/wal.py",
+]
+
+# ── Coverage (CODEBASE_CLEANUP_PLAN Phase 7 — ratcheted coverage) ────────────
+# Measure line coverage of the hand-maintained source packages (tests and
+# generated/CLI-only scripts excluded). The *ratchet* — the recorded floor and
+# the fail-if-below-it gate — lives in brain/scripts/coverage_ratchet.py /
+# `make coverage`; this is just how coverage is measured.
+[tool.coverage.run]
+branch = false
+source = ["brain", "backend", "goals", "memory", "reaper", "runtime", "observability"]
+omit = [
+    "*/__pycache__/*",
+    "*/tests/*",
+    "*_test.py",
+    "brain/scripts/*",
+]
+
+[tool.coverage.report]
+precision = 1
+show_missing = false
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "@(abc\\.)?abstractmethod",
 ]

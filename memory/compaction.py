@@ -4,7 +4,7 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import Any, List, Dict, cast
 import time
 import numpy as np
 
@@ -37,7 +37,7 @@ def _cos(a: np.ndarray, b: np.ndarray) -> float:
     denom = (np.linalg.norm(a) * np.linalg.norm(b)) + 1e-9
     return float(np.dot(a, b) / denom)
 
-def _get_vecs(store, items: List[MemoryItem]) -> Dict[str, np.ndarray]:
+def _get_vecs(store: Any, items: List[MemoryItem]) -> Dict[str, np.ndarray]:
     out: Dict[str, np.ndarray] = {}
     for it in items:
         v = None
@@ -45,7 +45,7 @@ def _get_vecs(store, items: List[MemoryItem]) -> Dict[str, np.ndarray]:
             v = getattr(store, "_vecs").get(it.embedding_id)
         if v is None:
             v = get_embedding(it.content)
-        out[it.id] = _normalize(v)
+        out[it.id] = _normalize(cast("np.ndarray", v))
     return out
 
 def _greedy_clusters(items: List[MemoryItem], vecs: Dict[str, np.ndarray], sim_thr: float) -> List[List[MemoryItem]]:
@@ -75,7 +75,7 @@ def _make_summary_text(cluster: List[MemoryItem], *, max_bullets: int, bullet_ch
     return "Summary of related items:\n" + "\n".join(bullets)
 
 def compact_and_promote(
-    store,
+    store: Any,
     working_items: List[MemoryItem],
     *,
     sim_threshold: float,
@@ -84,7 +84,7 @@ def compact_and_promote(
     max_bullets: int,
     bullet_chars: int,
     promote_layer: str,
-    wal=None,
+    wal: Any = None,
 ) -> CompactionStats:
     stats = CompactionStats(processed=len(working_items))
     if not working_items:
@@ -152,6 +152,8 @@ def compact_and_promote(
         for sm in new_summaries:
             v = get_embedding(sm.content)
             sm.embedding_dim = int(len(v))
+            if not sm.embedding_id:
+                sm.embedding_id = f"vec_{sm.id}"
             vec_map[sm.embedding_id] = _normalize(v)
         store.upsert_items(new_summaries)
         store.upsert_vectors(vec_map)

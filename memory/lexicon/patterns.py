@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import List, Optional, Iterable, Tuple
+from typing import List, Optional, Iterable, Iterator, Tuple
 import re
 
 __all__ = ["DefinitionHit", "DefHit", "extract_definitions", "extract_definitions_rich", "by_term"]
@@ -80,7 +80,7 @@ class DefinitionHit:
     span: Tuple[int, int] = (0, 0)
 
     # Let callers optionally unpack as (term, definition)
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Optional[str]]:
         yield self.term
         yield self.definition
 
@@ -181,7 +181,7 @@ def _term_ok(t: str) -> bool:
         return False
     return True
 
-def _mk_hit(term: str, defn: Optional[str], aliases: List[str], pattern: str, m: re.Match, conf: float) -> Optional[DefinitionHit]:
+def _mk_hit(term: str, defn: Optional[str], aliases: List[str], pattern: str, m: "re.Match[str]", conf: float) -> Optional[DefinitionHit]:
     term = _norm_term(term)
     if not _term_ok(term):
         return None
@@ -209,8 +209,9 @@ def _dedup_hits(hits: List[DefinitionHit]) -> List[DefinitionHit]:
     with 'engine control unit'). For AKA, dedup by sorted alias set.
     """
     out: List[DefinitionHit] = []
-    seen_keys = set()
+    seen_keys: set[Tuple[str, object]] = set()
     for h in hits:
+        key: Tuple[str, object]
         if h.definition is not None:
             key = (h.term.lower(), _norm_def_for_key(h.definition))
         else:

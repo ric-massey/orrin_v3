@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 import time
 
 from .config import MEMCFG
@@ -23,7 +23,7 @@ class StoreStats:
     gc_eligible: int = 0
 
 
-def _approx_vec_nbytes(vec) -> int:
+def _approx_vec_nbytes(vec: Any) -> int:
     try:
         return int(vec.nbytes)  # numpy arrays
     except Exception:
@@ -33,7 +33,7 @@ def _approx_vec_nbytes(vec) -> int:
             return 0
 
 
-def collect_store_stats(store) -> StoreStats:
+def collect_store_stats(store: Any) -> StoreStats:
     """
     Best-effort, backend-agnostic stats collection.
     Works with InMemoryStore by duck-typing private members (_items/_vecs).
@@ -135,7 +135,7 @@ def assess_health(
 
 
 def snapshot(
-    store,
+    store: Any,
     *,
     working_cache_size: int,
     last_compaction_ts: float,

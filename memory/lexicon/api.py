@@ -2,7 +2,7 @@
 # Local lexicon API: learn_definition, get_definition, add_alias, correct_definition.
 from __future__ import annotations
 from dataclasses import replace
-from typing import Optional, List, Iterable
+from typing import Any, Optional, List, Iterable
 import re
 import unicodedata
 
@@ -82,7 +82,7 @@ class Lexicon:
     - correct_definition(sense_id, new_definition, note=None) -> new_sense_id (if forked) or existing id (if update)
     """
 
-    def __init__(self, store):
+    def __init__(self, store: Any):
         """
         store must implement:
           - get_lexicon_by_term(term_or_alias: str) -> list[LexiconSense]
@@ -120,7 +120,7 @@ class Lexicon:
         # For similarity, compare *definitions* (more discriminative than "term: def")
         seed_text = (definition or (context_text or term)).strip()
         cand_vec = get_embedding(seed_text)
-        senses = self.store.get_lexicon_by_term(term)
+        senses: List[LexiconSense] = self.store.get_lexicon_by_term(term)
 
         # Find best matching existing sense by definition similarity
         best = None
@@ -187,7 +187,7 @@ class Lexicon:
         If context_text is provided, pick the sense whose definition best fits the context.
         Else return the most-used (freq) sense.
         """
-        senses = self.store.get_lexicon_by_term(term)
+        senses: List[LexiconSense] = self.store.get_lexicon_by_term(term)
         if not senses:
             return None
         if not context_text:
@@ -212,7 +212,7 @@ class Lexicon:
         alias = alias.strip()
         if not alias:
             return
-        senses = self.store.get_lexicon_by_term(term)
+        senses: List[LexiconSense] = self.store.get_lexicon_by_term(term)
         if not senses:
             # Create a placeholder from alias alone (low confidence)
             _ = self.learn_definition(

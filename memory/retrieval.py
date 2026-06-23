@@ -1,7 +1,7 @@
 # Vector retrieval helpers: ANN search, cosine⊕strength rerank, optional MMR re-ranking, and optional reinforcement on access.
 
 from __future__ import annotations
-from typing import Optional, List, Dict, Tuple
+from typing import Any, Optional, List, Dict, Tuple
 from datetime import datetime, timezone
 import numpy as np
 
@@ -35,7 +35,7 @@ def _blend(sim: float, strength: float, alpha: float) -> float:
 # ---------------------------
 # Vector access for items
 # ---------------------------
-def _get_item_vec(store, it: MemoryItem) -> Optional[np.ndarray]:
+def _get_item_vec(store: Any, it: MemoryItem) -> Optional[np.ndarray]:
     """
     Best-effort vector lookup:
       1) If store exposes a private _vecs map (InMemoryStore), use it.
@@ -52,7 +52,7 @@ def _get_item_vec(store, it: MemoryItem) -> Optional[np.ndarray]:
     except Exception:
         return None
 
-def _get_item_vecs(store, items: List[MemoryItem]) -> Dict[str, np.ndarray]:
+def _get_item_vecs(store: Any, items: List[MemoryItem]) -> Dict[str, np.ndarray]:
     out: Dict[str, np.ndarray] = {}
     for it in items:
         v = _get_item_vec(store, it)
@@ -127,6 +127,8 @@ def _mmr_order(
                     best_penalty = penalty
                     best_id = cid
 
+        if best_id is None:
+            break  # nothing selectable remains (defensive; candidates is non-empty here)
         selected.append(best_id)
         candidates.remove(best_id)
 
@@ -138,7 +140,7 @@ def _mmr_order(
 # Public API
 # ---------------------------
 def retrieve(
-    store,
+    store: Any,
     *,
     query_text: Optional[str] = None,
     query_vec: Optional[np.ndarray] = None,
@@ -214,7 +216,7 @@ def retrieve(
 
 
 def score_only(
-    store,
+    store: Any,
     *,
     query_text: Optional[str] = None,
     query_vec: Optional[np.ndarray] = None,
@@ -241,7 +243,7 @@ def score_only(
     )
     # Recompute blended score against the same alpha for transparency
     a = float(MEMCFG.RETRIEVE_ALPHA if alpha is None else alpha)
-    qv = get_embedding(query_text) if query_vec is None else _normalize(np.asarray(query_vec, dtype=np.float32))
+    qv = get_embedding(query_text or "") if query_vec is None else _normalize(np.asarray(query_vec, dtype=np.float32))
 
     # Compute similarity to query for diagnostics
     out: List[Tuple[MemoryItem, float]] = []

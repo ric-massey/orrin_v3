@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
-from typing import Optional, Any, Iterable
+from typing import Optional, Any, Iterable, Iterator
 from contextlib import contextmanager
 import time
 import threading
@@ -28,34 +28,37 @@ except Exception:
 
 # ---------- Fallback shims ----------
 class _NoopMetric:
-    def __init__(self, *_args, **_kw): pass
-    def labels(self, *_args, **_kw): return self
-    def inc(self, *_args, **_kw): return None
-    def set(self, *_args, **_kw): return None
-    def observe(self, *_args, **_kw): return None
+    def __init__(self, *_args: Any, **_kw: Any) -> None: pass
+    def labels(self, *_args: Any, **_kw: Any) -> "_NoopMetric": return self
+    def inc(self, *_args: Any, **_kw: Any) -> None: return None
+    def set(self, *_args: Any, **_kw: Any) -> None: return None
+    def observe(self, *_args: Any, **_kw: Any) -> None: return None
 
 class _NoopRegistry:
-    def __init__(self): self._m = {}
-    def register(self, name: str, metric: _NoopMetric): self._m[name] = metric
-    def get(self, name: str): return self._m.get(name)
+    def __init__(self) -> None: self._m: dict[str, Any] = {}
+    def register(self, name: str, metric: Any) -> None: self._m[name] = metric
+    def get(self, name: str) -> Any: return self._m.get(name)
 
 # ---------- Public Registry ----------
-_registry = CollectorRegistry() if _HAS_PROM else _NoopRegistry()
+# Real CollectorRegistry or the no-op shim; typed Any so the prom factory kwargs
+# (registry=...) and generate_latest(...) accept either without a union mismatch.
+_registry: Any = CollectorRegistry() if _HAS_PROM else _NoopRegistry()
 _server_guard = threading.Lock()
 _server_started = False
 
 # ---------- Metric factories ----------
-def _counter(name: str, desc: str, labels: Iterable[str] = ()):
+# Return Any: either a real prometheus metric or the _NoopMetric shim.
+def _counter(name: str, desc: str, labels: Iterable[str] = ()) -> Any:
     if _HAS_PROM:
         return _PCounter(name, desc, list(labels), registry=_registry)
     return _NoopMetric()
 
-def _gauge(name: str, desc: str, labels: Iterable[str] = ()):
+def _gauge(name: str, desc: str, labels: Iterable[str] = ()) -> Any:
     if _HAS_PROM:
         return _PGauge(name, desc, list(labels), registry=_registry)
     return _NoopMetric()
 
-def _histogram(name: str, desc: str, labels: Iterable[str] = (), buckets: Optional[list[float]] = None):
+def _histogram(name: str, desc: str, labels: Iterable[str] = (), buckets: Optional[list[float]] = None) -> Any:
     if _HAS_PROM:
         if buckets is None:
             # default buckets tuned for ms→s scale
@@ -108,7 +111,7 @@ def start_metrics_server(port: int = 8008) -> bool:
             return False
 
 @contextmanager
-def timer(histogram_metric=retrieval_latency_seconds):
+def timer(histogram_metric: Any = retrieval_latency_seconds) -> "Iterator[None]":
     """Context manager: with timer(retrieval_latency_seconds): ..."""
     t0 = time.perf_counter()
     try:

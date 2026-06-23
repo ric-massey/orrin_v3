@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, List, Tuple, cast
 import numpy as np
 
 from .config import MEMCFG
@@ -94,7 +94,10 @@ def build_item_from_event(
         except Exception:
             pre_vec = None
 
-    vec = pre_vec if pre_vec is not None else get_embedding(content)
+    # get_embedding's declared return is a broad ndarray union; at runtime it is a
+    # 1-D float32 vector (as is pre_vec). Cast so the strict callees below (novelty
+    # / IngestResult.vector, which want a plain ndarray) type-check — no runtime change.
+    vec = cast("np.ndarray", pre_vec if pre_vec is not None else get_embedding(content))
 
     n = novelty_score(vec, recent_vecs or []) if (recent_vecs and len(recent_vecs) > 0) else 1.0
     g = float((getattr(ev, "meta", {}) or {}).get("goal_rel", 0.0))

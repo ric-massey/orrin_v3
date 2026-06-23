@@ -30,7 +30,7 @@ class InMemoryStore(VectorStore):
     Simple, thread-safe, in-memory store for development.
     Items, vectors, and lexicon senses live in dicts.
     """
-    def __init__(self):
+    def __init__(self) -> None:
         self._lock = threading.RLock()
         self._items: Dict[str, MemoryItem] = {}
         self._vecs: Dict[str, np.ndarray] = {}

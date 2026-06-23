@@ -20,7 +20,7 @@ MEMORY_DIR = DATA_DIR / "memory"
 MEDIA_DIR = DATA_DIR / "media"
 WAL_DIR = MEMORY_DIR / "wal"
 
-def _ensure_dirs():
+def _ensure_dirs() -> None:
     for p in [DATA_DIR, MEMORY_DIR, MEDIA_DIR, WAL_DIR]:
         p.mkdir(parents=True, exist_ok=True)
 

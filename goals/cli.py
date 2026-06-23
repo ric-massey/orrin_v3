@@ -7,13 +7,14 @@ import argparse
 import json
 import os
 import sys
-from dataclasses import asdict, is_dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
 from .api import GoalsAPI
-from .model import Goal, Status, Priority
+# goal_to_jsonable is the canonical model encoder (shared with the dashboard feed);
+# kept under the existing private name to avoid churning the call sites.
+from .model import Goal, Status, Priority, goal_to_jsonable as _goal_to_jsonable
 
 # Optional store/daemon imports (provide clear error if missing)
 try:
@@ -48,27 +49,6 @@ def _ensure_json_dir() -> Path:
     json_dir = base / "json"
     json_dir.mkdir(parents=True, exist_ok=True)
     return json_dir
-
-def _goal_to_jsonable(g: Goal) -> Dict[str, Any]:
-    """Convert a Goal to a plain JSON-serializable dict."""
-    d = g.__dict__.copy()
-    # enums -> names
-    d["status"] = getattr(g.status, "name", str(g.status))
-    d["priority"] = getattr(g.priority, "name", str(g.priority))
-    # datetimes -> ISO
-    if d.get("deadline"):    d["deadline"]    = g.deadline.isoformat()
-    if d.get("created_at"):  d["created_at"]  = g.created_at.isoformat()
-    if d.get("updated_at"):  d["updated_at"]  = g.updated_at.isoformat()
-    # dataclass progress -> dict
-    pr = d.get("progress")
-    if is_dataclass(pr):
-        d["progress"] = asdict(pr)
-    # acceptance/spec already dict-like; ensure plain dict
-    if d.get("acceptance") is not None:
-        d["acceptance"] = dict(d["acceptance"])
-    if d.get("spec") is not None:
-        d["spec"] = dict(d["spec"])
-    return d
 
 def _parse_json_arg(s: Optional[str]) -> Optional[Dict[str, Any]]:
     """

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field, is_dataclass
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, List, Optional
@@ -167,7 +167,30 @@ def step_from_dict(d: Dict[str, Any]) -> Step:
     )
 
 
+# ── Serialization ─────────────────────────────────────────────────────────────
+def goal_to_jsonable(g: Goal) -> Dict[str, Any]:
+    """Convert a Goal to a plain JSON-serializable dict (enums→names, datetimes→
+    ISO, dataclass progress→dict). Canonical encoder, shared by the dashboard
+    feed (brain/utils/goals_feed.py) and the CLI (goals/cli.py) — it was
+    duplicated verbatim in both (structure audit §8)."""
+    d = g.__dict__.copy()
+    d["status"] = getattr(g.status, "name", str(g.status))
+    d["priority"] = getattr(g.priority, "name", str(g.priority))
+    if d.get("deadline"):    d["deadline"]    = g.deadline.isoformat()
+    if d.get("created_at"):  d["created_at"]  = g.created_at.isoformat()
+    if d.get("updated_at"):  d["updated_at"]  = g.updated_at.isoformat()
+    pr = d.get("progress")
+    if is_dataclass(pr):
+        d["progress"] = asdict(pr)
+    if d.get("acceptance") is not None:
+        d["acceptance"] = dict(d["acceptance"])
+    if d.get("spec") is not None:
+        d["spec"] = dict(d["spec"])
+    return d
+
+
 __all__ = [
     "Status", "Priority", "Progress", "Step", "Goal",
     "to_status", "to_priority", "goal_from_dict", "step_from_dict",
+    "goal_to_jsonable",
 ]

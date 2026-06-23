@@ -5,7 +5,7 @@
 separate change explicitly authorizes behavior changes.
 
 Detailed structural findings are recorded in
-`docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
+`docs/Engineering & Code Health/archive/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
 ## Implementation status (updated 2026-06-23b)
 

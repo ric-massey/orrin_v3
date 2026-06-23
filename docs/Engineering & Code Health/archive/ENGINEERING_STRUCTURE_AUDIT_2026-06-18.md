@@ -10,6 +10,25 @@ from ordinary Python imports is not enough to prove a module dead. A deletion is
 marked **high confidence** only when the module also has no registry, manifest,
 JSON catalog, test, or textual runtime reference.
 
+## Remediation status (updated 2026-06-23 — ARCHIVED)
+
+**This audit is archived.** All but two of its findings are remediated; the two
+that remain are tracked in `STRUCTURAL_DEBT_PLAN_2026-06-23.md`, which supersedes
+this doc's open-items list.
+
+- **Done since the 2026-06-19 note (via the cleanup plan's phases):** §1 oversized
+  functions (Phase 4/4.5 — 0 source modules over 600, `run_cognitive_loop`
+  3,709→314, `select_function` decomposed), §2 import-time startup (Phase 4B
+  RuntimeContext + import-safety tests), plus §3/§6/§7/§8 below. §5 v1/v2 is now a
+  **decision** (Option D — see `Core Architecture, Embodiment & Evolution/
+  GOALS_MASTER_PLAN_2026-06-23.md` Part II), not yet implemented.
+- **Still open → tracked in `STRUCTURAL_DEBT_PLAN_2026-06-23.md`:** §4 ambiguous
+  same-name modules (7 pairs; default-KEEP, mitigated by `brain.*` namespacing) and
+  §9 broad silent exception handlers (**603 across 247 files**; ratchet-then-
+  reclassify).
+
+The original 2026-06-19 milestone notes are kept verbatim below as the dated record.
+
 ## Remediation status (updated 2026-06-19)
 
 The low-risk milestones are **done and verified** (`make verify`: Ruff clean,

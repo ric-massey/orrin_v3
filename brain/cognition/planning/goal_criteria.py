@@ -62,7 +62,7 @@ def _criteria_evidence_met(goal: Dict[str, Any]) -> bool:
         try:
             from brain.agency.effect_ledger import has_qualifying_effect
             produced = has_qualifying_effect(gid, goal)
-        except Exception:
+        except ImportError:  # intentional: effect ledger optional → produced stays False
             pass
     milestones = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
     all_milestones = bool(milestones) and all(bool(m.get("met")) for m in milestones)

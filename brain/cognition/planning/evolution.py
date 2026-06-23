@@ -325,7 +325,7 @@ def simulate_future_selves(
         if not llm_available():
             return {"futures": [], "preferred": "", "reason": "tool unavailable: llm",
                     "recommended_goals": []}
-    except Exception:
+    except ImportError:  # intentional: llm_gate optional → proceed without the availability gate
         pass
     try:
         self_model = ensure_self_model_integrity(get_self_model())

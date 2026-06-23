@@ -199,7 +199,7 @@ def _causal_first_step(goal_title: str) -> Optional[str]:
         if len(cause) < 4:
             return None
         return f"Act on what I've learned brings this about: {cause[:120]}"
-    except Exception:
+    except (ImportError, ValueError, TypeError):  # intentional: causal graph unavailable/malformed → no suggestion
         return None
 
 

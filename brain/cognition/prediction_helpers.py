@@ -371,5 +371,5 @@ def _age_hours(created_ts: str) -> float:
     try:
         created = datetime.fromisoformat(created_ts.replace("Z", "+00:00"))
         return (datetime.now(timezone.utc) - created).total_seconds() / 3600.0
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable timestamp → far-past sentinel
         return 999.0

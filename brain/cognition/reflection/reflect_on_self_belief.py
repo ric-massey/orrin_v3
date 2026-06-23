@@ -96,7 +96,8 @@ def evolve_core_value(self_model: dict) -> str:
                               expected_reward=0.6, effort=0.8, mode="phasic",
                               source="evolved core value")
         return f"🌱 Evolved: {value} — {justification}"
-    except Exception:
+    except Exception as _e:
+        record_failure("reflect_on_self_belief.evolve_value", _e)
         return "⚠️ Failed to evolve value."
 
 

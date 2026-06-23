@@ -37,7 +37,7 @@ except Exception:  # pragma: no cover
                 # if dict-like, sum numeric values (common “score” shapes)
                 vals = x.values() if hasattr(x, "values") else []
                 return sum(float(v) for v in vals)
-            except Exception:
+            except (ValueError, TypeError):  # intentional: non-numeric values → default
                 return default
 
 # --- path helper ------------------------------------------------------------

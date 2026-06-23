@@ -123,7 +123,7 @@ def reflect_on_outcomes():
                 if _make_outcome_key(o) in recent_keys:
                     o["reflected_on"] = True
                     o.setdefault("reflected_timestamp", now_iso_z())
-            except Exception:
+            except (KeyError, TypeError, AttributeError):  # intentional: malformed outcome → skip
                 continue
         save_json(OUTCOMES_JSON, outcomes_full)
 

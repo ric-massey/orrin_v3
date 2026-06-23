@@ -132,7 +132,7 @@ def capability_available(cap: Optional[str], context: Any = None) -> bool:
         try:
             from brain.utils.llm_gate import llm_available
             return bool(llm_available())
-        except Exception:
+        except ImportError:  # intentional: llm_gate optional → degrade/disengage honestly
             return False
     if cap == "web":
         # web/wiki tools are non-LLM and stay available unless flagged unhealthy.

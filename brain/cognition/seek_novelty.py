@@ -128,7 +128,7 @@ def _pick_mode(context: Dict[str, Any]) -> str:
         from brain.cognition.exploration_value import curiosity_gap
         if curiosity_gap(context) >= 0.6:
             return "explore"
-    except Exception:
+    except ImportError:  # intentional: exploration_value optional → fall through to default mode
         pass
 
     long_mem = load_json(LONG_MEMORY_FILE, default_type=list) or []

@@ -268,5 +268,5 @@ def _parse_ts(ts_str: str) -> float:
     try:
         dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
         return dt.timestamp()
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable timestamp → 0.0
         return 0.0

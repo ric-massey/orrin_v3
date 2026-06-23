@@ -233,7 +233,7 @@ def _predict_next_family(curr_family: str, transitions: Dict[str, Any],
     if isinstance(row, dict) and row:
         try:
             return max(row.items(), key=lambda kv: kv[1])[0]
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-comparable transition weights → no inference
             pass
     return _family_of(fallback_intention)
 

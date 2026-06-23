@@ -89,7 +89,7 @@ def _iso_to_epoch(iso_ts: str) -> float:
         return 0.0
     try:
         return datetime.fromisoformat(iso_ts.replace("Z", "+00:00")).timestamp()
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable timestamp → 0.0
         return 0.0
 
 

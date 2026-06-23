@@ -169,7 +169,7 @@ def _behavior_pattern_summary() -> str:
         top = sorted(freq.items(), key=lambda x: x[1], reverse=True)[:8]
         lines = [f"  {fn} ({n}x)" for fn, n in top]
         return "Recent cognitive function choices:\n" + "\n".join(lines) if lines else ""
-    except Exception:
+    except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed history → empty summary
         return ""
 
 

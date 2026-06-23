@@ -594,5 +594,6 @@ def get_relationship_context_for_prompt(person_id: str) -> str:
 
         return " ".join(parts)
 
-    except Exception:
+    except Exception as _e:
+        record_failure("relationships.relational_self_narrative", _e)
         return ""

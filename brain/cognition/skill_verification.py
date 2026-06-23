@@ -191,6 +191,7 @@ def _run_execution_check(name: str, code: str) -> Tuple[bool, str, str]:
         from brain.think.sandbox_runner import run_python
         result = run_python(harness, timeout=8.0)
     except Exception as e:
+        record_failure("skill_verification.run_python", e)
         return False, "", str(e)
 
     stdout = result.get("stdout", "")

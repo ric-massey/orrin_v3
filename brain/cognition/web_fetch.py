@@ -83,7 +83,7 @@ def _ddg_search(query: str) -> Optional[str]:
         return None
     try:
         data = json.loads(raw)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-JSON response → None
         return None
 
     # Try abstract first (encyclopedia-style), then answer (factoid), then related topics

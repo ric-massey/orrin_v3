@@ -432,7 +432,7 @@ def _apply_resource_deficit_nudge(context: Dict[str, Any], felt_cycles: float, d
         from brain.cognition.dreaming.dream_cycle import dreaming_now
         if dreaming_now():
             return
-    except Exception:
+    except ImportError:  # intentional: dream daemon optional → proceed
         pass
     if felt_cycles < RESOURCE_DEFICIT_ONSET_FELT_CYCLES:
         return

@@ -51,7 +51,7 @@ def _survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:
         af = context.get("affect_state") or {}
         if float(af.get("resource_deficit", 0.0) or 0.0) > 0.85:
             return True, "resource_deficit>0.85"
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad affect/health values → don't force-close
         return False, ""
     return False, ""
 
@@ -185,7 +185,7 @@ def _degrade_or_disengage(goal: Dict[str, Any], context: Dict[str, Any],
         from brain.cognition.planning.goal_types import reduced_goal_spec
         from brain.cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
         from brain.cognition.planning import goal_arbiter
-    except Exception:
+    except ImportError:  # intentional: planning modules optional — fall through to normal
         return None
 
     if not goal.get("_degraded"):
@@ -247,7 +247,7 @@ def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bo
         return False
     try:
         from brain.cognition.planning.goal_types import required_capability, capability_available
-    except Exception:
+    except ImportError:  # intentional: goal_types optional — can't restore
         return False
 
     _pd = goal.get("_predegrade")

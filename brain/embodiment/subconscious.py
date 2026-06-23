@@ -337,7 +337,8 @@ class SubconsciousProcessor:
             from brain.paths import WORKING_MEMORY_FILE
             data = load_json(WORKING_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)][-60:]
-        except Exception:
+        except Exception as exc:  # WM read failed — record, no working memory
+            record_failure("subconscious._load_wm", exc)
             return []
 
     def _load_lm(self) -> List[Dict]:
@@ -346,7 +347,8 @@ class SubconsciousProcessor:
             from brain.paths import LONG_MEMORY_FILE
             data = load_json(LONG_MEMORY_FILE, default_type=list)
             return [e for e in (data or []) if isinstance(e, dict)]
-        except Exception:
+        except Exception as exc:  # long-memory read failed — record, none
+            record_failure("subconscious._load_lm", exc)
             return []
 
     def _write_to_wm(
@@ -394,5 +396,6 @@ class SubconsciousProcessor:
                 "kind": str(last.get("kind") or "")[:48],
                 "ts": last.get("ts"),
             }
-        except Exception:
+        except Exception as exc:  # conscious-stream read failed — record, no snapshot
+            record_failure("subconscious._workspace_snapshot", exc)
             return {}

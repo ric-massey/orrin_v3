@@ -69,7 +69,7 @@ def _cycle(context: Dict[str, Any]) -> int:
         return int(cc.get("count", 0) or 0)
     try:
         return int(cc or 0)
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-int cycle → 0
         return 0
 
 
@@ -88,7 +88,7 @@ def _site_fail_totals() -> Dict[str, int]:
         from brain.utils.failure_counter import get_summary
         summary = get_summary() or {}
         return {site: int(data.get("count", 0) or 0) for site, data in summary.items()}
-    except Exception:
+    except ImportError:  # intentional: failure counter unavailable → no site totals
         return {}
 
 
@@ -142,8 +142,8 @@ def _capability_healthy(capability: str, ap: Optional[Dict[str, Any]] = None) ->
         try:
             from brain.utils.llm_gate import llm_available
             from brain.utils.generate_response import _cb_is_open
-        except Exception:
-            return True  # can't tell → don't block resumption
+        except ImportError:  # intentional: can't tell → don't block resumption
+            return True
         if not llm_available() or _cb_is_open():
             return False
         if ap is not None:

@@ -86,7 +86,7 @@ def _rule_rehabilitation(changes: List[Dict]) -> int:
     try:
         from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
         from brain.symbolic.ground_truth import grounding_score as _gs
-    except Exception:
+    except ImportError:  # intentional: rule/grounding engine optional — no rehab
         return 0
 
     rules = get_all_rules()
@@ -156,7 +156,7 @@ def _router_calibration(changes: List[Dict], proposals: List[Dict]) -> int:
     try:
         from brain.symbolic.symbolic_self_model import get_symbolic_self_model
         from brain.symbolic.prediction_engine import get_domain_error_rates
-    except Exception:
+    except ImportError:  # intentional: self-model/prediction engine optional — no calibration
         return 0
 
     model        = get_symbolic_self_model()
@@ -201,7 +201,7 @@ def _router_calibration(changes: List[Dict], proposals: List[Dict]) -> int:
 def _meta_rule_pruning(changes: List[Dict]) -> int:
     try:
         from brain.symbolic.meta_rules import get_meta_rule_stats, _load_meta_rules, _save_meta_rules
-    except Exception:
+    except ImportError:  # intentional: meta-rules engine optional — no pruning
         return 0
 
     stats = get_meta_rule_stats()

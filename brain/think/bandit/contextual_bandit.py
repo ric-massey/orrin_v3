@@ -68,7 +68,7 @@ def _context_bucket(features: Optional[Dict[str, float]]) -> str:
         try:
             if float(f.get(f"emo_{b}", 0.0) or 0.0) > 0.0:
                 return b
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-numeric feature → skip bucket
             pass
     # 2) raw affect magnitudes passed directly
     try:
@@ -76,7 +76,7 @@ def _context_bucket(features: Optional[Dict[str, float]]) -> str:
         top = max(cand, key=cand.get)
         if cand[top] >= 0.5:
             return top
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric magnitudes → default bucket
         pass
     return _DEFAULT_BUCKET
 
@@ -87,7 +87,7 @@ def _safe_float(x) -> float:
         if math.isnan(v) or math.isinf(v):
             return 0.0
         return v
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric → 0.0
         return 0.0
 
 

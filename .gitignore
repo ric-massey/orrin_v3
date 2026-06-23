@@ -10,7 +10,11 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .coverage
+.coverage.*
+coverage.json
+coverage.xml
 htmlcov/
+# .coverage-floor (the ratchet record) IS tracked — see brain/scripts/coverage_ratchet.py
 
 # Virtual envs
 .venv/

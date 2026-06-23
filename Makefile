@@ -17,7 +17,7 @@ RUFF   := $(PYTHON) -m ruff
 MYPY   := $(PYTHON) -m mypy
 
 .DEFAULT_GOAL := help
-.PHONY: help verify test lint lint-fix format py-typecheck audit-exceptions telemetry-types fe-typecheck fe-build fe-lint frontend
+.PHONY: help verify test lint lint-fix format py-typecheck audit-exceptions size-report coverage coverage-update audit-deps telemetry-types fe-typecheck fe-build fe-lint frontend
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?##' $(MAKEFILE_LIST) 2>/dev/null | \
@@ -43,6 +43,21 @@ format: ## Ruff format in place (run deliberately; not part of verify)
 
 audit-exceptions: ## Report broad exception handlers that silently discard failures
 	$(PYTHON) brain/scripts/audit_exception_handlers.py
+
+size-report: ## Report source modules by size; flag >600-line soft-limit (ratchet: tests/test_module_size.py)
+	$(PYTHON) -m brain.scripts.size_report --warn-only
+
+coverage: ## Run the suite under coverage and gate against the recorded floor (.coverage-floor)
+	$(PYTHON) -m coverage run -m pytest -q
+	$(PYTHON) -m coverage json -o coverage.json >/dev/null
+	$(PYTHON) -m coverage report
+	$(PYTHON) -m brain.scripts.coverage_ratchet
+
+coverage-update: ## Raise the coverage floor to current after coverage gains (run `make coverage` first)
+	$(PYTHON) -m brain.scripts.coverage_ratchet --update
+
+audit-deps: ## Report dependency vulnerabilities + outdated packages (pip-audit; informational)
+	$(PYTHON) -m pip_audit --desc || true
 
 telemetry-types: ## Regenerate the FE telemetry wire types (zod + TS) from schema.py
 	$(PYTHON) -m backend.server.generate_telemetry_ts

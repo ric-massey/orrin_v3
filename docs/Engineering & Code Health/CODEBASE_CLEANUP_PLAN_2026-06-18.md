@@ -7,6 +7,28 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22f)
+
+- **Phase 5.1 tail — loop-stage typing DONE.** Brought the entire `brain/loop/`
+  package under `mypy --strict` (allowlist **50 → 64 files**): all 14 remaining
+  stage modules (`invoke`, `cognition_reward`, `telemetry`, `account`, `reflect`,
+  `deliberate`, `services`, `boot_checks`, `maintenance`, `sense`, `boot`,
+  `finalize`, `execute`; `constants` was already in). Typed leaf-first, every edit
+  behavior-preserving (annotations, var-annotations, `float()`/`str()` coercions at
+  existing boundaries, one `exc`→`err` except-var rename for strict's
+  deleted-variable rule). Required two classes of signature-only boundary edits, no
+  function bodies touched: (1) gave signatures to the untyped callees the loop
+  invokes so the strict call sites stop tripping `no-untyped-call`
+  (`check_affect_drift`, `update_affect_state`, `reflect_on_affect`,
+  `process_inputs`; and `take_action`'s `speaker` made `Optional`, matching its
+  always-possibly-None callers); (2) made the cross-module names the loop imports
+  explicit re-exports (`name as name`, the `no_implicit_reexport` idiom) in
+  `action_gate`/`autobiography`/`self_extension`/`intrinsic_goals`/`pursue_goal`/
+  `select_function`. Gate green: ruff clean, **mypy 64 files clean**, 987 passed /
+  1 skipped. **Remaining Phase 5:** only 5.3's ignore-narrowing in the
+  still-not-strict subtrees (`goals/`, `memory/`, `reaper/`, `runtime/`), done
+  per-module as each enters the allowlist.
+
 ## Implementation status (updated 2026-06-22e)
 
 - **Phase 6 — remaining work COMPLETE (duplication, re-exports, aliases, docs).**

@@ -110,6 +110,26 @@ class FnEvent(BaseModel):
     lane: Optional[str] = None             # deliberate | executive
 
 
+class LlmCost(BaseModel):
+    """LLM-cost telemetry: reasoning-cache health + symbolic-vs-LLM gate ratio.
+
+    Producer: brain.loop.telemetry._emit_llm_cost, fed by
+    llm_router.cache_stats() (cache_*) and llm_gate.gate_stats() (the gate_*/
+    symbolic_ratio counters). Surfaces how much thinking runs cheaply/offline.
+    """
+    model_config = _WIRE_CONFIG
+    # reasoning cache (llm_router.cache_stats)
+    cache_entries: Optional[int] = None
+    cache_live: Optional[int] = None
+    cache_stale: Optional[int] = None
+    cache_ttl_s: Optional[float] = None
+    # symbolic-vs-LLM gate (llm_gate.gate_stats), session-cumulative
+    llm_calls: Optional[int] = None
+    symbolic_hits: Optional[int] = None
+    total_calls: Optional[int] = None
+    symbolic_ratio: Optional[float] = None     # 0..1; fraction answered symbolically
+
+
 class TelemetryFrame(BaseModel):
     """A partial or full telemetry update. All fields optional.
 
@@ -142,11 +162,12 @@ class TelemetryFrame(BaseModel):
     monitor: Optional[Dict[str, Any]] = None      # Monitor breakthroughs + watchdog (free-form)
     workspace: Optional[Dict[str, Any]] = None    # Global Workspace winner (free-form)
     interoception: Optional[Dict[str, Any]] = None  # live per-act cost model (free-form)
+    llm_cost: Optional[LlmCost] = None            # reasoning-cache health + symbolic-vs-LLM ratio
 
 
 # Every wire model, in dependency order — the single list the codegen walks and
 # the validator references. (TelemetryFrame last; it references the rest.)
-WIRE_MODELS = (AffectFrame, MemoryRecord, LogLine, Goal, FnEvent, TelemetryFrame)
+WIRE_MODELS = (AffectFrame, MemoryRecord, LogLine, Goal, FnEvent, LlmCost, TelemetryFrame)
 
 
 def validate_frame(frame: Dict[str, Any]) -> List[str]:
@@ -175,5 +196,5 @@ def validate_frame(frame: Dict[str, Any]) -> List[str]:
 # explicitly in hub.merge and are NOT in this tuple.
 LATEST_WINS_KEYS = (
     "narrative", "cycle", "active_fn", "active_lane", "fn_recent", "catalog",
-    "executive", "monitor", "workspace", "interoception",
+    "executive", "monitor", "workspace", "interoception", "llm_cost",
 )

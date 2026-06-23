@@ -265,6 +265,57 @@ def _emit_goals(context: "Context") -> None:
         return
 
 
+_LAST_LLM_COST_PUSH = 0.0
+_LLM_COST_PUSH_INTERVAL = 3.0   # seconds; cache/gate stats drift slowly
+def _emit_llm_cost(context: "Context") -> None:
+    """
+    Push LLM-cost telemetry to the Brain UI: reasoning-cache health
+    (``llm_router.cache_stats``) and the symbolic-vs-LLM gate ratio
+    (``llm_gate.gate_stats``) — i.e. how much of Orrin's thinking is running
+    cheaply/offline vs hitting the LLM. Throttled and fail-safe; telemetry must
+    never block or crash the loop.
+    """
+    tb = _bridge()
+    if tb is None:
+        return
+    try:
+        import time as _t
+        global _LAST_LLM_COST_PUSH
+        now = _t.time()
+        if now - _LAST_LLM_COST_PUSH < _LLM_COST_PUSH_INTERVAL:
+            return
+        _LAST_LLM_COST_PUSH = now
+
+        payload: Dict[str, Any] = {}
+        try:
+            from brain.utils.llm_router import cache_stats
+            c = cache_stats()
+            payload.update(
+                cache_entries=int(c.get("entries", 0)),
+                cache_live=int(c.get("live", 0)),
+                cache_stale=int(c.get("stale", 0)),
+                cache_ttl_s=_f(c.get("ttl_s", 0.0)),
+            )
+        except Exception:
+            pass
+        try:
+            from brain.symbolic.llm_gate import gate_stats
+            g = gate_stats()
+            payload.update(
+                llm_calls=int(g.get("llm", 0)),
+                symbolic_hits=int(g.get("symbolic", 0)),
+                total_calls=int(g.get("total", 0)),
+                symbolic_ratio=_f(g.get("symbolic_ratio", 0.0)),
+            )
+        except Exception:
+            pass
+
+        if payload:
+            tb.update(llm_cost=payload)
+    except Exception:
+        return
+
+
 def _ui_stage(node: str, narrative: str) -> None:
     """
     Mark the active loop stage (perceive|reflect|plan|act) on the UI so the Face

@@ -31,7 +31,7 @@ from brain.paths import (
 )
 
 from brain.loop.telemetry import (
-    _push_event, _emit_affect, _emit_goals, _ui_stage, _ui_memory,
+    _push_event, _emit_affect, _emit_goals, _emit_llm_cost, _ui_stage, _ui_memory,
 )
 # The affect-decay stage lives in signal_decay; re-exported so ORRIN_loop and
 # the stage's unit tests keep importing it from brain.loop.sense.
@@ -88,6 +88,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # Mirror the freshly-updated affect to the Face & Brain UI (fail-safe).
     _emit_affect(context)
     _emit_goals(context)
+    _emit_llm_cost(context)
     _ui_stage("reflect", "Reflecting — integrating affect & signals.")
 
     # ── Layer 0 reads: inject embodiment state into this cycle ─────────

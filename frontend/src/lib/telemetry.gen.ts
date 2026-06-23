@@ -54,6 +54,18 @@ export const FnEventSchema = z.looseObject({
 });
 export type FnEvent = z.infer<typeof FnEventSchema>;
 
+export const LlmCostSchema = z.looseObject({
+  "cache_entries": z.number().nullable().optional(),
+  "cache_live": z.number().nullable().optional(),
+  "cache_stale": z.number().nullable().optional(),
+  "cache_ttl_s": z.number().nullable().optional(),
+  "llm_calls": z.number().nullable().optional(),
+  "symbolic_hits": z.number().nullable().optional(),
+  "total_calls": z.number().nullable().optional(),
+  "symbolic_ratio": z.number().nullable().optional(),
+});
+export type LlmCost = z.infer<typeof LlmCostSchema>;
+
 export const TelemetryFrameSchema = z.looseObject({
   "active_node": z.string().nullable().optional(),
   "node_status": z.record(z.string(), z.string()).optional(),
@@ -73,5 +85,6 @@ export const TelemetryFrameSchema = z.looseObject({
   "monitor": z.record(z.string(), z.unknown()).nullable().optional(),
   "workspace": z.record(z.string(), z.unknown()).nullable().optional(),
   "interoception": z.record(z.string(), z.unknown()).nullable().optional(),
+  "llm_cost": LlmCostSchema.nullable().optional(),
 });
 export type TelemetryFrame = z.infer<typeof TelemetryFrameSchema>;

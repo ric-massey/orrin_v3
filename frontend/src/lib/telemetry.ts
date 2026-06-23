@@ -47,6 +47,7 @@ export const initialState: TelemetryState = {
   monitor: null,
   workspace: null,
   interoception: null,
+  llmCost: null,
   extra: {},
   connected: false,
   source: "connecting",
@@ -93,6 +94,7 @@ function applyDelta(s: TelemetryState, f: any): TelemetryState {
   if (f.monitor != null) next.monitor = f.monitor;
   if (f.workspace != null) next.workspace = f.workspace;
   if (f.interoception != null) next.interoception = f.interoception;
+  if (f.llm_cost != null) next.llmCost = f.llm_cost;
   if (f.extra != null) next.extra = { ...s.extra, ...f.extra };
   next.updatedAt = Date.now();
   return next;
@@ -145,6 +147,7 @@ function reducer(s: TelemetryState, a: Action): TelemetryState {
         monitor: st.monitor ?? s.monitor,
         workspace: st.workspace ?? s.workspace,
         interoception: st.interoception ?? s.interoception,
+        llmCost: st.llm_cost ?? s.llmCost,
         extra: st.extra ?? s.extra,
         updatedAt: Date.now(),
       };

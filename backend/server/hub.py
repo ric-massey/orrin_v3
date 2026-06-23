@@ -114,6 +114,7 @@ class Hub:
             "monitor": None,       # Monitor breakthroughs + watchdog board
             "workspace": None,     # Global Workspace winner (+candidates)
             "interoception": None, # live per-act cost model (Fix 7)
+            "llm_cost": None,      # reasoning-cache health + symbolic-vs-LLM ratio
             "updated_at": time.time(),
         }
         # Sliding affect/metric history replayed to new clients so the Brain

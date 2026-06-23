@@ -8,6 +8,9 @@
 // telemetry.ts. These view-types are the post-merge projection of that contract.
 // Pure types + domain constants, kept separate from the runtime hook (telemetry.ts).
 
+import type { LlmCost } from "./telemetry.gen";
+export type { LlmCost };
+
 export const LOOP_NODES = ["perceive", "reflect", "plan", "act"] as const;
 export type LoopNode = (typeof LOOP_NODES)[number];
 export type NodeStatus = "idle" | "active" | "done";
@@ -152,6 +155,8 @@ export interface TelemetryState {
   workspace: WorkspaceBlock | null;
   /** Live interoceptive cost model, per executed function (Fix 7). */
   interoception: Record<string, unknown> | null;
+  /** LLM-cost telemetry: reasoning-cache health + symbolic-vs-LLM ratio. */
+  llmCost: LlmCost | null;
   /** Free-form extras the loop pushes (e.g. awareness). */
   extra: Record<string, unknown>;
   connected: boolean;

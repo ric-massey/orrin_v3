@@ -17,7 +17,7 @@ RUFF   := $(PYTHON) -m ruff
 MYPY   := $(PYTHON) -m mypy
 
 .DEFAULT_GOAL := help
-.PHONY: help verify test lint lint-fix format py-typecheck audit-exceptions fe-typecheck fe-build fe-lint frontend
+.PHONY: help verify test lint lint-fix format py-typecheck audit-exceptions telemetry-types fe-typecheck fe-build fe-lint frontend
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?##' $(MAKEFILE_LIST) 2>/dev/null | \
@@ -43,6 +43,9 @@ format: ## Ruff format in place (run deliberately; not part of verify)
 
 audit-exceptions: ## Report broad exception handlers that silently discard failures
 	$(PYTHON) brain/scripts/audit_exception_handlers.py
+
+telemetry-types: ## Regenerate the FE telemetry wire types (zod + TS) from schema.py
+	$(PYTHON) -m backend.server.generate_telemetry_ts
 
 fe-typecheck: ## Frontend TypeScript type-check
 	cd frontend && npm run typecheck

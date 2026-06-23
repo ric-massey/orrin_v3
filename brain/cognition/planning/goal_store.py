@@ -10,7 +10,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
-from typing import List, Dict, Optional, Tuple
+from typing import Any, Iterator, List, Dict, Optional, Tuple
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.timeutils import now_iso_z
@@ -28,7 +28,7 @@ MAX_GOALS = 15
 
 # Tree helpers
 
-def _find_goal_by_name(tree: List[Dict], name: str) -> Optional[Dict]:
+def _find_goal_by_name(tree: List[Dict[str, Any]], name: str) -> Optional[Dict[str, Any]]:
     for g in tree:
         if g.get("name") == name:
             return g
@@ -40,14 +40,14 @@ def _find_goal_by_name(tree: List[Dict], name: str) -> Optional[Dict]:
     return None
 
 
-def _attach_child(parent: Dict, child: Dict) -> None:
+def _attach_child(parent: Dict[str, Any], child: Dict[str, Any]) -> None:
     if "subgoals" not in parent or not isinstance(parent["subgoals"], list):
         parent["subgoals"] = []
     parent["subgoals"].append(child)
     parent["last_updated"] = now_iso_z()
 
 
-def ensure_immediate_actions_bucket(goals: List[Dict]) -> Dict:
+def ensure_immediate_actions_bucket(goals: List[Dict[str, Any]]) -> Dict[str, Any]:
     bucket_name = "Immediate Actions"
     for g in goals:
         if g.get("name") == bucket_name:
@@ -67,8 +67,8 @@ def ensure_immediate_actions_bucket(goals: List[Dict]) -> Dict:
 
 # Load / Save
 
-def load_goals() -> List[Dict]:
-    goals = load_json(GOALS_FILE, default_type=list)
+def load_goals() -> List[Dict[str, Any]]:
+    goals: List[Any] = load_json(GOALS_FILE, default_type=list)
     if not isinstance(goals, list):
         return []
 
@@ -77,7 +77,7 @@ def load_goals() -> List[Dict]:
     # goal.setdefault("history", []).append(...), and setdefault returns the
     # existing dict, so .append blows up ("'dict' object has no attribute
     # 'append'"). Coercing here fixes every append site at the source.
-    def _norm(g: Dict) -> Dict:
+    def _norm(g: Dict[str, Any]) -> Dict[str, Any]:
         if not isinstance(g, dict):
             return g
         for k in ("history", "subgoals", "plan", "milestones"):
@@ -93,7 +93,7 @@ def load_goals() -> List[Dict]:
 _TERMINAL_STATUSES = {"completed", "failed", "abandoned", "cancelled"}
 
 
-def _flatten_goals(nodes):
+def _flatten_goals(nodes: Any) -> Iterator[Dict[str, Any]]:
     for node in nodes or []:
         if not isinstance(node, dict):
             continue
@@ -101,14 +101,14 @@ def _flatten_goals(nodes):
         yield from _flatten_goals(node.get("subgoals"))
 
 
-def _reconcile_to_disk_terminal(goal: Dict) -> Dict:
+def _reconcile_to_disk_terminal(goal: Dict[str, Any]) -> Dict[str, Any]:
     """Adopt an existing terminal state before merging a stale in-memory copy."""
     if not isinstance(goal, dict):
         return goal
     gid = goal.get("id") or goal.get("title") or goal.get("name")
     if not gid:
         return goal
-    disk_goals = load_json(GOALS_FILE, default_type=list) or []
+    disk_goals: List[Any] = load_json(GOALS_FILE, default_type=list) or []
     for node in _flatten_goals(disk_goals):
         node_id = node.get("id") or node.get("title") or node.get("name")
         if (
@@ -122,7 +122,7 @@ def _reconcile_to_disk_terminal(goal: Dict) -> Dict:
     return goal
 
 
-def save_goals(goals: List[Dict]) -> None:
+def save_goals(goals: List[Dict[str, Any]]) -> None:
     # Terminal-status stickiness (lost-update guard). Many call sites load→mutate→save
     # goals_mem.json WITHOUT the GoalArbiter (the arbiter's own header notes "dozens of
     # uncoordinated call sites"), so a writer holding a STALE in_progress copy can
@@ -132,10 +132,10 @@ def save_goals(goals: List[Dict]) -> None:
     # save chokepoint, so a terminal goal can NEVER be silently downgraded by a stale
     # copy. (Removal still works — only goals present in BOTH are protected.)
     try:
-        _existing = load_json(GOALS_FILE, default_type=list) or []
-        _terminal: Dict[str, Dict] = {}
+        _existing: List[Any] = load_json(GOALS_FILE, default_type=list) or []
+        _terminal: Dict[str, Dict[str, Any]] = {}
 
-        def _collect(nodes):
+        def _collect(nodes: Any) -> None:
             for n in (nodes or []):
                 if isinstance(n, dict):
                     _gid = n.get("id") or n.get("title") or n.get("name")
@@ -145,11 +145,11 @@ def save_goals(goals: List[Dict]) -> None:
 
         _collect(_existing)
         if _terminal:
-            def _protect(nodes):
+            def _protect(nodes: Any) -> None:
                 for n in (nodes or []):
                     if isinstance(n, dict):
                         _gid = n.get("id") or n.get("title") or n.get("name")
-                        _prev = _terminal.get(_gid)
+                        _prev = _terminal.get(str(_gid))
                         if _prev is not None and str(n.get("status", "")).lower() not in _TERMINAL_STATUSES:
                             # A stale copy is trying to re-open a terminal goal — restore it.
                             n["status"] = _prev.get("status")
@@ -163,7 +163,7 @@ def save_goals(goals: List[Dict]) -> None:
         record_failure("goals.save_goals", _e)
 
     # Sort by last_updated (fallback to timestamp), newest first
-    def _key(g: Dict) -> str:
+    def _key(g: Dict[str, Any]) -> str:
         return str(g.get("last_updated", g.get("timestamp", "")))
 
     goals_sorted = sorted(goals, key=_key, reverse=True)
@@ -171,7 +171,7 @@ def save_goals(goals: List[Dict]) -> None:
     if overflow:
         # Archive displaced goals rather than silently deleting them
         try:
-            archived = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
+            archived: List[Any] = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
             if not isinstance(archived, list):
                 archived = []
             for g in overflow:
@@ -186,7 +186,7 @@ def save_goals(goals: List[Dict]) -> None:
 
 # Public actions
 
-def add_goal(goal: Dict, parent_name: Optional[str] = None) -> Dict:
+def add_goal(goal: Dict[str, Any], parent_name: Optional[str] = None) -> Dict[str, Any]:
     full = load_goals()
     g = dict(goal)
     try:
@@ -209,7 +209,7 @@ def add_goal(goal: Dict, parent_name: Optional[str] = None) -> Dict:
     return g
 
 
-def create_micro_goal_for_action(action_desc: str, parent_name: Optional[str] = None) -> Dict:
+def create_micro_goal_for_action(action_desc: str, parent_name: Optional[str] = None) -> Dict[str, Any]:
     return add_goal({
         "name": action_desc.strip()[:140],
         "tier": "micro_goal",
@@ -225,7 +225,7 @@ def mark_goal_status_by_name(name: str, new_status: str) -> bool:
     from brain.cognition.planning import goal_arbiter
     found = {"ok": False}
 
-    def _mut(full):
+    def _mut(full: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         target = _find_goal_by_name(full, name)
         if target:
             target["status"] = new_status
@@ -241,14 +241,14 @@ def mark_goal_status_by_name(name: str, new_status: str) -> bool:
 
 # Tree utils
 
-def merge_updated_goal_into_tree(tree: List[Dict], updated: Dict) -> List[Dict]:
+def merge_updated_goal_into_tree(tree: List[Dict[str, Any]], updated: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Merge an updated goal node into the full tree by matching id, then (name, timestamp).
     Replaces the first match found; recurses into subgoals. If not found, appends at top level.
     """
     updated = _reconcile_to_disk_terminal(updated)
 
-    def match(a: Dict, b: Dict) -> bool:
+    def match(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
         # Id is authoritative: the same goal re-created at a different hour has a
         # new timestamp, and (name, timestamp) matching appended a duplicate
         # record each time (FINDINGS 2026-06-12 §1B: same id stored 8×).
@@ -258,8 +258,8 @@ def merge_updated_goal_into_tree(tree: List[Dict], updated: Dict) -> List[Dict]:
             a.get("timestamp") == b.get("timestamp") or not b.get("timestamp")
         )
 
-    def replace_in_list(lst: List[Dict]) -> Tuple[List[Dict], bool]:
-        out: List[Dict] = []
+    def replace_in_list(lst: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], bool]:
+        out: List[Dict[str, Any]] = []
         replaced = False
         for g in lst:
             if not replaced and match(g, updated):
@@ -287,8 +287,8 @@ def merge_updated_goal_into_tree(tree: List[Dict], updated: Dict) -> List[Dict]:
 
 # Pruning
 
-def prune_goals(goals: List[Dict]) -> List[Dict]:
-    def _parse_iso(ts: str) -> Optional[datetime]:
+def prune_goals(goals: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def _parse_iso(ts: Any) -> Optional[datetime]:
         try:
             if ts and isinstance(ts, str):
                 # accept trailing Z
@@ -299,7 +299,7 @@ def prune_goals(goals: List[Dict]) -> List[Dict]:
             record_failure("goals.prune_goals._parse_iso", _e)
         return None
 
-    def is_active(goal: Dict) -> bool:
+    def is_active(goal: Dict[str, Any]) -> bool:
         if goal.get("tier") == "micro_goal":
             try:
                 ts = goal.get("last_updated", goal.get("timestamp"))
@@ -324,7 +324,7 @@ def prune_goals(goals: List[Dict]) -> List[Dict]:
             return bool(goal.get("milestones")) or bool(goal.get("subgoals"))
         return True
 
-    def prune(goal: Dict) -> Dict:
+    def prune(goal: Dict[str, Any]) -> Dict[str, Any]:
         subs = goal.get("subgoals")
         if isinstance(subs, list):
             goal["subgoals"] = [prune(sub) for sub in subs if is_active(sub)]

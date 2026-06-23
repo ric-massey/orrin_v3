@@ -76,7 +76,7 @@ def _cycle(context: Dict[str, Any]) -> int:
 # ── Failure fingerprints (cumulative counters → diffable totals) ───────────────
 
 def _llm_fail_total() -> int:
-    counts = load_json(_LLM_FAIL_FILE, default_type=dict) or {}
+    counts: Dict[str, Any] = load_json(_LLM_FAIL_FILE, default_type=dict) or {}
     if not isinstance(counts, dict):
         return 0
     return sum(int(v or 0) for v in counts.values() if isinstance(v, (int, float)))

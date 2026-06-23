@@ -7,6 +7,80 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-22b)
+
+- **Phase 5.1 — selection/ and planning/ packages fully strict-typed.** The mypy
+  `--strict` allowlist (`pyproject.toml [tool.mypy].files`) grew from 14 → 46
+  modules. Both coordinators the plan names are done: `select_function()` had its
+  `Dict + *args/**kwargs` signature replaced by an explicit keyword-only
+  `threat_detector_response` param (sentinel preserves the legacy tuple-return
+  detection), and `pursue_committed_goal` (`planning/goal_execution.py`) is typed.
+  The **entire** `brain/cognition/planning/` package (all 30 modules) plus the
+  `selection/` package and `select_function.py` now pass `--strict`. Shared
+  import surfaces were made explicit re-exports (the `name as name` idiom) so
+  strict importers don't trip `no_implicit_reexport`: `json_utils.extract_json`,
+  `reward_signals.release_reward_signal` (signature typed), and the `goals.py` /
+  `intrinsic_goals.py` / `pursue_goal.py` / `select_function.py` re-export blocks.
+  All edits behavior-preserving (annotations, `float()`/`str()` coercions at the
+  same boundaries, one dead duplicate-constant removal). Verified green: full
+  suite **954 passed / 1 skipped**, `mypy` clean on 46 files, ruff clean.
+  **Remaining Phase 5.1:** loop-stage coordinator typing (`brain/loop/`).
+
+- **Phase 5.2 — FE↔BE telemetry contract DONE (codegen + two-sided runtime
+  validation).** `backend/server/schema.py` (pydantic) is now the single source of
+  truth, enriched with `Goal`/`FnEvent` models (the well-specified blocks that
+  were `Dict[str, Any]`); the free-form blocks (executive/monitor/workspace/
+  interoception) stay passthrough because the producer genuinely doesn't constrain
+  them. `backend/server/generate_telemetry_ts.py` (`make telemetry-types`) renders
+  `frontend/src/lib/telemetry.gen.ts` — zod schemas + `z.infer` types — replacing
+  the hand-mirrored wire types in `types.ts` (which now holds only the *merged*
+  client view-model, legitimately stricter than the partial wire). Runtime
+  validation at BOTH boundaries: `validate_frame()` in `hub.merge` (producer,
+  non-fatal + capped logging) and `TelemetryFrameSchema.safeParse` in
+  `telemetry.ts` (consumer). `tests/observability_tests/telemetry_codegen_test.py`
+  re-renders in-memory and fails CI if the committed `.gen.ts` is stale, so the FE
+  types can never silently drift again. Added `zod@^4` to the frontend. Verified:
+  full suite **960 passed / 1 skipped**, mypy 46 clean, ruff clean, FE
+  typecheck/lint/build green.
+  **Remaining Phase 5:** loop-stage typing, 5.4 persisted-state migrations.
+
+- **Phase 5.3 — `type: ignore` triage STARTED (foundational utils done).** Triaged
+  the blanket (un-coded) ignores by category. Key realisation: ignores in
+  NON-allowlisted files are inert (mypy never reads them under `files=[...]`), so
+  the triage is done as a module enters strict — which is also `warn_unused_ignores`
+  (part of `--strict`), so the gate now keeps these honest. Brought
+  `brain/utils/{num,log,json_utils}.py` (json_utils is imported by 200+ modules) to
+  strict, narrowing/removing their ignores in the process: removed unused
+  import-guard ignores (redundant under the global `ignore_missing_imports`),
+  narrowed fallback `X = None` assignments to `# type: ignore[assignment]`, and
+  replaced the `json.load`→`T` blanket with a `cast(T, …)`. Allowlist 46 → 49.
+  Also removed 7 provably-unused blanket ignores and narrowed one `[assignment]`
+  across brain/ core (loop_helpers, body_sense, reflect_on_cognition,
+  function_catalog, cognition_registry, sandbox) — verified by
+  `mypy --warn-unused-ignores`. Gate green: 960 passed, mypy 49 clean, ruff clean.
+  **Remaining 5.3:** the still-used blanket ignores in the not-yet-strict
+  subtrees (goals/, memory/, reaper/, runtime/) get narrowed as those modules
+  enter the allowlist.
+
+- **Phase 5.4 — persisted-state schema + migrations DONE (subsumption + discipline
+  lock).** Built on the existing spine (`brain/utils/schema_migration.py`,
+  `CURRENT_SCHEMA_VERSION`). (1) SUBSUMPTION: the knowledge-graph store no longer
+  versions itself in isolation — `knowledge_graph_core._SCHEMA_VERSION` now derives
+  from the global `CURRENT_SCHEMA_VERSION`, so a graph-format change bumps the
+  global version + registers a spine migration instead of a private store version.
+  (`mind_archive`/`life_capsule` already embed the global `state_schema_version`;
+  their `MIND_`/`CAPSULE_SCHEMA_VERSION` are separate *container* formats, left as
+  is.) (2) DISCIPLINE: new `tests/brain/test_schema_migration_roundtrip.py` adds a
+  reusable round-trip harness (old fixture → migrate → asserted shape + idempotency),
+  a worked TEMPLATE for the next migration, and a CI lock asserting every registered
+  `_MIGRATIONS` step has a round-trip test (`set(_MIGRATIONS) ⊆ _ROUNDTRIP_TESTED`)
+  — so a future format change without a round-trip test fails CI. Added
+  `schema_migration.py` to the strict allowlist (50 modules). Gate green: 964
+  passed, mypy 50 clean, ruff clean.
+  **Remaining Phase 5:** loop-stage typing (5.1 tail); 5.3 ignore-narrowing in the
+  not-yet-strict subtrees. The 5.2/5.4 deliverables and the selection+planning
+  typing are complete.
+
 ## Implementation status (updated 2026-06-22)
 
 - **Phase 4D — DONE.** Both selection/planning files are dense with

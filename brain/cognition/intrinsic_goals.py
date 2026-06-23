@@ -26,7 +26,8 @@ from brain.utils.failure_counter import record_failure
 # (finalize.credit_aspirations, goals.mark_aspiration_contribution) keep their
 # existing `from …intrinsic_goals import …` paths.
 from brain.cognition.intrinsic_aspirations import (  # noqa: F401
-    credit_aspirations, aspiration_pressure, mark_aspiration_contribution,
+    credit_aspirations, aspiration_pressure,
+    mark_aspiration_contribution as mark_aspiration_contribution,
     _serves_aspiration, _fairness_default_drive, _ensure_aspirations,
     _ASPIRATIONS, _DRIVE_TO_ASPIRATION,
 )
@@ -39,14 +40,16 @@ from brain.cognition.intrinsic_helpers import (  # noqa: F401
     _weighted_sample,
     # Recently-completed cooldown ledger (shared state) — re-exported so external
     # callers (goal_closure, goals) keep importing it from intrinsic_goals.
-    _RECENTLY_COMPLETED, _persist_recently_completed, _COOLDOWN_S,
+    _RECENTLY_COMPLETED as _RECENTLY_COMPLETED,
+    _persist_recently_completed as _persist_recently_completed, _COOLDOWN_S,
 )
 # Symbolic goal generators extracted to intrinsic_generators.py (Phase 4.5C);
 # re-imported so generate_intrinsic_goals orchestrates them and external callers
 # (goals.note_intake_completed) keep their import paths.
 from brain.cognition.intrinsic_generators import (  # noqa: F401
     _concept_deepening_goals, _open_question_goals, _causal_frontier_goals,
-    _tension_goals, _autobiographical_continuity_goals, note_intake_completed,
+    _tension_goals, _autobiographical_continuity_goals,
+    note_intake_completed as note_intake_completed,
     _drain_making_backlog, _making_goals, _contact_goals,
     _goal_from_recent_research, _varied_symbolic_goal,
 )

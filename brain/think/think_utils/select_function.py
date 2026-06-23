@@ -38,6 +38,11 @@ from brain.think.think_utils.selection.scoring import (  # noqa: F401
 )
 _log = get_logger(__name__)
 
+# Sentinel distinguishing "threat_detector_response not passed" (new-style call,
+# str return) from "passed" (legacy call, tuple return) — preserves the old
+# `bool(kwargs)` legacy-detection semantics now that the parameter is explicit.
+_UNSET: Any = object()
+
 # Emergency-fallback candidates used when the cognitive-functions list is
 # empty/missing or filtering empties the pool. Must be names present in
 # COGNITIVE_FUNCTIONS (registry/cognition_registry.py) — ORRIN_loop dispatches
@@ -100,8 +105,8 @@ from brain.utils.failure_counter import record_failure
 # direct-cache readers below + external importers of _capability_descriptions.
 from brain.think.think_utils.selection.catalog import (  # noqa: E402,F401
     _STATS_PATH, _STATS_CACHE, _CAPS_PATH, _CAPS_CACHE,
-    _load_manifest, _capability_descriptions, _fns_tagged, _tag_weights,
-    _tagged_or, _learned_stats,
+    _load_manifest, _capability_descriptions as _capability_descriptions,
+    _fns_tagged, _tag_weights, _tagged_or, _learned_stats,
 )
 
 # Membership sets (which functions each scoring block applies to) live in
@@ -159,7 +164,8 @@ from brain.think.think_utils.selection.state import (  # noqa: F401
 # Re-exported (noqa F401) so external importers + tests keep their existing
 # `from …select_function import _tokenize/_capability_overlap/…` paths.
 from brain.think.think_utils.selection.text import (  # noqa: E402,F401
-    _tokenize, _kw_overlap_score, _CAP_STOPWORDS, _capability_overlap,
+    _tokenize, _kw_overlap_score, _CAP_STOPWORDS,
+    _capability_overlap as _capability_overlap,
 )
 
 
@@ -181,7 +187,11 @@ from brain.think.think_utils.selection.text import (  # noqa: E402,F401
 
 
 # -------------------- main selection (multi-factor) --------------------
-def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tuple[str, Dict, bool]]:
+def select_function(
+    context: Dict[str, Any],
+    *,
+    threat_detector_response: Any = _UNSET,
+) -> Union[str, Tuple[str, Dict[str, Any], bool]]:
     """
     Back-compat selector with multi-factor scoring (no new files):
       - Directive alignment (keyword overlap)
@@ -224,10 +234,10 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
 
     feats = extract_features(context)
 
-    # Legacy signals from kwargs (if present)
-    if "threat_detector_response" in kwargs:
+    # Legacy signals from the threat_detector_response kwarg (if passed)
+    if threat_detector_response is not _UNSET:
         try:
-            _amy = kwargs["threat_detector_response"]
+            _amy = threat_detector_response
             # threat_detector_response may be a dict (from process_affective_signals) or a float
             if isinstance(_amy, dict):
                 feats["threat_detector_response"] = float(_amy.get("spike_intensity") or 0.0)
@@ -236,7 +246,7 @@ def select_function(context: Dict, *args: Any, **kwargs: Any) -> Union[str, Tupl
         except Exception:
             feats["threat_detector_response"] = 0.0
 
-    is_legacy = bool(args) or bool(kwargs)
+    is_legacy = threat_detector_response is not _UNSET
     decision_id = str(uuid.uuid4())
 
     # Build all per-cycle scoring inputs (weights, priors, boost maps) once,

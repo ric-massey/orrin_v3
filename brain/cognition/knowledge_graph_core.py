@@ -28,7 +28,12 @@ _log = get_logger(__name__)
 
 
 # ─── Schema version ──────────────────────────────────────────────────────────
-_SCHEMA_VERSION = 1
+# Subsumed under the GLOBAL state-schema spine (Phase 5.4): the graph file format
+# is versioned by schema_migration.CURRENT_SCHEMA_VERSION, NOT an isolated literal.
+# A future graph-format change bumps the global version and registers a migration
+# in brain/utils/schema_migration.py (with a round-trip test) rather than this
+# store versioning itself. Both are 1 at baseline, so this is a no-op today.
+from brain.utils.schema_migration import CURRENT_SCHEMA_VERSION as _SCHEMA_VERSION
 
 # ─── Entity and relation type vocabularies ───────────────────────────────────
 ENTITY_TYPES: frozenset = frozenset({

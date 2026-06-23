@@ -100,6 +100,12 @@ ignore_missing_imports = true
 follow_imports = "silent"
 files = [
     "brain/loop/constants.py",
+    # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
+    "brain/utils/num.py",
+    "brain/utils/log.py",
+    "brain/utils/json_utils.py",
+    # State-schema migration spine — extended + version-subsumed in Phase 5.4.
+    "brain/utils/schema_migration.py",
     # selection/ package — the recently-extracted selector core (Phase 4.5A),
     # typed leaf-first (Phase 5.1).
     "brain/think/think_utils/selection/tag_sets.py",
@@ -115,4 +121,39 @@ files = [
     "brain/think/think_utils/selection/score_actions.py",
     "brain/think/think_utils/selection/score_setup.py",
     "brain/think/think_utils/selection/pick.py",
+    # The selector entry point itself — typed once its whole callee tree
+    # (selection/) was strict-clean (Phase 5.1).
+    "brain/think/think_utils/select_function.py",
+    # planning/ package — typed leaf-first, mirroring selection/ (Phase 5.1).
+    "brain/cognition/planning/plan_versioning.py",
+    "brain/cognition/planning/goal_progress.py",
+    "brain/cognition/planning/goal_satiety.py",
+    "brain/cognition/planning/diagnosis.py",
+    "brain/cognition/planning/goal_types.py",
+    "brain/cognition/planning/env_snapshot.py",
+    "brain/cognition/planning/thinking_depth.py",
+    "brain/cognition/planning/goal_belief.py",
+    "brain/cognition/planning/goals_schema.py",
+    "brain/cognition/planning/goal_comprehension.py",
+    "brain/cognition/planning/goal_criteria.py",
+    "brain/cognition/planning/motivations.py",
+    "brain/cognition/planning/problem_refocus.py",
+    "brain/cognition/planning/step_execution.py",
+    "brain/cognition/planning/introspection.py",
+    "brain/cognition/planning/reflection.py",
+    "brain/cognition/planning/goal_planning.py",
+    "brain/cognition/planning/goal_adaptation.py",
+    "brain/cognition/planning/goal_execution.py",
+    "brain/cognition/planning/pursue_goal.py",
+    "brain/cognition/planning/goal_reconcile.py",
+    "brain/cognition/planning/outcome_metrics.py",
+    "brain/cognition/planning/executive.py",
+    "brain/cognition/planning/goal_arbiter.py",
+    "brain/cognition/planning/goal_closure.py",
+    "brain/cognition/planning/goal_lifecycle.py",
+    "brain/cognition/planning/goals.py",
+    "brain/cognition/planning/goal_plan_ops.py",
+    "brain/cognition/planning/evolution.py",
+    "brain/cognition/planning/goal_store.py",
+    "brain/cognition/planning/goal_outcomes.py",
 ]

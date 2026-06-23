@@ -36,9 +36,9 @@ from typing import Dict, Any, List
 # `resource` is POSIX-only (absent on Windows). Import it optionally so this
 # module loads everywhere; psutil supplies the same numbers cross-platform.
 try:
-    import resource  # type: ignore
+    import resource
 except Exception:
-    resource = None  # type: ignore
+    resource = None  # type: ignore[assignment]
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private

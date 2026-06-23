@@ -18,8 +18,12 @@ from pathlib import Path
 
 from fastapi import WebSocket
 
+import logging
+
 from .config import HISTORY_CAP, INPUT_CAP, LOG_CAP, LOOP_NODES, MEMORY_CAP, METRIC_CAP
-from .schema import LATEST_WINS_KEYS
+from .schema import LATEST_WINS_KEYS, validate_frame
+
+_log = logging.getLogger(__name__)
 
 # Persist the metric history across restarts so the System Metrics chart is
 # CONTINUOUS — it doesn't blank out every time the brain/telemetry process bounces.
@@ -119,6 +123,7 @@ class Hub:
         if self.history:
             self.state["metric_series"] = list(self.history)[-METRIC_CAP:]
         self._hist_writes = 0
+        self._contract_warnings = 0  # capped count of wire-contract violations (Phase 5.2)
         self._archive_buf: List[Dict[str, Any]] = []  # points pending archive flush
         # User inputs from the Face awaiting the core loop, and agent replies
         # awaiting Face pickup (the closed integration loop).
@@ -188,6 +193,18 @@ class Hub:
     # ── state merge ──────────────────────────────────────────────────────────
     def merge(self, frame: Dict[str, Any]) -> Dict[str, Any]:
         """Fold a partial frame into the latest state; return the delta to broadcast."""
+        # Producer-side boundary validation (Phase 5.2): check the frame against the
+        # wire contract (schema.TelemetryFrame) before it enters the rolling state.
+        # Non-fatal — telemetry must never crash the loop — so a contract violation
+        # is logged loudly (capped) and the frame is still merged. This catches a
+        # genuine type error (a string where a float belongs) at the producer, the
+        # symmetric half of the frontend's zod check at the consumer.
+        errs = validate_frame(frame)
+        if errs:
+            self._contract_warnings += 1
+            if self._contract_warnings <= 25:
+                _log.warning("telemetry frame violates the wire contract: %s", "; ".join(errs[:5]))
+
         s = self.state
         delta: Dict[str, Any] = {}
 

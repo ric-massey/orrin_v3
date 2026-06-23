@@ -8,7 +8,7 @@
 # which re-exports these names.
 from __future__ import annotations
 
-from typing import Any, List, Dict, Optional
+from typing import Any, Callable, List, Dict, Optional
 
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
@@ -21,13 +21,13 @@ from brain.utils.failure_counter import record_failure
 # These helpers operate on the in-memory goal dict. Callers are responsible
 # for persisting the goal back to context["committed_goal"] or GOALS_FILE.
 
-def get_goal_plan(goal: Dict) -> List[Dict]:
+def get_goal_plan(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Return the plan list on a goal, or empty list if none."""
     plan = goal.get("plan")
     return plan if isinstance(plan, list) else []
 
 
-def get_next_pending_step(goal: Dict) -> Optional[Dict]:
+def get_next_pending_step(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Return the first step with status='pending', or None if plan exhausted."""
     for step in get_goal_plan(goal):
         if isinstance(step, dict) and step.get("status") == "pending":
@@ -35,7 +35,7 @@ def get_next_pending_step(goal: Dict) -> Optional[Dict]:
     return None
 
 
-def advance_goal_plan(goal: Dict, step: Dict) -> None:
+def advance_goal_plan(goal: Dict[str, Any], step: Dict[str, Any]) -> None:
     """Mark a plan step as completed in-place."""
     step["status"] = "completed"
     step["completed_at"] = now_iso_z()
@@ -68,7 +68,7 @@ def is_placeholder_step(s: str) -> bool:
     return _normalize_step_text(s) in _PLACEHOLDER_STEPS
 
 
-def set_goal_plan(goal: Dict, steps: List[Any]) -> None:
+def set_goal_plan(goal: Dict[str, Any], steps: List[Any]) -> None:
     """
     Attach a fresh plan to a goal from a list of step description strings.
     Overwrites any existing plan.
@@ -78,8 +78,8 @@ def set_goal_plan(goal: Dict, steps: List[Any]) -> None:
     placeholder steps are rejected outright.
     """
     ts = now_iso_z()
-    plan: List[Dict] = []
-    seen: set = set()
+    plan: List[Dict[str, Any]] = []
+    seen: set[str] = set()
     for raw in steps:
         source = dict(raw) if isinstance(raw, dict) else {}
         s = source.get("step") if source else raw
@@ -89,7 +89,7 @@ def set_goal_plan(goal: Dict, steps: List[Any]) -> None:
         if not key or key in seen or is_placeholder_step(s):
             continue
         seen.add(key)
-        item = {"step": str(s)[:200], "status": "pending", "generated_at": ts}
+        item: Dict[str, Any] = {"step": str(s)[:200], "status": "pending", "generated_at": ts}
         action = source.get("action")
         if isinstance(action, dict) and action.get("function"):
             item["action"] = dict(action)
@@ -134,7 +134,7 @@ _PLAN_STEP_STOPWORDS = frozenset({
 })
 
 
-def _plan_step_tokens(text: object) -> set:
+def _plan_step_tokens(text: object) -> set[str]:
     """Non-trivial lowercase tokens of a step/milestone, for overlap matching."""
     out = set()
     for w in str(text or "").split():
@@ -145,8 +145,8 @@ def _plan_step_tokens(text: object) -> set:
 
 
 def insert_plan_step(
-    goal: Dict, step: str, position: Optional[int] = None, reason: str = "",
-) -> Optional[Dict]:
+    goal: Dict[str, Any], step: str, position: Optional[int] = None, reason: str = "",
+) -> Optional[Dict[str, Any]]:
     """
     Insert a new pending step into the goal's plan.
 
@@ -192,7 +192,7 @@ def insert_plan_step(
     return new_step
 
 
-def skip_pending_steps(goal: Dict, predicate, reason: str = "") -> int:
+def skip_pending_steps(goal: Dict[str, Any], predicate: Callable[[Dict[str, Any]], bool], reason: str = "") -> int:
     """
     Mark every pending step for which `predicate(step_dict)` is True as
     'skipped' (a terminal status). Completed steps are never touched.
@@ -219,7 +219,7 @@ def skip_pending_steps(goal: Dict, predicate, reason: str = "") -> int:
     return n
 
 
-def reprioritize_pending_steps(goal: Dict, score_fn) -> bool:
+def reprioritize_pending_steps(goal: Dict[str, Any], score_fn: Callable[[Dict[str, Any]], float]) -> bool:
     """
     Stable-sort the *pending tail* of the plan by `score_fn(step) -> float`
     (descending), leaving completed/skipped steps fixed in place. Ties keep
@@ -244,16 +244,16 @@ def reprioritize_pending_steps(goal: Dict, score_fn) -> bool:
     return True
 
 
-def met_milestone_tokens(goal: Dict) -> set:
+def met_milestone_tokens(goal: Dict[str, Any]) -> set[str]:
     """Union of tokens across all already-met milestones on the goal."""
-    out: set = set()
+    out: set[str] = set()
     for ms in (goal.get("milestones") or []):
         if isinstance(ms, dict) and ms.get("met"):
             out |= _plan_step_tokens(ms.get("text"))
     return out
 
 
-def unmet_milestone_texts(goal: Dict) -> List[str]:
+def unmet_milestone_texts(goal: Dict[str, Any]) -> List[str]:
     """Text of milestones that are not yet met."""
     return [
         str(ms.get("text") or "").strip()
@@ -262,7 +262,7 @@ def unmet_milestone_texts(goal: Dict) -> List[str]:
     ]
 
 
-def prune_satisfied_steps(goal: Dict, context: Optional[Dict] = None) -> int:
+def prune_satisfied_steps(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> int:
     """
     Skip pending steps whose work is already done — i.e. their keywords are
     largely covered by an already-met milestone. This stops Orrin from
@@ -275,7 +275,7 @@ def prune_satisfied_steps(goal: Dict, context: Optional[Dict] = None) -> int:
     if not met:
         return 0
 
-    def _satisfied(step: Dict) -> bool:
+    def _satisfied(step: Dict[str, Any]) -> bool:
         toks = _plan_step_tokens(step.get("step"))
         if len(toks) < 2:
             return False

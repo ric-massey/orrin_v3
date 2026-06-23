@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import re
-from typing import List, Dict
+from typing import Any, List, Dict
 
 from brain.utils.json_utils import load_json
 
@@ -21,11 +21,12 @@ from brain.utils.json_utils import load_json
 PRODUCTION_DEADLINE_CYCLES = 200
 
 
-def _is_artifact_gated(goal: Dict) -> bool:
+def _is_artifact_gated(goal: Dict[str, Any]) -> bool:
     """A goal that may complete ONLY when a real durable effect was recorded for it."""
     if not isinstance(goal, dict):
         return False
-    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    spec_raw = goal.get("spec")
+    spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
     if bool(goal.get("requires_artifact") or spec.get("requires_artifact")):
         return True
     if str(goal.get("driven_by") or spec.get("driven_by") or "").lower() == "output_producing":
@@ -37,10 +38,11 @@ def _is_artifact_gated(goal: Dict) -> bool:
     ))
 
 
-def _definition_of_done(goal: Dict) -> List[Dict]:
-    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+def _definition_of_done(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
+    spec_raw = goal.get("spec")
+    spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
     raw = goal.get("definition_of_done") or spec.get("definition_of_done") or []
-    out: List[Dict] = []
+    out: List[Dict[str, Any]] = []
     for item in raw if isinstance(raw, list) else []:
         if isinstance(item, dict) and item.get("criterion"):
             out.append(item)
@@ -49,7 +51,7 @@ def _definition_of_done(goal: Dict) -> List[Dict]:
     return out
 
 
-def _criteria_evidence_met(goal: Dict) -> bool:
+def _criteria_evidence_met(goal: Dict[str, Any]) -> bool:
     """Check persisted evidence, never a bare model assertion."""
     criteria = _definition_of_done(goal)
     if not criteria:
@@ -73,7 +75,7 @@ def _criteria_evidence_met(goal: Dict) -> bool:
             return False
         try:
             from brain.paths import WORKING_MEMORY_FILE
-            memory = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+            memory: List[Any] = load_json(WORKING_MEMORY_FILE, default_type=list) or []
         except Exception:
             memory = []
         for entry in memory[-40:] if isinstance(memory, list) else []:

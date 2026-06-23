@@ -143,15 +143,15 @@ def eval_predicate(expr: str, context: Dict[str, Any]) -> bool:
                     rv = _coerce(rv_candidate)
                 try:
                     if op == "==":
-                        return lv == rv
+                        return bool(lv == rv)
                     elif op == "<":
-                        return lv < rv
+                        return bool(lv < rv)
                     elif op == ">":
-                        return lv > rv
+                        return bool(lv > rv)
                     elif op == "<=":
-                        return lv <= rv
+                        return bool(lv <= rv)
                     elif op == ">=":
-                        return lv >= rv
+                        return bool(lv >= rv)
                 except Exception:
                     return False
 

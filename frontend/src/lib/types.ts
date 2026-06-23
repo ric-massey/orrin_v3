@@ -1,4 +1,11 @@
-// Telemetry data contracts — mirror backend/server/schema.py.
+// Client-side telemetry view-model — the MERGED, complete state the UI renders
+// (always populated from initialState, so e.g. affect.valence / goal.title are
+// non-optional here even though they are optional on the wire).
+//
+// The WIRE contract (the partial frames that actually cross the socket) is NOT
+// hand-authored here anymore: it lives in `./telemetry.gen.ts`, generated from
+// backend/server/schema.py (`make telemetry-types`) and validated at runtime in
+// telemetry.ts. These view-types are the post-merge projection of that contract.
 // Pure types + domain constants, kept separate from the runtime hook (telemetry.ts).
 
 export const LOOP_NODES = ["perceive", "reflect", "plan", "act"] as const;

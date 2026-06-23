@@ -7,7 +7,7 @@
 # files, not the goal store).
 from __future__ import annotations
 
-from typing import List, Dict
+from typing import Any, List, Dict
 
 from brain.utils.log import log_activity
 from brain.utils.timeutils import now_iso_z
@@ -26,7 +26,7 @@ _BELIEF_DOMAIN_KW: Dict[str, List[str]] = {
 }
 
 
-def _domains_for_goal(goal: Dict) -> List[str]:
+def _domains_for_goal(goal: Dict[str, Any]) -> List[str]:
     """Return the domain tags (e.g. 'EMOTIONAL') that a goal's text touches."""
     text_parts = [
         str(goal.get("title") or ""),
@@ -50,7 +50,7 @@ def _domains_for_goal(goal: Dict) -> List[str]:
     return out
 
 
-def _revise_weak_area_beliefs(goal: Dict) -> None:
+def _revise_weak_area_beliefs(goal: Dict[str, Any]) -> None:
     """
     Self-belief falsification: when a goal succeeds in an area Orrin believes he's
     weak at, reduce the confidence of that weakness belief (or remove it entirely
@@ -63,7 +63,7 @@ def _revise_weak_area_beliefs(goal: Dict) -> None:
         sym_path = DATA_DIR / "symbolic_self_model.json"
         revisions_path = SELF_BELIEF_REVISIONS_FILE
 
-        model = _load(sym_path, default_type=dict) or {}
+        model: Dict[str, Any] = _load(sym_path, default_type=dict) or {}
         weak_areas = model.get("weak_areas") or []
         if not weak_areas:
             return
@@ -78,7 +78,7 @@ def _revise_weak_area_beliefs(goal: Dict) -> None:
 
         # Persistent revision ledger so the belief doesn't simply snap back on
         # the next dream-cycle rebuild.
-        revisions = _load(revisions_path, default_type=dict) or {}
+        revisions: Dict[str, Any] = _load(revisions_path, default_type=dict) or {}
         if not isinstance(revisions, dict):
             revisions = {}
 

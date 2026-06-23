@@ -498,8 +498,8 @@ def bandit_learn(
         # and must be surfaced in the trace rather than silently swallowed.
         if isinstance(_primary_e, AttributeError):
             try:
-                from brain.utils.context_key import context_key  # type: ignore
-                from brain.utils.bandit import record_outcome_ctx  # type: ignore
+                from brain.utils.context_key import context_key
+                from brain.utils.bandit import record_outcome_ctx
                 record_outcome_ctx(context_key(ctx), tag, reward)
                 emit_trace(type="BANDIT_UPDATE_FALLBACK", action=tag, reward=reward, decision_id=decision_id)
             except Exception as _e:

@@ -53,7 +53,7 @@ def _merge_custom(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[str, ob
     Accepts either {name: callable} or {name: {"function": callable, ...}}.
     """
     try:
-        from brain.core.manager import load_custom_cognition  # type: ignore
+        from brain.core.manager import load_custom_cognition
     except Exception:
         return funcs
 

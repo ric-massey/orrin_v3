@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import os
 import threading
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from brain.core.runtime_log import get_logger
 from brain.cognition.planning.step_execution import recognise_step_action
@@ -54,7 +54,7 @@ _TIER_TURNS = {"existential": 3, "core": 3, "identity": 2, "growth": 2,
                "exploratory": 1, "minor": 1, "trivial": 1}
 
 
-def _allocate_steps(queue: List[Dict], rr: int, budget: int) -> List[tuple]:
+def _allocate_steps(queue: List[Dict[str, Any]], rr: int, budget: int) -> List[Tuple[Dict[str, Any], int]]:
     """Allocate `budget` pursue-steps across the queue, tier-weighted.
 
     Pass 1 gives every goal one step (highest tier first; the rotating offset
@@ -124,7 +124,7 @@ def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> 
         from brain.paths import COGNITION_HISTORY_FILE
         from brain.utils.json_utils import load_json, save_json
         from brain.utils.timeutils import now_iso_z
-        log = load_json(COGNITION_HISTORY_FILE, default_type=list)
+        log: List[Any] = load_json(COGNITION_HISTORY_FILE, default_type=list)
         if not isinstance(log, list):
             log = []
         log.append({
@@ -153,10 +153,10 @@ def _outcome_reward(result: Any) -> float:
     return 0.6       # the step advanced — real procedural progress
 
 
-def _committed_goals(context: Dict[str, Any]) -> List[Dict]:
+def _committed_goals(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     """The goals the Executive would advance: the committed set if present, else
     the single committed goal. Read-only — no disk writes."""
-    goals: List[Dict] = []
+    goals: List[Dict[str, Any]] = []
     cg = context.get("committed_goals")
     if isinstance(cg, list) and cg:
         goals = [g for g in cg if isinstance(g, dict)]
@@ -167,7 +167,7 @@ def _committed_goals(context: Dict[str, Any]) -> List[Dict]:
     return goals[:_DEFAULT_QUEUE_K]
 
 
-def _next_pending_step(goal: Dict) -> Optional[Dict]:
+def _next_pending_step(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """First plan step not yet completed, or None when the plan is exhausted."""
     plan = goal.get("plan")
     if not isinstance(plan, list):
@@ -178,7 +178,7 @@ def _next_pending_step(goal: Dict) -> Optional[Dict]:
     return None
 
 
-def _build_queue(context: Dict[str, Any]) -> List[Dict]:
+def _build_queue(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     """The Executive's ordered queue of background tasks (≤ _DEFAULT_QUEUE_K).
     Drawn from context["committed_goals"] (the loop pulls these priority-ordered
     from the GoalsAPI, limit=3); falls back to the single committed_goal. Only
@@ -422,7 +422,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
         if not isinstance(p, dict):
             continue
         try:
-            submit_affect(None, p.get("target"), float(p.get("delta") or 0.0),
+            submit_affect(None, str(p.get("target") or ""), float(p.get("delta") or 0.0),
                           weight=float(p.get("weight") or 1.0),
                           source=f"daemon:{p.get('source', '')}"[:48],
                           ttl_cycles=int(p.get("ttl") or 3))
@@ -437,7 +437,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
             if abs(total) < 1e-4:
                 continue
             try:
-                submit_affect(None, e.get("emotion"), total, weight=1.0,
+                submit_affect(None, str(e.get("emotion") or ""), total, weight=1.0,
                               source=f"daemon:{e.get('source', 'reward')}"[:48],
                               ttl_cycles=int(e.get("cycles_left") or 3))
             except Exception as exc:

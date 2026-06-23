@@ -39,7 +39,7 @@ SANDBOX_TMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # --- POSIX-only resource limits (safe on Windows: they just won't apply) ---
 try:
-    import resource  # type: ignore
+    import resource
     def _limit_resources():
         # CPU seconds, address space, file size. Best-effort per limit: some
         # limits are not enforceable on every platform (notably RLIMIT_AS on

@@ -21,7 +21,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 import math
-from typing import Dict
+from typing import Any, Dict
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
@@ -35,8 +35,8 @@ _UCB_C  = 1.5     # UCB exploration constant — higher = more exploration
 
 
 def _load_stats() -> Dict[str, Dict[str, float]]:
-    raw = load_json(_DEPTH_STATS_FILE, default_type=dict) or {}
-    out = {}
+    raw: Dict[str, Any] = load_json(_DEPTH_STATS_FILE, default_type=dict) or {}
+    out: Dict[str, Dict[str, float]] = {}
     for d in _DEPTHS:
         key = str(d)
         block = raw.get(key, {})

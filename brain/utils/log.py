@@ -10,13 +10,13 @@ from brain.utils.timeutils import now_iso_z
 try:
     import fcntl as _fcntl
 except ImportError:
-    _fcntl = None  # type: ignore
+    _fcntl = None  # type: ignore[assignment]
 
 try:
     from brain.utils.path_redact import redact as _redact
 except Exception:
-    def _redact(t: str) -> str:  # noqa: F811
-        return t
+    def _redact(text: str) -> str:  # noqa: F811
+        return text
 
 # --- helpers ---
 utc_now = now_iso_z  # public alias — import this instead of defining _utc_now locally
@@ -102,7 +102,7 @@ def read_recent_errors_txt(path: Union[str, Path], max_lines: int = 5) -> List[s
 def read_recent_errors_json(path: Union[str, Path], max_items: int = 5) -> List[Dict[str, Any]]:
     from brain.utils.json_utils import load_json
     try:
-        data = load_json(path, default_type=list)
+        data: List[Any] = load_json(path, default_type=list)
         return data[-max_items:] if isinstance(data, list) else []
     except Exception as e:
         return [{"error": f"⚠️ Failed to read {path}: {e}"}]

@@ -5,7 +5,7 @@ from brain.core.runtime_log import get_logger
 import re
 import json
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import Any, List, Dict, Optional
 
 from brain.utils.json_utils import load_json, save_json, extract_json
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
@@ -19,45 +19,60 @@ from brain.utils.failure_counter import record_failure
 # re-imported so the completion sweeper below + the many external callers keep
 # their `from …planning.goals import …` paths.
 from brain.cognition.planning.goal_plan_ops import (  # noqa: F401
-    get_goal_plan, get_next_pending_step, advance_goal_plan, _normalize_step_text,
-    is_placeholder_step, set_goal_plan, plan_drift_detected, insert_plan_step,
-    skip_pending_steps, reprioritize_pending_steps, met_milestone_tokens,
-    unmet_milestone_texts, prune_satisfied_steps, _plan_step_tokens,
-    TERMINAL_STEP_STATUSES, _PLACEHOLDER_STEPS, _PLAN_STEP_STOPWORDS,
+    get_goal_plan as get_goal_plan, get_next_pending_step as get_next_pending_step,
+    advance_goal_plan as advance_goal_plan, _normalize_step_text as _normalize_step_text,
+    is_placeholder_step as is_placeholder_step, set_goal_plan as set_goal_plan,
+    plan_drift_detected as plan_drift_detected, insert_plan_step as insert_plan_step,
+    skip_pending_steps as skip_pending_steps,
+    reprioritize_pending_steps as reprioritize_pending_steps,
+    met_milestone_tokens as met_milestone_tokens,
+    unmet_milestone_texts as unmet_milestone_texts,
+    prune_satisfied_steps as prune_satisfied_steps, _plan_step_tokens as _plan_step_tokens,
+    TERMINAL_STEP_STATUSES as TERMINAL_STEP_STATUSES,
+    _PLACEHOLDER_STEPS as _PLACEHOLDER_STEPS, _PLAN_STEP_STOPWORDS as _PLAN_STEP_STOPWORDS,
 )
 # Self-belief falsification on goal success extracted to goal_belief.py (Phase
 # 4.5C); re-imported so mark_goal_completed below keeps its reference.
 from brain.cognition.planning.goal_belief import (  # noqa: F401
-    _revise_weak_area_beliefs, _domains_for_goal, _BELIEF_DOMAIN_KW,
+    _revise_weak_area_beliefs as _revise_weak_area_beliefs,
+    _domains_for_goal as _domains_for_goal, _BELIEF_DOMAIN_KW as _BELIEF_DOMAIN_KW,
 )
 # The goal-tree store (read/write/mutate primitives) extracted to goal_store.py
 # (Phase 4.5C); re-imported so the goal logic below + the many external callers
 # keep their `from …planning.goals import …` paths.
 from brain.cognition.planning.goal_store import (  # noqa: F401
-    MAX_GOALS, _TERMINAL_STATUSES, load_goals, save_goals, add_goal,
-    create_micro_goal_for_action, mark_goal_status_by_name,
-    merge_updated_goal_into_tree, prune_goals, ensure_immediate_actions_bucket,
-    _find_goal_by_name, _attach_child, _flatten_goals, _reconcile_to_disk_terminal,
+    MAX_GOALS as MAX_GOALS, _TERMINAL_STATUSES as _TERMINAL_STATUSES,
+    load_goals as load_goals, save_goals as save_goals, add_goal as add_goal,
+    create_micro_goal_for_action as create_micro_goal_for_action,
+    mark_goal_status_by_name as mark_goal_status_by_name,
+    merge_updated_goal_into_tree as merge_updated_goal_into_tree,
+    prune_goals as prune_goals,
+    ensure_immediate_actions_bucket as ensure_immediate_actions_bucket,
+    _find_goal_by_name as _find_goal_by_name, _attach_child as _attach_child,
+    _flatten_goals as _flatten_goals,
+    _reconcile_to_disk_terminal as _reconcile_to_disk_terminal,
 )
 # Artifact / completion-criteria gating extracted to goal_criteria.py (Phase
 # 4.5C); re-imported for the pursuit + outcome logic below + external callers.
 from brain.cognition.planning.goal_criteria import (  # noqa: F401
-    PRODUCTION_DEADLINE_CYCLES, _is_artifact_gated, _definition_of_done,
-    _criteria_evidence_met,
+    PRODUCTION_DEADLINE_CYCLES as PRODUCTION_DEADLINE_CYCLES,
+    _is_artifact_gated as _is_artifact_gated, _definition_of_done as _definition_of_done,
+    _criteria_evidence_met as _criteria_evidence_met,
 )
 # Goal outcome handling (completion/failure/significance) extracted to
 # goal_outcomes.py (Phase 4.5C); re-imported so the sweeper below + external
 # callers keep their `from …planning.goals import …` paths.
 from brain.cognition.planning.goal_outcomes import (  # noqa: F401
-    achievement_significance, mark_goal_completed, mark_goal_failed,
-    fail_overdue_artifact_goals,
+    achievement_significance as achievement_significance,
+    mark_goal_completed as mark_goal_completed, mark_goal_failed as mark_goal_failed,
+    fail_overdue_artifact_goals as fail_overdue_artifact_goals,
 )
 _log = get_logger(__name__)
 
 
 # LLM helpers
 
-def _rule_based_decompose(goal: Dict) -> List[Dict]:
+def _rule_based_decompose(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Keyword-based subgoal decomposition when LLM is unavailable."""
     name = (goal.get("name") or goal.get("description") or goal.get("title") or "goal").lower()
     n = now_iso_z()
@@ -117,7 +132,7 @@ def _rule_based_decompose(goal: Dict) -> List[Dict]:
     } for s in steps]
 
 
-def _rule_based_accomplish(goal: Dict) -> bool:
+def _rule_based_accomplish(goal: Dict[str, Any]) -> bool:
     """
     Check working memory for evidence this goal was recently completed.
     Returns True only if a clear success signal is found.
@@ -127,7 +142,7 @@ def _rule_based_accomplish(goal: Dict) -> bool:
     try:
         from brain.utils.json_utils import load_json as _lj
         from brain.paths import WORKING_MEMORY_FILE as _WMF
-        wm = _lj(_WMF, default_type=list) or []
+        wm: List[Any] = _lj(_WMF, default_type=list) or []
         for e in wm[-15:]:
             txt = str(e.get("content", e) if isinstance(e, dict) else e).lower()
             if ("✅" in txt or "accomplished" in txt or "completed" in txt):
@@ -138,7 +153,7 @@ def _rule_based_accomplish(goal: Dict) -> bool:
     return False
 
 
-def decompose_goal(goal: Dict) -> List[Dict]:
+def decompose_goal(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Break a complex goal into actionable subgoals.
     Uses rule-based decomposition when LLM is unavailable.
@@ -167,7 +182,7 @@ def decompose_goal(goal: Dict) -> List[Dict]:
 
 
 
-def try_to_accomplish(goal: Dict) -> bool:
+def try_to_accomplish(goal: Dict[str, Any]) -> bool:
     """
     Attempt an atomic goal. Uses working-memory evidence when LLM unavailable.
     Returns True if succeeded, False if needs decomposition.
@@ -251,7 +266,7 @@ def try_to_accomplish(goal: Dict) -> bool:
 
 # Pursuit / completion
 
-def pursue_goal(goal: Dict) -> None:
+def pursue_goal(goal: Dict[str, Any]) -> None:
     if goal.get("tier") == "micro_goal":
         if goal.get("status") in {"completed", "abandoned"}:
             return
@@ -295,16 +310,16 @@ def pursue_goal(goal: Dict) -> None:
 
 # Focus selection
 
-def select_focus_goals() -> Dict[str, Optional[Dict]]:
+def select_focus_goals() -> Dict[str, Optional[Dict[str, Any]]]:
     """
     Load goals, select focus goals, and write to FOCUS_GOAL.
     Returns the focus goal dictionary.
     """
-    goals = load_json(GOALS_FILE, default_type=list)
+    goals: List[Any] = load_json(GOALS_FILE, default_type=list)
     if not isinstance(goals, list):
         goals = []
 
-    def find_focus(goal_list: List[Dict], tier_names: List[str], collected: List[Dict], max_count: int) -> List[Dict]:
+    def find_focus(goal_list: List[Dict[str, Any]], tier_names: List[str], collected: List[Dict[str, Any]], max_count: int) -> List[Dict[str, Any]]:
         for goal in goal_list:
             if len(collected) >= max_count:
                 break
@@ -355,7 +370,7 @@ def select_focus_goals() -> Dict[str, Optional[Dict]]:
 
 # Search / uniqueness
 
-def goal_function_already_exists(goal_tree: Optional[List[Dict]], function_name: Optional[str]) -> bool:
+def goal_function_already_exists(goal_tree: Optional[List[Dict[str, Any]]], function_name: Optional[str]) -> bool:
     """
     Check if tokens of function_name appear in goal text/history anywhere in the tree.
     """
@@ -395,15 +410,15 @@ def maybe_complete_goals() -> bool:
     """
     goals = load_goals()
     changed = False
-    completed_goals: List[Dict] = []
+    completed_goals: List[Dict[str, Any]] = []
 
     # Ensure completed goals file exists as a list
-    existing_completed = load_json(COMPLETED_GOALS_FILE, default_type=list)
+    existing_completed: List[Any] = load_json(COMPLETED_GOALS_FILE, default_type=list)
     if not isinstance(existing_completed, list):
         existing_completed = []
         save_json(COMPLETED_GOALS_FILE, existing_completed)
 
-    def check_and_complete(goal: Dict) -> bool:
+    def check_and_complete(goal: Dict[str, Any]) -> bool:
         nonlocal changed
         # If already completed/abandoned, treat as done for parent consideration
         if goal.get("status") in {"completed", "abandoned"}:

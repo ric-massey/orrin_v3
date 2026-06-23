@@ -8,7 +8,7 @@ def safe_float(x: Any, default: float = 0.0) -> float:
     except Exception:
         # if it's a dict-like, try summing numeric values
         try:
-            return sum(float(v) for v in x.values())  # type: ignore[attr-defined]
+            return sum(float(v) for v in x.values())
         except Exception:
             return default
 

@@ -80,7 +80,7 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
     for _k in [k for k, t in _FINALIZED_IDS.items() if _nowt - t > 3600]:
         _FINALIZED_IDS.pop(_k, None)
     if len(_FINALIZED_IDS) > 256:
-        for _k in sorted(_FINALIZED_IDS, key=_FINALIZED_IDS.get)[:64]:
+        for _k in sorted(_FINALIZED_IDS, key=lambda k: _FINALIZED_IDS[k])[:64]:
             _FINALIZED_IDS.pop(_k, None)
     if _gid and _gid in _FINALIZED_IDS:
         goal["status"] = "completed"   # reflect the already-done close on this stale copy
@@ -250,7 +250,8 @@ def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bo
     except Exception:
         return False
 
-    snap = goal.get("_predegrade") if isinstance(goal.get("_predegrade"), dict) else {}
+    _pd = goal.get("_predegrade")
+    snap: Dict[str, Any] = _pd if isinstance(_pd, dict) else {}
     orig_title = snap.get("title") or goal.get("_original_title")
     if not orig_title:
         return False

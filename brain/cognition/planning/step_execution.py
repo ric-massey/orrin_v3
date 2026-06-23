@@ -27,7 +27,7 @@
 # real tool (research_topic, fetch_and_read, …), not a stand-in.
 from __future__ import annotations
 
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Iterable, Optional, Tuple
 
 from brain.config.tuning import SEMANTIC_MATCH_FLOOR
 from brain.utils.log import log_activity, log_error
@@ -106,7 +106,7 @@ _PROCEDURAL_DEFAULT = frozenset({
 })
 
 
-def _procedural_from_manifest() -> frozenset:
+def _procedural_from_manifest() -> frozenset[str]:
     """Phase 4 (function_selection_fix_v2 §5): the "procedural" tag in the
     capability manifest is the source of truth for which functions the
     Executive lane may run. Read directly (tiny JSON, import-time only) rather
@@ -149,7 +149,7 @@ def is_procedural(fn_name: str) -> bool:
 _SEMANTIC_FLOOR = SEMANTIC_MATCH_FLOOR
 
 
-def _semantic_step_match(step_text: str, candidates) -> Tuple[Optional[str], float]:
+def _semantic_step_match(step_text: str, candidates: Iterable[str]) -> Tuple[Optional[str], float]:
     """Best (fn_name, similarity) matching `step_text` over `candidates`, or
     (None, 0.0).
 
@@ -312,7 +312,8 @@ def execute_step_action(fn_name: str, context: Dict[str, Any],
         from brain.behavior.express_to_user import EXPRESSIVE_FUNCTIONS
         if fn_name in EXPRESSIVE_FUNCTIONS:
             g = goal if isinstance(goal, dict) else (context.get("committed_goal") or {})
-            spec = g.get("spec") if isinstance(g.get("spec"), dict) else {}
+            spec_raw = g.get("spec")
+            spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
             why = str(spec.get("description") or g.get("description")
                       or g.get("title") or g.get("name") or "")[:200]
             context["_expression_motive"] = {

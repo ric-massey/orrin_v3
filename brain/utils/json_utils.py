@@ -6,22 +6,23 @@ import platform
 from contextlib import contextmanager
 from pathlib import Path, PurePath
 from datetime import datetime, date, timezone
-from typing import Any, Callable, Generator, TypeVar, Union, Optional
+from typing import Any, Callable, Generator, TypeVar, Union, Optional, cast
 from brain.utils.log import log_model_issue
 from brain.utils.failure_counter import record_failure
 
 # fcntl is POSIX-only; make it optional
 try:
-    import fcntl  # type: ignore
+    import fcntl
 except Exception:
-    fcntl = None  # type: ignore
+    fcntl = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 # JSON extraction + healing, extracted to json_extract.py (Phase 4.5C).
 # Re-exported so json_utils stays the single import surface for its 200+
 # importers (extract_json) + the safe_extract_json wrapper below.
 from brain.utils.json_extract import (  # noqa: E402,F401
-    extract_json, _has_plausible_json_start, _first_json_fragment,
+    extract_json as extract_json,  # explicit re-export for --strict importers
+    _has_plausible_json_start, _first_json_fragment,
     _heal_json_fragment, _salvage_top_level_object, _log_salvage_miss,
     _JSON_ARRAY_VALUE_START,
 )
@@ -70,7 +71,7 @@ def cap_jsonl(path: Union[str, Path], max_lines: int = 2000, max_bytes: int = 2_
 # JSON (de)serialization utils
 # ------------------------------
 
-def _json_default(o: Any):
+def _json_default(o: Any) -> Any:
     """Safe fallback serializer for non-JSON-native types."""
     if isinstance(o, (Path, PurePath)):
         return str(o)
@@ -146,7 +147,7 @@ def save_json(filepath: Union[str, Path], data: Any) -> None:
                 lock_fd.close()
 
 
-def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) -> T:
+def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) -> T:  # type: ignore[assignment]
     """
     Load JSON from file, returning default_type() on error or missing/empty file.
     On JSONDecodeError, attempts ONE timestamped .corrupt backup before returning default.
@@ -171,7 +172,7 @@ def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) 
             except Exception:
                 lock_fd = None  # lock is best-effort; degrade to an unlocked read
         with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
+            return cast(T, json.load(f))
     except json.JSONDecodeError as e:
         log_model_issue(f"[load_json] Corrupt JSON in {filepath}: {e}")
         # ONE backup attempt only — use stem (strips all suffixes) to avoid
@@ -348,7 +349,7 @@ def append_jsonl(filepath: Union[str, Path], obj: Any) -> None:
         with open(path, "a", encoding="utf-8") as f:
             if fcntl is not None and platform.system() != "Windows":
                 try:
-                    fcntl.flock(f, fcntl.LOCK_EX)  # type: ignore[name-defined]
+                    fcntl.flock(f, fcntl.LOCK_EX)
                 except Exception as _e:
                     record_failure("json_utils.append_jsonl", _e)
             f.write(line)
@@ -359,7 +360,7 @@ def append_jsonl(filepath: Union[str, Path], obj: Any) -> None:
                 record_failure("json_utils.append_jsonl.2", _e)
             if fcntl is not None and platform.system() != "Windows":
                 try:
-                    fcntl.flock(f, fcntl.LOCK_UN)  # type: ignore[name-defined]
+                    fcntl.flock(f, fcntl.LOCK_UN)
                 except Exception as _e:
                     record_failure("json_utils.append_jsonl.3", _e)
     except Exception as e:

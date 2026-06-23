@@ -27,7 +27,7 @@ __all__ = ["update_cognition_schedule", "reflect_on_cognition_patterns"]
 
 # --- small numeric helper (inline fallback) ---------------------------------
 try:
-    from brain.utils.num import safe_float  # type: ignore
+    from brain.utils.num import safe_float
 except Exception:  # pragma: no cover
     def safe_float(x: Any, default: float = 0.0) -> float:
         try:

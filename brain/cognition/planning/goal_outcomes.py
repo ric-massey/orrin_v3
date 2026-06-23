@@ -9,7 +9,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
-from typing import List, Dict, Optional
+from typing import Any, List, Dict, Optional
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
@@ -28,7 +28,7 @@ from brain.cognition.planning.goal_belief import _revise_weak_area_beliefs
 _log = get_logger(__name__)
 
 
-def achievement_significance(goal: Optional[Dict]) -> float:
+def achievement_significance(goal: Optional[Dict[str, Any]]) -> float:
     """I17 — felt achievement scaled to real significance, so completion/milestone joy
     reflects what was *actually* accomplished (objective-met × difficulty × novelty),
     never a flat per-step drip that rebuilds "feels productive without accomplishing".
@@ -60,7 +60,7 @@ def achievement_significance(goal: Optional[Dict]) -> float:
     return max(0.4, min(1.3, diff * nov))
 
 
-def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
+def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> None:
     # Single-chokepoint guard against HOLLOW completion. A goal with explicit success
     # milestones is only "completed" when its objective is actually met — finishing the
     # plan steps is not enough. This protects every caller (pursue_goal, action_gate, …)
@@ -139,7 +139,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     # record with the same id — re-completion of a resurrected goal was appending
     # the same id repeatedly (FINDINGS 2026-06-12 §1B: g_3a933aec31 stored 8×).
     try:
-        existing = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
+        existing: List[Any] = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
         _arch_id = goal.get("id")
         if _arch_id:
             existing = [a for a in existing
@@ -157,7 +157,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
         _gid = goal.get("id")
         _gtitle = (goal.get("title") or goal.get("name") or "").strip().lower()
 
-        def _same(n: Dict) -> bool:
+        def _same(n: Dict[str, Any]) -> bool:
             if _gid and n.get("id") == _gid:
                 return True
             _nt = (n.get("title") or n.get("name") or "").strip().lower()
@@ -165,7 +165,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
 
         _removed = [0]
 
-        def _drop(nodes: List[Dict]) -> List[Dict]:
+        def _drop(nodes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             kept = []
             for n in nodes:
                 if isinstance(n, dict):
@@ -296,7 +296,7 @@ def mark_goal_completed(goal: Dict, context: Optional[Dict] = None) -> None:
     _revise_weak_area_beliefs(goal)
 
 
-def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = None) -> None:
+def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[Dict[str, Any]] = None) -> None:
     """
     Mark a goal as failed, write it to long-term memory, and inflict emotional penalty_signal.
     This should feel like a genuine setback — impasse_signal and negative_valence, not just a log line.
@@ -410,7 +410,7 @@ def mark_goal_failed(goal: Dict, reason: str = "", context: Optional[Dict] = Non
     log_activity(f"❌ Goal '{goal_name}' marked failed. Reason: {reason or 'none'}")
 
 
-def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
+def fail_overdue_artifact_goals(context: Optional[Dict[str, Any]] = None) -> int:
     """P2 — timeout → failure for artifact-gated goals. Walks the goal store; an
     output_producing / requires_artifact goal that has been alive past its
     deadline_cycles WITHOUT a qualifying effect is routed into the existing
@@ -434,10 +434,10 @@ def fail_overdue_artifact_goals(context: Optional[Dict] = None) -> int:
         return 0
 
     from brain.agency.effect_ledger import has_qualifying_effect
-    failed: List[Dict] = []
+    failed: List[Dict[str, Any]] = []
     changed = False
 
-    def _walk(nodes: List[Dict]) -> None:
+    def _walk(nodes: List[Dict[str, Any]]) -> None:
         nonlocal changed
         for g in nodes:
             if not isinstance(g, dict):

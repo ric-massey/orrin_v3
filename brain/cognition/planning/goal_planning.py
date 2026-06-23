@@ -11,7 +11,7 @@ this has no import cycle back to pursue_goal, which re-imports _symbolic_plan
 from __future__ import annotations
 
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_activity
@@ -76,7 +76,7 @@ _INTENT_FAMILIES = (
 )
 
 
-def _intent_candidates(goal_title: str) -> tuple:
+def _intent_candidates(goal_title: str) -> Tuple[str, ...]:
     """The candidate tool family for the goal's intent, or the full vocabulary
     when no intent verb is recognised. A bare 'find/locate' only routes to the
     file family when there's a file/string cue, so 'find out about X' stays
@@ -203,7 +203,7 @@ def _causal_first_step(goal_title: str) -> Optional[str]:
         return None
 
 
-def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
+def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> List[str]:
     """
     Ask the LLM for an ordered list of 3-5 concrete steps to accomplish this goal.
     Falls back to symbolic plan generation when LLM is unavailable.
@@ -235,7 +235,7 @@ def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
     # (fed by confirmed experiments and successful repairs).
     _causal = _causal_first_step(goal_title)
 
-    def _lead(steps: list) -> list:
+    def _lead(steps: List[str]) -> List[str]:
         return ([_causal] + steps) if (_causal and steps) else steps
 
     wm_tail = (context.get("working_memory") or [])[-4:]

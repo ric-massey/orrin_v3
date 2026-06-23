@@ -69,7 +69,7 @@ from brain.cognition.planning.goal_planning import (  # noqa: F401
 )
 # Active goal execution, extracted to goal_execution.py (Phase 4D).
 from brain.cognition.planning.goal_execution import (  # noqa: F401
-    pursue_committed_goal, _STEP_MAX_ATTEMPTS,
+    pursue_committed_goal as pursue_committed_goal, _STEP_MAX_ATTEMPTS,
 )
 # Goal adaptation, extracted to goal_adaptation.py (Phase 4D).
 from brain.cognition.planning.goal_adaptation import (  # noqa: F401

@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 
 from brain.utils.json_utils import load_json, save_json, extract_json
 from brain.utils.log import log_activity, log_error, log_model_issue, log_private
+from brain.utils.failure_counter import record_failure
 from brain.utils.core_utils import get_thinking_model
 from brain.utils.generate_response import generate_response, llm_ok
 from brain.utils.error_router import catch_and_route            # ← routing decorator
@@ -196,7 +197,7 @@ def is_scraping_allowed(url: str) -> bool:
     try:
         rp.read()
         return rp.can_fetch("*", url)
-    except Exception:
+    except OSError:  # intentional: robots.txt unreadable → conservatively disallow
         return False
 
 @catch_and_route("tool", return_on_error=lambda e: {"error": str(e)})
@@ -227,8 +228,8 @@ def web_search(query: str) -> Dict[str, Any]:
     try:
         from brain.utils.egress import record as _egress
         _egress("serper")
-    except Exception:
-        pass
+    except Exception as exc:  # egress ledger best-effort — record
+        record_failure("toolkit.web_search.egress", exc)
     return resp.json()
 
 @catch_and_route("tool", return_on_error=lambda e: f"❌ Scrape failed: {e}")
@@ -250,8 +251,8 @@ def scrape_text(url: str) -> str:
     try:
         from brain.utils.egress import record as _egress
         _egress("web")
-    except Exception:
-        pass
+    except Exception as exc:  # egress ledger best-effort — record
+        record_failure("toolkit.scrape_text.egress", exc)
     soup = BeautifulSoup(resp.text, "html.parser")
     text = soup.get_text(separator="\n").strip()
     # light collapse of excessive blank lines
@@ -357,7 +358,7 @@ def _load_skill(module_name: str, fn_name: str):
     try:
         mod = importlib.import_module(f"brain.agency.skills.{module_name}")
         return getattr(mod, fn_name, None)
-    except Exception:
+    except ImportError:  # intentional: skill not present — fail silently
         return None
 
 
@@ -366,7 +367,7 @@ def _load_system_presence(fn_name: str):
     try:
         from brain.embodiment import system_presence as _sp
         return getattr(_sp, fn_name, None)
-    except Exception:
+    except ImportError:  # intentional: capability unavailable — fail silently
         return None
 
 
@@ -380,6 +381,7 @@ def ask_llm_tool(query: str = "", purpose: str = "question") -> str:
         from brain.cognition.tools.ask_llm import ask_llm
         return ask_llm({}, query=query, purpose=purpose)
     except Exception as e:
+        record_failure("toolkit.ask_llm_tool", e)
         return f"LLM tool unavailable: {e}"
 
 

@@ -38,6 +38,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import brain.paths as paths
+from brain.utils.failure_counter import record_failure
 # The raw->cleaned ingest layer (constants, classify_action, IO/hash/time helpers,
 # per-stream parsers) was extracted to life_capsule_ingest.py (Phase 4.5C);
 # re-imported so the builder below + external callers keep their references.
@@ -150,7 +151,8 @@ def _copy_raw(data_dir: Path, raw_dir: Path, *, share: bool) -> Dict[str, Any]:
                     redaction["redacted_paths"].append(name)
                 text = redacted
             (sel / name).write_text(text, encoding="utf-8")
-        except Exception:
+        except Exception as exc:  # one raw file failed to copy — record, skip it
+            record_failure("life_capsule.select_raw", exc)
             continue
     return redaction
 
@@ -277,8 +279,8 @@ def build_life_capsule(
     try:
         from memory.wal import flush as _wal_flush
         _wal_flush()
-    except Exception:
-        pass
+    except Exception as exc:  # WAL flush best-effort before capture — record
+        record_failure("life_capsule.build.wal_flush", exc)
 
     provenance = _provenance(reason)
     run_id = _run_id(provenance)
@@ -406,7 +408,7 @@ def maybe_build_capsule(reason: str) -> Optional[Path]:
     except Exception as e:  # a capsule failure must never affect the run
         try:
             print(f"[life_capsule] build skipped ({reason}): {e}", flush=True)
-        except Exception:
+        except OSError:  # intentional: stdout unavailable (broken pipe) — give up quietly
             pass
         return None
 
@@ -444,7 +446,7 @@ def _read_member(zip_path: Path, suffix: str) -> Optional[bytes]:
             for n in zf.namelist():
                 if n.endswith(suffix):
                     return zf.read(n)
-    except Exception:
+    except (OSError, zipfile.BadZipFile):  # intentional: unreadable/bad zip → member absent
         return None
     return None
 
@@ -476,7 +478,7 @@ def list_capsules() -> List[dict]:
                         "share_build": m.get("share_build"),
                     }
                 )
-            except Exception:
+            except (ValueError, TypeError):  # intentional: bad manifest → keep base entry
                 pass
         out.append(entry)
     out.sort(key=lambda e: e.get("mtime", 0), reverse=True)
@@ -509,7 +511,7 @@ def read_capsule_summary(run: str = "latest") -> Optional[dict]:
         b = _read_member(z, suffix)
         try:
             return json.loads(b) if b else None
-        except Exception:
+        except (ValueError, TypeError):  # intentional: bad member json → None
             return None
 
     md = _read_member(z, "EXECUTIVE_SUMMARY.md")

@@ -25,6 +25,7 @@ import time
 from typing import Any, Dict, List, Optional
 
 from brain.paths import DATA_DIR
+from brain.utils.failure_counter import record_failure
 
 _LOG = DATA_DIR / "egress_log.jsonl"
 _LOCK = threading.Lock()
@@ -46,8 +47,8 @@ def record(service: str, *, count: int = 1, approx_tokens: Optional[int] = None)
             with _LOG.open("a", encoding="utf-8") as f:
                 f.write(line + "\n")
             _trim_locked()
-    except Exception:
-        pass
+    except Exception as exc:  # ledger write best-effort — record, never break the call
+        record_failure("egress.record", exc)
 
 
 def _trim_locked() -> None:
@@ -56,8 +57,8 @@ def _trim_locked() -> None:
         lines = _LOG.read_text(encoding="utf-8").splitlines()
         if len(lines) > _MAX_LINES:
             _LOG.write_text("\n".join(lines[-_MAX_LINES:]) + "\n", encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # ledger trim best-effort — record
+        record_failure("egress._trim_locked", exc)
 
 
 def _read() -> List[Dict[str, Any]]:
@@ -71,10 +72,10 @@ def _read() -> List[Dict[str, Any]]:
                 rec = json.loads(ln)
                 if isinstance(rec, dict):
                     out.append(rec)
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip a malformed ledger line
                 continue
         return out
-    except Exception:
+    except OSError:  # intentional: unreadable ledger → empty
         return []
 
 

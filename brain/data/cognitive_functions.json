@@ -13,7 +13,7 @@
   },
   {
     "name": "achievement_significance",
-    "definition": "achievement_significance(goal: 'Optional[Dict]') -> 'float'\nI17 — felt achievement scaled to real significance, so completion/milestone joy\n    reflects what was *actually* accomplished (objective-met × difficulty × novelty),\n    never a flat per-step drip that rebuilds \"feels productive without accomplishing\".\n    Returns a multiplier centred ~1.0, clamped to [0.4, 1.3]. Objective-met is the gate\n    (enforced by mark_goal_completed); this only shapes the *magnitude*."
+    "definition": "achievement_significance(goal: 'Optional[Dict[str, Any]]') -> 'float'\nI17 — felt achievement scaled to real significance, so completion/milestone joy\n    reflects what was *actually* accomplished (objective-met × difficulty × novelty),\n    never a flat per-step drip that rebuilds \"feels productive without accomplishing\".\n    Returns a multiplier centred ~1.0, clamped to [0.4, 1.3]. Objective-met is the gate\n    (enforced by mark_goal_completed); this only shapes the *magnitude*."
   },
   {
     "name": "action_prior",
@@ -37,7 +37,7 @@
   },
   {
     "name": "add_goal",
-    "definition": "add_goal(goal: 'Dict', parent_name: 'Optional[str]' = None) -> 'Dict'"
+    "definition": "add_goal(goal: 'Dict[str, Any]', parent_name: 'Optional[str]' = None) -> 'Dict[str, Any]'"
   },
   {
     "name": "add_narrative_pressure",
@@ -57,11 +57,11 @@
   },
   {
     "name": "advance_goal_plan",
-    "definition": "advance_goal_plan(goal: 'Dict', step: 'Dict') -> 'None'\nMark a plan step as completed in-place."
+    "definition": "advance_goal_plan(goal: 'Dict[str, Any]', step: 'Dict[str, Any]') -> 'None'\nMark a plan step as completed in-place."
   },
   {
     "name": "advance_step",
-    "definition": "advance_step(goal_id: 'Any', step_index: 'int', *, result: 'str' = '', source: 'str' = '') -> 'List[Dict]'\nMark a plan step completed and stamp its result, atomically."
+    "definition": "advance_step(goal_id: 'Any', step_index: 'int', *, result: 'str' = '', source: 'str' = '') -> 'List[Dict[str, Any]]'\nMark a plan step completed and stamp its result, atomically."
   },
   {
     "name": "allostatic_setpoint",
@@ -73,7 +73,7 @@
   },
   {
     "name": "apply",
-    "definition": "apply(mutator: 'Mutator', *, source: 'str' = '') -> 'List[Dict]'\nAtomically load → mutate → save the goal store under the arbiter lock.\n\n    `mutator(goals) -> goals` must be pure-ish: mutate the list in place (or return\n    a new one) and return the list to persist. Returns the persisted goals.\n\n    This is the chokepoint: every goal write should ultimately go through here so\n    no two writers can interleave a load/save."
+    "definition": "apply(mutator: 'Mutator', *, source: 'str' = '') -> 'List[Dict[str, Any]]'\nAtomically load → mutate → save the goal store under the arbiter lock.\n\n    `mutator(goals) -> goals` must be pure-ish: mutate the list in place (or return\n    a new one) and return the list to persist. Returns the persisted goals.\n\n    This is the chokepoint: every goal write should ultimately go through here so\n    no two writers can interleave a load/save."
   },
   {
     "name": "apply_attention_filter",
@@ -273,7 +273,7 @@
   },
   {
     "name": "check_projection_against_reality",
-    "definition": "check_projection_against_reality(context: 'Optional[Dict]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from dream_cycle every few dream runs."
+    "definition": "check_projection_against_reality(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from dream_cycle every few dream runs."
   },
   {
     "name": "check_violates_boundaries",
@@ -357,7 +357,7 @@
   },
   {
     "name": "create_micro_goal_for_action",
-    "definition": "create_micro_goal_for_action(action_desc: 'str', parent_name: 'Optional[str]' = None) -> 'Dict'"
+    "definition": "create_micro_goal_for_action(action_desc: 'str', parent_name: 'Optional[str]' = None) -> 'Dict[str, Any]'"
   },
   {
     "name": "create_thread",
@@ -413,7 +413,7 @@
   },
   {
     "name": "decompose_goal",
-    "definition": "decompose_goal(goal: 'Dict') -> 'List[Dict]'\nBreak a complex goal into actionable subgoals.\n    Uses rule-based decomposition when LLM is unavailable."
+    "definition": "decompose_goal(goal: 'Dict[str, Any]') -> 'List[Dict[str, Any]]'\nBreak a complex goal into actionable subgoals.\n    Uses rule-based decomposition when LLM is unavailable."
   },
   {
     "name": "delta_reward",
@@ -481,7 +481,7 @@
   },
   {
     "name": "ensure_immediate_actions_bucket",
-    "definition": "ensure_immediate_actions_bucket(goals: 'List[Dict]') -> 'Dict'"
+    "definition": "ensure_immediate_actions_bucket(goals: 'List[Dict[str, Any]]') -> 'Dict[str, Any]'"
   },
   {
     "name": "ensure_tokenizer",
@@ -557,11 +557,11 @@
   },
   {
     "name": "fade_goals",
-    "definition": "fade_goals(context: 'Optional[Dict]' = None) -> 'None'\nDecay motivational_weight for non-lifetime goals that haven't been pursued\n    recently. Goals below the dormant threshold move to status='dormant'.\n    Lifetime goals fade much more slowly and never go dormant.\n\n    Call this periodically (e.g. every 60 cognitive cycles)."
+    "definition": "fade_goals(context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nDecay motivational_weight for non-lifetime goals that haven't been pursued\n    recently. Goals below the dormant threshold move to status='dormant'.\n    Lifetime goals fade much more slowly and never go dormant.\n\n    Call this periodically (e.g. every 60 cognitive cycles)."
   },
   {
     "name": "fail_overdue_artifact_goals",
-    "definition": "fail_overdue_artifact_goals(context: 'Optional[Dict]' = None) -> 'int'\nP2 — timeout → failure for artifact-gated goals. Walks the goal store; an\n    output_producing / requires_artifact goal that has been alive past its\n    deadline_cycles WITHOUT a qualifying effect is routed into the existing\n    mark_goal_failed path (reason=\"no_artifact_by_deadline\"). This is what turns the\n    run's hollow \"0 failures\" into a meaningful non-zero — a make-things goal that\n    produced nothing is a real, staked failure, not a quiet fade.\n\n    Cadence is measured in cognitive cycles: each goal's first observation cycle is\n    stamped on first sight, and the deadline is measured from there. Run on the same\n    low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."
+    "definition": "fail_overdue_artifact_goals(context: 'Optional[Dict[str, Any]]' = None) -> 'int'\nP2 — timeout → failure for artifact-gated goals. Walks the goal store; an\n    output_producing / requires_artifact goal that has been alive past its\n    deadline_cycles WITHOUT a qualifying effect is routed into the existing\n    mark_goal_failed path (reason=\"no_artifact_by_deadline\"). This is what turns the\n    run's hollow \"0 failures\" into a meaningful non-zero — a make-things goal that\n    produced nothing is a real, staked failure, not a quiet fade.\n\n    Cadence is measured in cognitive cycles: each goal's first observation cycle is\n    stamped on first sight, and the deadline is measured from there. Run on the same\n    low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."
   },
   {
     "name": "failure_node",
@@ -641,7 +641,7 @@
   },
   {
     "name": "get_active_lifetime_goal",
-    "definition": "get_active_lifetime_goal(context: 'Optional[Dict]' = None) -> 'Optional[Dict]'\nReturn the highest-weight in_progress lifetime goal.\n    Caches result in context for the cycle so it's cheap to call repeatedly."
+    "definition": "get_active_lifetime_goal(context: 'Optional[Dict[str, Any]]' = None) -> 'Optional[Dict[str, Any]]'\nReturn the highest-weight in_progress lifetime goal.\n    Caches result in context for the cycle so it's cheap to call repeatedly."
   },
   {
     "name": "get_all_opinions",
@@ -669,7 +669,7 @@
   },
   {
     "name": "get_goal_plan",
-    "definition": "get_goal_plan(goal: 'Dict') -> 'List[Dict]'\nReturn the plan list on a goal, or empty list if none."
+    "definition": "get_goal_plan(goal: 'Dict[str, Any]') -> 'List[Dict[str, Any]]'\nReturn the plan list on a goal, or empty list if none."
   },
   {
     "name": "get_introspection_trust",
@@ -689,7 +689,7 @@
   },
   {
     "name": "get_next_pending_step",
-    "definition": "get_next_pending_step(goal: 'Dict') -> 'Optional[Dict]'\nReturn the first step with status='pending', or None if plan exhausted."
+    "definition": "get_next_pending_step(goal: 'Dict[str, Any]') -> 'Optional[Dict[str, Any]]'\nReturn the first step with status='pending', or None if plan exhausted."
   },
   {
     "name": "get_opinion",
@@ -721,7 +721,7 @@
   },
   {
     "name": "goal_function_already_exists",
-    "definition": "goal_function_already_exists(goal_tree: 'Optional[List[Dict]]', function_name: 'Optional[str]') -> 'bool'\nCheck if tokens of function_name appear in goal text/history anywhere in the tree."
+    "definition": "goal_function_already_exists(goal_tree: 'Optional[List[Dict[str, Any]]]', function_name: 'Optional[str]') -> 'bool'\nCheck if tokens of function_name appear in goal text/history anywhere in the tree."
   },
   {
     "name": "goal_type_of",
@@ -797,7 +797,7 @@
   },
   {
     "name": "insert_plan_step",
-    "definition": "insert_plan_step(goal: 'Dict', step: 'str', position: 'Optional[int]' = None, reason: 'str' = '') -> 'Optional[Dict]'\nInsert a new pending step into the goal's plan.\n\n    By default the step is placed at the head of the *pending* region (right\n    after the last completed/skipped step) so it runs before the remaining work.\n    Returns the inserted step dict, or None if `step` is empty or duplicates an\n    already-pending step."
+    "definition": "insert_plan_step(goal: 'Dict[str, Any]', step: 'str', position: 'Optional[int]' = None, reason: 'str' = '') -> 'Optional[Dict[str, Any]]'\nInsert a new pending step into the goal's plan.\n\n    By default the step is placed at the head of the *pending* region (right\n    after the last completed/skipped step) so it runs before the remaining work.\n    Returns the inserted step dict, or None if `step` is empty or duplicates an\n    already-pending step."
   },
   {
     "name": "interoceptive_deltas",
@@ -901,11 +901,11 @@
   },
   {
     "name": "load_goals",
-    "definition": "load_goals() -> 'List[Dict]'"
+    "definition": "load_goals() -> 'List[Dict[str, Any]]'"
   },
   {
     "name": "load_lifetime_goals",
-    "definition": "load_lifetime_goals() -> 'List[Dict]'"
+    "definition": "load_lifetime_goals() -> 'List[Dict[str, Any]]'"
   },
   {
     "name": "load_neutral_count",
@@ -957,11 +957,11 @@
   },
   {
     "name": "mark_goal_completed",
-    "definition": "mark_goal_completed(goal: 'Dict', context: 'Optional[Dict]' = None) -> 'None'"
+    "definition": "mark_goal_completed(goal: 'Dict[str, Any]', context: 'Optional[Dict[str, Any]]' = None) -> 'None'"
   },
   {
     "name": "mark_goal_failed",
-    "definition": "mark_goal_failed(goal: 'Dict', reason: 'str' = '', context: 'Optional[Dict]' = None) -> 'None'\nMark a goal as failed, write it to long-term memory, and inflict emotional penalty_signal.\n    This should feel like a genuine setback — impasse_signal and negative_valence, not just a log line."
+    "definition": "mark_goal_failed(goal: 'Dict[str, Any]', reason: 'str' = '', context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nMark a goal as failed, write it to long-term memory, and inflict emotional penalty_signal.\n    This should feel like a genuine setback — impasse_signal and negative_valence, not just a log line."
   },
   {
     "name": "mark_goal_status_by_name",
@@ -1017,11 +1017,11 @@
   },
   {
     "name": "merge_updated_goal_into_tree",
-    "definition": "merge_updated_goal_into_tree(tree: 'List[Dict]', updated: 'Dict') -> 'List[Dict]'\nMerge an updated goal node into the full tree by matching id, then (name, timestamp).\n    Replaces the first match found; recurses into subgoals. If not found, appends at top level."
+    "definition": "merge_updated_goal_into_tree(tree: 'List[Dict[str, Any]]', updated: 'Dict[str, Any]') -> 'List[Dict[str, Any]]'\nMerge an updated goal node into the full tree by matching id, then (name, timestamp).\n    Replaces the first match found; recurses into subgoals. If not found, appends at top level."
   },
   {
     "name": "met_milestone_tokens",
-    "definition": "met_milestone_tokens(goal: 'Dict') -> 'set'\nUnion of tokens across all already-met milestones on the goal."
+    "definition": "met_milestone_tokens(goal: 'Dict[str, Any]') -> 'set[str]'\nUnion of tokens across all already-met milestones on the goal."
   },
   {
     "name": "meta_reflect",
@@ -1117,7 +1117,7 @@
   },
   {
     "name": "plan_self_evolution",
-    "definition": "plan_self_evolution(context: 'dict | None' = None) -> 'str'\nGenerate a self-evolution roadmap and register steps as subgoals."
+    "definition": "plan_self_evolution(context: 'Optional[Dict[str, Any]]' = None) -> 'str'\nGenerate a self-evolution roadmap and register steps as subgoals."
   },
   {
     "name": "poll_fs_changes",
@@ -1153,7 +1153,7 @@
   },
   {
     "name": "prune_goals",
-    "definition": "prune_goals(goals: 'List[Dict]') -> 'List[Dict]'"
+    "definition": "prune_goals(goals: 'List[Dict[str, Any]]') -> 'List[Dict[str, Any]]'"
   },
   {
     "name": "prune_old_threads",
@@ -1161,7 +1161,7 @@
   },
   {
     "name": "prune_satisfied_steps",
-    "definition": "prune_satisfied_steps(goal: 'Dict', context: 'Optional[Dict]' = None) -> 'int'\nSkip pending steps whose work is already done — i.e. their keywords are\n    largely covered by an already-met milestone. This stops Orrin from\n    redundantly re-executing a step when the underlying outcome happened as a\n    side effect of earlier work. Milestone-only (not raw working memory) so the\n    pursuit loop's own bookkeeping can't trigger a false positive.\n    Returns the number of steps skipped."
+    "definition": "prune_satisfied_steps(goal: 'Dict[str, Any]', context: 'Optional[Dict[str, Any]]' = None) -> 'int'\nSkip pending steps whose work is already done — i.e. their keywords are\n    largely covered by an already-met milestone. This stops Orrin from\n    redundantly re-executing a step when the underlying outcome happened as a\n    side effect of earlier work. Milestone-only (not raw working memory) so the\n    pursuit loop's own bookkeeping can't trigger a false positive.\n    Returns the number of steps skipped."
   },
   {
     "name": "pursue_committed_goal",
@@ -1169,7 +1169,7 @@
   },
   {
     "name": "pursue_goal",
-    "definition": "pursue_goal(goal: 'Dict') -> 'None'"
+    "definition": "pursue_goal(goal: 'Dict[str, Any]') -> 'None'"
   },
   {
     "name": "query",
@@ -1253,7 +1253,7 @@
   },
   {
     "name": "record_decision",
-    "definition": "record_decision(fn_name, reason, *, reward=None, context=None)"
+    "definition": "record_decision(fn_name: str, reason: str, *, reward: Optional[float] = None, context: Optional[Dict[str, Any]] = None) -> None"
   },
   {
     "name": "record_failure",
@@ -1265,7 +1265,7 @@
   },
   {
     "name": "record_lifetime_progress",
-    "definition": "record_lifetime_progress(goal_id: 'str', note: 'str', context: 'Optional[Dict]' = None) -> 'None'\nAdd a progress note to a lifetime goal and fire a small reward_signal burst.\n    Called when a short-term goal that was in_service_of this lifetime goal completes."
+    "definition": "record_lifetime_progress(goal_id: 'str', note: 'str', context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nAdd a progress note to a lifetime goal and fire a small reward_signal burst.\n    Called when a short-term goal that was in_service_of this lifetime goal completes."
   },
   {
     "name": "record_maintenance_execution",
@@ -1325,7 +1325,7 @@
   },
   {
     "name": "reflect_on_growth_history",
-    "definition": "reflect_on_growth_history()"
+    "definition": "reflect_on_growth_history() -> str"
   },
   {
     "name": "reflect_on_internal_agents",
@@ -1385,11 +1385,11 @@
   },
   {
     "name": "report",
-    "definition": "report(days: 'int' = 7) -> 'Dict'\nHuman-readable closure outcome report for the last N days. Flushes first."
+    "definition": "report(days: 'int' = 7) -> 'Dict[str, Any]'\nHuman-readable closure outcome report for the last N days. Flushes first."
   },
   {
     "name": "reprioritize_pending_steps",
-    "definition": "reprioritize_pending_steps(goal: 'Dict', score_fn) -> 'bool'\nStable-sort the *pending tail* of the plan by `score_fn(step) -> float`\n    (descending), leaving completed/skipped steps fixed in place. Ties keep\n    their original order. Returns True if the order actually changed."
+    "definition": "reprioritize_pending_steps(goal: 'Dict[str, Any]', score_fn: 'Callable[[Dict[str, Any]], float]') -> 'bool'\nStable-sort the *pending tail* of the plan by `score_fn(step) -> float`\n    (descending), leaving completed/skipped steps fixed in place. Ties keep\n    their original order. Returns True if the order actually changed."
   },
   {
     "name": "request_attention_hijack",
@@ -1441,7 +1441,7 @@
   },
   {
     "name": "revive_lifetime_goal_by_topic",
-    "definition": "revive_lifetime_goal_by_topic(topic: 'str', context: 'Optional[Dict]' = None) -> 'None'\nWhen a topic fires in research/memory, boost motivational_weight for any\n    lifetime goal whose title or description overlaps with that topic."
+    "definition": "revive_lifetime_goal_by_topic(topic: 'str', context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nWhen a topic fires in research/memory, boost motivational_weight for any\n    lifetime goal whose title or description overlaps with that topic."
   },
   {
     "name": "run_active_experiment",
@@ -1477,11 +1477,11 @@
   },
   {
     "name": "save_goals",
-    "definition": "save_goals(goals: 'List[Dict]') -> 'None'"
+    "definition": "save_goals(goals: 'List[Dict[str, Any]]') -> 'None'"
   },
   {
     "name": "save_lifetime_goals",
-    "definition": "save_lifetime_goals(goals: 'List[Dict]') -> 'None'"
+    "definition": "save_lifetime_goals(goals: 'List[Dict[str, Any]]') -> 'None'"
   },
   {
     "name": "save_neutral_count",
@@ -1521,7 +1521,7 @@
   },
   {
     "name": "select_focus_goals",
-    "definition": "select_focus_goals() -> 'Dict[str, Optional[Dict]]'\nLoad goals, select focus goals, and write to FOCUS_GOAL.\n    Returns the focus goal dictionary."
+    "definition": "select_focus_goals() -> 'Dict[str, Optional[Dict[str, Any]]]'\nLoad goals, select focus goals, and write to FOCUS_GOAL.\n    Returns the focus goal dictionary."
   },
   {
     "name": "self_model_maintenance_cycle",
@@ -1549,7 +1549,7 @@
   },
   {
     "name": "set_goal_plan",
-    "definition": "set_goal_plan(goal: 'Dict', steps: 'List[Any]') -> 'None'\nAttach a fresh plan to a goal from a list of step description strings.\n    Overwrites any existing plan.\n\n    Steps are de-duplicated by normalized text (a duplicate is never appended,\n    regardless of status — audit §7 found the same step 5× in one plan) and\n    placeholder steps are rejected outright."
+    "definition": "set_goal_plan(goal: 'Dict[str, Any]', steps: 'List[Any]') -> 'None'\nAttach a fresh plan to a goal from a list of step description strings.\n    Overwrites any existing plan.\n\n    Steps are de-duplicated by normalized text (a duplicate is never appended,\n    regardless of status — audit §7 found the same step 5× in one plan) and\n    placeholder steps are rejected outright."
   },
   {
     "name": "set_lr",
@@ -1561,7 +1561,7 @@
   },
   {
     "name": "set_status",
-    "definition": "set_status(goal_id: 'Any', status: 'str', *, source: 'str' = '') -> 'List[Dict]'\nSet a goal's status atomically (e.g. in_progress / completed / failed)."
+    "definition": "set_status(goal_id: 'Any', status: 'str', *, source: 'str' = '') -> 'List[Dict[str, Any]]'\nSet a goal's status atomically (e.g. in_progress / completed / failed)."
   },
   {
     "name": "setpoint_candidate",
@@ -1589,7 +1589,7 @@
   },
   {
     "name": "simulate_future_selves",
-    "definition": "simulate_future_selves(context: 'Optional[Dict]' = None, save_to_history: 'bool' = True) -> 'Dict[str, Any]'\nProject three plausible future selves from actual trajectory, not from\n    self-image alone. Each future is anchored to a present choice point.\n\n    Returns {\n        \"futures\": [{\"name\", \"description\", \"choice_point\", \"present_decision\", \"risks\"}],\n        \"preferred\": str,\n        \"reason\": str,\n        \"recommended_goals\": [{\"title\", \"description\", \"priority\"}]\n    }\n\n    Injects recommended_goals into context[\"proposed_goals\"] when context is provided."
+    "definition": "simulate_future_selves(context: 'Optional[Dict[str, Any]]' = None, save_to_history: 'bool' = True) -> 'Dict[str, Any]'\nProject three plausible future selves from actual trajectory, not from\n    self-image alone. Each future is anchored to a present choice point.\n\n    Returns {\n        \"futures\": [{\"name\", \"description\", \"choice_point\", \"present_decision\", \"risks\"}],\n        \"preferred\": str,\n        \"reason\": str,\n        \"recommended_goals\": [{\"title\", \"description\", \"priority\"}]\n    }\n\n    Injects recommended_goals into context[\"proposed_goals\"] when context is provided."
   },
   {
     "name": "simulate_new_cognitive_abilities",
@@ -1605,7 +1605,7 @@
   },
   {
     "name": "skip_pending_steps",
-    "definition": "skip_pending_steps(goal: 'Dict', predicate, reason: 'str' = '') -> 'int'\nMark every pending step for which `predicate(step_dict)` is True as\n    'skipped' (a terminal status). Completed steps are never touched.\n    Returns the number of steps changed."
+    "definition": "skip_pending_steps(goal: 'Dict[str, Any]', predicate: 'Callable[[Dict[str, Any]], bool]', reason: 'str' = '') -> 'int'\nMark every pending step for which `predicate(step_dict)` is True as\n    'skipped' (a terminal status). Completed steps are never touched.\n    Returns the number of steps changed."
   },
   {
     "name": "somatic_infancy",
@@ -1689,11 +1689,11 @@
   },
   {
     "name": "try_to_accomplish",
-    "definition": "try_to_accomplish(goal: 'Dict') -> 'bool'\nAttempt an atomic goal. Uses working-memory evidence when LLM unavailable.\n    Returns True if succeeded, False if needs decomposition."
+    "definition": "try_to_accomplish(goal: 'Dict[str, Any]') -> 'bool'\nAttempt an atomic goal. Uses working-memory evidence when LLM unavailable.\n    Returns True if succeeded, False if needs decomposition."
   },
   {
     "name": "unmet_milestone_texts",
-    "definition": "unmet_milestone_texts(goal: 'Dict') -> 'List[str]'\nText of milestones that are not yet met."
+    "definition": "unmet_milestone_texts(goal: 'Dict[str, Any]') -> 'List[str]'\nText of milestones that are not yet met."
   },
   {
     "name": "update_ambient",
@@ -1717,7 +1717,7 @@
   },
   {
     "name": "update_goal",
-    "definition": "update_goal(goal_id: 'Any', updates: 'Dict[str, Any]', *, source: 'str' = '') -> 'List[Dict]'\nShallow-merge `updates` into a goal atomically (status, milestones, etc.)."
+    "definition": "update_goal(goal_id: 'Any', updates: 'Dict[str, Any]', *, source: 'str' = '') -> 'List[Dict[str, Any]]'\nShallow-merge `updates` into a goal atomically (status, milestones, etc.)."
   },
   {
     "name": "update_host_interoception",

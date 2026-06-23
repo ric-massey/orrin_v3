@@ -197,7 +197,8 @@ def _load_name_list(path: str) -> List[str]:
             else:
                 out.append(str(x))
         return out
-    except Exception:
+    except Exception as exc:  # unexpected read/shape error — record, empty list
+        record_failure("loop_helpers.load_names", exc)
         return []
 
 
@@ -285,6 +286,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
         # signature mismatch; proceed to smart kwargs / legacy attempts
         record_failure("loop_helpers._call_cognition", _e)
     except Exception as e:
+        record_failure("loop_helpers._call_cognition.direct", e)
         return {"success": False, "error": str(e), "where": "cognition-call"}
 
     # 1) Smart keyword auto-fill from context (only if we can inspect the signature)
@@ -362,6 +364,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
         except TypeError:
             continue
         except Exception as e:
+            record_failure("loop_helpers._call_cognition.kwargs", e)
             return {"success": False, "error": str(e), "where": "cognition-call"}
 
     return {"success": False, "error": "no_matching_signature", "where": "cognition-call"}
@@ -397,6 +400,7 @@ def execute_action_via_registries(
             ok = take_action({"type": action_name, "name": action_name}, ctx, ctx.get("speaker"))
             return {"success": bool(ok), "status": "ok" if ok else "fail"}
         except Exception as e:
+            record_failure("loop_helpers._call_behavior", e)
             return {"success": False, "error": str(e), "where": "behavior-call"}
 
     return {"success": False, "error": f"Unknown action '{action_name}'", "where": "dispatch"}

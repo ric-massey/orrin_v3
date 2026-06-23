@@ -28,6 +28,7 @@ from datetime import datetime, timezone
 from typing import Dict, List, Optional, Set
 
 from brain.utils.json_utils import load_json, save_json
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
@@ -180,7 +181,7 @@ def _step_from_rule(text: str) -> Optional[Dict]:
             "confidence": rule.get("confidence", 0.75),
             "status":     "pending",
         }
-    except Exception:
+    except ImportError:  # intentional: rule engine optional — no rule step
         return None
 
 
@@ -203,7 +204,7 @@ def _steps_from_causal(text: str, visited: Set[str]) -> List[Dict]:
                 "status":     "pending",
             })
         return results
-    except Exception:
+    except ImportError:  # intentional: causal graph optional — no causal steps
         return []
 
 
@@ -221,7 +222,7 @@ def _step_from_analogy(text: str) -> Optional[Dict]:
             "confidence": 0.55,
             "status":     "pending",
         }
-    except Exception:
+    except ImportError:  # intentional: analogy engine optional — no analogy step
         return None
 
 
@@ -278,8 +279,8 @@ def _sweep_orphan_plans() -> None:
             log_activity(
                 f"[temporal_plan] Swept {len(plans) - len(kept)} empty orphan plan(s)."
             )
-    except Exception:
-        pass
+    except Exception as exc:  # plan sweep best-effort — record
+        record_failure("temporal_planner._sweep_orphan_plans", exc)
 
 
 _sweep_orphan_plans()

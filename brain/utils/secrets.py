@@ -24,6 +24,7 @@ import os
 from typing import Dict, Optional
 
 from brain.utils.env import env_bool
+from brain.utils.failure_counter import record_failure
 
 # The keychain service name and the canonical env-var each secret maps to. The short
 # UI name ("openai"/"serper") is what callers pass; the env var is what the rest of
@@ -54,7 +55,8 @@ def _keyring():
     try:
         import keyring  # lazy: optional dep, and import is non-trivial
         return keyring
-    except Exception:
+    except Exception as exc:  # keyring enabled but unusable — record, fall back to memory
+        record_failure("secrets._keyring", exc)
         return None
 
 
@@ -79,8 +81,8 @@ def set_key(name: str, value: Optional[str]) -> None:
                 kr.set_password(SERVICE, env, value)
                 _MEM.pop(env, None)
                 return
-            except Exception:
-                pass
+            except Exception as exc:  # keychain write failed — record, fall back to memory
+                record_failure("secrets.set_key.store", exc)
         _MEM[env] = value
     else:
         os.environ.pop(env, None)
@@ -88,8 +90,8 @@ def set_key(name: str, value: Optional[str]) -> None:
         if kr is not None:
             try:
                 kr.delete_password(SERVICE, env)
-            except Exception:
-                pass
+            except Exception as exc:  # keychain delete failed — record (env/mem already cleared)
+                record_failure("secrets.set_key.delete", exc)
 
 
 def get_key(name: str) -> Optional[str]:
@@ -104,8 +106,8 @@ def get_key(name: str) -> Optional[str]:
             v = kr.get_password(SERVICE, env)
             if v:
                 return v
-        except Exception:
-            pass
+        except Exception as exc:  # keychain read failed — record, fall back to memory
+            record_failure("secrets.get_key", exc)
     return _MEM.get(env)
 
 

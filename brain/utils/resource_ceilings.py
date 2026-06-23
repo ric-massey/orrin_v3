@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from brain.paths import DATA_DIR
+from brain.utils.failure_counter import record_failure
 
 _GB = 1024 ** 3
 
@@ -43,12 +44,13 @@ def disk_ceiling_gb() -> float:
     if env:
         try:
             return float(env)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: malformed env override → fall back
             pass
     try:
         from brain.utils.prefs import get as _pref
         return float(_pref("disk_ceiling_gb", 5))
-    except Exception:
+    except Exception as exc:  # prefs unavailable/bad value — record, use default
+        record_failure("resource_ceilings.disk_ceiling_gb", exc)
         return 5.0
 
 
@@ -64,10 +66,10 @@ def data_dir_bytes() -> int:
             try:
                 if f.is_file():
                     total += f.stat().st_size
-            except Exception:
+            except OSError:  # intentional: file vanished mid-walk / unreadable
                 continue
-    except Exception:
-        pass
+    except Exception as exc:  # the data-dir walk failed entirely — record it
+        record_failure("resource_ceilings.data_dir_bytes", exc)
     return total
 
 
@@ -90,8 +92,8 @@ def _trim_json_list(path: Path, keep: int) -> int:
             removed = len(data) - keep
             path.write_text(json.dumps(data[-keep:]), encoding="utf-8")
             return removed
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O / bad JSON while trimming a store
+        record_failure("resource_ceilings._trim_json_list", exc)
     return 0
 
 
@@ -113,8 +115,8 @@ def enforce_disk_ceiling() -> Dict[str, Any]:
             if p.exists():
                 cap_jsonl(p, max_lines=max_lines)
                 trimmed.setdefault(name, max_lines)
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O while capping jsonl stores
+        record_failure("resource_ceilings.enforce_disk_ceiling.jsonl", exc)
     return {"over": True, "trimmed": trimmed, "usage": usage()}
 
 
@@ -130,12 +132,13 @@ def memory_ceiling_gb() -> float:
     if env:
         try:
             return float(env)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: malformed env override → fall back
             pass
     try:
         from brain.utils.prefs import get as _pref
         return float(_pref("memory_ceiling_gb", 4))
-    except Exception:
+    except Exception as exc:  # prefs unavailable/bad value — record, use default
+        record_failure("resource_ceilings.memory_ceiling_gb", exc)
         return 4.0
 
 
@@ -149,7 +152,8 @@ def process_rss_bytes() -> int:
     try:
         import psutil
         return int(psutil.Process().memory_info().rss)
-    except Exception:
+    except Exception as exc:  # optional dep absent / probe failed — RSS unknown
+        record_failure("resource_ceilings.process_rss_bytes", exc)
         return 0
 
 
@@ -171,21 +175,21 @@ def _evict_caches() -> List[str]:
         from brain.utils import generate_response as _gr
         _gr._GR_CACHE.clear()
         cleared.append("llm_response_cache")
-    except Exception:
-        pass
+    except Exception as exc:  # best-effort eviction — record if a cache won't clear
+        record_failure("resource_ceilings._evict_caches.llm", exc)
     try:
         from brain.utils import embed_similarity as _es
         # The embedding cache is an lru_cache on _embed (up to 8192 vectors).
         _es._embed.cache_clear()
         cleared.append("embedding_cache")
-    except Exception:
-        pass
+    except Exception as exc:  # best-effort eviction — record if a cache won't clear
+        record_failure("resource_ceilings._evict_caches.embedding", exc)
     try:
         from brain.utils import llm_providers as _p
         _p.reinit()
         cleared.append("provider")
-    except Exception:
-        pass
+    except Exception as exc:  # best-effort eviction — record if the provider won't reinit
+        record_failure("resource_ceilings._evict_caches.provider", exc)
     return cleared
 
 

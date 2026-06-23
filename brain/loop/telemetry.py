@@ -15,6 +15,7 @@ from __future__ import annotations
 from typing import Any, Dict, List
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 
 _log = get_logger(__name__)
@@ -90,8 +91,8 @@ def _push_event(kind: str, **payload: Any) -> None:
                     del _RECENT_FNS[:-12]
                     tb.log("info", "executive", f"advanced step via {fn}")
                     tb.update(fn_recent=list(_RECENT_FNS))
-                except Exception:
-                    pass
+                except Exception as exc:  # best-effort UI ring update
+                    record_failure("loop_telemetry._push_event.executive", exc)
                 return
             tb.set_node("act", narrative=f"Acting — {fn}", cycle=cycle)
             tb.log("info", "select_function", f"executed {fn}")
@@ -105,11 +106,12 @@ def _push_event(kind: str, **payload: Any) -> None:
                 _RECENT_FNS.append(_entry)
                 del _RECENT_FNS[:-12]
                 tb.update(active_fn=fn, active_lane=_lane, fn_recent=list(_RECENT_FNS))
-            except Exception:
-                pass
+            except Exception as exc:  # best-effort active-light update
+                record_failure("loop_telemetry._push_event.active", exc)
         elif kind == "goal_failed":
             tb.log("warn", "goals", f"goal failed: {payload.get('title') or '?'}")
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._push_event", exc)
         return
 
 
@@ -197,7 +199,8 @@ def _emit_affect(context: "Context") -> None:
             stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),
         )
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_affect", exc)
         return
 
 
@@ -222,8 +225,8 @@ def _learning_pulse(context: "Context") -> float:
         if resolved:
             hits = sum(1 for p in resolved if p.get("correct") is True)
             val = _clamp01(hits / len(resolved))
-    except Exception:
-        pass
+    except Exception as exc:  # data read failed — record, reuse last cached value
+        record_failure("loop_telemetry._learning_pulse", exc)
     _LAST_LEARNING.update(ts=now, val=val)
     return val
 
@@ -261,7 +264,8 @@ def _emit_goals(context: "Context") -> None:
             committed=committed if isinstance(committed, dict) else None,
         )
         tb.update(goals=out[:40])
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_goals", exc)
         return
 
 
@@ -296,8 +300,8 @@ def _emit_llm_cost(context: "Context") -> None:
                 cache_stale=int(c.get("stale", 0)),
                 cache_ttl_s=_f(c.get("ttl_s", 0.0)),
             )
-        except Exception:
-            pass
+        except Exception as exc:  # cache stats optional — record, leave out of payload
+            record_failure("loop_telemetry._emit_llm_cost.cache", exc)
         try:
             from brain.symbolic.llm_gate import gate_stats
             g = gate_stats()
@@ -307,12 +311,13 @@ def _emit_llm_cost(context: "Context") -> None:
                 total_calls=int(g.get("total", 0)),
                 symbolic_ratio=_f(g.get("symbolic_ratio", 0.0)),
             )
-        except Exception:
-            pass
+        except Exception as exc:  # gate stats optional — record, leave out of payload
+            record_failure("loop_telemetry._emit_llm_cost.gate", exc)
 
         if payload:
             tb.update(llm_cost=payload)
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_llm_cost", exc)
         return
 
 
@@ -327,7 +332,8 @@ def _ui_stage(node: str, narrative: str) -> None:
         return
     try:
         tb.set_node(node, narrative=narrative)
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._ui_stage", exc)
         return
 def _ui_memory(op: str, mems: Any, *, store: str = "working", limit: int = 4) -> None:
     """
@@ -347,5 +353,6 @@ def _ui_memory(op: str, mems: Any, *, store: str = "working", limit: int = 4) ->
             sal = m.get("salience", m.get("importance", m.get("score")))
             tb.memory(op, store=store, key=key, summary=summary,
                       salience=_f(sal) if sal is not None else None)
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._ui_memory", exc)
         return

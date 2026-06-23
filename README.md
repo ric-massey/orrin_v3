@@ -1,10 +1,12 @@
 # Orrin
 
 **Orrin is an experimental symbolic-first cognitive architecture for a continuously running
-machine-embodied agent, built to study continuity, memory, goals, affect-like regulation,
-self-audit, and behavior change over time.**
+machine-embodied agent, built to study whether long-lived symbolic systems around an LLM can
+produce more stable, inspectable behavior than standard prompt-driven chatbots.**
 
-A digital organism prototype learning how to live in a computer body.
+The research question is practical: can a system built from autonomous symbolic components
+around an optional LLM maintain continuity, memory, goals, self-audit, host-body awareness,
+and behavior change across long runs and restarts?
 
 Orrin began as an attempt to build the missing layer around LLMs: continuity, persistent
 memory, self-direction, embodiment, goal pressure, learning visibility, and self-repair.
@@ -27,10 +29,96 @@ still runs symbolically; LLM calls are explicit tool calls inside selected funct
 > Run it to explore and tinker with, not to depend on. There are no guarantees of correctness,
 > stability, or fitness for any purpose.
 
-**Terminology note:** Orrin uses terms like "conscious," "pain," "body," "sleep," and
-"mortality" in a functional machine-cognition sense. They refer to mechanisms such as
-workspace access, resource distress, host embodiment, consolidation phases, and finitude
-signals. They are not claims of human-equivalent subjective experience.
+## System architecture
+
+Orrin is a long-lived Python process plus cooperating daemons:
+
+- **Continuous loop:** `brain/ORRIN_loop.py` cycles through sensing, recall, workspace
+  preparation, ignition, function/action selection, execution, reward accounting, persistence,
+  maintenance, and sleep. It does this independently of user input.
+- **Decoupled intelligence:** the LLM is an optional tool-call organ for high-level reasoning
+  and language, not the central controller. The loop, goals, memory, affect-like regulation,
+  host sensing, and action selection continue in symbolic-only mode.
+- **Symbolic core:** memory, causal/world models, goal management, reward, metacognition,
+  action arbitration, and persistence are implemented as Python subsystems with JSON/WAL-backed
+  state, so Orrin has continuity across restarts.
+- **Embodied context:** host disk, swap, memory, battery, idle state, and resource ceilings
+  feed both low-level safety reflexes and higher-level felt-state signals. The machine is the
+  runtime substrate and part of the agent's context.
+- **Observable runtime:** the backend and React UI expose the cognitive loop, goals, memory,
+  affect-like state, workspace contents, learning traces, and system health through named rooms
+  rather than hiding behavior inside a prompt transcript.
+
+Simple cognitive shape:
+
+```text
+State + Memory + Goals
+        ↓
+Affect / Body / Drives
+        ↓
+Global Workspace
+        ↓
+Action Selector
+        ↓
+Tools / Reflection / Research / Code / Communication
+        ↓
+Reward + Memory Update + Sleep/Consolidation
+```
+
+Fuller daemon/runtime shape:
+
+```text
+                       ┌──────────────────────────────────────────┐
+                       │            COGNITIVE LOOP (brain)          │
+   sensory stream ───► │  perceive → reflect → plan → act → repeat │ ───► tools / actions
+   user input    ───►  │   (bandit picks the next function; affect │      (see below)
+                       │    + drives + memory feed every stage)     │
+                       └───┬───────────┬───────────┬────────────┬──┘
+                           │           │           │            │
+                  ┌────────▼──┐ ┌──────▼─────┐ ┌───▼──────┐ ┌───▼────────┐
+                  │ Executive │ │   Memory   │ │  Reaper  │ │  Backend   │
+                  │  daemon   │ │   daemon   │ │ liveness │ │ telemetry  │
+                  │ (goal     │ │ (ingest /  │ │ + error  │ │  + Face &  │
+                  │  steps)   │ │ embed /    │ │ checker  │ │  Brain UI  │
+                  │           │ │ consolidate)│ │          │ │            │
+                  └───────────┘ └────────────┘ └──────────┘ └────────────┘
+```
+
+The cognitive loop runs continuously; the daemons run alongside it. The Executive advances
+goal steps off-thread, Memory ingests and consolidates, the Reaper watches for stalls, errors,
+and host-resource danger, and the Backend streams telemetry to the UI and Prometheus when
+enabled.
+
+## Start here
+
+If you are trying to understand the codebase, read it in this order:
+
+| Question | Start with |
+|----------|------------|
+| How does Orrin boot? | `main.py` |
+| What is the main loop? | `brain/ORRIN_loop.py`, then `brain/loop/` |
+| How does it choose what to do next? | `brain/think/`, especially the function selector and action arbiter |
+| How do memory and consolidation work? | `memory/memory_daemon.py`, `memory/wal.py`, `memory/retrieval.py`, and `brain/cog_memory/` |
+| How do durable goals work? | `goals/goals_daemon.py`, `goals/store.py`, `goals/wal.py`, `goals/runner.py` |
+| How are in-loop goal steps advanced? | `brain/cognition/planning/executive.py` |
+| How does host embodiment work? | `reaper/host_resources.py`, `brain/cognition/host_interoception.py`, `brain/cognition/body_sense.py`, `brain/cognition/body_band.py`, `brain/cognition/metabolism.py`, `brain/cognition/body_budget.py` |
+| How does the workspace/ignition layer work? | `brain/cognition/global_workspace.py`, `brain/think/consciousness_trigger.py`, `brain/loop/deliberate.py` |
+| Where are LLM calls gated? | `brain/utils/generate_response.py`, `brain/utils/llm_providers/`, `brain/cognition/tools/ask_llm.py` |
+| What does the UI show? | `backend/server/`, `frontend/src/pages/`, `frontend/src/components/brain/` |
+
+## Technical note on terminology
+
+Orrin uses words like "consciousness," "pain," "body," "sleep," and "mortality" as
+functional analogues for specific system mechanisms. They are not claims of
+human-equivalent subjective experience.
+
+| Term | Operational meaning |
+|------|---------------------|
+| "Consciousness" | Global Workspace competition, bottleneck, ignition threshold, and broadcast into the next cycle. |
+| "Pain" / "distress" | High prediction error, affect-like pressure, or host-resource critical-threshold alerts. |
+| "Body" | The host machine plus sensed resource budgets, disk/swap/memory/battery state, and learned normal bands. |
+| "Sleep" | Low-power cadence, consolidation, dream/replay, and closed-time accounting. |
+| "Mortality" | A finite, persistent lifespan clock that influences long-term prioritization and eventually stops the loop. |
 
 ![Orrin Learning room showing behavior changes, goal progress, rut pressure, and belief revisions](docs/images/orrin_learning_ui.png)
 
@@ -41,11 +129,13 @@ goal movement, rut pressure, and belief revision in one view.*
 
 ## Contents
 
+- [System architecture](#system-architecture)
+- [Start here](#start-here)
+- [Technical note on terminology](#technical-note-on-terminology)
 - [What it is](#what-it-is)
 - [Why Orrin exists](#why-orrin-exists)
 - [What makes Orrin unusual](#what-makes-orrin-unusual)
 - [Current best evidence](#current-best-evidence)
-- [Cognitive shape](#cognitive-shape)
 - [What it does](#what-it-does)
 - [Interacting with Orrin](#interacting-with-orrin)
 - [What Orrin actually does (its actions)](#what-orrin-actually-does-its-actions)
@@ -129,26 +219,6 @@ without a model provider. The model, when enabled, is a tool the architecture ca
   action-selection pressure, and producing a later run with a measurably different action
   distribution and better reward. See the
   [demo-run index](docs/Behavioral%20Evaluation%20%26%20Runtime%20Diagnostics/demo_runs/2026-06-17-run/DEMO_RUNS.md).
-
-## Cognitive shape
-
-Simple version first:
-
-```text
-State + Memory + Goals
-        ↓
-Affect / Body / Drives
-        ↓
-Global Workspace
-        ↓
-Action Selector
-        ↓
-Tools / Reflection / Research / Code / Communication
-        ↓
-Reward + Memory Update + Sleep/Consolidation
-```
-
-The fuller daemon/runtime diagram is below.
 
 ## What it does
 
@@ -247,31 +317,6 @@ central to the "digital mind" framing. All of it is symbolic (no LLM required):
   never the emotion label or its value (`brain/affect/affect_summary.py`). Like a person
   reading their own body rather than a gauge, he has to *introspect* to work out what he's
   feeling. (See [Architecture notes](#architecture-notes).)
-
-### At a glance
-
-```
-                       ┌──────────────────────────────────────────┐
-                       │            COGNITIVE LOOP (brain)          │
-   sensory stream ───► │  perceive → reflect → plan → act → repeat │ ───► tools / actions
-   user input    ───►  │   (bandit picks the next function; affect │      (see below)
-                       │    + drives + memory feed every stage)     │
-                       └───┬───────────┬───────────┬────────────┬──┘
-                           │           │           │            │
-                  ┌────────▼──┐ ┌──────▼─────┐ ┌───▼──────┐ ┌───▼────────┐
-                  │ Executive │ │   Memory   │ │  Reaper  │ │  Backend   │
-                  │  daemon   │ │   daemon   │ │ liveness │ │ telemetry  │
-                  │ (goal     │ │ (ingest /  │ │ + error  │ │  + Face &  │
-                  │  steps)   │ │ embed /    │ │ checker  │ │  Brain UI  │
-                  │           │ │ consolidate)│ │          │ │            │
-                  └───────────┘ └────────────┘ └──────────┘ └────────────┘
-```
-
-The cognitive loop runs continuously; the daemons run alongside it (the Executive advances
-goal steps off-thread, Memory ingests/consolidates, the Reaper watches for stalls and
-errors, and the Backend streams everything to the UI, and to Prometheus when enabled).
-
----
 
 ## Interacting with Orrin
 

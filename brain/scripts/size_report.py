@@ -63,6 +63,11 @@ EXEMPT: dict[str, str] = {
     # future presentational sub-panel extraction brings it under (real FE change,
     # out of scope for the enforcement pass).
     "frontend/src/components/brain/ConsciousnessPanel.tsx": "603 lines; 4E split candidate",
+    # 608 lines — was ~588 (already near the limit) before §9 added per-site
+    # failure recording. Bundles specs + sampling + evaluators + scenario seeding:
+    # a genuine decomposition candidate (split the harness from the specs), out of
+    # scope for the exception-handling pass.
+    "brain/benchmarks/__init__.py": "608 lines; harness/specs split candidate",
 }
 
 

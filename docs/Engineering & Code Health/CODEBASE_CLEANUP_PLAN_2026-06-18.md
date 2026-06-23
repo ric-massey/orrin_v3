@@ -7,6 +7,87 @@ separate change explicitly authorizes behavior changes.
 Detailed structural findings are recorded in
 `docs/Engineering & Code Health/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md`.
 
+## Implementation status (updated 2026-06-23b)
+
+- **Phase 7 — remaining items COMPLETE (the `make verify` gate was already in
+  from the 2026-06-20 slice; this finishes the four that remained).** Each is a
+  ratchet/report wired into `make` and CI, mirroring the existing forward-ratchet
+  pattern (`test_package_layering.py`), so none of them can silently regress.
+  - **Size/complexity report + ratchet.** `brain/scripts/size_report.py`
+    (`make size-report`) lists hand-maintained source modules by line count,
+    flags `> 600` (the soft limit) and warns on those approaching it.
+    `tests/test_module_size.py` is the enforcement spine — a forward ratchet that
+    fails the build if any *new* source module crosses 600 lines, with the one
+    file already over (`ConsciousnessPanel.tsx`, 603) frozen in `EXEMPT` with a
+    reason + a stale-exemption guard. The scan policy is the single source of
+    truth in `size_report.py`; the test imports it. This is the check 4.5C's exit
+    criteria defers to Phase 7 — "the list cannot silently regrow." Current state:
+    **0 un-exempt modules over 600**, 20 approaching (≥540).
+  - **Coverage ratchet.** `[tool.coverage]` config in `pyproject.toml` measures
+    line coverage of the source packages (tests/generated excluded);
+    `brain/scripts/coverage_ratchet.py` (`make coverage` / `make coverage-update`)
+    gates against a recorded floor in the tracked `.coverage-floor` — a ratchet,
+    not an arbitrary target: the floor only moves up. Initial floor **35.0%**
+    (measured 36.2% locally; conservative cushion for the optional spaCy model in
+    CI; tighten via `make coverage-update` after the first green CI run). New CI
+    `coverage` job runs it. A 0.5-pt tolerance absorbs optional-dependency jitter.
+  - **Dependency vulnerability + outdated reporting.**
+    `.github/workflows/dependency-audit.yml` runs `pip-audit` + `pip list
+    --outdated` (Python) and `npm audit` + `npm outdated` (frontend) on PR/push/
+    weekly-cron, **informational** (`continue-on-error`, results in the job
+    summary) so a fresh transitive CVE can't break unrelated PRs. `make audit-deps`
+    for local use.
+  - **Ownership tables.** `.github/CODEOWNERS` routes review by path;
+    `docs/Engineering & Code Health/OWNERSHIP.md` is the narrative — for each
+    domain (architecture, runtime state schemas, packaging, UI contracts) it names
+    the source of truth, the change rule, and the *enforcing check*. It also lands
+    the cross-cutting "v1/v2 goals + memory ownership table" constraint, tying the
+    v1 seam to `test_package_layering.py::ADAPTER_FILES`.
+
+  Verification: ruff clean, the new ratchet tests green
+  (`test_module_size.py`, with `test_package_layering.py`), YAML workflows parse,
+  the coverage ratchet passes at 36.2% ≥ 35.0% floor. **Phase 7 is complete; with
+  it, every phase of the cleanup plan is done** except the deferred owner-decision
+  items already catalogued under Phase 6 (dead-API surface, the v1/v2 adapter
+  simplification — both product/architecture calls, not mechanical cleanup).
+
+- **Stale-note reconciliation (2026-06-23b).** Re-audited the residuals the older
+  dated snapshots below still describe as open; several have since landed and are
+  corrected in the plan body (the snapshots are left intact as dated records):
+  - **Phase 4.5C long tail — DONE.** The 4.5C section listed `opinions.py` (1,114)
+    plus a long tail as pending; all are now under 600 (`opinions.py` → 267, split
+    into `opinions_store.py`/`opinions_formation.py`). The whole tree is **0
+    un-exempt modules over 600**, now ratchet-locked (Phase 7).
+  - **Phase 3 test `sys.path` tail — DONE.** The 2026-06-20 note's residual (3)
+    ("~7 test files still `sys.path.insert`") is resolved: **0** `sys.path`
+    inserts remain under `tests/`. The only surviving insert is the *intentional*
+    guarded one in `goals/handlers/generic.py` (top-level-package seam), which the
+    4.5D exit criteria explicitly exempt.
+  - **goals/ + memory/ strict mypy — DONE (2026-06-23b).** Both v2 subtrees are
+    now in the `[tool.mypy].files` allowlist (gate is **127 files strict**, was 78).
+    Cleared 223 (goals) + 100 (memory) strict errors by pure annotation: duck-typed
+    store/registry accessors `cast` to their declared contract; `UTCNOW` lambdas →
+    typed defs; `get_embedding` gained `@overload` so single-text callers get
+    `np.ndarray`; the prometheus/PIL optional-dep shims typed `Any`; the Phase-5.3
+    coded ignores are now gate-enforced (and stale ones removed). All 198 memory +
+    52 goals tests green; full suite 994 passed / 1 skipped. **This closes the last
+    Phase-5 typing item.**
+  - **Phase-6 owner-decision items — now have homes (still product calls, not
+    mechanical cleanup), tracked outside this plan:**
+    - **dead-API surface** → the "implement, don't delete" half is planned in
+      `docs/UI, Security & Desktop Packaging/UNWIRED_TELEMETRY_UI_PLAN_2026-06-23.md`.
+      Two feeds already wired (`cache_stats`/`gate_stats` → Cognition "Thinking
+      cost" card); `gate_report` is the remaining UI gap; `record_exception` is an
+      error-logger (a keep/delete call, not a UI feed).
+    - **v1/v2 goal representation** → decided **Option D** (one authoritative
+      cognitive goal + a rebuildable v2 execution projection — closest to human
+      cognition) and folded into the goals master plan
+      `docs/Core Architecture, Embodiment & Evolution/GOALS_MASTER_PLAN_2026-06-23.md`
+      (Part II), alongside the survival-layer behavioral fixes (Part I). Proposed;
+      no code yet. (The v1/v2 *memory* version is a separate, larger effort.)
+  - These are cognition/architecture and UI fidelity, not engineering cleanup;
+    logged here only as breadcrumbs from threads that started in this plan.
+
 ## Implementation status (updated 2026-06-23)
 
 - **Phase 5.3 — `type: ignore` triage COMPLETE. Zero blanket (uncoded)
@@ -362,6 +443,14 @@ Detailed structural findings are recorded in
   pursuit — is complete, all public names re-exported so no caller changed, every
   slice verified by the selector/goal suites + full suite. **All of Phase 4
   (4A–4E) is now done.**
+
+> **Superseded (2026-06-23b):** the paragraph below was the forward plan at the
+> time Phase 4 finished; every item it lists as "remaining" has since landed.
+> Phase 4.5 (A–D), Phase 5 (5.0–5.4), Phase 6 (functionally complete), and Phase 7
+> (all four CI-enforcement items — coverage ratchet, size/complexity report,
+> dependency-vulnerability reporting, ownership tables) are **done**. The only open
+> work is the deferred owner-decision items (see the top status block). Kept for
+> the historical record.
 
 With **all of Phase 4 (4A–4E) now complete**, the remaining work is
 **Phase 4.5** (finish the decomposition gaps a 2026-06-22 file-level audit found:
@@ -972,9 +1061,12 @@ API re-exported from the original module.
 
 ### 4.5C. Decompose the monolithic modules Phase 4 never scoped
 
-Phase 4 only aimed at five named files. A repo-wide scan still shows **32 source
-modules over 600 lines**. Prioritize the largest, applying the same bottom-up,
-re-export-the-public-API method that worked in 4C/4D:
+Phase 4 only aimed at five named files. A repo-wide scan originally showed **32
+source modules over 600 lines**. **4.5C is now COMPLETE: 0 un-exempt source
+modules exceed 600 lines** (the Phase-7 size ratchet, `tests/test_module_size.py`,
+confirms and locks this; the lone over-limit file is the frozen-exempt frontend
+`ConsciousnessPanel.tsx` at 603). Each module below was decomposed with the same
+bottom-up, re-export-the-public-API method that worked in 4C/4D:
 
 - `brain/cognition/intrinsic_goals.py` — **1,745 → 506 DONE** (now under the
   limit). Split into a 4-module package by concern, each re-exported so external
@@ -1022,13 +1114,18 @@ re-export-the-public-API method that worked in 4C/4D:
     `_current_focus_name`, and the action constants).
   - `action_gate_execute.py` (388) — `take_action` (action dispatch/execution).
   - `action_gate.py` keeps the `evaluate_and_act_if_needed` decision orchestrator.
-- `brain/cognition/opinions.py` — **1,114**
-- then the long tail (`update_affect_state.py` 882, `prediction.py` 867,
-  `dream_cycle.py` 862, `theory_of_mind.py` 828, … down to 600).
+- `brain/cognition/opinions.py` — **1,114 → 267 DONE** (now under the limit).
+  Split into siblings, public API re-exported: `opinions_store.py` (storage +
+  evidence ledger) and `opinions_formation.py` (opinion formation +
+  evidence-update); `opinions.py` keeps the public query/ingest API.
+- **the long tail — DONE.** Every module the original scan listed above 600 is now
+  under it (e.g. `update_affect_state.py` 594, `prediction.py` 535, `dream_cycle.py`
+  558, `theory_of_mind.py` 493), each by the same bottom-up extraction. The
+  Phase-7 size ratchet now holds the line at 0 over-limit modules.
 
-Work largest-first, one module per change, each verified by the relevant suite
-plus the full suite before moving on. Do not batch — the value is that each
-landing is independently revertible.
+Worked largest-first, one module per change, each verified by the relevant suite
+plus the full suite before moving on — not batched, so each landing stayed
+independently revertible.
 
 ### 4.5D. Add the package dependency-direction check Phase 3 missed
 

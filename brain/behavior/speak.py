@@ -289,7 +289,7 @@ class OrrinSpeaker:
         for _ename, _eval in current_emo.items():
             try:
                 _v = float(_eval)
-            except Exception:
+            except (ValueError, TypeError):  # intentional: non-numeric emotion value → skip
                 continue
             if _v > dominant_intensity:
                 dominant_intensity = _v

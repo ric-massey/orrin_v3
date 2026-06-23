@@ -156,7 +156,7 @@ def learn(
         try:  # surface into the Brain Memory Inspector (concept store)
             from backend.telemetry_bridge import mirror_memory as _mm
             _mm("write", store="concept", key=key, summary=definition.strip())
-        except Exception:
+        except (ImportError, OSError):  # best-effort telemetry mirror — never block concept write
             pass
     except Exception as _e:
         record_failure("concept_memory.learn", _e)

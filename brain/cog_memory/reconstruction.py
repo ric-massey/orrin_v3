@@ -76,7 +76,7 @@ def reconstruct(
             from backend.telemetry_bridge import mirror_memory as _mm
             _mm("read", store="recall", key=str(entry.get("id") or "memory"),
                 summary=_extract_gist(content, 120), salience=importance)
-        except Exception:
+        except (ImportError, OSError):  # best-effort telemetry mirror — never block recall
             pass
 
     # Old (14-30 days): gist only — truncate to first 120 chars + impression wrapper

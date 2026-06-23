@@ -182,7 +182,7 @@ def get_introspection_trust(domain: Optional[str] = None) -> float:
             return float(data[domain].get("trust", 0.5))
         vals = [float(v.get("trust", 0.5)) for v in data.values() if isinstance(v, dict)]
         return round(sum(vals) / len(vals), 4) if vals else 0.5
-    except Exception:
+    except (OSError, ValueError, TypeError):  # intentional: missing/malformed trust data → neutral 0.5
         return 0.5
 
 

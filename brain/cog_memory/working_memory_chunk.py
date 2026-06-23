@@ -109,7 +109,7 @@ def _chunk_two_most_similar(memories: list) -> bool:
                     f"< {_MIN_CHUNK_SIM}): '{str(best_pair[2].get('content',''))[:40]}' + "
                     f"'{str(best_pair[3].get('content',''))[:40]}'"
                 )
-            except Exception:
+            except (ValueError, TypeError, OSError):  # best-effort chunk-skip log
                 pass
         return False
 

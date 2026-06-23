@@ -288,7 +288,7 @@ def _retrieve(
                     try:
                         from brain.cognition.opinions import mark_opinion_used
                         mark_opinion_used(op.get("id"))
-                    except Exception:
+                    except ImportError:  # intentional: opinions module optional → skip stake update
                         pass
                 break
     except Exception as _e:

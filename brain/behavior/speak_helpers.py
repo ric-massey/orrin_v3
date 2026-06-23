@@ -45,7 +45,7 @@ def _opinion_hook(thought: str, context: dict) -> str:
                     try:
                         from brain.cognition.opinions import mark_opinion_used
                         mark_opinion_used(op.get("id"))
-                    except Exception:
+                    except ImportError:  # intentional: opinions module optional → skip stake update
                         pass
                     return f"I think {view}"
     except Exception as _e:

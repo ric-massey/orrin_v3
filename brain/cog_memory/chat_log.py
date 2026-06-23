@@ -196,7 +196,6 @@ def _symbolic_chat_summary(recent_chats: list) -> str:
 def summarize_chat_to_long_memory(
     cycle_count: int,
     chat_log_file: Union[str, Path],
-    long_memory_file: Union[str, Path],
 ) -> None:
     """
     Every 5 cycles, summarize the last 20 chat messages into a single long-term memory entry.

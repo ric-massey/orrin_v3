@@ -14,7 +14,7 @@ from brain.cog_memory.chat_log import (
 )
 from brain.utils.log import read_recent_errors_txt, read_recent_errors_jsonl
 from brain.cognition.selfhood.boundary_check import check_violates_boundaries
-from brain.paths import CHAT_LOG_FILE, ERROR_FILE, MODEL_FAILURES_FILE, LONG_MEMORY_FILE, LAST_SEEN_USER_INPUT
+from brain.paths import CHAT_LOG_FILE, ERROR_FILE, MODEL_FAILURES_FILE, LAST_SEEN_USER_INPUT
 from brain.utils.signal_utils import create_signal  # required to build signal dicts
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -188,7 +188,7 @@ def handle_user_input(
 
         # Summarize chat into long memory periodically (uses file paths)
         count = int((cycle_count or {}).get("count", 0) or 0)
-        summarize_chat_to_long_memory(count, CHAT_LOG_FILE, LONG_MEMORY_FILE)
+        summarize_chat_to_long_memory(count, CHAT_LOG_FILE)
 
     # If we got nothing meaningful from the user, add a low-strength internal stagnation_signal prompt
     if not raw_signals:

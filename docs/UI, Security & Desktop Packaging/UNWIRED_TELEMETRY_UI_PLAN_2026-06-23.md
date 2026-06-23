@@ -5,7 +5,7 @@
 **Scope:** surface the "built-but-never-wired" stats/report feeds the Phase-6
 dead-code triage found — the ones that are *intended dashboard data*, not actual
 cruft. This is the "implement, don't delete" half of the Phase-6 dead-API owner
-decision (see `Engineering & Code Health/CODEBASE_CLEANUP_PLAN_2026-06-18.md`).
+decision (see `Engineering & Code Health/archive/CODEBASE_CLEANUP_PLAN_2026-06-18.md`).
 
 ---
 

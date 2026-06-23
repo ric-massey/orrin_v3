@@ -14,7 +14,8 @@ JSON catalog, test, or textual runtime reference.
 
 The low-risk milestones are **done and verified** (`make verify`: Ruff clean,
 890 passed / 1 skipped, frontend green). The large structural milestones remain
-open by design. See `CODEBASE_CLEANUP_PLAN_2026-06-18.md` for the phase view.
+open by design. See `archive/CODEBASE_CLEANUP_PLAN_2026-06-18.md` for the phase view
+(archived 2026-06-23 — all phases complete).
 
 - **Milestone A — remove false confidence: DONE.** §3's copied `GoalsDaemon`
   (which in fact held *zero* test functions) is replaced by 9 tests against the

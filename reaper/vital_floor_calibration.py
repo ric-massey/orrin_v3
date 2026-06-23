@@ -46,11 +46,11 @@ def load_samples(path: Path) -> List[Dict[str, Any]]:
             continue
         try:
             rec = json.loads(line)
-        except Exception:
+        except json.JSONDecodeError:  # intentional: skip malformed sample line
             continue
         try:
             frac = float(rec.get("frac"))
-        except Exception:
+        except (ValueError, TypeError):  # intentional: skip non-numeric frac
             continue
         if frac > 0:
             rec["frac"] = frac

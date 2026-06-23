@@ -44,12 +44,12 @@ def _log_durably(message: str) -> None:
     """
     try:
         _log.error(message)  # rotating file handler flushes per record
-    except Exception:
+    except OSError:  # best-effort death log (file-handler I/O); fall through to log_activity
         pass
     try:
         from brain.utils.log import log_activity
         log_activity(message)
-    except Exception:
+    except (ImportError, OSError):  # best-effort fallback log during teardown
         pass
 
 

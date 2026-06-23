@@ -19,10 +19,7 @@ def UTCNOW() -> datetime:
     return datetime.now(timezone.utc)
 
 def _dbg_enabled() -> bool:
-    try:
-        return os.getenv("GOALS_DEBUG", "0") not in ("0", "", "false", "False")
-    except Exception:
-        return False
+    return os.getenv("GOALS_DEBUG", "0") not in ("0", "", "false", "False")
 
 def _dbg(*a: Any) -> None:
     if _dbg_enabled():
@@ -191,7 +188,7 @@ class StepRunner:
     def queue_size(self) -> int:
         try:
             return self.q.qsize()
-        except Exception:
+        except NotImplementedError:  # intentional: qsize unsupported on some platforms (macOS) → 0
             return 0
 
     def _set_worker_metrics(self, active: Optional[int] = None) -> None:

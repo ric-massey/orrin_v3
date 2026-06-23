@@ -36,7 +36,7 @@ def wal_stats() -> Any:
 def _len_safely(obj: Any) -> int:
     try:
         return len(obj)
-    except Exception:
+    except TypeError:  # intentional: object has no len → 0
         return 0
 
 
@@ -46,7 +46,7 @@ def _alive_safely(daemon: Any) -> bool:
             return bool(daemon.is_alive())
         t = getattr(daemon, "thread", None)
         return bool(t and t.is_alive())
-    except Exception:
+    except (AttributeError, RuntimeError):  # intentional: liveness probe failed → not alive
         return False
 
 

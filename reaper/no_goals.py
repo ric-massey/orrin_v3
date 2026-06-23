@@ -78,7 +78,8 @@ class NoGoalsGuard:
         now = self.now_fn()
         try:
             rate = float(self.get_retry_rate())
-        except Exception:
+        except Exception as _e:
+            _log.warning("[no_goals] retry-rate read failed: %s", _e)
             return
 
         self._retry_samples.append((now, rate))
@@ -101,7 +102,8 @@ class NoGoalsGuard:
         now = self.now_fn()
         try:
             breakers = self.get_breakers() or []
-        except Exception:
+        except Exception as _e:
+            _log.warning("[no_goals] breaker read failed: %s", _e)
             return
 
         # 1) any breaker open for too long?

@@ -66,7 +66,7 @@ def _load_latest_json(art_dir: Path, startswith: str) -> Optional[Any]:
         return None
     try:
         return json.loads(files[0].read_text(encoding="utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/malformed artifact → None
         return None
 
 
@@ -234,7 +234,7 @@ class ResearchHandler(BaseGoalHandler):
                         p = Path(d["path"])
                         txt = p.read_text(encoding="utf-8", errors="ignore")
                         snippets.append((d.get("url") or p.name, txt[:6000]))  # keep modest to avoid huge prompts
-                    except Exception:
+                    except (OSError, KeyError):  # intentional: skip unreadable doc
                         continue
 
                 if callable(llm):

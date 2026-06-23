@@ -103,7 +103,7 @@ def stop_ui(proc: Optional[subprocess.Popen], timeout: float = 5.0) -> None:
     try:
         proc.wait(timeout=timeout)
         return
-    except Exception:
+    except subprocess.TimeoutExpired:  # intentional: grace period elapsed → hard kill below
         pass
 
     # Still alive after the grace period — hard kill the group.

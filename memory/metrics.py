@@ -107,7 +107,8 @@ def start_metrics_server(port: int = 8008) -> bool:
             start_http_server(port, registry=_registry)
             _server_started = True
             return True
-        except Exception:
+        except Exception as _e:
+            _log.warning("metrics http server start failed: %s", _e)
             return False
 
 @contextmanager
@@ -204,5 +205,6 @@ def dump_text() -> Optional[bytes]:
         return None
     try:
         return generate_latest(_registry)
-    except Exception:
+    except Exception as _e:
+        _log.warning("metrics dump_text failed: %s", _e)
         return None

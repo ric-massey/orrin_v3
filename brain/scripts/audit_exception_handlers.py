@@ -9,6 +9,14 @@ from typing import Iterable
 
 
 ROOTS = ("brain", "backend", "goals", "memory", "reaper", "observability", "main.py")
+
+# Forward-ratchet ceiling for silent broad handlers (STRUCTURAL_DEBT_PLAN §9).
+# This is the single source of truth shared by the report (`make audit-exceptions`)
+# and the gate (`tests/test_exception_ratchet.py`) so they can never disagree.
+# It freezes the count when the ratchet landed; it may only ever be *lowered*, in
+# the same commit that reclassifies the handlers (log / narrow / re-raise / annotate)
+# that bring the real count down. New silent handlers cannot be added.
+CEILING = 589
 OBSERVABILITY_CALLS = {
     "record_failure",
     "log_error",
@@ -18,6 +26,11 @@ OBSERVABILITY_CALLS = {
     "exception",
     "print",
 }
+
+
+def repo_root() -> Path:
+    """Repository root (parent of the `brain/` package)."""
+    return Path(__file__).resolve().parents[2]
 
 
 def _python_files(root: Path) -> Iterable[Path]:
@@ -72,10 +85,13 @@ def main() -> int:
     parser.add_argument("--details", action="store_true", help="print every finding")
     args = parser.parse_args()
 
-    root = Path(__file__).resolve().parents[2]
+    root = repo_root()
     findings = find_silent_broad_handlers(root)
     counts = Counter(str(path) for path, _, _ in findings)
-    print(f"silent broad handlers: {len(findings)} across {len(counts)} files")
+    print(
+        f"silent broad handlers: {len(findings)} across {len(counts)} files "
+        f"(ratchet ceiling: {CEILING})"
+    )
     for path, count in counts.most_common(max(0, args.top)):
         print(f"{count:4}  {path}")
     if args.details:

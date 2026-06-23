@@ -50,7 +50,7 @@ def _tail(path: Path, limit: int = _TAIL_BYTES) -> bytes:
             if size > limit:
                 f.seek(size - limit)
             return f.read()
-    except Exception:
+    except OSError:  # intentional: unreadable/absent log → empty tail
         return b""
 
 
@@ -68,7 +68,7 @@ def _state_tag() -> Dict[str, Any]:
         from brain.utils import schema_migration as _sm
 
         out["state_schema_version"] = _sm.read_version()
-    except Exception:
+    except (ImportError, OSError, ValueError):  # best-effort: schema version is optional
         pass
     out["platform"] = {
         "system": platform.system(),

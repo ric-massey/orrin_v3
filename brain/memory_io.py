@@ -191,7 +191,8 @@ def query(daemon: Any, text: str, k: int = 6, use_mmr: bool = True,
             "meta": dict(getattr(it, "meta", None) or {}),
         } for it in items]
         return [r for r in results if not r.get("private")]
-    except Exception:
+    except Exception as _e:
+        record_failure("memory_io.query", _e)
         return []
 
 
@@ -232,8 +233,8 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
         telemetry = context.setdefault("_goal_lens_telemetry", {})
         rels = [float(row.get("goal_lens_relevance", 0.0) or 0.0) for row in results]
         telemetry["retrieval_mean_relevance"] = round(sum(rels) / len(rels), 3) if rels else 0.0
-    except Exception:
-        pass
+    except Exception as _e:  # best-effort goal-lens enrichment — never break retrieval
+        record_failure("memory_io.inject_into_context.goal_lens", _e)
     try:
         from brain.cog_memory.reconstruction import reconstruct as _recon
         mood = float((context.get("affect_state") or {}).get("mood") or 0.0)

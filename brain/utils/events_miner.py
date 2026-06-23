@@ -27,7 +27,7 @@ def _parse_line(line: str) -> Dict[str, Any] | None:
     try:
         obj = ast.literal_eval(line)
         return obj if isinstance(obj, dict) else None
-    except Exception:
+    except (ValueError, SyntaxError, TypeError):  # intentional: unparseable legacy line → skip
         return None
 
 def last_n_events(n: int = 400) -> List[Dict[str, Any]]:
@@ -39,7 +39,8 @@ def last_n_events(n: int = 400) -> List[Dict[str, Any]]:
                 obj = _parse_line(line)
                 if obj is not None:
                     out.append(obj)
-    except Exception:
+    except Exception as _e:
+        record_failure("events_miner.last_n_events", _e)
         return []
     return list(out)
 

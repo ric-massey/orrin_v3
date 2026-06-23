@@ -148,8 +148,8 @@ def reinit_client() -> None:
     try:
         from brain.utils import llm_providers as _providers
         _providers.reinit()
-    except Exception:
-        pass
+    except Exception as _e:  # best-effort provider-cache reset — never block key reset
+        record_failure("generate_response.reset.provider_reinit", _e)
 
 def get_thinking_model() -> str:
     val = model_roles.get("thinking", "gpt-4.1")
@@ -160,7 +160,7 @@ def get_thinking_model() -> str:
 def _clamp(v: float, lo: float, hi: float) -> float:
     try:
         v = float(v)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-numeric → clamp floor
         return lo
     return max(lo, min(hi, v))
 

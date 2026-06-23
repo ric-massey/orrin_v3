@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import random
 import re
+from brain.utils.failure_counter import record_failure
 from typing import Any, Dict, List, Optional
 
 from brain.think.speech_coherence import cohere, cohere_topic, is_compatible
@@ -271,7 +272,8 @@ def _construction_score(response_type: str, tone: str) -> float:
     try:
         from brain.think.speech_log import get_construction_score
         return get_construction_score(response_type, tone)
-    except Exception:
+    except Exception as _e:
+        record_failure("speech_builder._construction_score", _e)
         return 0.5
 
 
@@ -431,8 +433,8 @@ def build_reply(
                 if _b0 and _b0[0].isupper() and "," not in _b0[:24]:
                     _op = random.choice(_openers)
                     base = f"{_op}, {_b0[0].lower()}{_b0[1:]}"
-        except Exception:
-            pass
+        except Exception as _e:  # best-effort learned-opener flourish — never break speech
+            record_failure("speech_builder.learned_openers", _e)
 
     # Halliday end-focus: only append secondary when length allows.
     # In brief mode the final clause carries the information weight;

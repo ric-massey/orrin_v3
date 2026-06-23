@@ -236,7 +236,8 @@ def _tot_branch(topic: str, context_text: str, context: Dict[str, Any]) -> str:
         winner = valid[choice][1]
         log_activity(f"[inner_loop/ToT] judge (deep model) chose option {choice+1}")
         return winner
-    except Exception:
+    except Exception as _e:
+        record_failure("inner_loop.tot_judge", _e)
         return valid[0][1]
 
 
@@ -275,7 +276,8 @@ def _reflect_on_loop_quality(
         score_str = "".join(c for c in raw.split()[0] if c.isdigit() or c == ".")
         score = float(score_str)
         return max(0.0, min(1.0, score))
-    except Exception:
+    except Exception as _e:
+        record_failure("inner_loop._reflect_on_loop_quality", _e)
         return 0.5   # neutral fallback
 
 

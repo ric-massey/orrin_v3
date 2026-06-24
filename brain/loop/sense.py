@@ -218,7 +218,9 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     if _goals_api:
         import brain.goal_io as goal_io
         try:
-            committed_goals = goal_io.committed_goals_v1(_goals_api, limit=3)
+            # Option D (Part II): the committed goal is chosen from the v1 cognitive
+            # tree, the single source of truth for what's committed; v2 still executes.
+            committed_goals = goal_io.committed_goals_v1(_goals_api, context, limit=3)
             context["committed_goals"] = committed_goals
             # backward compat: committed_goal = highest priority one
             if committed_goals:

@@ -2,7 +2,15 @@
 
 **Created:** 2026-06-23 (renamed from `SURVIVAL_GOAL_LAYER_PLAN`, expanded to hold
 every goal-architecture fix)
-**Status:** proposed (diagnosis complete; no code changed yet)
+**Status:** Part I **COMPLETE** (Phases 1–4, 2026-06-23, 25 tests). Part II
+**COMPLETE** (D1–D4, 2026-06-24). D2 lifecycle inversion is all-in (no flag): the
+committed goal is chosen from the v1 cognitive tree (single source of truth); v2 is
+the execution projection only. D3 binds that goal through the global workspace — the
+conscious goal-moment carries the authoritative goal's id, so awareness and pursuit
+are provably one object (`bound_goal` / `goal_in_focus` accessors; binding facets
+carry `goal_id`). 17 Part-II tests + clean ORRIN_ONCE. **The whole GOALS_MASTER_PLAN
+is now implemented.** Only open item: a real multi-cycle run (Ric) to validate D2
+live and fix forward (top suspect: v1-originated goals not writing their v2 id back).
 **Scope:** the single home for Orrin's goal-architecture work — both *how goals
 behave* (the layered behavioral model) and *how the goal is represented/stored*
 (the v1/v2 question). Two parts:
@@ -147,75 +155,110 @@ deficit recurs**, not complete-and-vanish.
 
 ## 4. The plan
 
-### Phase 1 — Wire the acute preempt (small, high-value)
+### Phase 1 — Wire the acute preempt (small, high-value) — **CODE-COMPLETE 2026-06-23**
 
 **Goal:** a critical vital signal interrupts the committed goal for the cycle.
 
-1. **Reconcile the key.** In `tier1_health_check`, when a `critical` alert is seen,
-   also set `context["_setpoint_critical"] = True` (and stash the alert id/reason).
-   One line, next to the existing `context["_tier1_critical"] = True`. This is the
-   missing wire; prefer fixing the producer over loosening the consumer so the
-   intent ("a setpoint is critical") is explicit.
-2. **Add a characterization test** (`tests/brain/`): inject a fake
-   `setpoint_regulation.get_state` returning a critical alert → run the
-   reflect→pursue path with `ORRIN_SURVIVAL_PREEMPT=1` → assert
-   `pursue_committed_goal` yields with `reason="survival_preempt"` and the
-   committed goal is **not** mutated (transient, resumable).
-3. **Flip the flag on** (`ORRIN_SURVIVAL_PREEMPT` default → True) *only after* the
-   test passes and a real ORRIN_ONCE run shows no thrash.
-4. **Add hysteresis** to `_survival_critical`: require the critical condition for
-   ≥2 consecutive cycles before preempting, and clear after 1 clean cycle — so a
-   signal dithering at the threshold can't ping-pong the slot.
+1. ✅ **Reconcile the key.** `tier1_health_check` (`brain/loop/reflect.py`) now sets
+   `context["_setpoint_critical"] = True` next to `context["_tier1_critical"] = True`
+   when a `critical` alert is seen, and stashes the alert id/desc in
+   `context["_setpoint_critical_reason"]`. The key is reset to `False` at the top of
+   each read (context persists across cycles, so a cleared critical must un-latch it).
+   Fixed the producer, not the consumer, so intent stays explicit.
+2. ✅ **Characterization test** — `tests/brain/test_survival_preempt_wire.py`
+   (5 tests, green): the wire (key set / cleared), the hysteresis state machine, and
+   the integration assertion (fake critical alert → `pursue_committed_goal` yields
+   `reason="survival_preempt"`, `detail` = alert id, committed goal byte-identical).
+3. ✅ **Flag flipped on** — `goal_closure._survival_preempt_enabled` now defaults
+   `True` (set `ORRIN_SURVIVAL_PREEMPT=0` to disable). Verified by a headless
+   `ORRIN_ONCE=1 ORRIN_SURVIVAL_PREEMPT=1` run: boots with the preempt armed, runs a
+   normal cycle, exit 0, no traceback. Note: sustained-critical thrash can't be
+   exercised in a one-cycle run with no critical vital signal present; the Phase-1
+   hysteresis (step 4) is the guard for that case.
+4. ✅ **Hysteresis** in `goal_closure.py`: `_survival_critical` is now a wrapper over
+   a new `_raw_survival_critical`; it requires the raw condition for ≥2 consecutive
+   cycles before preempting and resets the streak after 1 clean cycle (streak lives
+   in `context["_survival_crit_streak"]`; sole writer, called once/cycle).
 
 **Why first:** it closes the worst fidelity gap (survival can't currently
 override), it's nearly free, and it de-risks Phase 2 (recruitment leans on the
 same producer keys).
 
-### Phase 2 — Deficit → goal recruiter (the autonomic→cortical bridge)
+### Phase 2 — Deficit → goal recruiter (the autonomic→cortical bridge) — **DONE 2026-06-23**
 
 **Goal:** a *persistent* sub-acute deficit becomes a deliberate restoration goal.
 
-1. In `tier1_health_check`, track the neglect counter that already exists
-   (`_h1_ignored[aid]`). When a `warning`/`critical` alert's neglect crosses a
-   recruit threshold (e.g. ≥ N cycles unaddressed), call a new
-   **survival-goal recruiter** instead of only escalating signal strength.
-2. New recruiter (sibling of `intrinsic_goals.generate_intrinsic_goals`, e.g.
-   `brain/cognition/planning/survival_goals.py`): build a goal from the alert —
-   `tier="survival"`, `driven_by` = the alert's homeostatic signal, first step =
-   the alert's `suggested_fn`, title from `description`. Submit it through the same
-   path intrinsic goals use, with a **refractory dedup** (don't recruit the same
-   `aid` while one is already open).
-3. The recruited goal competes in the normal commitment competition **but with a
-   survival-tier priority floor**, so it can outrank growth goals without a
-   special case in the selector.
+1. ✅ **Wired in `tier1_health_check`** (`brain/loop/reflect.py`): the per-alert
+   neglect counter (`_h1_ignored[aid]`) now also increments for `warning`s (not just
+   `critical`s — the chronic case *is* a recurring sub-acute deficit). When neglect
+   crosses `RECRUIT_AFTER_CYCLES` (5), the new `_h1_maybe_recruit` helper calls the
+   recruiter instead of only escalating signal strength.
+2. ✅ **Recruiter** — `brain/cognition/planning/survival_goals.py`:
+   `build_survival_goal(alert)` → `tier="survival"`, `driven_by` = the alert's
+   homeostatic signal (tag, else id with severity suffix stripped), first plan step =
+   the alert's `suggested_fn` (fallback `rest`), title from `description`,
+   `recruit_aid` stamped. `recruit_survival_goal(alert, ctx)` submits via
+   `context["proposed_goals"]` (the exact intrinsic-goal path → `goal_io.sync_proposed_goals`),
+   with **refractory dedup**: skip if an open goal with that `recruit_aid` exists in
+   this cycle's proposals OR as a non-terminal goal in the store.
+3. ✅ **Survival-tier priority floor** — `executive._TIER_TURNS` gains
+   `"survival": 4` (above `core`/`existential` at 3), and the goal carries the top
+   intrinsic priority (5). So it outranks growth/core in step allocation + proposal
+   adoption with no special case in the selector.
+4. **Tests** — `tests/brain/test_survival_recruit.py` (10, green): goal shape,
+   signal derivation, suggested_fn fallback, proposed_goals submission, refractory
+   dedup (within-cycle, open-store-goal, re-recruit once terminal), tier1
+   threshold gating (not before N, exactly one at N, no pile-on after), warning-
+   severity recruitment, and the executive priority floor.
 
 **Why:** this is the genuinely new behavior — chronic depletion escalating into an
 intention. It reuses the alert's own `suggested_fn` as the action, so it doesn't
 invent capability Orrin lacks.
 
-### Phase 3 — Survival-goal behavior rules (make the layer matter)
+> **Bounded by Part II:** the recruited goal *competes* via the existing proposal/
+> commitment path with the survival floor giving it precedence. Proving it always
+> *wins* commitment end-to-end is entangled with the v1/v2 seam (a `generic` goal
+> round-trips through GoalsAPI), which is exactly what Part II collapses. Phase 2's
+> exit criterion — recruit a deduped survival goal whose first step is the alert's
+> `suggested_fn` — is met and unit-verified.
+
+### Phase 3 — Survival-goal behavior rules (make the layer matter) — **DONE 2026-06-23**
 
 **Goal:** survival goals behave by survival rules, not deliberate-goal rules.
 
-1. **Non-disengageable.** In `goal_closure._degrade_or_disengage`, exempt
-   `tier=="survival"` from Wrosch disengagement — a survival goal may *degrade* to
-   a simpler restoration (means-ends) but must **never abandon**. (Wrosch
-   disengagement is adaptive for *chosen* goals; you don't "give up" on rest.)
-2. **Satiety with return (Defect C).** When a survival goal's deficit clears,
-   mark it `dormant` rather than `completed`, and let the Phase-2 recruiter
-   **re-activate** it when the deficit recurs — the hunger-returns cycle. Store the
-   last-satisfied timestamp; recruitment respects a minimum re-fire interval.
-3. **Emotional coupling** is already present (tier1 adds risk/impasse cost on
-   neglect) — leave as is; it now also has a behavioral outlet (preempt/recruit)
-   instead of only nagging.
+1. ✅ **Non-disengageable.** `goal_closure._degrade_or_disengage` now exempts
+   `tier=="survival"` from the Wrosch abandon branch: a survival goal may still
+   *degrade* to a simpler restoration above, but the final disengage returns `None`
+   (holds the slot, retries) instead of `mark_goal_failed` + clearing the slot. A
+   non-survival goal in the same spot still disengages (test).
+2. ✅ **Satiety with return (Defect C).** `goal_closure._finalize_goal_completion`
+   intercepts `tier=="survival"`: status → `dormant` (not `completed`), stamped with
+   `_satisfied_ts`, slot released, **no achievement reward** (survival pays
+   restoration, not the production reward — guards the cheap-reward risk). The
+   recruiter (`survival_goals._in_refractory`) treats a dormant deficit as
+   re-recruitable but only after `MIN_REFIRE_INTERVAL_S` (30 min) — the hunger-
+   returns cycle, respecting a minimum re-fire interval.
+3. ✅ **Emotional coupling** — unchanged (tier1 still adds risk/impasse cost on
+   neglect); it now has a behavioral outlet (preempt/recruit/hold) instead of only
+   nagging.
 
-### Phase 4 — (related, optional) enable core-goal satiety closure
+**Tests** — `tests/brain/test_survival_rules.py` (6, green): survival not
+disengaged vs. non-survival still disengaged; satisfied survival → dormant +
+`_satisfied_ts` vs. non-survival unaffected; dormant deficit blocked within the
+re-fire interval, re-recruited after it.
 
-Out of strict scope but adjacent: deliberate/core goals currently close on *plan
-completion*, not on the underlying need being *sated*, because
-`ORRIN_TIER_CLOSURE` is default-off. If desired, enable it (behind the same
-verify-then-flip discipline) so core goals can close on satiety — the "stop
-because you're full, not because the plate is empty" rule for layer 2.
+### Phase 4 — enable core-goal satiety closure — **DONE 2026-06-23**
+
+Deliberate/core goals used to close on *plan completion*, not on the underlying
+need being *sated*, because `ORRIN_TIER_CLOSURE` was default-off. ✅ Flipped on
+(`goal_closure._tier_closure_enabled` defaults `True`; `ORRIN_TIER_CLOSURE=0`
+restores the legacy gate) — the "stop because you're full, not because the plate is
+empty" rule for layer 2. Safe to default-on: the satiety path has a cycle-1 guard
+and `mark_goal_completed` still refuses hollow closure (no faked success).
+
+Verified: `tests/brain/test_tier_closure.py` (4, green — flag default, disablable,
+sated-closes, unsated-holds), a 107-test goal/closure/satiety/pursue sweep with the
+flag on, and a clean headless `ORRIN_ONCE` run.
 
 ---
 
@@ -337,24 +380,53 @@ The principle: make the cognitive goal the single source of truth, and make the
 v2 store a **rebuildable projection** of it (durable execution substrate), so the
 bidirectional *sync* becomes a one-directional *render*.
 
-- **D1 — Declare the source of truth.** The committed/cognitive goal (v1
-  representation) is authoritative for intention, plan, tier, aspiration, origin,
-  status. v2 holds only execution/durability state, derived from it.
-- **D2 — Replace dual-write with project-then-execute.** Where `goal_io.py` today
-  *syncs* (v1→v2 create + v2→v1 event reconcile), change to: the cognitive goal
-  **projects** a v2 work-order when (and only when) it needs world-execution; v2
-  reports execution results back as *events the cognitive goal consumes*, not as a
-  competing source of truth. The projection is regenerable from the cognitive
-  goal, so a lost/rebuilt v2 record is recoverable, not a divergence.
-- **D3 — Bind through the workspace.** Route the committed goal through the global
-  workspace so planning/execution/memory/affect all read the *same bound object*
-  (this lands on the known binding gap — see `project_binding_workspace`). Binding
-  is what makes "one goal, many views" real rather than aspirational; goals are
-  the highest-value thing to bind.
-- **D4 — Collapse the seam's drift tests into invariants.** The seam bugs
-  (plan-progress loss, etc.) become assertions: a projection must be reconstructible
-  from the authoritative goal; a v2 event must never silently overwrite cognitive
-  state it didn't originate.
+- **D1 — Declare the source of truth.** ✅ **DONE 2026-06-24.** `goal_io._V1_AUTHORITATIVE_FIELDS`
+  codifies the contract: the v1 cognitive goal owns `tier / driven_by / source /
+  recruit_aid / zone / orientation / serves` (the layering v2's flat model can't
+  hold); v2 owns lifecycle (status/priority/execution). Documented inline as the
+  ownership table for the goal seam.
+- **D2 — Replace dual-write with project-then-execute.** ◑ **Field-ownership slice
+  DONE 2026-06-24; lifecycle inversion remaining (staging-gated).**
+  - ✅ The projection now carries the authoritative cognitive fields in the v2
+    **spec** (`sync_proposed_goals`), and the read restores them (`_goal_to_v1`:
+    `tier = spec.get("tier") or kind`, + the rest), with the live v1 node winning
+    over the stale spec in `committed_goals_v1` (order: **v1 node → spec → kind**).
+    This makes the v2 record a regenerable *projection* for those fields instead of
+    a flatter copy that silently dropped `tier`/origin — the canonical seam-drift
+    bug, and the Part I Phase-2 caveat, are fixed.
+  - ✅ **Lifecycle inversion LIVE (all-in, no flag) 2026-06-24.** `sense.py` calls
+    `committed_goals_v1(api, context)`, now reimplemented as the v1-authoritative
+    read: the committed goal is chosen from the **v1 cognitive tree**
+    (`_committable_from_v1_tree`, tier-then-priority ordered, reusing the executive's
+    tier floor; bucket / directional / terminal goals excluded). Each cycle
+    `_reconcile_open_v2_into_v1` first absorbs any open v2-only goals into v1 (so
+    nothing is stranded) and mirror-closes v2 for goals v1 has finished
+    (anti-resurrection). v2 still executes the projected work-orders and reports
+    events; it no longer decides what's committed. The old v2-driven pull, the
+    `ORRIN_GOALS_V1_AUTHORITATIVE` flag, and the now-dead `_PURSUIT_FIELDS` hydration
+    were deleted — **one path**. Tests: `tests/brain/test_v1_authoritative_goals.py` (4).
+    **Watch on the first real run:** backfilled v1 nodes carry the v2 id (events
+    reconcile), but a goal that *originates* in v1 and is projected to v2 doesn't yet
+    write the v2 id back onto its v1 node — verify failed/completed events still map
+    for those, and fix forward if not.
+- **D3 — Bind through the workspace.** ✅ **DONE 2026-06-24.** The committed goal is
+  now a workspace-bound object, not a text echo: its candidate and the resulting
+  conscious moment carry `goal_id` bound to the authoritative goal object
+  (`global_workspace.update_workspace`), and `binding.py` stamps `goal_id` onto a
+  bound situation's goal facet — so "the goal I'm aware of" and "the goal I'm
+  pursuing" are provably the same object (one goal, many views), not two copies that
+  drift. New accessors `global_workspace.bound_goal(context)` (the single
+  authoritative goal every subsystem should read) and `goal_in_focus(context)` (is
+  that goal currently conscious?). Tests:
+  `tests/brain/test_goal_workspace_binding.py` (6). *Follow-up (incremental, not
+  blocking): migrate subsystems that reach into `context["committed_goal"]` directly
+  onto `bound_goal()` so the single-accessor contract is enforced everywhere.*
+- **D4 — Collapse the seam's drift tests into invariants.** ✅ **DONE 2026-06-24.**
+  `tests/brain/test_goal_projection_invariants.py` (5): a survival goal's tier
+  survives a v2 round-trip; the projection is reconstructible (project→read); legacy
+  goals fall back to kind without crashing; the live v1 node overrides a stale spec.
+  (The pre-existing `test_goal_store_reconcile.py` already locks the resurrection /
+  left-RUNNING drift bugs.)
 
 Each step is incremental and reversible; D2 can be done per goal-kind. Memory has
 a *separate, larger* version of this same question (~50 readers of the v1 JSON) —

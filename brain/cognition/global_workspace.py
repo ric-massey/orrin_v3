@@ -130,12 +130,14 @@ def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             out.append({"source": "signal", "content": c[:160],
                         "salience": 0.30 + 0.50 * _f(s0.get("signal_strength"), 0.4)})
 
-    # The goal he is pursuing.
+    # The goal he is pursuing. Carry its id so the conscious moment can be bound to
+    # the authoritative goal OBJECT, not just a text echo of its title (D3).
     cg = context.get("committed_goal")
     if isinstance(cg, dict) and (cg.get("title") or cg.get("name")):
         out.append({"source": "goal",
                     "content": f"working toward: {cg.get('title') or cg.get('name')}",
-                    "salience": 0.55})
+                    "salience": 0.55,
+                    "goal_id": cg.get("id")})
 
     # The action he just took (sense of agency).
     lf = context.get("last_function_chosen") or context.get("last_function")
@@ -294,6 +296,15 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             for key in ("facets", "object", "members", "referent_links"):
                 if winner.get(key) is not None:
                     moment[key] = winner[key]
+        # D3 (Option D — one goal, many views): bind the conscious goal-moment to the
+        # authoritative goal object by id, so "the goal I'm aware of" and "the goal
+        # I'm pursuing" are provably the SAME thing, not two copies that can drift.
+        if winner.get("goal_id"):
+            moment["goal_id"] = winner["goal_id"]
+        elif winner.get("source") == "binding":
+            _bound_gid = (winner.get("facets") or {}).get("goal_id")
+            if _bound_gid:
+                moment["goal_id"] = _bound_gid
         if winner.get("subconscious_relevance") is not None:
             moment["subconscious_relevance"] = winner["subconscious_relevance"]
             moment["subconscious_gate"] = winner.get("subconscious_gate")
@@ -333,3 +344,28 @@ def current_awareness(context: Dict[str, Any]) -> str:
     """Convenience reader for other subsystems: the current conscious content."""
     gw = context.get("global_workspace") or {}
     return str(gw.get("content", ""))
+
+
+def bound_goal(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """The single authoritative committed goal every subsystem should read —
+    "one goal, many views" (GOALS_MASTER_PLAN Part II / Option D, D3).
+
+    It is the v1 cognitive goal object in context["committed_goal"] (authoritative
+    for tier/origin/plan after Part II). When the workspace currently has a goal in
+    focus, its conscious moment carries `goal_id` bound to THIS object's id — so the
+    awareness view and the pursuit view can't drift into two different goals.
+    Returns None when no goal is committed."""
+    cg = context.get("committed_goal")
+    if isinstance(cg, dict) and (cg.get("title") or cg.get("name")):
+        return cg
+    return None
+
+
+def goal_in_focus(context: Dict[str, Any]) -> bool:
+    """True when the goal Orrin is consciously aware of right now is the committed
+    goal (bound by id). Lets a subsystem tell "I'm attending to my goal" from "my
+    goal is merely committed but something else is in the spotlight"."""
+    gw = context.get("global_workspace") or {}
+    gid = gw.get("goal_id")
+    cg = bound_goal(context)
+    return bool(gid and cg and str(gid) == str(cg.get("id")))

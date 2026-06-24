@@ -50,8 +50,11 @@ _EXEC_STEP_BUDGET = int(os.environ.get("ORRIN_EXEC_STEP_BUDGET", "0") or "0")
 
 # Tier → relative share of any extra budget (and priority when the budget is
 # smaller than the queue). Same weighting the old single-goal rotation used.
-_TIER_TURNS = {"existential": 3, "core": 3, "identity": 2, "growth": 2,
-               "exploratory": 1, "minor": 1, "trivial": 1}
+# 'survival' sits above every chosen tier (GOALS_MASTER_PLAN Part I Phase 2): a
+# recruited restoration goal must be able to outrank growth/core without a special
+# case in the selector — the priority floor is just its tier weight.
+_TIER_TURNS = {"survival": 4, "existential": 3, "core": 3, "identity": 2,
+               "growth": 2, "exploratory": 1, "minor": 1, "trivial": 1}
 
 
 def _allocate_steps(queue: List[Dict[str, Any]], rr: int, budget: int) -> List[Tuple[Dict[str, Any], int]]:

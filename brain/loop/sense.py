@@ -75,7 +75,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
                     _ui_memory("write", _new_wm, store="working", limit=4)
                 if len(_SEEN_WM_IDS) > 2000:
                     _SEEN_WM_IDS.clear()
-            except Exception:
+            except (KeyError, TypeError, AttributeError, OSError):  # best-effort working-memory UI mirror
                 pass
     except Exception:
         context.setdefault("working_memory", [])

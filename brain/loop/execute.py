@@ -270,7 +270,7 @@ def execute_cognition_function(
                 if _tb_io is not None and _io:
                     try:
                         _tb_io.update(interoception=_io)
-                    except Exception:
+                    except (AttributeError, OSError, RuntimeError):  # best-effort interoception telemetry — never block the loop
                         pass
             except Exception as _ioe:
                 record_failure("ORRIN_loop.interoception_observe", _ioe)

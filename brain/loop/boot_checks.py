@@ -72,7 +72,7 @@ def _validate_boot_files() -> None:
                 if _p.is_file() and _p.stat().st_mtime < _cutoff:
                     _p.unlink()
                     _swept += 1
-            except Exception:
+            except OSError:  # intentional: skip file we can't stat/unlink
                 pass
         if _swept:
             log_activity(f"[boot] Swept {_swept} stale temp file(s) from data dir.")

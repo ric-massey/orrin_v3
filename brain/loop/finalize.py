@@ -180,7 +180,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
         for _ck in list(_ctx_to_save.keys()):
             try:
                 _csz = len(_ctx_json.dumps(_ctx_to_save[_ck], default=str))
-            except Exception:
+            except (TypeError, ValueError):  # intentional: unserializable context key → skip sizing
                 continue
             if _csz > _CTX_KEY_MAX_BYTES:
                 del _ctx_to_save[_ck]

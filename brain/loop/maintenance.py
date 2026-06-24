@@ -71,7 +71,7 @@ def run_maintenance_tier(context: Context) -> Context:
                             try:
                                 _ct = _dt.fromisoformat(_c.replace("Z", "+00:00"))
                                 _ages.append((_now - _ct).total_seconds())
-                            except Exception:
+                            except (ValueError, TypeError):  # intentional: unparseable created_at → skip age
                                 pass
                     _avg_age = (sum(_ages) / len(_ages)) if _ages else 0.0
                     record_goal_population(_n_after, _avg_age)

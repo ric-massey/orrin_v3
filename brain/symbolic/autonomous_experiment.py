@@ -207,7 +207,7 @@ def _apply_rule_revision(
     try:
         from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
         from brain.utils.json_utils import save_json as _sj
-    except Exception:
+    except ImportError:  # intentional: rule engine optional → skip experiment feedback
         return
 
     rules = get_all_rules()

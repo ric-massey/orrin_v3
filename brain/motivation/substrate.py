@@ -124,7 +124,7 @@ def get_current_urges(n: int = 3) -> List[Dict[str, Any]]:
         return []
     try:
         return _get_engine().get_current_urges(n)
-    except Exception:
+    except (ImportError, AttributeError):  # intentional: substrate engine unavailable → no urges
         return []
 
 

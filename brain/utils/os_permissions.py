@@ -42,7 +42,7 @@ def _mac_screen_recording_state() -> str:
     try:
         import Quartz  # pyobjc; present in the bundle
         return GRANTED if Quartz.CGPreflightScreenCaptureAccess() else DENIED
-    except Exception:
+    except (ImportError, AttributeError, OSError):  # intentional: screen-capture API unavailable → UNKNOWN
         return UNKNOWN
 
 

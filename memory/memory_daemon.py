@@ -296,5 +296,5 @@ class MemoryDaemon:
                     aliases=aliases,
                     source=ev.kind,
                 )
-            except Exception:
+            except (KeyError, TypeError, AttributeError, ValueError):  # intentional: skip malformed lexicon event
                 continue

@@ -30,7 +30,7 @@ def rotate_wal(
 
     try:
         lines = p.read_text(encoding="utf-8").splitlines()
-    except Exception:
+    except OSError:  # intentional: unreadable snapshot → None
         return None
 
     keep_tail_lines = max(0, int(keep_tail_lines))

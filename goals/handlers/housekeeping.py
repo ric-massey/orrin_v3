@@ -337,8 +337,7 @@ class HousekeepingHandler(BaseGoalHandler):
                         shutil.copyfileobj(fin, fout)
                     p.unlink(missing_ok=True)
                     gzipped += 1
-                except Exception:
-                    # ignore individual file errors
+                except OSError:  # intentional: ignore individual file errors
                     continue
         return f"vacuum_logs: gzipped={gzipped}, deleted_old_gz={deleted}"
 

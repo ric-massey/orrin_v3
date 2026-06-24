@@ -19,7 +19,7 @@ def _llm_call(prompt: str, ctx: HandlerContext) -> str:
         from brain.utils.generate_response import generate_response, llm_ok
         result = generate_response(prompt)
         return (llm_ok(result, "generic_handler") or "").strip()
-    except Exception as e:
+    except Exception as e:  # intentional floor: any LLM failure surfaces verbatim as an unavailable marker to the runner
         return f"[llm_unavailable: {e}]"
 
 

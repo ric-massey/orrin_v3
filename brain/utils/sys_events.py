@@ -27,5 +27,5 @@ def recent_events(n: int = 100) -> List[Dict]:
 def wait_event(timeout: float = 0.3) -> Optional[Dict]:
     try:
         return _EVTQ.get(timeout=timeout)
-    except Exception:
+    except queue.Empty:  # intentional: no event within timeout
         return None

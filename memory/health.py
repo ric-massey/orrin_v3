@@ -29,7 +29,7 @@ def _approx_vec_nbytes(vec: Any) -> int:
     except Exception:
         try:
             return int(len(vec)) * 4  # conservative fallback assuming float32
-        except Exception:
+        except (TypeError, ValueError):  # intentional: object has no len → 0
             return 0
 
 

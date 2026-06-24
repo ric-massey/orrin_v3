@@ -124,7 +124,7 @@ def _ocr_text(img: Optional["Image.Image"]) -> str:
     try:
         txt = pytesseract.image_to_string(img)
         return " ".join(txt.split())
-    except Exception:
+    except (OSError, RuntimeError, ValueError):  # intentional: OCR unavailable/failed → empty
         return ""
 
 

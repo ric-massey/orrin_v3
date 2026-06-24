@@ -35,7 +35,7 @@ def _json_dumps(obj: Any) -> str:
 def _size(path: Path) -> int:
     try:
         return path.stat().st_size
-    except Exception:
+    except OSError:  # intentional: missing/unreadable file → 0
         return 0
 
 def _sanitize_event_meta(meta: Optional[Dict[str, Any]]) -> Dict[str, Any]:

@@ -173,7 +173,7 @@ def sanitize_all(paths_module=None) -> Dict[str, int]:
     if paths_module is None:
         try:
             import brain.paths as paths_module
-        except Exception:
+        except ImportError:  # intentional: paths module unavailable → {}
             return {}
 
     P = paths_module

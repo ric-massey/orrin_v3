@@ -121,7 +121,7 @@ def acquire_lock(ctx: HandlerContext, name: str, goal_id: str) -> bool:
         return True  # no lock manager configured; proceed
     try:
         return bool(locks.acquire(name, goal_id))
-    except Exception:
+    except (OSError, RuntimeError, AttributeError):  # intentional: lock acquire failed → not acquired
         return False
 
 

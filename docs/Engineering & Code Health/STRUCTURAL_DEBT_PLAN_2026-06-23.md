@@ -77,6 +77,29 @@ Phase-7 forward-ratchet pattern (`test_package_layering`, `test_module_size`):
   reclassification (log/narrow/re-raise/comment), verified by `make verify`.
 - Remaining silent handlers are each annotated with their category.
 
+### Status — CONVERGED (2026-06-23)
+
+The ratchet has been driven from the frozen ceiling of **603** down to its
+permanent floor of **3** (`CEILING = 3` in `brain/scripts/audit_exception_handlers.py`).
+Each reduction was a behavior-preserving reclassification per the category table —
+narrow-the-exception-type + `# intentional:` comment for optional-capability /
+data / parse cases, `record_failure` / `_log.warning` for I/O and compute failures
+that should surface, and `# best-effort` annotations for teardown / telemetry
+enrichment — committed worst-first in reviewable per-batch commits, lowering the
+ceiling in lockstep.
+
+The 3 remaining handlers are the genuine floor: deliberately-broad catch-alls that
+already surface every failure, now annotated `# intentional floor:`:
+
+- `brain/utils/error_router.py` — the central error-router decorator; `route_exception`
+  logs and normalizes every failure it catches.
+- `brain/utils/llm_providers/base.py` — provider connection test; surfaces any vendor
+  failure verbatim to the UI (`# noqa: BLE001`).
+- `goals/handlers/generic.py` — LLM goal handler; any failure surfaces as an
+  `[llm_unavailable: …]` marker to the runner.
+
+`CEILING = 3` is now the permanent floor; `make verify` keeps it from rising.
+
 ---
 
 ## §4 — Ambiguous same-name modules (secondary, mostly a decision)

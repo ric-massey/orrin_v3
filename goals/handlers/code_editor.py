@@ -11,7 +11,7 @@ def _run(cmd: list[str], cwd: Path, timeout: int = 60) -> tuple[int, str, str]:
     try:
         p = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True, timeout=timeout)
         return p.returncode, p.stdout, p.stderr
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:  # intentional: subprocess launch/timeout → error tuple
         return -1, "", str(e)
 
 def _git_available(cwd: Path) -> bool:

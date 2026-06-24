@@ -15,5 +15,5 @@ def get_current_mode(default: str = "contemplative") -> str:
             mode = data.get("mode", default)
             return str(mode) if mode is not None else default
         return default
-    except Exception:
+    except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed mode file → default
         return default

@@ -19,7 +19,7 @@ def _sha256_file(path: str) -> str:
     try:
         with open(path, "rb") as f:
             return _sha256_bytes(f.read())
-    except Exception:
+    except OSError:  # intentional: unreadable file → empty hash
         return ""
 
 

@@ -148,8 +148,7 @@ def event_from_wal_line(line: str) -> Dict[str, Any]:
     """
     try:
         return dict(json.loads(line))
-    except Exception:
-        # tolerate escaped newlines
+    except (ValueError, TypeError):  # intentional: retry tolerating escaped newlines
         return dict(json.loads(line.replace("\\n", "\n")))
 
 

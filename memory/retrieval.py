@@ -49,7 +49,7 @@ def _get_item_vec(store: Any, it: MemoryItem) -> Optional[np.ndarray]:
     # Fallback: recompute from content
     try:
         return get_embedding(it.content)
-    except Exception:
+    except (ImportError, OSError, RuntimeError, ValueError, AttributeError):  # intentional: embedding recompute failed → None
         return None
 
 def _get_item_vecs(store: Any, items: List[MemoryItem]) -> Dict[str, np.ndarray]:

@@ -117,7 +117,7 @@ def catch_and_route(phase: str, *, return_on_error: Optional[Callable[[BaseExcep
             ctx = kwargs.get("context")
             try:
                 return fn(*args, **kwargs)
-            except Exception as e:
+            except Exception as e:  # intentional floor: central error router — route_exception logs/normalizes every failure
                 return route_exception(e, phase=phase, context=ctx, return_fn=return_on_error)
         return wrapper
     return deco

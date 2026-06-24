@@ -1,7 +1,23 @@
 # Production Loop Closure — Reviewed Fix Proposal
 
+> **IMPLEMENTATION STATUS (2026-06-23): code complete.** All fixes F0–F6 are
+> implemented and tested; the 5.1 deterministic verification suite (tests #1–#10)
+> passes, full suite green (1007 passed). What's built:
+> - **F0** boot reachability invariant — `brain/loop/boot_checks._verify_production_capability`.
+> - **F1** canonical `hydrate_goal_model` (`goal_comprehension.py`) at every commit
+>   boundary (`goals/api`, `goal_io`, `goal_store`, `intrinsic_goals`).
+> - **F2** structured plan actions + `brain/agency/compose_section.py`; `recognise_step_action` prefers `action.function`.
+> - **F3** deliberate handoff (`_needs_deliberate_action`) + bounded recruitment (`selection/candidates`, `score_setup`).
+> - **F4** making-goal path + **tier-3 artifact re-use credit** (`effect_ledger.note_artifact_use`/`drain_pending_reuse`, `finalize._pay_artifact_reuse`).
+> - **F5** `leave_note` seed-provenance gate (rejects path/lock/noise; refuses boilerplate when a goal needs a real artifact).
+> - **F6** durable per-cycle telemetry → `brain/data/production_loop.jsonl` (`finalize._emit_production_telemetry`).
+>
+> **Remaining (runtime, not code):** §5.2 staged smoke run and §5.3 autonomous demo
+> run — these require actually running Orrin and reading `production_loop.jsonl` +
+> `effect_ledger.jsonl` from the run archive; they are the next verification step.
+
 **Date:** 2026-06-20
-**Status:** REVIEWED / REVISED PROPOSAL
+**Status:** IMPLEMENTED (code + 5.1 tests) — runtime demo runs 5.2/5.3 pending
 **Evidence base:** `docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-19-run/`, archived runtime state at `brain/data/_archive/snapshot_20260619_081225_pre_reset/`, and source inspection on 2026-06-20
 **Scope:** goal creation/commit hydration, cognition registration, structured plan execution, deliberate-action handoff, `leave_note` provenance, and persistent telemetry
 **Related:** [[GOALS_AND_UNDERSTANDING_FIX_PROPOSAL_2026-06-20]], `project_reward_denominator`, `project_binding_workspace`, `project_explore_exploit_value`

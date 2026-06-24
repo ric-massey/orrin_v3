@@ -105,5 +105,5 @@ def can_answer_symbolically(query: str, *, min_facts: int = 2) -> bool:
         seeds = query_relevant(query, limit=min_facts)
         seeds = [e for e in seeds if e.get("confidence", 1.0) >= _MIN_CONF]
         return len(seeds) >= min_facts
-    except Exception:
+    except (ImportError, AttributeError, TypeError):  # intentional: knowledge graph unavailable/malformed → insufficient
         return False

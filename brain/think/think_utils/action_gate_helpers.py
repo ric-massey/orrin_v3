@@ -169,7 +169,7 @@ def generate_clarification_question(context, action):
     try:
         from brain.symbolic.llm_gate import gated_generate
         return gated_generate(prompt, caller="action_gate/clarify", outcome=0.60)
-    except Exception:
+    except ImportError:  # intentional: llm gate optional → no clarifying question
         return None
 
 def moving_average(lst, n):

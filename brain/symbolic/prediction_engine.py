@@ -275,7 +275,7 @@ def chain_from_verified_prediction(pred: Dict) -> Optional[Dict]:
         )
         chained_pred["chained_from"] = pred.get("prediction", "")[:80]
         return chained_pred
-    except Exception:
+    except (ImportError, KeyError, TypeError, ValueError):  # intentional: rule engine unavailable/malformed → no chain
         return None
 
 

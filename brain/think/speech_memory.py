@@ -99,7 +99,7 @@ def _age_hours(entry: Dict) -> float:
         dt  = datetime.fromisoformat(ts.replace("Z", "+00:00"))
         now = datetime.now(timezone.utc)
         return (now - dt).total_seconds() / 3600.0
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable timestamp → one-week default
         return 168.0  # default: one week old
 
 

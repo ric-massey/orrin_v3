@@ -53,7 +53,7 @@ def _load_last_seen() -> str:
     """Read the crash-safe dedup file written before each cycle processes user input."""
     try:
         return LAST_SEEN_USER_INPUT.read_text(encoding="utf-8").strip()
-    except Exception:
+    except OSError:  # intentional: no dedup file yet → empty
         return ""
 
 

@@ -86,7 +86,7 @@ def _import_casual_rules() -> List[Dict]:
     rules: List[Dict] = []
     try:
         text = CASUAL_RULES.read_text(encoding="utf-8", errors="ignore")
-    except Exception:
+    except OSError:  # intentional: missing casual_rules file → no imported rules
         return rules
     for line in text.splitlines():
         line = line.strip()

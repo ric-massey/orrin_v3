@@ -221,7 +221,7 @@ def process_inputs(context: Any, raw_signals: Any = None) -> Tuple[Any, Any]:
             # a high-salience user or emergency signal by itself.
             base += 0.22 * _lens_rel
             signal["goal_lens_relevance"] = round(_lens_rel, 3)
-        except Exception:
+        except (ImportError, TypeError, ValueError, AttributeError):  # best-effort goal-lens reweight
             pass
         if mode and mode in content:
             base += 0.1

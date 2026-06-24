@@ -1,7 +1,23 @@
 # Structural Debt Plan — the audit's two un-remediated findings
 
+> **CLOSED 2026-06-23 (branch `structural-debt-exceptions`).** Both findings resolved.
+> - **§9 — silent broad exception handlers: DONE.** 603 → **3** (the permanent floor).
+>   Step 1 (forward ratchet, `tests/test_exception_ratchet.py`, single source of truth
+>   `CEILING` in `audit_exception_handlers.py`) landed first and is in `make verify` via
+>   the `test` target; then ~50 files were reclassified worst-first across many small
+>   commits — I/O & data paths now `record_failure` (rate-limited, dashboard-visible,
+>   re-raises real bugs under `ORRIN_STRICT`), expected control-flow narrowed to its
+>   real exception type with an `# intentional:` comment. Each reduction was
+>   behavior-preserving. The 3 survivors each *return/route* their exception
+>   (`error_router` is the routing path itself; `llm_providers/base`,
+>   `goals/handlers/generic` surface the error as their return value) — genuinely
+>   intentional, not swallowed. Ceiling frozen at 3 = permanent floor.
+> - **§4 — ambiguous same-name modules: WON'T-DO (mitigated).** The per-pair decision
+>   below is the deliverable; namespacing + `test_import_contract.py` already
+>   disambiguate. Revisit only on a concrete collision bug.
+
 **Created:** 2026-06-23
-**Status:** proposed (no code changed yet)
+**Status:** CLOSED — §9 remediated to floor (3), §4 decided won't-do
 **Supersedes the open-items tracking of:**
 `archive/ENGINEERING_STRUCTURE_AUDIT_2026-06-18.md` (now archived — all its other
 findings are remediated; these two are what remained).

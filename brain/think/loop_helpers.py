@@ -391,7 +391,17 @@ def execute_action_via_registries(
     # Cognitive path (from provided cog_reg)
     fn = cog_reg.get(action_name)
     if callable(fn):
-        return _call_cognition(fn, action_name, ctx)
+        res = _call_cognition(fn, action_name, ctx)
+        # Tier-3 re-use: a successfully-dispatched cognitive function MAY be one
+        # Orrin authored. We only record the name here (no agency import — that
+        # would couple think→agency into a cycle); the loop resolves authored
+        # artifacts and pays the re-use bonus post-cycle (brain/loop/finalize.py).
+        try:
+            if isinstance(res, dict) and res.get("success"):
+                ctx.setdefault("_dispatched_cog_fns", []).append(action_name)
+        except Exception as e:
+            record_failure("loop_helpers.note_reuse", e)
+        return res
 
     # Behavior path: validate by the persisted behavior name list only
     behavior_names = set(_load_name_list(BEHAVIORAL_FUNCTIONS_LIST_FILE))

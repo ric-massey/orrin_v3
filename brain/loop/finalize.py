@@ -26,8 +26,59 @@ from brain.paths import (
 _log = get_logger(__name__)
 Context = Dict[str, Any]
 
+# P8 tier-3 — re-use bonus (ORRIN_PRODUCTION_REWARD_PLAN). A produced artifact being
+# *used again later* — a tool invoked, an authored cognitive function dispatched — is
+# the only ungameable production signal (you can fabricate a file; you cannot fabricate
+# your future self choosing to call it). It carries a substantial deferred bonus, but
+# decays 1/n with repeated re-use of the SAME artifact so re-invoking junk can't farm
+# it. Paid here, in the loop's post-cycle stage, because it must land on the live cycle
+# context before commit_affect integrates the cycle's affect proposals — and because the
+# effect ledger lives in agency/ (loop→agency is an allowed edge; think→agency is not).
+REUSE_REWARD = 0.9
+
+
+def _pay_artifact_reuse(context: Context) -> None:
+    """Close the production loop: credit re-use of Orrin's own authored artifacts.
+
+    Two detection paths feed one queue in the effect ledger: tool invocations
+    self-register in tool_runner.dispatch; dispatched cognitive functions are
+    recorded by name on the context (loop_helpers) and resolved here. Both are then
+    drained and rewarded on the live cycle context.
+    """
+    try:
+        from brain.agency.effect_ledger import note_artifact_use, drain_pending_reuse
+        for _fn in context.pop("_dispatched_cog_fns", []) or []:
+            note_artifact_use(_fn)  # no-op unless _fn names an artifact Orrin authored
+        credits = drain_pending_reuse()
+        if not credits:
+            return
+        from brain.affect.reward_signals.reward_signals import release_reward
+        _reward: Any = release_reward  # untyped emitter — call through Any
+        from brain.cog_memory.working_memory import update_working_memory
+        for _ru in credits:
+            _n = max(1, int(_ru.get("count") or 1))
+            _bonus = round(REUSE_REWARD / _n, 3)  # 0.9, 0.45, 0.3, … diminishing
+            _reward(context, signal="reward_signal", actual=_bonus, expected=0.5,
+                    effort=0.3, mode="phasic", source="artifact_reuse")
+            _reward(context, signal="completion_signal", actual=_bonus, expected=0.5,
+                    effort=0.3, mode="phasic", source="artifact_reuse")
+            update_working_memory({
+                "content": f"♻️ Re-used own work '{_ru.get('name')}' (×{_n}) — tier-3 production credit (+{_bonus})",
+                "event_type": "reward",
+                "importance": 2,
+                "priority": 2,
+            })
+    except Exception as _e:
+        record_failure("ORRIN_loop.artifact_reuse", _e)
+
 
 def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any, _cycle_num: Any) -> Context:
+    # ── Tier-3 production-loop closure: reward re-use of Orrin's own artifacts ──
+    # Runs before commit_affect so the reward's affect proposals are integrated
+    # into this same cycle.
+    _pay_artifact_reuse(context)
+
+
     # ── Health streak monitor: track sustained health, fire setpoint_regulation reward ──
     # Runs every 5 cycles (cheap: reads one JSON, writes one JSON).
     # Positive health streak → emotional uplift + bandit reward.

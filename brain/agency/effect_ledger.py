@@ -70,6 +70,18 @@ _reuse_counts: Dict[str, int] = {}                          # content_hash -> ti
 _goal_effects: Dict[str, List[str]] = {}                    # goal_id -> [content_hash, ...]
 _goal_significance: Dict[str, float] = {}                   # goal_id -> max effect significance
 _tracked_progress: Dict[str, int] = {}                      # goal_id -> max completed sections
+# Name → content_hash for *named* authored artifacts (tools, cognitive functions),
+# so a later invocation by name (tool_runner / cognition dispatch) can be recognized
+# as re-use of a specific produced artifact — the tier-3, ungameable signal.
+_artifact_names: Dict[str, str] = {}                        # name -> content_hash
+_hash_goal: Dict[str, str] = {}                             # content_hash -> goal_id (back-reference)
+# Tier-3 re-use credits awaiting payout. Re-use is detected wherever an artifact is
+# invoked (tool_runner.dispatch, cognition dispatch) — which is often outside any
+# context that can persist affect changes. finalize_cycle drains this on the LIVE
+# cycle context so the deferred bonus actually lands (see release_reward_signal's
+# "emotional state is NOT saved here" — it must run on the cycle's own context).
+_pending_reuse: List[Dict[str, Any]] = []
+_PENDING_REUSE_MAX = 64
 _hydrated = False
 
 
@@ -232,9 +244,18 @@ def _hydrate() -> None:
                         if not h:
                             continue
                         _seen_hashes.add(h)
+                        # name → hash index for authored, invocable artifacts
+                        meta_top = row.get("metadata") or {}
+                        if (isinstance(meta_top, dict) and meta_top.get("name")
+                                and row.get("kind") in ("tool_written", "code_committed")):
+                            _artifact_names[str(meta_top["name"])] = h
+                        # re-use counts are persisted as their own rows
+                        if row.get("kind") == "reuse":
+                            _reuse_counts[h] = _reuse_counts.get(h, 0) + 1
                         gid = row.get("goal_id")
                         if gid and not row.get("dedupe"):
                             _goal_effects.setdefault(str(gid), []).append(h)
+                            _hash_goal[h] = str(gid)
                             try:
                                 sig = float(row.get("significance") or 0.0)
                                 if sig > 0.0:
@@ -314,7 +335,14 @@ def record_effect(
         return None
     content_hash = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
+    # A named, invocable artifact (tool / cognitive function) registers its
+    # name → hash so a later invocation can be credited as re-use, regardless of
+    # whether this particular write was a novel production or an identical rewrite.
+    _artifact_name = (metadata or {}).get("name") if isinstance(metadata, dict) else None
+
     with _lock:
+        if _artifact_name and kind in ("tool_written", "code_committed"):
+            _artifact_names[str(_artifact_name)] = content_hash
         is_dup = content_hash in _seen_hashes
         nov = _compute_novelty(kind, normalized, content_hash) if novelty is None else float(novelty)
         # An explicit caller-supplied novelty still can't beat the exact-dup gate.
@@ -369,6 +397,7 @@ def record_effect(
         if goal_id:
             gid = str(goal_id)
             _goal_effects.setdefault(gid, []).append(content_hash)
+            _hash_goal[content_hash] = gid
             _goal_significance[gid] = max(_goal_significance.get(gid, 0.0), row.significance)
             if kind == "tracked_work":
                 try:
@@ -434,6 +463,10 @@ def mark_reused(content_hash: str) -> int:
     """Tier-3 (deferred, strong) significance: the artifact was referenced again
     later — a tool invoked, a memo cited by a later goal, a message replied to.
     Re-use is the only ungameable significance signal. Returns the new reuse count.
+
+    Re-use also lifts the owning goal's recorded significance toward the ceiling,
+    so `significance_for_goal` (the headline mean_significance metric) reflects work
+    that actually got used, not just work that got written.
     """
     if not content_hash:
         return 0
@@ -441,16 +474,59 @@ def mark_reused(content_hash: str) -> int:
     with _lock:
         _reuse_counts[content_hash] = _reuse_counts.get(content_hash, 0) + 1
         n = _reuse_counts[content_hash]
+        gid = _hash_goal.get(content_hash)
+        if gid:
+            prior = _goal_significance.get(gid, 0.0)
+            _goal_significance[gid] = min(1.0, max(prior, 0.6) + 0.1)
     try:
         _append_row(EffectRow(
             ts=now_iso_z(), cycle=0, kind="reuse",
             content_hash=content_hash, novelty=0.0,
-            significance=1.0, goal_id=None, char_len=0, dedupe=False,
+            significance=1.0, goal_id=gid, char_len=0, dedupe=False,
             metadata=None,
         ))
     except Exception as exc:
         record_failure("effect_ledger.mark_reused", exc)
     return n
+
+
+def note_artifact_use(name: str) -> Optional[int]:
+    """Record that an Orrin-authored, named artifact (a tool / cognitive function)
+    was invoked by name — the canonical tier-3 re-use event. Returns the new re-use
+    count, or None when `name` is not a known authored artifact (a built-in or any
+    function Orrin did not write → not re-use, no credit).
+
+    The caller (a dispatch chokepoint) usually has no context that can persist
+    affect, so the reward is *queued* here and paid by finalize_cycle on the live
+    cycle context via `drain_pending_reuse`.
+    """
+    if not name:
+        return None
+    _hydrate()
+    with _lock:
+        h = _artifact_names.get(str(name))
+    if not h:
+        return None
+    n = mark_reused(h)
+    with _lock:
+        gid = _hash_goal.get(h)
+        _pending_reuse.append({"name": str(name), "hash": h, "goal_id": gid, "count": n})
+        if len(_pending_reuse) > _PENDING_REUSE_MAX:
+            del _pending_reuse[:-_PENDING_REUSE_MAX]
+    return n
+
+
+def drain_pending_reuse() -> List[Dict[str, Any]]:
+    """Hand the queued tier-3 re-use credits to the reward layer and clear them.
+    Each entry: {name, hash, goal_id, count}. finalize_cycle pays a diminishing
+    bonus per entry so re-invoking the same artifact can't be farmed."""
+    _hydrate()
+    with _lock:
+        if not _pending_reuse:
+            return []
+        out = list(_pending_reuse)
+        _pending_reuse.clear()
+        return out
 
 
 def reuse_count(content_hash: str) -> int:
@@ -469,4 +545,7 @@ def reset_for_tests() -> None:
         _goal_effects.clear()
         _goal_significance.clear()
         _tracked_progress.clear()
+        _artifact_names.clear()
+        _hash_goal.clear()
+        _pending_reuse.clear()
         _hydrated = False

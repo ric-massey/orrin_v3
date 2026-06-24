@@ -109,6 +109,15 @@ def dispatch(
         update_working_memory(f"Used tool '{tool_name}': {output[:200]}")
         if write_memory:
             _append_long_memory(tool_name, args, output, origin=origin, intent=intent)
+        # Tier-3 re-use: invoking a tool Orrin authored credits the artifact that
+        # produced it (no-op for built-in tools he didn't write). Closes the
+        # production loop — the made thing now pays again when it gets used.
+        try:
+            from brain.agency.effect_ledger import note_artifact_use
+            note_artifact_use(tool_name)
+        except Exception as _re:
+            from brain.utils.failure_counter import record_failure
+            record_failure("tool_runner.note_reuse", _re)
         return {"success": True, "output": output, "tool": tool_name}
 
     except Exception as e:

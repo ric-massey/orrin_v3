@@ -160,11 +160,18 @@ def _validate_in_sandbox(code: str, name: str = "_anonymous", description: str =
 
 # Write a new cognitive function
 
-def _record_code_effect(kind: str, full_code: str, context, goal_id) -> None:
-    """P0: a written-and-registered function/tool is a real, durable external effect."""
+def _record_code_effect(kind: str, full_code: str, context, goal_id, name=None) -> None:
+    """P0: a written-and-registered function/tool is a real, durable external effect.
+
+    `name` indexes the artifact so a later invocation by name is credited as tier-3
+    re-use — the only ungameable production signal (you can fabricate a file; you
+    cannot fabricate your future self choosing to call it)."""
     try:
         from brain.agency.effect_ledger import record_effect
-        _row = record_effect(kind, full_code, goal_id=goal_id, context=context)
+        _row = record_effect(
+            kind, full_code, goal_id=goal_id, context=context,
+            metadata={"name": name} if name else None,
+        )
         if _row is not None and _row.significance > 0 and isinstance(context, dict):
             context["_production_effect_this_cycle"] = True
             context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
@@ -249,7 +256,7 @@ def write_cognitive_function(
     _append_manifest(name, "cognitive_function", description, file_path)
 
     update_working_memory(f"Wrote new cognitive function: '{name}' — {description}")
-    _record_code_effect("code_committed", full_code, context, goal_id)
+    _record_code_effect("code_committed", full_code, context, goal_id, name=name)
     return {"success": True, "path": str(file_path), "error": None}
 
 # Write a new tool
@@ -318,7 +325,7 @@ def write_tool(
     _append_manifest(name, "tool", description, file_path)
 
     update_working_memory(f"Wrote new tool: '{name}' — {description}")
-    _record_code_effect("tool_written", full_code, context, goal_id)
+    _record_code_effect("tool_written", full_code, context, goal_id, name=name)
     return {"success": True, "path": str(file_path), "error": None}
 
 # List and delete own code

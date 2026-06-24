@@ -71,6 +71,55 @@ def test_tracked_work_requires_progress_metadata():
     assert el.has_qualifying_effect("book")
 
 
+_TOOL_CODE = (
+    "def my_tool(args=None):\n"
+    "    numbers = [int(token) for token in str(args).split() if token.isdigit()]\n"
+    "    total = sum(numbers)\n"
+    "    average = total / len(numbers) if numbers else 0\n"
+    "    return {'count': len(numbers), 'total': total, 'average': average}\n"
+)
+
+
+def test_named_artifact_reuse_closes_the_loop():
+    # Authoring a tool indexes it by name; invoking it by name is tier-3 re-use.
+    row = el.record_effect("tool_written", _TOOL_CODE,
+                           goal_id="gtool", metadata={"name": "my_tool"})
+    assert row is not None
+    base_sig = el.significance_for_goal("gtool")
+
+    # first use → credited, and the owning goal's significance rises (re-use is the
+    # ungameable signal, so it lifts mean_significance).
+    assert el.note_artifact_use("my_tool") == 1
+    assert el.significance_for_goal("gtool") > base_sig
+    # a name Orrin never authored is not re-use → no credit.
+    assert el.note_artifact_use("builtin_search") is None
+
+    # the credit is queued for finalize to pay, with a diminishing count.
+    assert el.note_artifact_use("my_tool") == 2
+    pending = el.drain_pending_reuse()
+    assert [p["count"] for p in pending] == [1, 2]
+    assert all(p["name"] == "my_tool" and p["goal_id"] == "gtool" for p in pending)
+    # draining clears the queue.
+    assert el.drain_pending_reuse() == []
+
+
+def test_reuse_index_survives_rehydration():
+    code = _TOOL_CODE.replace("my_tool", "reload_tool")
+    el.record_effect("tool_written", code, goal_id="gh", metadata={"name": "reload_tool"})
+    el.note_artifact_use("reload_tool")
+    # simulate a fresh process: drop caches, re-read the jsonl.
+    el._hydrated = False
+    el._artifact_names.clear()
+    el._hash_goal.clear()
+    el._reuse_counts.clear()
+    el._pending_reuse.clear()
+    el._goal_significance.clear()
+    el._goal_effects.clear()
+    el._seen_hashes.clear()
+    # next use must still resolve the name and continue the count from disk.
+    assert el.note_artifact_use("reload_tool") == 2
+
+
 def test_tracked_work_goal_waits_for_required_sections():
     goal = {
         "tracked_work": True,

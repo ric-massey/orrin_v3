@@ -16,7 +16,7 @@ _log = get_logger(__name__)
 def _load_json_safe(path: Path, default=None):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/malformed file → default
         return default
 
 

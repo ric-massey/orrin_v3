@@ -143,7 +143,7 @@ def extract_lessons(memories):
                 text = _normalize_text(content[len("lesson:"):])
                 if text:
                     out.append(text)
-        except Exception:
+        except (AttributeError, TypeError, KeyError):  # intentional: skip malformed memory entry
             continue
     # Optional de-dup
     seen = set()

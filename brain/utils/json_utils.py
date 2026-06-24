@@ -311,7 +311,7 @@ def safe_extract_json(s: Any, default: Any = None, *, dict_only: bool = False) -
         if dict_only and not isinstance(val, dict):
             return default
         return val if val is not None else default
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable input → default
         return default
 
 

@@ -18,7 +18,7 @@ def build_memory_health_provider(daemon, store, memory_snapshot_func):
         try:
             val = getattr(obj, name, default)
             return val() if callable(val) else val
-        except Exception:
+        except (AttributeError, TypeError):  # intentional: attr access/call failed → default
             return default
 
     def provider() -> Dict[str, Any]:

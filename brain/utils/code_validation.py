@@ -208,7 +208,8 @@ def validate_think_code(code_text: str) -> Tuple[bool, str]:
 
     except SyntaxError as e:
         return False, f"❌ Syntax error: {e}"
-    except Exception:
+    except Exception as _e:
+        record_failure("code_validation.validate", _e)
         return False, f"❌ Exception during validation:\n{traceback.format_exc()}"
     finally:
         # Cleanup temp file

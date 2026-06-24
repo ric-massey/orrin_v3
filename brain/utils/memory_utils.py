@@ -3,7 +3,8 @@ from brain.utils.log import log_error
 def _safe_str(x) -> str:
     try:
         return (x if isinstance(x, str) else str(x)) or ""
-    except Exception:
+    except Exception as _e:  # a custom __str__ may raise anything — log and degrade to empty
+        log_error(f"[memory_utils] _safe_str failed: {_e}")
         return ""
 
 def summarize_memories(memories, limit: int = 10, truncate: int | None = 280) -> str:

@@ -35,7 +35,30 @@ _ASPIRATIONS = [
 # Map a short-term goal's drive to the aspiration it contributes toward.
 # Phase 4 / Fix C: this is now only the COLD-START PRIOR — the link a completed
 # goal actually earns is learned (see below).
-_DRIVE_TO_ASPIRATION = {d: t for t, d in _ASPIRATIONS}
+_BASE_DRIVE_TO_ASPIRATION = {d: t for t, d in _ASPIRATIONS}
+
+# (T0.3 / WS-7 Change 3-core) Auxiliary priors for the SECONDARY drives that goal
+# generators actually emit but that aren't one of the four aspiration drives.
+# Without these, an emitted drive like `will` (will.py) had no prior at all, so the
+# first keyword-classified completion seeded the ledger straight to whatever the
+# coarse classifier picked — in the 06-23 run that was "Understand the world…",
+# the ONLY ledger entry for `will`. Each alias names the aspiration-drive whose
+# title this drive serves, so the titles stay derived from _ASPIRATIONS
+# (count-agnostic — a 5th aspiration needs no change here). For genuinely general
+# drives like `will`, this is only the prior; T2.3 blends in goal content/`serves`.
+_AUX_DRIVE_ALIASES = {
+    "self_exploration": "self_understanding",
+    "simulate_selves":  "self_understanding",
+    "curiosity":        "world_knowledge",
+    "problem_solving":  "output_producing",
+    "will":             "output_producing",
+}
+_DRIVE_TO_ASPIRATION = {
+    **_BASE_DRIVE_TO_ASPIRATION,
+    **{drive: _BASE_DRIVE_TO_ASPIRATION[alias]
+       for drive, alias in _AUX_DRIVE_ALIASES.items()
+       if alias in _BASE_DRIVE_TO_ASPIRATION},
+}
 
 
 # ── Phase 4 / Fix C: learned driven_by → aspiration association ────────────────
@@ -167,8 +190,33 @@ def _learn_drive_aspiration(driven_by: str, evidenced_asp: str, reward: float,
     row[evidenced_asp] = round((1.0 - a) * old + a * float(reward), 4)
 
 
+def _seed_drive_priors() -> None:
+    """Seed the FULL drive→aspiration prior table into the credit ledger (T0.3 /
+    WS-7 Change 1). Every aspiration carries a standing prior weight from cycle 0,
+    instead of being seeded lazily the first time a drive happens to complete a
+    goal — so a never-yet-completed aspiration is still a candidate the learned
+    link can grow from, and `will`-style drives can't be captured by the first
+    keyword-misclassified completion (the prior must be EXCEEDED to be overturned).
+    Idempotent: only seeds a (drive→its prior aspiration) cell that doesn't exist."""
+    if not _learned_aspiration_enabled():
+        return
+    try:
+        credit = _load_drive_credit()
+        changed = False
+        for drive, title in _DRIVE_TO_ASPIRATION.items():
+            row = credit["weights"].setdefault(drive, {})
+            if title not in row:
+                row[title] = _PRIOR_SEED_WEIGHT
+                changed = True
+        if changed:
+            _save_drive_credit(credit)
+    except Exception as exc:
+        record_failure("intrinsic_goals._seed_drive_priors", exc)
+
+
 def _ensure_aspirations() -> None:
     """Guarantee the enduring aspirations exist in the goal store (idempotent)."""
+    _seed_drive_priors()
     try:
         goals = load_json(GOALS_FILE, default_type=list) or []
         if not isinstance(goals, list):
@@ -271,7 +319,8 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
                 continue
             seen_ids.add(gid)
             # Learn the link from this completion's actual outcome (once per goal).
-            if credit is not None and gid and gid not in credited_ids:
+            _newly_credited = bool(credit is not None and gid and gid not in credited_ids)
+            if _newly_credited:
                 evidenced = _evidenced_aspiration(g)
                 if evidenced:
                     _learn_drive_aspiration(
@@ -284,6 +333,14 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
             if title:
                 contributions.setdefault(title.lower(), []).append(
                     str(g.get("title") or g.get("name") or "")[:80])
+                # (T0.3 Change 5) Record the `completed` funnel stage exactly once
+                # per goal (gated by the same idempotency ledger as the EMA fold).
+                if _newly_credited:
+                    try:
+                        from brain.cognition.aspiration_scoreboard import record as _sb_record
+                        _sb_record(title, "completed")
+                    except Exception:  # intentional: scoreboard is best-effort
+                        pass
 
     if credit is not None and credit_changed:
         if len(credit["credited_ids"]) > _DRIVE_CREDIT_IDS_CAP:
@@ -349,11 +406,22 @@ def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
     counts = {str(g.get("title", "")): int(g.get("contribution_count", 0) or 0) for g in asps}
     total = sum(counts.values())
     mean = (total / len(counts)) if counts else 0.0
+    # (T0.3 Change 5) Blend in the scoreboard's generation funnel: an aspiration
+    # that is generated *less* than its peers over the rolling window gets extra
+    # pressure, so a direction that never even produces candidate goals (not just
+    # one that never completes) becomes visible to the generator. Count-agnostic.
+    try:
+        from brain.cognition.aspiration_scoreboard import generation_counts
+        gen = generation_counts()
+    except Exception:
+        gen = {}
+    gen_mean = (sum(gen.get(str(g.get("title", "")), 0) for g in asps) / len(asps)) if asps else 0.0
     now = time.time()
     out: Dict[str, float] = {}
     for g in asps:
         title = str(g.get("title", ""))
         share_gap = max(0.0, (mean - counts[title]) / (mean + 1.0))   # below the mean share
+        gen_gap = max(0.0, (gen_mean - gen.get(title, 0)) / (gen_mean + 1.0))  # under-generated
         last = g.get("last_contribution_ts")
         if last:
             try:
@@ -363,7 +431,7 @@ def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
         else:
             idle = _STARVED_IDLE_FULL_S       # never contributed → maximal idle pressure
         idle_norm = min(1.0, max(0.0, idle) / _STARVED_IDLE_FULL_S)
-        out[title] = round(0.5 * share_gap + 0.5 * idle_norm, 4)
+        out[title] = round(0.4 * share_gap + 0.4 * idle_norm + 0.2 * gen_gap, 4)
     return out
 
 
@@ -389,6 +457,13 @@ def mark_aspiration_contribution(driven_by: str) -> None:
     asp_title = _serves_aspiration(str(driven_by or ""))
     if not asp_title:
         return
+    # (T0.3 Change 5) A real effect-backed contribution = the `progressed` funnel
+    # stage for this aspiration.
+    try:
+        from brain.cognition.aspiration_scoreboard import record as _sb_record
+        _sb_record(asp_title, "progressed")
+    except Exception:  # intentional: scoreboard is best-effort
+        pass
     try:
         goals = load_json(GOALS_FILE, default_type=list) or []
         if not isinstance(goals, list):

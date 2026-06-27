@@ -10,7 +10,7 @@ from dataclasses import replace
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional, cast
 
-from .model import Goal, Step, Status
+from .model import Goal, Step, Status, artifact_satisfied
 from .handlers.base import GoalHandler, HandlerContext
 from . import metrics as metrics_mod
 _log = get_logger(__name__)
@@ -417,6 +417,17 @@ class StepRunner:
 
         # Done when all steps are terminal non-failed
         if steps and all(s.status in {Status.DONE, Status.CANCELLED} for s in steps):
+            # Artifact gate (no fabricated progress): a goal that requires an artifact
+            # must not be flipped to DONE when its plan ran but produced nothing. Fail
+            # it honestly instead of faking a 100% completion.
+            if not artifact_satisfied(goal, steps):
+                ng = replace(goal, status=Status.FAILED, updated_at=UTCNOW(),
+                             last_error="objective not met: required artifact not produced")
+                _upsert_goal(self.store, ng)
+                self._emit_goal_event("GoalFailed", ng, extra={
+                    "steps_total": len(steps), "reason": "artifact_required_not_produced"})
+                _dbg("finalized goal FAILED (artifact required, none produced):", goal.id)
+                return True
             ng = replace(goal, status=Status.DONE, updated_at=UTCNOW())
             ng.progress.set(percent=100.0, note="all steps complete")
             _upsert_goal(self.store, ng)

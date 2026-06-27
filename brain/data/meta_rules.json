@@ -6,7 +6,7 @@
     "action": "prefer_hits",
     "priority": 3,
     "reward": 0.0,
-    "applications": 14089,
+    "applications": 14148,
     "source": "builtin",
     "rationale": "Rules that have been applied more often have proven themselves in practice."
   },
@@ -15,7 +15,7 @@
     "name": "Trust symbolic for TECHNICAL queries",
     "condition": "ambiguous",
     "action": "prefer_specific",
-    "priority": 25,
+    "priority": 39,
     "reward": 0.0,
     "applications": 0,
     "source": "symbolic_self_model",
@@ -98,7 +98,7 @@
     "action": "prefer_specific",
     "priority": 40,
     "reward": 0.0,
-    "applications": 3,
+    "applications": 8,
     "source": "builtin",
     "rationale": "More conditions = more tightly scoped = less likely to over-generalize."
   }

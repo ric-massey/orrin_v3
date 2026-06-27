@@ -218,7 +218,7 @@ async def affect() -> JSONResponse:
         "activation_level": a.get("activation_level"),
         "homeostasis": a.get("homeostasis"),         # the brain's own index
         "resource_deficit": a.get("resource_deficit"),
-        "allostatic_load": a.get("allostatic_load"),
+        "allostatic_load": a.get("_allostatic_load"),  # (T0.1) behaviourally-active load
         "affect_stability": a.get("affect_stability"),
         "affect_quadrant": a.get("affect_quadrant"),
         "core_signals": core,                        # the full vector, raw

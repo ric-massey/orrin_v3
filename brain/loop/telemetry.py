@@ -194,7 +194,10 @@ def _emit_affect(context: "Context") -> None:
             motivation=_clamp01(_f(cs.get("motivation"), 0.5)),
             confidence=_clamp01(_f(cs.get("confidence"), 0.5)),
             curiosity=_clamp01(_f(cs.get("exploration_drive"), 0.3)),
-            allostatic_load=_clamp01(_f(a.get("allostatic_load"))),
+            # (T0.1) Source the behaviourally-active `_allostatic_load` (owned by
+            # interoception.allostatic_setpoint), NOT the retired top-level
+            # `allostatic_load` that pinned to 1.0 off raw exploration_drive.
+            allostatic_load=_clamp01(_f(a.get("_allostatic_load"))),
             distress=distress,
             stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),

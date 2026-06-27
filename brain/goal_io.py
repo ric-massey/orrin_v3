@@ -288,17 +288,36 @@ def _reconcile_open_v2_into_v1(api) -> None:
     authority; its pursuit/cognitive state must win)."""
     try:
         from goals.model import Status
-        from brain.cognition.planning.goals import add_goal
+        from brain.cognition.planning.goals import add_goal, save_goals
         open_goals = api.list_goals(statuses=[Status.NEW, Status.RUNNING], limit=200)
         tree = _load_v1_tree()
+        to_add: List[Dict[str, Any]] = []
+        to_close: List[tuple] = []
+        dirty = False
         for g in open_goals:
             d = _goal_to_v1(g)   # carries tier/origin restored from spec (D2 read)
-            node = _find_v1_node(tree, d.get("id"), d.get("name"))
+            vid = d.get("id")
+            node = _find_v1_node(tree, vid, d.get("name"))
             if node is None:
                 d.setdefault("status", "in_progress")
-                add_goal(d)
+                to_add.append(d)
             elif str(node.get("status", "")).lower() in _V1_TERMINAL:
-                close_goal_v2(d.get("id"), status="DONE", reason=f"v1:{node.get('status')}")
+                to_close.append((vid, node.get("status")))
+            elif vid and node.get("id") != vid:
+                # A name-matched node carrying no id (or a divergent one): adopt the
+                # canonical v2 id so completion/failure events reconcile by id, not
+                # title. Without this, an id-less v1 node stays title-matched forever
+                # — the exact fragmentation that broke coherent goal history.
+                node["id"] = vid
+                dirty = True
+        # Persist id-stamps BEFORE any add_goal (which reloads+saves the tree and
+        # would otherwise clobber the in-memory stamps).
+        if dirty:
+            save_goals(tree)
+        for d in to_add:
+            add_goal(d)
+        for vid, status in to_close:
+            close_goal_v2(vid, status="DONE", reason=f"v1:{status}")
     except Exception as _e:
         record_failure("goal_io._reconcile_open_v2_into_v1", _e)
 
@@ -334,7 +353,10 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
         return
 
     try:
-        existing = {g.title for g in api.list_goals(limit=500)}
+        # title → id so a dedup-skip can still hand the proposal the canonical id of
+        # the v2 goal it matches (otherwise the source node would stay id-less and
+        # later events would only ever title-match it).
+        existing = {g.title: g.id for g in api.list_goals(limit=500)}
     except Exception as _e:
         # API down — keep proposals for retry rather than risk duplicate submission.
         _log.warning("[goal_io] list_goals failed (%s); deferring sync pass", _e)
@@ -343,6 +365,10 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
 
     remaining: List[Dict[str, Any]] = []
     for gd in fresh:
+        # `hydrate_goal_model` below REBINDS `gd` to a fresh dict; keep the original
+        # proposal reference so the canonical id is stamped back onto the node that
+        # actually lives in context["proposed_goals"], not the discarded copy.
+        src = gd
         kind = gd.get("kind", "cognitive")
         title = gd.get("title", "Unnamed goal")
         if not (gd.get("milestones") or []):
@@ -350,7 +376,10 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
         try:
             if kind in _EXECUTABLE_KINDS:
                 if title in existing:
-                    continue  # already exists — skip
+                    # Already in v2 — adopt its id onto the source node so this
+                    # proposal joins the one canonical thread instead of forking.
+                    gd["id"] = existing[title]
+                    continue
                 try:
                     from brain.cognition.planning.goal_comprehension import hydrate_goal_model
                     gd = hydrate_goal_model(gd, context)
@@ -370,9 +399,19 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                 for key in _V1_AUTHORITATIVE_FIELDS:
                     if gd.get(key) is not None:
                         spec.setdefault(key, gd[key])
-                api.create_goal(title=title, kind=kind, spec=spec,
-                                priority=gd.get("priority", "NORMAL"), tags=gd.get("tags") or [])
-                existing.add(title)
+                # Canonical-ID contract: pass the source node's id (the cognitive
+                # layer minted it at commit) so v2 ADOPTS it rather than minting a
+                # rival id; capture the return and write the id back onto the source
+                # node so v1↔v2 share one identity from this instant on. gd.get("id")
+                # may be None for a never-committed proposal — then v2 mints and we
+                # stamp that single id back here.
+                created = api.create_goal(title=title, kind=kind, spec=spec,
+                                          priority=gd.get("priority", "NORMAL"),
+                                          tags=gd.get("tags") or [], id=gd.get("id"))
+                if created is not None and getattr(created, "id", None):
+                    src["id"] = created.id   # stamp the live proposal node
+                    gd["id"] = created.id
+                    existing[title] = created.id
             # cognitive/internal goals have no v2 handler — left for v1 memory paths
         except Exception:
             gd["_sync_attempts"] = int(gd.get("_sync_attempts") or 0) + 1

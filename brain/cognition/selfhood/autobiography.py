@@ -54,8 +54,15 @@ from brain.cognition.selfhood.autobiography_epilogue import (  # noqa: F401
     _session_reflection, session_epilogue as session_epilogue,
 )
 
-_NARRATIVE_MIN_INTERVAL_S   = 18 * 3600   # earliest an update can fire (18 h)
-_NARRATIVE_MAX_INTERVAL_S   = 36 * 3600   # latest Orrin will go without updating (36 h)
+# (T0.4) The interval between autobiography chapters is now SCALED TO THE FELT
+# LIFESPAN (see _sample_interval) instead of a fixed 18-36 h band. The old band
+# could be sampled longer than a whole run (26.4 h > a 25 h life), so Chapter 2
+# was unreachable and the autobiography never advanced past its opening. We target
+# ~_NARRATIVE_TARGET_CHAPTERS chapters across a life, clamped to a band that keeps
+# the next chapter reachable inside a single multi-hour run yet never clustered.
+_NARRATIVE_MIN_INTERVAL_S   = 2 * 3600    # floor: never cluster tighter than 2 h
+_NARRATIVE_MAX_INTERVAL_S   = 8 * 3600    # ceiling: a chapter stays reachable within a run
+_NARRATIVE_TARGET_CHAPTERS  = 40          # ~chapters over a full felt lifespan
 _NARRATIVE_PRESSURE_THRESHOLD = 1.0        # pressure score that fires an update
 
 
@@ -108,17 +115,31 @@ def _save_pressure_state(state: Dict[str, Any]) -> None:
     save_json(NARRATIVE_PRESSURE_FILE, state)
 
 
+def _sample_interval() -> float:
+    """Min wait before the next chapter, scaled to the felt lifespan so several
+    chapters fall within a life — clamped to [MIN, MAX] so the next chapter is
+    always reachable inside a single multi-hour run (the old fixed 18-36 h band
+    could exceed a whole run) yet never clusters. Small jitter avoids a fixed
+    cadence. (T0.4)"""
+    try:
+        from brain.cognition.mortality import felt_lifespan_seconds
+        life_s = felt_lifespan_seconds()
+    except Exception:
+        life_s = 0.0
+    target = (life_s / _NARRATIVE_TARGET_CHAPTERS) if life_s > 0 else _NARRATIVE_MAX_INTERVAL_S
+    base = max(_NARRATIVE_MIN_INTERVAL_S, min(_NARRATIVE_MAX_INTERVAL_S, target))
+    return random.uniform(base * 0.8, base * 1.2)
+
+
 def _reset_pressure() -> None:
     """
     Reset accumulated pressure after the autobiography fires.
-    Samples a new randomized interval so entries don't cluster on a fixed cadence.
+    Samples a new lifespan-scaled interval so entries don't cluster on a fixed cadence.
     """
     state = _load_pressure_state()
     state["running_total"] = 0.0
     state["last_check_ts"] = now_iso_z()
-    state["next_min_interval_s"] = random.uniform(
-        _NARRATIVE_MIN_INTERVAL_S, _NARRATIVE_MAX_INTERVAL_S
-    )
+    state["next_min_interval_s"] = _sample_interval()
     _save_pressure_state(state)
 
 
@@ -310,11 +331,13 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
     # cluster on a fixed cadence. The sampled interval is stored in pressure state.
     last_ts = auto.get("last_updated", "")
     _pressure_state = _load_pressure_state()
-    _min_interval = float(
+    # Clamp to the live [MIN, MAX] band so a stale persisted interval (e.g. the
+    # 26.4 h value from a pre-T0.4 run) can never out-gate the new ceiling.
+    _min_interval = max(_NARRATIVE_MIN_INTERVAL_S, min(_NARRATIVE_MAX_INTERVAL_S, float(
         _pressure_state.get("next_min_interval_s") or _NARRATIVE_MIN_INTERVAL_S
-    )
-    # The sampled interval is capped at 36 h, so any wait longer than that always
-    # passes this gate; the pressure gate below is the only other deferral.
+    )))
+    # The sampled interval is capped at _NARRATIVE_MAX_INTERVAL_S, so any longer
+    # wait always passes this gate; the pressure gate below is the only other deferral.
     _elapsed = time.time() - _iso_to_epoch(last_ts)
     if _elapsed < _min_interval:
         return "Autobiography: min interval not elapsed — no update."

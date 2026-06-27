@@ -50,12 +50,23 @@ def append_many(path: Union[str, Path], records: Iterable[Dict[str, Any]]) -> Pa
 def iter_lines(path: Union[str, Path]) -> Iterator[Dict[str, Any]]:
     """
     Stream parsed JSON objects from the WAL. Skips malformed lines.
+
+    The read is bounded to the file size observed at open time. Replaying a WAL
+    into a file-backed store may append to that store's own WAL; without this
+    bound, replaying the same file being appended can become self-feeding.
     """
     p = Path(path)
     if not p.exists():
         return
+    try:
+        end = p.stat().st_size
+    except OSError:
+        return
     with p.open("r", encoding="utf-8") as f:
-        for line in f:
+        while f.tell() < end:
+            line = f.readline()
+            if not line:
+                break
             s = line.strip()
             if not s:
                 continue

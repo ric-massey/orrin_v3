@@ -133,6 +133,21 @@ def _felt_fraction(data: Dict) -> float:
     return max(0.0, min(1.0, elapsed_s / felt_lifespan_s))
 
 
+def felt_lifespan_seconds() -> float:
+    """Orrin's felt total lifespan in seconds (lifespan minus the hidden noise),
+    or 0.0 if not yet born. Public accessor so other subsystems (e.g. the
+    autobiography cadence) can scale their own intervals to the life length
+    instead of hard-coding a wall-clock band. (T0.4)"""
+    try:
+        data = _load_lifespan()
+        if not _parse_dt(data.get("born_at")):
+            return 0.0
+        felt = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
+        return max(0.0, felt)
+    except Exception:
+        return 0.0
+
+
 def _phase(fraction: float) -> str:
     if fraction < 0.50:  return "early"
     if fraction < 0.75:  return "middle"

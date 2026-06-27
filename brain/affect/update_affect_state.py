@@ -23,8 +23,8 @@ from brain.affect.affect_dynamics import (
 from brain.affect.affect_buffer import drain_affect_queue
 from brain.affect.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
-    EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE, update_allostatic_load,
-    homeostasis_index,
+    EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE,
+    homeostasis_index, pump_signal,
 )
 from brain.affect.setpoints import CORE_BASELINES
 from brain.utils.log import log_activity
@@ -108,7 +108,9 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     for emo in model_emotions:
         if emo not in _NON_EMOTIONS:
             core.setdefault(emo, baseline.get(emo, 0.0))
-    update_allostatic_load(state, core)
+    # (T0.1) The mistuned top-level `allostatic_load` integrator was retired; the
+    # behaviourally-active `_allostatic_load` is owned by interoception's
+    # allostatic_setpoint(), called below in the resource_deficit block.
 
     # === Interoception — body state as generative emotional prior ===
     # Body state is applied FIRST so it acts as a prior that shapes how all subsequent
@@ -304,7 +306,11 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         nudges = trigger_map.get(trig_key, {})
         for emo, boost in nudges.items():
             if emo in core:
-                core[emo] = min(1.0, core[emo] + boost)
+                # (T0.2) Route trigger nudges through pump_signal so a "success"
+                # spike on positive_valence (+0.35) respects the homeostatic ceiling
+                # instead of capping at 1.0 and out-running the once-per-cycle
+                # clawback (the source of the over-cap positive_valence leak).
+                pump_signal(core, emo, boost)
                 for opp in opposites.get(emo, []):
                     if opp in core:
                         core[opp] = max(baseline.get(opp, 0.0), core[opp] - boost * 0.7)
@@ -424,13 +430,15 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # store for decay, so we merge them here — capped at per-emotion ceilings before merging
     # so that a reward writing state["motivation"]=1.0 can't bypass the emotional ceiling.
     _dup_keys = {"motivation", "confidence", "exploration_drive", "social_deficit", "stagnation_signal"}
-    # Per-emotion soft ceilings for dup-key sync (hard ceiling applied afterwards)
-    _dup_soft_ceil = {"motivation": 0.80, "confidence": 0.80, "exploration_drive": 0.85,
-                      "social_deficit": 1.0,  "stagnation_signal": 1.0}
+    # (T0.2) Dup-key sync clamp derived from the SINGLE ceiling table (EMO_CEILINGS).
+    # A separate `_dup_soft_ceil` table used to live here and DISAGREED with
+    # EMO_CEILINGS (e.g. social_deficit 1.0 vs 0.65, motivation 0.80 vs 0.85), so a
+    # reward write could be clamped to a different ceiling than the one the clawback
+    # below enforces — two setpoints for one signal. Now there is one source of truth.
     for _dk in _dup_keys:
         _top = state.get(_dk)
         if isinstance(_top, (int, float)) and _dk in core:
-            _top_capped = min(float(_top), _dup_soft_ceil.get(_dk, 0.85))
+            _top_capped = min(float(_top), _EMO_CEILINGS.get(_dk, _DEFAULT_CEILING))
             core[_dk] = max(float(core.get(_dk) or 0), _top_capped)
 
     # Re-apply ceiling after dup-key sync so reward writes can't bypass it.

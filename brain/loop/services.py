@@ -117,6 +117,17 @@ def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     except Exception as e:
         record_failure("ORRIN_loop.session_epilogue", e)
 
+    # (T0.4) Emit a final reflection on a GRACEFUL OPERATOR STOP, not only on
+    # modeled death. The run that drove this plan ended on an operator stop with
+    # final_thoughts.json untouched, so the next boot had no handoff to read.
+    # final_reflection writes the handoff WITHOUT setting the death flag, so this
+    # is continuity ("read the unfinished list first"), not a death.
+    try:
+        from brain.cognition.terminal import final_reflection
+        final_reflection(context, reason="operator_stop")
+    except Exception as e:
+        record_failure("ORRIN_loop.operator_stop_final_reflection", e)
+
     # Shutdown hygiene (BEHAVIOR_FIX_PLAN §5, "semaphore leak at shutdown"):
     # the project spawns no multiprocessing pools of its own — the leaked
     # semaphore warnings come from sentence-transformers/torch worker state at

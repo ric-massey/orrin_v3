@@ -104,17 +104,14 @@ def homeostasis_index(core: Dict[str, float]) -> float:
     return max(0.0, min(1.0, 1.0 - mean_dev * _HOMEOSTASIS_DEVIATION_GAIN))
 
 
-def update_allostatic_load(state: Dict, core: Dict[str, float]) -> float:
-    """Integrate sustained exploration-drive deviation while forgiving brief spikes."""
-    baseline = float(CORE_BASELINES.get("exploration_drive", 0.0))
-    deviation = max(
-        0.0,
-        float(core.get("exploration_drive", baseline) or baseline) - baseline,
-    )
-    load = float(state.get("allostatic_load", 0.0) or 0.0)
-    load = max(0.0, min(1.0, load + 0.01 * deviation - 0.01 * (1.0 - deviation)))
-    state["allostatic_load"] = round(load, 6)
-    return state["allostatic_load"]
+# NOTE (T0.1, Core-Architecture master plan 2026-06-25): the former
+# `update_allostatic_load(state, core)` integrator was RETIRED here. It integrated
+# *raw* exploration_drive deviation from baseline 0.25, saturated to 1.0 in ~540
+# cycles and then pinned — so the top-level `allostatic_load` telemetry no longer
+# tracked anything behaviourally active. The real, behaviourally-active allostatic
+# variable is `_allostatic_load`, owned by interoception.allostatic_setpoint()
+# (it accrues while running hot and forces recovery). Telemetry + the affect API
+# now read THAT value; there is one allostatic integrator, not two.
 
 # ── Homeostatic ceilings — the single source of truth ────────────────────────
 # Per-signal soft maxima. Negative/conflicting signals cap lower than positive

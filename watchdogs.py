@@ -1,5 +1,6 @@
 # watchdogs.py
 from brain.core.runtime_log import get_logger
+import os
 import threading
 import time
 from typing import Tuple, Callable, Dict, List, Optional, Any  # added Any
@@ -23,6 +24,23 @@ from observability.metrics import (
     step_latency_ms_gauge,
 )
 _log = get_logger(__name__)
+
+_GB = 1024 * 1024 * 1024
+
+
+def _swap_gb_env(var: str, default_gb: float) -> float:
+    """Read a swap threshold (in GB) from an env var, falling back to default_gb.
+
+    Lets the host swap warn/pause lines be tuned per-machine without code edits
+    (e.g. ORRIN_SWAP_PAUSE_GB=6). Bad/empty values fall back to the default.
+    Returns a byte count for HostResourceGuard."""
+    raw = os.getenv(var)
+    if raw:
+        try:
+            return float(raw) * _GB
+        except (TypeError, ValueError):
+            _log.warning("ignoring bad %s=%r; using %.1fGB", var, raw, default_gb)
+    return default_gb * _GB
 
 # Provider type hints (optional, just for clarity)
 GetGoals = Callable[[], List[Dict]]
@@ -130,8 +148,8 @@ def start_watchdogs(
     disk_warn_free_bytes: float = 20.0 * 1024 * 1024 * 1024,
     disk_pause_free_bytes: float = 10.0 * 1024 * 1024 * 1024,
     disk_sustain_s: float = 10.0,
-    swap_warn_used_bytes: float = 2.0 * 1024 * 1024 * 1024,
-    swap_pause_used_bytes: float = 4.0 * 1024 * 1024 * 1024,
+    swap_warn_used_bytes: float = _swap_gb_env("ORRIN_SWAP_WARN_GB", 2.0),
+    swap_pause_used_bytes: float = _swap_gb_env("ORRIN_SWAP_PAUSE_GB", 4.0),
     swap_growth_warn_bytes_per_s: float = 5.0 * 1024 * 1024,
     swap_sustain_s: float = 20.0,
     vmem_warn_percent: float = 85.0,

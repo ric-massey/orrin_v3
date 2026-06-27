@@ -19,6 +19,7 @@ from typing import Dict
 
 from brain.affect.affect import detect_affect
 from brain.affect.affect_dynamics import get_habit_factor, record_habit
+from brain.affect.homeostasis import pump_signal
 from brain.utils.failure_counter import record_failure
 
 
@@ -153,7 +154,11 @@ def apply_wm_triggers_and_appraisal(
             _trigger_boost_used[emotion] = _trigger_boost_used.get(emotion, 0.0) + intensity
 
             prev_val = float(core[emotion])
-            core[emotion] = min(1.0, core[emotion] + intensity)
+            # (T0.2) Respect the homeostatic ceiling on the boost so appraisal
+            # triggers can't pump a drive above its EMO_CEILINGS value and pin it
+            # there (the over-cap leak). pump_signal caps positive boosts at the
+            # per-signal ceiling; the once-per-cycle clawback owns legacy overshoot.
+            pump_signal(core, emotion, intensity)
             for opp in opposites.get(emotion, []):
                 if opp in core:
                     core[opp] = max(baseline.get(opp, 0.0), core[opp] - intensity * 0.7)

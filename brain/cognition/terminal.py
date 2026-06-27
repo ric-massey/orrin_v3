@@ -64,16 +64,20 @@ def _compose_final_reflection(*, death_reason: str, identity: str,
     return " ".join(parts)
 
 
-def final_reflection(context: Dict[str, Any] = None) -> str:
+def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
     """
-    Called exclusively during the dying window. Reads working memory, long-term
-    memory tail, and self_model. Produces a final reflection written to
-    final_thoughts.json so the next Orrin can read it on boot.
+    Produces a final reflection written to final_thoughts.json so the next Orrin
+    can read it on boot. Called during the reaper's dying window AND on an ordinary
+    operator stop (T0.4: a graceful stop used to emit no final reflection at all).
+    `reason` lets the caller stamp the handoff (e.g. "operator_stop"); when omitted
+    it falls back to the reaper dying reason. This NEVER sets lifespan.json's
+    `final_thoughts_written` death flag — that belongs solely to the real-deadline
+    path, so a routine restart is a handoff, not a death.
     """
     context = context or {}
 
     from reaper.reaper import dying_reason as _reason
-    death_reason = _reason() or context.get("_death_reason", "unknown")
+    death_reason = reason or _reason() or context.get("_death_reason", "unknown")
 
     self_model = load_json(SELF_MODEL_FILE, default_type=dict) or {}
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []

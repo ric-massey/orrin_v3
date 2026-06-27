@@ -223,7 +223,13 @@ async def chat_history(n: int = 100) -> JSONResponse:
     shared conversation history instead of an empty localStorage one."""
     try:
         import json as _json
-        data = _json.loads((server_state._DATA_DIR / "chat_log.json").read_text("utf-8"))
+        _p = server_state._DATA_DIR / "chat_log.json"
+        # (T0.4) Tolerate absence: a fresh run has no chat_log.json yet — that is
+        # normal, not a fault, so return empty WITHOUT recording a failure (the
+        # old code logged a FileNotFound to the failure counter on every poll).
+        if not _p.exists():
+            return JSONResponse({"messages": [], "total": 0})
+        data = _json.loads(_p.read_text("utf-8"))
         if not isinstance(data, list):
             data = []
         out = [m for m in data[-max(1, min(500, n)):] if isinstance(m, dict)]

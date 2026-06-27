@@ -1,7 +1,7 @@
 import pytest
 
 import brain.cognition.reward_rate as rr
-from brain.affect.homeostasis import update_allostatic_load
+from brain.cognition.interoception import allostatic_setpoint
 from brain.cognition.action_accounting import (
     cycle_produced_goal_action,
     mark_consequential_cognition,
@@ -59,15 +59,23 @@ def test_patch_deficit_and_leave_pressure_are_continuous():
     assert 0.0 < first < second < 1.0
 
 
-def test_exploration_allostatic_load_rises_only_after_existing_load():
-    state = {"allostatic_load": 0.2}
-    core = {"exploration_drive": 0.9}
-    first = update_allostatic_load(state, core)
-    second = update_allostatic_load(state, core)
-    assert second > first
+def test_allostatic_load_accrues_under_deficit_and_recovers():
+    # (T0.1) The behaviourally-active allostatic variable is `_allostatic_load`,
+    # owned by interoception.allostatic_setpoint(): it accrues while the body runs
+    # hot (high resource_deficit) and recovers faster than it builds once the
+    # deficit clears. (The retired homeostasis.update_allostatic_load integrated
+    # raw exploration_drive and pinned to 1.0; it no longer exists.)
+    ctx: dict = {}
+    state = {"resource_deficit": 0.8}
+    allostatic_setpoint(ctx, state)
+    first = state["_allostatic_load"]
+    allostatic_setpoint(ctx, state)
+    second = state["_allostatic_load"]
+    assert second > first  # accrues while running hot
 
-    recovered = update_allostatic_load(state, {"exploration_drive": 0.3})
-    assert recovered < second
+    state["resource_deficit"] = 0.2
+    allostatic_setpoint(ctx, state)
+    assert state["_allostatic_load"] < second  # recovers when the deficit clears
 
 
 def test_impasse_does_not_rise_without_an_escape():

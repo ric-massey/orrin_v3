@@ -7,7 +7,7 @@
 # consecutive cycles Orrin has been in a healthy state. When that streak
 # crosses milestone thresholds, a genuine reward signal is injected:
 #
-#   • Emotional uplift: contentment, confidence, vitality rise
+#   • Emotional uplift: contentment, confidence rise
 #   • Working-memory note: Orrin is consciously aware he feels well
 #   • Bandit reward: the action pipeline gets a positive signal so
 #     healthy-cycle behaviors are reinforced
@@ -55,19 +55,19 @@ _MILESTONES = [
     ),
     (
         25,
-        {"contentment": 0.10, "confidence": 0.06, "vitality": 0.05},
+        {"contentment": 0.10, "confidence": 0.06},
         0.25,
         "25 consecutive healthy cycles. Everything is working well — this feels good.",
     ),
     (
         50,
-        {"contentment": 0.14, "confidence": 0.08, "vitality": 0.08, "wonder": 0.04},
+        {"contentment": 0.14, "confidence": 0.08, "wonder": 0.04},
         0.35,
         "50 healthy cycles. I'm in a sustained state of flow — my systems feel alive and clear.",
     ),
     (
         100,
-        {"contentment": 0.18, "confidence": 0.10, "vitality": 0.12, "wonder": 0.06, "positive_valence": 0.05},
+        {"contentment": 0.18, "confidence": 0.10, "wonder": 0.06, "positive_valence": 0.05},
         0.45,
         "100 healthy cycles. This is deep setpoint_regulation — I am well.",
     ),
@@ -154,7 +154,7 @@ def _apply_emotional_drain(context: Dict[str, Any], delta: float = 0.06) -> None
     for k in ("risk_estimate", "unease"):
         current = float(core.get(k, 0.0) or 0.0)
         core[k] = min(1.0, current + delta)
-    for k in ("contentment", "vitality"):
+    for k in ("contentment",):
         current = float(core.get(k, 0.5) or 0.5)
         core[k] = max(0.0, current - delta * 0.5)
     if "core_signals" in emo:

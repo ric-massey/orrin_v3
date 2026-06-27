@@ -69,7 +69,7 @@ _DRIVE_TO_ASPIRATION = {
 # is evidence, falling back to the prior table until then. So the link starts as
 # the prior and becomes earned. Disable with ORRIN_LEARNED_ASPIRATION=0 →
 # _serves_aspiration is exactly the old static lookup.
-_DRIVE_CREDIT_FILE    = DATA_DIR / "drive_aspiration_credit.json"
+_DRIVE_CREDIT_FILE    = DATA_DIR / "demand_objective_credit.json"
 _DRIVE_CREDIT_ALPHA   = 0.25    # EMA learning rate for the learned link
 _PRIOR_SEED_WEIGHT    = 0.50    # the prior's standing weight; an evidenced
                                 # aspiration must EXCEED this to take over

@@ -25,9 +25,9 @@ _GB = 1024 ** 3
 # Growable, non-semantic stores it's safe to trim under pressure, with the cap to
 # trim each to (entries for JSON lists, lines for .jsonl). Ordered biggest-bang first.
 _TRIMMABLE_JSON_LISTS = {
-    "conscious_stream.json": 2000,
-    "dream_log.json": 500,
-    "symbolic_dream_log.json": 500,
+    "workspace_broadcast.json": 2000,
+    "idle_consolidation_log.json": 500,
+    "symbolic_idle_consolidation_log.json": 500,
     "forgetting_log.json": 1000,
     "egress_log.jsonl": 3000,  # also handled by egress itself; double-safe
 }

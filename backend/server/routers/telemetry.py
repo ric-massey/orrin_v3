@@ -207,7 +207,7 @@ async def consciousness(n: int = 60) -> JSONResponse:
     moments {content, source, salience, ts} written by global_workspace."""
     try:
         import json as _json
-        data = _json.loads((server_state._DATA_DIR / "conscious_stream.json").read_text("utf-8"))
+        data = _json.loads((server_state._DATA_DIR / "workspace_broadcast.json").read_text("utf-8"))
         if not isinstance(data, list):
             data = []
         out = [m for m in data[-max(1, min(200, n)):] if isinstance(m, dict)]
@@ -247,8 +247,8 @@ async def dreams(n: int = 12) -> JSONResponse:
     on a fresh run — the client must render 'slept, nothing consolidated'
     rather than blank cards."""
     cap = max(1, min(50, n))
-    dl = [d for d in _read_json("dream_log.json", []) if isinstance(d, dict)]
-    sd = [d for d in _read_json("symbolic_dream_log.json", []) if isinstance(d, dict)]
+    dl = [d for d in _read_json("idle_consolidation_log.json", []) if isinstance(d, dict)]
+    sd = [d for d in _read_json("symbolic_idle_consolidation_log.json", []) if isinstance(d, dict)]
     return JSONResponse({"dreams": dl[-cap:], "symbolic": sd[-cap:], "total": len(dl)})
 
 
@@ -387,8 +387,8 @@ async def innerweather() -> JSONResponse:
     t.pop("density_buffer", None)  # internal ring, large and meaningless to render
     return JSONResponse({
         "temporal": t,
-        "mood": _read_json("mood_state.json", {}),
-        "lifespan": _read_json("lifespan.json", {}),
+        "mood": _read_json("smoothed_state.json", {}),
+        "lifespan": _read_json("runtime_lifetime.json", {}),
     })
 
 
@@ -464,10 +464,10 @@ async def self_box(n: int = 20) -> JSONResponse:
     traits / knowledge domains, the dated belief-confidence revisions, formed
     opinions, and the autobiography. private_thoughts / final_thoughts stay
     excluded by design (see ui_fixes.md §Deliberate exclusions)."""
-    sm = dict(_read_json("self_model.json", {}))
+    sm = dict(_read_json("identity_state.json", {}))
     sm.pop("latent_identity_vector", None)  # internal embedding, meaningless to render
     revisions: List[Dict[str, Any]] = []
-    for dom, rec in (_read_json("self_belief_revisions.json", {}) or {}).items():
+    for dom, rec in (_read_json("identity_belief_revisions.json", {}) or {}).items():
         if not isinstance(rec, dict):
             continue
         for ev in rec.get("events") or []:
@@ -480,7 +480,7 @@ async def self_box(n: int = 20) -> JSONResponse:
         "model": sm,
         "revisions": revisions[-cap:],
         "opinions": opinions[-cap:],
-        "autobiography": _read_json("autobiography.json", {}),
+        "autobiography": _read_json("run_history.json", {}),
     })
 
 

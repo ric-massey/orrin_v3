@@ -47,7 +47,7 @@ def _has_lived() -> bool:
     same newborn test main.py uses for First Wake; here it distinguishes a transplant
     (has a life, new body) from a true birth (no life, no body)."""
     try:
-        return ((DATA_DIR / "autobiography.json").exists()
+        return ((DATA_DIR / "run_history.json").exists()
                 or (DATA_DIR / "long_memory.json").exists())
     except OSError:  # intentional: stat error → treat as no life behind him
         return False

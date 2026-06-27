@@ -32,7 +32,7 @@ from brain.paths import DATA_DIR, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
-SYMBOLIC_DREAM_LOG = DATA_DIR / "symbolic_dream_log.json"
+SYMBOLIC_DREAM_LOG = DATA_DIR / "symbolic_idle_consolidation_log.json"
 
 _MAX_CHAIN_DEPTH = 4
 _MAX_CHAINS      = 12

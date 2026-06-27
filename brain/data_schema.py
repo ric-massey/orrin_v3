@@ -34,6 +34,55 @@ from typing import Any, Dict, Union
 SCHEMA_VERSION = 2
 SCHEMA_VERSION_KEY = "_schema_version"
 
+# 4.7 — data-FILE name renames (biological -> engineering). The on-disk filename
+# is a persisted surface just like the keys inside it. Old files (and out-of-tree
+# backups) keep loading: load_json / modify_json / the backend reader fall back to
+# the old-named sibling via resolve_read_path() when the new name is absent, and
+# the one-time backfill (migrate_schema_v2.py) renames them on disk. Keyed by
+# basename (old -> new). The paths.py constant *identifiers* are unchanged; only
+# the filename they point at moved.
+FILE_RENAMES: Dict[str, str] = {
+    # control-signals (was affect)
+    "affect_state.json": "control_signals_state.json",
+    "affect_model.json": "control_signals_model.json",
+    "affect_drift.json": "control_signals_drift.json",
+    "affect_function_map.json": "control_signals_function_map.json",
+    # signals (was emotion)
+    "emotion_function_map.json": "signal_function_map.json",
+    "emotion_sensitivity.json": "signal_sensitivity.json",
+    "emotion_drift.json": "signal_drift.json",
+    "custom_emotion.json": "custom_signal.json",
+    # smoothed state (was mood)
+    "mood_state.json": "smoothed_state.json",
+    # attention workspace (was consciousness)
+    "conscious_stream.json": "workspace_broadcast.json",
+    # idle consolidation (was dreams)
+    "dream_log.json": "idle_consolidation_log.json",
+    "symbolic_dream_log.json": "symbolic_idle_consolidation_log.json",
+    # run history (was autobiography)
+    "autobiography.json": "run_history.json",
+    # resource self-monitoring (was body sense)
+    "body_sense.json": "resource_self_monitor.json",
+    "body_bands.json": "resource_bands.json",
+    "body_bands_dream.json": "resource_bands_idle.json",
+    "body_host_bands.json": "host_resource_bands.json",
+    # cost prediction (was interoception)
+    "interoceptive_model.json": "cost_prediction_model.json",
+    # runtime lifetime (was lifespan)
+    "lifespan.json": "runtime_lifetime.json",
+    # identity (was self-model)
+    "self_model.json": "identity_state.json",
+    "symbolic_self_model.json": "symbolic_identity_state.json",
+    "self_belief_revisions.json": "identity_belief_revisions.json",
+    "self_model_backup.json": "identity_state_backup.json",
+    # runtime state (was alive_brain_state)
+    "alive_brain_state.json": "runtime_state.json",
+    # demand/objective credit (was drive/aspiration)
+    "drive_aspiration_credit.json": "demand_objective_credit.json",
+}
+# Reverse map: new basename -> old basename, for the read-old fallback.
+_OLD_BASENAME: Dict[str, str] = {new: old for old, new in FILE_RENAMES.items()}
+
 # Per-file migration registry. Keyed by the data file's basename.
 #
 #   "top":    {old_key: new_key}                  rename at the dict's top level
@@ -53,7 +102,7 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
     # of the routing/setpoint/antagonist tables. The 14 engineering-neutral signals
     # (threat_level, confidence, …) are frozen — already correct. surprise/wonder
     # are added in their own slices (they collide with generic English / wonder.py).
-    "affect_state.json": {
+    "control_signals_state.json": {  # was affect_state.json (4.7 file rename)
         "top": {
             "homeostasis": "setpoint_proximity",  # setpoint regulation index
             "valence": "reward_signal",           # hedonic scalar, sign -1..1
@@ -76,7 +125,7 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
     },
     # The learned signal->function weight map is keyed by signal name at the top
     # level — migrate in lockstep or the learned associations silently reset.
-    "emotion_function_map.json": {
+    "signal_function_map.json": {  # was emotion_function_map.json (4.7 file rename)
         "top": {
             "positive_valence": "reward_positive",
             "negative_valence": "reward_negative",
@@ -91,7 +140,7 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
     },
     # 4.6 — lifecycle start timestamp. The /life wire field stays "born_at" via
     # life_status() translation until the routes/frontend slice.
-    "lifespan.json": {
+    "runtime_lifetime.json": {  # was lifespan.json (4.7 file rename)
         "top": {"born_at": "start_time"},
     },
 }
@@ -143,3 +192,17 @@ def migrate_loaded(
 def is_registered(path: Union[str, Path]) -> bool:
     """True if a file would be migrated (used by the backfill script)."""
     return Path(path).name in MIGRATIONS
+
+
+def resolve_read_path(path: Union[str, Path]) -> Path:
+    """Read-old-path fallback (4.7). Callers request the NEW filename; if that file
+    doesn't exist yet but the old-named sibling does, read the old one. Lets the
+    running loop and old backups keep loading before the backfill renames files on
+    disk. Returns the path to actually read (unchanged when no fallback applies)."""
+    p = Path(path)
+    old = _OLD_BASENAME.get(p.name)
+    if old is not None and not p.exists():
+        legacy = p.with_name(old)
+        if legacy.exists():
+            return legacy
+    return p

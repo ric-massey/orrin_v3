@@ -106,7 +106,7 @@ class HomeostasisDaemon:
 
         # ── 1. resource_deficit ────────────────────────────────────────────────────────
         try:
-            es = self._read_json("affect_state.json")
+            es = self._read_json("control_signals_state.json")
             if isinstance(es, dict):
                 core = es.get("core_signals") or es
                 resource_deficit = float(core.get("resource_deficit") or es.get("resource_deficit") or 0.0)
@@ -220,7 +220,7 @@ class HomeostasisDaemon:
 
         # ── 5. Self-model hollow ──────────────────────────────────────────────
         try:
-            sm = self._read_json("self_model.json")
+            sm = self._read_json("identity_state.json")
             if isinstance(sm, dict):
                 values = sm.get("core_values") or []
                 if not values:
@@ -239,7 +239,7 @@ class HomeostasisDaemon:
             record_failure("setpoint_regulation.HomeostasisDaemon._check.5", _e)
 
         # ── 6. Data corruption ────────────────────────────────────────────────
-        for fname in ("long_memory.json", "self_model.json", "cognitive_functions.json"):
+        for fname in ("long_memory.json", "identity_state.json", "cognitive_functions.json"):
             try:
                 self._read_json(fname)
             except Exception:

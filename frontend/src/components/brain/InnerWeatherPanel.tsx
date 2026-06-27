@@ -59,7 +59,7 @@ export default function InnerWeatherPanel() {
             title="Clock & state summary"
             perspective="agent-accessible"
             what="The runtime's internal clock estimate, distinct from how much wall-clock has passed: internal vs. real cycles, the session's arc, the texture of the present ('waiting, long absence'), how far back the last notable event is estimated — plus its smoothed signal state and its lifecycle position (it has a finite projected runtime budget)."
-            source="brain/data/temporal_state.json · mood_state.json · lifespan.json"
+            source="brain/data/temporal_state.json · smoothed_state.json · runtime_lifetime.json"
             good="There is no 'good' here — this box is a window, not a gauge. Watch felt time stretch when nothing happens and compress when a lot does."
             src={{ file: "brain/cognition/temporal_state.py", start: 1, end: 70, label: "temporal_state" }}
           />

@@ -129,7 +129,7 @@ async def belief_revisions(n: int = 80) -> JSONResponse:
     that reconstructable, plus evidence counts and churn counters per belief class."""
     rows: list[Dict[str, Any]] = []
 
-    self_revs = _read_json("self_belief_revisions.json", {})
+    self_revs = _read_json("identity_belief_revisions.json", {})
     if isinstance(self_revs, dict):
         for dom, rec in self_revs.items():
             if not isinstance(rec, dict):
@@ -220,7 +220,7 @@ async def belief_revisions(n: int = 80) -> JSONResponse:
 async def drives() -> JSONResponse:
     """Drives & body: motivation drives, energy mode, body sense, and the live
     interoceptive cost model (expected vs last cost per function = 'strain')."""
-    io = _read_json("interoceptive_model.json", {})
+    io = _read_json("cost_prediction_model.json", {})
     io_rows = sorted(
         ({"fn": k, **v} for k, v in io.items() if isinstance(v, dict)),
         key=lambda r: r.get("ema") or 0, reverse=True,
@@ -228,7 +228,7 @@ async def drives() -> JSONResponse:
     return JSONResponse({
         "drives": (_read_json("motivation_state.json", {}) or {}).get("drives") or {},
         "energy": _read_json("energy_mode.json", {}),
-        "body": _read_json("body_sense.json", {}),
+        "body": _read_json("resource_self_monitor.json", {}),
         "interoception": io_rows[:20],
     })
 

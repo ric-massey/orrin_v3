@@ -1,10 +1,9 @@
 # Analogue Removal Plan — Drop the Biological Framing, Codebase-Wide
 
 Date: 2026-06-26
-Status: Phases 1–3 + 4 DONE (2026-06-27). Phase 4 was executed in full per Ric's
-explicit go-ahead (overriding the "defer Phase 4 indefinitely" recommendation),
-EXCEPT the optional data-file *name* renames (§4.7 below), which Ric chose to
-skip as low-value/high-churn. See [§ Phase 4 — DONE](#phase-4-done) for the
+Status: Phases 1–4 DONE IN FULL (2026-06-27), including the data-file *name*
+renames (§4.7), per Ric's explicit go-ahead (overriding the "defer Phase 4
+indefinitely" recommendation). See [§ Phase 4 — DONE](#phase-4-done) for the
 landed sub-slices and the one naming deviation (`surprise → prediction_error_signal`).
 
 ## Phase 4 — DONE
@@ -41,10 +40,19 @@ Executed on branch `analogue-removal`, each sub-slice its own green commit
   leak sweep clean (residue = kept code identifiers, comments, the deferred
   `mood_state.json` file, and memory-tag/sentiment surfaces).
 
-**SKIPPED — §4.7 data-file *name* renames** (`affect_state.json`,
-`mood_state.json`, `alive_brain_state.json`, `emotion_*.json`, …): Ric chose to
-leave the ~25 biological FILE names as-is (pure internal-filename hygiene, high
-churn on live state, lowest payoff). The keys *inside* them are now engineering.
+- **4.7** Data-file *name* renames (21 files): `affect_state.json→control_signals_state.json`,
+  `emotion_function_map.json→signal_function_map.json`, `mood_state.json→smoothed_state.json`,
+  `conscious_stream.json→workspace_broadcast.json`, `dream_log.json→idle_consolidation_log.json`,
+  `autobiography.json→run_history.json`, `body_sense.json→resource_self_monitor.json`,
+  `interoceptive_model.json→cost_prediction_model.json`, `lifespan.json→runtime_lifetime.json`,
+  `self_model.json→identity_state.json`, `alive_brain_state.json→runtime_state.json`,
+  `drive_aspiration_credit.json→demand_objective_credit.json`, … (full map in
+  `brain/data_schema.FILE_RENAMES`). A `resolve_read_path()` read-old-path fallback
+  in `load_json`/`modify_json`/the backend reader keeps old files + backups loading;
+  the backfill renames them on disk (verified on the snapshot + run live, idempotent).
+  The lone git-tracked seed (`affect_model.json`) was re-tracked under its new name.
+  The `paths.py` constant *identifiers* (e.g. `AFFECT_STATE_FILE`) were left as-is
+  to bound blast radius — only the filename they point at moved.
 
 ---
 

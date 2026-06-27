@@ -26,7 +26,7 @@ from brain.paths import DATA_DIR
 from brain.utils.log import log_private
 from brain.utils.failure_counter import record_failure
 
-_STREAM_FILE = DATA_DIR / "conscious_stream.json"
+_STREAM_FILE = DATA_DIR / "workspace_broadcast.json"
 _STREAM_MAX = 200          # persisted stream length
 _HYSTERESIS_BONUS = 0.15   # continuity: the current focus is favoured to persist
 

@@ -100,7 +100,7 @@ def test_cognition_feeds_never_leak_private_thoughts():
 
 def test_belief_revisions_unifies_self_opinion_and_symbolic(tmp_path, monkeypatch):
     monkeypatch.setattr(server_state, "_DATA_DIR", tmp_path)
-    (tmp_path / "self_belief_revisions.json").write_text(json.dumps({
+    (tmp_path / "identity_belief_revisions.json").write_text(json.dumps({
         "COGNITIVE": {
             "confidence": 0.8,
             "events": [{"timestamp": "2026-01-01T00:00:00Z", "goal": "tested", "delta": -0.2, "new_confidence": 0.8}],
@@ -232,7 +232,7 @@ def test_death_endpoint_refuses_while_alive_then_lifts_veil_on_death():
     from brain.paths import DATA_DIR
 
     # Alive → refused.
-    (DATA_DIR / "lifespan.json").write_text(json.dumps({
+    (DATA_DIR / "runtime_lifetime.json").write_text(json.dumps({
         "born_at": (datetime.now(timezone.utc) - timedelta(days=3)).isoformat(),
         "lifespan_days": 400, "noise_days": 0, "final_thoughts_written": False,
     }))
@@ -240,7 +240,7 @@ def test_death_endpoint_refuses_while_alive_then_lifts_veil_on_death():
     assert client.get("/api/lifecycle").json()["state"] == "alive"
 
     # Dead → the veil lifts.
-    (DATA_DIR / "lifespan.json").write_text(json.dumps({
+    (DATA_DIR / "runtime_lifetime.json").write_text(json.dumps({
         "born_at": (datetime.now(timezone.utc) - timedelta(days=400)).isoformat(),
         "lifespan_days": 400, "noise_days": 0, "final_thoughts_written": True,
     }))
@@ -257,5 +257,5 @@ def test_death_endpoint_refuses_while_alive_then_lifts_veil_on_death():
     assert "private_thoughts" not in client.get("/api/identity").text
 
     # Cleanup so other tests see a clean lifespan.
-    (DATA_DIR / "lifespan.json").unlink(missing_ok=True)
+    (DATA_DIR / "runtime_lifetime.json").unlink(missing_ok=True)
     (DATA_DIR / "final_thoughts.json").unlink(missing_ok=True)

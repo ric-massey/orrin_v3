@@ -46,7 +46,7 @@ class AliveBrain:
         # so every reboot forgot it and re-spawned the same auto goals (the daily
         # snapshot churned to 200×). _last = cooldown timestamps; _created_once =
         # keys for one-shot / date-stamped goals that must never be re-created.
-        self._state_file = self.repo_root / "data" / "alive_brain_state.json"
+        self._state_file = self.repo_root / "data" / "runtime_state.json"
         self._last: Dict[str, float] = {}
         self._created_once: set = set()
         try:

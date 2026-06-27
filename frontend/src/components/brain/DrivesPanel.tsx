@@ -49,7 +49,7 @@ export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
             title="Priority weights & resource self-monitoring"
             perspective="agent-accessible"
             what="Its demand-pressure accumulators (what it is weighting right now), the current resource-cadence mode, real host resource readings (memory, CPU), and the resource cost model: the learned expected cost of each cognitive function vs. what it actually cost last time — sustained gaps surface as cost pressure."
-            source="brain/data/motivation_state.json · energy_mode.json · body_sense.json · interoceptive_model.json"
+            source="brain/data/motivation_state.json · energy_mode.json · resource_self_monitor.json · cost_prediction_model.json"
             good="Priority weights that MOVE over time (a flatlined 1.0 means depletion isn't biting), and expected≈actual cost — big persistent gaps mean its cost self-model is off."
             src={{ file: "brain/cognition/cost_prediction.py", start: 1, end: 70, label: "cost model (interoception wire field)" }}
           />

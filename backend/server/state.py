@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from brain.data_schema import migrate_loaded
+from brain.data_schema import migrate_loaded, resolve_read_path
 
 from .hub import Hub
 
@@ -38,7 +38,8 @@ _DATA_PARSE_ERRORS: Dict[str, str] = {}
 
 def _read_json(fname: str, default: Any) -> Any:
     try:
-        text = (_DATA_DIR / fname).read_text("utf-8")
+        # 4.7: callers pass the new filename; fall back to the old-named file on disk.
+        text = resolve_read_path(_DATA_DIR / fname).read_text("utf-8")
     except FileNotFoundError:
         _DATA_PARSE_ERRORS.pop(fname, None)  # missing ≠ corrupt
         return default

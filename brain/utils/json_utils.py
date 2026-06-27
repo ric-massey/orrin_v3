@@ -29,7 +29,7 @@ from brain.utils.json_extract import (  # noqa: E402,F401
 # Read-old/write-new persisted-key shim (analogue-removal Phase 4). No-op for any
 # file not in the migration registry, so the cost on the hot read path is one
 # dict lookup. Imported here so json_utils stays the single I/O choke point.
-from brain.data_schema import migrate_loaded
+from brain.data_schema import migrate_loaded, resolve_read_path
 
 T = TypeVar("T")
 
@@ -164,7 +164,8 @@ def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) 
     for the duration of the read, so a load never observes the brief window between a
     writer's os.replace and its commit. Shared locks don't block other readers.
     """
-    path = Path(filepath)
+    requested = Path(filepath)
+    path = resolve_read_path(requested)  # 4.7: fall back to old filename if present
     lock_fd = None
     try:
         if not path.exists() or path.stat().st_size == 0:
@@ -176,7 +177,9 @@ def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) 
             except Exception:
                 lock_fd = None  # lock is best-effort; degrade to an unlocked read
         with path.open("r", encoding="utf-8") as f:
-            return cast(T, migrate_loaded(path, json.load(f)))
+            # migrate_loaded keys on the REQUESTED (new) basename, not the resolved
+            # legacy one, so the content registry still applies to old-named files.
+            return cast(T, migrate_loaded(requested, json.load(f)))
     except json.JSONDecodeError as e:
         log_model_issue(f"[load_json] Corrupt JSON in {filepath}: {e}")
         # ONE backup attempt only — use stem (strips all suffixes) to avoid
@@ -255,10 +258,11 @@ def modify_json(
             fcntl.flock(lock_fd, fcntl.LOCK_EX)
 
         try:
-            if not path.exists() or path.stat().st_size == 0:
+            read_path = resolve_read_path(path)  # 4.7: read old filename if new absent
+            if not read_path.exists() or read_path.stat().st_size == 0:
                 data: Any = default_type()
             else:
-                with path.open("r", encoding="utf-8") as f:
+                with read_path.open("r", encoding="utf-8") as f:
                     data = migrate_loaded(path, json.load(f))
         except Exception:
             data = default_type()

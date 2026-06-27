@@ -29,7 +29,7 @@ def _seed(path, core_overrides, resource_deficit, extra=None):
 
 
 def _isolate(monkeypatch, tmp_path, core_overrides, resource_deficit, extra=None):
-    affect_file = tmp_path / "affect_state.json"
+    affect_file = tmp_path / "control_signals_state.json"
     wm_file = tmp_path / "working_memory.json"
     wm_file.write_text("[]")
     _seed(affect_file, core_overrides, resource_deficit, extra)

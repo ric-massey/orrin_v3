@@ -98,7 +98,7 @@ brain/data/*.json
 !brain/data/meta_rules.json
 !brain/data/cognitive_functions.json
 !brain/data/behavioral_functions_list.json
-!brain/data/affect_model.json
+!brain/data/control_signals_model.json
 !brain/data/capability_descriptions.json
 
 # Local artifacts

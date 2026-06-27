@@ -46,11 +46,11 @@ def test_mark_stall_sets_reaper_marker():
 
 def test_disk_ceiling_trims_growable_stores_when_over(monkeypatch):
     monkeypatch.setenv("ORRIN_DISK_CEILING_GB", "0.0000001")  # ~100 bytes → force over
-    (DATA_DIR / "conscious_stream.json").write_text(json.dumps([{"i": i} for i in range(5000)]))
+    (DATA_DIR / "workspace_broadcast.json").write_text(json.dumps([{"i": i} for i in range(5000)]))
     assert rc.over_disk_ceiling() is True
     report = rc.enforce_disk_ceiling()
     assert report["over"] is True
-    assert json.loads((DATA_DIR / "conscious_stream.json").read_text()).__len__() == 2000
+    assert json.loads((DATA_DIR / "workspace_broadcast.json").read_text()).__len__() == 2000
 
 
 def test_disk_ceiling_is_noop_when_under(monkeypatch):

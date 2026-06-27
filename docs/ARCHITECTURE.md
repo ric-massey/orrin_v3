@@ -5,7 +5,7 @@ and *how to run it*; this document is the mechanism-level walkthrough for reader
 understand (or modify) the cognitive architecture itself.
 
 Everything here is **symbolic and runs without an LLM** unless explicitly noted. The LLM is an
-optional, gated tool-call organ — see [LLM as a tool](#llm-as-a-tool).
+optional, gated tool-call interface — see [LLM as a tool](#llm-as-a-tool).
 
 ## Contents
 

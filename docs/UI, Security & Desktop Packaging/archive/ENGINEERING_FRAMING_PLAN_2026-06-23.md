@@ -1,5 +1,11 @@
 # Engineering Framing Plan
 
+> **SUPERSEDED (2026-06-26)** by
+> `docs/Engineering & Code Health/ANALOGUE_REMOVAL_PLAN_2026-06-26.md`. That plan
+> reverses this one's non-goals ("do not remove biological mode", "do not rename
+> internal Python modules"): the biological dialect is now removed outright and
+> engineering becomes the only language, internals included. Kept here as record.
+
 Date: 2026-06-23
 
 ## Purpose

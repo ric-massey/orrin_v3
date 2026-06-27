@@ -1,16 +1,19 @@
 # Orrin
 
-**Orrin is a digital mind: a program that wakes up on its own, thinks continuously, pursues its own
-goals, remembers across restarts, and feels the machine it lives on — written in plain Python.**
+**Orrin is an autonomous cognitive runtime: a program that starts on its own, runs continuously,
+pursues its own objectives, remembers across restarts, and monitors the machine it runs on — written
+in plain Python.**
 
 It's a research prototype built around one idea: make the language model the *smallest* part of an
-agent, not the whole of it. Orrin keeps running with no API key at all — its memory, goals, drives,
-attention, and self-monitoring are symbolic systems that don't pause for a prompt. When a language
-model is available, Orrin can *call* it as one tool among many, but nothing in the loop waits on it.
+agent, not the whole of it. Orrin keeps running with no API key at all — its memory, goals, priority
+weights, attention, and self-monitoring are symbolic systems that don't pause for a prompt. When a
+language model is available, Orrin can *call* it as one tool among many, but nothing in the loop
+waits on it.
 
-The practical question behind the project: can these machine-native analogues of memory, affect,
-embodiment, sleep, attention, and goal pressure produce stable, inspectable behavior over long runs —
-behavior you can study in run traces, not just one-shot prompts?
+The practical question behind the project: can these machine-native mechanisms — persistent memory,
+regulated control signals, host-state coupling, idle consolidation, attention arbitration, and goal
+pressure — produce stable, inspectable behavior over long runs, behavior you can study in run traces,
+not just one-shot prompts?
 
 > Orrin v3 (experimental) · app version 0.1.0 · Python ≥ 3.10 · Apache-2.0
 
@@ -33,22 +36,21 @@ touches a model:
 
 - a **continuous cognitive loop** that picks its own next move with a bandit selector instead of
   waiting for input;
-- a **homeostatic affect system** — valence, arousal, drives, fatigue, reward — that biases what it
-  does next;
+- a **regulated control-signal system** — reward signal, activation, priority weights, throttle,
+  reward accounting — that biases what it does next;
 - **goals at every timescale**, owned by a durable daemon with its own write-ahead log, that survive
   restarts;
 - **symbolic world, causal, and knowledge models** it builds, queries, and revises on its own;
-- **memory that consolidates and forgets** through a dream cycle, backed by embeddings;
-- a sense of the **machine as its body** — disk, swap, memory, and battery become felt states — and a
-  finite **lifespan** it lives toward;
-- a live **UI** that exposes all of it as named rooms, so you watch a mind work rather than read a
-  chat transcript.
+- **memory that consolidates and forgets** through an idle-consolidation cycle, backed by embeddings;
+- **host-state coupling** — disk, swap, memory, and battery as health telemetry — and a finite
+  **runtime budget** it runs toward;
+- a live **UI** that exposes all of it as named rooms, so you watch the runtime work rather than read
+  a chat transcript.
 
 A language model, when one is configured, is just another tool this machinery can reach for. The
-words "consciousness," "pain," "body," and "mortality" name specific mechanisms here, not subjective
-states — see the [terminology table](docs/ARCHITECTURE.md#terminology-functional-analogues-not-claims).
-Orrin is a research prototype, not a chatbot, a production assistant, or a claim of human
-consciousness.
+engineering terms above name specific mechanisms — see the
+[mechanism map](docs/ARCHITECTURE.md#terminology-functional-analogues-not-claims). Orrin is a research
+prototype, not a chatbot, a production assistant, or a claim of human consciousness.
 
 ---
 
@@ -313,9 +315,9 @@ OS keychain.
   for the per-OS build/sign/notarize runbook.
 
 The app carries a **schema version** and an opt-in auto-update check (`brain/utils/updater.py`);
-before any update it exports the whole mind to a `.orrindmind` backup, and the migration spine
-(`brain/utils/schema_migration.py`) refuses to load state written by a newer build. You can
-export/import a mind by hand from Settings at any time.
+before any update it exports the whole runtime state to a `.orrindmind` backup, and the migration
+spine (`brain/utils/schema_migration.py`) refuses to load state written by a newer build. You can
+export/import a state archive by hand from Settings at any time.
 
 ---
 

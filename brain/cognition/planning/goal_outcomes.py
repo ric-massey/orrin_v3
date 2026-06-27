@@ -341,7 +341,7 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     penalty_scale = 1.0
     commitment_refs: Optional[List[str]] = None
     try:
-        from brain.cognition.will import find_commitment_for_goal
+        from brain.cognition.commitment import find_commitment_for_goal
         commitment = find_commitment_for_goal(str(goal_name), context)
         if isinstance(commitment, dict):
             _cstrength = float(

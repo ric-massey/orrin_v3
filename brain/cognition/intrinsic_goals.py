@@ -368,7 +368,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             # so follow-through is shielded from momentary impulse (the positive
             # half of free will, complementing inhibition).
             try:
-                from brain.cognition.will import form_commitment as _form_commitment
+                from brain.cognition.commitment import form_commitment as _form_commitment
                 _form_commitment(context, f"pursue: {_winner['title']}")
             except Exception as _wce:
                 record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)

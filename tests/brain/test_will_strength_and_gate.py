@@ -3,7 +3,7 @@
 
 import pytest
 
-import brain.cognition.will as W
+import brain.cognition.commitment as W
 from brain.cognition.goal_competition import drive_pull_scores
 
 

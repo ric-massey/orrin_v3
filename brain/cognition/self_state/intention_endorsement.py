@@ -1,4 +1,7 @@
-# brain/cognition/self_state/second_order_volition.py
+# brain/cognition/self_state/intention_endorsement.py
+# Meta-policy: endorse (or reject) a first-order intention against the runtime's
+# values before it is acted on. Persists to the frozen second_order_volition.json
+# store / `volition` telemetry field.
 #
 # Second-order volition (Frankfurt 1971) — the core of free will.
 #
@@ -105,7 +108,7 @@ def _record(stance: str, key: str, msg: str) -> None:
         log.append({"ts": time.time(), "stance": stance, "desire": key, "statement": msg})
         _LOG_FILE.write_text(json.dumps(log[-200:], indent=1), encoding="utf-8")
     except Exception as exc:  # volition-log write best-effort — record
-        record_failure("second_order_volition._record.persist", exc)
+        record_failure("intention_endorsement._record.persist", exc)
     try:
         update_working_memory({
             "content": f"[volition] {msg}",
@@ -113,7 +116,7 @@ def _record(stance: str, key: str, msg: str) -> None:
             "importance": 3, "priority": 2,
         })
     except Exception as exc:  # working-memory write best-effort — record
-        record_failure("second_order_volition._record.wm", exc)
+        record_failure("intention_endorsement._record.wm", exc)
     log_private(f"[volition:{stance}] {key}")
 
 
@@ -164,7 +167,7 @@ def endorse_intention(
                 context=context,
             )
         except Exception as exc:  # disowned-desire memory best-effort — record
-            record_failure("second_order_volition.endorse_intention", exc)
+            record_failure("intention_endorsement.endorse_intention", exc)
         return "disown", gloss
 
     if toks & _tokens(_values_text()):
@@ -202,7 +205,7 @@ def reflect_on_desire(context: Dict[str, Any] = None) -> str:
                 from brain.affect.arbiter import submit_affect
                 submit_affect(context, key, -0.06, source="second_order_volition", ttl_cycles=2)
             except Exception as exc:  # affect damp best-effort — record
-                record_failure("second_order_volition.reflect_on_desire", exc)
+                record_failure("intention_endorsement.reflect_on_desire", exc)
     elif stance == "endorse":
         msg = f"I reflect on my pull toward {gloss} — and I choose it. It's mine."
     else:

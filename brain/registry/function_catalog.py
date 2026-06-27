@@ -50,12 +50,12 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("cognition/idle_consolidation", "Reflection"),
     ("threads", "Dialogue"),
     ("awaiting_response", "Dialogue"),
-    # self / identity / values / will
+    # self / identity / values / commitment & intention-endorsement
     ("cognition/self_state", "Self"),
     ("identity", "Self"),
     ("opinions", "Values"),
-    ("will", "Values"),
-    ("volition", "Values"),
+    ("commitment", "Values"),
+    ("intention_endorsement", "Values"),
     ("value", "Values"),
     ("privacy", "Values"),
     ("body_sense", "Body"),

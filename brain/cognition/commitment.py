@@ -1,21 +1,21 @@
-# brain/cognition/will.py
+# brain/cognition/commitment.py
 #
-# Explicit will / commitment — the positive half of free will.
+# Commitment — the positive half of action selection (the complement to veto /
+# inhibition, which is the ability to NOT act).
 #
-# Orrin already has the NEGATIVE half (veto / inhibition — the ability to NOT
-# act). Will is the complement: forming an intention and HOLDING it against
-# momentary impulses long enough to see it through. Without it an agent is blown
-# around by whatever drive is loudest each instant (his old "wondering vs doing"
-# loop was exactly this — no will to hold a course).
+# Forming an intention and HOLDING it against momentary impulses long enough to
+# see it through. Without it the selector is blown around by whatever priority
+# signal is loudest each instant (the old "wondering vs doing" loop was exactly
+# this — no held course).
 #
-# A commitment here is "I have resolved to do X." While active it:
+# A commitment here is "resolved to do X." While active it:
 #   - stays present (the intention is shielded, not forgotten),
 #   - lends the committed goal a modest, DECAYING follow-through bias so impulse
 #     switching is resisted while fresh resolve is strong,
 #   - clears when the goal is done/gone or the resolve fades.
 #
-# The decay + auto-clear are deliberate: willpower that never weakens would just
-# be a rut. This shields follow-through without locking him in. Symbolic, no LLM.
+# The decay + auto-clear are deliberate: a follow-through bias that never weakens
+# would just be a rut. This shields follow-through without locking in. Symbolic, no LLM.
 from __future__ import annotations
 
 import json
@@ -46,7 +46,7 @@ def _drive_alignment(intention: str) -> float:
     whose name/tags share ground with the intention (master plan 4.1)."""
     try:
         from brain.embodiment import drive_engine
-        from brain.cognition.self_state.second_order_volition import _tokens
+        from brain.cognition.self_state.intention_endorsement import _tokens
         state = drive_engine.get_state() or {}
         tags = drive_engine.get_drive_tags() or {}
         toks = _tokens(intention)
@@ -58,22 +58,22 @@ def _drive_alignment(intention: str) -> float:
                 best = max(best, float(pressure))
         return min(1.0, best)
     except Exception as exc:  # drive subsystem unavailable — record, no alignment
-        record_failure("will._drive_alignment", exc)
+        record_failure("commitment._drive_alignment", exc)
         return 0.0
 
 
 def _value_alignment(intention: str) -> float:
     """Token overlap between intention and core_values — the same _tokens
-    machinery second_order_volition already uses (master plan 4.1)."""
+    machinery intention_endorsement already uses (master plan 4.1)."""
     try:
-        from brain.cognition.self_state.second_order_volition import _tokens, _values_text
+        from brain.cognition.self_state.intention_endorsement import _tokens, _values_text
         toks = _tokens(intention)
         vals = _tokens(_values_text())
         if not toks or not vals:
             return 0.0
         return min(1.0, len(toks & vals) / 3.0)
     except Exception as exc:  # values subsystem unavailable — record, no alignment
-        record_failure("will._value_alignment", exc)
+        record_failure("commitment._value_alignment", exc)
         return 0.0
 
 
@@ -100,7 +100,7 @@ def compute_commitment_strength(
         from brain.cognition.reflection.review_failures import failure_pattern_discount
         strength -= failure_pattern_discount(intention)
     except Exception as exc:  # discount optional — record, keep undiscounted strength
-        record_failure("will.compute_commitment_strength", exc)
+        record_failure("commitment.compute_commitment_strength", exc)
     return round(max(_MIN_STRENGTH, strength), 3)
 
 
@@ -110,11 +110,11 @@ def form_commitment(
     strength: Optional[float] = None,
 ) -> Optional[Dict[str, Any]]:
     """
-    Resolve to pursue something — the act of will. Records and shields it.
+    Resolve to pursue something — form the commitment. Records and shields it.
 
-    The will stands at the door (master plan 4.2): the endorsement faculty is
-    consulted at the binding moment. A disowned intention forms NO commitment
-    (the goal may still exist, but gets no will shield). When `strength` is
+    Endorsement gates the binding moment (master plan 4.2): the endorsement
+    faculty is consulted before a commitment forms. A disowned intention forms NO
+    commitment (the goal may still exist, but gets no commitment shield). When `strength` is
     given explicitly the gate is bypassed (caller has already judged).
     Returns the commitment, or None when the intention was disowned.
     """
@@ -131,7 +131,7 @@ def form_commitment(
     stance, gloss = "endorse", "I stand behind this."
     if strength is None:
         try:
-            from brain.cognition.self_state.second_order_volition import endorse_intention
+            from brain.cognition.self_state.intention_endorsement import endorse_intention
             stance, gloss = endorse_intention(intention, context)
         except Exception as _e:
             log_private(f"[will] endorsement gate unavailable, proceeding plain: {_e}")
@@ -165,7 +165,7 @@ def form_commitment(
             "event_type": "commitment", "importance": 3, "priority": 3,
         })
     except Exception as exc:  # working-memory write best-effort — record
-        record_failure("will.form_commitment.working_memory", exc)
+        record_failure("commitment.form_commitment.working_memory", exc)
     try:
         log = []
         if _FILE.exists():
@@ -173,7 +173,7 @@ def form_commitment(
         log.append(c)
         _FILE.write_text(json.dumps(log[-100:], indent=1), encoding="utf-8")
     except Exception as exc:  # external I/O persisting the commitment log
-        record_failure("will.form_commitment.persist", exc)
+        record_failure("commitment.form_commitment.persist", exc)
     # A commitment without a goal is unfalsifiable (BEHAVIOR_FIX_PLAN 2.2):
     # assert a corresponding active goal exists, or create one.
     try:
@@ -196,7 +196,7 @@ def _recent_identical_commitment(intention: str) -> Optional[Dict[str, Any]]:
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
     except Exception as exc:  # bad/unreadable commitment log — record, treat as none
-        record_failure("will._recent_identical_commitment", exc)
+        record_failure("commitment._recent_identical_commitment", exc)
         return None
     if not isinstance(log, list):
         return None
@@ -251,7 +251,7 @@ def check_orphaned_commitments() -> int:
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
     except Exception as exc:  # bad/unreadable commitment log — record, no orphans
-        record_failure("will.check_orphaned_commitments.read", exc)
+        record_failure("commitment.check_orphaned_commitments.read", exc)
         return 0
     if not isinstance(log, list):
         return 0
@@ -263,7 +263,7 @@ def check_orphaned_commitments() -> int:
             if str(g.get("status", "")).lower() not in ("completed", "failed", "abandoned", "cancelled")
         }
     except Exception as exc:  # goals unavailable — record, no orphans
-        record_failure("will.check_orphaned_commitments.goals", exc)
+        record_failure("commitment.check_orphaned_commitments.goals", exc)
         return 0
     orphans = 0
     seen: set = set()
@@ -334,7 +334,7 @@ def find_commitment_for_goal(
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
     except Exception as exc:  # bad/unreadable commitment log — record, treat as none
-        record_failure("will.find_commitment_for_goal", exc)
+        record_failure("commitment.find_commitment_for_goal", exc)
         return None
     if not isinstance(log, list):
         return None

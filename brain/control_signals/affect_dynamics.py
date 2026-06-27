@@ -373,10 +373,10 @@ def update_mood(state: Dict[str, Any], valence: float) -> float:
     Drift mood slowly toward current valence.
     Returns updated mood in [-1, +1].
     """
-    mood = float(state.get("mood", _MOOD_INITIAL) or _MOOD_INITIAL)
+    mood = float(state.get("smoothed_state", _MOOD_INITIAL) or _MOOD_INITIAL)
     mood = mood + (valence - mood) * _MOOD_DRIFT_RATE
     mood = max(-1.0, min(1.0, round(mood, 4)))
-    state["mood"] = mood
+    state["smoothed_state"] = mood  # was "mood" key
     return mood
 
 def mood_delta_modifier(mood: float, delta: float) -> float:

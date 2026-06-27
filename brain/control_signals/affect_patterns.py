@@ -202,7 +202,7 @@ def apply_wm_triggers_and_appraisal(
         _cg   = (context or {}).get("committed_goal") or {}
         _cgs  = (context or {}).get("committed_goals") or ([_cg] if _cg else [])
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]
-        _current_mood = float(state.get("mood", 0.0) or 0.0)
+        _current_mood = float(state.get("smoothed_state", 0.0) or 0.0)  # was "mood" key
         if _gtitles:
             _appraisal_deltas = _appraise(working, _gtitles, state, mood=_current_mood)
             for _adj in _appraisal_deltas:

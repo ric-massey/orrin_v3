@@ -78,7 +78,7 @@ def compute_cycle_state(
         memories = context.get("retrieved_memories") or []
         if memories:
             from brain.cog_memory.reconstruction import reconstruct as _recon
-            mood = float(emo_state.get("mood") or 0.0)
+            mood = float(emo_state.get("smoothed_state") or 0.0)  # was "mood" key
             relevant_memory = _recon(memories[0], current_mood=mood)[:200]
     except Exception as _e:
         record_failure("state_processor.compute_cycle_state.3", _e)

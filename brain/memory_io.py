@@ -237,7 +237,7 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
         record_failure("memory_io.inject_into_context.goal_lens", _e)
     try:
         from brain.cog_memory.reconstruction import reconstruct as _recon
-        mood = float((context.get("affect_state") or {}).get("mood") or 0.0)
+        mood = float((context.get("affect_state") or {}).get("smoothed_state") or 0.0)
         for item in results:
             if isinstance(item, dict):
                 item["reconstructed"] = _recon(item, current_mood=mood)

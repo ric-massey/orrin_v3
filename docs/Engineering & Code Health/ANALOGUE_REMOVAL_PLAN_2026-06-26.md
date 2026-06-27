@@ -1,7 +1,54 @@
 # Analogue Removal Plan — Drop the Biological Framing, Codebase-Wide
 
 Date: 2026-06-26
-Status: PROPOSED — not started
+Status: Phases 1–3 + 4 DONE (2026-06-27). Phase 4 was executed in full per Ric's
+explicit go-ahead (overriding the "defer Phase 4 indefinitely" recommendation),
+EXCEPT the optional data-file *name* renames (§4.7 below), which Ric chose to
+skip as low-value/high-churn. See [§ Phase 4 — DONE](#phase-4-done) for the
+landed sub-slices and the one naming deviation (`surprise → prediction_error_signal`).
+
+## Phase 4 — DONE
+
+Executed on branch `analogue-removal`, each sub-slice its own green commit
+(`make verify`: 1094 backend tests + frontend typecheck/build):
+
+- **4.1** Migration spine: `brain/data_schema.py` (schema version + per-file
+  read-old/write-new key registry) hooked into `load_json`/`modify_json` (and the
+  backend `_read_json`), `brain/scripts/migrate_schema_v2.py` one-time backfill,
+  7 tests. Old `brain/data` files and out-of-tree backups upgrade on load.
+- **4.2–4.4, 4.6** Persisted affect-state scalar keys + lifecycle timestamp:
+  `homeostasis→setpoint_proximity`, `valence→reward_signal`, `mood→smoothed_state`,
+  `born_at→start_time`. Wire fields kept via serializer translation.
+- **4.5a/b/c** All 9 biological core-signal names → engineering, on disk in
+  `core_signals` AND in the learned `emotion_function_map.json` AND every routing/
+  setpoint/antagonist/appraisal table: `positive_valence→reward_positive`,
+  `negative_valence→reward_negative`, `compassion→affiliation_signal`,
+  `melancholy→low_affect_signal`, `jealousy→social_comparison_signal`,
+  `contentment→satisfaction_signal`, `vitality→vigor_signal`,
+  `surprise→prediction_error_signal` (the `_signal` suffix avoids colliding with
+  the existing `prediction_error()` function — the one deviation from the names
+  Ric approved), `wonder→novelty_signal`. The `wonder.py` module + its function
+  names were kept as code identifiers (Phase-3 scope, and function-name churn
+  risks learned data).
+- **4.8** API route paths renamed backend+frontend lockstep:
+  `/affect→/control-signals`, `/consciousness→/attention`,
+  `/dreams→/idle-consolidation`, `/drives→/demands`, `/self→/identity`,
+  `/vitals→/resources`, `/life→/runtime-lifetime` (`/lifecycle` kept — standard;
+  `/api/life/capsule*` kept — diagnostics). Live WS wire fields
+  (`valence/arousal/homeostasis`) stay translated at the serializer.
+- **4.9** Backfill verified against the Phase-0 data snapshot (idempotent), then
+  run against live `brain/data` (3 files migrated, schema v2). Restart smoke +
+  leak sweep clean (residue = kept code identifiers, comments, the deferred
+  `mood_state.json` file, and memory-tag/sentiment surfaces).
+
+**SKIPPED — §4.7 data-file *name* renames** (`affect_state.json`,
+`mood_state.json`, `alive_brain_state.json`, `emotion_*.json`, …): Ric chose to
+leave the ~25 biological FILE names as-is (pure internal-filename hygiene, high
+churn on live state, lowest payoff). The keys *inside* them are now engineering.
+
+---
+
+### Original plan (PROPOSED — superseded by the status above)
 Owner: Ric
 Revision: 2026-06-26b — second full-codebase pass. Added the **emotion/mood**
 family (missed in the first pass, ~800+ hits), the **`reaper/` package** (a

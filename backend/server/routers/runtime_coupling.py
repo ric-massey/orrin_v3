@@ -214,7 +214,7 @@ async def affect() -> JSONResponse:
         a = {}
     core = a.get("core_signals") if isinstance(a.get("core_signals"), dict) else {}
     return JSONResponse({
-        "valence": a.get("valence"),                 # raw -1..1 (no UI centering)
+        "valence": a.get("reward_signal"),           # raw -1..1 (persisted key; wire field kept)
         "activation_level": a.get("activation_level"),
         "homeostasis": a.get("setpoint_proximity"),  # the brain's own index (persisted key; wire field kept)
         "resource_deficit": a.get("resource_deficit"),

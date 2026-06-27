@@ -275,7 +275,7 @@ def valence_summary_line(affect_state: Dict[str, Any]) -> str:
     emo   = affect_state or {}
     quad  = emo.get("affect_quadrant", "")
     mood  = emo.get("mood")
-    val   = emo.get("valence")
+    val   = emo.get("reward_signal")  # was "valence" key
     arous = emo.get("activation_level")
 
     if not quad and mood is None:

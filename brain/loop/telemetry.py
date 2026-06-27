@@ -182,8 +182,8 @@ def _emit_affect(context: "Context") -> None:
             # agent-accessible chart. The uncompressed value also ships as
             # `valence_raw` (dev-only metric), so no number is hidden — the
             # centering is a presentation choice, not a divergence.
-            valence=_clamp01(_VALENCE_UI_CENTER + _VALENCE_UI_SCALE * _f(a.get("valence"))),
-            valence_raw=_f(a.get("valence")),
+            valence=_clamp01(_VALENCE_UI_CENTER + _VALENCE_UI_SCALE * _f(a.get("reward_signal"))),
+            valence_raw=_f(a.get("reward_signal")),
             impasse_raw=_clamp01(_f(cs.get("impasse_signal"))),
             arousal=_clamp01(_f(a.get("activation_level"), 0.3)),
             homeostasis=homeostasis,

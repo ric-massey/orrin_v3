@@ -25,7 +25,7 @@ NEGATIVE_SIGNALS = (
 # Top-level scalars that are NOT core emotion signals — used to keep them out of
 # core_signals when migrating a legacy flat-layout state.
 _NON_CORE_SCALARS = frozenset({
-    "resource_deficit", "affect_stability", "valence", "activation_level", "mood",
+    "resource_deficit", "affect_stability", "reward_signal", "activation_level", "mood",
     "stability_decay_rate", "emotional_decay", "last_updated", "affect_quadrant",
     "social_deficit", "_ne_proxy", "_stability_signal_proxy", "_affect_velocity_l1",
 })

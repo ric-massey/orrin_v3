@@ -50,6 +50,7 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
     "affect_state.json": {
         "top": {
             "homeostasis": "setpoint_proximity",  # setpoint regulation index
+            "valence": "reward_signal",           # hedonic scalar, sign -1..1
         },
     },
 }

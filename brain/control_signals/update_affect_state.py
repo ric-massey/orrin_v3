@@ -539,7 +539,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # === Valence / activation_level / Mood (circumplex + slow background drift) ===
     _valence, _activation_level, _quad = compute_valence_activation_level(core)
     _mood = update_mood(state, _valence)
-    state["valence"]         = _valence
+    state["reward_signal"]   = _valence  # was "valence" key
     state["activation_level"]         = _activation_level
     state["affect_quadrant"] = _quad
     # mood already written into state by update_mood

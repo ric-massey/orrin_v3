@@ -48,7 +48,7 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
     tele._bridge = lambda: _FakeBridge()
     try:
         context = {"affect_state": {
-            "valence": -0.4,
+            "reward_signal": -0.4,  # was "valence" key
             "activation_level": 0.3,
             "setpoint_proximity": 0.123,  # persisted key (was "homeostasis"); emit must use THIS
             "core_signals": {"motivation": 0.5, "impasse_signal": 0.9},

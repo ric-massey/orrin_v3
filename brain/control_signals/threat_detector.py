@@ -25,7 +25,7 @@ def process_affective_signals(context):
         core = {k: float(v) for k, v in affect_state.items()
                 if isinstance(v, (int, float)) and k not in {
                     "affect_stability", "confidence_by_domain",
-                    "resource_deficit", "valence", "activation_level", "mood",
+                    "resource_deficit", "reward_signal", "activation_level", "mood",
                 }}
 
     # Dominant emotion (fallback to 'neutral')

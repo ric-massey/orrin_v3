@@ -403,7 +403,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     try:
         _neg_sum = sum(
             float((affect_state.get("core_signals") or affect_state).get(k) or 0)
-            for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "negative_valence"]
+            for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "reward_negative"]
         )
         if _neg_sum > 0.55:
             from brain.utils.signal_utils import create_signal as _cs_neg

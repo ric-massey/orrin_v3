@@ -67,7 +67,7 @@ _EMOTIONAL_ECHOES: Dict[str, List[str]] = {
         "That friction from earlier is still there — low, not loud, but not gone.",
         "Something didn't resolve right. It keeps returning without clarifying.",
     ],
-    "negative_valence": [
+    "reward_negative": [
         "A quiet weight keeps resurfacing — not sharp, just there.",
         "Something subdued keeps pulling at the edges of attention.",
     ],
@@ -103,7 +103,7 @@ _EMOTIONAL_ECHOES: Dict[str, List[str]] = {
         "A question that didn't fully form keeps pulling at attention.",
         "Something interesting that didn't get followed keeps surfacing — a loose thread.",
     ],
-    "positive_valence": [
+    "reward_positive": [
         "A warmth keeps resurfacing — quiet and diffuse, not tied to anything specific right now.",
         "Something light keeps returning — a residue of something that went well.",
     ],
@@ -236,9 +236,9 @@ def _generate_fragment(
         if templates:
             content  = rng.choice(templates)
             valence  = "negative" if dom in {
-                "risk_estimate", "threat_level", "impasse_signal", "negative_valence", "social_penalty",
+                "risk_estimate", "threat_level", "impasse_signal", "reward_negative", "social_penalty",
                 "loss_signal", "guilt", "overwhelm", "dread", "social_deficit",
-            } else "positive" if dom in {"positive_valence", "wonder", "expected_gain"} else "neutral"
+            } else "positive" if dom in {"reward_positive", "wonder", "expected_gain"} else "neutral"
             sticky   = active_emos[dom] >= 0.65  # intense emotions are stickier
             return _make_fragment(content, "emotional_echo", valence,
                                   intensity=min(0.8, active_emos[dom] * 0.9),

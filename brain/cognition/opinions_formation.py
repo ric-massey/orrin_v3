@@ -189,10 +189,10 @@ def _new_opinion_entry(
 
 
 # Emotion polarity sets + internal markers, shared by the evidence-weighted engine.
-_OPINION_POS_EMO = {"positive_valence", "expected_gain", "confidence", "motivation",
+_OPINION_POS_EMO = {"reward_positive", "expected_gain", "confidence", "motivation",
                     "excitement", "wonder", "exploration_drive"}
-_OPINION_NEG_EMO = {"negative_valence", "threat_level", "conflict_signal", "impasse_signal",
-                    "social_penalty", "rejection_signal", "melancholy", "risk_estimate"}
+_OPINION_NEG_EMO = {"reward_negative", "threat_level", "conflict_signal", "impasse_signal",
+                    "social_penalty", "rejection_signal", "low_affect_signal", "risk_estimate"}
 _OPINION_INTERNAL_MARKERS = ("[chunk:", "[metacog", "[incubation", "[sym_",
                              "[done]", "[pattern]", "✅", "🧠", "📝", "⚠️")
 

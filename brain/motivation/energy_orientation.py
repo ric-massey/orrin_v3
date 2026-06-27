@@ -166,9 +166,9 @@ def _raw_scores(affect_state: Dict[str, Any]) -> Dict[str, float]:
     Compute per-mode raw signal scores [0.0, 1.0] from emotional state.
 
     Active: catecholamine-rich (Robbins & Arnsten 2009); driven by
-      motivation, excitement, exploration_drive, positive_valence.
+      motivation, excitement, exploration_drive, reward_positive.
 
-    Rest: resource depleted (Baumeister 1998); driven by resource_deficit, negative_valence,
+    Rest: resource depleted (Baumeister 1998); driven by resource_deficit, reward_negative,
       stagnation_signal; anti-driven by motivation.
 
     Reactive: Yerkes-Dodson over-peak; driven by risk_estimate + impasse_signal;
@@ -183,14 +183,14 @@ def _raw_scores(affect_state: Dict[str, Any]) -> Dict[str, float]:
     mot = _g("motivation")
     exc = _g("excitement")
     cur = _g("exploration_drive")
-    positive_valence = _g("positive_valence")
+    reward_positive = _g("reward_positive")
     fat = _g("resource_deficit")
-    sad = _g("negative_valence")
+    sad = _g("reward_negative")
     bor = _g("stagnation_signal")
     anx = _g("risk_estimate")
     fru = _g("impasse_signal")
 
-    active   = mot * 0.35 + exc * 0.30 + cur * 0.25 + positive_valence * 0.10 - fat * 0.25
+    active   = mot * 0.35 + exc * 0.30 + cur * 0.25 + reward_positive * 0.10 - fat * 0.25
     rest     = fat * 0.45 + sad * 0.25 + bor * 0.20 + max(0.0, 0.25 - mot) * 0.10
     reactive = anx * 0.50 + fru * 0.35 - mot * 0.15
 

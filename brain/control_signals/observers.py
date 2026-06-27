@@ -19,7 +19,7 @@ from typing import Any, Dict
 # The canonical negative-affect signals whose sum is the system's "distress" /
 # negative-load feature. One list, read everywhere.
 NEGATIVE_SIGNALS = (
-    "impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "negative_valence",
+    "impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "reward_negative",
 )
 
 # Top-level scalars that are NOT core emotion signals — used to keep them out of

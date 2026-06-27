@@ -24,14 +24,14 @@ def _describe_affect_state(affect_state: Dict[str, Any]) -> str:
 
     # Build a ranked list of emotions above a noise floor
     _ADJ = {
-        "positive_valence": "joyful", "negative_valence": "sad", "exploration_drive": "curious",
+        "reward_positive": "joyful", "reward_negative": "sad", "exploration_drive": "curious",
         "impasse_signal": "frustrated", "confidence": "confident",
         "motivation": "motivated", "stagnation_signal": "bored",
         "expected_gain": "hopeful", "threat_level": "fearful", "social_penalty": "ashamed",
     }
     named = {
-        "positive_valence": float(emo.get("positive_valence") or 0),
-        "negative_valence": float(emo.get("negative_valence") or 0),
+        "reward_positive": float(emo.get("reward_positive") or 0),
+        "reward_negative": float(emo.get("reward_negative") or 0),
         "exploration_drive": float(emo.get("exploration_drive") or 0),
         "impasse_signal": float(emo.get("impasse_signal") or 0),
         "confidence": float(emo.get("confidence") or 0),

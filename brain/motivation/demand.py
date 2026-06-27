@@ -14,7 +14,7 @@ _EMO_DRIVE_MAP = {
     "social_deficit":   ["generate_intrinsic_goals", "look_around"],
     "uncertainty":  ["reflection", "update_world_model"],
     "threat_level":         ["self_soothing", "reflection"],
-    "negative_valence":      ["self_soothing", "reflection"],
+    "reward_negative":      ["self_soothing", "reflection"],
     "risk_estimate":      ["self_soothing", "check_affect_drift", "reflection"],
 }
 

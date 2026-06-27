@@ -146,7 +146,7 @@ def adjust_priority(goal: Dict[str, Any], fb: Dict[str, Any]) -> None:
 
     reward = 0.0
     if any(w in result_text for w in ["success", "helpful", "insightful", "effective"]):
-        if emotion in {"positive_valence", "excited", "grateful"}:
+        if emotion in {"reward_positive", "excited", "grateful"}:
             goal["priority"] = min(10, goal["priority"] + 2)
             reward = 1.0
         elif emotion in {"satisfied", "curious"}:

@@ -39,7 +39,7 @@ def update_relationship_model(context):
         affect_state = context.get("affect_state", {}) or {}
         core = affect_state.get("core_signals", affect_state)  # fallback to flat
         conflict_signal = float(core.get("conflict_signal", 0) or 0)
-        positive_valence   = float(core.get("positive_valence", 0) or 0)
+        reward_positive   = float(core.get("reward_positive", 0) or 0)
 
         # The whole read-modify-write cycle for this person's record happens
         # under one lock (modify_json) so concurrent updates from other
@@ -80,7 +80,7 @@ def update_relationship_model(context):
             old_depth = float(r.get("depth", 0.0) or 0.0)
 
             # influence nudges
-            if emotion in ["gratitude", "positive_valence", "affection", "trust"]:
+            if emotion in ["gratitude", "reward_positive", "affection", "trust"]:
                 r["influence_score"] = min(old_influence + 0.05, 1.0)
             elif emotion in ["conflict_signal", "hostility", "contempt", "rejection_signal"]:
                 r["influence_score"] = max(old_influence - 0.1, 0.0)
@@ -93,7 +93,7 @@ def update_relationship_model(context):
                 r["trust"] = min(old_trust + 0.04, 1.0)
             elif emotion in ["conflict_signal", "hostility", "contempt", "rejection_signal"]:
                 r["trust"] = max(old_trust - 0.12, 0.0)
-            elif emotion in ["positive_valence", "exploration_drive"]:
+            elif emotion in ["reward_positive", "exploration_drive"]:
                 r["trust"] = min(old_trust + 0.02, 1.0)
             else:
                 # Gentle drift toward neutral 0.5 when interactions are neutral
@@ -127,7 +127,7 @@ def update_relationship_model(context):
             # impressions from state
             if conflict_signal > 0.7:
                 r["impression"] = "conflicted or tense"
-            elif positive_valence > 0.6:
+            elif reward_positive > 0.6:
                 r["impression"] = "positive connection"
 
             r["last_interaction_time"] = datetime.now(timezone.utc).isoformat()
@@ -293,13 +293,13 @@ def _apply_relationship_emotion_feedback(
       understanding — depth growing; met when depth actually increased
       meaning     — interaction felt purposeful; met by trust growth or high depth
 
-    Met wants   → small boost to positive_valence/expected_gain
-    Unmet wants → small increase in social_deficit (stored as negative_valence proxy)
+    Met wants   → small boost to reward_positive/expected_gain
+    Unmet wants → small increase in social_deficit (stored as reward_negative proxy)
     """
     if not isinstance(context, dict):
         return
 
-    pos_emotions = {"gratitude", "positive_valence", "affection", "trust", "exploration_drive"}
+    pos_emotions = {"gratitude", "reward_positive", "affection", "trust", "exploration_drive"}
     neg_emotions = {"conflict_signal", "hostility", "contempt", "rejection_signal", "impasse_signal"}
 
     new_depth = float(r.get("depth", 0.0) or 0.0)
@@ -318,11 +318,11 @@ def _apply_relationship_emotion_feedback(
 
         if met_count >= 2:
             from brain.control_signals.homeostasis import pump_signal
-            pump_signal(core, "positive_valence", 0.06)
+            pump_signal(core, "reward_positive", 0.06)
             pump_signal(core, "expected_gain",    0.04)
         elif unmet_count >= 3 and emotion in neg_emotions:
             # All three wants unmet *and* the interaction felt hostile — real disconnection
-            core["negative_valence"] = min(1.0, float(core.get("negative_valence", 0.0) or 0) + 0.08)
+            core["reward_negative"] = min(1.0, float(core.get("reward_negative", 0.0) or 0) + 0.08)
 
         if "core_signals" in emo:
             emo["core_signals"] = core

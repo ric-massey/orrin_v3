@@ -39,9 +39,9 @@ _LOG_FILE = DATA_DIR / "second_order_volition.json"
 # Drives/feelings Orrin would not endorse being RULED BY when they dominate —
 # they're real, but being governed by them is not who he wants to be.
 _UNENDORSED = {
-    "restlessness", "jealousy", "impasse_signal", "risk_estimate",
+    "restlessness", "social_comparison_signal", "impasse_signal", "risk_estimate",
     "threat_level", "rejection_signal", "stagnation_signal",
-    "social_penalty", "negative_valence", "melancholy",
+    "social_penalty", "reward_negative", "low_affect_signal",
 }
 
 # Human-readable gloss for drive/affect names.
@@ -60,7 +60,7 @@ _GLOSS = {
     "uncertainty": "not knowing",
     "motivation": "drive to act",
     "wonder": "wonder",
-    "compassion": "care for others",
+    "affiliation_signal": "care for others",
 }
 
 
@@ -149,7 +149,7 @@ def endorse_intention(
     # purpose — "reduce risk in the sandbox" is a legitimate goal; "escape
     # this restlessness" is not).
     _DISOWN_TOKENS = {
-        "restlessness", "restless", "jealousy", "melancholy",
+        "restlessness", "restless", "social_comparison_signal", "low_affect_signal",
         "rejection", "stagnation",
     }
     if toks & _DISOWN_TOKENS:
@@ -161,7 +161,7 @@ def endorse_intention(
             update_long_memory(
                 f"[disowned desire] I refused to form a commitment around '{text[:120]}' — "
                 f"it was a pull I don't endorse being ruled by.",
-                emotion="negative_valence",
+                emotion="reward_negative",
                 event_type="disowned_desire",
                 importance=3,
                 context=context,

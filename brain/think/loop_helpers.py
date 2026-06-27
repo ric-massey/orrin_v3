@@ -43,8 +43,8 @@ def emit_trace(**payload) -> None:
 def emotional_delta_reward(pre: dict, post: dict) -> float:
     """
     Derive a [0, 1] reward from the change in emotional state caused by a function.
-    Positive delta on exploration_drive/confidence/positive_valence/motivation → higher reward.
-    Positive delta on impasse_signal/negative_valence/threat_level/social_penalty → lower reward.
+    Positive delta on exploration_drive/confidence/reward_positive/motivation → higher reward.
+    Positive delta on impasse_signal/reward_negative/threat_level/social_penalty → lower reward.
     Returns 0.5 when there is no emotional change (neutral signal, not penalty).
     """
     def _get(d: dict, k: str) -> float:
@@ -54,12 +54,12 @@ def emotional_delta_reward(pre: dict, post: dict) -> float:
     delta_pos = (
         (_get(post, "exploration_drive")   - _get(pre, "exploration_drive"))
       + (_get(post, "confidence")  - _get(pre, "confidence"))
-      + (_get(post, "positive_valence")         - _get(pre, "positive_valence"))
+      + (_get(post, "reward_positive")         - _get(pre, "reward_positive"))
       + (_get(post, "motivation")  - _get(pre, "motivation"))
     )
     delta_neg = (
         (_get(post, "impasse_signal") - _get(pre, "impasse_signal"))
-      + (_get(post, "negative_valence")     - _get(pre, "negative_valence"))
+      + (_get(post, "reward_negative")     - _get(pre, "reward_negative"))
       + (_get(post, "threat_level")        - _get(pre, "threat_level"))
       + (_get(post, "social_penalty")       - _get(pre, "social_penalty"))
     )
@@ -477,7 +477,7 @@ def bandit_learn(
         # the willingness to move toward something (Berridge & Robinson 1998).
         # Positive PE → phasic reward_signal burst → motivation + exploration_drive (more seeking).
         # Negative PE → reward_signal dip → loss of drive + impasse_signal at blocked goal.
-        # stability_signal, not reward_signal, underlies hedonic contentment and "feel good."
+        # stability_signal, not reward_signal, underlies hedonic satisfaction_signal and "feel good."
         # Near-zero PE (as expected) → no signal. Predictable 0.26 rewards teach
         # nothing emotionally — the signal is the SURPRISE, not the value.
         if abs(pe) > 0.05:  # dead-zone: only signal meaningful surprises

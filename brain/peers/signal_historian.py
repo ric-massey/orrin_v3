@@ -71,7 +71,7 @@ class SignalHistorian(BasePeer):
                 sensation_map = {
                     "impasse_signal": "a persistent friction that hasn't released",
                     "threat_level":        "an ongoing sense of threat or unease",
-                    "negative_valence":     "a heaviness that hasn't lifted",
+                    "reward_negative":     "a heaviness that hasn't lifted",
                     "conflict_signal":       "a sustained heat that keeps returning",
                     "uncertainty": "an unresolved open question pulling at me",
                     "social_deficit":  "a recurring sense of absence",

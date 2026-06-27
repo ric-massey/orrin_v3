@@ -11,7 +11,7 @@ against identity drift from retrieval noise.
 The 10 dimensions:
   0  openness         — exploration_drive + wonder
   1  conscientiousness — motivation + goal completion rate
-  2  agreeableness    — compassion + positive user signals
+  2  agreeableness    — affiliation_signal + positive user signals
   3  neuroticism      — impasse_signal + risk_estimate + uncertainty
   4  extraversion     — responsiveness, social engagement
   5  analytical       — tendency toward structured reasoning
@@ -92,12 +92,12 @@ def _target_from_state(context: Dict[str, Any]) -> List[float]:
     exploration_drive   = _e("exploration_drive", 0.3)
     wonder      = _e("wonder", 0.1)
     motivation  = _e("motivation", 0.5)
-    compassion  = _e("compassion", 0.2)
+    affiliation_signal  = _e("affiliation_signal", 0.2)
     impasse_signal = _e("impasse_signal", 0.05)
     risk_estimate     = _e("risk_estimate", 0.05)
     uncertainty = _e("uncertainty", 0.05)
     confidence  = _e("confidence", 0.5)
-    positive_valence         = _e("positive_valence", 0.1)
+    reward_positive         = _e("reward_positive", 0.1)
     reflective  = _e("reflective", 0.3)
 
     # User-facing engagement proxy
@@ -120,7 +120,7 @@ def _target_from_state(context: Dict[str, Any]) -> List[float]:
     return [
         (exploration_drive + wonder) / 2,                    # 0 openness
         (motivation + goal_rate) / 2,                # 1 conscientiousness
-        (compassion + positive_valence * 0.5 + warmth * 0.2),     # 2 agreeableness (clamped below)
+        (affiliation_signal + reward_positive * 0.5 + warmth * 0.2),     # 2 agreeableness (clamped below)
         (impasse_signal + risk_estimate + uncertainty) / 3,   # 3 neuroticism
         (user_present * 0.4 + confidence * 0.3 + motivation * 0.3),  # 4 extraversion
         min(1.0, float(context.get("_used_analytical", 0)) * 0.6 + 0.3),  # 5 analytical

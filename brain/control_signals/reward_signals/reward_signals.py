@@ -75,16 +75,16 @@ def release_reward_signal(
     # Encodes incentive salience — "wanting", the pull to move toward a goal — rather than
     # hedonic satisfaction (the wanting-vs-liking distinction; Berridge & Robinson 1998).
     # stability_signal (the hedonic baseline) gates how much of it converts to action:
-    # low wellbeing blunts the approach drive. positive_valence is used as the hedonic proxy.
+    # low wellbeing blunts the approach drive. reward_positive is used as the hedonic proxy.
     if signal_type == "reward_signal":
-        positive_valence     = float(core_emo.get("positive_valence",     0.3) or 0.3)   # hedonic proxy for stability_signal state
+        reward_positive     = float(core_emo.get("reward_positive",     0.3) or 0.3)   # hedonic proxy for stability_signal state
         risk_estimate = float(core_emo.get("risk_estimate", 0.0) or 0.0)
 
         base_motivation_gain = 0.04 * strength   # primary reward_signal target: wanting/drive
         base_exploration_drive_gain  = 0.025 * strength  # incentive salience → exploration pull
 
-        # Low hedonic state (low positive_valence) blunts how much drive we can muster (Tops et al. 2009)
-        wellbeing_mod = 0.6 + 0.4 * positive_valence
+        # Low hedonic state (low reward_positive) blunts how much drive we can muster (Tops et al. 2009)
+        wellbeing_mod = 0.6 + 0.4 * reward_positive
         risk_estimate_mod   = 1 - 0.6 * risk_estimate
 
         motivation_gain = base_motivation_gain * wellbeing_mod * risk_estimate_mod
@@ -110,8 +110,8 @@ def release_reward_signal(
 
         log_reward_spike("novelty", strength=strength, tags=last_tags)
 
-    # === stability_signal (contentment / wellbeing floor) ===
-    # The baseline-wellbeing signal: raises positive_valence and damps risk_estimate
+    # === stability_signal (satisfaction_signal / wellbeing floor) ===
+    # The baseline-wellbeing signal: raises reward_positive and damps risk_estimate
     # (models serotonergic inhibition of the threat pathway; Hariri & Holmes 2006).
     # Unlike reward_signal (approach/wanting), it reflects being okay with the current
     # state rather than seeking more.
@@ -120,7 +120,7 @@ def release_reward_signal(
         risk_estimate = float(core_emo.get("risk_estimate", 0.0) or 0.0)
         # High risk_estimate blunts stability_signal effect (consistent with 5-HT/anxiolytic research)
         stability_signal_strength = base_gain * (1 - 0.5 * risk_estimate)
-        queue_affect_change(affect_state, "positive_valence",       stability_signal_strength,        source="stability_signal")
+        queue_affect_change(affect_state, "reward_positive",       stability_signal_strength,        source="stability_signal")
         queue_affect_change(affect_state, "risk_estimate",   -stability_signal_strength * 0.4, source="stability_signal")
 
         log_reward_spike("stability_signal", strength=strength, tags=last_tags)
@@ -147,7 +147,7 @@ def release_reward_signal(
         positive_valence_gain       = base_positive_valence_gain * (1.0 - resource_deficit * 0.4)  # resource_deficit blunts hedonic response
         confidence_gain = 0.05 * strength
         motivation_settle = -0.02 * strength  # completion → slight satiation (wanting reduces)
-        queue_affect_change(affect_state, "positive_valence",        positive_valence_gain,         source="completion_signal")
+        queue_affect_change(affect_state, "reward_positive",        positive_valence_gain,         source="completion_signal")
         queue_affect_change(affect_state, "confidence", confidence_gain,  source="completion_signal")
         queue_affect_change(affect_state, "motivation", motivation_settle, source="completion_signal")
         log_reward_spike("completion_signal", strength=strength, tags=last_tags)
@@ -214,7 +214,7 @@ def decay_reward_trace(context, base_decay_rate=0.015):
     # Most emotion values live in core_signals; resource_deficit and activation_level are top-level
     _core = affect_state.get("core_signals") or {}
     stagnation_signal = float(_core.get("stagnation_signal", affect_state.get("stagnation_signal", 0.3)) or 0.3)
-    negative_valence = float(_core.get("negative_valence", affect_state.get("negative_valence", 0.1)) or 0.1)
+    reward_negative = float(_core.get("reward_negative", affect_state.get("reward_negative", 0.1)) or 0.1)
     risk_estimate = float(_core.get("risk_estimate", affect_state.get("risk_estimate", 0.1)) or 0.1)
     resource_deficit = float(affect_state.get("resource_deficit", 0.2) or 0.2)
     activation_level = float(affect_state.get("activation_level", 0.2) or 0.2)
@@ -225,7 +225,7 @@ def decay_reward_trace(context, base_decay_rate=0.015):
     for entry in trace:
         mod_decay = base_decay_rate
 
-        if negative_valence > 0.6:
+        if reward_negative > 0.6:
             mod_decay *= 0.7
         if stagnation_signal > 0.6:
             mod_decay *= 1.5
@@ -279,7 +279,7 @@ def novelty_penalty(last_choice, current_choice, recent_choices, affect_state=No
     threat_level       = _emo("threat_level",      0.0)
     stagnation_signal    = _emo("stagnation_signal",   0.3)
     exploration_drive  = _emo("exploration_drive", 0.5)
-    negative_valence    = _emo("negative_valence",   0.0)
+    reward_negative    = _emo("reward_negative",   0.0)
     excitement = _emo("excitement",0.0)
     motivation = _emo("motivation",0.5)
     resource_deficit    = float(affect_state.get("resource_deficit", 0.0) or 0.0)
@@ -312,8 +312,8 @@ def novelty_penalty(last_choice, current_choice, recent_choices, affect_state=No
     recent_n = recent_choices[-4:]
     base_penalty = -0.18 if current_choice in recent_n else 0.0
 
-    emotion_mod = (exploration_drive + stagnation_signal) - (risk_estimate + threat_level + negative_valence)
-    if negative_valence > 0.6:
+    emotion_mod = (exploration_drive + stagnation_signal) - (risk_estimate + threat_level + reward_negative)
+    if reward_negative > 0.6:
         emotion_mod *= 0.6
     if excitement > 0.5 or motivation > 0.7:
         emotion_mod *= -0.8

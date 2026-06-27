@@ -16,7 +16,7 @@ Routing rules (additive to bandit scores):
   impasse_signal > 0.55 → action bias: +0.3 to pursue_committed_goal, +0.2 to agentic actions
   threat_level > 0.50       → caution: −0.3 to agentic / code_writer, +0.3 to self_review
   Wonder > 0.55     → speculative exploration: +0.3 to experimentation, dreaming-adjacent
-  negative_valence > 0.55    → inward: +0.3 to autobiography / identity / relationship reflection
+  reward_negative > 0.55    → inward: +0.3 to autobiography / identity / relationship reflection
   Motivation > 0.75 → execution mode: +0.4 to pursue_committed_goal
 
 These multipliers do not override the bandit — they bias it. The bandit still
@@ -49,7 +49,7 @@ _ROUTES = [
     ("threat_level",            0.50,  +1,  0.30,  ["self_review", "metacog", "reflect"]),
     ("wonder",          0.55,  +1,  0.30,  ["run_active_experiment", "explore",
                                              "look_outward", "exploration_drive"]),
-    ("negative_valence",         0.55,  +1,  0.30,  ["autobiography", "identity", "relationship",
+    ("reward_negative",         0.55,  +1,  0.30,  ["autobiography", "identity", "relationship",
                                              "reflect", "narrative"]),
     ("motivation",      0.75,  +1,  0.40,  ["pursue_committed_goal", "pursue_goal",
                                              "assess_goal_progress"]),

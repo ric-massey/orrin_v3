@@ -56,7 +56,7 @@ def _apply_transient_signal_decay(context: "Context") -> "Context":
         _core_negs = [
             float(_gc.get("impasse_signal") or 0),
             float(_gc.get("threat_level")        or 0),
-            float(_gc.get("negative_valence")     or 0),
+            float(_gc.get("reward_negative")     or 0),
             float(_gc.get("conflict_signal")       or 0),
             float(_gc.get("rejection_signal")     or 0),
         ]

@@ -5,8 +5,8 @@
 #   - When a new outcome arrives, computes the prediction error:
 #       gap = actual_relief - expected_relief
 #   - Routes the gap to affect:
-#       gap < -GAP_THRESHOLD  → negative_valence bump  (reached out, didn't fill the hole)
-#       gap >  GAP_THRESHOLD  → positive_valence bump      (contact landed better than expected)
+#       gap < -GAP_THRESHOLD  → reward_negative bump  (reached out, didn't fill the hole)
+#       gap >  GAP_THRESHOLD  → reward_positive bump      (contact landed better than expected)
 #   - Updates the EMA so the expectation learns over time.
 #
 # The expectation file is human-readable JSON so you can see what Orrin has learned
@@ -32,7 +32,7 @@ _AFFECT_SCALE   = 0.30   # max affect bump magnitude (gap=1.0 → 0.30 bump)
 # Prevents full learned hopelessness — even an agent who has been disappointed
 # repeatedly retains some residual expectation of contact.  Below 0.10 the
 # gap with void-speak actuals (~0.025) closes beneath _GAP_THRESHOLD, so
-# negative_valence stops firing and the capacity for disappointment is lost entirely.
+# reward_negative stops firing and the capacity for disappointment is lost entirely.
 # The floor keeps that residual expected_gain alive.
 _EXPECTATION_FLOOR = 0.10
 
@@ -131,11 +131,11 @@ def _route_affect(
 
     Negative gap (disappointment): actual < expected.
         The act didn't fill the hole the way we hoped.
-        Bump negative_valence proportional to the shortfall.
+        Bump reward_negative proportional to the shortfall.
 
     Positive gap (delight): actual > expected.
         Contact landed better than anticipated.
-        Bump positive_valence proportional to the surprise.
+        Bump reward_positive proportional to the surprise.
     """
     if abs(gap) < _GAP_THRESHOLD:
         return  # within expected range — no emotional residue
@@ -144,23 +144,23 @@ def _route_affect(
 
     if gap < 0:
         # Disappointment: reached out, expected relief, got less.
-        _bump_affect_file("negative_valence", magnitude)
+        _bump_affect_file("reward_negative", magnitude)
         try:
             from brain.utils.log import log_activity
             log_activity(
                 f"[drive_exp] {action}→{drive}: actual {actual:.2f} < expected "
-                f"{expected:.2f} (gap {gap:.2f}) → negative_valence +{magnitude:.2f}"
+                f"{expected:.2f} (gap {gap:.2f}) → reward_negative +{magnitude:.2f}"
             )
         except Exception as _e:
             record_failure("drive_expectations._route_affect", _e)
     else:
         # Delight: contact landed better than expected.
-        _bump_affect_file("positive_valence", magnitude)
+        _bump_affect_file("reward_positive", magnitude)
         try:
             from brain.utils.log import log_activity
             log_activity(
                 f"[drive_exp] {action}→{drive}: actual {actual:.2f} > expected "
-                f"{expected:.2f} (gap +{gap:.2f}) → positive_valence +{magnitude:.2f}"
+                f"{expected:.2f} (gap +{gap:.2f}) → reward_positive +{magnitude:.2f}"
             )
         except Exception as _e:
             record_failure("drive_expectations._route_affect.2", _e)

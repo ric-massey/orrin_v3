@@ -156,10 +156,10 @@ def apply_velocity_dynamics(
 # Intensity-weighted average across all active emotions.
 
 _VALENCE: Dict[str, float] = {
-    "positive_valence":         +0.90,
+    "reward_positive":         +0.90,
     "expected_gain":        +0.70,
     "wonder":      +0.55,
-    "compassion":  +0.50,
+    "affiliation_signal":  +0.50,
     "confidence":  +0.45,
     "motivation":  +0.35,
     "exploration_drive":   +0.20,
@@ -167,11 +167,11 @@ _VALENCE: Dict[str, float] = {
     "surprise":    +0.10,
     "analytical":  +0.05,
     "stagnation_signal":     -0.20,
-    "melancholy":  -0.30,
+    "low_affect_signal":  -0.30,
     "social_deficit":  -0.35,
     "uncertainty": -0.30,
     "risk_estimate":     -0.55,
-    "negative_valence":     -0.55,
+    "reward_negative":     -0.55,
     "threat_level":        -0.65,
     "social_penalty":       -0.60,
     "impasse_signal": -0.60,
@@ -184,21 +184,21 @@ _ACTIVATION_LEVEL: Dict[str, float] = {
     "threat_level":        +0.80,
     "risk_estimate":     +0.75,
     "surprise":    +0.70,
-    "positive_valence":         +0.65,
+    "reward_positive":         +0.65,
     "exploration_drive":   +0.60,
     "motivation":  +0.55,
     "wonder":      +0.50,
     "impasse_signal": +0.50,
     "uncertainty": +0.30,
     "expected_gain":        +0.20,
-    "compassion":  +0.10,
+    "affiliation_signal":  +0.10,
     "confidence":  +0.15,
     "analytical":  -0.05,
     "reflective":  -0.10,
     "social_deficit":  -0.20,
     "social_penalty":       -0.15,
-    "melancholy":  -0.35,
-    "negative_valence":     -0.40,
+    "low_affect_signal":  -0.35,
+    "reward_negative":     -0.40,
     "stagnation_signal":     -0.50,
 }
 
@@ -290,9 +290,9 @@ _HEDONIC_SKIP_THRESH  = 0.08    # don't drift if emotion is near its true baseli
 _TRUE_BASELINES = {
     "exploration_drive": 0.25, "motivation": 0.50, "confidence": 0.45,
     "impasse_signal": 0.05, "uncertainty": 0.05, "threat_level": 0.01,
-    "positive_valence": 0.10, "expected_gain": 0.08, "negative_valence": 0.01, "conflict_signal": 0.01,
+    "reward_positive": 0.10, "expected_gain": 0.08, "reward_negative": 0.01, "conflict_signal": 0.01,
     "social_penalty": 0.0, "risk_estimate": 0.0, "stagnation_signal": 0.0, "wonder": 0.0,
-    "melancholy": 0.04, "social_deficit": 0.0,
+    "low_affect_signal": 0.04, "social_deficit": 0.0,
 }
 
 
@@ -326,7 +326,7 @@ def update_hedonic_baselines(
 
         # For strong negative sustained states: cap adaptation at floor ratio
         # (you can't fully adapt to severe impasse_signal/threat_level/social_penalty)
-        negative_emos = {"impasse_signal", "threat_level", "social_penalty", "risk_estimate", "conflict_signal", "negative_valence"}
+        negative_emos = {"impasse_signal", "threat_level", "social_penalty", "risk_estimate", "conflict_signal", "reward_negative"}
         if emo in negative_emos and val > true_base + 0.25:
             max_baseline = true_base + (val - true_base) * _HEDONIC_FLOOR_RATIO
             target = min(max_baseline, val)

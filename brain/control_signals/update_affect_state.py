@@ -89,7 +89,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
 
     # --- Ensure all baseline emotions exist in core map ---
     # get_all_affect_names() reads affect_model.json which may be empty on first boot.
-    # Always seed from baseline directly so expected_gain, positive_valence, negative_valence, conflict_signal etc. are never missing.
+    # Always seed from baseline directly so expected_gain, reward_positive, reward_negative, conflict_signal etc. are never missing.
     model_emotions = get_all_affect_names() or []
     core = state.get("core_signals", {})
     if not isinstance(core, dict):
@@ -159,9 +159,9 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     state["social_deficit"] = social_deficit
 
     if social_deficit > 0.5:
-        if "negative_valence" in core:
-            core["negative_valence"] = min(0.40, core.get("negative_valence", baseline.get("negative_valence", 0.0)) + (social_deficit - 0.5) * 0.15)
-        for opp in ("positive_valence", "expected_gain"):
+        if "reward_negative" in core:
+            core["reward_negative"] = min(0.40, core.get("reward_negative", baseline.get("reward_negative", 0.0)) + (social_deficit - 0.5) * 0.15)
+        for opp in ("reward_positive", "expected_gain"):
             if opp in core:
                 core[opp] = max(baseline.get(opp, 0.0), core[opp] - 0.03)
 
@@ -202,12 +202,12 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         core["social_penalty"] = round(_social_penalty, 4)
 
     # === stability_signal-analog: behavioral inhibition and patience (Dayan & Huys 2009) ===
-    # When hedonic baseline is stable (positive_valence moderate, risk_estimate low), stability_signal blunts
+    # When hedonic baseline is stable (reward_positive moderate, risk_estimate low), stability_signal blunts
     # impasse_signal escalation and promotes continued effort under difficulty.
     # Low stability_signal → impulsive, reactive, easily destabilized.
     # High stability_signal → patient persistence, impasse_signal tolerance.
-    # Proxy: positive_valence * 0.6 − risk_estimate * 0.4 (captures the contentment-minus-alarm balance).
-    _positive_valence_lvl     = float(core.get("positive_valence",     0.10) or 0.10)
+    # Proxy: reward_positive * 0.6 − risk_estimate * 0.4 (captures the satisfaction_signal-minus-alarm balance).
+    _positive_valence_lvl     = float(core.get("reward_positive",     0.10) or 0.10)
     _risk_estimate_lvl = float(core.get("risk_estimate", 0.00) or 0.00)
     _stability_signal   = max(0.0, _positive_valence_lvl * 0.6 - _risk_estimate_lvl * 0.4)
     if _stability_signal > 0.12 and "impasse_signal" in core:
@@ -298,16 +298,16 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         trig_key = str(trigger).lower().strip()
         update_working_memory(f"⚠️ Triggered emotion: {trig_key}")
         trigger_map = {
-            "reflection_stagnation": {"negative_valence": 0.18, "rejection_signal": 0.10},
+            "reflection_stagnation": {"reward_negative": 0.18, "rejection_signal": 0.10},
             "identity_loop": {"conflict_signal": 0.25, "threat_level": 0.18},
-            "success": {"positive_valence": 0.35, "surprise": 0.20},
-            "failure": {"negative_valence": 0.35, "conflict_signal": 0.20},
+            "success": {"reward_positive": 0.35, "surprise": 0.20},
+            "failure": {"reward_negative": 0.35, "conflict_signal": 0.20},
         }
         nudges = trigger_map.get(trig_key, {})
         for emo, boost in nudges.items():
             if emo in core:
                 # (T0.2) Route trigger nudges through pump_signal so a "success" spike
-                # on positive_valence (+0.35) respects the homeostatic ceiling instead of
+                # on reward_positive (+0.35) respects the homeostatic ceiling instead of
                 # capping at 1.0 and out-running the once-per-cycle clawback (the leak source).
                 pump_signal(core, emo, boost)
                 for opp in opposites.get(emo, []):
@@ -396,10 +396,10 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
 
     # === Update Stability (after clamping so deviations are accurate) ===
     # Negative emotions above baseline destabilize; positive emotions above baseline stabilize.
-    # Treating positive_valence/exploration_drive as instability was backwards.
-    _neg_emos = {"threat_level", "impasse_signal", "conflict_signal", "negative_valence", "risk_estimate", "uncertainty",
-                 "social_penalty", "rejection_signal", "jealousy", "melancholy", "social_deficit", "dread", "loss_signal"}
-    _pos_emos = {"positive_valence", "expected_gain", "exploration_drive", "wonder", "motivation", "confidence", "compassion", "excitement"}
+    # Treating reward_positive/exploration_drive as instability was backwards.
+    _neg_emos = {"threat_level", "impasse_signal", "conflict_signal", "reward_negative", "risk_estimate", "uncertainty",
+                 "social_penalty", "rejection_signal", "social_comparison_signal", "low_affect_signal", "social_deficit", "dread", "loss_signal"}
+    _pos_emos = {"reward_positive", "expected_gain", "exploration_drive", "wonder", "motivation", "confidence", "affiliation_signal", "excitement"}
 
     neg_deviations = [
         max(0.0, float(core.get(e, 0)) - baseline.get(e, 0.0))
@@ -466,10 +466,10 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # apply_restoring_forces decays toward CORE_BASELINES, but it's HOURS-based — at
     # ~30s cycles that's ≈0 pull per cycle. Previously only a hand-picked subset of
     # signals got a real per-call decay, so every OTHER signal (reflective, wonder,
-    # positive_valence, contentment, unease, vitality, social_deficit, …) had no
+    # reward_positive, satisfaction_signal, unease, vigor_signal, social_deficit, …) had no
     # restoring force at all: appraisal triggers pushed them up and nothing pulled
     # them back, so the whole affect vector pinned near the ceiling and just orbited
-    # there (contentment AND unease AND impasse all maxed at once — incoherent).
+    # there (satisfaction_signal AND unease AND impasse all maxed at once — incoherent).
     # Apply a per-call pull toward each signal's setpoint for EVERY core signal so
     # feelings are phasic: a trigger makes a peak that then subsides (opponent-
     # process, Solomon & Corbit 1974; allostasis), instead of a stuck maxed state.
@@ -477,9 +477,9 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     try:
         from brain.control_signals.setpoints import setpoint as _setpoint
         _NEG_SIGNALS = {
-            "impasse_signal", "conflict_signal", "threat_level", "negative_valence",
+            "impasse_signal", "conflict_signal", "threat_level", "reward_negative",
             "risk_estimate", "social_deficit", "social_penalty", "rejection_signal",
-            "unease", "dread", "melancholy", "jealousy", "loss_signal", "stagnation_signal",
+            "unease", "dread", "low_affect_signal", "social_comparison_signal", "loss_signal", "stagnation_signal",
         }
         # Reward-pumped drives need a stronger restoring force: their pumps fire
         # every cycle (+0.04–0.08) while this pull only runs when
@@ -562,7 +562,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     try:
         from brain.control_signals.setpoints import setpoint as _sp_drain
         for _nk in ("impasse_signal", "conflict_signal", "threat_level",
-                    "negative_valence", "risk_estimate", "uncertainty"):
+                    "reward_negative", "risk_estimate", "uncertainty"):
             if _nk in core and isinstance(core.get(_nk), (int, float)):
                 _v = float(core[_nk])
                 core[_nk] = max(0.0, min(1.0, _v + (_sp_drain(_nk) - _v) * 0.02))

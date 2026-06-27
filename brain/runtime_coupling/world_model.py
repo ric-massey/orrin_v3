@@ -460,7 +460,7 @@ class WorldModel:
         emo = (context or {}).get("affect_state") or {}
         core = emo.get("core_signals") or {}
         flat = {**emo, **core}
-        pos = sum(float(flat.get(k, 0)) for k in ("confidence", "motivation", "expected_gain", "positive_valence"))
+        pos = sum(float(flat.get(k, 0)) for k in ("confidence", "motivation", "expected_gain", "reward_positive"))
         neg = sum(float(flat.get(k, 0)) for k in ("impasse_signal", "risk_estimate", "resource_deficit", "threat_level"))
         total = pos + neg
         if total < 0.1:

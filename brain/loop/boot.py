@@ -428,13 +428,13 @@ def _boot_context() -> Context:
                 affect_state[k] = 0.0
     # Cap positive emotions that are pinned at ceiling — they should re-earn their peaks
     _POSITIVE_CEILING = 0.75
-    for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "positive_valence"]:
+    for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "reward_positive"]:
         raw = float(affect_state.get(k) or 0.0)
         if raw > _POSITIVE_CEILING:
             affect_state[k] = _POSITIVE_CEILING
     _core = affect_state.get("core_signals") or {}
     if isinstance(_core, dict):
-        for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "positive_valence"]:
+        for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "reward_positive"]:
             raw = float(_core.get(k) or 0.0)
             if raw > _POSITIVE_CEILING:
                 _core[k] = _POSITIVE_CEILING

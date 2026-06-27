@@ -90,7 +90,7 @@ def _read_gate_state(context: Dict) -> Dict[str, float]:
         "impasse_signal":   float(core.get("impasse_signal")  or 0.0),
         "threat_level":          float(core.get("threat_level")         or 0.0),
         "risk_estimate":       float(core.get("risk_estimate")      or 0.0),
-        "negative_valence":       float(core.get("negative_valence")      or 0.0),
+        "reward_negative":       float(core.get("reward_negative")      or 0.0),
         "social_penalty":         float(core.get("social_penalty")        or 0.0),
         "stability":     float(emo.get("affect_stability") or 0.5),
         "fragmentation": float(context.get("_fragmentation_level") or 0.0),
@@ -100,7 +100,7 @@ def _read_gate_state(context: Dict) -> Dict[str, float]:
 def _crisis_score(gs: Dict[str, float]) -> float:
     """Sustained crisis indicator: avg of top-3 negative emotions."""
     neg = sorted([
-        gs["impasse_signal"], gs["threat_level"], gs["risk_estimate"], gs["negative_valence"], gs["social_penalty"]
+        gs["impasse_signal"], gs["threat_level"], gs["risk_estimate"], gs["reward_negative"], gs["social_penalty"]
     ], reverse=True)
     return sum(neg[:3]) / 3.0
 
@@ -293,7 +293,7 @@ def _review(context: Dict[str, Any]) -> str:
 
         emo = context.get("affect_state") or {}
         core = (emo.get("core_signals") or emo) or {}
-        core["melancholy"] = min(1.0, float(core.get("melancholy") or 0.0) + 0.03)
+        core["low_affect_signal"] = min(1.0, float(core.get("low_affect_signal") or 0.0) + 0.03)
         if isinstance(emo.get("core_signals"), dict):
             emo["core_signals"] = core
         else:
@@ -430,7 +430,7 @@ def _emergency(context: Dict[str, Any]) -> str:
 
     dominant_neg = max(
         [("impasse_signal", gs["impasse_signal"]), ("threat_level", gs["threat_level"]),
-         ("risk_estimate", gs["risk_estimate"]), ("negative_valence", gs["negative_valence"])],
+         ("risk_estimate", gs["risk_estimate"]), ("reward_negative", gs["reward_negative"])],
         key=lambda x: x[1]
     )[0]
 

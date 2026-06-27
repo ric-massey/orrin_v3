@@ -133,16 +133,16 @@ def recommend_mode_from_affect_state(min_intensity: float = 0.55, skip_neutral: 
 
     # Emotion → Mode mapping
     emotion_mode_map = {
-        "positive_valence": "creative",
+        "reward_positive": "creative",
         "conflict_signal": "critical",
-        "negative_valence": "philosophical",
+        "reward_negative": "philosophical",
         "threat_level": "cautious",
         "rejection_signal": "analytical",
         "surprise": "exploratory",
         "exploration_drive": "exploratory",
         "wonder": "philosophical",
         "impasse_signal": "critical",
-        "melancholy": "philosophical",
+        "low_affect_signal": "philosophical",
         "stagnation_signal": "exploratory",
         "motivation": "focused",
         "expected_gain": "creative",

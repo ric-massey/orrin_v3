@@ -90,7 +90,7 @@ def shape_cognition_reward(
         try:
             _pre_neg = sum(
                 float((_emo_pre.get("core_signals") or _emo_pre).get(k) or 0)
-                for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "negative_valence"]
+                for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "reward_negative"]
             )
             if _pre_neg > 0.45:
                 reward += min(0.18, 0.08 + _pre_neg * 0.15)

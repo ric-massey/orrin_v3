@@ -162,8 +162,8 @@ def maybe_trigger_from_event(event_dict: Dict[str, Any]) -> bool:
         # Infer from content keywords
         _KW = {
             "exploration_drive": {"curious", "interest", "wonder", "fascinate"},
-            "positive_valence":       {"positive_valence", "excit", "delight", "happy", "glad"},
-            "negative_valence":   {"sad", "loss_signal", "loss", "mourn"},
+            "reward_positive":       {"reward_positive", "excit", "delight", "happy", "glad"},
+            "reward_negative":   {"sad", "loss_signal", "loss", "mourn"},
             "threat_level":      {"threat_level", "afraid", "threat", "danger"},
             "impasse_signal": {"frustrat", "stuck", "fail", "can't"},
             "social_penalty":     {"social_penalty", "embarra", "disappoint"},

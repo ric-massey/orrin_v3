@@ -47,11 +47,40 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
     # Term Map). The telemetry WIRE fields keep their old spelling for now; the
     # serializer reads the new state key and emits the old wire field, so the
     # frontend is untouched until the dedicated routes/frontend slice.
+    # 4.5 — the biological core-signal names -> engineering names. These are the
+    # most cross-referenced identifiers in the system: persisted in core_signals,
+    # LEARNED in emotion_function_map.json (signal->function->value), and the keys
+    # of the routing/setpoint/antagonist tables. The 14 engineering-neutral signals
+    # (threat_level, confidence, …) are frozen — already correct. surprise/wonder
+    # are added in their own slices (they collide with generic English / wonder.py).
     "affect_state.json": {
         "top": {
             "homeostasis": "setpoint_proximity",  # setpoint regulation index
             "valence": "reward_signal",           # hedonic scalar, sign -1..1
             "mood": "smoothed_state",             # slow EMA of reward_signal
+        },
+        # core_signals holds the per-signal vector; rename the biological names.
+        "nested": {"core_signals": {
+            "positive_valence": "reward_positive",
+            "negative_valence": "reward_negative",
+            "compassion": "affiliation_signal",
+            "melancholy": "low_affect_signal",
+            "jealousy": "social_comparison_signal",
+            "contentment": "satisfaction_signal",
+            "vitality": "vigor_signal",
+        }},
+    },
+    # The learned signal->function weight map is keyed by signal name at the top
+    # level — migrate in lockstep or the learned associations silently reset.
+    "emotion_function_map.json": {
+        "top": {
+            "positive_valence": "reward_positive",
+            "negative_valence": "reward_negative",
+            "compassion": "affiliation_signal",
+            "melancholy": "low_affect_signal",
+            "jealousy": "social_comparison_signal",
+            "contentment": "satisfaction_signal",
+            "vitality": "vigor_signal",
         },
     },
     # 4.6 — lifecycle start timestamp. The /life wire field stays "born_at" via

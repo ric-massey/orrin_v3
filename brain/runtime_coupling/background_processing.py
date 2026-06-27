@@ -309,8 +309,8 @@ class BackgroundProcessor:
             e for e in wm
             if isinstance(e, dict)
             and float(e.get("intensity") or e.get("importance") or 0) >= 2
-            and e.get("emotion") in {"threat_level", "negative_valence", "conflict_signal", "social_penalty", "rejection_signal",
-                                      "melancholy", "social_deficit", "impasse_signal"}
+            and e.get("emotion") in {"threat_level", "reward_negative", "conflict_signal", "social_penalty", "rejection_signal",
+                                      "low_affect_signal", "social_deficit", "impasse_signal"}
             and str(e.get("content", ""))[:60] not in processed_markers
         ]
 

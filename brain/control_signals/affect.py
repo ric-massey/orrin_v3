@@ -239,7 +239,7 @@ def deliver_affect_based_rewards(context, core_signals, stability):
     phasic_mode = "phasic"
     tonic_mode = "tonic"
 
-    if dominant == "positive_valence":
+    if dominant == "reward_positive":
         release_reward_signal(
             context,
             "reward_signal",
@@ -248,7 +248,7 @@ def deliver_affect_based_rewards(context, core_signals, stability):
             effort=base_effort,
             mode=phasic_mode,
         )
-    elif dominant in ["threat_level", "negative_valence"]:
+    elif dominant in ["threat_level", "reward_negative"]:
         release_reward_signal(
             context,
             "reward_signal",

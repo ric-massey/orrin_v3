@@ -200,7 +200,7 @@ def _integrate_or_atrophy(context: Dict[str, Any]) -> None:
 
             emo = context.get("affect_state") or {}
             core = (emo.get("core_signals") or emo) or {}
-            core["melancholy"] = min(1.0, float(core.get("melancholy") or 0.0) + 0.05)
+            core["low_affect_signal"] = min(1.0, float(core.get("low_affect_signal") or 0.0) + 0.05)
             core["uncertainty"] = min(1.0, float(core.get("uncertainty") or 0.0) + 0.03)
             if isinstance(emo.get("core_signals"), dict):
                 emo["core_signals"] = core

@@ -31,13 +31,13 @@ from brain.control_signals.setpoints import CORE_BASELINES
 # chronically elevated, its antagonists are pulled toward baseline faster than
 # their natural decay — preventing impossible co-saturations.
 ANTAGONISTS: Dict[str, List[str]] = {
-    "positive_valence":  ["negative_valence", "melancholy"],
-    "negative_valence":  ["positive_valence", "expected_gain"],
-    "conflict_signal":   ["compassion", "peace"],
+    "reward_positive":  ["reward_negative", "low_affect_signal"],
+    "reward_negative":  ["reward_positive", "expected_gain"],
+    "conflict_signal":   ["affiliation_signal", "peace"],
     "threat_level":      ["confidence", "boldness"],
-    "impasse_signal":    ["confidence", "motivation", "positive_valence"],
+    "impasse_signal":    ["confidence", "motivation", "reward_positive"],
     "confidence":        ["threat_level", "uncertainty"],
-    "motivation":        ["negative_valence", "stagnation_signal"],
+    "motivation":        ["reward_negative", "stagnation_signal"],
     "exploration_drive": ["stagnation_signal"],
     "stagnation_signal": ["exploration_drive", "wonder", "motivation"],
     "uncertainty":       ["confidence"],
@@ -119,7 +119,7 @@ def homeostasis_index(core: Dict[str, float]) -> float:
 # CEILING_RATE per cycle. CRUCIAL: drive/reward *pumps* (cognitive_cost flow,
 # temporal_pressure anticipation, prediction-error surprise) must also respect
 # these via pump_signal() — when they capped at 1.0 instead, they out-ran the
-# once-per-cycle clawback and pinned motivation/confidence/positive_valence near
+# once-per-cycle clawback and pinned motivation/confidence/reward_positive near
 # 0.95 with ~zero variance (the "manically content" flatline). One ceiling
 # authority, enforced at every write site.
 EMO_CEILINGS: Dict[str, float] = {
@@ -127,12 +127,12 @@ EMO_CEILINGS: Dict[str, float] = {
     "uncertainty":      0.75,
     "conflict_signal":  0.65,
     "threat_level":     0.70,
-    "negative_valence": 0.70,
+    "reward_negative": 0.70,
     "social_deficit":   0.65,  # chronic but not acute — cap below hijack threshold
     "exploration_drive": 0.85,  # positive drives — allow higher peaks
     "motivation":       0.85,
     "confidence":       0.82,
-    "positive_valence": 0.85,
+    "reward_positive": 0.85,
     "expected_gain":    0.80,
     "wonder":           0.85,
     "stagnation_signal": 0.80,

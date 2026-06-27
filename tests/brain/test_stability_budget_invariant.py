@@ -14,7 +14,7 @@ from brain.control_signals.arbiter import (
 )
 from brain.control_signals.setpoints import setpoint
 
-SIGNALS = ["threat_level", "motivation", "uncertainty", "positive_valence", "impasse_signal"]
+SIGNALS = ["threat_level", "motivation", "uncertainty", "reward_positive", "impasse_signal"]
 
 
 def _ctx(core):

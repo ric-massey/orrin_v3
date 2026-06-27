@@ -2,13 +2,13 @@
 #
 # Regret is retrospective affective computing.
 #
-# Not the same as impasse_signal (present obstacle) or melancholy (general negative_valence).
+# Not the same as impasse_signal (present obstacle) or low_affect_signal (general reward_negative).
 # Regret surfaces when Orrin notices a pattern: a habituated stalled goal, an
 # accumulation of suppressed impulses that never got expressed, or sustained
 # introspection without action. The past reconfigures itself as a wrong turn.
 #
 # Two modes:
-#   maybe_surface_regret(context): unconscious, rate-limited. Applies melancholy
+#   maybe_surface_regret(context): unconscious, rate-limited. Applies low_affect_signal
 #       + uncertainty bumps silently when retrospective conditions are present.
 #       No WM write — unconscious pressure only.
 #   process_regret(context): deliberate cognition function. LLM reviews recent
@@ -97,7 +97,7 @@ def _surface(context: Dict[str, Any]) -> None:
 
     mel_bump = min(0.08, intensity * 0.10)
     unc_bump = min(0.05, intensity * 0.06)
-    core["melancholy"] = min(1.0, float(core.get("melancholy") or 0.0) + mel_bump)
+    core["low_affect_signal"] = min(1.0, float(core.get("low_affect_signal") or 0.0) + mel_bump)
     core["uncertainty"] = min(1.0, float(core.get("uncertainty") or 0.0) + unc_bump)
 
     if isinstance(emo.get("core_signals"), dict):
@@ -108,7 +108,7 @@ def _surface(context: Dict[str, Any]) -> None:
 
     _last_surface_ts = time.time()
     log_private(f"[regret] unconscious pressure applied (intensity={intensity:.2f}): "
-                f"melancholy +{mel_bump:.3f}, uncertainty +{unc_bump:.3f}")
+                f"low_affect_signal +{mel_bump:.3f}, uncertainty +{unc_bump:.3f}")
 
 
 # ── Symbolic counterfactual engine ──────────────────────────────────────────────

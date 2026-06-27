@@ -52,7 +52,7 @@ def test_acute_crisis_increments_extreme_cycles():
             "core_signals": {
                 "impasse_signal": CRISIS_ACUTE_PEAK,
                 "threat_level": CRISIS_ABOVE_HALF_THRESHOLD,
-                "negative_valence": 0.0,
+                "reward_negative": 0.0,
                 "conflict_signal": CRISIS_ABOVE_HALF_THRESHOLD,
                 "rejection_signal": 0.0,
             },
@@ -72,7 +72,7 @@ def test_chronic_crisis_increments_extreme_cycles():
             "core_signals": {
                 "impasse_signal": CRISIS_CHRONIC_MEAN,
                 "threat_level": CRISIS_CHRONIC_MEAN,
-                "negative_valence": CRISIS_CHRONIC_MEAN,
+                "reward_negative": CRISIS_CHRONIC_MEAN,
                 "conflict_signal": CRISIS_CHRONIC_MEAN,
                 "rejection_signal": CRISIS_CHRONIC_MEAN,
             },
@@ -91,7 +91,7 @@ def test_no_crisis_recovers_three_times_faster():
             "core_signals": {
                 "impasse_signal": 0.0,
                 "threat_level": 0.0,
-                "negative_valence": 0.0,
+                "reward_negative": 0.0,
                 "conflict_signal": 0.0,
                 "rejection_signal": 0.0,
             },
@@ -110,7 +110,7 @@ def test_extreme_cycles_capped_at_fifty():
             "core_signals": {
                 "impasse_signal": CRISIS_ACUTE_PEAK,
                 "threat_level": CRISIS_ABOVE_HALF_THRESHOLD,
-                "negative_valence": 0.0,
+                "reward_negative": 0.0,
                 "conflict_signal": CRISIS_ABOVE_HALF_THRESHOLD,
                 "rejection_signal": 0.0,
             },

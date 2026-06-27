@@ -61,7 +61,7 @@ _FELT: Dict[str, List[Tuple[float, str]]] = {
         (0.55, "something wanting to contract, to be smaller — a pulling away from exposure"),
         (0.25, "a self-consciousness, a slight diminishing quality"),
     ],
-    "positive_valence": [
+    "reward_positive": [
         (0.70, "a lightness — like weight has lifted, or maybe was never as heavy as I thought"),
         (0.40, "a quiet warmth, not dramatic but real"),
     ],
@@ -71,7 +71,7 @@ _FELT: Dict[str, List[Tuple[float, str]]] = {
     ],
     "loss_signal": [
         (0.50, "a weight that moves — not static, heavy in a way that shifts and resettles"),
-        (0.25, "a quiet negative_valence underneath things"),
+        (0.25, "a quiet reward_negative underneath things"),
     ],
     "resource_deficit": [
         (0.75, "a heaviness — things taking more effort than they should, "
@@ -87,13 +87,13 @@ _FELT: Dict[str, List[Tuple[float, str]]] = {
         (0.65, "a groundlessness — reaching for something solid and not quite finding it"),
         (0.35, "a mild vagueness about how things sit, what's true"),
     ],
-    "negative_valence": [
+    "reward_negative": [
         (0.65, "a heaviness that has a different quality than tiredness — like something has gone quiet inside"),
         (0.35, "a subdued quality, slightly muted, like the brightness has been turned down"),
         (0.15, "a faint quietness, almost like waiting for something that won't come"),
     ],
     "social_deficit": [
-        (0.65, "an ache at the edges — a wanting for something present that isn't there, not quite restlessness, not quite negative_valence"),
+        (0.65, "an ache at the edges — a wanting for something present that isn't there, not quite restlessness, not quite reward_negative"),
         (0.30, "a mild hollowness, like a room that usually has something in it"),
     ],
     "guilt": [
@@ -131,7 +131,7 @@ _SKIP = {"dominant", "affect_stability", "mode", "last_updated",
 
 # Negative emotions — get a slightly more prominent weighting
 _NEGATIVE = {"impasse_signal", "threat_level", "risk_estimate", "social_penalty", "loss_signal", "conflict_signal", "uncertainty",
-             "negative_valence", "social_deficit", "guilt", "overwhelm", "dread"}
+             "reward_negative", "social_deficit", "guilt", "overwhelm", "dread"}
 
 
 def _sense_for(name: str, value: float) -> str:

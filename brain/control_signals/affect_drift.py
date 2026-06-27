@@ -86,7 +86,7 @@ def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int
         effort_mod = (1 - resource_deficit) * (0.5 + motivation)
 
         # Strong intervention for negative drift
-        if current_mode in {"philosophical", "critical", "cautious", "melancholy", "frustrated", "disoriented"}:
+        if current_mode in {"philosophical", "critical", "cautious", "low_affect_signal", "frustrated", "disoriented"}:
             update_working_memory({
                 "content": f"Orrin is initiating a shadow dialogue to escape prolonged {current_mode}.",
                 "event_type": "drift_intervention",

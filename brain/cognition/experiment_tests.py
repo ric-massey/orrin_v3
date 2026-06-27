@@ -171,7 +171,7 @@ def _build_sim_context(emotion: str, level: float, attention: str,
     """
     import random
     base_emo = {e: 0.05 for e in
-                ["positive_valence", "negative_valence", "conflict_signal", "threat_level", "exploration_drive", "stagnation_signal",
+                ["reward_positive", "reward_negative", "conflict_signal", "threat_level", "exploration_drive", "stagnation_signal",
                  "impasse_signal", "risk_estimate", "motivation", "excitement"]}
     base_emo[emotion] = max(0.0, min(1.0, level + random.uniform(-noise, noise)))
 

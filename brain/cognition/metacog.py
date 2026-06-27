@@ -244,7 +244,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
             except Exception:
                 _msig = 1.0
             offers.append(("milestone_met", f"Progress on '{title}': a milestone was met.",
-                           0.55, "savor", "positive_valence", round(0.04 * _msig, 4), False))
+                           0.55, "savor", "reward_positive", round(0.04 * _msig, 4), False))
         gs["met"] = met
         gs["sig"] = sig
 

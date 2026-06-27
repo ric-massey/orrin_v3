@@ -56,7 +56,7 @@ def test_select_function_when_everything_undispatchable():
 
 def test_select_function_with_extreme_affect_state():
     extreme_core = {k: 1.0 for k in (
-        "threat_level", "impasse_signal", "conflict_signal", "negative_valence",
+        "threat_level", "impasse_signal", "conflict_signal", "reward_negative",
         "uncertainty", "stagnation_signal", "social_deficit",
     )}
     ctx = {"affect_state": {"core_signals": extreme_core}}

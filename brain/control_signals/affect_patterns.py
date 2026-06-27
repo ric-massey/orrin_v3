@@ -302,7 +302,7 @@ def detect_oscillation_and_flatline(state, core, context, now, update_working_me
     _FLAT_WINDOW    = 8        # how many recent cycles must be flat-high
     _FLAT_VAR_MAX   = 0.0008   # "flat": variance below this (std < ~0.028)
     _FLAT_HIGH_MEAN = 0.78     # "high": mean drive at/above this (below the 0.82–0.85 ceilings)
-    _FLAT_DRIVES = ("motivation", "confidence", "positive_valence", "exploration_drive")
+    _FLAT_DRIVES = ("motivation", "confidence", "reward_positive", "exploration_drive")
     try:
         hist = state.get("emotion_history", [])
         if isinstance(hist, list) and len(hist) >= _FLAT_WINDOW:

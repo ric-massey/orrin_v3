@@ -49,7 +49,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "investigate_unexplained_emotions": 0.74, "reflection": 0.70,
                     "reflect_on_emotion_model": 0.64, "propose_value_revision": 0.60,
                     "self_review": 0.56},
-    "negative_valence":     {"reflect_on_affect": 0.85, "attempt_regulation": 0.78,
+    "reward_negative":     {"reflect_on_affect": 0.85, "attempt_regulation": 0.78,
                     "narrative_update": 0.75, "reflection": 0.68,
                     "reflect_on_emotion_model": 0.64, "apply_affective_feedback": 0.60},
     "conflict_signal":       {"attempt_regulation": 0.88, "reflect_on_affect": 0.80,
@@ -59,7 +59,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     # priors below (never scored — the name is excluded from the pool).
     "confidence":  {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
     "motivation":  {"assess_goal_progress": 0.8, "adapt_subgoals": 0.6, "plan_self_evolution": 0.6},
-    "positive_valence":         {"narrative_update": 0.65, "leave_note": 0.62, "generate_intrinsic_goals": 0.6,
+    "reward_positive":         {"narrative_update": 0.65, "leave_note": 0.62, "generate_intrinsic_goals": 0.6,
                     "look_outward": 0.55, "search_own_files": 0.50},
     "uncertainty": {"search_own_files": 0.78, "self_review": 0.75, "reflection": 0.72,
                     "attempt_regulation": 0.65, "look_around": 0.60, "adapt_subgoals": 0.55,

@@ -90,14 +90,14 @@ def test_failed_committed_goal_costs_in_proportion(monkeypatch, tmp_path):
 
     def fail(goal_title):
         ctx = {"affect_state": {"core_signals": {
-            "impasse_signal": 0.0, "negative_valence": 0.0, "confidence": 0.5}}}
+            "impasse_signal": 0.0, "reward_negative": 0.0, "confidence": 0.5}}}
         G.mark_goal_failed({"title": goal_title}, reason="test", context=ctx)
         return ctx["affect_state"]["core_signals"]
 
     committed = fail("finish the report")       # strength 1.0 → scale 1.5
     plain = fail("never committed goal")        # no commitment → scale 1.0
     assert committed["impasse_signal"] > plain["impasse_signal"]
-    assert committed["negative_valence"] > plain["negative_valence"]
+    assert committed["reward_negative"] > plain["reward_negative"]
     assert committed["confidence"] < plain["confidence"]
 
     committed_write = lm_writes[0]

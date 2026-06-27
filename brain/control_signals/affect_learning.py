@@ -23,7 +23,7 @@ def update_affect_function_map(emotion: str, function_name: str, reward_signal=N
     if not emotion or not function_name:
         return
 
-    # Optional normalization to avoid duplicates like "positive_valence" vs "positive_valence"
+    # Optional normalization to avoid duplicates like "reward_positive" vs "reward_positive"
     emotion_key = str(emotion).strip().lower()
     fn_key = str(function_name).strip()
 

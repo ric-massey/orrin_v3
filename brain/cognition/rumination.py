@@ -281,7 +281,7 @@ def _seed_from_context(
         float(core_signals.get("guilt",       0)) * 1.4 +
         float(core_signals.get("impasse_signal", 0)) * 0.9 +
         float(core_signals.get("risk_estimate",     0)) * 0.7 +
-        float(core_signals.get("negative_valence",     0)) * 0.6
+        float(core_signals.get("reward_negative",     0)) * 0.6
     )
 
     # Minimum emotional charge needed to seed rumination
@@ -293,7 +293,7 @@ def _seed_from_context(
         "social_penalty": float(core_signals.get("social_penalty", 0)) * 1.4,
         "impasse_signal": float(core_signals.get("impasse_signal", 0)) * 0.9,
         "risk_estimate": float(core_signals.get("risk_estimate", 0)) * 0.7,
-        "negative_valence": float(core_signals.get("negative_valence", 0)) * 0.6,
+        "reward_negative": float(core_signals.get("reward_negative", 0)) * 0.6,
     }
     dominant_ruminative = max(_ruminative_weights, key=_ruminative_weights.get)
     dominant_intensity   = _ruminative_weights[dominant_ruminative]

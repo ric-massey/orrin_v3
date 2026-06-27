@@ -20,23 +20,23 @@ from brain.paths import AFFECT_MODEL_FILE
 # affect_model.json is missing or empty, boot reseeds it from here so keyword
 # detection never silently degrades to all-neutral.
 DEFAULT_EMOTION_KEYWORDS: Dict[str, List[str]] = {
-    "positive_valence": [
+    "reward_positive": [
         "happy", "glad", "great", "joy", "joyful", "love", "wonderful",
         "excited", "exciting", "awesome", "delighted", "pleased", "fantastic",
         "enjoy", "grateful", "thankful", "proud", "cheerful",
     ],
-    "negative_valence": [
+    "reward_negative": [
         "frustrated", "frustrating", "frustration", "angry", "anger",
         "annoyed", "annoying", "upset", "terrible", "awful", "hate", "mad",
         "irritated", "furious", "miserable", "unhappy", "disappointed",
         "disgusted",
     ],
-    "melancholy": [
+    "low_affect_signal": [
         "sad", "sadness", "lonely", "gloomy", "grief", "grieving",
         "heartbroken", "somber", "wistful", "melancholy", "depressed",
         "tearful", "mourning", "hopeless",
     ],
-    "jealousy": [
+    "social_comparison_signal": [
         "jealous", "jealousy", "envy", "envious", "resentful", "resentment",
         "covet",
     ],
@@ -50,11 +50,11 @@ DEFAULT_EMOTION_KEYWORDS: Dict[str, List[str]] = {
         "fascinating", "intrigued", "intriguing", "marvel", "awe",
         "mystery", "mysterious",
     ],
-    "contentment": [
+    "satisfaction_signal": [
         "content", "calm", "peaceful", "relaxed", "relaxing", "serene",
         "satisfied", "satisfying", "comfortable", "cozy", "ease", "soothing",
     ],
-    "compassion": [
+    "affiliation_signal": [
         "sorry", "sympathy", "sympathetic", "empathy", "empathetic", "caring",
         "comfort", "comforting", "kind", "kindness", "gentle", "support",
         "supportive", "console",

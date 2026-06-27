@@ -392,9 +392,9 @@ def update_working_memory(
 # and attention filtering.
 
 _EMOTION_VALENCE: dict = {
-    "social_penalty": -1, "impasse_signal": -1, "threat_level": -1, "negative_valence": -1,
+    "social_penalty": -1, "impasse_signal": -1, "threat_level": -1, "reward_negative": -1,
     "risk_estimate": -1, "conflict_signal": -1, "social_deficit": -1, "uncertainty": -1,
-    "positive_valence": +1, "expected_gain": +1, "exploration_drive": +1, "confidence": +1,
+    "reward_positive": +1, "expected_gain": +1, "exploration_drive": +1, "confidence": +1,
     "motivation": +1, "wonder": +1, "gratitude": +1,
 }
 

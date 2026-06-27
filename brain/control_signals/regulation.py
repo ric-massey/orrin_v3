@@ -11,9 +11,9 @@
 #   impasse_signal  → reappraisal (reframe the obstruction)
 #                  distancing  (observe the impasse_signal rather than inhabiting it)
 #   risk_estimate      → grounding   (return attention to what is concrete and actionable)
-#   negative_valence      → meaning-seeking (locate what the negative_valence is pointing toward)
-#   social_deficit   → self-compassion (turn warmth inward rather than outward)
-#   social_penalty        → self-compassion
+#   reward_negative      → meaning-seeking (locate what the reward_negative is pointing toward)
+#   social_deficit   → self-affiliation_signal (turn warmth inward rather than outward)
+#   social_penalty        → self-affiliation_signal
 #   threat_level         → grounding
 #
 # Success probability formula:
@@ -109,8 +109,8 @@ _STRATEGIES: Dict[str, Dict[str, Any]] = {
         "side_effects": {"confidence": +0.05, "risk_estimate": -0.05},
     },
     "meaning_seeking": {
-        "applies_to": {"negative_valence"},
-        "description": "What is this negative_valence pointing toward? What does it care about?",
+        "applies_to": {"reward_negative"},
+        "description": "What is this reward_negative pointing toward? What does it care about?",
         "target_delta": -0.12,
         # exploration_drive side-effect removed (see reappraisal) — keep meaning only.
         "side_effects": {"meaning": +0.08},
@@ -130,7 +130,7 @@ _EMOTION_PRIORITY: Dict[str, list] = {
     "risk_estimate":     ["grounding"],
     "threat_level":        ["grounding"],
     "uncertainty": ["grounding"],
-    "negative_valence":     ["meaning_seeking"],
+    "reward_negative":     ["meaning_seeking"],
     "social_deficit":  ["self_compassion"],
     "social_penalty":       ["self_compassion"],
 }

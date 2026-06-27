@@ -173,7 +173,7 @@ def appraise_event(
             positive_valence_d  = round(rel * cert * 0.22, 3)
             conf_d = round(rel * cert * 0.12, 3)
             mot_d  = round(rel        * 0.10, 3)
-            if positive_valence_d  > 0.02: out.append({"emotion": "positive_valence",        "delta": positive_valence_d,  "cause": cause})
+            if positive_valence_d  > 0.02: out.append({"emotion": "reward_positive",        "delta": positive_valence_d,  "cause": cause})
             if conf_d > 0.02: out.append({"emotion": "confidence", "delta": conf_d, "cause": cause})
             if mot_d  > 0.02: out.append({"emotion": "motivation", "delta": mot_d,  "cause": cause})
 

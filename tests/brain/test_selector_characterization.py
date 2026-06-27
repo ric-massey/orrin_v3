@@ -169,7 +169,7 @@ _DISTRESS_OK_PREFIXES = ("reflect_on_", "attempt_regulation", "investigate_",
 
 def test_distress_routes_to_reflection_family():
     ctx = {
-        "affect_state": {"core_signals": {"negative_valence": 0.9, "threat_level": 0.7}},
+        "affect_state": {"core_signals": {"reward_negative": 0.9, "threat_level": 0.7}},
         "_exploration_epsilon": 0.0,
     }
     random.seed(_SEED)

@@ -289,7 +289,7 @@ def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Opt
 
         if progress_signal and goal_in_wm:
             # About to finish → anticipatory satisfaction and relief
-            pump_signal(core, "positive_valence", 0.07 * ei)
+            pump_signal(core, "reward_positive", 0.07 * ei)
             pump_signal(core, "motivation",       0.09 * ei)
             pump_signal(core, "expected_gain",    0.06 * ei)
             fired = "anticipatory_satisfaction"

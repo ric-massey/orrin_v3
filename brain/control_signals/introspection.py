@@ -29,19 +29,19 @@ from typing import Any, Dict, List, Optional, Tuple
 #   - social_penalty→conflict_signal: well-replicated externalizing pathway (Tang et al. 2024)
 #   - risk_estimate→impasse_signal: clinically documented "risk_estimate as masquerader"
 #   - threat_level↔excitement: Zillmann excitation transfer (activation_level relabeled by context)
-#   - guilt is action-focused (→negative_valence), social_penalty is self-focused (→conflict_signal) — distinct
+#   - guilt is action-focused (→reward_negative), social_penalty is self-focused (→conflict_signal) — distinct
 #   - social_deficit→stagnation_signal: removed (correlation only, not documented misattribution)
 _CONFUSION: Dict[str, List[Tuple[str, float]]] = {
     "risk_estimate":    [("impasse_signal", 0.38), ("overwhelm", 0.25), ("dread", 0.18)],
     "threat_level":       [("risk_estimate", 0.45), ("dread", 0.25), ("excitement", 0.12)],
-    "social_deficit": [("negative_valence", 0.32), ("loss_signal", 0.20)],
-    "social_penalty":      [("conflict_signal", 0.35), ("impasse_signal", 0.28), ("negative_valence", 0.15)],
-    "loss_signal":      [("negative_valence", 0.40), ("resource_deficit", 0.20)],
+    "social_deficit": [("reward_negative", 0.32), ("loss_signal", 0.20)],
+    "social_penalty":      [("conflict_signal", 0.35), ("impasse_signal", 0.28), ("reward_negative", 0.15)],
+    "loss_signal":      [("reward_negative", 0.40), ("resource_deficit", 0.20)],
     "overwhelm":  [("impasse_signal", 0.35), ("risk_estimate", 0.30), ("conflict_signal", 0.20)],
-    "guilt":      [("negative_valence", 0.30), ("impasse_signal", 0.22), ("social_penalty", 0.15)],
-    "negative_valence":    [("resource_deficit", 0.30), ("loss_signal", 0.22), ("social_deficit", 0.18)],
+    "guilt":      [("reward_negative", 0.30), ("impasse_signal", 0.22), ("social_penalty", 0.15)],
+    "reward_negative":    [("resource_deficit", 0.30), ("loss_signal", 0.22), ("social_deficit", 0.18)],
     "conflict_signal":      [("impasse_signal", 0.48), ("overwhelm", 0.22)],
-    "despair":    [("negative_valence", 0.40), ("resource_deficit", 0.25), ("loss_signal", 0.20)],
+    "despair":    [("reward_negative", 0.40), ("resource_deficit", 0.25), ("loss_signal", 0.20)],
     "dread":      [("risk_estimate", 0.42), ("threat_level", 0.28)],
     "excitement": [("risk_estimate", 0.35), ("motivation", 0.22)],
 }
@@ -49,7 +49,7 @@ _CONFUSION: Dict[str, List[Tuple[str, float]]] = {
 # Negative emotion labels — used for granularity valence detection
 _NEGATIVE = frozenset({
     "risk_estimate", "threat_level", "dread", "panic", "conflict_signal", "impasse_signal", "rage",
-    "social_penalty", "guilt", "loss_signal", "negative_valence", "social_deficit", "despair",
+    "social_penalty", "guilt", "loss_signal", "reward_negative", "social_deficit", "despair",
     "overwhelm", "worry", "regret",
 })
 
@@ -183,7 +183,7 @@ def _granularity_failure(
         float(core_actual.get(e, 0)) for e in _NEGATIVE
         if isinstance(core_actual.get(e), (int, float))
     )
-    pos_keys  = {"positive_valence", "expected_gain", "wonder", "exploration_drive", "motivation", "confidence"}
+    pos_keys  = {"reward_positive", "expected_gain", "wonder", "exploration_drive", "motivation", "confidence"}
     pos_total = sum(
         float(core_actual.get(e, 0)) for e in pos_keys
         if isinstance(core_actual.get(e), (int, float))
@@ -273,7 +273,7 @@ def _environment_bias(context: Dict[str, Any]) -> Dict[str, float]:
     attn = context.get("attention_mode", "")
     if attn == "drowsy":
         bias["social_deficit"] = bias.get("social_deficit", 0.0) + 0.35
-        bias["negative_valence"]    = bias.get("negative_valence",    0.0) + 0.20
+        bias["reward_negative"]    = bias.get("reward_negative",    0.0) + 0.20
     elif attn == "wandering":
         bias["exploration_drive"]  = bias.get("exploration_drive",  0.0) + 0.25
 

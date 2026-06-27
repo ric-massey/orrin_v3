@@ -151,7 +151,7 @@ def artifact_satisfied(goal: "Goal", steps: List["Step"]) -> bool:
     # an existing package edge, kept lazy to avoid load-time coupling.
     try:
         from brain.cognition.quality_predicate import assess_artifact_file
-    except Exception:
+    except Exception:  # intentional: predicate unavailable → legacy existence-check fallback
         # Predicate unavailable → fall back to the legacy existence check rather
         # than blocking closure entirely.
         return any(os.path.isfile(c) for c in candidates)

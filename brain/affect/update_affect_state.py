@@ -306,10 +306,9 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         nudges = trigger_map.get(trig_key, {})
         for emo, boost in nudges.items():
             if emo in core:
-                # (T0.2) Route trigger nudges through pump_signal so a "success"
-                # spike on positive_valence (+0.35) respects the homeostatic ceiling
-                # instead of capping at 1.0 and out-running the once-per-cycle
-                # clawback (the source of the over-cap positive_valence leak).
+                # (T0.2) Route trigger nudges through pump_signal so a "success" spike
+                # on positive_valence (+0.35) respects the homeostatic ceiling instead of
+                # capping at 1.0 and out-running the once-per-cycle clawback (the leak source).
                 pump_signal(core, emo, boost)
                 for opp in opposites.get(emo, []):
                     if opp in core:
@@ -430,11 +429,10 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # store for decay, so we merge them here — capped at per-emotion ceilings before merging
     # so that a reward writing state["motivation"]=1.0 can't bypass the emotional ceiling.
     _dup_keys = {"motivation", "confidence", "exploration_drive", "social_deficit", "stagnation_signal"}
-    # (T0.2) Dup-key sync clamp derived from the SINGLE ceiling table (EMO_CEILINGS).
-    # A separate `_dup_soft_ceil` table used to live here and DISAGREED with
-    # EMO_CEILINGS (e.g. social_deficit 1.0 vs 0.65, motivation 0.80 vs 0.85), so a
-    # reward write could be clamped to a different ceiling than the one the clawback
-    # below enforces — two setpoints for one signal. Now there is one source of truth.
+    # (T0.2) Dup-key sync clamp derived from the SINGLE ceiling table (EMO_CEILINGS),
+    # not a separate `_dup_soft_ceil` table that used to DISAGREE with it (e.g.
+    # social_deficit 1.0 vs 0.65) and clamp reward writes to a different ceiling than
+    # the clawback below enforced — two setpoints for one signal. Now one source of truth.
     for _dk in _dup_keys:
         _top = state.get(_dk)
         if isinstance(_top, (int, float)) and _dk in core:

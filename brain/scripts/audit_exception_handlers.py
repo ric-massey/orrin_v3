@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Iterable
@@ -16,7 +17,17 @@ ROOTS = ("brain", "backend", "goals", "memory", "reaper", "observability", "main
 # It freezes the count when the ratchet landed; it may only ever be *lowered*, in
 # the same commit that reclassifies the handlers (log / narrow / re-raise / annotate)
 # that bring the real count down. New silent handlers cannot be added.
-CEILING = 3
+#
+# A broad swallow is cleared by ANY of the four sanctioned routes (matching the
+# policy in tests/test_exception_ratchet.py): logging it (an observability call in
+# the body), narrowing the exception type, re-raising, or — for a genuinely
+# intentional swallow — an `# intentional[:…]` comment on the `except` line or in
+# its body. The ratchet then means "no broad swallow that is neither logged nor
+# explicitly marked intentional," and the floor is 0.
+CEILING = 0
+
+# A handler annotated as a deliberate swallow per the documented policy.
+_INTENTIONAL_RE = re.compile(r"#.*\bintentional\b", re.IGNORECASE)
 OBSERVABILITY_CALLS = {
     "record_failure",
     "log_error",
@@ -59,9 +70,11 @@ def find_silent_broad_handlers(root: Path) -> list[tuple[Path, int, str]]:
         if "data/_archive" in path.as_posix():
             continue
         try:
-            tree = ast.parse(path.read_text(encoding="utf-8"))
+            source = path.read_text(encoding="utf-8")
+            tree = ast.parse(source)
         except (OSError, SyntaxError):
             continue
+        src_lines = source.splitlines()
         for node in ast.walk(tree):
             if not isinstance(node, ast.ExceptHandler):
                 continue
@@ -74,6 +87,12 @@ def find_silent_broad_handlers(root: Path) -> list[tuple[Path, int, str]]:
             if len(node.body) != 1 or not isinstance(
                 node.body[0], (ast.Pass, ast.Continue, ast.Return)
             ):
+                continue
+            # Sanctioned route: an `# intentional[:…]` annotation on the `except`
+            # line or anywhere in the handler body marks a deliberate swallow.
+            end = node.body[-1].end_lineno or node.lineno
+            segment = "\n".join(src_lines[node.lineno - 1 : end])
+            if _INTENTIONAL_RE.search(segment):
                 continue
             findings.append((path.relative_to(root), node.lineno, ast.unparse(node.body[0])))
     return findings

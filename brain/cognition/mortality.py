@@ -144,7 +144,7 @@ def felt_lifespan_seconds() -> float:
             return 0.0
         felt = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
         return max(0.0, felt)
-    except Exception:
+    except Exception:  # intentional: lifespan read is best-effort, fail-safe to 0.0
         return 0.0
 
 

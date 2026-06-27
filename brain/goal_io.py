@@ -237,7 +237,7 @@ def _tier_weight(tier: Any) -> int:
     try:
         from brain.cognition.planning.executive import _TIER_TURNS
         return int(_TIER_TURNS.get(str(tier or "").lower(), 1))
-    except Exception:
+    except Exception:  # intentional: tier ordering is best-effort, fail-safe to 1
         return 1
 
 

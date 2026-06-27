@@ -8,8 +8,8 @@ import { LexText, PanelSubtitle } from "./Lex";
 import { MiniBars } from "./viz";
 
 /** Language-organ box — the from-scratch language system (ORRIN_LANGUAGE_PLAN):
- *  phrase banks, learned phrases, what he's actually said (with quality
- *  scores), the books he's read, and the native LM artifacts on disk. */
+ *  phrase banks, learned phrases, what it's actually said (with quality
+ *  scores), the books it's read, and the native LM artifacts on disk. */
 
 interface SpeechRow { ts?: string; reply?: string; quality?: number | null }
 
@@ -49,7 +49,7 @@ export default function LanguagePanel() {
           <PanelInfo
             title="Language organ"
             perspective="agent-accessible"
-            what="The language he's growing from scratch, separate from any external LLM: curated phrase banks, phrases he's learned from use, everything he's actually said (with quality scores once evaluated), the books he's read into his replay corpus, and the native language model + tokenizer artifacts on disk."
+            what="The language it's growing from scratch, separate from any external LLM: curated phrase banks, phrases it's learned from use, everything it's actually said (with quality scores once evaluated), the books it's read into its replay corpus, and the native language model + tokenizer artifacts on disk."
             source="GET /api/language over brain/data/vocabulary.json · learned_phrases.json · speech_log.json · language/ (native_lm.pt, tokenizer.json, book_reads.json)"
             good="Phrase banks and learned phrases growing with use, speech quality scores trending up, and the native LM artifact actually present on disk."
             src={{ file: "brain/cognition/language_acquisition.py", start: 1, end: 60, label: "language_acquisition" }}
@@ -79,7 +79,7 @@ export default function LanguagePanel() {
 
         {recent.length > 0 && (
           <div>
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">What he said recently</div>
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">What it said recently</div>
             <div className="space-y-1">
               {[...recent].reverse().map((s, i) => (
                 <div key={i} className="rounded-md border border-border bg-card/40 px-2 py-1.5">

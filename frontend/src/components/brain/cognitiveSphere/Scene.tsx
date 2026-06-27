@@ -198,7 +198,7 @@ export function Scene({
   }, [catalog.edges]);
 
   // Glowing roads on the outer shell. Width scales with the learned transition
-  // strength, so heavily-travelled paths (his loops) swell into thick bright roads
+  // strength, so heavily-travelled paths (its loops) swell into thick bright roads
   // you can read at a glance; faint one-offs stay thin.
   const roads = useMemo(() => {
     if (!settings.lines) return [];

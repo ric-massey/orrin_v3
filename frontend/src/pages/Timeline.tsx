@@ -106,7 +106,7 @@ export default function Timeline() {
             </ul>
           ) : (
             <p className="text-sm italic text-muted-foreground">
-              {feed ? "Nothing happened while you were away." : "Looking back over what he did…"}
+              {feed ? "Nothing happened while you were away." : "Loading the recent activity log…"}
             </p>
           )}
         </CardContent>

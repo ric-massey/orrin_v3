@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Clock, Star, Wind, Fingerprint, Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useLexicon } from "@/lib/lexicon";
 import { usePolledJSON } from "@/lib/usePolled";
 import InfoDot from "@/components/brain/InfoDot";
 import { ROOM_INFO } from "@/lib/roomMetrics";
@@ -16,8 +15,8 @@ const LENS_INFO: Record<Lens, keyof typeof ROOM_INFO> = {
 };
 
 // Memory Explorer (§9.5) — four lenses over data that already ships. The "Forgotten"
-// lens is the quietly powerful one: watching him forget is what makes "his memory
-// stays bounded" believable. All four are honest-empty on a newborn.
+// lens is the quietly powerful one: visible decay is what makes "the memory store
+// stays bounded" believable. All four are honest-empty on a fresh runtime.
 
 type Lens = "recent" | "important" | "forgotten" | "identity";
 
@@ -33,7 +32,6 @@ interface ForgetFeed { sweeps?: Record<string, unknown>[]; total?: number }
 interface SelfFeed { autobiography?: Record<string, unknown>; opinions?: Record<string, unknown>[] }
 
 export default function Memory() {
-  useLexicon(); // subscribe so the page re-renders on dialect change (labels are data here)
   const [lens, setLens] = useState<Lens>("recent");
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
@@ -56,7 +54,7 @@ export default function Memory() {
           Memory
           <InfoDot info={ROOM_INFO[LENS_INFO[lens]]} />
         </h1>
-        <p className="text-sm text-muted-foreground">What he remembers, what he keeps, and what he lets go.</p>
+        <p className="text-sm text-muted-foreground">What the runtime retains, what it keeps, and what it lets decay.</p>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -101,7 +99,7 @@ function MemoryList({ path }: { path: string }) {
   const feed = usePolledJSON<MemFeed>(path, 8000);
   const entries = feed?.entries ?? [];
   if (feed && entries.length === 0)
-    return <Empty>No memories here yet{feed.total === 0 ? " — he's a newborn" : ""}.</Empty>;
+    return <Empty>No memories here yet{feed.total === 0 ? " — fresh runtime" : ""}.</Empty>;
   return (
     <div className="space-y-2">
       {feed?.matched != null && (
@@ -122,10 +120,10 @@ function MemoryList({ path }: { path: string }) {
 function ForgottenList() {
   const feed = usePolledJSON<ForgetFeed>("/api/forgetting?n=40", 8000);
   const sweeps = feed?.sweeps ?? [];
-  if (feed && sweeps.length === 0) return <Empty>He hasn't forgotten anything yet — nothing has decayed or been pruned.</Empty>;
+  if (feed && sweeps.length === 0) return <Empty>Nothing forgotten yet — nothing has decayed or been pruned.</Empty>;
   return (
     <div className="space-y-2">
-      <p className="text-xs text-muted-foreground">Watching him forget keeps his mind finite and real.</p>
+      <p className="text-xs text-muted-foreground">Decay keeps the memory store bounded.</p>
       {[...sweeps].reverse().map((s, i) => (
         <Card key={i}>
           <CardContent className="py-3 text-sm">
@@ -144,12 +142,12 @@ function IdentityList() {
   const auto = feed?.autobiography ?? {};
   const autoEntries = Object.entries(auto);
   if (feed && opinions.length === 0 && autoEntries.length === 0)
-    return <Empty>He hasn't formed a sense of himself yet.</Empty>;
+    return <Empty>No identity state formed yet.</Empty>;
   return (
     <div className="space-y-4">
       {autoEntries.length > 0 && (
         <div className="space-y-2">
-          <h2 className="text-sm font-medium text-muted-foreground">Autobiography</h2>
+          <h2 className="text-sm font-medium text-muted-foreground">Run history</h2>
           {autoEntries.slice(0, 12).map(([k, v]) => (
             <Card key={k}>
               <CardContent className="py-3 text-sm">
@@ -162,7 +160,7 @@ function IdentityList() {
       )}
       {opinions.length > 0 && (
         <div className="space-y-2">
-          <h2 className="text-sm font-medium text-muted-foreground">What he's come to believe</h2>
+          <h2 className="text-sm font-medium text-muted-foreground">Learned beliefs</h2>
           {opinions.slice(-12).reverse().map((o, i) => (
             <Card key={i}>
               <CardContent className="py-3 text-sm">

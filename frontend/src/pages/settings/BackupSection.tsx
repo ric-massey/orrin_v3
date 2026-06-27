@@ -16,7 +16,7 @@ export function BackupSection() {
 
   // Native (bridge) export: a Save dialog in Python writes the archive directly.
   const exportMindNative = async () => {
-    setNote("Choose where to keep him…");
+    setNote("Choose where to save the archive…");
     try {
       const r = await transport.exportMindNative?.();
       if (!r) return;
@@ -32,7 +32,7 @@ export function BackupSection() {
   const importMindNative = async () => {
     if (
       !window.confirm(
-        "Restore replaces Orrin's current mind. A safety copy of the current mind is saved first, then he restarts. This cannot be undone. Choose an archive to restore?",
+        "Restore replaces Orrin's current state. A safety copy of the current state is saved first, then it restarts. This cannot be undone. Choose an archive to restore?",
       )
     ) {
       return;
@@ -42,7 +42,7 @@ export function BackupSection() {
       const r = await transport.importMindNative?.();
       if (!r) return;
       if (r.cancelled) setNote(null);
-      else if (r.ok) setNote("Restoring — Orrin is coming back with the restored mind…");
+      else if (r.ok) setNote("Restoring — Orrin is coming back with the restored state…");
       else setNote(`Restore refused: ${(r.detail ?? r.error ?? "unknown error").slice(0, 160)}`);
     } catch {
       // The process restarts, so the call may drop — that means it worked.
@@ -50,7 +50,7 @@ export function BackupSection() {
   };
 
   const exportMind = async () => {
-    setNote("Preparing his mind…");
+    setNote("Preparing the state archive…");
     try {
       const res = await fetch(`${apiBase()}/api/mind/export`, { headers: controlHeaders() });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -72,7 +72,7 @@ export function BackupSection() {
   const importMind = async (file: File) => {
     if (
       !window.confirm(
-        `Restore from "${file.name}"? This replaces Orrin's current mind. A safety copy of the current mind is saved first, then he restarts. This cannot be undone.`,
+        `Restore from "${file.name}"? This replaces Orrin's current state. A safety copy of the current state is saved first, then it restarts. This cannot be undone.`,
       )
     ) {
       return;
@@ -101,27 +101,27 @@ export function BackupSection() {
           <Download className="h-4 w-4" /> Backup
         </CardTitle>
         <CardDescription>
-          Months of a developing mind are never one disk failure from gone. Export him as
-          a keepsake, or restore from one.
+          Months of a developing runtime are never one disk failure from gone. Export it as
+          a backup, or restore from one.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         {isBridge ? (
           <div className="flex flex-wrap gap-2">
             <Button size="sm" variant="outline" onClick={() => void exportMindNative()}>
-              <Download className="mr-1.5 h-4 w-4" /> Export Mind…
+              <Download className="mr-1.5 h-4 w-4" /> Export State Archive…
             </Button>
             <Button size="sm" variant="outline" onClick={() => void importMindNative()}>
-              <Upload className="mr-1.5 h-4 w-4" /> Restore Mind…
+              <Upload className="mr-1.5 h-4 w-4" /> Restore State Archive…
             </Button>
           </div>
         ) : (
           <div className="flex flex-wrap gap-2">
             <Button size="sm" variant="outline" onClick={() => void exportMind()}>
-              <Download className="mr-1.5 h-4 w-4" /> Export Mind…
+              <Download className="mr-1.5 h-4 w-4" /> Export State Archive…
             </Button>
             <Button size="sm" variant="outline" onClick={() => fileRef.current?.click()}>
-              <Upload className="mr-1.5 h-4 w-4" /> Restore Mind…
+              <Upload className="mr-1.5 h-4 w-4" /> Restore State Archive…
             </Button>
             <input
               ref={fileRef}

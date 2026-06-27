@@ -13,13 +13,13 @@ export function ResetSection() {
     if (busy) return;
     if (
       !window.confirm(
-        "Reset Orrin? This permanently erases his memories, goals, identity, and everything he's written, then restarts him as a newborn. This cannot be undone.",
+        "Reset Orrin? This permanently erases its memories, goals, identity, and everything it has written, then restarts it as a fresh runtime. This cannot be undone.",
       )
     ) {
       return;
     }
     setBusy(true);
-    setNote("Resetting — Orrin is becoming a newborn and will restart…");
+    setNote("Resetting — Orrin is reverting to a fresh runtime and will restart…");
     try {
       const res = await apiPost(`/api/control/reset`, undefined, { headers: controlHeaders() });
       if (!res.ok && res.status !== 0) {
@@ -39,13 +39,13 @@ export function ResetSection() {
           <RotateCcw className="h-4 w-4" /> Reset Orrin
         </CardTitle>
         <CardDescription>
-          Erase this mind and begin a brand-new one. His memories, goals, identity, and
+          Erase this runtime state and begin fresh. Its memories, goals, identity, and
           self-written code are gone for good — there is no undo.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         <Button variant="destructive" size="sm" onClick={() => void reset()} disabled={busy}>
-          {busy ? "Resetting…" : "Reset Orrin to a newborn"}
+          {busy ? "Resetting…" : "Reset Orrin to a fresh runtime"}
         </Button>
         {note && <p className="text-xs text-foreground">{note}</p>}
       </CardContent>

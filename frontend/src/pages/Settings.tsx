@@ -54,8 +54,8 @@ export default function Settings() {
           <div>
             <span className="font-medium">Orrin is running fully on-device.</span>{" "}
             <span className="text-muted-foreground">
-              With no API key set he thinks symbolically — quieter, but unbroken, and
-              nothing leaves your machine. Add a key below to give him language.
+              With no API key set it runs symbolically — quieter, but unbroken, and
+              nothing leaves your machine. Add a key below to give it language.
             </span>
           </div>
         </div>

@@ -95,7 +95,7 @@ export default function MetricsStrip({ telemetry }: { telemetry: TelemetryState 
           <PanelInfo
             title="System Metrics"
             perspective="dev-only"
-            what="Any of his signals charted over time on one 0–100 scale — pick which series to show with the Metrics button. History is replayed from the server on connect, so the chart is continuous across restarts."
+            what="Any of its signals charted over time on one 0–100 scale — pick which series to show with the Metrics button. History is replayed from the server on connect, so the chart is continuous across restarts."
             source="metric series via the telemetry socket (history persisted in brain/data/telemetry_history.json)"
             good="Pick three or four related signals and watch how they interact — e.g. fatigue climbing while motivation decays toward its setpoint."
           />

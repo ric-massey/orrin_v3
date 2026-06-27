@@ -9,7 +9,7 @@ import { HitMissStrip, MiniBars, Sparkline } from "./viz";
 
 /** Box ④ — Predictions & surprise (active inference). Makes the "minimize
  *  surprise" loop visible: recent predictions vs outcomes, per-domain accuracy,
- *  and the Brier score — a single, defensible "how well-calibrated is he"
+ *  and the Brier score — a single, defensible "how well-calibrated is it"
  *  number that nothing displayed (live: brier 0.0099 over n=758). */
 
 interface Prediction {
@@ -58,7 +58,7 @@ export default function PredictionsPanel() {
           <PanelInfo
             title="Predictions & surprise"
             perspective="agent-accessible"
-            what="He commits to falsifiable expectations about what his actions will do ('after look_outward, risk_estimate falls'), then checks them. This box shows the recent hit/miss record, per-domain accuracy, and the Brier score — the standard calibration measure (0 = perfectly calibrated, 0.25 = coin-flip confidence)."
+            what="It commits to falsifiable expectations about what its actions will do ('after look_outward, risk_estimate falls'), then checks them. This box shows the recent hit/miss record, per-domain accuracy, and the Brier score — the standard calibration measure (0 = perfectly calibrated, 0.25 = coin-flip confidence)."
             source="brain/data/predictions.json · prediction_domain_stats.json · calibration_state.json"
             good="Brier well under 0.1 with a meaningful n, and a hit strip that's mostly green. Confirmed predictions crystallize into symbolic rules."
             src={{ file: "brain/cognition/prediction.py", start: 365, end: 430, label: "check_predictions" }}

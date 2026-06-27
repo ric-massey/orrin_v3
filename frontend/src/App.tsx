@@ -16,7 +16,7 @@ export function useTelemetryState(): TelemetryState {
 }
 
 // The calm light surfaces (Face, Settings); every other room is a deeper, darker
-// research view of the same mind (§9.1 — depth is layered, not walled).
+// research view of the same runtime (§9.1 — depth is layered, not walled).
 const LIGHT_ROOMS = ["/face", "/settings"];
 
 export default function App() {
@@ -42,12 +42,12 @@ export default function App() {
 
   return (
     <TelemetryContext.Provider value={telemetry}>
-      {/* Cold-launch boot sequence, then (on a newborn) the First Wake intro. Both
+      {/* Cold-launch boot sequence, then (on a fresh runtime) the First Wake intro. Both
           self-dismiss and never show on a warm reopen / returning viewer. */}
       <WakeScreen />
       <FirstWake />
-      {/* The memorial when his lifespan ends (and the crash/stall banner). The one
-          place his interior opens — the veil lifts only on death (§10.4). */}
+      {/* The end-of-run summary when the lifetime budget ends (and the crash/stall
+          banner). The one place the interior opens — it unseals only on termination (§10.4). */}
       <DeathScreen />
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header telemetry={telemetry} />

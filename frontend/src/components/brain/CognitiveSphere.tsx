@@ -127,11 +127,11 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
         <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
           <Cpu className="h-4 w-4" /> <span title={tip("sphere_title")}>{t("sphere_title")}</span>
           <PanelInfo
-            title="Cognitive Sphere"
+            title="Function-call graph"
             perspective="dev-only"
-            what="Every cognitive function he can run, as a 3D map grouped by subsystem. The white comet is the deliberate (conscious) pick this cycle; the amber pulse is the executive lane quietly advancing a goal step in the background. Node size grows with real usage; the gray 'roads' are learned transitions between functions. Click any node to read its code and stats."
+            what="Every cognitive function it can run, as a 3D map grouped by subsystem. The white comet is the deliberate (attention-winning) pick this cycle; the amber pulse is the executive lane quietly advancing a goal step in the background. Node size grows with real usage; the gray 'roads' are learned transitions between functions. Click any node to read its code and stats."
             source="GET /api/catalog (function registry + live decision_stats) · active lights from the telemetry socket"
-            good="Two lanes visibly alive: the comet moving every ~20s cycle, and node sizes growing where he actually spends his cognition."
+            good="Two lanes visibly alive: the comet moving every ~20s cycle, and node sizes growing where it actually spends its cognition."
             src={{ file: "brain/registry/function_catalog.py", start: 1, end: 60, label: "build_catalog" }}
           />
           <PanelSubtitle id="sphere_sub" />
@@ -139,7 +139,7 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
         </CardTitle>
         <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
           {activeFn && (
-            <span className="hidden items-center gap-1.5 sm:flex" title="Deliberate lane (conscious slot)">
+            <span className="hidden items-center gap-1.5 sm:flex" title="Deliberate lane (attention-winner slot)">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: colorFor(activeSub || "Other") }} />
               <span className="font-mono">{activeFn}</span>
             </span>

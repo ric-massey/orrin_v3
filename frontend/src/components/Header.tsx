@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { setLexMode, useLexicon, type LexId } from "@/lib/lexicon";
+import { useLexicon, type LexId } from "@/lib/lexicon";
 import { TelemetryState, useStreamStale } from "@/lib/telemetry";
 import { apiPost } from "@/lib/transport";
 
@@ -24,18 +24,18 @@ interface HeaderProps {
   telemetry: TelemetryState;
 }
 
-// The named rooms (§9.1), left→right. Face is the calm public surface; the rest are
-// progressively deeper views of the same mind, ending in the full research grid.
-// `research: true` rooms get the engineering-dialect toggle (their chrome translates).
-const ROOMS: { path: string; lex: LexId; icon: typeof Activity; research: boolean }[] = [
-  { path: "/watch", lex: "nav_watch", icon: Eye, research: false },
-  { path: "/face", lex: "nav_face", icon: MessageCircle, research: false },
-  { path: "/cognition", lex: "nav_cognition", icon: BrainIcon, research: true },
-  { path: "/life", lex: "nav_life", icon: Activity, research: true },
-  { path: "/memory", lex: "nav_memory", icon: Database, research: true },
-  { path: "/timeline", lex: "nav_timeline", icon: Clock, research: true },
-  { path: "/learning", lex: "nav_learning", icon: TrendingUp, research: true },
-  { path: "/brain", lex: "nav_brain", icon: Network, research: true },
+// The named rooms (§9.1), left→right. Face is the calm public surface; the rest
+// are progressively deeper views of the same runtime, ending in the full
+// research grid.
+const ROOMS: { path: string; lex: LexId; icon: typeof Activity }[] = [
+  { path: "/watch", lex: "nav_watch", icon: Eye },
+  { path: "/face", lex: "nav_face", icon: MessageCircle },
+  { path: "/cognition", lex: "nav_cognition", icon: BrainIcon },
+  { path: "/life", lex: "nav_life", icon: Activity },
+  { path: "/memory", lex: "nav_memory", icon: Database },
+  { path: "/timeline", lex: "nav_timeline", icon: Clock },
+  { path: "/learning", lex: "nav_learning", icon: TrendingUp },
+  { path: "/brain", lex: "nav_brain", icon: Network },
 ];
 
 export default function Header({ telemetry }: HeaderProps) {
@@ -102,7 +102,6 @@ export default function Header({ telemetry }: HeaderProps) {
             <span className="tabular-nums">cycle {telemetry.cycle}</span>
           </div>
 
-          <TerminologyToggle />
           <Button
             variant="ghost"
             size="sm"
@@ -119,43 +118,12 @@ export default function Header({ telemetry }: HeaderProps) {
   );
 }
 
-/** Fix 12 — the biological ↔ engineering vocabulary switch. Re-labels UI chrome
- *  only; Orrin's own output renders verbatim in both modes. Settings is the
- *  canonical home (§9.11); this stays as a fast in-context switch. */
-function TerminologyToggle() {
-  const { mode } = useLexicon();
-  return (
-    <div
-      role="tablist"
-      aria-label="Terminology"
-      className="hidden items-center rounded-full border bg-secondary/60 p-0.5 text-[11px] font-medium md:flex"
-      title="Terminology: the same data labeled in the biological vocabulary (default) or the engineering one."
-    >
-      {(["bio", "eng"] as const).map((m) => (
-        <button
-          key={m}
-          role="tab"
-          aria-selected={mode === m}
-          onClick={() => setLexMode(m)}
-          className={cn(
-            "rounded-full px-2 py-1 transition-colors sm:px-2.5",
-            mode === m ? "bg-background text-foreground shadow-sm ring-1 ring-border" : "text-muted-foreground hover:text-foreground",
-          )}
-        >
-          <span className="sm:hidden">{m === "bio" ? "Bio" : "Eng"}</span>
-          <span className="hidden sm:inline">{m === "bio" ? "Biological" : "Engineering"}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function StopButton() {
   const [stopping, setStopping] = useState(false);
 
   const stop = async () => {
     if (stopping) return;
-    if (!window.confirm("Stop Orrin? This halts his thinking (the cognitive loop and daemons). The window stays open so you can keep viewing his mind — close the window to quit.")) {
+    if (!window.confirm("Stop Orrin? This halts the runtime (the cognitive loop and daemons). The window stays open so you can keep viewing the runtime state — close the window to quit.")) {
       return;
     }
     setStopping(true);

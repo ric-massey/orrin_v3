@@ -56,9 +56,9 @@ export default function AffectRings({ affect }: { affect: Affect }) {
         <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
           <span title={tip("affect_title")}>{t("affect_title")}</span>
           <PanelInfo
-            title="Affect Telemetry"
+            title="Control-signal state"
             perspective="in-attention"
-            what="How he feels right now: the three core rings (pleasant↔unpleasant tone, activation, and how settled his whole affect vector is) plus every extra signal currently active, sorted by intensity. Each value is a 0–100 normalized level; the ℹ️ on any signal explains it down to the code that computes it."
+            what="The current internal signal state: the three core rings (reward sign − ↔ +, activation level, and how close the whole signal vector sits to its setpoints) plus every extra signal currently active, sorted by intensity. Each value is a 0–100 normalized level; the ℹ️ on any signal explains it down to the code that computes it."
             source="affect_state via the telemetry socket (emitter: brain/ORRIN_loop.py _emit_affect)"
             good="Signals that breathe — moving with events and decaying back toward their setpoints — rather than pinned at 0 or 100."
             src={{ file: "brain/ORRIN_loop.py", start: 170, end: 222, label: "_emit_affect" }}

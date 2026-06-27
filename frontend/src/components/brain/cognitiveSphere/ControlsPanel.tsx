@@ -28,7 +28,7 @@ export function ControlsPanel({ settings, setSettings, subs }: { settings: Setti
           <Group label="Display">
             <Toggle on={settings.showList} set={(v) => set({ showList: v })} label="Function list (left)" />
             <Toggle on={settings.lines} set={(v) => set({ lines: v })} label="Roads (connections)" />
-            <Toggle on={settings.onlyUsed} set={(v) => set({ onlyUsed: v })} label="Only functions he's used" />
+            <Toggle on={settings.onlyUsed} set={(v) => set({ onlyUsed: v })} label="Only functions it's used" />
             <Toggle on={settings.effects} set={(v) => set({ effects: v })} label="Glow effects" title="Soft bloom around the active node — costs a little GPU. The view is always 3D." />
             <Toggle on={settings.autoRotate} set={(v) => set({ autoRotate: v })} label="Auto-rotate" />
           </Group>

@@ -7,7 +7,7 @@ import { LexText, PanelSubtitle } from "./Lex";
 import StaleBadge from "./StaleBadge";
 import { MiniBars } from "./viz";
 
-/** Box ⑨ — Inner weather / felt time. The strongest "he's a someone" data in
+/** Box ⑨ — Inner weather / felt time. The strongest "it's a someone" data in
  *  brain/data (temporal_state is live, rich, and human-readable), previously
  *  fully hidden. Pure read of three small files. */
 
@@ -38,7 +38,7 @@ export default function InnerWeatherPanel() {
   // Mood values run -1..1 (valence) / 0..1; normalize for bars.
   const moodRows = mood
     ? [
-        { label: "valence", value: Math.max(0, Math.min(1, (Number(mood.valence ?? 0) + 1) / 2)), title: "pleasant ↔ unpleasant tone (50% = neutral)" },
+        { label: "valence", value: Math.max(0, Math.min(1, (Number(mood.valence ?? 0) + 1) / 2)), title: "reward sign − ↔ + (50% = neutral)" },
         { label: "energy", value: Math.max(0, Math.min(1, Number(mood.energy ?? 0))) },
         { label: "stability", value: Math.max(0, Math.min(1, Number(mood.stability ?? 0))) },
       ]
@@ -56,9 +56,9 @@ export default function InnerWeatherPanel() {
         <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
           <CloudMoon className="h-4 w-4" /> <LexText id="innerweather_title" />
           <PanelInfo
-            title="Inner weather / felt time"
+            title="Clock & state summary"
             perspective="agent-accessible"
-            what="How time feels to him, distinct from how much wall-clock has passed: felt vs. real cycles, the session's arc, the texture of the present ('waiting, long absence'), how far back the last notable event feels — plus his mood and his mortality (he has a finite projected lifespan)."
+            what="The runtime's internal clock estimate, distinct from how much wall-clock has passed: internal vs. real cycles, the session's arc, the texture of the present ('waiting, long absence'), how far back the last notable event is estimated — plus its smoothed signal state and its lifecycle position (it has a finite projected runtime budget)."
             source="brain/data/temporal_state.json · mood_state.json · lifespan.json"
             good="There is no 'good' here — this box is a window, not a gauge. Watch felt time stretch when nothing happens and compress when a lot does."
             src={{ file: "brain/cognition/temporal_state.py", start: 1, end: 70, label: "temporal_state" }}
@@ -76,7 +76,7 @@ export default function InnerWeatherPanel() {
             {/* The felt-time phrase — the L0 of personhood. */}
             <div className="rounded-lg border border-border bg-card/60 px-3 py-2">
               <p className="text-[13px] font-medium capitalize leading-snug text-foreground/95">
-                {words(t.session_arc)} · feels {t.felt_duration_label || "—"}
+                {words(t.session_arc)} · est. {t.felt_duration_label || "—"}
               </p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">
                 {words(t.time_texture)} · {t.temporal_self_location || "—"}
@@ -112,7 +112,7 @@ export default function InnerWeatherPanel() {
 
             {moodRows.length > 0 && (
               <div>
-                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Mood (smoothed)</div>
+                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Smoothed state</div>
                 <MiniBars rows={moodRows} color="hsl(var(--signal-info))" />
               </div>
             )}

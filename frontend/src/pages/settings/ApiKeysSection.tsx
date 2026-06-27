@@ -30,7 +30,7 @@ export function ApiKeysSection({
           field="openai_api_key"
           placeholder="sk-…"
           configured={!!status?.configured.openai}
-          help="Gives Orrin language (his LLM tool). Create one at platform.openai.com."
+          help="Gives Orrin language (its LLM tool). Create one at platform.openai.com."
           onChanged={onChanged}
         />
         <KeyRow

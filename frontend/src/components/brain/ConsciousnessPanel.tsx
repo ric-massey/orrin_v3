@@ -73,13 +73,13 @@ function MomentDrawer({
 }) {
   const color = sourceColor(moment.source);
   return (
-    <div role="dialog" aria-modal="true" aria-label="Conscious moment" className="absolute inset-y-0 right-0 z-30 flex w-[min(380px,90%)] flex-col border-l border-border bg-card/95 shadow-2xl backdrop-blur">
+    <div role="dialog" aria-modal="true" aria-label="Broadcast moment" className="absolute inset-y-0 right-0 z-30 flex w-[min(380px,90%)] flex-col border-l border-border bg-card/95 shadow-2xl backdrop-blur">
       <div className="flex items-center gap-2 border-b border-border px-3 py-2.5">
         <button onClick={onClose} className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Back">
           <ArrowLeft className="h-4 w-4" />
         </button>
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />
-        <span className="min-w-0 flex-1 truncate text-[13px] font-semibold">Conscious moment</span>
+        <span className="min-w-0 flex-1 truncate text-[13px] font-semibold">Broadcast moment</span>
         {boxForSource(moment.source) && boxForSource(moment.source) !== "consciousness" ? (
           <button
             onClick={() => {
@@ -121,7 +121,7 @@ function MomentDrawer({
           {moment.wants && (
             <div>
               <span className="mr-2 text-[9px] font-semibold uppercase tracking-wide">Wants</span>
-              <span title="The route the offerer asked the deliberate mind to take. It biases the next pick — it never preempts (I7). Whether it was honored shows up in §20.1 dismissal-recalibration (the 'quieted' badges).">→ {moment.wants}</span>
+              <span title="The route the offerer asked the deliberate lane to take. It biases the next pick — it never preempts (I7). Whether it was honored shows up in §20.1 dismissal-recalibration (the 'quieted' badges).">→ {moment.wants}</span>
             </div>
           )}
           {moment.source === "binding" && moment.facets && (
@@ -221,11 +221,11 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
         <CardTitle className="flex min-w-0 flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
           <Brain className="h-4 w-4 text-signal-accent" /> <span title={tip("consciousness_title")}>{t("consciousness_title")}</span>
           <PanelInfo
-            title="Consciousness (Global Workspace)"
+            title="Attention arbitration (Global Workspace)"
             perspective="in-attention"
-            what="What he's paying attention to right now. Each cycle every subsystem offers content (a feeling, a signal, the goal, a thought); they compete on salience and ONE winner becomes conscious and is broadcast to everything else. You see the winner, the ranked runners-up that almost won, the Monitor's breakthrough offers (it competes, never seizes), and the structural watchdog. The Stream tab is the persisted history of conscious moments."
+            what="What holds attention right now. Each cycle every subsystem offers content (a signal, the goal, a candidate thought); they compete on salience and ONE winner is selected and broadcast to everything else. You see the winner, the ranked runners-up that almost won, the Monitor's interrupt requests (it competes, never seizes), and the structural watchdog. The Stream tab is the persisted broadcast log."
             source="workspace/monitor/executive blocks via the telemetry socket · Stream: GET /api/consciousness over brain/data/conscious_stream.json"
-            good="A stream that moves between sources (not stuck on one feeling — habituation working), and breakthroughs that get honored when they matter."
+            good="A broadcast log that moves between sources (not stuck on one signal — habituation working), and interrupt requests that get honored when they matter."
             src={{ file: "brain/cognition/global_workspace.py", start: 136, end: 230, label: "update_workspace" }}
           />
           <PanelSubtitle id="consciousness_sub" />
@@ -254,7 +254,7 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
           <div className="scrollbar-thin h-full space-y-1 overflow-auto px-3 pb-3">
             <div className="py-1 text-[9px] text-muted-foreground">newest first · click a moment for detail</div>
             {stream.length === 0 && (
-              <div className="py-10 text-center text-sm text-muted-foreground">No persisted conscious moments yet.</div>
+              <div className="py-10 text-center text-sm text-muted-foreground">No persisted broadcast moments yet.</div>
             )}
             {[...stream].reverse().map((m, i) => (
               <button
@@ -350,7 +350,7 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
                         <button
                           onClick={() => navigateTo("sphere", String(exec.active_fn))}
                           className="font-mono text-[11px] text-foreground/85 underline-offset-2 hover:underline"
-                          title="Show this function on the Cognitive Sphere"
+                          title="Show this function on the Function-call graph"
                         >
                           {exec.active_fn}
                         </button>
@@ -551,7 +551,7 @@ function VerdictsView({ active }: { active: boolean }) {
         crying wolf and quiets it; <b>honoring</b> it restores the kind's voice. Structural alarms are never quieted.
       </p>
       {kinds.length === 0 ? (
-        <div className="py-8 text-center text-xs text-muted-foreground">No verdicts recorded yet — they accrue as breakthroughs win consciousness and the deliberate mind reacts.</div>
+        <div className="py-8 text-center text-xs text-muted-foreground">No verdicts recorded yet — they accrue as interrupt requests win the broadcast and the deliberate lane reacts.</div>
       ) : (
         <div className="space-y-1.5">
           {kinds.map(([kind, k]) => {

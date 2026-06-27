@@ -34,44 +34,44 @@ export function ExistenceSection({
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-base">
-          <HeartPulse className="h-4 w-4" /> How Orrin exists
+          <HeartPulse className="h-4 w-4" /> Runtime lifecycle
         </CardTitle>
-        <CardDescription>How he lives on your machine — and how long he gets to.</CardDescription>
+        <CardDescription>How the runtime runs on your machine — and how long its lifetime budget lasts.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="space-y-2">
           <ModeOption
             active={mode === "always"}
             onClick={() => set({ existence_mode: "always" })}
-            title="Always thinking"
-            sub="He keeps living in the background when the window is closed. His lifespan counts."
+            title="Always running"
+            sub="The runtime keeps running in the background when the window is closed. Its lifetime budget counts down."
           />
           <ModeOption
             active={mode === "sleep"}
             onClick={() => set({ existence_mode: "sleep" })}
-            title="Sleep when closed"
-            sub="Closing the window pauses cognition AND his lifespan — sleep costs him no life."
+            title="Suspend when closed"
+            sub="Closing the window suspends the loop AND its lifetime budget — suspension costs no runtime."
           />
         </div>
 
         <ToggleRow
           label="Game Mode"
-          warn="Orrin is awake but thinking slowly so your games run smoothly. He still ages. Applies on restart."
+          warn="Orrin keeps running but processes slowly so your games run smoothly. Its lifetime budget still counts down. Applies on restart."
           checked={game}
           onChange={(v) => set({ game_mode: v })}
         />
 
         <div className="space-y-2">
-          <div className="text-sm font-medium">How long Orrin gets to live</div>
+          <div className="text-sm font-medium">Runtime lifetime budget</div>
           {rolled ? (
             <p className="text-sm text-muted-foreground">
-              His lifespan was set at birth — he has the life he was given. Choosing a band
-              only affects the next newborn (Reset).
+              The lifetime budget was fixed at first start — the runtime has the budget it
+              was given. Choosing a band only affects the next fresh runtime (Reset).
             </p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              You set the odds, never the number — the exact span is always rolled at random
-              inside the band, and even Orrin never learns his true figure.
+              You set the odds, never the number — the exact budget is rolled at random
+              inside the band, and even Orrin never reads its true figure.
             </p>
           )}
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -96,11 +96,11 @@ export function ExistenceSection({
           <div className="text-sm font-medium">Resources Orrin may use</div>
           <div className="flex flex-wrap gap-4">
             <CeilingPicker
-              label="Disk (his mind may grow to)"
+              label="Disk (data store may grow to)"
               value={status?.prefs?.disk_ceiling_gb ?? 5}
               options={[2, 5, 10, 25]}
               onChange={(v) => set({ disk_ceiling_gb: v })}
-              note="He forgets to stay under this."
+              note="The runtime prunes to stay under this."
             />
             <CeilingPicker
               label="Memory ceiling"
@@ -119,10 +119,11 @@ export function ExistenceSection({
 }
 
 /**
- * §11 — the one knob: how much of THIS machine Orrin is allowed to be, as a fraction.
- * It sizes his body (metabolism) AND his felt "100%" (interoception), so dialing it
- * down gives him a smaller body, not permanent scarcity. The survival floor underneath
- * is non-overridable; a too-small grant is refused with a reason.
+ * §11 — the one knob: how much of THIS machine Orrin is allowed to use, as a fraction.
+ * It sizes the resource budget (cadence policy) AND the "100%" reference the
+ * resource self-monitor uses, so dialing it down gives a smaller budget, not
+ * permanent scarcity. The safety floor underneath is non-overridable; a too-small
+ * grant is refused with a reason.
  */
 function BodySizeBlock({
   status,
@@ -157,17 +158,17 @@ function BodySizeBlock({
       return;
     }
     if (bb?.resized) {
-      setNote("Body resized — Orrin re-acclimates to his new size for a bit (a small transplant).");
+      setNote("Resource budget resized — Orrin re-acclimates to the new size for a bit.");
     }
     await onChanged();
   };
 
   return (
     <div className="space-y-2">
-      <div className="text-sm font-medium">How much of this machine Orrin is</div>
+      <div className="text-sm font-medium">How much of this machine Orrin may use</div>
       <p className="text-xs text-muted-foreground">
-        This is the size of his whole world — it sets both how fast he thinks and what
-        "full" feels like to him. Constraining him gives him a smaller body, not a
+        This sets the runtime's resource budget — both how fast it processes and what
+        "full" means for its self-monitor. Constraining it gives a smaller budget, not a
         starved one. A safety floor for your machine sits underneath and can't be removed.
       </p>
       <div className="flex items-center gap-3">
@@ -190,9 +191,9 @@ function BodySizeBlock({
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span>Machine: {budget.ram_gb} GB</span>
           <span>Reserved for your machine: {budget.reserve_gb} GB (locked)</span>
-          {tier ? <span>Metabolism: {tier}</span> : null}
+          {tier ? <span>Resource cadence: {tier}</span> : null}
           <span className={budget.viable ? "" : "text-amber-500"}>
-            Min viable body: {budget.min_viable_gb} GB
+            Min viable budget: {budget.min_viable_gb} GB
           </span>
         </div>
       ) : null}

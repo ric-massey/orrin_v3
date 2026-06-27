@@ -107,7 +107,7 @@ export default function FnDetailDrawer({
             <Row k="Times chosen" v={`${info?.count ?? 0}`} />
             <Row k="Avg reward" v={`${((info?.avg_reward ?? 0) * 100).toFixed(0)} / 100`} />
             <Row k="Recent firings" v={`${fires.length} (live window)`} />
-            {(info?.count ?? 0) === 0 && <p className="pt-1 text-[11px] text-muted-foreground/70">He hasn't used this one yet.</p>}
+            {(info?.count ?? 0) === 0 && <p className="pt-1 text-[11px] text-muted-foreground/70">It hasn't used this one yet.</p>}
           </div>
         )}
         {tab === "activity" && (

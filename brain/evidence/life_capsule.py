@@ -189,7 +189,8 @@ def _provenance(reason: str) -> Dict[str, Any]:
 
 
 def _run_id(provenance: Dict[str, Any]) -> str:
-    born = (provenance.get("lifespan") or {}).get("born_at")
+    _ls = provenance.get("lifespan") or {}
+    born = _ls.get("start_time") or _ls.get("born_at")  # accept old+new persisted key
     epoch = _iso_to_epoch(born)
     if epoch:
         return datetime.fromtimestamp(epoch, timezone.utc).strftime("%Y%m%dT%H%M%SZ")

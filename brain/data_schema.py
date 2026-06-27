@@ -54,6 +54,11 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
             "mood": "smoothed_state",             # slow EMA of reward_signal
         },
     },
+    # 4.6 — lifecycle start timestamp. The /life wire field stays "born_at" via
+    # life_status() translation until the routes/frontend slice.
+    "lifespan.json": {
+        "top": {"born_at": "start_time"},
+    },
 }
 
 

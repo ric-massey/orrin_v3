@@ -78,7 +78,7 @@ def _counts() -> Dict[str, int]:
 def _born_at() -> str:
     try:
         ls = json.loads((paths.DATA_DIR / "lifespan.json").read_text("utf-8"))
-        return str(ls.get("born_at") or "")
+        return str(ls.get("start_time") or ls.get("born_at") or "")  # accept old+new persisted key
     except (OSError, ValueError):  # intentional: missing/bad lifespan on newborn → unknown
         return ""
 

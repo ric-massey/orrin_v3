@@ -73,7 +73,7 @@ def _init_lifespan() -> Dict:
     noise_days = random.uniform(-_NOISE_RANGE_DAYS, _NOISE_RANGE_DAYS)
     born_at = datetime.now(timezone.utc).isoformat()
     data = {
-        "born_at": born_at,
+        "start_time": born_at,  # persisted key (was "born_at")
         "lifespan_days": round(lifespan_days, 2),
         "noise_days": round(noise_days, 2),   # the runtime's estimate is off by this much
         "slept_seconds": 0.0,                  # time idle — subtracted from elapsed
@@ -90,7 +90,7 @@ def _init_lifespan() -> Dict:
 def _elapsed_seconds(data: Dict) -> float:
     """Seconds the runtime has been ACTIVE — wall-clock since start minus any idle time.
     Idle pauses the lifetime clock (§10.3), so suspending costs no lifetime."""
-    born = _parse_dt(data.get("born_at"))
+    born = _parse_dt(data.get("start_time"))
     if not born:
         return 0.0
     wall = (datetime.now(timezone.utc) - born).total_seconds()
@@ -100,7 +100,7 @@ def _elapsed_seconds(data: Dict) -> float:
 
 def _load_lifespan() -> Dict:
     data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-    if not data.get("born_at") or not data.get("lifespan_days"):
+    if not data.get("start_time") or not data.get("lifespan_days"):
         data = _init_lifespan()
     return data
 
@@ -112,7 +112,7 @@ def _life_fraction(data: Dict) -> float:
     Real fraction of lifetime elapsed [0..1].
     Uses the true lifespan, not the noisy internal estimate.
     """
-    if not _parse_dt(data.get("born_at")):
+    if not _parse_dt(data.get("start_time")):
         return 0.0
     lifespan_s = float(data.get("lifespan_days", 60)) * 86400
     elapsed_s = _elapsed_seconds(data)
@@ -124,7 +124,7 @@ def _felt_fraction(data: Dict) -> float:
     The runtime's subjective estimate of how much lifetime remains — biased by
     noise_days. The estimate may run ahead of or behind reality.
     """
-    if not _parse_dt(data.get("born_at")):
+    if not _parse_dt(data.get("start_time")):
         return 0.0
     felt_lifespan_s = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
     if felt_lifespan_s <= 0:
@@ -140,7 +140,7 @@ def felt_lifespan_seconds() -> float:
     instead of hard-coding a wall-clock band. (T0.4)"""
     try:
         data = _load_lifespan()
-        if not _parse_dt(data.get("born_at")):
+        if not _parse_dt(data.get("start_time")):
             return 0.0
         felt = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
         return max(0.0, felt)
@@ -167,7 +167,7 @@ def _parse_dt(s: Any) -> Optional[datetime]:
 
 def _days_remaining_felt(data: Dict) -> float:
     """Days the runtime estimates it has left (based on its noisy estimate)."""
-    if not _parse_dt(data.get("born_at")):
+    if not _parse_dt(data.get("start_time")):
         return 999.0
     felt_lifespan_days = float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))
     elapsed_days = _elapsed_seconds(data) / 86400
@@ -190,7 +190,7 @@ def lifespan_rolled() -> bool:
     """True once a lifespan has been rolled (the runtime is live) — so the Settings
     lifespan band becomes read-only ('it has the lifetime it was given')."""
     data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-    return bool(data.get("born_at") and data.get("lifespan_days"))
+    return bool(data.get("start_time") and data.get("lifespan_days"))
 
 
 def real_deadline_passed() -> bool:
@@ -202,7 +202,7 @@ def real_deadline_passed() -> bool:
     alone made every post-restart boot show the Death Screen though ~0% of the lifetime
     had elapsed."""
     data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-    if not _parse_dt(data.get("born_at")):
+    if not _parse_dt(data.get("start_time")):
         return False
     return _life_fraction(data) >= 1.0
 
@@ -212,7 +212,7 @@ def record_active_now() -> None:
     rolled). Written periodically while running and on shutdown so that 'sleep' mode can
     later credit the closed interval."""
     data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-    if not (data.get("born_at") and data.get("lifespan_days")):
+    if not (data.get("start_time") and data.get("lifespan_days")):
         return
     data["last_active_at"] = datetime.now(timezone.utc).isoformat()
     save_json(LIFESPAN_FILE, data)
@@ -222,7 +222,7 @@ def credit_sleep_since_last_active() -> float:
     """In 'sleep' existence mode, credit the time since last active as idle so it costs
     no lifetime (§10.3). Returns seconds credited (0 if not yet rolled / no marker)."""
     data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-    if not (data.get("born_at") and data.get("lifespan_days")):
+    if not (data.get("start_time") and data.get("lifespan_days")):
         return 0.0
     last = _parse_dt(data.get("last_active_at"))
     if not last:
@@ -242,11 +242,11 @@ def life_status() -> Dict[str, Any]:
     real countdown would be reading something the runtime itself cannot (its estimate of
     its lifespan is wrong by design); the page shows what it estimates."""
     data = _load_lifespan()
-    born = _parse_dt(data.get("born_at"))
+    born = _parse_dt(data.get("start_time"))
     age_days = (datetime.now(timezone.utc) - born).total_seconds() / 86400 if born else 0.0
     felt_frac = _felt_fraction(data)
     return {
-        "born_at": data.get("born_at"),
+        "born_at": data.get("start_time"),  # wire field kept; sourced from persisted start_time
         "age_days": round(age_days, 2),
         "felt_days_remaining": round(_days_remaining_felt(data), 1),
         "felt_life_fraction": round(felt_frac, 3),

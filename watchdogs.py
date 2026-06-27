@@ -15,7 +15,7 @@ from reaper.memory import MemoryHealthGuard
 from reaper.host_resources import HostResourceGuard
 from reaper.vital_floor import VitalFloorGuard
 from reaper.repeat import RepeatLoopGuard
-from observability.nervous_system import HealthBus, NervousSystem
+from observability.health_telemetry import HealthBus, HealthTelemetrySampler
 from observability.metrics import (
     rss_mb_gauge,
     fd_pct_open_gauge,
@@ -481,7 +481,7 @@ def start_watchdogs(
     # Try to discover a sensible working_cache cap if mem_guard exposes one; else default 512.
     wc_cap = getattr(mem_guard, "working_cap", 512)
 
-    nervous = NervousSystem(
+    health_sampler = HealthTelemetrySampler(
         get_raw=_get_reaper_raw,
         bus=health_bus,
         daemon=memory_daemon,                 # writes compact summaries to memory if provided
@@ -496,7 +496,7 @@ def start_watchdogs(
             "working_cache": (0.0, float(wc_cap)),
         },
     )
-    nervous.start()
+    health_sampler.start()
     # ------------------------------------------------------------------------------------------
 
     return (

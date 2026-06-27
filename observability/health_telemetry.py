@@ -1,4 +1,8 @@
-# observability/nervous_system.py
+# observability/health_telemetry.py
+#
+# Health telemetry sampler: a ~5 Hz background sampler that reads raw host/process
+# metrics, scales them to 0..1, smooths them (EWMA), and exposes a load scalar +
+# scheduler gate. No biology — this is process resource telemetry.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 import time, threading, math
@@ -105,7 +109,7 @@ def _build_sample(raw: Dict[str, Any], ranges: Dict[str, tuple]) -> HealthSample
         cpu_s=cpu_s, rss_s=rss_s, hb_s=hb_s, err_s=err_s, idx_s=idx_s, wcache_s=wc_s,
     )
 
-class NervousSystem:
+class HealthTelemetrySampler:
     """
     5 Hz sampler -> scaled state; optional memory summaries.
     """
@@ -128,7 +132,7 @@ class NervousSystem:
 
     def start(self) -> None:
         if self._thr: return
-        self._thr = threading.Thread(target=self._loop, name="nervous-system", daemon=True)
+        self._thr = threading.Thread(target=self._loop, name="health-telemetry", daemon=True)
         self._thr.start()
 
     def stop(self) -> None:
@@ -153,7 +157,7 @@ class NervousSystem:
                         try:
                             self.daemon.ingest(Event(kind="health_summary", content=content, meta=meta))
                         except Exception as e:
-                            _record_failure("nervous_system.daemon_ingest", e)
+                            _record_failure("health_telemetry.daemon_ingest", e)
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
             # maintain ~5 Hz; compensate some jitter

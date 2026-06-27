@@ -212,7 +212,7 @@ whether you're active at the machine.
 | `docs/` | Design plans, benchmarks, and an `archive/` of audits and fix records. Start at [`docs/README.md`](docs/README.md). |
 | `tests/` | Pytest suite across brain / goals / memory. |
 | `main.py` | Top-level launcher — boots the brain loop, daemons, backend API, and UI. |
-| `watchdogs.py` | Assembles the reaper's `HealthBus`/`NervousSystem` and guards (heartbeat, lifespan, no-goals, memory health, repeat-loop). |
+| `watchdogs.py` | Assembles the reaper's `HealthBus`/`HealthTelemetrySampler` and guards (heartbeat, lifespan, no-goals, memory health, repeat-loop). |
 | `reset_orrin.py` | Resets Orrin's persisted state (with snapshotting). |
 | `run_orrin.sh` / `run_orrin.bat` | Run wrappers with auto-restart and macOS sleep prevention. |
 

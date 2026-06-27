@@ -25,7 +25,7 @@
 #
 # Earlier fixes still in place:
 #   3. Cooldown 6h → 90min.
-#   4. dream_cycle seeding still works and adds to the queue.
+#   4. idle_consolidation_cycle seeding still works and adds to the queue.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 

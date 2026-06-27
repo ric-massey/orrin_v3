@@ -1,4 +1,4 @@
-# brain/cognition/dreaming/episode_replay.py
+# brain/cognition/idle_consolidation/episode_replay.py
 # Hippocampal replay: scan cognition history for high-reward sequences and
 # strengthen bandit weights for those function pairs. Also extracts repeating
 # high-reward pairs into function_chains.json for the chaining bonus.
@@ -37,7 +37,7 @@ def run_episode_replay(context: Dict[str, Any] = None) -> Dict[str, Any]:
        appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so
        select_function can apply a chain bonus.
 
-    Returns a summary dict for dream_cycle logging.
+    Returns a summary dict for idle_consolidation_cycle logging.
     """
     context = context or {}
 

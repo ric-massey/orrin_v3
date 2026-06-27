@@ -109,7 +109,7 @@ def apply_exploration_and_reflex(
     # high-weight proposal in the ActionArbiter. An acute spike still dominates;
     # a moderate spike blends with a strong planned pick; hysteresis against last
     # cycle's choice prevents the flip-flop. See think/action_arbiter.py.
-    _AMY_SHORTCUT_MAP = {"speak": "speak", "dream": "dream_cycle",
+    _AMY_SHORTCUT_MAP = {"speak": "speak", "dream": "idle_consolidation_cycle",
                           "introspective_planning": "introspective_planning"}
     try:
         _amy_resp    = context.get("threat_detector_response") or {}

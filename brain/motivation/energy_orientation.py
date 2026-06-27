@@ -80,7 +80,7 @@ ACTION_FUNCTIONS: frozenset = frozenset({
 })
 
 REFLECT_FUNCTIONS: frozenset = frozenset({
-    "dream_cycle",
+    "idle_consolidation_cycle",
     "reflection",
     "self_review",
     "narrative_update",
@@ -99,7 +99,7 @@ REFLECT_FUNCTIONS: frozenset = frozenset({
 # is deliberately NOT here: revising one's values is exactly the inward work that
 # must stay reachable, and a standing penalty made self-belief revisions go empty.
 _HIGH_ENERGY_SUPPRESS: frozenset = frozenset({
-    "dream_cycle", "self_review", "narrative_update", "reflection",
+    "idle_consolidation_cycle", "self_review", "narrative_update", "reflection",
 })
 
 _REST_SUPPRESS: frozenset = frozenset({

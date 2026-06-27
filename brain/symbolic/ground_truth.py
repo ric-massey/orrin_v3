@@ -9,7 +9,7 @@
 # Integration points:
 #   action_gate._stamp_outcome  → record_action_result() called after every action
 #   rule_verifier.apply_outcome → grounding_multiplier() adjusts the delta
-#   dream_cycle                 → audit_grounding_health() for dashboard
+#   idle_consolidation_cycle                 → audit_grounding_health() for dashboard
 #
 # Data written to data/ground_truth.jsonl (append-only execution trace)
 #             and data/rule_grounding.json  (per-rule grounding stats)

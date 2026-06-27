@@ -429,8 +429,8 @@ def _apply_resource_deficit_nudge(context: Dict[str, Any], felt_cycles: float, d
     Orrin should prefer consolidation and shorter responses.
     """
     try:
-        from brain.cognition.dreaming.dream_cycle import dreaming_now
-        if dreaming_now():
+        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+        if consolidating_now():
             return
     except ImportError:  # intentional: dream daemon optional → proceed
         pass

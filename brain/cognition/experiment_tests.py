@@ -34,7 +34,7 @@ _OUTWARD_FNS = frozenset({
     "plan_next_step", "assess_goal_progress", "thread_continue",
 })
 _INWARD_FNS = frozenset({
-    "reflection", "reflect_on_directive", "dream_cycle", "narrative_update",
+    "reflection", "reflect_on_directive", "idle_consolidation_cycle", "narrative_update",
     "propose_value_revision", "metacog_flush", "self_review",
     "reflect_on_internal_agents",
 })

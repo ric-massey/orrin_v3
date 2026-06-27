@@ -61,7 +61,7 @@ def reflect_on_cognition_rhythm():
                 f"Current cognition schedule:\n{json.dumps(schedule, indent=2)}\n\n"
                 f"Recent choices:\n{recent_entries}\n\n"
                 "Respond with JSON mapping cognition-function names to new weights "
-                "(0.0-1.0), e.g. { \"dream_cycle\": 0.3, \"reflect_on_outcomes\": 0.2 }, "
+                "(0.0-1.0), e.g. { \"idle_consolidation_cycle\": 0.3, \"reflect_on_outcomes\": 0.2 }, "
                 "or {} if no change. Only include functions whose weight should change."
             ),
         }

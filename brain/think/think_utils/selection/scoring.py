@@ -25,7 +25,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     "stagnation_signal":     {"seek_novelty": 0.9, "search_own_files": 0.82, "look_outward": 0.75,
                     "read_a_book": 0.78, "look_around": 0.70, "grep_files": 0.65,
                     "wikipedia_search": 0.62, "research_topic": 0.60,
-                    "search_files": 0.60, "dream_cycle": 0.60, "generate_intrinsic_goals": 0.55},
+                    "search_files": 0.60, "idle_consolidation_cycle": 0.60, "generate_intrinsic_goals": 0.55},
     # Prior realignment (LEARNING_DIAGNOSIS_2026-06-16 §5.1): the curiosity urge was
     # wired to the cheap diversive scanners (look_outward/look_around, learned q≈0.11–0.14)
     # over the epistemic explorers (seek_novelty/research_topic/wikipedia_search, q≈0.34–0.59).
@@ -270,7 +270,7 @@ def _emo_mode_function_map() -> Dict[str, Dict[str, float]]:
         "focused":       {"assess_goal_progress": 0.15, "plan_next_step": 0.10},
         "creative":      {"generate_intrinsic_goals": 0.18, "look_outward": 0.15, "narrative_update": 0.12},
         "exploratory":   {"seek_novelty": 0.20, "search_own_files": 0.15, "look_around": 0.12},
-        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "dream_cycle": 0.10},
+        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "idle_consolidation_cycle": 0.10},
         "critical":      {"detect_memory_contradictions": 0.18, "self_review": 0.15, "attempt_regulation": 0.10},
         "cautious":      {"attempt_regulation": 0.20, "reflection": 0.15, "self_review": 0.10},
         "analytical":    {"search_own_files": 0.18, "grep_files": 0.15, "self_review": 0.10},

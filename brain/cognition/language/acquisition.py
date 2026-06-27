@@ -323,7 +323,7 @@ _ACTION_PHRASES: Dict[str, str] = {
     "leave_note": "left a note for someone",
     "save_note": "wrote a note to keep",
     "write_desktop_note": "left a note where it would be seen",
-    "dream_cycle": "let my mind drift and wander",
+    "idle_consolidation_cycle": "let my mind drift and wander",
     "reflection": "turned things over in my mind",
     "reflect_on_affect": "tried to sit with what I was feeling",
     "reflect_on_self_beliefs": "questioned something I believe about myself",

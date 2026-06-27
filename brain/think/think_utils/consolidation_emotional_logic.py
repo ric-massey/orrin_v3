@@ -1,4 +1,4 @@
-from brain.cognition.dreaming import compose_dream  # ✅ use compose_dream(self_model, recent)
+from brain.cognition.idle_consolidation import compose_consolidation  # ✅ use compose_consolidation(self_model, recent)
 from brain.affect.affect_drift import check_affect_drift
 from brain.behavior.behavior_generation import generate_behavior_from_integration
 from brain.affect.update_affect_state import update_affect_state
@@ -36,7 +36,7 @@ def dreams_and_emotional_logic(context):
         lm_recent = [str(m.get("content", "")).strip() for m in long_memory[-10:] if isinstance(m, dict)]
         recent = [s for s in (wm_recent + lm_recent) if s][:8]
 
-        dream_text = compose_dream(self_model, recent)
+        dream_text = compose_consolidation(self_model, recent)
         if dream_text:
             update_working_memory({
                 "content": "Dream: " + dream_text.strip(),

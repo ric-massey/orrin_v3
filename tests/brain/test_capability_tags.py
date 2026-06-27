@@ -45,21 +45,21 @@ def test_mode_sets_match_old_inline_tuples():
     assert sf._MODE_WANDERING_FNS == frozenset(
         {"look_outward", "seek_novelty", "look_around", "generate_intrinsic_goals",
          "search_own_files", "search_files", "grep_files"})
-    assert sf._MODE_WANDERING_REFLECT_FNS == frozenset({"dream_cycle", "reflection", "narrative_update"})
+    assert sf._MODE_WANDERING_REFLECT_FNS == frozenset({"idle_consolidation_cycle", "reflection", "narrative_update"})
     assert sf._MODE_DROWSY_FNS == frozenset(
-        {"dream_cycle", "self_review", "narrative_update", "consolidate_memory",
+        {"idle_consolidation_cycle", "self_review", "narrative_update", "consolidate_memory",
          "reflect_on_directive"})
 
 
 def test_neuro_sets_match_old_inline_tuples():
     assert sf._NEURO_NE_FOCUS == frozenset({"assess_goal_progress", "plan_next_step"})
     assert sf._NEURO_NE_SUPPRESS == frozenset(
-        {"dream_cycle", "seek_novelty", "look_around", "narrative_update"})
+        {"idle_consolidation_cycle", "seek_novelty", "look_around", "narrative_update"})
     assert sf._NEURO_CALM_SUPPRESS == frozenset(
         {"attempt_regulation", "reflect_on_affect", "investigate_unexplained_emotions"})
     assert sf._NEURO_STRESS_SUPPRESS == frozenset(
         {"plan_self_evolution", "detect_memory_contradictions", "propose_value_revision",
-         "narrative_update", "dream_cycle", "generate_intrinsic_goals"})
+         "narrative_update", "idle_consolidation_cycle", "generate_intrinsic_goals"})
     assert sf._NEURO_STRESS_RESTORE == frozenset({"attempt_regulation", "self_soothing", "reflection"})
 
 
@@ -81,7 +81,7 @@ def test_emo_mode_map_matches_old_literal_weights():
     assert m["focused"] == {"assess_goal_progress": 0.15, "plan_next_step": 0.10}
     assert m["creative"] == {"generate_intrinsic_goals": 0.18, "look_outward": 0.15, "narrative_update": 0.12}
     assert m["exploratory"] == {"seek_novelty": 0.20, "search_own_files": 0.15, "look_around": 0.12}
-    assert m["philosophical"] == {"reflection": 0.20, "narrative_update": 0.15, "dream_cycle": 0.10}
+    assert m["philosophical"] == {"reflection": 0.20, "narrative_update": 0.15, "idle_consolidation_cycle": 0.10}
     assert m["critical"] == {"detect_memory_contradictions": 0.18, "self_review": 0.15, "attempt_regulation": 0.10}
     assert m["cautious"] == {"attempt_regulation": 0.20, "reflection": 0.15, "self_review": 0.10}
     assert m["analytical"] == {"search_own_files": 0.18, "grep_files": 0.15, "self_review": 0.10}

@@ -445,10 +445,10 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     # dream is restorative as felt experience, but its consolidation
     # footprint is memory-hungry and must yield under host/process pressure.
     try:
-        from brain.cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
+        from brain.cognition.idle_consolidation.consolidation_cycle import should_consolidate, idle_consolidation_cycle as _dream_cycle
         from reaper.host_resources import heavy_cycles_paused as _heavy_paused
         from reaper.vital_floor import vital_floor_shedding as _vital_shedding
-        if (not _heavy_paused()) and (not _vital_shedding()) and should_dream(context):
+        if (not _heavy_paused()) and (not _vital_shedding()) and should_consolidate(context):
             import threading as _thr
             _dt = _thr.Thread(
                 target=_dream_cycle, args=(context,),
@@ -456,7 +456,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
             )
             _dt.start()
     except Exception as _de:
-        log_error(f"dream_cycle check failed: {_de}")
+        log_error(f"idle_consolidation_cycle check failed: {_de}")
 
     # Global workspace (unity layer): converge this cycle's parallel
     # contents into a single conscious moment, broadcast it, and extend

@@ -16,7 +16,7 @@ from brain.utils.log import log_private
 
 # Functions that are purely inward-facing (no external effect)
 _INTROSPECTIVE_FNS = frozenset({
-    "reflect_on_affect", "self_review", "metacog_flush", "dream_cycle",
+    "reflect_on_affect", "self_review", "metacog_flush", "idle_consolidation_cycle",
     "narrative_update", "propose_value_revision", "identity_check",
     "reflect_on_internal_agents", "generate_intrinsic_goals",
     "plan_self_evolution", "simulate_future_selves", "autobiography",
@@ -29,8 +29,8 @@ _INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "dream", "selfhood", "ident"
 def _dreaming_now() -> bool:
     """True while the dream daemon is in the sleep phase."""
     try:
-        from brain.cognition.dreaming.dream_cycle import dreaming_now
-        return bool(dreaming_now())
+        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+        return bool(consolidating_now())
     except ImportError:  # intentional: dream daemon optional → not dreaming
         return False
 

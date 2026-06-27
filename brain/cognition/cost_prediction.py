@@ -270,8 +270,8 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
             raw = signed * (_NUDGE_GAIN_UP if signed > 0 else _NUDGE_GAIN_DOWN)
             nudge = max(-_NUDGE_CLAMP, min(_NUDGE_CLAMP, raw))
             try:
-                from brain.cognition.dreaming.dream_cycle import dreaming_now
-                if dreaming_now() and nudge > 0.0:
+                from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+                if consolidating_now() and nudge > 0.0:
                     nudge = 0.0
             except ImportError:  # intentional: dream-cycle optional — keep nudge as-is
                 pass

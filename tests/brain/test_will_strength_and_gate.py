@@ -57,10 +57,10 @@ def test_follow_through_bias_scales_with_strength():
 
 
 def test_commitment_strength_breaks_goal_competition_ties():
-    p0 = drive_pull_scores(["attend_goal", "dream_cycle"], {}, commitment_strength=0.0)
-    p1 = drive_pull_scores(["attend_goal", "dream_cycle"], {}, commitment_strength=1.0)
+    p0 = drive_pull_scores(["attend_goal", "idle_consolidation_cycle"], {}, commitment_strength=0.0)
+    p1 = drive_pull_scores(["attend_goal", "idle_consolidation_cycle"], {}, commitment_strength=1.0)
     assert p1["attend_goal"] > p0["attend_goal"]
-    assert p1["dream_cycle"] == p0["dream_cycle"]
+    assert p1["idle_consolidation_cycle"] == p0["idle_consolidation_cycle"]
 
 
 def test_find_commitment_for_goal_matches_bare_intention(tmp_path):

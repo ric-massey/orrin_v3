@@ -24,7 +24,7 @@ from brain.utils.log import log_private
 _DRIVES: Dict[str, Dict] = {
     "exploration_drive": {
         "wants": frozenset({
-            "look_outward", "generate_intrinsic_goals", "dream_cycle",
+            "look_outward", "generate_intrinsic_goals", "idle_consolidation_cycle",
             "simulate_future_selves", "reflect_on_internal_agents", "seek_novelty",
             "search_own_files", "look_around",
         }),
@@ -44,7 +44,7 @@ _DRIVES: Dict[str, Dict] = {
             "grep_files", "search_files", "list_directory",
         }),
         "resists": frozenset({
-            "autobiography", "dream_cycle",
+            "autobiography", "idle_consolidation_cycle",
         }),
         "label": "wants to understand its own structure and capabilities",
         "strength_fn": lambda emo, core: (
@@ -89,7 +89,7 @@ _DRIVES: Dict[str, Dict] = {
             "leave_note", "respond_to_user", "user_response", "speak",
         }),
         "resists": frozenset({
-            "dream_cycle", "simulate_future_selves",
+            "idle_consolidation_cycle", "simulate_future_selves",
             "reflect_on_internal_agents", "autobiography",
             "assess_goal_progress",  # going through the motions ≠ being useful
         }),

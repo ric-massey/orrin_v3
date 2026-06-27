@@ -1,4 +1,4 @@
-# brain/cognition/dreaming/dream_cycle.py
+# brain/cognition/idle_consolidation/consolidation_cycle.py
 # Runs when idle — consolidates recent experience, recombines with old emotional
 # memories, processes unresolved content, and surfaces value-revision candidates.
 from __future__ import annotations
@@ -18,7 +18,7 @@ from brain.utils.llm_gate import llm_available
 from brain.utils.failure_counter import record_failure
 # Late-phase symbolic-intelligence maintenance, extracted to dream_symbolic.py
 # (Phase 4.5C).
-from brain.cognition.dreaming.dream_symbolic import run_symbolic_maintenance
+from brain.cognition.idle_consolidation.symbolic_consolidation import run_symbolic_maintenance
 _log = get_logger(__name__)
 
 
@@ -38,14 +38,14 @@ _DREAM_LOCK: threading.Lock = threading.Lock()  # guards all _DREAM_* globals
 # The dream runs on a daemon thread while the main cognitive loop keeps cycling,
 # so the loop needs to know "we're asleep right now" without a handle on the
 # dream. Staleness-guarded: if a dream thread dies mid-run and never clears the
-# flag, dreaming_now() auto-expires it after _DREAM_PHASE_MAX_S so a crashed
+# flag, consolidating_now() auto-expires it after _DREAM_PHASE_MAX_S so a crashed
 # dream can never permanently mask the felt body (which would hide real distress).
 _DREAM_PHASE: bool = False
 _DREAM_PHASE_TS: float = 0.0
 _DREAM_PHASE_MAX_S: float = 1800.0   # a dream this long is treated as stale, not asleep
 
 
-def set_dreaming(active: bool) -> None:
+def set_consolidating(active: bool) -> None:
     """Mark the sleep phase on/off. Called around the dream cycle; also usable by
     tests to simulate sleep. Thread-safe."""
     global _DREAM_PHASE, _DREAM_PHASE_TS
@@ -54,7 +54,7 @@ def set_dreaming(active: bool) -> None:
         _DREAM_PHASE_TS = time.time() if active else 0.0
 
 
-def dreaming_now() -> bool:
+def consolidating_now() -> bool:
     """True while a dream cycle is in flight (the felt body should read vitals as
     normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed
     dream can't permanently mask the felt body."""
@@ -66,7 +66,7 @@ def dreaming_now() -> bool:
         return True
 
 
-def should_dream(context: Dict[str, Any]) -> bool:
+def should_consolidate(context: Dict[str, Any]) -> bool:
     """True when Orrin has been idle long enough and enough time has passed since last dream.
 
     Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum
@@ -84,7 +84,7 @@ def should_dream(context: Dict[str, Any]) -> bool:
     return idle_s >= _IDLE_THRESHOLD_S
 
 
-def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
+def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     """
     Full dream cycle: consolidate, recombine, process.
     Returns a summary dict; side effects write to DREAM_LOG and long_memory.
@@ -109,7 +109,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Enter the sleep phase: from here the felt body reads vitals against the
     # dream-phase band (SL2), so the heavy consolidation below reads as rest, not
     # distress. Cleared at the end of the cycle (and staleness-guarded if we die).
-    set_dreaming(True)
+    set_consolidating(True)
     context = context or {}
     _dream_completed = False
 
@@ -120,7 +120,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # weights for those function chains. Must run first so strengthened weights
     # influence the rest of the dream cycle's own function selections.
     try:
-        from brain.cognition.dreaming.episode_replay import run_episode_replay as _rer
+        from brain.cognition.idle_consolidation.episode_replay import run_episode_replay as _rer
         _replay = _rer(context)
         if not _replay.get("skipped"):
             log_activity(
@@ -267,7 +267,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
                 "processing":    process_prompt,
             }
             for k in missing:
-                text = (gated_generate(prompts[k], caller=f"dream_cycle/{k}", outcome=0.65) or "").strip()
+                text = (gated_generate(prompts[k], caller=f"idle_consolidation_cycle/{k}", outcome=0.65) or "").strip()
                 if text:
                     results[k] = text
         except Exception as e:
@@ -320,14 +320,14 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
             "processing": results.get("processing", "")[:200],
         }
     except Exception as _e:
-        record_failure("dream_cycle.dream_cycle", _e)
+        record_failure("idle_consolidation_cycle.idle_consolidation_cycle", _e)
 
     # Episodic → semantic extraction: distill recent cognition_history entries
     # into structured (action, context, outcome) facts. Runs after the prose
     # insights are written so semantic facts can complement (not replace) the
     # narrative consolidation. No extra LLM call — heuristic over reward + features.
     try:
-        from brain.cognition.dreaming.semantic_extractor import extract_semantic_facts as _esf
+        from brain.cognition.idle_consolidation.semantic_extractor import extract_semantic_facts as _esf
         _sem_summary = _esf()
         if _sem_summary.get("scanned"):
             log_activity(
@@ -359,7 +359,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
             existing.append(dream_entry)
             save_json(DREAM_LOG, existing[-50:])  # keep last 50 dreams
         except Exception as _e:
-            record_failure("dream_cycle.dream_cycle.2", _e)
+            record_failure("idle_consolidation_cycle.idle_consolidation_cycle.2", _e)
     else:
         log_activity("[dream] pass produced no insights (symbolic below threshold, "
                      "LLM tool unavailable) — nothing logged")
@@ -371,14 +371,14 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
             existing_revs = load_json(VALUE_REVISIONS, default_type=list) or []
             existing_revs.append({
                 "timestamp": ts,
-                "source": "dream_cycle",
+                "source": "idle_consolidation_cycle",
                 "evidence": processing_text,
                 "status": "pending",
             })
             save_json(VALUE_REVISIONS, existing_revs[-20:])
             log_activity("[dream] Value-revision candidate surfaced from dream cycle.")
         except Exception as _e:
-            record_failure("dream_cycle.dream_cycle.3", _e)
+            record_failure("idle_consolidation_cycle.idle_consolidation_cycle.3", _e)
 
     # Check recombination output for wonder triggers
     try:
@@ -386,7 +386,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         if results.get("recombination"):
             _dwt(results["recombination"], context)
     except Exception as _e:
-        record_failure("dream_cycle.dream_cycle.4", _e)
+        record_failure("idle_consolidation_cycle.idle_consolidation_cycle.4", _e)
 
     # Generate intrinsic goals from values + threads + world state
     try:
@@ -504,7 +504,7 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
                     "priority": 2,
                 })
             except Exception as _e:
-                record_failure("dream_cycle.dream_cycle.5", _e)
+                record_failure("idle_consolidation_cycle.idle_consolidation_cycle.5", _e)
     except Exception as _rfe:
         log_activity(f"[dream] reflection audit skipped: {_rfe}")
 
@@ -536,11 +536,11 @@ def dream_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         _submit_affect(None, "resource_deficit", _recovery, source="dream_rest", ttl_cycles=2)
         log_activity(f"[dream] resource_deficit rest proposal {_recovery} (allostatic_load={_allo_load:.2f}) → arbiter")
     except Exception as _e:
-        record_failure("dream_cycle.dream_cycle.10", _e)
+        record_failure("idle_consolidation_cycle.idle_consolidation_cycle.10", _e)
 
     with _DREAM_LOCK:
         _IS_DREAMING = False
-    set_dreaming(False)   # leave the sleep phase — felt body returns to its wake band
+    set_consolidating(False)   # leave the sleep phase — felt body returns to its wake band
 
     log_activity("[dream] Dream cycle complete (3 sub-cycles written to long memory).")
     return dream_entry

@@ -1,4 +1,4 @@
-# brain/cognition/dreaming/semantic_extractor.py
+# brain/cognition/idle_consolidation/semantic_extractor.py
 # Episodic → semantic extractor: condense recent cognition_history entries into
 # structured (action, context, outcome) facts with counts and confidence.
 #

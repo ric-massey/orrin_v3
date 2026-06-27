@@ -16,7 +16,7 @@
 #   7. Store the concept record in data/symbolic_concepts.json.
 #
 # Runs at most once per 8h (concept formation is slower than rule abstraction).
-# Wire into dream_cycle every 2nd cycle.
+# Wire into idle_consolidation_cycle every 2nd cycle.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 

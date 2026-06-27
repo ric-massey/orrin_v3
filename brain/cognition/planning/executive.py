@@ -306,8 +306,8 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     # the sleep phase this ordinary procedural cost must not fight
                     # the dream-rest recovery proposal.
                     try:
-                        from brain.cognition.dreaming.dream_cycle import dreaming_now
-                        if not dreaming_now():
+                        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+                        if not consolidating_now():
                             from brain.affect.arbiter import submit_affect
                             submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
                                           weight=1.0, source="executive_step", ttl_cycles=2)

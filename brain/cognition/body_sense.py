@@ -86,8 +86,8 @@ def _is_dreaming() -> bool:
     can't be reached we treat it as awake (the conservative direction — the wake
     band still alarms on departure)."""
     try:
-        from brain.cognition.dreaming.dream_cycle import dreaming_now
-        return bool(dreaming_now())
+        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+        return bool(consolidating_now())
     except ImportError:  # intentional: dream module unreachable → treat as awake
         return False
 

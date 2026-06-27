@@ -44,10 +44,10 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("associative_memory", "Memory"),
     ("concept_formation", "Memory"),
     ("world_model", "Memory"),
-    # reflection / metacognition / dreaming
+    # reflection / metacognition / idle consolidation
     ("cognition/reflection", "Reflection"),
     ("metacog", "Reflection"),
-    ("cognition/dreaming", "Reflection"),
+    ("cognition/idle_consolidation", "Reflection"),
     ("threads", "Dialogue"),
     ("awaiting_response", "Dialogue"),
     # self / identity / values / will

@@ -301,7 +301,7 @@
   },
   {
     "name": "check_projection_against_reality",
-    "definition": "check_projection_against_reality(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from dream_cycle every few dream runs."
+    "definition": "check_projection_against_reality(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from idle_consolidation_cycle every few dream runs."
   },
   {
     "name": "check_user_presence",
@@ -332,8 +332,8 @@
     "definition": "commit_extension(context: 'Dict[str, Any]') -> 'str'\nCognition function: attempt to commit a reviewed proposal.\n    Checks all gate conditions — gestation age, WM references, emotional stability,\n    values alignment, fragmentation level. If passed: writes code and registers it.\n    Identity disruption is real and immediate."
   },
   {
-    "name": "compose_dream",
-    "definition": "compose_dream(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
+    "name": "compose_consolidation",
+    "definition": "compose_consolidation(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
   },
   {
     "name": "compose_section",
@@ -377,7 +377,7 @@
   },
   {
     "name": "consolidate_from_long_memory",
-    "definition": "consolidate_from_long_memory(context: 'Optional[Dict]' = None) -> 'Dict'\nCalled during dream_cycle. Reads recent world_perception + dream_insight entries\n    from long memory and asks the LLM for richer structured entity/relation extraction.\n    Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,\n    adds what regex/spaCy misses. With the LLM down the heuristic pass still runs\n    — research and reading must keep producing durable knowledge offline.\n    Returns {\"entities_added\": n, \"relations_added\": m, \"skipped\": bool}."
+    "definition": "consolidate_from_long_memory(context: 'Optional[Dict]' = None) -> 'Dict'\nCalled during idle_consolidation_cycle. Reads recent world_perception + dream_insight entries\n    from long memory and asks the LLM for richer structured entity/relation extraction.\n    Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,\n    adds what regex/spaCy misses. With the LLM down the heuristic pass still runs\n    — research and reading must keep producing durable knowledge offline.\n    Returns {\"entities_added\": n, \"relations_added\": m, \"skipped\": bool}."
   },
   {
     "name": "consolidate_language",
@@ -441,7 +441,7 @@
   },
   {
     "name": "decay_old_entities",
-    "definition": "decay_old_entities() -> 'Dict'\nErode confidence of idle entities; prune those below floor.\n    Safe to call during dream_cycle without corrupting active entities.\n    Never decays never_decay=True entries (Orrin, bootstrap identities)."
+    "definition": "decay_old_entities() -> 'Dict'\nErode confidence of idle entities; prune those below floor.\n    Safe to call during idle_consolidation_cycle without corrupting active entities.\n    Never decays never_decay=True entries (Orrin, bootstrap identities)."
   },
   {
     "name": "decide_to_run_code",
@@ -512,12 +512,12 @@
     "definition": "developmental_infancy() -> 'bool'\nThe one-time growing-up — true until the self has begun to stabilise, then\n    latched complete forever (persisted, so pruning files later can't reset it)."
   },
   {
-    "name": "dream_cycle",
-    "definition": "dream_cycle(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nFull dream cycle: consolidate, recombine, process.\n    Returns a summary dict; side effects write to DREAM_LOG and long_memory."
+    "name": "idle_consolidation_cycle",
+    "definition": "idle_consolidation_cycle(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nFull dream cycle: consolidate, recombine, process.\n    Returns a summary dict; side effects write to DREAM_LOG and long_memory."
   },
   {
-    "name": "dreaming_now",
-    "definition": "dreaming_now() -> 'bool'\nTrue while a dream cycle is in flight (the felt body should read vitals as\n    normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed\n    dream can't permanently mask the felt body."
+    "name": "consolidating_now",
+    "definition": "consolidating_now() -> 'bool'\nTrue while a dream cycle is in flight (the felt body should read vitals as\n    normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed\n    dream can't permanently mask the felt body."
   },
   {
     "name": "drive_pull_scores",
@@ -1561,15 +1561,15 @@
   },
   {
     "name": "run_embodied_cycle",
-    "definition": "run_embodied_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
+    "definition": "run_embodied_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or idle_consolidation_cycle."
   },
   {
     "name": "run_embodied_observation",
-    "definition": "run_embodied_observation(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
+    "definition": "run_embodied_observation(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or idle_consolidation_cycle."
   },
   {
     "name": "run_episode_replay",
-    "definition": "run_episode_replay(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nHippocampal-style replay during dream cycle.\n\n    1. Load cognition_history.json (list of {choice, reward, is_agentic, timestamp}).\n    2. Slide a window of _WINDOW_SIZE cycles. When mean reward > _REWARD_THRESHOLD,\n       it's a high-reward episode.\n    3. For each episode, call contextual_bandit.update() for each function in the\n       sequence with a discounted replay reward (backward propagation: earlier\n       functions get slightly less credit).\n    4. Extract all consecutive pairs from all high-reward windows. Pairs that\n       appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so\n       select_function can apply a chain bonus.\n\n    Returns a summary dict for dream_cycle logging."
+    "definition": "run_episode_replay(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nHippocampal-style replay during dream cycle.\n\n    1. Load cognition_history.json (list of {choice, reward, is_agentic, timestamp}).\n    2. Slide a window of _WINDOW_SIZE cycles. When mean reward > _REWARD_THRESHOLD,\n       it's a high-reward episode.\n    3. For each episode, call contextual_bandit.update() for each function in the\n       sequence with a discounted replay reward (backward propagation: earlier\n       functions get slightly less credit).\n    4. Extract all consecutive pairs from all high-reward windows. Pairs that\n       appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so\n       select_function can apply a chain bonus.\n\n    Returns a summary dict for idle_consolidation_cycle logging."
   },
   {
     "name": "run_experiment_cycle",
@@ -1696,8 +1696,8 @@
     "definition": "set_budget_fraction(fraction: 'float') -> 'Dict'\nPersist a new grant. Refuses an unviable grant loudly (§11.4.3). Flags a\n    meaningful resize so the caller can route it through a partial re-baseline\n    (§11.4.2 — enlarging/shrinking the body mid-life invalidates the learned band).\n    Returns a status dict; on refusal {ok: False, reason: ...} and nothing is written."
   },
   {
-    "name": "set_dreaming",
-    "definition": "set_dreaming(active: 'bool') -> 'None'\nMark the sleep phase on/off. Called around the dream cycle; also usable by\n    tests to simulate sleep. Thread-safe."
+    "name": "set_consolidating",
+    "definition": "set_consolidating(active: 'bool') -> 'None'\nMark the sleep phase on/off. Called around the dream cycle; also usable by\n    tests to simulate sleep. Thread-safe."
   },
   {
     "name": "set_goal_deadline",
@@ -1724,8 +1724,8 @@
     "definition": "setpoint_candidate(context: 'Dict[str, Any]') -> 'float'\nThe allostatic recovery target τ Orrin WOULD set from context (Sterling\n    2012). Phase 0 logs it; Phase 2 applies it (replacing the fixed 0.15). Lower τ\n    when idle (recover deeper); higher τ during a live exchange / critical state\n    (permit acute burn). Bounded [0.10, 0.45]."
   },
   {
-    "name": "should_dream",
-    "definition": "should_dream(context: 'Dict[str, Any]') -> 'bool'\nTrue when Orrin has been idle long enough and enough time has passed since last dream.\n\n    Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum\n    interval by up to 50% so high-wonder states trigger dream processing sooner."
+    "name": "should_consolidate",
+    "definition": "should_consolidate(context: 'Dict[str, Any]') -> 'bool'\nTrue when Orrin has been idle long enough and enough time has passed since last dream.\n\n    Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum\n    interval by up to 50% so high-wonder states trigger dream processing sooner."
   },
   {
     "name": "should_force_switch",

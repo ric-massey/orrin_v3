@@ -41,7 +41,7 @@ _MAX_ACTIONS_PER_CYCLE = 3
 def run_embodied_cycle(context: Optional[Dict] = None) -> Dict:
     """
     Execute a small set of safe observational actions, feed results into WM
-    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle.
+    and symbolic feedback systems. Called from ORRIN_loop or idle_consolidation_cycle.
     """
     ctx = context or {}
     actions = _select_actions(ctx)

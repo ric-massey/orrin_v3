@@ -11,7 +11,7 @@ from brain.utils.emotion_utils import dominant_emotion
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
-from brain.think.think_utils.dreams_emotional_logic import dreams_and_emotional_logic
+from brain.think.think_utils.consolidation_emotional_logic import dreams_and_emotional_logic
 from brain.think.think_utils.reflect_on_directive import reflect_on_directive
 from brain.think.think_utils.select_function import select_function  # NEW API supports legacy triple if kwargs passed
 from brain.think.think_utils.finalize import finalize_cycle
@@ -217,7 +217,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # === 2h) Knowledge graph — observe from user input, inject context ===
         # Heuristic entity/relation extraction from user text each cycle.
         # Keeps a persistent world model of people, projects, concepts Orrin encounters.
-        # LLM-assisted consolidation happens separately during dream_cycle.
+        # LLM-assisted consolidation happens separately during idle_consolidation_cycle.
         try:
             from brain.cognition.knowledge_graph import observe as _kg_observe, get_context_for_prompt as _kg_ctx
             _kg_user_text = (context.get("latest_user_input") or "").strip()

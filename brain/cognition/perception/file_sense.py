@@ -20,7 +20,7 @@ from pathlib import Path
 _SPATIAL_MAP = [
     # Cognition subsystems (most specific first)
     ("cognition/planning",         "my planning structures"),
-    ("cognition/dreaming",         "the part of me that dreams"),
+    ("cognition/idle_consolidation", "the part that consolidates while idle"),
     ("cognition/selfhood",         "the part of me that holds identity"),
     ("cognition/reflection",       "where I reflect on my own processes"),
     ("cognition/perception",       "my perceptual layer"),

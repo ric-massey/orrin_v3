@@ -1,9 +1,9 @@
-# brain/cognition/dreaming/dream_symbolic.py
+# brain/cognition/idle_consolidation/symbolic_consolidation.py
 #
-# Late-phase symbolic-intelligence maintenance for the dream cycle
-# (CODEBASE_CLEANUP_PLAN 4.5C), lifted verbatim from dream_cycle() to bring that
+# Late-phase symbolic-intelligence maintenance for the consolidation cycle
+# (CODEBASE_CLEANUP_PLAN 4.5C), lifted verbatim from idle_consolidation_cycle() to bring that
 # module under the 600-line soft limit. A sequence of independent, individually
-# fail-safe phases run once per dream: knowledge crystallization, rule-set
+# fail-safe phases run once per consolidation pass: knowledge crystallization, rule-set
 # health audit, progress/outcome flush, rule abstraction/compression, concept
 # formation, symbolic prediction, rule-verifier review, self-model rebuild,
 # grounding audit, active experimentation, sandbox probes, forgetting, ceiling
@@ -135,7 +135,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
                     "priority": 2,
                 })
             except Exception as _e:
-                record_failure("dream_cycle.dream_cycle.6", _e)
+                record_failure("idle_consolidation_cycle.idle_consolidation_cycle.6", _e)
     except Exception as _rve:
         log_activity(f"[dream] rule verifier review skipped: {_rve}")
 
@@ -205,7 +205,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
                 retired=_forget.get("retired", 0),
             )
         except Exception as _e:
-            record_failure("dream_cycle.dream_cycle.7", _e)
+            record_failure("idle_consolidation_cycle.idle_consolidation_cycle.7", _e)
     except Exception as _fge:
         log_activity(f"[dream] forgetting cycle skipped: {_fge}")
 
@@ -217,7 +217,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
         if _ceil.get("over"):
             log_activity(f"[dream] Over disk ceiling — trimmed {sum(_ceil.get('trimmed', {}).values())} entries to stay under.")
     except Exception as _ce:
-        record_failure("dream_cycle.dream_cycle.disk_ceiling", _ce)
+        record_failure("idle_consolidation_cycle.idle_consolidation_cycle.disk_ceiling", _ce)
 
     # Memory-ceiling eviction (§10.3) — if resident memory is over the user's ceiling,
     # drop the safe-to-recompute in-process caches to give it back. No-op when under.
@@ -227,7 +227,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
         if _mem.get("over"):
             log_activity(f"[dream] Over memory ceiling — evicted caches: {', '.join(_mem.get('evicted', [])) or 'none'}.")
     except Exception as _me:
-        record_failure("dream_cycle.dream_cycle.memory_ceiling", _me)
+        record_failure("idle_consolidation_cycle.idle_consolidation_cycle.memory_ceiling", _me)
 
     # Symbolic self-improvement — rehabilitate rules, calibrate router thresholds,
     # prune underused meta-rules. Has its own 4h internal cooldown.
@@ -285,7 +285,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
                     "priority": 2,
                 })
             except Exception as _e:
-                record_failure("dream_cycle.dream_cycle.8", _e)
+                record_failure("idle_consolidation_cycle.idle_consolidation_cycle.8", _e)
         except Exception as _bme:
             log_activity(f"[dream] benchmark skipped: {_bme}")
 
@@ -316,7 +316,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
                         "priority": 3,
                     })
                 except Exception as _e:
-                    record_failure("dream_cycle.dream_cycle.9", _e)
+                    record_failure("idle_consolidation_cycle.idle_consolidation_cycle.9", _e)
     except Exception as _tpe:
         log_activity(f"[dream] temporal plan review skipped: {_tpe}")
 

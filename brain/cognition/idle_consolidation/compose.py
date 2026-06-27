@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
 
-def compose_dream(self_model: Dict[str, Any], recent: List[Any]) -> str:
+def compose_consolidation(self_model: Dict[str, Any], recent: List[Any]) -> str:
     """Return a symbolic dream text based on self_model and recent thoughts."""
     identity = (
         self_model.get("identity_story")

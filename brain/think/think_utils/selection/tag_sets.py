@@ -45,7 +45,7 @@ _USER_HELPFUL_DEFAULT: frozenset[str] = frozenset({
 # Pure introspection — valuable, but should yield to helpfulness when user is present.
 # Phase 4 fallback for the "introspective" tag.
 _INTROSPECTION_DEFAULT: frozenset[str] = frozenset({
-    "dream_cycle",
+    "idle_consolidation_cycle",
     "narrative_update",
     "reflection",
     "reflect_on_directive",
@@ -137,8 +137,8 @@ _SAFE_TO_EXPLORE_DEFAULT: frozenset[str] = frozenset({
     "reflect_as_agents", "narrative_update", "periodic_self_review",
     "associative_recall", "maybe_surface_association", "maybe_surface_regret",
     "process_regret", "detect_memory_contradictions", "detect_tensions",
-    "consolidate_from_long_memory", "consolidate_language", "dream_cycle",
-    "compose_dream", "introspective_planning", "evaluate_recent_cognition",
+    "consolidate_from_long_memory", "consolidate_language", "idle_consolidation_cycle",
+    "compose_consolidation", "introspective_planning", "evaluate_recent_cognition",
     "summarize_relationships", "audit_reflective_claims",
     "generate_concepts_from_memories", "extract_semantic_facts",
     "imagine_opposite_self", "simulate_future_selves",
@@ -174,9 +174,9 @@ _MODE_WANDERING_FNS = _tagged_or(("mode_wandering",), frozenset({
     "look_outward", "seek_novelty", "look_around", "generate_intrinsic_goals",
     "search_own_files", "search_files", "grep_files"}))
 _MODE_WANDERING_REFLECT_FNS = _tagged_or(("mode_wandering_reflect",), frozenset({
-    "dream_cycle", "reflection", "narrative_update"}))
+    "idle_consolidation_cycle", "reflection", "narrative_update"}))
 _MODE_DROWSY_FNS = _tagged_or(("mode_drowsy",), frozenset({
-    "dream_cycle", "self_review", "narrative_update", "consolidate_memory",
+    "idle_consolidation_cycle", "self_review", "narrative_update", "consolidate_memory",
     "reflect_on_directive"}))
 
 # Neuromodulator boost target sets (per-list shared multipliers stay in code —
@@ -184,12 +184,12 @@ _MODE_DROWSY_FNS = _tagged_or(("mode_drowsy",), frozenset({
 _NEURO_NE_FOCUS = _tagged_or(("neuro_ne_focus",), frozenset({
     "assess_goal_progress", "plan_next_step"}))
 _NEURO_NE_SUPPRESS = _tagged_or(("neuro_ne_suppress",), frozenset({
-    "dream_cycle", "seek_novelty", "look_around", "narrative_update"}))
+    "idle_consolidation_cycle", "seek_novelty", "look_around", "narrative_update"}))
 _NEURO_CALM_SUPPRESS = _tagged_or(("neuro_calm_suppress",), frozenset({
     "attempt_regulation", "reflect_on_affect", "investigate_unexplained_emotions"}))
 _NEURO_STRESS_SUPPRESS = _tagged_or(("neuro_stress_suppress",), frozenset({
     "plan_self_evolution", "detect_memory_contradictions", "propose_value_revision",
-    "narrative_update", "dream_cycle", "generate_intrinsic_goals"}))
+    "narrative_update", "idle_consolidation_cycle", "generate_intrinsic_goals"}))
 _NEURO_STRESS_RESTORE = _tagged_or(("neuro_stress_restore",), frozenset({
     "attempt_regulation", "self_soothing", "reflection"}))
 

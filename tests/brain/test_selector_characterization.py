@@ -124,7 +124,7 @@ _CASES = {
     ),
     "threat_spike": (
         {"threat_detector_response": {"shortcut_function": "dream", "spike_intensity": 0.9}},
-        "dream_cycle",
+        "idle_consolidation_cycle",
     ),
     "suppress_intrinsic": (
         {"_suppress_intrinsic_goals": True, "attention_mode": "wandering"},

@@ -71,7 +71,7 @@ _FN_SATISFIES: Dict[str, List[tuple]] = {
     "web_search":         [("world_mastery", 0.25), ("novelty_exploration_drive", 0.25)],
     "pursue_goal":        [("competence", 0.30), ("autonomy", 0.25)],
     "plan":               [("competence", 0.20), ("autonomy", 0.20)],
-    "dream_cycle":        [("novelty_exploration_drive", 0.30), ("affect_stability", 0.20)],
+    "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("affect_stability", 0.20)],
     "wonder":             [("novelty_exploration_drive", 0.35), ("world_mastery", 0.15)],
     "generate_intrinsic_goals": [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
     "self_review":        [("competence", 0.15), ("affect_stability", 0.15)],

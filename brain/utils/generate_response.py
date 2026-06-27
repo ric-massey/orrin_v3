@@ -331,7 +331,7 @@ def generate_response(
         # Skipped for system/meta callers (identity, config, dream sub-cycles)
         # and for multi-turn message lists (context too complex for symbolic match).
         _sym_skip_callers = frozenset({
-            "dream_cycle/consolidation", "dream_cycle/recombination", "dream_cycle/processing",
+            "idle_consolidation_cycle/consolidation", "idle_consolidation_cycle/recombination", "idle_consolidation_cycle/processing",
             "identity", "build_system_prompt", "build_response",
         })
         if (caller not in _sym_skip_callers
@@ -470,7 +470,7 @@ def generate_response(
 
         # Crystallize successful responses into symbolic rules (async-safe, best-effort)
         _cryst_skip = frozenset({
-            "dream_cycle/consolidation", "dream_cycle/recombination", "dream_cycle/processing",
+            "idle_consolidation_cycle/consolidation", "idle_consolidation_cycle/recombination", "idle_consolidation_cycle/processing",
             "identity", "build_system_prompt",
         })
         if caller not in _cryst_skip and not isinstance(prompt, list) and reply:

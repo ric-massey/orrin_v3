@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from brain.scripts import vital_floor_calibration_run as runner
+from brain.scripts import resource_floor_calibration_run as runner
 
 
 def test_build_env_forces_observe_mode_and_headless(tmp_path):

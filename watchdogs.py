@@ -13,7 +13,7 @@ from supervisor.lifespan import LifespanByCycles
 from supervisor.no_goals import NoGoalsGuard
 from supervisor.memory import MemoryHealthGuard
 from supervisor.host_resources import HostResourceGuard
-from supervisor.vital_floor import VitalFloorGuard
+from supervisor.resource_floor import ResourceFloorGuard
 from supervisor.repeat import RepeatLoopGuard
 from observability.health_telemetry import HealthBus, HealthTelemetrySampler
 from observability.metrics import (
@@ -62,7 +62,7 @@ GetDiskFreeBytes = Callable[[], float]
 GetSwapUsedBytes = Callable[[], float]
 GetVmemPercent = Callable[[], float]
 
-# Vital-floor provider hints (inward: Orrin's own footprint vs his granted body)
+# Resource-floor provider hints (inward: Orrin's own footprint vs his granted body)
 GetOwnRssBytes = Callable[[], float]
 GetBudgetBytes = Callable[[], float]
 
@@ -155,21 +155,21 @@ def start_watchdogs(
     vmem_warn_percent: float = 85.0,
     vmem_pause_percent: float = 95.0,
     vmem_sustain_s: float = 15.0,
-    # --------- VITAL-FLOOR REFLEX (inward; Orrin's own footprint vs granted body) ---------
+    # --------- RESOURCE-FLOOR REFLEX (inward; Orrin's own footprint vs granted body) ---------
     get_own_rss_bytes: Optional[GetOwnRssBytes] = None,
     get_budget_bytes: Optional[GetBudgetBytes] = None,
-    vital_on_warn: Optional[Callable[[str], None]] = None,
-    vital_on_shed: Optional[Callable[[str], None]] = None,
-    vital_on_recover: Optional[Callable[[str], None]] = None,
-    vital_shed_fn: Optional[Callable[[str], None]] = None,
-    vital_warn_frac: float = 0.50,     # calibrated 2026-06-17 (§3.1/§7.2); main.py overrides
-    vital_shed_frac: float = 0.55,
-    vital_recover_frac: float = 0.22,
-    vital_sustain_s: float = 8.0,
-    vital_observe_only: bool = True,   # safe default; main.py arms it via ORRIN_VITAL_FLOOR=act
-    vital_calibration_file: Optional[str] = None,
-    vital_calibration_phase: str = "unspecified",
-    vital_calibration_sample_s: float = 1.0,
+    resource_floor_on_warn: Optional[Callable[[str], None]] = None,
+    resource_floor_on_shed: Optional[Callable[[str], None]] = None,
+    resource_floor_on_recover: Optional[Callable[[str], None]] = None,
+    resource_floor_shed_fn: Optional[Callable[[str], None]] = None,
+    resource_floor_warn_frac: float = 0.50,     # calibrated 2026-06-17 (§3.1/§7.2); main.py overrides
+    resource_floor_shed_frac: float = 0.55,
+    resource_floor_recover_frac: float = 0.22,
+    resource_floor_sustain_s: float = 8.0,
+    resource_floor_observe_only: bool = True,   # safe default; main.py arms it via ORRIN_VITAL_FLOOR=act
+    resource_floor_calibration_file: Optional[str] = None,
+    resource_floor_calibration_phase: str = "unspecified",
+    resource_floor_calibration_sample_s: float = 1.0,
     # --------- REPEAT-LOOP GUARD (tunables) ---------
     enable_repeat_guard: bool = True,
     action_window_n: int = 50,
@@ -194,7 +194,7 @@ def start_watchdogs(
     Spin up a daemon thread that continuously checks watchdogs.
     Returns:
       (supervisor, detector, errors, liveness, lifespan, no_goals, mem_guard,
-       host_guard, vital_guard, repeat_guard, stop_evt)
+       host_guard, resource_floor_guard, repeat_guard, stop_evt)
     """
     supervisor = Supervisor(kill=kill_current_process)
 
@@ -283,27 +283,27 @@ def start_watchdogs(
         vmem_sustain_s=vmem_sustain_s,
     )
 
-    # Vital-floor reflex (INWARD; the mirror of the host guard). Watches Orrin's
+    # Resource-floor reflex (INWARD; the mirror of the host guard). Watches Orrin's
     # OWN RSS against his granted body size and sheds load before the OS OOM-killer
     # does it ungracefully. Like the host guard it does NOT route to supervisor.trigger
     # — it sheds, never suicides. Built only if both providers are present.
-    vital_guard: Optional[VitalFloorGuard] = None
+    resource_floor_guard: Optional[ResourceFloorGuard] = None
     if get_own_rss_bytes is not None and get_budget_bytes is not None:
-        vital_guard = VitalFloorGuard(
-            on_warn=vital_on_warn,
-            on_shed=vital_on_shed,
-            on_recover=vital_on_recover,
-            shed_fn=vital_shed_fn,
+        resource_floor_guard = ResourceFloorGuard(
+            on_warn=resource_floor_on_warn,
+            on_shed=resource_floor_on_shed,
+            on_recover=resource_floor_on_recover,
+            shed_fn=resource_floor_shed_fn,
             get_own_rss_bytes=get_own_rss_bytes,
             get_budget_bytes=get_budget_bytes,
-            warn_frac=vital_warn_frac,
-            shed_frac=vital_shed_frac,
-            recover_frac=vital_recover_frac,
-            sustain_s=vital_sustain_s,
-            observe_only=vital_observe_only,
-            calibration_file=vital_calibration_file,
-            calibration_phase=vital_calibration_phase,
-            calibration_sample_s=vital_calibration_sample_s,
+            warn_frac=resource_floor_warn_frac,
+            shed_frac=resource_floor_shed_frac,
+            recover_frac=resource_floor_recover_frac,
+            sustain_s=resource_floor_sustain_s,
+            observe_only=resource_floor_observe_only,
+            calibration_file=resource_floor_calibration_file,
+            calibration_phase=resource_floor_calibration_phase,
+            calibration_sample_s=resource_floor_calibration_sample_s,
         )
 
     # Repeat-loop guard (optional)
@@ -360,8 +360,8 @@ def start_watchdogs(
                 no_goals.step()
             mem_guard.step()
             host_guard.step()
-            if vital_guard is not None:
-                vital_guard.step()
+            if resource_floor_guard is not None:
+                resource_floor_guard.step()
             if repeat_guard is not None:
                 repeat_guard.step()
 
@@ -508,7 +508,7 @@ def start_watchdogs(
         no_goals,
         mem_guard,
         host_guard,
-        vital_guard,
+        resource_floor_guard,
         repeat_guard,
         stop_evt,
     )

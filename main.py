@@ -351,7 +351,7 @@ elif _urls_to_open:
 # ---------- Watchdogs ----------
 pulse = Pulse()
 
-# Resource providers + host/vital escalation callbacks + vital-floor config,
+# Resource providers + host/resource escalation callbacks + resource-floor config,
 # built outside the coupled boot core (depends only on psutil/env/telemetry).
 from runtime import watchdog_setup as _wd_setup
 _wd_inputs = _wd_setup.build()
@@ -381,7 +381,7 @@ except TypeError:
     no_goals,
     mem_guard,
     host_guard,
-    vital_guard,
+    resource_floor_guard,
     repeat_guard,
     stop_evt,
 ) = tup

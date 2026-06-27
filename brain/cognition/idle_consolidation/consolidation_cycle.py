@@ -31,7 +31,7 @@ _DREAM_LOCK: threading.Lock = threading.Lock()  # guards all _DREAM_* globals
 
 # ── Sleep-phase flag (SL1) ──────────────────────────────────────────────────
 # A process-local "Orrin is asleep" gate, same module-gate pattern as the host
-# guard's heavy_cycles_paused / vital_floor_shedding. The felt body (body_sense)
+# guard's heavy_cycles_paused / resource_floor_shedding. The felt body (body_sense)
 # and the other resource_deficit writers read this to attribute the dream's own
 # RSS/CPU/latency spike to a *sleep* phase rather than to distress (§3.2 SL1).
 #

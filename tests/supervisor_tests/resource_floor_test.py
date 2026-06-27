@@ -1,9 +1,9 @@
-from supervisor.vital_floor import (
-    VitalFloorGuard,
-    set_vital_shedding,
-    vital_floor_shedding,
+from supervisor.resource_floor import (
+    ResourceFloorGuard,
+    set_resource_floor_shedding,
+    resource_floor_shedding,
 )
-from supervisor.vital_floor_calibration import load_samples, summarize
+from supervisor.resource_floor_calibration import load_samples, summarize
 
 _GB = float(1024 * 1024 * 1024)
 
@@ -36,7 +36,7 @@ class EventRecorder:
 
 
 def _reset_gate():
-    set_vital_shedding(False, "")
+    set_resource_floor_shedding(False, "")
 
 
 def _make_guard(clock, rss, budget, **kw):
@@ -44,7 +44,7 @@ def _make_guard(clock, rss, budget, **kw):
     shed = EventRecorder()
     recover = EventRecorder()
     shed_calls = []
-    guard = VitalFloorGuard(
+    guard = ResourceFloorGuard(
         on_warn=warn,
         on_shed=shed,
         on_recover=recover,
@@ -74,7 +74,7 @@ def test_observe_only_reports_but_does_not_shed():
         guard.step()
         clk.step(1.0)
 
-    assert vital_floor_shedding() is False
+    assert resource_floor_shedding() is False
     assert shed_calls == []
     assert warn.msgs == []
     assert recover.msgs == []
@@ -93,7 +93,7 @@ def test_armed_guard_sheds_and_recovers_with_hysteresis():
         guard.step()
         clk.step(1.0)
 
-    assert vital_floor_shedding() is True
+    assert resource_floor_shedding() is True
     assert len(shed.msgs) == 1
     assert len(shed_calls) == 1
 
@@ -102,7 +102,7 @@ def test_armed_guard_sheds_and_recovers_with_hysteresis():
     for _ in range(7):
         guard.step()
         clk.step(1.0)
-    assert vital_floor_shedding() is True
+    assert resource_floor_shedding() is True
     assert recover.msgs == []
 
     # Recover below the recovery line: gate clears.
@@ -110,7 +110,7 @@ def test_armed_guard_sheds_and_recovers_with_hysteresis():
     for _ in range(7):
         guard.step()
         clk.step(1.0)
-    assert vital_floor_shedding() is False
+    assert resource_floor_shedding() is False
     assert recover.msgs
 
 
@@ -130,7 +130,7 @@ def test_warn_is_non_shedding():
     assert len(warn.msgs) == 1
     assert shed.msgs == []
     assert shed_calls == []
-    assert vital_floor_shedding() is False
+    assert resource_floor_shedding() is False
 
 
 def test_transient_spike_does_not_trip():
@@ -150,7 +150,7 @@ def test_transient_spike_does_not_trip():
     assert warn.msgs == []
     assert shed.msgs == []
     assert shed_calls == []
-    assert vital_floor_shedding() is False
+    assert resource_floor_shedding() is False
 
 
 def test_calibration_samples_are_written(tmp_path):

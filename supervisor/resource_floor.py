@@ -1,4 +1,4 @@
-# supervisor/vital_floor.py
+# supervisor/resource_floor.py
 # Inward survival reflex. The MIRROR of HostResourceGuard: where the host guard
 # looks OUTWARD at the box (is the building on fire?), this one looks INWARD at
 # Orrin's own footprint against the survival line of his GRANTED body (§6 of the
@@ -56,21 +56,21 @@ _shedding = False
 _shed_reason = ""
 
 
-def set_vital_shedding(shedding: bool, reason: str = "") -> None:
+def set_resource_floor_shedding(shedding: bool, reason: str = "") -> None:
     global _shedding, _shed_reason
     with _shed_lock:
         _shedding = bool(shedding)
         _shed_reason = reason or ""
 
 
-def vital_floor_shedding() -> bool:
+def resource_floor_shedding() -> bool:
     """True when Orrin's own footprint is near his granted-body floor and he is
     shedding load. Heavy cycles should not launch while this holds."""
     with _shed_lock:
         return _shedding
 
 
-def vital_shed_reason() -> str:
+def resource_floor_shed_reason() -> str:
     with _shed_lock:
         return _shed_reason
 
@@ -84,7 +84,7 @@ GetBudgetBytes = Callable[[], float]   # cognition.body_budget.budget_bytes()
 
 
 @dataclass
-class VitalFloorGuard:
+class ResourceFloorGuard:
     """
     Inward survival reflex with staged, NON-fatal escalation (NORMAL → WARN → SHED).
 
@@ -92,7 +92,7 @@ class VitalFloorGuard:
       WARN  → own RSS above warn_frac of the grant (sustained). Log/flag only.
       SHED  → own RSS above shed_frac of the grant (sustained). Fire shed_fn():
               abort heavy cycle, drop caches, trim working memory. Gate
-              vital_floor_shedding() goes true so the loop stops launching heavies.
+              resource_floor_shedding() goes true so the loop stops launching heavies.
     Hysteresis: leaving SHED requires recovering past recover_frac (< warn_frac),
     so it can't flap on the boundary — same discipline as the host guard.
 
@@ -155,7 +155,7 @@ class VitalFloorGuard:
             # Fail TOWARD shedding: if we cannot read the floor, do not silently
             # call everything fine. But we also cannot shed on a bad reading, so
             # log loudly and bail this tick (the next good reading decides).
-            _log.warning("vital_floor read failed (fail-open this tick): %s", _e)
+            _log.warning("resource_floor read failed (fail-open this tick): %s", _e)
             return
 
         if budget <= 0.0 or rss <= 0.0:
@@ -185,7 +185,7 @@ class VitalFloorGuard:
 
         # Hysteresis: SHED is sticky through WARN; it clears only when RSS drops
         # back under recover_frac (a real return to roomy), not merely under shed.
-        was_shedding = vital_floor_shedding()
+        was_shedding = resource_floor_shedding()
         if level >= self.SHED:
             now_shedding = True
         elif frac < self.recover_frac:
@@ -201,16 +201,16 @@ class VitalFloorGuard:
         if self.observe_only:
             # Calibration mode: evaluate everything, act on nothing.
             if level == self.SHED and prev < self.SHED:
-                _log.warning("[vital_floor] OBSERVE — would SHED: %s", detail)
+                _log.warning("[resource_floor] OBSERVE — would SHED: %s", detail)
                 self._bump("VITAL:would_shed", "2")
             elif level == self.WARN and prev == self.NORMAL:
-                _log.info("[vital_floor] OBSERVE — would warn: %s", detail)
+                _log.info("[resource_floor] OBSERVE — would warn: %s", detail)
             self._level = level
             return
 
         gate_changed = now_shedding != was_shedding
         if gate_changed:
-            set_vital_shedding(now_shedding, detail)
+            set_resource_floor_shedding(now_shedding, detail)
 
         if gate_changed and now_shedding:
             self._bump("VITAL:shed", "2")
@@ -230,7 +230,7 @@ class VitalFloorGuard:
         try:
             self.shed_fn(detail)
         except Exception as _e:
-            _log.warning("vital_floor shed action failed: %s", _e)
+            _log.warning("resource_floor shed action failed: %s", _e)
 
     def _write_calibration_sample(self, now: float, rss: float, budget: float, frac: float) -> None:
         if not self.calibration_file:
@@ -252,7 +252,7 @@ class VitalFloorGuard:
             with open(self.calibration_file, "a", encoding="utf-8") as fh:
                 fh.write(json.dumps(rec, sort_keys=True) + "\n")
         except Exception as _e:
-            _log.warning("vital_floor calibration write failed: %s", _e)
+            _log.warning("resource_floor calibration write failed: %s", _e)
 
     # ------------------- helpers (same shape as HostResourceGuard) -------------------
 

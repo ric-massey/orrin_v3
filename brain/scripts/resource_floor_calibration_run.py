@@ -3,8 +3,8 @@
 Run an observe-mode vital-floor calibration phase.
 
 Examples:
-  python brain/scripts/vital_floor_calibration_run.py --phase calm --duration-s 900
-  python brain/scripts/vital_floor_calibration_run.py --phase dream_reading --duration-s 1800
+  python brain/scripts/resource_floor_calibration_run.py --phase calm --duration-s 900
+  python brain/scripts/resource_floor_calibration_run.py --phase dream_reading --duration-s 1800
 
 The script starts `main.py` with ORRIN_VITAL_FLOOR=observe, writes low-rate RSS
 fraction samples to JSONL, stops Orrin with SIGTERM after the duration, then
@@ -23,7 +23,7 @@ from typing import Dict, List
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUT = REPO_ROOT / "brain" / "data" / "vital_floor_calibration.jsonl"
+DEFAULT_OUT = REPO_ROOT / "brain" / "data" / "resource_floor_calibration.jsonl"
 
 for _p in (REPO_ROOT, REPO_ROOT / "brain"):
     _s = str(_p)
@@ -100,10 +100,10 @@ def run_phase(args: argparse.Namespace) -> int:
 
     if out_file.exists() and out_file.stat().st_size > 0:
         print("[vital-cal] analyzer report:")
-        from supervisor.vital_floor_calibration import main as analyze_main
+        from supervisor.resource_floor_calibration import main as analyze_main
         old_argv = sys.argv[:]
         try:
-            sys.argv = ["supervisor.vital_floor_calibration", str(out_file)]
+            sys.argv = ["supervisor.resource_floor_calibration", str(out_file)]
             analyze_main()
         finally:
             sys.argv = old_argv

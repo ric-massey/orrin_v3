@@ -107,7 +107,7 @@ ADAPTER_FILES = {
     "brain/goal_io.py",
     "brain/loop/finalize.py",
     "brain/memory_io.py",
-    "brain/scripts/vital_floor_calibration_run.py",
+    "brain/scripts/resource_floor_calibration_run.py",
     "brain/utils/goals_feed.py",
     "brain/utils/mind_archive.py",
 }

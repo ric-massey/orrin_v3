@@ -130,8 +130,8 @@ files = [
     "supervisor/supervisor.py",
     "supervisor/host_resources.py",
     "supervisor/memory.py",
-    "supervisor/vital_floor.py",
-    "supervisor/vital_floor_calibration.py",
+    "supervisor/resource_floor.py",
+    "supervisor/resource_floor_calibration.py",
     # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
     "brain/utils/num.py",
     "brain/utils/log.py",

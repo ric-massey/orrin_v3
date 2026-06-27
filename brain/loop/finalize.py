@@ -206,7 +206,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
     except Exception as _pe:
         record_failure("ORRIN_loop.plasticity", _pe)
     try:
-        from brain.runtime_coupling import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_mod.evaluate_cycle(_cycle_fn, context, reward)
     except Exception as _dse:
         record_failure("ORRIN_loop.drive_satisfy", _dse)

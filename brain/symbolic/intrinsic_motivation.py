@@ -9,7 +9,7 @@
 #   prediction_error()      — recent prediction miss rate (0–1)
 #   exploration_drive_score(query)  — weighted sum (0–1)
 #
-# Drive levels:
+# Demand levels:
 #   score ≥ 0.70 → "explore" : spawn sub-goal, lower LLM gate threshold
 #   score ≥ 0.45 → "investigate" : note anomaly, worth follow-up
 #   score < 0.25 → "exploit" : familiar territory, prefer symbolic resolution

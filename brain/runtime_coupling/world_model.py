@@ -12,7 +12,7 @@
 # Synthesizes:
 #   sensory_stream  — home-sense/world-sense, machine vitals, file changes
 #   social_presence — conversational silence, engagement pattern
-#   drive_engine    — current biological drive pressures
+#   demand_engine    — current biological drive pressures
 #   own observations — network check, circadian context
 #
 # Persists to brain/data/world_model.json so patterns survive restarts.
@@ -287,9 +287,9 @@ class WorldModel:
         except Exception as _e:
             record_failure("world_model.WorldModel._take_snapshot.2", _e)
 
-        # Drive pressures (daemon)
+        # Demand pressures (daemon)
         try:
-            from brain.runtime_coupling import drive_engine as _de
+            from brain.runtime_coupling import demand_engine as _de
             drives = _de.get_state()
             snap["drive_exploration"] = drives.get("exploration")
             snap["drive_meaning"]     = drives.get("meaning")

@@ -4,7 +4,7 @@ ORRIN_loop entrypoint).
 `start_background_services()` brings up the daemons the loop depends on but does
 not drive: the ToolRunner (drains queued tool requests), the EvaluatorDaemon
 (delayed reward resolution), the always-on Layer-0 embodiment threads
-(setpoint_regulation, sensory_stream, drive_engine, social_presence,
+(setpoint_regulation, sensory_stream, demand_engine, social_presence,
 subconscious), and the optional continuous Executive daemon. The embodiment /
 Executive starts keep no handle (they own their own threads); the loop needs the
 ToolRunner + Evaluator handles back for its per-cycle health-watchdog + ticks, so
@@ -58,11 +58,11 @@ def start_background_services(stop_event: Any) -> Tuple[Any, Any, Any]:
         log_error(f"[embodiment] sensory_stream failed to start: {_e0}")
 
     try:
-        from brain.runtime_coupling import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_mod.start()
-        log_activity("[embodiment] drive_engine started.")
+        log_activity("[embodiment] demand_engine started.")
     except Exception as _e0:
-        log_error(f"[embodiment] drive_engine failed to start: {_e0}")
+        log_error(f"[embodiment] demand_engine failed to start: {_e0}")
 
     try:
         from brain.runtime_coupling import social_presence as _social_mod

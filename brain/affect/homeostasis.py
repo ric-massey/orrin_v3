@@ -149,7 +149,7 @@ def ceiling_for(name: str) -> float:
 def pump_signal(core: Dict[str, float], key: str, delta: float, *, default: float = 0.0) -> float:
     """
     Additively boost a core signal, but NEVER push it above its homeostatic
-    ceiling. Drive/reward pumps must call this instead of `min(1.0, cur + delta)`:
+    ceiling. Demand/reward pumps must call this instead of `min(1.0, cur + delta)`:
     capping at 1.0 let pumps out-run the once-per-cycle ceiling clawback and pin
     the positive drives near saturation (the flatline). Mutates `core` in place
     and returns the new value.

@@ -436,7 +436,7 @@ def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
 
 
 def _fairness_default_drive() -> str:
-    """Drive of the most-starved aspiration (P3) — the new default for an untagged
+    """Demand of the most-starved aspiration (P3) — the new default for an untagged
     goal, so the path of least resistance stops being world_knowledge."""
     try:
         p = aspiration_pressure()

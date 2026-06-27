@@ -1,4 +1,4 @@
-# brain/core/drive.py
+# brain/motivation/demand.py
 import random
 from datetime import datetime, timezone
 from brain.utils.log import log_private, log_error
@@ -101,7 +101,7 @@ def persistent_drive_loop(context, self_model, memory):
         choice = _symbolic_drive_choice(context, available_functions)
         log_private(f"[drive] Dysregulated (stability={stability:.2f}), symbolic choice: {choice}")
         update_working_memory({
-            "content": f"🧭 Drive: affective instability ({stability:.2f}), routing to {choice}.",
+            "content": f"🧭 Demand: affective instability ({stability:.2f}), routing to {choice}.",
             "event_type": "drive_choice",
             "priority": 2,
             "timestamp": datetime.now(timezone.utc).isoformat()

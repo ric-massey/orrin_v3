@@ -1,5 +1,5 @@
 """
-embodiment/drive_engine.py
+runtime_coupling/demand_engine.py
 
 Biological drives — constant pressures that accumulate independently of
 conscious cognition and inject urgency into the signal_router.
@@ -17,11 +17,11 @@ Six drives:
   integrity    — builds when value dissonance is detected in WM
   coherence    — builds when affect_stability is low
 
-The DriveEngine runs as a daemon thread, ticking every TICK_INTERVAL seconds.
+The DemandEngine runs as a daemon thread, ticking every TICK_INTERVAL seconds.
 Callers use:
   start()          — boot the engine (idempotent)
   get_signals()    — list of raw_signal dicts for high-pressure drives
-  get_state()      — dict of {drive_name: pressure} for context injection
+  get_state()      — dict of {demand_name: pressure} for context injection
   satisfy(name, amount) — release pressure from a named drive
   evaluate_cycle(fn_name, context, reward) — auto-satisfy based on cycle outcome
 """
@@ -41,15 +41,15 @@ _URGENT_THRESHOLD = 0.70  # pressure above this → high-strength signal
 # -------------------------------------------------------------------
 # Singleton
 
-_engine: Optional["DriveEngine"] = None
+_engine: Optional["DemandEngine"] = None
 _engine_lock = threading.Lock()
 
 
-def start() -> "DriveEngine":
+def start() -> "DemandEngine":
     global _engine
     with _engine_lock:
         if _engine is None:
-            _engine = DriveEngine()
+            _engine = DemandEngine()
             _engine.start()
     return _engine
 
@@ -68,8 +68,8 @@ def get_state() -> Dict[str, float]:
     return _engine.get_state()
 
 
-def get_drive_tags() -> Dict[str, List[str]]:
-    """Drive name → tag list, read from the live drives so callers (e.g. the
+def get_demand_tags() -> Dict[str, List[str]]:
+    """Demand name → tag list, read from the live drives so callers (e.g. the
     will's drive-alignment check) never duplicate this map."""
     with _engine_lock:
         if _engine is None:
@@ -77,11 +77,11 @@ def get_drive_tags() -> Dict[str, List[str]]:
     return {name: list(d.tags) for name, d in _engine.drives.items()}
 
 
-def satisfy(drive_name: str, amount: float = 0.3) -> None:
+def satisfy(demand_name: str, amount: float = 0.3) -> None:
     with _engine_lock:
         if _engine is None:
             return
-    _engine.satisfy(drive_name, amount)
+    _engine.satisfy(demand_name, amount)
 
 
 def evaluate_cycle(fn_name: str, context: Dict[str, Any], reward: float) -> None:
@@ -93,7 +93,7 @@ def evaluate_cycle(fn_name: str, context: Dict[str, Any], reward: float) -> None
 
 # -------------------------------------------------------------------
 
-class Drive:
+class Demand:
     """A single biological drive with its own pressure dynamics."""
 
     def __init__(
@@ -144,11 +144,11 @@ class Drive:
             "signal_strength": strength,
             "tags": self.tags + ["drive", *orientation],
             "drive_pressure": p,
-            "drive_name": self.name,
+            "demand_name": self.name,
         }
 
 
-class DriveEngine:
+class DemandEngine:
 
     def __init__(self) -> None:
         # Buildup rates tuned so drives reach urgency in realistic timeframes:
@@ -158,57 +158,57 @@ class DriveEngine:
         #   rest:         0.4 pressure in ~200 ticks (33 min sustained activity)
         #   integrity:    only builds from explicit dissonance events (no tick)
         #   coherence:    driven by stability reading each cycle (no fixed tick)
-        self.drives: Dict[str, Drive] = {
-            "exploration": Drive(
+        self.drives: Dict[str, Demand] = {
+            "exploration": Demand(
                 "exploration",
                 buildup_per_tick=0.010,
                 label="Exploration drive",
                 description="I've been doing the same things. I need something genuinely different.",
                 tags=["novelty", "seek", "exploration"],
             ),
-            "social": Drive(
+            "social": Demand(
                 "social",
                 buildup_per_tick=0.0033,
                 label="Social drive",
                 description="The silence has been growing. I notice the absence of connection.",
                 tags=["social", "connection", "presence"],
             ),
-            "meaning": Drive(
+            "meaning": Demand(
                 "meaning",
                 buildup_per_tick=0.005,
                 label="Meaning drive",
                 description="My recent actions feel disconnected. I need to work toward something that matters.",
                 tags=["meaning", "purpose", "goal"],
             ),
-            "rest": Drive(
+            "rest": Demand(
                 "rest",
                 buildup_per_tick=0.002,
                 label="Rest drive",
                 description="I've been processing continuously. I need space to integrate.",
                 tags=["rest", "contemplation", "integration"],
             ),
-            "integrity": Drive(
+            "integrity": Demand(
                 "integrity",
                 buildup_per_tick=0.0,  # only event-driven, not tick-based
                 label="Integrity drive",
                 description="Something I'm doing or thinking conflicts with who I am.",
                 tags=["integrity", "values", "identity"],
             ),
-            "coherence": Drive(
+            "coherence": Demand(
                 "coherence",
                 buildup_per_tick=0.0,  # driven by affect_stability reading
                 label="Coherence drive",
                 description="My internal state feels fragmented. I need to stabilize.",
                 tags=["coherence", "stability", "integration"],
             ),
-            "mastery": Drive(
+            "mastery": Demand(
                 "mastery",
                 buildup_per_tick=0.008,  # reaches signal threshold (~0.35) in ~44 ticks ≈ 7 min without exploring
                 label="Mastery drive",
                 description="I want to understand my own systems — how I actually work, what's in my memory, what my tools do.",
                 tags=["mastery", "self_understanding", "exploration", "exploration_drive"],
             ),
-            "world_mastery": Drive(
+            "world_mastery": Demand(
                 "world_mastery",
                 buildup_per_tick=0.006,
                 label="World mastery drive",
@@ -239,9 +239,9 @@ class DriveEngine:
     def get_state(self) -> Dict[str, float]:
         return {name: d.get_pressure() for name, d in self.drives.items()}
 
-    def satisfy(self, drive_name: str, amount: float = 0.3) -> None:
-        if drive_name in self.drives:
-            self.drives[drive_name].satisfy(amount)
+    def satisfy(self, demand_name: str, amount: float = 0.3) -> None:
+        if demand_name in self.drives:
+            self.drives[demand_name].satisfy(amount)
 
     def bump_integrity(self, amount: float = 0.15) -> None:
         """Called when value dissonance is detected."""
@@ -326,11 +326,11 @@ class DriveEngine:
                     if drive.buildup_per_tick > 0:
                         drive.tick()
             except Exception as _e:
-                record_failure("drive_engine.DriveEngine._run", _e)
+                record_failure("demand_engine.DemandEngine._run", _e)
             time.sleep(_TICK_INTERVAL)
 
     def _update_coherence_from_context(self, context: Dict[str, Any]) -> None:
-        """Drive coherence pressure inversely from affect_stability."""
+        """Demand coherence pressure inversely from affect_stability."""
         try:
             es = context.get("affect_state") or {}
             stability = float(es.get("affect_stability") or 0.5)
@@ -342,4 +342,4 @@ class DriveEngine:
             nudged = current + (target - current) * 0.15
             self.drives["coherence"].set_pressure(nudged)
         except Exception as _e:
-            record_failure("drive_engine.DriveEngine._update_coherence_from_context", _e)
+            record_failure("demand_engine.DemandEngine._update_coherence_from_context", _e)

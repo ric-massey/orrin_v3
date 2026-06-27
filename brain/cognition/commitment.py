@@ -45,10 +45,10 @@ def _drive_alignment(intention: str) -> float:
     """Does an active drive want this? The strongest pressure among drives
     whose name/tags share ground with the intention (master plan 4.1)."""
     try:
-        from brain.runtime_coupling import drive_engine
+        from brain.runtime_coupling import demand_engine
         from brain.cognition.self_state.intention_endorsement import _tokens
-        state = drive_engine.get_state() or {}
-        tags = drive_engine.get_drive_tags() or {}
+        state = demand_engine.get_state() or {}
+        tags = demand_engine.get_demand_tags() or {}
         toks = _tokens(intention)
         best = 0.0
         for name, pressure in state.items():

@@ -130,7 +130,7 @@ def build_score_inputs(
     except Exception as _e:
         record_failure("select_function.select_function.recruit", _e)
 
-    # Drive competition: compute per-function pull from competing motivations.
+    # Demand competition: compute per-function pull from competing motivations.
     # apply_drive_tensions() also bumps uncertainty and logs the hottest conflict.
     _drive_pull = compute_drive_pull(context, actions)
 

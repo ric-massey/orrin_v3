@@ -159,7 +159,7 @@ def release_reward_signal(
     if rpe_noisy > 0.8 and random.random() < 0.7:
         impulse = create_signal(
             source="reward_impulse",
-            content="Strong positive surprise — sudden pull toward action. Drive spike.",
+            content="Strong positive surprise — sudden pull toward action. Demand spike.",
             signal_strength=0.92,
             tags=["reward_signal", "wanting", "drive_spike", "action"],
         )

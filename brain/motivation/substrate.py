@@ -28,7 +28,7 @@ _URGE_THRESHOLD: float = 0.38   # minimum activation to surface an urge
 _SAVE_INTERVAL: float = 120.0   # seconds between persistence writes
 _LOG_INTERVAL: float = 900.0    # seconds between long-memory log events
 
-# ── Drive definitions ─────────────────────────────────────────────────────────
+# ── Demand definitions ─────────────────────────────────────────────────────────
 # Each entry: (baseline, rise_rate/s, fall_rate/s, focus_hint)
 # rise_rate: how fast activation climbs when idle/deprived
 # fall_rate: how fast activation decays when the drive is being satisfied
@@ -154,7 +154,7 @@ class _MotivationEngine:
     def __init__(self) -> None:
         self._lock = threading.Lock()
 
-        # Drive activations: {drive_name: float [0,1]}
+        # Demand activations: {demand_name: float [0,1]}
         self._drives: Dict[str, float] = {
             name: baseline for name, (baseline, *_) in _DRIVE_DEFAULTS.items()
         }
@@ -250,10 +250,10 @@ class _MotivationEngine:
         # Map reward [-1,1] → satisfaction scale [0.1, 1.0]
         scale = max(0.1, (float(reward) + 1.0) / 2.0)
         with self._lock:
-            for drive_name, base_amount in mappings:
-                if drive_name in self._drives:
-                    self._drives[drive_name] = max(
-                        0.0, self._drives[drive_name] - base_amount * scale
+            for demand_name, base_amount in mappings:
+                if demand_name in self._drives:
+                    self._drives[demand_name] = max(
+                        0.0, self._drives[demand_name] - base_amount * scale
                     )
 
     # ── Urge sampling ──────────────────────────────────────────────────────

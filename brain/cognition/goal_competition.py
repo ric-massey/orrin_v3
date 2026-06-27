@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Tuple
 from brain.utils.log import log_private
 
 
-# ── Drive definitions ──────────────────────────────────────────────────────────
+# ── Demand definitions ──────────────────────────────────────────────────────────
 # strength_fn(emo_dict, core_dict) → float [0..1]
 
 _DRIVES: Dict[str, Dict] = {
@@ -206,8 +206,8 @@ def drive_pull_scores(
     pull: Dict[str, float] = {}
     for name in actions:
         net = 0.0
-        for drive_name, drive in _DRIVES.items():
-            s = strengths.get(drive_name, 0.0)
+        for demand_name, drive in _DRIVES.items():
+            s = strengths.get(demand_name, 0.0)
             if name in drive["wants"]:
                 net += s * 0.6
             elif name in drive["resists"]:

@@ -96,7 +96,7 @@ def _push_event(kind: str, **payload: Any) -> None:
                 return
             tb.set_node("act", narrative=f"Acting — {fn}", cycle=cycle)
             tb.log("info", "select_function", f"executed {fn}")
-            # Drive the Cognitive Map's live "active light": the exact function
+            # Demand the Cognitive Map's live "active light": the exact function
             # running now, plus a short ring of recent ones so the light can
             # visibly bounce along his real path.
             try:

@@ -46,7 +46,7 @@ _log = get_logger(__name__)
 _COOLDOWN_S = 90 * 60   # 90 minutes between revision cycles (was 6 hours)
 _last_revision_ts: float = 0.0
 
-# Drive names → semantic tokens that overlap with core value phrases.
+# Demand names → semantic tokens that overlap with core value phrases.
 # Used to route a conflict to the most relevant value.
 _DRIVE_VALUE_HINTS: Dict[str, List[str]] = {
     "exploration_drive":    ["think", "curious", "explore", "myself", "learn", "wonder"],
@@ -275,7 +275,7 @@ def _symbolic_deliberation(
                 "new_phrasing":   revised,
                 "second_value":   None,
                 "reasoning": (
-                    f"Drive conflict '{label}' sustaining at intensity {intensity:.2f}. "
+                    f"Demand conflict '{label}' sustaining at intensity {intensity:.2f}. "
                     f"'{matched_v}' is real but needs to acknowledge what it pulls against. "
                     f"Revising to hold the tension rather than deny it."
                 ),
@@ -288,7 +288,7 @@ def _symbolic_deliberation(
                 "new_phrasing":   None,
                 "second_value":   None,
                 "reasoning": (
-                    f"Drive conflict '{label}' at intensity {intensity:.2f}. "
+                    f"Demand conflict '{label}' at intensity {intensity:.2f}. "
                     f"'{matched_v}' is under pressure but within manageable range — "
                     f"affirming as-is."
                 ),

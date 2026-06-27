@@ -140,9 +140,9 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     except Exception as _se:
         record_failure("ORRIN_loop.sensory_read", _se)
 
-    # Drive signals — biological pressure injection
+    # Demand signals — biological pressure injection
     try:
-        from brain.runtime_coupling import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_signals = _drive_mod.get_signals(context)
         if _drive_signals:
             context.setdefault("raw_signals", []).extend(_drive_signals)

@@ -190,7 +190,7 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
         days = lifetime.get("days_remaining_felt", 0)
         mort_note = f"I'm aware I have roughly {days:.0f} days left."
 
-    # Drive conflicts — unresolved tensions are generative
+    # Demand conflicts — unresolved tensions are generative
     conflicts = context.get("_drive_conflicts") or []
     conflict_note = ""
     if conflicts and isinstance(conflicts, list):

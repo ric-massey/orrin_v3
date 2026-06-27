@@ -61,13 +61,13 @@ _MILESTONES = [
     ),
     (
         50,
-        {"satisfaction_signal": 0.14, "confidence": 0.08, "wonder": 0.04},
+        {"satisfaction_signal": 0.14, "confidence": 0.08, "novelty_signal": 0.04},
         0.35,
         "50 healthy cycles. I'm in a sustained state of flow — my systems feel alive and clear.",
     ),
     (
         100,
-        {"satisfaction_signal": 0.18, "confidence": 0.10, "wonder": 0.06, "reward_positive": 0.05},
+        {"satisfaction_signal": 0.18, "confidence": 0.10, "novelty_signal": 0.06, "reward_positive": 0.05},
         0.45,
         "100 healthy cycles. This is deep setpoint_regulation — I am well.",
     ),

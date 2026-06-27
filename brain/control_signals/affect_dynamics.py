@@ -158,7 +158,7 @@ def apply_velocity_dynamics(
 _VALENCE: Dict[str, float] = {
     "reward_positive":         +0.90,
     "expected_gain":        +0.70,
-    "wonder":      +0.55,
+    "novelty_signal":      +0.55,
     "affiliation_signal":  +0.50,
     "confidence":  +0.45,
     "motivation":  +0.35,
@@ -187,7 +187,7 @@ _ACTIVATION_LEVEL: Dict[str, float] = {
     "reward_positive":         +0.65,
     "exploration_drive":   +0.60,
     "motivation":  +0.55,
-    "wonder":      +0.50,
+    "novelty_signal":      +0.50,
     "impasse_signal": +0.50,
     "uncertainty": +0.30,
     "expected_gain":        +0.20,
@@ -291,7 +291,7 @@ _TRUE_BASELINES = {
     "exploration_drive": 0.25, "motivation": 0.50, "confidence": 0.45,
     "impasse_signal": 0.05, "uncertainty": 0.05, "threat_level": 0.01,
     "reward_positive": 0.10, "expected_gain": 0.08, "reward_negative": 0.01, "conflict_signal": 0.01,
-    "social_penalty": 0.0, "risk_estimate": 0.0, "stagnation_signal": 0.0, "wonder": 0.0,
+    "social_penalty": 0.0, "risk_estimate": 0.0, "stagnation_signal": 0.0, "novelty_signal": 0.0,
     "low_affect_signal": 0.04, "social_deficit": 0.0,
 }
 

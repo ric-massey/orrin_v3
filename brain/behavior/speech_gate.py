@@ -90,7 +90,7 @@ def _intent(user_input: str) -> str:
 
 # ── Dominant affect helper ────────────────────────────────────────────────────
 
-_REACTIVE_EMOTIONS = frozenset({"reward_positive", "impasse_signal", "threat_level", "conflict_signal", "wonder", "social_penalty"})
+_REACTIVE_EMOTIONS = frozenset({"reward_positive", "impasse_signal", "threat_level", "conflict_signal", "novelty_signal", "social_penalty"})
 
 
 def _dominant(core: dict) -> tuple[str, float]:
@@ -114,7 +114,7 @@ _REACT_THRESHOLD = {
     "impasse_signal": 0.62,
     "threat_level":        0.58,
     "conflict_signal":       0.58,
-    "wonder":      0.62,
+    "novelty_signal":      0.62,
 }
 
 _TEMPLATES = {
@@ -122,7 +122,7 @@ _TEMPLATES = {
     ("greeting", "reward_positive"):         ["Hey. Something's going well in my head right now.", "Hi — actually good timing.", "Hey. Good place to be in."],
     ("greeting", "impasse_signal"): ["Hey. Fair warning, I'm stuck on something.", "Hi. Things aren't clicking right now.", "Hey."],
     ("greeting", "threat_level"):        ["Hey. Something's sitting with me.", "Hi."],
-    ("greeting", "wonder"):      ["Hey. Was just thinking about something strange.", "Hi — I was in the middle of something interesting."],
+    ("greeting", "novelty_signal"):      ["Hey. Was just thinking about something strange.", "Hi — I was in the middle of something interesting."],
     ("greeting", "neutral"):     ["Hey.", "Hi.", "Hey — what's up?"],
     ("question", "exploration_drive"):   ["Let me think about that.", "Interesting question.", "That's worth sitting with."],
     ("question", "impasse_signal"): ["Let me think on that.", "Not sure yet. Give me a sec."],
@@ -133,7 +133,7 @@ _TEMPLATES = {
     ("short_ack", "neutral"):    ["Yeah.", "Okay.", "Mm."],
     ("statement", "reward_positive"):        ["Yeah.", "That lands.", "Makes sense."],
     ("statement", "impasse_signal"):["Hm.", "Yeah, I feel that.", "Right."],
-    ("statement", "wonder"):     ["Huh. Interesting.", "That's unexpected.", "Worth thinking about."],
+    ("statement", "novelty_signal"):     ["Huh. Interesting.", "That's unexpected.", "Worth thinking about."],
     ("statement", "neutral"):    ["Yeah.", "Okay.", "I hear you."],
 }
 

@@ -73,7 +73,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     "expected_gain":        {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
     # §5.1: same realignment as exploration_drive — lead with epistemic explorers,
     # demote look_outward/look_around so the prior stops over-privileging the scanners.
-    "wonder":      {"seek_novelty": 0.82, "research_topic": 0.78, "wikipedia_search": 0.74,
+    "novelty_signal":      {"seek_novelty": 0.82, "research_topic": 0.78, "wikipedia_search": 0.74,
                     "search_own_files": 0.62, "reflect_on_internal_agents": 0.60,
                     "leave_note": 0.58, "look_outward": 0.50, "look_around": 0.48},
 }

@@ -41,7 +41,7 @@ _SAVE_EVERY = 10       # flush to disk every N cycles
 _cycle_counter = 0
 
 _POSITIVE = frozenset({"reward_positive", "expected_gain", "motivation", "exploration_drive", "confidence",
-                        "satisfaction", "wonder", "excitement"})
+                        "satisfaction", "novelty_signal", "excitement"})
 _NEGATIVE = frozenset({"impasse_signal", "risk_estimate", "threat_level", "low_affect_signal", "reward_negative",
                         "social_penalty", "uncertainty", "conflict_signal", "rejection_signal"})
 

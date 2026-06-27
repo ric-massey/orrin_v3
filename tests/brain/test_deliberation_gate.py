@@ -31,7 +31,7 @@ def _ctx(**kwargs):
             "social_penalty": 0.0,
             "loss_signal": 0.0,
             "stagnation_signal": 0.0,
-            "wonder": 0.0,
+            "novelty_signal": 0.0,
         }},
         "raw_signals": [],
         "committed_goal": {},
@@ -249,11 +249,11 @@ def test_stagnation_signal_at_threshold_does_not_fire():
 
 def test_wonder_fires():
     ctx = _ctx()
-    ctx["affect_state"]["core_signals"]["wonder"] = _WONDER_THRESHOLD + 0.01
+    ctx["affect_state"]["core_signals"]["novelty_signal"] = _WONDER_THRESHOLD + 0.01
     with patch("brain.think.deliberation_gate.get_cycle_count", return_value=999):
         fire, reason = should_think(ctx)
     assert fire
-    assert "wonder" in reason
+    assert "novelty_signal" in reason
 
 
 # ── Condition 10: periodic floor ─────────────────────────────────────────────

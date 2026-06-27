@@ -194,7 +194,7 @@ def _compute_output_seed(
             seeds.append(f"responding to: {concept}")
 
     # Wonder / exploration_drive at high intensity wants to be shared
-    wonder = float(core.get("wonder") or 0.0)
+    wonder = float(core.get("novelty_signal") or 0.0)
     exploration_drive = float(core.get("exploration_drive") or 0.0)
     if max(wonder, exploration_drive) > 0.68:
         seeds.append("something pulling for attention")

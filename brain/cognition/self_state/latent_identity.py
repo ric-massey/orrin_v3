@@ -90,7 +90,7 @@ def _target_from_state(context: Dict[str, Any]) -> List[float]:
         return max(0.0, min(1.0, float(core.get(k) or d)))
 
     exploration_drive   = _e("exploration_drive", 0.3)
-    wonder      = _e("wonder", 0.1)
+    wonder      = _e("novelty_signal", 0.1)
     motivation  = _e("motivation", 0.5)
     affiliation_signal  = _e("affiliation_signal", 0.2)
     impasse_signal = _e("impasse_signal", 0.05)

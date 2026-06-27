@@ -185,7 +185,7 @@ def _bump_problem_affect(context: Dict[str, Any], tool: bool = False) -> None:
         core = emo.get("core_signals") or emo
         if isinstance(core, dict):
             if tool:
-                core["wonder"] = min(1.0, float(core.get("wonder", 0.0)) + 0.10)
+                core["novelty_signal"] = min(1.0, float(core.get("novelty_signal", 0.0)) + 0.10)
                 core["uncertainty"] = min(1.0, float(core.get("uncertainty", 0.0)) + 0.05)
             else:
                 core["impasse_signal"] = min(1.0, float(core.get("impasse_signal", 0.0)) + 0.25)

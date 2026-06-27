@@ -395,7 +395,7 @@ _EMOTION_VALENCE: dict = {
     "social_penalty": -1, "impasse_signal": -1, "threat_level": -1, "reward_negative": -1,
     "risk_estimate": -1, "conflict_signal": -1, "social_deficit": -1, "uncertainty": -1,
     "reward_positive": +1, "expected_gain": +1, "exploration_drive": +1, "confidence": +1,
-    "motivation": +1, "wonder": +1, "gratitude": +1,
+    "motivation": +1, "novelty_signal": +1, "gratitude": +1,
 }
 
 def _emotional_salience(entry: dict, dominant_signal: str, dominant_intensity: float) -> float:

@@ -59,7 +59,7 @@ _GLOSS = {
     "threat_level": "a sense of threat",
     "uncertainty": "not knowing",
     "motivation": "drive to act",
-    "wonder": "wonder",
+    "novelty_signal": "wonder",
     "affiliation_signal": "care for others",
 }
 

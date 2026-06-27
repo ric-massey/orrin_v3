@@ -3,7 +3,7 @@ def _curious_ctx():
         "affect_state": {
             "core_signals": {
                 "exploration_drive": 0.8,
-                "wonder": 0.2,
+                "novelty_signal": 0.2,
                 "stagnation_signal": 0.0,
             }
         }

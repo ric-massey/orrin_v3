@@ -399,7 +399,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # Treating reward_positive/exploration_drive as instability was backwards.
     _neg_emos = {"threat_level", "impasse_signal", "conflict_signal", "reward_negative", "risk_estimate", "uncertainty",
                  "social_penalty", "rejection_signal", "social_comparison_signal", "low_affect_signal", "social_deficit", "dread", "loss_signal"}
-    _pos_emos = {"reward_positive", "expected_gain", "exploration_drive", "wonder", "motivation", "confidence", "affiliation_signal", "excitement"}
+    _pos_emos = {"reward_positive", "expected_gain", "exploration_drive", "novelty_signal", "motivation", "confidence", "affiliation_signal", "excitement"}
 
     neg_deviations = [
         max(0.0, float(core.get(e, 0)) - baseline.get(e, 0.0))

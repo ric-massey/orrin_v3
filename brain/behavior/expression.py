@@ -19,7 +19,7 @@ from brain.utils.log import log_private
 _log = get_logger(__name__)
 
 _MIN_URGENCY = 0.20
-_POSITIVE_EMOTIONS = frozenset({"reward_positive", "expected_gain", "exploration_drive", "confidence", "wonder", "excitement", "gratitude"})
+_POSITIVE_EMOTIONS = frozenset({"reward_positive", "expected_gain", "exploration_drive", "confidence", "novelty_signal", "excitement", "gratitude"})
 _NEGATIVE_EMOTIONS = frozenset({"threat_level", "reward_negative", "impasse_signal", "conflict_signal", "social_penalty", "risk_estimate", "rejection_signal", "social_deficit"})
 
 # Congruence map: affect signals not directly in vocabulary → nearest available key.
@@ -144,7 +144,7 @@ def _congruent_pick(section: str, emotion: str, intensity: float) -> str:
     # 3. At high intensity, prefer any negative affect over neutral rather
     #    than collapsing to agreeable placeholders
     if intensity > 0.60 and emotion not in _POSITIVE_EMOTIONS:
-        for neg_emo in ("impasse_signal", "risk_estimate", "reward_negative", "wonder"):
+        for neg_emo in ("impasse_signal", "risk_estimate", "reward_negative", "novelty_signal"):
             pool = section_vocab.get(neg_emo)
             if pool:
                 return _weighted_choice(pool)

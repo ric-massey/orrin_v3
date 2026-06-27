@@ -102,9 +102,9 @@ def should_think(context: dict) -> Tuple[bool, str]:
         return True, f"stagnation_signal({stagnation_signal:.2f})"
 
     # 10. Wonder is elevated — something genuinely interesting to sit with
-    wonder = float(core.get("wonder", 0) or 0)
+    wonder = float(core.get("novelty_signal", 0) or 0)
     if wonder > _WONDER_THRESHOLD:
-        return True, f"wonder({wonder:.2f})"
+        return True, f"novelty_signal({wonder:.2f})"
 
     # 11. exploration_drive spike — positive engagement demand
     exploration_drive     = float(core.get("exploration_drive", 0) or 0)

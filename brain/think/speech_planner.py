@@ -180,7 +180,7 @@ def _tone_label(affect_name: str, affect_val: float) -> str:
     """Map affect name to a tone token used in speech_builder templates."""
     mapping = {
         "exploration_drive":    "curious",
-        "wonder":       "contemplative",
+        "novelty_signal":       "contemplative",
         "impasse_signal":  "frustrated",
         "stagnation_signal":      "bored",
         "reward_positive":          "happy",

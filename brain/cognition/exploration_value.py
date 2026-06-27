@@ -157,7 +157,7 @@ def curiosity_gap(context: Dict[str, Any]) -> float:
     to ~0 when there's nothing to ask (Loewenstein 1994 information gap)."""
     cs = ((context.get("affect_state") or {}).get("core_signals") or {})
     drive = float(cs.get("exploration_drive", 0.0) or 0.0)
-    wonder = float(cs.get("wonder", 0.0) or 0.0)
+    wonder = float(cs.get("novelty_signal", 0.0) or 0.0)
     gap = max(drive, wonder)
     if _has_open_question(context):
         gap = max(gap, 0.6)

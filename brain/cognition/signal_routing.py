@@ -32,7 +32,7 @@ from typing import Any, Dict
 _ROUTES = [
     # emotion           thresh  sign  mag   target substrings
     ("exploration_drive",       0.65,  +1,  0.30,  ["look_outward", "look_around", "world_perception",
-                                             "exploration_drive", "wonder", "explore"]),
+                                             "exploration_drive", "novelty_signal", "explore"]),
     ("risk_estimate",         0.55,  +1,  0.40,  ["self_review", "metacog", "reflect", "check",
                                              "review", "repair"]),
     ("stagnation_signal",         0.60,  +1,  0.50,  ["skill_synthesis", "synthesize_from_gap",
@@ -47,7 +47,7 @@ _ROUTES = [
     ("threat_level",            0.50,  -1,  0.30,  ["write_code", "code_writer", "skill_synthesis",
                                              "self_extension", "tool_runner"]),
     ("threat_level",            0.50,  +1,  0.30,  ["self_review", "metacog", "reflect"]),
-    ("wonder",          0.55,  +1,  0.30,  ["run_active_experiment", "explore",
+    ("novelty_signal",          0.55,  +1,  0.30,  ["run_active_experiment", "explore",
                                              "look_outward", "exploration_drive"]),
     ("reward_negative",         0.55,  +1,  0.30,  ["autobiography", "identity", "relationship",
                                              "reflect", "narrative"]),

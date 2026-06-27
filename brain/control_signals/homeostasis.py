@@ -39,7 +39,7 @@ ANTAGONISTS: Dict[str, List[str]] = {
     "confidence":        ["threat_level", "uncertainty"],
     "motivation":        ["reward_negative", "stagnation_signal"],
     "exploration_drive": ["stagnation_signal"],
-    "stagnation_signal": ["exploration_drive", "wonder", "motivation"],
+    "stagnation_signal": ["exploration_drive", "novelty_signal", "motivation"],
     "uncertainty":       ["confidence"],
 }
 
@@ -134,7 +134,7 @@ EMO_CEILINGS: Dict[str, float] = {
     "confidence":       0.82,
     "reward_positive": 0.85,
     "expected_gain":    0.80,
-    "wonder":           0.85,
+    "novelty_signal":           0.85,
     "stagnation_signal": 0.80,
 }
 DEFAULT_CEILING = 0.85

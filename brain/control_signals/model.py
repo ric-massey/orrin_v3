@@ -45,7 +45,7 @@ DEFAULT_EMOTION_KEYWORDS: Dict[str, List[str]] = {
         "astonishing", "shocked", "shocking", "startled", "amazed", "amazing",
         "whoa", "wow",
     ],
-    "wonder": [
+    "novelty_signal": [
         "wonder", "wondering", "curious", "curiosity", "fascinated",
         "fascinating", "intrigued", "intriguing", "marvel", "awe",
         "mystery", "mysterious",

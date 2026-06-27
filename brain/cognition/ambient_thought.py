@@ -95,7 +95,7 @@ _EMOTIONAL_ECHOES: Dict[str, List[str]] = {
         "Something keeps leaning away from what's ahead — a background lean, not a sharp reaction.",
         "A recurring heaviness with a future orientation — not about now, about what's coming.",
     ],
-    "wonder": [
+    "novelty_signal": [
         "That thing from earlier — the largeness of it — keeps returning. It didn't fully close.",
         "A sense of something genuinely surprising keeps resurfacing. Still processing.",
     ],
@@ -238,7 +238,7 @@ def _generate_fragment(
             valence  = "negative" if dom in {
                 "risk_estimate", "threat_level", "impasse_signal", "reward_negative", "social_penalty",
                 "loss_signal", "guilt", "overwhelm", "dread", "social_deficit",
-            } else "positive" if dom in {"reward_positive", "wonder", "expected_gain"} else "neutral"
+            } else "positive" if dom in {"reward_positive", "novelty_signal", "expected_gain"} else "neutral"
             sticky   = active_emos[dom] >= 0.65  # intense emotions are stickier
             return _make_fragment(content, "emotional_echo", valence,
                                   intensity=min(0.8, active_emos[dom] * 0.9),

@@ -25,7 +25,7 @@ from brain.behavior.speakability import (
 )
 
 
-_AFFECT = {"affect_state": {"core_signals": {"wonder": 0.7, "reward_positive": 0.4}}}
+_AFFECT = {"affect_state": {"core_signals": {"novelty_signal": 0.7, "reward_positive": 0.4}}}
 
 
 # ── Speakability invariant (E7) ──────────────────────────────────────────────

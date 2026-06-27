@@ -114,7 +114,7 @@ def test_llm_failure_is_background_curiosity_not_crisis(monkeypatch):
     assert fg["plan"]            # has a symbolic diagnostic plan
     # curiosity-grade affect: wonder, not an impasse spike
     core = ctx["affect_state"]["core_signals"]
-    assert core.get("wonder", 0) > 0
+    assert core.get("novelty_signal", 0) > 0
     assert core.get("impasse_signal", 0) == 0
 
 

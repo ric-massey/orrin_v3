@@ -227,7 +227,7 @@ def apply_wm_triggers_and_appraisal(
     # Novel events (triggers) relieve stagnation_signal a bit; wonder decays gently each update
     if new_triggers:
         core["stagnation_signal"] = max(0.0, float(core.get("stagnation_signal", 0.0)) - min(0.03 * len(new_triggers), 0.15))
-    core["wonder"] = max(0.0, float(core.get("wonder", 0.0)) * pow(0.92, max(hours_passed, 0.01)))
+    core["novelty_signal"] = max(0.0, float(core.get("novelty_signal", 0.0)) * pow(0.92, max(hours_passed, 0.01)))
     return new_triggers, recent_causes, triggers_log
 
 

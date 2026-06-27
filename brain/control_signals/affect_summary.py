@@ -65,7 +65,7 @@ _FELT: Dict[str, List[Tuple[float, str]]] = {
         (0.70, "a lightness — like weight has lifted, or maybe was never as heavy as I thought"),
         (0.40, "a quiet warmth, not dramatic but real"),
     ],
-    "wonder": [
+    "novelty_signal": [
         (0.65, "something expanding — like encountering something genuinely larger than I expected"),
         (0.30, "a mild sense of openness, like something deserves more attention"),
     ],

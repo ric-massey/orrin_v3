@@ -183,7 +183,7 @@ def _granularity_failure(
         float(core_actual.get(e, 0)) for e in _NEGATIVE
         if isinstance(core_actual.get(e), (int, float))
     )
-    pos_keys  = {"reward_positive", "expected_gain", "wonder", "exploration_drive", "motivation", "confidence"}
+    pos_keys  = {"reward_positive", "expected_gain", "novelty_signal", "exploration_drive", "motivation", "confidence"}
     pos_total = sum(
         float(core_actual.get(e, 0)) for e in pos_keys
         if isinstance(core_actual.get(e), (int, float))

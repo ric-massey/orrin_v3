@@ -45,7 +45,7 @@ SETPOINTS = {
     "exploration_drive": 0.30,
     "connection":        0.30,
     "reward_positive":  0.30,
-    "wonder":            0.20,
+    "novelty_signal":            0.20,
 
     # Neutral-centred scalars
     "motivation":        0.50,
@@ -86,7 +86,7 @@ CORE_BASELINES = {
     "prediction_error_signal": 0.02,
     "rejection_signal":  0.01,
     "stagnation_signal": 0.0,
-    "wonder":            0.0,
+    "novelty_signal":            0.0,
     # Positive drives — decay toward healthy mid-range, not zero
     "motivation":        0.50,
     "confidence":        0.45,

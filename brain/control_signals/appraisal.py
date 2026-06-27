@@ -208,7 +208,7 @@ def appraise_event(
     if nov > 0.12:
         out.append({"emotion": "exploration_drive", "delta": round(nov * 0.18, 3), "cause": cause})
         if nov > 0.28:
-            out.append({"emotion": "wonder",    "delta": round(nov * 0.10, 3), "cause": cause})
+            out.append({"emotion": "novelty_signal",    "delta": round(nov * 0.10, 3), "cause": cause})
 
     # Unresolvable uncertainty when event has no goal context
     if cert < 0.35 and rel < 0.15:

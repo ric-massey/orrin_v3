@@ -1,7 +1,7 @@
 """
-embodiment/plasticity.py
+runtime_coupling/adaptation.py
 
-Adaptive neural plasticity — post-cycle Hebbian learning and memory tagging.
+Online adaptation — post-cycle Hebbian learning and memory tagging.
 
 In biology, plasticity is a property of every neural event, not a separate
 module. Every cognitive cycle leaves a trace that makes future cycles
@@ -22,7 +22,7 @@ slightly different. This module implements that at three levels:
    weighted by intensity. High-emotion experiences become more durable.
 
 API:
-  apply_plasticity(fn_name, context, reward)  — call post-cycle from ORRIN_loop
+  apply_adaptation(fn_name, context, reward)  — call post-cycle from ORRIN_loop
 """
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
@@ -43,7 +43,7 @@ _PRIME_DECAY = 0.85  # existing priming decays each cycle
 _MIN_REWARD = -1.0  # always apply (negative reward = weakening)
 
 
-def apply_plasticity(
+def apply_adaptation(
     fn_name: str,
     context: Dict[str, Any],
     reward: float,
@@ -58,17 +58,17 @@ def apply_plasticity(
     try:
         _hebbian_update(fn_name, context, reward)
     except Exception as _e:
-        record_failure("plasticity.apply_plasticity", _e)
+        record_failure("adaptation.apply_adaptation", _e)
 
     try:
         _spreading_activation(fn_name, context, reward)
     except Exception as _e:
-        record_failure("plasticity.apply_plasticity.2", _e)
+        record_failure("adaptation.apply_adaptation.2", _e)
 
     try:
         _tag_recent_memories(context)
     except Exception as _e:
-        record_failure("plasticity.apply_plasticity.3", _e)
+        record_failure("adaptation.apply_adaptation.3", _e)
 
 
 # ------------------------------------------------------------------
@@ -101,7 +101,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
         from brain.affect.affect_learning import update_affect_function_map
         update_affect_function_map(dominant, fn_name, reward_signal=increment)
     except Exception as _e:
-        record_failure("plasticity._hebbian_update", _e)
+        record_failure("adaptation._hebbian_update", _e)
 
     # Secondary: also reinforce for the second-strongest emotion if elevated
     sorted_emos = sorted(numeric.items(), key=lambda x: x[1], reverse=True)
@@ -113,7 +113,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
                 from brain.affect.affect_learning import update_affect_function_map
                 update_affect_function_map(second_emo, fn_name, reward_signal=secondary_increment)
             except Exception as _e:
-                record_failure("plasticity._hebbian_update.2", _e)
+                record_failure("adaptation._hebbian_update.2", _e)
 
 
 # ------------------------------------------------------------------
@@ -164,7 +164,7 @@ def _find_related_functions(fn_parts: set, exclude: str) -> List[str]:
             if fn_parts & name_parts:
                 related.append(name)
     except Exception as _e:
-        record_failure("plasticity._find_related_functions", _e)
+        record_failure("adaptation._find_related_functions", _e)
     return related
 
 
@@ -225,4 +225,4 @@ def _tag_recent_memories(context: Dict[str, Any]) -> None:
             save_json(WORKING_MEMORY_FILE, wm)
 
     except Exception as _e:
-        record_failure("plasticity._tag_recent_memories", _e)
+        record_failure("adaptation._tag_recent_memories", _e)

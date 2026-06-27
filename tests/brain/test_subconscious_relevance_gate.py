@@ -1,9 +1,9 @@
 def test_subconscious_write_stamps_workspace_origin(monkeypatch):
-    from brain.embodiment.subconscious import SubconsciousProcessor
+    from brain.runtime_coupling.background_processing import BackgroundProcessor
     from brain.cog_memory import working_memory
 
     written = []
-    proc = SubconsciousProcessor()
+    proc = BackgroundProcessor()
     monkeypatch.setattr(proc, "_workspace_snapshot", lambda: {
         "content": "working on allocator resize pressure",
         "source": "goal",

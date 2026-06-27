@@ -94,7 +94,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # ── Layer 0 reads: inject embodiment state into this cycle ─────────
     # Sensory field — environment mood and file-system changes
     try:
-        from brain.embodiment import sensory_stream as _sensory_mod
+        from brain.runtime_coupling import input_stream as _sensory_mod
         _sf = _sensory_mod.get_field()
         if _sf:
             context["sensory_field"] = _sf
@@ -142,7 +142,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # Drive signals — biological pressure injection
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import drive_engine as _drive_mod
         _drive_signals = _drive_mod.get_signals(context)
         if _drive_signals:
             context.setdefault("raw_signals", []).extend(_drive_signals)
@@ -152,7 +152,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # Social presence — user engagement pressure
     try:
-        from brain.embodiment import social_presence as _social_mod
+        from brain.runtime_coupling import social_presence as _social_mod
         _social_state = _social_mod.get_state()
         context["social_presence"] = _social_state
         # Mark whether the user spoke this cycle (for drive satisfaction)
@@ -175,7 +175,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # World model — synthesize sensory + social + drives into interpreted env state
     try:
-        from brain.embodiment import world_model as _wm_mod
+        from brain.runtime_coupling import world_model as _wm_mod
         _wm_mod.refresh(context)  # injects context["world_state"]
     except Exception as _wme:
         record_failure("ORRIN_loop.world_model", _wme)

@@ -17,7 +17,7 @@
 import copy
 from typing import Any, Dict
 
-import brain.embodiment.setpoint_regulation as spr
+import brain.runtime_coupling.setpoint_regulation as spr
 import brain.cognition.planning.goal_closure as gc
 import brain.cognition.planning.goal_execution as gex
 from brain.loop.reflect import tier1_health_check

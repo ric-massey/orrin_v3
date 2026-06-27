@@ -1,5 +1,5 @@
 def test_social_presence_emits_one_shot_departure_event(monkeypatch):
-    from brain.embodiment import social_presence as sp
+    from brain.runtime_coupling import social_presence as sp
 
     now = [0.0]
     monkeypatch.setattr(sp.time, "time", lambda: now[0])
@@ -21,7 +21,7 @@ def test_social_presence_emits_one_shot_departure_event(monkeypatch):
 
 
 def test_social_presence_emits_arrival_event_on_user_contact(monkeypatch):
-    from brain.embodiment import social_presence as sp
+    from brain.runtime_coupling import social_presence as sp
 
     now = [0.0]
     monkeypatch.setattr(sp.time, "time", lambda: now[0])

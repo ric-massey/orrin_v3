@@ -58,7 +58,7 @@ def _current_interests(limit: int = 6) -> List[str]:
 
         walk(raw)
     except Exception as exc:  # goals unreadable — record, no interests
-        record_failure("routers.embodiment._current_interests", exc)
+        record_failure("routers.runtime_coupling._current_interests", exc)
     return titles[:limit]
 
 
@@ -89,7 +89,7 @@ async def life() -> JSONResponse:
         from brain.utils.resource_ceilings import usage as _ceil_usage
         readings["mind_disk"] = _ceil_usage()
     except Exception as exc:  # ceiling read optional — record, omit chip
-        record_failure("routers.embodiment.life.mind_disk", exc)
+        record_failure("routers.runtime_coupling.life.mind_disk", exc)
 
     # Resident memory against the user's memory ceiling (§10.3) — same framing. ratio 0
     # when psutil/RSS is unavailable, so the UI can show it as unmeasured rather than 0%.
@@ -97,7 +97,7 @@ async def life() -> JSONResponse:
         from brain.utils.resource_ceilings import memory_usage as _mem_usage
         readings["mind_memory"] = _mem_usage()
     except Exception as exc:  # ceiling read optional — record, omit chip
-        record_failure("routers.embodiment.life.mind_memory", exc)
+        record_failure("routers.runtime_coupling.life.mind_memory", exc)
 
     readings["thinking_rate_per_min"] = round(_thinking_rate_per_min(hub.state.get("cycle", 0)), 2)
     readings["cycle"] = hub.state.get("cycle", 0)
@@ -164,7 +164,7 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
 
         walk(raw)
     except Exception as exc:  # goals unreadable — record, skip goal events
-        record_failure("routers.embodiment.activity.goals", exc)
+        record_failure("routers.runtime_coupling.activity.goals", exc)
 
     for e in _read_json("long_memory.json", [])[-300:]:
         if isinstance(e, dict):
@@ -190,7 +190,7 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
             elif svc == "finetune":
                 add("finetune", r.get("ts"), "Uploaded traces to fine-tune")
     except Exception as exc:  # egress ledger optional — record, skip web events
-        record_failure("routers.embodiment.activity.egress", exc)
+        record_failure("routers.runtime_coupling.activity.egress", exc)
 
     events.sort(key=lambda e: e["ts"], reverse=True)
     # Summary tallies the FULL window ("while you were away"), so count before

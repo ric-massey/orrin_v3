@@ -254,7 +254,7 @@ class WorldModel:
 
         # Sensory field (daemon — no I/O, just reads cached field)
         try:
-            from brain.embodiment import sensory_stream as _ss
+            from brain.runtime_coupling import input_stream as _ss
             field = _ss.get_field()
             if field:
                 sys_v = field.get("system", {})
@@ -279,7 +279,7 @@ class WorldModel:
 
         # Social presence (daemon)
         try:
-            from brain.embodiment import social_presence as _sp
+            from brain.runtime_coupling import social_presence as _sp
             soc = _sp.get_state()
             snap["social_pressure"] = soc.get("pressure")
             snap["silence_s"]       = soc.get("silence_s")
@@ -289,7 +289,7 @@ class WorldModel:
 
         # Drive pressures (daemon)
         try:
-            from brain.embodiment import drive_engine as _de
+            from brain.runtime_coupling import drive_engine as _de
             drives = _de.get_state()
             snap["drive_exploration"] = drives.get("exploration")
             snap["drive_meaning"]     = drives.get("meaning")

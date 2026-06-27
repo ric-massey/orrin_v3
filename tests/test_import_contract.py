@@ -23,7 +23,7 @@ REPO = Path(__file__).resolve().parent.parent
 # (Root-level `goals`, `memory`, `supervisor` are legitimately top-level — not leaves.)
 CONVERTED = (
     "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
-    "behavior", "agency", "registry", "symbolic", "embodiment", "motivation",
+    "behavior", "agency", "registry", "symbolic", "runtime_coupling", "motivation",
     "peers", "benchmarks", "evidence", "config", "eval",
     # brain-root *modules* (not packages) — bare imports of these only resolved
     # while brain/ was on sys.path (removed in Phase 3 tail), so they belong in

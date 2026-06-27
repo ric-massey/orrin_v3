@@ -48,7 +48,7 @@ from brain.utils.failure_counter import record_failure
 # Low-level OS probes + observation writers, extracted to system_presence_probes.py
 # (Phase 4.5C). Re-imported so the public action API + _ALLOWED_APPS (needs
 # _PLATFORM) keep their references.
-from brain.embodiment.system_presence_probes import (  # noqa: F401
+from brain.runtime_coupling.system_presence_probes import (  # noqa: F401
     _REPO_ROOT, _SUBPROCESS_TIMEOUT, _PLATFORM,
     _battery, _network_ok, _running_apps, _capture_screen,
     _read_clipboard_text, _idle_seconds, _append_to_working_memory,

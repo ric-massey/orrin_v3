@@ -201,12 +201,12 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
         context["_outward_debt"] = min(30, int(context.get("_outward_debt", 0) or 0) + 1)
 
     try:
-        from brain.embodiment import plasticity as _plasticity_mod
-        _plasticity_mod.apply_plasticity(_cycle_fn, context, reward)
+        from brain.runtime_coupling import adaptation as _plasticity_mod
+        _plasticity_mod.apply_adaptation(_cycle_fn, context, reward)
     except Exception as _pe:
         record_failure("ORRIN_loop.plasticity", _pe)
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import drive_engine as _drive_mod
         _drive_mod.evaluate_cycle(_cycle_fn, context, reward)
     except Exception as _dse:
         record_failure("ORRIN_loop.drive_satisfy", _dse)
@@ -229,7 +229,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
             isinstance(r, dict) and r.get("type") in {"speak", "respond", "reply"}
             for r in [result] if isinstance(result, dict)
         ):
-            from brain.embodiment import social_presence as _social_mod
+            from brain.runtime_coupling import social_presence as _social_mod
             _social_mod.mark_orrin_responded()
     except Exception as _e:
         record_failure("ORRIN_loop.run_cognitive_loop.38", _e)

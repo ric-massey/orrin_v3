@@ -36,7 +36,7 @@ from .routers import memory as memory_routes
 from .routers import source as source_routes
 from .routers import telemetry as telemetry_routes
 from .routers import cognition as cognition_routes
-from .routers import embodiment as embodiment_routes
+from .routers import runtime_coupling as runtime_coupling_routes
 from .routers import diagnostics as diagnostics_routes
 from .routers import settings as settings_routes
 from .routers import agent as agent_routes
@@ -95,7 +95,7 @@ api.include_router(memory_routes.router)
 api.include_router(source_routes.router)
 api.include_router(telemetry_routes.router)
 api.include_router(cognition_routes.router)
-api.include_router(embodiment_routes.router)
+api.include_router(runtime_coupling_routes.router)
 
 
 # ── New information surfaces (UI_FIXES §new-surfaces) ───────────────────────

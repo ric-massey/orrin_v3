@@ -44,35 +44,35 @@ def start_background_services(stop_event: Any) -> Tuple[Any, Any, Any]:
     # These run independently of the cognitive loop. The loop reads their
     # state each cycle — it does not trigger them.
     try:
-        from brain.embodiment import setpoint_regulation as _setpoint_regulation_mod
+        from brain.runtime_coupling import setpoint_regulation as _setpoint_regulation_mod
         _setpoint_regulation_mod.start()
         log_activity("[embodiment] setpoint_regulation daemon started.")
     except Exception as _e0:
         log_error(f"[embodiment] setpoint_regulation failed to start: {_e0}")
 
     try:
-        from brain.embodiment import sensory_stream as _sensory_mod
+        from brain.runtime_coupling import input_stream as _sensory_mod
         _sensory_mod.start()
         log_activity("[embodiment] sensory_stream started.")
     except Exception as _e0:
         log_error(f"[embodiment] sensory_stream failed to start: {_e0}")
 
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import drive_engine as _drive_mod
         _drive_mod.start()
         log_activity("[embodiment] drive_engine started.")
     except Exception as _e0:
         log_error(f"[embodiment] drive_engine failed to start: {_e0}")
 
     try:
-        from brain.embodiment import social_presence as _social_mod
+        from brain.runtime_coupling import social_presence as _social_mod
         _social_mod.start()
         log_activity("[embodiment] social_presence started.")
     except Exception as _e0:
         log_error(f"[embodiment] social_presence failed to start: {_e0}")
 
     try:
-        from brain.embodiment import subconscious as _subcon_mod
+        from brain.runtime_coupling import background_processing as _subcon_mod
         _subcon_mod.start()
         log_activity("[embodiment] subconscious started.")
     except Exception as _e0:

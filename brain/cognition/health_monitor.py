@@ -236,7 +236,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
     """
     # ── Read current health score from setpoint_regulation daemon ─────────────────────
     try:
-        from brain.embodiment.setpoint_regulation import get_state as _h1_get
+        from brain.runtime_coupling.setpoint_regulation import get_state as _h1_get
         _h1 = _h1_get()
         health_score = float(_h1.get("health_score", 1.0) or 1.0)
     except Exception:

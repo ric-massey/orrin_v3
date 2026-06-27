@@ -10,7 +10,7 @@
 #   • executive priority floor — 'survival' outranks 'growth'/'core' in step allocation.
 from typing import Any, Dict
 
-import brain.embodiment.setpoint_regulation as spr
+import brain.runtime_coupling.setpoint_regulation as spr
 import brain.cognition.planning.survival_goals as sg
 import brain.cognition.planning.executive as ex
 from brain.loop.reflect import tier1_health_check

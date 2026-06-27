@@ -226,7 +226,7 @@ def _boot_context() -> Context:
 
     # Register embodied observation (read-only real-world grounding)
     try:
-        from brain.symbolic.embodied_actions import run_embodied_cycle as _remc
+        from brain.symbolic.host_actions import run_embodied_cycle as _remc
         COGNITIVE_FUNCTIONS["run_embodied_observation"] = {"function": _remc, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_embodied_observation: {e}")
@@ -270,7 +270,7 @@ def _boot_context() -> Context:
         # the _write_desktop_note and _announce wrappers compose through the one
         # expression door (behavior.express_to_user), which routes to them
         # internally (EXPRESSION_MEMBRANE_FIX_PLAN E2/E3).
-        from brain.embodiment.system_presence import (
+        from brain.runtime_coupling.system_presence import (
             get_system_state   as _gss,
             check_user_active  as _cua,
             read_clipboard     as _rcb,
@@ -378,7 +378,7 @@ def _boot_context() -> Context:
         from brain.symbolic.rule_forgetting import run_forgetting_cycle as _rfc
         from brain.symbolic.rule_compressor import run_rule_compression as _rrc
         from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
-        from brain.symbolic.embodied_actions import run_embodied_cycle as _rec2
+        from brain.symbolic.host_actions import run_embodied_cycle as _rec2
         COGNITIVE_FUNCTIONS["run_benchmark"]                 = {"function": _rb,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_symbolic_prediction_cycle"] = {"function": _rspc, "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_forgetting_cycle"]          = {"function": _rfc,  "is_cognition": True}

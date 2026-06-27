@@ -203,7 +203,7 @@ def tier1_health_check(context: Context) -> Context:
     # Baumeister et al. (1994) ego depletion: unresolved demands consume
     # regulatory resources each cycle, compounding the load on subsequent regulation.
     try:
-        from brain.embodiment.setpoint_regulation import get_state as _h1_get
+        from brain.runtime_coupling.setpoint_regulation import get_state as _h1_get
         _h1 = _h1_get()
         context["health_score"] = _h1.get("health_score", 1.0)
         # Reset the preempt key each cycle BEFORE scanning alerts: context persists

@@ -193,7 +193,7 @@ def grounded_experience(max_chars: int = 8000) -> str:
 
     # 2) Exteroception — the world he's embedded in (live world model only).
     try:
-        from brain.embodiment import world_model
+        from brain.runtime_coupling import world_model
         narr = (world_model.describe() or "").strip()
         if narr and "haven't" not in narr.lower():
             lines.append(narr.rstrip(".") + ".")

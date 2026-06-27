@@ -1,5 +1,5 @@
 """
-embodiment/sensory_stream.py
+runtime_coupling/input_stream.py
 
 Continuous environment monitoring — Orrin's felt sense of his world beyond
 his own process. body_sense.py already handles per-process vitals (RSS, FDs,
@@ -12,7 +12,7 @@ CPU of the Orrin process itself). This layer adds:
   • Activity log tail (what did I just do — proprioceptive awareness)
   • Derived home/world moods that the signal_router can treat as background signal
 
-The SensoryStream runs as a daemon thread, sampling every SAMPLE_INTERVAL
+The InputStream runs as a daemon thread, sampling every SAMPLE_INTERVAL
 seconds. Callers get a snapshot via get_field() — a plain dict, no I/O.
 """
 from __future__ import annotations
@@ -49,15 +49,15 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 # -------------------------------------------------------------------
 # Singleton
 
-_stream: Optional["SensoryStream"] = None
+_stream: Optional["InputStream"] = None
 _stream_lock = threading.Lock()
 
 
-def start() -> "SensoryStream":
+def start() -> "InputStream":
     global _stream
     with _stream_lock:
         if _stream is None:
-            _stream = SensoryStream()
+            _stream = InputStream()
             _stream.start()
     return _stream
 
@@ -72,7 +72,7 @@ def get_field() -> Dict[str, Any]:
 
 # -------------------------------------------------------------------
 
-class SensoryStream:
+class InputStream:
     def __init__(self) -> None:
         self._field: Dict[str, Any] = {}
         self._lock = threading.Lock()
@@ -103,7 +103,7 @@ class SensoryStream:
                 with self._lock:
                     self._field = field
             except Exception as _e:
-                record_failure("sensory_stream.SensoryStream._run", _e)
+                record_failure("sensory_stream.InputStream._run", _e)
             time.sleep(_SAMPLE_INTERVAL)
 
     def _sample(self) -> Dict[str, Any]:
@@ -172,7 +172,7 @@ class SensoryStream:
                     parts = lines[-1].split()
                     vitals["disk_percent"] = float(parts[4].rstrip("%"))
             except Exception as _e:
-                record_failure("sensory_stream.SensoryStream._system_vitals", _e)
+                record_failure("sensory_stream.InputStream._system_vitals", _e)
         return vitals
 
     # ------------------------------------------------------------------
@@ -205,7 +205,7 @@ class SensoryStream:
                             "zone": zone,
                         })
             except Exception as _e:
-                record_failure("sensory_stream.SensoryStream._detect_fs_changes", _e)
+                record_failure("sensory_stream.InputStream._detect_fs_changes", _e)
         return changes[-20:]  # cap at 20 most recent
 
     # ------------------------------------------------------------------
@@ -230,7 +230,7 @@ class SensoryStream:
                     self._code_baseline[key] = mtime
                     changed = True
         except Exception as _e:
-            record_failure("sensory_stream.SensoryStream._detect_code_changes", _e)
+            record_failure("sensory_stream.InputStream._detect_code_changes", _e)
         return changed
 
     # ------------------------------------------------------------------

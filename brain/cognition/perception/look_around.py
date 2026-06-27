@@ -48,7 +48,7 @@ def look_around(context: Dict[str, Any] = None) -> str:
     # Include world model narrative — the interpreted environment state
     env_narrative = ""
     try:
-        from brain.embodiment.world_model import describe as _wm_describe
+        from brain.runtime_coupling.world_model import describe as _wm_describe
         env_narrative = _wm_describe()
     except Exception as _e:
         record_failure("look_around.look_around", _e)

@@ -189,7 +189,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
     polls (so it is actually seen — fixes E4), plus a durable outbox copy."""
     delivered = False
     try:
-        from brain.embodiment.system_presence import announce_presence
+        from brain.runtime_coupling.system_presence import announce_presence
         r = announce_presence(text, kind="note")
         delivered = bool(r.get("success"))
     except Exception as _e:
@@ -209,7 +209,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
 
 def _route_desktop(text: str) -> bool:
     try:
-        from brain.embodiment.system_presence import write_to_desktop_note
+        from brain.runtime_coupling.system_presence import write_to_desktop_note
         r = write_to_desktop_note("Orrin's note", text)
         return bool(r.get("success"))
     except Exception as _e:
@@ -219,7 +219,7 @@ def _route_desktop(text: str) -> bool:
 
 def _route_dashboard(text: str) -> bool:
     try:
-        from brain.embodiment.system_presence import announce_presence
+        from brain.runtime_coupling.system_presence import announce_presence
         r = announce_presence(text, kind="presence")
         return bool(r.get("success"))
     except Exception as _e:

@@ -1,4 +1,4 @@
-# brain/symbolic/embodied_actions.py
+# brain/symbolic/host_actions.py
 # Gentle embodiment — safe, read-only real-world actions that ground the
 # symbolic layer in actual system state.
 #
@@ -120,7 +120,7 @@ def _act_read_log(ctx: Dict) -> Optional[Dict]:
         recent = [l.strip() for l in lines[-15:] if l.strip()]
         return {"recent_log_lines": len(recent), "sample": recent[-3:] if recent else []}
     except Exception as exc:  # log read failed — record, no observation
-        record_failure("embodied_actions._act_read_log", exc)
+        record_failure("host_actions._act_read_log", exc)
         return None
 
 
@@ -132,11 +132,11 @@ def _act_observe_data_dir(ctx: Dict) -> Optional[Dict]:
                 try:
                     files.append({"name": f.name, "size_kb": round(f.stat().st_size / 1024, 1)})
                 except Exception as _e:
-                    record_failure("embodied_actions._act_observe_data_dir", _e)
+                    record_failure("host_actions._act_observe_data_dir", _e)
         files.sort(key=lambda x: x["size_kb"], reverse=True)
         return {"file_count": len(files), "largest": files[:5]}
     except Exception as exc:  # data-dir scan failed — record, no observation
-        record_failure("embodied_actions._act_observe_data_dir.outer", exc)
+        record_failure("host_actions._act_observe_data_dir.outer", exc)
         return None
 
 
@@ -157,7 +157,7 @@ def _act_check_rule_health(ctx: Dict) -> Optional[Dict]:
             "mean_confidence": mean_conf,
         }
     except Exception as exc:  # rule engine unavailable — record, no observation
-        record_failure("embodied_actions._act_check_rule_health", exc)
+        record_failure("host_actions._act_check_rule_health", exc)
         return None
 
 
@@ -168,7 +168,7 @@ def _act_read_wm(ctx: Dict) -> Optional[Dict]:
         event_types = [e.get("event_type", "unknown") for e in recent if isinstance(e, dict)]
         return {"wm_size": len(wm), "recent_event_types": event_types}
     except Exception as exc:  # working-memory read failed — record, no observation
-        record_failure("embodied_actions._act_read_wm", exc)
+        record_failure("host_actions._act_read_wm", exc)
         return None
 
 
@@ -182,7 +182,7 @@ def _act_check_time(ctx: Dict) -> Optional[Dict]:
             delta = now_utc.timestamp() - datetime.fromisoformat(last_ts).timestamp()
             hours_since_dream = round(delta / 3600, 1)
         except Exception as _e:
-            record_failure("embodied_actions._act_check_time", _e)
+            record_failure("host_actions._act_check_time", _e)
     return {
         "utc_now": now_utc.isoformat(),
         "hour_of_day": now_utc.hour,
@@ -205,7 +205,7 @@ def _act_read_predictions(ctx: Dict) -> Optional[Dict]:
             "oldest_pending": oldest_pending,
         }
     except Exception as exc:  # predictions read failed — record, no observation
-        record_failure("embodied_actions._act_read_predictions", exc)
+        record_failure("host_actions._act_read_predictions", exc)
         return None
 
 
@@ -230,7 +230,7 @@ def _ingest_observation(obs: Dict, ctx: Dict) -> None:
             "priority":   2,
         })
     except Exception as _e:
-        record_failure("embodied_actions._ingest_observation", _e)
+        record_failure("host_actions._ingest_observation", _e)
 
     # Feed rule health into ground truth if rule check ran
     if action == "check_rule_health":
@@ -282,7 +282,7 @@ def _ground_rule_health(result: Dict) -> None:
             source="embodied_observation",
         )
     except Exception as _e:
-        record_failure("embodied_actions._ground_rule_health", _e)
+        record_failure("host_actions._ground_rule_health", _e)
 
 
 def _ground_prediction_accuracy(result: Dict) -> None:
@@ -296,4 +296,4 @@ def _ground_prediction_accuracy(result: Dict) -> None:
             source="embodied_observation",
         )
     except Exception as _e:
-        record_failure("embodied_actions._ground_prediction_accuracy", _e)
+        record_failure("host_actions._ground_prediction_accuracy", _e)

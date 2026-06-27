@@ -46,8 +46,8 @@ _SPATIAL_MAP = [
     # Behavior and expression
     ("behavior/speak",             "how I find words"),
     ("behavior",                   "how I express myself"),
-    # Embodiment
-    ("embodiment",                 "my body sense"),
+    # Runtime / host coupling
+    ("runtime_coupling",           "host & environment coupling"),
     # Registry / architecture
     ("registry",                   "how I'm organized"),
     ("core",                       "my core architecture"),
@@ -96,7 +96,7 @@ def is_self_path(path: str) -> bool:
     parts = Path(p).parts
     return bool(parts) and parts[0] in {"brain", "supervisor", "agency", "emotion",
                                          "cognition", "think", "behavior", "cog_memory",
-                                         "utils", "embodiment", "registry", "core"}
+                                         "utils", "runtime_coupling", "registry", "core"}
 
 
 def summarise_locations(paths: list[str]) -> str:

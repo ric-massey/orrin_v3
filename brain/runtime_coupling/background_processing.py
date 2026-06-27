@@ -1,5 +1,5 @@
 """
-embodiment/subconscious.py
+runtime_coupling/background_processing.py
 
 Rich subconscious processing — three always-on background threads that work
 below the level of conscious cognition and surface insights when ready.
@@ -39,22 +39,22 @@ _LLM_COOLDOWN      = 600   # 10 min between LLM calls from subconscious
 # -------------------------------------------------------------------
 # Singleton
 
-_processor: Optional["SubconsciousProcessor"] = None
+_processor: Optional["BackgroundProcessor"] = None
 _proc_lock = threading.Lock()
 
 
-def start() -> "SubconsciousProcessor":
+def start() -> "BackgroundProcessor":
     global _processor
     with _proc_lock:
         if _processor is None:
-            _processor = SubconsciousProcessor()
+            _processor = BackgroundProcessor()
             _processor.start()
     return _processor
 
 
 # -------------------------------------------------------------------
 
-class SubconsciousProcessor:
+class BackgroundProcessor:
 
     def __init__(self) -> None:
         self._last_llm_call: float = 0.0
@@ -81,7 +81,7 @@ class SubconsciousProcessor:
                     from brain.utils.log import log_error as _le
                     _le(f"[subconscious:pattern] {_e}")
                 except Exception as _e:
-                    record_failure("subconscious.SubconsciousProcessor._pattern_loop", _e)
+                    record_failure("subconscious.BackgroundProcessor._pattern_loop", _e)
             time.sleep(_PATTERN_INTERVAL)
 
     def _detect_patterns(self) -> None:
@@ -155,7 +155,7 @@ class SubconsciousProcessor:
                     from brain.utils.log import log_error as _le
                     _le(f"[subconscious:incubate] {_e}")
                 except Exception as _e:
-                    record_failure("subconscious.SubconsciousProcessor._incubate_loop", _e)
+                    record_failure("subconscious.BackgroundProcessor._incubate_loop", _e)
             time.sleep(_INCUBATE_INTERVAL)
 
     def _incubate(self) -> None:
@@ -251,7 +251,7 @@ class SubconsciousProcessor:
             try:
                 self._llm_incubation(cand_text, best_match or "")
             except Exception as _e:
-                record_failure("subconscious.SubconsciousProcessor._incubate", _e)
+                record_failure("subconscious.BackgroundProcessor._incubate", _e)
 
     def _llm_incubation(self, topic: str, memory_fragment: str) -> None:
         prompt = (
@@ -266,7 +266,7 @@ class SubconsciousProcessor:
             from brain.symbolic.llm_gate import gated_generate
             result = gated_generate(prompt, caller="subconscious/incubation", outcome=0.60)
         except Exception as _e:
-            record_failure("subconscious.SubconsciousProcessor._llm_incubation", _e)
+            record_failure("subconscious.BackgroundProcessor._llm_incubation", _e)
         if result:
             self._last_llm_call = time.time()
             self._write_to_wm(
@@ -289,7 +289,7 @@ class SubconsciousProcessor:
                     from brain.utils.log import log_error as _le
                     _le(f"[subconscious:residue] {_e}")
                 except Exception as _e:
-                    record_failure("subconscious.SubconsciousProcessor._residue_loop", _e)
+                    record_failure("subconscious.BackgroundProcessor._residue_loop", _e)
             time.sleep(_RESIDUE_INTERVAL)
 
     def _process_residue(self) -> None:
@@ -375,7 +375,7 @@ class SubconsciousProcessor:
                 entry["workspace_origin"] = snapshot
             update_working_memory(entry)
         except Exception as _e:
-            record_failure("subconscious.SubconsciousProcessor._write_to_wm", _e)
+            record_failure("subconscious.BackgroundProcessor._write_to_wm", _e)
 
     def _workspace_snapshot(self) -> Dict:
         """Best-effort stamp of the conscious/task state at insight emergence.

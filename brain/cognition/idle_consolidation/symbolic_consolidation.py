@@ -251,7 +251,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
 
     # Embodied observation — read real system state to ground symbolic rules.
     try:
-        from brain.symbolic.embodied_actions import run_embodied_cycle as _rec_emb
+        from brain.symbolic.host_actions import run_embodied_cycle as _rec_emb
         _emb = _rec_emb(context)
         if _emb.get("observations"):
             log_activity(

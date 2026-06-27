@@ -291,7 +291,7 @@ def generate_response(
         except Exception as _e:
             record_failure("generate_response.generate_response", _e)
 
-        from brain.cognition.selfhood.identity import build_system_prompt  # deferred: avoid L1→L3 load cycle
+        from brain.cognition.self_state.identity import build_system_prompt  # deferred: avoid L1→L3 load cycle
         sys_prompt_raw = selected_cfg.get(
             "system_prompt",
             build_system_prompt(get_self_model(), affect_state=_emo_state or None),

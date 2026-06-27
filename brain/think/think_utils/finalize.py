@@ -386,7 +386,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.14", _e)
 
     try:
-        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost
+        from brain.cognition.self_state.fragmentation import apply_fragmentation_cost
         apply_fragmentation_cost(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.15", _e)

@@ -253,7 +253,7 @@ def _remove_extension(name: str, file_path: str) -> None:
 
 def _apply_fragmentation_cost(context: Dict, amount: float) -> None:
     try:
-        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost as _afc
+        from brain.cognition.self_state.fragmentation import apply_fragmentation_cost as _afc
         _afc(context, override_cost=amount)
     except Exception:
         emo = context.get("affect_state") or {}

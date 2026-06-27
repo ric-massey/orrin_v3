@@ -112,7 +112,7 @@ def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     # inside session_epilogue itself — it can never block shutdown, so the
     # corrigibility guarantee stays true.
     try:
-        from brain.cognition.selfhood.autobiography import session_epilogue
+        from brain.cognition.self_state.autobiography import session_epilogue
         session_epilogue(context)
     except Exception as e:
         record_failure("ORRIN_loop.session_epilogue", e)

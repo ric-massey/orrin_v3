@@ -1,4 +1,4 @@
-# cognition/selfhood/fragmentation.py
+# cognition/self_state/fragmentation.py
 #
 # Self-model fragmentation and repair.
 #
@@ -402,7 +402,7 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
         _reward(context, 0.50, "reconcile_commit")
         # Register the commitment as a narrative tension to track
         try:
-            from brain.cognition.selfhood.tensions import _make as _make_tension, load_tensions, save_tensions
+            from brain.cognition.self_state.tensions import _make as _make_tension, load_tensions, save_tensions
             tensions = load_tensions()
             tensions.append(_make_tension(
                 f"Commitment: {commitment[:60]}",

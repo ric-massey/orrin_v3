@@ -46,7 +46,7 @@ def patched(monkeypatch, tmp_path):
     monkeypatch.setattr(wonder_mod, "detect_wonder_trigger", lambda *a, **k: None)
     import brain.cognition.comprehension as comp_mod
     monkeypatch.setattr(comp_mod, "comprehend", lambda *a, **k: None)
-    import brain.cognition.selfhood.values_check as vc_mod
+    import brain.cognition.self_state.values_check as vc_mod
     monkeypatch.setattr(vc_mod, "evaluate_input_against_self",
                         lambda *a, **k: (False, ""))
     import brain.utils.self_model as sm_mod

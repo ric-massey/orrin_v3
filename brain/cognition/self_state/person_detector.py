@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/person_detector.py
+# brain/cognition/self_state/person_detector.py
 #
 # Detects who is speaking and maintains a persistent registry of known persons.
 # Sets context["user_id"] each cycle so all downstream systems (relationships,

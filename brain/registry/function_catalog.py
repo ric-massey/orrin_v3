@@ -51,7 +51,7 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("threads", "Dialogue"),
     ("awaiting_response", "Dialogue"),
     # self / identity / values / will
-    ("cognition/selfhood", "Self"),
+    ("cognition/self_state", "Self"),
     ("identity", "Self"),
     ("opinions", "Values"),
     ("will", "Values"),

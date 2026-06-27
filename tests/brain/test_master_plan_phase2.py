@@ -10,7 +10,7 @@ import json
 
 import pytest
 
-import brain.cognition.selfhood.autobiography as auto_mod
+import brain.cognition.self_state.autobiography as auto_mod
 import brain.cognition.reflection.review_failures as rvf
 
 

@@ -21,7 +21,7 @@ _SPATIAL_MAP = [
     # Cognition subsystems (most specific first)
     ("cognition/planning",         "my planning structures"),
     ("cognition/idle_consolidation", "the part that consolidates while idle"),
-    ("cognition/selfhood",         "the part of me that holds identity"),
+    ("cognition/self_state",       "the part that holds identity state"),
     ("cognition/reflection",       "where I reflect on my own processes"),
     ("cognition/perception",       "my perceptual layer"),
     ("cognition/prediction",       "where I hold expectations about what comes next"),

@@ -11,7 +11,7 @@ import brain.paths as paths
 from brain.utils.append import append_to_json
 # generate_response/llm_ok are imported deferred inside summarize_chat_to_long_memory
 # so this L2 storage module does not transitively load cognition (via
-# generate_response → cognition.selfhood.identity) at import time.
+# generate_response → cognition.self_state.identity) at import time.
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_error
 from brain.utils.timeutils import now_iso_z

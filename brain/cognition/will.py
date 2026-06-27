@@ -46,7 +46,7 @@ def _drive_alignment(intention: str) -> float:
     whose name/tags share ground with the intention (master plan 4.1)."""
     try:
         from brain.embodiment import drive_engine
-        from brain.cognition.selfhood.second_order_volition import _tokens
+        from brain.cognition.self_state.second_order_volition import _tokens
         state = drive_engine.get_state() or {}
         tags = drive_engine.get_drive_tags() or {}
         toks = _tokens(intention)
@@ -66,7 +66,7 @@ def _value_alignment(intention: str) -> float:
     """Token overlap between intention and core_values — the same _tokens
     machinery second_order_volition already uses (master plan 4.1)."""
     try:
-        from brain.cognition.selfhood.second_order_volition import _tokens, _values_text
+        from brain.cognition.self_state.second_order_volition import _tokens, _values_text
         toks = _tokens(intention)
         vals = _tokens(_values_text())
         if not toks or not vals:
@@ -131,7 +131,7 @@ def form_commitment(
     stance, gloss = "endorse", "I stand behind this."
     if strength is None:
         try:
-            from brain.cognition.selfhood.second_order_volition import endorse_intention
+            from brain.cognition.self_state.second_order_volition import endorse_intention
             stance, gloss = endorse_intention(intention, context)
         except Exception as _e:
             log_private(f"[will] endorsement gate unavailable, proceeding plain: {_e}")

@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/autobiography_epilogue.py
+# brain/cognition/self_state/autobiography_epilogue.py
 #
 # Death-continuity + session-epilogue narrative for autobiography.py
 # (CODEBASE_CLEANUP_PLAN 4.5C), lifted verbatim to bring that module under the
@@ -45,7 +45,7 @@ def append_death_continuity(final_reflection: str, context: Optional[Dict[str, A
     chapter left an autobiography whose only chapter was two death
     certificates (DATA_FILE_AUDIT §3).
     """
-    from brain.cognition.selfhood.autobiography import load_autobiography, save_autobiography
+    from brain.cognition.self_state.autobiography import load_autobiography, save_autobiography
     context = context or {}
     auto = load_autobiography()
     chapters = auto.get("chapters", [])
@@ -127,7 +127,7 @@ def session_epilogue(context: Optional[Dict[str, Any]] = None) -> None:
     append_death_continuity). Budgeted (≤10 s) and crash-proof so it can never
     block shutdown — the corrigibility guarantee stays true.
     """
-    from brain.cognition.selfhood.autobiography import load_autobiography, save_autobiography
+    from brain.cognition.self_state.autobiography import load_autobiography, save_autobiography
     deadline = time.monotonic() + 10.0
     try:
         reflection = _session_reflection(context or {}, deadline)

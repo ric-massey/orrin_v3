@@ -484,7 +484,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # Resolve who is speaking this cycle.
     # Sets context["person_id"], context["user_id"] (alias), context["person_type"].
     try:
-        from brain.cognition.selfhood.person_detector import detect_and_set_person_id as _detect_pid
+        from brain.cognition.self_state.person_detector import detect_and_set_person_id as _detect_pid
         _detect_pid(context)
     except Exception as _pd_e:
         log_error(f"[person_detector] failed: {_pd_e}")

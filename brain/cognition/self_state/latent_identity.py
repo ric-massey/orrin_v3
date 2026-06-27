@@ -1,5 +1,5 @@
 """
-cognition/selfhood/latent_identity.py
+cognition/self_state/latent_identity.py
 
 Persistent latent identity vector — a stable numeric anchor alongside symbolic memory.
 

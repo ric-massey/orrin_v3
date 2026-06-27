@@ -21,8 +21,8 @@ from brain.cognition.metacog import metacog_init, metacog_flush
 from brain.think.thought_stream import emit_thought
 
 from brain.behavior.speak import OrrinSpeaker
-from brain.cognition.selfhood.relationships import update_relationship_model
-from brain.cognition.selfhood.self_model_conflicts import update_self_model
+from brain.cognition.self_state.relationships import update_relationship_model
+from brain.cognition.self_state.self_model_conflicts import update_self_model
 from brain.affect.affect_learning import update_affect_function_map
 
 from brain.paths import (
@@ -271,7 +271,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
 
         # === 3c) Latent identity drift — surface to working memory if significant ===
         try:
-            from brain.cognition.selfhood.latent_identity import identity_drift_warning as _idw
+            from brain.cognition.self_state.latent_identity import identity_drift_warning as _idw
             _drift_warning = _idw(context)
             if _drift_warning:
                 from brain.cog_memory.working_memory import update_working_memory as _uwm_drift

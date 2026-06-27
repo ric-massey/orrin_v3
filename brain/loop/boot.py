@@ -95,14 +95,14 @@ def _boot_context() -> Context:
 
     # Register value evolution cognition
     try:
-        from brain.cognition.selfhood.value_evolution import propose_value_revision as _pvr
+        from brain.cognition.self_state.value_evolution import propose_value_revision as _pvr
         COGNITIVE_FUNCTIONS["propose_value_revision"] = {"function": _pvr, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register propose_value_revision: {e}")
 
     # Register autobiography cognition
     try:
-        from brain.cognition.selfhood.autobiography import narrative_update as _nu
+        from brain.cognition.self_state.autobiography import narrative_update as _nu
         COGNITIVE_FUNCTIONS["narrative_update"] = {"function": _nu, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register narrative_update: {e}")
@@ -183,7 +183,7 @@ def _boot_context() -> Context:
 
     # Register latent identity update (stable numeric identity anchor)
     try:
-        from brain.cognition.selfhood.latent_identity import update_latent_identity as _uli
+        from brain.cognition.self_state.latent_identity import update_latent_identity as _uli
         COGNITIVE_FUNCTIONS["update_latent_identity"] = {"function": _uli, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register update_latent_identity: {e}")

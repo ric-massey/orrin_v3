@@ -23,7 +23,7 @@ _INTROSPECTIVE_FNS = frozenset({
     "value_evolution", "tensions", "look_around",
 })
 
-_INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "dream", "selfhood", "ident", "narrat", "meta")
+_INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "consolidat", "self_state", "ident", "narrat", "meta")
 
 
 def _dreaming_now() -> bool:

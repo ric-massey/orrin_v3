@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/relationship_arc.py
+# brain/cognition/self_state/relationship_arc.py
 #
 # Relationship-arc trend analysis for relationships.py (CODEBASE_CLEANUP_PLAN
 # 4.5C), lifted verbatim to bring that module under the 600-line soft limit.
@@ -142,7 +142,7 @@ def _update_arc(r: Dict[str, Any], context: Dict[str, Any]) -> None:
     # you don't have an "established" relationship with someone whose name you
     # don't know (audit §4: forming→established in 16 minutes with "someone").
     try:
-        from brain.cognition.selfhood.person_detector import get_person_type
+        from brain.cognition.self_state.person_detector import get_person_type
         _pid = str(context.get("person_id") or context.get("user_id") or "")
         if _pid and get_person_type(_pid) == "unknown" and phase not in ("forming", "strained"):
             phase = "forming"

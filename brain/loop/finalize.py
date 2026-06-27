@@ -477,7 +477,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     # against his values — self-authorship, not just acting on impulse.
     try:
         if get_cycle_count() % 20 == 0:
-            from brain.cognition.selfhood.second_order_volition import reflect_on_desire as _rod
+            from brain.cognition.self_state.second_order_volition import reflect_on_desire as _rod
             _rod(context)
     except Exception as _rve:
         record_failure("ORRIN_loop.run_cognitive_loop.27", _rve)

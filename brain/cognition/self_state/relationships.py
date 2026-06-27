@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/relationships.py
+# brain/cognition/self_state/relationships.py
 from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
@@ -9,7 +9,7 @@ from brain.utils.log import log_error, log_private
 from brain.paths import RELATIONSHIPS_FILE
 from brain.utils.failure_counter import record_failure
 # Relationship-arc trend analysis, extracted to relationship_arc.py (Phase 4.5C).
-from brain.cognition.selfhood.relationship_arc import _update_arc  # noqa: F401
+from brain.cognition.self_state.relationship_arc import _update_arc  # noqa: F401
 _log = get_logger(__name__)
 
 MAX_HISTORY = 50

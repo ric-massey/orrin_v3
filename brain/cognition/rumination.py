@@ -193,7 +193,7 @@ def update_rumination(context: Dict[str, Any]) -> Dict[str, Any]:
                 and loop.get("charge", 0) > 0.40
                 and not loop.get("escalated")):
             try:
-                from brain.cognition.selfhood.tensions import load_tensions, save_tensions
+                from brain.cognition.self_state.tensions import load_tensions, save_tensions
                 content = (loop.get("content") or "").strip()
                 title = ("Unresolved rumination: " + content[:40]).strip()
                 tens = load_tensions()

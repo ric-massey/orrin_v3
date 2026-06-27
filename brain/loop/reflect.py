@@ -66,7 +66,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
 
     # Formative tensions: inject active tensions into context and working memory.
     try:
-        from brain.cognition.selfhood.tensions import inject_tension_signals as _its2
+        from brain.cognition.self_state.tensions import inject_tension_signals as _its2
         _its2(context)
     except Exception as _tse:
         record_failure("ORRIN_loop.inject_tension_signals", _tse)
@@ -77,7 +77,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     try:
         _tc_tens = get_cycle_count()
         if _tc_tens > 0 and _tc_tens % 30 == 0:
-            from brain.cognition.selfhood.tensions import detect_tensions as _dt2
+            from brain.cognition.self_state.tensions import detect_tensions as _dt2
             _dt2(context)
     except Exception as _dte:
         record_failure("ORRIN_loop.detect_tensions_periodic", _dte)

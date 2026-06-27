@@ -2,7 +2,7 @@
 # Symbolic Self-Model & Identity — reflective reasoning about the rule set itself.
 #
 # This is the system's ability to reason about its own knowledge at the symbolic
-# level, independent of the LLM-generated identity narrative in selfhood/identity.py.
+# level, independent of the LLM-generated identity narrative in self_state/identity.py.
 #
 # What it computes (all locally, no LLM):
 #

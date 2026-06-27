@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/second_order_volition.py
+# brain/cognition/self_state/second_order_volition.py
 #
 # Second-order volition (Frankfurt 1971) — the core of free will.
 #

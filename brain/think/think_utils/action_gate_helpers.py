@@ -8,7 +8,7 @@
 from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 
-from brain.cognition.selfhood.boundary_check import check_violates_boundaries
+from brain.cognition.self_state.boundary_check import check_violates_boundaries
 from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 from brain.paths import FOCUS_GOAL

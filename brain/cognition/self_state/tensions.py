@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/tensions.py
+# brain/cognition/self_state/tensions.py
 # Formative tensions — ongoing contradictions Orrin is actively working through.
 #
 # A tension is a named contradiction that has narrative weight: it is something
@@ -132,7 +132,7 @@ def detect_tensions(context: Dict[str, Any] = None) -> List[str]:
 
     # ── Source 3: autobiography chapter theme tension ─────────────────────────
     try:
-        from brain.cognition.selfhood.autobiography import load_autobiography
+        from brain.cognition.self_state.autobiography import load_autobiography
         auto = load_autobiography()
         chapters = auto.get("chapters") or []
         if chapters:

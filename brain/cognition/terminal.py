@@ -144,7 +144,7 @@ def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
 
     # Close autobiography chapter with final words
     try:
-        from brain.cognition.selfhood.autobiography import append_death_continuity
+        from brain.cognition.self_state.autobiography import append_death_continuity
         append_death_continuity(reflection_text, context)
     except Exception as _e:
         record_failure("terminal.final_reflection.2", _e)

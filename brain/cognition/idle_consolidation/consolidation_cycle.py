@@ -405,7 +405,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Autobiography narrative update — fires when narrative pressure crosses threshold (event-driven)
     try:
-        from brain.cognition.selfhood.autobiography import narrative_update as _narrative_update
+        from brain.cognition.self_state.autobiography import narrative_update as _narrative_update
         _narrative_update(context)
     except Exception as _ae:
         log_activity(f"[dream] autobiography narrative_update skipped: {_ae}")
@@ -414,7 +414,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Dream cycles are the right cadence: too fast and the vector loses stability,
     # too slow and it can't track genuine long-term value shifts.
     try:
-        from brain.cognition.selfhood.latent_identity import update_latent_identity as _uli, identity_drift_warning as _idw
+        from brain.cognition.self_state.latent_identity import update_latent_identity as _uli, identity_drift_warning as _idw
         _li_result = _uli(context)
         _drift_warn = _idw(context)
         if _drift_warn:
@@ -431,7 +431,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Detect formative tensions from current state of value_revisions, failures, chapter themes
     try:
-        from brain.cognition.selfhood.tensions import detect_tensions as _detect_tensions
+        from brain.cognition.self_state.tensions import detect_tensions as _detect_tensions
         _detect_tensions(context)
     except Exception as _te:
         log_activity(f"[dream] tension detection skipped: {_te}")

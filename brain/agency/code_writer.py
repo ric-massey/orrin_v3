@@ -54,7 +54,7 @@ _BLOCKED_PATHS = [
     for p in (
         "think",
         "cognition/repair",
-        "cognition/selfhood",
+        "cognition/self_state",
         "registry",
         "core",
         "ORRIN_loop.py",

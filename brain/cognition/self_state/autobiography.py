@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/autobiography.py
+# brain/cognition/self_state/autobiography.py
 # Orrin's living autobiography — a structured narrative of who he has been and
 # who he is becoming.
 #
@@ -49,7 +49,7 @@ from brain.utils.timeutils import now_iso_z
 # Death-continuity + session-epilogue narrative, extracted to
 # autobiography_epilogue.py (Phase 4.5C). Re-exported for external callers
 # (loop.services, terminal, selection.constants).
-from brain.cognition.selfhood.autobiography_epilogue import (  # noqa: F401
+from brain.cognition.self_state.autobiography_epilogue import (  # noqa: F401
     _MACHINE_TAG_RE, _sanitize_prose, append_death_continuity,
     _session_reflection, session_epilogue as session_epilogue,
 )
@@ -514,7 +514,7 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
 
     # Refresh the living identity narrative — autobiography is the richest trigger
     try:
-        from brain.cognition.selfhood.identity import refresh_identity_story
+        from brain.cognition.self_state.identity import refresh_identity_story
         refresh_identity_story(
             narrative_hint=narrative,
             context=context,

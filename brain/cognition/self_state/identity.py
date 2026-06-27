@@ -180,7 +180,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
         from brain.utils.runtime_ctx import get_cycle_context
         _rtx = get_cycle_context()
         _user_id = _rtx.get("user_id") or _rtx.get("speaker") or "user"
-        from brain.cognition.selfhood.relationships import get_relationship_context_for_prompt
+        from brain.cognition.self_state.relationships import get_relationship_context_for_prompt
         relationship_line = get_relationship_context_for_prompt(_user_id)
         if relationship_line:
             relationship_line = f" {relationship_line}"

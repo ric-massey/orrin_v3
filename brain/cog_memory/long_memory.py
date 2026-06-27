@@ -466,7 +466,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
         return
 
     if removed:
-        from brain.cognition.selfhood.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
+        from brain.cognition.self_state.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
         # Pass the in-memory list so value-learning doesn't re-read the largest
         # state file from disk on the brain thread during a prune. Runs outside
         # the lock to keep file contention low.

@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/values_check.py
+# brain/cognition/self_state/values_check.py
 # Values-check stage: evaluates user input against Orrin's core values/beliefs
 # before it enters the signal_router. Returns a refuse signal when warranted.
 from __future__ import annotations

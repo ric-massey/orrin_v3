@@ -1,4 +1,4 @@
-# brain/cognition/selfhood/value_evolution.py
+# brain/cognition/self_state/value_evolution.py
 # Value evolution: Orrin deliberately reviews and revises his core values.
 #
 # FIX (2026-06-04 rev-2): Replaced absence-based candidate generation with
@@ -522,7 +522,7 @@ def _apply_decision(
         log_activity(f"[value_evolution] {decision.title()}: {affected_value!r}")
 
         try:
-            from brain.cognition.selfhood.identity import refresh_identity_story
+            from brain.cognition.self_state.identity import refresh_identity_story
             refresh_identity_story(
                 values_hint=new_phrasing or second_value or "",
                 context=context,

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from brain.utils.load_utils import load_all_known_json
 from brain.utils.log import log_error, log_private
-from brain.cognition.selfhood.self_model_conflicts import resolve_conflicts, update_self_model
+from brain.cognition.self_state.self_model_conflicts import resolve_conflicts, update_self_model
 from brain.cognition.maintenance.self_modeling import self_supervised_repair
 from brain.utils.self_model import ensure_self_model_integrity, get_self_model
 from brain.cognition.introspection.router import introspect

@@ -19,8 +19,8 @@ import time
 from typing import Any, Dict, Tuple
 from brain.think.signal_router import process_inputs
 from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
-from brain.affect.update_affect_state import update_affect_state
-from brain.affect.reflect_on_affect import reflect_on_affect
+from brain.control_signals.update_affect_state import update_affect_state
+from brain.control_signals.reflect_on_affect import reflect_on_affect
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.load_utils import load_context
 from brain.utils.json_utils import load_json
@@ -322,7 +322,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
             # writes, so this competes with (and nets against) every other
             # affect source this cycle instead of clobbering them.
             try:
-                from brain.affect.arbiter import submit_affect as _submit_affect
+                from brain.control_signals.arbiter import submit_affect as _submit_affect
                 _submit_affect(context, "impasse_signal", +0.04, source="goal_stall")
                 _submit_affect(context, "motivation",     -0.03, source="goal_stall")
                 _submit_affect(context, "stagnation_signal", +0.03, source="goal_stall")

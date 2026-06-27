@@ -1,4 +1,4 @@
-# brain/affect/stagnation_signal_escalation.py
+# brain/control_signals/stagnation_signal_escalation.py
 #
 # stagnation_signal escalation — stagnation_signal as a pressure system, not just a state.
 #

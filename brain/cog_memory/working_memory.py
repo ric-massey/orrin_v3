@@ -323,7 +323,7 @@ def update_working_memory(
     # residual emotional tint that plays out over subsequent cycles.
     try:
         if int(entry.get("importance") or 0) >= 4:
-            from brain.affect.consolidation import maybe_trigger_from_event
+            from brain.control_signals.consolidation import maybe_trigger_from_event
             maybe_trigger_from_event(entry)
     except Exception as _e:
         record_failure("working_memory.update_working_memory", _e)

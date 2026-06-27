@@ -165,14 +165,14 @@ def _emit_affect(context: "Context") -> None:
         homeostasis = a.get("homeostasis")
         if not isinstance(homeostasis, (int, float)):
             try:
-                from brain.affect.homeostasis import homeostasis_index
+                from brain.control_signals.homeostasis import homeostasis_index
                 homeostasis = homeostasis_index(cs)
             except Exception:
                 homeostasis = _HOMEOSTASIS_FALLBACK
 
         distress = 0.0
         try:
-            from brain.affect.observers import negative_load
+            from brain.control_signals.observers import negative_load
             distress = _clamp01(negative_load(a) / _DISTRESS_LOAD_DIVISOR)
         except Exception:
             distress = _clamp01(_f(cs.get("impasse_signal")))

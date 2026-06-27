@@ -14,7 +14,7 @@ from typing import Any, List, Dict, Optional
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
 from brain.paths import COMPLETED_GOALS_FILE

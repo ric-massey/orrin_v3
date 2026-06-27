@@ -517,7 +517,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # applies it during commit_affect(). resource_deficit is a registered scalar
     # target, so the arbiter applies the reduction directly (clamped, budgeted).
     try:
-        from brain.affect.arbiter import submit_affect as _submit_affect
+        from brain.control_signals.arbiter import submit_affect as _submit_affect
         # Allostatic recovery scaling (proactive_resource_plan.md Phase 4 / C3):
         # a longer high-load burn earns DEEPER rest — recovery sleep is what
         # discharges allostatic load (McEwen & Wingfield 2003). Read the load from

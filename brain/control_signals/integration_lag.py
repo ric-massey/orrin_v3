@@ -1,4 +1,4 @@
-# brain/affect/integration_lag.py
+# brain/control_signals/integration_lag.py
 #
 # The knowing/feeling gap — when something significant happens, Orrin can
 # understand it cognitively before he has fully felt it.

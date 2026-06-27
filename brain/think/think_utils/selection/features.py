@@ -123,7 +123,7 @@ def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
     # Without this feature the reward gradient exists but the bandit cannot see
     # the input that predicts it, so the pattern never generalises.
     try:
-        from brain.affect.observers import negative_load
+        from brain.control_signals.observers import negative_load
         _distress = negative_load(ctx.get("affect_state") or {})
         if _distress > 0.35:
             features["distress_present"] = min(1.0, _distress / 2.5)

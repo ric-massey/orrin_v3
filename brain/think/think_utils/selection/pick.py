@@ -187,7 +187,7 @@ def apply_antirepeat_and_metarut(
     })
     _guard_distress_high = False
     try:
-        from brain.affect.observers import negative_load
+        from brain.control_signals.observers import negative_load
         _guard_distress_high = negative_load(context.get("affect_state") or {}) > 0.55
     except Exception as _e:
         record_failure("select_function.select_function.14", _e)
@@ -249,7 +249,7 @@ def apply_antirepeat_and_metarut(
     # across cycles via commit_affect — the old top-level writer in think_module
     # never reached core_signals and stayed pinned at 0.000.
     try:
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
         if _repeat_attempt:
             submit_affect(context, "stagnation_signal", +0.06,
                           source="select_repeat", ttl_cycles=4)

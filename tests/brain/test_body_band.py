@@ -192,8 +192,8 @@ def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
 
 
 def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
-    import brain.affect.arbiter as arbiter
-    from brain.affect.arbiter import commit_affect, submit_affect
+    import brain.control_signals.arbiter as arbiter
+    from brain.control_signals.arbiter import commit_affect, submit_affect
     import brain.cognition.body_sense as bs
     from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 

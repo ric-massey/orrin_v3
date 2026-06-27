@@ -226,7 +226,7 @@ def update_long_memory(
     # Optionally trigger a reward signal for important/priority memories
     if context is not None and (importance >= 2 or priority >= 2 or referenced >= 3):
         try:
-            from brain.affect.reward_signals.reward_signals import release_reward_signal
+            from brain.control_signals.reward_signals.reward_signals import release_reward_signal
             intensity = min(1.0, importance * 0.5 + priority * 0.5 + 0.1 * referenced)
             release_reward_signal(
                 context=context,

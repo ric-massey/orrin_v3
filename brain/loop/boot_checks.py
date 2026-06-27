@@ -55,7 +55,7 @@ def _validate_boot_files() -> None:
     # Emotion keyword model: an empty affect_model.json silently turns all
     # affect detection neutral. Seed it from the packaged defaults (logs once).
     try:
-        from brain.affect.model import seed_default_emotion_keywords
+        from brain.control_signals.model import seed_default_emotion_keywords
         seed_default_emotion_keywords()
     except Exception as e:
         log_error(f"[boot] Could not seed emotion keywords: {e}")

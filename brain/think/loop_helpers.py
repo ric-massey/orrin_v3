@@ -485,7 +485,7 @@ def bandit_learn(
                 _emo = ctx.get("affect_state") if ctx else None
                 if isinstance(_emo, dict):
                     _core = _emo.get("core_signals") or _emo
-                    from brain.affect.homeostasis import pump_signal
+                    from brain.control_signals.homeostasis import pump_signal
                     if pe > 0:
                         # Positive surprise: reward_signal burst → motivation + exploration_drive (wanting more)
                         _mag = min(0.20, pe * 0.4)

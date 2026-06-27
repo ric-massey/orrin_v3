@@ -350,15 +350,15 @@ def _boot_context() -> Context:
 
     # Register emotion top-level callable functions
     try:
-        from brain.affect.regulation import attempt_regulation as _ar
-        from brain.affect.affect_drift import check_affect_drift as _ced
-        from brain.affect.reflect_on_affect import reflect_on_affect as _roe
-        from brain.affect.update_affect_state import update_affect_state as _ues
-        from brain.affect.apply_affective_feedback import apply_affective_feedback as _aef
-        from brain.affect.modes_and_affect import affect_driven_mode_shift as _edms
-        from brain.affect.affect import investigate_unexplained_emotions as _iue
-        from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
-        from brain.affect.reflect_on_affect_model import reflect_on_emotion_model as _roem
+        from brain.control_signals.regulation import attempt_regulation as _ar
+        from brain.control_signals.affect_drift import check_affect_drift as _ced
+        from brain.control_signals.reflect_on_affect import reflect_on_affect as _roe
+        from brain.control_signals.update_affect_state import update_affect_state as _ues
+        from brain.control_signals.apply_affective_feedback import apply_affective_feedback as _aef
+        from brain.control_signals.modes_and_affect import affect_driven_mode_shift as _edms
+        from brain.control_signals.affect import investigate_unexplained_emotions as _iue
+        from brain.control_signals.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
+        from brain.control_signals.reflect_on_affect_model import reflect_on_emotion_model as _roem
         COGNITIVE_FUNCTIONS["attempt_regulation"]            = {"function": _ar,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["check_affect_drift"]           = {"function": _ced,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["reflect_on_affect"]           = {"function": _roe,  "is_cognition": True}

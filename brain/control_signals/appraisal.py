@@ -1,5 +1,5 @@
 """
-brain/affect/appraisal.py
+brain/control_signals/appraisal.py
 
 Appraisal-theory affect generation. No LLM, no keyword lists.
 

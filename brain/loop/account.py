@@ -17,7 +17,7 @@ from brain.think.loop_helpers import (
     emit_trace,
     bandit_learn,
 )
-from brain.affect.affect_drift import check_affect_drift
+from brain.control_signals.affect_drift import check_affect_drift
 from brain.cognition.planning.reflection import record_decision
 from brain.utils.log import log_activity, log_model_issue
 from brain.utils.error_router import route_exception

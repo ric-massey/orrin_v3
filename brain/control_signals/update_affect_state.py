@@ -1,4 +1,4 @@
-# brain/affect/update_affect_state.py
+# brain/control_signals/update_affect_state.py
 #
 # Per-cycle affect state update: applies triggers, appraisal nudges, decay,
 # habituation, velocity, and oscillation detection to core_signals.
@@ -14,27 +14,27 @@ from statistics import mean
 from typing import Any
 
 from brain.utils.json_utils import load_json, save_json
-from brain.affect.affect import get_all_affect_names, deliver_affect_based_rewards
-from brain.affect.affect_dynamics import (
+from brain.control_signals.affect import get_all_affect_names, deliver_affect_based_rewards
+from brain.control_signals.affect_dynamics import (
     decay_habituation, capture_prev_core,
     apply_velocity_dynamics, compute_valence_activation_level, update_mood,
     update_hedonic_baselines,
 )
-from brain.affect.affect_buffer import drain_affect_queue
-from brain.affect.homeostasis import (
+from brain.control_signals.affect_buffer import drain_affect_queue
+from brain.control_signals.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
     EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE,
     homeostasis_index, pump_signal,
 )
-from brain.affect.setpoints import CORE_BASELINES
+from brain.control_signals.setpoints import CORE_BASELINES
 from brain.utils.log import log_activity
-from brain.affect.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
+from brain.control_signals.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
 from brain.utils.timing import get_time_since_last_active
 
 from brain.paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
 # Per-cycle pattern phases, extracted to affect_patterns.py (Phase 4.5C).
-from brain.affect.affect_patterns import (
+from brain.control_signals.affect_patterns import (
     apply_wm_triggers_and_appraisal, detect_oscillation_and_flatline,
 )
 _log = get_logger(__name__)
@@ -59,7 +59,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
             state["core_signals"] = _disk["core_signals"]
     # Pin the canonical schema (D9): nested core_signals + required scalars. As the
     # sole writer, normalizing here means the canonical layout is what gets persisted.
-    from brain.affect.observers import normalize_affect_state
+    from brain.control_signals.observers import normalize_affect_state
     state = normalize_affect_state(state)
     working = load_json(WORKING_MEMORY_FILE, default_type=list)
 
@@ -475,7 +475,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # process, Solomon & Corbit 1974; allostasis), instead of a stuck maxed state.
     # Negatives clear a touch faster so distress doesn't linger between spikes.
     try:
-        from brain.affect.setpoints import setpoint as _setpoint
+        from brain.control_signals.setpoints import setpoint as _setpoint
         _NEG_SIGNALS = {
             "impasse_signal", "conflict_signal", "threat_level", "negative_valence",
             "risk_estimate", "social_deficit", "social_penalty", "rejection_signal",
@@ -560,7 +560,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # the chronic negatives toward their setpoints AFTER the budget so distress can
     # always bleed off between acute spikes.
     try:
-        from brain.affect.setpoints import setpoint as _sp_drain
+        from brain.control_signals.setpoints import setpoint as _sp_drain
         for _nk in ("impasse_signal", "conflict_signal", "threat_level",
                     "negative_valence", "risk_estimate", "uncertainty"):
             if _nk in core and isinstance(core.get(_nk), (int, float)):

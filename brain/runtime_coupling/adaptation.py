@@ -98,7 +98,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
     increment = float(reward) * dom_intensity * _HEBBIAN_SCALE
 
     try:
-        from brain.affect.affect_learning import update_affect_function_map
+        from brain.control_signals.affect_learning import update_affect_function_map
         update_affect_function_map(dominant, fn_name, reward_signal=increment)
     except Exception as _e:
         record_failure("adaptation._hebbian_update", _e)
@@ -110,7 +110,7 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
         if second_val > 0.40:
             secondary_increment = float(reward) * second_val * _HEBBIAN_SCALE * 0.5
             try:
-                from brain.affect.affect_learning import update_affect_function_map
+                from brain.control_signals.affect_learning import update_affect_function_map
                 update_affect_function_map(second_emo, fn_name, reward_signal=secondary_increment)
             except Exception as _e:
                 record_failure("adaptation._hebbian_update.2", _e)

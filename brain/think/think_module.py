@@ -23,7 +23,7 @@ from brain.think.thought_stream import emit_thought
 from brain.behavior.speak import OrrinSpeaker
 from brain.cognition.self_state.relationships import update_relationship_model
 from brain.cognition.self_state.self_model_conflicts import update_self_model
-from brain.affect.affect_learning import update_affect_function_map
+from brain.control_signals.affect_learning import update_affect_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
@@ -119,7 +119,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Ground truth continues to drive unconscious machinery (attention, rewards, drives).
         # The perceived state is what enters the system prompt and inner loop reasoning.
         try:
-            from brain.affect.introspection import compute_perceived_state as _cps
+            from brain.control_signals.introspection import compute_perceived_state as _cps
             _introspection = _cps(context)
             context["perceived_affect_state"]          = _introspection["perceived_affect_state"]
             context["introspection_clarity"]              = _introspection["introspection_clarity"]

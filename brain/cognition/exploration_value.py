@@ -274,7 +274,7 @@ def record_reach_outcome(fn: str, result_text: str,
                 context["__acted_this_tick__"] = True
             context["_reach_consumed_info_gain"] = round(novelty, 4)
             try:
-                from brain.affect.reward_signals.reward_signals import release_reward_signal
+                from brain.control_signals.reward_signals.reward_signals import release_reward_signal
                 release_reward_signal(
                     context,
                     signal_type="novelty",

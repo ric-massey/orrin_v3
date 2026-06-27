@@ -92,7 +92,7 @@ def _apply_spike(spike: float, context: Dict[str, Any]) -> None:
     current = float(core.get("wonder", 0.0) or 0.0)
     core["wonder"] = min(_WONDER_MAX, current + spike)
     # Wonder also nudges exploration_drive up and stagnation_signal down
-    from brain.affect.homeostasis import pump_signal
+    from brain.control_signals.homeostasis import pump_signal
     pump_signal(core, "exploration_drive", spike * 0.4)
     core["stagnation_signal"]   = max(0.0, float(core.get("stagnation_signal", 0.0)) - spike * 0.3)
     if "core_signals" in emo:

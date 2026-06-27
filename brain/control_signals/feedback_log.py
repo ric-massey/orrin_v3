@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Union
 from pathlib import Path
 
 from brain.utils.json_utils import load_json, save_json
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
     AFFECT_STATE_FILE as _AFFECT_STATE_FILE,
     FEEDBACK_LOG_JSON as _FEEDBACK_LOG_JSON,

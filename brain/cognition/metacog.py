@@ -197,7 +197,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     except ImportError:  # intentional: no workspace → the monitor can't offer; skip
         return
     try:
-        from brain.affect.arbiter import submit_affect as _submit_affect
+        from brain.control_signals.arbiter import submit_affect as _submit_affect
     except Exception:
         _submit_affect = None
 

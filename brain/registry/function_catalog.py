@@ -79,7 +79,7 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("global_workspace", "Control"),
     ("inhibition", "Control"),
     # affect
-    ("affect", "Affect"),
+    ("control_signals", "Affect"),
     ("motivation", "Affect"),
     ("emotion", "Affect"),
     # curiosity

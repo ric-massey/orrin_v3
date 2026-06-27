@@ -1,4 +1,4 @@
-# brain/affect/affect_patterns.py
+# brain/control_signals/affect_patterns.py
 #
 # Per-cycle affect pattern phases extracted from update_affect_state
 # (CODEBASE_CLEANUP_PLAN 4.5C) to bring that module under the 600-line soft
@@ -17,9 +17,9 @@ from __future__ import annotations
 
 from typing import Dict
 
-from brain.affect.affect import detect_affect
-from brain.affect.affect_dynamics import get_habit_factor, record_habit
-from brain.affect.homeostasis import pump_signal
+from brain.control_signals.affect import detect_affect
+from brain.control_signals.affect_dynamics import get_habit_factor, record_habit
+from brain.control_signals.homeostasis import pump_signal
 from brain.utils.failure_counter import record_failure
 
 
@@ -198,7 +198,7 @@ def apply_wm_triggers_and_appraisal(
     # Complements the keyword trigger loop with goal-relevance × congruence × agency.
     # Mood modulates appraisal sensitivity: good mood dampens negative events, bad amplifies.
     try:
-        from brain.affect.appraisal import appraise_working_memory as _appraise
+        from brain.control_signals.appraisal import appraise_working_memory as _appraise
         _cg   = (context or {}).get("committed_goal") or {}
         _cgs  = (context or {}).get("committed_goals") or ([_cg] if _cg else [])
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]

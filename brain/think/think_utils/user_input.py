@@ -7,7 +7,7 @@ import random
 import re
 
 from brain.utils.timing import update_last_active
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.cog_memory.chat_log import (
     get_user_input,            # returns last non-empty line; does NOT clear file
     summarize_chat_to_long_memory,

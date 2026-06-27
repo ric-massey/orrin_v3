@@ -467,7 +467,7 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
 
 def _reward(context: Dict, amount: float, source: str) -> None:
     try:
-        from brain.affect.reward_signals.reward_signals import release_reward_signal
+        from brain.control_signals.reward_signals.reward_signals import release_reward_signal
         release_reward_signal(context, "reward_signal", amount, 0.4, 0.6, source=source)
     except Exception as _e:
         record_failure("fragmentation._reward", _e)

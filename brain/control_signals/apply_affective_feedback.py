@@ -1,10 +1,10 @@
-# brain/affect/apply_affective_feedback.py
+# brain/control_signals/apply_affective_feedback.py
 from datetime import datetime, timezone
 from brain.utils.affect_signal_utils import log_penalty_signal, log_uncertainty_spike 
-from brain.affect.update_affect_state import update_affect_state
-from brain.affect.modes_and_affect import set_current_mode
-from brain.affect.affect_drift import check_affect_drift
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.update_affect_state import update_affect_state
+from brain.control_signals.modes_and_affect import set_current_mode
+from brain.control_signals.affect_drift import check_affect_drift
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
 # Canonical set of core_signals fields that are NOT nameable felt emotions — they
 # are control/appraisal/resource gauges that happen to live in the same dict.
@@ -209,7 +209,7 @@ def apply_affective_feedback(context):
 
     if top_two:
         # Use the mode map rather than raw emotion name — sets a meaningful mode string
-        from brain.affect.modes_and_affect import recommend_mode_from_affect_state as _rmfe
+        from brain.control_signals.modes_and_affect import recommend_mode_from_affect_state as _rmfe
         set_current_mode(_rmfe())
         # Only reward clarity when emotion is genuinely elevated but not stuck at ceiling
         if 0.7 < top_two[0][1] < 0.96:

@@ -7,10 +7,10 @@ from brain.utils.self_model import get_self_model, save_self_model, ensure_self_
 from brain.utils.log import log_error, log_private
 from brain.utils.log_reflection import log_reflection
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.update_affect_state import update_affect_state
+from brain.control_signals.update_affect_state import update_affect_state
 from brain.cognition.maintenance.self_modeling import self_model_maintenance_cycle
 from brain.cognition.planning.goals import maybe_complete_goals
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
     NEUTRAL_REFLECTION_COUNT_JSON,
     LONG_MEMORY_FILE,

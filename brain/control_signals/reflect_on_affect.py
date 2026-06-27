@@ -8,10 +8,10 @@ from brain.utils.load_utils import load_all_known_json
 from brain.utils.log import log_private
 from brain.utils.log_reflection import log_reflection
 from brain.utils.coerce_to_string import coerce_to_string
-from brain.affect.discovery import discover_new_emotion
-from brain.affect.reward_signals.reward_signals import release_reward_signal
-from brain.affect.reflect_on_affect_model import reflect_on_emotion_model
-from brain.affect.affect import investigate_unexplained_emotions, detect_affect
+from brain.control_signals.discovery import discover_new_emotion
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reflect_on_affect_model import reflect_on_emotion_model
+from brain.control_signals.affect import investigate_unexplained_emotions, detect_affect
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

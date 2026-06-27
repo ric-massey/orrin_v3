@@ -1,4 +1,4 @@
-# brain/affect/modes_and_affect.py
+# brain/control_signals/modes_and_affect.py
 from __future__ import annotations
 import time
 from datetime import datetime, timezone

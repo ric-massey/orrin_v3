@@ -1,5 +1,5 @@
 """
-brain/affect/affect_dynamics.py
+brain/control_signals/affect_dynamics.py
 
 Four biologically-grounded affective dynamic layers. All rule-based, no LLM.
 

@@ -113,7 +113,7 @@ def _bump_affect_file(emotion: str, amount: float) -> None:
     commit_affect, so update_affect_state remains the sole file writer.
     """
     try:
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
         submit_affect(None, emotion, float(amount), source="drive_expect", ttl_cycles=2)
     except Exception as _e:
         record_failure("drive_expectations._bump_affect_file", _e)

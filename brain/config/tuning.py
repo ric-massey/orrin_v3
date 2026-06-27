@@ -94,7 +94,7 @@ ATTN_DROWSY_FN_BOOST: float = 0.20       # flat boost for _MODE_DROWSY_FNS
 SEMANTIC_MATCH_FLOOR: float = 0.22
 
 # ── Affect arbiter ───────────────────────────────────────────────────────────
-# brain/affect/arbiter.py. Per-cycle ceiling on the total homeostasis-weighted
+# brain/control_signals/arbiter.py. Per-cycle ceiling on the total homeostasis-weighted
 # magnitude of affect change, and the extra "cost" multiplier for deltas that
 # push a signal away from its setpoint. See arbiter.py's module docstring for
 # the full propose -> integrate -> commit model.

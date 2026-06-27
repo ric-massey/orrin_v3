@@ -114,8 +114,8 @@ def record_lifetime_progress(goal_id: str, note: str, context: Optional[Dict[str
 
     if context is not None:
         try:
-            from brain.affect.reward_signals.reward_signals import release_reward_signal
-            from brain.affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
+            from brain.control_signals.reward_signals.reward_signals import release_reward_signal
+            from brain.control_signals.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
             _act = _LIFETIME_PROGRESS_REWARD_SIGNAL
             release_reward_signal(
                 context,

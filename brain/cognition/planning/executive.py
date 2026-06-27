@@ -308,7 +308,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     try:
                         from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
                         if not consolidating_now():
-                            from brain.affect.arbiter import submit_affect
+                            from brain.control_signals.arbiter import submit_affect
                             submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
                                           weight=1.0, source="executive_step", ttl_cycles=2)
                     except Exception as exc:
@@ -321,7 +321,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     # daemon mode); the EMA file write is flock+atomic.
                     _reward: Optional[float] = None
                     try:
-                        from brain.affect.reward_signals.reward_engine import submit_reward
+                        from brain.control_signals.reward_signals.reward_engine import submit_reward
                         _reward = _outcome_reward(result)
                         submit_reward(context, actual=_reward, action_type=fn,
                                       kind="reward_signal", effort=0.3,
@@ -417,7 +417,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
     Caller clears these collections BEFORE the tick, so only this tick's affect is
     harvested (never the loop's pending affect carried in the loaded snapshot)."""
     try:
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
     except Exception as exc:
         record_failure("executive.harvest_daemon_affect.import", exc)
         return

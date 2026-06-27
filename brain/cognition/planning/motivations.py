@@ -9,7 +9,7 @@ from brain.utils.self_model import get_self_model, save_self_model, ensure_self_
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 from brain.utils.log import log_model_issue
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
     GOAL_TRAJECTORY_LOG_JSON,
     FEEDBACK_LOG,

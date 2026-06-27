@@ -3,8 +3,8 @@ import time
 import random
 from typing import Any, Dict, Optional
 
-from brain.affect.reward_signals.reward_spike import log_reward_spike
-from brain.affect.affect_buffer import queue_affect_change
+from brain.control_signals.reward_signals.reward_spike import log_reward_spike
+from brain.control_signals.affect_buffer import queue_affect_change
 from brain.utils.json_utils import save_json
 from brain.utils.log import log_activity
 from brain.utils.signal_utils import create_signal

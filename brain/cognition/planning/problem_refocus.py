@@ -201,8 +201,8 @@ def _bump_problem_affect(context: Dict[str, Any], tool: bool = False) -> None:
 
 def _release(context: Dict[str, Any], actual: float, source: str) -> None:
     try:
-        from brain.affect.reward_signals.reward_signals import release_reward_signal
-        from brain.affect.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
+        from brain.control_signals.reward_signals.reward_signals import release_reward_signal
+        from brain.control_signals.reward_signals.action_reward_ema import get_expected as _pe, update_expected as _upe
         release_reward_signal(
             context,
             signal_type="reward_signal",

@@ -22,7 +22,7 @@ REPO = Path(__file__).resolve().parent.parent
 # Append a name here only once `make verify` is green with zero bare imports.
 # (Root-level `goals`, `memory`, `supervisor` are legitimately top-level — not leaves.)
 CONVERTED = (
-    "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
+    "paths", "utils", "core", "cog_memory", "cognition", "control_signals", "think",
     "behavior", "agency", "registry", "symbolic", "runtime_coupling", "motivation",
     "peers", "benchmarks", "evidence", "config", "eval",
     # brain-root *modules* (not packages) — bare imports of these only resolved

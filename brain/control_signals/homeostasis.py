@@ -1,4 +1,4 @@
-# brain/affect/homeostasis.py
+# brain/control_signals/homeostasis.py
 #
 # HomeostasisManager — the single owner of *restoring forces* on affect.
 #
@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from brain.affect.setpoints import CORE_BASELINES
+from brain.control_signals.setpoints import CORE_BASELINES
 
 # Antagonist pairs for sustained cross-inhibition. When a dominant signal is
 # chronically elevated, its antagonists are pulled toward baseline faster than
@@ -88,7 +88,7 @@ def homeostasis_index(core: Dict[str, float]) -> float:
     returns `_HOMEOSTASIS_DEFAULT` if setpoints are unavailable or core is empty.
     """
     try:
-        from brain.affect.setpoints import setpoint as _setpoint
+        from brain.control_signals.setpoints import setpoint as _setpoint
     except ImportError:  # intentional: setpoints unavailable → fail-safe default
         return _HOMEOSTASIS_DEFAULT
     weighted_devs: List[tuple] = []

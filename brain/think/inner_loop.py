@@ -98,7 +98,7 @@ def _draft_prompt(
     prior_revision  = scratchpad_latest(context, "revision")  if round_num > 1 else ""
 
     try:
-        from brain.affect.affect_summary import format_goal_state as _gfo
+        from brain.control_signals.affect_summary import format_goal_state as _gfo
         goal_line = _gfo(context.get("committed_goal") or {})
         goal_line = (goal_line + "\n") if goal_line else ""
     except Exception:
@@ -116,7 +116,7 @@ def _draft_prompt(
 
     felt_line = ""
     try:
-        from brain.affect.affect_summary import describe_dominant_affect as _dfs
+        from brain.control_signals.affect_summary import describe_dominant_affect as _dfs
         _sense = _dfs(context.get("affect_state") or {})
         if _sense:
             felt_line = f"Right now I notice: {_sense}\n"

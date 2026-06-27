@@ -4,7 +4,7 @@ from brain.utils.load_utils import load_all_known_json
 from brain.cog_memory.working_memory import update_working_memory
 from brain.utils.log import log_private
 from brain.utils.log_reflection import log_reflection
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 

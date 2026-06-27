@@ -1,4 +1,4 @@
-# brain/affect/introspection.py
+# brain/control_signals/introspection.py
 #
 # Orrin's introspective access to his own affective state is imperfect.
 #

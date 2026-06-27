@@ -100,7 +100,7 @@ def _release(context: Dict[str, Any], signal_type: str, amount: float, source: s
     # inconsistent baselines in V3_AUDIT §2.1). action_type = signal_type so each
     # calibrated channel learns its own expectation.
     try:
-        from brain.affect.reward_signals.reward_engine import submit_reward
+        from brain.control_signals.reward_signals.reward_engine import submit_reward
         submit_reward(
             context,
             actual=amount,

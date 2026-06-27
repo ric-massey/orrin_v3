@@ -345,7 +345,7 @@ def _drop_with_costs(
     )
     if isinstance(context, dict):
         try:
-            from brain.affect.arbiter import submit_affect
+            from brain.control_signals.arbiter import submit_affect
             submit_affect(context, "negative_valence", round(0.10 + 0.25 * stake, 3),
                           source="opinion_reversal", ttl_cycles=2)
         except Exception as e:

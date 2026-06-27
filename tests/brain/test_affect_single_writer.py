@@ -8,8 +8,8 @@
 #   - concurrent submissions never lose updates (no last-writer-wins race).
 import threading
 
-import brain.affect.arbiter as arbiter
-from brain.affect.arbiter import submit_affect, commit_affect
+import brain.control_signals.arbiter as arbiter
+from brain.control_signals.arbiter import submit_affect, commit_affect
 
 
 def _ctx(**core):
@@ -68,7 +68,7 @@ def test_concurrent_submissions_are_not_lost():
 
 
 def test_drain_consolidations_does_not_write_affect_file(monkeypatch):
-    import brain.affect.consolidation as consolidation
+    import brain.control_signals.consolidation as consolidation
 
     entry = {
         "id": "x", "event": "e", "emotion": "positive_valence",

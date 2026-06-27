@@ -134,7 +134,7 @@ def _pay_artifact_reuse(context: Context) -> None:
         credits = drain_pending_reuse()
         if not credits:
             return
-        from brain.affect.reward_signals.reward_signals import release_reward
+        from brain.control_signals.reward_signals.reward_signals import release_reward
         _reward: Any = release_reward  # untyped emitter — call through Any
         from brain.cog_memory.working_memory import update_working_memory
         for _ru in credits:
@@ -273,7 +273,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
     # through next cycle's update_affect_state. This is the single commit
     # point that replaces the old last-writer-wins races.
     try:
-        from brain.affect.arbiter import commit_affect as _commit_affect
+        from brain.control_signals.arbiter import commit_affect as _commit_affect
         _commit_affect(context)
     except Exception as _aae:
         record_failure("ORRIN_loop.affect_commit", _aae)

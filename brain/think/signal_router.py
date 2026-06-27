@@ -5,7 +5,7 @@ from brain.utils.load_utils import load_json
 from brain.utils.log import log_activity
 from brain.utils.knowledge_utils import recall_relevant_knowledge
 from brain.think.think_utils.user_input import handle_user_input
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import AFFECT_MODEL_FILE, ATTENTION_HISTORY
 from brain.utils.json_utils import save_json
 from brain.utils.signal_utils import gather_signals

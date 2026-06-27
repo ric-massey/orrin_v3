@@ -1,4 +1,4 @@
-# brain/affect/model.py
+# brain/control_signals/model.py
 #
 # Affect model loader — maps affect labels to keyword lists for detection.
 #

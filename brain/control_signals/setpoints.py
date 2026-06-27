@@ -1,4 +1,4 @@
-# brain/affect/setpoints.py
+# brain/control_signals/setpoints.py
 #
 # Homeostatic setpoints (baselines) for affect signals.
 #

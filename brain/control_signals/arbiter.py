@@ -1,4 +1,4 @@
-# brain/affect/arbiter.py
+# brain/control_signals/arbiter.py
 #
 # AffectArbiter — the single convergence point for affect changes.
 #
@@ -34,8 +34,8 @@ from __future__ import annotations
 import threading
 from typing import Any, Dict, List, Optional
 
-from brain.affect.affect_buffer import queue_affect_change
-from brain.affect.setpoints import setpoint
+from brain.control_signals.affect_buffer import queue_affect_change
+from brain.control_signals.setpoints import setpoint
 from brain.config.tuning import AFFECT_AWAY_COST_MULTIPLIER, AFFECT_STABILITY_BUDGET
 from brain.utils.log import log_activity
 

@@ -317,7 +317,7 @@ def _apply_relationship_emotion_feedback(
         core = emo.get("core_signals", emo) or {}
 
         if met_count >= 2:
-            from brain.affect.homeostasis import pump_signal
+            from brain.control_signals.homeostasis import pump_signal
             pump_signal(core, "positive_valence", 0.06)
             pump_signal(core, "expected_gain",    0.04)
         elif unmet_count >= 3 and emotion in neg_emotions:

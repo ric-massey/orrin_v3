@@ -1,4 +1,4 @@
-# brain/affect/regulation.py
+# brain/control_signals/regulation.py
 #
 # Affective regulation — Orrin doesn't just experience affects; he works on them.
 #
@@ -377,7 +377,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     before = dict(core)
     _apply_strategy(core, emotion, strategy, succeeded)
 
-    from brain.affect.arbiter import submit_affect
+    from brain.control_signals.arbiter import submit_affect
     for _emo, _new in core.items():
         # Absent-before keys start from 0.0 (a signal not in core_signals is at
         # rest), so a side-effect that introduces one still produces its delta.

@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timezone
 from brain.utils.log import log_private, log_error
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.threat_detector import process_affective_signals
+from brain.control_signals.threat_detector import process_affective_signals
 
 # Affect → preferred function when affectively dysregulated
 _EMO_DRIVE_MAP = {

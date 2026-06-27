@@ -40,7 +40,7 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
     # Live-context path: submit a proposal to the convergence layer and return.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
         try:
-            from brain.affect.arbiter import submit_affect
+            from brain.control_signals.arbiter import submit_affect
             submit_affect(context, emotion, scaled_amount, source=(reason or "adjust")[:40])
             context.setdefault("raw_signals", []).append({
                 "source": "emotion",
@@ -101,7 +101,7 @@ _warned_no_emotion_keywords = False
 
 
 def detect_affect_keyword(text: str) -> str:
-    from brain.affect.model import load_emotion_keywords  # deferred (keeps utils L1 at load time)
+    from brain.control_signals.model import load_emotion_keywords  # deferred (keeps utils L1 at load time)
     global _warned_no_emotion_keywords
     text = (text or "").lower()
     emotion_keywords = load_emotion_keywords()
@@ -128,7 +128,7 @@ def log_penalty_signal(context, emotion: str = "impasse_signal", increment: floa
     falls back to a direct file write only for genuinely context-less callers."""
     # Live-context path: propose the increment to the convergence layer.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
         submit_affect(context, emotion, float(increment), source="penalty_signal", ttl_cycles=2)
         log_private(f"⚠️ penalty_signal proposal: {emotion} += {round(float(increment), 4)}")
         context.setdefault("raw_signals", []).append({

@@ -1,4 +1,4 @@
-# brain/affect/consolidation.py
+# brain/control_signals/consolidation.py
 #
 # Affective consolidation — significant events don't just spike and pass.
 # They settle into the affective substrate over several cycles, leaving a
@@ -118,7 +118,7 @@ def drain_consolidations(context: Dict[str, Any]) -> None:
     if not queue:
         return
 
-    from brain.affect.arbiter import submit_affect
+    from brain.control_signals.arbiter import submit_affect
 
     remaining = []
     for entry in queue:

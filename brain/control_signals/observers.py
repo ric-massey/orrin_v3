@@ -1,4 +1,4 @@
-# brain/affect/observers.py
+# brain/control_signals/observers.py
 #
 # Canonical, read-only observers over affect_state (V3_AUDIT.md §2.2 / §4.1, D6/D9).
 #

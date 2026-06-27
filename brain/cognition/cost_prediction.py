@@ -277,7 +277,7 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
                 pass
             if abs(nudge) >= _NUDGE_MIN:
                 try:
-                    from brain.affect.arbiter import submit_affect
+                    from brain.control_signals.arbiter import submit_affect
                     submit_affect(context, "resource_deficit", nudge,
                                   weight=0.5, source="interoception:pe", ttl_cycles=3)
                 except Exception:

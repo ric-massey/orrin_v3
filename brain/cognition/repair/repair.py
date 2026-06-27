@@ -8,9 +8,9 @@ from brain.utils.json_utils import load_json, save_json, extract_json
 from brain.utils.log import log_error, log_private, log_model_issue, log_activity
 from brain.utils.log_reflection import log_reflection
 from brain.utils.load_utils import load_all_known_json
-from brain.affect.feedback_log import log_feedback
+from brain.control_signals.feedback_log import log_feedback
 from brain.cognition.reflection.reflect_on_cognition import update_cognition_schedule
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
 # --- Paths (use distinct names so we don't shadow path constants) ---
 from brain.paths import (

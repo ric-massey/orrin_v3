@@ -25,7 +25,7 @@ def _llm_available() -> bool:
 
 def investigate_unexplained_emotions(context, self_model, memory):
     from brain.cog_memory.working_memory import update_working_memory
-    from brain.affect.reward_signals.reward_signals import release_reward_signal
+    from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
     affect_state = load_json(AFFECT_STATE_FILE, default_type=dict)
     if not isinstance(affect_state, dict):
@@ -222,7 +222,7 @@ def detect_affect(text, use_gpt=True):
 
 
 def deliver_affect_based_rewards(context, core_signals, stability):
-    from brain.affect.reward_signals.reward_signals import release_reward_signal
+    from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
     if not core_signals or not isinstance(core_signals, dict):
         return

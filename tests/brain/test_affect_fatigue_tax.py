@@ -7,7 +7,7 @@
 import json
 from datetime import datetime, timezone
 
-import brain.affect.update_affect_state as uas
+import brain.control_signals.update_affect_state as uas
 import brain.cog_memory.working_memory as wm
 
 

@@ -247,7 +247,7 @@ def apply_drive_tensions(context: Dict[str, Any]) -> List[Dict]:
         # cycle-end commit instead of racing them with a direct write.
         bump = conflicts[0]["intensity"] * 0.07
         try:
-            from brain.affect.arbiter import submit_affect
+            from brain.control_signals.arbiter import submit_affect
             submit_affect(context, "uncertainty", +bump, source="goal_competition")
         except Exception as _e:
             log_private(f"[goal_competition] affect submit failed: {_e}")
@@ -271,7 +271,7 @@ def apply_drive_tensions(context: Dict[str, Any]) -> List[Dict]:
             # Scale with how long it has dragged on, capped so it eases rather than slams.
             _discharge = min(0.06, 0.01 * (_persist - _CONFLICT_DISCHARGE_AFTER + 1))
             try:
-                from brain.affect.arbiter import submit_affect
+                from brain.control_signals.arbiter import submit_affect
                 _seen = set()
                 for _drive in hot["drives"]:
                     _sig = _DRIVE_SIGNAL.get(_drive)

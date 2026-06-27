@@ -1,5 +1,5 @@
 # Canonical affect observers + schema normalization (V3 D6/D9).
-from brain.affect.observers import negative_load, normalize_affect_state
+from brain.control_signals.observers import negative_load, normalize_affect_state
 
 
 def test_negative_load_sums_negative_signals_nested():

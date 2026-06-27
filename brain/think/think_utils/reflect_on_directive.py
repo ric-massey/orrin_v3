@@ -4,7 +4,7 @@ from brain.utils.knowledge_utils import recall_relevant_knowledge
 from brain.utils.goals import extract_current_focus_goal
 from brain.cog_memory.working_memory import update_working_memory
 from brain.utils.json_utils import load_json  # ✅ correct source
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE, FOCUS_GOAL
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)

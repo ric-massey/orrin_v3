@@ -1,4 +1,4 @@
-# brain/affect/reward_signals/reward_engine.py
+# brain/control_signals/reward_signals/reward_engine.py
 #
 # RewardEngine — the single definition of reward prediction error (RPE).
 #
@@ -25,8 +25,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from brain.affect.reward_signals.action_reward_ema import get_expected, update_expected
-from brain.affect.reward_signals.reward_signals import release_reward
+from brain.control_signals.reward_signals.action_reward_ema import get_expected, update_expected
+from brain.control_signals.reward_signals.reward_signals import release_reward
 
 
 def submit_reward(

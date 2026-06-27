@@ -1,4 +1,4 @@
-# brain/affect/affect_learning.py
+# brain/control_signals/affect_learning.py
 #
 # Associative learning: maps affect signals to cognitive functions over time.
 # Reinforced associations survive; unreinforced ones decay at DECAY_RATE per update.

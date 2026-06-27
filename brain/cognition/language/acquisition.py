@@ -385,7 +385,7 @@ def narrate_experience(context) -> str:
     if not perceived:
         return ""
     try:
-        from brain.affect.affect_summary import describe_dominant_affect
+        from brain.control_signals.affect_summary import describe_dominant_affect
         feel = (describe_dominant_affect(perceived) or "").strip()
     except Exception:
         feel = ""

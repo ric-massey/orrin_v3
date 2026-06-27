@@ -116,7 +116,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         flow_depth = action_count - 3
         context["_flow_depth"] = flow_depth
         boost = min(0.08, 0.02 * flow_depth)
-        from brain.affect.homeostasis import pump_signal
+        from brain.control_signals.homeostasis import pump_signal
         pump_signal(core, "motivation", boost, default=0.5)
         pump_signal(core, "confidence", boost * 0.5, default=0.5)
     else:

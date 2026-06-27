@@ -213,8 +213,8 @@ def try_to_accomplish(goal: Dict[str, Any]) -> bool:
             # P3 — a real, effect-backed contribution decays the served aspiration's
             # recruitment pressure (a bookkeeping closure would not).
             try:
-                from brain.cognition.intrinsic_goals import mark_aspiration_contribution
-                mark_aspiration_contribution(goal.get("driven_by", ""))
+                from brain.cognition.intrinsic_goals import mark_objective_contribution
+                mark_objective_contribution(goal.get("driven_by", ""))
             except Exception as _e:
                 record_failure("goals.try_to_accomplish.aspiration", _e)
             return True

@@ -23,11 +23,11 @@ from brain.utils.llm_gate import llm_callable_by
 from brain.utils.failure_counter import record_failure
 # The aspiration subsystem was extracted to intrinsic_aspirations.py (Phase 4.5C).
 # Re-imported here so the generators/commit-selection below + external callers
-# (finalize.credit_aspirations, goals.mark_aspiration_contribution) keep their
+# (finalize.credit_objectives, goals.mark_objective_contribution) keep their
 # existing `from …intrinsic_goals import …` paths.
-from brain.cognition.intrinsic_aspirations import (  # noqa: F401
-    credit_aspirations as credit_aspirations, aspiration_pressure,
-    mark_aspiration_contribution as mark_aspiration_contribution,
+from brain.cognition.intrinsic_objectives import (  # noqa: F401
+    credit_objectives as credit_objectives, objective_pressure,
+    mark_objective_contribution as mark_objective_contribution,
     _serves_aspiration, _fairness_default_drive, _ensure_aspirations,
     _ASPIRATIONS, _DRIVE_TO_ASPIRATION,
 )
@@ -137,7 +137,7 @@ def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> O
     if not cands:
         return None
     try:
-        pressure = aspiration_pressure(context)
+        pressure = objective_pressure(context)
     except Exception:
         pressure = {}
     strengths = {}

@@ -1,4 +1,4 @@
-# brain/cognition/aspiration_scoreboard.py
+# brain/cognition/objective_scoreboard.py
 #
 # Per-aspiration funnel scoreboard (T0.3 / WS-7 Change 5).
 #
@@ -6,7 +6,7 @@
 # count per aspiration (the 06-23 run: 20 / 0 / 0 / 0) and had NO way to tell
 # *where* each zero-aspiration died: was it never generated? generated but never
 # attempted? attempted but never progressed? The scoreboard records each stage of
-# an aspiration's funnel in a rolling window, so aspiration_pressure (and a human
+# an aspiration's funnel in a rolling window, so objective_pressure (and a human
 # reading the run) can see the DROP EDGE, not just the end state.
 #
 # Stages (per aspiration, rolling window):
@@ -35,7 +35,7 @@ _MAX_EVENTS = 4000           # hard cap on stored events (bounds the file)
 def _aspiration_for(driven_by: str) -> str:
     """Resolve a goal's drive to the aspiration title it serves (learned link)."""
     try:
-        from brain.cognition.intrinsic_aspirations import _serves_aspiration
+        from brain.cognition.intrinsic_objectives import _serves_aspiration
         return _serves_aspiration(str(driven_by or ""))
     except Exception:  # intentional: scoreboard is best-effort, never raise
         return ""
@@ -88,5 +88,5 @@ def scoreboard(window_s: float = _WINDOW_S) -> Dict[str, Dict[str, int]]:
 
 
 def generation_counts(window_s: float = _WINDOW_S) -> Dict[str, int]:
-    """Per-aspiration `generated` counts over the window (fed to aspiration_pressure)."""
+    """Per-aspiration `generated` counts over the window (fed to objective_pressure)."""
     return {asp: stages.get("generated", 0) for asp, stages in scoreboard(window_s).items()}

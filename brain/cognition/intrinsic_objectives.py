@@ -1,8 +1,8 @@
-# brain/cognition/intrinsic_aspirations.py
+# brain/cognition/intrinsic_objectives.py
 # The aspiration subsystem of intrinsic_goals (Phase 4.5C extraction): the four
 # enduring long-term aspirations, the learned driven_by -> aspiration association
-# (credit_aspirations / _serves_aspiration), and the P3 fairness/recruitment
-# pressure (aspiration_pressure / mark_aspiration_contribution). Self-contained:
+# (credit_objectives / _serves_aspiration), and the P3 fairness/recruitment
+# pressure (objective_pressure / mark_objective_contribution). Self-contained:
 # it reads/writes the goal + drive-credit stores and depends on no other
 # intrinsic_goals helper, so intrinsic_goals re-imports the names it still uses.
 from __future__ import annotations
@@ -62,7 +62,7 @@ _DRIVE_TO_ASPIRATION = {
 
 
 # ── Phase 4 / Fix C: learned driven_by → aspiration association ────────────────
-# When a goal completes, credit_aspirations() works out which aspiration its
+# When a goal completes, credit_objectives() works out which aspiration its
 # OUTCOME actually advanced (from the goal's content + its causal effects,
 # independent of the driven_by tag) and EMA-updates a weight for
 # (driven_by → that aspiration). _serves_aspiration returns the argmax once there
@@ -276,7 +276,7 @@ _ASPIRATION_TARGET = 20          # contributions for "full" directional progress
 _ASPIRATION_MILESTONE_EVERY = 5  # a visible milestone every N contributions
 
 
-def credit_aspirations(context: Dict[str, Any] = None) -> str:
+def credit_objectives(context: Dict[str, Any] = None) -> str:
     """Roll completed short-term goals UP into the long-term aspirations they
     serve, so the enduring goals actually ADVANCE instead of sitting at
     in_progress with zero movement. Also protects them: re-creates any that went
@@ -288,7 +288,7 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
         if not isinstance(goals, list):
             return ""
     except Exception as exc:  # goals unreadable — record, nothing to credit
-        record_failure("intrinsic_goals.credit_aspirations", exc)
+        record_failure("intrinsic_goals.credit_objectives", exc)
         return ""
 
     # Tally completed short-term contributions per aspiration, across both stores.
@@ -337,7 +337,7 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
                 # per goal (gated by the same idempotency ledger as the EMA fold).
                 if _newly_credited:
                     try:
-                        from brain.cognition.aspiration_scoreboard import record as _sb_record
+                        from brain.cognition.objective_scoreboard import record as _sb_record
                         _sb_record(title, "completed")
                     except Exception:  # intentional: scoreboard is best-effort
                         pass
@@ -388,16 +388,16 @@ def credit_aspirations(context: Dict[str, Any] = None) -> str:
 # rises with time-since-last-contribution and with how far below the mean an
 # aspiration's share sits, so "Make things" at 0% for 10k cycles → high pressure.
 # It is decayed only by a real (effect-backed) contribution timestamp written in
-# mark_aspiration_contribution — bookkeeping closures don't move it.
+# mark_objective_contribution — bookkeeping closures don't move it.
 _STARVED_IDLE_FULL_S = 6 * 3600.0   # idle this long → full idle pressure component
 
 
-def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
+def objective_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
     """Per-aspiration recruitment weight in [0,1]; higher = more starved."""
     try:
         goals = load_json(GOALS_FILE, default_type=list) or []
     except Exception as exc:  # goals unreadable — record, no pressure signal
-        record_failure("intrinsic_goals.aspiration_pressure", exc)
+        record_failure("intrinsic_goals.objective_pressure", exc)
         return {}
     asps = [g for g in goals if isinstance(g, dict)
             and (g.get("_aspiration") or g.get("kind") == "aspiration")]
@@ -411,7 +411,7 @@ def aspiration_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
     # pressure, so a direction that never even produces candidate goals (not just
     # one that never completes) becomes visible to the generator. Count-agnostic.
     try:
-        from brain.cognition.aspiration_scoreboard import generation_counts
+        from brain.cognition.objective_scoreboard import generation_counts
         gen = generation_counts()
     except Exception:
         gen = {}
@@ -439,7 +439,7 @@ def _fairness_default_drive() -> str:
     """Demand of the most-starved aspiration (P3) — the new default for an untagged
     goal, so the path of least resistance stops being world_knowledge."""
     try:
-        p = aspiration_pressure()
+        p = objective_pressure()
         if p:
             top = max(p, key=p.get)
             for t, d in _ASPIRATIONS:
@@ -450,7 +450,7 @@ def _fairness_default_drive() -> str:
     return "world_knowledge"
 
 
-def mark_aspiration_contribution(driven_by: str) -> None:
+def mark_objective_contribution(driven_by: str) -> None:
     """Stamp last_contribution_ts on the aspiration a drive serves — decays its P3
     pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping
     closure), so starved directions stay starved until something real lands."""
@@ -460,7 +460,7 @@ def mark_aspiration_contribution(driven_by: str) -> None:
     # (T0.3 Change 5) A real effect-backed contribution = the `progressed` funnel
     # stage for this aspiration.
     try:
-        from brain.cognition.aspiration_scoreboard import record as _sb_record
+        from brain.cognition.objective_scoreboard import record as _sb_record
         _sb_record(asp_title, "progressed")
     except Exception:  # intentional: scoreboard is best-effort
         pass
@@ -478,4 +478,4 @@ def mark_aspiration_contribution(driven_by: str) -> None:
         if changed:
             save_json(GOALS_FILE, goals)
     except Exception as _e:
-        record_failure("intrinsic_goals.mark_aspiration_contribution", _e)
+        record_failure("intrinsic_goals.mark_objective_contribution", _e)

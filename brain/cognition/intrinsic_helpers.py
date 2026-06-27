@@ -18,7 +18,7 @@ from typing import Dict, Any, List
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
 from brain.paths import RECENTLY_COMPLETED_FILE, COMPLETED_GOALS_FILE
-from brain.cognition.intrinsic_aspirations import _fairness_default_drive
+from brain.cognition.intrinsic_objectives import _fairness_default_drive
 
 _log = get_logger(__name__)
 
@@ -164,7 +164,7 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
     # aspiration was generated — so we can later see whether each aspiration died
     # at generation or downstream, instead of only the end-state count.
     try:
-        from brain.cognition.aspiration_scoreboard import record_by_drive
+        from brain.cognition.objective_scoreboard import record_by_drive
         record_by_drive(driven_by, "generated")
     except Exception:  # intentional: scoreboard is best-effort, never block a goal
         pass

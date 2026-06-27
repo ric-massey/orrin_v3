@@ -164,8 +164,8 @@
     "definition": "ask_llm_for_research(context: 'Dict[str, Any]') -> 'str'\nCognition function: Orrin uses LLM as a research tool.\n    Pulls the research topic from context (committed goal or working memory)."
   },
   {
-    "name": "aspiration_pressure",
-    "definition": "aspiration_pressure(context: 'Dict[str, Any]' = None) -> 'Dict[str, float]'\nPer-aspiration recruitment weight in [0,1]; higher = more starved."
+    "name": "objective_pressure",
+    "definition": "objective_pressure(context: 'Dict[str, Any]' = None) -> 'Dict[str, float]'\nPer-aspiration recruitment weight in [0,1]; higher = more starved."
   },
   {
     "name": "assess_goal_progress",
@@ -400,8 +400,8 @@
     "definition": "create_thread(title: 'str', initial_thought: 'str' = '', context: 'Dict[str, Any]' = None, source: 'str' = 'reflection') -> 'Dict[str, Any]'\nCreate a new thread of attention and save it."
   },
   {
-    "name": "credit_aspirations",
-    "definition": "credit_aspirations(context: 'Dict[str, Any]' = None) -> 'str'\nRoll completed short-term goals UP into the long-term aspirations they\n    serve, so the enduring goals actually ADVANCE instead of sitting at\n    in_progress with zero movement. Also protects them: re-creates any that went\n    missing and reverts any wrongly marked 'completed' (aspirations are\n    directional — they accrue progress but never auto-complete)."
+    "name": "credit_objectives",
+    "definition": "credit_objectives(context: 'Dict[str, Any]' = None) -> 'str'\nRoll completed short-term goals UP into the long-term aspirations they\n    serve, so the enduring goals actually ADVANCE instead of sitting at\n    in_progress with zero movement. Also protects them: re-creates any that went\n    missing and reverts any wrongly marked 'completed' (aspirations are\n    directional — they accrue progress but never auto-complete)."
   },
   {
     "name": "credit_sleep",
@@ -1024,8 +1024,8 @@
     "definition": "machine_ram_bytes() -> 'float'"
   },
   {
-    "name": "mark_aspiration_contribution",
-    "definition": "mark_aspiration_contribution(driven_by: 'str') -> 'None'\nStamp last_contribution_ts on the aspiration a drive serves — decays its P3\n    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping\n    closure), so starved directions stay starved until something real lands."
+    "name": "mark_objective_contribution",
+    "definition": "mark_objective_contribution(driven_by: 'str') -> 'None'\nStamp last_contribution_ts on the aspiration a drive serves — decays its P3\n    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping\n    closure), so starved directions stay starved until something real lands."
   },
   {
     "name": "mark_consequential_cognition",

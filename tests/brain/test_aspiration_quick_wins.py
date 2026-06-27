@@ -1,8 +1,8 @@
 # T0.3 (WS-7 Changes 5, 1, 3-core) — aspiration scoreboard + seed-at-birth +
 # orphaned-`will` mapping. Regression coverage for the three Phase-0 aspiration
 # quick wins from the Core Architecture master plan.
-import brain.cognition.intrinsic_aspirations as ia
-import brain.cognition.aspiration_scoreboard as sb
+import brain.cognition.intrinsic_objectives as ia
+import brain.cognition.objective_scoreboard as sb
 import brain.cognition.production_funnel as pf
 
 

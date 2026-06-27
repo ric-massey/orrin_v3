@@ -504,7 +504,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
         # wrongly completed — so long-term goals actually advance.
         if get_cycle_count() % 25 == 0:
             try:
-                from brain.cognition.intrinsic_goals import credit_aspirations as _ca
+                from brain.cognition.intrinsic_goals import credit_objectives as _ca
                 _ca(context)
             except Exception as _cae:
                 record_failure("ORRIN_loop.run_cognitive_loop.29", _cae)

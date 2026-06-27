@@ -23,7 +23,7 @@ from brain.cognition.intrinsic_helpers import (
     _mk_goal, _acceptable_goal_subject, _strip_goal_scaffold, _weighted_sample,
     _active_goal_titles, _RECENTLY_COMPLETED, _COOLDOWN_S,
 )
-from brain.cognition.intrinsic_aspirations import aspiration_pressure, _serves_aspiration
+from brain.cognition.intrinsic_objectives import objective_pressure, _serves_aspiration
 
 _log = get_logger(__name__)
 
@@ -543,7 +543,7 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
     # ("Make things") actually gets recruited instead of losing every uniform draw
     # to the abundant intake candidates.
     try:
-        pressure = aspiration_pressure(context)
+        pressure = objective_pressure(context)
         if pressure:
             scored = [
                 (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))

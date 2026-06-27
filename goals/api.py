@@ -338,7 +338,7 @@ class GoalsAPI:
             except Exception as _e:  # a subscriber raised — log, keep notifying the rest
                 _log.warning("goal-event subscriber raised: %s", _e)
                 continue
-        # Send to reaper/observability if provided
+        # Send to supervisor/observability if provided
         if callable(self.reaper_sink):
             try:
                 self.reaper_sink(event)

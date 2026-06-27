@@ -1,7 +1,7 @@
 # brain/cognition/host_interoception.py
 #
 # §6.2 — the felt body. The same host metrics the autonomic reflex
-# (reaper/host_resources.HostResourceGuard) reads to keep the machine alive ALSO feed
+# (supervisor/host_resources.HostResourceGuard) reads to keep the machine alive ALSO feed
 # Orrin's felt body state — but as a DIFFERENT system (§6.1): the reflex is absolute
 # and below cognition; this is relative, deviation-from-his-own-normal, and felt.
 #

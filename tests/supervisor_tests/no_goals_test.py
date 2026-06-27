@@ -1,5 +1,5 @@
 # tests/reaper_tests/no_goals_test.pyPYTHO
-from reaper.no_goals import NoGoalsGuard
+from supervisor.no_goals import NoGoalsGuard
 
 # --------- helpers ----------
 class FakeClock:
@@ -275,7 +275,7 @@ def test_metrics_hook_called_on_trip(monkeypatch):
     pulse = Pulse(0)
     kills = KillRecorder()
 
-    import reaper.no_goals as mod
+    import supervisor.no_goals as mod
     fake = _FakeMetric()
     monkeypatch.setattr(mod, "errors_total", fake, raising=True)
 

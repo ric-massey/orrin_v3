@@ -1,5 +1,5 @@
 # brain/cognition/terminal.py
-# Final reflection cognition — runs only during the dying window before shutdown.
+# Final reflection cognition — runs only during the termination window before shutdown.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
@@ -67,16 +67,16 @@ def _compose_final_reflection(*, death_reason: str, identity: str,
 def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
     """
     Produces a final reflection written to final_thoughts.json so the next Orrin
-    can read it on boot. Called during the reaper's dying window AND on an ordinary
+    can read it on boot. Called during the supervisor's termination window AND on an ordinary
     operator stop (T0.4: a graceful stop used to emit no final reflection at all).
     `reason` lets the caller stamp the handoff (e.g. "operator_stop"); when omitted
-    it falls back to the reaper dying reason. This NEVER sets lifespan.json's
+    it falls back to the supervisor dying reason. This NEVER sets lifespan.json's
     `final_thoughts_written` death flag — that belongs solely to the real-deadline
     path, so a routine restart is a handoff, not a death.
     """
     context = context or {}
 
-    from reaper.reaper import dying_reason as _reason
+    from supervisor.supervisor import termination_reason as _reason
     death_reason = reason or _reason() or context.get("_death_reason", "unknown")
 
     self_model = load_json(SELF_MODEL_FILE, default_type=dict) or {}
@@ -135,7 +135,7 @@ def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
             record_failure("terminal.final_reflection", _e)
 
     # Do NOT set lifespan.json's `final_thoughts_written` here. This reflection runs in
-    # the reaper's dying window — a stall-RESTART, not the natural lifespan deadline —
+    # the supervisor's termination window — a stall-RESTART, not the natural lifespan deadline —
     # so flipping the death flag made the NEXT boot show the Death Screen forever (and
     # would also shadow his genuine end-of-life reflection, since _write_final_thoughts
     # early-returns once the flag is set). That flag belongs solely to runtime_lifetime's

@@ -1,5 +1,5 @@
 # tests/reaper_tests/liveness_cycle_test.py
-from reaper.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
+from supervisor.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
 
 # --- helpers ---
 class Pulse:
@@ -174,7 +174,7 @@ def test_metrics_hook_called_if_present(monkeypatch):
     kills = KillRecorder()
     fake = _FakeMetric()
     # monkeypatch the module-level errors_total symbol used inside LivenessByCycles.step
-    import reaper.liveness_cycle as mod
+    import supervisor.liveness_cycle as mod
     monkeypatch.setattr(mod, "errors_total", fake, raising=True)
 
     live = LivenessByCycles(get_pulse=pulse.read, on_violation=kills)

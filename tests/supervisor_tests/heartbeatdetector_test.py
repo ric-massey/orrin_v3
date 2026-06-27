@@ -1,6 +1,6 @@
 import time
-from reaper.heartbeatdetector import HeartbeatDetector
-from reaper.reaper import Reaper
+from supervisor.heartbeatdetector import HeartbeatDetector
+from supervisor.supervisor import Supervisor
 
 # --------- helpers ----------
 class FakeClock:
@@ -23,10 +23,10 @@ def mk(clk, pulse, fast_checks=100, slow_checks=10, window=20,
        min_ms=5.0, max_ms=10_000.0, boot_ms=120_000.0):
     """Factory with your limits (5ms fast / 10s slow)."""
     kills = KillRecorder()
-    reaper = Reaper(kill=kills, dying_window_s=0)
+    supervisor = Supervisor(kill=kills, termination_window_s=0)
     det = HeartbeatDetector(
         get_pulse=lambda: pulse["n"],
-        on_violation=reaper.trigger,
+        on_violation=supervisor.trigger,
         min_period_ms=min_ms,
         max_period_ms=max_ms,
         boot_grace_ms=boot_ms,
@@ -137,7 +137,7 @@ def test_slow_first_pulse_within_boot_grace_does_not_kill(monkeypatch):
         clk.step(1.0)
         det.step()
 
-    assert kills.reasons == [], "boot latency under grace must not trip the reaper"
+    assert kills.reasons == [], "boot latency under grace must not trip the supervisor"
 
 def test_mutual_exclusion_of_reasons(monkeypatch):
     # Ensure we never get both fast & slow at the same time

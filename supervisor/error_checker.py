@@ -1,5 +1,5 @@
-# reaper/error_checker.py
-# Tracks error events, applies thresholds and rate limits, triggers Reaper on violations.
+# supervisor/error_checker.py
+# Tracks error events, applies thresholds and rate limits, triggers Supervisor on violations.
 
 from __future__ import annotations
 from brain.core.runtime_log import get_logger

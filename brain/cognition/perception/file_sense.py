@@ -94,7 +94,7 @@ def is_self_path(path: str) -> bool:
     """True if this path lives inside Orrin's own brain/agency dirs."""
     p = path.replace("\\", "/")
     parts = Path(p).parts
-    return bool(parts) and parts[0] in {"brain", "reaper", "agency", "emotion",
+    return bool(parts) and parts[0] in {"brain", "supervisor", "agency", "emotion",
                                          "cognition", "think", "behavior", "cog_memory",
                                          "utils", "embodiment", "registry", "core"}
 

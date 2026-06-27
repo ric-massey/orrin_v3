@@ -49,7 +49,7 @@ all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 
 # ── Packaging note (Finding 5) ──────────────────────────────────────────────
 # This declares the project's dependencies and makes the top-level daemon
-# packages (goals, memory, reaper, backend, observability) and the `brain`
+# packages (goals, memory, supervisor, backend, observability) and the `brain`
 # package itself pip-installable as a unit (`pip install -e .`).
 #
 # Finding 5's deeper issue is now resolved: brain/'s subpackages are imported
@@ -59,7 +59,7 @@ all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 # (agency/self_code.normalize_self_code_imports). The package installs and imports
 # with only the repo root present.
 [tool.setuptools]
-packages = ["backend", "brain", "goals", "memory", "observability", "reaper"]
+packages = ["backend", "brain", "goals", "memory", "observability", "supervisor"]
 
 # ── Ruff (CODEBASE_CLEANUP_PLAN Phase 1 — "narrow Ruff configuration") ───────
 # Deliberately narrow: enforce the high-signal pyflakes logical-error rules
@@ -116,22 +116,22 @@ files = [
     "brain/loop/boot.py",
     "brain/loop/finalize.py",
     "brain/loop/execute.py",
-    # reaper/ — the watchdog suite; brought strict + its optional-metric import
+    # supervisor/ — the watchdog suite; brought strict + its optional-metric import
     # fallbacks narrowed from blanket to [assignment] ignores (Phase 5.3).
-    "reaper/__init__.py",
-    "reaper/errors.py",
-    "reaper/trend.py",
-    "reaper/repeat.py",
-    "reaper/lifespan.py",
-    "reaper/no_goals.py",
-    "reaper/heartbeatdetector.py",
-    "reaper/error_checker.py",
-    "reaper/liveness_cycle.py",
-    "reaper/reaper.py",
-    "reaper/host_resources.py",
-    "reaper/memory.py",
-    "reaper/vital_floor.py",
-    "reaper/vital_floor_calibration.py",
+    "supervisor/__init__.py",
+    "supervisor/errors.py",
+    "supervisor/trend.py",
+    "supervisor/repeat.py",
+    "supervisor/lifespan.py",
+    "supervisor/no_goals.py",
+    "supervisor/heartbeatdetector.py",
+    "supervisor/error_checker.py",
+    "supervisor/liveness_cycle.py",
+    "supervisor/supervisor.py",
+    "supervisor/host_resources.py",
+    "supervisor/memory.py",
+    "supervisor/vital_floor.py",
+    "supervisor/vital_floor_calibration.py",
     # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
     "brain/utils/num.py",
     "brain/utils/log.py",
@@ -253,7 +253,7 @@ files = [
 # `make coverage`; this is just how coverage is measured.
 [tool.coverage.run]
 branch = false
-source = ["brain", "backend", "goals", "memory", "reaper", "runtime", "observability"]
+source = ["brain", "backend", "goals", "memory", "supervisor", "runtime", "observability"]
 omit = [
     "*/__pycache__/*",
     "*/tests/*",

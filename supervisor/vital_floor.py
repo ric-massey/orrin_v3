@@ -1,4 +1,4 @@
-# reaper/vital_floor.py
+# supervisor/vital_floor.py
 # Inward survival reflex. The MIRROR of HostResourceGuard: where the host guard
 # looks OUTWARD at the box (is the building on fire?), this one looks INWARD at
 # Orrin's own footprint against the survival line of his GRANTED body (§6 of the
@@ -14,7 +14,7 @@
 # nears the floor of the body he was granted, he involuntarily lets go of the
 # heaviest disposable thing he is holding (abort the in-flight heavy cycle, drop
 # rebuildable caches, force-trim working memory, refuse new large allocations)
-# until he is back above the line. It NEVER reaches for the reaper's hammer —
+# until he is back above the line. It NEVER reaches for the supervisor's hammer —
 # that is HostResourceGuard's lesson, kept. Only if shedding cannot clear the
 # floor does it defer to the existing liveness/RSS guards, which already own the
 # hard kill. This layer exists to make the hammer unnecessary.

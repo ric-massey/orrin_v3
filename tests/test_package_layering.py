@@ -32,7 +32,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 BRAIN = REPO / "brain"
-TOP_LEVEL = {"goals", "memory", "reaper"}
+TOP_LEVEL = {"goals", "memory", "supervisor"}
 
 # Intended layering (low → high), documentation only. A lower layer should not
 # import a higher one; the legacy graph violates this (see module docstring), so
@@ -97,9 +97,9 @@ BASELINE_EDGES = {
 }
 
 # The only brain files allowed to import the top-level v1 packages
-# (goals/memory/reaper). These are the documented adapter/seam files; the
+# (goals/memory/supervisor). These are the documented adapter/seam files; the
 # coupling is the v1↔v2 bridge the cleanup plan keeps behind ownership tables.
-# Any OTHER brain file importing goals/memory/reaper fails the build.
+# Any OTHER brain file importing goals/memory/supervisor fails the build.
 ADAPTER_FILES = {
     "brain/ORRIN_loop.py",
     "brain/cognition/terminal.py",
@@ -166,7 +166,7 @@ def test_no_new_cross_package_edges():
 def test_brain_does_not_import_top_level_outside_adapters():
     _, top_violations = _scan()
     assert not top_violations, (
-        "brain.* imported a top-level v1 package (goals/memory/reaper) outside the "
+        "brain.* imported a top-level v1 package (goals/memory/supervisor) outside the "
         "documented adapter seam:\n"
         + "\n".join(f"  {f}: import {m}" for f, m in sorted(set(top_violations)))
         + "\n\nKeep the v1↔v2 coupling confined to ADAPTER_FILES, or add the new "

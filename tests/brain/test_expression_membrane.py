@@ -35,7 +35,7 @@ def test_is_speakable_accepts_plain_language():
 
 
 @pytest.mark.parametrize("bad", [
-    "[symbolic] reaper [rule] x",
+    "[symbolic] supervisor [rule] x",
     "[chunk: 12] thinking",
     "[regulation] NORMAL",
     "see /Users/ric/brain/foo.py for details",

@@ -1,5 +1,5 @@
 # observability/metrics.py
-# Prometheus metrics for errors, heartbeat, reaper trips, and all watchdogs.
+# Prometheus metrics for errors, heartbeat, supervisor trips, and all watchdogs.
 
 from prometheus_client import Counter, Gauge, Histogram, start_http_server
 
@@ -39,10 +39,10 @@ hb_interval_ms = Histogram(
     buckets=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1_000, 5_000, 10_000]
 )
 
-# --- Reaper trips (kills) ---
+# --- Supervisor trips (kills) ---
 reaper_trips_total = Counter(
     "orrin_reaper_trips_total",
-    "Number of times reaper triggered",
+    "Number of times supervisor triggered",
     ["reason"]
 )
 

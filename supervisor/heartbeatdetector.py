@@ -1,4 +1,4 @@
-# reaper/heartbeatdetector.py
+# supervisor/heartbeatdetector.py
 # Detects heartbeat (pulse) irregularities: too fast, too slow (stale)
 
 from __future__ import annotations

@@ -79,7 +79,7 @@ def _rule_based_decompose(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     # File search (benchmark_realignment.md F4): search-shaped goals decompose
     # into search → grep → summarize, mirroring _symbolic_plan's template, so a
-    # goal like B3's "Find the word 'reaper' in any brain file" gets a plan its
+    # goal like B3's "Find the word 'supervisor' in any brain file" gets a plan its
     # steps can actually execute instead of the generic template.
     if (("grep" in name) or
             (any(w in name for w in ("find", "search", "locate", "look for"))

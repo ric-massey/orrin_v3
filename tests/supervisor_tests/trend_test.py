@@ -1,8 +1,8 @@
-"""Unit tests for reaper.trend — the shared (t, v) time-series helpers extracted
+"""Unit tests for supervisor.trend — the shared (t, v) time-series helpers extracted
 from host_resources.py / memory.py (structure audit §8)."""
 from collections import deque
 
-from reaper.trend import slope, trim, window_ok
+from supervisor.trend import slope, trim, window_ok
 
 
 def _series(points):

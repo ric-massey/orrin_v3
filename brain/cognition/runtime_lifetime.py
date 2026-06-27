@@ -5,7 +5,7 @@
 # THIS MODULE IS THE SINGLE SOURCE OF TRUTH for the runtime's lifetime budget:
 # rolled once at first run (365–730 days, see _LIFESPAN_MIN/MAX_DAYS), persisted
 # in data/lifespan.json, and counted in wall-clock days across restarts. The
-# reaper's LifespanByCycles is a different thing — a per-process uptime cutoff
+# supervisor's LifespanByCycles is a different thing — a per-process uptime cutoff
 # that resets every restart (see watchdogs.start_watchdogs).
 #
 # The runtime's internal estimate of remaining lifetime is approximate, not exact:
@@ -197,7 +197,7 @@ def real_deadline_passed() -> bool:
     """True only when the TRUE lifespan deadline has actually been reached — the same
     `real_fraction >= 1.0` test apply_lifetime_pressure uses to terminate. This is the
     authoritative 'lifetime ended' signal. It is deliberately separate from
-    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not
+    `final_thoughts_written`: a supervisor termination window reflection (a stall RESTART, not
     termination) can write final thoughts too, and keying termination off that flag
     alone made every post-restart boot show the Death Screen though ~0% of the lifetime
     had elapsed."""
@@ -372,7 +372,7 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
 def mark_final_thoughts_written() -> None:
     """
     Sync the lifespan flag when final thoughts are written by a path other
-    than the lifetime deadline (e.g. the reaper's dying-window terminal
+    than the lifetime deadline (e.g. the supervisor's termination window terminal
     reflection) — otherwise the flag and final_thoughts.json disagree.
     """
     try:

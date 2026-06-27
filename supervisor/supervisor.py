@@ -1,4 +1,4 @@
-# reaper/reaper.py
+# supervisor/supervisor.py
 # the kill switch for the main loop
 
 from __future__ import annotations
@@ -11,7 +11,7 @@ import threading
 from dataclasses import dataclass, field
 from typing import Callable
 
-# METRICS: count reaper triggers
+# METRICS: count supervisor triggers
 try:
     from observability.metrics import reaper_trips_total
 except Exception:
@@ -21,24 +21,24 @@ _log = get_logger(__name__)
 KillFn = Callable[[str], None]
 
 # Module-level dying state — readable by the cognitive loop
-_dying: bool = False
-_dying_reason: str = ""
-_dying_since: float = 0.0
+_terminating: bool = False
+_terminating_reason: str = ""
+_terminating_since: float = 0.0
 
 
-def is_dying() -> bool:
-    return _dying
+def is_terminating() -> bool:
+    return _terminating
 
-def dying_reason() -> str:
-    return _dying_reason
+def termination_reason() -> str:
+    return _terminating_reason
 
-def dying_since() -> float:
-    return _dying_since
+def terminating_since() -> float:
+    return _terminating_since
 
 
 def _log_durably(message: str) -> None:
     """
-    Persist a reaper event to disk before the process can die. stderr alone is
+    Persist a supervisor event to disk before the process can die. stderr alone is
     not enough: kill is os._exit(), so unflushed/console-only output vanishes
     (the 2026-06-11 deaths were untraceable for exactly this reason).
     """
@@ -54,17 +54,17 @@ def _log_durably(message: str) -> None:
 
 
 @dataclass
-class Reaper:
+class Supervisor:
     kill: KillFn
     # How long (seconds) to wait in terminal mode before executing the kill.
     # Set to 0 for immediate kill (original behaviour).
-    dying_window_s: float = 45.0
+    termination_window_s: float = 45.0
 
     # Internal: set by trigger(), read by the cognitive loop via module globals
     _triggered: bool = field(default=False, init=False, repr=False)
 
     def trigger(self, reason: str) -> None:
-        global _dying, _dying_reason, _dying_since
+        global _terminating, _terminating_reason, _terminating_since
 
         if reaper_trips_total is not None:
             try:
@@ -72,7 +72,7 @@ class Reaper:
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
 
-        print(f"[REAPER] Shutdown triggered: {reason}", file=sys.stderr)
+        print(f"[supervisor] Shutdown triggered: {reason}", file=sys.stderr)
 
         if self._triggered:
             return  # don't double-fire
@@ -80,31 +80,31 @@ class Reaper:
 
         # Tag this as a STALL-restart (not death, not a crash) so the next launch shows
         # "restarting", not a memorial or "stopped unexpectedly" (§10.5). Best-effort —
-        # the reaper must still kill even if telemetry fails.
+        # the supervisor must still kill even if telemetry fails.
         try:
             from brain.utils.lifecycle import mark_stall
             mark_stall(reason)
         except Exception as _e:
             _log.warning("silent except: %s", _e)
 
-        _log_durably(f"[REAPER] Shutdown triggered: {reason}")
+        _log_durably(f"[supervisor] Shutdown triggered: {reason}")
 
-        if self.dying_window_s <= 0:
+        if self.termination_window_s <= 0:
             self.kill(reason)
             return
 
-        # Enter dying window — cognitive loop reads _dying and enters terminal mode
-        _dying = True
-        _dying_reason = reason
-        _dying_since = time.time()
+        # Enter termination window — cognitive loop reads _terminating and enters terminal mode
+        _terminating = True
+        _terminating_reason = reason
+        _terminating_since = time.time()
 
         def _deferred_kill() -> None:
-            time.sleep(self.dying_window_s)
-            print(f"[REAPER] Dying window elapsed — executing kill ({reason})", file=sys.stderr)
-            _log_durably(f"[REAPER] Dying window elapsed — executing kill ({reason})")
+            time.sleep(self.termination_window_s)
+            print(f"[supervisor] Termination window elapsed — executing kill ({reason})", file=sys.stderr)
+            _log_durably(f"[supervisor] Termination window elapsed — executing kill ({reason})")
             self.kill(reason)
 
-        t = threading.Thread(target=_deferred_kill, name="reaper-kill", daemon=True)
+        t = threading.Thread(target=_deferred_kill, name="supervisor-kill", daemon=True)
         t.start()
 
 

@@ -8,7 +8,7 @@ from statistics import mean
 from typing import Any, Dict, Iterable, List
 
 
-# Armed thresholds (mirror reaper/vital_floor.py dataclass defaults, calibrated
+# Armed thresholds (mirror supervisor/vital_floor.py dataclass defaults, calibrated
 # 2026-06-17). Used only to turn an observed peak into a "minimum viable body"
 # recommendation; kept here as constants so the analyzer stays import-free.
 _ARMED_WARN_FRAC = 0.50

@@ -1,4 +1,4 @@
-# reaper/errors.py
+# supervisor/errors.py
 # Defines ErrorEvent and related helpers for structured error reporting.
 
 from __future__ import annotations

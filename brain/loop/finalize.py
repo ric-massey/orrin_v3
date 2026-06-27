@@ -446,8 +446,8 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     # footprint is memory-hungry and must yield under host/process pressure.
     try:
         from brain.cognition.idle_consolidation.consolidation_cycle import should_consolidate, idle_consolidation_cycle as _dream_cycle
-        from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-        from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+        from supervisor.host_resources import heavy_cycles_paused as _heavy_paused
+        from supervisor.vital_floor import vital_floor_shedding as _vital_shedding
         if (not _heavy_paused()) and (not _vital_shedding()) and should_consolidate(context):
             import threading as _thr
             _dt = _thr.Thread(
@@ -536,8 +536,8 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
             )
             # Reading is the other memory-hungry heavy cycle: skip it while
             # host/process resource guards have paused heavies.
-            from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-            from reaper.vital_floor import vital_floor_shedding as _vital_shedding
+            from supervisor.host_resources import heavy_cycles_paused as _heavy_paused
+            from supervisor.vital_floor import vital_floor_shedding as _vital_shedding
             if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _vital_shedding():
                 from brain.cognition.language.acquisition import read_a_book as _rab
                 _line = _rab(context, steps=30)

@@ -100,10 +100,10 @@ def run_phase(args: argparse.Namespace) -> int:
 
     if out_file.exists() and out_file.stat().st_size > 0:
         print("[vital-cal] analyzer report:")
-        from reaper.vital_floor_calibration import main as analyze_main
+        from supervisor.vital_floor_calibration import main as analyze_main
         old_argv = sys.argv[:]
         try:
-            sys.argv = ["reaper.vital_floor_calibration", str(out_file)]
+            sys.argv = ["supervisor.vital_floor_calibration", str(out_file)]
             analyze_main()
         finally:
             sys.argv = old_argv

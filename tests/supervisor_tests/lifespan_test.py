@@ -1,6 +1,6 @@
 # tests/reaper_tests/lifespan_test.py
 import secrets
-from reaper.lifespan import LifespanByCycles
+from supervisor.lifespan import LifespanByCycles
 
 # --- helpers ---
 class Pulse:

@@ -1,15 +1,15 @@
-# reaper/host_resources.py
+# supervisor/host_resources.py
 # Host-machine resource watchdog. Sibling to MemoryHealthGuard, but it looks
 # OUTWARD at the box Orrin runs on instead of inward at Orrin.
 #
-# Every other guard in the reaper suite watches the patient's vitals — heartbeat,
+# Every other guard in the supervisor suite watches the patient's vitals — heartbeat,
 # RSS, goals, the memory subsystem. This one watches whether the building the
 # patient is in is on fire: the host's free disk, swap depth, and system-wide
 # memory pressure. That host layer was the blind spot that ambushed the process
 # when the SSD filled (free disk is the lagging indicator; rising swap is the
 # leading one).
 #
-# Crucially it escalates GENTLY instead of reaching for the reaper's hammer.
+# Crucially it escalates GENTLY instead of reaching for the supervisor's hammer.
 # Killing Orrin does not reclaim swap that browser tabs filled, so "kill Orrin"
 # is the wrong response here. Instead:
 #   • soft line crossed  → WARN  (log + dashboard flag), nothing paused

@@ -29,7 +29,7 @@ _POLL_INTERVAL_S: float = 30.0     # poll at most every 30 seconds
 _self_written: Set[str] = set()
 
 # Directories that define "Orrin's body" vs. the den/home vs. external world.
-_BRAIN_DIRS = {"brain", "reaper", "agency"}
+_BRAIN_DIRS = {"brain", "supervisor", "agency"}
 _HOME_DIRS = {
     ".claude", ".github", ".vscode",
     "backend", "build", "dist", "docs", "frontend", "goals", "inbox",

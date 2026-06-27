@@ -1,4 +1,4 @@
-# reaper/trend.py
+# supervisor/trend.py
 # Shared time-series helpers for the resource watchdogs.
 #
 # Both HostResourceGuard (host_resources.py) and MemoryHealthGuard (memory.py)
@@ -7,7 +7,7 @@
 # and what is the least-squares slope. These were byte-identical @staticmethods
 # duplicated across both files (structure audit §8 "duplicate helper
 # implementations"); consolidated here as plain functions so the trend math lives
-# in one place. Kept inside `reaper` per the audit's guidance that numeric trend
+# in one place. Kept inside `supervisor` per the audit's guidance that numeric trend
 # helpers belong with the guards that use them.
 from __future__ import annotations
 

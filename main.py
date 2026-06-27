@@ -103,7 +103,7 @@ from brain.utils.metrics_sampling import build_fast_sampler
 from brain.utils.goals_feed import init_goals
 
 # --- Tamper guard (already existed as a util) ---
-from brain.utils.tamper_guard import start_reaper_tamper_guard
+from brain.utils.tamper_guard import start_supervisor_tamper_guard
 
 # ---------- Metrics endpoint (Prometheus) ----------
 # Off by default so a packaged launch opens no listening port. Enable with
@@ -373,7 +373,7 @@ except TypeError:
     )
 
 (
-    reaper,
+    supervisor,
     detector,
     errors,
     liveness,
@@ -386,25 +386,25 @@ except TypeError:
     stop_evt,
 ) = tup
 
-# --- Tamper guard: kill on any reaper modification ---
+# --- Tamper guard: kill on any supervisor modification ---
 try:
     extra_watch = []
     try:
-        extra_watch.append(inspect.getfile(reaper.__class__))
-        trig = getattr(reaper, "trigger", None)
+        extra_watch.append(inspect.getfile(supervisor.__class__))
+        trig = getattr(supervisor, "trigger", None)
         if callable(trig):
             func = getattr(trig, "__func__", trig)
             extra_watch.append(inspect.getfile(func))
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
-    start_reaper_tamper_guard(
-        reaper,
+    start_supervisor_tamper_guard(
+        supervisor,
         period_s=float(os.environ.get("ORRIN_TAMPER_GUARD_PERIOD_S", "1.0")),
         extra_files=[p for p in set(extra_watch) if p],
         on_trip="exit",
     )
-    print("[tamper-guard] active: reaper integrity monitored")
+    print("[tamper-guard] active: supervisor integrity monitored")
 except Exception as e:
     print(f"[tamper-guard] not started: {e}")
 

@@ -1,4 +1,4 @@
-# reaper/no_goals.py
+# supervisor/no_goals.py
 # Trips if no goal progress, retry saturation, or circuit breakers open too long / too many.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger

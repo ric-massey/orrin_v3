@@ -1,5 +1,5 @@
-# reaper/memory.py
-# Resource & subsystem health watchdog. Trips Reaper if any sustained condition holds.
+# supervisor/memory.py
+# Resource & subsystem health watchdog. Trips Supervisor if any sustained condition holds.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
@@ -36,7 +36,7 @@ GetMemoryHealth = Callable[[], Dict[str, Any]]
 @dataclass
 class MemoryHealthGuard:
     """
-    Resource & subsystem watchdog. Trips Reaper if any sustained condition holds:
+    Resource & subsystem watchdog. Trips Supervisor if any sustained condition holds:
 
       A) Generic process signals (what you already had):
          1) Memory slope leak: d(RSS_MB)/dt > mem_slope_mb_per_s for ≥ mem_sustain_s seconds.

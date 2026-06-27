@@ -1,8 +1,8 @@
 # tests/reaper_tests/reaper_test.py
 import signal
 
-import reaper.reaper as reaper_mod
-from reaper.reaper import Reaper, kill_current_process, signal_pid
+import supervisor.supervisor as reaper_mod
+from supervisor.supervisor import Supervisor, kill_current_process, signal_pid
 
 
 class KillRecorder:
@@ -30,9 +30,9 @@ def test_trigger_calls_kill_logs_and_metrics(monkeypatch, capsys):
     fake = FakeCounter()
     monkeypatch.setattr(reaper_mod, "reaper_trips_total", fake, raising=True)
 
-    # kill fn recorder — dying_window_s=0 for immediate synchronous kill
+    # kill fn recorder — termination_window_s=0 for immediate synchronous kill
     k = KillRecorder()
-    r = Reaper(kill=k, dying_window_s=0)
+    r = Supervisor(kill=k, termination_window_s=0)
 
     # reason includes a first token + extra details
     reason = "HARD:pulse_too_fast avg_ms=1.00"
@@ -43,7 +43,7 @@ def test_trigger_calls_kill_logs_and_metrics(monkeypatch, capsys):
 
     # stderr contains the log line
     out = capsys.readouterr()
-    assert "[REAPER] Shutdown triggered: HARD:pulse_too_fast avg_ms=1.00" in out.err
+    assert "[supervisor] Shutdown triggered: HARD:pulse_too_fast avg_ms=1.00" in out.err
 
     # metrics got only the first token as the label
     assert fake.count == 1
@@ -55,7 +55,7 @@ def test_trigger_no_metrics_does_not_crash(monkeypatch, capsys):
     monkeypatch.setattr(reaper_mod, "reaper_trips_total", None, raising=True)
 
     k = KillRecorder()
-    r = Reaper(kill=k, dying_window_s=0)
+    r = Supervisor(kill=k, termination_window_s=0)
     r.trigger("HARD:some_reason extra")
 
     # kill still called; no exception; stderr has a line

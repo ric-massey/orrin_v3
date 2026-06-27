@@ -1,9 +1,9 @@
-from reaper.vital_floor import (
+from supervisor.vital_floor import (
     VitalFloorGuard,
     set_vital_shedding,
     vital_floor_shedding,
 )
-from reaper.vital_floor_calibration import load_samples, summarize
+from supervisor.vital_floor_calibration import load_samples, summarize
 
 _GB = float(1024 * 1024 * 1024)
 

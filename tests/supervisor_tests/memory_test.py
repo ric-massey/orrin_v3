@@ -1,5 +1,5 @@
 # tests/reaper_tests/memory_test.py
-from reaper.memory import MemoryHealthGuard
+from supervisor.memory import MemoryHealthGuard
 
 # ---------- helpers ----------
 
@@ -300,7 +300,7 @@ def test_metrics_hook_increments_on_trip(monkeypatch):
     clk = FakeClock()
     rss = Box(1600.0)
     # patch module-level errors_total
-    import reaper.memory as mod
+    import supervisor.memory as mod
     fake = _FakeMetric()
     monkeypatch.setattr(mod, "errors_total", fake, raising=True)
 

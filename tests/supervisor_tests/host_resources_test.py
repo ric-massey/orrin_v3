@@ -1,5 +1,5 @@
 # tests/reaper_tests/host_resources_test.py
-from reaper.host_resources import (
+from supervisor.host_resources import (
     HostResourceGuard,
     heavy_cycles_paused,
     set_heavy_cycles_paused,
@@ -206,7 +206,7 @@ def test_worst_signal_dominates():
     assert pause.msgs
 
 
-# ---------- never reaches for the reaper hammer ----------
+# ---------- never reaches for the supervisor hammer ----------
 
 def test_guard_has_no_violation_sink():
     """The host guard escalates gently; it must not expose an on_violation kill

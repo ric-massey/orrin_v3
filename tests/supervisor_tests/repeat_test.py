@@ -1,6 +1,6 @@
 # tests/reaper_tests/repeat_test.py
 
-from reaper.repeat import RepeatLoopGuard
+from supervisor.repeat import RepeatLoopGuard
 
 # ---------- helpers ----------
 

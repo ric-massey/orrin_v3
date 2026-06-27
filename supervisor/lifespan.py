@@ -1,5 +1,5 @@
-# reaper/lifespan.py
-# Watchdog: triggers Reaper when total cycles (pulse) exceed a secret random limit
+# supervisor/lifespan.py
+# Watchdog: triggers Supervisor when total cycles (pulse) exceed a secret random limit
 #
 # Scope: this is a PER-PROCESS uptime cutoff — the pulse counter is in-memory
 # and resets on every restart. The agent's persistent lifespan (days since
@@ -20,7 +20,7 @@ OnViolation = Callable[[str], None]
 class LifespanByCycles:
     """
     Picks a secret random cycle limit in [min_cycles, max_cycles].
-    When total cycles (pulse) reach/exceed that limit, triggers Reaper.
+    When total cycles (pulse) reach/exceed that limit, triggers Supervisor.
     """
     get_pulse: GetPulse
     on_violation: OnViolation

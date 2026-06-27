@@ -46,7 +46,7 @@ def meta_reflect(context: dict = None):
         # itself (→ recursive context["context"] nesting) and large append-only
         # logs/stores. The loop then persisted context each cycle, ballooning
         # context.json to 70 MB and (under the continuous Executive daemon loading
-        # it every ~7s) tripping the reaper's memory-leak detector. Exclude those
+        # it every ~7s) tripping the supervisor's memory-leak detector. Exclude those
         # stores; merging the small remainder is harmless and what meta_reflect needs.
         _LEAK_KEYS = {
             "context", "long_memory", "reflection_log", "habituation",

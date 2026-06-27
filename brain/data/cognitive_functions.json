@@ -1033,7 +1033,7 @@
   },
   {
     "name": "mark_final_thoughts_written",
-    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the lifetime deadline (e.g. the reaper's dying-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
+    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the lifetime deadline (e.g. the supervisor's termination-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
   },
   {
     "name": "mark_goal_completed",
@@ -1301,7 +1301,7 @@
   },
   {
     "name": "real_deadline_passed",
-    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_lifetime_pressure uses to terminate. This is the\n    authoritative 'lifetime ended' signal. It is deliberately separate from\n    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not\n    termination) can write final thoughts too, and keying termination off that flag\n    alone made every post-restart boot show the Death Screen though ~0% of the lifetime\n    had elapsed."
+    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_lifetime_pressure uses to terminate. This is the\n    authoritative 'lifetime ended' signal. It is deliberately separate from\n    `final_thoughts_written`: a supervisor termination-window reflection (a stall RESTART, not\n    termination) can write final thoughts too, and keying termination off that flag\n    alone made every post-restart boot show the Death Screen though ~0% of the lifetime\n    had elapsed."
   },
   {
     "name": "recalibrate_confidence",

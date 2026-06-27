@@ -1,7 +1,7 @@
 # tests/reaper_tests/error_test.py
 
-from reaper.error_checker import ErrorChecker
-from reaper.errors import (
+from supervisor.error_checker import ErrorChecker
+from supervisor.errors import (
     ErrorEvent,
     make_event_from_key,
     make_event,

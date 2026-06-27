@@ -30,7 +30,7 @@ class GoalHandler(Protocol):
       - plan(goal, ctx): Return an initial list of Steps (may be empty). Called when a NEW goal is admitted.
       - is_blocked(goal, ctx): Return (True, reason) if the goal cannot currently progress (e.g., waiting on lock, IO).
       - tick(goal, step, ctx): Execute or advance one step; return the updated Step (or None if no change this tick).
-      - on_event(goal, event, ctx): Optional hook for reacting to external system events (reaper/memory/watchdogs).
+      - on_event(goal, event, ctx): Optional hook for reacting to external system events (supervisor/memory/watchdogs).
     """
     kind: str
 

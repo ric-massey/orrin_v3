@@ -97,7 +97,7 @@ Reward + Memory Update + Sleep/Consolidation
                        └───┬───────────┬───────────┬────────────┬──┘
                            │           │           │            │
                   ┌────────▼──┐ ┌──────▼─────┐ ┌───▼──────┐ ┌───▼────────┐
-                  │ Executive │ │   Memory   │ │  Reaper  │ │  Backend   │
+                  │ Executive │ │   Memory   │ │  Health  │ │  Backend   │
                   │  daemon   │ │   daemon   │ │ liveness │ │ telemetry  │
                   │ (goal     │ │ (ingest /  │ │ + error  │ │  + Face &  │
                   │  steps)   │ │ consolidate)│ │ checker │ │  Brain UI  │
@@ -105,7 +105,7 @@ Reward + Memory Update + Sleep/Consolidation
 ```
 
 The cognitive loop runs continuously; the daemons run alongside it. The Executive advances goal
-steps off-thread, Memory ingests and consolidates, the Reaper watches for stalls/errors/host-resource
+steps off-thread, Memory ingests and consolidates, the Supervisor watches for stalls/errors/host-resource
 danger, and the Backend streams telemetry to the UI (and, opt-in, Prometheus).
 
 **→ Full mechanism walkthrough — ignition, the Global Workspace, the two affect readers, mortality,
@@ -131,9 +131,9 @@ Orrin is a long-lived process that:
   experiments, all without an LLM.
 - **Remembers, consolidates, and forgets** — working memory, long-term memory, dream-cycle
   consolidation, and an embedding-based store.
-- **Monitors its own health *and the machine's*** — a "reaper" liveness subsystem plus an autonomic
+- **Monitors its own health *and the machine's*** — a supervisor liveness subsystem plus an autonomic
   `HostResourceGuard` that watches free disk, swap, and memory and gently pauses heavy cycles before
-  the host is endangered (`reaper/host_resources.py`).
+  the host is endangered (`supervisor/host_resources.py`).
 - **Has a finite lifespan** — a persistent mortality clock that colours long-term prioritization and
   eventually stops the loop.
 - **Is watched by "peers"** — observer entities (Architect, Affect Historian, Goal Auditor, Observer,
@@ -204,7 +204,7 @@ whether you're active at the machine.
 | `memory/` | Memory daemon — ingestion, embedding, compaction, lexicon. |
 | `brain/peers/` | **Peer entities** — outside observers (Architect, Affect Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle. |
 | `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later retrievals/goal closures) and **drive-expectations** (learns which actions satisfy which drives). |
-| `reaper/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity, and `host_resources.py` (the autonomic `HostResourceGuard`). |
+| `supervisor/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity, and `host_resources.py` (the autonomic `HostResourceGuard`). |
 | `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams brain state to the UI over WebSocket or an in-process bridge (`server/bridge.py`, used by the native window). |
 | `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms + a Settings page (keys, privacy, existence mode, mind export/import). |
 | `packaging/` | Native desktop-app build: PyInstaller spec, model pre-bundler, entitlements, and the per-OS build/sign/notarize runbook (`packaging/README.md`). |
@@ -212,7 +212,7 @@ whether you're active at the machine.
 | `docs/` | Design plans, benchmarks, and an `archive/` of audits and fix records. Start at [`docs/README.md`](docs/README.md). |
 | `tests/` | Pytest suite across brain / goals / memory. |
 | `main.py` | Top-level launcher — boots the brain loop, daemons, backend API, and UI. |
-| `watchdogs.py` | Assembles the reaper's `HealthBus`/`HealthTelemetrySampler` and guards (heartbeat, lifespan, no-goals, memory health, repeat-loop). |
+| `watchdogs.py` | Assembles the supervisor's `HealthBus`/`HealthTelemetrySampler` and guards (heartbeat, lifespan, no-goals, memory health, repeat-loop). |
 | `reset_orrin.py` | Resets Orrin's persisted state (with snapshotting). |
 | `run_orrin.sh` / `run_orrin.bat` | Run wrappers with auto-restart and macOS sleep prevention. |
 

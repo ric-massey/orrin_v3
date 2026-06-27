@@ -5,16 +5,16 @@ import threading
 import time
 from typing import Tuple, Callable, Dict, List, Optional, Any  # added Any
 
-from reaper.reaper import Reaper, kill_current_process
-from reaper.heartbeatdetector import HeartbeatDetector
-from reaper.error_checker import ErrorChecker
-from reaper.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
-from reaper.lifespan import LifespanByCycles
-from reaper.no_goals import NoGoalsGuard
-from reaper.memory import MemoryHealthGuard
-from reaper.host_resources import HostResourceGuard
-from reaper.vital_floor import VitalFloorGuard
-from reaper.repeat import RepeatLoopGuard
+from supervisor.supervisor import Supervisor, kill_current_process
+from supervisor.heartbeatdetector import HeartbeatDetector
+from supervisor.error_checker import ErrorChecker
+from supervisor.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
+from supervisor.lifespan import LifespanByCycles
+from supervisor.no_goals import NoGoalsGuard
+from supervisor.memory import MemoryHealthGuard
+from supervisor.host_resources import HostResourceGuard
+from supervisor.vital_floor import VitalFloorGuard
+from supervisor.repeat import RepeatLoopGuard
 from observability.health_telemetry import HealthBus, HealthTelemetrySampler
 from observability.metrics import (
     rss_mb_gauge,
@@ -102,7 +102,7 @@ def start_watchdogs(
     # The pulse ticks at ~50 Hz (main loop sleeps 0.02s), so these bounds mean
     # roughly 3–10 days of continuous process uptime before a forced restart.
     # The agent's persistent mortality clock (365–730 days, survives restarts)
-    # is owned by brain/cognition/mortality.py.
+    # is owned by brain/cognition/runtime_lifetime.py.
     lifespan_min_cycles: int = 12_960_000,
     lifespan_max_cycles: int = 43_200_000,
     # --------- NO-GOALS / SATURATION GUARD (providers + tunables) ---------
@@ -193,14 +193,14 @@ def start_watchdogs(
     """
     Spin up a daemon thread that continuously checks watchdogs.
     Returns:
-      (reaper, detector, errors, liveness, lifespan, no_goals, mem_guard,
+      (supervisor, detector, errors, liveness, lifespan, no_goals, mem_guard,
        host_guard, vital_guard, repeat_guard, stop_evt)
     """
-    reaper = Reaper(kill=kill_current_process)
+    supervisor = Supervisor(kill=kill_current_process)
 
     detector = HeartbeatDetector(
         get_pulse=pulse.read,
-        on_violation=reaper.trigger,
+        on_violation=supervisor.trigger,
         min_period_ms=min_period_ms,
         max_period_ms=max_period_ms,
         sustain_checks_fast=sustain_checks_fast,
@@ -208,7 +208,7 @@ def start_watchdogs(
         window=window,
     )
 
-    errors = ErrorChecker(on_violation=reaper.trigger, window_s=error_window_s)
+    errors = ErrorChecker(on_violation=supervisor.trigger, window_s=error_window_s)
 
     if any_rate_limit:
         count, window_s = any_rate_limit
@@ -219,11 +219,11 @@ def start_watchdogs(
         errors.set_key_rate_limit(key, count=count, window_s=window_s)
 
     # Liveness & lifespan
-    liveness = LivenessByCycles(get_pulse=pulse.read, on_violation=reaper.trigger)
+    liveness = LivenessByCycles(get_pulse=pulse.read, on_violation=supervisor.trigger)
 
     lifespan = LifespanByCycles(
         get_pulse=pulse.read,
-        on_violation=reaper.trigger,
+        on_violation=supervisor.trigger,
         min_cycles=lifespan_min_cycles,
         max_cycles=lifespan_max_cycles,
     )
@@ -233,7 +233,7 @@ def start_watchdogs(
     if goals_provider is not None:
         no_goals = NoGoalsGuard(
             get_pulse=pulse.read,
-            on_violation=reaper.trigger,
+            on_violation=supervisor.trigger,
             get_goals=goals_provider,
             get_retry_rate=retry_rate_provider,
             get_breakers=breakers_provider,
@@ -247,7 +247,7 @@ def start_watchdogs(
 
     # Memory/FD/CPU guard (optional providers; skipped if None)
     mem_guard = MemoryHealthGuard(
-        on_violation=reaper.trigger,
+        on_violation=supervisor.trigger,
         get_rss_mb=get_rss_mb,
         get_fd_open=get_fd_open, get_fd_limit=get_fd_limit,
         get_sock_open=get_sock_open, get_sock_limit=get_sock_limit,
@@ -262,7 +262,7 @@ def start_watchdogs(
     )
 
     # Host resource guard (outward-looking; staged, NON-fatal escalation).
-    # Unlike every other guard it does NOT route to reaper.trigger — killing
+    # Unlike every other guard it does NOT route to supervisor.trigger — killing
     # Orrin can't reclaim host swap/disk. It warns, then pauses heavy cycles.
     host_guard = HostResourceGuard(
         on_warn=host_on_warn,
@@ -285,7 +285,7 @@ def start_watchdogs(
 
     # Vital-floor reflex (INWARD; the mirror of the host guard). Watches Orrin's
     # OWN RSS against his granted body size and sheds load before the OS OOM-killer
-    # does it ungracefully. Like the host guard it does NOT route to reaper.trigger
+    # does it ungracefully. Like the host guard it does NOT route to supervisor.trigger
     # — it sheds, never suicides. Built only if both providers are present.
     vital_guard: Optional[VitalFloorGuard] = None
     if get_own_rss_bytes is not None and get_budget_bytes is not None:
@@ -310,7 +310,7 @@ def start_watchdogs(
     repeat_guard: Optional[RepeatLoopGuard] = None
     if enable_repeat_guard:
         repeat_guard = RepeatLoopGuard(
-            on_violation=reaper.trigger,
+            on_violation=supervisor.trigger,
             action_window_n=action_window_n,
             same_call_k=same_call_k,
             same_call_t=same_call_t,
@@ -500,7 +500,7 @@ def start_watchdogs(
     # ------------------------------------------------------------------------------------------
 
     return (
-        reaper,
+        supervisor,
         detector,
         errors,
         liveness,

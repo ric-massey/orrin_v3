@@ -16,7 +16,7 @@
 # and reads as nothing; a vital LEAVING its learned band is what registers. While the
 # body is still learning this machine (somatic infancy — bands not yet converged),
 # the cortex stays lenient and emits no stress states (§10.3/§10.4). The autonomic
-# reflex (reaper/host_resources.HostResourceGuard) is a SEPARATE, absolute system and
+# reflex (supervisor/host_resources.HostResourceGuard) is a SEPARATE, absolute system and
 # is untouched by any of this — the brainstem never goes lenient (§10.5).
 #
 # Felt states:

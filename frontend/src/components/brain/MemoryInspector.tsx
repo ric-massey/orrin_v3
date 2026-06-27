@@ -253,7 +253,7 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
             perspective="agent-accessible"
             what="Two honest views of its memory: Live ops is a sampled ticker of this session's reads/writes (≤4 per operation — it under-reports bulk sweeps by design); Browse store is the real contents on disk, searchable and paged. Chips show true store sizes; each store's ℹ️ explains it and shows its code."
             source="Live ops: telemetry socket · Browse: GET /api/memory over long_memory.json, working_memory.json, knowledge_graph.json, semantic_facts.json"
-            good="Long-term growing slowly then PLATEAUING (the reaper working — ties to B1), working memory hovering around its ~25-item cap, and recalls that reference what's actually stored."
+            good="Long-term growing slowly then PLATEAUING (the supervisor working — ties to B1), working memory hovering around its ~25-item cap, and recalls that reference what's actually stored."
           />
           {tab === "live" ? (
             <span className="text-xs text-muted-foreground/60" title="Sampled live read/write events this session (≤4 per op) — NOT the store contents. Browse store for those.">

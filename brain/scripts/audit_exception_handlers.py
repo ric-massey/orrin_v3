@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-ROOTS = ("brain", "backend", "goals", "memory", "reaper", "observability", "main.py")
+ROOTS = ("brain", "backend", "goals", "memory", "supervisor", "observability", "main.py")
 
 # Forward-ratchet ceiling for silent broad handlers (STRUCTURAL_DEBT_PLAN §9).
 # This is the single source of truth shared by the report (`make audit-exceptions`)

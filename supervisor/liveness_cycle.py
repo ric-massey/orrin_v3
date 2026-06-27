@@ -1,4 +1,4 @@
-# reaper/liveness_cycle.py
+# supervisor/liveness_cycle.py
 # Watchdog: registered sections must be 'touched' at least once
 
 
@@ -31,7 +31,7 @@ class _Section:
 class LivenessByCycles:
     """
     Watchdog: registered sections must be 'touched' at least once every
-    `max_missed_cycles` main-loop iterations (cycles). If not, Reaper triggers.
+    `max_missed_cycles` main-loop iterations (cycles). If not, Supervisor triggers.
 
     Use one of:
       - .touch("name") in the code path

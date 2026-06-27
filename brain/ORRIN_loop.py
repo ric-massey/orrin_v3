@@ -150,10 +150,10 @@ def run_cognitive_loop(
     while True:
         # C5 CORRIGIBILITY (proactive_resource_plan.md): the shutdown path is
         # checked FIRST, every cycle, with NO dependency on energy/EVC/τ/_rest_mode.
-        # The reaper (Layer 0) and SIGTERM set stop_event independently; the energy
+        # The supervisor (Layer 0) and SIGTERM set stop_event independently; the energy
         # layer can bias function choice but can NEVER block or delay this exit, so a
         # self-regulating agent can never resist shutdown to "protect its recovery."
-        # Empirically verified: the reaper hard-killed the loop at resource_deficit
+        # Empirically verified: the supervisor hard-killed the loop at resource_deficit
         # 0.947 without obstruction. Soares et al. (2015) corrigibility.
         if stop_event and stop_event.is_set():
             log_activity("Cognitive loop stop event received; exiting.")
@@ -182,9 +182,9 @@ def run_cognitive_loop(
                 except Exception as _wr_e:
                     log_error(f"[watchdog] ToolRunner restart failed: {_wr_e}")
 
-        # ── Terminal mode: reaper fired, dying window is open ──────────────
+        # ── Terminal mode: supervisor fired, termination window is open ──────────────
         try:
-            from reaper.reaper import is_dying as _is_dying
+            from supervisor.supervisor import is_terminating as _is_dying
             if _is_dying():
                 if not _final_reflection_done:
                     _final_reflection_done = True
@@ -194,7 +194,7 @@ def run_cognitive_loop(
                         _final_reflection(context if "context" in dir() else {})
                     except Exception as _e:
                         log_error(f"final_reflection failed: {_e}")
-                # Loop continues but only final_reflection runs; reaper will kill later
+                # Loop continues but only final_reflection runs; supervisor will kill later
                 import time as _t; _t.sleep(2)
                 continue
         except ImportError as _e:

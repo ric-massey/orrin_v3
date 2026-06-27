@@ -52,7 +52,7 @@ _INTENT_RULES: Tuple[Tuple[Tuple[str, ...], str], ...] = (
       "study", "learn about"), "research_topic"),
     (("search own", "search my", "my own files", "my code", "scan my",
       "grep", "own files", "my files", "scan the codebase",
-      # B3-shaped steps: "find the word 'reaper' in any brain file" must map to
+      # B3-shaped steps: "find the word 'supervisor' in any brain file" must map to
       # a real file-search ACTION (BEHAVIOR_FIX_PLAN 2.2 — plans cause actions).
       "find the word", "find the phrase", "search for the word",
       "brain file", "in any file"), "search_own_files"),

@@ -1,5 +1,5 @@
 # goals/events.py
-# Typed events for goals/steps and adapters to reaper & WAL (newline-delimited JSON)
+# Typed events for goals/steps and adapters to supervisor & WAL (newline-delimited JSON)
 
 from __future__ import annotations
 
@@ -104,7 +104,7 @@ def make_step_event(kind: str | EventKind, step: Step, *, level: str = "info", e
 
 def to_reaper_event(ev: BaseEvent) -> Dict[str, Any]:
     """
-    Flatten to a dict suitable for your reaper/observability pipeline.
+    Flatten to a dict suitable for your supervisor/observability pipeline.
     (You can pass this to the daemon/api reaper_sink.)
     """
     d = asdict(ev)

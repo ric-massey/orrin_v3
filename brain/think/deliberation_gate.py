@@ -1,22 +1,22 @@
 """
-think/consciousness_trigger.py
+think/deliberation_gate.py
 
-Evaluates whether Orrin should engage conscious (LLM-backed) processing
-this cycle, or remain in silent unconscious-processing mode.
+Decides whether to dispatch expensive deliberate (LLM-backed) reasoning this
+cycle, or stay in the cheap background-processing mode.
 
-The loop already runs a rich unconscious layer every cycle:
-  - affect state updates
-  - embodiment reads (sensory, drives, social, body-sense)
+The loop already runs a rich background layer every cycle:
+  - control-signal state updates
+  - host-state reads (sensory, drives, social, body-sense)
   - signal injection (stagnation_signal, wonder, threads, tensions, values)
   - process_inputs() → top_signals
 
-This trigger decides whether that silent layer's output warrants
-deliberate reasoning.  Returns (True, reason) to fire conscious dispatch;
-(False, "quiet") to let the cycle end silently.
+This gate decides whether that background layer's output warrants deliberate
+reasoning.  Returns (True, reason) to dispatch deliberation; (False, "quiet")
+to let the cycle end silently.
 
-Floor rule: never more than 5 consecutive silent cycles.  Prevents Orrin
+Floor rule: never more than 5 consecutive silent cycles.  Prevents the runtime
 from going fully dormant during extended quiet periods while still giving
-genuine idle time between thoughts.
+genuine idle time between dispatches.
 """
 from __future__ import annotations
 from typing import Tuple

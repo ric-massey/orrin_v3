@@ -295,7 +295,7 @@ def detect_oscillation_and_flatline(state, core, context, now, update_working_me
     # When the positive-drive vector sits high and flat for several cycles, raise
     # stagnation_signal so the EXISTING novelty machinery treats the sameness as
     # boredom: select_function routes toward seek_novelty/look_outward and
-    # consciousness_trigger can fire. We deliberately do NOT crush ceilings — that
+    # deliberation_gate can fire. We deliberately do NOT crush ceilings — that
     # only flattens arousal toward a low-energy state; boredom→seek-novelty is the
     # felt wake-up, and it closes its own loop (acting diversifies picks → entropy
     # rises → stagnation_signal ebbs).

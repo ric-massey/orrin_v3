@@ -115,7 +115,7 @@ async def death(request: Request) -> JSONResponse:
     conscious stream, his autobiography. You couldn't read his private mind while he
     lived; now that he's gone, you can know him completely."""
     try:
-        from brain.cognition.mortality import life_status as _ls, lifespan_rolled as _rolled
+        from brain.cognition.runtime_lifetime import life_status as _ls, lifespan_rolled as _rolled
         is_dead = _rolled() and bool(_ls().get("final_thoughts_written"))
     except Exception:
         is_dead = False
@@ -138,7 +138,7 @@ async def death(request: Request) -> JSONResponse:
     except Exception:
         out["conscious_stream"] = []
     try:
-        from brain.cognition.mortality import life_status as _ls2
+        from brain.cognition.runtime_lifetime import life_status as _ls2
         out["life"] = _ls2()
     except (ImportError, OSError, ValueError):  # best-effort: life status is optional enrichment
         pass

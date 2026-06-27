@@ -122,7 +122,7 @@ def _sample_interval() -> float:
     could exceed a whole run) yet never clusters. Small jitter avoids a fixed
     cadence. (T0.4)"""
     try:
-        from brain.cognition.mortality import felt_lifespan_seconds
+        from brain.cognition.runtime_lifetime import felt_lifespan_seconds
         life_s = felt_lifespan_seconds()
     except Exception:
         life_s = 0.0

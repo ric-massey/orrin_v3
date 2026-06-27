@@ -381,8 +381,8 @@ async def outcomes() -> JSONResponse:
 
 @router.get("/innerweather")
 async def innerweather() -> JSONResponse:
-    """Felt time + mood + mortality (temporal_state / mood_state / lifespan) —
-    the strongest personhood data in brain/data, fully hidden until now."""
+    """Felt time + mood + lifetime (temporal_state / mood_state / lifespan) —
+    the strongest internal-state data in brain/data, fully hidden until now."""
     t = dict(_read_json("temporal_state.json", {}))
     t.pop("density_buffer", None)  # internal ring, large and meaningless to render
     return JSONResponse({

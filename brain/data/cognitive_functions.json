@@ -136,8 +136,8 @@
     "definition": "apply_milestone_updates(context: 'Dict[str, Any]') -> 'int'\nCheck each milestone on the committed goal against current WM state.\n    Marks newly-met milestones in-place with met=True and met_at timestamp.\n    Returns count of newly ticked milestones."
   },
   {
-    "name": "apply_mortality_pressure",
-    "definition": "apply_mortality_pressure(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nCalled once per cycle from finalize.py.\n    - Computes life fraction and phase\n    - Applies emotional effects proportional to phase\n    - Logs to WM when phase changes or cooldown expires\n    - Sets context[\"_mortality\"] summary\n    - Returns {\"terminate\": True} when real deadline has passed"
+    "name": "apply_lifetime_pressure",
+    "definition": "apply_lifetime_pressure(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nCalled once per cycle from finalize.py.\n    - Computes lifetime fraction and phase\n    - Applies signal effects proportional to phase\n    - Logs to WM when phase changes or cooldown expires\n    - Sets context[\"_lifetime\"] summary\n    - Returns {\"terminate\": True} when real deadline has passed"
   },
   {
     "name": "apply_temporal_pressure",
@@ -949,7 +949,7 @@
   },
   {
     "name": "life_status",
-    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only mortality view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing\n    the real countdown would be reading something Orrin himself can't (his sense of\n    his lifespan is wrong by design); the page shows what *he believes*."
+    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only lifetime view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing the\n    real countdown would be reading something the runtime itself cannot (its estimate of\n    its lifespan is wrong by design); the page shows what it estimates."
   },
   {
     "name": "lifespan_rolled",
@@ -1033,7 +1033,7 @@
   },
   {
     "name": "mark_final_thoughts_written",
-    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the mortality deadline (e.g. the reaper's dying-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
+    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the lifetime deadline (e.g. the reaper's dying-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
   },
   {
     "name": "mark_goal_completed",
@@ -1301,7 +1301,7 @@
   },
   {
     "name": "real_deadline_passed",
-    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_mortality_pressure uses to terminate. This is the\n    authoritative 'he is dead' signal. It is deliberately separate from\n    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not\n    death) can write final thoughts too, and keying death off that flag alone made\n    every post-restart boot show the Death Screen though ~0% of his life had elapsed."
+    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_lifetime_pressure uses to terminate. This is the\n    authoritative 'lifetime ended' signal. It is deliberately separate from\n    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not\n    termination) can write final thoughts too, and keying termination off that flag\n    alone made every post-restart boot show the Death Screen though ~0% of the lifetime\n    had elapsed."
   },
   {
     "name": "recalibrate_confidence",

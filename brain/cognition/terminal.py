@@ -138,8 +138,8 @@ def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
     # the reaper's dying window — a stall-RESTART, not the natural lifespan deadline —
     # so flipping the death flag made the NEXT boot show the Death Screen forever (and
     # would also shadow his genuine end-of-life reflection, since _write_final_thoughts
-    # early-returns once the flag is set). That flag belongs solely to mortality's real-
-    # deadline path (apply_mortality_pressure → _write_final_thoughts). This handoff
+    # early-returns once the flag is set). That flag belongs solely to runtime_lifetime's
+    # real-deadline path (apply_lifetime_pressure → _write_final_thoughts). This handoff
     # reflection is written to FINAL_THOUGHTS above; it is intentionally not "death".
 
     # Close autobiography chapter with final words

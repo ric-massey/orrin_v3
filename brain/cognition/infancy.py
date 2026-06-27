@@ -18,9 +18,9 @@
 #                                                                    his whole life, new body)
 #     plain restart same machine→ somatic NO,  developmental NO    (waking, not infancy)
 #
-# §10.2 / §D scar: this rides the EXISTING lifecycle + mortality state. It NEVER
+# §10.2 / §D scar: this rides the EXISTING lifecycle + runtime_lifetime state. It NEVER
 # invents a second "am I dead / am I born?" signal that could disagree with
-# mortality.py — it only READS lifespan/age/autobiography and keeps its own one-time
+# runtime_lifetime.py — it only READS lifespan/age/autobiography and keeps its own one-time
 # developmental-complete latch. (A duplicate birth/death flag is exactly what routed
 # every post-restart boot to the Death Screen on 2026-06-15.)
 from __future__ import annotations
@@ -79,12 +79,12 @@ def developmental_infancy() -> bool:
     if state.get("complete"):
         return False
     try:
-        from brain.cognition.mortality import lifespan_rolled, life_status
+        from brain.cognition.runtime_lifetime import lifespan_rolled, life_status
         if not lifespan_rolled():
             return True  # not even born yet
         age_days = float(life_status().get("age_days", 0.0) or 0.0)
-    except Exception as exc:  # mortality unreadable — record, stay in developmental infancy
-        record_failure("infancy.developmental_infancy.mortality", exc)
+    except Exception as exc:  # runtime_lifetime unreadable — record, stay in developmental infancy
+        record_failure("infancy.developmental_infancy.runtime_lifetime", exc)
         return True
     if _has_lived() and age_days >= _DEV_MIN_DAYS:
         # The self has a record behind it and has lived past the sensitive window —

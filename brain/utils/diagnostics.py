@@ -56,7 +56,7 @@ def _tail(path: Path, limit: int = _TAIL_BYTES) -> bytes:
 
 def _state_tag() -> Dict[str, Any]:
     """The lifecycle state (§10.5) plus build/host context — the single most useful
-    thing in a diagnostics bundle. Felt-only mortality; never the true lifespan."""
+    thing in a diagnostics bundle. Felt-only lifetime view; never the true lifespan."""
     out: Dict[str, Any] = {"captured_at": time.time()}
     try:
         from brain.utils import lifecycle as _lc

@@ -378,10 +378,10 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.13", _e)
 
     try:
-        from brain.cognition.mortality import apply_mortality_pressure
-        _mortality = apply_mortality_pressure(context)
-        if _mortality.get("terminate"):
-            context["_orrin_dying"] = True
+        from brain.cognition.runtime_lifetime import apply_lifetime_pressure
+        _lifetime = apply_lifetime_pressure(context)
+        if _lifetime.get("terminate"):
+            context["_runtime_ending"] = True
     except Exception as _e:
         record_failure("finalize.finalize_cycle.14", _e)
 

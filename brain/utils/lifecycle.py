@@ -4,7 +4,7 @@ utils/lifecycle.py — telling death, stall/crash, and a normal run apart (§10.
 These three otherwise look identical ("the process stopped"), and the wake-up screen
 (§9.7) / Death Screen (§10.4) depend on distinguishing them:
 
-  • death        — mortality recorded the deadline reached + final thoughts written.
+  • death        — runtime_lifetime recorded the deadline reached + final thoughts written.
   • interrupted  — the previous run did NOT shut down cleanly (a crash, or a reaper
                    stall-restart). We tag it from a clean-shutdown marker.
   • alive        — a clean, normal run.
@@ -85,7 +85,7 @@ def status() -> Dict[str, Any]:
     state = "alive"
     info: Dict[str, Any] = {}
     try:
-        from brain.cognition.mortality import life_status, lifespan_rolled, real_deadline_passed
+        from brain.cognition.runtime_lifetime import life_status, lifespan_rolled, real_deadline_passed
         if lifespan_rolled():
             ls = life_status()
             info.update({"born_at": ls.get("born_at"), "age_days": ls.get("age_days"), "phase": ls.get("phase")})
@@ -96,8 +96,8 @@ def status() -> Dict[str, Any]:
             # (observed 2026-06-15: born today, 411-day lifespan, flag set by a restart).
             if real_deadline_passed() and ls.get("final_thoughts_written"):
                 state = "dead"
-    except Exception as exc:  # mortality unreadable — record, default to 'alive'
-        record_failure("lifecycle.status.mortality", exc)
+    except Exception as exc:  # runtime_lifetime unreadable — record, default to 'alive'
+        record_failure("lifecycle.status.runtime_lifetime", exc)
     if state != "dead":
         if _prev_reaper:
             state = "stalled"

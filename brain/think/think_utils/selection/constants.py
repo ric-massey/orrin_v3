@@ -37,7 +37,7 @@ _ALWAYS_EXCLUDE = frozenset({
     # in finalize.py each cycle. Excluding them from SELECTION loses no behaviour —
     # they still run automatically — and frees those cycles for real cognition.
     "update_affect_state",
-    "apply_mortality_pressure", "apply_temporal_pressure",
+    "apply_lifetime_pressure", "apply_temporal_pressure",
     "apply_habituation", "apply_fragmentation_cost",
     # Closure/maintenance UPKEEP now runs deterministically on a slow cadence in
     # ORRIN_loop's maintenance block (retirement/fade/satiety), NOT as a deliberate

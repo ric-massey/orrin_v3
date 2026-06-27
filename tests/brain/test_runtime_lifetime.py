@@ -1,10 +1,10 @@
 # Group F (DESKTOP_APP_PLAN §10.3): the existence model — lifespan band (set the odds,
-# never the number), and sleep accounting that pauses the mortality clock.
+# never the number), and sleep accounting that pauses the runtime-lifetime clock.
 import json
 from datetime import datetime, timezone, timedelta
 
-from brain.cognition import mortality as m
-from brain.cognition.mortality import LIFESPAN_FILE
+from brain.cognition import runtime_lifetime as m
+from brain.cognition.runtime_lifetime import LIFESPAN_FILE
 
 
 def _write_lifespan(**over):

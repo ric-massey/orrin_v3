@@ -159,9 +159,9 @@ def run_cognitive_loop(
             log_activity("Cognitive loop stop event received; exiting.")
             break
 
-        # ── Mortality: natural lifespan endpoint ───────────────────────────
-        if context.get("_orrin_dying"):
-            log_activity("[mortality] Lifespan elapsed — Orrin's loop is ending.")
+        # ── Runtime lifetime: natural lifespan endpoint ────────────────────
+        if context.get("_runtime_ending"):
+            log_activity("[lifetime] Runtime lifetime elapsed — the loop is ending.")
             break
 
         # ── ToolRunner watchdog: restart if thread died ────────────────────

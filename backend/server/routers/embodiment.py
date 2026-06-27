@@ -67,8 +67,8 @@ async def life() -> JSONResponse:
     """Life Support (§9.10): Orrin's vital signs — his headroom to think, his thinking
     rate, his age, and the life he *believes* he has left. Resources are framed about
     HIM (disk = his mind's room to grow, measured against his data dir). The true
-    lifespan is never exposed — only the felt estimate (mortality keeps a private
-    noise offset by design)."""
+    lifespan is never exposed — only the felt estimate (the lifetime model keeps a
+    private noise offset by design)."""
     readings: Dict[str, Any] = {}
     try:
         import psutil as _psutil
@@ -103,8 +103,8 @@ async def life() -> JSONResponse:
     readings["cycle"] = hub.state.get("cycle", 0)
 
     try:
-        from brain.cognition.mortality import life_status as _life_status
-        readings["mortality"] = _life_status()  # felt-only; never the true lifespan
+        from brain.cognition.runtime_lifetime import life_status as _life_status
+        readings["mortality"] = _life_status()  # frozen telemetry key; felt-only, never the true lifespan
     except Exception as e:
         readings["mortality"] = {"error": str(e)}
 

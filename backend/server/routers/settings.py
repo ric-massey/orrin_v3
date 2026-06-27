@@ -24,7 +24,7 @@ async def get_settings(request: Request) -> Dict[str, Any]:
     from brain.utils import prefs as _prefs
     cfg = _secrets.configured()
     try:
-        from brain.cognition.mortality import lifespan_rolled as _rolled
+        from brain.cognition.runtime_lifetime import lifespan_rolled as _rolled
         rolled = _rolled()
     except Exception:
         rolled = False

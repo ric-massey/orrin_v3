@@ -51,7 +51,7 @@ def _compose_spontaneous_thought(
     emo: Dict[str, Any],
     suppressed: list,
     conflicts: list,
-    mortality: Dict[str, Any],
+    lifetime: Dict[str, Any],
     recent_snippets: list,
     goal_text: str,
 ) -> Optional[str]:
@@ -183,11 +183,11 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
         if hottest.get("wanted"):
             suppressed_note = f"Part of me wanted to {hottest['wanted']!r} but something held back."
 
-    # Mortality phase — colors late-life thoughts
-    mortality = context.get("_mortality") or {}
+    # Lifetime phase — colors late-life thoughts
+    lifetime = context.get("_lifetime") or {}
     mort_note = ""
-    if mortality.get("phase") in ("late", "terminal"):
-        days = mortality.get("days_remaining_felt", 0)
+    if lifetime.get("phase") in ("late", "terminal"):
+        days = lifetime.get("days_remaining_felt", 0)
         mort_note = f"I'm aware I have roughly {days:.0f} days left."
 
     # Drive conflicts — unresolved tensions are generative
@@ -206,7 +206,7 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
             emo=emo,
             suppressed=suppressed,
             conflicts=conflicts,
-            mortality=mortality,
+            lifetime=lifetime,
             recent_snippets=recent_snippets,
             goal_text=goal_text,
         )

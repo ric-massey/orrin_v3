@@ -12,6 +12,8 @@ import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from brain.data_schema import migrate_loaded
+
 from .hub import Hub
 
 # The telemetry hub — the single in-memory snapshot/delta state every consumer
@@ -43,7 +45,7 @@ def _read_json(fname: str, default: Any) -> Any:
     except OSError:  # intentional: unreadable (permission/IO) → default
         return default
     try:
-        d = _json.loads(text)
+        d = migrate_loaded(fname, _json.loads(text))  # accept old+new persisted keys
         _DATA_PARSE_ERRORS.pop(fname, None)  # parsed OK — clear any prior error
         return d if isinstance(d, type(default)) else default
     except Exception as e:

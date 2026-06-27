@@ -589,8 +589,8 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # panels and the brain itself all read one number (was previously invented in
     # the telemetry helper; see SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2).
     try:
-        state["homeostasis"] = round(homeostasis_index(core), 4)
-    except (ImportError, ValueError, TypeError):  # best-effort: homeostasis metric optional
+        state["setpoint_proximity"] = round(homeostasis_index(core), 4)  # was "homeostasis" key
+    except (ImportError, ValueError, TypeError):  # best-effort: setpoint metric optional
         pass
     state["last_updated"] = now.isoformat()
 

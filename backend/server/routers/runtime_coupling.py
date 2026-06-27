@@ -216,7 +216,7 @@ async def affect() -> JSONResponse:
     return JSONResponse({
         "valence": a.get("valence"),                 # raw -1..1 (no UI centering)
         "activation_level": a.get("activation_level"),
-        "homeostasis": a.get("homeostasis"),         # the brain's own index
+        "homeostasis": a.get("setpoint_proximity"),  # the brain's own index (persisted key; wire field kept)
         "resource_deficit": a.get("resource_deficit"),
         "allostatic_load": a.get("_allostatic_load"),  # (T0.1) behaviourally-active load
         "affect_stability": a.get("affect_stability"),

@@ -42,7 +42,17 @@ SCHEMA_VERSION_KEY = "_schema_version"
 # Populated concept-by-concept across the Phase 4 slices (scalar keys, the signal
 # vocabulary + the learned emotion_function_map, …). Empty here = pure
 # infrastructure: the shim is a no-op until a slice registers a file.
-MIGRATIONS: Dict[str, Dict[str, Any]] = {}
+MIGRATIONS: Dict[str, Dict[str, Any]] = {
+    # 4.2 — top-level affect-state scalar keys (engineering names from the plan's
+    # Term Map). The telemetry WIRE fields keep their old spelling for now; the
+    # serializer reads the new state key and emits the old wire field, so the
+    # frontend is untouched until the dedicated routes/frontend slice.
+    "affect_state.json": {
+        "top": {
+            "homeostasis": "setpoint_proximity",  # setpoint regulation index
+        },
+    },
+}
 
 
 def _rename_keys(d: Dict[str, Any], mapping: Dict[str, str]) -> bool:

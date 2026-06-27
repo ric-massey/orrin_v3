@@ -50,7 +50,7 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
         context = {"affect_state": {
             "valence": -0.4,
             "activation_level": 0.3,
-            "homeostasis": 0.123,  # the brain's stored index; emit must use THIS
+            "setpoint_proximity": 0.123,  # persisted key (was "homeostasis"); emit must use THIS
             "core_signals": {"motivation": 0.5, "impasse_signal": 0.9},
         }}
         tele._emit_affect(context)

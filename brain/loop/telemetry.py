@@ -162,7 +162,7 @@ def _emit_affect(context: "Context") -> None:
         # READS it here (it no longer invents the value — see
         # SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2). Fall back to recomputing from
         # the same authority if the state predates this field.
-        homeostasis = a.get("homeostasis")
+        homeostasis = a.get("setpoint_proximity")  # persisted key (was "homeostasis")
         if not isinstance(homeostasis, (int, float)):
             try:
                 from brain.control_signals.homeostasis import homeostasis_index

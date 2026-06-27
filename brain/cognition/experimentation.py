@@ -270,7 +270,7 @@ def _consolidate(experiment: Dict, context: Dict[str, Any]) -> str:
     )
     update_long_memory(
         memory_text,
-        emotion="exploration_drive" if confirmed else ("surprise" if refuted else "stagnation_signal"),
+        emotion="exploration_drive" if confirmed else ("prediction_error_signal" if refuted else "stagnation_signal"),
         event_type="experiment_insight",
         importance=4 if confirmed or refuted else 2,
         context=context,

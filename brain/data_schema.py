@@ -68,6 +68,9 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
             "jealousy": "social_comparison_signal",
             "contentment": "satisfaction_signal",
             "vitality": "vigor_signal",
+            # 'surprise' -> 'prediction_error_signal' (the _signal suffix avoids
+            # colliding with the existing prediction_error() scalar/function).
+            "surprise": "prediction_error_signal",
         }},
     },
     # The learned signal->function weight map is keyed by signal name at the top
@@ -81,6 +84,7 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
             "jealousy": "social_comparison_signal",
             "contentment": "satisfaction_signal",
             "vitality": "vigor_signal",
+            "surprise": "prediction_error_signal",
         },
     },
     # 4.6 — lifecycle start timestamp. The /life wire field stays "born_at" via

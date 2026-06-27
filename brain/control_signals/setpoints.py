@@ -83,7 +83,7 @@ CORE_BASELINES = {
     "conflict_signal":   0.01,
     "threat_level":      0.01,
     "reward_negative":  0.01,
-    "surprise":          0.02,
+    "prediction_error_signal": 0.02,
     "rejection_signal":  0.01,
     "stagnation_signal": 0.0,
     "wonder":            0.0,

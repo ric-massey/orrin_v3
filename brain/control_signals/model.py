@@ -40,7 +40,7 @@ DEFAULT_EMOTION_KEYWORDS: Dict[str, List[str]] = {
         "jealous", "jealousy", "envy", "envious", "resentful", "resentment",
         "covet",
     ],
-    "surprise": [
+    "prediction_error_signal": [
         "surprised", "surprising", "surprise", "unexpected", "astonished",
         "astonishing", "shocked", "shocking", "startled", "amazed", "amazing",
         "whoa", "wow",

@@ -300,7 +300,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         trigger_map = {
             "reflection_stagnation": {"reward_negative": 0.18, "rejection_signal": 0.10},
             "identity_loop": {"conflict_signal": 0.25, "threat_level": 0.18},
-            "success": {"reward_positive": 0.35, "surprise": 0.20},
+            "success": {"reward_positive": 0.35, "prediction_error_signal": 0.20},
             "failure": {"reward_negative": 0.35, "conflict_signal": 0.20},
         }
         nudges = trigger_map.get(trig_key, {})

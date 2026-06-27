@@ -138,7 +138,7 @@ def recommend_mode_from_affect_state(min_intensity: float = 0.55, skip_neutral: 
         "reward_negative": "philosophical",
         "threat_level": "cautious",
         "rejection_signal": "analytical",
-        "surprise": "exploratory",
+        "prediction_error_signal": "exploratory",
         "exploration_drive": "exploratory",
         "wonder": "philosophical",
         "impasse_signal": "critical",

@@ -164,7 +164,7 @@ _VALENCE: Dict[str, float] = {
     "motivation":  +0.35,
     "exploration_drive":   +0.20,
     "reflective":  +0.10,
-    "surprise":    +0.10,
+    "prediction_error_signal": +0.10,
     "analytical":  +0.05,
     "stagnation_signal":     -0.20,
     "low_affect_signal":  -0.30,
@@ -183,7 +183,7 @@ _ACTIVATION_LEVEL: Dict[str, float] = {
     "conflict_signal":       +0.90,
     "threat_level":        +0.80,
     "risk_estimate":     +0.75,
-    "surprise":    +0.70,
+    "prediction_error_signal": +0.70,
     "reward_positive":         +0.65,
     "exploration_drive":   +0.60,
     "motivation":  +0.55,
@@ -210,7 +210,7 @@ _ACTIVATION_LEVEL: Dict[str, float] = {
 # locus-coeruleus noradrenergic burst up over the background, then relaxes
 # (Aston-Jones & Cohen 2005). Value = how strongly each drives that burst.
 _PHASIC_AROUSERS: Dict[str, float] = {
-    "surprise":          1.00,
+    "prediction_error_signal": 1.00,
     "threat_level":      1.00,
     "conflict_signal":   0.90,
     "risk_estimate":     0.85,

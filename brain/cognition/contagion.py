@@ -41,7 +41,7 @@ _CONTAGION_MAP: Dict[str, Dict[str, float]] = {
     "excitement":  {"motivation": 0.22, "exploration_drive": 0.14},
     "expected_gain":        {"expected_gain": 0.24, "motivation": 0.10},
     "exploration_drive":   {"exploration_drive": 0.20},
-    "surprise":    {"exploration_drive": 0.14, "uncertainty": 0.08},
+    "prediction_error_signal": {"exploration_drive": 0.14, "uncertainty": 0.08},
 }
 
 _MAX_BLEED = 0.42   # ceiling — Orrin can't be overwhelmed even by intense affect

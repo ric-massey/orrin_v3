@@ -256,24 +256,24 @@ def execute_cognition_function(
             # the interoceptive cost model can learn expected cost and
             # report prediction error / would-be EVC / τ candidate. No
             # behavior change. docs/proactive_resource_plan.md.
-            _intero_t0 = time.perf_counter()
+            _cost_t0 = time.perf_counter()
             fn_result = _invoke_cognition(
                 fn, fn_name, context,
                 args=result.get("args") if isinstance(result, dict) else None,
                 kwargs=result.get("kwargs") if isinstance(result, dict) else None,
             )
             try:
-                _lat_ms = (time.perf_counter() - _intero_t0) * 1000.0
-                from brain.cognition.interoception import observe as _intero_observe
-                _io = _intero_observe(fn_name, _lat_ms, context)
+                _lat_ms = (time.perf_counter() - _cost_t0) * 1000.0
+                from brain.cognition.cost_prediction import observe as _cost_observe
+                _io = _cost_observe(fn_name, _lat_ms, context)
                 _tb_io = _bridge()
                 if _tb_io is not None and _io:
                     try:
-                        _tb_io.update(interoception=_io)
-                    except (AttributeError, OSError, RuntimeError):  # best-effort interoception telemetry — never block the loop
+                        _tb_io.update(interoception=_io)  # frozen telemetry wire field
+                    except (AttributeError, OSError, RuntimeError):  # best-effort cost telemetry — never block the loop
                         pass
             except Exception as _ioe:
-                record_failure("ORRIN_loop.interoception_observe", _ioe)
+                record_failure("ORRIN_loop.cost_observe", _ioe)
             _emo_post = dict(context.get("affect_state") or {})
 
             # Post-step: tick milestones, snapshot again, compute reward.

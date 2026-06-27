@@ -173,7 +173,7 @@ def score_candidates(
         # et al. (2013). Fail-safe; 0 when disabled.
         s_evc = 0.0
         try:
-            from brain.cognition.interoception import evc_selection_adjust as _evc_adj
+            from brain.cognition.cost_prediction import evc_selection_adjust as _evc_adj
             s_evc = _evc_adj(name, float((_stats.get(name) or {}).get("avg_reward", 0.5) or 0.5), context)
         except Exception:
             s_evc = 0.0

@@ -109,7 +109,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         if emo not in _NON_EMOTIONS:
             core.setdefault(emo, baseline.get(emo, 0.0))
     # (T0.1) The mistuned top-level `allostatic_load` integrator was retired; the
-    # behaviourally-active `_allostatic_load` is owned by interoception's
+    # behaviourally-active `_allostatic_load` is owned by cost_prediction's
     # allostatic_setpoint(), called below in the resource_deficit block.
 
     # === Interoception — body state as generative emotional prior ===
@@ -522,7 +522,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # (2003) allostatic load. Falls back to 0.15 when disabled/absent.
     # Decay rate 0.025; if resource_deficit is very high (>0.75), decay is faster.
     try:
-        from brain.cognition.interoception import allostatic_setpoint as _allo_tau
+        from brain.cognition.cost_prediction import allostatic_setpoint as _allo_tau
         _resource_deficit_baseline = _allo_tau(context, state)
     except Exception:
         _resource_deficit_baseline = 0.15

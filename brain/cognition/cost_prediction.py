@@ -1,6 +1,7 @@
-# brain/cognition/interoception.py
+# brain/cognition/cost_prediction.py
 #
-# Interoceptive cost prediction — proactive/allostatic resource management.
+# Predictive cost model — proactive resource/effort management. (The live per-act
+# telemetry this emits is still published on the frozen `interoception` wire field.)
 # See docs/proactive_resource_plan.md.
 #
 # PHASE 1 STATUS: cost-learning + FELT prediction error (C1).
@@ -78,7 +79,7 @@ def _save_model(m: Dict[str, Any]) -> None:
     try:
         save_json(_MODEL_FILE, m)
     except Exception as _e:
-        _log.warning("interoceptive model save failed: %s", _e)
+        _log.warning("cost model save failed: %s", _e)
 
 
 def _class_prior(fn: str) -> float:
@@ -143,7 +144,7 @@ def _avg_reward(fn: str) -> float:
         if isinstance(stats, dict) and isinstance(stats.get(fn), dict):
             return float(stats[fn].get("avg_reward", 0.5) or 0.5)
     except Exception as exc:  # stats unreadable — record, use neutral prior
-        record_failure("interoception._avg_reward", exc)
+        record_failure("cost_prediction._avg_reward", exc)
     return 0.5
 
 
@@ -202,7 +203,7 @@ def evc_selection_adjust(fn: str, avg_reward: float, context: Dict[str, Any]) ->
         penalty = _EVC_LAMBDA * cost_norm * reward_factor * (1.0 + 0.5 * rd)
         return -round(min(_EVC_CAP, penalty), 4)
     except Exception as exc:  # selection must not crash — record, no adjustment
-        record_failure("interoception.evc_selection_adjust", exc)
+        record_failure("cost_prediction.evc_selection_adjust", exc)
         return 0.0
 
 
@@ -220,7 +221,7 @@ def setpoint_candidate(context: Dict[str, Any]) -> float:
         elif context.get("_rest_mode") or context.get("energy_mode") == "rest":
             tau = 0.12
     except Exception as exc:  # bad context shape — record, keep baseline τ
-        record_failure("interoception.setpoint_candidate", exc)
+        record_failure("cost_prediction.setpoint_candidate", exc)
     return max(0.10, min(0.45, tau))
 
 
@@ -299,11 +300,11 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
             "tau_candidate": setpoint_candidate(context),
             "allostatic_load": round(float(_af.get("_allostatic_load", 0.0) or 0.0), 3),
         }
-        context["_interoception"] = out
+        context["_cost_prediction"] = out
         log_private(
-            f"[interoception] {fn}: pred={out['predicted_ms']}ms act={out['actual_ms']}ms "
+            f"[cost_prediction] {fn}: pred={out['predicted_ms']}ms act={out['actual_ms']}ms "
             f"pe={out['pe_ms']}ms nudge={out['deficit_nudge']:+} evc={out['would_be_evc']} τ*={out['tau_candidate']}"
         )
     except Exception as exc:
-        _log.warning("interoception.observe failed: %s", exc)
+        _log.warning("cost_prediction.observe failed: %s", exc)
     return out

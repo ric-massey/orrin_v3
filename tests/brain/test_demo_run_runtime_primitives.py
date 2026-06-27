@@ -1,7 +1,7 @@
 import pytest
 
 import brain.cognition.reward_rate as rr
-from brain.cognition.interoception import allostatic_setpoint
+from brain.cognition.cost_prediction import allostatic_setpoint
 from brain.cognition.action_accounting import (
     cycle_produced_goal_action,
     mark_consequential_cognition,
@@ -61,7 +61,7 @@ def test_patch_deficit_and_leave_pressure_are_continuous():
 
 def test_allostatic_load_accrues_under_deficit_and_recovers():
     # (T0.1) The behaviourally-active allostatic variable is `_allostatic_load`,
-    # owned by interoception.allostatic_setpoint(): it accrues while the body runs
+    # owned by cost_prediction.allostatic_setpoint(): it accrues while the body runs
     # hot (high resource_deficit) and recovers faster than it builds once the
     # deficit clears. (The retired homeostasis.update_allostatic_load integrated
     # raw exploration_drive and pinned to 1.0; it no longer exists.)

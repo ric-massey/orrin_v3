@@ -104,7 +104,7 @@ export const METRICS: MetricDef[] = [
       { t: "EVC pacing", d: "Expected Value of Control (Shenhav 2013): predicted effort cost is weighed before spending it, so it paces hard cognition instead of over-drawing — though never gating speaking/responding (corrigibility)." },
     ],
     measure: "fatigue = resource_deficit. Accumulates per cycle (+~0.002, more under effortful use), decays toward a context-dependent allostatic setpoint τ; recovery accelerates (×0.06) once severely depleted (>0.75) and during idle rest.",
-    src: { file: "brain/cognition/interoception.py", start: 229, end: 255, label: "allostatic_setpoint — predictive deficit target (τ + load + smoothing)" },
+    src: { file: "brain/cognition/cost_prediction.py", start: 229, end: 255, label: "allostatic_setpoint — predictive deficit target (τ + load + smoothing)" },
   },
   {
     key: "motivation", label: "Motivation", color: "hsl(330 80% 62%)",

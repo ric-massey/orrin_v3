@@ -99,7 +99,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
     # that arrives 5-8 cycles later. Below threshold: contagion handles it directly.
     if emotion not in ("neutral", "unknown", "") and intensity > 0.05:
         try:
-            from brain.affect.integration_lag import maybe_apply_integration_lag
+            from brain.control_signals.integration_lag import maybe_apply_integration_lag
             maybe_apply_integration_lag(
                 emotion, intensity, user_text[:80], context
             )
@@ -134,7 +134,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
 
 def _fallback(user_text: str) -> Dict[str, Any]:
     """Rule-based fallback when LLM parse fails."""
-    from brain.affect.affect import detect_affect
+    from brain.control_signals.affect import detect_affect
     result    = detect_affect(user_text, use_gpt=False)
     emotion   = "neutral"
     intensity = 0.0

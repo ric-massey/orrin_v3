@@ -24,7 +24,7 @@ from brain.cognition.planning.reflection import record_decision
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.json_utils import load_json
 from brain.utils.log import log_error, log_activity, log_model_issue
-from brain.utils.emotion_utils import log_penalty_signal
+from brain.utils.affect_signal_utils import log_penalty_signal
 from brain.utils.error_router import route_exception
 from brain.cognition.repair.auto_repair import try_auto_repair
 from brain.utils.failure_counter import record_failure
@@ -35,7 +35,7 @@ from brain.paths import (
 from brain.loop.telemetry import _push_event, _ui_memory, _bridge
 from brain.loop.invoke import _invoke_cognition
 from brain.loop.cognition_reward import shape_cognition_reward
-from brain.utils.emotion_utils import log_uncertainty_spike
+from brain.utils.affect_signal_utils import log_uncertainty_spike
 from brain.think.loop_helpers import execute_action_via_registries, compute_reward
 
 _log = get_logger(__name__)
@@ -256,24 +256,24 @@ def execute_cognition_function(
             # the interoceptive cost model can learn expected cost and
             # report prediction error / would-be EVC / τ candidate. No
             # behavior change. docs/proactive_resource_plan.md.
-            _intero_t0 = time.perf_counter()
+            _cost_t0 = time.perf_counter()
             fn_result = _invoke_cognition(
                 fn, fn_name, context,
                 args=result.get("args") if isinstance(result, dict) else None,
                 kwargs=result.get("kwargs") if isinstance(result, dict) else None,
             )
             try:
-                _lat_ms = (time.perf_counter() - _intero_t0) * 1000.0
-                from brain.cognition.interoception import observe as _intero_observe
-                _io = _intero_observe(fn_name, _lat_ms, context)
+                _lat_ms = (time.perf_counter() - _cost_t0) * 1000.0
+                from brain.cognition.cost_prediction import observe as _cost_observe
+                _io = _cost_observe(fn_name, _lat_ms, context)
                 _tb_io = _bridge()
                 if _tb_io is not None and _io:
                     try:
-                        _tb_io.update(interoception=_io)
-                    except (AttributeError, OSError, RuntimeError):  # best-effort interoception telemetry — never block the loop
+                        _tb_io.update(interoception=_io)  # frozen telemetry wire field
+                    except (AttributeError, OSError, RuntimeError):  # best-effort cost telemetry — never block the loop
                         pass
             except Exception as _ioe:
-                record_failure("ORRIN_loop.interoception_observe", _ioe)
+                record_failure("ORRIN_loop.cost_observe", _ioe)
             _emo_post = dict(context.get("affect_state") or {})
 
             # Post-step: tick milestones, snapshot again, compute reward.
@@ -343,7 +343,7 @@ def execute_cognition_function(
             # Detect dispatch-level failure: _invoke_cognition returns
             # {"status": "error", "error": "unsatisfiable_args: [...]"}
             # when a cognitive function's required args can't be filled
-            # from context (e.g. add_goal(goal=), apply_emotion_routing(fn_scores=)).
+            # from context (e.g. add_goal(goal=), apply_signal_routing(fn_scores=)).
             # Without this the bandit was logging "Executed" for non-runs
             # and rewarding them at the 0.20 underperformer floor.
             _dispatch_failed = (
@@ -450,7 +450,7 @@ def execute_cognition_function(
                     key=lambda k: float(_core_pre.get(k) or 0.0),
                 ) if _core_pre else ""
                 if _dom_emo:
-                    from brain.affect.affect_learning import update_affect_function_map as _uefm
+                    from brain.control_signals.affect_learning import update_affect_function_map as _uefm
                     _uefm(_dom_emo, fn_name, reward_signal=reward)
             except Exception as e:
                 record_failure("ORRIN_loop.emotion_function_map", e)

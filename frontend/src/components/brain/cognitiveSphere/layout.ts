@@ -26,7 +26,7 @@ export function arcPoints(a: THREE.Vector3, b: THREE.Vector3, n = 16): THREE.Vec
   return pts;
 }
 
-// Gray→white by transition strength: faint paths are a dim gray, his strong loops
+// Gray→white by transition strength: faint paths are a dim gray, its strong loops
 // lighten toward soft white. Kept muted so the roads sit quietly under the nodes.
 export function roadColor(w: number): string {
   const g = Math.round(90 + Math.min(120, w * 280)); // 90 (dim gray) → ~210 (soft white)

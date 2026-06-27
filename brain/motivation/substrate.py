@@ -28,7 +28,7 @@ _URGE_THRESHOLD: float = 0.38   # minimum activation to surface an urge
 _SAVE_INTERVAL: float = 120.0   # seconds between persistence writes
 _LOG_INTERVAL: float = 900.0    # seconds between long-memory log events
 
-# ── Drive definitions ─────────────────────────────────────────────────────────
+# ── Demand definitions ─────────────────────────────────────────────────────────
 # Each entry: (baseline, rise_rate/s, fall_rate/s, focus_hint)
 # rise_rate: how fast activation climbs when idle/deprived
 # fall_rate: how fast activation decays when the drive is being satisfied
@@ -71,7 +71,7 @@ _FN_SATISFIES: Dict[str, List[tuple]] = {
     "web_search":         [("world_mastery", 0.25), ("novelty_exploration_drive", 0.25)],
     "pursue_goal":        [("competence", 0.30), ("autonomy", 0.25)],
     "plan":               [("competence", 0.20), ("autonomy", 0.20)],
-    "dream_cycle":        [("novelty_exploration_drive", 0.30), ("affect_stability", 0.20)],
+    "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("affect_stability", 0.20)],
     "wonder":             [("novelty_exploration_drive", 0.35), ("world_mastery", 0.15)],
     "generate_intrinsic_goals": [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
     "self_review":        [("competence", 0.15), ("affect_stability", 0.15)],
@@ -154,7 +154,7 @@ class _MotivationEngine:
     def __init__(self) -> None:
         self._lock = threading.Lock()
 
-        # Drive activations: {drive_name: float [0,1]}
+        # Demand activations: {demand_name: float [0,1]}
         self._drives: Dict[str, float] = {
             name: baseline for name, (baseline, *_) in _DRIVE_DEFAULTS.items()
         }
@@ -250,10 +250,10 @@ class _MotivationEngine:
         # Map reward [-1,1] → satisfaction scale [0.1, 1.0]
         scale = max(0.1, (float(reward) + 1.0) / 2.0)
         with self._lock:
-            for drive_name, base_amount in mappings:
-                if drive_name in self._drives:
-                    self._drives[drive_name] = max(
-                        0.0, self._drives[drive_name] - base_amount * scale
+            for demand_name, base_amount in mappings:
+                if demand_name in self._drives:
+                    self._drives[demand_name] = max(
+                        0.0, self._drives[demand_name] - base_amount * scale
                     )
 
     # ── Urge sampling ──────────────────────────────────────────────────────

@@ -284,7 +284,7 @@ class OrrinSpeaker:
         if context:
             emo_raw = context.get("affect_state") or {}
             current_emo = (emo_raw.get("core_signals") or emo_raw) or {}
-        dominant_emotion = ""
+        dominant_signal = ""
         dominant_intensity = 0.0
         for _ename, _eval in current_emo.items():
             try:
@@ -293,20 +293,20 @@ class OrrinSpeaker:
                 continue
             if _v > dominant_intensity:
                 dominant_intensity = _v
-                dominant_emotion = _ename
+                dominant_signal = _ename
 
         def _emotion_congruence(mem: Dict) -> float:
             """Score boost if memory's stored emotion matches current dominant emotion."""
-            if not dominant_emotion or dominant_intensity < 0.2:
+            if not dominant_signal or dominant_intensity < 0.2:
                 return 0.0
             mem_emo = str(mem.get("emotion", "")).lower()
             emo_ctx = mem.get("emotional_context") or {}
             # Direct label match
-            if dominant_emotion in mem_emo:
+            if dominant_signal in mem_emo:
                 return dominant_intensity * 2.0
             # Stored intensity match from emotional_context snapshot
-            if isinstance(emo_ctx, dict) and dominant_emotion in emo_ctx:
-                stored_v = float(emo_ctx.get(dominant_emotion, 0.0))
+            if isinstance(emo_ctx, dict) and dominant_signal in emo_ctx:
+                stored_v = float(emo_ctx.get(dominant_signal, 0.0))
                 return stored_v * 1.5
             return 0.0
 
@@ -401,7 +401,7 @@ class OrrinSpeaker:
 
         # Body sense: color voice when body state is notable
         try:
-            from brain.cognition.body_sense import body_sense_voice_hint as _bsvh
+            from brain.cognition.resource_self_monitor import body_sense_voice_hint as _bsvh
             _body_hint = _bsvh(context)
             if _body_hint == "effortful" and tone == "neutral":
                 tone = "hesitant"; hesitation = max(hesitation, 0.4)

@@ -7,7 +7,7 @@
 # parallel copy of the same constant.
 from pathlib import Path
 
-import brain.affect.arbiter as arbiter
+import brain.control_signals.arbiter as arbiter
 import brain.config.tuning as tuning
 from brain.cognition.planning import step_execution
 from brain.think.think_utils.selection import score_setup

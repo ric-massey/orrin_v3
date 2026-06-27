@@ -64,7 +64,7 @@ def _harvest(context: Dict[str, Any]) -> Dict[str, Any]:
             memories.append(c[:130])
 
     exploration_drive   = float(core.get("exploration_drive",    0) or 0)
-    positive_valence         = float(core.get("positive_valence",          0) or 0)
+    reward_positive         = float(core.get("reward_positive",          0) or 0)
     impasse_signal = float(core.get("impasse_signal",  0) or 0)
     confidence  = float(core.get("confidence", 0.5) or 0.5)
     resource_deficit     = float(emo.get("resource_deficit",        0) or 0)
@@ -72,7 +72,7 @@ def _harvest(context: Dict[str, Any]) -> Dict[str, Any]:
 
     words: List[str] = []
     if exploration_drive   > 0.55: words.append("curious")
-    if positive_valence         > 0.45: words.append("warm")
+    if reward_positive         > 0.45: words.append("warm")
     if impasse_signal > 0.45: words.append("a bit frustrated")
     if resource_deficit     > 0.55: words.append("tired")
     if confidence  > 0.65: words.append("confident")

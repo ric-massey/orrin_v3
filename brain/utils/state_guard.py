@@ -53,7 +53,7 @@ def _safe_int(val: Any, default: int, lo: int = 0) -> int:
 
 # Emotions present in both the top-level affect_state and core_signals sub-dict.
 _EMOTION_DEFAULTS: Dict[str, float] = {
-    "positive_valence": 0.5, "negative_valence": 0.3, "exploration_drive": 0.6, "impasse_signal": 0.2,
+    "reward_positive": 0.5, "reward_negative": 0.3, "exploration_drive": 0.6, "impasse_signal": 0.2,
     "confidence": 0.5, "motivation": 0.5, "stagnation_signal": 0.3, "expected_gain": 0.5,
     "threat_level": 0.2, "social_penalty": 0.1, "conflict_signal": 0.1, "penalty_signal": 0.0,
     "uncertainty": 0.3, "excitement": 0.3, "risk_estimate": 0.2, "stress": 0.2,
@@ -85,7 +85,7 @@ def _sanitize_emotion_state(data: Any) -> Tuple[Dict[str, Any], bool]:
     # Fix top-level emotion keys (used directly by ORRIN_loop.py boot/cycle code)
     changed |= _fix_emotion_dict(data)
 
-    # Fix nested core_signals sub-dict (used by emotion_utils, memory_io, etc.)
+    # Fix nested core_signals sub-dict (used by signal_utils, memory_io, etc.)
     core = data.get("core_signals")
     if isinstance(core, dict):
         changed |= _fix_emotion_dict(core)

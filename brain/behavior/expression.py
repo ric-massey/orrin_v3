@@ -19,8 +19,8 @@ from brain.utils.log import log_private
 _log = get_logger(__name__)
 
 _MIN_URGENCY = 0.20
-_POSITIVE_EMOTIONS = frozenset({"positive_valence", "expected_gain", "exploration_drive", "confidence", "wonder", "excitement", "gratitude"})
-_NEGATIVE_EMOTIONS = frozenset({"threat_level", "negative_valence", "impasse_signal", "conflict_signal", "social_penalty", "risk_estimate", "rejection_signal", "social_deficit"})
+_POSITIVE_EMOTIONS = frozenset({"reward_positive", "expected_gain", "exploration_drive", "confidence", "novelty_signal", "excitement", "gratitude"})
+_NEGATIVE_EMOTIONS = frozenset({"threat_level", "reward_negative", "impasse_signal", "conflict_signal", "social_penalty", "risk_estimate", "rejection_signal", "social_deficit"})
 
 # Congruence map: affect signals not directly in vocabulary → nearest available key.
 # Based on Rogers (1959) organismic valuing process: when the expressed content
@@ -28,22 +28,22 @@ _NEGATIVE_EMOTIONS = frozenset({"threat_level", "negative_valence", "impasse_sig
 # Mapping prevents strong felt states from silently collapsing to neutral.
 #
 # Mapping rules grounded in action tendency research (Frijda 1986):
-#   - social_penalty and negative_valence are NOT interchangeable: social_penalty→hide, negative_valence→seek comfort
+#   - social_penalty and reward_negative are NOT interchangeable: social_penalty→hide, reward_negative→seek comfort
 #     (Tangney & Dearing 2002). Both now have own vocabulary entries.
 #   - rejection_signal→conflict_signal: both are rejection-oriented (Rozin & Fallon 1987);
 #     rejection_signal is object-rejection, closer to conflict_signal than to blocked-approach impasse_signal.
 #   - excitement now has its own vocabulary; no longer falls back to motivation.
-#   - gratitude→positive_valence: approach-valence, hedonic overlap (Frijda 1986).
+#   - gratitude→reward_positive: approach-valence, hedonic overlap (Frijda 1986).
 #   - uncertainty→risk_estimate: both involve unresolved threat appraisal.
 _CONGRUENCE_MAP = {
     "threat_level":        "risk_estimate",
     "rejection_signal":     "conflict_signal",
-    "gratitude":   "positive_valence",
+    "gratitude":   "reward_positive",
     "uncertainty": "risk_estimate",
-    "melancholy":  "negative_valence",
+    "low_affect_signal":  "reward_negative",
     "dread":       "threat_level",
-    "loss_signal":       "negative_valence",
-    "jealousy":    "conflict_signal",
+    "loss_signal":       "reward_negative",
+    "social_comparison_signal":    "conflict_signal",
 }
 
 from brain.paths import DATA_DIR
@@ -144,7 +144,7 @@ def _congruent_pick(section: str, emotion: str, intensity: float) -> str:
     # 3. At high intensity, prefer any negative affect over neutral rather
     #    than collapsing to agreeable placeholders
     if intensity > 0.60 and emotion not in _POSITIVE_EMOTIONS:
-        for neg_emo in ("impasse_signal", "risk_estimate", "negative_valence", "wonder"):
+        for neg_emo in ("impasse_signal", "risk_estimate", "reward_negative", "novelty_signal"):
             pool = section_vocab.get(neg_emo)
             if pool:
                 return _weighted_choice(pool)
@@ -154,7 +154,7 @@ def _congruent_pick(section: str, emotion: str, intensity: float) -> str:
     return _weighted_choice(pool)
 
 
-def _dominant_emotion(context: Dict[str, Any]) -> str:
+def _dominant_signal(context: Dict[str, Any]) -> str:
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
     if isinstance(core, dict) and core:
@@ -227,7 +227,7 @@ def express(
         log_private("[expression] suppressed — social_penalty (no user input)")
         return ""
 
-    emotion = _dominant_emotion(context)
+    emotion = _dominant_signal(context)
 
     # Compute affective intensity for congruence enforcement
     _emo_intensity = 0.0

@@ -24,7 +24,7 @@ from __future__ import annotations
 from typing import Any, Dict
 
 from brain.utils.log import log_private
-from brain.affect.affect import detect_affect
+from brain.control_signals.affect import detect_affect
 
 
 # What Orrin catches from each detected user affect signal.
@@ -32,16 +32,16 @@ from brain.affect.affect import detect_affect
 _CONTAGION_MAP: Dict[str, Dict[str, float]] = {
     "impasse_signal": {"impasse_signal": 0.28, "uncertainty": 0.08},
     "conflict_signal":       {"impasse_signal": 0.22, "risk_estimate": 0.10},
-    "negative_valence":     {"melancholy": 0.24, "compassion": 0.18},
+    "reward_negative":     {"low_affect_signal": 0.24, "affiliation_signal": 0.18},
     "threat_level":        {"risk_estimate": 0.26, "uncertainty": 0.10},
     "risk_estimate":     {"risk_estimate": 0.24, "uncertainty": 0.10},
-    "distress":    {"risk_estimate": 0.20, "melancholy": 0.14},
+    "distress":    {"risk_estimate": 0.20, "low_affect_signal": 0.14},
     "rejection_signal":     {"uncertainty": 0.10, "impasse_signal": 0.08},
-    "positive_valence":         {"expected_gain": 0.20, "motivation": 0.14},
+    "reward_positive":         {"expected_gain": 0.20, "motivation": 0.14},
     "excitement":  {"motivation": 0.22, "exploration_drive": 0.14},
     "expected_gain":        {"expected_gain": 0.24, "motivation": 0.10},
     "exploration_drive":   {"exploration_drive": 0.20},
-    "surprise":    {"exploration_drive": 0.14, "uncertainty": 0.08},
+    "prediction_error_signal": {"exploration_drive": 0.14, "uncertainty": 0.08},
 }
 
 _MAX_BLEED = 0.42   # ceiling — Orrin can't be overwhelmed even by intense affect

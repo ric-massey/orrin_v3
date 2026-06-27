@@ -231,7 +231,7 @@ _BRANCH_CONF_HIGH = 0.72   # above this: linear sim is enough (already confident
 # Valence vocabulary for scoring a projected belief-chain. Matched against the
 # conclusions of causal edges / rule steps (Orrin's own signal names).
 _LOOKAHEAD_NEG = ("stagnation", "impasse", "conflict", "threat", "penalty",
-                  "rejection", "risk", "melancholy", "failure", "frustrat",
+                  "rejection", "risk", "low_affect_signal", "failure", "frustrat",
                   "stuck", "blocked", "loop", "avoidance", "debt", "regret",
                   "error", "worse", "decline")
 _LOOKAHEAD_POS = ("expected_gain", "reward", "confidence", "motivation",

@@ -9,7 +9,7 @@
 #
 # Dimensions:
 #   valence   — positive vs negative aggregate. Range ~[-0.8..0.8]
-#   energy    — activation_level proxy: motivation + exploration_drive - resource_deficit - melancholy
+#   energy    — activation_level proxy: motivation + exploration_drive - resource_deficit - low_affect_signal
 #   stability — smoothed affect_stability field
 #
 # Effect: after all per-cycle affect bumps, mood nudges affect further in
@@ -40,9 +40,9 @@ _SAVE_EVERY = 10       # flush to disk every N cycles
 
 _cycle_counter = 0
 
-_POSITIVE = frozenset({"positive_valence", "expected_gain", "motivation", "exploration_drive", "confidence",
-                        "satisfaction", "wonder", "excitement"})
-_NEGATIVE = frozenset({"impasse_signal", "risk_estimate", "threat_level", "melancholy", "negative_valence",
+_POSITIVE = frozenset({"reward_positive", "expected_gain", "motivation", "exploration_drive", "confidence",
+                        "satisfaction", "novelty_signal", "excitement"})
+_NEGATIVE = frozenset({"impasse_signal", "risk_estimate", "threat_level", "low_affect_signal", "reward_negative",
                         "social_penalty", "uncertainty", "conflict_signal", "rejection_signal"})
 
 
@@ -61,7 +61,7 @@ def _energy(core: Dict, emo: Dict) -> float:
     mot  = float(core.get("motivation") or emo.get("motivation") or 0.5)
     cur  = float(core.get("exploration_drive") or 0.3)
     fat  = float(emo.get("resource_deficit") or core.get("resource_deficit") or 0.0)
-    mel  = float(core.get("melancholy") or 0.0)
+    mel  = float(core.get("low_affect_signal") or 0.0)
     return round(max(-1.0, min(1.0, mot + cur * 0.5 - fat - mel * 0.5)), 4)
 
 

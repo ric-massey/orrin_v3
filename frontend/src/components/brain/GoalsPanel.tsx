@@ -79,7 +79,7 @@ export default function GoalsPanel({ telemetry }: { telemetry: TelemetryState })
     if (hit) setSelected(key(hit));
   });
 
-  // Live "which goal is he on right now" comes from telemetry (the committed goal).
+  // Live "which goal is it on right now" comes from telemetry (the committed goal).
   const activeId = useMemo(() => {
     const a = (telemetry.goals || []).find((g) => g.active);
     return a ? String(a.id || a.title) : null;
@@ -119,7 +119,7 @@ export default function GoalsPanel({ telemetry }: { telemetry: TelemetryState })
             <PanelInfo
               title="Goals"
               perspective="agent-accessible"
-              what="What he's trying to do: every goal with its status, plan steps, milestones, and history. Click a goal for the full drawer — including the artifacts he ACTUALLY produced for it, not just the templated plan. The blue 'active' one is the committed goal his deliberate lane is pursuing; the executive lane quietly rotates through the rest of the committed queue."
+              what="What it's trying to do: every goal with its status, plan steps, milestones, and history. Click a goal for the full drawer — including the artifacts it ACTUALLY produced for it, not just the templated plan. The blue 'active' one is the committed goal its deliberate lane is pursuing; the executive lane quietly rotates through the rest of the committed queue."
               source="GET /api/goals over brain/data/goals_mem.json (live committed goal via the socket)"
               good="Goals that close — completed or retired — instead of accumulating; see the Goal health box for the closure funnel."
               src={{ file: "brain/ORRIN_loop.py", start: 252, end: 311, label: "_emit_goals" }}
@@ -218,7 +218,7 @@ function GoalCard({ g, active, onClick }: { g: GoalDetail; active: boolean; onCl
   );
 }
 
-// Right-side drawer: honest Overview, What he actually produced (correlated
+// Right-side drawer: honest Overview, What it actually produced (correlated
 // long-memory artifacts + provenance), and the Raw record.
 function GoalDrawer({ detail, onClose }: { detail: GoalDetail; onClose: () => void }) {
   const [tab, setTab] = useState<"overview" | "produced" | "raw">("overview");
@@ -256,7 +256,7 @@ function GoalDrawer({ detail, onClose }: { detail: GoalDetail; onClose: () => vo
       </div>
 
       <div className="flex border-b border-border text-[11px]">
-        {([["overview", "Overview"], ["produced", "What he produced"], ["raw", "Raw"]] as const).map(([k, l]) => (
+        {([["overview", "Overview"], ["produced", "What it produced"], ["raw", "Raw"]] as const).map(([k, l]) => (
           <button key={k} onClick={() => setTab(k)} className={cn("flex-1 px-2 py-1.5 font-medium transition-colors", tab === k ? "border-b-2 border-foreground text-foreground" : "text-muted-foreground hover:text-foreground")}>{l}</button>
         ))}
       </div>
@@ -277,7 +277,7 @@ function GoalDrawer({ detail, onClose }: { detail: GoalDetail; onClose: () => vo
               {(detail.tags || []).map((t) => <span key={t} className="rounded bg-secondary px-1.5 py-0">{t}</span>)}
             </div>
             {detail.description && <Section label="What this means"><p className="leading-relaxed text-foreground/90">{detail.description}</p></Section>}
-            {detail.serves && <Section label="Why he's pursuing it"><p className="leading-relaxed text-foreground/85">↳ serves: {detail.serves}</p></Section>}
+            {detail.serves && <Section label="Why it's pursuing it"><p className="leading-relaxed text-foreground/85">↳ serves: {detail.serves}</p></Section>}
             {milestones.length > 0 && (
               <Section label={`How it's accomplished · ${metN}/${milestones.length} met`}>
                 <ul className="space-y-1">
@@ -325,9 +325,9 @@ function GoalDrawer({ detail, onClose }: { detail: GoalDetail; onClose: () => vo
         {tab === "produced" && (
           <div className="space-y-2">
             <p className="text-[10px] leading-snug text-muted-foreground">
-              The actual long-memory entries he wrote during this goal{arts.kws.length > 0 && <> or about <span className="font-mono">{arts.kws.join(", ")}</span></>}. Each shows its <b>source</b> and time — what he really did, not the templated plan.
+              The actual long-memory entries it wrote during this goal{arts.kws.length > 0 && <> or about <span className="font-mono">{arts.kws.join(", ")}</span></>}. Each shows its <b>source</b> and time — what it really did, not the templated plan.
             </p>
-            {arts.loading && <div className="text-[11px] text-muted-foreground">Correlating his memory…</div>}
+            {arts.loading && <div className="text-[11px] text-muted-foreground">Correlating its memory…</div>}
             {!arts.loading && arts.list.length === 0 && (
               <div className="rounded-md border border-border bg-muted/30 px-2 py-3 text-center text-[11px] text-muted-foreground">No memory entries are linked to this goal yet.</div>
             )}
@@ -347,7 +347,7 @@ function GoalDrawer({ detail, onClose }: { detail: GoalDetail; onClose: () => vo
 
         {tab === "raw" && (
           <div className="space-y-1">
-            <p className="text-[10px] text-muted-foreground">The complete stored record — every field, exactly as he wrote it.</p>
+            <p className="text-[10px] text-muted-foreground">The complete stored record — every field, exactly as it wrote it.</p>
             <pre className="overflow-auto rounded bg-muted/40 p-2 text-[10px] leading-snug"><code className="font-mono">{JSON.stringify(detail.raw ?? detail, null, 2)}</code></pre>
           </div>
         )}

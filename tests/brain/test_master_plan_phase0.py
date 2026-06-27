@@ -142,9 +142,9 @@ def test_mark_goal_failed_survives_metrics_import_failure(monkeypatch, _quiet_go
 # ── 0.3 regulation affect_stability routing ──────────────────────────────────
 
 def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
-    import brain.affect.regulation as reg
+    import brain.control_signals.regulation as reg
     import brain.cog_memory.working_memory as wm
-    from brain.affect.arbiter import commit_affect
+    from brain.control_signals.arbiter import commit_affect
 
     log_state = {}
     monkeypatch.setattr(reg, "_load_log", lambda: log_state)

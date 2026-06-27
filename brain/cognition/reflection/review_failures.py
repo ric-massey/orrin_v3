@@ -140,7 +140,7 @@ def review_failures(context: Optional[Dict[str, Any]] = None) -> str:
 
     if emitted:
         try:
-            from brain.cognition.selfhood.autobiography import add_narrative_pressure
+            from brain.cognition.self_state.autobiography import add_narrative_pressure
             add_narrative_pressure(0.25, f"{emitted} failure pattern(s) consolidated")
         except Exception as e:
             record_failure("review_failures.pressure", e)

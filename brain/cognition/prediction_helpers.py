@@ -269,7 +269,7 @@ def _fire_introspection_miss(pred: Dict, context: Dict[str, Any]) -> None:
     except Exception as _e:
         record_failure("prediction._fire_introspection_miss", _e)
     try:
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
         submit_affect(context, "exploration_drive", +0.04, source="introspection_miss")
         submit_affect(context, "confidence", -0.03, source="introspection_miss")
     except Exception as _e:
@@ -302,7 +302,7 @@ def _fire_surprise(prediction_text: str, mismatch: float, context: Dict[str, Any
     core = affect.get("core_signals") or affect
     for sig_name, delta in [
         ("exploration_drive",  +0.10 * rw_scale),
-        ("wonder",     +0.08 * rw_scale),
+        ("novelty_signal", +0.08 * rw_scale),
         ("confidence", -0.06 * rw_scale),
     ]:
         v = float(core.get(sig_name, 0.0) or 0.0)

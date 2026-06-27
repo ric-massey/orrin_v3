@@ -7,11 +7,11 @@ import time
 from typing import Any, Dict, List
 
 from brain.utils.json_utils import load_json
-from brain.utils.emotion_utils import dominant_emotion
+from brain.utils.affect_signal_utils import dominant_signal
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
-from brain.think.think_utils.dreams_emotional_logic import dreams_and_emotional_logic
+from brain.think.think_utils.consolidation_emotional_logic import dreams_and_emotional_logic
 from brain.think.think_utils.reflect_on_directive import reflect_on_directive
 from brain.think.think_utils.select_function import select_function  # NEW API supports legacy triple if kwargs passed
 from brain.think.think_utils.finalize import finalize_cycle
@@ -21,9 +21,9 @@ from brain.cognition.metacog import metacog_init, metacog_flush
 from brain.think.thought_stream import emit_thought
 
 from brain.behavior.speak import OrrinSpeaker
-from brain.cognition.selfhood.relationships import update_relationship_model
-from brain.cognition.selfhood.self_model_conflicts import update_self_model
-from brain.affect.affect_learning import update_affect_function_map
+from brain.cognition.self_state.relationships import update_relationship_model
+from brain.cognition.self_state.self_model_conflicts import update_self_model
+from brain.control_signals.affect_learning import update_affect_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
@@ -119,7 +119,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Ground truth continues to drive unconscious machinery (attention, rewards, drives).
         # The perceived state is what enters the system prompt and inner loop reasoning.
         try:
-            from brain.affect.introspection import compute_perceived_state as _cps
+            from brain.control_signals.introspection import compute_perceived_state as _cps
             _introspection = _cps(context)
             context["perceived_affect_state"]          = _introspection["perceived_affect_state"]
             context["introspection_clarity"]              = _introspection["introspection_clarity"]
@@ -217,7 +217,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # === 2h) Knowledge graph — observe from user input, inject context ===
         # Heuristic entity/relation extraction from user text each cycle.
         # Keeps a persistent world model of people, projects, concepts Orrin encounters.
-        # LLM-assisted consolidation happens separately during dream_cycle.
+        # LLM-assisted consolidation happens separately during idle_consolidation_cycle.
         try:
             from brain.cognition.knowledge_graph import observe as _kg_observe, get_context_for_prompt as _kg_ctx
             _kg_user_text = (context.get("latest_user_input") or "").strip()
@@ -271,7 +271,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
 
         # === 3c) Latent identity drift — surface to working memory if significant ===
         try:
-            from brain.cognition.selfhood.latent_identity import identity_drift_warning as _idw
+            from brain.cognition.self_state.latent_identity import identity_drift_warning as _idw
             _drift_warning = _idw(context)
             if _drift_warning:
                 from brain.cog_memory.working_memory import update_working_memory as _uwm_drift
@@ -375,7 +375,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Previously called without reward_signal so it always incremented +1.0 —
         # making it a pure frequency counter, not a learner. Using context["last_reward"]
         # (set by finalize_cycle at end of previous cycle) gives a real outcome signal.
-        dom_emo = dominant_emotion(affect_state)
+        dom_emo = dominant_signal(affect_state)
         if dom_emo:
             try:
                 _last_reward = float(context.get("last_reward") or 0.5)

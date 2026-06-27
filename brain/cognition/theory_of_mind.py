@@ -157,7 +157,7 @@ def _update_synchrony(tom: Dict[str, Any], context: Dict[str, Any], sig: Dict[st
 
     emo  = context.get("affect_state") or {}
     core = emo.get("core_signals", emo) or {}
-    orrin_pos = float(core.get("positive_valence", 0) or 0) + float(core.get("exploration_drive", 0) or 0)
+    orrin_pos = float(core.get("reward_positive", 0) or 0) + float(core.get("exploration_drive", 0) or 0)
     orrin_neg = float(core.get("risk_estimate", 0) or 0) + float(core.get("impasse_signal", 0) or 0)
 
     if orrin_pos > orrin_neg + 0.15:

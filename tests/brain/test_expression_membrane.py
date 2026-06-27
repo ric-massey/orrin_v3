@@ -25,7 +25,7 @@ from brain.behavior.speakability import (
 )
 
 
-_AFFECT = {"affect_state": {"core_signals": {"wonder": 0.7, "positive_valence": 0.4}}}
+_AFFECT = {"affect_state": {"core_signals": {"novelty_signal": 0.7, "reward_positive": 0.4}}}
 
 
 # ── Speakability invariant (E7) ──────────────────────────────────────────────
@@ -35,7 +35,7 @@ def test_is_speakable_accepts_plain_language():
 
 
 @pytest.mark.parametrize("bad", [
-    "[symbolic] reaper [rule] x",
+    "[symbolic] supervisor [rule] x",
     "[chunk: 12] thinking",
     "[regulation] NORMAL",
     "see /Users/ric/brain/foo.py for details",
@@ -108,7 +108,7 @@ def test_leave_note_composes_and_does_not_leak_working_memory(monkeypatch):
     import brain.cognition.leave_note as ln
 
     ctx = {
-        "affect_state": {"core_signals": {"impasse_signal": 0.8, "negative_valence": 0.5}},
+        "affect_state": {"core_signals": {"impasse_signal": 0.8, "reward_negative": 0.5}},
         "committed_goal": {"id": "g1", "title": "name the obstacle for Ric",
                            "spec": {"description": "tell Ric what is blocking progress"}},
         # backend junk that the OLD scrape path would have emitted verbatim:

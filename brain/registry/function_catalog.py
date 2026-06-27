@@ -44,21 +44,21 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("associative_memory", "Memory"),
     ("concept_formation", "Memory"),
     ("world_model", "Memory"),
-    # reflection / metacognition / dreaming
+    # reflection / metacognition / idle consolidation
     ("cognition/reflection", "Reflection"),
     ("metacog", "Reflection"),
-    ("cognition/dreaming", "Reflection"),
+    ("cognition/idle_consolidation", "Reflection"),
     ("threads", "Dialogue"),
     ("awaiting_response", "Dialogue"),
-    # self / identity / values / will
-    ("cognition/selfhood", "Self"),
+    # self / identity / values / commitment & intention-endorsement
+    ("cognition/self_state", "Self"),
     ("identity", "Self"),
     ("opinions", "Values"),
-    ("will", "Values"),
-    ("volition", "Values"),
+    ("commitment", "Values"),
+    ("intention_endorsement", "Values"),
     ("value", "Values"),
     ("privacy", "Values"),
-    ("body_sense", "Body"),
+    ("resource_self_monitor", "Body"),
     # planning / goals
     ("cognition/planning", "Planning"),
     ("goal_competition", "Planning"),
@@ -79,7 +79,7 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("global_workspace", "Control"),
     ("inhibition", "Control"),
     # affect
-    ("affect", "Affect"),
+    ("control_signals", "Affect"),
     ("motivation", "Affect"),
     ("emotion", "Affect"),
     # curiosity

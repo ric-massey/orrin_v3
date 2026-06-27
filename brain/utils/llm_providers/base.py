@@ -67,7 +67,7 @@ class LLMProvider:
             )
             txt = (out.get("content") or "").strip()
             return (bool(txt), f"Connected — {self.model} replied." if txt else "No reply from the model.")
-        except Exception as e:  # noqa: BLE001 — surface any failure verbatim to the UI
+        except Exception as e:  # noqa: BLE001 — intentional: surface any failure verbatim to the UI
             return (False, str(e)[:200])
 
 

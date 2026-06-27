@@ -118,7 +118,7 @@ def test_bodybands_discards_foreign_machine_bands(tmp_path):
 # ------------------------------------------------------- body_sense wiring ---
 
 def test_body_sense_resting_high_rss_reads_clear_not_heavy():
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     bs._bands = None  # fresh, isolated by conftest's tmp DATA_DIR
     bs._dream_bands = None
     g = bs._get_bands()
@@ -141,7 +141,7 @@ def test_body_sense_resting_high_rss_reads_clear_not_heavy():
 
 
 def test_body_sense_lenient_during_infancy():
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     bs._bands = None
     bs._dream_bands = None
     g = bs._get_bands()
@@ -155,8 +155,8 @@ def test_body_sense_lenient_during_infancy():
 
 
 def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
-    import brain.cognition.body_sense as bs
-    from brain.cognition.dreaming.dream_cycle import set_dreaming
+    import brain.cognition.resource_self_monitor as bs
+    from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
     bs._bands = None
@@ -182,20 +182,20 @@ def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
         "latency_ms": 0.34,
     }
     try:
-        set_dreaming(False)
+        set_consolidating(False)
         assert "heavy" in bs.compute_body_states(high_dream_vitals)
 
-        set_dreaming(True)
+        set_consolidating(True)
         assert bs.compute_body_states(high_dream_vitals) == ["clear"]
     finally:
-        set_dreaming(False)
+        set_consolidating(False)
 
 
 def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
-    import brain.affect.arbiter as arbiter
-    from brain.affect.arbiter import commit_affect, submit_affect
-    import brain.cognition.body_sense as bs
-    from brain.cognition.dreaming.dream_cycle import set_dreaming
+    import brain.control_signals.arbiter as arbiter
+    from brain.control_signals.arbiter import commit_affect, submit_affect
+    import brain.cognition.resource_self_monitor as bs
+    from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
     monkeypatch.setattr(bs, "BODY_SENSE_FILE", tmp_path / "body_sense.json")
@@ -222,7 +222,7 @@ def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypat
     context = {"affect_state": {"core_signals": {}, "resource_deficit": 0.55}}
     before = context["affect_state"]["resource_deficit"]
     try:
-        set_dreaming(True)
+        set_consolidating(True)
         body = bs.update_body_sense(context)
         assert body["phase"] == "sleep"
         assert body["body_states"] == ["clear"]
@@ -232,7 +232,7 @@ def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypat
         submit_affect(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
         commit_affect(context)
     finally:
-        set_dreaming(False)
+        set_consolidating(False)
         with arbiter._inbox_lock:
             arbiter._inbox.clear()
 

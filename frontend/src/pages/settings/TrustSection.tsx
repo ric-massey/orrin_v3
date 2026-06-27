@@ -74,7 +74,7 @@ export function TrustSection({
       a.download = name;
       a.click();
       URL.revokeObjectURL(url);
-      setDiagNote("Saved — logs and state only, never his memory or thoughts.");
+      setDiagNote("Saved — logs and state only, never its memory or interior content.");
     } catch {
       setDiagNote("Export failed (a control token may be required for a remote viewer).");
     }
@@ -117,10 +117,10 @@ export function TrustSection({
 
         {capabilities.length > 0 && (
           <div className="border-t border-border pt-4">
-            <div className="text-sm font-medium">What Orrin's body can reach</div>
+            <div className="text-sm font-medium">What Orrin can reach</div>
             <p className="mt-0.5 mb-2 text-xs text-muted-foreground">
-              His body asks your OS before it can see your screen or reach other apps.
-              Anything off here just means that sense is closed — he carries on without it.
+              The runtime asks your OS before it can see your screen or reach other apps.
+              Anything off here just means that input is closed — it carries on without it.
             </p>
             <div className="space-y-2">
               {capabilities.map((c) => (
@@ -147,8 +147,8 @@ export function TrustSection({
         )}
 
         <ToggleRow
-          label="Let Orrin fine-tune on his own conversations"
-          warn="Uploads his best conversation traces (your words included) to OpenAI to train a private model, and spends on your account. Off by default."
+          label="Let Orrin fine-tune on its own conversations"
+          warn="Uploads its best conversation traces (your words included) to OpenAI to train a private model, and spends on your account. Off by default."
           checked={!!status?.prefs?.allow_finetune}
           disabled={!status?.configured.openai || (status?.prefs?.llm_provider ?? "openai") !== "openai"}
           disabledNote={
@@ -171,8 +171,8 @@ export function TrustSection({
         <div className="border-t border-border pt-4">
           <div className="text-sm font-medium">Diagnostics</div>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            If something goes wrong, export a bundle of recent logs and his state — logs
-            only, never his memory or thoughts. Nothing is sent automatically; you choose
+            If something goes wrong, export a bundle of recent logs and its state — logs
+            only, never its memory or interior content. Nothing is sent automatically; you choose
             to share it.
           </p>
           {isBridge ? (

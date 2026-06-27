@@ -7,7 +7,7 @@ import { LexText, PanelSubtitle } from "./Lex";
 import StaleBadge from "./StaleBadge";
 import { Sparkline } from "./viz";
 
-/** Box ⑥ — Learning / reward. How he learns which thoughts pay off: per-
+/** Box ⑥ — Learning / reward. How it learns which thoughts pay off: per-
  *  function bandit stats (which cognition is "working"), suppressions, and the
  *  recent reward trace — the core adaptive loop. */
 
@@ -36,7 +36,7 @@ export default function LearningPanel() {
           <PanelInfo
             title="Learning / reward"
             perspective="agent-accessible"
-            what="The bandit's view of his own cognition: how often each function gets picked, the average reward it has earned (is it 'working'?), which functions are currently suppressed for underperforming, and the raw reward events as they land."
+            what="The bandit's view of its own cognition: how often each function gets picked, the average reward it has earned (is it 'working'?), which functions are currently suppressed for underperforming, and the raw reward events as they land."
             source="brain/data/decision_stats.json · bandit_state.json · reward_trace.json"
             good="A spread of rewards (not everything pinned at one value), heavy use concentrated on functions that actually earn it, and suppressions that come AND go."
             src={{ file: "brain/think/think_utils/finalize.py", start: 460, end: 500, label: "decision recording" }}

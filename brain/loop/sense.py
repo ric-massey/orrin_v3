@@ -19,8 +19,8 @@ import time
 from typing import Any, Dict, Tuple
 from brain.think.signal_router import process_inputs
 from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
-from brain.affect.update_affect_state import update_affect_state
-from brain.affect.reflect_on_affect import reflect_on_affect
+from brain.control_signals.update_affect_state import update_affect_state
+from brain.control_signals.reflect_on_affect import reflect_on_affect
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.load_utils import load_context
 from brain.utils.json_utils import load_json
@@ -94,7 +94,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # ── Layer 0 reads: inject embodiment state into this cycle ─────────
     # Sensory field — environment mood and file-system changes
     try:
-        from brain.embodiment import sensory_stream as _sensory_mod
+        from brain.runtime_coupling import input_stream as _sensory_mod
         _sf = _sensory_mod.get_field()
         if _sf:
             context["sensory_field"] = _sf
@@ -140,9 +140,9 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     except Exception as _se:
         record_failure("ORRIN_loop.sensory_read", _se)
 
-    # Drive signals — biological pressure injection
+    # Demand signals — biological pressure injection
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_signals = _drive_mod.get_signals(context)
         if _drive_signals:
             context.setdefault("raw_signals", []).extend(_drive_signals)
@@ -152,7 +152,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # Social presence — user engagement pressure
     try:
-        from brain.embodiment import social_presence as _social_mod
+        from brain.runtime_coupling import social_presence as _social_mod
         _social_state = _social_mod.get_state()
         context["social_presence"] = _social_state
         # Mark whether the user spoke this cycle (for drive satisfaction)
@@ -175,7 +175,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # World model — synthesize sensory + social + drives into interpreted env state
     try:
-        from brain.embodiment import world_model as _wm_mod
+        from brain.runtime_coupling import world_model as _wm_mod
         _wm_mod.refresh(context)  # injects context["world_state"]
     except Exception as _wme:
         record_failure("ORRIN_loop.world_model", _wme)
@@ -322,7 +322,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
             # writes, so this competes with (and nets against) every other
             # affect source this cycle instead of clobbering them.
             try:
-                from brain.affect.arbiter import submit_affect as _submit_affect
+                from brain.control_signals.arbiter import submit_affect as _submit_affect
                 _submit_affect(context, "impasse_signal", +0.04, source="goal_stall")
                 _submit_affect(context, "motivation",     -0.03, source="goal_stall")
                 _submit_affect(context, "stagnation_signal", +0.03, source="goal_stall")
@@ -350,7 +350,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # ── Body sense: translate process vitals into felt states ──────
     try:
-        from brain.cognition.body_sense import update_body_sense as _ubs
+        from brain.cognition.resource_self_monitor import update_body_sense as _ubs
         _ubs(context)
     except Exception as _bse:
         log_error(f"body_sense update failed: {_bse}")
@@ -360,7 +360,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # bands — the outward gaze the inward body_sense (and the 2026-06-15 crash)
     # missed. A separate system from the autonomic reflex (HostResourceGuard).
     try:
-        from brain.cognition.host_interoception import update_host_interoception as _uhi
+        from brain.cognition.host_resource_monitor import update_host_interoception as _uhi
         _uhi(context)
     except Exception as _hie:
         log_error(f"host_interoception update failed: {_hie}")
@@ -403,7 +403,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     try:
         _neg_sum = sum(
             float((affect_state.get("core_signals") or affect_state).get(k) or 0)
-            for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "negative_valence"]
+            for k in ["impasse_signal", "threat_level", "risk_estimate", "conflict_signal", "reward_negative"]
         )
         if _neg_sum > 0.55:
             from brain.utils.signal_utils import create_signal as _cs_neg
@@ -484,7 +484,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # Resolve who is speaking this cycle.
     # Sets context["person_id"], context["user_id"] (alias), context["person_type"].
     try:
-        from brain.cognition.selfhood.person_detector import detect_and_set_person_id as _detect_pid
+        from brain.cognition.self_state.person_detector import detect_and_set_person_id as _detect_pid
         _detect_pid(context)
     except Exception as _pd_e:
         log_error(f"[person_detector] failed: {_pd_e}")

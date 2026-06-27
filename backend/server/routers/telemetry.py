@@ -201,7 +201,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
 
 
 # ── Streams: consciousness + chat history ───────────────────────────────────
-@router.get("/consciousness")
+@router.get("/attention")
 async def consciousness(n: int = 60) -> JSONResponse:
     """Tail of the persisted conscious stream — the rolling list of conscious
     moments {content, source, salience, ts} written by global_workspace."""
@@ -223,7 +223,13 @@ async def chat_history(n: int = 100) -> JSONResponse:
     shared conversation history instead of an empty localStorage one."""
     try:
         import json as _json
-        data = _json.loads((server_state._DATA_DIR / "chat_log.json").read_text("utf-8"))
+        _p = server_state._DATA_DIR / "chat_log.json"
+        # (T0.4) Tolerate absence: a fresh run has no chat_log.json yet — that is
+        # normal, not a fault, so return empty WITHOUT recording a failure (the
+        # old code logged a FileNotFound to the failure counter on every poll).
+        if not _p.exists():
+            return JSONResponse({"messages": [], "total": 0})
+        data = _json.loads(_p.read_text("utf-8"))
         if not isinstance(data, list):
             data = []
         out = [m for m in data[-max(1, min(500, n)):] if isinstance(m, dict)]
@@ -234,7 +240,7 @@ async def chat_history(n: int = 100) -> JSONResponse:
 
 
 # ── Consolidation / language / monitor ledgers ──────────────────────────────
-@router.get("/dreams")
+@router.get("/idle-consolidation")
 async def dreams(n: int = 12) -> JSONResponse:
     """What he consolidates while idle: dream_log sweeps + symbolic dream
     insights. Honesty note: consolidation/recombination are often EMPTY strings
@@ -375,8 +381,8 @@ async def outcomes() -> JSONResponse:
 
 @router.get("/innerweather")
 async def innerweather() -> JSONResponse:
-    """Felt time + mood + mortality (temporal_state / mood_state / lifespan) —
-    the strongest personhood data in brain/data, fully hidden until now."""
+    """Felt time + mood + lifetime (temporal_state / mood_state / lifespan) —
+    the strongest internal-state data in brain/data, fully hidden until now."""
     t = dict(_read_json("temporal_state.json", {}))
     t.pop("density_buffer", None)  # internal ring, large and meaningless to render
     return JSONResponse({
@@ -452,7 +458,7 @@ async def health_box(n: int = 10) -> JSONResponse:
     })
 
 
-@router.get("/self")
+@router.get("/identity")
 async def self_box(n: int = 20) -> JSONResponse:
     """Who he is and how it revises (box ⑦): the self-model's identity / values /
     traits / knowledge domains, the dated belief-confidence revisions, formed

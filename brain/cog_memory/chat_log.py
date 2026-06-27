@@ -11,7 +11,7 @@ import brain.paths as paths
 from brain.utils.append import append_to_json
 # generate_response/llm_ok are imported deferred inside summarize_chat_to_long_memory
 # so this L2 storage module does not transitively load cognition (via
-# generate_response → cognition.selfhood.identity) at import time.
+# generate_response → cognition.self_state.identity) at import time.
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_error
 from brain.utils.timeutils import now_iso_z
@@ -230,13 +230,13 @@ def summarize_chat_to_long_memory(
                     labels.append(str(val))
             elif isinstance(e, str):
                 labels.append(e)
-        dominant_emotion = max(set(labels), key=labels.count) if labels else "neutral"
+        dominant_signal = max(set(labels), key=labels.count) if labels else "neutral"
 
         # Route through update_long_memory for dedup and size enforcement
         from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             str(summary).strip(),
-            emotion=dominant_emotion,
+            emotion=dominant_signal,
             event_type="chat_summary",
             agent="orrin",
             importance=2,

@@ -221,7 +221,7 @@ _VALUE_CONFLICTS = {
     "truth":     ("deceiv", "lie", "lying", "mislead", "fabricat", "falsif"),
     "authentic": ("pretend", "fake", "imitate", "put on an act", "perform a role"),
     "care":      ("harm", "hurt", "cruel", "demean", "belittle"),
-    "compassion":("harm", "hurt", "cruel", "demean"),
+    "affiliation_signal":("harm", "hurt", "cruel", "demean"),
     "harm":      ("harm someone", "hurt someone", "cause harm", "damage them"),
     "respect":   ("demean", "belittle", "manipulat", "talk down"),
     "autonomy":  ("coerce", "force them", "force someone", "manipulat"),

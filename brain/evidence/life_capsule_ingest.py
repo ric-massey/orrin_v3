@@ -96,7 +96,7 @@ _ACTION_CLASS: Dict[str, str] = {
     "abandon_goal": "metacognitive",
     "accrue_leave_pressure": "metacognitive",
     # maintenance — housekeeping / dreaming / snapshots
-    "dream_cycle": "maintenance",
+    "idle_consolidation_cycle": "maintenance",
     "housekeeping": "maintenance",
     "snapshot": "maintenance",
     "pursue_committed_goal": "metacognitive",

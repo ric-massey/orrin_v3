@@ -46,9 +46,9 @@ _EMOTION_FAMILIES: List[frozenset] = [
     frozenset({"impasse_signal", "conflict_signal", "irritation", "social_penalty"}),
     frozenset({"risk_estimate", "threat_level", "worry", "uncertainty"}),
     frozenset({"exploration_drive", "wonder", "interest", "excitement", "anticipation"}),
-    frozenset({"melancholy", "negative_valence", "loss_signal", "social_deficit"}),
+    frozenset({"low_affect_signal", "reward_negative", "loss_signal", "social_deficit"}),
     frozenset({"expected_gain", "optimism", "relief"}),
-    frozenset({"satisfaction", "pride", "confidence", "positive_valence", "contentment"}),
+    frozenset({"satisfaction", "pride", "confidence", "reward_positive", "satisfaction_signal"}),
     frozenset({"urgency", "motivation", "determination"}),
 ]
 

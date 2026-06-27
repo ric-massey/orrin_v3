@@ -7,13 +7,13 @@ import random
 import re
 
 from brain.utils.timing import update_last_active
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.cog_memory.chat_log import (
     get_user_input,            # returns last non-empty line; does NOT clear file
     summarize_chat_to_long_memory,
 )
 from brain.utils.log import read_recent_errors_txt, read_recent_errors_jsonl
-from brain.cognition.selfhood.boundary_check import check_violates_boundaries
+from brain.cognition.self_state.boundary_check import check_violates_boundaries
 from brain.paths import CHAT_LOG_FILE, ERROR_FILE, MODEL_FAILURES_FILE, LAST_SEEN_USER_INPUT
 from brain.utils.signal_utils import create_signal  # required to build signal dicts
 from brain.utils.failure_counter import record_failure
@@ -274,7 +274,7 @@ def handle_user_input(
                 except Exception as _e:
                     record_failure("user_input.handle_user_input.3", _e)
 
-            from brain.cognition.selfhood.values_check import evaluate_input_against_self, handle_refusal
+            from brain.cognition.self_state.values_check import evaluate_input_against_self, handle_refusal
             from brain.utils.self_model import get_self_model as _gsm
             _self_model = context.get("self_model") or _gsm()
             _emo = context.get("affect_state", {})

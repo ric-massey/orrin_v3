@@ -1,5 +1,5 @@
 # brain/cognition/terminal.py
-# Final reflection cognition — runs only during the dying window before shutdown.
+# Final reflection cognition — runs only during the termination window before shutdown.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
@@ -64,16 +64,20 @@ def _compose_final_reflection(*, death_reason: str, identity: str,
     return " ".join(parts)
 
 
-def final_reflection(context: Dict[str, Any] = None) -> str:
+def final_reflection(context: Dict[str, Any] = None, reason: str = None) -> str:
     """
-    Called exclusively during the dying window. Reads working memory, long-term
-    memory tail, and self_model. Produces a final reflection written to
-    final_thoughts.json so the next Orrin can read it on boot.
+    Produces a final reflection written to final_thoughts.json so the next Orrin
+    can read it on boot. Called during the supervisor's termination window AND on an ordinary
+    operator stop (T0.4: a graceful stop used to emit no final reflection at all).
+    `reason` lets the caller stamp the handoff (e.g. "operator_stop"); when omitted
+    it falls back to the supervisor dying reason. This NEVER sets lifespan.json's
+    `final_thoughts_written` death flag — that belongs solely to the real-deadline
+    path, so a routine restart is a handoff, not a death.
     """
     context = context or {}
 
-    from reaper.reaper import dying_reason as _reason
-    death_reason = _reason() or context.get("_death_reason", "unknown")
+    from supervisor.supervisor import termination_reason as _reason
+    death_reason = reason or _reason() or context.get("_death_reason", "unknown")
 
     self_model = load_json(SELF_MODEL_FILE, default_type=dict) or {}
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
@@ -131,16 +135,16 @@ def final_reflection(context: Dict[str, Any] = None) -> str:
             record_failure("terminal.final_reflection", _e)
 
     # Do NOT set lifespan.json's `final_thoughts_written` here. This reflection runs in
-    # the reaper's dying window — a stall-RESTART, not the natural lifespan deadline —
+    # the supervisor's termination window — a stall-RESTART, not the natural lifespan deadline —
     # so flipping the death flag made the NEXT boot show the Death Screen forever (and
     # would also shadow his genuine end-of-life reflection, since _write_final_thoughts
-    # early-returns once the flag is set). That flag belongs solely to mortality's real-
-    # deadline path (apply_mortality_pressure → _write_final_thoughts). This handoff
+    # early-returns once the flag is set). That flag belongs solely to runtime_lifetime's
+    # real-deadline path (apply_lifetime_pressure → _write_final_thoughts). This handoff
     # reflection is written to FINAL_THOUGHTS above; it is intentionally not "death".
 
     # Close autobiography chapter with final words
     try:
-        from brain.cognition.selfhood.autobiography import append_death_continuity
+        from brain.cognition.self_state.autobiography import append_death_continuity
         append_death_continuity(reflection_text, context)
     except Exception as _e:
         record_failure("terminal.final_reflection.2", _e)

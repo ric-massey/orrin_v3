@@ -181,7 +181,7 @@ def archive_dead_threads(context: Dict[str, Any]) -> int:
             t["status"] = "archived"
             update_long_memory(
                 f"[abandoned thread] \"{t['title']}\": {t.get('state_of_thinking','')[:300]}",
-                emotion="negative_valence",
+                emotion="reward_negative",
                 event_type="thread_archived",
                 importance=2,
                 context=context,

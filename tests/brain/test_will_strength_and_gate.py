@@ -3,7 +3,7 @@
 
 import pytest
 
-import brain.cognition.will as W
+import brain.cognition.commitment as W
 from brain.cognition.goal_competition import drive_pull_scores
 
 
@@ -57,10 +57,10 @@ def test_follow_through_bias_scales_with_strength():
 
 
 def test_commitment_strength_breaks_goal_competition_ties():
-    p0 = drive_pull_scores(["attend_goal", "dream_cycle"], {}, commitment_strength=0.0)
-    p1 = drive_pull_scores(["attend_goal", "dream_cycle"], {}, commitment_strength=1.0)
+    p0 = drive_pull_scores(["attend_goal", "idle_consolidation_cycle"], {}, commitment_strength=0.0)
+    p1 = drive_pull_scores(["attend_goal", "idle_consolidation_cycle"], {}, commitment_strength=1.0)
     assert p1["attend_goal"] > p0["attend_goal"]
-    assert p1["dream_cycle"] == p0["dream_cycle"]
+    assert p1["idle_consolidation_cycle"] == p0["idle_consolidation_cycle"]
 
 
 def test_find_commitment_for_goal_matches_bare_intention(tmp_path):
@@ -90,14 +90,14 @@ def test_failed_committed_goal_costs_in_proportion(monkeypatch, tmp_path):
 
     def fail(goal_title):
         ctx = {"affect_state": {"core_signals": {
-            "impasse_signal": 0.0, "negative_valence": 0.0, "confidence": 0.5}}}
+            "impasse_signal": 0.0, "reward_negative": 0.0, "confidence": 0.5}}}
         G.mark_goal_failed({"title": goal_title}, reason="test", context=ctx)
         return ctx["affect_state"]["core_signals"]
 
     committed = fail("finish the report")       # strength 1.0 → scale 1.5
     plain = fail("never committed goal")        # no commitment → scale 1.0
     assert committed["impasse_signal"] > plain["impasse_signal"]
-    assert committed["negative_valence"] > plain["negative_valence"]
+    assert committed["reward_negative"] > plain["reward_negative"]
     assert committed["confidence"] < plain["confidence"]
 
     committed_write = lm_writes[0]

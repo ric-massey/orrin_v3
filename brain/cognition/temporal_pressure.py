@@ -23,7 +23,7 @@ from typing import Any, Dict, List, Optional
 from brain.utils.log import log_private
 from brain.utils.json_utils import load_json, save_json
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.homeostasis import pump_signal
+from brain.control_signals.homeostasis import pump_signal
 from brain.paths import GOALS_FILE, SCHEDULED_TASKS_FILE
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -153,7 +153,7 @@ def set_goal_deadline(
     # Reward the act of committing — it takes something to make a real promise
     if context is not None:
         try:
-            from brain.affect.reward_signals.reward_signals import release_reward_signal
+            from brain.control_signals.reward_signals.reward_signals import release_reward_signal
             release_reward_signal(context, "reward_signal", 0.4, 0.3, 0.3,
                                   source="self_imposed_deadline")
         except Exception as _e:
@@ -289,7 +289,7 @@ def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Opt
 
         if progress_signal and goal_in_wm:
             # About to finish → anticipatory satisfaction and relief
-            pump_signal(core, "positive_valence", 0.07 * ei)
+            pump_signal(core, "reward_positive", 0.07 * ei)
             pump_signal(core, "motivation",       0.09 * ei)
             pump_signal(core, "expected_gain",    0.06 * ei)
             fired = "anticipatory_satisfaction"

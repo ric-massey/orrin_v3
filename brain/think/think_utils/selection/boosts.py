@@ -151,7 +151,7 @@ def compute_emo_mode_boost() -> Dict[str, float]:
     """
     _emo_mode_boost: Dict[str, float] = {}
     try:
-        from brain.affect.modes_and_affect import get_current_mode as _gcm
+        from brain.control_signals.modes_and_affect import get_current_mode as _gcm
         from brain.think.think_utils.selection.scoring import _emo_mode_function_map
         _emo_mode = _gcm()
         # Phase 4: weighted "emo_<mode>:<w>" tags in the capability manifest are
@@ -169,7 +169,7 @@ def compute_emo_route_boost(context: Dict[str, Any], actions: List[str]) -> Dict
     """
     _emo_route_boost: Dict[str, float] = {}
     try:
-        from brain.cognition.emotion_routing import emotion_bias as _eb
+        from brain.cognition.signal_routing import signal_bias as _eb
         _emo_state_full = context.get("affect_state") or {}
         for _fn in actions:
             _bias = _eb(_fn, _emo_state_full)

@@ -15,7 +15,7 @@
 #      tombstoned get tagged "retired" so analogy/search stops surfacing them.
 #
 # Entry point: run_forgetting_cycle(context) → {decayed, pruned, retired, total_changes}
-# Called from dream_cycle at each dream pass.
+# Called from idle_consolidation_cycle at each dream pass.
 #
 # SCIENTIFIC BASIS:
 #   Ebbinghaus (1885) — "Über das Gedächtnis." The forgetting curve: unused

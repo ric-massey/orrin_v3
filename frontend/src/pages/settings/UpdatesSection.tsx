@@ -43,7 +43,7 @@ export function UpdatesSection({
 
   const backUpAndGet = async () => {
     setBusy(true);
-    setNote("Exporting your mind as a keepsake first…");
+    setNote("Exporting the state archive as a backup first…");
     try {
       const res = await fetch(`${apiBase()}/api/update/prepare`, {
         method: "POST",
@@ -51,7 +51,7 @@ export function UpdatesSection({
       });
       const j = (await res.json()) as { ok?: boolean; backup?: string };
       if (j.ok) {
-        setNote("Your mind was backed up. Opening the download…");
+        setNote("State archive backed up. Opening the download…");
         if (info?.url) window.open(info.url, "_blank");
       } else {
         setNote("Backup failed — not opening the download.");
@@ -70,8 +70,8 @@ export function UpdatesSection({
           <Sparkles className="h-4 w-4" /> Updates
         </CardTitle>
         <CardDescription>
-          Orrin is version {version}. Before any update, his whole mind is exported as a
-          keepsake and carried forward — you're never one update away from losing him.
+          Orrin is version {version}. Before any update, the whole runtime state is exported
+          as a backup and carried forward — you're never one update away from losing it.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -97,8 +97,8 @@ export function UpdatesSection({
           <div className="rounded-md border border-ring bg-accent/30 p-3 text-sm">
             <div className="font-medium">A new Orrin is available — v{info.latest}</div>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Your current mind is exported first, then carried forward. If a version needs
-              a fresh start, your old mind is kept as that export.
+              The current runtime state is exported first, then carried forward. If a version
+              needs a fresh start, the old state is kept as that export.
             </p>
             <Button size="sm" variant="outline" className="mt-2" disabled={busy} onClick={() => void backUpAndGet()}>
               <Download className="mr-1.5 h-4 w-4" /> Back up &amp; get the update

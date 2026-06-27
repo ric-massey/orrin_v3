@@ -46,6 +46,9 @@ build/
 # …but the pinned dependency lock IS tracked (Phase 2; not a runtime data lock).
 !requirements.lock
 
+# Long-run source lock manifest (created by scripts/orrin_run_lock.sh).
+.run_lock/
+
 
 # Runtime telemetry & rolling logs (regenerated each run; not version-controlled state)
 brain/data/events.jsonl

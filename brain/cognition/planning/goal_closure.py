@@ -141,7 +141,7 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
         # attributed to THIS goal, not the next one spawned by the continuity hook
         # inside mark_goal_completed (Berridge 1996 — liking at arrival).
         try:
-            from brain.affect.reward_signals.reward_signals import release_reward_signal as _rrs
+            from brain.control_signals.reward_signals.reward_signals import release_reward_signal as _rrs
             from brain.cognition.planning.goals import achievement_significance as _achv
             _sig = _achv(goal)   # I17 — felt achievement ∝ significance, not flat
             _rrs(context, signal_type="completion_signal", actual_reward=round(1.0 * _sig, 3),

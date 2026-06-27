@@ -4,7 +4,7 @@ import { usePolledJSON } from "@/lib/usePolled";
 
 // Learning (UI master plan §5.1): the behavior-change log. The dashboard is strong at
 // STOCKS (counts that exist now) and weak at FLOWS (what changed and why). This room
-// answers "is he actually learning?" by rendering each self-edit the adaptation engine
+// answers "is it actually learning?" by rendering each self-edit the adaptation engine
 // makes as a before → after → because diff. The engine (behavioral_adaptation.py) has
 // always rewritten behaviour; until now nothing surfaced the rewrite.
 
@@ -97,13 +97,13 @@ export default function Learning() {
       <div className="space-y-1">
         <h1 className="flex items-center gap-2 text-xl font-semibold tracking-tight">
           <TrendingUp className="h-5 w-5 text-primary" />
-          How his behaviour is changing
+          How its behaviour is changing
         </h1>
         <p className="text-sm text-muted-foreground">
-          Every time Orrin notices a pattern in himself — a rut, avoidance, over-thinking —
-          his adaptation engine rewrites how he acts. Each rewrite is logged here as
-          before&nbsp;→&nbsp;after&nbsp;→&nbsp;because. This is the honest answer to
-          "is he actually learning?".
+          Every time Orrin detects a pattern in its own activity — a rut, avoidance,
+          over-processing — the adaptation engine rewrites how it acts. Each rewrite is
+          logged here as before&nbsp;→&nbsp;after&nbsp;→&nbsp;because. This is the honest
+          answer to "is it actually learning?".
         </p>
       </div>
 
@@ -128,7 +128,7 @@ export default function Learning() {
           <CardContent className="py-10 text-center text-sm italic text-muted-foreground">
             {feed == null
               ? "Loading…"
-              : "He hasn't had to change his behaviour yet — no ruts, avoidance, or imbalance have been detected this life."}
+              : "No behaviour changes yet — no ruts, avoidance, or imbalance have been detected this run."}
           </CardContent>
         </Card>
       ) : (

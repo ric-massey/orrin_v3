@@ -8,7 +8,7 @@ from brain.utils.events import emit_event, DECISION
 from brain.behavior.tools.toolkit import evaluate_tool_use
 from brain.cognition.planning.motivations import adjust_goal_weights
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.update_affect_state import update_affect_state
+from brain.control_signals.update_affect_state import update_affect_state
 from brain.think.think_utils.escalate import is_agentic_action
 from brain.paths import (
     ACTION_FILE,
@@ -30,7 +30,7 @@ def _reason_text(reason) -> str:
 
 # Delegate to the canonical reward emitter (affect.reward_signals.release_reward)
 # so the wrapper logic lives in exactly one place.
-from brain.affect.reward_signals.reward_signals import release_reward as _reward
+from brain.control_signals.reward_signals.reward_signals import release_reward as _reward
 from brain.utils.failure_counter import record_failure
 
 # Satisfaction scoring (with its _OUTWARD_ACTION_FNS / _OUTWARD_PRESSURE_RAMP
@@ -159,7 +159,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # rather than a hardcoded expected=0.5. action_type is the cycle's chosen
     # function so each function learns its own expectation.
     try:
-        from brain.affect.reward_signals.reward_engine import submit_reward as _submit_reward
+        from brain.control_signals.reward_signals.reward_engine import submit_reward as _submit_reward
         _act_key = str(context.get("last_function_chosen") or "cycle")
         # Calibration: record the forecast (per-function expected reward) against
         # the realized reward BEFORE submit_reward updates the EMA. Nelson &
@@ -169,7 +169,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         # improving (controlled-refinement exemption, Fix #4).
         _ema_before = None
         try:
-            from brain.affect.reward_signals.action_reward_ema import get_expected as _get_exp
+            from brain.control_signals.reward_signals.action_reward_ema import get_expected as _get_exp
             from brain.cognition.calibration import record as _cal_record
             _ema_before = _get_exp(context, _act_key)
             _cal_record(context, _ema_before, actual_fb)
@@ -186,7 +186,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         )
         if _ema_before is not None:
             try:
-                from brain.affect.reward_signals.action_reward_ema import get_expected as _get_exp2
+                from brain.control_signals.reward_signals.action_reward_ema import get_expected as _get_exp2
                 context.setdefault("_fn_ema_delta", {})[_act_key] = (
                     _get_exp2(context, _act_key) - _ema_before
                 )
@@ -378,15 +378,15 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.13", _e)
 
     try:
-        from brain.cognition.mortality import apply_mortality_pressure
-        _mortality = apply_mortality_pressure(context)
-        if _mortality.get("terminate"):
-            context["_orrin_dying"] = True
+        from brain.cognition.runtime_lifetime import apply_lifetime_pressure
+        _lifetime = apply_lifetime_pressure(context)
+        if _lifetime.get("terminate"):
+            context["_runtime_ending"] = True
     except Exception as _e:
         record_failure("finalize.finalize_cycle.14", _e)
 
     try:
-        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost
+        from brain.cognition.self_state.fragmentation import apply_fragmentation_cost
         apply_fragmentation_cost(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.15", _e)
@@ -451,7 +451,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # Emotional regulation: attempt a regulation strategy when a negative
     # emotion is intense enough. Rate-limited to every ~10 cycles internally.
     try:
-        from brain.affect.regulation import attempt_regulation as _attempt_reg
+        from brain.control_signals.regulation import attempt_regulation as _attempt_reg
         _attempt_reg(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.24", _e)

@@ -12,7 +12,7 @@ import { LexText, PanelSubtitle } from "./Lex";
 type SrcRef = { file: string; start: number; end: number; label: string };
 type StoreDef = { key: string; label: string; color: string; what: string; src: SrcRef };
 
-// His memory architecture — each store, what it does, and the real code behind it.
+// Its memory architecture — each store, what it does, and the real code behind it.
 const STORES: StoreDef[] = [
   {
     key: "working", label: "Working", color: "#3b82f6",
@@ -26,22 +26,22 @@ const STORES: StoreDef[] = [
   },
   {
     key: "knowledge", label: "Knowledge graph", color: "#a855f7",
-    what: "His semantic world model — typed entities (people / places / concepts) and the relations between them. This is what he 'knows' as structured facts, distinct from episodic memory.",
+    what: "Its semantic world model — typed entities (people / places / concepts) and the relations between them. This is what it 'knows' as structured facts, distinct from episodic memory.",
     src: { file: "brain/cognition/knowledge_graph.py", start: 299, end: 352, label: "_add_entity_inplace" },
   },
   {
     key: "concept", label: "Concepts", color: "#06b6d4",
-    what: "Named abstractions distilled over clusters of rules and experiences — his higher-order ideas, the building blocks the Cognitive Sphere groups by.",
+    what: "Named abstractions distilled over clusters of rules and experiences — its higher-order ideas, the building blocks the Cognitive Sphere groups by.",
     src: { file: "brain/cognition/concept_memory.py", start: 1, end: 70, label: "concept_memory" },
   },
   {
     key: "recall", label: "Recall", color: "#eab308",
-    what: "Reconstructive recall — he rebuilds a memory from its gist plus cues rather than replaying it verbatim, the way human episodic recall works (and mis-remembers).",
+    what: "Reconstructive recall — it rebuilds a memory from its gist plus cues rather than replaying it verbatim, the way human episodic recall works (and mis-remembers).",
     src: { file: "brain/cog_memory/reconstruction.py", start: 1, end: 70, label: "reconstruction" },
   },
   {
     key: "chat", label: "Conversation", color: "#ec4899",
-    what: "His running conversation history with the people he talks to.",
+    what: "Its running conversation history with the people it talks to.",
     src: { file: "brain/cog_memory/chat_log.py", start: 1, end: 60, label: "chat_log" },
   },
   {
@@ -232,7 +232,7 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
   }, [telemetry.memory, q, op, storeFilter]);
 
   // Forgetting strip (ui_fixes.md): decayed/pruned/retired per sweep — memory
-  // staying bounded is only believable when you can watch him forget. Polled
+  // staying bounded is only believable when you can watch it forget. Polled
   // only while the Browse tab is open.
   const forgetting = usePoll<{ sweeps?: { decayed?: number; pruned?: number; retired?: number; timestamp?: string }[] }>(
     tab === "store" ? `${API}/forgetting?n=30` : "",
@@ -251,9 +251,9 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
           <PanelInfo
             title="Memory Inspector"
             perspective="agent-accessible"
-            what="Two honest views of his memory: Live ops is a sampled ticker of this session's reads/writes (≤4 per operation — it under-reports bulk sweeps by design); Browse store is the real contents on disk, searchable and paged. Chips show true store sizes; each store's ℹ️ explains it and shows its code."
+            what="Two honest views of its memory: Live ops is a sampled ticker of this session's reads/writes (≤4 per operation — it under-reports bulk sweeps by design); Browse store is the real contents on disk, searchable and paged. Chips show true store sizes; each store's ℹ️ explains it and shows its code."
             source="Live ops: telemetry socket · Browse: GET /api/memory over long_memory.json, working_memory.json, knowledge_graph.json, semantic_facts.json"
-            good="Long-term growing slowly then PLATEAUING (the reaper working — ties to B1), working memory hovering around its ~25-item cap, and recalls that reference what's actually stored."
+            good="Long-term growing slowly then PLATEAUING (the supervisor working — ties to B1), working memory hovering around its ~25-item cap, and recalls that reference what's actually stored."
           />
           {tab === "live" ? (
             <span className="text-xs text-muted-foreground/60" title="Sampled live read/write events this session (≤4 per op) — NOT the store contents. Browse store for those.">
@@ -391,11 +391,11 @@ export default function MemoryInspector({ telemetry }: { telemetry: TelemetrySta
         {/* Browse store: the real contents on disk, newest-first */}
         {tab === "store" && (
           <div className="scrollbar-thin h-[calc(100%-2.6rem)] overflow-auto">
-            {/* Forgetting strip — watch him forget (pairs with B1: bounded memory). */}
+            {/* Forgetting strip — watch it forget (pairs with B1: bounded memory). */}
             {sweeps.length > 0 && (
               <div
                 className="flex flex-wrap items-center gap-x-3 gap-y-0.5 border-b border-border/60 bg-muted/20 px-3 py-1 text-[9.5px] text-muted-foreground"
-                title="The forgetting ledger (forgetting_log.json): what each sweep decayed, pruned, or retired. Memory staying bounded is only believable when you can watch him forget."
+                title="The forgetting ledger (forgetting_log.json): what each sweep decayed, pruned, or retired. Memory staying bounded is only believable when you can watch it forget."
               >
                 <span className="font-semibold uppercase tracking-wide">Forgetting</span>
                 <span>{forgotten} forgotten over {sweeps.length} sweep{sweeps.length === 1 ? "" : "s"}</span>

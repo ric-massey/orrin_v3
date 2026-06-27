@@ -14,7 +14,7 @@ from typing import Any, List, Dict, Optional
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
 from brain.paths import COMPLETED_GOALS_FILE
@@ -299,7 +299,7 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
 def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[Dict[str, Any]] = None) -> None:
     """
     Mark a goal as failed, write it to long-term memory, and inflict emotional penalty_signal.
-    This should feel like a genuine setback — impasse_signal and negative_valence, not just a log line.
+    This should feel like a genuine setback — impasse_signal and reward_negative, not just a log line.
     """
     goal["status"] = "failed"
     now = now_iso_z()
@@ -341,7 +341,7 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     penalty_scale = 1.0
     commitment_refs: Optional[List[str]] = None
     try:
-        from brain.cognition.will import find_commitment_for_goal
+        from brain.cognition.commitment import find_commitment_for_goal
         commitment = find_commitment_for_goal(str(goal_name), context)
         if isinstance(commitment, dict):
             _cstrength = float(
@@ -378,7 +378,7 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     except Exception as _e:
         log_activity(f"⚠️ Could not write goal failure to long memory: {_e}")
 
-    # Emotional penalty_signal: impasse_signal + negative_valence spike —
+    # Emotional penalty_signal: impasse_signal + reward_negative spike —
     # strength-weighted when a commitment was broken (4.3), flat otherwise.
     release_reward_signal(
         context=context if isinstance(context, dict) else {},
@@ -393,7 +393,7 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
         core = emo.get("core_signals") or emo
         if isinstance(core, dict):
             core["impasse_signal"] = min(1.0, float(core.get("impasse_signal", 0.0)) + 0.4 * penalty_scale)
-            core["negative_valence"]     = min(1.0, float(core.get("negative_valence",     0.0)) + 0.3 * penalty_scale)
+            core["reward_negative"]     = min(1.0, float(core.get("reward_negative",     0.0)) + 0.3 * penalty_scale)
             core["confidence"]  = max(0.0, float(core.get("confidence",  0.5)) - 0.25 * penalty_scale)
             if "core_signals" in emo:
                 emo["core_signals"] = core

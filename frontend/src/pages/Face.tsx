@@ -46,7 +46,7 @@ export default function Face() {
   }, [messages, thinking]);
 
   // Fix 10.4: the conversation used to be browser-local only — a new browser or
-  // device showed an empty chat with a mind that remembers it. Merge the
+  // device showed an empty chat with a runtime that remembers it. Merge the
   // canonical server history (brain/data/chat_log.json via /api/chat) on load;
   // localStorage still gives instant rendering and offline continuity.
   useEffect(() => {
@@ -140,8 +140,8 @@ export default function Face() {
             <div className="flex flex-col items-center justify-center gap-3 py-16 text-center animate-fade-in sm:py-24">
               <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">How are you, really?</h1>
               <p className="max-w-sm text-[15px] leading-relaxed text-muted-foreground">
-                You're speaking with Orrin — a mind that perceives, reflects, plans, and acts in a
-                continuous loop. Say anything.
+                You're speaking with Orrin — a runtime that perceives, reflects, plans, and acts in
+                a continuous loop. Say anything.
               </p>
             </div>
           ) : (
@@ -184,7 +184,7 @@ export default function Face() {
             </Button>
           </div>
           <p className="mt-2 hidden text-center text-[11px] text-muted-foreground sm:block">
-            Orrin reflects before he answers. Press Enter to send · Shift+Enter for a new line.
+            Orrin reflects before it answers. Press Enter to send · Shift+Enter for a new line.
           </p>
         </div>
       </div>

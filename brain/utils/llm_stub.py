@@ -25,20 +25,20 @@ def _data_dir() -> Path:
     return DATA_DIR
 
 
-def _dominant_emotion() -> str:
+def _dominant_signal() -> str:
     emo = _load_json_safe(_data_dir() / "affect_state.json", {}) or {}
     core = emo.get("core_signals", {})
     if isinstance(core, dict) and core:
         try:
             return max(core.items(), key=lambda kv: float(kv[1]))[0]
         except Exception as _e:
-            record_failure("llm_stub._dominant_emotion", _e)
+            record_failure("llm_stub._dominant_signal", _e)
     flat = {k: v for k, v in emo.items() if isinstance(v, (int, float)) and k != "affect_stability"}
     if flat:
         try:
             return max(flat.items(), key=lambda kv: float(kv[1]))[0]
         except Exception as _e:
-            record_failure("llm_stub._dominant_emotion.2", _e)
+            record_failure("llm_stub._dominant_signal.2", _e)
     return "neutral"
 
 
@@ -143,7 +143,7 @@ def stub_generate_response(prompt: Any, **_kwargs) -> Optional[str]:
     Used automatically when OPENAI_API_KEY is not set.
     """
     call_type = _detect_call_type(prompt)
-    emotion = _dominant_emotion()
+    emotion = _dominant_signal()
     goal = _current_goal()
     wm = _recent_wm()
 

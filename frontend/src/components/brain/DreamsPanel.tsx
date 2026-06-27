@@ -6,7 +6,7 @@ import PanelInfo from "./PanelInfo";
 import StaleBadge from "./StaleBadge";
 import { LexText, PanelSubtitle } from "./Lex";
 
-/** Dreams box — what he consolidates while idle. Honesty rule from ui_fixes.md:
+/** Dreams box — what it consolidates while idle. Honesty rule from ui_fixes.md:
  *  fresh-run entries are often EMPTY strings for consolidation/recombination,
  *  so an empty sweep renders "slept — nothing consolidated", never blank cards. */
 
@@ -31,10 +31,10 @@ export default function DreamsPanel() {
         <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
           <MoonStar className="h-4 w-4" /> <LexText id="dreams_title" />
           <PanelInfo
-            title="Dreams"
+            title="Idle consolidation"
             perspective="agent-accessible"
-            what="What he does while idle: each sleep sweep's consolidation (memories compressed into themes), recombination (distant ideas spliced into something new), and processing notes — plus the symbolic dream engine's analogy-transfer insights. A sweep with nothing to consolidate says so honestly."
-            source="GET /api/dreams over brain/data/dream_log.json · symbolic_dream_log.json"
+            what="What it does while idle: each idle sweep's consolidation (memories compressed into themes), recombination (distant ideas spliced into something new), and processing notes — plus the symbolic recombination engine's analogy-transfer insights. A sweep with nothing to consolidate says so honestly."
+            source="GET /api/idle-consolidation over brain/data/dream_log.json · symbolic_dream_log.json"
             good="Sweeps that actually produce consolidations/insights as experience accumulates — early in a run 'slept, nothing consolidated' is the TRUE state, not a bug."
             src={{ file: "brain/cognition/dreaming/dream_cycle.py", start: 1, end: 60, label: "dream_cycle" }}
           />
@@ -45,7 +45,7 @@ export default function DreamsPanel() {
       </CardHeader>
       <CardContent className="scrollbar-thin min-h-0 flex-1 space-y-3 overflow-auto pb-3">
         {dreams.length === 0 && symbolic.length === 0 ? (
-          <div className="py-8 text-center text-xs text-muted-foreground">No dreams yet — he dreams when idle.</div>
+          <div className="py-8 text-center text-xs text-muted-foreground">No idle-consolidation sweeps yet — runs when idle.</div>
         ) : (
           <>
             <div className="space-y-1">
@@ -54,7 +54,7 @@ export default function DreamsPanel() {
                 return (
                   <div key={i} className="rounded-md border border-border bg-card/40 px-2 py-1.5">
                     <div className="flex items-baseline gap-2 text-[9px] text-muted-foreground">
-                      <span className="font-semibold uppercase tracking-wide">sleep sweep</span>
+                      <span className="font-semibold uppercase tracking-wide">idle sweep</span>
                       <span className="ml-auto tabular-nums">{fmtDate(d.timestamp)}</span>
                     </div>
                     {empty ? (
@@ -73,7 +73,7 @@ export default function DreamsPanel() {
 
             {symbolic.some((s) => (s.insights || []).length > 0) && (
               <div>
-                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Symbolic dream insights</div>
+                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Symbolic recombination insights</div>
                 <div className="space-y-1">
                   {[...symbolic].reverse().flatMap((s, si) =>
                     (s.insights || []).map((ins, i) => (

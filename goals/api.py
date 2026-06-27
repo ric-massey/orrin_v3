@@ -150,8 +150,20 @@ class GoalsAPI:
         parent_id: Optional[str] = None,
         acceptance: Optional[Dict[str, Any]] = None,
         triggers: Optional[Sequence[Dict[str, Any]]] = None,
+        id: Optional[str] = None,
     ) -> Goal:
-        gid = _mk_id()
+        # Canonical-ID contract (Option D / coherent self-history): the caller may
+        # supply the goal's id so the v2 record ADOPTS the id the cognitive layer
+        # already minted, instead of v2 minting a second, divergent id. With one id
+        # across both layers a goal's history (commit → execute → complete/fail) stays
+        # a single thread instead of fragmenting into title-matched look-alikes.
+        # Adoption is idempotent: re-syncing the same proposal returns the live goal
+        # rather than clobbering its in-flight status/progress with a fresh NEW record.
+        if id:
+            _existing = _store_get(self.store, id)
+            if _existing is not None:
+                return _existing
+        gid = id or _mk_id()
         spec = dict(spec or {})
         # Goal intake is the one place a label becomes a checkable model. Keep
         # this fail-safe so the standalone goals package still works without the
@@ -326,7 +338,7 @@ class GoalsAPI:
             except Exception as _e:  # a subscriber raised — log, keep notifying the rest
                 _log.warning("goal-event subscriber raised: %s", _e)
                 continue
-        # Send to reaper/observability if provided
+        # Send to supervisor/observability if provided
         if callable(self.reaper_sink):
             try:
                 self.reaper_sink(event)

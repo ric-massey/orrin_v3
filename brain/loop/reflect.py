@@ -66,7 +66,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
 
     # Formative tensions: inject active tensions into context and working memory.
     try:
-        from brain.cognition.selfhood.tensions import inject_tension_signals as _its2
+        from brain.cognition.self_state.tensions import inject_tension_signals as _its2
         _its2(context)
     except Exception as _tse:
         record_failure("ORRIN_loop.inject_tension_signals", _tse)
@@ -77,7 +77,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     try:
         _tc_tens = get_cycle_count()
         if _tc_tens > 0 and _tc_tens % 30 == 0:
-            from brain.cognition.selfhood.tensions import detect_tensions as _dt2
+            from brain.cognition.self_state.tensions import detect_tensions as _dt2
             _dt2(context)
     except Exception as _dte:
         record_failure("ORRIN_loop.detect_tensions_periodic", _dte)
@@ -85,7 +85,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     # Emotional consolidation drain: apply one tick of gradual emotional
     # residue from significant past events.
     try:
-        from brain.affect.consolidation import drain_consolidations as _drain_consol
+        from brain.control_signals.consolidation import drain_consolidations as _drain_consol
         _drain_consol(context)
     except Exception as _consol_e:
         record_failure("ORRIN_loop.drain_consolidations", _consol_e)
@@ -93,7 +93,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     # Integration lag drain: apply deferred emotional deltas when their
     # cycles-left counter reaches 0 (the "it hits you later" effect).
     try:
-        from brain.affect.integration_lag import process_integration_queue as _piq
+        from brain.control_signals.integration_lag import process_integration_queue as _piq
         _piq(context)
     except Exception as _iq_e:
         record_failure("ORRIN_loop.process_integration_queue", _iq_e)
@@ -101,7 +101,7 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     # stagnation_signal escalation: track consecutive bored cycles and inject
     # escalating pressure/penalty_signal signals when stagnation_signal compounds.
     try:
-        from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
+        from brain.control_signals.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
         _ube(context)
     except Exception as _be_e:
         record_failure("ORRIN_loop.stagnation_signal_escalation", _be_e)
@@ -203,7 +203,7 @@ def tier1_health_check(context: Context) -> Context:
     # Baumeister et al. (1994) ego depletion: unresolved demands consume
     # regulatory resources each cycle, compounding the load on subsequent regulation.
     try:
-        from brain.embodiment.setpoint_regulation import get_state as _h1_get
+        from brain.runtime_coupling.setpoint_regulation import get_state as _h1_get
         _h1 = _h1_get()
         context["health_score"] = _h1.get("health_score", 1.0)
         # Reset the preempt key each cycle BEFORE scanning alerts: context persists

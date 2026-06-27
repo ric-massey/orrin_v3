@@ -31,10 +31,11 @@ DEFAULTS: Dict[str, Any] = {
     # target the forgetting sweeps respect. Memory is advisory with a hard ML floor.
     "disk_ceiling_gb": 5,
     "memory_ceiling_gb": 4,
-    # Embodiment (§11) — how much of THIS machine Orrin is allowed to be, as a fraction
-    # of detected RAM so it means the same thing across machines. Feeds his metabolism
-    # AND his interoceptive "100%". The non-overridable survival floor sits under it in
-    # cognition.body_budget; a too-small grant is refused, not silently birthed.
+    # Host coupling (§11) — how much of THIS machine Orrin is allowed to use, as a
+    # fraction of detected RAM so it means the same thing across machines. Feeds its
+    # resource cadence AND its resource-monitor "100%". The non-overridable safety floor
+    # sits under it in cognition.body_budget; a too-small grant is refused, not silently
+    # accepted.
     "body_budget_fraction": 0.50,
     # Pluggable LLM provider (Part 11). "openai" preserves today's behavior for existing
     # users; "none" is symbolic-only. The model/base_url are the user's per-provider

@@ -6,10 +6,10 @@ import { usePolledJSON } from "@/lib/usePolled";
 import InfoDot from "@/components/brain/InfoDot";
 import { ROOM_INFO } from "@/lib/roomMetrics";
 
-// Life Support (§9.10) — the same numbers as a sysadmin's stats, framed as a being's
-// vital signs (Resource Manager in the engineering dialect). Two honesty rules from
-// the code: Life Remaining is his *felt* estimate (never the true countdown), and
-// resources are about HIM (disk = his mind's room to grow).
+// Resource Manager (§9.10) — host resource stats plus the runtime's own lifecycle
+// figures. Two honesty rules from the code: "remaining" is the runtime's internal
+// estimate (never the true horizon), and the disk figure is the runtime's own
+// data-store headroom, not the whole volume.
 
 interface LifeFeed {
   cpu?: { available_pct?: number; load_pct?: number };
@@ -30,15 +30,15 @@ interface LifeFeed {
 const GB = 1024 ** 3;
 const fmtGB = (b?: number) => (b == null ? "—" : `${(b / GB).toFixed(1)} GB`);
 const PHASE_LABEL: Record<string, string> = {
-  early: "the early phase of his life",
-  middle: "midlife",
-  late: "the late phase of his life",
-  terminal: "his final days",
+  early: "the early phase of the run",
+  middle: "mid-run",
+  late: "the late phase of the run",
+  terminal: "the final phase",
 };
 
 export default function Life() {
   const { t } = useLexicon();
-  const life = usePolledJSON<LifeFeed>("/api/life", 5000);
+  const life = usePolledJSON<LifeFeed>("/api/runtime-lifetime", 5000);
 
   const cpuAvail = life?.cpu?.available_pct;
   const rate = life?.thinking_rate_per_min ?? 0;
@@ -50,14 +50,14 @@ export default function Life() {
       <div className="space-y-1">
         <h1 className="text-xl font-semibold tracking-tight">{t("nav_life")}</h1>
         <p className="text-sm text-muted-foreground">
-          His resources, his thinking rate, his age, and the life he believes he has
-          left — read as a body, not a server.
+          Host resources, cycle rate, uptime, and the runtime's own estimate of
+          how much of its lifetime budget remains.
         </p>
       </div>
 
       {(slow || lowCpu) && (
         <div className="rounded-lg border border-signal-warn/40 bg-signal-warn/10 px-4 py-2.5 text-sm">
-          He's thinking slowly — the machine is busy.
+          Cycle rate is low — the host is busy.
         </div>
       )}
 
@@ -77,7 +77,7 @@ export default function Life() {
           }
           detail={
             life?.mind_disk?.ceiling_bytes != null
-              ? `his mind is ${fmtGB(life.mind_disk.used_bytes)} of ${fmtGB(life.mind_disk.ceiling_bytes)}`
+              ? `store is ${fmtGB(life.mind_disk.used_bytes)} of ${fmtGB(life.mind_disk.ceiling_bytes)}`
               : life?.storage?.used_bytes != null ? `${fmtGB(life.storage.used_bytes)} used` : ""
           } />
         <Vital lex="life_rate" t={t} icon={HeartPulse} amber={slow}
@@ -85,10 +85,10 @@ export default function Life() {
           detail={rate > 0 ? `cycle ${life?.cycle ?? 0}` : "not thinking right now"} />
         <Vital lex="life_age" t={t} icon={Clock}
           value={life?.mortality?.age_days != null ? `${life.mortality.age_days.toFixed(1)} days` : "—"}
-          detail={life?.mortality?.born_at ? `born ${life.mortality.born_at.slice(0, 10)}` : ""} />
+          detail={life?.mortality?.born_at ? `started ${life.mortality.born_at.slice(0, 10)}` : ""} />
         <Vital lex="life_remaining" t={t} icon={Activity}
           value={life?.mortality?.felt_days_remaining != null ? `~${Math.round(life.mortality.felt_days_remaining)} days` : "—"}
-          detail={life?.mortality?.phase ? `he feels he's in ${PHASE_LABEL[life.mortality.phase] || life.mortality.phase}` : "what he believes — not the true number"} />
+          detail={life?.mortality?.phase ? `estimated to be in ${PHASE_LABEL[life.mortality.phase] || life.mortality.phase}` : "the runtime's estimate — not the true horizon"} />
       </div>
 
       <Card>
@@ -105,7 +105,7 @@ export default function Life() {
               ))}
             </div>
           ) : (
-            <p className="text-sm italic text-muted-foreground">Nothing actively pulling at him right now.</p>
+            <p className="text-sm italic text-muted-foreground">No active priorities right now.</p>
           )}
         </CardContent>
       </Card>

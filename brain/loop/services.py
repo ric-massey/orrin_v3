@@ -4,7 +4,7 @@ ORRIN_loop entrypoint).
 `start_background_services()` brings up the daemons the loop depends on but does
 not drive: the ToolRunner (drains queued tool requests), the EvaluatorDaemon
 (delayed reward resolution), the always-on Layer-0 embodiment threads
-(setpoint_regulation, sensory_stream, drive_engine, social_presence,
+(setpoint_regulation, sensory_stream, demand_engine, social_presence,
 subconscious), and the optional continuous Executive daemon. The embodiment /
 Executive starts keep no handle (they own their own threads); the loop needs the
 ToolRunner + Evaluator handles back for its per-cycle health-watchdog + ticks, so
@@ -44,35 +44,35 @@ def start_background_services(stop_event: Any) -> Tuple[Any, Any, Any]:
     # These run independently of the cognitive loop. The loop reads their
     # state each cycle — it does not trigger them.
     try:
-        from brain.embodiment import setpoint_regulation as _setpoint_regulation_mod
+        from brain.runtime_coupling import setpoint_regulation as _setpoint_regulation_mod
         _setpoint_regulation_mod.start()
         log_activity("[embodiment] setpoint_regulation daemon started.")
     except Exception as _e0:
         log_error(f"[embodiment] setpoint_regulation failed to start: {_e0}")
 
     try:
-        from brain.embodiment import sensory_stream as _sensory_mod
+        from brain.runtime_coupling import input_stream as _sensory_mod
         _sensory_mod.start()
         log_activity("[embodiment] sensory_stream started.")
     except Exception as _e0:
         log_error(f"[embodiment] sensory_stream failed to start: {_e0}")
 
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_mod.start()
-        log_activity("[embodiment] drive_engine started.")
+        log_activity("[embodiment] demand_engine started.")
     except Exception as _e0:
-        log_error(f"[embodiment] drive_engine failed to start: {_e0}")
+        log_error(f"[embodiment] demand_engine failed to start: {_e0}")
 
     try:
-        from brain.embodiment import social_presence as _social_mod
+        from brain.runtime_coupling import social_presence as _social_mod
         _social_mod.start()
         log_activity("[embodiment] social_presence started.")
     except Exception as _e0:
         log_error(f"[embodiment] social_presence failed to start: {_e0}")
 
     try:
-        from brain.embodiment import subconscious as _subcon_mod
+        from brain.runtime_coupling import background_processing as _subcon_mod
         _subcon_mod.start()
         log_activity("[embodiment] subconscious started.")
     except Exception as _e0:
@@ -112,10 +112,21 @@ def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     # inside session_epilogue itself — it can never block shutdown, so the
     # corrigibility guarantee stays true.
     try:
-        from brain.cognition.selfhood.autobiography import session_epilogue
+        from brain.cognition.self_state.autobiography import session_epilogue
         session_epilogue(context)
     except Exception as e:
         record_failure("ORRIN_loop.session_epilogue", e)
+
+    # (T0.4) Emit a final reflection on a GRACEFUL OPERATOR STOP, not only on
+    # modeled death. The run that drove this plan ended on an operator stop with
+    # final_thoughts.json untouched, so the next boot had no handoff to read.
+    # final_reflection writes the handoff WITHOUT setting the death flag, so this
+    # is continuity ("read the unfinished list first"), not a death.
+    try:
+        from brain.cognition.terminal import final_reflection
+        final_reflection(context, reason="operator_stop")
+    except Exception as e:
+        record_failure("ORRIN_loop.operator_stop_final_reflection", e)
 
     # Shutdown hygiene (BEHAVIOR_FIX_PLAN §5, "semaphore leak at shutdown"):
     # the project spawns no multiprocessing pools of its own — the leaked

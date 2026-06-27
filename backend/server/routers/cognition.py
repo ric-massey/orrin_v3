@@ -216,7 +216,7 @@ async def belief_revisions(n: int = 80) -> JSONResponse:
     })
 
 
-@router.get("/drives")
+@router.get("/demands")
 async def drives() -> JSONResponse:
     """Drives & body: motivation drives, energy mode, body sense, and the live
     interoceptive cost model (expected vs last cost per function = 'strain')."""

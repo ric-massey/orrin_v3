@@ -1,26 +1,26 @@
 # HomeostasisManager: single decay law + net velocity budget (V3 D3/D8).
-from brain.affect.homeostasis import (
+from brain.control_signals.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget,
     DEFAULT_MAX_L1,
 )
-from brain.affect.setpoints import setpoint, CORE_BASELINES
+from brain.control_signals.setpoints import setpoint, CORE_BASELINES
 
 
 def test_decay_pulls_toward_baseline_not_half():
-    # positive_valence rests at its CORE_BASELINE (0.10), never 0.5.
+    # reward_positive rests at its CORE_BASELINE (0.10), never 0.5.
     state = {"emotional_decay": True}
-    core = {"positive_valence": 0.9}
+    core = {"reward_positive": 0.9}
     # large hours_passed → strong approach to baseline
     apply_restoring_forces(state, core, decay_rate=0.5, hours_passed=24.0)
-    assert core["positive_valence"] < 0.9
-    assert core["positive_valence"] >= CORE_BASELINES["positive_valence"] - 1e-6
+    assert core["reward_positive"] < 0.9
+    assert core["reward_positive"] >= CORE_BASELINES["reward_positive"] - 1e-6
 
 
 def test_decay_respects_emotional_decay_flag():
     state = {"emotional_decay": False}
-    core = {"positive_valence": 0.9}
+    core = {"reward_positive": 0.9}
     apply_restoring_forces(state, core, decay_rate=0.5, hours_passed=24.0)
-    assert core["positive_valence"] == 0.9  # untouched when decay disabled
+    assert core["reward_positive"] == 0.9  # untouched when decay disabled
 
 
 def test_cross_inhibition_pulls_antagonist_down():

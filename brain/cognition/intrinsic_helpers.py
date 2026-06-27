@@ -18,7 +18,7 @@ from typing import Dict, Any, List
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
 from brain.paths import RECENTLY_COMPLETED_FILE, COMPLETED_GOALS_FILE
-from brain.cognition.intrinsic_aspirations import _fairness_default_drive
+from brain.cognition.intrinsic_objectives import _fairness_default_drive
 
 _log = get_logger(__name__)
 
@@ -160,6 +160,23 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
                 _pdc = 200
             deadline_cycles = _pdc
         goal["deadline_cycles"] = int(deadline_cycles)
+    # (T0.3 Change 5) Record the FIRST funnel stage — a goal serving some
+    # aspiration was generated — so we can later see whether each aspiration died
+    # at generation or downstream, instead of only the end-state count.
+    try:
+        from brain.cognition.objective_scoreboard import record_by_drive
+        record_by_drive(driven_by, "generated")
+    except Exception:  # intentional: scoreboard is best-effort, never block a goal
+        pass
+    # (T0.3) First stage of the production funnel — a making candidate was
+    # generated. Deeper stages (committed → handoff → producer_ran → artifact →
+    # credited) are wired in T1.P where the producer path is exercised.
+    if requires_artifact or driven_by == "output_producing":
+        try:
+            from brain.cognition.production_funnel import record as _pf_record
+            _pf_record("candidate", goal.get("title", ""))
+        except Exception:  # intentional: funnel is best-effort
+            pass
     return _enrich_goal_zone(goal)
 
 

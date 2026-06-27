@@ -20,8 +20,8 @@ from pathlib import Path
 _SPATIAL_MAP = [
     # Cognition subsystems (most specific first)
     ("cognition/planning",         "my planning structures"),
-    ("cognition/dreaming",         "the part of me that dreams"),
-    ("cognition/selfhood",         "the part of me that holds identity"),
+    ("cognition/idle_consolidation", "the part that consolidates while idle"),
+    ("cognition/self_state",       "the part that holds identity state"),
     ("cognition/reflection",       "where I reflect on my own processes"),
     ("cognition/perception",       "my perceptual layer"),
     ("cognition/prediction",       "where I hold expectations about what comes next"),
@@ -46,8 +46,8 @@ _SPATIAL_MAP = [
     # Behavior and expression
     ("behavior/speak",             "how I find words"),
     ("behavior",                   "how I express myself"),
-    # Embodiment
-    ("embodiment",                 "my body sense"),
+    # Runtime / host coupling
+    ("runtime_coupling",           "host & environment coupling"),
     # Registry / architecture
     ("registry",                   "how I'm organized"),
     ("core",                       "my core architecture"),
@@ -94,9 +94,9 @@ def is_self_path(path: str) -> bool:
     """True if this path lives inside Orrin's own brain/agency dirs."""
     p = path.replace("\\", "/")
     parts = Path(p).parts
-    return bool(parts) and parts[0] in {"brain", "reaper", "agency", "emotion",
+    return bool(parts) and parts[0] in {"brain", "supervisor", "agency", "emotion",
                                          "cognition", "think", "behavior", "cog_memory",
-                                         "utils", "embodiment", "registry", "core"}
+                                         "utils", "runtime_coupling", "registry", "core"}
 
 
 def summarise_locations(paths: list[str]) -> str:

@@ -16,14 +16,14 @@ from brain.utils.failure_counter import record_failure
 from brain.paths import FOCUS_GOAL, AFFECT_STATE_FILE, SELF_MODEL_FILE
 
 
-def _dominant_emotion() -> str:
+def _dominant_signal() -> str:
     emo: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
     core = emo.get("core_signals", {})
     if isinstance(core, dict) and core:
         try:
             return str(max(core.items(), key=lambda kv: kv[1])[0])
         except Exception as _e:
-            record_failure("select_function._dominant_emotion", _e)
+            record_failure("select_function._dominant_signal", _e)
     return str(emo.get("dominant", "neutral"))
 
 
@@ -61,7 +61,7 @@ def _get_focus_goal_text() -> str:
     return (name + " " + desc).strip()
 
 
-def _dominant_emotion_and_stagnation_signal(context: Dict[str, Any] | None = None) -> Tuple[str, float]:
+def _dominant_signal_and_stagnation_signal(context: Dict[str, Any] | None = None) -> Tuple[str, float]:
     # Prefer in-memory context so function selection uses the current cycle's
     # emotional state, not the stale disk file from the previous cycle.
     emo: Dict[str, Any]

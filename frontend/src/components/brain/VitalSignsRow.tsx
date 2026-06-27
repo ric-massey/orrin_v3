@@ -6,7 +6,7 @@ import StaleBadge from "./StaleBadge";
 
 /**
  * The L0 vital-signs row (UI_FIXES §new-surfaces): one health chip per
- * subsystem, each a word+number+color computed SERVER-side by /api/vitals so
+ * subsystem, each a word+number+color computed SERVER-side by /api/resources so
  * this row polls one URL on one ~10s timer — the "understandable initially"
  * layer. Clicking a chip scrolls to its box.
  */
@@ -32,7 +32,7 @@ export default function VitalSignsRow() {
     if (!ok) return null; // truly nothing yet (first poll in flight) — stay quiet
     return (
       <div className="mb-4 flex items-center gap-2 text-[11px] text-muted-foreground">
-        <span className="rounded bg-signal-warn/10 px-1.5 py-0.5 text-signal-warn">Vital signs unavailable</span>
+        <span className="rounded bg-signal-warn/10 px-1.5 py-0.5 text-signal-warn">Health metrics unavailable</span>
         <StaleBadge url={url} pollMs={10_000} />
       </div>
     );

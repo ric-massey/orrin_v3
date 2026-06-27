@@ -199,7 +199,7 @@ def observe(text: str, source: str = "observation", context: Optional[Dict] = No
 def decay_old_entities() -> Dict:
     """
     Erode confidence of idle entities; prune those below floor.
-    Safe to call during dream_cycle without corrupting active entities.
+    Safe to call during idle_consolidation_cycle without corrupting active entities.
     Never decays never_decay=True entries (Orrin, bootstrap identities).
     """
     now = datetime.now(timezone.utc)
@@ -240,7 +240,7 @@ def decay_old_entities() -> Dict:
 
 def consolidate_from_long_memory(context: Optional[Dict] = None) -> Dict:
     """
-    Called during dream_cycle. Reads recent world_perception + dream_insight entries
+    Called during idle_consolidation_cycle. Reads recent world_perception + dream_insight entries
     from long memory and asks the LLM for richer structured entity/relation extraction.
     Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,
     adds what regex/spaCy misses. With the LLM down the heuristic pass still runs

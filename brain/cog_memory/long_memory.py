@@ -19,7 +19,7 @@ _log = get_logger(__name__)
 # Constants defining behaviour
 DUPLICATE_WINDOW: int = 10        # Number of recent entries to check for duplicates
 MAX_LONG_MEMORY: int = 2000       # Maximum allowed entries in long-term memory
-STRONG_EMOTIONS = {"positive_valence", "threat_level", "conflict_signal", "loss_signal", "pride", "exploration_drive"}
+STRONG_EMOTIONS = {"reward_positive", "threat_level", "conflict_signal", "loss_signal", "pride", "exploration_drive"}
 
 # High-volume, low-information event types that recur as exact/near-duplicates and
 # slip past the 10-entry exact-match dedup window (verified: 'chunk' and
@@ -63,7 +63,7 @@ def _snapshot_emotion(context: Optional[dict]) -> dict:
     core = emo.get("core_signals") or emo
     if not isinstance(core, dict):
         return {}
-    keys = ("positive_valence", "negative_valence", "exploration_drive", "impasse_signal", "confidence",
+    keys = ("reward_positive", "reward_negative", "exploration_drive", "impasse_signal", "confidence",
             "motivation", "stagnation_signal", "expected_gain", "threat_level", "social_penalty")
     snapshot = {k: round(float(core.get(k) or 0.0), 3) for k in keys if float(core.get(k) or 0.0) >= 0.05}
     stability = emo.get("affect_stability")
@@ -78,7 +78,7 @@ def _emotion_importance_boost(emotional_snapshot: dict) -> int:
         return 0
     peak = max(
         (emotional_snapshot.get(k, 0.0)
-         for k in ("impasse_signal", "negative_valence", "positive_valence", "threat_level", "social_penalty", "exploration_drive")),
+         for k in ("impasse_signal", "reward_negative", "reward_positive", "threat_level", "social_penalty", "exploration_drive")),
         default=0.0,
     )
     if peak >= 0.6:
@@ -226,7 +226,7 @@ def update_long_memory(
     # Optionally trigger a reward signal for important/priority memories
     if context is not None and (importance >= 2 or priority >= 2 or referenced >= 3):
         try:
-            from brain.affect.reward_signals.reward_signals import release_reward_signal
+            from brain.control_signals.reward_signals.reward_signals import release_reward_signal
             intensity = min(1.0, importance * 0.5 + priority * 0.5 + 0.1 * referenced)
             release_reward_signal(
                 context=context,
@@ -284,7 +284,7 @@ def reevaluate_memory_significance() -> None:
         # Reward memories tagged as lessons or containing strong affective content
         if "lesson:" in content:
             score = min(score + 1, 10)
-        if emotion in {"loss_signal", "positive_valence", "threat_level", "pride"}:
+        if emotion in {"loss_signal", "reward_positive", "threat_level", "pride"}:
             score = min(score + 1, 10)
 
         # Adjust based on recall_count
@@ -345,7 +345,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
             if isinstance(emo_ctx, dict):
                 peak_intensity = max(
                     (emo_ctx.get(k, 0.0)
-                     for k in ("impasse_signal", "negative_valence", "positive_valence", "threat_level", "social_penalty", "exploration_drive")),
+                     for k in ("impasse_signal", "reward_negative", "reward_positive", "threat_level", "social_penalty", "exploration_drive")),
                     default=0.0,
                 )
                 if peak_intensity >= 0.6:
@@ -466,7 +466,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
         return
 
     if removed:
-        from brain.cognition.selfhood.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
+        from brain.cognition.self_state.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
         # Pass the in-memory list so value-learning doesn't re-read the largest
         # state file from disk on the brain thread during a prune. Runs outside
         # the lock to keep file contention low.

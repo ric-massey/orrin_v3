@@ -17,7 +17,7 @@
 #
 # Results written to data/benchmark_history.json (rolling 180 days).
 # Entry point: run_benchmark() → {score, passed, total, domain_scores, timestamp}
-# Called from dream_cycle every 5th cycle.
+# Called from idle_consolidation_cycle every 5th cycle.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 

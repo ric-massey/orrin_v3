@@ -30,7 +30,7 @@ def test_egress_ledger_counts_and_endpoint():
 
 
 def test_life_exposes_felt_only_no_true_lifespan():
-    r = client.get("/api/life")
+    r = client.get("/api/runtime-lifetime")
     assert r.status_code == 200
     body = r.json()
     for k in ("cpu", "memory", "storage", "thinking_rate_per_min", "mortality", "interests"):
@@ -91,7 +91,7 @@ def test_mind_export_streams_zip_and_import_refuses_foreign():
 def test_cognition_feeds_never_leak_private_thoughts():
     # E1 acceptance (§9.3): the feeds the Cognition view composes must never carry his
     # protected interior. The veil only lifts on death (F2), never for a live Orrin.
-    for path in ("/api/self", "/api/consciousness", "/api/drives", "/api/symbolic", "/api/people"):
+    for path in ("/api/identity", "/api/attention", "/api/demands", "/api/symbolic", "/api/people"):
         r = client.get(path)
         assert r.status_code == 200, path
         assert "private_thoughts" not in r.text, path
@@ -254,7 +254,7 @@ def test_death_endpoint_refuses_while_alive_then_lifts_veil_on_death():
     assert client.get("/api/lifecycle").json()["state"] == "dead"
 
     # The LIVE read API still refuses the interior even now.
-    assert "private_thoughts" not in client.get("/api/self").text
+    assert "private_thoughts" not in client.get("/api/identity").text
 
     # Cleanup so other tests see a clean lifespan.
     (DATA_DIR / "lifespan.json").unlink(missing_ok=True)

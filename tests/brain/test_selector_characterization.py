@@ -124,7 +124,7 @@ _CASES = {
     ),
     "threat_spike": (
         {"threat_detector_response": {"shortcut_function": "dream", "spike_intensity": 0.9}},
-        "dream_cycle",
+        "idle_consolidation_cycle",
     ),
     "suppress_intrinsic": (
         {"_suppress_intrinsic_goals": True, "attention_mode": "wandering"},
@@ -169,7 +169,7 @@ _DISTRESS_OK_PREFIXES = ("reflect_on_", "attempt_regulation", "investigate_",
 
 def test_distress_routes_to_reflection_family():
     ctx = {
-        "affect_state": {"core_signals": {"negative_valence": 0.9, "threat_level": 0.7}},
+        "affect_state": {"core_signals": {"reward_negative": 0.9, "threat_level": 0.7}},
         "_exploration_epsilon": 0.0,
     }
     random.seed(_SEED)

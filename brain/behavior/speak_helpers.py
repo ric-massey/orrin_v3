@@ -108,21 +108,21 @@ def _derive_tone(affect_state: Dict[str, Any]) -> Dict[str, Any]:
     Checks both flat and nested core_signals shapes.
     """
     emotions = (affect_state.get("core_signals") or affect_state) or {}
-    positive_valence         = float(emotions.get("positive_valence") or 0.0)
+    reward_positive         = float(emotions.get("reward_positive") or 0.0)
     exploration_drive   = float(emotions.get("exploration_drive") or 0.0)
     threat_level        = float(emotions.get("threat_level") or 0.0)
     impasse_signal = float(emotions.get("impasse_signal") or 0.0)
-    negative_valence     = float(emotions.get("negative_valence") or 0.0)
+    reward_negative     = float(emotions.get("reward_negative") or 0.0)
     confidence  = float(emotions.get("confidence") or 0.0)
 
-    if threat_level > 0.5 or negative_valence > 0.5:
+    if threat_level > 0.5 or reward_negative > 0.5:
         return {"speak": True, "tone": "hesitant",   "hesitation": 0.6}
     if impasse_signal > 0.5:
         return {"speak": True, "tone": "direct",     "hesitation": 0.1}
-    if positive_valence > 0.6 and confidence > 0.4:
+    if reward_positive > 0.6 and confidence > 0.4:
         return {"speak": True, "tone": "excited",    "hesitation": 0.1}
     if exploration_drive > 0.6:
         return {"speak": True, "tone": "inquisitive","hesitation": 0.2}
-    if positive_valence > 0.4:
+    if reward_positive > 0.4:
         return {"speak": True, "tone": "warm",       "hesitation": 0.2}
     return     {"speak": True, "tone": "neutral",    "hesitation": 0.3}

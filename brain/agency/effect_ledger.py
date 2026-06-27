@@ -5,7 +5,7 @@
 #
 # THE PROBLEM IT SOLVES
 # Orrin's reward was denominated in internal events — and internal events are free
-# and infinite — so the rational policy was to metabolize cognition forever and
+# and infinite — so the rational policy was to churn cognition forever and
 # never produce anything. There was no record of "a durable thing that did not
 # exist in the world before," so reading Wikipedia paid exactly what writing a
 # file paid. This ledger is that record: an append-only, content-addressed log of

@@ -134,7 +134,7 @@ def _pay_artifact_reuse(context: Context) -> None:
         credits = drain_pending_reuse()
         if not credits:
             return
-        from brain.affect.reward_signals.reward_signals import release_reward
+        from brain.control_signals.reward_signals.reward_signals import release_reward
         _reward: Any = release_reward  # untyped emitter — call through Any
         from brain.cog_memory.working_memory import update_working_memory
         for _ru in credits:
@@ -201,12 +201,12 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
         context["_outward_debt"] = min(30, int(context.get("_outward_debt", 0) or 0) + 1)
 
     try:
-        from brain.embodiment import plasticity as _plasticity_mod
-        _plasticity_mod.apply_plasticity(_cycle_fn, context, reward)
+        from brain.runtime_coupling import adaptation as _plasticity_mod
+        _plasticity_mod.apply_adaptation(_cycle_fn, context, reward)
     except Exception as _pe:
         record_failure("ORRIN_loop.plasticity", _pe)
     try:
-        from brain.embodiment import drive_engine as _drive_mod
+        from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_mod.evaluate_cycle(_cycle_fn, context, reward)
     except Exception as _dse:
         record_failure("ORRIN_loop.drive_satisfy", _dse)
@@ -229,7 +229,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
             isinstance(r, dict) and r.get("type") in {"speak", "respond", "reply"}
             for r in [result] if isinstance(result, dict)
         ):
-            from brain.embodiment import social_presence as _social_mod
+            from brain.runtime_coupling import social_presence as _social_mod
             _social_mod.mark_orrin_responded()
     except Exception as _e:
         record_failure("ORRIN_loop.run_cognitive_loop.38", _e)
@@ -273,7 +273,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
     # through next cycle's update_affect_state. This is the single commit
     # point that replaces the old last-writer-wins races.
     try:
-        from brain.affect.arbiter import commit_affect as _commit_affect
+        from brain.control_signals.arbiter import commit_affect as _commit_affect
         _commit_affect(context)
     except Exception as _aae:
         record_failure("ORRIN_loop.affect_commit", _aae)
@@ -441,14 +441,14 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
         log_error(f"check_predictions failed: {_pe}")
 
     # Dream cycle — fires when idle and 6h have elapsed since last dream.
-    # Skipped while HostResourceGuard/VitalFloor has paused heavy cycles:
+    # Skipped while HostResourceGuard/ResourceFloor has paused heavy cycles:
     # dream is restorative as felt experience, but its consolidation
     # footprint is memory-hungry and must yield under host/process pressure.
     try:
-        from brain.cognition.dreaming.dream_cycle import should_dream, dream_cycle as _dream_cycle
-        from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-        from reaper.vital_floor import vital_floor_shedding as _vital_shedding
-        if (not _heavy_paused()) and (not _vital_shedding()) and should_dream(context):
+        from brain.cognition.idle_consolidation.consolidation_cycle import should_consolidate, idle_consolidation_cycle as _dream_cycle
+        from supervisor.host_resources import heavy_cycles_paused as _heavy_paused
+        from supervisor.resource_floor import resource_floor_shedding as _resource_floor_shedding
+        if (not _heavy_paused()) and (not _resource_floor_shedding()) and should_consolidate(context):
             import threading as _thr
             _dt = _thr.Thread(
                 target=_dream_cycle, args=(context,),
@@ -456,7 +456,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
             )
             _dt.start()
     except Exception as _de:
-        log_error(f"dream_cycle check failed: {_de}")
+        log_error(f"idle_consolidation_cycle check failed: {_de}")
 
     # Global workspace (unity layer): converge this cycle's parallel
     # contents into a single conscious moment, broadcast it, and extend
@@ -477,7 +477,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     # against his values — self-authorship, not just acting on impulse.
     try:
         if get_cycle_count() % 20 == 0:
-            from brain.cognition.selfhood.second_order_volition import reflect_on_desire as _rod
+            from brain.cognition.self_state.intention_endorsement import reflect_on_desire as _rod
             _rod(context)
     except Exception as _rve:
         record_failure("ORRIN_loop.run_cognitive_loop.27", _rve)
@@ -485,7 +485,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     # Will/commitment: decay the active resolve and expose its
     # follow-through bias (cleared automatically when goal done/faded).
     try:
-        from brain.cognition.will import tick_commitment as _tick_commit
+        from brain.cognition.commitment import tick_commitment as _tick_commit
         _tick_commit(context)
     except Exception as _twe:
         record_failure("ORRIN_loop.run_cognitive_loop.28", _twe)
@@ -504,7 +504,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
         # wrongly completed — so long-term goals actually advance.
         if get_cycle_count() % 25 == 0:
             try:
-                from brain.cognition.intrinsic_goals import credit_aspirations as _ca
+                from brain.cognition.intrinsic_goals import credit_objectives as _ca
                 _ca(context)
             except Exception as _cae:
                 record_failure("ORRIN_loop.run_cognitive_loop.29", _cae)
@@ -536,9 +536,9 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
             )
             # Reading is the other memory-hungry heavy cycle: skip it while
             # host/process resource guards have paused heavies.
-            from reaper.host_resources import heavy_cycles_paused as _heavy_paused
-            from reaper.vital_floor import vital_floor_shedding as _vital_shedding
-            if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _vital_shedding():
+            from supervisor.host_resources import heavy_cycles_paused as _heavy_paused
+            from supervisor.resource_floor import resource_floor_shedding as _resource_floor_shedding
+            if _stag > 0.5 and get_cycle_count() % 40 == 0 and not _heavy_paused() and not _resource_floor_shedding():
                 from brain.cognition.language.acquisition import read_a_book as _rab
                 _line = _rab(context, steps=30)
                 if _line:

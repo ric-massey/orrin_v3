@@ -46,19 +46,19 @@ export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
         <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
           <BatteryCharging className="h-4 w-4" /> <LexText id="drives_title" />
           <PanelInfo
-            title="Drives & body / interoception"
+            title="Priority weights & resource self-monitoring"
             perspective="agent-accessible"
-            what="His motivational drives (what he wants right now), the current energy mode, real body vitals (memory, CPU), and the interoceptive cost model: the learned expected cost of each cognitive function vs. what it actually cost last time — sustained gaps are felt as strain."
+            what="Its demand-pressure accumulators (what it is weighting right now), the current resource-cadence mode, real host resource readings (memory, CPU), and the resource cost model: the learned expected cost of each cognitive function vs. what it actually cost last time — sustained gaps surface as cost pressure."
             source="brain/data/motivation_state.json · energy_mode.json · body_sense.json · interoceptive_model.json"
-            good="Drives that MOVE over time (a flatlined 1.0 means satiation isn't biting), and expected≈actual cost — big persistent gaps mean his self-model of effort is off."
-            src={{ file: "brain/cognition/interoception.py", start: 1, end: 70, label: "interoception" }}
+            good="Priority weights that MOVE over time (a flatlined 1.0 means depletion isn't biting), and expected≈actual cost — big persistent gaps mean its cost self-model is off."
+            src={{ file: "brain/cognition/cost_prediction.py", start: 1, end: 70, label: "cost model (interoception wire field)" }}
           />
           <PanelSubtitle id="drives_sub" />
           <StaleBadge url={`${API}/drives`} pollMs={15_000} />
         </CardTitle>
         <span className="text-[11px] text-muted-foreground/60">
           energy: {data?.energy?.mode ?? "—"}
-          {data?.body?.dominant ? ` · feels ${data.body.dominant}` : ""}
+          {data?.body?.dominant ? ` · state ${data.body.dominant}` : ""}
         </span>
       </CardHeader>
       <CardContent className="scrollbar-thin min-h-0 flex-1 space-y-3 overflow-auto pb-3">
@@ -66,7 +66,7 @@ export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
         {live && live.fn && (
           <div
             className="rounded-lg border border-border bg-card/60 px-3 py-2"
-            title="Live from the telemetry socket: the interoceptive read of the function that just ran (predicted vs actual cost; the gap is felt as strain)."
+            title="Live from the telemetry socket: the resource read of the function that just ran (predicted vs actual cost; the gap surfaces as cost pressure)."
           >
             <div className="flex items-center gap-1.5">
               <span className="inline-flex h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-signal-ok" />
@@ -96,7 +96,7 @@ export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
 
         {io.length > 0 && (
           <div>
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground" title="Expected (learned EMA) vs last actual cost, ms — the gap is strain">
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground" title="Expected (learned EMA) vs last actual cost, ms — the gap is cost pressure">
               Interoceptive cost · expected vs last (ms)
             </div>
             <div className="space-y-1">

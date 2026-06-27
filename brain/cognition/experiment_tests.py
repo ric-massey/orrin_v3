@@ -34,7 +34,7 @@ _OUTWARD_FNS = frozenset({
     "plan_next_step", "assess_goal_progress", "thread_continue",
 })
 _INWARD_FNS = frozenset({
-    "reflection", "reflect_on_directive", "dream_cycle", "narrative_update",
+    "reflection", "reflect_on_directive", "idle_consolidation_cycle", "narrative_update",
     "propose_value_revision", "metacog_flush", "self_review",
     "reflect_on_internal_agents",
 })
@@ -171,7 +171,7 @@ def _build_sim_context(emotion: str, level: float, attention: str,
     """
     import random
     base_emo = {e: 0.05 for e in
-                ["positive_valence", "negative_valence", "conflict_signal", "threat_level", "exploration_drive", "stagnation_signal",
+                ["reward_positive", "reward_negative", "conflict_signal", "threat_level", "exploration_drive", "stagnation_signal",
                  "impasse_signal", "risk_estimate", "motivation", "excitement"]}
     base_emo[emotion] = max(0.0, min(1.0, level + random.uniform(-noise, noise)))
 

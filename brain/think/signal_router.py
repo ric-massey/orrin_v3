@@ -5,7 +5,7 @@ from brain.utils.load_utils import load_json
 from brain.utils.log import log_activity
 from brain.utils.knowledge_utils import recall_relevant_knowledge
 from brain.think.think_utils.user_input import handle_user_input
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import AFFECT_MODEL_FILE, ATTENTION_HISTORY
 from brain.utils.json_utils import save_json
 from brain.utils.signal_utils import gather_signals
@@ -70,7 +70,7 @@ def process_inputs(context: Any, raw_signals: Any = None) -> Tuple[Any, Any]:
 
     core_signals = affect_state.get("core_signals", {}) or {}
     _numeric_emo = {k: v for k, v in core_signals.items() if isinstance(v, (int, float))}
-    dominant_emotion = max(_numeric_emo, key=_numeric_emo.get) if _numeric_emo else "neutral"
+    dominant_signal = max(_numeric_emo, key=_numeric_emo.get) if _numeric_emo else "neutral"
 
     # === Load all known affect tags dynamically ===
     emotion_model = load_json(AFFECT_MODEL_FILE, default_type=dict)
@@ -349,7 +349,7 @@ def process_inputs(context: Any, raw_signals: Any = None) -> Tuple[Any, Any]:
             "tags": s.get("tags", []),
             "priority_score": s.get("priority_score", 0.0),
             "attention_mode": attention_state,
-            "dominant_affect": dominant_emotion,
+            "dominant_affect": dominant_signal,
             "emotional_context": _emo_top,
             "routing_target": s.get("routing_target", "general"),
             "attention_slots": context.get("attention_slots", 3),

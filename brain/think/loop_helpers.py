@@ -43,8 +43,8 @@ def emit_trace(**payload) -> None:
 def emotional_delta_reward(pre: dict, post: dict) -> float:
     """
     Derive a [0, 1] reward from the change in emotional state caused by a function.
-    Positive delta on exploration_drive/confidence/positive_valence/motivation → higher reward.
-    Positive delta on impasse_signal/negative_valence/threat_level/social_penalty → lower reward.
+    Positive delta on exploration_drive/confidence/reward_positive/motivation → higher reward.
+    Positive delta on impasse_signal/reward_negative/threat_level/social_penalty → lower reward.
     Returns 0.5 when there is no emotional change (neutral signal, not penalty).
     """
     def _get(d: dict, k: str) -> float:
@@ -54,12 +54,12 @@ def emotional_delta_reward(pre: dict, post: dict) -> float:
     delta_pos = (
         (_get(post, "exploration_drive")   - _get(pre, "exploration_drive"))
       + (_get(post, "confidence")  - _get(pre, "confidence"))
-      + (_get(post, "positive_valence")         - _get(pre, "positive_valence"))
+      + (_get(post, "reward_positive")         - _get(pre, "reward_positive"))
       + (_get(post, "motivation")  - _get(pre, "motivation"))
     )
     delta_neg = (
         (_get(post, "impasse_signal") - _get(pre, "impasse_signal"))
-      + (_get(post, "negative_valence")     - _get(pre, "negative_valence"))
+      + (_get(post, "reward_negative")     - _get(pre, "reward_negative"))
       + (_get(post, "threat_level")        - _get(pre, "threat_level"))
       + (_get(post, "social_penalty")       - _get(pre, "social_penalty"))
     )
@@ -439,26 +439,26 @@ def bandit_learn(
     pe = 0.0
     expected = 0.0
     try:
-        # === attention_gain learning rate gate (Yu & Dayan 2005) ===
-        # ACh signals expected uncertainty — novel/uncertain contexts raise plasticity.
-        # High uncertainty + exploration_drive = "encode deeply" mode = faster learning.
+        # === learning-rate gain gate (Yu & Dayan 2005) ===
+        # Expected uncertainty raises plasticity — novel/uncertain contexts learn
+        # faster. High uncertainty + exploration_drive = "encode deeply" mode.
         # Routine/certain contexts = slow learning (don't overwrite stable knowledge).
         # lr range: 0.06 (certain/routine) → 0.16 (novel/uncertain).
-        _ach_lr = 0.10  # default
+        _lr_gain = 0.10  # default
         try:
             _ue  = ctx.get("affect_state") if ctx else {}
             _uc  = _ue.get("core_signals", _ue) if isinstance(_ue, dict) else {}
-            _ach = min(1.0,
+            _uncertainty = min(1.0,
                 float(_uc.get("uncertainty", 0.05) or 0.05) * 0.55 +
                 float(_uc.get("exploration_drive",   0.25) or 0.25) * 0.35
             )
-            _ach_lr = round(0.06 + _ach * 0.10, 4)
+            _lr_gain = round(0.06 + _uncertainty * 0.10, 4)
         except Exception as _e:
             record_failure("loop_helpers.bandit_learn", _e)
 
         # Use combined update_with_pe: ONE load+save instead of 3 loads + 2 saves.
         # Falls back to separate calls if the method isn't available.
-        pe = float(bandit.update_with_pe(tag, feats, reward, lr=_ach_lr))
+        pe = float(bandit.update_with_pe(tag, feats, reward, lr=_lr_gain))
         expected = float(reward) - pe  # recover expected = reward - pe
         emit_trace(
             type="BANDIT_UPDATE",
@@ -468,7 +468,7 @@ def bandit_learn(
             features_on={k: v for k, v in feats.items() if v},
             expected_reward=round(expected, 4),
             prediction_error=round(pe, 4),
-            ach_lr=_ach_lr,
+            lr_gain=_lr_gain,
         )
 
         # === Prediction Error → Emotion (Schultz, Dayan & Montague 1997) ===
@@ -477,7 +477,7 @@ def bandit_learn(
         # the willingness to move toward something (Berridge & Robinson 1998).
         # Positive PE → phasic reward_signal burst → motivation + exploration_drive (more seeking).
         # Negative PE → reward_signal dip → loss of drive + impasse_signal at blocked goal.
-        # stability_signal, not reward_signal, underlies hedonic contentment and "feel good."
+        # stability_signal, not reward_signal, underlies hedonic satisfaction_signal and "feel good."
         # Near-zero PE (as expected) → no signal. Predictable 0.26 rewards teach
         # nothing emotionally — the signal is the SURPRISE, not the value.
         if abs(pe) > 0.05:  # dead-zone: only signal meaningful surprises
@@ -485,7 +485,7 @@ def bandit_learn(
                 _emo = ctx.get("affect_state") if ctx else None
                 if isinstance(_emo, dict):
                     _core = _emo.get("core_signals") or _emo
-                    from brain.affect.homeostasis import pump_signal
+                    from brain.control_signals.homeostasis import pump_signal
                     if pe > 0:
                         # Positive surprise: reward_signal burst → motivation + exploration_drive (wanting more)
                         _mag = min(0.20, pe * 0.4)

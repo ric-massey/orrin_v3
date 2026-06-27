@@ -16,8 +16,8 @@ from typing import Any, Dict, List, Optional
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
-_MOOD_KEYS = ("impasse_signal", "negative_valence", "exploration_drive",
-              "positive_valence", "confidence", "threat_level")
+_MOOD_KEYS = ("impasse_signal", "reward_negative", "exploration_drive",
+              "reward_positive", "confidence", "threat_level")
 
 
 def write(daemon: Any, kind: str, content: str, meta: Optional[Dict[str, Any]] = None) -> None:
@@ -161,7 +161,7 @@ def query(daemon: Any, text: str, k: int = 6, use_mmr: bool = True,
         try:
             core = affect_state.get("core_signals") or affect_state
             cand = {kk: float(core.get(kk) or 0) for kk in
-                    ("impasse_signal", "negative_valence", "exploration_drive", "positive_valence", "confidence")}
+                    ("impasse_signal", "reward_negative", "exploration_drive", "reward_positive", "confidence")}
             dominant_mood = max(cand, key=cand.get)
             if cand[dominant_mood] >= 0.4:
                 query_text = f"[mood:{dominant_mood}] {text}"
@@ -237,7 +237,7 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
         record_failure("memory_io.inject_into_context.goal_lens", _e)
     try:
         from brain.cog_memory.reconstruction import reconstruct as _recon
-        mood = float((context.get("affect_state") or {}).get("mood") or 0.0)
+        mood = float((context.get("affect_state") or {}).get("smoothed_state") or 0.0)
         for item in results:
             if isinstance(item, dict):
                 item["reconstructed"] = _recon(item, current_mood=mood)

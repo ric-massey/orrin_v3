@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { TelemetryState } from "@/lib/telemetry";
-import { useLexicon } from "@/lib/lexicon";
 import { useStageLabel, useThought } from "@/lib/thoughts";
 
 /**
  * Translates the backend cognitive loop into a single, calm human-readable line.
- * No jargon, no metrics — just what Orrin is "doing" right now. The line, the
- * stage badge and the mood word all obey the bio↔eng terminology toggle (the
- * visual is identical in both dialects; only the words change).
+ * No jargon, no metrics — just what the runtime is doing right now: the thought
+ * line, the stage badge, and the current control-signal state.
  */
 export default function NarrativeStatusCard({ telemetry }: { telemetry: TelemetryState }) {
-  const { mode } = useLexicon();
   const thought = useThought(telemetry);
   const label = useStageLabel(telemetry.activeNode);
   const [dots, setDots] = useState("");
@@ -21,7 +18,7 @@ export default function NarrativeStatusCard({ telemetry }: { telemetry: Telemetr
     return () => window.clearInterval(id);
   }, []);
 
-  const mood = moodWord(telemetry.affect.valence, telemetry.affect.arousal, mode);
+  const mood = moodWord(telemetry.affect.valence, telemetry.affect.arousal);
 
   return (
     <div className="mx-auto w-full max-w-2xl">
@@ -37,7 +34,7 @@ export default function NarrativeStatusCard({ telemetry }: { telemetry: Telemetr
               <span className="ml-0.5 inline-block w-4 text-left text-muted-foreground">{dots}</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              {label} · {mode === "eng" ? "affect" : "feeling"} {mood}
+              {label} · signal {mood}
             </div>
           </div>
         </div>
@@ -50,7 +47,7 @@ export default function NarrativeStatusCard({ telemetry }: { telemetry: Telemetr
 function MiniMeter({ value }: { value: number }) {
   const pct = Math.round(value * 100);
   return (
-    <div className="hidden items-center gap-2 sm:flex" title="Inner balance">
+    <div className="hidden items-center gap-2 sm:flex" title="Setpoint proximity">
       <div className="h-1.5 w-20 overflow-hidden rounded-full bg-secondary">
         <div
           className={cn("h-full rounded-full transition-all duration-700", barColor(value))}
@@ -68,12 +65,11 @@ function barColor(v: number) {
   return "bg-signal-error";
 }
 
-// Same affect state, two dialects: a felt mood word (bio) vs. the signed
-// valence/arousal quadrant it comes from (eng).
-function moodWord(valence: number, arousal: number, mode: "bio" | "eng") {
-  if (valence > 0.6 && arousal > 0.55) return mode === "eng" ? "high +valence" : "energized";
-  if (valence > 0.6) return mode === "eng" ? "+valence" : "content";
-  if (valence < 0.4 && arousal > 0.55) return mode === "eng" ? "high −valence" : "unsettled";
-  if (valence < 0.4) return mode === "eng" ? "−valence" : "subdued";
-  return mode === "eng" ? "near setpoint" : "steady";
+// Engineering label for the signed valence/arousal quadrant of the signal state.
+function moodWord(valence: number, arousal: number) {
+  if (valence > 0.6 && arousal > 0.55) return "high +valence";
+  if (valence > 0.6) return "+valence";
+  if (valence < 0.4 && arousal > 0.55) return "high −valence";
+  if (valence < 0.4) return "−valence";
+  return "near setpoint";
 }

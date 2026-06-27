@@ -27,7 +27,7 @@ def test_exploration_prior_ranks_epistemic_above_diversive():
 
 
 def test_wonder_prior_also_realigned():
-    w = sf._SEMANTIC_PRIORS["wonder"]
+    w = sf._SEMANTIC_PRIORS["novelty_signal"]
     assert w["seek_novelty"] > w["look_outward"]
     assert w["research_topic"] > w["look_around"]
 

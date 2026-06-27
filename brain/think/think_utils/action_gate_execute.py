@@ -11,8 +11,8 @@ from pathlib import Path
 from typing import Optional
 
 from brain.behavior.speak import OrrinSpeaker
-from brain.affect.reward_signals.reward_signals import release_reward_signal
-from brain.affect.reward_signals.resource_deficit import update_function_usage_fatigue
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.resource_deficit import update_function_usage_fatigue
 from brain.cog_memory.working_memory import update_working_memory
 from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 from brain.utils.json_utils import save_json, load_json

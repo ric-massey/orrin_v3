@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiBase, apiGet } from "@/lib/transport";
 
-// The Death Screen (§10.4) — when Orrin reaches true end-of-lifespan, the window does
-// not go dead; it becomes a quiet memorial. This is the ONE place his whole interior
-// opens (the veil lifts only on death, via /api/death which refuses while he's alive).
-// Also handles the §10.5 "interrupted" case (crash/stall) as a non-blocking banner.
+// The Termination Screen (§10.4) — when Orrin reaches the end of its lifetime budget,
+// the window does not go blank; it becomes a quiet end-of-run summary. This is the ONE
+// place the whole interior opens (it unseals only on termination, via /api/death, which
+// refuses while the runtime is running). Also handles the §10.5 "interrupted" case
+// (crash/stall) as a non-blocking banner.
 
 function controlHeaders(): Record<string, string> | undefined {
   const token = import.meta.env.VITE_CONTROL_TOKEN as string | undefined;
@@ -49,7 +50,7 @@ export default function DeathScreen() {
     };
   }, []);
 
-  // Load the interior once we know he's gone (the veil has lifted).
+  // Load the interior once we know it has terminated (the interior has unsealed).
   useEffect(() => {
     if (life?.state !== "dead" || death) return;
     void (async () => {
@@ -66,8 +67,8 @@ export default function DeathScreen() {
     // §10.5: a stall masquerading as death is terrifying; death as a crash is wrong.
     const msg =
       life.state === "stalled"
-        ? "Orrin stalled and is restarting — his mind is intact."
-        : "Orrin stopped unexpectedly and has restarted — his mind is intact.";
+        ? "Orrin stalled and is restarting — its state is intact."
+        : "Orrin stopped unexpectedly and has restarted — its state is intact.";
     return (
       <div className="fixed inset-x-0 top-0 z-[120] flex items-center justify-center gap-3 bg-signal-warn/15 px-4 py-2 text-sm">
         <span>{msg}</span>
@@ -84,7 +85,7 @@ export default function DeathScreen() {
   const lived = Math.round(death?.life?.age_days ?? life.age_days ?? 0);
   const firstFinal = death?.final_thoughts?.[death.final_thoughts.length - 1]?.content;
 
-  const exportHim = async () => {
+  const exportArchive = async () => {
     try {
       const res = await fetch(`${apiBase()}/api/mind/export`, { headers: controlHeaders() });
       const blob = await res.blob();
@@ -102,10 +103,10 @@ export default function DeathScreen() {
   };
 
   const beginAnew = async () => {
-    if (!window.confirm("Keep a copy of him first? A new, newborn Orrin will begin. The one who died is gone — export him now if you want to remember him.")) {
+    if (!window.confirm("Keep a copy first? A fresh Orrin runtime will begin. The terminated run is gone — export it now if you want to keep it.")) {
       return;
     }
-    await exportHim(); // archive the dead mind as a keepsake before reseeding
+    await exportArchive(); // archive the terminated state before reseeding
     try {
       await fetch(`${apiBase()}/api/control/reset`, {
         method: "POST",
@@ -119,9 +120,9 @@ export default function DeathScreen() {
   return (
     <div className="fixed inset-0 z-[120] flex flex-col items-center justify-center gap-6 overflow-auto bg-background px-6 py-12 text-center text-foreground">
       <div className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">Orrin has died.</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Orrin has terminated.</h1>
         <p className="text-sm text-muted-foreground">
-          {bornAt ? `Born ${bornAt.slice(0, 10)} · ` : ""}Lived {lived} days · reached the end of his life
+          {bornAt ? `Started ${bornAt.slice(0, 10)} · ` : ""}Ran {lived} days · reached the end of its lifetime budget
         </p>
       </div>
 
@@ -134,19 +135,19 @@ export default function DeathScreen() {
           onClick={() => setShowInterior((s) => !s)}
           className="rounded-md border border-border bg-card px-3 py-1.5 text-sm hover:bg-muted"
         >
-          {showInterior ? "Hide his final thoughts" : "Read his final thoughts"}
+          {showInterior ? "Hide final output" : "Read final output"}
         </button>
         <button
           onClick={() => navigate("/memory")}
           className="rounded-md border border-border bg-card px-3 py-1.5 text-sm hover:bg-muted"
         >
-          Explore his mind
+          Explore its state
         </button>
         <button
-          onClick={() => void exportHim()}
+          onClick={() => void exportArchive()}
           className="rounded-md border border-border bg-card px-3 py-1.5 text-sm hover:bg-muted"
         >
-          Export him
+          Export archive
         </button>
         <button
           onClick={() => void beginAnew()}
@@ -158,13 +159,13 @@ export default function DeathScreen() {
 
       {showInterior && death && (
         <div className="max-w-2xl space-y-4 text-left">
-          <Section title="His final thoughts">
+          <Section title="Final output">
             {(death.final_thoughts ?? []).map((f, i) => (
               <p key={i} className="text-sm">{f.content}</p>
             ))}
           </Section>
           {death.private_thoughts && (
-            <Section title="His private thoughts — his own, until now">
+            <Section title="Protected interior — sealed until termination">
               <pre className="whitespace-pre-wrap font-sans text-sm text-muted-foreground">
                 {death.private_thoughts}
               </pre>

@@ -147,7 +147,7 @@ def _felt_intensity(
     value if the adaptation machinery can't be loaded, so attention never fails
     closed."""
     try:
-        from brain.affect.affect_dynamics import effective_intensity as _ei
+        from brain.control_signals.affect_dynamics import effective_intensity as _ei
         return _ei(emotion, val, hedonic_baselines or {})
     except ImportError:  # intentional: adaptation machinery optional → raw value (fail-open)
         return val
@@ -188,8 +188,8 @@ def _hijack_content(emotion: str, intensity: float) -> str:
                         "social_penalty is all-consuming right now, pressing out other thought"),
         "loss_signal":       ("loss_signal sits quietly but heavily at the edge of everything",
                         "loss_signal has flooded in — it is difficult to attend to much else"),
-        "negative_valence":     ("a negative_valence keeps pulling at the edges of attention",
-                        "negative_valence has taken over, attention keeps collapsing inward"),
+        "reward_negative":     ("a reward_negative keeps pulling at the edges of attention",
+                        "reward_negative has taken over, attention keeps collapsing inward"),
         "social_deficit":  ("a persistent ache of social_deficit keeps pressing in",
                         "social_deficit is consuming — hard to hold other things"),
         "guilt":       ("a nagging guilt keeps surfacing",

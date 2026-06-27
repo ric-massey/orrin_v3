@@ -45,9 +45,9 @@ export default function SymbolicMindPanel() {
         <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
           <Network className="h-4 w-4" /> <LexText id="symbolic_title" />
           <PanelInfo
-            title="Symbolic mind / knowledge"
+            title="Rule engine / knowledge"
             perspective="agent-accessible"
-            what="The no-LLM reasoning engine: queries answered purely by his learned symbolic rules, the rule base itself (conditions → conclusion with confidence), and the causal graph built from his own interventions and observations."
+            what="The no-LLM reasoning engine: queries answered purely by its learned symbolic rules, the rule base itself (conditions → conclusion with confidence), and the causal graph built from its own interventions and observations."
             source="brain/data/symbolic_progress.json · symbolic_rules.json · causal_graph.json · world_model_stats.json"
             good="A high share answered without the LLM while rules keep being added AND forgotten (a living rule base). Note: in an LLM-off run the ratio is trivially 100%, so the gauge is suppressed."
             src={{ file: "brain/symbolic/rule_engine.py", start: 1, end: 70, label: "rule_engine" }}

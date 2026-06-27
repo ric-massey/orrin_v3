@@ -13,7 +13,7 @@ from typing import Any, Dict
 from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
 from brain.paths import SELF_MODEL_FILE
-from brain.think.think_utils.selection.state import _dominant_emotion, _focus_goal_name
+from brain.think.think_utils.selection.state import _dominant_signal, _focus_goal_name
 from brain.think.think_utils.selection.text import _kw_overlap_score
 
 
@@ -26,7 +26,7 @@ def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
         "resource_deficit": float(es.get("resource_deficit", 0.0) or 0.0),
         "has_focus_goal": 1.0 if _focus_goal_name() else 0.0,
     }
-    emo = _dominant_emotion()
+    emo = _dominant_signal()
     features[f"emo_{emo}"] = 1.0
     # Explicit intercept so the bandit can learn a baseline
     features["__bias__"] = 1.0
@@ -123,7 +123,7 @@ def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
     # Without this feature the reward gradient exists but the bandit cannot see
     # the input that predicts it, so the pattern never generalises.
     try:
-        from brain.affect.observers import negative_load
+        from brain.control_signals.observers import negative_load
         _distress = negative_load(ctx.get("affect_state") or {})
         if _distress > 0.35:
             features["distress_present"] = min(1.0, _distress / 2.5)

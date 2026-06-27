@@ -32,7 +32,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 BRAIN = REPO / "brain"
-TOP_LEVEL = {"goals", "memory", "reaper"}
+TOP_LEVEL = {"goals", "memory", "supervisor"}
 
 # Intended layering (low → high), documentation only. A lower layer should not
 # import a higher one; the legacy graph violates this (see module docstring), so
@@ -40,7 +40,7 @@ TOP_LEVEL = {"goals", "memory", "reaper"}
 LAYER_ORDER = (
     ("utils", "config", "core"),          # foundation
     ("registry", "symbolic", "cog_memory"),
-    ("affect", "motivation", "embodiment"),
+    ("control_signals", "motivation", "runtime_coupling"),
     ("cognition",),
     ("think", "agency", "behavior"),
     ("eval", "peers", "benchmarks", "evidence"),
@@ -53,34 +53,34 @@ BASELINE_EDGES = {
     ('(root)', 'cog_memory'), ('(root)', 'cognition'), ('(root)', 'core'),
     ('(root)', 'eval'), ('(root)', 'loop'), ('(root)', 'registry'),
     ('(root)', 'think'), ('(root)', 'utils'),
-    ('affect', 'cog_memory'), ('affect', 'cognition'), ('affect', 'config'),
-    ('affect', 'core'), ('affect', 'registry'), ('affect', 'symbolic'),
-    ('affect', 'utils'),
+    ('control_signals', 'cog_memory'), ('control_signals', 'cognition'), ('control_signals', 'config'),
+    ('control_signals', 'core'), ('control_signals', 'registry'), ('control_signals', 'symbolic'),
+    ('control_signals', 'utils'),
     ('agency', 'behavior'), ('agency', 'cog_memory'), ('agency', 'cognition'),
     ('agency', 'core'), ('agency', 'registry'), ('agency', 'think'),
     ('agency', 'utils'),
-    ('behavior', 'affect'), ('behavior', 'agency'), ('behavior', 'cog_memory'),
-    ('behavior', 'cognition'), ('behavior', 'core'), ('behavior', 'embodiment'),
+    ('behavior', 'control_signals'), ('behavior', 'agency'), ('behavior', 'cog_memory'),
+    ('behavior', 'cognition'), ('behavior', 'core'), ('behavior', 'runtime_coupling'),
     ('behavior', 'think'), ('behavior', 'utils'),
     ('benchmarks', 'cognition'), ('benchmarks', 'utils'),
-    ('cog_memory', 'affect'), ('cog_memory', 'cognition'), ('cog_memory', 'core'),
+    ('cog_memory', 'control_signals'), ('cog_memory', 'cognition'), ('cog_memory', 'core'),
     ('cog_memory', 'utils'),
-    ('cognition', 'affect'), ('cognition', 'agency'), ('cognition', 'behavior'),
+    ('cognition', 'control_signals'), ('cognition', 'agency'), ('cognition', 'behavior'),
     ('cognition', 'cog_memory'), ('cognition', 'config'), ('cognition', 'core'),
-    ('cognition', 'embodiment'), ('cognition', 'evidence'),
+    ('cognition', 'runtime_coupling'), ('cognition', 'evidence'),
     ('cognition', 'motivation'), ('cognition', 'registry'),
     ('cognition', 'symbolic'), ('cognition', 'think'), ('cognition', 'utils'),
     ('core', 'agency'), ('core', 'utils'),
-    ('embodiment', 'affect'), ('embodiment', 'cog_memory'), ('embodiment', 'core'),
-    ('embodiment', 'registry'), ('embodiment', 'symbolic'), ('embodiment', 'utils'),
-    ('eval', 'affect'), ('eval', 'core'), ('eval', 'think'), ('eval', 'utils'),
+    ('runtime_coupling', 'control_signals'), ('runtime_coupling', 'cog_memory'), ('runtime_coupling', 'core'),
+    ('runtime_coupling', 'registry'), ('runtime_coupling', 'symbolic'), ('runtime_coupling', 'utils'),
+    ('eval', 'control_signals'), ('eval', 'core'), ('eval', 'think'), ('eval', 'utils'),
     ('evidence', 'utils'),
-    ('loop', 'affect'), ('loop', 'agency'), ('loop', 'behavior'),
+    ('loop', 'control_signals'), ('loop', 'agency'), ('loop', 'behavior'),
     ('loop', 'benchmarks'), ('loop', 'cog_memory'), ('loop', 'cognition'),
-    ('loop', 'config'), ('loop', 'core'), ('loop', 'embodiment'), ('loop', 'eval'),
+    ('loop', 'config'), ('loop', 'core'), ('loop', 'runtime_coupling'), ('loop', 'eval'),
     ('loop', 'motivation'), ('loop', 'peers'), ('loop', 'registry'),
     ('loop', 'symbolic'), ('loop', 'think'), ('loop', 'utils'),
-    ('motivation', 'affect'), ('motivation', 'cog_memory'), ('motivation', 'core'),
+    ('motivation', 'control_signals'), ('motivation', 'cog_memory'), ('motivation', 'core'),
     ('motivation', 'think'), ('motivation', 'utils'),
     ('peers', 'cognition'), ('peers', 'core'), ('peers', 'symbolic'),
     ('peers', 'utils'),
@@ -88,18 +88,18 @@ BASELINE_EDGES = {
     ('scripts', 'cog_memory'), ('scripts', 'cognition'), ('scripts', 'utils'),
     ('symbolic', 'cog_memory'), ('symbolic', 'cognition'), ('symbolic', 'core'),
     ('symbolic', 'utils'),
-    ('think', 'affect'), ('think', 'behavior'), ('think', 'cog_memory'),
+    ('think', 'control_signals'), ('think', 'behavior'), ('think', 'cog_memory'),
     ('think', 'cognition'), ('think', 'config'), ('think', 'core'),
     ('think', 'motivation'), ('think', 'registry'), ('think', 'symbolic'),
     ('think', 'utils'),
-    ('utils', 'affect'), ('utils', 'cognition'), ('utils', 'core'),
+    ('utils', 'control_signals'), ('utils', 'cognition'), ('utils', 'core'),
     ('utils', 'registry'), ('utils', 'symbolic'),
 }
 
 # The only brain files allowed to import the top-level v1 packages
-# (goals/memory/reaper). These are the documented adapter/seam files; the
+# (goals/memory/supervisor). These are the documented adapter/seam files; the
 # coupling is the v1↔v2 bridge the cleanup plan keeps behind ownership tables.
-# Any OTHER brain file importing goals/memory/reaper fails the build.
+# Any OTHER brain file importing goals/memory/supervisor fails the build.
 ADAPTER_FILES = {
     "brain/ORRIN_loop.py",
     "brain/cognition/terminal.py",
@@ -107,7 +107,7 @@ ADAPTER_FILES = {
     "brain/goal_io.py",
     "brain/loop/finalize.py",
     "brain/memory_io.py",
-    "brain/scripts/vital_floor_calibration_run.py",
+    "brain/scripts/resource_floor_calibration_run.py",
     "brain/utils/goals_feed.py",
     "brain/utils/mind_archive.py",
 }
@@ -166,7 +166,7 @@ def test_no_new_cross_package_edges():
 def test_brain_does_not_import_top_level_outside_adapters():
     _, top_violations = _scan()
     assert not top_violations, (
-        "brain.* imported a top-level v1 package (goals/memory/reaper) outside the "
+        "brain.* imported a top-level v1 package (goals/memory/supervisor) outside the "
         "documented adapter seam:\n"
         + "\n".join(f"  {f}: import {m}" for f, m in sorted(set(top_violations)))
         + "\n\nKeep the v1↔v2 coupling confined to ADAPTER_FILES, or add the new "

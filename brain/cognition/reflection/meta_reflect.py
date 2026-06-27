@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from brain.utils.load_utils import load_all_known_json
 from brain.utils.log import log_error, log_private
-from brain.cognition.selfhood.self_model_conflicts import resolve_conflicts, update_self_model
+from brain.cognition.self_state.self_model_conflicts import resolve_conflicts, update_self_model
 from brain.cognition.maintenance.self_modeling import self_supervised_repair
 from brain.utils.self_model import ensure_self_model_integrity, get_self_model
 from brain.cognition.introspection.router import introspect
@@ -46,7 +46,7 @@ def meta_reflect(context: dict = None):
         # itself (→ recursive context["context"] nesting) and large append-only
         # logs/stores. The loop then persisted context each cycle, ballooning
         # context.json to 70 MB and (under the continuous Executive daemon loading
-        # it every ~7s) tripping the reaper's memory-leak detector. Exclude those
+        # it every ~7s) tripping the supervisor's memory-leak detector. Exclude those
         # stores; merging the small remainder is harmless and what meta_reflect needs.
         _LEAK_KEYS = {
             "context", "long_memory", "reflection_log", "habituation",

@@ -336,7 +336,7 @@ def _drop_with_costs(
     update_long_memory(
         f"[opinion reversal] I no longer hold my view on '{topic}': \"{old_view}\". "
         f"The evidence outweighed it (stake was {stake:.2f}).",
-        emotion="negative_valence",
+        emotion="reward_negative",
         event_type="opinion_reversal",
         importance=3,
         priority=3,
@@ -345,8 +345,8 @@ def _drop_with_costs(
     )
     if isinstance(context, dict):
         try:
-            from brain.affect.arbiter import submit_affect
-            submit_affect(context, "negative_valence", round(0.10 + 0.25 * stake, 3),
+            from brain.control_signals.arbiter import submit_affect
+            submit_affect(context, "reward_negative", round(0.10 + 0.25 * stake, 3),
                           source="opinion_reversal", ttl_cycles=2)
         except Exception as e:
             record_failure("opinions.reversal_affect", e)

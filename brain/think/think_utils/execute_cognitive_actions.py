@@ -8,7 +8,7 @@ from brain.paths import GOALS_FILE
 from brain.utils.self_model import get_self_model, save_self_model, ensure_self_model_integrity
 # Canonical reward emitter — single shared wrapper (was a byte-identical private
 # duplicate of finalize.py's _reward).
-from brain.affect.reward_signals.reward_signals import release_reward as _reward
+from brain.control_signals.reward_signals.reward_signals import release_reward as _reward
 
 
 

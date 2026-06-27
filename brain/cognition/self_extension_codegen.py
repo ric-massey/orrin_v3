@@ -200,7 +200,7 @@ def _integrate_or_atrophy(context: Dict[str, Any]) -> None:
 
             emo = context.get("affect_state") or {}
             core = (emo.get("core_signals") or emo) or {}
-            core["melancholy"] = min(1.0, float(core.get("melancholy") or 0.0) + 0.05)
+            core["low_affect_signal"] = min(1.0, float(core.get("low_affect_signal") or 0.0) + 0.05)
             core["uncertainty"] = min(1.0, float(core.get("uncertainty") or 0.0) + 0.03)
             if isinstance(emo.get("core_signals"), dict):
                 emo["core_signals"] = core
@@ -253,7 +253,7 @@ def _remove_extension(name: str, file_path: str) -> None:
 
 def _apply_fragmentation_cost(context: Dict, amount: float) -> None:
     try:
-        from brain.cognition.selfhood.fragmentation import apply_fragmentation_cost as _afc
+        from brain.cognition.self_state.fragmentation import apply_fragmentation_cost as _afc
         _afc(context, override_cost=amount)
     except Exception:
         emo = context.get("affect_state") or {}

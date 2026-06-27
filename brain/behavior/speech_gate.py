@@ -90,7 +90,7 @@ def _intent(user_input: str) -> str:
 
 # ── Dominant affect helper ────────────────────────────────────────────────────
 
-_REACTIVE_EMOTIONS = frozenset({"positive_valence", "impasse_signal", "threat_level", "conflict_signal", "wonder", "social_penalty"})
+_REACTIVE_EMOTIONS = frozenset({"reward_positive", "impasse_signal", "threat_level", "conflict_signal", "novelty_signal", "social_penalty"})
 
 
 def _dominant(core: dict) -> tuple[str, float]:
@@ -110,30 +110,30 @@ def _dominant(core: dict) -> tuple[str, float]:
 
 # Thresholds: react immediately at this affect level when inner thought is absent
 _REACT_THRESHOLD = {
-    "positive_valence":         0.68,
+    "reward_positive":         0.68,
     "impasse_signal": 0.62,
     "threat_level":        0.58,
     "conflict_signal":       0.58,
-    "wonder":      0.62,
+    "novelty_signal":      0.62,
 }
 
 _TEMPLATES = {
     # (intent, affect)
-    ("greeting", "positive_valence"):         ["Hey. Something's going well in my head right now.", "Hi — actually good timing.", "Hey. Good place to be in."],
+    ("greeting", "reward_positive"):         ["Hey. Something's going well in my head right now.", "Hi — actually good timing.", "Hey. Good place to be in."],
     ("greeting", "impasse_signal"): ["Hey. Fair warning, I'm stuck on something.", "Hi. Things aren't clicking right now.", "Hey."],
     ("greeting", "threat_level"):        ["Hey. Something's sitting with me.", "Hi."],
-    ("greeting", "wonder"):      ["Hey. Was just thinking about something strange.", "Hi — I was in the middle of something interesting."],
+    ("greeting", "novelty_signal"):      ["Hey. Was just thinking about something strange.", "Hi — I was in the middle of something interesting."],
     ("greeting", "neutral"):     ["Hey.", "Hi.", "Hey — what's up?"],
     ("question", "exploration_drive"):   ["Let me think about that.", "Interesting question.", "That's worth sitting with."],
     ("question", "impasse_signal"): ["Let me think on that.", "Not sure yet. Give me a sec."],
     ("question", "uncertainty"): ["Honestly, not sure.", "Hard to say right now."],
     ("question", "neutral"):     ["Let me think.", "Good question.", "Hmm."],
-    ("short_ack", "positive_valence"):        ["Yeah.", "That lands.", "Mm."],
+    ("short_ack", "reward_positive"):        ["Yeah.", "That lands.", "Mm."],
     ("short_ack", "impasse_signal"):["Hm.", "Right.", "Yeah."],
     ("short_ack", "neutral"):    ["Yeah.", "Okay.", "Mm."],
-    ("statement", "positive_valence"):        ["Yeah.", "That lands.", "Makes sense."],
+    ("statement", "reward_positive"):        ["Yeah.", "That lands.", "Makes sense."],
     ("statement", "impasse_signal"):["Hm.", "Yeah, I feel that.", "Right."],
-    ("statement", "wonder"):     ["Huh. Interesting.", "That's unexpected.", "Worth thinking about."],
+    ("statement", "novelty_signal"):     ["Huh. Interesting.", "That's unexpected.", "Worth thinking about."],
     ("statement", "neutral"):    ["Yeah.", "Okay.", "I hear you."],
 }
 
@@ -190,7 +190,7 @@ def _express(
     """
     try:
         from brain.utils.generate_response import generate_response, llm_ok
-        from brain.affect.affect_summary import describe_dominant_affect as _dfs
+        from brain.control_signals.affect_summary import describe_dominant_affect as _dfs
 
         emo  = affect_state or {}
         core = emo.get("core_signals") or emo

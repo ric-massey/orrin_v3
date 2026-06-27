@@ -48,10 +48,10 @@ class Motive:
         return dataclasses.asdict(self)
 
 
-def _dominant_emotion(context: Dict[str, Any]) -> str:
+def _dominant_signal(context: Dict[str, Any]) -> str:
     try:
         from brain.behavior import expression
-        return expression._dominant_emotion(context)
+        return expression._dominant_signal(context)
     except ImportError:  # intentional: expression module optional → neutral
         return "neutral"
 
@@ -158,7 +158,7 @@ def compose_from_motive(motive: Motive, context: Dict[str, Any]) -> str:
         # vocab). A deliberately-chosen expressive act must still produce
         # composed language — fall back to a congruent reflection from the same
         # vocabulary, never to copied backend state.
-        emotion = _dominant_emotion(context)
+        emotion = _dominant_signal(context)
         try:
             text = strip_internal(
                 expression._congruent_pick("reflections", emotion, 0.5) or ""
@@ -166,7 +166,7 @@ def compose_from_motive(motive: Motive, context: Dict[str, Any]) -> str:
         except Exception as _e:
             record_failure("express_to_user.compose.fallback", _e)
     if not text:
-        emotion = _dominant_emotion(context).replace("_", " ")
+        emotion = _dominant_signal(context).replace("_", " ")
         text = f"I'm here, feeling {emotion}."
     return text
 
@@ -189,7 +189,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
     polls (so it is actually seen — fixes E4), plus a durable outbox copy."""
     delivered = False
     try:
-        from brain.embodiment.system_presence import announce_presence
+        from brain.runtime_coupling.system_presence import announce_presence
         r = announce_presence(text, kind="note")
         delivered = bool(r.get("success"))
     except Exception as _e:
@@ -209,7 +209,7 @@ def _route_note(text: str, artifact: Dict[str, Any], context: Dict[str, Any]) ->
 
 def _route_desktop(text: str) -> bool:
     try:
-        from brain.embodiment.system_presence import write_to_desktop_note
+        from brain.runtime_coupling.system_presence import write_to_desktop_note
         r = write_to_desktop_note("Orrin's note", text)
         return bool(r.get("success"))
     except Exception as _e:
@@ -219,7 +219,7 @@ def _route_desktop(text: str) -> bool:
 
 def _route_dashboard(text: str) -> bool:
     try:
-        from brain.embodiment.system_presence import announce_presence
+        from brain.runtime_coupling.system_presence import announce_presence
         r = announce_presence(text, kind="presence")
         return bool(r.get("success"))
     except Exception as _e:
@@ -266,7 +266,7 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
         "text": text,
         "motive": motive.to_dict(),
         "ts": datetime.now(timezone.utc).isoformat(),
-        "emotion": _dominant_emotion(context),
+        "emotion": _dominant_signal(context),
     }
 
     ok = bool(_ROUTES[channel](text, artifact, context))

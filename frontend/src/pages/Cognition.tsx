@@ -8,10 +8,10 @@ import InfoDot from "@/components/brain/InfoDot";
 import { ROOM_INFO } from "@/lib/roomMetrics";
 
 // Cognition (§9.3): a calm reading of feeds Orrin already produces, arranged as a
-// narrative — "what is he doing right now?". Pure composition: the live blocks come
+// narrative — "what is it doing right now?". Pure composition: the live blocks come
 // from the shared telemetry stream; drives/symbolic/peers are polled REST. Honesty
-// rule: an empty/stale feed says so, it never renders blank. His private thoughts are
-// never fetched or shown (the API already strips them) — that's a trust feature.
+// rule: an empty/stale feed says so, it never renders blank. The protected interior
+// is never fetched or shown (the API already strips it) — that's a trust feature.
 
 interface DrivesFeed {
   drives?: Record<string, number>;
@@ -29,7 +29,7 @@ interface PeopleFeed {
 export default function Cognition() {
   const t = useLexicon().t;
   const tel = useTelemetryState();
-  const drives = usePolledJSON<DrivesFeed>("/api/drives");
+  const drives = usePolledJSON<DrivesFeed>("/api/demands");
   const symbolic = usePolledJSON<SymbolicFeed>("/api/symbolic?n=8");
   const people = usePolledJSON<PeopleFeed>("/api/people");
 
@@ -42,7 +42,7 @@ export default function Cognition() {
 
   return (
     <div className="mx-auto w-full max-w-4xl space-y-5 px-4 py-6 sm:px-6">
-      {/* Hero — one breathing line synced to his ~20s cycle. */}
+      {/* Hero — one breathing line synced to the ~20s cycle. */}
       <div className={cn("rounded-xl border bg-card p-5 sm:p-6", live && "animate-breathe")}>
         <div className="mb-2 flex items-center gap-2 text-xs text-muted-foreground">
           <Brain className="h-4 w-4" />
@@ -70,8 +70,8 @@ export default function Cognition() {
           ) : (
             <span className="text-muted-foreground">
               {tel.source === "stopped"
-                ? "Orrin is stopped — his mind is frozen where it was."
-                : "Waiting for his first thought this session…"}
+                ? "Orrin is stopped — the runtime is frozen where it was."
+                : "Waiting for the first cycle this session…"}
             </span>
           )}
         </p>
@@ -107,7 +107,7 @@ export default function Cognition() {
               </Meta>
             </div>
           ) : (
-            <Empty>He isn't pursuing a goal right now.</Empty>
+            <Empty>No goal is being pursued right now.</Empty>
           )}
         </Block>
 
@@ -155,7 +155,7 @@ export default function Cognition() {
                 ))}
             </ul>
           ) : (
-            <Empty>No drive pressure reported.</Empty>
+            <Empty>No priority pressure reported.</Empty>
           )}
         </Block>
 
@@ -219,7 +219,7 @@ export default function Cognition() {
               ))}
             </div>
           ) : (
-            <Empty>No inner voices are pressing right now.</Empty>
+            <Empty>No peer models are active right now.</Empty>
           )}
         </Block>
       </div>

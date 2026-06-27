@@ -10,7 +10,7 @@ from dataclasses import replace
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional, Tuple, cast
 
-from .model import Goal, Step, Status
+from .model import Goal, Step, Status, artifact_satisfied
 from .handlers.base import GoalHandler, HandlerContext
 from . import policy as policy_mod  # expected to provide choose_next_steps(...)
 from . import runner as runner_mod  # expected to provide StepRunner
@@ -18,6 +18,10 @@ _log = get_logger(__name__)
 
 def UTCNOW() -> datetime:
     return datetime.now(timezone.utc)
+
+
+# (T0.4) How often the daemon compacts the store's append-only state.jsonl + WAL.
+_CHECKPOINT_INTERVAL_S = 300.0  # 5 minutes
 
 
 # ---------------- duck-typed store helpers ----------------
@@ -215,6 +219,8 @@ class GoalsDaemon:
     # ---------------- Internal loop ----------------
 
     def _loop(self) -> None:
+        import time as _time
+        _last_checkpoint = _time.monotonic()
         while not self._stop.is_set():
             try:
                 self._pulse()
@@ -224,6 +230,17 @@ class GoalsDaemon:
                 self._emit_event({"kind": "GoalsDaemonError", "ts": UTCNOW().isoformat(), "error": self._last_error})
             finally:
                 self._last_pulse_at = UTCNOW()
+
+            # (T0.4) Periodically compact the append-only state.jsonl + WAL so a
+            # long / multi-day run can't grow them without bound. The store's
+            # checkpoint holds its own lock, so this is safe against worker upserts.
+            if _time.monotonic() - _last_checkpoint >= _CHECKPOINT_INTERVAL_S:
+                try:
+                    if hasattr(self.store, "checkpoint"):
+                        self.store.checkpoint()
+                except Exception as e:
+                    self._last_error = f"checkpoint: {type(e).__name__}: {e}"
+                _last_checkpoint = _time.monotonic()
 
             # Sleep or wake early if submit() was called
             self._wake.wait(timeout=self.tick_seconds)
@@ -404,9 +421,19 @@ class GoalsDaemon:
 
             if all_done:
                 if g.status != Status.DONE:
-                    ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
-                    _upsert_goal(self.store, ng)
-                    self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
+                    # Artifact gate (no fabricated progress): see runner._maybe_finalize.
+                    # An artifact-requiring goal whose steps all ran but produced nothing
+                    # fails honestly rather than reporting a hollow DONE.
+                    if not artifact_satisfied(g, steps):
+                        ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(),
+                                     last_error="objective not met: required artifact not produced")
+                        _upsert_goal(self.store, ng)
+                        self._emit_goal_event("GoalFailed", ng, extra={
+                            "reason": "artifact_required_not_produced"})
+                    else:
+                        ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
+                        _upsert_goal(self.store, ng)
+                        self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
             elif any_failed and not (any_ready or any_running or any_waiting):
                 # No more work pending and at least one failed → mark goal failed
                 if g.status != Status.FAILED:

@@ -16,21 +16,21 @@ from brain.utils.log import log_private
 
 # Functions that are purely inward-facing (no external effect)
 _INTROSPECTIVE_FNS = frozenset({
-    "reflect_on_affect", "self_review", "metacog_flush", "dream_cycle",
+    "reflect_on_affect", "self_review", "metacog_flush", "idle_consolidation_cycle",
     "narrative_update", "propose_value_revision", "identity_check",
     "reflect_on_internal_agents", "generate_intrinsic_goals",
     "plan_self_evolution", "simulate_future_selves", "autobiography",
     "value_evolution", "tensions", "look_around",
 })
 
-_INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "dream", "selfhood", "ident", "narrat", "meta")
+_INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "consolidat", "self_state", "ident", "narrat", "meta")
 
 
 def _dreaming_now() -> bool:
     """True while the dream daemon is in the sleep phase."""
     try:
-        from brain.cognition.dreaming.dream_cycle import dreaming_now
-        return bool(dreaming_now())
+        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+        return bool(consolidating_now())
     except ImportError:  # intentional: dream daemon optional → not dreaming
         return False
 
@@ -116,7 +116,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         flow_depth = action_count - 3
         context["_flow_depth"] = flow_depth
         boost = min(0.08, 0.02 * flow_depth)
-        from brain.affect.homeostasis import pump_signal
+        from brain.control_signals.homeostasis import pump_signal
         pump_signal(core, "motivation", boost, default=0.5)
         pump_signal(core, "confidence", boost * 0.5, default=0.5)
     else:

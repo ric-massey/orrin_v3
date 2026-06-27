@@ -69,6 +69,31 @@ class FileGoalsStore:
     def paths(self) -> Dict[str, str]:
         return {"dir": str(self._dir), "state": str(self._state), "wal": str(self._wal)}
 
+    def checkpoint(self, *, keep_tail_lines: int = 5_000) -> Dict[str, Any]:
+        """Compact the append-only state.jsonl into a fresh snapshot and rotate the
+        WAL, bounding BOTH for long / multi-day runs (T0.4 — neither was ever
+        compacted: every upsert appends a line to both files forever). Holds the
+        store lock so it serializes against concurrent upserts — rotate_wal
+        rewrites the WAL non-atomically, so it must not race a worker append.
+        Best-effort: returns the checkpoint report, or {} on failure."""
+        with self._lock:
+            try:
+                # Call the primitives directly with EXPLICIT paths derived from this
+                # store's own dir — snapshots.checkpoint would default rotated_dir to
+                # a relative "data/goals/wal-rotated" and scatter rotated segments to
+                # the process CWD instead of next to this store's WAL.
+                from .snapshots import snapshot_state, rotate_wal
+                state = snapshot_state(self, out_path=self._state, atomic=True)
+                gz = rotate_wal(
+                    self._wal, rotated_dir=self._dir / "wal-rotated",
+                    keep_tail_lines=keep_tail_lines,
+                )
+                return {"state": str(state), "wal_rotated": str(gz) if gz else None,
+                        "keep_tail_lines": keep_tail_lines}
+            except Exception as _e:
+                _log.warning("store.checkpoint failed: %s", _e)
+                return {}
+
     def counts(self) -> Dict[str, int]:
         with self._lock:
             return {"goals": len(self._goals), "steps": len(self._steps)}
@@ -82,14 +107,15 @@ class FileGoalsStore:
         loaded_any = False
         try:
             for rec in iter_jsonl(self._state):
-                if "goal" in rec:
-                    g = goal_from_dict(rec["goal"])
+                goal_payload = self._goal_payload_from_state_record(rec)
+                if goal_payload is not None:
+                    g = goal_from_dict(goal_payload)
                     self._goals[g.id] = g
                     loaded_any = True
-                if "step" in rec:
-                    s = step_from_dict(rec["step"])
-                    self._steps[s.id] = s
-                    self._by_goal_steps.setdefault(s.goal_id, []).append(s.id)
+                step_payload = self._step_payload_from_state_record(rec)
+                if step_payload is not None:
+                    s = step_from_dict(step_payload)
+                    self._apply_loaded_step(s)
                     loaded_any = True
         except Exception:
             # fall back to WAL replay below
@@ -101,6 +127,28 @@ class FileGoalsStore:
                 WAL.replay_to_store(self, self._wal)
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
+
+    @staticmethod
+    def _goal_payload_from_state_record(rec: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        if isinstance(rec.get("goal"), dict):
+            return dict(rec["goal"])
+        if str(rec.get("type") or "").lower() == "goal":
+            return {k: v for k, v in rec.items() if k != "type"}
+        return None
+
+    @staticmethod
+    def _step_payload_from_state_record(rec: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        if isinstance(rec.get("step"), dict):
+            return dict(rec["step"])
+        if str(rec.get("type") or "").lower() == "step":
+            return {k: v for k, v in rec.items() if k != "type"}
+        return None
+
+    def _apply_loaded_step(self, s: Step) -> None:
+        self._steps[s.id] = s
+        lst = self._by_goal_steps.setdefault(s.goal_id, [])
+        if s.id not in lst:
+            lst.append(s.id)
 
     # ---------------- CRUD: goals ----------------
 

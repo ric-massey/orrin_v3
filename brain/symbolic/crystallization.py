@@ -242,7 +242,7 @@ def _log_crystallization(
 
 def crystallize_dream_insights(dream_entry: Dict) -> int:
     """
-    Call from dream_cycle.py after a completed cycle.
+    Call from idle_consolidation_cycle.py after a completed cycle.
     Crystallizes consolidation + processing insights into permanent rules.
     Returns count of new rules added.
     """
@@ -255,7 +255,7 @@ def crystallize_dream_insights(dream_entry: Dict) -> int:
             query=f"dream {kind}",
             response=text,
             outcome=0.80,
-            caller=f"dream_cycle/{kind}",
+            caller=f"idle_consolidation_cycle/{kind}",
         )
         total += len(rules)
     return total
@@ -266,7 +266,7 @@ def crystallize_dream_insights(dream_entry: Dict) -> int:
 def audit_rule_set() -> Dict:
     """
     Scan the full rule set for redundancy and return a health report.
-    Call from dream_cycle or diagnostics.
+    Call from idle_consolidation_cycle or diagnostics.
     """
     rules = get_all_rules()
     total = len(rules)

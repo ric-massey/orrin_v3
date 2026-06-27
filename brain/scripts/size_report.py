@@ -31,7 +31,7 @@ SOURCE_GLOBS = (
     "backend/**/*.py",
     "goals/**/*.py",
     "memory/**/*.py",
-    "reaper/**/*.py",
+    "supervisor/**/*.py",
     "runtime/**/*.py",
     "observability/**/*.py",
     "frontend/src/**/*.ts",

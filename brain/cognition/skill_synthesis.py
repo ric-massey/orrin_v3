@@ -15,7 +15,7 @@
 #   so that maybe_integrate_or_atrophy() handles promotion/removal naturally.
 #
 # Integration points:
-#   - dream_cycle.py      → detect_and_synthesize(context)
+#   - idle_consolidation_cycle.py      → detect_and_synthesize(context)
 #   - code_writer.py      → verify_skill(name, code, description)
 #   - self_extension.py   → verify_skill(name, code, description, llm_review=True)
 #   - knowledge_graph.py  → gaps and synthesized tools are added as entities

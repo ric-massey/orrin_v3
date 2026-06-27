@@ -20,10 +20,10 @@ REPO = Path(__file__).resolve().parent.parent
 
 # Leaf packages whose bare-import conversion to `brain.<pkg>` is complete.
 # Append a name here only once `make verify` is green with zero bare imports.
-# (Root-level `goals`, `memory`, `reaper` are legitimately top-level — not leaves.)
+# (Root-level `goals`, `memory`, `supervisor` are legitimately top-level — not leaves.)
 CONVERTED = (
-    "paths", "utils", "core", "cog_memory", "cognition", "affect", "think",
-    "behavior", "agency", "registry", "symbolic", "embodiment", "motivation",
+    "paths", "utils", "core", "cog_memory", "cognition", "control_signals", "think",
+    "behavior", "agency", "registry", "symbolic", "runtime_coupling", "motivation",
     "peers", "benchmarks", "evidence", "config", "eval",
     # brain-root *modules* (not packages) — bare imports of these only resolved
     # while brain/ was on sys.path (removed in Phase 3 tail), so they belong in
@@ -32,7 +32,7 @@ CONVERTED = (
 )
 
 # Source trees that must honor the contract. (Root-level packages like `goals`,
-# `memory`, and `reaper` are legitimately top-level and are not brain leaves.)
+# `memory`, and `supervisor` are legitimately top-level and are not brain leaves.)
 SRC_DIRS = ("brain", "backend", "tests", "observability")
 
 # This file intentionally contains the patterns as data; never scan it.

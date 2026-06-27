@@ -9,7 +9,7 @@ import { LexText, PanelSubtitle } from "./Lex";
 import StaleBadge from "./StaleBadge";
 
 /** Box ⑩ — Tensions, rumination & second-order volition. The "is anything
- *  wrong / what is he wrestling with" view — and the volition timeline (what he
+ *  wrong / what is it wrestling with" view — and the volition timeline (what it
  *  wants to WANT: stance · desire · statement), the most philosophically
  *  interesting artifact in brain/data. */
 
@@ -38,11 +38,11 @@ export default function TensionsPanel() {
         <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
           <Waves className="h-4 w-4" /> <LexText id="tensions_title" />
           <PanelInfo
-            title="Tensions, rumination & second-order volition"
+            title="Conflict, rumination & meta-policy"
             perspective="in-attention"
-            what="What he's wrestling with: unresolved tensions (with how long they've been active), rumination loops that keep returning (brooding, problem-solving…), and the second-order volition timeline — periodic reflections where he owns or disowns the desire currently driving him."
+            what="Open conflict state: unresolved tensions (with how long they've been active), rumination loops that keep returning (brooding, problem-solving…), and the meta-policy timeline — periodic reviews where it endorses or disowns the priority currently driving it."
             source="brain/data/tensions.json · rumination_loops.json · second_order_volition.json"
-            good="Tensions that RESOLVE rather than accumulate, loops whose return counts fall, and volition statements that show real stance-taking — not all 'neutral'."
+            good="Tensions that RESOLVE rather than accumulate, loops whose return counts fall, and meta-policy statements that show real stance-taking — not all 'neutral'."
             src={{ file: "brain/cognition/selfhood/second_order_volition.py", start: 1, end: 70, label: "second_order_volition" }}
           />
           <PanelSubtitle id="tensions_sub" />
@@ -55,7 +55,7 @@ export default function TensionsPanel() {
               onClick={() => setView(k)}
               className={cn("rounded px-2 py-0.5 text-[10px] font-medium capitalize transition-colors", view === k ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground")}
             >
-              {k === "now" ? `Now · ${tensions.length}` : "What he wants to want"}
+              {k === "now" ? `Now · ${tensions.length}` : "Meta-policy stance"}
             </button>
           ))}
         </div>
@@ -64,7 +64,7 @@ export default function TensionsPanel() {
         {view === "now" ? (
           <>
             {tensions.length === 0 && loops.length === 0 && (
-              <div className="py-8 text-center text-xs text-muted-foreground">Nothing he's wrestling with right now.</div>
+              <div className="py-8 text-center text-xs text-muted-foreground">Nothing it's wrestling with right now.</div>
             )}
             {tensions.length > 0 && (
               <div>
@@ -107,7 +107,7 @@ export default function TensionsPanel() {
             )}
           </>
         ) : volition.length === 0 ? (
-          <div className="py-8 text-center text-xs text-muted-foreground">No second-order reflections yet (he reflects every ~20 cycles).</div>
+          <div className="py-8 text-center text-xs text-muted-foreground">No second-order reflections yet (it reflects every ~20 cycles).</div>
         ) : (
           <div className="space-y-1">
             {[...volition].reverse().map((v, i) => {

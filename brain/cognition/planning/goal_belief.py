@@ -108,13 +108,13 @@ def _revise_weak_area_beliefs(goal: Dict[str, Any]) -> None:
             if new_conf < 0.2 and dom in changed_weak_areas:
                 changed_weak_areas.remove(dom)
                 log_activity(
-                    f"[selfhood] Removed weak-area belief '{dom}' "
+                    f"[self_state] Removed weak-area belief '{dom}' "
                     f"(confidence dropped to {new_conf:.2f}) after success in "
                     f"'{goal_title[:60]}'"
                 )
             else:
                 log_activity(
-                    f"[selfhood] Revised weak-area belief '{dom}' "
+                    f"[self_state] Revised weak-area belief '{dom}' "
                     f"(confidence {old_conf:.2f}→{new_conf:.2f}) after success in "
                     f"'{goal_title[:60]}'"
                 )
@@ -128,6 +128,6 @@ def _revise_weak_area_beliefs(goal: Dict[str, Any]) -> None:
             _save(sym_path, model)
     except Exception as _e:
         try:
-            log_activity(f"[selfhood] Weak-area belief revision error: {_e}")
+            log_activity(f"[self_state] Weak-area belief revision error: {_e}")
         except Exception as _e:
             record_failure("goals._revise_weak_area_beliefs", _e)

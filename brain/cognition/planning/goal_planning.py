@@ -104,7 +104,7 @@ def _goal_topic(goal_title: str) -> str:
 
 def _search_needle(goal_title: str, default: str) -> str:
     """For file/string-search goals the precise target is usually quoted
-    ('Find the word ‹reaper›') — search for THAT, not the whole goal sentence."""
+    ('Find the word ‹supervisor›') — search for THAT, not the whole goal sentence."""
     m = re.search(r"['\"]([^'\"]{2,60})['\"]", goal_title or "")
     return m.group(1) if m else default
 

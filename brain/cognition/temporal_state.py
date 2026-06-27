@@ -43,7 +43,7 @@
 #       stagnation_signal: slow pacemaker + maximally open gate → extreme expansion (time drags)
 #       risk_estimate: fast pacemaker (activation_level) + open gate → severe expansion (time strains)
 #       Flow/excitement: fast pacemaker + gate CLOSED → contraction (time flies)
-#       negative_valence: slow pacemaker + mild gate opening → mild expansion, heavy texture
+#       reward_negative: slow pacemaker + mild gate opening → mild expansion, heavy texture
 #     BUG FIX from v2: v2 had stagnation_signal=0.78 (contraction) and excitement=1.25
 #       (expansion) — both inverted. v3 corrects this.
 #
@@ -96,14 +96,14 @@ _ARC_THRESHOLDS = [
 _EXPAND_EMOTIONS = {
     "stagnation_signal":     1.65,   # gate maximally open; extreme prospective expansion
     "risk_estimate":     1.40,   # high activation_level + open gate; time stretches and strains
-    "negative_valence":     1.25,   # ruminative pacing; each moment prolonged
+    "reward_negative":     1.25,   # ruminative pacing; each moment prolonged
     "impasse_signal": 1.20,   # blocked goal → temporal attention spike
 }
 _CONTRACT_EMOTIONS = {
     "excitement":  0.75,   # absorption; gate closes; time contracts sharply
     "motivation":  0.82,   # flow state; forward momentum; mild contraction
     "exploration_drive":   0.88,   # engaged absorption; gentle compression
-    "positive_valence":         0.90,   # positive absorption; slight compression
+    "reward_positive":         0.90,   # positive absorption; slight compression
 }
 
 _RECENCY_BANDS = [
@@ -314,12 +314,12 @@ def _compute_clock_rate(context: Dict[str, Any]) -> float:
 
     Two pathways combined:
 
-    EXPANSION (> 1.0) — attentional gate open: stagnation_signal, risk_estimate, impasse_signal, negative_valence
+    EXPANSION (> 1.0) — attentional gate open: stagnation_signal, risk_estimate, impasse_signal, reward_negative
       cause attention to be directed AT time → more temporal units counted per real
       cycle → time drags. Gate effect dominates over pacemaker speed.
 
     CONTRACTION (< 1.0) — reward_signal-driven absorption: excitement, motivation, exploration_drive,
-      positive_valence close the gate. Fast pacemaker produces ticks but they're not counted →
+      reward_positive close the gate. Fast pacemaker produces ticks but they're not counted →
       time compresses. The experience is rich but feels fast.
 
     Both pathways can be simultaneously active (e.g. anxious and curious). They
@@ -429,8 +429,8 @@ def _apply_resource_deficit_nudge(context: Dict[str, Any], felt_cycles: float, d
     Orrin should prefer consolidation and shorter responses.
     """
     try:
-        from brain.cognition.dreaming.dream_cycle import dreaming_now
-        if dreaming_now():
+        from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
+        if consolidating_now():
             return
     except ImportError:  # intentional: dream daemon optional → proceed
         pass
@@ -471,8 +471,8 @@ def _apply_waiting_effects(context: Dict[str, Any], cycles_since_contact: int, t
             core["social_deficit"] = min(0.50, float(core.get("social_deficit", 0) or 0) + 0.002)
             core["risk_estimate"]    = max(0.0,  float(core.get("risk_estimate", 0) or 0) - 0.002)
         elif texture == "waiting_long_absence":
-            # Very long gap — social_deficit holds, gentle negative_valence, no forced floor
-            core["negative_valence"]    = min(0.30, float(core.get("negative_valence",    0) or 0) + 0.002)
+            # Very long gap — social_deficit holds, gentle reward_negative, no forced floor
+            core["reward_negative"]    = min(0.30, float(core.get("reward_negative",    0) or 0) + 0.002)
             core["social_deficit"] = min(0.55, float(core.get("social_deficit", 0) or 0) + 0.001)
         if "core_signals" in emo:
             emo["core_signals"] = core

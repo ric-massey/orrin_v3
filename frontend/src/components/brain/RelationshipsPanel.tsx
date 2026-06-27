@@ -7,7 +7,7 @@ import StaleBadge from "./StaleBadge";
 import { LexText, PanelSubtitle } from "./Lex";
 
 /** Box ⑧ — Relationships / people. Person models from relationships.json plus
- *  the known-persons registry. His internal peer observers live in the same
+ *  the known-persons registry. Its internal peer observers live in the same
  *  file — rendered as a DISTINCT "internal peers" group, never as people. */
 
 interface Person {
@@ -50,7 +50,7 @@ export default function RelationshipsPanel() {
           <PanelInfo
             title="Relationships / people"
             perspective="agent-accessible"
-            what="Who he knows: his model of each person (impression, trust, depth, interaction count) and the known-persons registry (how often someone has shown up). His internal peer observers — synthetic voices that audit his rewards, goals and emotions from inside — live in the same store and are shown as a separate group, because they are parts of him, not people."
+            what="Who it knows: its model of each person (impression, trust, depth, interaction count) and the known-persons registry (how often someone has shown up). Its internal peer observers — synthetic voices that audit its rewards, goals and emotions from inside — live in the same store and are shown as a separate group, because they are parts of it, not people."
             source="GET /api/people over brain/data/relationships.json · known_persons.json"
             good="Person models that deepen with real interaction (trust/depth moving, impressions getting specific) — and the peers clearly separated from humans."
             src={{ file: "brain/peers/observer.py", start: 1, end: 60, label: "peer observer" }}
@@ -92,7 +92,7 @@ export default function RelationshipsPanel() {
 
         {peers.length > 0 && (
           <div>
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground" title="Synthetic internal observers — parts of his architecture, not people.">
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground" title="Synthetic internal observers — parts of its architecture, not people.">
               Internal peers (not people)
             </div>
             <div className="space-y-1">

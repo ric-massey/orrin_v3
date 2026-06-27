@@ -9,7 +9,7 @@ from brain.utils.self_model import get_self_model, save_self_model, ensure_self_
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 from brain.utils.log import log_model_issue
 from brain.cog_memory.working_memory import update_working_memory
-from brain.affect.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
     GOAL_TRAJECTORY_LOG_JSON,
     FEEDBACK_LOG,
@@ -146,7 +146,7 @@ def adjust_priority(goal: Dict[str, Any], fb: Dict[str, Any]) -> None:
 
     reward = 0.0
     if any(w in result_text for w in ["success", "helpful", "insightful", "effective"]):
-        if emotion in {"positive_valence", "excited", "grateful"}:
+        if emotion in {"reward_positive", "excited", "grateful"}:
             goal["priority"] = min(10, goal["priority"] + 2)
             reward = 1.0
         elif emotion in {"satisfied", "curious"}:

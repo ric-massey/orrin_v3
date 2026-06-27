@@ -132,7 +132,7 @@ export default function Brain() {
   const { t: lx, tip: lxTip } = useLexicon();
 
   // The old "Memory records" KPI counted live ops seen this session and
-  // presented it as his memory count (Fix 8). Show the REAL long-term store
+  // presented it as its memory count (Fix 8). Show the REAL long-term store
   // size instead; fall back to the live-op count until the endpoint answers.
   const [longTermCount, setLongTermCount] = useState<number | null>(null);
   useEffect(() => {
@@ -230,7 +230,7 @@ export default function Brain() {
         </div>
 
         {/* L0 vital-signs row — one chip per subsystem, computed server-side
-            by /api/vitals on a single 10s timer; click a chip to jump to its
+            by /api/resources on a single 10s timer; click a chip to jump to its
             box (UI_FIXES §new-surfaces). */}
         <div className="flex flex-wrap items-start gap-2">
           <div className="min-w-0 flex-1 basis-full sm:basis-0">
@@ -322,25 +322,24 @@ function WelcomeOverlay({ onClose }: { onClose: () => void }) {
         aria-label="Dashboard orientation"
       >
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-base font-semibold">This is Orrin's brain, live.</h2>
+          <h2 className="text-base font-semibold">This is Orrin's runtime, live.</h2>
           <button onClick={onClose} className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Close">
             <X className="h-4 w-4" />
           </button>
         </div>
         <ol className="list-decimal space-y-2 pl-5 text-[13px] leading-relaxed text-foreground/90">
-          <li>He thinks in ~20-second <strong>cycles</strong>. The <strong>Cognitive Sphere</strong> is every cognitive function he can run — the bright comet is what's running this cycle; the amber pulse is his background autopilot advancing a goal step.</li>
-          <li><strong>Consciousness</strong> is what won his attention this cycle — and what almost won, ranked beneath it. The Stream tab is his recorded stream of consciousness.</li>
-          <li><strong>Affect</strong> and <strong>Metrics</strong> are how he feels, now and over time. Every number has an ℹ️ that explains it down to the code that computes it.</li>
+          <li>It runs in ~20-second <strong>cycles</strong>. The <strong>Function-call graph</strong> is every cognitive function it can run — the bright comet is what's running this cycle; the amber pulse is the background task runner advancing a goal step.</li>
+          <li><strong>Attention arbitration</strong> is what won the broadcast this cycle — and what almost won, ranked beneath it. The Stream tab is the recorded workspace broadcast log.</li>
+          <li><strong>Control signals</strong> and <strong>Metrics</strong> are the internal signal state, now and over time. Every number has an ℹ️ that explains it down to the code that computes it.</li>
           <li><strong>Memory</strong> has two views: the live ticker of reads/writes, and the real stores on disk you can browse and search.</li>
-          <li>The <strong>chip row</strong> up top is his vital signs — one chip per subsystem, click any to jump to its box. The boxes below the main grid go deep: benchmarks, goal health, his felt sense of time, the symbolic rule engine, predictions, drives, learning, tensions, and system health.</li>
-          <li>Everything is honest by design: stale panels say <em>stale</em>, failing benchmarks say <em>FAIL</em>, and one thing is deliberately absent — he has private thoughts, and this dashboard does not read them.</li>
-          <li>Engineer? Flip the <strong>Biological / Engineering</strong> toggle in the header — same data, mechanism vocabulary. Hovering any translated label shows its counterpart, so the toggle doubles as a glossary.</li>
+          <li>The <strong>chip row</strong> up top is the subsystem status strip — one chip per subsystem, click any to jump to its box. The boxes below the main grid go deep: benchmarks, goal-closure metrics, the internal clock estimate, the symbolic rule engine, predictions, priority weights, learning, conflict state, and system health.</li>
+          <li>Everything is honest by design: stale panels say <em>stale</em>, failing benchmarks say <em>FAIL</em>, and one thing is deliberately absent — the protected interior, which this dashboard does not read.</li>
         </ol>
         <button
           onClick={onClose}
           className="mt-4 w-full rounded-md bg-foreground/10 px-3 py-1.5 text-[13px] font-medium hover:bg-foreground/15"
         >
-          Got it — show me the mind
+          Got it — show me the runtime
         </button>
       </div>
     </div>

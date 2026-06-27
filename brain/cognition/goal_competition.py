@@ -18,13 +18,13 @@ from typing import Any, Dict, List, Tuple
 from brain.utils.log import log_private
 
 
-# ── Drive definitions ──────────────────────────────────────────────────────────
+# ── Demand definitions ──────────────────────────────────────────────────────────
 # strength_fn(emo_dict, core_dict) → float [0..1]
 
 _DRIVES: Dict[str, Dict] = {
     "exploration_drive": {
         "wants": frozenset({
-            "look_outward", "generate_intrinsic_goals", "dream_cycle",
+            "look_outward", "generate_intrinsic_goals", "idle_consolidation_cycle",
             "simulate_future_selves", "reflect_on_internal_agents", "seek_novelty",
             "search_own_files", "look_around",
         }),
@@ -44,7 +44,7 @@ _DRIVES: Dict[str, Dict] = {
             "grep_files", "search_files", "list_directory",
         }),
         "resists": frozenset({
-            "autobiography", "dream_cycle",
+            "autobiography", "idle_consolidation_cycle",
         }),
         "label": "wants to understand its own structure and capabilities",
         "strength_fn": lambda emo, core: (
@@ -89,7 +89,7 @@ _DRIVES: Dict[str, Dict] = {
             "leave_note", "respond_to_user", "user_response", "speak",
         }),
         "resists": frozenset({
-            "dream_cycle", "simulate_future_selves",
+            "idle_consolidation_cycle", "simulate_future_selves",
             "reflect_on_internal_agents", "autobiography",
             "assess_goal_progress",  # going through the motions ≠ being useful
         }),
@@ -206,8 +206,8 @@ def drive_pull_scores(
     pull: Dict[str, float] = {}
     for name in actions:
         net = 0.0
-        for drive_name, drive in _DRIVES.items():
-            s = strengths.get(drive_name, 0.0)
+        for demand_name, drive in _DRIVES.items():
+            s = strengths.get(demand_name, 0.0)
             if name in drive["wants"]:
                 net += s * 0.6
             elif name in drive["resists"]:
@@ -247,7 +247,7 @@ def apply_drive_tensions(context: Dict[str, Any]) -> List[Dict]:
         # cycle-end commit instead of racing them with a direct write.
         bump = conflicts[0]["intensity"] * 0.07
         try:
-            from brain.affect.arbiter import submit_affect
+            from brain.control_signals.arbiter import submit_affect
             submit_affect(context, "uncertainty", +bump, source="goal_competition")
         except Exception as _e:
             log_private(f"[goal_competition] affect submit failed: {_e}")
@@ -271,7 +271,7 @@ def apply_drive_tensions(context: Dict[str, Any]) -> List[Dict]:
             # Scale with how long it has dragged on, capped so it eases rather than slams.
             _discharge = min(0.06, 0.01 * (_persist - _CONFLICT_DISCHARGE_AFTER + 1))
             try:
-                from brain.affect.arbiter import submit_affect
+                from brain.control_signals.arbiter import submit_affect
                 _seen = set()
                 for _drive in hot["drives"]:
                     _sig = _DRIVE_SIGNAL.get(_drive)

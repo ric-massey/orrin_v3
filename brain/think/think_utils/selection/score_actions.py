@@ -15,7 +15,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, FrozenSet, List, Optional, Tuple
 
-from brain.affect.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
+from brain.control_signals.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
 from brain.utils.failure_counter import record_failure
 from brain.think.think_utils.selection.text import _kw_overlap_score
 from brain.think.think_utils.selection.scoring import _novelty_score, _devalue_prior
@@ -173,7 +173,7 @@ def score_candidates(
         # et al. (2013). Fail-safe; 0 when disabled.
         s_evc = 0.0
         try:
-            from brain.cognition.interoception import evc_selection_adjust as _evc_adj
+            from brain.cognition.cost_prediction import evc_selection_adjust as _evc_adj
             s_evc = _evc_adj(name, float((_stats.get(name) or {}).get("avg_reward", 0.5) or 0.5), context)
         except Exception:
             s_evc = 0.0

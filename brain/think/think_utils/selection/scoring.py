@@ -17,7 +17,7 @@ from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
 from brain.paths import AFFECT_STATE_FILE, EMOTION_FUNCTION_MAP_FILE
 from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS
-from brain.think.think_utils.selection.state import _dominant_emotion
+from brain.think.think_utils.selection.state import _dominant_signal
 from brain.think.think_utils.selection.catalog import _tag_weights
 
 
@@ -25,7 +25,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     "stagnation_signal":     {"seek_novelty": 0.9, "search_own_files": 0.82, "look_outward": 0.75,
                     "read_a_book": 0.78, "look_around": 0.70, "grep_files": 0.65,
                     "wikipedia_search": 0.62, "research_topic": 0.60,
-                    "search_files": 0.60, "dream_cycle": 0.60, "generate_intrinsic_goals": 0.55},
+                    "search_files": 0.60, "idle_consolidation_cycle": 0.60, "generate_intrinsic_goals": 0.55},
     # Prior realignment (LEARNING_DIAGNOSIS_2026-06-16 §5.1): the curiosity urge was
     # wired to the cheap diversive scanners (look_outward/look_around, learned q≈0.11–0.14)
     # over the epistemic explorers (seek_novelty/research_topic/wikipedia_search, q≈0.34–0.59).
@@ -49,7 +49,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "investigate_unexplained_emotions": 0.74, "reflection": 0.70,
                     "reflect_on_emotion_model": 0.64, "propose_value_revision": 0.60,
                     "self_review": 0.56},
-    "negative_valence":     {"reflect_on_affect": 0.85, "attempt_regulation": 0.78,
+    "reward_negative":     {"reflect_on_affect": 0.85, "attempt_regulation": 0.78,
                     "narrative_update": 0.75, "reflection": 0.68,
                     "reflect_on_emotion_model": 0.64, "apply_affective_feedback": 0.60},
     "conflict_signal":       {"attempt_regulation": 0.88, "reflect_on_affect": 0.80,
@@ -59,7 +59,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     # priors below (never scored — the name is excluded from the pool).
     "confidence":  {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
     "motivation":  {"assess_goal_progress": 0.8, "adapt_subgoals": 0.6, "plan_self_evolution": 0.6},
-    "positive_valence":         {"narrative_update": 0.65, "leave_note": 0.62, "generate_intrinsic_goals": 0.6,
+    "reward_positive":         {"narrative_update": 0.65, "leave_note": 0.62, "generate_intrinsic_goals": 0.6,
                     "look_outward": 0.55, "search_own_files": 0.50},
     "uncertainty": {"search_own_files": 0.78, "self_review": 0.75, "reflection": 0.72,
                     "attempt_regulation": 0.65, "look_around": 0.60, "adapt_subgoals": 0.55,
@@ -73,7 +73,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
     "expected_gain":        {"plan_self_evolution": 0.7, "generate_intrinsic_goals": 0.6},
     # §5.1: same realignment as exploration_drive — lead with epistemic explorers,
     # demote look_outward/look_around so the prior stops over-privileging the scanners.
-    "wonder":      {"seek_novelty": 0.82, "research_topic": 0.78, "wikipedia_search": 0.74,
+    "novelty_signal":      {"seek_novelty": 0.82, "research_topic": 0.78, "wikipedia_search": 0.74,
                     "search_own_files": 0.62, "reflect_on_internal_agents": 0.60,
                     "leave_note": 0.58, "look_outward": 0.50, "look_around": 0.48},
 }
@@ -88,7 +88,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     Normalizes to [0..1] with a floor, and handles singletons.
     """
     emo_state: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
-    dom = _dominant_emotion()
+    dom = _dominant_signal()
     candidates = (
         (emo_state.get("emotion_function_map") or {}),
         (emo_state.get("function_preferences") or {}),
@@ -270,7 +270,7 @@ def _emo_mode_function_map() -> Dict[str, Dict[str, float]]:
         "focused":       {"assess_goal_progress": 0.15, "plan_next_step": 0.10},
         "creative":      {"generate_intrinsic_goals": 0.18, "look_outward": 0.15, "narrative_update": 0.12},
         "exploratory":   {"seek_novelty": 0.20, "search_own_files": 0.15, "look_around": 0.12},
-        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "dream_cycle": 0.10},
+        "philosophical": {"reflection": 0.20, "narrative_update": 0.15, "idle_consolidation_cycle": 0.10},
         "critical":      {"detect_memory_contradictions": 0.18, "self_review": 0.15, "attempt_regulation": 0.10},
         "cautious":      {"attempt_regulation": 0.20, "reflection": 0.15, "self_review": 0.10},
         "analytical":    {"search_own_files": 0.18, "grep_files": 0.15, "self_review": 0.10},

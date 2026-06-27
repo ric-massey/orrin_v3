@@ -6,15 +6,15 @@
 # formula commit_affect uses internally.
 import random
 
-from brain.affect.arbiter import (
+from brain.control_signals.arbiter import (
     commit_affect,
     submit_affect,
     STABILITY_BUDGET,
     _AWAY_COST_MULTIPLIER,
 )
-from brain.affect.setpoints import setpoint
+from brain.control_signals.setpoints import setpoint
 
-SIGNALS = ["threat_level", "motivation", "uncertainty", "positive_valence", "impasse_signal"]
+SIGNALS = ["threat_level", "motivation", "uncertainty", "reward_positive", "impasse_signal"]
 
 
 def _ctx(core):

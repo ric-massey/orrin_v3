@@ -23,11 +23,11 @@ from brain.utils.llm_gate import llm_callable_by
 from brain.utils.failure_counter import record_failure
 # The aspiration subsystem was extracted to intrinsic_aspirations.py (Phase 4.5C).
 # Re-imported here so the generators/commit-selection below + external callers
-# (finalize.credit_aspirations, goals.mark_aspiration_contribution) keep their
+# (finalize.credit_objectives, goals.mark_objective_contribution) keep their
 # existing `from …intrinsic_goals import …` paths.
-from brain.cognition.intrinsic_aspirations import (  # noqa: F401
-    credit_aspirations as credit_aspirations, aspiration_pressure,
-    mark_aspiration_contribution as mark_aspiration_contribution,
+from brain.cognition.intrinsic_objectives import (  # noqa: F401
+    credit_objectives as credit_objectives, objective_pressure,
+    mark_objective_contribution as mark_objective_contribution,
     _serves_aspiration, _fairness_default_drive, _ensure_aspirations,
     _ASPIRATIONS, _DRIVE_TO_ASPIRATION,
 )
@@ -137,7 +137,7 @@ def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> O
     if not cands:
         return None
     try:
-        pressure = aspiration_pressure(context)
+        pressure = objective_pressure(context)
     except Exception:
         pressure = {}
     strengths = {}
@@ -154,7 +154,14 @@ def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> O
 def _build_committed_goal(g: Dict, gid: str) -> Dict:
     """Build the context committed_goal dict from a proposal — crucially carrying
     requires_artifact / deadline_cycles so P2's artifact gate + deadline survive
-    the v1 commit path (the old inline blocks dropped them)."""
+    the v1 commit path (the old inline blocks dropped them).
+
+    Canonical-ID contract: mint the goal's id ONCE here and stamp it back onto the
+    source proposal `g` immediately, so the committed goal (which the effect ledger
+    keys on), the proposal that later syncs to v2, and the v2 record all share one
+    identity. Reuse an id already on `g` so a re-commit doesn't fork a new thread."""
+    gid = g.get("id") or gid
+    g["id"] = gid            # stamp the source proposal in place (live reference)
     drive = g.get("driven_by", "")
     cg = {
         "id": gid, "title": g["title"], "name": g["title"], "kind": "generic",
@@ -179,6 +186,37 @@ def _build_committed_goal(g: Dict, gid: str) -> Dict:
         return cg
 
 
+def _evict_spent_committed_goal(context: Dict[str, Any]) -> bool:
+    """Clear a spent/orphaned goal from the committed slot. Returns True if it cleared
+    one.
+
+    A goal that has already failed/completed/abandoned can never be advanced by the
+    executive (its queue drops terminal goals) nor closed-from-the-slot (the
+    completion-finalize path only runs while it is actively pursued), yet while it
+    lingers it (a) blocks origination via the action_debt gate and (b) prevents the
+    commit-to-slot in generate_intrinsic_goals (`if not committed_goal`). That wedged
+    the loop on 2026-06-24: a FAILED problem_refocus diagnosis goal sat in the slot for
+    hours, starving origination and execution alike.
+
+    Trigger on terminal STATUS only — never on a missing id. A freshly committed
+    intrinsic goal is legitimately id-less until the v2 projection assigns one, so
+    evicting on `id is None` would thrash a healthy pending goal out of the slot every
+    cycle."""
+    cg = context.get("committed_goal")
+    if not isinstance(cg, dict):
+        return False
+    status = str(cg.get("status") or "").lower()
+    if status in ("failed", "completed", "abandoned"):
+        log_activity(
+            "[intrinsic_goals] Clearing spent committed goal "
+            f"'{str(cg.get('title') or cg.get('name') or '?')[:50]}' "
+            f"(status={cg.get('status')!r}, id={cg.get('id')!r}) from the slot."
+        )
+        context["committed_goal"] = None
+        return True
+    return False
+
+
 def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     """
     Cognition function: produce 1-3 candidate goals from values, world state,
@@ -189,6 +227,10 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     """
     global _LAST_INTRINSIC_TS
     context = context or {}
+
+    # Evict a spent/orphaned goal from the committed slot BEFORE the gates below, so a
+    # terminal goal can never wedge the loop (see _evict_spent_committed_goal).
+    _evict_spent_committed_goal(context)
 
     if context.get("_suppress_intrinsic_goals") and context.get("committed_goal"):
         log_activity("[intrinsic_goals] Skipped while patch-leave suppression is active.")
@@ -326,7 +368,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             # so follow-through is shielded from momentary impulse (the positive
             # half of free will, complementing inhibition).
             try:
-                from brain.cognition.will import form_commitment as _form_commitment
+                from brain.cognition.commitment import form_commitment as _form_commitment
                 _form_commitment(context, f"pursue: {_winner['title']}")
             except Exception as _wce:
                 record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)

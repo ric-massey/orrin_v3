@@ -75,7 +75,7 @@ def detect_wonder_trigger(text: str, context: Dict[str, Any]) -> float:
         from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             f"[wonder] Sparked by {triggered_by}: {text[:200]}",
-            emotion="wonder",
+            emotion="novelty_signal",
             event_type="wonder_trigger",
             importance=2,
             context=context,
@@ -89,10 +89,10 @@ def detect_wonder_trigger(text: str, context: Dict[str, Any]) -> float:
 def _apply_spike(spike: float, context: Dict[str, Any]) -> None:
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals", emo)
-    current = float(core.get("wonder", 0.0) or 0.0)
-    core["wonder"] = min(_WONDER_MAX, current + spike)
+    current = float(core.get("novelty_signal", 0.0) or 0.0)
+    core["novelty_signal"] = min(_WONDER_MAX, current + spike)
     # Wonder also nudges exploration_drive up and stagnation_signal down
-    from brain.affect.homeostasis import pump_signal
+    from brain.control_signals.homeostasis import pump_signal
     pump_signal(core, "exploration_drive", spike * 0.4)
     core["stagnation_signal"]   = max(0.0, float(core.get("stagnation_signal", 0.0)) - spike * 0.3)
     if "core_signals" in emo:
@@ -110,7 +110,7 @@ def apply_wonder_bias(context: Dict[str, Any]) -> None:
     """
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals", emo)
-    wonder = float(core.get("wonder", 0.0) or 0.0)
+    wonder = float(core.get("novelty_signal", 0.0) or 0.0)
 
     if wonder < 0.30:
         return

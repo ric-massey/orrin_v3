@@ -103,7 +103,7 @@ def test_explicit_lr_uses_constant_step(tmp_path, monkeypatch):
     assert abs(expected_reward("a", feats) - 0.1) < 1e-9
     update("a", feats, reward=1.0, lr=0.1)             # 0.1 + 0.1*(1-0.1) = 0.19
     assert abs(expected_reward("a", feats) - 0.19) < 1e-9
-    # A higher lr (uncertain/novel context) tracks reward faster — the ACh intent.
+    # A higher lr (uncertain/novel context) tracks reward faster — the learning-rate-gain intent.
     update("b", feats, reward=1.0, lr=0.5)             # 0 + 0.5*1 = 0.5 > 0.1
     assert expected_reward("b", feats) > expected_reward("a", feats)
 

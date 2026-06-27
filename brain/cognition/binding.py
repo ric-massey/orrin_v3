@@ -99,7 +99,7 @@ def _dominant_affect(context: Dict[str, Any]) -> Optional[Tuple[str, float, str]
     # bind a NON-emotion as "a strong sense of <x>" and feed it to the appraisal/
     # hijack links, which key off the emotion name. Use the one canonical set.
     try:
-        from brain.affect.apply_affective_feedback import NON_EMOTION_SIGNALS as _skip
+        from brain.control_signals.apply_affective_feedback import NON_EMOTION_SIGNALS as _skip
     except Exception:
         _skip = frozenset()
     numeric = {

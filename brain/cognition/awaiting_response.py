@@ -97,7 +97,7 @@ def decay_awaiting(context: Dict[str, Any]) -> None:
 
         update_long_memory(
             f"[unanswered_question] I asked '{question[:120]}' — no reply came.",
-            emotion="negative_valence",
+            emotion="reward_negative",
             event_type="unanswered_question",
             importance=2,
             context=context,

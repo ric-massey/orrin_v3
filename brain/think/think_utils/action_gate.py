@@ -8,12 +8,12 @@ from brain.think.think_utils.escalate import escalate_with_behavior_list
 from brain.cognition.behavior import extract_last_reflection_topic
 from brain.behavior.behavior_generation import generate_behavior_from_integration
 from brain.behavior.speak import OrrinSpeaker
-from brain.affect.reward_signals.reward_signals import release_reward_signal
-from brain.affect.reward_signals.resource_deficit import update_function_usage_fatigue, resource_deficit_penalty_from_context
+from brain.control_signals.reward_signals.reward_signals import release_reward_signal
+from brain.control_signals.reward_signals.resource_deficit import update_function_usage_fatigue, resource_deficit_penalty_from_context
 from brain.cog_memory.working_memory import update_working_memory
 from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 from brain.utils.log import log_private, log_model_issue, log_activity
-from brain.utils.emotion_utils import log_penalty_signal
+from brain.utils.affect_signal_utils import log_penalty_signal
 
 # === NEW: talk policy (hard/soft gating and reply plumbing) ===
 from brain.think.think_utils.talk_policy import (
@@ -269,7 +269,7 @@ def evaluate_and_act_if_needed(
     agentic_actions = [a for a in filtered_actions if a["type"] in AGENTIC_TYPES]
     if cur >= dynamic_max_cycles and agentic_actions:
         log_private(f"🚨 Stagnation: Forcing agentic action after {cur} cycles (max {dynamic_max_cycles})")
-        from brain.affect.affect_learning import update_affect_function_map
+        from brain.control_signals.affect_learning import update_affect_function_map
         update_affect_function_map("impasse_signal", "agentic_action")
         context["stagnation_signal_count"] = 0
         context["cycles_since_agentic_action"] = 0

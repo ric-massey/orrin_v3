@@ -36,7 +36,7 @@ _VAGUE_IMPRESSIONS = [
 ]
 
 
-def _dominant_emotion(context: Dict[str, Any]) -> Optional[str]:
+def _dominant_signal(context: Dict[str, Any]) -> Optional[str]:
     """Return name of highest-value core affect signal, or None."""
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
@@ -165,8 +165,8 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
 
     # ── 4. Affective stagnation ───────────────────────────────────────────────
     # If the dominant affect hasn't changed across recent cycles, flag it.
-    dom_now = _dominant_emotion(context)
-    prev_dom = context.get("_metacog_prev_dominant_emotion")
+    dom_now = _dominant_signal(context)
+    prev_dom = context.get("_metacog_prev_dominant_signal")
     stagnant_count = int(context.get("_metacog_emo_stagnant_count", 0) or 0)
 
     if dom_now and dom_now == prev_dom:
@@ -187,7 +187,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
         context["_metacog_emo_change_run"] = _chg
         if _chg >= 2:
             context["_metacog_emo_stagnant_count"] = 0
-    context["_metacog_prev_dominant_emotion"] = dom_now
+    context["_metacog_prev_dominant_signal"] = dom_now
 
     # ── 5. Critique density ───────────────────────────────────────────────────
     # If the inner loop applied heavy critique this cycle, surface it as a note.

@@ -9,10 +9,10 @@ import StaleBadge from "./StaleBadge";
 import { LexText, PanelSubtitle } from "./Lex";
 import { MiniBars, Timeline } from "./viz";
 
-/** Box ⑦ — Self-model / identity. "Who he is" and how it changes — the
+/** Box ⑦ — Self-model / identity. "Who it is" and how it changes — the
  *  self-model's identity / directive / knowledge domains, the dated
  *  belief-confidence revisions (before→after with the triggering goal), and
- *  the opinions he's formed. private_thoughts stays excluded by design. */
+ *  the opinions it's formed. private_thoughts stays excluded by design. */
 
 interface SelfModel {
   note?: string;
@@ -42,10 +42,10 @@ export default function SelfModelPanel() {
         <CardTitle className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted-foreground">
           <Fingerprint className="h-4 w-4" /> <LexText id="self_title" />
           <PanelInfo
-            title="Self-model / identity"
+            title="System self-descriptor / identity"
             perspective="agent-accessible"
-            what="Who he thinks he is: his one-line identity and core directive, per-domain confidence in his own knowledge, named weaknesses, the dated belief revisions (confidence moved after a goal succeeded or failed), and the opinions he's formed from his own experience. One thing is deliberately absent: he has private thoughts, and this dashboard does not read them."
-            source="GET /api/self over brain/data/self_model.json · self_belief_revisions.json · opinions.json"
+            what="Its self-descriptor: its one-line identity and core directive, per-domain confidence in its own knowledge, named weaknesses, the dated belief revisions (confidence moved after a goal succeeded or failed), and the opinions it's formed from its own experience. One thing is deliberately absent: its protected interior, which this dashboard does not read."
+            source="GET /api/identity over brain/data/self_model.json · self_belief_revisions.json · opinions.json"
             good="An identity that REVISES — confidence moving with real outcomes, opinions accumulating evidence — rather than a static description."
             src={{ file: "brain/utils/self_model.py", start: 1, end: 60, label: "self_model" }}
           />
@@ -78,7 +78,7 @@ export default function SelfModelPanel() {
             </div>
             {domains.length > 0 && (
               <div>
-                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Knowledge-domain confidence (his own estimate)</div>
+                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Knowledge-domain confidence (its own estimate)</div>
                 <MiniBars rows={domains.map(([d, v]) => ({ label: d.toLowerCase(), value: Number(v) }))} />
               </div>
             )}

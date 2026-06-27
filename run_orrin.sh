@@ -9,6 +9,9 @@ REPO="$(cd "$(dirname "$0")" && pwd)"
 VENV="$REPO/.venv"
 LOG="$REPO/brain/data/run_log.txt"
 CYCLE_SLEEP="${ORRIN_CYCLE_SLEEP:-1}"
+RUN_LOCK="${ORRIN_RUN_LOCK:-1}"
+RUN_LOCK_SCRIPT="$REPO/scripts/orrin_run_lock.sh"
+RUN_LOCK_HELD=0
 
 # Dual-process (dual_process_loop.md Phase 5): run the Executive as a continuous
 # background daemon by default — goal steps advance every ~7s, decoupled from the
@@ -33,10 +36,40 @@ echo "[run] Python: $PYTHON"
 echo "[run] Log:    $LOG"
 echo "[run] Cycle sleep: ${CYCLE_SLEEP}s"
 
+cleanup() {
+    local exit_code=$?
+    if [ -n "${CAFF_PID:-}" ]; then
+        kill "$CAFF_PID" 2>/dev/null || true
+    fi
+    if [ "$RUN_LOCK_HELD" -eq 1 ]; then
+        "$RUN_LOCK_SCRIPT" unlock >/dev/null || {
+            echo "[run] WARNING: run lock cleanup failed; run ./scripts/orrin_run_lock.sh unlock" >&2
+        }
+    fi
+    echo "[run] stopped."
+    exit "$exit_code"
+}
+
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+if [ "$RUN_LOCK" != "0" ]; then
+    if [ ! -x "$RUN_LOCK_SCRIPT" ]; then
+        echo "[run] ERROR: run lock helper is missing or not executable: $RUN_LOCK_SCRIPT" >&2
+        exit 1
+    fi
+    echo "[run] Run lock: enabled (disable with ORRIN_RUN_LOCK=0)"
+    "$RUN_LOCK_SCRIPT" lock --owner-pid "$$"
+    RUN_LOCK_HELD=1
+    export PYTHONDONTWRITEBYTECODE="${PYTHONDONTWRITEBYTECODE:-1}"
+else
+    echo "[run] Run lock: disabled"
+fi
+
 # Prevent macOS from sleeping while Orrin runs
 caffeinate -i &
 CAFF_PID=$!
-trap "kill $CAFF_PID 2>/dev/null; echo '[run] stopped.'" EXIT INT TERM
 
 RESTART_COUNT=0
 while true; do

@@ -109,7 +109,7 @@ def apply_exploration_and_reflex(
     # high-weight proposal in the ActionArbiter. An acute spike still dominates;
     # a moderate spike blends with a strong planned pick; hysteresis against last
     # cycle's choice prevents the flip-flop. See think/action_arbiter.py.
-    _AMY_SHORTCUT_MAP = {"speak": "speak", "dream": "dream_cycle",
+    _AMY_SHORTCUT_MAP = {"speak": "speak", "dream": "idle_consolidation_cycle",
                           "introspective_planning": "introspective_planning"}
     try:
         _amy_resp    = context.get("threat_detector_response") or {}
@@ -187,7 +187,7 @@ def apply_antirepeat_and_metarut(
     })
     _guard_distress_high = False
     try:
-        from brain.affect.observers import negative_load
+        from brain.control_signals.observers import negative_load
         _guard_distress_high = negative_load(context.get("affect_state") or {}) > 0.55
     except Exception as _e:
         record_failure("select_function.select_function.14", _e)
@@ -233,7 +233,7 @@ def apply_antirepeat_and_metarut(
         # force a different choice here; his real top-scoring preference stands. The
         # pressure against MINDLESS repetition is natural instead:
         #   • stagnation_signal (below) rises on repeat attempts → boredom builds,
-        #   • dopaminergic habituation in the reward path (ORRIN_loop) makes pure,
+        #   • RPE-style habituation in the reward path (ORRIN_loop) makes pure,
         #     non-learning repetition progressively unrewarding so the bandit drifts
         #     off it on its own,
         #   • repetition that keeps IMPROVING reward (trying it differently to learn)
@@ -245,11 +245,11 @@ def apply_antirepeat_and_metarut(
 
     # Stagnation signal (Fix #2): drive it from the actual repeat *attempt*
     # detected above, routed through submit_affect so it lands in core_signals
-    # (where _dominant_emotion_and_stagnation_signal reads it first) and persists
+    # (where _dominant_signal_and_stagnation_signal reads it first) and persists
     # across cycles via commit_affect — the old top-level writer in think_module
     # never reached core_signals and stayed pinned at 0.000.
     try:
-        from brain.affect.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_affect
         if _repeat_attempt:
             submit_affect(context, "stagnation_signal", +0.06,
                           source="select_repeat", ttl_cycles=4)

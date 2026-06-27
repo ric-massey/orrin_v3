@@ -96,7 +96,7 @@ def _push_event(kind: str, **payload: Any) -> None:
                 return
             tb.set_node("act", narrative=f"Acting — {fn}", cycle=cycle)
             tb.log("info", "select_function", f"executed {fn}")
-            # Drive the Cognitive Map's live "active light": the exact function
+            # Demand the Cognitive Map's live "active light": the exact function
             # running now, plus a short ring of recent ones so the light can
             # visibly bounce along his real path.
             try:
@@ -162,17 +162,17 @@ def _emit_affect(context: "Context") -> None:
         # READS it here (it no longer invents the value — see
         # SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §F2). Fall back to recomputing from
         # the same authority if the state predates this field.
-        homeostasis = a.get("homeostasis")
+        homeostasis = a.get("setpoint_proximity")  # persisted key (was "homeostasis")
         if not isinstance(homeostasis, (int, float)):
             try:
-                from brain.affect.homeostasis import homeostasis_index
+                from brain.control_signals.homeostasis import homeostasis_index
                 homeostasis = homeostasis_index(cs)
             except Exception:
                 homeostasis = _HOMEOSTASIS_FALLBACK
 
         distress = 0.0
         try:
-            from brain.affect.observers import negative_load
+            from brain.control_signals.observers import negative_load
             distress = _clamp01(negative_load(a) / _DISTRESS_LOAD_DIVISOR)
         except Exception:
             distress = _clamp01(_f(cs.get("impasse_signal")))
@@ -182,8 +182,8 @@ def _emit_affect(context: "Context") -> None:
             # agent-accessible chart. The uncompressed value also ships as
             # `valence_raw` (dev-only metric), so no number is hidden — the
             # centering is a presentation choice, not a divergence.
-            valence=_clamp01(_VALENCE_UI_CENTER + _VALENCE_UI_SCALE * _f(a.get("valence"))),
-            valence_raw=_f(a.get("valence")),
+            valence=_clamp01(_VALENCE_UI_CENTER + _VALENCE_UI_SCALE * _f(a.get("reward_signal"))),
+            valence_raw=_f(a.get("reward_signal")),
             impasse_raw=_clamp01(_f(cs.get("impasse_signal"))),
             arousal=_clamp01(_f(a.get("activation_level"), 0.3)),
             homeostasis=homeostasis,
@@ -194,7 +194,10 @@ def _emit_affect(context: "Context") -> None:
             motivation=_clamp01(_f(cs.get("motivation"), 0.5)),
             confidence=_clamp01(_f(cs.get("confidence"), 0.5)),
             curiosity=_clamp01(_f(cs.get("exploration_drive"), 0.3)),
-            allostatic_load=_clamp01(_f(a.get("allostatic_load"))),
+            # (T0.1) Source the behaviourally-active `_allostatic_load` (owned by
+            # interoception.allostatic_setpoint), NOT the retired top-level
+            # `allostatic_load` that pinned to 1.0 off raw exploration_drive.
+            allostatic_load=_clamp01(_f(a.get("_allostatic_load"))),
             distress=distress,
             stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),

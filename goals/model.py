@@ -104,6 +104,60 @@ class Goal:
             return False
 
 
+def artifact_satisfied(goal: "Goal", steps: List["Step"]) -> bool:
+    """True if the goal may honestly complete on artifact grounds.
+
+    A goal whose spec sets ``requires_artifact`` must NOT be flipped to DONE merely
+    because its plan steps ran — that is the "hollow completion" that marked goals
+    100%/DONE while producing nothing (acceptance criteria all ``met: False``,
+    ``artifacts: []``). The GenericHandler is the worst offender: it runs an LLM
+    reflection, logs a private thought, and marks the step DONE without writing any
+    durable output. Goals that do not require an artifact are unaffected (True).
+
+    Production evidence requires REAL CONTENT, not mere file existence (T0.5 —
+    closing the loophole where a stub ``s_*_ok.txt`` or a ``grounded_parts``-template
+    note satisfied the gate). An artifact counts only when at least one candidate
+    file passes the shared quality predicate's negative gates (not a stub, not a
+    template skeleton, not a near-duplicate). Candidate files are gathered from both
+      1. any Step.artifacts (coding/housekeeping record paths here), and
+      2. the goal's on-disk artifacts directory (research/coding write real docs
+         there but, unlike coding, research does not also populate Step.artifacts).
+    Still permissive in spirit — any ONE real file satisfies — so legitimate
+    producers are never wrongly failed; only hollow/stub output is."""
+    spec = goal.spec if isinstance(getattr(goal, "spec", None), dict) else {}
+    if not bool(spec.get("requires_artifact")):
+        return True
+
+    # Gather candidate artifact file paths from steps + the goal's artifacts dir.
+    import os
+    candidates: List[str] = []
+    for s in steps:
+        for a in (getattr(s, "artifacts", None) or []):
+            candidates.append(str(a))
+    try:
+        base = os.environ.get("ORRIN_GOALS_ARTIFACTS_DIR") or "data/goals/artifacts"
+        gdir = os.path.join(base, str(getattr(goal, "id", "") or ""))
+        if os.path.isdir(gdir):
+            for entry in os.scandir(gdir):
+                if entry.is_file():
+                    candidates.append(entry.path)
+    except OSError:
+        pass
+    if not candidates:
+        return False
+
+    # An artifact satisfies only if at least one candidate file is REAL CONTENT
+    # (passes the shared predicate's negative gates). Lazy import: goals→brain is
+    # an existing package edge, kept lazy to avoid load-time coupling.
+    try:
+        from brain.cognition.quality_predicate import assess_artifact_file
+    except Exception:  # intentional: predicate unavailable → legacy existence-check fallback
+        # Predicate unavailable → fall back to the legacy existence check rather
+        # than blocking closure entirely.
+        return any(os.path.isfile(c) for c in candidates)
+    return any(assess_artifact_file(c).ok for c in candidates)
+
+
 # ── Deserialization ───────────────────────────────────────────────────────────
 # Canonical dict→model constructors, kept next to the models per the structure
 # audit (§8): they were duplicated verbatim in store.py (_goal_from_dict /

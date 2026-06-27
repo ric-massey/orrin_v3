@@ -35,10 +35,10 @@ def compute_cycle_state(
     # ── Felt state (rule-based, from affect signal values) ────────────────────
     affect_description = ""
     valence_ctx = ""
-    dominant_emotion = ""
+    dominant_signal = ""
     dominant_intensity = 0.0
     try:
-        from brain.affect.affect_summary import (
+        from brain.control_signals.affect_summary import (
             render_affect_state as _dfs,
             valence_summary_line as _acl,
         )
@@ -48,8 +48,8 @@ def compute_cycle_state(
         # Find dominant affect signal by intensity
         numeric = {k: float(v) for k, v in core.items() if isinstance(v, (int, float))}
         if numeric:
-            dominant_emotion = max(numeric, key=numeric.get)
-            dominant_intensity = numeric[dominant_emotion]
+            dominant_signal = max(numeric, key=numeric.get)
+            dominant_intensity = numeric[dominant_signal]
     except Exception as _e:
         record_failure("state_processor.compute_cycle_state", _e)
 
@@ -58,7 +58,7 @@ def compute_cycle_state(
     goal_stuck = False
     goal_progress = 0.0
     try:
-        from brain.affect.affect_summary import format_goal_state as _gfo
+        from brain.control_signals.affect_summary import format_goal_state as _gfo
         goal = context.get("committed_goal") or {}
         goal_orientation = _gfo(goal)
         goal_stuck = bool(goal.get("stuck") or goal.get("blocked"))
@@ -78,7 +78,7 @@ def compute_cycle_state(
         memories = context.get("retrieved_memories") or []
         if memories:
             from brain.cog_memory.reconstruction import reconstruct as _recon
-            mood = float(emo_state.get("mood") or 0.0)
+            mood = float(emo_state.get("smoothed_state") or 0.0)  # was "mood" key
             relevant_memory = _recon(memories[0], current_mood=mood)[:200]
     except Exception as _e:
         record_failure("state_processor.compute_cycle_state.3", _e)
@@ -88,7 +88,7 @@ def compute_cycle_state(
         context=context,
         core=core,
         emo_state=emo_state,
-        dominant_emotion=dominant_emotion,
+        dominant_signal=dominant_signal,
         dominant_intensity=dominant_intensity,
         tensions=tensions,
         goal=context.get("committed_goal") or {},
@@ -111,7 +111,7 @@ def compute_cycle_state(
 
     salience = CycleState(
         affect_description=affect_description,
-        dominant_emotion=dominant_emotion,
+        dominant_signal=dominant_signal,
         emotion_intensity=dominant_intensity,
         valence_summary=valence_ctx,
         goal_orientation=goal_orientation,
@@ -127,7 +127,7 @@ def compute_cycle_state(
     )
 
     log_private(
-        f"[state_processor] dom={dominant_emotion}({dominant_intensity:.2f}) "
+        f"[state_processor] dom={dominant_signal}({dominant_intensity:.2f}) "
         f"urgency={salience.output_pressure:.2f} express={output_triggered}"
     )
     return salience
@@ -137,7 +137,7 @@ def _compute_output_seed(
     context: Dict[str, Any],
     core: Dict[str, float],
     emo_state: Dict[str, Any],
-    dominant_emotion: str,
+    dominant_signal: str,
     dominant_intensity: float,
     tensions: list,
     goal: Dict[str, Any],
@@ -156,7 +156,7 @@ def _compute_output_seed(
     # Strong affect presses for expression
     if dominant_intensity > 0.60:
         try:
-            from brain.affect.affect_summary import describe_dominant_affect as _dom
+            from brain.control_signals.affect_summary import describe_dominant_affect as _dom
             sense = _dom(emo_state)
             if sense:
                 seeds.append(sense)
@@ -194,7 +194,7 @@ def _compute_output_seed(
             seeds.append(f"responding to: {concept}")
 
     # Wonder / exploration_drive at high intensity wants to be shared
-    wonder = float(core.get("wonder") or 0.0)
+    wonder = float(core.get("novelty_signal") or 0.0)
     exploration_drive = float(core.get("exploration_drive") or 0.0)
     if max(wonder, exploration_drive) > 0.68:
         seeds.append("something pulling for attention")

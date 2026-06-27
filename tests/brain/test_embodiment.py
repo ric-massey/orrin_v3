@@ -1,13 +1,13 @@
 # tests/brain/test_embodiment.py
 #
-# Parts IV–VI of the embodiment architecture: the budget/floor knob (§11), metabolism
-# (§7, mapping #1), host interoception as felt body (§6.2), and the infancy split (§10).
+# Parts IV–VI of the host-coupling architecture: the budget/floor knob (§11), resource
+# cadence (§7, mapping #1), host interoception (§6.2), and the warm-up split (§10).
 import math
 
 import pytest
 
 from brain.cognition import body_budget as bb
-from brain.cognition import metabolism as mb
+from brain.cognition import resource_cadence as mb
 
 
 _GB = float(1024 * 1024 * 1024)
@@ -50,9 +50,9 @@ def test_viable_grant_passes(ram8):
     assert ok
 
 
-# ----------------------------------------------------------------- metabolism ---
+# ------------------------------------------------------------- resource cadence ---
 
-def test_metabolism_tier_tracks_body_size(monkeypatch):
+def test_cadence_tier_tracks_budget_size(monkeypatch):
     monkeypatch.setattr(mb, "_current_tier", None, raising=False)
     assert mb._raw_tier(1.0) == "tiny"
     assert mb._raw_tier(2.0) == "small"
@@ -60,9 +60,9 @@ def test_metabolism_tier_tracks_body_size(monkeypatch):
     assert mb._raw_tier(32.0) == "large"
 
 
-def test_metabolism_hysteresis_dead_band():
+def test_cadence_hysteresis_dead_band():
     # Hovering just past the small→normal boundary (3.0 GB) must NOT flip while within
-    # the dead band; a body sitting at 3.1 GB that was 'small' stays 'small' (§8.4).
+    # the dead band; a budget sitting at 3.1 GB that was 'small' stays 'small' (§8.4).
     assert mb._tier_with_hysteresis(3.1, "small") == "small"
     # But a clear move past the dead band switches.
     assert mb._tier_with_hysteresis(4.0, "small") == "normal"
@@ -71,7 +71,7 @@ def test_metabolism_hysteresis_dead_band():
     assert mb._tier_with_hysteresis(2.0, "normal") == "small"
 
 
-def test_small_body_slows_the_clock():
+def test_small_budget_slows_the_clock():
     assert mb._PROFILE["tiny"]["cadence"] > mb._PROFILE["normal"]["cadence"]
     assert mb._PROFILE["large"]["cadence"] < mb._PROFILE["normal"]["cadence"]
 
@@ -79,7 +79,7 @@ def test_small_body_slows_the_clock():
 # --------------------------------------------------------- host interoception ---
 
 def test_host_interoception_silent_in_infancy(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     # Force a tiny sample set → host bands not converged → infancy → no felt stress.
     monkeypatch.setattr(hi, "read_host_vitals", lambda: {
@@ -92,7 +92,7 @@ def test_host_interoception_silent_in_infancy(monkeypatch):
 
 
 def test_host_interoception_feels_departure_after_convergence(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     g = hi._bands()
     # Converge the bands on a calm, breathing host.
@@ -110,7 +110,7 @@ def test_host_interoception_feels_departure_after_convergence(monkeypatch):
 
 
 def test_battery_drain_is_felt_gently(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     g = hi._bands()
     for i in range(400):

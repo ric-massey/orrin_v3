@@ -1,7 +1,7 @@
 def test_sensory_stream_splits_home_and_world_sense(monkeypatch):
-    from brain.embodiment.sensory_stream import SensoryStream
+    from brain.runtime_coupling.input_stream import InputStream
 
-    stream = SensoryStream()
+    stream = InputStream()
     monkeypatch.setattr(
         stream,
         "_system_vitals",
@@ -28,8 +28,8 @@ def test_sensory_stream_splits_home_and_world_sense(monkeypatch):
 
 
 def test_world_model_preserves_home_world_sense(monkeypatch):
-    from brain.embodiment.world_model import WorldModel
-    from brain.embodiment import sensory_stream
+    from brain.runtime_coupling.world_model import WorldModel
+    from brain.runtime_coupling import input_stream as sensory_stream
 
     monkeypatch.setattr(
         sensory_stream,

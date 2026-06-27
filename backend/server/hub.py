@@ -55,13 +55,18 @@ def _save_history(points: List[Dict[str, Any]]) -> None:
 
 
 def _archive_points(points: List[Dict[str, Any]]) -> None:
-    """Append telemetry points to the uncapped JSONL archive, one line each."""
+    """Append telemetry points to the long-life JSONL archive, one line each, then
+    bound it so a multi-day run can't grow it without limit (T0.4). The cap is
+    generous (100k points ≈ a very long life) and stat-gated, so the common case
+    costs one `stat`; life_capsule only ever reads the current run's tail anyway."""
     if not points:
         return
     try:
         with _ARCHIVE_FILE.open("a", encoding="utf-8") as fh:
             for p in points:
                 fh.write(json.dumps(p) + "\n")
+        from brain.utils.json_utils import cap_jsonl
+        cap_jsonl(_ARCHIVE_FILE, max_lines=100_000, max_bytes=30_000_000)
     except Exception as exc:  # archive append best-effort — record
         record_failure("hub._archive_points", exc)
 

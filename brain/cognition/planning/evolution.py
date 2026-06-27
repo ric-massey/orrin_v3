@@ -339,7 +339,7 @@ def simulate_future_selves(
         if not isinstance(current_traits, list):
             current_traits = []
 
-        # dream_log.json is what dream_cycle actually writes; the old
+        # dream_log.json is what idle_consolidation_cycle actually writes; the old
         # dreamscape.json had no writer anywhere (map-drift fix,
         # DATA_FILE_AUDIT 2026-06-11 §7). Entries hold consolidation/
         # recombination/processing text — surface the most generative one.
@@ -495,7 +495,7 @@ def check_projection_against_reality(context: Optional[Dict[str, Any]] = None) -
     Compare the most recent projected preferred_future against current identity
     and behaviour. Writes a short reflection to long_memory so Orrin can notice
     whether it is converging toward or drifting from its intended trajectory.
-    Called from dream_cycle every few dream runs.
+    Called from idle_consolidation_cycle every few dream runs.
     """
     try:
         existing: List[Any] = load_json(EVOLUTION_FUTURES, default_type=list) or []

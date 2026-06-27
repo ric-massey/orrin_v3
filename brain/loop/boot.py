@@ -95,14 +95,14 @@ def _boot_context() -> Context:
 
     # Register value evolution cognition
     try:
-        from brain.cognition.selfhood.value_evolution import propose_value_revision as _pvr
+        from brain.cognition.self_state.value_evolution import propose_value_revision as _pvr
         COGNITIVE_FUNCTIONS["propose_value_revision"] = {"function": _pvr, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register propose_value_revision: {e}")
 
     # Register autobiography cognition
     try:
-        from brain.cognition.selfhood.autobiography import narrative_update as _nu
+        from brain.cognition.self_state.autobiography import narrative_update as _nu
         COGNITIVE_FUNCTIONS["narrative_update"] = {"function": _nu, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register narrative_update: {e}")
@@ -183,7 +183,7 @@ def _boot_context() -> Context:
 
     # Register latent identity update (stable numeric identity anchor)
     try:
-        from brain.cognition.selfhood.latent_identity import update_latent_identity as _uli
+        from brain.cognition.self_state.latent_identity import update_latent_identity as _uli
         COGNITIVE_FUNCTIONS["update_latent_identity"] = {"function": _uli, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register update_latent_identity: {e}")
@@ -226,7 +226,7 @@ def _boot_context() -> Context:
 
     # Register embodied observation (read-only real-world grounding)
     try:
-        from brain.symbolic.embodied_actions import run_embodied_cycle as _remc
+        from brain.symbolic.host_actions import run_embodied_cycle as _remc
         COGNITIVE_FUNCTIONS["run_embodied_observation"] = {"function": _remc, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register run_embodied_observation: {e}")
@@ -270,7 +270,7 @@ def _boot_context() -> Context:
         # the _write_desktop_note and _announce wrappers compose through the one
         # expression door (behavior.express_to_user), which routes to them
         # internally (EXPRESSION_MEMBRANE_FIX_PLAN E2/E3).
-        from brain.embodiment.system_presence import (
+        from brain.runtime_coupling.system_presence import (
             get_system_state   as _gss,
             check_user_active  as _cua,
             read_clipboard     as _rcb,
@@ -350,15 +350,15 @@ def _boot_context() -> Context:
 
     # Register emotion top-level callable functions
     try:
-        from brain.affect.regulation import attempt_regulation as _ar
-        from brain.affect.affect_drift import check_affect_drift as _ced
-        from brain.affect.reflect_on_affect import reflect_on_affect as _roe
-        from brain.affect.update_affect_state import update_affect_state as _ues
-        from brain.affect.apply_affective_feedback import apply_affective_feedback as _aef
-        from brain.affect.modes_and_affect import affect_driven_mode_shift as _edms
-        from brain.affect.affect import investigate_unexplained_emotions as _iue
-        from brain.affect.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
-        from brain.affect.reflect_on_affect_model import reflect_on_emotion_model as _roem
+        from brain.control_signals.regulation import attempt_regulation as _ar
+        from brain.control_signals.affect_drift import check_affect_drift as _ced
+        from brain.control_signals.reflect_on_affect import reflect_on_affect as _roe
+        from brain.control_signals.update_affect_state import update_affect_state as _ues
+        from brain.control_signals.apply_affective_feedback import apply_affective_feedback as _aef
+        from brain.control_signals.modes_and_affect import affect_driven_mode_shift as _edms
+        from brain.control_signals.affect import investigate_unexplained_emotions as _iue
+        from brain.control_signals.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
+        from brain.control_signals.reflect_on_affect_model import reflect_on_emotion_model as _roem
         COGNITIVE_FUNCTIONS["attempt_regulation"]            = {"function": _ar,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["check_affect_drift"]           = {"function": _ced,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["reflect_on_affect"]           = {"function": _roe,  "is_cognition": True}
@@ -378,7 +378,7 @@ def _boot_context() -> Context:
         from brain.symbolic.rule_forgetting import run_forgetting_cycle as _rfc
         from brain.symbolic.rule_compressor import run_rule_compression as _rrc
         from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
-        from brain.symbolic.embodied_actions import run_embodied_cycle as _rec2
+        from brain.symbolic.host_actions import run_embodied_cycle as _rec2
         COGNITIVE_FUNCTIONS["run_benchmark"]                 = {"function": _rb,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_symbolic_prediction_cycle"] = {"function": _rspc, "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_forgetting_cycle"]          = {"function": _rfc,  "is_cognition": True}
@@ -428,13 +428,13 @@ def _boot_context() -> Context:
                 affect_state[k] = 0.0
     # Cap positive emotions that are pinned at ceiling — they should re-earn their peaks
     _POSITIVE_CEILING = 0.75
-    for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "positive_valence"]:
+    for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "reward_positive"]:
         raw = float(affect_state.get(k) or 0.0)
         if raw > _POSITIVE_CEILING:
             affect_state[k] = _POSITIVE_CEILING
     _core = affect_state.get("core_signals") or {}
     if isinstance(_core, dict):
-        for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "positive_valence"]:
+        for k in ["motivation", "exploration_drive", "confidence", "expected_gain", "reward_positive"]:
             raw = float(_core.get(k) or 0.0)
             if raw > _POSITIVE_CEILING:
                 _core[k] = _POSITIVE_CEILING

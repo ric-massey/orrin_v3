@@ -64,8 +64,8 @@ export function LanguageModelSection({
           <Sparkles className="h-4 w-4" /> Language model
         </CardTitle>
         <CardDescription>
-          The mind behind Orrin's words. He stays symbolic-first underneath — every option
-          is optional, and "None" keeps him fully on-device.
+          The model behind Orrin's words. It stays symbolic-first underneath — every option
+          is optional, and "None" keeps it fully on-device.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

@@ -87,7 +87,7 @@ export default function LiveConsole({ telemetry }: { telemetry: TelemetryState }
         <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs font-medium text-white/70">
           <Terminal className="h-3.5 w-3.5" />
           Live Console
-          <span className="hidden text-[10px] font-normal text-white/30 lg:inline">— everything his subsystems report, live</span>
+          <span className="hidden text-[10px] font-normal text-white/30 lg:inline">— everything the subsystems report, live</span>
           <span className="text-white/30">·</span>
           <span className="tabular-nums text-white/40">{visible.length} lines</span>
         </div>

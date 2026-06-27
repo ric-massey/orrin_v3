@@ -8,8 +8,8 @@
 #   - concurrent submissions never lose updates (no last-writer-wins race).
 import threading
 
-import brain.affect.arbiter as arbiter
-from brain.affect.arbiter import submit_affect, commit_affect
+import brain.control_signals.arbiter as arbiter
+from brain.control_signals.arbiter import submit_affect, commit_affect
 
 
 def _ctx(**core):
@@ -68,10 +68,10 @@ def test_concurrent_submissions_are_not_lost():
 
 
 def test_drain_consolidations_does_not_write_affect_file(monkeypatch):
-    import brain.affect.consolidation as consolidation
+    import brain.control_signals.consolidation as consolidation
 
     entry = {
-        "id": "x", "event": "e", "emotion": "positive_valence",
+        "id": "x", "event": "e", "emotion": "reward_positive",
         "intensity": 0.16, "cycles_remaining": 2, "tint_per_cycle": 0.08,
         "importance": 4, "created_ts": "t",
     }
@@ -83,10 +83,10 @@ def test_drain_consolidations_does_not_write_affect_file(monkeypatch):
     calls = []
     monkeypatch.setattr(consolidation, "save_json", lambda p, d: calls.append(str(p)))
 
-    ctx = _ctx(positive_valence=0.3)
+    ctx = _ctx(reward_positive=0.3)
     consolidation.drain_consolidations(ctx)
 
     assert str(AFFECT_STATE_FILE) not in calls
     # It submitted a proposal into the context instead.
     props = ctx.get("_affect_proposals") or []
-    assert any(p["target"] == "positive_valence" for p in props)
+    assert any(p["target"] == "reward_positive" for p in props)

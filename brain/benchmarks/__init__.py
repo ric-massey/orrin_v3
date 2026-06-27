@@ -53,7 +53,7 @@ _MAX_SAMPLE_LINES = 20_000
 # ─── Stored specifications (the benchmark definitions) ────────────────────────
 BENCHMARKS: Dict[str, Dict[str, Any]] = {
     "B1": {
-        "title": "Memory Boundedness (reaper effectiveness)",
+        "title": "Memory Boundedness (supervisor effectiveness)",
         "tests": "Long-term memory plateaus instead of growing unbounded.",
         "kind": "passive",
         "required_cycles": 2000,
@@ -517,7 +517,7 @@ def report() -> str:
 
 _SCENARIO_GOALS: Dict[str, Dict[str, Any]] = {
     "B3": {
-        "title": "Find the word 'reaper' in any brain file and write a one-line summary to working memory.",
+        "title": "Find the word 'supervisor' in any brain file and write a one-line summary to working memory.",
         "kind": "generic", "tier": "short_term", "driven_by": "world_knowledge",
         "milestones": [{"text": "A search was performed.", "met": False},
                        {"text": "A one-line summary was written to working memory.", "met": False}],

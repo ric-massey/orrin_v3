@@ -365,7 +365,7 @@ def _load_skill(module_name: str, fn_name: str):
 def _load_system_presence(fn_name: str):
     """Lazy-load a system-presence capability — fail silently if unavailable."""
     try:
-        from brain.embodiment import system_presence as _sp
+        from brain.runtime_coupling import system_presence as _sp
         return getattr(_sp, fn_name, None)
     except ImportError:  # intentional: capability unavailable — fail silently
         return None

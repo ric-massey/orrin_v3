@@ -104,8 +104,8 @@
     "definition": "apply_drive_tensions(context: 'Dict[str, Any]') -> 'List[Dict]'\nCalled each cycle (from select_function).\n    - Computes drive strengths and conflicts.\n    - Bumps uncertainty when drives conflict.\n    - Logs the hottest conflict to working memory (rate-limited).\n    - Sets context[\"_drive_conflicts\"] for finalize/inner_loop.\n    Returns the active conflict list."
   },
   {
-    "name": "apply_emotion_routing",
-    "definition": "apply_emotion_routing(fn_scores: 'Dict[str, float]', affect_state: 'Dict[str, Any]') -> 'Dict[str, float]'\nApply emotion biases to a dict of {fn_name: score} and return adjusted scores.\n    Scores are additive. This should be called after bandit scoring, before selection."
+    "name": "apply_signal_routing",
+    "definition": "apply_signal_routing(fn_scores: 'Dict[str, float]', affect_state: 'Dict[str, Any]') -> 'Dict[str, float]'\nApply emotion biases to a dict of {fn_name: score} and return adjusted scores.\n    Scores are additive. This should be called after bandit scoring, before selection."
   },
   {
     "name": "apply_emotional_contagion",
@@ -136,8 +136,8 @@
     "definition": "apply_milestone_updates(context: 'Dict[str, Any]') -> 'int'\nCheck each milestone on the committed goal against current WM state.\n    Marks newly-met milestones in-place with met=True and met_at timestamp.\n    Returns count of newly ticked milestones."
   },
   {
-    "name": "apply_mortality_pressure",
-    "definition": "apply_mortality_pressure(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nCalled once per cycle from finalize.py.\n    - Computes life fraction and phase\n    - Applies emotional effects proportional to phase\n    - Logs to WM when phase changes or cooldown expires\n    - Sets context[\"_mortality\"] summary\n    - Returns {\"terminate\": True} when real deadline has passed"
+    "name": "apply_lifetime_pressure",
+    "definition": "apply_lifetime_pressure(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nCalled once per cycle from finalize.py.\n    - Computes lifetime fraction and phase\n    - Applies signal effects proportional to phase\n    - Logs to WM when phase changes or cooldown expires\n    - Sets context[\"_lifetime\"] summary\n    - Returns {\"terminate\": True} when real deadline has passed"
   },
   {
     "name": "apply_temporal_pressure",
@@ -164,8 +164,8 @@
     "definition": "ask_llm_for_research(context: 'Dict[str, Any]') -> 'str'\nCognition function: Orrin uses LLM as a research tool.\n    Pulls the research topic from context (committed goal or working memory)."
   },
   {
-    "name": "aspiration_pressure",
-    "definition": "aspiration_pressure(context: 'Dict[str, Any]' = None) -> 'Dict[str, float]'\nPer-aspiration recruitment weight in [0,1]; higher = more starved."
+    "name": "objective_pressure",
+    "definition": "objective_pressure(context: 'Dict[str, Any]' = None) -> 'Dict[str, float]'\nPer-aspiration recruitment weight in [0,1]; higher = more starved."
   },
   {
     "name": "assess_goal_progress",
@@ -241,7 +241,7 @@
   },
   {
     "name": "cadence_multiplier",
-    "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small body thinks at a slower\n    metabolic rate — not distress, just a smaller heart at a lower rate (§7)."
+    "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small budget runs at a slower\n    cadence — not a fault, just a lower clock rate (§7)."
   },
   {
     "name": "calibrated_reward",
@@ -301,7 +301,7 @@
   },
   {
     "name": "check_projection_against_reality",
-    "definition": "check_projection_against_reality(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from dream_cycle every few dream runs."
+    "definition": "check_projection_against_reality(context: 'Optional[Dict[str, Any]]' = None) -> 'Dict[str, Any]'\nCompare the most recent projected preferred_future against current identity\n    and behaviour. Writes a short reflection to long_memory so Orrin can notice\n    whether it is converging toward or drifting from its intended trajectory.\n    Called from idle_consolidation_cycle every few dream runs."
   },
   {
     "name": "check_user_presence",
@@ -332,8 +332,8 @@
     "definition": "commit_extension(context: 'Dict[str, Any]') -> 'str'\nCognition function: attempt to commit a reviewed proposal.\n    Checks all gate conditions — gestation age, WM references, emotional stability,\n    values alignment, fragmentation level. If passed: writes code and registers it.\n    Identity disruption is real and immediate."
   },
   {
-    "name": "compose_dream",
-    "definition": "compose_dream(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
+    "name": "compose_consolidation",
+    "definition": "compose_consolidation(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
   },
   {
     "name": "compose_section",
@@ -377,7 +377,7 @@
   },
   {
     "name": "consolidate_from_long_memory",
-    "definition": "consolidate_from_long_memory(context: 'Optional[Dict]' = None) -> 'Dict'\nCalled during dream_cycle. Reads recent world_perception + dream_insight entries\n    from long memory and asks the LLM for richer structured entity/relation extraction.\n    Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,\n    adds what regex/spaCy misses. With the LLM down the heuristic pass still runs\n    — research and reading must keep producing durable knowledge offline.\n    Returns {\"entities_added\": n, \"relations_added\": m, \"skipped\": bool}."
+    "definition": "consolidate_from_long_memory(context: 'Optional[Dict]' = None) -> 'Dict'\nCalled during idle_consolidation_cycle. Reads recent world_perception + dream_insight entries\n    from long memory and asks the LLM for richer structured entity/relation extraction.\n    Heuristic pass runs first (cheap, LLM-free); the LLM pass, when available,\n    adds what regex/spaCy misses. With the LLM down the heuristic pass still runs\n    — research and reading must keep producing durable knowledge offline.\n    Returns {\"entities_added\": n, \"relations_added\": m, \"skipped\": bool}."
   },
   {
     "name": "consolidate_language",
@@ -400,8 +400,8 @@
     "definition": "create_thread(title: 'str', initial_thought: 'str' = '', context: 'Dict[str, Any]' = None, source: 'str' = 'reflection') -> 'Dict[str, Any]'\nCreate a new thread of attention and save it."
   },
   {
-    "name": "credit_aspirations",
-    "definition": "credit_aspirations(context: 'Dict[str, Any]' = None) -> 'str'\nRoll completed short-term goals UP into the long-term aspirations they\n    serve, so the enduring goals actually ADVANCE instead of sitting at\n    in_progress with zero movement. Also protects them: re-creates any that went\n    missing and reverts any wrongly marked 'completed' (aspirations are\n    directional — they accrue progress but never auto-complete)."
+    "name": "credit_objectives",
+    "definition": "credit_objectives(context: 'Dict[str, Any]' = None) -> 'str'\nRoll completed short-term goals UP into the long-term aspirations they\n    serve, so the enduring goals actually ADVANCE instead of sitting at\n    in_progress with zero movement. Also protects them: re-creates any that went\n    missing and reverts any wrongly marked 'completed' (aspirations are\n    directional — they accrue progress but never auto-complete)."
   },
   {
     "name": "credit_sleep",
@@ -441,7 +441,7 @@
   },
   {
     "name": "decay_old_entities",
-    "definition": "decay_old_entities() -> 'Dict'\nErode confidence of idle entities; prune those below floor.\n    Safe to call during dream_cycle without corrupting active entities.\n    Never decays never_decay=True entries (Orrin, bootstrap identities)."
+    "definition": "decay_old_entities() -> 'Dict'\nErode confidence of idle entities; prune those below floor.\n    Safe to call during idle_consolidation_cycle without corrupting active entities.\n    Never decays never_decay=True entries (Orrin, bootstrap identities)."
   },
   {
     "name": "decide_to_run_code",
@@ -512,12 +512,12 @@
     "definition": "developmental_infancy() -> 'bool'\nThe one-time growing-up — true until the self has begun to stabilise, then\n    latched complete forever (persisted, so pruning files later can't reset it)."
   },
   {
-    "name": "dream_cycle",
-    "definition": "dream_cycle(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nFull dream cycle: consolidate, recombine, process.\n    Returns a summary dict; side effects write to DREAM_LOG and long_memory."
+    "name": "idle_consolidation_cycle",
+    "definition": "idle_consolidation_cycle(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nFull dream cycle: consolidate, recombine, process.\n    Returns a summary dict; side effects write to DREAM_LOG and long_memory."
   },
   {
-    "name": "dreaming_now",
-    "definition": "dreaming_now() -> 'bool'\nTrue while a dream cycle is in flight (the felt body should read vitals as\n    normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed\n    dream can't permanently mask the felt body."
+    "name": "consolidating_now",
+    "definition": "consolidating_now() -> 'bool'\nTrue while a dream cycle is in flight (the felt body should read vitals as\n    normal-for-sleeping, not as distress). Auto-expires a stale flag so a crashed\n    dream can't permanently mask the felt body."
   },
   {
     "name": "drive_pull_scores",
@@ -528,8 +528,8 @@
     "definition": "emergency_self_modification(context: 'Dict[str, Any]') -> 'str'\nCognition function: crisis-driven self-modification, bypassing normal gates.\n    Available only during sustained extreme emotional states. Carries higher\n    fragmentation cost and is flagged for early re-evaluation."
   },
   {
-    "name": "emotion_bias",
-    "definition": "emotion_bias(fn_name: 'str', affect_state: 'Dict[str, Any]') -> 'float'\nReturn an additive bias for `fn_name` based on current emotional state.\n    Positive = boost, negative = dampen. Range roughly −0.5 to +0.8."
+    "name": "signal_bias",
+    "definition": "signal_bias(fn_name: 'str', affect_state: 'Dict[str, Any]') -> 'float'\nReturn an additive bias for `fn_name` based on current emotional state.\n    Positive = boost, negative = dampen. Range roughly −0.5 to +0.8."
   },
   {
     "name": "encode",
@@ -949,7 +949,7 @@
   },
   {
     "name": "life_status",
-    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only mortality view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing\n    the real countdown would be reading something Orrin himself can't (his sense of\n    his lifespan is wrong by design); the page shows what *he believes*."
+    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only lifetime view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing the\n    real countdown would be reading something the runtime itself cannot (its estimate of\n    its lifespan is wrong by design); the page shows what it estimates."
   },
   {
     "name": "lifespan_rolled",
@@ -1024,8 +1024,8 @@
     "definition": "machine_ram_bytes() -> 'float'"
   },
   {
-    "name": "mark_aspiration_contribution",
-    "definition": "mark_aspiration_contribution(driven_by: 'str') -> 'None'\nStamp last_contribution_ts on the aspiration a drive serves — decays its P3\n    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping\n    closure), so starved directions stay starved until something real lands."
+    "name": "mark_objective_contribution",
+    "definition": "mark_objective_contribution(driven_by: 'str') -> 'None'\nStamp last_contribution_ts on the aspiration a drive serves — decays its P3\n    pressure. Call ONLY on a real, effect-backed contribution (not a bookkeeping\n    closure), so starved directions stay starved until something real lands."
   },
   {
     "name": "mark_consequential_cognition",
@@ -1033,7 +1033,7 @@
   },
   {
     "name": "mark_final_thoughts_written",
-    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the mortality deadline (e.g. the reaper's dying-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
+    "definition": "mark_final_thoughts_written() -> 'None'\nSync the lifespan flag when final thoughts are written by a path other\n    than the lifetime deadline (e.g. the supervisor's termination-window terminal\n    reflection) — otherwise the flag and final_thoughts.json disagree."
   },
   {
     "name": "mark_goal_completed",
@@ -1108,8 +1108,8 @@
     "definition": "meta_reflect(context: dict = None)"
   },
   {
-    "name": "metabolism_status",
-    "definition": "metabolism_status() -> 'Dict'\nTelemetry/UI view of the current metabolic tier and what it implies."
+    "name": "resource_cadence_status",
+    "definition": "resource_cadence_status() -> 'Dict'\nTelemetry/UI view of the current cadence tier and what it implies."
   },
   {
     "name": "metacog_analyze",
@@ -1301,7 +1301,7 @@
   },
   {
     "name": "real_deadline_passed",
-    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_mortality_pressure uses to terminate. This is the\n    authoritative 'he is dead' signal. It is deliberately separate from\n    `final_thoughts_written`: a reaper dying-window reflection (a stall RESTART, not\n    death) can write final thoughts too, and keying death off that flag alone made\n    every post-restart boot show the Death Screen though ~0% of his life had elapsed."
+    "definition": "real_deadline_passed() -> 'bool'\nTrue only when the TRUE lifespan deadline has actually been reached — the same\n    `real_fraction >= 1.0` test apply_lifetime_pressure uses to terminate. This is the\n    authoritative 'lifetime ended' signal. It is deliberately separate from\n    `final_thoughts_written`: a supervisor termination-window reflection (a stall RESTART, not\n    termination) can write final thoughts too, and keying termination off that flag\n    alone made every post-restart boot show the Death Screen though ~0% of the lifetime\n    had elapsed."
   },
   {
     "name": "recalibrate_confidence",
@@ -1561,15 +1561,15 @@
   },
   {
     "name": "run_embodied_cycle",
-    "definition": "run_embodied_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
+    "definition": "run_embodied_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or idle_consolidation_cycle."
   },
   {
     "name": "run_embodied_observation",
-    "definition": "run_embodied_observation(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or dream_cycle."
+    "definition": "run_embodied_observation(context: 'Optional[Dict]' = None) -> 'Dict'\nExecute a small set of safe observational actions, feed results into WM\n    and symbolic feedback systems. Called from ORRIN_loop or idle_consolidation_cycle."
   },
   {
     "name": "run_episode_replay",
-    "definition": "run_episode_replay(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nHippocampal-style replay during dream cycle.\n\n    1. Load cognition_history.json (list of {choice, reward, is_agentic, timestamp}).\n    2. Slide a window of _WINDOW_SIZE cycles. When mean reward > _REWARD_THRESHOLD,\n       it's a high-reward episode.\n    3. For each episode, call contextual_bandit.update() for each function in the\n       sequence with a discounted replay reward (backward propagation: earlier\n       functions get slightly less credit).\n    4. Extract all consecutive pairs from all high-reward windows. Pairs that\n       appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so\n       select_function can apply a chain bonus.\n\n    Returns a summary dict for dream_cycle logging."
+    "definition": "run_episode_replay(context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nHippocampal-style replay during dream cycle.\n\n    1. Load cognition_history.json (list of {choice, reward, is_agentic, timestamp}).\n    2. Slide a window of _WINDOW_SIZE cycles. When mean reward > _REWARD_THRESHOLD,\n       it's a high-reward episode.\n    3. For each episode, call contextual_bandit.update() for each function in the\n       sequence with a discounted replay reward (backward propagation: earlier\n       functions get slightly less credit).\n    4. Extract all consecutive pairs from all high-reward windows. Pairs that\n       appear ≥ _MIN_PAIR_COUNT times are written to function_chains.json so\n       select_function can apply a chain bonus.\n\n    Returns a summary dict for idle_consolidation_cycle logging."
   },
   {
     "name": "run_experiment_cycle",
@@ -1696,8 +1696,8 @@
     "definition": "set_budget_fraction(fraction: 'float') -> 'Dict'\nPersist a new grant. Refuses an unviable grant loudly (§11.4.3). Flags a\n    meaningful resize so the caller can route it through a partial re-baseline\n    (§11.4.2 — enlarging/shrinking the body mid-life invalidates the learned band).\n    Returns a status dict; on refusal {ok: False, reason: ...} and nothing is written."
   },
   {
-    "name": "set_dreaming",
-    "definition": "set_dreaming(active: 'bool') -> 'None'\nMark the sleep phase on/off. Called around the dream cycle; also usable by\n    tests to simulate sleep. Thread-safe."
+    "name": "set_consolidating",
+    "definition": "set_consolidating(active: 'bool') -> 'None'\nMark the sleep phase on/off. Called around the dream cycle; also usable by\n    tests to simulate sleep. Thread-safe."
   },
   {
     "name": "set_goal_deadline",
@@ -1724,8 +1724,8 @@
     "definition": "setpoint_candidate(context: 'Dict[str, Any]') -> 'float'\nThe allostatic recovery target τ Orrin WOULD set from context (Sterling\n    2012). Phase 0 logs it; Phase 2 applies it (replacing the fixed 0.15). Lower τ\n    when idle (recover deeper); higher τ during a live exchange / critical state\n    (permit acute burn). Bounded [0.10, 0.45]."
   },
   {
-    "name": "should_dream",
-    "definition": "should_dream(context: 'Dict[str, Any]') -> 'bool'\nTrue when Orrin has been idle long enough and enough time has passed since last dream.\n\n    Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum\n    interval by up to 50% so high-wonder states trigger dream processing sooner."
+    "name": "should_consolidate",
+    "definition": "should_consolidate(context: 'Dict[str, Any]') -> 'bool'\nTrue when Orrin has been idle long enough and enough time has passed since last dream.\n\n    Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum\n    interval by up to 50% so high-wonder states trigger dream processing sooner."
   },
   {
     "name": "should_force_switch",
@@ -1969,7 +1969,7 @@
   },
   {
     "name": "vector_store_cap_bytes",
-    "definition": "vector_store_cap_bytes() -> 'int'\nDEFERRED — computed but NOT yet consumed (no callers). The vector store is not\n    yet capped by metabolic tier, so a small body's memory footprint isn't bounded by\n    this. Wire into the embedding/vector-store layer when picking up the deferred\n    metabolism work (see heavy_cycle_frequency above)."
+    "definition": "vector_store_cap_bytes() -> 'int'\nDEFERRED — computed but NOT yet consumed (no callers). The vector store is not\n    yet capped by cadence tier, so a small budget's memory footprint isn't bounded by\n    this. Wire into the embedding/vector-store layer when picking up the deferred\n    resource-cadence work (see heavy_cycle_frequency above)."
   },
   {
     "name": "verify_skill",

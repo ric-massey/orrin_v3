@@ -323,7 +323,7 @@ def update_working_memory(
     # residual emotional tint that plays out over subsequent cycles.
     try:
         if int(entry.get("importance") or 0) >= 4:
-            from brain.affect.consolidation import maybe_trigger_from_event
+            from brain.control_signals.consolidation import maybe_trigger_from_event
             maybe_trigger_from_event(entry)
     except Exception as _e:
         record_failure("working_memory.update_working_memory", _e)
@@ -392,13 +392,13 @@ def update_working_memory(
 # and attention filtering.
 
 _EMOTION_VALENCE: dict = {
-    "social_penalty": -1, "impasse_signal": -1, "threat_level": -1, "negative_valence": -1,
+    "social_penalty": -1, "impasse_signal": -1, "threat_level": -1, "reward_negative": -1,
     "risk_estimate": -1, "conflict_signal": -1, "social_deficit": -1, "uncertainty": -1,
-    "positive_valence": +1, "expected_gain": +1, "exploration_drive": +1, "confidence": +1,
-    "motivation": +1, "wonder": +1, "gratitude": +1,
+    "reward_positive": +1, "expected_gain": +1, "exploration_drive": +1, "confidence": +1,
+    "motivation": +1, "novelty_signal": +1, "gratitude": +1,
 }
 
-def _emotional_salience(entry: dict, dominant_emotion: str, dominant_intensity: float) -> float:
+def _emotional_salience(entry: dict, dominant_signal: str, dominant_intensity: float) -> float:
     """
     Score an entry by how salient it is given the current emotional state.
     Higher = more likely to surface in retrieval.
@@ -411,11 +411,11 @@ def _emotional_salience(entry: dict, dominant_emotion: str, dominant_intensity: 
     # Emotion congruence: entries matching the current dominant emotion get a boost
     # (threat_detector → hippocampus biasing, Kensinger & Schacter 2008)
     entry_emo = str(entry.get("emotion") or "")
-    if entry_emo == dominant_emotion:
+    if entry_emo == dominant_signal:
         score += dominant_intensity * 3.0
 
     # Valence congruence: negative dominant state → negative-valenced entries surface more
-    dom_val   = _EMOTION_VALENCE.get(dominant_emotion, 0)
+    dom_val   = _EMOTION_VALENCE.get(dominant_signal, 0)
     entry_val = _EMOTION_VALENCE.get(entry_emo, 0)
     if dom_val != 0 and dom_val == entry_val:
         score += dominant_intensity * 1.5
@@ -432,7 +432,7 @@ def _emotional_salience(entry: dict, dominant_emotion: str, dominant_intensity: 
 
 
 def get_emotionally_salient_wm(
-    dominant_emotion: str = "",
+    dominant_signal: str = "",
     dominant_intensity: float = 0.5,
     n: int = 7,
     activation_level: float = 0.5,
@@ -453,7 +453,7 @@ def get_emotionally_salient_wm(
         return []
 
     def _ne_salience(m: dict) -> float:
-        base = _emotional_salience(m, dominant_emotion, dominant_intensity)
+        base = _emotional_salience(m, dominant_signal, dominant_intensity)
         # NE gain: high activation_level steepens the salience gradient so the most
         # charged items dominate. Entries below the noise floor get suppressed.
         if base > 2.0:

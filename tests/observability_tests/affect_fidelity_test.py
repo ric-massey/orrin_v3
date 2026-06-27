@@ -18,8 +18,8 @@ from __future__ import annotations
 
 
 def test_homeostasis_index_is_deterministic_and_settled_at_rest():
-    from brain.affect.homeostasis import homeostasis_index
-    from brain.affect.setpoints import setpoint
+    from brain.control_signals.homeostasis import homeostasis_index
+    from brain.control_signals.setpoints import setpoint
     # A core vector sitting exactly on its setpoints is maximally settled.
     core = {k: setpoint(k) for k in ("motivation", "confidence", "impasse_signal")}
     assert homeostasis_index(core) == 1.0
@@ -48,9 +48,9 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
     tele._bridge = lambda: _FakeBridge()
     try:
         context = {"affect_state": {
-            "valence": -0.4,
+            "reward_signal": -0.4,  # was "valence" key
             "activation_level": 0.3,
-            "homeostasis": 0.123,  # the brain's stored index; emit must use THIS
+            "setpoint_proximity": 0.123,  # persisted key (was "homeostasis"); emit must use THIS
             "core_signals": {"motivation": 0.5, "impasse_signal": 0.9},
         }}
         tele._emit_affect(context)
@@ -69,7 +69,7 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
 def test_update_affect_state_stamps_homeostasis_onto_canonical_state():
     """The authority writes the index onto affect_state, so REST (B) and the
     chart (C) read one number rather than two clocks."""
-    from brain.affect.homeostasis import homeostasis_index
+    from brain.control_signals.homeostasis import homeostasis_index
     core = {"motivation": 0.6, "confidence": 0.55, "impasse_signal": 0.2}
     # Mirror what update_affect_state stores: round(homeostasis_index(core), 4).
     assert round(homeostasis_index(core), 4) == round(homeostasis_index(dict(core)), 4)

@@ -115,7 +115,7 @@ def ignite(context: Context) -> Context:
     _ignited, _ign_reason = True, "always_on"
     if os.environ.get("ORRIN_IGNITION_GATE", "1") != "0":
         try:
-            from brain.think.consciousness_trigger import should_think as _should_think
+            from brain.think.deliberation_gate import should_think as _should_think
             _ignited, _ign_reason = _should_think(context)
         except Exception as _ige:
             record_failure("ORRIN_loop.ignition_gate", _ige)

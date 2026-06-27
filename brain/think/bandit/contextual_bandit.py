@@ -294,8 +294,8 @@ def _record(st: Dict, bucket: str, action: str, reward: float,
         stationary default used by callers that don't pass a rate (the historical
         behaviour of every path).
       - ``lr`` given → **constant-step** ``q += lr*(reward - q)``: recency-weighted
-        / non-stationary tracking. This is the regime the ACh-modulated selector
-        (``loop_helpers.bandit_learn`` → ``update_with_pe(lr=_ach_lr)``), dream
+        / non-stationary tracking. This is the regime the learning-rate-gain selector
+        (``loop_helpers.bandit_learn`` → ``update_with_pe(lr=_lr_gain)``), dream
         replay (``_REPLAY_LR``), and value-alignment nudges (``update(lr=…)``)
         always intended — the rate was previously accepted and silently ignored.
 
@@ -343,14 +343,14 @@ def update_with_pe(
     action: str,
     features: Optional[Dict[str, float]] = None,
     reward: float = 0.0,
-    lr: Optional[float] = None,   # ACh-modulated rate from the selector; None → sample-mean
+    lr: Optional[float] = None,   # learning-rate gain from the selector; None → sample-mean
     l2: float = 0.001,            # accepted for API compatibility; no weight decay here
 ) -> float:
     """
     Record reward AND return the prediction error (reward − prior value estimate
     for this bucket+action). Single load+save. Used by the per-cycle PE pipeline.
 
-    ``lr`` is the acetylcholine-modulated learning rate the selector computes
+    ``lr`` is the uncertainty-modulated learning-rate gain the selector computes
     (``loop_helpers.bandit_learn``); it drives a constant-step update so uncertain
     contexts learn faster (Yu & Dayan 2005). The returned PE is ``reward − q_before``
     — computed before the update — so it is independent of the chosen ``lr``.

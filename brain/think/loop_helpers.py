@@ -439,26 +439,26 @@ def bandit_learn(
     pe = 0.0
     expected = 0.0
     try:
-        # === attention_gain learning rate gate (Yu & Dayan 2005) ===
-        # ACh signals expected uncertainty — novel/uncertain contexts raise plasticity.
-        # High uncertainty + exploration_drive = "encode deeply" mode = faster learning.
+        # === learning-rate gain gate (Yu & Dayan 2005) ===
+        # Expected uncertainty raises plasticity — novel/uncertain contexts learn
+        # faster. High uncertainty + exploration_drive = "encode deeply" mode.
         # Routine/certain contexts = slow learning (don't overwrite stable knowledge).
         # lr range: 0.06 (certain/routine) → 0.16 (novel/uncertain).
-        _ach_lr = 0.10  # default
+        _lr_gain = 0.10  # default
         try:
             _ue  = ctx.get("affect_state") if ctx else {}
             _uc  = _ue.get("core_signals", _ue) if isinstance(_ue, dict) else {}
-            _ach = min(1.0,
+            _uncertainty = min(1.0,
                 float(_uc.get("uncertainty", 0.05) or 0.05) * 0.55 +
                 float(_uc.get("exploration_drive",   0.25) or 0.25) * 0.35
             )
-            _ach_lr = round(0.06 + _ach * 0.10, 4)
+            _lr_gain = round(0.06 + _uncertainty * 0.10, 4)
         except Exception as _e:
             record_failure("loop_helpers.bandit_learn", _e)
 
         # Use combined update_with_pe: ONE load+save instead of 3 loads + 2 saves.
         # Falls back to separate calls if the method isn't available.
-        pe = float(bandit.update_with_pe(tag, feats, reward, lr=_ach_lr))
+        pe = float(bandit.update_with_pe(tag, feats, reward, lr=_lr_gain))
         expected = float(reward) - pe  # recover expected = reward - pe
         emit_trace(
             type="BANDIT_UPDATE",
@@ -468,7 +468,7 @@ def bandit_learn(
             features_on={k: v for k, v in feats.items() if v},
             expected_reward=round(expected, 4),
             prediction_error=round(pe, 4),
-            ach_lr=_ach_lr,
+            lr_gain=_lr_gain,
         )
 
         # === Prediction Error → Emotion (Schultz, Dayan & Montague 1997) ===

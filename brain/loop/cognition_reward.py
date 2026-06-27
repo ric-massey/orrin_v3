@@ -96,7 +96,7 @@ def shape_cognition_reward(
                 reward += min(0.18, 0.08 + _pre_neg * 0.15)
         except Exception as _e:
             record_failure("ORRIN_loop.run_cognitive_loop.16", _e)
-    # Dopaminergic novelty gate for outward perception reads
+    # Reward-prediction-error novelty gate for outward perception reads
     # (Schultz 1997: dopamine signals prediction error / novelty,
     # not repetition). look_outward & friends previously farmed
     # standing bonuses 100+ times regardless of whether the glance
@@ -121,7 +121,7 @@ def shape_cognition_reward(
         except Exception as _e:
             record_failure("ORRIN_loop.run_cognitive_loop.17", _e)
         if _outward_low_novelty:
-            # No novelty → no dopamine. Pull reward to the low end.
+            # No novelty → no reward-prediction error. Pull reward to the low end.
             reward = min(reward, 0.1)
 
     # Outward-debt discharge bonus (FINDINGS 2026-06-12 data
@@ -141,7 +141,7 @@ def shape_cognition_reward(
     except Exception as _e:
         record_failure("ORRIN_loop.run_cognitive_loop.17b", _e)
 
-    # Dopaminergic habituation — LEARNING-AWARE (Schultz 1997:
+    # Reward-prediction-error habituation — LEARNING-AWARE (Schultz 1997:
     # dopamine tracks prediction error / novelty, not repetition).
     # This is the natural pressure that replaces the old hard
     # anti-repeat cap: repeating the SAME function gets boring

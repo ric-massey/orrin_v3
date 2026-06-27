@@ -233,7 +233,7 @@ def apply_antirepeat_and_metarut(
         # force a different choice here; his real top-scoring preference stands. The
         # pressure against MINDLESS repetition is natural instead:
         #   • stagnation_signal (below) rises on repeat attempts → boredom builds,
-        #   • dopaminergic habituation in the reward path (ORRIN_loop) makes pure,
+        #   • RPE-style habituation in the reward path (ORRIN_loop) makes pure,
         #     non-learning repetition progressively unrewarding so the bandit drifts
         #     off it on its own,
         #   • repetition that keeps IMPROVING reward (trying it differently to learn)

@@ -83,7 +83,7 @@ _ALPHA = 0.08
 
 _ALPHA_MIN = 0.04   # floor: a settled action still drifts a little (world can change)
 _ALPHA_MAX = 0.30   # ceiling: a surprising action learns fast but not jumpily
-_PH_GAMMA  = 0.5    # Pearce-Hall associability blend (classic value)
+_ASSOCIABILITY_GAMMA = 0.5  # associability blend (classic Pearce & Hall 1980 value)
 
 _DEFAULT       = 0.45  # expected-value prior — slightly below typical actual so first wins feel rewarding
 _ASSOC_DEFAULT = 0.5   # associability prior — moderate → mid learning rate before evidence
@@ -204,8 +204,8 @@ def update_expected(context: dict, action_type: str, actual: float) -> None:
     alpha_eff = _ALPHA_MIN + (_ALPHA_MAX - _ALPHA_MIN) * assoc
     v_cache[action_type] = round(prev + alpha_eff * error, 4)
 
-    # Pearce-Hall: associability follows recent UNSIGNED prediction error.
-    new_assoc = _PH_GAMMA * abs(error) + (1.0 - _PH_GAMMA) * assoc
+    # Associability follows recent UNSIGNED prediction error (Pearce & Hall 1980).
+    new_assoc = _ASSOCIABILITY_GAMMA * abs(error) + (1.0 - _ASSOCIABILITY_GAMMA) * assoc
     a_cache[action_type] = round(min(1.0, max(0.0, new_assoc)), 4)
 
     _persist(v_cache, a_cache)

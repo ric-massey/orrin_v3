@@ -1,4 +1,4 @@
-# brain/cognition/host_interoception.py
+# brain/cognition/host_resource_monitor.py
 #
 # §6.2 — the felt body. The same host metrics the autonomic reflex
 # (supervisor/host_resources.HostResourceGuard) reads to keep the machine alive ALSO feed

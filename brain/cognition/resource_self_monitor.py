@@ -1,4 +1,4 @@
-# brain/cognition/body_sense.py
+# brain/cognition/resource_self_monitor.py
 # Reads process-level vitals (RSS, FD count, CPU, step latency) and translates
 # them into felt-state vocabulary that Orrin can reference and that merges into
 # affect_state to bias function selection.

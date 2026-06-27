@@ -401,7 +401,7 @@ class OrrinSpeaker:
 
         # Body sense: color voice when body state is notable
         try:
-            from brain.cognition.body_sense import body_sense_voice_hint as _bsvh
+            from brain.cognition.resource_self_monitor import body_sense_voice_hint as _bsvh
             _body_hint = _bsvh(context)
             if _body_hint == "effortful" and tone == "neutral":
                 tone = "hesitant"; hesitation = max(hesitation, 0.4)

@@ -350,7 +350,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # ── Body sense: translate process vitals into felt states ──────
     try:
-        from brain.cognition.body_sense import update_body_sense as _ubs
+        from brain.cognition.resource_self_monitor import update_body_sense as _ubs
         _ubs(context)
     except Exception as _bse:
         log_error(f"body_sense update failed: {_bse}")
@@ -360,7 +360,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # bands — the outward gaze the inward body_sense (and the 2026-06-15 crash)
     # missed. A separate system from the autonomic reflex (HostResourceGuard).
     try:
-        from brain.cognition.host_interoception import update_host_interoception as _uhi
+        from brain.cognition.host_resource_monitor import update_host_interoception as _uhi
         _uhi(context)
     except Exception as _hie:
         log_error(f"host_interoception update failed: {_hie}")

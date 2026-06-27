@@ -58,13 +58,13 @@ def somatic_infancy() -> bool:
     converged. True on first boot and after a move to new hardware; false on a plain
     restart where converged bands reload."""
     try:
-        from brain.cognition.body_sense import _get_bands
+        from brain.cognition.resource_self_monitor import _get_bands
         if _get_bands().in_infancy():
             return True
     except Exception as exc:  # band-learner unavailable — record, try host bands
         record_failure("infancy.somatic_infancy.body", exc)
     try:
-        from brain.cognition.host_interoception import _bands
+        from brain.cognition.host_resource_monitor import _bands
         if _bands().in_infancy():
             return True
     except Exception as exc:  # host bands unavailable — record, assume converged
@@ -114,7 +114,7 @@ def scenario() -> str:
 def infancy_status() -> Dict:
     """Telemetry/UI view of where Orrin is developmentally and somatically."""
     try:
-        from brain.cognition.body_sense import _get_bands
+        from brain.cognition.resource_self_monitor import _get_bands
         som_frac = _get_bands().converged_fraction()
     except Exception:
         som_frac = 0.0

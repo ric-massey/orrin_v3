@@ -118,7 +118,7 @@ def test_bodybands_discards_foreign_machine_bands(tmp_path):
 # ------------------------------------------------------- body_sense wiring ---
 
 def test_body_sense_resting_high_rss_reads_clear_not_heavy():
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     bs._bands = None  # fresh, isolated by conftest's tmp DATA_DIR
     bs._dream_bands = None
     g = bs._get_bands()
@@ -141,7 +141,7 @@ def test_body_sense_resting_high_rss_reads_clear_not_heavy():
 
 
 def test_body_sense_lenient_during_infancy():
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     bs._bands = None
     bs._dream_bands = None
     g = bs._get_bands()
@@ -155,7 +155,7 @@ def test_body_sense_lenient_during_infancy():
 
 
 def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
@@ -194,7 +194,7 @@ def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
 def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
     import brain.control_signals.arbiter as arbiter
     from brain.control_signals.arbiter import commit_affect, submit_affect
-    import brain.cognition.body_sense as bs
+    import brain.cognition.resource_self_monitor as bs
     from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)

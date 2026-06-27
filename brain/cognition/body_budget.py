@@ -17,7 +17,7 @@
 # (§11.4.1). And the budget feeds BOTH resource cadence and the resource self-monitor's
 # "100%" (§11.3) — so dialing Orrin down gives a *smaller budget*, not permanent
 # scarcity: its "full" reference re-centres on the grant (see cognition.resource_cadence,
-# cognition.host_interoception).
+# cognition.host_resource_monitor).
 from __future__ import annotations
 
 import os
@@ -186,7 +186,7 @@ def _on_resize(prev: float, new: float) -> None:
     in_infancy() goes true again and the cortex re-learns the new body's normal. The
     autonomic reflex is untouched (it was always absolute)."""
     try:
-        from brain.cognition.body_sense import reset_bands_for_resize
+        from brain.cognition.resource_self_monitor import reset_bands_for_resize
         reset_bands_for_resize(f"budget {prev:.0%}->{new:.0%}")
     except Exception as e:
         _log.warning("body_budget resize re-baseline failed: %s", e)

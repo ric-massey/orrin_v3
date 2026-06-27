@@ -58,7 +58,7 @@ _SUBSYSTEM_RULES: Tuple[Tuple[str, str], ...] = (
     ("intention_endorsement", "Values"),
     ("value", "Values"),
     ("privacy", "Values"),
-    ("body_sense", "Body"),
+    ("resource_self_monitor", "Body"),
     # planning / goals
     ("cognition/planning", "Planning"),
     ("goal_competition", "Planning"),

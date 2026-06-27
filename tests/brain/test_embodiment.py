@@ -79,7 +79,7 @@ def test_small_budget_slows_the_clock():
 # --------------------------------------------------------- host interoception ---
 
 def test_host_interoception_silent_in_infancy(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     # Force a tiny sample set → host bands not converged → infancy → no felt stress.
     monkeypatch.setattr(hi, "read_host_vitals", lambda: {
@@ -92,7 +92,7 @@ def test_host_interoception_silent_in_infancy(monkeypatch):
 
 
 def test_host_interoception_feels_departure_after_convergence(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     g = hi._bands()
     # Converge the bands on a calm, breathing host.
@@ -110,7 +110,7 @@ def test_host_interoception_feels_departure_after_convergence(monkeypatch):
 
 
 def test_battery_drain_is_felt_gently(monkeypatch):
-    import brain.cognition.host_interoception as hi
+    import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     g = hi._bands()
     for i in range(400):

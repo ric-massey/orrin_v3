@@ -117,7 +117,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     # appraisal and trigger processing is interpreted — matching the role of insula/ACC
     # in biasing affective processing before cortical evaluation (Craig 2003; Damasio 1994).
     try:
-        from brain.cognition.body_sense import interoceptive_deltas
+        from brain.cognition.resource_self_monitor import interoceptive_deltas
         _body_sense = context.get("body_sense") if context else None
         if _body_sense and isinstance(_body_sense, dict):
             _body_states = _body_sense.get("body_states") or []

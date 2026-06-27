@@ -41,13 +41,15 @@ async def get_settings(request: Request) -> Dict[str, Any]:
         _version = _ver()
     except Exception:
         _version = ""
-    # Embodiment (§11): the budget/floor the slider renders against, plus the resulting
-    # metabolic tier and where Orrin is in infancy — so the UI can explain what the
-    # grant means (his body size, his metabolism, the non-overridable host floor).
+    # Host coupling (§11): the budget/floor the slider renders against, plus the
+    # resulting cadence tier and where Orrin is in warm-up — so the UI can explain what
+    # the grant means (its budget size, its cadence, the non-overridable host floor).
+    # NOTE: the "metabolism" response key is a FROZEN wire identifier (the frontend
+    # reads embodiment.metabolism); the UI already renders it as "Resource cadence".
     embodiment: Dict[str, Any] = {}
     try:
         from brain.cognition.body_budget import budget_status as _bs
-        from brain.cognition.metabolism import metabolism_status as _ms
+        from brain.cognition.resource_cadence import resource_cadence_status as _ms
         from brain.cognition.infancy import infancy_status as _is
         embodiment = {"budget": _bs(), "metabolism": _ms(), "infancy": _is()}
     except Exception:

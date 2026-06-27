@@ -22,8 +22,8 @@
 # Two non-negotiables from the master plan:
 #   • NEVER lenient in infancy. The host/cortex may be lenient while Orrin learns
 #     a new body; the brainstem is not. A newborn can still suffocate.
-#   • The grant fraction it reads is the SAME one metabolism/body_budget read, so
-#     body size and survival floor can never disagree.
+#   • The grant fraction it reads is the SAME one resource_cadence/body_budget read, so
+#     budget size and safety floor can never disagree.
 #
 # Shipped OBSERVE-ONLY first, then S2b calibrated and armed it by default. Set
 # ORRIN_VITAL_FLOOR=observe to return to calibration-only logging. A guard that

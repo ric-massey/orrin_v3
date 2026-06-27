@@ -285,12 +285,12 @@ def run_cognitive_loop(
                 break
 
             context = periodic_housekeeping(context)
-            # Metabolism (§7, mapping #1): a smaller body runs at a slower metabolic
-            # rate — the cadence multiplier stretches the inter-cycle sleep on a small
-            # machine and compresses it on a large one. Not distress, just a smaller
-            # heart at a lower rate. Fails safe to ×1.0.
+            # Resource cadence (§7, mapping #1): a smaller budget runs at a slower
+            # cadence — the cadence multiplier stretches the inter-cycle sleep on a small
+            # machine and compresses it on a large one. Just a lower clock rate, not a
+            # fault. Fails safe to ×1.0.
             try:
-                from brain.cognition.metabolism import cadence_multiplier as _cad
+                from brain.cognition.resource_cadence import cadence_multiplier as _cad
                 _cycle_sleep_eff = cycle_sleep * _cad()
             except Exception:
                 _cycle_sleep_eff = cycle_sleep

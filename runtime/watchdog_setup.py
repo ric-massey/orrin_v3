@@ -115,7 +115,7 @@ def build() -> WatchdogInputs:
             return float(_proc.memory_info().rss)
 
         def get_budget_bytes() -> float:
-            # The same grant metabolism/interoception read — body size and survival
+            # The same grant resource_cadence/interoception read — budget size and safety
             # floor can never disagree. Falls back to a conservative full-RAM ceiling
             # if body_budget is unavailable, so the guard degrades to never-trips.
             try:

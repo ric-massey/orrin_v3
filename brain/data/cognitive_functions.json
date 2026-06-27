@@ -241,7 +241,7 @@
   },
   {
     "name": "cadence_multiplier",
-    "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small body thinks at a slower\n    metabolic rate — not distress, just a smaller heart at a lower rate (§7)."
+    "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small budget runs at a slower\n    cadence — not a fault, just a lower clock rate (§7)."
   },
   {
     "name": "calibrated_reward",
@@ -1108,8 +1108,8 @@
     "definition": "meta_reflect(context: dict = None)"
   },
   {
-    "name": "metabolism_status",
-    "definition": "metabolism_status() -> 'Dict'\nTelemetry/UI view of the current metabolic tier and what it implies."
+    "name": "resource_cadence_status",
+    "definition": "resource_cadence_status() -> 'Dict'\nTelemetry/UI view of the current cadence tier and what it implies."
   },
   {
     "name": "metacog_analyze",
@@ -1969,7 +1969,7 @@
   },
   {
     "name": "vector_store_cap_bytes",
-    "definition": "vector_store_cap_bytes() -> 'int'\nDEFERRED — computed but NOT yet consumed (no callers). The vector store is not\n    yet capped by metabolic tier, so a small body's memory footprint isn't bounded by\n    this. Wire into the embedding/vector-store layer when picking up the deferred\n    metabolism work (see heavy_cycle_frequency above)."
+    "definition": "vector_store_cap_bytes() -> 'int'\nDEFERRED — computed but NOT yet consumed (no callers). The vector store is not\n    yet capped by cadence tier, so a small budget's memory footprint isn't bounded by\n    this. Wire into the embedding/vector-store layer when picking up the deferred\n    resource-cadence work (see heavy_cycle_frequency above)."
   },
   {
     "name": "verify_skill",

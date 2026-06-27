@@ -1,16 +1,14 @@
-# brain/cognition/metabolism.py
+# brain/cognition/resource_cadence.py
 #
-# §7, mapping #1 — ABSOLUTE CAPACITY → METABOLISM. This is the first of the three
-# mappings the whole design depends on keeping separate, and it is the one that is
-# explicitly NOT a feeling.
+# §7, mapping #1 — ABSOLUTE CAPACITY → RESOURCE CADENCE POLICY. This is the first of
+# the three mappings the whole design depends on keeping separate, and it is the one
+# that is explicitly NOT an internal-state estimate.
 #
-# "Runs slower on a small machine" is not a degraded or sick Orrin — it is a smaller
-# body with a slower metabolic rate. A shrew's heart runs ~600 bpm and an elephant's
-# ~30 bpm; neither is in distress. A small machine simply slows the clock: longer
-# between cognitive cycles, dreams and reading less often, smaller caches. Set from
-# absolute capacity (the budget Orrin is granted, §11.3), NOT from how he "feels"
-# (that is mapping #2, interoception) and NOT from absolute safety floors (mapping #3,
-# the reflex).
+# "Runs slower on a small machine" is not a degraded Orrin — it is a smaller resource
+# budget driving a slower cadence: longer between cognitive cycles, idle-consolidation
+# and reading less often, smaller caches. Set from absolute capacity (the budget Orrin
+# is granted, §11.3), NOT from the resource self-monitor (that is mapping #2,
+# host_interoception) and NOT from absolute safety floors (mapping #3, the reflex).
 #
 # §8.4 — hysteresis. A machine hovering at a tier boundary would thrash
 # fast/slow/fast/slow if the tier switched on a hard threshold, so the switches carry
@@ -27,16 +25,17 @@ _log = get_logger(__name__)
 
 _GB = float(1024 * 1024 * 1024)
 
-# Tier boundaries on the GRANTED body size (budget_bytes), in GB. A body is sized by
-# what the user granted Orrin, not by the raw machine — so dialing the slider down
-# genuinely slows his metabolism (a smaller body), §11.3.
+# Tier boundaries on the GRANTED budget size (budget_bytes), in GB. The budget is
+# sized by what the user granted Orrin, not by the raw machine — so dialing the slider
+# down genuinely slows the cadence (a smaller budget), §11.3.
 _TIER_ORDER = ("tiny", "small", "normal", "large")
 _TIER_UPPER_GB = {"tiny": 1.5, "small": 3.0, "normal": 8.0}  # "large" = above the last
 _HYSTERESIS_GB = 0.5  # §8.4 dead band: must cross a boundary by this much to switch
 
-# Per-tier metabolic profile. cadence > 1 slows the cycle clock (small body, slow
-# metabolism); < 1 speeds it up. heavy_freq scales how often the memory-hungry cycles
-# (dream, reading) are allowed to fire. vector_cap is the resident vector-store ceiling.
+# Per-tier cadence profile. cadence > 1 slows the cycle clock (small budget, slow
+# cadence); < 1 speeds it up. heavy_freq scales how often the memory-hungry cycles
+# (idle consolidation, reading) are allowed to fire. vector_cap is the resident
+# vector-store ceiling.
 _PROFILE = {
     "tiny":   {"cadence": 2.0, "heavy_freq": 0.4, "vector_cap_mb": 128,  "concurrency": 1},
     "small":  {"cadence": 1.4, "heavy_freq": 0.7, "vector_cap_mb": 256,  "concurrency": 1},
@@ -88,28 +87,29 @@ def _profile() -> Dict:
 
 
 def cadence_multiplier() -> float:
-    """Multiply the base inter-cycle sleep by this. A small body thinks at a slower
-    metabolic rate — not distress, just a smaller heart at a lower rate (§7)."""
+    """Multiply the base inter-cycle sleep by this. A small budget runs at a slower
+    cadence — not a fault, just a lower clock rate (§7)."""
     return float(_profile()["cadence"])
 
 
 def heavy_cycle_frequency() -> float:
-    """Scales how often dream/reading (the memory-hungry cycles) are permitted. A small
-    body dreams less often because it cannot afford the footprint as frequently.
+    """Scales how often idle-consolidation/reading (the memory-hungry cycles) are
+    permitted. A small budget runs them less often because it cannot afford the
+    footprint as frequently.
 
-    DEFERRED — computed but NOT yet consumed (no callers). The dream cycle still fires
-    on the fixed ~6h interval in ORRIN_loop.py, so dream/reading cadence does not yet
-    scale with body size. Folding this into the dream/reading scheduler was kept out of
-    the embodiment pass to avoid touching dream cadence logic (see PART X of
-    docs/orrin_embodiment_architecture.md). Wire here when picking that up."""
+    DEFERRED — computed but NOT yet consumed (no callers). The idle-consolidation cycle
+    still fires on the fixed ~6h interval in ORRIN_loop.py, so its cadence does not yet
+    scale with budget size. Folding this into the consolidation/reading scheduler was
+    kept out of the host-coupling pass to avoid touching that cadence logic (see PART X
+    of docs/orrin_embodiment_architecture.md). Wire here when picking that up."""
     return float(_profile()["heavy_freq"])
 
 
 def vector_store_cap_bytes() -> int:
     """DEFERRED — computed but NOT yet consumed (no callers). The vector store is not
-    yet capped by metabolic tier, so a small body's memory footprint isn't bounded by
+    yet capped by cadence tier, so a small budget's memory footprint isn't bounded by
     this. Wire into the embedding/vector-store layer when picking up the deferred
-    metabolism work (see heavy_cycle_frequency above)."""
+    resource-cadence work (see heavy_cycle_frequency above)."""
     return int(_profile()["vector_cap_mb"]) * 1024 * 1024
 
 
@@ -117,8 +117,8 @@ def concurrency() -> int:
     return int(_profile()["concurrency"])
 
 
-def metabolism_status() -> Dict:
-    """Telemetry/UI view of the current metabolic tier and what it implies."""
+def resource_cadence_status() -> Dict:
+    """Telemetry/UI view of the current cadence tier and what it implies."""
     t = current_tier()
     p = _PROFILE[t]
     return {

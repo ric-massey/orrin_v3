@@ -1,5 +1,5 @@
 """
-brain/peers/emotion_historian.py  —  The Affect Historian
+brain/peers/signal_historian.py  —  The Affect Historian
 
 Watches affective patterns over time: which affect signals are chronically
 elevated, whether the state is stable, and whether the same triggers
@@ -23,11 +23,11 @@ from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
-class EmotionHistorian(BasePeer):
-    name = "emotion_historian"
+class SignalHistorian(BasePeer):
+    name = "signal_historian"
     description = "a presence that holds the longer view of how I feel over time"
     trust = 0.68
-    signal_tags = ["peer", "emotion_historian", "internal"]
+    signal_tags = ["peer", "signal_historian", "internal"]
 
     def should_wake(self, context: Dict[str, Any], cycle: int) -> bool:
         emo = context.get("affect_state") or {}
@@ -38,7 +38,7 @@ class EmotionHistorian(BasePeer):
                     if float(v) > 0.75:
                         return True
                 except Exception as _e:
-                    record_failure("emotion_historian.EmotionHistorian.should_wake", _e)
+                    record_failure("signal_historian.SignalHistorian.should_wake", _e)
         stability = float(emo.get("affect_stability", 1.0) or 1.0)
         if stability < 0.40:
             return True
@@ -87,7 +87,7 @@ class EmotionHistorian(BasePeer):
                     extra_tags=["emotion", "elevated", top_emo],
                 ))
         except Exception as _e:
-            record_failure("emotion_historian.EmotionHistorian.observe", _e)
+            record_failure("signal_historian.SignalHistorian.observe", _e)
 
         # ── Low stability ─────────────────────────────────────────────────────
         try:
@@ -101,7 +101,7 @@ class EmotionHistorian(BasePeer):
                     extra_tags=["emotion", "instability"],
                 ))
         except Exception as _e:
-            record_failure("emotion_historian.EmotionHistorian.observe.2", _e)
+            record_failure("signal_historian.SignalHistorian.observe.2", _e)
 
         # ── Repeated triggers ────────────────────────────────────────────────
         try:
@@ -128,7 +128,7 @@ class EmotionHistorian(BasePeer):
                         # gate — that applies only to person-specific generalizations).
                         self._distill_trigger_rule(context, top_trigger, freq)
         except Exception as _e:
-            record_failure("emotion_historian.EmotionHistorian.observe.3", _e)
+            record_failure("signal_historian.SignalHistorian.observe.3", _e)
 
         return signals
 
@@ -163,12 +163,12 @@ class EmotionHistorian(BasePeer):
                         f"When '{trigger}' is chronically elevated, apply regulation "
                         f"early rather than waiting — it keeps returning."
                     ),
-                    source="peer_emotion_historian",
+                    source="peer_signal_historian",
                     confidence=0.6,
                 )
                 rec["promoted"] = True
-                _log.info("[emotion_historian→rule] distilled chronic '%s' trigger", trigger)
+                _log.info("[signal_historian→rule] distilled chronic '%s' trigger", trigger)
             cands[key] = rec
             save_json(path, cands)
         except Exception as _e:
-            record_failure("emotion_historian.EmotionHistorian._distill_trigger_rule", _e)
+            record_failure("signal_historian.SignalHistorian._distill_trigger_rule", _e)

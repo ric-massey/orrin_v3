@@ -17,7 +17,7 @@ from typing import Any, Dict
 class CycleState:
     # Emotional state — from architecture, not LLM
     affect_description: str = ""           # from emotion_summary.render_affect_state
-    dominant_emotion: str = ""
+    dominant_signal: str = ""
     emotion_intensity: float = 0.0
     valence_summary: str = ""       # valence/activation_level summary line
 

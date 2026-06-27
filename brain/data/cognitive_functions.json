@@ -104,8 +104,8 @@
     "definition": "apply_drive_tensions(context: 'Dict[str, Any]') -> 'List[Dict]'\nCalled each cycle (from select_function).\n    - Computes drive strengths and conflicts.\n    - Bumps uncertainty when drives conflict.\n    - Logs the hottest conflict to working memory (rate-limited).\n    - Sets context[\"_drive_conflicts\"] for finalize/inner_loop.\n    Returns the active conflict list."
   },
   {
-    "name": "apply_emotion_routing",
-    "definition": "apply_emotion_routing(fn_scores: 'Dict[str, float]', affect_state: 'Dict[str, Any]') -> 'Dict[str, float]'\nApply emotion biases to a dict of {fn_name: score} and return adjusted scores.\n    Scores are additive. This should be called after bandit scoring, before selection."
+    "name": "apply_signal_routing",
+    "definition": "apply_signal_routing(fn_scores: 'Dict[str, float]', affect_state: 'Dict[str, Any]') -> 'Dict[str, float]'\nApply emotion biases to a dict of {fn_name: score} and return adjusted scores.\n    Scores are additive. This should be called after bandit scoring, before selection."
   },
   {
     "name": "apply_emotional_contagion",
@@ -528,8 +528,8 @@
     "definition": "emergency_self_modification(context: 'Dict[str, Any]') -> 'str'\nCognition function: crisis-driven self-modification, bypassing normal gates.\n    Available only during sustained extreme emotional states. Carries higher\n    fragmentation cost and is flagged for early re-evaluation."
   },
   {
-    "name": "emotion_bias",
-    "definition": "emotion_bias(fn_name: 'str', affect_state: 'Dict[str, Any]') -> 'float'\nReturn an additive bias for `fn_name` based on current emotional state.\n    Positive = boost, negative = dampen. Range roughly −0.5 to +0.8."
+    "name": "signal_bias",
+    "definition": "signal_bias(fn_name: 'str', affect_state: 'Dict[str, Any]') -> 'float'\nReturn an additive bias for `fn_name` based on current emotional state.\n    Positive = boost, negative = dampen. Range roughly −0.5 to +0.8."
   },
   {
     "name": "encode",

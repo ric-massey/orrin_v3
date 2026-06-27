@@ -7,7 +7,7 @@ import time
 from typing import Any, Dict, List
 
 from brain.utils.json_utils import load_json
-from brain.utils.emotion_utils import dominant_emotion
+from brain.utils.affect_signal_utils import dominant_signal
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
@@ -375,7 +375,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Previously called without reward_signal so it always incremented +1.0 —
         # making it a pure frequency counter, not a learner. Using context["last_reward"]
         # (set by finalize_cycle at end of previous cycle) gives a real outcome signal.
-        dom_emo = dominant_emotion(affect_state)
+        dom_emo = dominant_signal(affect_state)
         if dom_emo:
             try:
                 _last_reward = float(context.get("last_reward") or 0.5)

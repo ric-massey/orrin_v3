@@ -35,7 +35,7 @@ def compute_cycle_state(
     # ── Felt state (rule-based, from affect signal values) ────────────────────
     affect_description = ""
     valence_ctx = ""
-    dominant_emotion = ""
+    dominant_signal = ""
     dominant_intensity = 0.0
     try:
         from brain.affect.affect_summary import (
@@ -48,8 +48,8 @@ def compute_cycle_state(
         # Find dominant affect signal by intensity
         numeric = {k: float(v) for k, v in core.items() if isinstance(v, (int, float))}
         if numeric:
-            dominant_emotion = max(numeric, key=numeric.get)
-            dominant_intensity = numeric[dominant_emotion]
+            dominant_signal = max(numeric, key=numeric.get)
+            dominant_intensity = numeric[dominant_signal]
     except Exception as _e:
         record_failure("state_processor.compute_cycle_state", _e)
 
@@ -88,7 +88,7 @@ def compute_cycle_state(
         context=context,
         core=core,
         emo_state=emo_state,
-        dominant_emotion=dominant_emotion,
+        dominant_signal=dominant_signal,
         dominant_intensity=dominant_intensity,
         tensions=tensions,
         goal=context.get("committed_goal") or {},
@@ -111,7 +111,7 @@ def compute_cycle_state(
 
     salience = CycleState(
         affect_description=affect_description,
-        dominant_emotion=dominant_emotion,
+        dominant_signal=dominant_signal,
         emotion_intensity=dominant_intensity,
         valence_summary=valence_ctx,
         goal_orientation=goal_orientation,
@@ -127,7 +127,7 @@ def compute_cycle_state(
     )
 
     log_private(
-        f"[state_processor] dom={dominant_emotion}({dominant_intensity:.2f}) "
+        f"[state_processor] dom={dominant_signal}({dominant_intensity:.2f}) "
         f"urgency={salience.output_pressure:.2f} express={output_triggered}"
     )
     return salience
@@ -137,7 +137,7 @@ def _compute_output_seed(
     context: Dict[str, Any],
     core: Dict[str, float],
     emo_state: Dict[str, Any],
-    dominant_emotion: str,
+    dominant_signal: str,
     dominant_intensity: float,
     tensions: list,
     goal: Dict[str, Any],

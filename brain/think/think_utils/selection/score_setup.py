@@ -18,7 +18,7 @@ from brain.think.think_utils.selection.scoring import (
 )
 from brain.think.think_utils.selection.state import (
     _get_directive_text, _get_focus_goal_text, _recent_picks_from_ctx,
-    _dominant_emotion_and_stagnation_signal,
+    _dominant_signal_and_stagnation_signal,
 )
 from brain.think.think_utils.selection.candidates import _planned_action_recruitment
 from brain.think.think_utils.selection.catalog import _learned_stats
@@ -45,7 +45,7 @@ def build_score_inputs(
     directive = _get_directive_text()
     focus_goal_text = _get_focus_goal_text()
     recent = _recent_picks_from_ctx(context)
-    dominant, stagnation_signal = _dominant_emotion_and_stagnation_signal(context)
+    dominant, stagnation_signal = _dominant_signal_and_stagnation_signal(context)
     emo_pref = _emotion_pref_scores_for_dominant(actions)
     band_hint = _bandit_hint_scores(actions, feats)
 

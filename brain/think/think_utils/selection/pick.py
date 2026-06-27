@@ -245,7 +245,7 @@ def apply_antirepeat_and_metarut(
 
     # Stagnation signal (Fix #2): drive it from the actual repeat *attempt*
     # detected above, routed through submit_affect so it lands in core_signals
-    # (where _dominant_emotion_and_stagnation_signal reads it first) and persists
+    # (where _dominant_signal_and_stagnation_signal reads it first) and persists
     # across cycles via commit_affect — the old top-level writer in think_module
     # never reached core_signals and stayed pinned at 0.000.
     try:

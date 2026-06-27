@@ -1,5 +1,5 @@
 # threat_detector.py — rule-based threat classification (no LLM)
-from brain.utils.emotion_utils import dominant_emotion
+from brain.utils.affect_signal_utils import dominant_signal
 from brain.utils.log import log_activity
 
 # Thresholds for threat detection
@@ -30,7 +30,7 @@ def process_affective_signals(context):
 
     # Dominant emotion (fallback to 'neutral')
     try:
-        dom = dominant_emotion(affect_state)
+        dom = dominant_signal(affect_state)
     except Exception:
         dom = "neutral"
     context["dominant_affect"] = dom or "neutral"

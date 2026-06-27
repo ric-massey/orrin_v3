@@ -22,7 +22,7 @@ from brain.utils.get_cycle_count import get_cycle_count
 from brain.peers.observer import Observer
 from brain.peers.reward_auditor import RewardAuditor
 from brain.peers.goal_auditor import GoalAuditor
-from brain.peers.emotion_historian import EmotionHistorian
+from brain.peers.signal_historian import SignalHistorian
 from brain.peers.architect import Architect
 
 
@@ -31,7 +31,7 @@ _PEERS = [
     Observer(),
     RewardAuditor(),
     GoalAuditor(),
-    EmotionHistorian(),
+    SignalHistorian(),
     Architect(),
 ]
 

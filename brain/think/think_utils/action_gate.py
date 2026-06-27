@@ -13,7 +13,7 @@ from brain.affect.reward_signals.resource_deficit import update_function_usage_f
 from brain.cog_memory.working_memory import update_working_memory
 from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
 from brain.utils.log import log_private, log_model_issue, log_activity
-from brain.utils.emotion_utils import log_penalty_signal
+from brain.utils.affect_signal_utils import log_penalty_signal
 
 # === NEW: talk policy (hard/soft gating and reply plumbing) ===
 from brain.think.think_utils.talk_policy import (

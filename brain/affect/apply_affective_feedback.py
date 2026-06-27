@@ -1,6 +1,6 @@
 # brain/affect/apply_affective_feedback.py
 from datetime import datetime, timezone
-from brain.utils.emotion_utils import log_penalty_signal, log_uncertainty_spike 
+from brain.utils.affect_signal_utils import log_penalty_signal, log_uncertainty_spike 
 from brain.affect.update_affect_state import update_affect_state
 from brain.affect.modes_and_affect import set_current_mode
 from brain.affect.affect_drift import check_affect_drift
@@ -205,7 +205,7 @@ def apply_affective_feedback(context):
         if isinstance(v, (int, float)) and k not in _NON_EMOTIONS
     }
     top_two = sorted(numeric_emotions.items(), key=lambda x: x[1], reverse=True)[:2]
-    context["dominant_emotions"] = [e[0] for e in top_two]
+    context["dominant_signals"] = [e[0] for e in top_two]
 
     if top_two:
         # Use the mode map rather than raw emotion name — sets a meaningful mode string

@@ -99,9 +99,9 @@ def record_trace(
     ctx = context_snapshot or {}
     emo = ctx.get("affect_state") or {}
     core = emo.get("core_signals") or emo
-    dominant_emotion = ""
+    dominant_signal = ""
     try:
-        dominant_emotion = max(
+        dominant_signal = max(
             {k: float(v) for k, v in core.items() if isinstance(v, (int, float))},
             key=lambda k: core[k],
             default="",
@@ -116,7 +116,7 @@ def record_trace(
         "ts": datetime.now(timezone.utc).isoformat(),
         "fn": fn_name,
         "outcome": round(float(outcome_score), 4),
-        "dominant_affect": dominant_emotion,
+        "dominant_affect": dominant_signal,
         "goal": goal_title[:60],
         "messages": [
             {"role": "system",    "content": system_prompt[:800] if system_prompt else "You are Orrin."},

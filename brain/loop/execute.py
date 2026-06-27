@@ -24,7 +24,7 @@ from brain.cognition.planning.reflection import record_decision
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.json_utils import load_json
 from brain.utils.log import log_error, log_activity, log_model_issue
-from brain.utils.emotion_utils import log_penalty_signal
+from brain.utils.affect_signal_utils import log_penalty_signal
 from brain.utils.error_router import route_exception
 from brain.cognition.repair.auto_repair import try_auto_repair
 from brain.utils.failure_counter import record_failure
@@ -35,7 +35,7 @@ from brain.paths import (
 from brain.loop.telemetry import _push_event, _ui_memory, _bridge
 from brain.loop.invoke import _invoke_cognition
 from brain.loop.cognition_reward import shape_cognition_reward
-from brain.utils.emotion_utils import log_uncertainty_spike
+from brain.utils.affect_signal_utils import log_uncertainty_spike
 from brain.think.loop_helpers import execute_action_via_registries, compute_reward
 
 _log = get_logger(__name__)
@@ -343,7 +343,7 @@ def execute_cognition_function(
             # Detect dispatch-level failure: _invoke_cognition returns
             # {"status": "error", "error": "unsatisfiable_args: [...]"}
             # when a cognitive function's required args can't be filled
-            # from context (e.g. add_goal(goal=), apply_emotion_routing(fn_scores=)).
+            # from context (e.g. add_goal(goal=), apply_signal_routing(fn_scores=)).
             # Without this the bandit was logging "Executed" for non-runs
             # and rewarding them at the 0.20 underperformer floor.
             _dispatch_failed = (

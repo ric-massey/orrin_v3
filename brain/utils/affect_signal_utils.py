@@ -155,7 +155,7 @@ def log_uncertainty_spike(context, increment: float = 0.2):
     log_penalty_signal(context, emotion="uncertainty", increment=increment)
 
 
-def dominant_emotion(affect_state) -> str:
+def dominant_signal(affect_state) -> str:
     """Return the dominant emotion from a full affect_state dict."""
     if not isinstance(affect_state, dict):
         return "neutral"

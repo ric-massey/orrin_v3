@@ -11,7 +11,7 @@ from brain.core.config.settings import model_roles
 from brain.utils.log import log_model_issue, log_activity
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 from brain.paths import KNOWLEDGE
-from brain.utils.emotion_utils import detect_affect_keyword
+from brain.utils.affect_signal_utils import detect_affect_keyword
 
 load_dotenv()
 

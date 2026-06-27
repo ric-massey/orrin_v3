@@ -11,7 +11,7 @@ from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS, _ALWAY
 from brain.think.think_utils.selection.scoring import _emo_mode_function_map  # noqa: F401
 from brain.think.think_utils.selection.state import (  # noqa: F401
     _get_directive_text, _get_focus_goal_text,
-    _dominant_emotion_and_stagnation_signal, _recent_picks_from_ctx,
+    _dominant_signal_and_stagnation_signal, _recent_picks_from_ctx,
 )
 # Workspace→action routing, extracted to selection/routing.py (Phase 4D).
 from brain.think.think_utils.selection.routing import _workspace_routes_for  # noqa: F401
@@ -156,7 +156,7 @@ from brain.think.think_utils.selection.tag_sets import (  # noqa: E402,F401
 
 # Current-state readers, extracted to selection/state.py (Phase 4D).
 from brain.think.think_utils.selection.state import (  # noqa: F401
-    _dominant_emotion, _focus_goal_name,
+    _dominant_signal, _focus_goal_name,
 )
 
 # -------------------- small helpers (additive) --------------------

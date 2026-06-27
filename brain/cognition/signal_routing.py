@@ -1,5 +1,5 @@
 """
-cognition/emotion_routing.py
+cognition/signal_routing.py
 
 Emotion → cognitive policy routing.
 
@@ -57,7 +57,7 @@ _ROUTES = [
 ]
 
 
-def emotion_bias(
+def signal_bias(
     fn_name: str,
     affect_state: Dict[str, Any],
 ) -> float:
@@ -93,12 +93,12 @@ def top_biased_functions(
     Return the top_n function names most strongly biased (positively) by
     the current emotional state. Useful for logging and introspection.
     """
-    scored = [(fn, emotion_bias(fn, affect_state)) for fn in fn_names]
+    scored = [(fn, signal_bias(fn, affect_state)) for fn in fn_names]
     scored.sort(key=lambda x: -x[1])
     return [(fn, b) for fn, b in scored[:top_n] if b > 0.05]
 
 
-def apply_emotion_routing(
+def apply_signal_routing(
     fn_scores: Dict[str, float],
     affect_state: Dict[str, Any],
 ) -> Dict[str, float]:
@@ -108,4 +108,4 @@ def apply_emotion_routing(
     """
     if not affect_state:
         return fn_scores
-    return {fn: score + emotion_bias(fn, affect_state) for fn, score in fn_scores.items()}
+    return {fn: score + signal_bias(fn, affect_state) for fn, score in fn_scores.items()}

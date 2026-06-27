@@ -154,7 +154,7 @@ def _congruent_pick(section: str, emotion: str, intensity: float) -> str:
     return _weighted_choice(pool)
 
 
-def _dominant_emotion(context: Dict[str, Any]) -> str:
+def _dominant_signal(context: Dict[str, Any]) -> str:
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
     if isinstance(core, dict) and core:
@@ -227,7 +227,7 @@ def express(
         log_private("[expression] suppressed — social_penalty (no user input)")
         return ""
 
-    emotion = _dominant_emotion(context)
+    emotion = _dominant_signal(context)
 
     # Compute affective intensity for congruence enforcement
     _emo_intensity = 0.0

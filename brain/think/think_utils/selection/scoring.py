@@ -17,7 +17,7 @@ from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
 from brain.paths import AFFECT_STATE_FILE, EMOTION_FUNCTION_MAP_FILE
 from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS
-from brain.think.think_utils.selection.state import _dominant_emotion
+from brain.think.think_utils.selection.state import _dominant_signal
 from brain.think.think_utils.selection.catalog import _tag_weights
 
 
@@ -88,7 +88,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     Normalizes to [0..1] with a floor, and handles singletons.
     """
     emo_state: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
-    dom = _dominant_emotion()
+    dom = _dominant_signal()
     candidates = (
         (emo_state.get("emotion_function_map") or {}),
         (emo_state.get("function_preferences") or {}),

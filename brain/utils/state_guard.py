@@ -85,7 +85,7 @@ def _sanitize_emotion_state(data: Any) -> Tuple[Dict[str, Any], bool]:
     # Fix top-level emotion keys (used directly by ORRIN_loop.py boot/cycle code)
     changed |= _fix_emotion_dict(data)
 
-    # Fix nested core_signals sub-dict (used by emotion_utils, memory_io, etc.)
+    # Fix nested core_signals sub-dict (used by signal_utils, memory_io, etc.)
     core = data.get("core_signals")
     if isinstance(core, dict):
         changed |= _fix_emotion_dict(core)

@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timezone
 from typing import Dict, Any
 from brain.utils.json_utils import load_json, modify_json, AbortModify
-from brain.utils.emotion_utils import detect_affect_keyword
+from brain.utils.affect_signal_utils import detect_affect_keyword
 from brain.utils.log import log_error, log_private
 from brain.paths import RELATIONSHIPS_FILE
 from brain.utils.failure_counter import record_failure

@@ -230,13 +230,13 @@ def summarize_chat_to_long_memory(
                     labels.append(str(val))
             elif isinstance(e, str):
                 labels.append(e)
-        dominant_emotion = max(set(labels), key=labels.count) if labels else "neutral"
+        dominant_signal = max(set(labels), key=labels.count) if labels else "neutral"
 
         # Route through update_long_memory for dedup and size enforcement
         from brain.cog_memory.long_memory import update_long_memory
         update_long_memory(
             str(summary).strip(),
-            emotion=dominant_emotion,
+            emotion=dominant_signal,
             event_type="chat_summary",
             agent="orrin",
             importance=2,

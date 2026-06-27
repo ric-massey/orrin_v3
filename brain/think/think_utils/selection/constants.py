@@ -16,7 +16,7 @@ _ALWAYS_EXCLUDE = frozenset({
     "add_goal", "add_entity", "add_relation",
     "advance_goal_plan", "adjust_priority",
     "apply_attention_filter", "apply_emotional_contagion",
-    "apply_emotion_routing", "append_death_continuity",
+    "apply_signal_routing", "append_death_continuity",
     "set_goal_plan", "mark_goal_completed", "mark_goal_failed",
     "mark_goal_status_by_name", "merge_updated_goal_into_tree",
     "get_next_pending_step", "get_goal_plan",

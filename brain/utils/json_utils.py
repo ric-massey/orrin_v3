@@ -26,6 +26,10 @@ from brain.utils.json_extract import (  # noqa: E402,F401
     _heal_json_fragment, _salvage_top_level_object, _log_salvage_miss,
     _JSON_ARRAY_VALUE_START,
 )
+# Read-old/write-new persisted-key shim (analogue-removal Phase 4). No-op for any
+# file not in the migration registry, so the cost on the hot read path is one
+# dict lookup. Imported here so json_utils stays the single I/O choke point.
+from brain.data_schema import migrate_loaded
 
 T = TypeVar("T")
 
@@ -172,7 +176,7 @@ def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) 
             except Exception:
                 lock_fd = None  # lock is best-effort; degrade to an unlocked read
         with path.open("r", encoding="utf-8") as f:
-            return cast(T, json.load(f))
+            return cast(T, migrate_loaded(path, json.load(f)))
     except json.JSONDecodeError as e:
         log_model_issue(f"[load_json] Corrupt JSON in {filepath}: {e}")
         # ONE backup attempt only — use stem (strips all suffixes) to avoid
@@ -255,7 +259,7 @@ def modify_json(
                 data: Any = default_type()
             else:
                 with path.open("r", encoding="utf-8") as f:
-                    data = json.load(f)
+                    data = migrate_loaded(path, json.load(f))
         except Exception:
             data = default_type()
 

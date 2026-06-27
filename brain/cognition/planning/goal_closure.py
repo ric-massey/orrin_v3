@@ -11,13 +11,13 @@ the same object, so finalize-once stays coherent across both modules).
 from __future__ import annotations
 
 import copy
-import os
 import time
 from typing import Any, Dict, Optional, Tuple
 
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
 from brain.cog_memory.working_memory import update_working_memory
 from brain.cognition.planning.goals import set_goal_plan
 
@@ -29,30 +29,55 @@ _FINALIZED_IDS: Dict[str, float] = {}
 
 
 def _tier_closure_enabled() -> bool:
-    """Flag gate (house pattern). OFF ⇒ legacy plan-completion gate only."""
-    return os.environ.get("ORRIN_TIER_CLOSURE", "").strip().lower() in ("1", "true", "yes", "on")
+    """Flag gate (house pattern). OFF ⇒ legacy plan-completion gate only.
+
+    Default ON since 2026-06-23 (GOALS_MASTER_PLAN Part I Phase 4): deliberate/core
+    goals close on the underlying need being SATED, not only on plan-completion.
+    Safe to default-on — satiety has a cycle-1 guard and mark_goal_completed still
+    refuses hollow closure. Set ORRIN_TIER_CLOSURE=0 to restore the legacy gate."""
+    return env_bool("ORRIN_TIER_CLOSURE", True)
 
 
 def _survival_preempt_enabled() -> bool:
-    return os.environ.get("ORRIN_SURVIVAL_PREEMPT", "").strip().lower() in ("1", "true", "yes", "on")
+    # Default ON since 2026-06-23: Phase-1 wire + hysteresis verified by
+    # test_survival_preempt_wire.py and a clean headless ORRIN_ONCE run (boots with
+    # the preempt armed, normal cycle, exit 0). Set ORRIN_SURVIVAL_PREEMPT=0 to disable.
+    return env_bool("ORRIN_SURVIVAL_PREEMPT", True)
 
 
-def _survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:
-    """Fix 2 / §4.5 — is a survival/homeostatic drive at a level that must PREEMPT
-    goal pursuit? Strict thresholds (stricter than the new-goal `_under_load` gate):
-    this overrides even an "urgent" stuck goal, enforcing "a never-ending goal can't
-    get in the way of survival." Pursuit YIELDS for the cycle (transient, resumable —
-    not a failure). Fail-safe: any error ⇒ not critical."""
+def _raw_survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:
+    """The instantaneous (un-hysteresis'd) survival-critical test: is a
+    survival/homeostatic drive at a level that must PREEMPT goal pursuit *this
+    cycle*? Strict thresholds (stricter than the new-goal `_under_load` gate): this
+    overrides even an "urgent" stuck goal, enforcing "a never-ending goal can't get
+    in the way of survival." Fail-safe: any error ⇒ not critical."""
     try:
         if context.get("_setpoint_critical") or context.get("health_critical"):
-            return True, "setpoint_critical"
+            return True, str(context.get("_setpoint_critical_reason") or "setpoint_critical")
         if float(context.get("health_score", 1.0) or 1.0) < 0.35:
             return True, "health<0.35"
         af = context.get("affect_state") or {}
         if float(af.get("resource_deficit", 0.0) or 0.0) > 0.85:
             return True, "resource_deficit>0.85"
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad affect/health values → don't force-close
         return False, ""
+    return False, ""
+
+
+def _survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:
+    """Fix 2 / §4.5 — hysteresis wrapper over `_raw_survival_critical`. Pursuit
+    YIELDS for the cycle (transient, resumable — not a failure) only when the raw
+    condition has held for ≥2 consecutive cycles; one clean cycle clears the streak.
+    This stops a vital signal dithering at the threshold from ping-ponging the goal
+    slot every cycle (Phase-1 hysteresis). The streak lives in `context`, which
+    persists across cycles; this is the sole writer. Called once per cycle from
+    goal_execution.pursue_committed_goal."""
+    raw_crit, why = _raw_survival_critical(context)
+    streak = int(context.get("_survival_crit_streak", 0) or 0)
+    streak = streak + 1 if raw_crit else 0
+    context["_survival_crit_streak"] = streak
+    if raw_crit and streak >= 2:
+        return True, why
     return False, ""
 
 
@@ -80,7 +105,7 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
     for _k in [k for k, t in _FINALIZED_IDS.items() if _nowt - t > 3600]:
         _FINALIZED_IDS.pop(_k, None)
     if len(_FINALIZED_IDS) > 256:
-        for _k in sorted(_FINALIZED_IDS, key=_FINALIZED_IDS.get)[:64]:
+        for _k in sorted(_FINALIZED_IDS, key=lambda k: _FINALIZED_IDS[k])[:64]:
             _FINALIZED_IDS.pop(_k, None)
     if _gid and _gid in _FINALIZED_IDS:
         goal["status"] = "completed"   # reflect the already-done close on this stale copy
@@ -88,6 +113,27 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
         return
     if _gid:
         _FINALIZED_IDS[_gid] = _nowt
+
+    # Phase 3 — survival "satiety" doesn't complete-and-vanish; it goes DORMANT and
+    # re-fires when the deficit recurs (hunger returns). Stamp the satisfied time so
+    # the Phase-2 recruiter can honour a minimum re-fire interval. No achievement
+    # reward: survival pays restoration, not the production reward, so it can't become
+    # a cheap reward source that crowds out real work.
+    if str(goal.get("tier") or goal.get("kind") or "").lower() == "survival":
+        goal["status"] = "dormant"
+        goal["_satisfied_ts"] = _nowt
+        try:
+            from brain.cognition.planning.goals import merge_updated_goal_into_tree
+            from brain.cognition.planning import goal_arbiter
+            goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                               source="pursue_goal.survival_dormant")
+        except Exception as _e:
+            record_failure("pursue_goal.survival_dormant.persist", _e)
+        context["committed_goal"] = None
+        log_activity(f"[pursue_goal] survival goal '{goal_title[:50]}' satisfied → "
+                     f"dormant (will re-fire if the deficit returns).")
+        return
+
     try:
         from brain.cognition.planning.goals import mark_goal_completed, merge_updated_goal_into_tree
         from brain.cognition.planning import goal_arbiter
@@ -185,7 +231,7 @@ def _degrade_or_disengage(goal: Dict[str, Any], context: Dict[str, Any],
         from brain.cognition.planning.goal_types import reduced_goal_spec
         from brain.cognition.planning.goals import merge_updated_goal_into_tree, mark_goal_failed
         from brain.cognition.planning import goal_arbiter
-    except Exception:
+    except ImportError:  # intentional: planning modules optional — fall through to normal
         return None
 
     if not goal.get("_degraded"):
@@ -225,6 +271,15 @@ def _degrade_or_disengage(goal: Dict[str, Any], context: Dict[str, Any],
                 record_failure("pursue_goal.degrade.persist", _e)
             return {"status": "degraded", "goal": spec["title"]}
 
+    # Phase 3 — survival goals are NON-DISENGAGEABLE (Wrosch disengagement is adaptive
+    # for *chosen* goals; you don't "give up" on rest). A survival goal may degrade to
+    # a simpler restoration above, but it must never abandon: keep the slot and fall
+    # through to normal handling so pursuit retries rather than failing the goal.
+    if str(goal.get("tier") or goal.get("kind") or "").lower() == "survival":
+        log_activity(f"[pursue_goal] survival goal '{goal_title[:50]}' can't proceed "
+                     f"({reason}) but is non-disengageable — holding, not abandoning.")
+        return None
+
     # Already reduced (or no reduction available) → disengage honestly.
     mark_goal_failed(goal, reason=f"unworkable:{reason}", context=context)
     context["committed_goal"] = None
@@ -247,10 +302,11 @@ def _repromote_if_recovered(goal: Dict[str, Any], context: Dict[str, Any]) -> bo
         return False
     try:
         from brain.cognition.planning.goal_types import required_capability, capability_available
-    except Exception:
+    except ImportError:  # intentional: goal_types optional — can't restore
         return False
 
-    snap = goal.get("_predegrade") if isinstance(goal.get("_predegrade"), dict) else {}
+    _pd = goal.get("_predegrade")
+    snap: Dict[str, Any] = _pd if isinstance(_pd, dict) else {}
     orig_title = snap.get("title") or goal.get("_original_title")
     if not orig_title:
         return False

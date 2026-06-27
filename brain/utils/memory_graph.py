@@ -146,7 +146,7 @@ def get_neighbors(entry_id: str, n: int = 5) -> List[str]:
                     continue
                 try:
                     edge = json.loads(line)
-                except Exception:
+                except json.JSONDecodeError:  # intentional: skip malformed edge line
                     continue
                 if not isinstance(edge, dict):
                     continue
@@ -161,5 +161,6 @@ def get_neighbors(entry_id: str, n: int = 5) -> List[str]:
                     neighbors[other] = max(neighbors.get(other, 0.0), w)
         sorted_n = sorted(neighbors.items(), key=lambda x: x[1], reverse=True)
         return [nid for nid, _ in sorted_n[:n]]
-    except Exception:
+    except Exception as _e:
+        record_failure("memory_graph.get_neighbors", _e)
         return []

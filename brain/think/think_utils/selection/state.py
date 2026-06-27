@@ -17,18 +17,18 @@ from brain.paths import FOCUS_GOAL, AFFECT_STATE_FILE, SELF_MODEL_FILE
 
 
 def _dominant_emotion() -> str:
-    emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    emo: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
     core = emo.get("core_signals", {})
     if isinstance(core, dict) and core:
         try:
-            return max(core.items(), key=lambda kv: kv[1])[0]
+            return str(max(core.items(), key=lambda kv: kv[1])[0])
         except Exception as _e:
             record_failure("select_function._dominant_emotion", _e)
     return str(emo.get("dominant", "neutral"))
 
 
 def _focus_goal_name() -> str:
-    fg = load_json(FOCUS_GOAL, default_type=dict) or {}
+    fg: Dict[str, Any] = load_json(FOCUS_GOAL, default_type=dict) or {}
     try:
         s = extract_current_focus_goal(fg)
         if s:
@@ -39,7 +39,7 @@ def _focus_goal_name() -> str:
 
 
 def _get_directive_text() -> str:
-    sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
+    sm: Dict[str, Any] = load_json(SELF_MODEL_FILE, default_type=dict) or {}
     cd = sm.get("core_directive")
     if isinstance(cd, dict):
         return str(cd.get("statement", "")) or ""
@@ -49,7 +49,7 @@ def _get_directive_text() -> str:
 
 
 def _get_focus_goal_text() -> str:
-    fg = load_json(FOCUS_GOAL, default_type=dict) or {}
+    fg: Dict[str, Any] = load_json(FOCUS_GOAL, default_type=dict) or {}
     try:
         s = extract_current_focus_goal(fg)
         if s:
@@ -64,16 +64,17 @@ def _get_focus_goal_text() -> str:
 def _dominant_emotion_and_stagnation_signal(context: Dict[str, Any] | None = None) -> Tuple[str, float]:
     # Prefer in-memory context so function selection uses the current cycle's
     # emotional state, not the stale disk file from the previous cycle.
+    emo: Dict[str, Any]
     if context is not None:
         emo = context.get("affect_state") or {}
     else:
         emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
     core = emo.get("core_signals", {}) or {}
     stagnation_signal = float(core.get("stagnation_signal", emo.get("stagnation_signal", 0.0)) or 0.0)
-    dom = None
+    dom: str | None = None
     try:
         if isinstance(core, dict) and core:
-            dom = max(core.items(), key=lambda kv: kv[1])[0]
+            dom = str(max(core.items(), key=lambda kv: kv[1])[0])
     except Exception:
         dom = None
     return (dom or str(emo.get("dominant", "neutral"))), max(0.0, min(1.0, stagnation_signal))

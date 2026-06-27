@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 from brain.utils.log import log_activity, log_error
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
 
@@ -62,7 +63,7 @@ def load_traces(min_outcome: float = _MIN_OUTCOME) -> List[Dict]:
                     t = json.loads(line)
                     if float(t.get("outcome", 0)) >= min_outcome:
                         traces.append(t)
-                except Exception:
+                except (ValueError, TypeError):  # intentional: bad trace line → skip
                     continue
     except Exception as e:
         log_error(f"[finetune] trace load failed: {e}")
@@ -116,7 +117,8 @@ def submit_finetune_job(
         if str(_pref("llm_provider", "openai")) != "openai":
             log_activity("[finetune] skipped — fine-tuning is only available with the OpenAI provider.")
             return None
-    except Exception:
+    except Exception as exc:
+        record_failure("finetune_pipeline.consent_gate", exc)
         return None  # fail closed: if we can't confirm consent, don't upload
     try:
         from openai import OpenAI
@@ -133,8 +135,8 @@ def submit_finetune_job(
         try:
             from brain.utils.egress import record as _egress
             _egress("finetune")
-        except Exception:
-            pass
+        except Exception as exc:  # egress ledger best-effort — record
+            record_failure("finetune_pipeline.egress", exc)
 
         job = client.fine_tuning.jobs.create(
             training_file=file_id,

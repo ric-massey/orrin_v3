@@ -24,7 +24,7 @@
 from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from brain.utils.log import log_activity
 from brain.utils.timeutils import now_iso_z
@@ -36,16 +36,18 @@ _V2_TERMINAL = {"DONE", "FAILED", "CANCELLED"}
 _V1_TERMINAL = {"completed", "failed", "abandoned", "cancelled"}
 
 
-def _v2_status_name(g) -> str:
+def _v2_status_name(g: Any) -> str:
     st = getattr(g, "status", None)
-    return getattr(st, "name", str(st or "")).upper()
+    return str(getattr(st, "name", str(st or ""))).upper()
 
 
-def _index_v1(tree: List[Dict[str, Any]]):
-    by_id: Dict[str, Dict] = {}
-    by_title: Dict[str, Dict] = {}
+def _index_v1(
+    tree: List[Dict[str, Any]],
+) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, Dict[str, Any]]]:
+    by_id: Dict[str, Dict[str, Any]] = {}
+    by_title: Dict[str, Dict[str, Any]] = {}
 
-    def walk(nodes):
+    def walk(nodes: Any) -> None:
         for n in nodes or []:
             if isinstance(n, dict):
                 gid = n.get("id")
@@ -124,7 +126,7 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
             elif v1_terminal and not v2_terminal:
                 # orphan-RUNNING — v1 closed it, v2 still NEW/READY/RUNNING/BLOCKED.
                 tgt = "DONE" if v1status == "completed" else "FAILED"
-                if goal_io.close_goal_v2(gid, status=tgt, reason="reconcile_orphan_running"):
+                if goal_io.close_goal_v2(str(gid), status=tgt, reason="reconcile_orphan_running"):
                     repairs += 1
                     log_activity(f"[goal_reconcile] orphan-RUNNING repaired: '{title[:50]}' "
                                  f"closed in v2 ({tgt}).")

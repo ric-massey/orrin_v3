@@ -1,5 +1,6 @@
 from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone, timedelta
+from typing import Any, Tuple
 from brain.utils.load_utils import load_json
 from brain.utils.log import log_activity
 from brain.utils.knowledge_utils import recall_relevant_knowledge
@@ -28,7 +29,7 @@ def _as_strings(items):
     return out
 
 
-def process_inputs(context, raw_signals=None):
+def process_inputs(context: Any, raw_signals: Any = None) -> Tuple[Any, Any]:
     """
     Orrin's signal_router: biologically inspired signal prioritization based on emotion,
     novelty, memory relevance, and dynamic goal context.
@@ -220,7 +221,7 @@ def process_inputs(context, raw_signals=None):
             # a high-salience user or emergency signal by itself.
             base += 0.22 * _lens_rel
             signal["goal_lens_relevance"] = round(_lens_rel, 3)
-        except Exception:
+        except (ImportError, TypeError, ValueError, AttributeError):  # best-effort goal-lens reweight
             pass
         if mode and mode in content:
             base += 0.1

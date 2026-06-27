@@ -23,6 +23,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
@@ -115,7 +116,7 @@ def _temporal_resonance(mem_ts: str) -> float:
         hour_match = abs(mem_dt.hour - now.hour) <= 1
         dow_match  = mem_dt.weekday() == now.weekday()
         return 0.22 if hour_match else (0.10 if dow_match else 0.0)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: bad timestamp → no temporal resonance
         return 0.0
 
 
@@ -132,7 +133,7 @@ def _recency_decay(mem_ts: str) -> float:
             mem_dt = mem_dt.replace(tzinfo=timezone.utc)
         age_days = (datetime.now(timezone.utc) - mem_dt).total_seconds() / 86400
         return max(0.4, 1.0 - 0.08 * math.log1p(age_days))
-    except Exception:
+    except (ValueError, TypeError):  # intentional: bad timestamp → neutral decay
         return 0.7
 
 
@@ -173,7 +174,8 @@ def _wm_words(n_recent: int = 6) -> frozenset:
                 if len(clean) > 3 and clean not in _STOPWORDS:
                     words.add(clean)
         return frozenset(words)
-    except Exception:
+    except Exception as exc:  # WM read failed — record, no association words
+        record_failure("associative_memory._wm_words", exc)
         return frozenset()
 
 

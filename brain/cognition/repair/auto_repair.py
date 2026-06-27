@@ -39,7 +39,7 @@ _log = get_logger(__name__)
 def _clear_selector_cache() -> None:
     """Clear any cached action list in the selector (if present)."""
     try:
-        from brain.think.think_utils.select_function import _load_actions  # type: ignore
+        from brain.think.think_utils.select_function import _load_actions
         if hasattr(_load_actions, "cache_clear"):
             _load_actions.cache_clear()  # only if wrapped in lru_cache
     except Exception as _e:

@@ -18,8 +18,14 @@ from pathlib import Path
 
 from fastapi import WebSocket
 
+import logging
+
+from brain.utils.failure_counter import record_failure
+
 from .config import HISTORY_CAP, INPUT_CAP, LOG_CAP, LOOP_NODES, MEMORY_CAP, METRIC_CAP
-from .schema import LATEST_WINS_KEYS
+from .schema import LATEST_WINS_KEYS, validate_frame
+
+_log = logging.getLogger(__name__)
 
 # Persist the metric history across restarts so the System Metrics chart is
 # CONTINUOUS — it doesn't blank out every time the brain/telemetry process bounces.
@@ -37,15 +43,15 @@ def _load_history() -> List[Dict[str, Any]]:
     try:
         d = json.loads(_HISTORY_FILE.read_text("utf-8"))
         return d if isinstance(d, list) else []
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/bad history on first run → empty
         return []
 
 
 def _save_history(points: List[Dict[str, Any]]) -> None:
     try:
         _HISTORY_FILE.write_text(json.dumps(points[-HISTORY_CAP:]), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # history persist best-effort — record
+        record_failure("hub._save_history", exc)
 
 
 def _archive_points(points: List[Dict[str, Any]]) -> None:
@@ -56,8 +62,8 @@ def _archive_points(points: List[Dict[str, Any]]) -> None:
         with _ARCHIVE_FILE.open("a", encoding="utf-8") as fh:
             for p in points:
                 fh.write(json.dumps(p) + "\n")
-    except Exception:
-        pass
+    except Exception as exc:  # archive append best-effort — record
+        record_failure("hub._archive_points", exc)
 
 
 def clamp01(v: Any) -> float:
@@ -110,6 +116,7 @@ class Hub:
             "monitor": None,       # Monitor breakthroughs + watchdog board
             "workspace": None,     # Global Workspace winner (+candidates)
             "interoception": None, # live per-act cost model (Fix 7)
+            "llm_cost": None,      # reasoning-cache health + symbolic-vs-LLM ratio
             "updated_at": time.time(),
         }
         # Sliding affect/metric history replayed to new clients so the Brain
@@ -119,6 +126,7 @@ class Hub:
         if self.history:
             self.state["metric_series"] = list(self.history)[-METRIC_CAP:]
         self._hist_writes = 0
+        self._contract_warnings = 0  # capped count of wire-contract violations (Phase 5.2)
         self._archive_buf: List[Dict[str, Any]] = []  # points pending archive flush
         # User inputs from the Face awaiting the core loop, and agent replies
         # awaiting Face pickup (the closed integration loop).
@@ -147,8 +155,8 @@ class Hub:
         for fn in list(self._sinks):
             try:
                 fn(payload)
-            except Exception:
-                pass
+            except Exception as exc:  # injected sink raised — record, fan out to the rest
+                record_failure("hub.publish_sync", exc)
 
     # ── connection lifecycle ─────────────────────────────────────────────────
     async def connect(self, ws: WebSocket) -> None:
@@ -166,7 +174,8 @@ class Hub:
         try:
             await ws.send_json(payload)
             return True
-        except Exception:
+        except Exception:  # client gone/unwritable — prune it (any send error means dead)
+            _log.debug("telemetry client send failed; pruning")
             return False
 
     async def broadcast(self, payload: Dict[str, Any]) -> None:
@@ -188,6 +197,18 @@ class Hub:
     # ── state merge ──────────────────────────────────────────────────────────
     def merge(self, frame: Dict[str, Any]) -> Dict[str, Any]:
         """Fold a partial frame into the latest state; return the delta to broadcast."""
+        # Producer-side boundary validation (Phase 5.2): check the frame against the
+        # wire contract (schema.TelemetryFrame) before it enters the rolling state.
+        # Non-fatal — telemetry must never crash the loop — so a contract violation
+        # is logged loudly (capped) and the frame is still merged. This catches a
+        # genuine type error (a string where a float belongs) at the producer, the
+        # symmetric half of the frontend's zod check at the consumer.
+        errs = validate_frame(frame)
+        if errs:
+            self._contract_warnings += 1
+            if self._contract_warnings <= 25:
+                _log.warning("telemetry frame violates the wire contract: %s", "; ".join(errs[:5]))
+
         s = self.state
         delta: Dict[str, Any] = {}
 

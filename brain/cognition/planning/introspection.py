@@ -30,7 +30,7 @@ from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
-def _coerce_list(x) -> List[Any]:
+def _coerce_list(x: Any) -> List[Any]:
     if isinstance(x, list):
         return x
     if x is None:
@@ -74,7 +74,7 @@ def _rule_based_introspection() -> Dict[str, Any]:
     current_goals = _coerce_list(load_json(GOALS_FILE, default_type=list))
 
     # ── 1) Goal maintenance — a real, conservative update driven by goal state ──
-    kept: List[Dict] = []
+    kept: List[Dict[str, Any]] = []
     pruned = 0
     flagged = 0
     for g in current_goals:
@@ -147,7 +147,7 @@ def introspective_planning() -> Dict[str, Any]:
         missed  = reflect_on_missed_goals()
 
         # Model config (defensive)
-        cfg = load_json(MODEL_CONFIG_FILE, default_type=dict)
+        cfg: Dict[str, Any] = load_json(MODEL_CONFIG_FILE, default_type=dict)
         thinking_cfg = {}
         if isinstance(cfg, dict):
             thinking_cfg = dict(cfg.get("thinking", {})) if isinstance(cfg.get("thinking"), dict) else {}

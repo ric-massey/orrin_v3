@@ -100,7 +100,7 @@ def gather_signals(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     for emotion, value in emo_iter:
         try:
             v = float(value)
-        except Exception:
+        except (ValueError, TypeError):  # intentional: non-numeric signal value → skip
             continue
         if v > 0.6:
             signals.append(

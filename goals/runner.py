@@ -8,22 +8,20 @@ import threading
 import time
 from dataclasses import replace
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, cast
 
 from .model import Goal, Step, Status
 from .handlers.base import GoalHandler, HandlerContext
 from . import metrics as metrics_mod
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 def _dbg_enabled() -> bool:
-    try:
-        return os.getenv("GOALS_DEBUG", "0") not in ("0", "", "false", "False")
-    except Exception:
-        return False
+    return os.getenv("GOALS_DEBUG", "0") not in ("0", "", "false", "False")
 
-def _dbg(*a):
+def _dbg(*a: Any) -> None:
     if _dbg_enabled():
         try:
             print("[runner]", *a, flush=True)
@@ -33,18 +31,19 @@ def _dbg(*a):
 # ---------- minimal duck-typed store helpers ----------
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     return []  # graceful fallback
 
 
 def _get_goal(store: Any, goal_id: str) -> Optional[Goal]:
     if hasattr(store, "get_goal"):
-        return store.get_goal(goal_id)
+        return cast(Optional[Goal], store.get_goal(goal_id))
     for g in _iter_goals(store):
         if g.id == goal_id:
             return g
@@ -71,7 +70,7 @@ def _upsert_step(store: Any, step: Step) -> None:
 
 def _list_steps(store: Any, goal_id: Optional[str] = None) -> List[Step]:
     if hasattr(store, "steps_for"):
-        return store.steps_for(goal_id)
+        return cast(List[Step], store.steps_for(goal_id))
     if hasattr(store, "iter_steps"):
         out: List[Step] = []
         for s in store.iter_steps():
@@ -80,7 +79,7 @@ def _list_steps(store: Any, goal_id: Optional[str] = None) -> List[Step]:
             out.append(s)
         return out
     if hasattr(store, "list_steps"):
-        return store.list_steps(goal_id=goal_id)
+        return cast(List[Step], store.list_steps(goal_id=goal_id))
     return []
 
 
@@ -189,7 +188,7 @@ class StepRunner:
     def queue_size(self) -> int:
         try:
             return self.q.qsize()
-        except Exception:
+        except NotImplementedError:  # intentional: qsize unsupported on some platforms (macOS) → 0
             return 0
 
     def _set_worker_metrics(self, active: Optional[int] = None) -> None:
@@ -445,7 +444,7 @@ class StepRunner:
                 try:
                     h = fn(goal.kind)
                     if h:
-                        return h
+                        return cast("Optional[GoalHandler]", h)
                 except Exception as _e:
                     _log.warning("silent except: %s", _e)
         for attr in ("by_kind", "handlers", "registry", "_by_kind", "_handlers"):
@@ -453,9 +452,9 @@ class StepRunner:
             if isinstance(m, dict):
                 h = m.get(goal.kind)
                 if h:
-                    return h
+                    return cast("Optional[GoalHandler]", h)
         if isinstance(reg, dict):
-            return reg.get(goal.kind)  # type: ignore[index]
+            return cast("Optional[GoalHandler]", reg.get(goal.kind))
         return None
 
     def _handler_ctx(self, goal: Goal) -> HandlerContext:

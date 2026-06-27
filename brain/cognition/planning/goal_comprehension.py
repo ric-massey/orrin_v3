@@ -28,7 +28,8 @@ _MODEL_FIELDS = (
 
 
 def _text(goal: Dict[str, Any]) -> str:
-    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    spec_raw = goal.get("spec")
+    spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
     return " ".join(str(v or "") for v in (
         goal.get("title"), goal.get("name"), goal.get("description"), spec.get("description")
     )).strip()
@@ -39,7 +40,7 @@ def _criterion(text: str, *, kind: str = "quality", target: Any = True) -> Dict[
 
 
 def _plan_step(text: str, *, production: bool = False) -> Dict[str, Any]:
-    step = {"step": text[:240], "status": "pending", "generated_at": now_iso_z()}
+    step: Dict[str, Any] = {"step": text[:240], "status": "pending", "generated_at": now_iso_z()}
     if production:
         step["action"] = {
             "function": "compose_section",

@@ -425,7 +425,8 @@ def get_person_display_name(person_id: str) -> str:
     try:
         persons = _load()
         return persons.get(person_id, {}).get("display_name", "them") or "them"
-    except Exception:
+    except Exception as _e:
+        record_failure("person_detector.get_person_display_name", _e)
         return "them"
 
 
@@ -433,7 +434,8 @@ def get_person_type(person_id: str) -> str:
     """Return 'human' | 'ai_peer' | 'unknown' for a person_id."""
     try:
         return _load().get(person_id, {}).get("person_type", "unknown")
-    except Exception:
+    except Exception as _e:
+        record_failure("person_detector.get_person_type", _e)
         return "unknown"
 
 

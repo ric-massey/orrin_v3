@@ -4,18 +4,25 @@
 import pytest
 
 import brain.cognition.opinions as O
+import brain.cognition.opinions_store as OS
 
 
 @pytest.fixture(autouse=True)
 def _isolate_opinion_files(monkeypatch, tmp_path):
-    monkeypatch.setattr(O, "OPINIONS_FILE", tmp_path / "opinions.json")
-    monkeypatch.setattr(O, "WORKING_MEMORY_FILE", tmp_path / "wm.json")
-    monkeypatch.setattr(O, "LONG_MEMORY_FILE", tmp_path / "lm.json")
-    # Reversal records must not touch the live long memory in tests.
+    # The storage + evidence ledger moved to opinions_store (Phase 4.5C); patch
+    # the file paths + memory side-channels on BOTH modules so whichever holds
+    # the live reference (store for _load/_save/add_evidence) is isolated.
     written = []
-    monkeypatch.setattr(O, "update_long_memory",
-                        lambda *a, **k: written.append((a, k)))
-    monkeypatch.setattr(O, "update_working_memory", lambda *a, **k: None)
+    for mod in (O, OS):
+        for attr, val in (
+            ("OPINIONS_FILE", tmp_path / "opinions.json"),
+            ("WORKING_MEMORY_FILE", tmp_path / "wm.json"),
+            ("LONG_MEMORY_FILE", tmp_path / "lm.json"),
+            ("update_long_memory", lambda *a, **k: written.append((a, k))),
+            ("update_working_memory", lambda *a, **k: None),
+        ):
+            if hasattr(mod, attr):
+                monkeypatch.setattr(mod, attr, val)
     yield written
 
 

@@ -269,7 +269,7 @@ def synthesise_rules(*, force: bool = False) -> Dict:
     try:
         from brain.symbolic.rule_engine import get_all_rules, add_rule, SYMBOLIC_RULES_FILE
         from brain.utils.json_utils import save_json as _sj
-    except Exception as e:
+    except ImportError as e:  # intentional: rule_engine optional → report, no synthesis
         return {"error": str(e)}
 
     all_rules   = get_all_rules()
@@ -360,5 +360,6 @@ def get_principle_for(query: str) -> Optional[Dict]:
         if not scored:
             return None
         return max(scored, key=lambda x: x[1])[0]
-    except Exception:
+    except Exception as _e:
+        record_failure("rule_synthesis.get_principle_for", _e)
         return None

@@ -26,6 +26,7 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_private
 from brain.paths import DATA_DIR
 from brain.cognition.body_band import BodyBands
@@ -74,8 +75,8 @@ def _nudge(context: Dict, key: str, delta: float, source: str) -> None:
     try:
         from brain.affect.arbiter import submit_affect
         submit_affect(context, key, delta, weight=0.5, source=source, ttl_cycles=3)
-    except Exception:
-        pass
+    except Exception as exc:  # affect nudge best-effort — record
+        record_failure("host_interoception._nudge", exc)
 
 
 def update_host_interoception(context: Dict) -> Dict:
@@ -147,8 +148,8 @@ def update_host_interoception(context: Dict) -> Dict:
 
     try:
         bands.save()
-    except Exception:
-        pass
+    except Exception as exc:  # band persist best-effort — record
+        record_failure("host_interoception.update.bands_save", exc)
 
     log_private(
         f"[host_interoception] {felt} "

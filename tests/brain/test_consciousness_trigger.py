@@ -4,13 +4,7 @@
 # Covers: all 10 priority conditions, the floor rule, edge cases with missing/None data.
 
 from __future__ import annotations
-import sys
-from pathlib import Path
 from unittest.mock import patch
-
-BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
 
 from brain.think.consciousness_trigger import (
     should_think,

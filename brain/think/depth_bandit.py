@@ -83,7 +83,8 @@ def choose_rounds() -> int:
                        for a in _ROUND_ARMS)
         )
         return best_arm
-    except Exception:
+    except Exception as _e:
+        record_failure("depth_bandit.choose_rounds", _e)
         return 4
 
 
@@ -115,5 +116,6 @@ def arm_summary() -> Dict[str, Dict]:
     """Return a readable snapshot for dashboards / logs."""
     try:
         return _load()
-    except Exception:
+    except Exception as _e:
+        record_failure("depth_bandit.arm_summary", _e)
         return {}

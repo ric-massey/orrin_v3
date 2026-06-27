@@ -7,11 +7,11 @@ from typing import Any, Dict, Optional, List
 
 try:
     # Prefer modern draft validator if present
-    from jsonschema import Draft202012Validator as _Validator  # type: ignore
+    from jsonschema import Draft202012Validator as _Validator
     _JSONSCHEMA_AVAILABLE = True
 except Exception:  # pragma: no cover
     _JSONSCHEMA_AVAILABLE = False
-    _Validator = None  # type: ignore
+    _Validator = None
 
 
 # ---------------------------
@@ -88,7 +88,7 @@ _SCHEMA_GOAL_SPEC_GENERIC: Dict[str, Any] = {
 _SCHEMA_GOAL_SPEC_CODING: Dict[str, Any] = {
     **_SCHEMA_GOAL_SPEC_GENERIC,
     "properties": {
-        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],  # type: ignore[index]
+        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],
         "repo": {"type": "string"},
         "branch": {"type": "string"},
         "allow_dirty": {"type": "boolean"},
@@ -113,7 +113,7 @@ _SCHEMA_GOAL_SPEC_CODING: Dict[str, Any] = {
 _SCHEMA_GOAL_SPEC_RESEARCH: Dict[str, Any] = {
     **_SCHEMA_GOAL_SPEC_GENERIC,
     "properties": {
-        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],  # type: ignore[index]
+        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],
         "queries": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
         "urls": {"type": "array", "items": {"type": "string", "format": "uri"}},
         "per_query_k": {"type": "integer", "minimum": 1, "maximum": 25},
@@ -129,7 +129,7 @@ _SCHEMA_GOAL_SPEC_RESEARCH: Dict[str, Any] = {
 _SCHEMA_GOAL_SPEC_HOUSEKEEPING: Dict[str, Any] = {
     **_SCHEMA_GOAL_SPEC_GENERIC,
     "properties": {
-        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],  # type: ignore[index]
+        **_SCHEMA_GOAL_SPEC_GENERIC["properties"],
         "tasks": {"type": "array", "items": {"type": "string"}},
         "opts": {"type": "object"},
         "repo": {"type": "string"},
@@ -152,13 +152,13 @@ _SCHEMA_ACTION_GENERIC: Dict[str, Any] = {
 _CODING_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
     "git_status_clean": {
         **_SCHEMA_ACTION_GENERIC,
-        "properties": {**_SCHEMA_ACTION_GENERIC["properties"]},  # type: ignore[index]
+        "properties": {**_SCHEMA_ACTION_GENERIC["properties"]},
     },
     "git_branch": {
         **_SCHEMA_ACTION_GENERIC,
         "required": ["op", "branch"],
         "properties": {
-            **_SCHEMA_ACTION_GENERIC["properties"],  # type: ignore[index]
+            **_SCHEMA_ACTION_GENERIC["properties"],
             "branch": {"type": "string", "minLength": 1},
         },
     },
@@ -166,7 +166,7 @@ _CODING_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
         **_SCHEMA_ACTION_GENERIC,
         "required": ["op", "files"],
         "properties": {
-            **_SCHEMA_ACTION_GENERIC["properties"],  # type: ignore[index]
+            **_SCHEMA_ACTION_GENERIC["properties"],
             "files": {"type": "object", "patternProperties": {".+": {"type": "string"}}, "additionalProperties": False},
             "commit_message": {"type": "string"},
         },
@@ -175,7 +175,7 @@ _CODING_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
         **_SCHEMA_ACTION_GENERIC,
         "required": ["op", "diff"],
         "properties": {
-            **_SCHEMA_ACTION_GENERIC["properties"],  # type: ignore[index]
+            **_SCHEMA_ACTION_GENERIC["properties"],
             "diff": {"type": "string", "minLength": 1},
             "commit_message": {"type": "string"},
         },
@@ -184,14 +184,14 @@ _CODING_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
         **_SCHEMA_ACTION_GENERIC,
         "required": ["op", "cmd"],
         "properties": {
-            **_SCHEMA_ACTION_GENERIC["properties"],  # type: ignore[index]
+            **_SCHEMA_ACTION_GENERIC["properties"],
             "cmd": {"type": "string", "minLength": 1},
             "timeout": {"type": "integer", "minimum": 1},
         },
     },
     "summarize": {
         **_SCHEMA_ACTION_GENERIC,
-        "properties": {**_SCHEMA_ACTION_GENERIC["properties"]},  # type: ignore[index]
+        "properties": {**_SCHEMA_ACTION_GENERIC["properties"]},
     },
 }
 
@@ -208,16 +208,16 @@ _RESEARCH_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
 
 # Housekeeping ops
 _HOUSEKEEPING_OP_SCHEMAS: Dict[str, Dict[str, Any]] = {
-    "snapshot_goals": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "prune_goals_wal": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "snapshot_memory": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "prune_memory_wal": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "vacuum_logs": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "clean_tmp": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
+    "snapshot_goals": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "prune_goals_wal": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "snapshot_memory": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "prune_memory_wal": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "vacuum_logs": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "clean_tmp": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
     "pip_check": {**_SCHEMA_ACTION_GENERIC},
-    "pytest_smoke": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "ruff_lint": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
-    "ruff_format": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},  # type: ignore[index]
+    "pytest_smoke": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "ruff_lint": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
+    "ruff_format": {**_SCHEMA_ACTION_GENERIC, "properties": {**_SCHEMA_ACTION_GENERIC["properties"], "opts": {"type": "object"}}},
     "reindex_memory": {**_SCHEMA_ACTION_GENERIC},
 }
 

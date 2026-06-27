@@ -195,7 +195,7 @@ def _get_bandit_count(name: str) -> int:
         from brain.think.bandit.contextual_bandit import get_state
         st = get_state()
         return int((st.get("counts") or {}).get(name, 0))
-    except Exception:
+    except ImportError:  # intentional: bandit unavailable → count 0
         return 0
 
 
@@ -226,7 +226,7 @@ def assess_innovation_outcomes(context: Dict[str, Any] = None) -> str:
     try:
         from brain.think.bandit.contextual_bandit import get_state
         bandit_st = get_state()
-    except Exception:
+    except ImportError:  # intentional: bandit unavailable — can't assess
         return "assess_innovation_outcomes: could not read bandit state."
 
     counts = bandit_st.get("counts") or {}

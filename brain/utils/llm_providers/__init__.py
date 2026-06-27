@@ -76,7 +76,7 @@ def _key_for(provider_id: str) -> Optional[str]:
     try:
         from brain.utils import secrets
         return secrets.get_key(name)
-    except Exception:
+    except (ImportError, OSError):  # intentional: secret store unavailable → None
         return None
 
 

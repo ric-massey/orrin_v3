@@ -31,7 +31,7 @@ def _dreaming_now() -> bool:
     try:
         from brain.cognition.dreaming.dream_cycle import dreaming_now
         return bool(dreaming_now())
-    except Exception:
+    except ImportError:  # intentional: dream daemon optional → not dreaming
         return False
 
 

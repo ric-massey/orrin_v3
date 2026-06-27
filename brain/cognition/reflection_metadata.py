@@ -28,6 +28,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from brain.utils.log import log_private
+from brain.utils.failure_counter import record_failure
 
 _CONFIDENCE_SOURCES = {
     "working_memory": 0.40,    # derived from WM — recent but volatile
@@ -161,7 +162,8 @@ def audit_reflective_claims(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             if meta.get("validation_status") == "unvalidated" and meta.get("grounding_needed"):
                 weak.append({**entry, "_audit": "grounding_needed"})
         return weak
-    except Exception:
+    except Exception as _e:
+        record_failure("reflection_metadata.audit_reflective_claims", _e)
         return []
 
 
@@ -191,5 +193,6 @@ def validate_claim(claim_id: str, status: str, evidence: str = "") -> bool:
         if updated:
             save_json(LONG_MEMORY_FILE, lm)
         return updated
-    except Exception:
+    except Exception as _e:
+        record_failure("reflection_metadata.validate_claim", _e)
         return False

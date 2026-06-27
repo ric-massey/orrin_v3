@@ -8,7 +8,7 @@ import threading
 import uuid
 from dataclasses import replace
 from datetime import datetime, timezone
-from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, cast
 
 from .model import Goal, Status, Priority, Progress
 _log = get_logger(__name__)
@@ -40,7 +40,7 @@ def _parse_deadline(deadline: Optional[Any]) -> Optional[datetime]:
                 s = s[:-1] + "+00:00"
             dt = datetime.fromisoformat(s)
             return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unparseable timestamp → None
             return None
     return None
 
@@ -56,7 +56,7 @@ def _to_priority(p: Any) -> Priority:
         try:
             # allow "0/1/2/3" strings
             return Priority(int(s))
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unknown priority → NORMAL
             return Priority.NORMAL
     if isinstance(p, (int, float)):
         # Clamp into the enum's range: v1 cognition uses a 1–5 priority scale,
@@ -85,22 +85,24 @@ def _store_upsert(store: Any, goal: Goal) -> None:
 
 
 def _store_get(store: Any, goal_id: str) -> Optional[Goal]:
+    # store is duck-typed across GoalsStore implementations; cast the recognized
+    # accessor's result back to the declared contract.
     if hasattr(store, "get_goal"):
-        return store.get_goal(goal_id)
+        return cast(Optional[Goal], store.get_goal(goal_id))
     if hasattr(store, "by_id"):
-        return store.by_id(goal_id)
+        return cast(Optional[Goal], store.by_id(goal_id))
     if hasattr(store, "find_goal"):
-        return store.find_goal(goal_id)
+        return cast(Optional[Goal], store.find_goal(goal_id))
     raise AttributeError("GoalsStore does not expose get/by_id/find APIs I recognize")
 
 
 def _store_iter(store: Any) -> Iterable[Goal]:
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     raise AttributeError("GoalsStore does not expose iter/list/all APIs I recognize")
 
 
@@ -266,7 +268,7 @@ class GoalsAPI:
             keyrev = True
             keyname = sort[1:]
 
-        def _key(g: Goal):
+        def _key(g: Goal) -> Any:
             return getattr(g, keyname, None)
 
         items.sort(key=_key, reverse=keyrev)
@@ -321,7 +323,8 @@ class GoalsAPI:
         for cb in subs:
             try:
                 cb(event)
-            except Exception:
+            except Exception as _e:  # a subscriber raised — log, keep notifying the rest
+                _log.warning("goal-event subscriber raised: %s", _e)
                 continue
         # Send to reaper/observability if provided
         if callable(self.reaper_sink):

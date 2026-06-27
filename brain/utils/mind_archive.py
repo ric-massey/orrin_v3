@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 import brain.paths as paths
+from brain.utils.failure_counter import record_failure
 
 # Bump when the on-disk layout changes in a way restore must reason about (§10.7).
 MIND_SCHEMA_VERSION = 1
@@ -78,7 +79,7 @@ def _born_at() -> str:
     try:
         ls = json.loads((paths.DATA_DIR / "lifespan.json").read_text("utf-8"))
         return str(ls.get("born_at") or "")
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/bad lifespan on newborn → unknown
         return ""
 
 
@@ -89,7 +90,8 @@ def _state_schema_version() -> int:
     try:
         from brain.utils import schema_migration as _sm
         return int(_sm.read_version())
-    except Exception:
+    except Exception as exc:  # schema-version read failed — record, assume v1
+        record_failure("mind_archive._state_schema_version", exc)
         return 1
 
 
@@ -110,8 +112,8 @@ def export_bytes() -> bytes:
     try:
         from memory.wal import flush as _wal_flush
         _wal_flush()
-    except Exception:
-        pass
+    except Exception as exc:  # WAL flush best-effort before capture — record
+        record_failure("mind_archive.export_bytes.wal_flush", exc)
 
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
@@ -142,6 +144,7 @@ def validate(archive: bytes) -> Tuple[bool, str, Dict[str, Any]]:
                 return False, "not an Orrin mind archive (no meta.json)", {}
             meta = json.loads(zf.read("meta.json"))
     except Exception as e:
+        record_failure("mind_archive.validate", e)
         return False, f"unreadable archive: {e}", {}
     sv = int(meta.get("schema_version") or 0)
     if sv > MIND_SCHEMA_VERSION:
@@ -180,8 +183,8 @@ def import_archive(archive: bytes) -> Dict[str, Any]:
     snap = _snapshot_dir() / f"pre-restore-{time.strftime('%Y%m%d-%H%M%S')}.orrindmind"
     try:
         snap.write_bytes(export_bytes())
-    except Exception:
-        pass  # snapshot is best-effort; validation already passed
+    except Exception as exc:  # snapshot best-effort (validation already passed) — record
+        record_failure("mind_archive.import_archive.snapshot", exc)
 
     # 2. Clear the target roots and extract the archive into them.
     import shutil
@@ -200,8 +203,8 @@ def import_archive(archive: bytes) -> Dict[str, Any]:
                         continue
                     try:
                         shutil.rmtree(child, ignore_errors=True) if child.is_dir() else child.unlink(missing_ok=True)
-                    except Exception:
-                        pass
+                    except Exception as exc:  # one child clear failed — record, continue
+                        record_failure("mind_archive.import_archive.clear", exc)
             target.mkdir(parents=True, exist_ok=True)
         for info in zf.infolist():
             if info.is_dir() or "/" not in info.filename:

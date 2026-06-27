@@ -201,7 +201,7 @@ def _query_causal_context(pattern_key: str) -> List[str]:
             evidence.append(f"causal: {pattern_key} leads to '{e['effect']}' "
                             f"(score={e.get('causal_score', 0):.2f}, n={e.get('evidence_count', 0)})")
         return evidence
-    except Exception:
+    except (ImportError, KeyError, TypeError):  # intentional: causal graph unavailable/malformed → no evidence
         return []
 
 

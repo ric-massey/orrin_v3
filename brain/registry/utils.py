@@ -22,8 +22,7 @@ def safe_import(module_name: str) -> Optional[ModuleType]:
     """Import a module, returning None on failure (quietly)."""
     try:
         return importlib.import_module(module_name)
-    except Exception:
-        # You could log here if desired
+    except ImportError:  # intentional: module absent → None (quiet optional-import probe)
         return None
 
 def extract_callables(

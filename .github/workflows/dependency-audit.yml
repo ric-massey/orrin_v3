@@ -1,0 +1,79 @@
+name: dependency-audit
+
+# CODEBASE_CLEANUP_PLAN Phase 7 — "dependency vulnerability and outdated-package
+# reporting." This is REPORTING, not a hard gate: the steps are
+# `continue-on-error` so a freshly-disclosed CVE in a transitive dep can't break
+# every unrelated PR. The signal shows up in the job summary; promote a specific
+# advisory to blocking by pinning/upgrading the dep, not by failing the build.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly Monday 06:00 UTC, so new advisories surface even without a push.
+    - cron: "0 6 * * 1"
+
+jobs:
+  python:
+    name: python (pip-audit + outdated)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install runtime deps + auditor
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r backend/requirements.txt
+          pip install pip-audit
+
+      - name: pip-audit (known vulnerabilities)
+        continue-on-error: true
+        run: pip-audit --desc --progress-spinner off | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Outdated direct dependencies
+        continue-on-error: true
+        run: |
+          echo '### Outdated Python packages' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          pip list --outdated >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+  frontend:
+    name: frontend (npm audit + outdated)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm audit (known vulnerabilities)
+        continue-on-error: true
+        run: |
+          echo '### npm audit' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          npm audit --omit=dev >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Outdated frontend dependencies
+        continue-on-error: true
+        run: |
+          echo '### Outdated npm packages' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          npm outdated >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"

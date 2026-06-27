@@ -87,7 +87,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     - Then (fallback) look inside EMOTION_FUNCTION_MAP_FILE if present.
     Normalizes to [0..1] with a floor, and handles singletons.
     """
-    emo_state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    emo_state: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
     dom = _dominant_emotion()
     candidates = (
         (emo_state.get("emotion_function_map") or {}),
@@ -97,7 +97,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     pref: Dict[str, float] = {}
     for block in candidates:
         if isinstance(block, dict) and isinstance(block.get(dom), dict):
-            for fn, wt in block[dom].items():  # type: ignore[index]
+            for fn, wt in block[dom].items():
                 if fn in actions and isinstance(wt, (int, float)):
                     pref[fn] = float(wt)
             break
@@ -105,7 +105,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     # 🔁 fallback: dedicated map file produced by update_affect_function_map(...)
     if not pref and EMOTION_FUNCTION_MAP_FILE:
         try:
-            external_map = load_json(EMOTION_FUNCTION_MAP_FILE, default_type=dict) or {}
+            external_map: Dict[str, Any] = load_json(EMOTION_FUNCTION_MAP_FILE, default_type=dict) or {}
             block = external_map.get(dom)
             if isinstance(block, dict):
                 for fn, wt in block.items():
@@ -215,12 +215,12 @@ def _bandit_pick_with_info(actions: List[str], feats: Dict[str, float]) -> Tuple
     if hasattr(bandit, "choose"):
         # Prefer newer signature that can return scores
         try:
-            picked, info = bandit.choose(actions, feats, return_scores=True)  # type: ignore
+            picked, info = bandit.choose(actions, feats, return_scores=True)
             if not isinstance(info, dict):
                 info = {"_info": info}
             return picked, info
         except TypeError:
-            res = bandit.choose(actions, feats)  # type: ignore
+            res = bandit.choose(actions, feats)
             if isinstance(res, tuple) and len(res) >= 2:
                 return res[0], {"scores": res[1]}
             return res, {}

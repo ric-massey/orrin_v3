@@ -12,6 +12,8 @@ those are returned. Each start is fail-safe.
 """
 from __future__ import annotations
 
+from typing import Any, Dict, Tuple
+
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_error, log_activity
 from brain.utils.failure_counter import record_failure
@@ -19,10 +21,10 @@ from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 
-def start_background_services(stop_event):
+def start_background_services(stop_event: Any) -> Tuple[Any, Any, Any]:
     # Start background tool runner (drains queued tool requests every 30s)
     _tool_runner = None
-    _ToolRunner_cls = None
+    _ToolRunner_cls: Any = None
     try:
         from brain.agency.tool_runner import ToolRunner as _ToolRunner_cls
         _tool_runner = _ToolRunner_cls(interval_s=30.0)
@@ -91,7 +93,7 @@ def start_background_services(stop_event):
     return _tool_runner, _ToolRunner_cls, _evaluator
 
 
-def shutdown_loop(context, _tool_runner) -> None:
+def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     """Loop teardown after the while-loop exits: stop the ToolRunner, write the
     session epilogue (a short reflection + session_close autobiography entry, so a
     routine restart isn't a small amnesia — budgeted and crash-proof so it can

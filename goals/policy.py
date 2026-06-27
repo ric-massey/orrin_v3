@@ -10,7 +10,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .model import Goal, Step, Status, Priority
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 # -----------------------------------------------------------------------------
 # Public API
@@ -59,13 +60,13 @@ def choose_next_steps(
         return []
 
     # Build fairness state in ctx (survives across pulses)
-    fair = ctx.setdefault("_policy_fair", {"last_pick_ts": {}})  # type: ignore[assignment]
-    last_pick_ts: Dict[str, float] = fair["last_pick_ts"]  # type: ignore[index]
+    fair = ctx.setdefault("_policy_fair", {"last_pick_ts": {}})
+    last_pick_ts: Dict[str, float] = fair["last_pick_ts"]
 
     now = UTCNOW()
 
     # Compute scores for each (goal, step)
-    scored: List[Tuple[Tuple, Goal, Step]] = []
+    scored: List[Tuple[Tuple[Any, ...], Goal, Step]] = []
 
     for g, s in candidates:
         if s.status != Status.READY:
@@ -162,7 +163,7 @@ def _effective_priority(goal: Goal, now: datetime) -> int:
         # Fallback for non-enum custom priorities
         try:
             return int(getattr(goal, "priority", Priority.NORMAL))
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-int priority → NORMAL
             return int(Priority.NORMAL)
 
 
@@ -178,7 +179,7 @@ def _deadline_urgency(goal: Goal, now: datetime) -> float:
     try:
         # seconds positive if now past deadline
         delta_sec = (now - dl).total_seconds()
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad deadline type → no urgency
         return 0.0
 
     if delta_sec >= 0:
@@ -187,7 +188,7 @@ def _deadline_urgency(goal: Goal, now: datetime) -> float:
         return 100.0 + math.log1p(min(hours, 24.0)) * 10.0  # capped influence
     else:
         # Future: inverse of time remaining (closer deadline → larger score)
-        hours_left = (-delta_sec) / 3600.0
+        hours_left = float(-delta_sec) / 3600.0
         return 10.0 / max(0.25, min(hours_left, 72.0))  # within 3 days gets meaningful bump
 
 
@@ -224,7 +225,7 @@ def _locks_available_hint(ctx: Dict[str, Any], step: Step, *, holder: str) -> fl
                 ok_all = False
                 break
         return 1.0 if ok_all else 0.0
-    except Exception:
+    except (AttributeError, TypeError):  # intentional: missing locks/action shape → unknown
         return 0.5
 
 
@@ -242,7 +243,7 @@ def _ts_safe(dt: Optional[datetime]) -> float:
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
         return dt.timestamp()
-    except Exception:
+    except (AttributeError, ValueError, OverflowError):  # intentional: bad datetime → 0
         return 0.0
 
 

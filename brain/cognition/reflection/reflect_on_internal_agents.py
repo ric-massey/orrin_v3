@@ -51,7 +51,7 @@ def _as_list_str(x: Any) -> List[str]:
 def _safe_float(x: Any, default: float = 0.0) -> float:
     try:
         return float(x)
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric → default
         return default
 
 def _infer_topic(ctx: Dict[str, Any]) -> str:
@@ -104,7 +104,7 @@ def _coerce_self_model(sm: Any) -> Dict[str, Any]:
         try:
             parsed = json.loads(sm)
             return parsed if isinstance(parsed, dict) else {}
-        except Exception:
+        except (ValueError, TypeError):  # intentional: not JSON → empty model
             return {}
     return {}
 
@@ -421,5 +421,6 @@ def critique_draft(draft: str, context: Optional[Dict[str, Any]] = None) -> str:
         from brain.symbolic.llm_gate import gated_generate
         result = gated_generate(prompt, caller="critique_draft", outcome=0.65)
         return (result or "").strip()
-    except Exception:
+    except Exception as exc:  # critique generation failed — record, no critique
+        record_failure("reflect_on_internal_agents._critique_draft", exc)
         return ""

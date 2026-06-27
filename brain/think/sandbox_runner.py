@@ -48,7 +48,7 @@ def run_python(code: str, timeout: float = 5.0, cwd: str | None = None) -> Dict[
         }
     except subprocess.TimeoutExpired:
         return {"ok": False, "stdout": "", "stderr": "timeout", "returncode": -9}
-    except Exception as e:
+    except (OSError, ValueError) as e:  # intentional: subprocess launch failed → error result
         return {"ok": False, "stdout": "", "stderr": str(e), "returncode": -2}
     finally:
         try:

@@ -169,7 +169,7 @@ def _snapshot(root: Path) -> Dict[str, float]:
                 try:
                     rel = str(fpath.relative_to(root))
                     result[rel] = fpath.stat().st_mtime
-                except Exception:
+                except (OSError, ValueError):  # intentional: vanished/out-of-root file → skip
                     continue
     except Exception as _e:
         record_failure("fs_perception._snapshot", _e)
@@ -193,6 +193,6 @@ def _make_signal(source: str, content: str, strength: float, tags: List[str]) ->
         from brain.utils.signal_utils import create_signal
         return create_signal(source=source, content=content,
                              signal_strength=strength, tags=tags)
-    except Exception:
+    except ImportError:  # intentional: signal helper optional — plain dict fallback
         return {"source": source, "content": content,
                 "signal_strength": strength, "tags": tags}

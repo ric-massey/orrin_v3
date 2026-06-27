@@ -5,37 +5,38 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from collections import Counter
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional, cast
 
 try:
     from prometheus_client import Counter as _Counter, Gauge as _Gauge, Histogram as _Histogram
 except Exception as _e:  # pragma: no cover
-    _Counter = _Gauge = _Histogram = None  # type: ignore
+    _Counter = _Gauge = _Histogram = None  # type: ignore[assignment,misc]
 
 from .model import Goal, Step, Priority
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 # ------------------------------
 # Metric objects (initialized once via init_metrics)
 # ------------------------------
 _METRICS_INITIALIZED = False
 
-goals_events_total: _Counter  # type: ignore
-steps_events_total: _Counter  # type: ignore
-goals_latency_seconds: _Histogram  # type: ignore
-steps_exec_seconds: _Histogram  # type: ignore
+goals_events_total: _Counter
+steps_events_total: _Counter
+goals_latency_seconds: _Histogram
+steps_exec_seconds: _Histogram
 
-goals_status_total: _Gauge  # type: ignore
-goals_priority_total: _Gauge  # type: ignore
-goals_kind_total: _Gauge  # type: ignore
-goals_overdue_total: _Gauge  # type: ignore
+goals_status_total: _Gauge
+goals_priority_total: _Gauge
+goals_kind_total: _Gauge
+goals_overdue_total: _Gauge
 
-steps_status_total: _Gauge  # type: ignore
+steps_status_total: _Gauge
 
-goals_queue_depth: _Gauge  # type: ignore
-goals_workers_active: _Gauge  # type: ignore
+goals_queue_depth: _Gauge
+goals_workers_active: _Gauge
 
 
 def init_metrics() -> None:
@@ -184,7 +185,8 @@ def observe_step_event(event: Dict[str, Any]) -> None:
             dur = None
             extra = event.get("extra") or {}
             try:
-                dur = float(extra.get("duration_sec"))
+                _dur = extra.get("duration_sec")
+                dur = float(_dur) if _dur is not None else None
             except Exception:
                 dur = None
             gkind = str(event.get("goal_kind") or "unknown")
@@ -238,7 +240,7 @@ def refresh_from_store(store: Any, *, now: Optional[datetime] = None) -> None:
         try:
             if _status_name(g.status) not in terminal and (now - dl).total_seconds() > 0:
                 overdue += 1
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
     try:
         goals_overdue_total.set(overdue)
@@ -255,38 +257,39 @@ def refresh_from_store(store: Any, *, now: Optional[datetime] = None) -> None:
 # ------------------------------
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     return []  # graceful fallback
 
 
 def _iter_steps(store: Any) -> Iterable[Step]:
     if hasattr(store, "iter_steps"):
-        return store.iter_steps()
+        return cast(Iterable[Step], store.iter_steps())
     if hasattr(store, "list_steps"):
-        return store.list_steps()
+        return cast(Iterable[Step], store.list_steps())
     return []
 
 
 def _status_name(x: Any) -> str:
     try:
-        return x.name  # Enum
-    except Exception:
+        return str(x.name)  # Enum
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
 def _priority_name(x: Any) -> str:
     try:
-        return x.name  # Enum
-    except Exception:
+        return str(x.name)  # Enum
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
-def _set_labeled_gauge(gauge: _Gauge, label: str, counts: Counter) -> None:  # type: ignore
+def _set_labeled_gauge(gauge: _Gauge, label: str, counts: Counter) -> None:  # type: ignore[type-arg]
     try:
         seen = set()
         for k, v in counts.items():

@@ -2,7 +2,7 @@
 # Base interface (Protocol) for Orrin2.0 memory backends. Use relative imports + keyword-only ann_search args + a stats() hook.
 
 from __future__ import annotations
-from typing import List, Dict, Optional, Protocol, Iterable, Tuple
+from typing import Any, List, Dict, Optional, Protocol, Iterable, Tuple
 import numpy as np
 
 from ..models import MemoryItem, LexiconSense
@@ -75,7 +75,7 @@ class VectorStore(Protocol):
 # Convenience helper for tests/scripts:
 # Avoid passing 'content' twice (explicit kw + **meta) into MemoryItem.new(...)
 # ---------------------------------------------------------------------
-def safe_make_item(kind: str = "fact", layer: str = "working", **meta) -> MemoryItem:
+def safe_make_item(kind: str = "fact", layer: str = "working", **meta: Any) -> MemoryItem:
     """
     Create a MemoryItem while defensively handling a 'content' key in **meta
     to prevent 'multiple values for keyword argument "content"'.

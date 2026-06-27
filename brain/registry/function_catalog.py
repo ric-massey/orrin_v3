@@ -106,7 +106,7 @@ def _subsystem_for(rel_path: str) -> str:
 def _unwrap(fn: Callable) -> Callable:
     try:
         return inspect.unwrap(fn)
-    except Exception:
+    except ValueError:  # intentional: unwrap cycle → use wrapper as-is
         return fn
 
 
@@ -147,13 +147,13 @@ def _iter_registry() -> List[Tuple[str, Callable, str]]:
     except Exception as e:
         _log.warning("catalog: cognition registry unavailable: %s", e)
     try:
-        from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS  # type: ignore
+        from brain.registry.behavior_registry import BEHAVIORAL_FUNCTIONS
         for name, meta in (BEHAVIORAL_FUNCTIONS or {}).items():
             fn = meta.get("function") if isinstance(meta, dict) else meta
             if callable(fn) and isinstance(name, str):
                 out.append((name, fn, "behavior"))
-    except Exception:
-        pass
+    except Exception as e:
+        _log.warning("catalog: behavior registry unavailable: %s", e)
     return out
 
 

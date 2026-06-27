@@ -19,7 +19,7 @@ def _llm_available() -> bool:
     try:
         from brain.utils.llm_gate import llm_available
         return bool(llm_available())
-    except Exception:
+    except ImportError:  # intentional: llm_gate optional → treat LLM as unavailable
         return False
 
 

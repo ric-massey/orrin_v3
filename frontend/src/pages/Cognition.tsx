@@ -180,6 +180,35 @@ export default function Cognition() {
           )}
         </Block>
 
+        <Block title="Thinking cost" className="sm:col-span-2">
+          {tel.llmCost ? (
+            (() => {
+              const lc = tel.llmCost;
+              const ratio = Math.max(0, Math.min(1, lc.symbolic_ratio ?? 0));
+              return (
+                <div className="space-y-2">
+                  <Meta>
+                    {(ratio * 100).toFixed(0)}% of reasoning ran symbolically (offline)
+                    {" · "}
+                    {lc.llm_calls ?? 0} LLM · {lc.symbolic_hits ?? 0} symbolic
+                  </Meta>
+                  <span className="block h-1.5 overflow-hidden rounded-full bg-muted">
+                    <span
+                      className="block h-full bg-signal-ok/70"
+                      style={{ width: `${ratio * 100}%` }}
+                    />
+                  </span>
+                  <Meta>
+                    reasoning cache: {lc.cache_live ?? 0} live / {lc.cache_entries ?? 0} entries
+                  </Meta>
+                </div>
+              );
+            })()
+          ) : (
+            <Empty>No LLM activity recorded this session yet.</Empty>
+          )}
+        </Block>
+
         <Block title={t("cog_peers")} info="peers" className="sm:col-span-2">
           {people?.peers && people.peers.length > 0 ? (
             <div className="flex flex-wrap gap-1.5">

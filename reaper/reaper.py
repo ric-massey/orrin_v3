@@ -15,7 +15,7 @@ from typing import Callable
 try:
     from observability.metrics import reaper_trips_total
 except Exception:
-    reaper_trips_total = None  # type: ignore
+    reaper_trips_total = None  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 KillFn = Callable[[str], None]
@@ -44,12 +44,12 @@ def _log_durably(message: str) -> None:
     """
     try:
         _log.error(message)  # rotating file handler flushes per record
-    except Exception:
+    except OSError:  # best-effort death log (file-handler I/O); fall through to log_activity
         pass
     try:
         from brain.utils.log import log_activity
         log_activity(message)
-    except Exception:
+    except (ImportError, OSError):  # best-effort fallback log during teardown
         pass
 
 
@@ -98,7 +98,7 @@ class Reaper:
         _dying_reason = reason
         _dying_since = time.time()
 
-        def _deferred_kill():
+        def _deferred_kill() -> None:
             time.sleep(self.dying_window_s)
             print(f"[REAPER] Dying window elapsed — executing kill ({reason})", file=sys.stderr)
             _log_durably(f"[REAPER] Dying window elapsed — executing kill ({reason})")

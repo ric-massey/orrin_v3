@@ -1,9 +1,29 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { LogLevel, LOOP_NODES, MetricPoint, TelemetryState } from "./types";
 import { getTransport } from "./transport";
+import { TelemetryFrameSchema } from "./telemetry.gen";
 
 // Re-export the data contracts so existing `@/lib/telemetry` imports keep working.
 export * from "./types";
+
+// ── Boundary validation (Phase 5.2) ─────────────────────────────────────────
+// Telemetry crosses a process + language boundary, so a malformed/version-skewed
+// frame is checked against the generated wire contract (telemetry.gen.ts, itself
+// generated from backend/server/schema.py) the moment it arrives — before it can
+// corrupt UI state downstream. Non-fatal by design (a dropped chart point must
+// never blank the whole UI): we warn loudly and still apply the frame. Warnings
+// are capped so a persistent mismatch can't flood the console.
+let _contractWarnings = 0;
+function checkFrame(frame: unknown, kind: "snapshot" | "delta"): void {
+  const r = TelemetryFrameSchema.safeParse(frame);
+  if (!r.success && _contractWarnings < 25) {
+    _contractWarnings += 1;
+    console.warn(
+      `[telemetry] ${kind} frame violates the wire contract (schema.py); applying anyway:`,
+      r.error.issues.slice(0, 5),
+    );
+  }
+}
 
 const MEM_CAP = 500;
 const LOG_CAP = 500; // cap the console ring to prevent browser memory bloat
@@ -27,6 +47,7 @@ export const initialState: TelemetryState = {
   monitor: null,
   workspace: null,
   interoception: null,
+  llmCost: null,
   extra: {},
   connected: false,
   source: "connecting",
@@ -73,6 +94,7 @@ function applyDelta(s: TelemetryState, f: any): TelemetryState {
   if (f.monitor != null) next.monitor = f.monitor;
   if (f.workspace != null) next.workspace = f.workspace;
   if (f.interoception != null) next.interoception = f.interoception;
+  if (f.llm_cost != null) next.llmCost = f.llm_cost;
   if (f.extra != null) next.extra = { ...s.extra, ...f.extra };
   next.updatedAt = Date.now();
   return next;
@@ -125,6 +147,7 @@ function reducer(s: TelemetryState, a: Action): TelemetryState {
         monitor: st.monitor ?? s.monitor,
         workspace: st.workspace ?? s.workspace,
         interoception: st.interoception ?? s.interoception,
+        llmCost: st.llm_cost ?? s.llmCost,
         extra: st.extra ?? s.extra,
         updatedAt: Date.now(),
       };
@@ -241,8 +264,8 @@ export function useTelemetry(opts: UseTelemetryOptions = {}) {
         stopDemo();
         dispatch({ type: "status", connected: true, source: "live", retries: 0 });
       },
-      onSnapshot: (st) => dispatch({ type: "snapshot", state: st }),
-      onDelta: (frame) => dispatch({ type: "delta", frame }),
+      onSnapshot: (st) => { checkFrame(st, "snapshot"); dispatch({ type: "snapshot", state: st }); },
+      onDelta: (frame) => { checkFrame(frame, "delta"); dispatch({ type: "delta", frame }); },
       onClose: () => {
         // Don't react to a drop after we've unmounted.
         if (closeRef.current === null) return;

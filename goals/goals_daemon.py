@@ -8,7 +8,7 @@ import threading
 import queue
 from dataclasses import replace
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple, cast
 
 from .model import Goal, Step, Status
 from .handlers.base import GoalHandler, HandlerContext
@@ -16,7 +16,8 @@ from . import policy as policy_mod  # expected to provide choose_next_steps(...)
 from . import runner as runner_mod  # expected to provide StepRunner
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 # ---------------- duck-typed store helpers ----------------
@@ -26,12 +27,13 @@ def _safe_getattr(obj: Any, name: str, default: Any = None) -> Any:
 
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     raise AttributeError("GoalsDaemon: store must expose iter_goals/list_goals/all()")
 
 
@@ -76,10 +78,10 @@ def _list_steps(store: Any, goal_id: Optional[str] = None, statuses: Optional[It
     # Preferred: steps_for(goal_id, *, statuses=...)
     if hasattr(store, "steps_for"):
         try:
-            return store.steps_for(goal_id, statuses=statuses)  # type: ignore[arg-type]
+            return cast(List[Step], store.steps_for(goal_id, statuses=statuses))
         except TypeError:
             # Legacy: steps_for(goal_id)
-            return store.steps_for(goal_id)
+            return cast(List[Step], store.steps_for(goal_id))
 
     # Alternative: iter_steps() then filter here
     if hasattr(store, "iter_steps"):
@@ -96,9 +98,9 @@ def _list_steps(store: Any, goal_id: Optional[str] = None, statuses: Optional[It
     # Alternative: list_steps(...), possibly without statuses support
     if hasattr(store, "list_steps"):
         try:
-            return store.list_steps(goal_id=goal_id, statuses=statuses)
+            return cast(List[Step], store.list_steps(goal_id=goal_id, statuses=statuses))
         except TypeError:
-            return store.list_steps(goal_id=goal_id)
+            return cast(List[Step], store.list_steps(goal_id=goal_id))
 
     # If no step API available yet, return empty to let you wire it later.
     return []
@@ -430,7 +432,7 @@ class GoalsDaemon:
                 try:
                     h = fn(goal.kind)
                     if h:
-                        return h
+                        return cast("Optional[GoalHandler]", h)
                 except Exception as _e:
                     _log.warning("silent except: %s", _e)
 
@@ -439,13 +441,13 @@ class GoalsDaemon:
             m = getattr(reg, attr, None)
             if isinstance(m, dict) and goal.kind in m:
                 try:
-                    return m[goal.kind]
+                    return cast("Optional[GoalHandler]", m[goal.kind])
                 except Exception as _e:
                     _log.warning("silent except: %s", _e)
 
         # Dict-like registry
         if isinstance(reg, dict):
-            return reg.get(goal.kind)  # type: ignore[index]
+            return cast("Optional[GoalHandler]", reg.get(goal.kind))
 
         return None
 

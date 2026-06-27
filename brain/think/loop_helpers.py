@@ -197,7 +197,8 @@ def _load_name_list(path: str) -> List[str]:
             else:
                 out.append(str(x))
         return out
-    except Exception:
+    except Exception as exc:  # unexpected read/shape error — record, empty list
+        record_failure("loop_helpers.load_names", exc)
         return []
 
 
@@ -272,7 +273,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
     try:
         import inspect  # local to avoid any import-cycle edge cases
     except Exception:
-        inspect = None  # type: ignore
+        inspect = None  # type: ignore[assignment]
 
     # 0) Explicit args/kwargs provided by the selector/think()
     try:
@@ -285,6 +286,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
         # signature mismatch; proceed to smart kwargs / legacy attempts
         record_failure("loop_helpers._call_cognition", _e)
     except Exception as e:
+        record_failure("loop_helpers._call_cognition.direct", e)
         return {"success": False, "error": str(e), "where": "cognition-call"}
 
     # 1) Smart keyword auto-fill from context (only if we can inspect the signature)
@@ -362,6 +364,7 @@ def _call_cognition(fn: Callable[..., Any], name: str, ctx: Context) -> Result:
         except TypeError:
             continue
         except Exception as e:
+            record_failure("loop_helpers._call_cognition.kwargs", e)
             return {"success": False, "error": str(e), "where": "cognition-call"}
 
     return {"success": False, "error": "no_matching_signature", "where": "cognition-call"}
@@ -388,7 +391,17 @@ def execute_action_via_registries(
     # Cognitive path (from provided cog_reg)
     fn = cog_reg.get(action_name)
     if callable(fn):
-        return _call_cognition(fn, action_name, ctx)
+        res = _call_cognition(fn, action_name, ctx)
+        # Tier-3 re-use: a successfully-dispatched cognitive function MAY be one
+        # Orrin authored. We only record the name here (no agency import — that
+        # would couple think→agency into a cycle); the loop resolves authored
+        # artifacts and pays the re-use bonus post-cycle (brain/loop/finalize.py).
+        try:
+            if isinstance(res, dict) and res.get("success"):
+                ctx.setdefault("_dispatched_cog_fns", []).append(action_name)
+        except Exception as e:
+            record_failure("loop_helpers.note_reuse", e)
+        return res
 
     # Behavior path: validate by the persisted behavior name list only
     behavior_names = set(_load_name_list(BEHAVIORAL_FUNCTIONS_LIST_FILE))
@@ -397,6 +410,7 @@ def execute_action_via_registries(
             ok = take_action({"type": action_name, "name": action_name}, ctx, ctx.get("speaker"))
             return {"success": bool(ok), "status": "ok" if ok else "fail"}
         except Exception as e:
+            record_failure("loop_helpers._call_behavior", e)
             return {"success": False, "error": str(e), "where": "behavior-call"}
 
     return {"success": False, "error": f"Unknown action '{action_name}'", "where": "dispatch"}
@@ -498,8 +512,8 @@ def bandit_learn(
         # and must be surfaced in the trace rather than silently swallowed.
         if isinstance(_primary_e, AttributeError):
             try:
-                from brain.utils.context_key import context_key  # type: ignore
-                from brain.utils.bandit import record_outcome_ctx  # type: ignore
+                from brain.utils.context_key import context_key
+                from brain.utils.bandit import record_outcome_ctx
                 record_outcome_ctx(context_key(ctx), tag, reward)
                 emit_trace(type="BANDIT_UPDATE_FALLBACK", action=tag, reward=reward, decision_id=decision_id)
             except Exception as _e:

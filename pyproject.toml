@@ -43,7 +43,7 @@ embedding = ["sentence-transformers>=2.7"]
 nlp = ["spacy>=3.7"]
 llm = ["openai>=1.40.0"]
 llm-extra = ["anthropic>=0.40.0", "google-genai>=0.3.0"]
-dev = ["pytest>=8.0", "ruff>=0.5", "coverage>=7.4"]
+dev = ["pytest>=8.0", "ruff>=0.5", "coverage>=7.4", "mypy>=1.8"]
 # Recursive extra: the full runtime a packaged/desktop build ships.
 all = ["orrin[backend,desktop,embedding,nlp,llm,llm-extra]"]
 
@@ -83,3 +83,190 @@ extend-exclude = ["frontend", "build", "dist", ".venv", "data", "brain/data"]
 # 2026-06-21 cleanup pass; one intentional "keep computed" site carries `# noqa: F841`.
 select = ["F", "E9"]
 ignore = []
+
+# ── mypy (CODEBASE_CLEANUP_PLAN Phase 5.0) ──────────────────────────────────
+# Type-checking gate, folded into `make verify`. The codebase is largely
+# untyped, so rather than a lenient whole-tree pass (which would never have
+# teeth), this is a STRICT check of an explicit, growing allowlist: `files`
+# below lists every module that has been brought up to `--strict`. Running
+# `mypy` with no args checks exactly those files; legacy modules are only
+# imported (follow_imports = silent), never deep-checked. As Phase 5 types each
+# module it joins this list — which grows monotonically and is never shrunk to
+# make a change pass (the Phase-5 exit criterion).
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+follow_imports = "silent"
+files = [
+    # loop/ stage modules — the cognitive-loop coordinator's extracted stages,
+    # typed leaf-first (Phase 5.1 tail).
+    "brain/loop/constants.py",
+    "brain/loop/signal_decay.py",
+    "brain/loop/invoke.py",
+    "brain/loop/cognition_reward.py",
+    "brain/loop/telemetry.py",
+    "brain/loop/account.py",
+    "brain/loop/reflect.py",
+    "brain/loop/deliberate.py",
+    "brain/loop/services.py",
+    "brain/loop/boot_checks.py",
+    "brain/loop/maintenance.py",
+    "brain/loop/sense.py",
+    "brain/loop/boot.py",
+    "brain/loop/finalize.py",
+    "brain/loop/execute.py",
+    # reaper/ — the watchdog suite; brought strict + its optional-metric import
+    # fallbacks narrowed from blanket to [assignment] ignores (Phase 5.3).
+    "reaper/__init__.py",
+    "reaper/errors.py",
+    "reaper/trend.py",
+    "reaper/repeat.py",
+    "reaper/lifespan.py",
+    "reaper/no_goals.py",
+    "reaper/heartbeatdetector.py",
+    "reaper/error_checker.py",
+    "reaper/liveness_cycle.py",
+    "reaper/reaper.py",
+    "reaper/host_resources.py",
+    "reaper/memory.py",
+    "reaper/vital_floor.py",
+    "reaper/vital_floor_calibration.py",
+    # Foundational utils — typed + their `type: ignore`s triaged/narrowed (Phase 5.3).
+    "brain/utils/num.py",
+    "brain/utils/log.py",
+    "brain/utils/json_utils.py",
+    # State-schema migration spine — extended + version-subsumed in Phase 5.4.
+    "brain/utils/schema_migration.py",
+    # selection/ package — the recently-extracted selector core (Phase 4.5A),
+    # typed leaf-first (Phase 5.1).
+    "brain/think/think_utils/selection/tag_sets.py",
+    "brain/think/think_utils/selection/constants.py",
+    "brain/think/think_utils/selection/routing.py",
+    "brain/think/think_utils/selection/text.py",
+    "brain/think/think_utils/selection/catalog.py",
+    "brain/think/think_utils/selection/state.py",
+    "brain/think/think_utils/selection/features.py",
+    "brain/think/think_utils/selection/scoring.py",
+    "brain/think/think_utils/selection/candidates.py",
+    "brain/think/think_utils/selection/boosts.py",
+    "brain/think/think_utils/selection/score_actions.py",
+    "brain/think/think_utils/selection/score_setup.py",
+    "brain/think/think_utils/selection/pick.py",
+    # The selector entry point itself — typed once its whole callee tree
+    # (selection/) was strict-clean (Phase 5.1).
+    "brain/think/think_utils/select_function.py",
+    # planning/ package — typed leaf-first, mirroring selection/ (Phase 5.1).
+    "brain/cognition/planning/plan_versioning.py",
+    "brain/cognition/planning/goal_progress.py",
+    "brain/cognition/planning/goal_satiety.py",
+    "brain/cognition/planning/diagnosis.py",
+    "brain/cognition/planning/goal_types.py",
+    "brain/cognition/planning/env_snapshot.py",
+    "brain/cognition/planning/thinking_depth.py",
+    "brain/cognition/planning/goal_belief.py",
+    "brain/cognition/planning/goals_schema.py",
+    "brain/cognition/planning/goal_comprehension.py",
+    "brain/cognition/planning/goal_criteria.py",
+    "brain/cognition/planning/motivations.py",
+    "brain/cognition/planning/problem_refocus.py",
+    "brain/cognition/planning/step_execution.py",
+    "brain/cognition/planning/introspection.py",
+    "brain/cognition/planning/reflection.py",
+    "brain/cognition/planning/goal_planning.py",
+    "brain/cognition/planning/goal_adaptation.py",
+    "brain/cognition/planning/goal_execution.py",
+    "brain/cognition/planning/pursue_goal.py",
+    "brain/cognition/planning/goal_reconcile.py",
+    "brain/cognition/planning/outcome_metrics.py",
+    "brain/cognition/planning/executive.py",
+    "brain/cognition/planning/goal_arbiter.py",
+    "brain/cognition/planning/goal_closure.py",
+    "brain/cognition/planning/goal_lifecycle.py",
+    "brain/cognition/planning/goals.py",
+    "brain/cognition/planning/goal_plan_ops.py",
+    "brain/cognition/planning/evolution.py",
+    "brain/cognition/planning/goal_store.py",
+    "brain/cognition/planning/goal_outcomes.py",
+    # memory/ — the v2 memory engine, brought fully strict (Phase 5.3 tail): its
+    # Phase-5.3 coded ignores are now gate-enforced. get_embedding gained overloads
+    # so single-text callers get np.ndarray; the prometheus/PIL optional-dep shims
+    # are typed Any.
+    "memory/__init__.py",
+    "memory/compaction.py",
+    "memory/config.py",
+    "memory/embedder.py",
+    "memory/health.py",
+    "memory/ingest.py",
+    "memory/integrations.py",
+    "memory/lexicon/__init__.py",
+    "memory/lexicon/api.py",
+    "memory/lexicon/patterns.py",
+    "memory/media.py",
+    "memory/memory_daemon.py",
+    "memory/metrics.py",
+    "memory/models.py",
+    "memory/novelty.py",
+    "memory/retrieval.py",
+    "memory/store/__init__.py",
+    "memory/store/base.py",
+    "memory/store/inmem.py",
+    "memory/strength.py",
+    "memory/wal.py",
+    # goals/ — the v2 goal stack, brought fully strict (Phase 5.3 tail). Duck-typed
+    # store/registry accessors cast to their declared contract; UTCNOW lambdas became
+    # typed defs; the prometheus shim is typed Any. Phase-5.3 coded ignores now enforced.
+    "goals/__init__.py",
+    "goals/api.py",
+    "goals/cli.py",
+    "goals/events.py",
+    "goals/goals_daemon.py",
+    "goals/handlers/__init__.py",
+    "goals/handlers/base.py",
+    "goals/handlers/code_edit.py",
+    "goals/handlers/code_editor.py",
+    "goals/handlers/coding.py",
+    "goals/handlers/dummy.py",
+    "goals/handlers/generic.py",
+    "goals/handlers/housekeeping.py",
+    "goals/handlers/research.py",
+    "goals/health.py",
+    "goals/locks.py",
+    "goals/metrics.py",
+    "goals/model.py",
+    "goals/policy.py",
+    "goals/registry.py",
+    "goals/runner.py",
+    "goals/schema.py",
+    "goals/snapshot.py",
+    "goals/snapshots.py",
+    "goals/store.py",
+    "goals/triggers.py",
+    "goals/utils.py",
+    "goals/wal.py",
+]
+
+# ── Coverage (CODEBASE_CLEANUP_PLAN Phase 7 — ratcheted coverage) ────────────
+# Measure line coverage of the hand-maintained source packages (tests and
+# generated/CLI-only scripts excluded). The *ratchet* — the recorded floor and
+# the fail-if-below-it gate — lives in brain/scripts/coverage_ratchet.py /
+# `make coverage`; this is just how coverage is measured.
+[tool.coverage.run]
+branch = false
+source = ["brain", "backend", "goals", "memory", "reaper", "runtime", "observability"]
+omit = [
+    "*/__pycache__/*",
+    "*/tests/*",
+    "*_test.py",
+    "brain/scripts/*",
+]
+
+[tool.coverage.report]
+precision = 1
+show_missing = false
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "@(abc\\.)?abstractmethod",
+]

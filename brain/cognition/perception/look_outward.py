@@ -177,8 +177,8 @@ def ingest_outward_result(result_text: str, query: str, context: Dict[str, Any] 
     try:
         from brain.cognition.exploration_value import record_reach_outcome
         record_reach_outcome("look_outward", result_text, _kg_delta, context)
-    except Exception:
-        pass
+    except Exception as _e:
+        record_failure("look_outward.record_reach_outcome", _e)
 
 
 _QUERY_FILLER = re.compile(

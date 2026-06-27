@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import time
 import random
+from typing import Any, Dict, Optional
 
 from brain.affect.reward_signals.reward_spike import log_reward_spike
 from brain.affect.affect_buffer import queue_affect_change
@@ -11,14 +12,14 @@ from brain.paths import AFFECT_STATE_FILE, REWARD_TRACE
 
 
 def release_reward_signal(
-    context,
-    signal_type="reward_signal",
-    actual_reward=1.0,
-    expected_reward=0.7,
-    effort=0.5,
-    mode="phasic",
-    source=None
-):
+    context: Dict[str, Any],
+    signal_type: str = "reward_signal",
+    actual_reward: float = 1.0,
+    expected_reward: float = 0.7,
+    effort: float = 0.5,
+    mode: str = "phasic",
+    source: Optional[str] = None,
+) -> Dict[str, Any]:
     """
     Update in-memory emotional state + reward trace and persist both to disk.
     Uses context['reward_trace'] (string key) for the live buffer and REWARD_TRACE (Path) for disk.

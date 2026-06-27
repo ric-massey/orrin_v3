@@ -30,7 +30,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 import time
 from datetime import datetime, timezone
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity, log_private
@@ -48,22 +48,23 @@ _LIFETIME_PROGRESS_REWARD_SIGNAL = 0.45  # actual reward for recording lifetime 
 
 
 
-def load_lifetime_goals() -> List[Dict]:
+def load_lifetime_goals() -> List[Dict[str, Any]]:
     try:
-        goals = load_json(LIFETIME_GOALS_FILE, default_type=list)
+        goals: List[Any] = load_json(LIFETIME_GOALS_FILE, default_type=list)
         return goals if isinstance(goals, list) else []
-    except Exception:
+    except Exception as exc:  # lifetime goals unreadable — record, none
+        record_failure("goal_lifecycle.load_lifetime_goals", exc)
         return []
 
 
-def save_lifetime_goals(goals: List[Dict]) -> None:
+def save_lifetime_goals(goals: List[Dict[str, Any]]) -> None:
     try:
         save_json(LIFETIME_GOALS_FILE, goals)
     except Exception as _e:
         record_failure("goal_lifecycle.save_lifetime_goals", _e)
 
 
-def get_active_lifetime_goal(context: Optional[Dict] = None) -> Optional[Dict]:
+def get_active_lifetime_goal(context: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
     """
     Return the highest-weight in_progress lifetime goal.
     Caches result in context for the cycle so it's cheap to call repeatedly.
@@ -84,7 +85,7 @@ def get_active_lifetime_goal(context: Optional[Dict] = None) -> Optional[Dict]:
     return best
 
 
-def record_lifetime_progress(goal_id: str, note: str, context: Optional[Dict] = None) -> None:
+def record_lifetime_progress(goal_id: str, note: str, context: Optional[Dict[str, Any]] = None) -> None:
     """
     Add a progress note to a lifetime goal and fire a small reward_signal burst.
     Called when a short-term goal that was in_service_of this lifetime goal completes.
@@ -130,7 +131,7 @@ def record_lifetime_progress(goal_id: str, note: str, context: Optional[Dict] = 
             record_failure("goal_lifecycle.record_lifetime_progress", _e)
 
 
-def fade_goals(context: Optional[Dict] = None) -> None:
+def fade_goals(context: Optional[Dict[str, Any]] = None) -> None:
     """
     Decay motivational_weight for non-lifetime goals that haven't been pursued
     recently. Goals below the dormant threshold move to status='dormant'.
@@ -176,14 +177,14 @@ def _fade_regular_goals(now_ts: float) -> None:
     """Decay motivational_weight for regular short/long_term goals."""
     from brain.paths import GOALS_FILE
 
-    goals = load_json(GOALS_FILE, default_type=list)
+    goals: List[Any] = load_json(GOALS_FILE, default_type=list)
     if not isinstance(goals, list):
         return
 
     changed = False
     dormant_transitions = 0
 
-    def _fade_node(goal: Dict) -> None:
+    def _fade_node(goal: Dict[str, Any]) -> None:
         nonlocal changed, dormant_transitions
         if goal.get("never_complete"):
             return
@@ -206,7 +207,7 @@ def _fade_regular_goals(now_ts: float) -> None:
             return
         try:
             last_ts = datetime.fromisoformat(last_str.replace("Z", "+00:00")).timestamp()
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unparseable timestamp → skip
             return
 
         secs_idle = now_ts - last_ts
@@ -258,7 +259,7 @@ def pause_goal(goal_id: str, reason: str = "") -> bool:
 
     # Also check regular goals
     from brain.paths import GOALS_FILE
-    reg_goals = load_json(GOALS_FILE, default_type=list)
+    reg_goals: List[Any] = load_json(GOALS_FILE, default_type=list)
     if isinstance(reg_goals, list):
         for g in reg_goals:
             if isinstance(g, dict) and (g.get("id") == goal_id or g.get("name") == goal_id):
@@ -283,7 +284,7 @@ def resume_goal(goal_id: str) -> bool:
             return True
 
     from brain.paths import GOALS_FILE
-    reg_goals = load_json(GOALS_FILE, default_type=list)
+    reg_goals: List[Any] = load_json(GOALS_FILE, default_type=list)
     if isinstance(reg_goals, list):
         for g in reg_goals:
             if isinstance(g, dict) and (g.get("id") == goal_id or g.get("name") == goal_id):
@@ -316,7 +317,7 @@ def touch_lifetime_goal(goal_id: str) -> bool:
     return False
 
 
-def revive_lifetime_goal_by_topic(topic: str, context: Optional[Dict] = None) -> None:
+def revive_lifetime_goal_by_topic(topic: str, context: Optional[Dict[str, Any]] = None) -> None:
     """
     When a topic fires in research/memory, boost motivational_weight for any
     lifetime goal whose title or description overlaps with that topic.

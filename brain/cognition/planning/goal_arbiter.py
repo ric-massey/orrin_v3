@@ -43,10 +43,10 @@ _inbox: List[Dict[str, Any]] = []
 _INBOX_CAP = 256
 
 # Type of a mutator: receives the live goals list, returns the list to persist.
-Mutator = Callable[[List[Dict]], List[Dict]]
+Mutator = Callable[[List[Dict[str, Any]]], List[Dict[str, Any]]]
 
 
-def apply(mutator: Mutator, *, source: str = "") -> List[Dict]:
+def apply(mutator: Mutator, *, source: str = "") -> List[Dict[str, Any]]:
     """Atomically load → mutate → save the goal store under the arbiter lock.
 
     `mutator(goals) -> goals` must be pure-ish: mutate the list in place (or return
@@ -74,16 +74,16 @@ def apply(mutator: Mutator, *, source: str = "") -> List[Dict]:
 # completion / failure / step advance / milestone), so call sites read clearly and
 # every one of them is serialized through the same lock.
 
-def _find(goals: List[Dict], goal_id: Any) -> Optional[Dict]:
+def _find(goals: List[Dict[str, Any]], goal_id: Any) -> Optional[Dict[str, Any]]:
     for g in goals:
         if isinstance(g, dict) and (g.get("id") == goal_id or g.get("title") == goal_id):
             return g
     return None
 
 
-def set_status(goal_id: Any, status: str, *, source: str = "") -> List[Dict]:
+def set_status(goal_id: Any, status: str, *, source: str = "") -> List[Dict[str, Any]]:
     """Set a goal's status atomically (e.g. in_progress / completed / failed)."""
-    def _mut(goals: List[Dict]) -> List[Dict]:
+    def _mut(goals: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         g = _find(goals, goal_id)
         if g is not None:
             g["status"] = str(status)
@@ -93,9 +93,9 @@ def set_status(goal_id: Any, status: str, *, source: str = "") -> List[Dict]:
 
 
 def advance_step(goal_id: Any, step_index: int, *, result: str = "",
-                 source: str = "") -> List[Dict]:
+                 source: str = "") -> List[Dict[str, Any]]:
     """Mark a plan step completed and stamp its result, atomically."""
-    def _mut(goals: List[Dict]) -> List[Dict]:
+    def _mut(goals: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         g = _find(goals, goal_id)
         if g is not None:
             plan = g.get("plan")
@@ -108,9 +108,9 @@ def advance_step(goal_id: Any, step_index: int, *, result: str = "",
     return apply(_mut, source=source or "advance_step")
 
 
-def update_goal(goal_id: Any, updates: Dict[str, Any], *, source: str = "") -> List[Dict]:
+def update_goal(goal_id: Any, updates: Dict[str, Any], *, source: str = "") -> List[Dict[str, Any]]:
     """Shallow-merge `updates` into a goal atomically (status, milestones, etc.)."""
-    def _mut(goals: List[Dict]) -> List[Dict]:
+    def _mut(goals: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         g = _find(goals, goal_id)
         if g is not None and isinstance(updates, dict):
             g.update(updates)
@@ -119,7 +119,7 @@ def update_goal(goal_id: Any, updates: Dict[str, Any], *, source: str = "") -> L
     return apply(_mut, source=source or "update_goal")
 
 
-def _touch(g: Dict) -> None:
+def _touch(g: Dict[str, Any]) -> None:
     from datetime import datetime, timezone
     g["last_updated"] = datetime.now(timezone.utc).isoformat()
 
@@ -155,7 +155,7 @@ def commit() -> int:
         _inbox.clear()
     applied = 0
     for m in drained:
-        fn = _OPS.get(m.get("op"))
+        fn = _OPS.get(str(m.get("op") or ""))
         if fn is None:
             continue
         try:

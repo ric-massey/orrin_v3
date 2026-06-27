@@ -192,7 +192,7 @@ def _auto_resolve_stale(tensions: List[Dict]) -> int:
             for r in vr
             if isinstance(r, dict) and r.get("status", "pending") == "pending"
         }
-    except Exception:
+    except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed revisions → 0
         return 0
 
     ts = now_iso_z()

@@ -56,7 +56,7 @@ def _parse_literal(token: str) -> Any:
     # Try JSON (handles true/false/null/numbers)
     try:
         return json.loads(t)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: not JSON → keep as raw string
         return t
 
 def _coerce(value: Any) -> Any:
@@ -143,16 +143,16 @@ def eval_predicate(expr: str, context: Dict[str, Any]) -> bool:
                     rv = _coerce(rv_candidate)
                 try:
                     if op == "==":
-                        return lv == rv
+                        return bool(lv == rv)
                     elif op == "<":
-                        return lv < rv
+                        return bool(lv < rv)
                     elif op == ">":
-                        return lv > rv
+                        return bool(lv > rv)
                     elif op == "<=":
-                        return lv <= rv
+                        return bool(lv <= rv)
                     elif op == ">=":
-                        return lv >= rv
-                except Exception:
+                        return bool(lv >= rv)
+                except TypeError:  # intentional: incomparable operand types → False
                     return False
 
         # Bare key truthiness

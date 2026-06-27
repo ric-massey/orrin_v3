@@ -3,6 +3,10 @@
 # Affective drift detection and intervention.
 # Monitors how long Orrin has been in the same cognitive/affective mode and
 # triggers shadow dialogue or reflection to break prolonged negative drift.
+from __future__ import annotations
+
+from typing import Any, Dict, Optional
+
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private, log_activity
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
@@ -28,11 +32,11 @@ def _mean_abs_dev(context) -> float | None:
             for name, value in core.items()
             if isinstance(value, (int, float))
         ]
-    except Exception:
+    except (ImportError, ValueError, TypeError):  # intentional: setpoints unavailable/bad value → no drift
         return None
     return sum(deviations) / len(deviations) if deviations else None
 
-def check_affect_drift(context=None, max_cycles=10):
+def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int = 10) -> None:
     """
     Detects emotional drift and intervenes using shadow dialogue or reflection.
     Rewards successful mode recovery using reward_signal/novelty signals.

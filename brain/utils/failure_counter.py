@@ -141,7 +141,7 @@ def record_failure(site: str, exc: Exception) -> None:
         try:
             from backend.telemetry_bridge import get_bridge
             get_bridge().log("error", site, err_str)
-        except Exception:
+        except (ImportError, OSError, AttributeError):  # best-effort telemetry emit — never block the caller
             pass
 
         # Append to JSONL outside the lock (file IO)

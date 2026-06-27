@@ -326,6 +326,11 @@ def _assign_roles(cluster: List[Dict[str, Any]]) -> Dict[str, Any]:
                 facets["affect"] = {str(emotion): round(_f(item.get("intensity"), item["salience"]), 3)}
         elif role == "goal" and "goal" not in facets:
             facets["goal"] = item.get("goal_title") or item["content"]
+            # D3 — carry the authoritative goal id into the situation so a bound
+            # composite references the SAME goal object (one goal, many views).
+            _gid = (item.get("raw") or {}).get("id")
+            if _gid:
+                facets["goal_id"] = _gid
         elif role == "memory" and "memory" not in facets:
             facets["memory"] = item["content"][:120]
         elif role == "interlocutor" and "interlocutor" not in facets:

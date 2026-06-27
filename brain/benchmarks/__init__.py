@@ -37,6 +37,8 @@ from brain.paths import (
     NARRATIVE_PRESSURE_FILE,
 )
 from brain.utils.json_utils import load_json, save_json
+from brain.utils.env import env_bool
+from brain.utils.failure_counter import record_failure
 
 SAMPLES_FILE = DATA_DIR / "benchmark_samples.jsonl"
 RESULTS_FILE = DATA_DIR / "benchmark_results.json"
@@ -124,7 +126,7 @@ BENCHMARKS: Dict[str, Dict[str, Any]] = {
 
 
 def _enabled() -> bool:
-    return os.environ.get("ORRIN_BENCHMARK", "").strip().lower() in ("1", "true", "yes", "on")
+    return env_bool("ORRIN_BENCHMARK", False)
 
 
 # ─── Passive per-cycle sampling (B1, B2) ──────────────────────────────────────
@@ -133,7 +135,8 @@ def _long_memory_count() -> int:
     try:
         d = load_json(LONG_MEMORY_FILE, default_type=list)
         return len(d) if isinstance(d, list) else len(d or {})
-    except Exception:
+    except Exception as exc:  # data read failed — record, return sentinel
+        record_failure("benchmarks._long_memory_count", exc)
         return -1
 
 
@@ -141,7 +144,8 @@ def _rss_mb() -> float:
     try:
         import psutil  # optional; the watchdog also exports this via Prometheus
         return round(psutil.Process().memory_info().rss / (1024 * 1024), 1)
-    except Exception:
+    except Exception as exc:  # optional dep absent / probe failed — record, return sentinel
+        record_failure("benchmarks._rss_mb", exc)
         return -1.0
 
 
@@ -188,8 +192,8 @@ def record_sample(context: Optional[Dict[str, Any]]) -> None:
         # Auto-evaluate when the longest benchmark's horizon is reached.
         if cyc and cyc % 500 == 0:
             evaluate_all()
-    except Exception:
-        pass
+    except Exception as exc:  # sampling is best-effort — record, never disrupt the cycle
+        record_failure("benchmarks.record_sample", exc)
 
 
 def _load_samples() -> List[Dict[str, Any]]:
@@ -204,10 +208,10 @@ def _load_samples() -> List[Dict[str, Any]]:
             if ln:
                 try:
                     out.append(json.loads(ln))
-                except Exception:
+                except json.JSONDecodeError:  # intentional: skip a malformed sample line
                     continue
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O reading the samples file
+        record_failure("benchmarks._load_samples", exc)
     return out
 
 
@@ -277,7 +281,8 @@ def _eval_b2(samples: List[Dict[str, Any]]) -> Dict[str, Any]:
 def _scenario_goal(tag: str) -> Optional[Dict[str, Any]]:
     try:
         goals = load_json(GOALS_FILE, default_type=list) or []
-    except Exception:
+    except Exception as exc:  # data read failed — record, no scenario goal
+        record_failure("benchmarks._scenario_goal", exc)
         return None
 
     def _is_tagged(g: Dict[str, Any]) -> bool:
@@ -304,7 +309,8 @@ def _current_cycle() -> int:
     try:
         from brain.utils.get_cycle_count import get_cycle_count
         return int(get_cycle_count() or 0)
-    except Exception:
+    except Exception as exc:  # cycle counter unavailable — record, return 0
+        record_failure("benchmarks._current_cycle", exc)
         return 0
 
 
@@ -379,8 +385,8 @@ def _eval_b4() -> Dict[str, Any]:
         gid = str(g.get("id") or g.get("title") or "")
         # novel_count flattening is the satiety signal; expose it if available.
         barren = novelty_memory.novel_count(gid)
-    except Exception:
-        pass
+    except Exception as exc:  # novelty signal optional — record, leave barren=-1
+        record_failure("benchmarks._eval_b4.novelty", exc)
     closed = status in ("completed", "abandoned", "dormant")
     return {"status": "pass" if closed else "pending", "goal_status": status,
             "novel_count": barren,
@@ -441,6 +447,7 @@ def _eval_b7() -> Dict[str, Any]:
         pressure = load_json(NARRATIVE_PRESSURE_FILE, default_type=dict) or {}
         checks["pressure_state_persisted"] = "running_total" in pressure
     except Exception as e:
+        record_failure("benchmarks._eval_b7.autobiography", e)
         return {"status": "fail", "error": f"{type(e).__name__}: {e}"}
 
     try:
@@ -462,6 +469,7 @@ def _eval_b7() -> Dict[str, Any]:
             if dangling:
                 checks["dangling_ids"] = dangling[:5]
     except Exception as e:
+        record_failure("benchmarks._eval_b7.long_memory", e)
         return {"status": "fail", "error": f"{type(e).__name__}: {e}"}
 
     hard = [checks["autobiography_nonempty"], checks["pressure_state_persisted"]]
@@ -488,8 +496,8 @@ def evaluate_all() -> Dict[str, Any]:
     }
     try:
         save_json(RESULTS_FILE, results)
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O persisting results — record, return in-memory
+        record_failure("benchmarks.evaluate_all.save", exc)
     return results
 
 
@@ -574,11 +582,12 @@ def seed_scenario(tag: str, commit: bool = True) -> bool:
                     tags=["benchmark", tag],
                 )
                 gid = created.id             # one id across both representations
-            except Exception:
+            except Exception as exc:
                 # API unavailable (e.g. store missing in a bare checkout) —
                 # fall back to the legacy seed; the evaluator will report
-                # not_committed if it never gets planned.
-                pass
+                # not_committed if it never gets planned. Record so a real API
+                # failure (not just a bare checkout) is visible.
+                record_failure("benchmarks.seed_scenario.api", exc)
 
         now = datetime.now(timezone.utc).isoformat()
         goal = {
@@ -594,5 +603,6 @@ def seed_scenario(tag: str, commit: bool = True) -> bool:
         goals.append(goal)
         save_json(GOALS_FILE, goals)
         return True
-    except Exception:
+    except Exception as exc:  # seeding failed — record, report failure to caller
+        record_failure("benchmarks.seed_scenario", exc)
         return False

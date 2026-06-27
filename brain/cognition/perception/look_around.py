@@ -178,7 +178,7 @@ def _recent_modifications(root: Path, window_s: float, limit: int) -> List[Tuple
                     if age <= window_s:
                         rel = str(fpath.relative_to(root))
                         results.append((rel, age))
-                except Exception:
+                except (OSError, ValueError):  # intentional: skip unreadable/out-of-root file
                     continue
     except Exception as _e:
         record_failure("look_around._recent_modifications", _e)

@@ -10,12 +10,12 @@ import numpy as np
 
 try:
     # Optional: mirror how embedder reads config
-    from .config import MEMCFG  # type: ignore
+    from .config import MEMCFG
 except Exception:  # pragma: no cover
     class _Dummy:
         NOVELTY_FLOOR = 0.05
         NOVELTY_TEMPERATURE = 1.0
-    MEMCFG = _Dummy()  # type: ignore
+    MEMCFG = _Dummy()  # type: ignore[assignment]
 _log = get_logger(__name__)
 
 
@@ -30,7 +30,7 @@ def _cfg_floor() -> float:
             _log.warning("silent except: %s", _e)
     try:
         return float(getattr(MEMCFG, "NOVELTY_FLOOR", 0.05))
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad config value → default floor
         return 0.05
 
 def _cfg_temperature() -> float:
@@ -42,7 +42,7 @@ def _cfg_temperature() -> float:
             _log.warning("silent except: %s", _e)
     try:
         return float(getattr(MEMCFG, "NOVELTY_TEMPERATURE", 1.0))
-    except Exception:
+    except (TypeError, ValueError):  # intentional: bad config value → default temperature
         return 1.0
 
 
@@ -63,7 +63,7 @@ def _as2d_norm(recent_vecs: Iterable[np.ndarray]) -> np.ndarray:
     for rv in recent_vecs:
         try:
             mats.append(_normalize(np.asarray(rv, dtype=np.float32)))
-        except Exception:
+        except (ValueError, TypeError):  # intentional: unusable vector → skip it
             continue
     if not mats:
         return np.zeros((0, 0), dtype=np.float32)

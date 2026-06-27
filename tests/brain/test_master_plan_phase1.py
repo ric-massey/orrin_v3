@@ -137,10 +137,13 @@ def test_trust_scales_affect_trend_confidence(monkeypatch, tmp_path):
 
 def test_introspection_miss_writes_wm_event(monkeypatch):
     import brain.cog_memory.working_memory as wm_mod
+    # _fire_introspection_miss moved to prediction_helpers (Phase 4.5C); silence
+    # its log_private there (the parent re-exports the fn but not the log binding).
+    import brain.cognition.prediction_helpers as pred_helpers
     captured = []
     monkeypatch.setattr(wm_mod, "update_working_memory",
                         lambda entry, *a, **k: captured.append(entry))
-    monkeypatch.setattr(pred_mod, "log_private", lambda *a, **k: None)
+    monkeypatch.setattr(pred_helpers, "log_private", lambda *a, **k: None)
 
     pred = {
         "prediction": "Affect signal 'motivation' will rise",

@@ -131,7 +131,7 @@ def _counterfactual_pass(max_edges: int = 8) -> List[Dict]:
     insights: List[Dict] = []
     try:
         from brain.symbolic.causal_graph import get_all_edges, simulate_counterfactual
-    except Exception:
+    except ImportError:  # intentional: causal graph optional — no counterfactual pass
         return insights
 
     edges = [
@@ -172,7 +172,7 @@ def _rule_chain_pass(seeds: List[str]) -> Tuple[List[Dict], List[List[Dict]]]:
 
     try:
         from brain.symbolic.rule_engine import match_all, apply as rule_apply
-    except Exception:
+    except ImportError:  # intentional: rule engine optional — no chain pass
         return insights, raw_chains
 
     for seed in seeds[:8]:
@@ -225,7 +225,7 @@ def _analogy_transfer_pass(seeds: List[str]) -> List[Dict]:
     try:
         from brain.symbolic.analogy_engine import find_analogues
         from brain.symbolic.rule_engine import match_all
-    except Exception:
+    except ImportError:  # intentional: analogy/rule engine optional — no transfer pass
         return insights
 
     for seed in seeds[:6]:
@@ -263,7 +263,7 @@ def _contradiction_pass(seeds: List[str]) -> List[Dict]:
     try:
         from brain.symbolic.rule_engine import match_all
         from brain.symbolic.meta_rules import _are_contradictory
-    except Exception:
+    except ImportError:  # intentional: rule/meta engine optional — no contradiction pass
         return insights
 
     seen_pairs: Set[str] = set()
@@ -312,7 +312,7 @@ def _causal_discovery_pass(
             discover_from_rule_chain,
             discover_from_wm_sequence,
         )
-    except Exception:
+    except ImportError:  # intentional: causal graph optional — no discovery pass
         return insights
 
     # Rule chains → causal edges

@@ -29,7 +29,7 @@ def _parse_iso_ts(ts: str) -> datetime:
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
         return dt.astimezone(timezone.utc)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → now
         return datetime.now(timezone.utc)
 
 def apply_affective_feedback(context):

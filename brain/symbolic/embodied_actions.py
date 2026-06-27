@@ -119,7 +119,8 @@ def _act_read_log(ctx: Dict) -> Optional[Dict]:
         lines = log_file.read_text(encoding="utf-8", errors="ignore").splitlines()
         recent = [l.strip() for l in lines[-15:] if l.strip()]
         return {"recent_log_lines": len(recent), "sample": recent[-3:] if recent else []}
-    except Exception:
+    except Exception as exc:  # log read failed — record, no observation
+        record_failure("embodied_actions._act_read_log", exc)
         return None
 
 
@@ -134,7 +135,8 @@ def _act_observe_data_dir(ctx: Dict) -> Optional[Dict]:
                     record_failure("embodied_actions._act_observe_data_dir", _e)
         files.sort(key=lambda x: x["size_kb"], reverse=True)
         return {"file_count": len(files), "largest": files[:5]}
-    except Exception:
+    except Exception as exc:  # data-dir scan failed — record, no observation
+        record_failure("embodied_actions._act_observe_data_dir.outer", exc)
         return None
 
 
@@ -154,7 +156,8 @@ def _act_check_rule_health(ctx: Dict) -> Optional[Dict]:
             "zero_hit": len(zero_hit),
             "mean_confidence": mean_conf,
         }
-    except Exception:
+    except Exception as exc:  # rule engine unavailable — record, no observation
+        record_failure("embodied_actions._act_check_rule_health", exc)
         return None
 
 
@@ -164,7 +167,8 @@ def _act_read_wm(ctx: Dict) -> Optional[Dict]:
         recent = wm[-8:]
         event_types = [e.get("event_type", "unknown") for e in recent if isinstance(e, dict)]
         return {"wm_size": len(wm), "recent_event_types": event_types}
-    except Exception:
+    except Exception as exc:  # working-memory read failed — record, no observation
+        record_failure("embodied_actions._act_read_wm", exc)
         return None
 
 
@@ -200,7 +204,8 @@ def _act_read_predictions(ctx: Dict) -> Optional[Dict]:
             "accuracy":       acc,
             "oldest_pending": oldest_pending,
         }
-    except Exception:
+    except Exception as exc:  # predictions read failed — record, no observation
+        record_failure("embodied_actions._act_read_predictions", exc)
         return None
 
 

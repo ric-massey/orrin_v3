@@ -1,23 +1,31 @@
 from brain.core.runtime_log import get_logger
-import re
 import json
-import logging
 import tempfile
 import os
 import platform
 from contextlib import contextmanager
 from pathlib import Path, PurePath
 from datetime import datetime, date, timezone
-from typing import Any, Callable, Generator, TypeVar, Union, Optional
+from typing import Any, Callable, Generator, TypeVar, Union, Optional, cast
 from brain.utils.log import log_model_issue
 from brain.utils.failure_counter import record_failure
 
 # fcntl is POSIX-only; make it optional
 try:
-    import fcntl  # type: ignore
+    import fcntl
 except Exception:
-    fcntl = None  # type: ignore
+    fcntl = None  # type: ignore[assignment]
 _log = get_logger(__name__)
+
+# JSON extraction + healing, extracted to json_extract.py (Phase 4.5C).
+# Re-exported so json_utils stays the single import surface for its 200+
+# importers (extract_json) + the safe_extract_json wrapper below.
+from brain.utils.json_extract import (  # noqa: E402,F401
+    extract_json as extract_json,  # explicit re-export for --strict importers
+    _has_plausible_json_start, _first_json_fragment,
+    _heal_json_fragment, _salvage_top_level_object, _log_salvage_miss,
+    _JSON_ARRAY_VALUE_START,
+)
 
 T = TypeVar("T")
 
@@ -57,319 +65,13 @@ def cap_jsonl(path: Union[str, Path], max_lines: int = 2000, max_bytes: int = 2_
         record_failure("json_utils.cap_jsonl", _e)
 
 
-# ------------------------------
-# JSON extraction (healing)
-# ------------------------------
-
-def extract_json(text: str) -> Optional[Union[dict, list]]:
-    """
-    Best-effort extraction of the first JSON object/array from messy LLM output.
-    Order:
-      1) ```json fenced block
-      2) generic ``` fenced block
-      3) first JSON fragment via scanner (try parse → heal → salvage-top-level-object)
-      4) whole text heal → salvage-top-level-object
-    Returns dict/list, else None.
-    """
-    try:
-        s = text if isinstance(text, str) else str(text)
-
-        # Fast reject: bail before the heal/salvage chain unless the text contains
-        # a PLAUSIBLE JSON start — an opening brace/bracket actually followed by a
-        # JSON token, not just a stray bracket from prose. Symbolic-gate output
-        # like "[analogy/GENERAL] Similar situation…" has a "[" but no real JSON;
-        # without this it churned through every heal/salvage step and (previously)
-        # logged a DEBUG line per attempt, flooding the runtime log.
-        if not _has_plausible_json_start(s):
-            return None
-
-        # NOTE: each json.loads below is a SPECULATIVE attempt in a try→heal→
-        # salvage chain. Failures are expected control flow — the function returns
-        # None gracefully and callers handle None — so the per-attempt failures are
-        # swallowed silently (no per-attempt logging). Only a genuine *unexpected*
-        # exception (outer except) is surfaced, once, via log_model_issue.
-        # 1) fenced with json
-        m = re.search(r"```(?:json|JSON)\s*([\s\S]*?)\s*```", s)
-        if m:
-            snippet = m.group(1).strip()
-            try:
-                return json.loads(snippet)
-            except json.JSONDecodeError:
-                pass
-            healed = _heal_json_fragment(snippet)
-            try:
-                return json.loads(healed)
-            except Exception:
-                salv = _salvage_top_level_object(snippet)
-                if salv:
-                    try:
-                        return json.loads(salv)
-                    except Exception:
-                        pass
-
-        # 2) any fenced block
-        m = re.search(r"```+\s*([\s\S]*?)\s*```+", s)
-        if m:
-            snippet = m.group(1).strip()
-            try:
-                return json.loads(snippet)
-            except json.JSONDecodeError:
-                healed = _heal_json_fragment(snippet)
-                try:
-                    return json.loads(healed)
-                except Exception:
-                    salv = _salvage_top_level_object(snippet)
-                    if salv:
-                        try:
-                            return json.loads(salv)
-                        except Exception:
-                            pass
-
-        # 3) scan for top-level {...} or [...]
-        frag = _first_json_fragment(s)
-        if frag:
-            try:
-                return json.loads(frag)
-            except json.JSONDecodeError:
-                pass
-            healed = _heal_json_fragment(frag)
-            try:
-                return json.loads(healed)
-            except Exception:
-                pass
-            # salvage top-level object specifically (handles cut off like "..., \"emerging_conflicts\": [")
-            salv = _salvage_top_level_object(frag)
-            if salv:
-                try:
-                    return json.loads(salv)
-                except Exception:
-                    pass
-
-        # 4) whole text attempts
-        healed_all = _heal_json_fragment(s)
-        try:
-            return json.loads(healed_all)
-        except Exception:
-            pass
-
-        salv_all = _salvage_top_level_object(s)
-        if salv_all:
-            try:
-                return json.loads(salv_all)
-            except Exception:
-                pass
-
-    except Exception as e:
-        preview = s if len(s) <= 600 else (s[:300] + " ... " + s[-200:])
-        log_model_issue(f"[extract_json] Failed: {e}\nRaw: {preview}")
-
-    return None
-
-
-# Characters that can legitimately follow "[" as the first token of a JSON array:
-# another container, a string, a number, true/false/null, or an empty array.
-_JSON_ARRAY_VALUE_START = frozenset('{["-tfn]0123456789')
-
-
-def _has_plausible_json_start(s: str) -> bool:
-    """True if `s` contains an opening "{" or "[" that is actually followed by a
-    JSON token — not just a stray bracket inside prose. Scans every bracket (not
-    only the first) so mixed content like 'note: {"x": 1}' still parses, while
-    prose like '[analogy/GENERAL] …' or '[metacog] thinking' is rejected cheaply.
-    """
-    if not s:
-        return False
-    for mt in re.finditer(r"[\{\[]", s):
-        i = mt.start()
-        # next non-whitespace char after the bracket
-        j = i + 1
-        n = len(s)
-        while j < n and s[j] in " \t\r\n":
-            j += 1
-        if j >= n:
-            continue
-        nxt = s[j]
-        if s[i] == "{":
-            # object: a key string, or an empty object
-            if nxt == '"' or nxt == "}":
-                return True
-        else:
-            # array: any JSON value start, or an empty array
-            if nxt in _JSON_ARRAY_VALUE_START:
-                return True
-    return False
-
-
-def _first_json_fragment(s: str) -> Optional[str]:
-    """Return the first candidate JSON {...} or [...] substring (may be unbalanced if truncated)."""
-    i_obj, i_arr = s.find("{"), s.find("[")
-    starts = [i for i in (i_obj, i_arr) if i != -1]
-    if not starts:
-        return None
-    start = min(starts)
-
-    open_ch = s[start]
-    close_ch = "}" if open_ch == "{" else "]"
-    depth = 0
-    in_str = False
-    esc = False
-    for i in range(start, len(s)):
-        ch = s[i]
-        if in_str:
-            if esc:
-                esc = False
-            elif ch == "\\":
-                esc = True
-            elif ch == '"':
-                in_str = False
-            continue
-        if ch == '"':
-            in_str = True
-            continue
-        if ch == open_ch:
-            depth += 1
-        elif ch == close_ch and depth > 0:
-            depth -= 1
-            if depth == 0:
-                return s[start:i+1]
-    # unbalanced (truncated) → return tail so we can heal it
-    return s[start:]
-
-
-def _heal_json_fragment(frag: str) -> str:
-    """
-    Light repairs for slightly invalid/truncated JSON:
-    - remove trailing commas before } or ]
-    - close open string
-    - balance unmatched braces/brackets
-    """
-    t = frag.rstrip()
-    t = t.replace(",}", "}").replace(",]", "]")
-
-    in_str = False
-    esc = False
-    depth_obj = 0
-    depth_arr = 0
-    for ch in t:
-        if in_str:
-            if esc:
-                esc = False
-            elif ch == "\\":
-                esc = True
-            elif ch == '"':
-                in_str = False
-        else:
-            if ch == '"':
-                in_str = True
-            elif ch == "{":
-                depth_obj += 1
-            elif ch == "}":
-                depth_obj = max(0, depth_obj - 1)
-            elif ch == "[":
-                depth_arr += 1
-            elif ch == "]":
-                depth_arr = max(0, depth_arr - 1)
-
-    if in_str:
-        t += '"'
-    t += "}" * depth_obj
-    t += "]" * depth_arr
-    t = t.replace(",}", "}").replace(",]", "]")
-    return t
-
-
-def _salvage_top_level_object(text: str) -> Optional[str]:
-    """
-    Try to salvage a valid top-level JSON *object* from truncated text:
-    - Find first '{'
-    - Walk tracking quotes/escapes and nesting
-    - If we close level 0, return slice
-    - If truncated inside the object, cut at the last comma at level==1 and append '}'.
-      If that fails, append enough '}' to close remaining depth.
-    """
-    s = text
-    start = s.find("{")
-    if start == -1:
-        return None
-
-    level = 0
-    in_str = False
-    esc = False
-    last_top_level_comma: Optional[int] = None
-
-    i = start
-    while i < len(s):
-        ch = s[i]
-        if in_str:
-            if esc:
-                esc = False
-            elif ch == "\\":
-                esc = True
-            elif ch == '"':
-                in_str = False
-        else:
-            if ch == '"':
-                in_str = True
-            elif ch == "{":
-                level += 1
-            elif ch == "}":
-                if level > 0:
-                    level -= 1
-                    if level == 0:
-                        return s[start:i+1]
-            elif ch == "," and level == 1:
-                last_top_level_comma = i
-        i += 1
-
-    # Truncated before closing: try cutting at last full top-level pair
-    if last_top_level_comma is not None:
-        candidate = s[start:last_top_level_comma] + "}"
-        try:
-            json.loads(candidate)
-            return candidate
-        except Exception as _e:
-            _log_salvage_miss(_e, s)
-
-    # Blindly close remaining braces
-    if level > 0:
-        candidate = s[start:] + ("}" * level)
-        try:
-            json.loads(candidate)
-            return candidate
-        except Exception as _e:
-            _log_salvage_miss(_e, s)
-
-    return None
-
-
-def _log_salvage_miss(exc: Exception, snippet: str) -> None:
-    """A salvage attempt that still fails to parse is EXPECTED control flow in
-    the try→heal→salvage chain (see extract_json's NOTE) — so it logs at DEBUG,
-    not WARNING. Previously these two sites logged a bare WARNING ~38×/minute
-    with neither the failing snippet nor the caller, making the source of the
-    transient parse failure unidentifiable (RUN_ISSUES_2026-06-10 §secondary).
-    With debug logging on, the snippet head + nearest non-json_utils caller are
-    included so the producer can finally be traced."""
-    if not _log.isEnabledFor(logging.DEBUG):
-        return
-    caller = "?"
-    try:
-        import inspect
-        for frame in inspect.stack()[2:8]:
-            fname = frame.filename
-            if "json_utils" not in fname:
-                caller = f"{fname.rsplit('/', 1)[-1]}:{frame.lineno} ({frame.function})"
-                break
-    except Exception:
-        pass
-    _log.debug("salvage failed: %s | caller=%s | snippet=%r", exc, caller, snippet[:160])
 
 
 # ------------------------------
 # JSON (de)serialization utils
 # ------------------------------
 
-def _json_default(o: Any):
+def _json_default(o: Any) -> Any:
     """Safe fallback serializer for non-JSON-native types."""
     if isinstance(o, (Path, PurePath)):
         return str(o)
@@ -445,7 +147,7 @@ def save_json(filepath: Union[str, Path], data: Any) -> None:
                 lock_fd.close()
 
 
-def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) -> T:
+def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) -> T:  # type: ignore[assignment]
     """
     Load JSON from file, returning default_type() on error or missing/empty file.
     On JSONDecodeError, attempts ONE timestamped .corrupt backup before returning default.
@@ -470,7 +172,7 @@ def load_json(filepath: Union[str, Path], default_type: Callable[[], T] = dict) 
             except Exception:
                 lock_fd = None  # lock is best-effort; degrade to an unlocked read
         with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
+            return cast(T, json.load(f))
     except json.JSONDecodeError as e:
         log_model_issue(f"[load_json] Corrupt JSON in {filepath}: {e}")
         # ONE backup attempt only — use stem (strips all suffixes) to avoid
@@ -609,7 +311,7 @@ def safe_extract_json(s: Any, default: Any = None, *, dict_only: bool = False) -
         if dict_only and not isinstance(val, dict):
             return default
         return val if val is not None else default
-    except Exception:
+    except (ValueError, TypeError, AttributeError):  # intentional: unparseable input → default
         return default
 
 
@@ -647,7 +349,7 @@ def append_jsonl(filepath: Union[str, Path], obj: Any) -> None:
         with open(path, "a", encoding="utf-8") as f:
             if fcntl is not None and platform.system() != "Windows":
                 try:
-                    fcntl.flock(f, fcntl.LOCK_EX)  # type: ignore[name-defined]
+                    fcntl.flock(f, fcntl.LOCK_EX)
                 except Exception as _e:
                     record_failure("json_utils.append_jsonl", _e)
             f.write(line)
@@ -658,7 +360,7 @@ def append_jsonl(filepath: Union[str, Path], obj: Any) -> None:
                 record_failure("json_utils.append_jsonl.2", _e)
             if fcntl is not None and platform.system() != "Windows":
                 try:
-                    fcntl.flock(f, fcntl.LOCK_UN)  # type: ignore[name-defined]
+                    fcntl.flock(f, fcntl.LOCK_UN)
                 except Exception as _e:
                     record_failure("json_utils.append_jsonl.3", _e)
     except Exception as e:

@@ -35,7 +35,7 @@ def _json_dumps(obj: Any) -> str:
 def _size(path: Path) -> int:
     try:
         return path.stat().st_size
-    except Exception:
+    except OSError:  # intentional: missing/unreadable file → 0
         return 0
 
 def _sanitize_event_meta(meta: Optional[Dict[str, Any]]) -> Dict[str, Any]:
@@ -222,11 +222,11 @@ class WAL:
         Assumes record keys match MemoryItem fields (as produced by to_dict()).
         """
         # to_dict keys match dataclass fields; unpack directly
-        return MemoryItem(**rec)  # type: ignore[arg-type]
+        return MemoryItem(**rec)
 
     # -------------------- Internal helpers --------------------
 
-    def _maybe_rotate(self, path: Path, fh, *, which: str, next_line_bytes: int) -> None:
+    def _maybe_rotate(self, path: Path, fh: Any, *, which: str, next_line_bytes: int) -> None:
         """
         If current file size plus next_line_bytes exceeds max_bytes, rotate:
           path -> path.TIMESTAMP

@@ -125,7 +125,7 @@ def _flag_unknown_action(action_type: str) -> None:
                 "registered cognitive function — possible typo'd action name",
                 action_type,
             )
-    except Exception:
+    except ImportError:  # intentional: registry unavailable → skip action-name validation
         pass
 
 

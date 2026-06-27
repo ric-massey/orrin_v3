@@ -83,7 +83,7 @@ class MemoryItem:
     meta: Dict[str, Any] = field(default_factory=dict)
 
     @classmethod
-    def new(cls, *, kind: str, source: str, content: str, layer: str = "working", **meta) -> "MemoryItem":
+    def new(cls, *, kind: str, source: str, content: str, layer: str = "working", **meta: Any) -> "MemoryItem":
         """
         Convenience factory used across the codebase.
         Reserved fields (id/ts/etc.) are set here, not taken from **meta.
@@ -180,7 +180,7 @@ class LexiconSense:
         freq: Optional[int] = None,
         pinned: Optional[bool] = None,
         sources: Optional[List[str]] = None,
-        **_ignored,  # swallow extra keys coming from helpers/tests
+        **_ignored: Any,  # swallow extra keys coming from helpers/tests
     ) -> "LexiconSense":
         return cls(
             id=id or _gen_id("lex"),

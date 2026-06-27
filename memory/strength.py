@@ -21,7 +21,7 @@ def clamp01(x: float) -> float:
     """Clamp to [0, 1]."""
     try:
         return 0.0 if x <= 0.0 else (1.0 if x >= 1.0 else float(x))
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-numeric → 0.0
         return 0.0
 
 def normalize_log_freq(freq: int, *, sat: float = 50.0) -> float:

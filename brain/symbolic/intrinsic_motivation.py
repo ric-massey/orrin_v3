@@ -102,7 +102,8 @@ def prediction_error(context: Optional[Dict] = None) -> float:
                 return 1.0
             return 0.5
         return round(sum(_err(p) for p in resolved) / len(resolved), 3)
-    except Exception:
+    except Exception as _e:
+        record_failure("intrinsic_motivation.prediction_error", _e)
         return 0.3
 
 
@@ -239,7 +240,8 @@ def run_intrinsic_motivation(context: Dict) -> Dict:
                 e.get("content", "") for e in wm[-5:] if isinstance(e, dict)
             ]
             user_input = " ".join(recent_texts)[:300]
-        except Exception:
+        except Exception as _e:
+            record_failure("intrinsic_motivation.run_intrinsic_motivation", _e)
             return {"spawned": None, "drive": {}}
 
     if not user_input.strip():

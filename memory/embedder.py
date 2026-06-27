@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
-from typing import Union, List, Optional, TYPE_CHECKING
+from typing import Any, Union, List, Optional, TYPE_CHECKING, overload
 from functools import lru_cache
 from pathlib import Path
 import os
@@ -25,13 +25,13 @@ _log = get_logger(__name__)
 # ------------------------------
 # Internal state (lazy init)
 # ------------------------------
-_text_model = None
-_text_dim: Optional[int] = None
+_text_model: Any = None        # SentenceTransformer | None (duck-typed; optional dep)
+_text_dim: int = 0             # set by _lazy_init_text() before any read
 _text_hint: Optional[str] = None
 
-_image_model = None            # optional (e.g., CLIP)
-_image_processor = None        # optional (e.g., CLIPProcessor/open_clip preprocess)
-_image_dim: Optional[int] = None
+_image_model: Any = None       # optional (e.g., CLIP); duck-typed optional dep
+_image_processor: Any = None   # optional (e.g., CLIPProcessor/open_clip preprocess)
+_image_dim: int = 0            # set by _lazy_init_image() before any read
 _image_hint: Optional[str] = None
 
 
@@ -64,7 +64,7 @@ def _ensure_bytes_image(image: Union[bytes, bytearray, memoryview, str, Path, "P
             return f.read()
     # PIL path (optional dependency)
     try:
-        from PIL import Image  # type: ignore
+        from PIL import Image
         if isinstance(image, Image.Image):
             buf = io.BytesIO()
             image.save(buf, format="PNG", optimize=False)  # deterministic enough for hashing
@@ -109,7 +109,7 @@ def _lazy_init_text() -> None:
         return
     # Try sentence-transformers locally
     try:
-        from sentence_transformers import SentenceTransformer  # type: ignore
+        from sentence_transformers import SentenceTransformer
         name = MEMCFG.TEXT_EMBED_MODEL or "bge-small-en-v1.5"
         # Pin to CPU: MPS auto-selection deadlocks when encode() is called
         # from the brain's background thread (synchronous Metal dispatch hangs).
@@ -118,7 +118,7 @@ def _lazy_init_text() -> None:
             # get_sentence_embedding_dimension() is deprecated in newer
             # sentence-transformers in favour of get_embedding_dimension().
             _get_dim = getattr(_text_model, "get_embedding_dimension", None) \
-                or _text_model.get_sentence_embedding_dimension  # type: ignore[attr-defined]
+                or _text_model.get_sentence_embedding_dimension
             _text_dim = int(_get_dim())
         except Exception:
             _text_dim = int(len(_text_model.encode("dim_probe", normalize_embeddings=True)))
@@ -131,6 +131,10 @@ def _lazy_init_text() -> None:
         _text_hint = f"hash-{_text_dim}"
 
 
+@overload
+def get_text_embedding(texts: str, normalize: bool = True) -> np.ndarray: ...
+@overload
+def get_text_embedding(texts: List[str], normalize: bool = True) -> List[np.ndarray]: ...
 def get_text_embedding(texts: Union[str, List[str]], normalize: bool = True) -> Union[np.ndarray, List[np.ndarray]]:
     """
     Returns 1D float32 numpy vector(s). If a list is given, returns a list of vectors.
@@ -138,7 +142,7 @@ def get_text_embedding(texts: Union[str, List[str]], normalize: bool = True) -> 
     """
     _lazy_init_text()
     single = isinstance(texts, str)
-    arr = [texts] if single else list(texts)
+    arr: List[str] = [texts] if isinstance(texts, str) else list(texts)
 
     if _text_model is None:
         vecs = [_hash_text_cached(t, int(_text_dim)) for t in arr]
@@ -158,6 +162,10 @@ def get_text_embedding(texts: Union[str, List[str]], normalize: bool = True) -> 
 
 
 # Backwards-compat alias used elsewhere in the codebase
+@overload
+def get_embedding(texts: str, normalize: bool = True) -> np.ndarray: ...
+@overload
+def get_embedding(texts: List[str], normalize: bool = True) -> List[np.ndarray]: ...
 def get_embedding(texts: Union[str, List[str]], normalize: bool = True) -> Union[np.ndarray, List[np.ndarray]]:
     return get_text_embedding(texts, normalize=normalize)
 
@@ -219,7 +227,7 @@ def reset_image_backend_cache() -> None:
     global _image_model, _image_processor, _image_dim, _image_hint
     _image_model = None
     _image_processor = None
-    _image_dim = None
+    _image_dim = 0
     _image_hint = None
 
 def _lazy_init_image() -> None:
@@ -246,11 +254,11 @@ def _lazy_init_image() -> None:
 
     # Try HuggingFace transformers CLIP
     try:
-        from transformers import CLIPModel, CLIPProcessor  # type: ignore
+        from transformers import CLIPModel, CLIPProcessor
         model_id = "openai/clip-vit-base-patch32"
         _image_model = CLIPModel.from_pretrained(model_id)
         _image_processor = CLIPProcessor.from_pretrained(model_id)
-        _image_dim = int(_image_model.visual_projection.out_features)  # type: ignore[attr-defined]
+        _image_dim = int(_image_model.visual_projection.out_features)
         _image_hint = model_id
         return
     except Exception:
@@ -259,7 +267,7 @@ def _lazy_init_image() -> None:
 
     # Try open_clip
     try:
-        import open_clip  # type: ignore
+        import open_clip
         model_name, pretrained = "ViT-B-32", "laion2b_s34b_b79k"
         _image_model, _, _image_processor = open_clip.create_model_and_transforms(model_name, pretrained=pretrained)
         _image_dim = int(getattr(_image_model.visual, "output_dim", 512))
@@ -291,7 +299,7 @@ def get_image_embedding(
 
     # CLIP / open_clip path
     try:
-        from PIL import Image  # type: ignore
+        from PIL import Image
         if isinstance(image, (bytes, bytearray, memoryview)):
             image = Image.open(io.BytesIO(bytes(image))).convert("RGB")
         elif isinstance(image, (str, Path)):
@@ -300,19 +308,19 @@ def get_image_embedding(
 
         # transformers CLIP
         if _image_hint and _image_hint.startswith("openai/clip"):
-            import torch  # type: ignore
+            import torch
             inputs = _image_processor(images=image, return_tensors="pt")
             with torch.no_grad():
-                feats = _image_model.get_image_features(**inputs)  # type: ignore[attr-defined]
+                feats = _image_model.get_image_features(**inputs)
             v = feats[0].detach().cpu().numpy().astype(np.float32)
             return _normalize(v) if normalize else v
 
         # open_clip
         try:
-            import torch  # type: ignore
+            import torch
             image_tensor = _image_processor(image).unsqueeze(0)  # preprocess -> [1, C, H, W]
             with torch.no_grad():
-                v = _image_model.encode_image(image_tensor)  # type: ignore[attr-defined]
+                v = _image_model.encode_image(image_tensor)
             v = v[0].detach().cpu().numpy().astype(np.float32)
             return _normalize(v) if normalize else v
         except Exception:

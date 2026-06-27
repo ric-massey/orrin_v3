@@ -88,7 +88,7 @@ def wikipedia_search(context: Dict[str, Any] = None) -> str:
             created_memory=True, satisfied_curiosity=gain > 0.0,
             inner_fn="wikipedia_search", text=text,
         )
-    except Exception:
+    except (ImportError, TypeError, ValueError):  # best-effort reach-outcome record — never block the search
         pass
     return text
 

@@ -349,7 +349,7 @@ def _sample_tension() -> Optional[str]:
         if isinstance(t, dict):
             return (t.get("statement") or t.get("text") or t.get("tension") or "")[:80]
         return str(t)[:80]
-    except Exception:
+    except (OSError, ValueError, TypeError):  # intentional: missing/malformed tensions → None
         return None
 
 

@@ -25,15 +25,15 @@ _log = get_logger(__name__)
 # Optional deps — all guarded
 # ----------------------------
 try:
-    from PIL import Image, ExifTags  # type: ignore
+    from PIL import Image, ExifTags
     _HAS_PIL = True
 except Exception:
-    Image = None          # ensure module-level symbol exists (tests monkeypatch this)
-    ExifTags = None       # type: ignore
+    Image = None  # type: ignore[assignment]  # module-level symbol exists (tests monkeypatch this)
+    ExifTags = None  # type: ignore[assignment]
     _HAS_PIL = False
 
 try:
-    import pytesseract  # type: ignore
+    import pytesseract
     _HAS_TESS = True
 except Exception:
     _HAS_TESS = False
@@ -73,7 +73,7 @@ def _safe_exif(img: "Image.Image") -> Dict[str, str]:
     if not ExifTags:
         return out
     try:
-        raw = getattr(img, "_getexif", lambda: None)()  # type: ignore[attr-defined]
+        raw = getattr(img, "_getexif", lambda: None)()
         if not raw:
             return out
         tagmap = {v: k for k, v in ExifTags.TAGS.items()}  # name->id
@@ -93,7 +93,7 @@ def _safe_exif(img: "Image.Image") -> Dict[str, str]:
 def _phash_dhash(img: "Image.Image", hash_size: int = 8) -> str:
     try:
         # Pillow ≥9.1 has Image.Resampling
-        g = img.convert("L").resize((hash_size + 1, hash_size), Image.Resampling.LANCZOS)  # type: ignore[attr-defined]
+        g = img.convert("L").resize((hash_size + 1, hash_size), Image.Resampling.LANCZOS)
     except Exception:
         g = img.convert("L").resize((hash_size + 1, hash_size))
     pixels = np.asarray(g, dtype=np.int16)
@@ -124,7 +124,7 @@ def _ocr_text(img: Optional["Image.Image"]) -> str:
     try:
         txt = pytesseract.image_to_string(img)
         return " ".join(txt.split())
-    except Exception:
+    except (OSError, RuntimeError, ValueError):  # intentional: OCR unavailable/failed → empty
         return ""
 
 

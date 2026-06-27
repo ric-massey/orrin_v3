@@ -191,8 +191,10 @@ class MemoryDaemon:
             # Accumulate batch writes
             item = res.item
             vec = res.vector
+            if item is None or vec is None:
+                continue  # res.kept is True here, so both are set; this guard narrows types
             batch_items.append(item)
-            batch_vecs[item.embedding_id] = vec
+            batch_vecs[item.embedding_id or f"vec_{item.id}"] = vec
             self._working_cache[item.id] = item
 
             # Let subsequent events in the same tick “see” this vector for novelty
@@ -294,5 +296,5 @@ class MemoryDaemon:
                     aliases=aliases,
                     source=ev.kind,
                 )
-            except Exception:
+            except (KeyError, TypeError, AttributeError, ValueError):  # intentional: skip malformed lexicon event
                 continue

@@ -10,13 +10,13 @@ from brain.utils.timeutils import now_iso_z
 try:
     import fcntl as _fcntl
 except ImportError:
-    _fcntl = None  # type: ignore
+    _fcntl = None  # type: ignore[assignment]
 
 try:
     from brain.utils.path_redact import redact as _redact
 except Exception:
-    def _redact(t: str) -> str:  # noqa: F811
-        return t
+    def _redact(text: str) -> str:  # noqa: F811
+        return text
 
 # --- helpers ---
 utc_now = now_iso_z  # public alias — import this instead of defining _utc_now locally
@@ -51,10 +51,10 @@ def _maybe_rotate(p: Path) -> None:
             segments = sorted(archive_dir.glob(f"{p.stem}.*{p.suffix}"))
             for old in segments[:-20]:
                 old.unlink(missing_ok=True)
-        except Exception:
+        except OSError:
             pass  # archiving is best-effort; rotation must still happen
         p.write_bytes(b"[log rotated]\n" + trimmed)
-    except Exception:
+    except OSError:  # intentional: rotation is best-effort — never block a log write
         pass
 
 def _append_line(p: Path, line: str) -> None:
@@ -64,17 +64,17 @@ def _append_line(p: Path, line: str) -> None:
         if _fcntl is not None:
             try:
                 _fcntl.flock(f, _fcntl.LOCK_EX)
-            except Exception:
+            except OSError:  # intentional: advisory lock best-effort
                 pass
         f.write(_redact(line))
         try:
             os.fsync(f.fileno())
-        except Exception:
+        except OSError:  # intentional: fsync best-effort
             pass
         if _fcntl is not None:
             try:
                 _fcntl.flock(f, _fcntl.LOCK_UN)
-            except Exception:
+            except OSError:  # intentional: advisory unlock best-effort
                 pass
 
 # --- writers ---
@@ -96,15 +96,15 @@ def read_recent_errors_txt(path: Union[str, Path], max_lines: int = 5) -> List[s
         with open(path, "r", encoding="utf-8") as f:
             lines = f.readlines()
         return lines[-max_lines:] if lines else []
-    except Exception as e:
+    except OSError as e:  # unreadable log — surface the reason to the caller/UI
         return [f"⚠️ Failed to read {path}: {e}"]
 
 def read_recent_errors_json(path: Union[str, Path], max_items: int = 5) -> List[Dict[str, Any]]:
     from brain.utils.json_utils import load_json
     try:
-        data = load_json(path, default_type=list)
+        data: List[Any] = load_json(path, default_type=list)
         return data[-max_items:] if isinstance(data, list) else []
-    except Exception as e:
+    except (OSError, ValueError) as e:  # unreadable/bad json — surface to caller/UI
         return [{"error": f"⚠️ Failed to read {path}: {e}"}]
 
 def read_recent_errors_jsonl(path: Union[str, Path], max_items: int = 5) -> List[Dict[str, Any]]:
@@ -123,8 +123,8 @@ def read_recent_errors_jsonl(path: Union[str, Path], max_items: int = 5) -> List
                 ev = _json.loads(line)
                 if isinstance(ev, dict):
                     out.append(ev)
-            except Exception:
+            except _json.JSONDecodeError:  # intentional: skip a malformed line
                 continue
         return out
-    except Exception as e:
+    except OSError as e:  # unreadable log — surface to caller/UI
         return [{"error": f"⚠️ Failed to read {path}: {e}"}]

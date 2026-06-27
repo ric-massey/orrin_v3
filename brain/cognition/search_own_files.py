@@ -26,7 +26,7 @@ def _record_habituation(result_text: str, context: Dict[str, Any]) -> None:
             created_memory=acted, satisfied_curiosity=gain > 0.0,
             inner_fn="search_own_files", text=str(result_text or ""),
         )
-    except Exception:
+    except (ImportError, TypeError, ValueError):  # best-effort habituation feed — never block the search
         pass
 
 

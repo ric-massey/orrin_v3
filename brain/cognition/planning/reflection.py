@@ -3,7 +3,7 @@ from brain.core.runtime_log import get_logger
 import json
 from statistics import mean
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import time as _time
 
@@ -15,11 +15,11 @@ from brain.paths import LOG_FILE, PRIVATE_THOUGHTS_FILE, FOCUS_GOAL
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
-_underperformer_last_written: dict = {}  # fn_name -> epoch seconds of last LM write
+_underperformer_last_written: Dict[str, float] = {}  # fn_name -> epoch seconds of last LM write
 _UNDERPERFORMER_RATE_LIMIT_S = 3600.0   # write at most once per hour per function
 
 
-def reflect_on_growth_history():
+def reflect_on_growth_history() -> str:
     try:
         data = load_all_known_json() or {}
         evolution_history = data.get("evolution_roadmaps", [])
@@ -27,17 +27,17 @@ def reflect_on_growth_history():
         self_model = data.get("self_model", {})
 
         # Load focus goals via helper (path-safe + shape-safe)
-        focus_goals = load_json(FOCUS_GOAL, default_type=dict)
+        focus_goals: Dict[str, Any] = load_json(FOCUS_GOAL, default_type=dict)
         if not isinstance(focus_goals, dict):
             focus_goals = {}
 
         focus_goal_names: List[str] = []
         som = focus_goals.get("short_or_mid")
         if isinstance(som, dict):
-            focus_goal_names.append(som.get("name"))
+            focus_goal_names.append(str(som.get("name") or ""))
         lt = focus_goals.get("long_term")
         if isinstance(lt, dict):
-            focus_goal_names.append(lt.get("name"))
+            focus_goal_names.append(str(lt.get("name") or ""))
         focus_goal_text = ", ".join([n for n in focus_goal_names if n]) or "None"
 
         if not isinstance(evolution_history, list) or not evolution_history:
@@ -142,7 +142,7 @@ def reflect_on_growth_history():
         return "❌ Failed to reflect on growth history."
 
 
-def reflect_on_missed_goals():
+def reflect_on_missed_goals() -> str:
     try:
         data = load_all_known_json() or {}
         goals = data.get("next_actions", {})
@@ -191,7 +191,7 @@ def reflect_on_missed_goals():
         return "❌ Error reflecting on missed goals."
 
 
-def reflect_on_effectiveness(log: bool = True):
+def reflect_on_effectiveness(log: bool = True) -> Dict[str, Any]:
     try:
         data = load_all_known_json() or {}
         long_memory = data.get("long_memory", [])
@@ -228,7 +228,13 @@ def reflect_on_effectiveness(log: bool = True):
         return {}
 
 
-def record_decision(fn_name, reason, *, reward=None, context=None):
+def record_decision(
+    fn_name: str,
+    reason: str,
+    *,
+    reward: Optional[float] = None,
+    context: Optional[Dict[str, Any]] = None,
+) -> None:
     log_private(f"decision: {fn_name} — {reason}")
 
     if reward is None:
@@ -239,7 +245,7 @@ def record_decision(fn_name, reason, *, reward=None, context=None):
         from brain.utils.json_utils import load_json as _lj, save_json as _sj
         from brain.cog_memory.working_memory import update_working_memory as _uwm
 
-        stats = _lj(DECISION_STATS_FILE, default_type=dict) or {}
+        stats: Dict[str, Any] = _lj(DECISION_STATS_FILE, default_type=dict) or {}
         entry = stats.get(fn_name) or {"count": 0, "total_reward": 0.0, "avg_reward": 0.0}
         entry["count"] += 1
         entry["total_reward"] = float(entry.get("total_reward", 0.0)) + float(reward)

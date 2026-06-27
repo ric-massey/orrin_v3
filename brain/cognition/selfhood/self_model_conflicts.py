@@ -26,7 +26,7 @@ def _llm_ready(caller: str) -> bool:
         from brain.utils.llm_gate import llm_available
         if llm_available():
             return True
-    except Exception:
+    except ImportError:  # intentional: gate unavailable → treat LLM as not ready
         pass
     now = _time.monotonic()
     if now - _last_skip_notice >= _SKIP_NOTICE_COOLDOWN_S:
@@ -47,7 +47,7 @@ def _coerce_model_dict(x: Any) -> Dict[str, Any]:
         try:
             j = json.loads(x)
             return j if isinstance(j, dict) else {}
-        except Exception:
+        except (ValueError, TypeError):  # intentional: not JSON → empty model
             return {}
     return {}
 
@@ -96,8 +96,8 @@ def _derive_recent_focus() -> list:
                     focus.append(t)
             if len(focus) >= 3:
                 break
-    except Exception:
-        pass
+    except Exception as exc:  # goals unavailable — record, fall through to WM themes
+        record_failure("self_model_conflicts._derive_recent_focus.goals", exc)
     try:
         from brain.paths import WORKING_MEMORY_FILE
         wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
@@ -113,8 +113,8 @@ def _derive_recent_focus() -> list:
             label = f"recent activity: {t}"
             if label not in focus:
                 focus.append(label)
-    except Exception:
-        pass
+    except Exception as exc:  # working-memory unreadable — record, return what we have
+        record_failure("self_model_conflicts._derive_recent_focus.wm", exc)
     return focus[:5]
 
 

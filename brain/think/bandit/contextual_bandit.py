@@ -68,7 +68,7 @@ def _context_bucket(features: Optional[Dict[str, float]]) -> str:
         try:
             if float(f.get(f"emo_{b}", 0.0) or 0.0) > 0.0:
                 return b
-        except Exception:
+        except (TypeError, ValueError):  # intentional: non-numeric feature → skip bucket
             pass
     # 2) raw affect magnitudes passed directly
     try:
@@ -76,7 +76,7 @@ def _context_bucket(features: Optional[Dict[str, float]]) -> str:
         top = max(cand, key=cand.get)
         if cand[top] >= 0.5:
             return top
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric magnitudes → default bucket
         pass
     return _DEFAULT_BUCKET
 
@@ -87,7 +87,7 @@ def _safe_float(x) -> float:
         if math.isnan(v) or math.isinf(v):
             return 0.0
         return v
-    except Exception:
+    except (TypeError, ValueError):  # intentional: non-numeric → 0.0
         return 0.0
 
 
@@ -285,14 +285,33 @@ def get_scores(
 
 
 # ---------- updates ----------
-def _record(st: Dict, bucket: str, action: str, reward: float) -> float:
-    """Incremental sample-mean update for (bucket, action). Returns the
-    pre-update value estimate (q before this observation)."""
+def _record(st: Dict, bucket: str, action: str, reward: float,
+            lr: Optional[float] = None) -> float:
+    """Update the value estimate for (bucket, action); return the pre-update q.
+
+    Two regimes, selected by whether the caller supplies a learning rate:
+      - ``lr is None`` → UCB1 **sample-mean** (effective step ``1/n``): the
+        stationary default used by callers that don't pass a rate (the historical
+        behaviour of every path).
+      - ``lr`` given → **constant-step** ``q += lr*(reward - q)``: recency-weighted
+        / non-stationary tracking. This is the regime the ACh-modulated selector
+        (``loop_helpers.bandit_learn`` → ``update_with_pe(lr=_ach_lr)``), dream
+        replay (``_REPLAY_LR``), and value-alignment nudges (``update(lr=…)``)
+        always intended — the rate was previously accepted and silently ignored.
+
+    ``n`` (the visit count driving the UCB exploration bonus) increments in both
+    regimes; reward is pre-clamped to [-1, 1] by callers, so the convex
+    constant-step update keeps ``q`` in range without an extra clamp.
+    """
     bd = _bucket_dict(st, bucket)
     s = _stat(bd, action)
     q_before = _safe_float(s["q"])
     n = int(s["n"]) + 1
-    s["q"] = q_before + (reward - q_before) / n   # UCB1 running mean
+    if lr is None:
+        s["q"] = q_before + (reward - q_before) / n          # UCB1 running mean
+    else:
+        step = min(1.0, max(0.0, float(lr)))
+        s["q"] = q_before + step * (reward - q_before)       # constant-step (tracking)
     s["n"] = n
     st["counts"][action] = int(st["counts"].get(action, 0)) + 1
     return q_before
@@ -302,17 +321,21 @@ def update(
     action: str,
     features: Optional[Dict[str, float]] = None,
     reward: float = 0.0,
-    lr: float = 0.1,      # accepted for API compatibility; UCB1 uses sample mean
-    l2: float = 0.001,    # accepted for API compatibility; no weight decay here
+    lr: Optional[float] = None,   # None → UCB1 sample-mean; a value → constant-step tracking
+    l2: float = 0.001,            # accepted for API compatibility; no weight decay here
 ) -> None:
-    """Record `reward` for `action` in the bucket implied by `features`."""
+    """Record `reward` for `action` in the bucket implied by `features`.
+
+    Pass ``lr`` to use a constant-step (recency-weighted) update; omit it for the
+    default UCB1 sample-mean. See ``_record`` for the two regimes.
+    """
     if not action:
         return
     with _LOCK:
         st = _load()
         bucket = _context_bucket(features)
         reward = max(-1.0, min(1.0, _safe_float(reward)))
-        _record(st, bucket, action, reward)
+        _record(st, bucket, action, reward, lr=lr)
         _save(st)
 
 
@@ -320,13 +343,17 @@ def update_with_pe(
     action: str,
     features: Optional[Dict[str, float]] = None,
     reward: float = 0.0,
-    lr: float = 0.1,
-    l2: float = 0.001,
-    pe_lr: float = 0.07,
+    lr: Optional[float] = None,   # ACh-modulated rate from the selector; None → sample-mean
+    l2: float = 0.001,            # accepted for API compatibility; no weight decay here
 ) -> float:
     """
     Record reward AND return the prediction error (reward − prior value estimate
     for this bucket+action). Single load+save. Used by the per-cycle PE pipeline.
+
+    ``lr`` is the acetylcholine-modulated learning rate the selector computes
+    (``loop_helpers.bandit_learn``); it drives a constant-step update so uncertain
+    contexts learn faster (Yu & Dayan 2005). The returned PE is ``reward − q_before``
+    — computed before the update — so it is independent of the chosen ``lr``.
     """
     if not action:
         return 0.0
@@ -334,7 +361,7 @@ def update_with_pe(
         st = _load()
         bucket = _context_bucket(features)
         reward = max(-1.0, min(1.0, _safe_float(reward)))
-        q_before = _record(st, bucket, action, reward)
+        q_before = _record(st, bucket, action, reward, lr=lr)
         pe = max(-2.0, min(2.0, reward - q_before))
         _save(st)
     return pe
@@ -345,7 +372,7 @@ def update_delayed(
     features: Optional[Dict[str, float]] = None,
     reward: float = 0.0,
     decision_id: Optional[str] = None,
-    lr: float = 0.1,
+    lr: Optional[float] = None,   # None → UCB1 sample-mean (the delayed-reward default)
     l2: float = 0.001,
 ) -> None:
     """Apply a delayed reward to a previously chosen action (same math as update)."""

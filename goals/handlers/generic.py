@@ -3,7 +3,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 import sys
 import uuid
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 from dataclasses import replace
 from ..model import Goal, Step, Status
 from .base import BaseGoalHandler, HandlerContext
@@ -16,10 +16,10 @@ def _llm_call(prompt: str, ctx: HandlerContext) -> str:
         repo_root = ctx.get("repo_root", "")
         if repo_root and repo_root not in sys.path:
             sys.path.insert(0, repo_root)  # brain.* resolves from the repo root, not repo_root/brain
-        from brain.utils.generate_response import generate_response, llm_ok  # type: ignore
+        from brain.utils.generate_response import generate_response, llm_ok
         result = generate_response(prompt)
         return (llm_ok(result, "generic_handler") or "").strip()
-    except Exception as e:
+    except Exception as e:  # intentional floor: any LLM failure surfaces verbatim as an unavailable marker to the runner
         return f"[llm_unavailable: {e}]"
 
 
@@ -28,7 +28,7 @@ def _log_private(text: str, ctx: HandlerContext) -> None:
         repo_root = ctx.get("repo_root", "")
         if repo_root and repo_root not in sys.path:
             sys.path.insert(0, repo_root)  # brain.* resolves from the repo root, not repo_root/brain
-        from brain.utils.log import log_private  # type: ignore
+        from brain.utils.log import log_private
         log_private(text)
     except Exception as _e:
         _log.warning("silent except: %s", _e)
@@ -61,7 +61,7 @@ class GenericHandler(BaseGoalHandler):
         # --- Reflection goal (low emotional stability) ---
         if spec.get("reflect"):
             trigger = spec.get("trigger", "internal")
-            emo_state = {}
+            emo_state: Dict[str, Any] = {}
             try:
                 get_emo = ctx.get("get_emotional_state")
                 if callable(get_emo):

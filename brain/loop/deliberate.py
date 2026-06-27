@@ -22,7 +22,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def prepare_workspace(context) -> Context:
+def prepare_workspace(context: Context) -> Context:
     # ── Executive (procedural lane) — dual_process_loop.md §6.1 ─────────
     # PHASE 1: READ-ONLY DRY RUN. Observes the committed goals' next steps
     # and records what the background "dribble" WOULD advance, on
@@ -41,8 +41,8 @@ def prepare_workspace(context) -> Context:
         if _tb_exec is not None and isinstance(_exec_summary, dict):
             try:
                 _tb_exec.update(executive=_exec_summary)
-            except Exception:
-                pass
+            except Exception as _e:  # executive-block telemetry best-effort — record
+                record_failure("ORRIN_loop.executive_telemetry", _e)
     except Exception as _exe:
         record_failure("ORRIN_loop.executive_tick", _exe)
 
@@ -81,15 +81,15 @@ def prepare_workspace(context) -> Context:
                         "candidates": context.get("_workspace_candidates") or [],
                     },
                 )
-            except Exception:
-                pass
+            except Exception as _e:  # monitor/workspace telemetry best-effort — record
+                record_failure("ORRIN_loop.monitor_telemetry", _e)
     except Exception as _uwe:
         record_failure("ORRIN_loop.workspace_pre_think", _uwe)
 
     return context
 
 
-def ignite(context) -> Context:
+def ignite(context: Context) -> Context:
     """Conscious ignition gate (Dehaene 2014; Baars 1988): the unconscious
     substrate ran regardless this cycle, but only a salient / uncertain /
     conflicted cycle IGNITES into full deliberate cognition (should_think is the

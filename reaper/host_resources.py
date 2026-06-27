@@ -23,6 +23,7 @@ from brain.core.runtime_log import get_logger
 from dataclasses import dataclass, field
 from typing import Callable, Deque, Optional, Tuple
 from collections import deque
+from .trend import trim, window_ok, slope
 import threading
 import time
 
@@ -30,7 +31,7 @@ import time
 try:
     from observability.metrics import errors_total
 except Exception:
-    errors_total = None  # type: ignore
+    errors_total = None  # type: ignore[assignment]
 
 _log = get_logger(__name__)
 
@@ -192,8 +193,8 @@ class HostResourceGuard:
     def _disk_level(self, now: float) -> Tuple[int, str]:
         if not self._disk_samples:
             return self.NORMAL, ""
-        self._trim(self._disk_samples, now - self.disk_sustain_s)
-        if not self._window_ok(self._disk_samples, self.disk_sustain_s):
+        trim(self._disk_samples, now - self.disk_sustain_s)
+        if not window_ok(self._disk_samples, self.disk_sustain_s):
             return self.NORMAL, ""
         vals = [v for _, v in self._disk_samples]
         last = vals[-1]
@@ -208,28 +209,28 @@ class HostResourceGuard:
     def _swap_level(self, now: float) -> Tuple[int, str]:
         if not self._swap_samples:
             return self.NORMAL, ""
-        self._trim(self._swap_samples, now - self.swap_sustain_s)
-        if not self._window_ok(self._swap_samples, self.swap_sustain_s):
+        trim(self._swap_samples, now - self.swap_sustain_s)
+        if not window_ok(self._swap_samples, self.swap_sustain_s):
             return self.NORMAL, ""
         vals = [v for _, v in self._swap_samples]
         last = vals[-1]
         if all(v > self.swap_pause_used_bytes for v in vals):
             return self.PAUSE, (f"swap_used={last / _GB:.1f}GB > pause="
                                 f"{self.swap_pause_used_bytes / _GB:.1f}GB")
-        slope = self._slope(self._swap_samples) or 0.0  # bytes/sec
+        swap_slope = slope(self._swap_samples) or 0.0  # bytes/sec
         if all(v > self.swap_warn_used_bytes for v in vals):
             return self.WARN, (f"swap_used={last / _GB:.1f}GB > warn="
                                f"{self.swap_warn_used_bytes / _GB:.1f}GB")
-        if slope > self.swap_growth_warn_bytes_per_s:
-            return self.WARN, (f"swap_growth={slope / (1024 * 1024):.1f}MB/s > "
+        if swap_slope > self.swap_growth_warn_bytes_per_s:
+            return self.WARN, (f"swap_growth={swap_slope / (1024 * 1024):.1f}MB/s > "
                                f"{self.swap_growth_warn_bytes_per_s / (1024 * 1024):.1f}MB/s")
         return self.NORMAL, ""
 
     def _vmem_level(self, now: float) -> Tuple[int, str]:
         if not self._vmem_samples:
             return self.NORMAL, ""
-        self._trim(self._vmem_samples, now - self.vmem_sustain_s)
-        if not self._window_ok(self._vmem_samples, self.vmem_sustain_s):
+        trim(self._vmem_samples, now - self.vmem_sustain_s)
+        if not window_ok(self._vmem_samples, self.vmem_sustain_s):
             return self.NORMAL, ""
         vals = [v for _, v in self._vmem_samples]
         last = vals[-1]
@@ -279,33 +280,6 @@ class HostResourceGuard:
         self._level = level
 
     # ------------------- helpers -------------------
-
-    @staticmethod
-    def _trim(dq: Deque[Tuple[float, float]], cutoff: float) -> None:
-        while dq and dq[0][0] < cutoff:
-            dq.popleft()
-
-    @staticmethod
-    def _window_ok(dq: Deque[Tuple[float, float]], need_s: float) -> bool:
-        if len(dq) < 2:
-            return False
-        span = dq[-1][0] - dq[0][0]
-        return span >= need_s * 0.95  # slack against sampling jitter
-
-    @staticmethod
-    def _slope(dq: Deque[Tuple[float, float]]) -> Optional[float]:
-        # simple least-squares slope over (t, v)
-        n = len(dq)
-        if n < 2:
-            return None
-        sx = sy = sxx = sxy = 0.0
-        for t, v in dq:
-            sx += t; sy += v
-            sxx += t * t; sxy += t * v
-        denom = n * sxx - sx * sx
-        if abs(denom) < 1e-12:
-            return None
-        return (n * sxy - sx * sy) / denom
 
     @staticmethod
     def _fire(cb: Optional[OnEvent], msg: str) -> None:

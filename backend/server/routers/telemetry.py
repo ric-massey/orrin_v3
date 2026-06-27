@@ -12,6 +12,8 @@ from typing import Any, Dict, List
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from brain.utils.failure_counter import record_failure
+
 from .. import state as server_state
 from ..state import _read_json, _read_jsonl_tail, hub
 
@@ -96,6 +98,7 @@ async def history(n: int = 80) -> JSONResponse:
             })
         return JSONResponse({"events": out})
     except Exception as e:
+        record_failure("routers.telemetry.history", e)
         return JSONResponse({"events": [], "error": str(e)})
 
 
@@ -117,6 +120,7 @@ async def goals_detail() -> JSONResponse:
         out = summarize_goal_tree(raw, committed_id=active_id)
         return JSONResponse({"goals": out})
     except Exception as e:
+        record_failure("routers.telemetry.goals_detail", e)
         return JSONResponse({"goals": [], "error": str(e)})
 
 
@@ -137,7 +141,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
             if isinstance(v, (int, float)):
                 return float(v)
             return _dt.fromisoformat(str(v).replace("Z", "+00:00")).timestamp()
-        except Exception:
+        except (ValueError, TypeError, OverflowError):  # intentional: unparseable timestamp
             return None
 
     try:
@@ -192,6 +196,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
         return JSONResponse({"artifacts": arts[:30], "topic_keywords": kws,
                              "window": {"from": win_lo, "to": win_hi}})
     except Exception as e:
+        record_failure("routers.telemetry.goal_artifacts", e)
         return JSONResponse({"artifacts": [], "error": str(e)})
 
 
@@ -208,6 +213,7 @@ async def consciousness(n: int = 60) -> JSONResponse:
         out = [m for m in data[-max(1, min(200, n)):] if isinstance(m, dict)]
         return JSONResponse({"moments": out, "total": len(data)})
     except Exception as e:
+        record_failure("routers.telemetry.consciousness", e)
         return JSONResponse({"moments": [], "total": 0, "error": str(e)})
 
 
@@ -223,6 +229,7 @@ async def chat_history(n: int = 100) -> JSONResponse:
         out = [m for m in data[-max(1, min(500, n)):] if isinstance(m, dict)]
         return JSONResponse({"messages": out, "total": len(data)})
     except Exception as e:
+        record_failure("routers.telemetry.chat_history", e)
         return JSONResponse({"messages": [], "total": 0, "error": str(e)})
 
 
@@ -254,7 +261,7 @@ async def language(n: int = 12) -> JSONResponse:
     def _artifact_size(fname: str) -> Any:
         try:
             return (server_state._DATA_DIR / "language" / fname).stat().st_size
-        except Exception:
+        except OSError:  # intentional: artifact not written yet
             return None
 
     return JSONResponse({
@@ -298,6 +305,7 @@ async def lifecycle() -> JSONResponse:
         from brain.utils.lifecycle import status as _status
         return JSONResponse(_status())
     except Exception as e:
+        record_failure("routers.telemetry.lifecycle", e)
         return JSONResponse({"state": "alive", "error": str(e)})
 
 
@@ -310,6 +318,7 @@ async def boot() -> JSONResponse:
         from brain.utils.boot_events import snapshot as _boot_snapshot
         return JSONResponse(_boot_snapshot())
     except Exception as e:
+        record_failure("routers.telemetry.boot", e)
         return JSONResponse({"events": [], "ready": True, "error": str(e)})
 
 
@@ -323,6 +332,7 @@ async def egress(window_s: float = 86400.0) -> JSONResponse:
         from brain.utils.egress import summary as _egress_summary
         return JSONResponse(_egress_summary(window_s))
     except Exception as e:
+        record_failure("routers.telemetry.egress", e)
         return JSONResponse({"services": {}, "total_requests": 0, "error": str(e)})
 
 
@@ -335,6 +345,7 @@ async def permissions() -> JSONResponse:
         from brain.utils.os_permissions import status as _perm_status
         return JSONResponse(_perm_status())
     except Exception as e:
+        record_failure("routers.telemetry.permissions", e)
         return JSONResponse({"platform": "", "capabilities": [], "error": str(e)})
 
 

@@ -10,11 +10,31 @@ from ordinary Python imports is not enough to prove a module dead. A deletion is
 marked **high confidence** only when the module also has no registry, manifest,
 JSON catalog, test, or textual runtime reference.
 
+## Remediation status (updated 2026-06-23 — ARCHIVED)
+
+**This audit is archived.** All but two of its findings are remediated; the two
+that remain are tracked in `STRUCTURAL_DEBT_PLAN_2026-06-23.md`, which supersedes
+this doc's open-items list.
+
+- **Done since the 2026-06-19 note (via the cleanup plan's phases):** §1 oversized
+  functions (Phase 4/4.5 — 0 source modules over 600, `run_cognitive_loop`
+  3,709→314, `select_function` decomposed), §2 import-time startup (Phase 4B
+  RuntimeContext + import-safety tests), plus §3/§6/§7/§8 below. §5 v1/v2 is now a
+  **decision** (Option D — see `Core Architecture, Embodiment & Evolution/
+  GOALS_MASTER_PLAN_2026-06-23.md` Part II), not yet implemented.
+- **Still open → tracked in `STRUCTURAL_DEBT_PLAN_2026-06-23.md`:** §4 ambiguous
+  same-name modules (7 pairs; default-KEEP, mitigated by `brain.*` namespacing) and
+  §9 broad silent exception handlers (**603 across 247 files**; ratchet-then-
+  reclassify).
+
+The original 2026-06-19 milestone notes are kept verbatim below as the dated record.
+
 ## Remediation status (updated 2026-06-19)
 
 The low-risk milestones are **done and verified** (`make verify`: Ruff clean,
 890 passed / 1 skipped, frontend green). The large structural milestones remain
-open by design. See `CODEBASE_CLEANUP_PLAN_2026-06-18.md` for the phase view.
+open by design. See `archive/CODEBASE_CLEANUP_PLAN_2026-06-18.md` for the phase view
+(archived 2026-06-23 — all phases complete).
 
 - **Milestone A — remove false confidence: DONE.** §3's copied `GoalsDaemon`
   (which in fact held *zero* test functions) is replaced by 9 tests against the
@@ -29,6 +49,26 @@ open by design. See `CODEBASE_CLEANUP_PLAN_2026-06-18.md` for the phase view.
   `DEPENDENCY_GRAPH.md` that referenced them. `brain/prompts_backup.json` (§6)
   untracked as runtime state. `llm_stub.py` / `think/select_function.py`
   (review-before-delete) intentionally **kept**.
+- **§8 duplicate helper implementations — DONE (2026-06-22, Phase 6).** All the
+  AST-flagged duplicate bodies are consolidated, each a behavior-preserving move
+  verified by the relevant suite + `make verify`:
+  - goal/step deserialization (`store.py` ↔ `wal.py`) → `goals.model`
+    (`to_status`/`to_priority`/`goal_from_dict`/`step_from_dict`); the goal→JSON
+    encoder (`goals_feed.py` ↔ `cli.py`) → `goals.model.goal_to_jsonable`
+    (model serialization lives next to the model).
+  - emotion snapshot (`long_memory.py` ↔ `remember.py`) → `remember` imports the
+    canonical helpers from `long_memory`.
+  - `_slope` (+ the also-duplicated `_trim`/`_window_ok`) across
+    `reaper/host_resources.py` ↔ `reaper/memory.py` → `reaper/trend.py` (numeric
+    trend helpers live in reaper).
+  - handler step/lock helpers (`_new_step`, lock acquire/release) across the
+    coding/research/housekeeping handlers → `goals/handlers/base.py`
+    (`new_step`/`acquire_lock`/`release_lock`; lock ops live on the handler base).
+    Behavior preserved incl. housekeeping's `max_attempts=2` (now passed
+    explicitly).
+  - `ui_build` near-copies — already resolved by Milestone B (the observability
+    copy was deleted). The CLI's `_print_table` presentation is intentionally
+    left separate (genuinely different, truncated shape — per the §8 carve-out).
 - **Milestones C–F — NOT STARTED.** Explicit startup (§2), settling the v1/v2
   goals+memory duplication (§5), splitting the oversized functions (§1), the
   broad-exception reclassification (§9), and the ambiguous-module renames (§4)

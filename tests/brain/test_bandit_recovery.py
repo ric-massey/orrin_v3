@@ -5,16 +5,10 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
-# Ensure brain/ is on the path
-BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
-
 from brain.think.bandit.contextual_bandit import (
-    _validate_state, _context_bucket, update, choose, expected_reward,
+    _validate_state, _context_bucket, update, update_with_pe, choose, expected_reward,
 )
 
 
@@ -89,6 +83,39 @@ def test_reward_moves_value_in_bucket(tmp_path, monkeypatch):
     assert expected_reward("seek_novelty", feats) > 0.0
     # different bucket has no value for the same action
     assert expected_reward("seek_novelty", {"emo_social_deficit": 1.0}) == 0.0
+
+
+def test_default_update_uses_sample_mean(tmp_path, monkeypatch):
+    """No lr → UCB1 sample-mean: the first reward lands fully (q == reward)."""
+    p = _write_state(tmp_path, {"buckets": {}, "counts": {}})
+    _patch_path(monkeypatch, p)
+    feats = {"emo_stable": 1.0}
+    update("a", feats, reward=1.0)                     # n: 0→1, step 1/1
+    assert expected_reward("a", feats) == 1.0
+
+
+def test_explicit_lr_uses_constant_step(tmp_path, monkeypatch):
+    """An explicit lr is HONORED (was silently dropped): constant-step q += lr*(r-q)."""
+    p = _write_state(tmp_path, {"buckets": {}, "counts": {}})
+    _patch_path(monkeypatch, p)
+    feats = {"emo_exploration_drive": 1.0}
+    update("a", feats, reward=1.0, lr=0.1)             # 0 + 0.1*(1-0) = 0.1
+    assert abs(expected_reward("a", feats) - 0.1) < 1e-9
+    update("a", feats, reward=1.0, lr=0.1)             # 0.1 + 0.1*(1-0.1) = 0.19
+    assert abs(expected_reward("a", feats) - 0.19) < 1e-9
+    # A higher lr (uncertain/novel context) tracks reward faster — the ACh intent.
+    update("b", feats, reward=1.0, lr=0.5)             # 0 + 0.5*1 = 0.5 > 0.1
+    assert expected_reward("b", feats) > expected_reward("a", feats)
+
+
+def test_update_with_pe_honors_lr_and_returns_pre_update_pe(tmp_path, monkeypatch):
+    """update_with_pe applies the constant-step lr; the returned PE is reward - q_before."""
+    p = _write_state(tmp_path, {"buckets": {}, "counts": {}})
+    _patch_path(monkeypatch, p)
+    feats = {"emo_impasse_signal": 1.0}
+    pe = update_with_pe("a", feats, reward=1.0, lr=0.1)
+    assert abs(pe - 1.0) < 1e-9                         # q_before was 0 → pe = reward
+    assert abs(expected_reward("a", feats) - 0.1) < 1e-9   # stored q stepped by lr, not to 1.0
 
 
 def test_choose_returns_valid_action_and_scores(tmp_path, monkeypatch):

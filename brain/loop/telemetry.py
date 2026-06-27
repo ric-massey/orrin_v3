@@ -12,9 +12,10 @@ run_cognitive_loop imports `_bridge`, `_push_event`, `_emit_affect`, `_emit_goal
 """
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from brain.core.runtime_log import get_logger
+from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 
 _log = get_logger(__name__)
@@ -26,7 +27,7 @@ _TB = None              # cached TelemetryBridge singleton (None until first use
 _TB_UNAVAILABLE = False  # set once if the bridge import fails, to stop retrying
 
 
-def _bridge():
+def _bridge() -> Any:
     """Return the process-wide TelemetryBridge, or None if unavailable."""
     global _TB, _TB_UNAVAILABLE
     if _TB is not None or _TB_UNAVAILABLE:
@@ -40,7 +41,7 @@ def _bridge():
     return _TB
 
 
-def _f(x, default: float = 0.0) -> float:
+def _f(x: Any, default: float = 0.0) -> float:
     """Best-effort float coercion that never raises."""
     try:
         return float(x)
@@ -56,7 +57,7 @@ def _clamp01(x: float) -> float:
     return x
 
 
-def _push_event(kind: str, **payload) -> None:
+def _push_event(kind: str, **payload: Any) -> None:
     """
     Forward a coarse loop event to the Face & Brain UI.
 
@@ -90,8 +91,8 @@ def _push_event(kind: str, **payload) -> None:
                     del _RECENT_FNS[:-12]
                     tb.log("info", "executive", f"advanced step via {fn}")
                     tb.update(fn_recent=list(_RECENT_FNS))
-                except Exception:
-                    pass
+                except Exception as exc:  # best-effort UI ring update
+                    record_failure("loop_telemetry._push_event.executive", exc)
                 return
             tb.set_node("act", narrative=f"Acting — {fn}", cycle=cycle)
             tb.log("info", "select_function", f"executed {fn}")
@@ -105,15 +106,16 @@ def _push_event(kind: str, **payload) -> None:
                 _RECENT_FNS.append(_entry)
                 del _RECENT_FNS[:-12]
                 tb.update(active_fn=fn, active_lane=_lane, fn_recent=list(_RECENT_FNS))
-            except Exception:
-                pass
+            except Exception as exc:  # best-effort active-light update
+                record_failure("loop_telemetry._push_event.active", exc)
         elif kind == "goal_failed":
             tb.log("warn", "goals", f"goal failed: {payload.get('title') or '?'}")
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._push_event", exc)
         return
 
 
-_RECENT_FNS: list = []
+_RECENT_FNS: List[Dict[str, Any]] = []
 _CATALOG_PUSHED = False
 
 def _push_catalog_once() -> None:
@@ -197,7 +199,8 @@ def _emit_affect(context: "Context") -> None:
             stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),
         )
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_affect", exc)
         return
 
 
@@ -214,7 +217,7 @@ def _learning_pulse(context: "Context") -> float:
     val = _LAST_LEARNING["val"]
     try:
         from brain.paths import PREDICTIONS_FILE
-        preds = load_json(PREDICTIONS_FILE, default_type=list) or []
+        preds: List[Any] = load_json(PREDICTIONS_FILE, default_type=list) or []
         # Take the 40 most-recent *resolved* predictions, not the last 40 by file
         # order — fresh predictions resolve with a lag, so a trailing slice of raw
         # entries is mostly still-pending and would flatline this signal to 0.
@@ -222,8 +225,8 @@ def _learning_pulse(context: "Context") -> float:
         if resolved:
             hits = sum(1 for p in resolved if p.get("correct") is True)
             val = _clamp01(hits / len(resolved))
-    except Exception:
-        pass
+    except Exception as exc:  # data read failed — record, reuse last cached value
+        record_failure("loop_telemetry._learning_pulse", exc)
     _LAST_LEARNING.update(ts=now, val=val)
     return val
 
@@ -251,7 +254,7 @@ def _emit_goals(context: "Context") -> None:
         from brain.utils.json_utils import load_json
         from brain.paths import GOALS_FILE
 
-        goals_raw = load_json(GOALS_FILE, default_type=list) or []
+        goals_raw: List[Any] = load_json(GOALS_FILE, default_type=list) or []
         committed = context.get("committed_goal") if isinstance(context, dict) else None
         committed_id = committed.get("id") if isinstance(committed, dict) else None
 
@@ -261,7 +264,60 @@ def _emit_goals(context: "Context") -> None:
             committed=committed if isinstance(committed, dict) else None,
         )
         tb.update(goals=out[:40])
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_goals", exc)
+        return
+
+
+_LAST_LLM_COST_PUSH = 0.0
+_LLM_COST_PUSH_INTERVAL = 3.0   # seconds; cache/gate stats drift slowly
+def _emit_llm_cost(context: "Context") -> None:
+    """
+    Push LLM-cost telemetry to the Brain UI: reasoning-cache health
+    (``llm_router.cache_stats``) and the symbolic-vs-LLM gate ratio
+    (``llm_gate.gate_stats``) — i.e. how much of Orrin's thinking is running
+    cheaply/offline vs hitting the LLM. Throttled and fail-safe; telemetry must
+    never block or crash the loop.
+    """
+    tb = _bridge()
+    if tb is None:
+        return
+    try:
+        import time as _t
+        global _LAST_LLM_COST_PUSH
+        now = _t.time()
+        if now - _LAST_LLM_COST_PUSH < _LLM_COST_PUSH_INTERVAL:
+            return
+        _LAST_LLM_COST_PUSH = now
+
+        payload: Dict[str, Any] = {}
+        try:
+            from brain.utils.llm_router import cache_stats
+            c = cache_stats()
+            payload.update(
+                cache_entries=int(c.get("entries", 0)),
+                cache_live=int(c.get("live", 0)),
+                cache_stale=int(c.get("stale", 0)),
+                cache_ttl_s=_f(c.get("ttl_s", 0.0)),
+            )
+        except Exception as exc:  # cache stats optional — record, leave out of payload
+            record_failure("loop_telemetry._emit_llm_cost.cache", exc)
+        try:
+            from brain.symbolic.llm_gate import gate_stats
+            g = gate_stats()
+            payload.update(
+                llm_calls=int(g.get("llm", 0)),
+                symbolic_hits=int(g.get("symbolic", 0)),
+                total_calls=int(g.get("total", 0)),
+                symbolic_ratio=_f(g.get("symbolic_ratio", 0.0)),
+            )
+        except Exception as exc:  # gate stats optional — record, leave out of payload
+            record_failure("loop_telemetry._emit_llm_cost.gate", exc)
+
+        if payload:
+            tb.update(llm_cost=payload)
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_llm_cost", exc)
         return
 
 
@@ -276,9 +332,10 @@ def _ui_stage(node: str, narrative: str) -> None:
         return
     try:
         tb.set_node(node, narrative=narrative)
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._ui_stage", exc)
         return
-def _ui_memory(op: str, mems, *, store: str = "working", limit: int = 4) -> None:
+def _ui_memory(op: str, mems: Any, *, store: str = "working", limit: int = 4) -> None:
     """
     Mirror memory read/write activity into the Brain Memory Inspector. `mems` is a
     memory dict or a list of them; only the first `limit` are surfaced to avoid
@@ -296,5 +353,6 @@ def _ui_memory(op: str, mems, *, store: str = "working", limit: int = 4) -> None
             sal = m.get("salience", m.get("importance", m.get("score")))
             tb.memory(op, store=store, key=key, summary=summary,
                       salience=_f(sal) if sal is not None else None)
-    except Exception:
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._ui_memory", exc)
         return

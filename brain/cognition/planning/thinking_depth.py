@@ -21,7 +21,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 import math
-from typing import Dict
+from typing import Any, Dict
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
@@ -35,8 +35,8 @@ _UCB_C  = 1.5     # UCB exploration constant — higher = more exploration
 
 
 def _load_stats() -> Dict[str, Dict[str, float]]:
-    raw = load_json(_DEPTH_STATS_FILE, default_type=dict) or {}
-    out = {}
+    raw: Dict[str, Any] = load_json(_DEPTH_STATS_FILE, default_type=dict) or {}
+    out: Dict[str, Dict[str, float]] = {}
     for d in _DEPTHS:
         key = str(d)
         block = raw.get(key, {})
@@ -80,7 +80,8 @@ def choose_depth() -> int:
         log_private(f"[depth_bandit] chose depth={best_depth} (UCB scores: "
                     + ", ".join(f"d{d}={stats[str(d)]['avg_reward']:.2f}" for d in _DEPTHS) + ")")
         return best_depth
-    except Exception:
+    except Exception as exc:  # depth-bandit choice failed — record, shallowest default
+        record_failure("thinking_depth.choose_depth", exc)
         return 1
 
 
@@ -119,7 +120,8 @@ def depth_as_signal() -> float:
         if deep_n < 2 or shal_n < 2:
             return 0.5  # not enough data to have a view
         return max(0.0, min(1.0, 0.5 + (deep_avg - shal_avg)))
-    except Exception:
+    except Exception as exc:  # depth-signal compute failed — record, neutral signal
+        record_failure("thinking_depth.depth_as_signal", exc)
         return 0.5
 
 

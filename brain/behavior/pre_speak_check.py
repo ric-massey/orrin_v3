@@ -54,7 +54,7 @@ def _get_person_context(user_id: str) -> Dict[str, Any]:
             "depth":                depth,
             "n_interactions":       n_interactions,
         }
-    except Exception:
+    except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed relationship data → empty context
         return {}
 
 

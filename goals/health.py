@@ -6,46 +6,48 @@ from brain.core.runtime_log import get_logger
 
 from collections import Counter
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, cast
 
 from .model import Goal, Step, Status, Priority
 _log = get_logger(__name__)
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 # -------- duck-typed store iterators --------
 
 def _iter_goals(store: Any) -> Iterable[Goal]:
+    # store is duck-typed; cast the recognized accessor's result to the contract.
     if hasattr(store, "iter_goals"):
-        return store.iter_goals()
+        return cast(Iterable[Goal], store.iter_goals())
     if hasattr(store, "list_goals"):
-        return store.list_goals()
+        return cast(Iterable[Goal], store.list_goals())
     if hasattr(store, "all"):
-        return store.all()
+        return cast(Iterable[Goal], store.all())
     raise AttributeError("health.snapshot: store must expose iter_goals/list_goals/all()")
 
 
 def _iter_steps(store: Any) -> Iterable[Step]:
     if hasattr(store, "iter_steps"):
-        return store.iter_steps()
+        return cast(Iterable[Step], store.iter_steps())
     if hasattr(store, "list_steps"):
-        return store.list_steps()
+        return cast(Iterable[Step], store.list_steps())
     # If your store doesn't track steps yet, return empty to keep snapshot stable.
-    return (s for s in [])  # empty generator
+    return []
 
 
 def _status_name(x: Any) -> str:
     try:
-        return x.name  # Enum
-    except Exception:
+        return str(x.name)  # Enum
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
 def _priority_name(x: Any) -> str:
     try:
-        return x.name  # Enum
-    except Exception:
+        return str(x.name)  # Enum
+    except AttributeError:  # intentional: not an Enum → plain str
         return str(x)
 
 
@@ -101,7 +103,7 @@ def snapshot(
             continue
         try:
             overdue_sec = (now - dl).total_seconds()
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
         if overdue_sec > 0:
             overdue_items.append({
@@ -112,8 +114,8 @@ def snapshot(
                 "deadline": dl.isoformat(),
                 "age_seconds": int(overdue_sec),
             })
-    oldest_overdue = sorted(overdue_items, key=lambda x: x["age_seconds"], reverse=True)[:1]
-    oldest_overdue = oldest_overdue[0] if oldest_overdue else None
+    _overdue_sorted = sorted(overdue_items, key=lambda x: x["age_seconds"], reverse=True)[:1]
+    oldest_overdue = _overdue_sorted[0] if _overdue_sorted else None
 
     # Upcoming deadlines (non-terminal, with future deadlines)
     upcoming: List[Dict[str, Any]] = []
@@ -123,7 +125,7 @@ def snapshot(
             continue
         try:
             in_sec = (dl - now).total_seconds()
-        except Exception:
+        except (TypeError, ValueError):  # intentional: bad deadline type → skip
             continue
         if in_sec > 0:
             upcoming.append({
@@ -137,7 +139,7 @@ def snapshot(
     upcoming = sorted(upcoming, key=lambda x: x["in_seconds"])[:max_list]
 
     # Blocked reasons (top)
-    blocked_reasons = Counter()
+    blocked_reasons: Counter[str] = Counter()
     for g in goals:
         if _status_name(g.status) == "BLOCKED":
             reason = (getattr(g, "last_error", None) or "blocked").strip()
@@ -147,8 +149,8 @@ def snapshot(
     # Recent errors (FAILED/BLOCKED with last_error), newest first by updated_at
     def _dt(x: Any) -> datetime:
         try:
-            return x if x.tzinfo else x.replace(tzinfo=timezone.utc)
-        except Exception:
+            return cast(datetime, x if x.tzinfo else x.replace(tzinfo=timezone.utc))
+        except AttributeError:  # intentional: not a datetime → fall back to now
             return UTCNOW()
 
     recent_errors: List[Dict[str, Any]] = []

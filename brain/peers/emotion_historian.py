@@ -53,7 +53,7 @@ class EmotionHistorian(BasePeer):
             core = state.get("core_signals") or {}
             stability = float(state.get("affect_stability", 1.0) or 1.0)
             triggers = state.get("recent_triggers") or []
-        except Exception:
+        except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed affect state → unchanged signals
             return signals
 
         # ── Chronically elevated emotions ─────────────────────────────────────

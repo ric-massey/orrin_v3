@@ -206,4 +206,5 @@ def ask_llm_about_conversation(context: Dict[str, Any]) -> str:
         query = f"Help me understand this exchange: {exchange}"
         return ask_llm(context, query=query, purpose="understand_conversation")
     except Exception as e:
+        _log.warning("ask_llm_about_conversation failed: %s", e)
         return f"ask_llm_about_conversation: error — {e}"

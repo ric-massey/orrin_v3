@@ -67,5 +67,5 @@ def get_source_weight(source: str) -> float:
     try:
         weights: Dict[str, float] = load_json(_WEIGHTS_PATH, default_type=dict) or {}
         return float(weights.get(source, 0.5))
-    except Exception:
+    except (OSError, ValueError, TypeError):  # intentional: missing/malformed weights → neutral 0.5
         return 0.5

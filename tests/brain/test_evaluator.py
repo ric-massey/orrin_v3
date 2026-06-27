@@ -1,14 +1,7 @@
 # tests/brain/test_evaluator.py
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from unittest.mock import patch, MagicMock
-
-
-BRAIN_DIR = Path(__file__).resolve().parent.parent.parent / "brain"
-if str(BRAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(BRAIN_DIR))
 
 
 # WAL tests
@@ -123,4 +116,5 @@ def test_update_delayed_calls_bandit_update(tmp_path):
     with patch("brain.think.bandit.contextual_bandit.update") as mock_update, \
          patch("brain.think.loop_helpers.emit_trace"):
         update_delayed("reflect", {"a": 1.0}, 0.75, decision_id="did-test")
-        mock_update.assert_called_once_with("reflect", {"a": 1.0}, 0.75, lr=0.1, l2=0.001)
+        # Delayed rewards use the default (None → UCB1 sample-mean), not a forced rate.
+        mock_update.assert_called_once_with("reflect", {"a": 1.0}, 0.75, lr=None, l2=0.001)

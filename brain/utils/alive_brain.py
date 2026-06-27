@@ -11,6 +11,7 @@ from datetime import date
 from typing import Callable, List, Dict, Any
 
 from .sys_events import record_event, recent_events, wait_event
+from .failure_counter import record_failure
 
 class AliveBrain:
     def __init__(
@@ -52,7 +53,7 @@ class AliveBrain:
             st = json.loads(self._state_file.read_text(encoding="utf-8"))
             self._last = {str(k): float(v) for k, v in (st.get("last") or {}).items()}
             self._created_once = set(st.get("created_once") or [])
-        except Exception:
+        except (OSError, ValueError):  # intentional: missing/bad state on first run → empty
             pass
 
     def stop(self): self._stop = True
@@ -69,8 +70,8 @@ class AliveBrain:
             self._state_file.write_text(json.dumps(
                 {"last": self._last, "created_once": sorted(self._created_once)[-500:]},
                 indent=2), encoding="utf-8")
-        except Exception:
-            pass
+        except Exception as exc:  # state persist failed — record (dedup may reset on restart)
+            record_failure("alive_brain._persist_state", exc)
 
     _INACTIVE_STATUSES = {"done", "completed", "failed", "abandoned", "cancelled", "archived"}
 
@@ -88,8 +89,8 @@ class AliveBrain:
                     continue
                 if str(status or "").lower() not in self._INACTIVE_STATUSES:
                     out.add(str(title).strip().lower())
-        except Exception:
-            pass
+        except Exception as exc:  # goal enumeration failed — record, no dedup titles
+            record_failure("alive_brain._active_titles", exc)
         return out
 
     def _every(self, name: str, period_s: float, now: float) -> bool:
@@ -112,7 +113,7 @@ class AliveBrain:
                 cwd=str(self.repo_root), capture_output=True, text=True, timeout=20
             )
             return sum(int(tok) for tok in p.stdout.split() if tok.isdigit())
-        except Exception:
+        except (OSError, subprocess.SubprocessError, ValueError):  # intentional: ruff absent/timeout → 0
             return 0
 
     def _mypy_errors(self) -> int:
@@ -122,7 +123,7 @@ class AliveBrain:
                 cwd=str(self.repo_root), capture_output=True, text=True, timeout=40
             )
             return 0 if p.returncode == 0 else max(1, p.returncode)
-        except Exception:
+        except (OSError, subprocess.SubprocessError):  # intentional: mypy absent/timeout → 0
             return 0
 
     def _outdated_deps(self) -> int:
@@ -130,7 +131,7 @@ class AliveBrain:
             p = subprocess.run(["pip","list","--outdated","--format","json"],
                                cwd=str(self.repo_root), capture_output=True, text=True, timeout=20)
             return len(json.loads(p.stdout or "[]"))
-        except Exception:
+        except (OSError, subprocess.SubprocessError, ValueError):  # intentional: pip absent/timeout → 0
             return 0
 
     def run_forever(self):

@@ -30,7 +30,7 @@ def update_motivations() -> None:
         if not isinstance(self_model, dict):
             raise ValueError("self_model not a dict")
 
-        long_memory = load_json(LONG_MEMORY_FILE, default_type=list)
+        long_memory: List[Any] = load_json(LONG_MEMORY_FILE, default_type=list)
         if not isinstance(long_memory, list):
             long_memory = []
 
@@ -99,7 +99,7 @@ def _symbolic_update_motivations() -> None:
     from collections import Counter
     try:
         self_model = ensure_self_model_integrity(get_self_model())
-        long_memory = load_json(LONG_MEMORY_FILE, default_type=list) or []
+        long_memory: List[Any] = load_json(LONG_MEMORY_FILE, default_type=list) or []
         if not isinstance(long_memory, list) or not isinstance(self_model, dict):
             return
 
@@ -113,7 +113,7 @@ def _symbolic_update_motivations() -> None:
 
         # Word frequency (4+ char, exclude stopwords)
         stopwords = {"that", "this", "with", "from", "have", "been", "will", "orrin", "what", "when"}
-        word_counts: Counter = Counter()
+        word_counts: Counter[str] = Counter()
         for t in texts:
             words = re.findall(r'\b[a-z]{4,}\b', t.lower())
             word_counts.update(w for w in words if w not in stopwords)
@@ -178,15 +178,15 @@ def adjust_goal_weights(context: Dict[str, Any] | None = None) -> None:
     Use recent feedback to nudge priorities on upcoming actions/goals.
     Writes trajectory snapshots to GOAL_TRAJECTORY_LOG_JSON.
     """
-    feedback = load_json(FEEDBACK_LOG, default_type=list)
+    feedback: List[Any] = load_json(FEEDBACK_LOG, default_type=list)
     if not isinstance(feedback, list) or not feedback:
         return
 
-    next_actions = load_json(ACTION_FILE, default_type=dict)
+    next_actions: Any = load_json(ACTION_FILE, default_type=dict)
     if not isinstance(next_actions, (dict, list)):
         next_actions = {}
 
-    trajectory_log = load_json(GOAL_TRAJECTORY_LOG_JSON, default_type=dict)
+    trajectory_log: Dict[str, Any] = load_json(GOAL_TRAJECTORY_LOG_JSON, default_type=dict)
     if not isinstance(trajectory_log, dict):
         trajectory_log = {}
 

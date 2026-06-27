@@ -106,7 +106,7 @@ class Architect(BasePeer):
                     text = py.read_text(encoding="utf-8", errors="ignore")
                     if f"def {fn_name}" in text:
                         return py
-                except Exception:
+                except OSError:  # intentional: skip unreadable file
                     continue
         except Exception as _e:
             record_failure("architect.Architect._find_function_file", _e)
@@ -140,5 +140,5 @@ class Architect(BasePeer):
                         if root not in _stdlib:
                             imports.append(alias.name.replace(".", "/"))
             return imports[:8]
-        except Exception:
+        except (OSError, SyntaxError, ValueError):  # intentional: unparseable source → no imports
             return []

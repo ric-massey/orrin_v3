@@ -77,7 +77,7 @@ def _load_weights() -> Dict[str, Any]:
         from brain.utils.json_utils import load_json
         w = load_json(_WEIGHTS_PATH, default_type=dict)
         return w if isinstance(w, dict) else {}
-    except Exception:
+    except (ImportError, OSError, ValueError):  # intentional: missing/malformed weights → {}
         return {}
 
 

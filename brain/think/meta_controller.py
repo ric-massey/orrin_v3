@@ -101,7 +101,8 @@ class _ThresholdBandit:
                     best_ucb = ucb
                     best_id  = arm_id
             return best_id
-        except Exception:
+        except Exception as exc:  # bandit math failed — record, fall back to default arm
+            record_failure("meta_controller._ThresholdBandit.choose", exc)
             return _DEFAULT_ARM
 
     def update(self, arm_id: int, reward: float) -> None:
@@ -187,7 +188,8 @@ def _draft_confidence(context: Dict[str, Any]) -> float:
     try:
         from brain.cognition.calibration import recalibrate_confidence
         return recalibrate_confidence(context, raw)
-    except Exception:
+    except Exception as exc:  # calibration optional — record, use raw confidence
+        record_failure("meta_controller._draft_confidence", exc)
         return raw
 
 
@@ -196,7 +198,8 @@ def _depth_preference() -> float:
     try:
         from brain.cognition.planning.thinking_depth import depth_as_signal
         return depth_as_signal()
-    except Exception:
+    except Exception as exc:  # depth bandit optional — record, neutral preference
+        record_failure("meta_controller._depth_preference", exc)
         return 0.5
 
 
@@ -259,8 +262,8 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
             for e in get_effects(intent, min_score=0.4)[:6]:
                 conclusions.append(str(e.get("effect", "")).lower())
                 confs.append(float(e.get("causal_score", 0.5)))
-        except Exception:
-            pass
+        except Exception as exc:  # causal graph optional — record, no causal projection
+            record_failure("meta_controller._symbolic_lookahead.causal", exc)
 
         # 2) Rule/causal chain rollout — skip analogy steps (no valence signal).
         try:
@@ -270,8 +273,8 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
                 if s.get("type") in ("rule", "causal_edge"):
                     conclusions.append(str(s.get("conclusion", "")).lower())
                     confs.append(float(s.get("confidence", 0.5)))
-        except Exception:
-            pass
+        except Exception as exc:  # planner optional — record, no chain projection
+            record_failure("meta_controller._symbolic_lookahead.planner", exc)
 
         if not conclusions:
             log_private("[meta_ctrl] symbolic lookahead: no projection → no veto")
@@ -295,7 +298,8 @@ def _symbolic_lookahead(intent: str, context: Dict[str, Any]) -> bool:
             f"veto_conf={veto_conf:.2f} → {'VETO' if confidently_negative else 'proceed'}"
         )
         return not confidently_negative
-    except Exception:
+    except Exception as exc:  # lookahead must never block — record, proceed (no veto)
+        record_failure("meta_controller._symbolic_lookahead", exc)
         return True
 
 
@@ -346,7 +350,8 @@ def simulate_outcome(context: Dict[str, Any], content: str) -> bool:
             f"draft_conf={draft_conf:.2f} branching={use_branching} branches={branches}"
         )
         return positive or conf < 0.4   # act unless simulation is confidently negative
-    except Exception:
+    except Exception as exc:  # simulation must never block action — record, proceed
+        record_failure("meta_controller.simulate_outcome", exc)
         return True
 
 

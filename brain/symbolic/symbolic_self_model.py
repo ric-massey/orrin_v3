@@ -78,7 +78,7 @@ def credit_domain_action(text: str, amount: float = 1.0) -> str:
         credits = load_json(DOMAIN_CREDITS_FILE, default_type=dict) or {}
         credits[domain] = round(float(credits.get(domain, 0.0)) + float(amount), 2)
         save_json(DOMAIN_CREDITS_FILE, credits)
-    except Exception:
+    except (OSError, ValueError):  # intentional: best-effort credit persist
         pass
     return domain
 
@@ -87,7 +87,7 @@ def _domain_credit_bonus() -> Dict[str, float]:
     """Per-domain quality bonus from accumulated action credits (soft-capped)."""
     try:
         credits = load_json(DOMAIN_CREDITS_FILE, default_type=dict) or {}
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/malformed credits → no bonus
         return {}
     return {
         d: min(_CREDIT_QUALITY_BONUS_CAP, float(c or 0.0) * 0.01)

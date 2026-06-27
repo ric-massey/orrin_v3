@@ -69,7 +69,7 @@ def build() -> WatchdogInputs:
         try:
             import resource as _resource
         except Exception:
-            _resource = None  # type: ignore
+            _resource = None  # type: ignore[assignment]
 
         def get_rss_mb() -> float:
             return _proc.memory_info().rss / 1024 / 1024

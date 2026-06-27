@@ -36,9 +36,9 @@ from typing import Dict, Any, List
 # `resource` is POSIX-only (absent on Windows). Import it optionally so this
 # module loads everywhere; psutil supplies the same numbers cross-platform.
 try:
-    import resource  # type: ignore
+    import resource
 except Exception:
-    resource = None  # type: ignore
+    resource = None  # type: ignore[assignment]
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
@@ -88,7 +88,7 @@ def _is_dreaming() -> bool:
     try:
         from brain.cognition.dreaming.dream_cycle import dreaming_now
         return bool(dreaming_now())
-    except Exception:
+    except ImportError:  # intentional: dream module unreachable → treat as awake
         return False
 
 
@@ -115,7 +115,7 @@ def reset_bands_for_resize(reason: str = "") -> None:
     for fname in (_WAKE_BANDS_FILE, _DREAM_BANDS_FILE):
         try:
             (DATA_DIR / fname).unlink(missing_ok=True)
-        except Exception:
+        except OSError:  # intentional: band file already gone/unremovable → fine
             pass
     _bands = BodyBands(DATA_DIR / _WAKE_BANDS_FILE, specs=_BAND_SPECS)
     _dream_bands = BodyBands(DATA_DIR / _DREAM_BANDS_FILE, specs=_BAND_SPECS)

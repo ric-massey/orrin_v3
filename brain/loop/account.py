@@ -28,7 +28,12 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def account_action(context, result, acted_this_cycle, BEH_NAMES) -> Context:
+def account_action(
+    context: Context,
+    result: Any,
+    acted_this_cycle: bool,
+    BEH_NAMES: Any,
+) -> Context:
     acted_this_cycle = acted_this_cycle or bool(context.pop("__acted_this_tick__", False))
 
     # Emotion drift check always runs — it's unconscious monitoring, not conscious thought
@@ -70,8 +75,8 @@ def account_action(context, result, acted_this_cycle, BEH_NAMES) -> Context:
                             # Learn from the watchdog action; the returned feats
                             # are not consumed here (record_decision below omits
                             # them), so don't bind them.
-                            bandit_learn(mv_type, context, _wd_reward, decision_id=_wd_decision_id)
-                            record_decision(mv_type, "watchdog minimum viable action",
+                            bandit_learn(str(mv_type), context, _wd_reward, decision_id=_wd_decision_id)
+                            record_decision(str(mv_type), "watchdog minimum viable action",
                                             reward=_wd_reward, context=context)
                         except Exception as _e:
                             route_exception(_e, phase="action", context=context,

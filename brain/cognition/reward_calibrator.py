@@ -152,7 +152,8 @@ def check_and_reward_prediction_accuracy(context: Dict[str, Any]) -> float:
         if accuracy > 0.0:
             calibrated_reward(context, prediction_accuracy=accuracy, source="prediction_check")
         return accuracy
-    except Exception:
+    except Exception as exc:  # prediction check failed — record, no reward
+        record_failure("reward_calibrator.check_prediction_accuracy", exc)
         return 0.0
 
 
@@ -175,5 +176,6 @@ def check_and_reward_contradiction_resolution(context: Dict[str, Any]) -> int:
             calibrated_reward(context, contradictions_resolved=len(resolved),
                               source="contradiction_check")
         return len(resolved)
-    except Exception:
+    except Exception as exc:  # contradiction check failed — record, none resolved
+        record_failure("reward_calibrator.check_and_reward_contradiction_resolution", exc)
         return 0

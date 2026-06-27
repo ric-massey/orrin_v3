@@ -36,7 +36,7 @@ from brain.core.runtime_log import get_logger
 
 import threading
 import time
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 from brain.utils.llm_router import routed_response, get_deep_model
 from brain.utils.llm_gate import llm_callable_by
@@ -45,6 +45,8 @@ from brain.think.scratchpad import scratchpad_append, scratchpad_latest
 from brain.think.meta_controller import decide as meta_decide
 from brain.think.thought_stream import emit_thought
 from brain.utils.failure_counter import record_failure
+# Draft critique stage, extracted to inner_loop_critique.py (Phase 4.5C).
+from brain.think.inner_loop_critique import _full_critique  # noqa: F401
 _log = get_logger(__name__)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
@@ -146,106 +148,6 @@ def _draft_prompt(
     )
 
 
-# ── Critique stage 1: reflect_on_internal_agents ─────────────────────────────
-
-def _critique_primary(draft: str, topic: str, context: Dict[str, Any]) -> str:
-    try:
-        from brain.cognition.reflection.reflect_on_internal_agents import critique_draft as _ext
-        result = _ext(draft, context)
-        if result and len(result.strip()) > 20:
-            return result.strip()
-    except Exception as _e:
-        record_failure("inner_loop._critique_primary", _e)
-
-    values = (context.get("self_model") or {}).get("core_values") or []
-    values_text = "; ".join(
-        (v["value"] if isinstance(v, dict) else str(v)) for v in values[:4]
-    )
-    prompt = (
-        f"You are Orrin's primary critic.\n"
-        f"Orrin's values: {values_text or '(unknown)'}.\n\n"
-        f"Topic: {topic}\nDraft:\n{draft}\n\n"
-        "Identify the single most important weakness: a gap in reasoning, a value "
-        "misalignment, or an unsupported assumption. 1-2 sentences. "
-        "If solid, say 'No major issues.'"
-    )
-    return (routed_response(prompt, "inner_loop/critique/primary", complexity="simple") or "").strip()
-
-
-# ── Critique stage 2: contradiction detector ─────────────────────────────────
-
-def _critique_contradiction(draft: str, topic: str, context: Dict[str, Any]) -> str:
-    wm_tail = (context.get("working_memory") or [])[-3:]
-    wm_text = "\n".join(
-        str(e.get("content", e) if isinstance(e, dict) else e)[:100] for e in wm_tail
-    ) or "(none)"
-
-    prompt = (
-        f"You are Orrin's contradiction detector.\n\n"
-        f"Recent working memory:\n{wm_text}\n\n"
-        f"Topic: {topic}\nDraft:\n{draft}\n\n"
-        "Does this draft contradict what Orrin said or concluded recently? "
-        "Does it contain internal contradictions? "
-        "1-2 sentences. If consistent, say 'No contradiction found.'"
-    )
-    return (routed_response(prompt, "inner_loop/critique/contradiction", complexity="simple") or "").strip()
-
-
-# ── Critique stage 3: value alignment checker ────────────────────────────────
-
-def _critique_value_alignment(draft: str, context: Dict[str, Any]) -> str:
-    values = (context.get("self_model") or {}).get("core_values") or []
-    if not values:
-        return ""
-    values_text = "; ".join(
-        (v["value"] if isinstance(v, dict) else str(v)) for v in values[:5]
-    )
-    prompt = (
-        f"You are Orrin's value-alignment checker.\n"
-        f"Orrin's core values: {values_text}\n\n"
-        f"Draft:\n{draft}\n\n"
-        "Does this draft act in accordance with these values? "
-        "Would Orrin endorse it on reflection? "
-        "1-2 sentences. If aligned, say 'Values aligned.'"
-    )
-    return (routed_response(prompt, "inner_loop/critique/values", complexity="simple") or "").strip()
-
-
-# ── Combined critique → synthesis ─────────────────────────────────────────────
-
-def _full_critique(draft: str, topic: str, context: Dict[str, Any]) -> Tuple[str, int]:
-    """
-    Run all three critique checks; synthesize into one actionable note.
-    Returns (critique_text, count_of_real_issues).
-    """
-    primary = _critique_primary(draft, topic, context)
-    contradiction = _critique_contradiction(draft, topic, context)
-    value_align   = _critique_value_alignment(draft, context)
-
-    # Filter trivial "no issues" responses
-    _no_issue = ("no major issues", "no contradiction", "values aligned", "solid", "consistent")
-    issues: List[str] = []
-    for label, text in [("Primary", primary), ("Contradiction", contradiction), ("Values", value_align)]:
-        if text and not any(ni in text.lower() for ni in _no_issue):
-            issues.append(f"[{label}] {text}")
-
-    if not issues:
-        return "", 0
-
-    if len(issues) == 1:
-        return issues[0], 1
-
-    # Multiple issues: synthesize into one actionable critique
-    combined_raw = "\n".join(issues)
-    synth_prompt = (
-        f"Three internal critics flagged issues with this draft:\n{combined_raw}\n\n"
-        "Synthesize the most actionable single critique in 1-2 sentences."
-    )
-    synth = (routed_response(synth_prompt, "inner_loop/critique/synth", complexity="simple") or combined_raw).strip()
-    return synth, len(issues)
-
-
-# ── Revision prompt ───────────────────────────────────────────────────────────
 
 def _revise_prompt(draft: str, critique: str, topic: str, context: Dict[str, Any]) -> str:
     goal_title = (context.get("committed_goal") or {}).get("title", "")
@@ -334,7 +236,8 @@ def _tot_branch(topic: str, context_text: str, context: Dict[str, Any]) -> str:
         winner = valid[choice][1]
         log_activity(f"[inner_loop/ToT] judge (deep model) chose option {choice+1}")
         return winner
-    except Exception:
+    except Exception as _e:
+        record_failure("inner_loop.tot_judge", _e)
         return valid[0][1]
 
 
@@ -373,7 +276,8 @@ def _reflect_on_loop_quality(
         score_str = "".join(c for c in raw.split()[0] if c.isdigit() or c == ".")
         score = float(score_str)
         return max(0.0, min(1.0, score))
-    except Exception:
+    except Exception as _e:
+        record_failure("inner_loop._reflect_on_loop_quality", _e)
         return 0.5   # neutral fallback
 
 

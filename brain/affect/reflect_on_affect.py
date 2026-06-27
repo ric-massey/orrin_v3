@@ -1,6 +1,7 @@
 from brain.core.runtime_log import get_logger
 from datetime import datetime, timezone
 from statistics import mean
+from typing import Any
 import random
 
 from brain.utils.load_utils import load_all_known_json
@@ -14,7 +15,7 @@ from brain.affect.affect import investigate_unexplained_emotions, detect_affect
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
-def reflect_on_affect(context, self_model, memory):
+def reflect_on_affect(context: Any, self_model: Any, memory: Any) -> Any:
     from brain.cog_memory.working_memory import update_working_memory
 
     data = load_all_known_json()

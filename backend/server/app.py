@@ -140,7 +140,7 @@ async def death(request: Request) -> JSONResponse:
     try:
         from brain.cognition.mortality import life_status as _ls2
         out["life"] = _ls2()
-    except Exception:
+    except (ImportError, OSError, ValueError):  # best-effort: life status is optional enrichment
         pass
     return JSONResponse(out)
 

@@ -7,14 +7,15 @@ import math
 import random
 from dataclasses import dataclass
 from datetime import datetime, timezone, timedelta, time as dtime
-from typing import Any, Callable, Dict, Iterable, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union, cast
 
 try:  # optional: nicer cron scheduling if installed
-    from croniter import croniter  # type: ignore
+    from croniter import croniter
 except Exception:  # pragma: no cover
-    croniter = None  # type: ignore
+    croniter = None
 
-UTCNOW = lambda: datetime.now(timezone.utc)
+def UTCNOW() -> datetime:
+    return datetime.now(timezone.utc)
 
 # ---------------------------------------------------------------------------
 # Trigger state (kept by caller; we don't persist anything internally)
@@ -175,7 +176,7 @@ class Cron(Trigger):
             # degrade gracefully
             return Every(minutes=5).next_due(now, state)
         itr = croniter(self.expr, now)
-        return itr.get_next(datetime)  # type: ignore[arg-type]
+        return cast(Optional[datetime], itr.get_next(datetime))
 
     def describe(self) -> str:
         if self._degraded:
@@ -208,7 +209,7 @@ class When(Trigger):
         # Not enforceable until predicate is true; return now to allow due() to check
         return now
 
-    def due(self, now: Optional[datetime], state: TriggerState, *, set_next: bool = True, ctx: Optional[Dict[str, Any]] = None) -> bool:  # type: ignore[override]
+    def due(self, now: Optional[datetime], state: TriggerState, *, set_next: bool = True, ctx: Optional[Dict[str, Any]] = None) -> bool:
         now = now or UTCNOW()
         # Enforce spacing first
         if state.last_fired_at and (now - state.last_fired_at).total_seconds() < self.min_interval:
@@ -255,7 +256,7 @@ class Event(Trigger):
         if event_name in self.matches:
             self._pending += 1
 
-    def due(self, now: Optional[datetime], state: TriggerState, *, set_next: bool = True) -> bool:  # type: ignore[override]
+    def due(self, now: Optional[datetime], state: TriggerState, *, set_next: bool = True) -> bool:
         now = now or UTCNOW()
         if self._pending <= 0:
             return False
@@ -341,7 +342,7 @@ def wire_predicates(triggers: Iterable[Trigger], *, when: Optional[Callable[[Dic
         return
     for t in triggers:
         if isinstance(t, When) and t.predicate is not when:
-            t.predicate = when  # type: ignore[method-assign]
+            t.predicate = when
 
 
 # ---------------------------------------------------------------------------

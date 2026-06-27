@@ -57,9 +57,14 @@ def test_sandbox_times_out_infinite_loop():
 # --- no in-process exec of generated code remains on the action path --------
 
 def _action_gate_source() -> str:
-    # tests/brain/ -> repo root -> brain/think/think_utils/action_gate.py
-    p = Path(__file__).resolve().parents[2] / "brain" / "think" / "think_utils" / "action_gate.py"
-    return p.read_text(encoding="utf-8")
+    # The action gate is now a package (Phase 4.5C split): action_gate.py keeps
+    # evaluate_and_act_if_needed, take_action lives in action_gate_execute.py, and
+    # the support helpers in action_gate_helpers.py. Inspect all three.
+    base = Path(__file__).resolve().parents[2] / "brain" / "think" / "think_utils"
+    return "\n".join(
+        (base / name).read_text(encoding="utf-8")
+        for name in ("action_gate.py", "action_gate_execute.py", "action_gate_helpers.py")
+    )
 
 
 def test_action_gate_has_no_inprocess_exec_call():

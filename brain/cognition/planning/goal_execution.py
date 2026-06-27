@@ -33,7 +33,7 @@ from brain.cognition.planning.plan_versioning import (
     _save_plan_version,
 )
 from brain.cognition.planning.goal_planning import (
-    _symbolic_plan, _generate_plan,
+    _symbolic_plan, _generate_plan, _bootstrap_goal_plan,
 )
 
 _log = get_logger(__name__)
@@ -138,86 +138,12 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
 
     # ── Milestone gate: goals must have a plan before any step executes ──────
     # If this goal was just adopted with no plan, generate one immediately and
-    # write a prominent WM note so the adoption is visible and auditable.
-    if not get_goal_plan(goal):
-        from brain.cognition.planning.step_execution import recognise_step_action
-        _milestone_texts = [
-            str(m.get("text", m) if isinstance(m, dict) else m).strip()
-            for m in (goal.get("milestones") or [])
-            if (m.get("text") if isinstance(m, dict) else m)
-            and not (m.get("met") if isinstance(m, dict) else False)
-        ]
-        # Only promote milestones to plan steps when they are actually ACTIONABLE
-        # (map to a real tool / imperative). Milestones are usually success
-        # CRITERIA phrased as outcomes ("A written summary was stored") — using
-        # those verbatim as steps lets the goal "complete" by narration without
-        # doing anything, which spins the loop (14 hollow completions/min). When
-        # they are not actionable, generate a real action plan instead (symbolic,
-        # no LLM) and let the milestones tick from the observed outcomes.
-        _actionable_ms = [t for t in _milestone_texts if recognise_step_action(t)]
-        _use_milestones = bool(_milestone_texts) and len(_actionable_ms) * 2 >= len(_milestone_texts)
-        if _use_milestones:
-            # Milestones are actionable — use them directly as plan steps (no LLM needed)
-            set_goal_plan(goal, _milestone_texts)
-            context["committed_goal"] = goal
-            update_working_memory(
-                f"[goal_adopted] '{goal_title}' — using {len(_milestone_texts)} milestone(s) as plan: "
-                + " → ".join(s[:50] for s in _milestone_texts[:3])
-            )
-            log_activity(
-                f"[pursue_goal] Milestone gate: promoted {len(_milestone_texts)} actionable milestone(s) "
-                f"to plan steps for '{goal_title[:60]}' (no LLM needed)"
-            )
-        else:
-            # No actionable milestones — generate a real action plan
-            _gate_steps = _generate_plan(goal, context)
-            if _gate_steps:
-                set_goal_plan(goal, _gate_steps)
-                context["committed_goal"] = goal
-                update_working_memory(
-                    f"[goal_adopted] '{goal_title}' committed — generated initial "
-                    f"{len(_gate_steps)}-step action plan: "
-                    + " → ".join(s[:60] for s in _gate_steps[:3])
-                )
-                log_activity(
-                    f"[pursue_goal] Milestone gate: generated plan for '{goal_title[:60]}' "
-                    f"({len(_gate_steps)} steps)"
-                )
-            else:
-                # Could not build a plan — track failures and abandon after 3 attempts
-                fail_count = int(goal.get("_plan_fail_count", 0) or 0) + 1
-                goal["_plan_fail_count"] = fail_count
-                context["committed_goal"] = goal
-
-                if fail_count >= 3:
-                    # Give up — use mark_goal_failed for proper emotion/memory handling
-                    from brain.cognition.planning.goals import mark_goal_failed
-                    mark_goal_failed(goal, reason=f"plan_generation_failed_{fail_count}x", context=context)
-                    context["committed_goal"] = None
-                    update_working_memory(
-                        f"[goal_abandoned] '{goal_title}' failed to generate a plan after "
-                        f"{fail_count} attempts — releasing so I can move on."
-                    )
-                    log_activity(f"[pursue_goal] Abandoned '{goal_title[:60]}' — plan generation failed {fail_count}x.")
-                else:
-                    update_working_memory(
-                        f"[goal_blocked] '{goal_title}' has no plan (attempt {fail_count}/3). "
-                        "Will retry next cycle."
-                    )
-                    log_activity(f"[pursue_goal] Milestone gate: could not plan '{goal_title[:60]}' (attempt {fail_count}/3).")
-
-                # ── CRITICAL: persist the updated fail count / failed status to disk ──
-                # Without this save the count resets to 0 every cycle and the goal
-                # is never abandoned.
-                try:
-                    from brain.cognition.planning.goals import merge_updated_goal_into_tree
-                    from brain.cognition.planning import goal_arbiter
-                    goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
-                                       source="pursue_goal.plan_fail_count")
-                except Exception as _pf_e:
-                    log_activity(f"[pursue_goal] Could not persist plan-fail count: {_pf_e}")
-
-                return {"status": "blocked", "reason": "no_plan_generated", "goal": goal_title}
+    # write a prominent WM note so the adoption is visible and auditable. The
+    # gate body lives in goal_planning (alongside _generate_plan); it sets the
+    # plan as a side effect and returns a blocked dict only when planning fails.
+    _gate_blocked = _bootstrap_goal_plan(goal, goal_title, context)
+    if _gate_blocked is not None:
+        return _gate_blocked
 
     # ── Drift check: replan if last assessment flagged off-track ────────────
     if goal.get("_drift_detected"):

@@ -22,7 +22,7 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
-def integrate_recall_and_baseline(context, _mem_daemon) -> Context:
+def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context:
     # Query v2 MemoryDaemon for semantically relevant memories.
     # When comprehension parsed an input concept this cycle, use it as the
     # query so retrieved memories are relevant to what was just said, not
@@ -163,7 +163,22 @@ def integrate_recall_and_baseline(context, _mem_daemon) -> Context:
     return context
 
 
-def tier1_health_check(context) -> Context:
+def _h1_maybe_recruit(alert: Dict[str, Any], ignored_n: int, context: Context) -> None:
+    """Phase 2 bridge: once an alert's neglect counter crosses the recruit
+    threshold, escalate the chronic deficit into a survival-tier restoration goal
+    (deduped against re-recruitment). Best-effort — never let it break the health
+    read."""
+    try:
+        from brain.cognition.planning.survival_goals import (
+            recruit_survival_goal, RECRUIT_AFTER_CYCLES,
+        )
+        if ignored_n >= RECRUIT_AFTER_CYCLES:
+            recruit_survival_goal(alert, context)
+    except Exception as _e:
+        record_failure("ORRIN_loop.tier1_recruit", _e)
+
+
+def tier1_health_check(context: Context) -> Context:
     """Tier-1 interoception: read the setpoint_regulation daemon's latest
     snapshot and fold it into the cycle — warnings/criticals become escalating
     raw_signals the selector weighs, repeated-neglect criticals add direct
@@ -191,9 +206,14 @@ def tier1_health_check(context) -> Context:
         from brain.embodiment.setpoint_regulation import get_state as _h1_get
         _h1 = _h1_get()
         context["health_score"] = _h1.get("health_score", 1.0)
+        # Reset the preempt key each cycle BEFORE scanning alerts: context persists
+        # across cycles, so a critical that clears must un-set this or the preempt
+        # would latch on forever. The loop re-sets it True if a critical is present.
+        context["_setpoint_critical"] = False
+        context.pop("_setpoint_critical_reason", None)
         _h1_critical_fn = None
         _h1_ignored = context.setdefault("_h1_ignored_cycles", {})
-        _h1_active_ids: set = set()
+        _h1_active_ids: set[str] = set()
 
         for _h1_alert in _h1.get("alerts", []):
             _aid  = _h1_alert.get("id", "")
@@ -215,6 +235,14 @@ def tier1_health_check(context) -> Context:
                         signal_strength=_escalated_str, tags=_tags)
                 )
                 context["_tier1_critical"] = True
+                # Reconcile the key the goal-system preempt consumer reads
+                # (goal_closure._survival_critical). Producer and consumer used to
+                # pass in the night: tier1 wrote _tier1_critical, the preempt read
+                # _setpoint_critical (never set). Set it here, with the alert id/desc
+                # stashed so the preempt can name *why* it yielded.
+                context["_setpoint_critical"] = True
+                if not context.get("_setpoint_critical_reason"):
+                    context["_setpoint_critical_reason"] = _aid or _desc
                 if _sfn and not _h1_critical_fn:
                     _h1_critical_fn = _sfn
                 # Direct emotional cost after 3+ ignored cycles
@@ -230,12 +258,21 @@ def tier1_health_check(context) -> Context:
                         context["affect_state"] = _h1_emo
                     except Exception as _e:
                         record_failure("ORRIN_loop.run_cognitive_loop.9", _e)
+                # Phase 2 — chronic-deficit recruiter: a critical that stays ignored
+                # past the recruit threshold escalates from a signal nudge into a
+                # committed restoration intention (the autonomic→cortical bridge).
+                _h1_maybe_recruit(_h1_alert, _ignored_n, context)
             elif _sev == "warning":
+                # Warnings now carry their own neglect counter too — the chronic case
+                # is precisely a sub-acute deficit that keeps recurring unaddressed.
+                _h1_ignored[_aid] = _h1_ignored.get(_aid, 0) + 1
+                _ignored_n = _h1_ignored[_aid]
                 from brain.utils.signal_utils import create_signal as _cs
                 context.setdefault("raw_signals", []).append(
                     _cs(source="setpoint_regulation", content=_desc,
                         signal_strength=0.65, tags=_tags)
                 )
+                _h1_maybe_recruit(_h1_alert, _ignored_n, context)
 
         # Clear neglect counters for alerts that have resolved
         for _stale_id in list(_h1_ignored.keys()):

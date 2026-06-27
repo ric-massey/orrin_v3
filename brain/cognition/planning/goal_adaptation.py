@@ -46,7 +46,7 @@ def assess_goal_progress(context: Optional[Dict[str, Any]] = None) -> Dict[str, 
 
     goal_title = goal.get("title", "")
 
-    long_mem = load_json(LONG_MEMORY_FILE, default_type=list)
+    long_mem: List[Any] = load_json(LONG_MEMORY_FILE, default_type=list)
     if not isinstance(long_mem, list):
         return {"status": "ok", "skipped": True, "reason": "no_long_memory"}
 
@@ -142,9 +142,7 @@ def assess_goal_progress(context: Optional[Dict[str, Any]] = None) -> Dict[str, 
 
 
 # ── Dynamic subgoal adaptation ─────────────────────────────────────────────────
-
-_last_adapt_ts: float = 0.0
-_ADAPT_COOLDOWN_S: float = 60.0
+# (_last_adapt_ts / _ADAPT_COOLDOWN_S are defined once at module top.)
 
 # Words/phrases in working memory that signal an emergent blocker — something
 # that must be handled before the rest of the plan can make progress.
@@ -297,7 +295,7 @@ def adapt_subgoals(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
             changes.append("inserted blocker-remediation step")
 
     # 4. Reprioritize the pending tail toward still-unmet milestones.
-    unmet_tokens: set = set()
+    unmet_tokens: set[str] = set()
     for text in unmet_milestone_texts(goal):
         unmet_tokens |= _plan_step_tokens(text)
     if unmet_tokens:

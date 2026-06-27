@@ -88,7 +88,7 @@ def extract_entity_names(text: str, known_entities=None) -> set[str]:
 def _load_vocab() -> dict:
     try:
         return json.loads(_VOCAB_PATH.read_text(encoding="utf-8")).get("world_model_extraction", {})
-    except Exception:
+    except (OSError, ValueError, AttributeError):  # intentional: missing/malformed vocab → {}
         return {}
 
 

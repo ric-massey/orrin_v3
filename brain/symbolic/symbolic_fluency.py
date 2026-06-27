@@ -172,7 +172,7 @@ def explain_causal_chain(query: str, max_hops: int = 3) -> str:
     """
     try:
         from brain.symbolic.causal_graph import get_causes, get_effects
-    except Exception:
+    except ImportError:  # intentional: causal graph optional → no narrative
         return ""
 
     effects = get_effects(query)

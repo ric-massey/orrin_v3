@@ -13,7 +13,7 @@ import time
 from dataclasses import asdict, is_dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Generator, Iterable, Iterator, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, Generator, Iterable, Iterator, List, Optional, Tuple, Union
 
 # ---------- time ----------
 
@@ -36,7 +36,7 @@ def parse_iso(s: Optional[str]) -> Optional[datetime]:
     try:
         dt = datetime.fromisoformat(ss)
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 def human_secs(sec: float) -> str:
@@ -82,7 +82,7 @@ def ensure_dir(p: Union[str, Path]) -> Path:
 # ---------- I/O: JSON / JSONL / text (atomic) ----------
 
 def _jsonable(obj: Any) -> Any:
-    if is_dataclass(obj):
+    if is_dataclass(obj) and not isinstance(obj, type):
         obj = asdict(obj)
     if isinstance(obj, dict):
         return {k: _jsonable(v) for k, v in obj.items()}
@@ -104,7 +104,7 @@ def read_json(path: Union[str, Path], *, default: Any = None) -> Any:
         return default
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: unreadable/bad json → default
         return default
 
 def append_jsonl(path: Union[str, Path], records: Iterable[Dict[str, Any]]) -> Path:
@@ -126,7 +126,7 @@ def iter_jsonl(path: Union[str, Path]) -> Iterator[Dict[str, Any]]:
                 continue
             try:
                 yield json.loads(line)
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip a malformed line
                 continue
 
 def write_text(path: Union[str, Path], text: str, *, atomic: bool = True) -> Path:
@@ -193,8 +193,8 @@ class ThreadGroup:
         self._threads: List[threading.Thread] = []
         self._errors: List[str] = []
 
-    def start(self, name: str, target, *, daemon: bool = True) -> None:
-        def _runner():
+    def start(self, name: str, target: Callable[[], Any], *, daemon: bool = True) -> None:
+        def _runner() -> None:
             try:
                 target()
             except Exception as e:
@@ -213,7 +213,7 @@ class ThreadGroup:
 
 # ---------- retry ----------
 
-def retry(fn, *, attempts: int = 3, delay_seconds: float = 0.1, backoff: float = 2.0, retry_on: Tuple[type, ...] = (Exception,)):
+def retry(fn: Callable[..., Any], *, attempts: int = 3, delay_seconds: float = 0.1, backoff: float = 2.0, retry_on: Tuple[type[BaseException], ...] = (Exception,)) -> Callable[..., Any]:
     """
     Decorator-like helper:
 
@@ -223,12 +223,12 @@ def retry(fn, *, attempts: int = 3, delay_seconds: float = 0.1, backoff: float =
       @retry(attempts=5, delay_seconds=0.5)
       def op2(): ...
     """
-    def _wrap(*args, **kwargs):
+    def _wrap(*args: Any, **kwargs: Any) -> Any:
         d = float(delay_seconds)
         for i in range(1, int(attempts) + 1):
             try:
                 return fn(*args, **kwargs)
-            except retry_on:  # type: ignore[arg-type]
+            except retry_on:
                 if i >= attempts:
                     raise
                 time.sleep(d)

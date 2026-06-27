@@ -15,7 +15,7 @@ STAGNATION_SIGNAL_TALK_THRESHOLD = 0.65     # alone-talk allowed if stagnation_s
 # ===== Local helpers (no import cycles) =====
 def _clamp01(x):
     try: return max(0.0, min(1.0, float(x)))
-    except Exception: return 0.0
+    except (ValueError, TypeError): return 0.0  # intentional: non-numeric → 0.0
 
 def _cycles(context):
     raw = context.get("cycle_count", 0)
@@ -27,7 +27,7 @@ def _best_user_input_mtime(context):
     try:
         from brain.paths import USER_INPUT_FILE as UIF
         if UIF: paths.append(UIF)
-    except Exception:
+    except ImportError:
         pass  # constant is optional; the cwd-relative probes below cover it
     try:
         cwd = context.get("cwd") or os.getcwd()

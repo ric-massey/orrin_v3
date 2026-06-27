@@ -45,7 +45,7 @@ def _data_dir() -> Path:
     try:
         from brain.paths import DATA_DIR
         return DATA_DIR
-    except Exception:
+    except ImportError:  # intentional: paths unavailable — fall back to repo-relative dir
         return Path(__file__).resolve().parent.parent / "data"
 
 
@@ -166,7 +166,8 @@ def flush_all() -> int:
             count = len(_buffer)
             _buffer.clear()
             return count
-        except Exception:
+        except Exception as exc:  # trace flush failed — record, nothing flushed
+            record_failure("trace_buffer.flush_all", exc)
             return 0
 
 
@@ -213,7 +214,7 @@ def export_for_training(min_outcome: float = _MIN_OUTCOME) -> int:
                         fout.write(json.dumps({"messages": trace["messages"]},
                                               ensure_ascii=False) + "\n")
                         count += 1
-                except Exception:
+                except (ValueError, KeyError):  # intentional: bad line / no messages → skip
                     continue
     except Exception as _e:
         record_failure("trace_buffer.export_for_training", _e)

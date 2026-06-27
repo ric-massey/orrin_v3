@@ -190,7 +190,7 @@ class SensoryStream:
                         continue
                     try:
                         mtime = entry.stat().st_mtime
-                    except Exception:
+                    except OSError:  # intentional: file vanished/unreadable → skip
                         continue
                     key = str(entry)
                     prev = self._fs_baseline.get(key)
@@ -220,7 +220,7 @@ class SensoryStream:
                     continue
                 try:
                     mtime = py.stat().st_mtime
-                except Exception:
+                except OSError:  # intentional: file vanished/unreadable → skip
                     continue
                 key = str(py)
                 prev = self._code_baseline.get(key)
@@ -249,7 +249,7 @@ class SensoryStream:
                 tail = f.read()
             lines = [l.strip() for l in tail.splitlines() if l.strip()]
             return lines[-5:]
-        except Exception:
+        except OSError:  # intentional: log unreadable → no tail
             return []
 
     # ------------------------------------------------------------------

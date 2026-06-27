@@ -11,7 +11,7 @@ this has no import cycle back to pursue_goal, which re-imports _symbolic_plan
 from __future__ import annotations
 
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from brain.core.runtime_log import get_logger
 from brain.utils.log import log_activity
@@ -76,7 +76,7 @@ _INTENT_FAMILIES = (
 )
 
 
-def _intent_candidates(goal_title: str) -> tuple:
+def _intent_candidates(goal_title: str) -> Tuple[str, ...]:
     """The candidate tool family for the goal's intent, or the full vocabulary
     when no intent verb is recognised. A bare 'find/locate' only routes to the
     file family when there's a file/string cue, so 'find out about X' stays
@@ -199,11 +199,11 @@ def _causal_first_step(goal_title: str) -> Optional[str]:
         if len(cause) < 4:
             return None
         return f"Act on what I've learned brings this about: {cause[:120]}"
-    except Exception:
+    except (ImportError, ValueError, TypeError):  # intentional: causal graph unavailable/malformed → no suggestion
         return None
 
 
-def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
+def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> List[str]:
     """
     Ask the LLM for an ordered list of 3-5 concrete steps to accomplish this goal.
     Falls back to symbolic plan generation when LLM is unavailable.
@@ -235,7 +235,7 @@ def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
     # (fed by confirmed experiments and successful repairs).
     _causal = _causal_first_step(goal_title)
 
-    def _lead(steps: list) -> list:
+    def _lead(steps: List[str]) -> List[str]:
         return ([_causal] + steps) if (_causal and steps) else steps
 
     wm_tail = (context.get("working_memory") or [])[-4:]
@@ -287,3 +287,106 @@ def _generate_plan(goal: Dict[str, Any], context: Dict[str, Any]) -> list:
         goal["missing_capability"] = "plan_generation"
         log_activity(f"[pursue_goal] '{goal_title[:60]}' blocked: needs_capability (plan_generation)")
     return _lead(sym)
+
+
+# ── Milestone gate ───────────────────────────────────────────────────────────
+
+
+def _bootstrap_goal_plan(
+    goal: Dict[str, Any], goal_title: str, context: Dict[str, Any]
+) -> Optional[Dict[str, Any]]:
+    """Ensure a committed goal has a step plan before any step executes.
+
+    Newly-adopted goals arrive without a plan. Promote actionable milestones to
+    plan steps when most milestones map to a real tool; otherwise generate a real
+    action plan (symbolic, no LLM). On repeated planning failure mark the goal
+    failed and release it. Sets the plan as a side effect; returns a "blocked"
+    status dict to short-circuit the pursuit cycle when no plan could be made,
+    otherwise None so the caller falls through to step execution.
+    """
+    from brain.cognition.planning.goals import get_goal_plan, set_goal_plan
+    from brain.cog_memory.working_memory import update_working_memory
+
+    if get_goal_plan(goal):
+        return None
+
+    from brain.cognition.planning.step_execution import recognise_step_action
+    _milestone_texts = [
+        str(m.get("text", m) if isinstance(m, dict) else m).strip()
+        for m in (goal.get("milestones") or [])
+        if (m.get("text") if isinstance(m, dict) else m)
+        and not (m.get("met") if isinstance(m, dict) else False)
+    ]
+    # Only promote milestones to plan steps when they are actually ACTIONABLE
+    # (map to a real tool / imperative). Milestones are usually success
+    # CRITERIA phrased as outcomes ("A written summary was stored") — using
+    # those verbatim as steps lets the goal "complete" by narration without
+    # doing anything, which spins the loop (14 hollow completions/min). When
+    # they are not actionable, generate a real action plan instead (symbolic,
+    # no LLM) and let the milestones tick from the observed outcomes.
+    _actionable_ms = [t for t in _milestone_texts if recognise_step_action(t)]
+    _use_milestones = bool(_milestone_texts) and len(_actionable_ms) * 2 >= len(_milestone_texts)
+    if _use_milestones:
+        # Milestones are actionable — use them directly as plan steps (no LLM needed)
+        set_goal_plan(goal, _milestone_texts)
+        context["committed_goal"] = goal
+        update_working_memory(
+            f"[goal_adopted] '{goal_title}' — using {len(_milestone_texts)} milestone(s) as plan: "
+            + " → ".join(s[:50] for s in _milestone_texts[:3])
+        )
+        log_activity(
+            f"[pursue_goal] Milestone gate: promoted {len(_milestone_texts)} actionable milestone(s) "
+            f"to plan steps for '{goal_title[:60]}' (no LLM needed)"
+        )
+    else:
+        # No actionable milestones — generate a real action plan
+        _gate_steps = _generate_plan(goal, context)
+        if _gate_steps:
+            set_goal_plan(goal, _gate_steps)
+            context["committed_goal"] = goal
+            update_working_memory(
+                f"[goal_adopted] '{goal_title}' committed — generated initial "
+                f"{len(_gate_steps)}-step action plan: "
+                + " → ".join(s[:60] for s in _gate_steps[:3])
+            )
+            log_activity(
+                f"[pursue_goal] Milestone gate: generated plan for '{goal_title[:60]}' "
+                f"({len(_gate_steps)} steps)"
+            )
+        else:
+            # Could not build a plan — track failures and abandon after 3 attempts
+            fail_count = int(goal.get("_plan_fail_count", 0) or 0) + 1
+            goal["_plan_fail_count"] = fail_count
+            context["committed_goal"] = goal
+
+            if fail_count >= 3:
+                # Give up — use mark_goal_failed for proper emotion/memory handling
+                from brain.cognition.planning.goals import mark_goal_failed
+                mark_goal_failed(goal, reason=f"plan_generation_failed_{fail_count}x", context=context)
+                context["committed_goal"] = None
+                update_working_memory(
+                    f"[goal_abandoned] '{goal_title}' failed to generate a plan after "
+                    f"{fail_count} attempts — releasing so I can move on."
+                )
+                log_activity(f"[pursue_goal] Abandoned '{goal_title[:60]}' — plan generation failed {fail_count}x.")
+            else:
+                update_working_memory(
+                    f"[goal_blocked] '{goal_title}' has no plan (attempt {fail_count}/3). "
+                    "Will retry next cycle."
+                )
+                log_activity(f"[pursue_goal] Milestone gate: could not plan '{goal_title[:60]}' (attempt {fail_count}/3).")
+
+            # ── CRITICAL: persist the updated fail count / failed status to disk ──
+            # Without this save the count resets to 0 every cycle and the goal
+            # is never abandoned.
+            try:
+                from brain.cognition.planning.goals import merge_updated_goal_into_tree
+                from brain.cognition.planning import goal_arbiter
+                goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                                   source="pursue_goal.plan_fail_count")
+            except Exception as _pf_e:
+                log_activity(f"[pursue_goal] Could not persist plan-fail count: {_pf_e}")
+
+            return {"status": "blocked", "reason": "no_plan_generated", "goal": goal_title}
+
+    return None

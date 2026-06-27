@@ -98,6 +98,6 @@ def lm_draft(context: Dict, plan: Dict, comprehension: Dict) -> str:
         if _acceptable(draft, comprehension):
             log_activity("[voice] native organ produced reply (gated + checked)")
             return draft
-    except Exception:
-        pass
+    except Exception as _e:  # native organ is experimental — log and fall back to normal speech
+        log_activity(f"[voice] native organ failed: {_e}")
     return ""

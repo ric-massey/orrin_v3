@@ -29,6 +29,7 @@ from urllib.request import Request, urlopen
 import os
 
 import brain.paths as paths
+from brain.utils.failure_counter import record_failure
 from brain.version import current_version
 
 _DEFAULT_REPO = "ric-massey/orrin_v3"
@@ -43,7 +44,7 @@ def check_enabled() -> bool:
     try:
         from brain.utils import prefs
         return bool(prefs.get("auto_update_check", False))
-    except Exception:
+    except ImportError:  # intentional: prefs unavailable → opt-in off (fail-closed)
         return False
 
 
@@ -91,6 +92,7 @@ def check_for_update(*, force: bool = False, timeout: float = 6.0) -> Dict[str, 
             "notes": (data.get("body") or "")[:2000],
         }
     except Exception as e:  # noqa: BLE001 — surface the reason, never crash a UI poll
+        record_failure("updater.check_for_update", e)
         return {"checked": True, "available": False, "current": cur, "error": str(e)[:200]}
 
 
@@ -113,4 +115,5 @@ def prepare_update() -> Dict[str, Any]:
             "version": current_version(),
         }
     except Exception as e:  # noqa: BLE001
+        record_failure("updater.prepare_update", e)
         return {"ok": False, "error": str(e)[:200]}

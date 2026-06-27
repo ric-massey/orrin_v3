@@ -335,7 +335,7 @@ def simulate_counterfactual(cause: str, effect: str, *, context: Optional[Dict] 
     """
     try:
         from brain.symbolic.rule_engine import get_all_rules
-    except Exception:
+    except ImportError:  # intentional: rule engine optional → skip counterfactual
         return {"counterfactual_likely": False, "alternative_rules": [], "action_taken": "skipped"}
 
     cause_tokens  = set(re.findall(r"[a-z][a-z0-9]+", cause.lower()))

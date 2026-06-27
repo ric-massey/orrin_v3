@@ -104,7 +104,7 @@ def _last_firing_times() -> Dict[str, float]:
 def decay_idle_rules(days_threshold: int = _IDLE_DAYS_THRESH) -> int:
     try:
         from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-    except Exception:
+    except ImportError:  # intentional: rule engine optional — nothing to forget
         return 0
 
     rules = get_all_rules()
@@ -164,7 +164,7 @@ def prune_overfitted_rules(
 ) -> int:
     try:
         from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
-    except Exception:
+    except ImportError:  # intentional: rule engine optional — nothing to forget
         return 0
 
     rules = get_all_rules()
@@ -217,7 +217,7 @@ def retire_stale_concepts() -> int:
     try:
         from brain.symbolic.rule_engine import get_all_rules
         from brain.cognition.knowledge_graph import add_entity
-    except Exception:
+    except ImportError:  # intentional: rule engine / KG optional — nothing to prune
         return 0
 
     rules = get_all_rules()
@@ -237,7 +237,8 @@ def retire_stale_concepts() -> int:
             if e.get("type") == "concept"
             and "retired" not in (e.get("tags") or [])
         ]
-    except Exception:
+    except Exception as exc:  # KG unavailable/unreadable — record, retire nothing
+        record_failure("rule_forgetting.retire_concepts", exc)
         return 0
 
     retired_count = 0

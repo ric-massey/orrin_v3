@@ -14,6 +14,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable
 
+from brain.utils.failure_counter import record_failure
+
 _PATH = Path(__file__).resolve().parents[2] / "data" / "language" / "tokenizer.json"
 _VOCAB_SIZE = 8192
 
@@ -24,7 +26,7 @@ def _try_import():
     try:
         from tokenizers import Tokenizer, models, trainers, pre_tokenizers, decoders
         return Tokenizer, models, trainers, pre_tokenizers, decoders
-    except Exception:
+    except ImportError:  # intentional: tokenizers optional — caller degrades
         return None
 
 
@@ -46,7 +48,8 @@ def get():
     try:
         _tok = Tokenizer.from_file(str(_PATH))
         return _tok
-    except Exception:
+    except Exception as exc:  # saved tokenizer won't load — record, treat as untrained
+        record_failure("tokenizer.get", exc)
         return None
 
 
@@ -71,7 +74,8 @@ def train(text_iter: Iterable[str], vocab_size: int = _VOCAB_SIZE) -> bool:
         global _tok
         _tok = tok
         return True
-    except Exception:
+    except Exception as exc:  # tokenizer training failed — record, report failure
+        record_failure("tokenizer.train", exc)
         return False
 
 

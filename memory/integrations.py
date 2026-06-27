@@ -12,18 +12,18 @@ try:
 except Exception:  # pragma: no cover
     _MEM_SNAPSHOT_IS_STUB = True
 
-    def mem_snapshot(*_a, **_k):
+    def mem_snapshot(*_a: Any, **_k: Any) -> Dict[str, object]:  # type: ignore[misc]
         # If tests don't patch, fall back to an empty signals dict
         return {"signals": {}}
 
 try:
     from .wal import stats as _wal_stats_impl  # real WAL stats if present
 except Exception:  # pragma: no cover
-    _wal_stats_impl = None
+    _wal_stats_impl = None  # type: ignore[assignment]
 
 
 # Expose a symbol the tests can monkeypatch directly.
-def wal_stats():
+def wal_stats() -> Any:
     if _wal_stats_impl is None:
         return None
     try:
@@ -35,8 +35,8 @@ def wal_stats():
 
 def _len_safely(obj: Any) -> int:
     try:
-        return len(obj)  # type: ignore[call-arg]
-    except Exception:
+        return len(obj)
+    except TypeError:  # intentional: object has no len → 0
         return 0
 
 
@@ -46,7 +46,7 @@ def _alive_safely(daemon: Any) -> bool:
             return bool(daemon.is_alive())
         t = getattr(daemon, "thread", None)
         return bool(t and t.is_alive())
-    except Exception:
+    except (AttributeError, RuntimeError):  # intentional: liveness probe failed → not alive
         return False
 
 
@@ -153,7 +153,7 @@ def _derive_wal_fields(daemon: Any, store: Any) -> dict[str, Any]:
     return out
 
 
-def make_memory_health_getter(*, daemon, store, full: bool = False) -> Callable[[], Dict[str, Any]]:
+def make_memory_health_getter(*, daemon: Any, store: Any, full: bool = False) -> Callable[[], Dict[str, Any]]:
     """
     Returns a zero-arg function the watchdog/UI can call to fetch memory health.
 
@@ -183,9 +183,10 @@ def make_memory_health_getter(*, daemon, store, full: bool = False) -> Callable[
         hs = mem_snapshot(
             store,
             working_cache_size=_len_safely(getattr(daemon, "_working_cache", {})),
-            last_compaction_ts=getattr(daemon, "_last_compact_ts", None),
+            last_compaction_ts=float(getattr(daemon, "_last_compact_ts", None) or 0.0),
         )
-        sig = dict(hs.get("signals", {})) if isinstance(hs, dict) else {}
+        _signals = hs.get("signals", {}) if isinstance(hs, dict) else {}
+        sig: Dict[str, Any] = dict(_signals) if isinstance(_signals, dict) else {}
         # WAL write_failures only (if present and safe)
         try:
             ws = wal_stats()
@@ -205,7 +206,7 @@ def make_memory_health_getter(*, daemon, store, full: bool = False) -> Callable[
             hs = mem_snapshot(
                 store,
                 working_cache_size=_len_safely(getattr(daemon, "_working_cache", {})),
-                last_compaction_ts=getattr(daemon, "_last_compact_ts", None),
+                last_compaction_ts=float(getattr(daemon, "_last_compact_ts", None) or 0.0),
             )
             if not isinstance(hs, dict):
                 hs = {"signals": {}}
@@ -239,7 +240,7 @@ def make_memory_health_getter(*, daemon, store, full: bool = False) -> Callable[
     return _get_minimal
 
 
-def make_memory_dashboard_health_getter(*, daemon, store) -> Callable[[], Dict[str, Any]]:
+def make_memory_dashboard_health_getter(*, daemon: Any, store: Any) -> Callable[[], Dict[str, Any]]:
     """
     Convenience wrapper for the Memory dashboard UI. Always returns the rich payload.
     """

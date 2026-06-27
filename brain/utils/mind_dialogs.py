@@ -14,6 +14,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable, Dict
 
+from brain.utils.failure_counter import record_failure
+
 _FILE_TYPES = ("Orrin mind (*.orrindmind)", "All files (*.*)")
 
 
@@ -43,6 +45,7 @@ def export_mind(window: Any) -> Dict[str, Any]:
         Path(path).write_bytes(_ma.export_bytes())
         return {"ok": True, "path": str(path)}
     except Exception as e:
+        record_failure("mind_dialogs.export_mind", e)
         return {"ok": False, "error": str(e)}
 
 
@@ -77,4 +80,5 @@ def import_mind(window: Any, post: Callable[..., Any]) -> Dict[str, Any]:
             out.update(payload)
         return out
     except Exception as e:
+        record_failure("mind_dialogs.import_mind", e)
         return {"ok": False, "error": str(e)}

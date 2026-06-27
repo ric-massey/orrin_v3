@@ -18,6 +18,7 @@ import time
 from pathlib import Path
 from typing import List
 
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_activity
 
 _UA = {"User-Agent": "OrrinLanguageLearner/1.0 (personal research; contact: local)"}
@@ -109,7 +110,7 @@ def fetch_books(ids: List[int]) -> int:
                 if r.status_code == 200 and len(r.text) > 1000:
                     text = r.text
                     break
-            except Exception:
+            except requests.RequestException:  # intentional: network error → try next url
                 continue
         time.sleep(0.5)  # be polite to Gutenberg
         if not text:
@@ -124,7 +125,8 @@ def fetch_books(ids: List[int]) -> int:
             dest.write_text(body, encoding="utf-8")
             got += 1
             log_activity(f"[library] acquired book {bid} ({dest.stat().st_size // 1024} KB)")
-        except Exception:
+        except Exception as exc:  # write/parse failure for one book — record, skip it
+            record_failure("library.fetch_books", exc)
             continue
     return got
 
@@ -137,7 +139,7 @@ def fetch_wikipedia(n_articles: int = 50) -> int:
     """
     try:
         import requests
-    except Exception:
+    except ImportError:  # intentional: optional dep absent — no fetch
         return 0
     _LIB.mkdir(parents=True, exist_ok=True)
     got = 0
@@ -164,7 +166,8 @@ def fetch_wikipedia(n_articles: int = 50) -> int:
             try:
                 (_LIB / f"wiki_{pid}.txt").write_text(text, encoding="utf-8")
                 got += 1
-            except Exception:
+            except Exception as exc:  # write failure for one article — record, skip it
+                record_failure("library.fetch_wikipedia", exc)
                 continue
         time.sleep(0.4)  # be polite to Wikipedia
     if got:
@@ -208,7 +211,8 @@ def read_text(max_chars: int = 40000) -> str:
             return txt
         start = random.randint(0, len(txt) - max_chars)
         return txt[start:start + max_chars]
-    except Exception:
+    except Exception as exc:  # book read failed — record, skip this bout
+        record_failure("library.read_text", exc)
         return ""
 
 
@@ -225,8 +229,8 @@ def _load_reads() -> dict:
     try:
         if _READS_FILE.exists():
             return json.loads(_READS_FILE.read_text(encoding="utf-8")) or {}
-    except Exception:
-        pass
+    except Exception as exc:  # bad/unreadable reads ledger — record, treat as empty
+        record_failure("library._load_reads", exc)
     return {}
 
 
@@ -234,8 +238,8 @@ def _save_reads(reads: dict) -> None:
     try:
         _READS_FILE.parent.mkdir(parents=True, exist_ok=True)
         _READS_FILE.write_text(json.dumps(reads), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O persisting the reads ledger
+        record_failure("library._save_reads", exc)
 
 
 _TITLE_RE = re.compile(r"^title:\s*(.+)$", re.I)
@@ -311,7 +315,7 @@ def pick_book(topics: List[str] | None = None, prefer_novel: bool = True) -> Pat
                 try:
                     blob = (f.name + " " + _title_of(f) + " " +
                             f.read_text(encoding="utf-8", errors="ignore")[:2000]).lower()
-                except Exception:
+                except OSError:  # intentional: unreadable file → skip in topic match
                     continue
                 if any(t in blob for t in toks):
                     matches.append(f)
@@ -343,7 +347,8 @@ def read_book(selector: Path | str | None = None, max_chars: int = 50000,
     import random
     try:
         txt = path.read_text(encoding="utf-8", errors="ignore")
-    except Exception:
+    except Exception as exc:  # book read failed — record, nothing to read
+        record_failure("library.read_book", exc)
         return ("", "")
     reads = _load_reads()
     reads[path.name] = int(reads.get(path.name, 0)) + 1

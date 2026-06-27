@@ -28,7 +28,7 @@ def _normalize_proposed_tools(x):
                 last = x["tools"][-1]
                 return json.dumps(last, ensure_ascii=False, indent=2)
             return json.dumps(x, ensure_ascii=False, indent=2)
-        except Exception:
+        except (TypeError, ValueError):  # intentional: unserializable → str()
             return str(x)
     if isinstance(x, list):
         return json.dumps(x[-1] if x else [], ensure_ascii=False, indent=2)

@@ -24,6 +24,7 @@ import uuid
 from typing import Any, Dict, Optional
 
 from brain.paths import DATA_DIR
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_private
 
 _FILE = DATA_DIR / "commitments.json"
@@ -56,7 +57,8 @@ def _drive_alignment(intention: str) -> float:
             if toks & drive_toks:
                 best = max(best, float(pressure))
         return min(1.0, best)
-    except Exception:
+    except Exception as exc:  # drive subsystem unavailable — record, no alignment
+        record_failure("will._drive_alignment", exc)
         return 0.0
 
 
@@ -70,7 +72,8 @@ def _value_alignment(intention: str) -> float:
         if not toks or not vals:
             return 0.0
         return min(1.0, len(toks & vals) / 3.0)
-    except Exception:
+    except Exception as exc:  # values subsystem unavailable — record, no alignment
+        record_failure("will._value_alignment", exc)
         return 0.0
 
 
@@ -96,8 +99,8 @@ def compute_commitment_strength(
     try:
         from brain.cognition.reflection.review_failures import failure_pattern_discount
         strength -= failure_pattern_discount(intention)
-    except Exception:
-        pass
+    except Exception as exc:  # discount optional — record, keep undiscounted strength
+        record_failure("will.compute_commitment_strength", exc)
     return round(max(_MIN_STRENGTH, strength), 3)
 
 
@@ -161,16 +164,16 @@ def form_commitment(
             "content": content,
             "event_type": "commitment", "importance": 3, "priority": 3,
         })
-    except Exception:
-        pass
+    except Exception as exc:  # working-memory write best-effort — record
+        record_failure("will.form_commitment.working_memory", exc)
     try:
         log = []
         if _FILE.exists():
             log = json.loads(_FILE.read_text(encoding="utf-8")) or []
         log.append(c)
         _FILE.write_text(json.dumps(log[-100:], indent=1), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O persisting the commitment log
+        record_failure("will.form_commitment.persist", exc)
     # A commitment without a goal is unfalsifiable (BEHAVIOR_FIX_PLAN 2.2):
     # assert a corresponding active goal exists, or create one.
     try:
@@ -192,7 +195,8 @@ def _recent_identical_commitment(intention: str) -> Optional[Dict[str, Any]]:
         return None
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
-    except Exception:
+    except Exception as exc:  # bad/unreadable commitment log — record, treat as none
+        record_failure("will._recent_identical_commitment", exc)
         return None
     if not isinstance(log, list):
         return None
@@ -246,7 +250,8 @@ def check_orphaned_commitments() -> int:
     Returns the orphan count. Intended for the nightly/maintenance pass."""
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
-    except Exception:
+    except Exception as exc:  # bad/unreadable commitment log — record, no orphans
+        record_failure("will.check_orphaned_commitments.read", exc)
         return 0
     if not isinstance(log, list):
         return 0
@@ -257,7 +262,8 @@ def check_orphaned_commitments() -> int:
             for g in _iter_goals(load_goals())
             if str(g.get("status", "")).lower() not in ("completed", "failed", "abandoned", "cancelled")
         }
-    except Exception:
+    except Exception as exc:  # goals unavailable — record, no orphans
+        record_failure("will.check_orphaned_commitments.goals", exc)
         return 0
     orphans = 0
     seen: set = set()
@@ -327,7 +333,8 @@ def find_commitment_for_goal(
             return c
     try:
         log = json.loads(_FILE.read_text(encoding="utf-8")) if _FILE.exists() else []
-    except Exception:
+    except Exception as exc:  # bad/unreadable commitment log — record, treat as none
+        record_failure("will.find_commitment_for_goal", exc)
         return None
     if not isinstance(log, list):
         return None

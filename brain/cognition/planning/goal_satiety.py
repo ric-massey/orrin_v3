@@ -75,7 +75,7 @@ def _did_exploration_work(goal: Dict[str, Any], goal_id: str) -> bool:
     try:
         from brain.cognition import novelty_memory
         return novelty_memory.novel_count(goal_id) > 0
-    except Exception:
+    except ImportError:  # intentional: novelty_memory optional → not satiated
         return False
 
 

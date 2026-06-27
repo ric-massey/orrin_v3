@@ -65,7 +65,7 @@ print(json.dumps({{"defined": defined, "signature": sig}}))
                 defined = bool(obj.get("defined", False))
                 signature = str(obj.get("signature", ""))
                 break
-            except Exception:
+            except json.JSONDecodeError:  # intentional: skip non-JSON line
                 continue
 
     if not defined:

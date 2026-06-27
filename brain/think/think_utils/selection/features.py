@@ -8,7 +8,7 @@ local_search_signal). Imports its readers downward (state, text) — no cycle.
 """
 from __future__ import annotations
 
-from typing import Dict
+from typing import Any, Dict
 
 from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
@@ -17,7 +17,7 @@ from brain.think.think_utils.selection.state import _dominant_emotion, _focus_go
 from brain.think.think_utils.selection.text import _kw_overlap_score
 
 
-def extract_features(context: Dict) -> Dict[str, float]:
+def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
     ctx = context or {}
     es = ctx.get("affect_state", {}) or {}
     features: Dict[str, float] = {
@@ -105,7 +105,7 @@ def extract_features(context: Dict) -> Dict[str, float]:
         if isinstance(_cg, dict):
             _goal_text = ((_cg.get("title") or "") + " " + (_cg.get("description") or "")).strip()
             if _goal_text:
-                _sm = load_json(SELF_MODEL_FILE, default_type=dict) or {}
+                _sm: Dict[str, Any] = load_json(SELF_MODEL_FILE, default_type=dict) or {}
                 _id_story = str(_sm.get("identity_story", "") or "")
                 _cv = _sm.get("core_values") or []
                 _cv_text = " ".join(

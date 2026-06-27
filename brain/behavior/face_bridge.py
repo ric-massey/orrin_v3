@@ -21,6 +21,8 @@ from __future__ import annotations
 import threading
 from typing import List
 
+from brain.utils.failure_counter import record_failure
+
 _pending_ids: List[str] = []
 _lock = threading.Lock()
 
@@ -29,7 +31,7 @@ def _bridge():
     try:
         from backend.telemetry_bridge import get_bridge
         return get_bridge()
-    except Exception:
+    except ImportError:  # intentional: backend absent — bridge unavailable
         return None
 
 
@@ -62,7 +64,8 @@ def drain_face_inputs() -> None:
                 _id = it.get("id")
                 if _id:
                     _pending_ids.append(str(_id))
-    except Exception:
+    except Exception as exc:  # bridge/I/O failure — record, no-op this cycle
+        record_failure("face_bridge.drain_face_inputs", exc)
         return
 
 
@@ -98,19 +101,20 @@ def force_reply(context) -> None:
         try:
             from brain.utils.log import log_activity
             log_activity(f"REPLY: {reply[:200]}")
-        except Exception:
-            pass
+        except Exception as exc:  # activity-log write best-effort — record
+            record_failure("face_bridge.force_reply.log", exc)
         # Log it so the evaluator scores it next turn (feeds the learning loop).
         try:
             from brain.think.speech_log import log_reply
             log_reply(user_input, reply,
                       context.get("_last_speech_plan", {}) or {},
                       context.get("_last_speech_comprehension", {}) or {})
-        except Exception:
-            pass
+        except Exception as exc:  # speech-log write best-effort — record
+            record_failure("face_bridge.force_reply.speech_log", exc)
         context["last_ai_timestamp"] = _t.time()
         deliver_reply(reply)
-    except Exception:
+    except Exception as exc:  # backstop reply failed — record, stay silent
+        record_failure("face_bridge.force_reply", exc)
         return
 
 
@@ -134,5 +138,6 @@ def deliver_reply(reply_text: str) -> None:
     for rid in ids:
         try:
             tb.respond(rid, text)
-        except Exception:
+        except Exception as exc:  # one delivery failed — record, try the rest
+            record_failure("face_bridge.deliver_reply", exc)
             continue

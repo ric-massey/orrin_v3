@@ -25,7 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r backend/requirements.txt
-          pip install pytest ruff
+          pip install pytest ruff mypy
           # Optional LLM SDKs: lazy-imported at runtime (kept out of requirements/bundle),
           # but installed here so the real-SDK adapter verification actually runs in CI.
           pip install anthropic google-genai
@@ -33,11 +33,43 @@ jobs:
       - name: Ruff (high-signal lint gate)
         run: python -m ruff check .
 
+      - name: mypy (strict type-check of the typed-module allowlist; Phase 5.0)
+        run: python -m mypy
+
       - name: Run test suite (hermetic; see tests/conftest.py)
         run: python -m pytest -q
         # The two embedder tests that used to be deselected here are now hermetic
         # (Phase 0): they pass with the real sentence-transformers installed, so
         # the deselects were removed and the full suite runs.
+
+  coverage:
+    name: coverage (ratcheted floor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r backend/requirements.txt
+          pip install pytest coverage
+          pip install anthropic google-genai
+
+      - name: Run suite under coverage
+        run: |
+          python -m coverage run -m pytest -q
+          python -m coverage json -o coverage.json
+          python -m coverage report
+
+      - name: Coverage ratchet (fail if below .coverage-floor)
+        # Ratcheted floor, not an arbitrary target: the floor only moves up
+        # (via `make coverage-update`). See brain/scripts/coverage_ratchet.py.
+        run: python -m brain.scripts.coverage_ratchet --json coverage.json
 
   frontend:
     name: frontend (typecheck + lint + build)

@@ -320,7 +320,7 @@ def delta_reward(pre: Dict[str, Any], post: Dict[str, Any]) -> float:
     if total_delta == 0:
         score += _W_NO_DELTA
 
-    result = max(0.0, min(1.0, score))
+    result = float(max(0.0, min(1.0, score)))
     log_private(
         f"[env_snapshot] delta_reward={result:.3f} "
         f"milestones+{new_ticks} lm+{lm_delta} tool+{tool_resolved} "

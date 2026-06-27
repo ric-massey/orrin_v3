@@ -1,15 +1,12 @@
 from datetime import datetime, timezone
 
 from brain.utils.json_utils import load_json, save_json
-from brain.utils.log import log_private, log_error, log_activity
-from brain.utils.self_model import get_self_model
-# NOTE: affect.* imports are intentionally deferred into the two functions that
-# need them (detect_affect_keyword, contextual_emotion_priming) so this L1 utils
-# module does not import the L3 affect package at load time.
+from brain.utils.log import log_private, log_error
+# NOTE: affect.* imports are intentionally deferred into the function that needs
+# them (detect_affect_keyword) so this L1 utils module does not import the L3
+# affect package at load time.
 from brain.paths import (
     AFFECT_STATE_FILE,
-    WORKING_MEMORY_FILE,
-    MODE_FILE,
     EMOTIONAL_SENSITIVITY_FILE, 
 )
 
@@ -156,133 +153,6 @@ def log_penalty_signal(context, emotion: str = "impasse_signal", increment: floa
 def log_uncertainty_spike(context, increment: float = 0.2):
     log_private("😵 Disorientation: No function selected by think()")
     log_penalty_signal(context, emotion="uncertainty", increment=increment)
-
-
-def contextual_emotion_priming(context, persist: bool = True):
-    """Affective priming based on working memory, triggers, goals, and mode."""
-    from brain.affect.reward_signals.reward_signals import release_reward_signal  # deferred (keeps utils L1)
-    # Use in-memory state from context to avoid overwriting concurrent updates
-    affect_state = context.get("affect_state") if isinstance(context, dict) else None
-    if not isinstance(affect_state, dict) or not affect_state.get("core_signals"):
-        affect_state = load_json(AFFECT_STATE_FILE, default_type=dict)
-    if not isinstance(affect_state, dict):
-        affect_state = {}
-    # Prefer in-context state (already in RAM) over disk reloads (D10).
-    _wm_raw = context.get("working_memory") if isinstance(context, dict) else None
-    if not isinstance(_wm_raw, list):
-        _wm_raw = load_json(WORKING_MEMORY_FILE, default_type=list)
-    working_memory = _wm_raw[-12:] if isinstance(_wm_raw, list) else []
-    self_model = context.get("self_model") if isinstance(context, dict) else None
-    if not isinstance(self_model, dict) or not self_model:
-        self_model = get_self_model()
-    _mode_raw = context.get("mode") if isinstance(context, dict) else None
-    if isinstance(_mode_raw, dict):
-        mode = _mode_raw.get("mode", "neutral")
-    elif isinstance(_mode_raw, str) and _mode_raw:
-        mode = _mode_raw
-    else:
-        mode = load_json(MODE_FILE, default_type=dict).get("mode", "neutral")
-
-    core_signals = dict(affect_state.get("core_signals", {}))
-    recent_triggers = affect_state.get("recent_triggers", [])[-10:]
-    motivations = [m.lower() for m in self_model.get("motivations", []) if isinstance(m, str)]
-
-    influence_map = {}
-
-    # 1) Working memory echoes
-    for memory in working_memory:
-        if not isinstance(memory, dict):
-            continue
-        # new-style emotion dict
-        emotion_data = memory.get("emotion")
-        if isinstance(emotion_data, dict):
-            em = emotion_data.get("emotion")
-            intensity = float(emotion_data.get("intensity") or 0.5)
-            if em:
-                influence_map[em] = influence_map.get(em, 0.0) + intensity * 0.5
-
-        # fallback old-style valence
-        valence = memory.get("emotional_valence", {})
-        if isinstance(valence, dict):
-            for em, intensity in valence.items():
-                influence_map[em] = influence_map.get(em, 0.0) + float(intensity) * 0.5
-
-    # 2) Trigger echoes
-    for trig in recent_triggers:
-        em = trig.get("emotion")
-        intensity = float(trig.get("intensity") or 0.5)
-        if em:
-            influence_map[em] = influence_map.get(em, 0.0) + intensity * 0.4
-
-    # 3) Goal-based semantic priming
-    goal_bias_map = {
-        "connection": "affection",
-        "achievement": "pride",
-        "progress": "motivation",
-        "safety": "risk_estimate",
-        "stability": "security",
-    }
-    for goal in motivations:
-        for keyword, bias_emotion in goal_bias_map.items():
-            if keyword in goal:
-                influence_map[bias_emotion] = influence_map.get(bias_emotion, 0.0) + 0.3
-
-    # 4) Mode-based modulation
-    mode_bias = {
-        "creative": "exploration_drive",
-        "critical": "impasse_signal",
-        "adaptive": "neutral",
-        "philosophical": "melancholy",
-        "exploratory": "surprise",
-    }
-    mode_emotion = mode_bias.get(mode)
-    if mode_emotion:
-        influence_map[mode_emotion] = influence_map.get(mode_emotion, 0.0) + 0.2
-
-    # 5) Apply updates — submit each priming nudge as an AffectArbiter proposal
-    # instead of mutating core_signals and writing the affect file directly. This
-    # keeps priming on the single convergence path (no last-writer race). The
-    # effective (clamped) delta is what we propose, so behaviour matches the old
-    # prev→clamp(prev+delta*0.2) step.
-    from brain.affect.arbiter import submit_affect
-    total_delta = 0.0
-    for em, delta in influence_map.items():
-        prev = float(core_signals.get(em, 0.5))
-        updated = min(1.0, max(0.0, prev + delta * 0.2))
-        eff_delta = updated - prev
-        total_delta += abs(eff_delta)
-        if abs(eff_delta) >= 1e-4:
-            submit_affect(context, em, eff_delta, source="priming", ttl_cycles=2)
-
-    # 6) Reward feedback loop — route through the RewardEngine so the expected
-    # baseline is the single per-action EMA (was a hardcoded expected=0.5, one of
-    # the five inconsistent baselines in V3_AUDIT §2.1).
-    reward_strength = min(1.0, total_delta / max(len(influence_map), 1))
-    try:
-        from brain.affect.reward_signals.reward_engine import submit_reward as _submit_reward
-        _submit_reward(
-            context,
-            actual=reward_strength,
-            action_type="priming",
-            kind="reward_signal",
-            effort=0.4,
-            mode="tonic",
-            source="priming",
-        )
-    except Exception:
-        release_reward_signal(
-            context=context,
-            signal_type="reward_signal",
-            actual_reward=reward_strength,
-            expected_reward=0.5,
-            effort=0.4,
-            mode="tonic",
-        )
-
-    # 7) No direct affect-file write — update_affect_state is the sole writer.
-    # `persist` is retained for signature compatibility but proposals are drained
-    # at the cycle's commit_affect, so nothing to persist here.
-    log_activity("[Priming] Contextual emotion priming submitted affect proposals.")
 
 
 def dominant_emotion(affect_state) -> str:

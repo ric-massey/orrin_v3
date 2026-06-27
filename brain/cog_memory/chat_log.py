@@ -46,7 +46,7 @@ def get_user_input() -> str:
     try:
         p = Path(paths.USER_INPUT)
         txt = p.read_text(encoding="utf-8")
-    except Exception:
+    except OSError:  # intentional: no input file yet → empty
         return ""
     lines = [ln.strip() for ln in txt.splitlines() if ln.strip()]
     return lines[-1] if lines else ""
@@ -81,15 +81,6 @@ def _create_chat_entry(
         "ts": ts,
     }
 
-def log_user_message(content: str) -> None:
-    """
-    Append a single user message to the chat log if it is not noise.
-    (Kept for compatibility, but dispatcher below will IGNORE string-only writes.)
-    """
-    clean = _clean_content(content)
-    if not _is_noise(clean):
-        append_to_json(paths.CHAT_LOG_FILE, _create_chat_entry("user", clean))
-
 def log_dialogue_pair(user: str, orrin: str, timestamp: Optional[str] = None) -> None:
     """
     Append a user/orrin dialogue pair to the chat log. Messages that are empty,
@@ -110,7 +101,7 @@ def log_dialogue_pair(user: str, orrin: str, timestamp: Optional[str] = None) ->
         try:
             from backend.telemetry_bridge import mirror_memory as _mm
             _mm("write", store="conversation", key=who, summary=text)
-        except Exception:
+        except ImportError:  # intentional: backend absent — no UI mirror
             pass
 
     # Write user only if it's meaningful
@@ -196,7 +187,6 @@ def _symbolic_chat_summary(recent_chats: list) -> str:
 def summarize_chat_to_long_memory(
     cycle_count: int,
     chat_log_file: Union[str, Path],
-    long_memory_file: Union[str, Path],
 ) -> None:
     """
     Every 5 cycles, summarize the last 20 chat messages into a single long-term memory entry.

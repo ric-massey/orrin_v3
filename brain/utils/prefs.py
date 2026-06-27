@@ -54,7 +54,7 @@ def all_prefs() -> Dict[str, Any]:
         data = json.loads(_CONFIG.read_text(encoding="utf-8"))
         if isinstance(data, dict):
             out.update(data)
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/malformed config → defaults
         pass
     return out
 
@@ -71,6 +71,6 @@ def set(key: str, value: Any) -> Dict[str, Any]:  # noqa: A003 (set is the natur
         try:
             DATA_DIR.mkdir(parents=True, exist_ok=True)
             _CONFIG.write_text(json.dumps(current, indent=2), encoding="utf-8")
-        except Exception:
+        except OSError:  # intentional: best-effort persist; disk error doesn't crash caller
             pass
         return current

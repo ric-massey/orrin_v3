@@ -45,6 +45,9 @@ import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional
 
+from brain.utils.env import env_bool
+from brain.utils.failure_counter import record_failure
+
 _DEFAULT_URL = "http://127.0.0.1:8800"
 _FLUSH_INTERVAL = 0.10   # seconds between coalesced flushes
 _LOG_CAP = 500           # bounded ring — oldest logs dropped on overflow
@@ -57,36 +60,36 @@ def _post_json(url: str, payload: Dict[str, Any], timeout: float = 1.5,
     data = json.dumps(payload).encode("utf-8")
     hdrs = {"Content-Type": "application/json", **(headers or {})}
     try:
-        import requests  # type: ignore
+        import requests
         requests.post(url, data=data, headers=hdrs, timeout=timeout)
         return
     except ModuleNotFoundError:
         pass
-    except Exception:
+    except requests.RequestException:  # intentional: backend down → drop silently
         return
     try:
         from urllib import request as _rq
         req = _rq.Request(url, data=data, headers=hdrs, method="POST")
         _rq.urlopen(req, timeout=timeout).close()
-    except Exception:
+    except OSError:  # intentional: backend unreachable → drop silently
         return
 
 
 def _get_json(url: str, timeout: float = 1.0) -> Any:
     """GET JSON, preferring requests, falling back to urllib. Returns None on any error."""
     try:
-        import requests  # type: ignore
+        import requests
         r = requests.get(url, timeout=timeout)
         return r.json()
     except ModuleNotFoundError:
         pass
-    except Exception:
+    except (requests.RequestException, ValueError):  # intentional: backend down/bad json → None
         return None
     try:
         from urllib import request as _rq
         with _rq.urlopen(url, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: backend unreachable/bad json → None
         return None
 
 
@@ -113,7 +116,7 @@ class TelemetryBridge:
         _tok = os.getenv("ORRIN_INGEST_TOKEN", "").strip()
         self._ingest_headers: Dict[str, str] = {"X-Orrin-Ingest-Token": _tok} if _tok else {}
         if enabled is None:
-            enabled = os.getenv("ORRIN_TELEMETRY_DISABLED", "").strip().lower() not in ("1", "true", "yes")
+            enabled = not env_bool("ORRIN_TELEMETRY_DISABLED", False)
         self.enabled = bool(enabled)
         self._flush_interval = flush_interval
 
@@ -272,7 +275,8 @@ class TelemetryBridge:
             try:
                 items = self._input_source()
                 return items if isinstance(items, list) else []
-            except Exception:
+            except Exception as exc:  # injected input source raised — record, no inputs
+                record_failure("telemetry_bridge.get_pending_inputs.source", exc)
                 return []
         data = _get_json(self.base_url + "/api/agent/inputs", timeout=1.0)
         if isinstance(data, dict) and isinstance(data.get("inputs"), list):
@@ -286,8 +290,8 @@ class TelemetryBridge:
         if self._responder is not None:
             try:
                 self._responder(str(input_id), str(reply))
-            except Exception:
-                pass
+            except Exception as exc:  # injected responder raised — record, drop reply
+                record_failure("telemetry_bridge.respond.responder", exc)
             return
         _post_json(self.base_url + "/api/agent/respond", {"id": str(input_id), "reply": str(reply)})
 
@@ -305,8 +309,8 @@ class TelemetryBridge:
         if self._frame_sink is not None:
             try:
                 self._frame_sink(frame)
-            except Exception:
-                pass
+            except Exception as exc:  # injected frame sink raised — record, drop frame
+                record_failure("telemetry_bridge._flush_once.sink", exc)
             return
         _post_json(self.ingest_url, frame, headers=self._ingest_headers)
 
@@ -367,8 +371,8 @@ def mirror_memory(op: str, *, store: str, key: str = "", summary: str = "",
     try:
         get_bridge().memory(op, store=store, key=str(key)[:80],
                             summary=str(summary)[:140], salience=salience)
-    except Exception:
-        pass
+    except Exception as exc:  # memory mirror best-effort — record, never block cognition
+        record_failure("telemetry_bridge.mirror_memory", exc)
 
 
 if __name__ == "__main__":

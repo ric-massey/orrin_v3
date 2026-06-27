@@ -23,7 +23,7 @@ def _parse_iso_dt(s: str) -> Optional[datetime]:
         if s.endswith("Z"):
             s = s[:-1] + "+00:00"
         return datetime.fromisoformat(s)
-    except Exception:
+    except (ValueError, TypeError):  # intentional: unparseable timestamp → None
         return None
 
 
@@ -168,7 +168,7 @@ def self_supervised_repair() -> str:
         from brain.utils.llm_gate import llm_available
         if not llm_available():
             return "ℹ️ Symbolic repair found nothing to change (LLM tool unavailable)."
-    except Exception:
+    except ImportError:  # intentional: gate unavailable — proceed
         pass
     if not recent:
         return "ℹ️ No recent thoughts for repair."

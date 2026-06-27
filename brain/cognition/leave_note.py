@@ -6,9 +6,98 @@
 # (EXPRESSION_MEMBRANE_FIX_PLAN E1/E4, 2026-06-14.)
 from __future__ import annotations
 
-from typing import Dict, Any
+import re
+from typing import Any, Dict, Optional
 
 from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
+
+# ── Seed-provenance quality gate (PRODUCTION_LOOP_CLOSURE D6 / F5) ─────────────
+# The 2026-06-19 life wrote junk notes seeded from filesystem/path output and
+# lock/data fragments. A note seed must be human-meaningful prose, never machine
+# output. These reject the three failure classes the proposal names: path
+# listings, lock/data file fragments, empty-delimiter output, and low-information
+# token soup. Conservative by design — if it looks like machine output, drop it.
+_PATHY_RE = re.compile(r"(?:[\w.\-]+/){2,}[\w.\-]+")          # a/b/c style path
+_LOCKY_RE = re.compile(r"\.(?:lock|jsonl?|pyc?|tmp|log|db)\b", re.IGNORECASE)
+_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'\-]{2,}")
+_MIN_SEED_CHARS = 40
+_MIN_DISTINCT_WORDS = 6
+
+
+def _qualifies_as_seed(text: str) -> bool:
+    """True only for prose worth seeding a note with — not paths, lock/data
+    fragments, delimiter noise, or a low-information token set (D6)."""
+    s = (text or "").strip()
+    if len(s) < _MIN_SEED_CHARS:
+        return False
+    low = s.lower()
+    # path listings / home paths / lock + data file fragments
+    if "/users/" in low or _PATHY_RE.search(s) or _LOCKY_RE.search(low):
+        return False
+    # empty-delimiter / punctuation-only output (e.g. "[] {} === ----")
+    if sum(ch.isalnum() for ch in s) < 0.5 * len(s):
+        return False
+    # low-information: needs enough DISTINCT real words to carry meaning
+    distinct = {w.lower() for w in _WORD_RE.findall(s)}
+    if len(distinct) < _MIN_DISTINCT_WORDS:
+        return False
+    return True
+
+
+def _serving_criterion(goal: Dict[str, Any]) -> str:
+    """The first not-yet-met definition-of-done criterion this note serves."""
+    for row in (goal.get("definition_of_done") or []):
+        if isinstance(row, dict) and not row.get("met"):
+            crit = str(row.get("criterion") or "").strip()
+            if crit:
+                return crit
+    return ""
+
+
+def _seed_from_goal(goal: Dict[str, Any]) -> Optional[str]:
+    """Ground the note in the committed goal's own comprehension (F5 #1): the
+    degraded acquire-knowledge subject, or the hydrated grounded_parts plus the
+    criterion being served. Returns a meaning kernel (the door rewords it)."""
+    title = str(goal.get("title") or "")
+    if "what i already know about" in title.lower():
+        topic = title.split(":", 1)[-1].strip()
+        orig = str(goal.get("_original_title")
+                   or (goal.get("_predegrade") or {}).get("title") or "")
+        subject = topic or orig
+        if subject:
+            return f"what I actually know about {subject}"
+    parts = [str(p).strip() for p in (goal.get("grounded_parts") or []) if str(p).strip()]
+    if parts:
+        body = "; ".join(parts[:3])
+        crit = _serving_criterion(goal)
+        seed = f"what I actually know about {title or 'this'}: {body}"
+        if crit:
+            seed += f" — toward: {crit}"
+        return seed if _qualifies_as_seed(seed) else None
+    return None
+
+
+def _seed_from_recent_finding() -> Optional[str]:
+    """P4 fallback: ground the note in the most recent REAL finding, not the
+    ambient affect status line — but only if it passes the D6 quality gate, so
+    path/lock/noise fragments can never become a seed."""
+    try:
+        from brain.utils.json_utils import load_json as _lj
+        from brain.paths import LONG_MEMORY_FILE as _LMF
+        lm = _lj(_LMF, default_type=list) or []
+        for entry in reversed(lm[-25:]):
+            content = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
+            low = content.lower()
+            if ("from searching" in low or "finding was written" in low
+                    or "[world_perception]" in low):
+                payload = content.split(":", 1)[-1].strip() if ":" in content else content
+                payload = " ".join(payload.split())[:240]
+                if _qualifies_as_seed(payload):
+                    return f"something I actually found out: {payload}"
+    except Exception as exc:  # memory scan for a seed best-effort — record
+        record_failure("leave_note.seed_scan", exc)
+    return None
 
 
 def leave_note(context: Dict[str, Any] = None) -> str:
@@ -17,47 +106,24 @@ def leave_note(context: Dict[str, Any] = None) -> str:
 
     from brain.behavior.express_to_user import build_motive, express_to_user
 
-    # Ground a knowledge note in its SUBJECT, not the affect status line
-    # (RUN_AUDIT_REPORT_2026-06-16 Issue 4b). For a degraded acquire_knowledge goal
-    # ("Note what I already know about: X") seed the motive with the topic so the
-    # artifact carries real signal. The seed is a meaning kernel — the expression door
-    # rewords/sanitises it, so the membrane stays intact. Empty seed → unchanged
-    # (affect-kernel) behaviour for every other note.
-    _seed = None
-    _goal = context.get("committed_goal") or {}
-    if isinstance(_goal, dict):
-        _title = str(_goal.get("title") or "")
-        if "what i already know about" in _title.lower():
-            _topic = _title.split(":", 1)[-1].strip()
-            _orig = str(_goal.get("_original_title")
-                        or (_goal.get("_predegrade") or {}).get("title") or "")
-            _subject = _topic or _orig
-            if _subject:
-                _seed = f"what I actually know about {_subject}"
+    goal = context.get("committed_goal") or {}
+    goal = goal if isinstance(goal, dict) else {}
 
-    # P4 — ground the note in the FINDING that triggered it, not the ambient affect
-    # status line. The run showed 100 byte-identical empty notes because the body was
-    # the ~40-char affect string; sourcing it from the most recent real finding gives
-    # the artifact content, so record_effect(note_novel) mostly will NOT dedupe.
-    if _seed is None:
-        try:
-            from brain.utils.json_utils import load_json as _lj
-            from brain.paths import LONG_MEMORY_FILE as _LMF
-            _lm = _lj(_LMF, default_type=list) or []
-            for _entry in reversed(_lm[-25:]):
-                _c = str(_entry.get("content", _entry) if isinstance(_entry, dict) else _entry)
-                _lc = _c.lower()
-                if ("from searching" in _lc or "finding was written" in _lc
-                        or "[world_perception]" in _lc):
-                    _payload = _c.split(":", 1)[-1].strip() if ":" in _c else _c
-                    _payload = " ".join(_payload.split())[:240]
-                    if len(_payload) >= 40:
-                        _seed = f"something I actually found out: {_payload}"
-                        break
-        except Exception:
-            pass
+    # Seed, best provenance first: the goal's own grounded comprehension, then a
+    # quality-gated recent finding. The seed is a meaning kernel — the expression
+    # door rewords/sanitises it, so the membrane stays intact. Empty seed →
+    # unchanged (affect-kernel) behaviour for a spontaneous felt note.
+    seed = _seed_from_goal(goal) or _seed_from_recent_finding()
 
-    motive = build_motive(context, intent="leave_note", recipient="Ric", seed=_seed)
+    # F5 #5: a note whose goal demands a real artifact must carry real content —
+    # never fall back to the affect kernel and emit another boilerplate note.
+    # (A tracked-work step resolves to compose_section, not here — F2.)
+    if seed is None and goal.get("requires_artifact"):
+        return "Nothing worth noting right now — no grounded content to write."
+
+    # The owning goal ID rides through build_motive (it stamps motive.goal_id),
+    # so a goal-linked note can be alignment-scored against its goal (F5 #2).
+    motive = build_motive(context, intent="leave_note", recipient="Ric", seed=seed)
     result = express_to_user(motive, "note", context)
     content = (result or {}).get("text") or ""
     if not content:
@@ -76,7 +142,7 @@ def leave_note(context: Dict[str, Any] = None) -> str:
             "event_type": "note_written",
             "importance": 2,
         })
-    except Exception:
-        pass
+    except Exception as exc:  # reafference WM write best-effort — record
+        record_failure("leave_note.reafference", exc)
 
     return f"Left a note: {content[:120]}"

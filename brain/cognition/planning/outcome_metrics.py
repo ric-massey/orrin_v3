@@ -19,7 +19,7 @@ from brain.core.runtime_log import get_logger
 import statistics
 import threading
 from datetime import date
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
@@ -138,7 +138,7 @@ def record_goal_population(active_goals: int, average_goal_age: float) -> None:
 def _selection_counts() -> Dict[str, int]:
     """Read cumulative exploration/closure selection counts off decision_stats.json."""
     try:
-        stats = load_json(DECISION_STATS_FILE, default_type=dict) or {}
+        stats: Dict[str, Any] = load_json(DECISION_STATS_FILE, default_type=dict) or {}
     except Exception:
         stats = {}
     expl = sum(int((stats.get(fn) or {}).get("count", 0)) for fn in _EXPLORATION_FUNCS)
@@ -146,7 +146,7 @@ def _selection_counts() -> Dict[str, int]:
     return {"exploration_selections": expl, "closure_selections": clos}
 
 
-def _compute_snapshot() -> Dict:
+def _compute_snapshot() -> Dict[str, Any]:
     _reset_session_if_new_day()
     with _lock:
         completed   = _session["goals_completed"]
@@ -192,10 +192,10 @@ def _compute_snapshot() -> Dict:
 
 # ─── Persist / flush ──────────────────────────────────────────────────────────
 
-def flush() -> Dict:
+def flush() -> Dict[str, Any]:
     """Write today's snapshot to disk, merging with any existing today-entry."""
     snap = _compute_snapshot()
-    existing = load_json(OUTCOME_METRICS_FILE, default_type=list) or []
+    existing: List[Any] = load_json(OUTCOME_METRICS_FILE, default_type=list) or []
     if not isinstance(existing, list):
         existing = []
 
@@ -224,7 +224,7 @@ _LATEST = (
 )
 
 
-def _merge_entries(old: Dict, new: Dict) -> Dict:
+def _merge_entries(old: Dict[str, Any], new: Dict[str, Any]) -> Dict[str, Any]:
     merged = dict(old)
     for key in _SUMMED:
         merged[key] = old.get(key, 0) + new.get(key, 0)
@@ -248,10 +248,10 @@ def _merge_entries(old: Dict, new: Dict) -> Dict:
 
 # ─── Report ───────────────────────────────────────────────────────────────────
 
-def report(days: int = 7) -> Dict:
+def report(days: int = 7) -> Dict[str, Any]:
     """Human-readable closure outcome report for the last N days. Flushes first."""
     flush()
-    history = load_json(OUTCOME_METRICS_FILE, default_type=list) or []
+    history: List[Any] = load_json(OUTCOME_METRICS_FILE, default_type=list) or []
     recent = history[-days:]
     if not recent:
         return {"summary": "No outcome metrics data yet.", "days": []}

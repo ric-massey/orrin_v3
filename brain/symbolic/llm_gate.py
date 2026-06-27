@@ -196,7 +196,7 @@ def _wait_for_slot(max_wait: float = 10.0) -> None:
             from brain.utils.token_meter import active_call_count
             if active_call_count() < 4:
                 return
-        except Exception:
+        except ImportError:  # intentional: token meter optional → proceed without throttle
             return
         time.sleep(0.5)
 

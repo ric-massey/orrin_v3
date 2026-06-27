@@ -3,14 +3,15 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from pathlib import Path
+from typing import Any
 import subprocess, tempfile, time
 _log = get_logger(__name__)
 
-def _run(cmd, cwd: Path, timeout=60):
+def _run(cmd: list[str], cwd: Path, timeout: int = 60) -> tuple[int, str, str]:
     try:
         p = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True, timeout=timeout)
         return p.returncode, p.stdout, p.stderr
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:  # intentional: subprocess launch/timeout → error tuple
         return -1, "", str(e)
 
 def _git_available(cwd: Path) -> bool:
@@ -57,7 +58,7 @@ def _run_tests(cwd: Path, cmd: list[str] | None = None) -> tuple[bool, str]:
 
 ALLOWED_GLOBS = ( "**/*.py", "**/*.md", "UI/**/*.tsx", "UI/**/*.ts", "UI/**/*.js" )
 
-def execute(goal, ctx) -> bool:
+def execute(goal: Any, ctx: Any) -> bool:
     """
     Edits code safely using a spec. Supports two modes:
       1) spec.patch (string): unified diff; applied via `git apply` on a new branch

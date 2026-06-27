@@ -7,25 +7,26 @@ import argparse
 import json
 import os
 import sys
-from dataclasses import asdict, is_dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, cast
 
 from .api import GoalsAPI
-from .model import Goal, Status, Priority
+# goal_to_jsonable is the canonical model encoder (shared with the dashboard feed);
+# kept under the existing private name to avoid churning the call sites.
+from .model import Goal, Status, Priority, goal_to_jsonable as _goal_to_jsonable
 
 # Optional store/daemon imports (provide clear error if missing)
 try:
-    from .store import FileGoalsStore  # type: ignore
+    from .store import FileGoalsStore
 except Exception as e:  # pragma: no cover
-    FileGoalsStore = None  # type: ignore
+    FileGoalsStore = None  # type: ignore[assignment,misc]
     _STORE_IMPORT_ERR = e
 
 try:
-    from .goals_daemon import GoalsDaemon  # type: ignore
+    from .goals_daemon import GoalsDaemon
 except Exception:
-    GoalsDaemon = None  # type: ignore
+    GoalsDaemon = None  # type: ignore[assignment,misc]
 
 
 # ----------------------------- globals/helpers -----------------------------
@@ -48,27 +49,6 @@ def _ensure_json_dir() -> Path:
     json_dir = base / "json"
     json_dir.mkdir(parents=True, exist_ok=True)
     return json_dir
-
-def _goal_to_jsonable(g: Goal) -> Dict[str, Any]:
-    """Convert a Goal to a plain JSON-serializable dict."""
-    d = g.__dict__.copy()
-    # enums -> names
-    d["status"] = getattr(g.status, "name", str(g.status))
-    d["priority"] = getattr(g.priority, "name", str(g.priority))
-    # datetimes -> ISO
-    if d.get("deadline"):    d["deadline"]    = g.deadline.isoformat()
-    if d.get("created_at"):  d["created_at"]  = g.created_at.isoformat()
-    if d.get("updated_at"):  d["updated_at"]  = g.updated_at.isoformat()
-    # dataclass progress -> dict
-    pr = d.get("progress")
-    if is_dataclass(pr):
-        d["progress"] = asdict(pr)
-    # acceptance/spec already dict-like; ensure plain dict
-    if d.get("acceptance") is not None:
-        d["acceptance"] = dict(d["acceptance"])
-    if d.get("spec") is not None:
-        d["spec"] = dict(d["spec"])
-    return d
 
 def _parse_json_arg(s: Optional[str]) -> Optional[Dict[str, Any]]:
     """
@@ -98,11 +78,11 @@ def _parse_json_arg(s: Optional[str]) -> Optional[Dict[str, Any]]:
             p.write_text("{}\n", encoding="utf-8")
             return {}
         try:
-            return json.loads(text)
+            return cast(Dict[str, Any], json.loads(text))
         except json.JSONDecodeError as e:
             raise SystemExit(f"Invalid JSON in {p}: {e}") from e
     try:
-        return json.loads(s)
+        return cast(Dict[str, Any], json.loads(s))
     except json.JSONDecodeError as e:
         raise SystemExit(f"Invalid JSON argument: {e}") from e
 
@@ -122,7 +102,7 @@ def _priority_from_arg(x: Optional[str]) -> Priority:
         return mapping[s]
     try:
         return Priority(int(s))
-    except Exception:
+    except ValueError:  # intentional: unknown priority token → NORMAL
         return Priority.NORMAL
 
 def _status_from_arg(x: Optional[str]) -> Optional[Status]:
@@ -146,7 +126,7 @@ def _deadline_from_arg(x: Optional[str]) -> Optional[str]:
         if dt.tzinfo:
             return dt.isoformat()
         return dt.replace(tzinfo=timezone.utc).isoformat()
-    except Exception:
+    except ValueError:  # intentional: unparseable → pass raw to API
         return s  # let API try to parse
 
 def _print_table(goals: Sequence[Goal]) -> None:
@@ -176,13 +156,13 @@ def _print_table(goals: Sequence[Goal]) -> None:
     for r in rows:
         print("  ".join(str(r[c]).ljust(widths[c]) for c in cols))
 
-def _ensure_store(path: Path):
+def _ensure_store(path: Path) -> Any:
     if FileGoalsStore is None:  # pragma: no cover
         raise RuntimeError(f"Cannot import FileGoalsStore: {_STORE_IMPORT_ERR}")
     path.mkdir(parents=True, exist_ok=True)
     return FileGoalsStore(data_dir=path)
 
-def _build_api(args) -> GoalsAPI:
+def _build_api(args: argparse.Namespace) -> GoalsAPI:
     # Resolve and remember data dir for helper functions
     global _DEFAULT_DATA_DIR
     data_dir = Path(args.data_dir or os.environ.get("ORRIN_GOALS_DIR") or "data/goals").resolve()
@@ -208,7 +188,7 @@ def _build_api(args) -> GoalsAPI:
 
 # ----------------------------- commands -----------------------------
 
-def cmd_add(args) -> int:
+def cmd_add(args: argparse.Namespace) -> int:
     api = _build_api(args)
     spec = _parse_json_arg(args.spec)
     acceptance = _parse_json_arg(args.acceptance)
@@ -231,11 +211,10 @@ def cmd_add(args) -> int:
     api.submit(goal.id)
     return 0
 
-def cmd_list(args) -> int:
+def cmd_list(args: argparse.Namespace) -> int:
     api = _build_api(args)
     kinds = args.kinds
-    statuses = [_status_from_arg(s) for s in (args.statuses or [])]
-    statuses = [s for s in statuses if s]
+    statuses = [s for s in (_status_from_arg(x) for x in (args.statuses or [])) if s is not None]
     priorities = [_priority_from_arg(p) for p in (args.priorities or [])]
     tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()] if args.tags else None
 
@@ -254,7 +233,7 @@ def cmd_list(args) -> int:
         _print_table(goals)
     return 0
 
-def cmd_describe(args) -> int:
+def cmd_describe(args: argparse.Namespace) -> int:
     api = _build_api(args)
     g = api.get_goal(args.goal_id)
     if not g:
@@ -279,7 +258,7 @@ def cmd_describe(args) -> int:
         print(f"last_error: {g.last_error}")
     return 0
 
-def cmd_update(args) -> int:
+def cmd_update(args: argparse.Namespace) -> int:
     api = _build_api(args)
     fields: Dict[str, Any] = {}
     if args.title is not None:
@@ -306,7 +285,7 @@ def cmd_update(args) -> int:
         print(f"updated {g.id} [{g.kind}/{g.priority.name}] {g.title}")
     return 0
 
-def cmd_cancel(args) -> int:
+def cmd_cancel(args: argparse.Namespace) -> int:
     api = _build_api(args)
     g = api.cancel_goal(args.goal_id, reason=args.reason or "api.cancel")
     if not g:
@@ -318,14 +297,14 @@ def cmd_cancel(args) -> int:
         print(f"cancelled {g.id} {g.title}")
     return 0
 
-def cmd_submit(args) -> int:
+def cmd_submit(args: argparse.Namespace) -> int:
     api = _build_api(args)
     api.submit(args.goal_id)
     if not args.quiet:
         print(f"submitted {args.goal_id}")
     return 0
 
-def cmd_pause(args) -> int:
+def cmd_pause(args: argparse.Namespace) -> int:
     api = _build_api(args)
     g = api.update_goal(args.goal_id, status=Status.PAUSED)
     if not g:
@@ -335,7 +314,7 @@ def cmd_pause(args) -> int:
         print(f"paused {g.id}")
     return 0
 
-def cmd_resume(args) -> int:
+def cmd_resume(args: argparse.Namespace) -> int:
     api = _build_api(args)
     g = api.update_goal(args.goal_id, status=Status.READY)
     if not g:
@@ -426,7 +405,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = _make_parser()
     args = parser.parse_args(argv)
     try:
-        return args.func(args)
+        return cast(int, args.func(args))
     except RuntimeError as e:
         print(f"error: {e}", file=sys.stderr)
         return 2

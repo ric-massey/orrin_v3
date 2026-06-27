@@ -20,7 +20,7 @@ MEMORY_DIR = DATA_DIR / "memory"
 MEDIA_DIR = DATA_DIR / "media"
 WAL_DIR = MEMORY_DIR / "wal"
 
-def _ensure_dirs():
+def _ensure_dirs() -> None:
     for p in [DATA_DIR, MEMORY_DIR, MEDIA_DIR, WAL_DIR]:
         p.mkdir(parents=True, exist_ok=True)
 
@@ -33,13 +33,13 @@ def _to_bool(v: Optional[str], default: bool) -> bool:
 def _to_int(v: Optional[str], default: int) -> int:
     try:
         return int(v) if v is not None else default
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-int env value → default
         return default
 
 def _to_float(v: Optional[str], default: float) -> float:
     try:
         return float(v) if v is not None else default
-    except Exception:
+    except (ValueError, TypeError):  # intentional: non-float env value → default
         return default
 
 # ---------- Config Dataclass ----------

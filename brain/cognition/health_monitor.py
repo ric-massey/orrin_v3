@@ -108,7 +108,7 @@ def _file_size(fname: str) -> int:
     p = DATA_DIR / fname
     try:
         return p.stat().st_size
-    except Exception:
+    except OSError:  # intentional: missing/unreadable file → 0 bytes
         return 0
 
 

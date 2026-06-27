@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from brain.utils.json_utils import load_json
+from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_activity
 from brain.paths import (
     DATA_DIR as _DATA_DIR,
@@ -47,70 +48,12 @@ _FELT_KEEP = 120000               # cap the felt-narrative corpus (chars)
 _NARRATE_MIN_INTERVAL_S = 90.0    # min seconds between narrations, so the fast (~10s) cognitive cycle can't flood the corpus
 _last_narrate = 0.0
 
-# Lines that are internal instrumentation, not language to learn from.
-_NOISE_LINE = re.compile(
-    r"^\s*(\[?\d{4}-\d\d-\d\d|\[(working_memory|chunk|energy|state_processor|metacog|"
-    r"temporal|body_sense|symbolic|inhibition|regulation|behavioral_adapt|aware|done|goal|"
-    r"attention|env|identity|step_exec|pursue_goal|allostatic)|decision:|cognition log|"
-    r"🧠|🌓|⏳|🔄|\[chunk)",
-    re.IGNORECASE,
+# Log-noise filtering, extracted to acquisition_noise.py (Phase 4.5C).
+# Re-imported for the corpus readers below.
+from brain.cognition.language.acquisition_noise import (  # noqa: E402,F401
+    _is_log_noise, _clean_monologue,
 )
 
-# Telemetry / instrumentation markers that must NEVER train his language organ.
-# These are his MECHANISM (decision dumps, bandit weights, working-memory
-# summaries), not his experience — even paraphrased they aren't "what happened to
-# him," so they are dropped outright. Substrings are matched case-insensitively;
-# kept specific (quoted JSON keys, tagged prefixes, status emojis) so ordinary
-# prose — including dialogue and book text — passes untouched.
-_TELEMETRY_MARKERS = (
-    "🧠", "🌓", "⏳", "🔄", "📝",
-    "chose:", "working memory summary", "during reasoning", "event types:",
-    '"weights"', '"features_on"', '"via":', '"band":', '"drive":', '"novel":',
-    '"goal":', '"emo":', '"dir":', "multi-factor", "decision_id",
-    "[chunk", "[metacog", "[working_memory", "[energy", "[state_processor",
-    "[temporal", "[body_sense", "[symbolic", "[inhibition", "[regulation",
-    "[behavioral_adapt", "[aware", "[done", "[goal", "[step_exec", "[pursue_goal",
-    "cpu=", "health summary",
-)
-
-
-def _is_log_noise(line: str) -> bool:
-    """True for instrumentation/telemetry that is his MECHANISM, not his lived
-    experience — bandit weights, decision dumps, working-memory summaries. Such
-    lines must never train the language organ (it learns the distribution it is
-    fed). His experience re-enters as first-person felt prose via
-    narrate_experience(). Conservative on prose: a structural JSON drop requires
-    an actual brace, so book dialogue ('"Yes," he said') is never mistaken for a
-    data dump."""
-    s = (line or "").strip().lower()
-    if not s:
-        return True
-    if any(m in s for m in _TELEMETRY_MARKERS):
-        return True
-    # JSON / data soup: a brace plus a quoted-key colon, or several quoted-key colons.
-    if ("{" in s or "}" in s) and '":' in s:
-        return True
-    if s.count('":') >= 2:
-        return True
-    # Almost no letters → numbers/punctuation soup, not language.
-    alpha = sum(c.isalpha() for c in s)
-    if alpha < max(8, int(len(s) * 0.45)):
-        return True
-    return False
-
-
-def _clean_monologue(text: str) -> str:
-    """Keep only natural-language lines from his inner monologue — drop logs."""
-    out = []
-    for line in (text or "").splitlines():
-        s = line.strip()
-        if len(s) < 25 or _NOISE_LINE.search(s) or _is_log_noise(s):
-            continue
-        # must look like prose: enough alphabetic words, not bracket soup
-        words = re.findall(r"[A-Za-z']{2,}", s)
-        if len(words) >= 5 and s.count("[") <= 1:
-            out.append(s)
-    return "\n".join(out)
 
 
 def _read_prose() -> str:
@@ -122,7 +65,8 @@ def _read_prose() -> str:
             and str(e.get("content", "")).strip().lower().startswith(("[research]", "[read]"))
         ]
         return "\n".join(prose[-60:])
-    except Exception:
+    except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
+        record_failure("acquisition._read_prose", exc)
         return ""
 
 
@@ -132,15 +76,20 @@ def _conversations() -> str:
         return "\n".join(
             str(e.get("text") or e.get("content") or "") for e in cl[-80:] if isinstance(e, dict)
         )
-    except Exception:
+    except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
+        record_failure("acquisition._conversations", exc)
         return ""
 
 
 def _inner_monologue() -> str:
+    path = Path(PRIVATE_THOUGHTS_FILE)
+    if not path.exists():
+        return ""                       # intentional: no monologue yet (early life)
     try:
-        raw = Path(PRIVATE_THOUGHTS_FILE).read_text(encoding="utf-8", errors="ignore")[-60000:]
+        raw = path.read_text(encoding="utf-8", errors="ignore")[-60000:]
         return _clean_monologue(raw)
-    except Exception:
+    except Exception as exc:  # unexpected read/clean failure — record, don't hide
+        record_failure("acquisition._inner_monologue", exc)
         return ""
 
 
@@ -163,7 +112,8 @@ def _emotional_experience(max_chars: int = 24000) -> str:
     """
     try:
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
-    except Exception:
+    except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
+        record_failure("acquisition._emotional_experience", exc)
         return ""
     weighted: List[str] = []
     for e in lm[-400:]:
@@ -204,8 +154,8 @@ def _update_replay(new_text: str) -> str:
         if len(combined) > _MAX_BLOCK:
             start = random.randint(0, len(combined) - _MAX_BLOCK)
             return combined[start:start + _MAX_BLOCK]
-    except Exception:
-        pass
+    except Exception as exc:  # external I/O: record a replay-corpus read/write failure
+        record_failure("acquisition._update_replay", exc)
     return ""
 
 
@@ -238,8 +188,8 @@ def grounded_experience(max_chars: int = 8000) -> str:
         phrase = _FELT.get(dom or "")
         if phrase:
             lines.append(f"Right now my body feels {dom}: {phrase}.")
-    except Exception:
-        pass
+    except Exception as exc:  # data/schema: record a body-sense read failure
+        record_failure("acquisition.grounded_experience.interoception", exc)
 
     # 2) Exteroception — the world he's embedded in (live world model only).
     try:
@@ -247,8 +197,8 @@ def grounded_experience(max_chars: int = 8000) -> str:
         narr = (world_model.describe() or "").strip()
         if narr and "haven't" not in narr.lower():
             lines.append(narr.rstrip(".") + ".")
-    except Exception:
-        pass
+    except Exception as exc:  # record a world-model describe failure (incl. import)
+        record_failure("acquisition.grounded_experience.exteroception", exc)
 
     # 3) Predictive grounding — what he expected vs. what happened (surprise /
     #    confirmation). Cleaned hard, since prediction text is semi-symbolic.
@@ -275,8 +225,8 @@ def grounded_experience(max_chars: int = 8000) -> str:
                 lines.append(f"I expected that {txt}, and that is what happened.")
             else:
                 lines.append(f"I expected that {txt}, but it turned out otherwise.")
-    except Exception:
-        pass
+    except Exception as exc:  # data/schema: record a predictions read/parse failure
+        record_failure("acquisition.grounded_experience.predictions", exc)
 
     return ("\n".join(lines))[-max_chars:]
 
@@ -295,7 +245,8 @@ def _dialogue_experience(max_chars: int = 20000) -> str:
     """
     try:
         log = load_json(SPEECH_LOG_FILE, default_type=list) or []
-    except Exception:
+    except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
+        record_failure("acquisition._dialogue_experience", exc)
         return ""
     out: List[str] = []
     for e in log[-120:]:
@@ -327,7 +278,8 @@ def _learned_words(max_chars: int = 8000) -> str:
     his language, so a concept he's learned can reach the words he can produce."""
     try:
         kg = load_json(KNOWLEDGE_GRAPH_FILE, default_type=dict) or {}
-    except Exception:
+    except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
+        record_failure("acquisition._learned_words", exc)
         return ""
     ents = kg.get("entities") if isinstance(kg, dict) else None
     if isinstance(ents, dict):                 # entities is keyed by id
@@ -452,7 +404,8 @@ def narrate_experience(context) -> str:
     try:
         _append_felt(line)
         _last_narrate = now
-    except Exception:
+    except Exception as exc:  # external I/O: record a felt-corpus append failure
+        record_failure("acquisition.narrate_experience", exc)
         return ""
     return line
 
@@ -461,9 +414,12 @@ def _felt_narrative() -> str:
     """His own felt summaries of recent experience (written by narrate_experience)
     — first-person prose in his voice, the experiential replacement for the
     decision telemetry now filtered out of the corpus."""
+    if not _FELT_FILE.exists():
+        return ""                       # intentional: no felt narrative yet (early life)
     try:
         raw = _FELT_FILE.read_text(encoding="utf-8", errors="ignore")[-40000:]
-    except Exception:
+    except Exception as exc:  # unexpected read failure — record, don't hide
+        record_failure("acquisition._felt_narrative", exc)
         return ""
     return "\n".join(
         ln.strip() for ln in raw.splitlines()
@@ -507,8 +463,8 @@ def _current_interests(context) -> List[str]:
                 for item in wm[-6:]:
                     s = item.get("content") if isinstance(item, dict) else str(item)
                     toks += re.findall(r"[A-Za-z]{4,}", str(s or ""))
-    except Exception:
-        pass
+    except Exception as exc:  # programmer/data error parsing context — record so a bug surfaces
+        record_failure("acquisition._current_interests", exc)
     stop = {"that", "this", "with", "have", "what", "your", "about", "they", "them",
             "from", "would", "could", "there", "their", "thing", "really", "going"}
     seen, out = set(), []
@@ -544,8 +500,8 @@ def read_a_book(context=None, steps: int = 45) -> str:
             f"loss={loss:.3f} steps={st.get('train_steps')}" if loss is not None
             else f"[language] read a book: “{title}”{why}"
         )
-    except Exception:
-        pass
+    except Exception as exc:  # best-effort status log — record but never block the read
+        record_failure("acquisition.read_a_book.log", exc)
     return line
 
 

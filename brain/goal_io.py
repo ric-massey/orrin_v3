@@ -33,16 +33,23 @@ _installed = False
 _unsub = None
 _api_ref = None   # set by install_event_handler; lets v1 close paths mirror into v2
 
-# Pursuit state lives only in the v1 tree (pursue_goal persists there via the
-# GoalArbiter); the v2 store knows lifecycle, not plans. Without carrying these
-# over, the per-cycle committed_goal rebuild discarded all plan progress and the
-# milestone gate regenerated the same plan forever (FINDINGS 2026-06-12 §1).
-_PURSUIT_FIELDS = (
-    "plan", "milestones", "definition_of_done", "grounded_parts",
-    "requires_artifact", "tracked_work", "tracked_work_path",
-    "_step_attempts", "_replan_count", "_stalled",
-)
 _V1_TERMINAL = {"completed", "failed", "abandoned", "cancelled"}
+
+# ── Source-of-truth contract (GOALS_MASTER_PLAN Part II / Option D, D1) ──────────
+# The v1 *cognitive* goal is authoritative for these fields — the rich layering
+# (tier / origin / aspiration) that v2's FLAT Goal model (id/title/kind/spec/
+# priority/status) cannot represent. v2 owns lifecycle (status/priority/execution).
+#
+# The seam used to DROP them on the round-trip: _goal_to_v1 defaulted `tier = kind`,
+# so a recruited survival goal (kind="generic") came back tier="generic" — silently
+# losing the survival layer Part I depends on. Fix per Option D: the projection
+# stashes these in the v2 *spec* (a lossless free-form carrier) and the read
+# restores them, so the v2 record is a regenerable PROJECTION of the cognitive goal,
+# never a competing original that clobbers it.
+_V1_AUTHORITATIVE_FIELDS = (
+    "tier", "driven_by", "source", "recruit_aid",
+    "zone", "orientation", "serves",
+)
 
 
 def summarize_goal(goal: Dict[str, Any], *, active: bool = False) -> Dict[str, Any]:
@@ -141,7 +148,9 @@ def _goal_to_v1(g) -> Dict[str, Any]:
         "title": g.title,
         "name": g.title,            # v1 compat: functions read "name"
         "kind": g.kind,
-        "tier": g.kind,             # v1 compat: focus selection reads "tier"
+        # tier is v1-AUTHORITATIVE (Option D): restore it from the projection's spec;
+        # fall back to kind only for legacy goals projected before the contract.
+        "tier": spec.get("tier") or g.kind,
         "priority": g.priority.name if hasattr(g.priority, "name") else str(g.priority),
         "tags": list(g.tags or []),
         "spec": spec,
@@ -155,6 +164,12 @@ def _goal_to_v1(g) -> Dict[str, Any]:
         "comprehension_source", "comprehended_at",
     ):
         if key in spec:
+            out[key] = spec[key]
+    # Restore the rest of the v1-authoritative cognitive fields from the projection
+    # spec (tier already handled above) so a v2 round-trip never strips driven_by /
+    # source / recruit_aid / zone / orientation / serves.
+    for key in _V1_AUTHORITATIVE_FIELDS:
+        if key != "tier" and key in spec and key not in out:
             out[key] = spec[key]
     return out
 
@@ -209,50 +224,95 @@ def close_goal_v2(goal_id: str, status: str = "DONE", reason: str = "") -> bool:
         return False
 
 
-def committed_goals_v1(api, limit: int = 3) -> List[Dict[str, Any]]:
-    """Top NEW/RUNNING goals as v1-compatible dicts (focus_goals.json fallback),
-    hydrated with in-flight pursuit state from the v1 tree."""
+# Statuses a v1 goal can be committed/pursued from (vs. _V1_TERMINAL).
+_COMMITTABLE_STATUSES = {"proposed", "pending", "in_progress", "active", "running"}
+# Directional layers that are never committed (they're aspirations, not tasks).
+_NONCOMMITTABLE_TIERS = {"aspiration", "long_term"}
+_BUCKET_NAME = "Immediate Actions"   # the micro-goal container, not a goal itself
+
+
+def _tier_weight(tier: Any) -> int:
+    """Reuse the executive's tier ordering so v1 selection honours the same floor
+    (survival > core/existential > … ) Part I established. Fail-safe to 1."""
+    try:
+        from brain.cognition.planning.executive import _TIER_TURNS
+        return int(_TIER_TURNS.get(str(tier or "").lower(), 1))
+    except Exception:
+        return 1
+
+
+def _priority_rank(p: Any) -> int:
+    if isinstance(p, (int, float)):
+        return int(p)
+    return {"LOW": 1, "NORMAL": 3, "HIGH": 4, "CRITICAL": 5}.get(str(p or "").upper(), 3)
+
+
+def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
+    """The committed goals, chosen from the v1 cognitive tree, tier-then-priority
+    ordered. Skips the Immediate-Actions container and directional/terminal goals.
+    Returns shallow copies so the loop's per-cycle edits don't corrupt the tree."""
+    tree = _load_v1_tree()
+    found: List[Dict[str, Any]] = []
+
+    def walk(nodes: Any) -> None:
+        for n in nodes or []:
+            if not isinstance(n, dict):
+                continue
+            name = n.get("name") or n.get("title")
+            status = str(n.get("status") or "").lower()
+            tier = str(n.get("tier") or n.get("kind") or "").lower()
+            if (n.get("name") != _BUCKET_NAME and name
+                    and status in _COMMITTABLE_STATUSES
+                    and status not in _V1_TERMINAL
+                    and tier not in _NONCOMMITTABLE_TIERS):
+                found.append(n)
+            walk(n.get("subgoals"))
+
+    walk(tree)
+    found.sort(
+        key=lambda g: (_tier_weight(g.get("tier") or g.get("kind")),
+                       _priority_rank(g.get("priority"))),
+        reverse=True,
+    )
+    return [dict(g) for g in found[:limit]]
+
+
+def _reconcile_open_v2_into_v1(api) -> None:
+    """Keep the v1 tree in sync with v2's open work-orders so v1 can be the single
+    committed-goal source (Option D). For each open v2 goal:
+      • no v1 node yet  → absorb it into the tree (v2 id stamped, tier/origin restored
+        from spec) so a goal that currently lives only in v2 isn't stranded;
+      • v1 node already terminal → mirror the close into v2 (DONE) so the daemon stops
+        running a goal the cognitive layer has finished (anti-resurrection guard).
+    Idempotent: an existing, non-terminal node is left untouched (the v1 node is the
+    authority; its pursuit/cognitive state must win)."""
     try:
         from goals.model import Status
-        goals = api.list_goals(statuses=[Status.NEW, Status.RUNNING], sort="-priority", limit=limit)
+        from brain.cognition.planning.goals import add_goal
+        open_goals = api.list_goals(statuses=[Status.NEW, Status.RUNNING], limit=200)
         tree = _load_v1_tree()
-        out: List[Dict[str, Any]] = []
-        for g in goals:
-            d = _goal_to_v1(g)
+        for g in open_goals:
+            d = _goal_to_v1(g)   # carries tier/origin restored from spec (D2 read)
             node = _find_v1_node(tree, d.get("id"), d.get("name"))
-            if node is not None:
-                if str(node.get("status", "")).lower() in _V1_TERMINAL:
-                    # v1 already closed this goal — don't resurrect it; push
-                    # the close into v2 so it stops being listed at all.
-                    close_goal_v2(d.get("id"), status="DONE",
-                                  reason=f"v1:{node.get('status')}")
-                    continue
-                for k in _PURSUIT_FIELDS:
-                    if k in node:
-                        d[k] = node[k]
-            out.append(d)
-        # An empty list is a real answer (no open v2 goals) — returning it keeps
-        # the loop from resurrecting a closed goal out of stale focus_goals.json
-        # and pursuing it for hours (FINDINGS 2026-06-12 data sweep §6).
-        return out
+            if node is None:
+                d.setdefault("status", "in_progress")
+                add_goal(d)
+            elif str(node.get("status", "")).lower() in _V1_TERMINAL:
+                close_goal_v2(d.get("id"), status="DONE", reason=f"v1:{node.get('status')}")
     except Exception as _e:
-        record_failure("goal_io.committed_goals_v1", _e)
-    # Legacy fallback (only when the GoalsAPI itself failed): v1 focus_goals.json
-    try:
-        from brain.utils.json_utils import load_json
-        from brain.paths import FOCUS_GOAL
-        fg = load_json(FOCUS_GOAL, default_type=dict)
-        goal = fg.get("short_or_mid") or fg.get("long_term")
-        if isinstance(goal, dict) and goal.get("name"):
-            return [{
-                "id": goal.get("name"), "title": goal.get("name"), "name": goal.get("name"),
-                "kind": goal.get("tier", "long_term"), "tier": goal.get("tier", "long_term"),
-                "priority": "NORMAL", "tags": [], "spec": {},
-                "next_action": goal.get("next_action"), "status": goal.get("status", "pending"),
-            }]
-    except Exception as _e:
-        record_failure("goal_io.committed_goals_v1.2", _e)
-    return []
+        record_failure("goal_io._reconcile_open_v2_into_v1", _e)
+
+
+def committed_goals_v1(api, context: Dict[str, Any] | None = None,
+                       limit: int = 3) -> List[Dict[str, Any]]:
+    """The committed goals — chosen from the v1 cognitive tree, which is the single
+    source of truth for WHICH goals are committed (Option D, Part II). v2 remains the
+    execution projection: it still runs executable work-orders and reports events
+    back, but it no longer decides what's committed. Reconciles v2's open goals into
+    v1 first (absorb new / close finished), then selects tier-then-priority from v1."""
+    if api is not None:
+        _reconcile_open_v2_into_v1(api)
+    return _committable_from_v1_tree(limit)
 
 
 def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
@@ -303,6 +363,12 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                     "comprehended_at",
                 ):
                     if key in gd:
+                        spec.setdefault(key, gd[key])
+                # Project the v1-authoritative cognitive fields into the spec so they
+                # survive the v2 round-trip (Option D — the v2 record is a projection
+                # of the cognitive goal, not a flatter copy that loses tier/origin).
+                for key in _V1_AUTHORITATIVE_FIELDS:
+                    if gd.get(key) is not None:
                         spec.setdefault(key, gd[key])
                 api.create_goal(title=title, kind=kind, spec=spec,
                                 priority=gd.get("priority", "NORMAL"), tags=gd.get("tags") or [])

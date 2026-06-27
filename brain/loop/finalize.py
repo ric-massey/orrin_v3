@@ -10,24 +10,159 @@ per-cycle GC/finetune cadence, and the cadence sleep stay in the loop.
 """
 from __future__ import annotations
 
+import json
 from brain.core.runtime_log import get_logger
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 from brain.utils.get_cycle_count import get_cycle_count
-from brain.utils.json_utils import save_json, load_json
+from brain.utils.json_utils import save_json, load_json, cap_jsonl
 from brain.utils.log import log_model_issue, log_activity, log_error
 from brain.utils.failure_counter import record_failure
 from brain.loop.constants import _OUTWARD_FNS
 from brain.loop.telemetry import _bridge
 from brain.paths import (
-    CONTEXT, WORKING_MEMORY_FILE,
+    CONTEXT, WORKING_MEMORY_FILE, DATA_DIR,
 )
 
 
 _log = get_logger(__name__)
 Context = Dict[str, Any]
 
+# F6 — durable production-loop telemetry (PRODUCTION_LOOP_CLOSURE). The goal-lens
+# and production signals live only on the transient cycle context; a verdict on
+# whether the comprehension→production loop closed has to be computable from a run
+# ARCHIVE, not process memory (D7). finalize is the loop's post-cycle telemetry
+# owner, so it writes ONE bounded line per cycle here. Counts are process-cumulative
+# (a run == a process life), so the last line gives run totals and any line gives
+# that cycle's commitment/lens coverage. Not a competing goal summarizer — it only
+# records signals other stages already computed.
+PRODUCTION_LOOP_LOG = DATA_DIR / "production_loop.jsonl"
+_handoff_total = 0
+_attempt_total = 0
+_success_total = 0
 
-def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context:
+
+def _effect_rejection_reason(rows: List[Any]) -> Optional[str]:
+    """Why this cycle's production effect earned nothing, read from the ledger rows
+    (the effect ledger's own novelty/dedupe verdict). None when something qualified."""
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        if float(r.get("significance") or 0.0) > 0.0:
+            return None
+        if r.get("dedupe"):
+            return "duplicate"
+        if float(r.get("novelty") or 0.0) <= 0.0:
+            return "low_novelty_or_boilerplate"
+        return "low_significance"
+    return None
+
+
+def _emit_production_telemetry(context: Context) -> None:
+    """Persist one durable, bounded production-loop record for this cycle (F6)."""
+    global _handoff_total, _attempt_total, _success_total
+    try:
+        goal = context.get("committed_goal")
+        goal = goal if isinstance(goal, dict) else {}
+        gid = str(goal.get("id") or goal.get("title") or "") or None
+        hydrated = bool(goal.get("grounded_parts") and goal.get("definition_of_done"))
+
+        lens = context.get("_goal_lens_telemetry")
+        lens = lens if isinstance(lens, dict) else {}
+        pending = goal.get("_needs_deliberate_action") or None
+
+        rows = context.get("_effect_rows_this_cycle")
+        rows = rows if isinstance(rows, list) else []
+        attempt = bool(rows)
+        success = bool(context.get("_production_effect_this_cycle")) or any(
+            isinstance(r, dict) and float(r.get("significance") or 0.0) > 0.0 for r in rows
+        )
+        rejection = _effect_rejection_reason(rows) if (attempt and not success) else None
+
+        if pending:
+            _handoff_total += 1
+        if attempt:
+            _attempt_total += 1
+        if success:
+            _success_total += 1
+
+        record = {
+            "cycle": int(get_cycle_count() or 0),
+            "committed_goal_present": bool(goal),
+            "committed_goal_id": gid,
+            "goal_model_hydrated": hydrated,
+            "goal_lens_active": bool(context.get("goal_lens")),
+            "goal_lens_top_signal_relevance": round(float(lens.get("top_signal_relevance", 0.0) or 0.0), 3),
+            "goal_lens_retrieval_mean_relevance": round(float(lens.get("retrieval_mean_relevance", 0.0) or 0.0), 3),
+            "pending_production_action": pending,
+            "production_attempt": attempt,
+            "production_success": success,
+            "effect_rejection": rejection,
+            "production_handoff_count": _handoff_total,
+            "production_attempt_count": _attempt_total,
+            "production_success_count": _success_total,
+        }
+        PRODUCTION_LOOP_LOG.parent.mkdir(parents=True, exist_ok=True)
+        with PRODUCTION_LOOP_LOG.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(record) + "\n")
+        cap_jsonl(PRODUCTION_LOOP_LOG, max_lines=20000)
+    except Exception as _e:
+        record_failure("ORRIN_loop.production_telemetry", _e)
+
+# P8 tier-3 — re-use bonus (ORRIN_PRODUCTION_REWARD_PLAN). A produced artifact being
+# *used again later* — a tool invoked, an authored cognitive function dispatched — is
+# the only ungameable production signal (you can fabricate a file; you cannot fabricate
+# your future self choosing to call it). It carries a substantial deferred bonus, but
+# decays 1/n with repeated re-use of the SAME artifact so re-invoking junk can't farm
+# it. Paid here, in the loop's post-cycle stage, because it must land on the live cycle
+# context before commit_affect integrates the cycle's affect proposals — and because the
+# effect ledger lives in agency/ (loop→agency is an allowed edge; think→agency is not).
+REUSE_REWARD = 0.9
+
+
+def _pay_artifact_reuse(context: Context) -> None:
+    """Close the production loop: credit re-use of Orrin's own authored artifacts.
+
+    Two detection paths feed one queue in the effect ledger: tool invocations
+    self-register in tool_runner.dispatch; dispatched cognitive functions are
+    recorded by name on the context (loop_helpers) and resolved here. Both are then
+    drained and rewarded on the live cycle context.
+    """
+    try:
+        from brain.agency.effect_ledger import note_artifact_use, drain_pending_reuse
+        for _fn in context.pop("_dispatched_cog_fns", []) or []:
+            note_artifact_use(_fn)  # no-op unless _fn names an artifact Orrin authored
+        credits = drain_pending_reuse()
+        if not credits:
+            return
+        from brain.affect.reward_signals.reward_signals import release_reward
+        _reward: Any = release_reward  # untyped emitter — call through Any
+        from brain.cog_memory.working_memory import update_working_memory
+        for _ru in credits:
+            _n = max(1, int(_ru.get("count") or 1))
+            _bonus = round(REUSE_REWARD / _n, 3)  # 0.9, 0.45, 0.3, … diminishing
+            _reward(context, signal="reward_signal", actual=_bonus, expected=0.5,
+                    effort=0.3, mode="phasic", source="artifact_reuse")
+            _reward(context, signal="completion_signal", actual=_bonus, expected=0.5,
+                    effort=0.3, mode="phasic", source="artifact_reuse")
+            update_working_memory({
+                "content": f"♻️ Re-used own work '{_ru.get('name')}' (×{_n}) — tier-3 production credit (+{_bonus})",
+                "event_type": "reward",
+                "importance": 2,
+                "priority": 2,
+            })
+    except Exception as _e:
+        record_failure("ORRIN_loop.artifact_reuse", _e)
+
+
+def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any, _cycle_num: Any) -> Context:
+    # ── Tier-3 production-loop closure: reward re-use of Orrin's own artifacts ──
+    # Runs before commit_affect so the reward's affect proposals are integrated
+    # into this same cycle.
+    _pay_artifact_reuse(context)
+
+    # ── F6: durable per-cycle production-loop telemetry (run-archive verifiable) ──
+    _emit_production_telemetry(context)
+
     # ── Health streak monitor: track sustained health, fire setpoint_regulation reward ──
     # Runs every 5 cycles (cheap: reads one JSON, writes one JSON).
     # Positive health streak → emotional uplift + bandit reward.
@@ -180,7 +315,7 @@ def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context
         for _ck in list(_ctx_to_save.keys()):
             try:
                 _csz = len(_ctx_json.dumps(_ctx_to_save[_ck], default=str))
-            except Exception:
+            except (TypeError, ValueError):  # intentional: unserializable context key → skip sizing
                 continue
             if _csz > _CTX_KEY_MAX_BYTES:
                 del _ctx_to_save[_ck]
@@ -229,7 +364,7 @@ def finalize_cycle(context, result, reward, affect_state, _cycle_num) -> Context
     return context
 
 
-def persist_and_periodic(context, _goals_api, _mem_daemon, _evaluator, affect_state) -> Context:
+def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _evaluator: Any, affect_state: Any) -> Context:
     """Per-cycle persistence + periodic background work, run after the action is
     accounted and before the maintenance tier: sync proposed goals + record goal
     progress, flush working memory to the v2 daemon (with periodic v1<->v2
@@ -293,7 +428,7 @@ def persist_and_periodic(context, _goals_api, _mem_daemon, _evaluator, affect_st
     try:
         if get_cycle_count() % 5 == 0:
             from brain.cognition.prediction import generate_predictions as _gp, save_predictions as _sp
-            _recent_wm_p = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+            _recent_wm_p: list[Any] = load_json(WORKING_MEMORY_FILE, default_type=list) or []
             _sp(_gp(context, _recent_wm_p[-15:]))
     except Exception as _ge:
         log_error(f"generate_predictions failed: {_ge}")

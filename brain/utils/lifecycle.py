@@ -20,6 +20,7 @@ import time
 from typing import Any, Dict
 
 from brain.paths import DATA_DIR
+from brain.utils.failure_counter import record_failure
 
 _RUNSTATE = DATA_DIR / "runstate.json"
 
@@ -36,7 +37,7 @@ _prev_reason: str = ""
 def _read() -> Dict[str, Any]:
     try:
         return json.loads(_RUNSTATE.read_text(encoding="utf-8"))
-    except Exception:
+    except (OSError, ValueError):  # intentional: missing/bad runstate on first boot → empty
         return {}
 
 
@@ -44,8 +45,8 @@ def _write(data: Dict[str, Any]) -> None:
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         _RUNSTATE.write_text(json.dumps(data), encoding="utf-8")
-    except Exception:
-        pass
+    except Exception as exc:  # runstate write failed — record (crash-detection may degrade)
+        record_failure("lifecycle._write", exc)
 
 
 def mark_running() -> None:
@@ -95,8 +96,8 @@ def status() -> Dict[str, Any]:
             # (observed 2026-06-15: born today, 411-day lifespan, flag set by a restart).
             if real_deadline_passed() and ls.get("final_thoughts_written"):
                 state = "dead"
-    except Exception:
-        pass
+    except Exception as exc:  # mortality unreadable — record, default to 'alive'
+        record_failure("lifecycle.status.mortality", exc)
     if state != "dead":
         if _prev_reaper:
             state = "stalled"

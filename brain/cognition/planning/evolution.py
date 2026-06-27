@@ -30,7 +30,7 @@ from brain.paths import (
 )
 _log = get_logger(__name__)
 
-def plan_self_evolution(context: dict | None = None) -> str:
+def plan_self_evolution(context: Optional[Dict[str, Any]] = None) -> str:
     """
     Generate a self-evolution roadmap and register steps as subgoals.
     """
@@ -41,7 +41,7 @@ def plan_self_evolution(context: dict | None = None) -> str:
             return "❌ Invalid self model."
 
         # Load evolution history safely
-        evolution_history = load_json(EVOLUTION_ROADMAPS, default_type=list)
+        evolution_history: List[Any] = load_json(EVOLUTION_ROADMAPS, default_type=list)
         if not isinstance(evolution_history, list):
             evolution_history = []
 
@@ -66,7 +66,7 @@ def plan_self_evolution(context: dict | None = None) -> str:
         # so it can decide whether any align with the current evolution direction.
         proposed_tools_block = ""
         try:
-            _pt = load_json(PROPOSED_TOOLS_JSON, default_type=list) or []
+            _pt: List[Any] = load_json(PROPOSED_TOOLS_JSON, default_type=list) or []
             if isinstance(_pt, list) and _pt:
                 _recent_tools = [t for t in _pt if isinstance(t, dict)][-5:]
                 _tool_lines = "\n".join(
@@ -125,7 +125,7 @@ def plan_self_evolution(context: dict | None = None) -> str:
         save_json(EVOLUTION_ROADMAPS, evolution_history)
 
         # --- Goal tree upgrade ---
-        current_goals = load_json(GOALS_FILE, default_type=list)
+        current_goals: List[Any] = load_json(GOALS_FILE, default_type=list)
         if not isinstance(current_goals, list):
             current_goals = []
         now = _utc_now()
@@ -194,7 +194,7 @@ def plan_self_evolution(context: dict | None = None) -> str:
         update_working_memory("⚠️ Self-evolution planning failed.")
         return "❌ Failed to generate self-evolution roadmap."
 
-def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
+def _gather_trajectory(context: Optional[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Collect the trajectory inputs that make future projection grounded:
     goal history, world contacts, value drift, active threads,
@@ -204,16 +204,16 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
     ctx = context or {}
 
     # --- Goal history ---
-    completed: List[Dict] = []
+    completed: List[Dict[str, Any]] = []
     try:
-        raw = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
+        raw: List[Any] = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
         completed = [g for g in raw if isinstance(g, dict)][-10:]
     except Exception as e:
         record_failure("evolution._gather_trajectory.completed_goals", e)
 
-    stalled: List[Dict] = []
+    stalled: List[Dict[str, Any]] = []
     try:
-        active = load_json(GOALS_FILE, default_type=list) or []
+        active: List[Any] = load_json(GOALS_FILE, default_type=list) or []
         stalled = [
             g for g in active
             if isinstance(g, dict) and g.get("status") in ("abandoned", "failed", "stalled")
@@ -224,7 +224,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
     # --- World perceptions ---
     world_perceptions: List[str] = []
     try:
-        long_mem = load_json(LONG_MEMORY_FILE, default_type=list) or []
+        long_mem: List[Any] = load_json(LONG_MEMORY_FILE, default_type=list) or []
         world_perceptions = [
             str(e.get("content", ""))[:150]
             for e in long_mem
@@ -237,7 +237,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
     # --- Value revisions ---
     value_revisions: List[str] = []
     try:
-        vr_raw = load_json(VALUE_REVISIONS, default_type=list) or []
+        vr_raw: List[Any] = load_json(VALUE_REVISIONS, default_type=list) or []
         value_revisions = [
             str(v.get("evidence") or v.get("summary") or v)[:120]
             for v in vr_raw
@@ -249,7 +249,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
     # --- Active threads ---
     threads: List[str] = []
     try:
-        t_raw = load_json(THREADS_FILE, default_type=list) or []
+        t_raw: List[Any] = load_json(THREADS_FILE, default_type=list) or []
         threads = [
             f"'{t.get('title','?')}': {str(t.get('state_of_thinking',''))[:100]}"
             for t in t_raw
@@ -261,7 +261,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
     # --- Recent cognition frequency (what has the bandit been choosing?) ---
     fn_freq: List[str] = []
     try:
-        ch = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
+        ch: List[Any] = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
         counts = Counter(
             e.get("choice") for e in ch[-100:] if isinstance(e, dict) and e.get("choice")
         )
@@ -282,7 +282,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
         record_failure("evolution._gather_trajectory.emotion_dist", e)
 
     # Supplement with current emotional state if available
-    current_emo: Dict = {}
+    current_emo: Dict[str, Any] = {}
     try:
         es = ctx.get("affect_state") or {}
         current_emo = es.get("core_signals", es) or {}
@@ -302,7 +302,7 @@ def _gather_trajectory(context: Optional[Dict]) -> Dict[str, Any]:
 
 
 def simulate_future_selves(
-    context: Optional[Dict] = None,
+    context: Optional[Dict[str, Any]] = None,
     save_to_history: bool = True,
 ) -> Dict[str, Any]:
     """
@@ -325,7 +325,7 @@ def simulate_future_selves(
         if not llm_available():
             return {"futures": [], "preferred": "", "reason": "tool unavailable: llm",
                     "recommended_goals": []}
-    except Exception:
+    except ImportError:  # intentional: llm_gate optional → proceed without the availability gate
         pass
     try:
         self_model = ensure_self_model_integrity(get_self_model())
@@ -343,7 +343,7 @@ def simulate_future_selves(
         # dreamscape.json had no writer anywhere (map-drift fix,
         # DATA_FILE_AUDIT 2026-06-11 §7). Entries hold consolidation/
         # recombination/processing text — surface the most generative one.
-        dreamscape = load_json(DREAM_LOG, default_type=list) or []
+        dreamscape: List[Any] = load_json(DREAM_LOG, default_type=list) or []
         seeds_lines = "\n".join(
             f"- {str(t.get('recombination') or t.get('consolidation') or t.get('processing') or '[unspecified]')[:200]}"
             for t in (dreamscape if isinstance(dreamscape, list) else [])[-3:]
@@ -351,7 +351,7 @@ def simulate_future_selves(
         ) or "(none)"
 
         # --- Format trajectory sections ---
-        def _goal_line(g: Dict) -> str:
+        def _goal_line(g: Dict[str, Any]) -> str:
             status = g.get("status", "?")
             name = g.get("name") or g.get("title") or "unnamed"
             why = ""
@@ -468,7 +468,7 @@ def simulate_future_selves(
                 log_activity(f"[simulate_future_selves] Injected {len(new_goals)} preferred-future goal(s).")
 
         if save_to_history:
-            existing = load_json(EVOLUTION_FUTURES, default_type=list) or []
+            existing: List[Any] = load_json(EVOLUTION_FUTURES, default_type=list) or []
             if not isinstance(existing, list):
                 existing = []
             existing.append({
@@ -490,7 +490,7 @@ def simulate_future_selves(
         return {"futures": [], "preferred": "", "reason": "", "recommended_goals": []}
 
 
-def check_projection_against_reality(context: Optional[Dict] = None) -> Dict[str, Any]:
+def check_projection_against_reality(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Compare the most recent projected preferred_future against current identity
     and behaviour. Writes a short reflection to long_memory so Orrin can notice
@@ -498,7 +498,7 @@ def check_projection_against_reality(context: Optional[Dict] = None) -> Dict[str
     Called from dream_cycle every few dream runs.
     """
     try:
-        existing = load_json(EVOLUTION_FUTURES, default_type=list) or []
+        existing: List[Any] = load_json(EVOLUTION_FUTURES, default_type=list) or []
         if not isinstance(existing, list) or not existing:
             return {"skipped": True, "reason": "no_projection_history"}
 
@@ -511,7 +511,8 @@ def check_projection_against_reality(context: Optional[Dict] = None) -> Dict[str
         if not preferred_future:
             return {"skipped": True, "reason": "no_preferred_future"}
 
-        self_model       = ensure_self_model_integrity(get_self_model())
+        _sm = ensure_self_model_integrity(get_self_model())
+        self_model       = _sm[0] if isinstance(_sm, tuple) else _sm
         current_identity = str(self_model.get("identity_story", "") or "")[:300]
 
         traj        = _gather_trajectory(context)

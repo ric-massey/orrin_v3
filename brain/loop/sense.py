@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
 import time
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 from brain.think.signal_router import process_inputs
 from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
 from brain.affect.update_affect_state import update_affect_state
@@ -26,88 +26,24 @@ from brain.utils.load_utils import load_context
 from brain.utils.json_utils import load_json
 from brain.utils.log import log_error
 from brain.utils.failure_counter import record_failure
-from brain.config.tuning import (
-    AFFECT_TRANSIENT_DECAY,
-    CRISIS_ABOVE_HALF_COUNT,
-    CRISIS_ABOVE_HALF_THRESHOLD,
-    CRISIS_ACUTE_PEAK,
-    CRISIS_CHRONIC_MEAN,
-)
 from brain.paths import (
     WORKING_MEMORY_FILE,
 )
 
 from brain.loop.telemetry import (
-    _push_event, _emit_affect, _emit_goals, _ui_stage, _ui_memory,
+    _push_event, _emit_affect, _emit_goals, _emit_llm_cost, _ui_stage, _ui_memory,
 )
+# The affect-decay stage lives in signal_decay; re-exported so ORRIN_loop and
+# the stage's unit tests keep importing it from brain.loop.sense.
+from brain.loop.signal_decay import _apply_transient_signal_decay  # noqa: F401
 
 _log = get_logger(__name__)
 Context = Dict[str, Any]
 
-_SEEN_WM_IDS: set = set()  # working-memory ids already mirrored to the inspector
+_SEEN_WM_IDS: set[str] = set()  # working-memory ids already mirrored to the inspector
 
 
-def _apply_transient_signal_decay(context: "Context") -> "Context":
-    """
-    Pipeline stage (Finding 1's stage(context) -> context pattern): decay
-    short-lived affect signals (impasse/penalty/conflict/threat/stagnation/
-    uncertainty) toward zero each cycle, then check whether the decayed
-    core-negative signals indicate a sustained crisis — either an acute spike
-    (one signal >= CRISIS_ACUTE_PEAK plus CRISIS_ABOVE_HALF_COUNT others >=
-    CRISIS_ABOVE_HALF_THRESHOLD) or a chronic broad collapse (mean of all core
-    negatives >= CRISIS_CHRONIC_MEAN). Updates context["_extreme_cycles"], the
-    counter the emergency_self_modification gate watches: +1 per crisis cycle
-    (capped at 50), -3 per non-crisis cycle (recovers 3x faster than it
-    accumulates so a past crisis doesn't linger as ancient history).
-    Fail-safe — any error during crisis detection leaves _extreme_cycles
-    untouched for this cycle.
-    """
-    affect_state = context.get("affect_state", {})
-    affect_state.setdefault("stagnation_signal", 0.0)
-    for k in ["impasse_signal", "penalty_signal", "conflict_signal", "threat_level", "stagnation_signal", "uncertainty"]:
-        if k in affect_state:
-            affect_state[k] = float(affect_state[k] or 0.0) * AFFECT_TRANSIENT_DECAY
-            if affect_state[k] < 0.05:
-                affect_state[k] = 0.0
-    context["affect_state"] = affect_state
-
-    # Track sustained crisis for emergency_self_modification gate.
-    # Two paths: acute spike (one emotion ≥ 0.85 + two others ≥ 0.50)
-    # OR broad collapse (mean of all negatives ≥ 0.70).
-    try:
-        _gc  = (affect_state.get("core_signals") or affect_state) or {}
-        # Core negatives — all confirmed keys in core_signals
-        _core_negs = [
-            float(_gc.get("impasse_signal") or 0),
-            float(_gc.get("threat_level")        or 0),
-            float(_gc.get("negative_valence")     or 0),
-            float(_gc.get("conflict_signal")       or 0),
-            float(_gc.get("rejection_signal")     or 0),
-        ]
-        # Top-level negatives — these live outside core_signals
-        _core_negs.append(float(affect_state.get("risk_estimate")   or 0))
-        _core_negs.append(float(affect_state.get("social_deficit") or 0))
-
-        _peak  = max(_core_negs)
-        _above_half = sum(1 for v in _core_negs if v >= CRISIS_ABOVE_HALF_THRESHOLD)
-        _mean  = sum(_core_negs) / len(_core_negs)
-
-        _acute   = _peak >= CRISIS_ACUTE_PEAK and _above_half >= CRISIS_ABOVE_HALF_COUNT
-        _chronic = _mean >= CRISIS_CHRONIC_MEAN
-        _in_crisis = _acute or _chronic
-
-        if _in_crisis:
-            context["_extreme_cycles"] = min(50, int(context.get("_extreme_cycles") or 0) + 1)
-        else:
-            # Recover 3x faster than we accumulated — crisis should not linger as ancient history
-            context["_extreme_cycles"] = max(0, int(context.get("_extreme_cycles") or 0) - 3)
-    except Exception as _e:
-        record_failure("ORRIN_loop._apply_transient_signal_decay", _e)
-
-    return context
-
-
-def sense_and_refresh(_goals_api, timestamp):
+def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     context = load_context()
     context.setdefault("committed_goal", None)
     context.setdefault("action_debt", 0)
@@ -118,7 +54,7 @@ def sense_and_refresh(_goals_api, timestamp):
     # Strip embeddings from the in-memory copy — they're large (~6KB each) and
     # only needed for similarity search which loads from file directly.
     try:
-        wm_from_file = load_json(WORKING_MEMORY_FILE, default_type=list)
+        wm_from_file: Any = load_json(WORKING_MEMORY_FILE, default_type=list)
         if isinstance(wm_from_file, list):
             context["working_memory"] = [
                 {k: v for k, v in m.items() if k != "embedding"} if isinstance(m, dict) else m
@@ -139,7 +75,7 @@ def sense_and_refresh(_goals_api, timestamp):
                     _ui_memory("write", _new_wm, store="working", limit=4)
                 if len(_SEEN_WM_IDS) > 2000:
                     _SEEN_WM_IDS.clear()
-            except Exception:
+            except (KeyError, TypeError, AttributeError, OSError):  # best-effort working-memory UI mirror
                 pass
     except Exception:
         context.setdefault("working_memory", [])
@@ -152,6 +88,7 @@ def sense_and_refresh(_goals_api, timestamp):
     # Mirror the freshly-updated affect to the Face & Brain UI (fail-safe).
     _emit_affect(context)
     _emit_goals(context)
+    _emit_llm_cost(context)
     _ui_stage("reflect", "Reflecting — integrating affect & signals.")
 
     # ── Layer 0 reads: inject embodiment state into this cycle ─────────
@@ -281,7 +218,9 @@ def sense_and_refresh(_goals_api, timestamp):
     if _goals_api:
         import brain.goal_io as goal_io
         try:
-            committed_goals = goal_io.committed_goals_v1(_goals_api, limit=3)
+            # Option D (Part II): the committed goal is chosen from the v1 cognitive
+            # tree, the single source of truth for what's committed; v2 still executes.
+            committed_goals = goal_io.committed_goals_v1(_goals_api, context, limit=3)
             context["committed_goals"] = committed_goals
             # backward compat: committed_goal = highest priority one
             if committed_goals:
@@ -518,7 +457,8 @@ def sense_and_refresh(_goals_api, timestamp):
     try:
         from brain.utils.json_utils import load_json as _lj
         from brain.paths import VALUE_REVISIONS as _VR
-        _pending_vals = [c for c in (_lj(_VR, default_type=list) or []) if isinstance(c, dict) and c.get("status", "pending") == "pending"]
+        _vr_raw: Any = _lj(_VR, default_type=list) or []
+        _pending_vals = [c for c in _vr_raw if isinstance(c, dict) and c.get("status", "pending") == "pending"]
         if _pending_vals:
             from brain.utils.signal_utils import create_signal as _cs2
             _vsig = _cs2(

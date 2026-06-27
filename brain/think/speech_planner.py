@@ -153,7 +153,7 @@ def _sym_dict_lookup(topics: List[str]) -> str:
                     defn = define(token)
                     if defn:
                         return defn[:200]
-    except Exception:
+    except (ImportError, OSError, KeyError, TypeError):  # best-effort symbolic-dictionary lookup
         pass
     return ""
 

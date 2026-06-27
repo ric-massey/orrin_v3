@@ -149,7 +149,7 @@ def _felt_intensity(
     try:
         from brain.affect.affect_dynamics import effective_intensity as _ei
         return _ei(emotion, val, hedonic_baselines or {})
-    except Exception:
+    except ImportError:  # intentional: adaptation machinery optional → raw value (fail-open)
         return val
 
 

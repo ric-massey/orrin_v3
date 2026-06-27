@@ -137,7 +137,7 @@ def _audit_path_constants() -> List[str]:
             continue
         try:
             lines = src.read_text(encoding="utf-8", errors="ignore").splitlines()
-        except Exception:
+        except OSError:  # intentional: unreadable source → skip
             continue
         if not name_re.search("\n".join(lines)):
             continue
@@ -224,7 +224,7 @@ def _audit_comment_constants() -> List[str]:
     for src in _source_files():
         try:
             text = src.read_text(encoding="utf-8", errors="ignore")
-        except Exception:
+        except OSError:  # intentional: unreadable source → skip
             continue
         for lineno, line in enumerate(text.splitlines(), 1):
             m = _CONST_LINE_RE.match(line)

@@ -52,7 +52,7 @@ def _save_plan_version(goal: Dict[str, Any], reason: str = "") -> None:
     current_plan = list(goal.get("plan") or [])
     if not current_plan:
         return
-    versions: List[Dict] = list(goal.get("_plan_versions") or [])
+    versions: List[Dict[str, Any]] = list(goal.get("_plan_versions") or [])
     versions.append({
         "version":    len(versions),
         "steps":      current_plan,
@@ -68,7 +68,7 @@ def _rollback_plan_version(goal: Dict[str, Any], version_idx: int = -1) -> bool:
     version_idx=-1 (default) restores the most recent snapshot.
     Returns True on success.
     """
-    versions: List[Dict] = goal.get("_plan_versions") or []
+    versions: List[Dict[str, Any]] = goal.get("_plan_versions") or []
     if not versions:
         return False
     target = versions[version_idx]

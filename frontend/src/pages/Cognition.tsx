@@ -29,7 +29,7 @@ interface PeopleFeed {
 export default function Cognition() {
   const t = useLexicon().t;
   const tel = useTelemetryState();
-  const drives = usePolledJSON<DrivesFeed>("/api/drives");
+  const drives = usePolledJSON<DrivesFeed>("/api/demands");
   const symbolic = usePolledJSON<SymbolicFeed>("/api/symbolic?n=8");
   const people = usePolledJSON<PeopleFeed>("/api/people");
 

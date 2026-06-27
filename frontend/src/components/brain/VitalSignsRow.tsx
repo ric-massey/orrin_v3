@@ -6,7 +6,7 @@ import StaleBadge from "./StaleBadge";
 
 /**
  * The L0 vital-signs row (UI_FIXES §new-surfaces): one health chip per
- * subsystem, each a word+number+color computed SERVER-side by /api/vitals so
+ * subsystem, each a word+number+color computed SERVER-side by /api/resources so
  * this row polls one URL on one ~10s timer — the "understandable initially"
  * layer. Clicking a chip scrolls to its box.
  */

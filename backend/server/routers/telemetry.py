@@ -201,7 +201,7 @@ async def goal_artifacts(id: str = "") -> JSONResponse:
 
 
 # ── Streams: consciousness + chat history ───────────────────────────────────
-@router.get("/consciousness")
+@router.get("/attention")
 async def consciousness(n: int = 60) -> JSONResponse:
     """Tail of the persisted conscious stream — the rolling list of conscious
     moments {content, source, salience, ts} written by global_workspace."""
@@ -240,7 +240,7 @@ async def chat_history(n: int = 100) -> JSONResponse:
 
 
 # ── Consolidation / language / monitor ledgers ──────────────────────────────
-@router.get("/dreams")
+@router.get("/idle-consolidation")
 async def dreams(n: int = 12) -> JSONResponse:
     """What he consolidates while idle: dream_log sweeps + symbolic dream
     insights. Honesty note: consolidation/recombination are often EMPTY strings
@@ -458,7 +458,7 @@ async def health_box(n: int = 10) -> JSONResponse:
     })
 
 
-@router.get("/self")
+@router.get("/identity")
 async def self_box(n: int = 20) -> JSONResponse:
     """Who he is and how it revises (box ⑦): the self-model's identity / values /
     traits / knowledge domains, the dated belief-confidence revisions, formed

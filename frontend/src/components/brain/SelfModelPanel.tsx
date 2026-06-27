@@ -45,7 +45,7 @@ export default function SelfModelPanel() {
             title="System self-descriptor / identity"
             perspective="agent-accessible"
             what="Its self-descriptor: its one-line identity and core directive, per-domain confidence in its own knowledge, named weaknesses, the dated belief revisions (confidence moved after a goal succeeded or failed), and the opinions it's formed from its own experience. One thing is deliberately absent: its protected interior, which this dashboard does not read."
-            source="GET /api/self over brain/data/self_model.json · self_belief_revisions.json · opinions.json"
+            source="GET /api/identity over brain/data/self_model.json · self_belief_revisions.json · opinions.json"
             good="An identity that REVISES — confidence moving with real outcomes, opinions accumulating evidence — rather than a static description."
             src={{ file: "brain/utils/self_model.py", start: 1, end: 60, label: "self_model" }}
           />

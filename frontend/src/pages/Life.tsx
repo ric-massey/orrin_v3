@@ -38,7 +38,7 @@ const PHASE_LABEL: Record<string, string> = {
 
 export default function Life() {
   const { t } = useLexicon();
-  const life = usePolledJSON<LifeFeed>("/api/life", 5000);
+  const life = usePolledJSON<LifeFeed>("/api/runtime-lifetime", 5000);
 
   const cpuAvail = life?.cpu?.available_pct;
   const rate = life?.thinking_rate_per_min ?? 0;

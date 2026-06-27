@@ -78,7 +78,7 @@ export const METRICS: MetricDef[] = [
       { t: "Setpoint", d: "The resting value each signal drifts back toward when nothing pushes it (e.g. impasse rests at ~0, motivation at ~0.5)." },
       { t: "Deviation", d: "Distance of a signal from its setpoint right now; summed across the vector." },
     ],
-    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority affect.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/affect and the runtime itself read one number (no longer invented in the telemetry helper).",
+    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority affect.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/control-signals and the runtime itself read one number (no longer invented in the telemetry helper).",
     src: { file: "brain/affect/homeostasis.py", start: 74, end: 124, label: "homeostasis_index — the single authority" },
   },
   {

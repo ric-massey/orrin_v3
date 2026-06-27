@@ -230,7 +230,7 @@ export default function Brain() {
         </div>
 
         {/* L0 vital-signs row — one chip per subsystem, computed server-side
-            by /api/vitals on a single 10s timer; click a chip to jump to its
+            by /api/resources on a single 10s timer; click a chip to jump to its
             box (UI_FIXES §new-surfaces). */}
         <div className="flex flex-wrap items-start gap-2">
           <div className="min-w-0 flex-1 basis-full sm:basis-0">

@@ -62,7 +62,7 @@ def _current_interests(limit: int = 6) -> List[str]:
     return titles[:limit]
 
 
-@router.get("/life")
+@router.get("/runtime-lifetime")
 async def life() -> JSONResponse:
     """Life Support (§9.10): Orrin's vital signs — his headroom to think, his thinking
     rate, his age, and the life he *believes* he has left. Resources are framed about
@@ -202,7 +202,7 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
     return JSONResponse({"events": events, "summary": summary, "since": since, "now": now})
 
 
-@router.get("/affect")
+@router.get("/control-signals")
 async def affect() -> JSONResponse:
     """Ground-truth affect vector straight from affect_state.json (representation
     B), so panels can cross-check the transformed telemetry stream (C). Exposes
@@ -226,7 +226,7 @@ async def affect() -> JSONResponse:
     })
 
 
-@router.get("/vitals")
+@router.get("/resources")
 async def vitals() -> JSONResponse:
     """The L0 vital-signs aggregator: every chip computed server-side from one or
     two fields of one file each, so the row polls ONE url on ONE timer — and

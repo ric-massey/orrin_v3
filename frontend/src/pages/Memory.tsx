@@ -137,7 +137,7 @@ function ForgottenList() {
 }
 
 function IdentityList() {
-  const feed = usePolledJSON<SelfFeed>("/api/self", 8000);
+  const feed = usePolledJSON<SelfFeed>("/api/identity", 8000);
   const opinions = feed?.opinions ?? [];
   const auto = feed?.autobiography ?? {};
   const autoEntries = Object.entries(auto);

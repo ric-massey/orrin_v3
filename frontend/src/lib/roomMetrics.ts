@@ -20,7 +20,7 @@ export const ROOM_INFO: Record<string, ValueInfo> = {
   drives: {
     label: "Priority weights",
     what: "Demand-pressure accumulators (curiosity, social, rest, …) as 0–1 levels. The bar is the current pressure; the strongest is what's weighting selection right now.",
-    src: { file: "backend/server/app.py", start: 600, end: 670, label: "/api/drives — drive levels + interoception" },
+    src: { file: "backend/server/app.py", start: 600, end: 670, label: "/api/demands — drive levels + interoception" },
   },
   symbolic: {
     label: "Symbolic rules",
@@ -37,12 +37,12 @@ export const ROOM_INFO: Record<string, ValueInfo> = {
   life_cpu: {
     label: "CPU available",
     what: "How much processor headroom the machine has right now (and current load). When it's low, it processes more slowly.",
-    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/life — psutil CPU/memory/storage readings" },
+    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/runtime-lifetime — psutil CPU/memory/storage readings" },
   },
   life_mem: {
     label: "Memory available",
     what: "Free system RAM, of the total. This is the machine's memory; the memory ceiling that bounds the runtime is enforced separately.",
-    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/life — psutil memory reading" },
+    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/runtime-lifetime — psutil memory reading" },
   },
   life_disk: {
     label: "Data-store headroom",
@@ -52,7 +52,7 @@ export const ROOM_INFO: Record<string, ValueInfo> = {
   life_rate: {
     label: "Cycle rate",
     what: "Cognitive cycles per minute, derived from its cycle counter over time. Zero means it isn't running right now.",
-    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/life — thinking_rate_per_min + cycle" },
+    src: { file: "backend/server/app.py", start: 910, end: 975, label: "/api/runtime-lifetime — thinking_rate_per_min + cycle" },
   },
   life_age: {
     label: "Uptime",
@@ -79,7 +79,7 @@ export const ROOM_INFO: Record<string, ValueInfo> = {
   memory_identity: {
     label: "Identity",
     what: "Its autobiography and the opinions it's come to hold — its sense of self, assembled from its own stores.",
-    src: { file: "backend/server/app.py", start: 672, end: 696, label: "/api/self — autobiography + opinions" },
+    src: { file: "backend/server/app.py", start: 672, end: 696, label: "/api/identity — autobiography + opinions" },
   },
 
   // ── Timeline ───────────────────────────────────────────────────────────────

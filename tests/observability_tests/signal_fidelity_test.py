@@ -1,4 +1,4 @@
-# tests/observability_tests/affect_fidelity_test.py
+# tests/observability_tests/signal_fidelity_test.py
 #
 # Fidelity / SEMANTICS test (SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT_2026-06-19 §7
 # rec #5). The existing telemetry_contract_test guards the *plumbing* — that no
@@ -41,7 +41,7 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
     captured: dict = {}
 
     class _FakeBridge:
-        def affect(self, **kw):
+        def signals(self, **kw):
             captured.update(kw)
 
     orig = tele._bridge

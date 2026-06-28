@@ -1,4 +1,4 @@
-# tests/brain/test_embodiment.py
+# tests/brain/test_host_coupling.py
 #
 # Parts IV–VI of the host-coupling architecture: the budget/floor knob (§11), resource
 # cadence (§7, mapping #1), host interoception (§6.2), and the warm-up split (§10).

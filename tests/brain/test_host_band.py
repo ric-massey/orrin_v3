@@ -1,4 +1,4 @@
-# tests/brain/test_body_band.py
+# tests/brain/test_host_band.py
 #
 # The band-learner and the deviation-based body_sense it powers — the foundation
 # of the embodiment architecture (docs/orrin_embodiment_architecture.md §10.4 and

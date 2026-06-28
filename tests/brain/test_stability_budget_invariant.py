@@ -1,7 +1,7 @@
 # Invariant test (Finding 11): the homeostasis-weighted cost of the deltas
 # commit_affect actually applies must never exceed STABILITY_BUDGET, no matter
 # how many proposals (across how many signals, in either direction) were
-# submitted in a cycle. test_affect_arbiter.py covers specific worked
+# submitted in a cycle. test_control_signal_arbiter.py covers specific worked
 # examples; this fuzzes the proposal mix and recomputes the same weighted-cost
 # formula commit_affect uses internally.
 import random

@@ -114,7 +114,7 @@ motivation/confidence 0.80, exploration_drive 0.85) and **disagrees** with `EMO_
 > deeper stages wired in T1.P). Seed-at-birth: `_seed_drive_priors()` seeds every
 > drive→aspiration prior at boot. Orphaned `will` (+`self_exploration`, `simulate_selves`,
 > `curiosity`, `problem_solving`) now carry explicit priors via `_AUX_DRIVE_ALIASES`, so
-> none defaults to world-knowledge. Tests: `tests/brain/test_aspiration_quick_wins.py`.
+> none defaults to world-knowledge. Tests: `tests/brain/test_objective_quick_wins.py`.
 The three WS-7 changes that are independent-now, cheap, and either correctness or
 observability. (Coverage floor + credit-blending = T2.3; partial credit = T3.1.)
 **Built:** aspiration pressure + drive-weighted generation already exist. **Remaining:**

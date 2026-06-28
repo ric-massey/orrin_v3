@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import List
 
 import brain.paths as paths
-from brain.data_schema import MIGRATIONS, SCHEMA_VERSION, migrate_loaded
+from brain.data_schema import FILE_RENAMES, MIGRATIONS, SCHEMA_VERSION, migrate_loaded
 from brain.utils.json_utils import save_json
 
 
@@ -33,6 +33,26 @@ def _candidate_dirs() -> List[Path]:
         if d.exists() and d not in seen:
             seen.append(d)
     return seen
+
+
+def rename_files_tree(*, dry_run: bool) -> int:
+    """Move biological data-file names -> engineering names on disk (4.7). Runs
+    BEFORE the content migration, which keys on the new basenames. Skips the move
+    if the new file already exists (idempotent). Returns the number moved."""
+    moved = 0
+    for root in _candidate_dirs():
+        for old, new in FILE_RENAMES.items():
+            for src in root.rglob(old):
+                if not src.is_file():
+                    continue
+                dst = src.with_name(new)
+                if dst.exists():
+                    continue
+                moved += 1
+                print(f"{'WOULD RENAME' if dry_run else 'RENAMED'}: {src.name} -> {new}")
+                if not dry_run:
+                    src.rename(dst)
+    return moved
 
 
 def migrate_tree(*, dry_run: bool) -> int:
@@ -65,13 +85,11 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true",
                     help="report what would change without writing")
     args = ap.parse_args()
-    if not MIGRATIONS:
-        print("No persisted-key migrations registered yet (schema "
-              f"v{SCHEMA_VERSION}); nothing to do.")
-        return
-    n = migrate_tree(dry_run=args.dry_run)
+    moved = rename_files_tree(dry_run=args.dry_run)  # 4.7: file-name renames first
+    n = migrate_tree(dry_run=args.dry_run)            # then content key-migration
     verb = "would migrate" if args.dry_run else "migrated"
-    print(f"\nSchema v{SCHEMA_VERSION}: {verb} {n} file(s).")
+    mverb = "would rename" if args.dry_run else "renamed"
+    print(f"\nSchema v{SCHEMA_VERSION}: {mverb} {moved} file(s); {verb} {n} file(s).")
 
 
 if __name__ == "__main__":

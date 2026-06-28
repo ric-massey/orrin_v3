@@ -75,8 +75,8 @@ _BAND_SPECS = {
 # recovery nudge — the cycle meant to lower fatigue raises it. The fix is a
 # SEPARATE sleep-phase band, learned only from dream-phase samples, so the dream's
 # spike reads as normal-for-sleeping. Same convergence policy; learned per-machine.
-_WAKE_BANDS_FILE  = "body_bands.json"
-_DREAM_BANDS_FILE = "body_bands_dream.json"
+_WAKE_BANDS_FILE  = "resource_bands.json"
+_DREAM_BANDS_FILE = "resource_bands_idle.json"
 _bands: BodyBands | None = None          # wake-phase envelope
 _dream_bands: BodyBands | None = None    # sleep-phase envelope
 

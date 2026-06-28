@@ -26,7 +26,7 @@ def _data_dir() -> Path:
 
 
 def _dominant_signal() -> str:
-    emo = _load_json_safe(_data_dir() / "affect_state.json", {}) or {}
+    emo = _load_json_safe(_data_dir() / "control_signals_state.json", {}) or {}
     core = emo.get("core_signals", {})
     if isinstance(core, dict) and core:
         try:

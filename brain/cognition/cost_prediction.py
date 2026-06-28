@@ -35,7 +35,7 @@ from brain.paths import DATA_DIR
 
 _log = get_logger(__name__)
 
-_MODEL_FILE = DATA_DIR / "interoceptive_model.json"
+_MODEL_FILE = DATA_DIR / "cost_prediction_model.json"
 _EMA_ALPHA = 0.20          # learning rate for expected-cost EMA
 _DEFAULT_COST_MS = 250.0   # cold-start prior for an unknown / mid function
 

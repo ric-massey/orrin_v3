@@ -169,10 +169,10 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
     for e in _read_json("long_memory.json", [])[-300:]:
         if isinstance(e, dict):
             add("memory", _coerce_ts(e), e.get("content") or e.get("summary") or "Formed a memory")
-    for d in _read_json("dream_log.json", [])[-100:]:
+    for d in _read_json("idle_consolidation_log.json", [])[-100:]:
         if isinstance(d, dict):
             add("dream", _coerce_ts(d), d.get("summary") or "Consolidated a dream")
-    rev = _read_json("self_belief_revisions.json", {})
+    rev = _read_json("identity_belief_revisions.json", {})
     if isinstance(rev, dict):
         for dom, lst in rev.items():
             if isinstance(lst, list):
@@ -209,7 +209,7 @@ async def affect() -> JSONResponse:
     the raw -1..1 valence, the full core_signals vector, and the brain's own
     homeostasis index — none of which the WS stream carries unmodified.
     SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT §7 rec #3."""
-    a = _read_json("affect_state.json", {})
+    a = _read_json("control_signals_state.json", {})
     if not isinstance(a, dict):
         a = {}
     core = a.get("core_signals") if isinstance(a.get("core_signals"), dict) else {}

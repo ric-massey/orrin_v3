@@ -16,7 +16,7 @@ import brain.cognition.reflection.review_failures as rvf
 
 @pytest.fixture
 def _iso_autobio(monkeypatch, tmp_path):
-    monkeypatch.setattr(auto_mod, "AUTOBIOGRAPHY", tmp_path / "autobiography.json")
+    monkeypatch.setattr(auto_mod, "AUTOBIOGRAPHY", tmp_path / "run_history.json")
     monkeypatch.setattr(auto_mod, "NARRATIVE_PRESSURE_FILE", tmp_path / "pressure.json")
     monkeypatch.setattr(auto_mod, "log_activity", lambda *a, **k: None)
     monkeypatch.setattr(auto_mod, "log_private", lambda *a, **k: None)
@@ -131,7 +131,7 @@ def test_eval_b7_resolves_links(monkeypatch, tmp_path):
     import brain.benchmarks as bm  # noqa: F401 — module path is `benchmarks` on sys.path
     import brain.benchmarks as bench
 
-    auto_file = tmp_path / "autobiography.json"
+    auto_file = tmp_path / "run_history.json"
     pressure_file = tmp_path / "pressure.json"
     lm_file = tmp_path / "long_memory.json"
     auto_file.write_text(json.dumps(

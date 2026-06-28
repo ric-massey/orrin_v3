@@ -32,7 +32,7 @@ from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.paths import DATA_DIR
 
-LIFESPAN_FILE = DATA_DIR / "lifespan.json"
+LIFESPAN_FILE = DATA_DIR / "runtime_lifetime.json"
 FINAL_THOUGHTS_FILE = DATA_DIR / "final_thoughts.json"
 
 # Lifespan range in days — long enough to be meaningful, short enough to matter
@@ -282,7 +282,7 @@ def _symbolic_final_thoughts(data: Dict) -> str:
 
     # The directions it held onto, and the shape the chapters took.
     try:
-        auto = load_json(DATA_DIR / "autobiography.json", default_type=dict) or {}
+        auto = load_json(DATA_DIR / "run_history.json", default_type=dict) or {}
         chapters = auto.get("chapters") or []
         asp = []
         for c in chapters:

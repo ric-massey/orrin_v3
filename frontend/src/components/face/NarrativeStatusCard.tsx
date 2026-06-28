@@ -65,11 +65,11 @@ function barColor(v: number) {
   return "bg-signal-error";
 }
 
-// Engineering label for the signed valence/arousal quadrant of the signal state.
+// Engineering label for the signed reward/activation quadrant of the signal state.
 function moodWord(valence: number, arousal: number) {
-  if (valence > 0.6 && arousal > 0.55) return "high +valence";
-  if (valence > 0.6) return "+valence";
-  if (valence < 0.4 && arousal > 0.55) return "high −valence";
-  if (valence < 0.4) return "−valence";
+  if (valence > 0.6 && arousal > 0.55) return "high +reward";
+  if (valence > 0.6) return "+reward";
+  if (valence < 0.4 && arousal > 0.55) return "high −reward";
+  if (valence < 0.4) return "−reward";
   return "near setpoint";
 }

@@ -75,7 +75,7 @@ const PATTERN_META: Record<string, { label: string; tone: string }> = {
   oscillation: { label: "Flip-flopping", tone: "text-signal-warn" },
   goal_avoidance: { label: "Avoiding a goal", tone: "text-signal-error" },
   reflection_imbalance: { label: "Over-thinking", tone: "text-signal-error" },
-  emotional_stagnation: { label: "Emotionally stuck", tone: "text-signal-warn" },
+  emotional_stagnation: { label: "Signals stuck", tone: "text-signal-warn" },
 };
 
 export default function Learning() {

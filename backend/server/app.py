@@ -132,9 +132,9 @@ async def death(request: Request) -> JSONResponse:
         out["private_thoughts"] = (server_state._DATA_DIR / "private_thoughts.txt").read_text("utf-8")[-20000:]
     except Exception:
         out["private_thoughts"] = ""
-    out["autobiography"] = _read_json("autobiography.json", {})
+    out["autobiography"] = _read_json("run_history.json", {})
     try:
-        out["conscious_stream"] = _json.loads((server_state._DATA_DIR / "conscious_stream.json").read_text("utf-8"))
+        out["conscious_stream"] = _json.loads((server_state._DATA_DIR / "workspace_broadcast.json").read_text("utf-8"))
     except Exception:
         out["conscious_stream"] = []
     try:

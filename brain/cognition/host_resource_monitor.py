@@ -48,7 +48,7 @@ _host_bands: Optional[BodyBands] = None
 def _bands() -> BodyBands:
     global _host_bands
     if _host_bands is None:
-        _host_bands = BodyBands(DATA_DIR / "body_host_bands.json", specs=_HOST_BAND_SPECS).load()
+        _host_bands = BodyBands(DATA_DIR / "host_resource_bands.json", specs=_HOST_BAND_SPECS).load()
     return _host_bands
 
 

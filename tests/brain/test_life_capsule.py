@@ -74,7 +74,7 @@ def _seed_mind(data_dir: Path, state_dir: Path) -> None:
     ]), "utf-8")
     (data_dir / "outcome_metrics.json").write_text(json.dumps([{"date": "2026-06-20", "goals_failed": 1}]), "utf-8")
     (data_dir / "runstate.json").write_text(json.dumps({"clean": True, "ended_at": 1781957501.0}), "utf-8")
-    (data_dir / "lifespan.json").write_text(json.dumps({"born_at": "2026-06-20T00:00:00+00:00"}), "utf-8")
+    (data_dir / "runtime_lifetime.json").write_text(json.dumps({"born_at": "2026-06-20T00:00:00+00:00"}), "utf-8")
     (data_dir / "relationships.json").write_text(json.dumps(
         {"peer_observer": {"type": "peer", "trust": 0.6, "influence_score": 0.5, "depth": 0.3,
                            "interaction_history": [], "last_interaction_time": "2026-06-20T00:00:00+00:00"}}), "utf-8")

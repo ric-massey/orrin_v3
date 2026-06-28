@@ -386,7 +386,7 @@ class BackgroundProcessor:
         try:
             from brain.paths import DATA_DIR
             from brain.utils.json_utils import load_json
-            stream = load_json(DATA_DIR / "conscious_stream.json", default_type=list) or []
+            stream = load_json(DATA_DIR / "workspace_broadcast.json", default_type=list) or []
             last = next((m for m in reversed(stream) if isinstance(m, dict)), None)
             if not last:
                 return {}

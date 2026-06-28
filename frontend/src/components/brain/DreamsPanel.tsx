@@ -34,7 +34,7 @@ export default function DreamsPanel() {
             title="Idle consolidation"
             perspective="agent-accessible"
             what="What it does while idle: each idle sweep's consolidation (memories compressed into themes), recombination (distant ideas spliced into something new), and processing notes — plus the symbolic recombination engine's analogy-transfer insights. A sweep with nothing to consolidate says so honestly."
-            source="GET /api/idle-consolidation over brain/data/dream_log.json · symbolic_dream_log.json"
+            source="GET /api/idle-consolidation over brain/data/idle_consolidation_log.json · symbolic_idle_consolidation_log.json"
             good="Sweeps that actually produce consolidations/insights as experience accumulates — early in a run 'slept, nothing consolidated' is the TRUE state, not a bug."
             src={{ file: "brain/cognition/dreaming/dream_cycle.py", start: 1, end: 60, label: "dream_cycle" }}
           />

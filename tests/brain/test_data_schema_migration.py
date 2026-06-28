@@ -8,7 +8,9 @@ load_json applies whatever is registered.
 import json
 
 import brain.data_schema as ds
-from brain.data_schema import migrate_loaded, SCHEMA_VERSION, SCHEMA_VERSION_KEY
+from brain.data_schema import (
+    migrate_loaded, resolve_read_path, FILE_RENAMES, SCHEMA_VERSION, SCHEMA_VERSION_KEY,
+)
 from brain.utils.json_utils import load_json, save_json
 
 _REG = {
@@ -72,3 +74,38 @@ def test_load_json_applies_registry(tmp_path, monkeypatch):
     # round-trips clean: a save then reload stays migrated
     save_json(p, loaded)
     assert load_json(p)["reward_signal"] == 0.33
+
+
+# ── 4.7: data-file NAME renames + read-old-path fallback ──────────────────────
+
+def test_file_rename_map_is_consistent():
+    # No filename is both an old and a new name (no rename chains/cycles).
+    assert set(FILE_RENAMES).isdisjoint(set(FILE_RENAMES.values()))
+    # Content-migration registry keys use NEW basenames after the file rename.
+    assert "control_signals_state.json" in ds.MIGRATIONS
+    assert "affect_state.json" not in ds.MIGRATIONS
+
+
+def test_resolve_read_path_falls_back_to_old_name(tmp_path):
+    new = tmp_path / "control_signals_state.json"   # requested (new) name, absent
+    old = tmp_path / "affect_state.json"            # legacy file on disk
+    old.write_text("{}", encoding="utf-8")
+    assert resolve_read_path(new) == old
+    # once the new file exists, it wins
+    new.write_text("{}", encoding="utf-8")
+    assert resolve_read_path(new) == new
+
+
+def test_resolve_read_path_noop_for_unmapped(tmp_path):
+    p = tmp_path / "goals_mem.json"
+    assert resolve_read_path(p) == p
+
+
+def test_load_json_reads_legacy_file_and_migrates_keys(tmp_path):
+    # An old-named affect_state.json with old keys, requested under the NEW name:
+    # load_json must find it (fallback) AND migrate its keys (new-basename registry).
+    (tmp_path / "affect_state.json").write_text(
+        json.dumps({"valence": 0.2, "core_signals": {"wonder": 0.5}}), encoding="utf-8")
+    loaded = load_json(tmp_path / "control_signals_state.json")
+    assert loaded["reward_signal"] == 0.2 and "valence" not in loaded
+    assert loaded["core_signals"]["novelty_signal"] == 0.5

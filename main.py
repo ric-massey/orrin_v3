@@ -195,7 +195,7 @@ try:
         os.environ.setdefault("ORRIN_MEMORY_CEILING_GB", str(_mem_ceiling))
     if _prefs.get("existence_mode", "sleep") == "sleep":
         # Closed time costs no life: credit the interval since he was last active.
-        from brain.cognition.mortality import credit_sleep_since_last_active as _credit_sleep
+        from brain.cognition.runtime_lifetime import credit_sleep_since_last_active as _credit_sleep
         _credited = _credit_sleep()
         if _credited > 0:
             print(f"[existence] Sleep mode — credited {_credited / 3600:.1f}h of closed time (no life lost)")

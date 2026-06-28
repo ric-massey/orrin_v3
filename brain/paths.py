@@ -87,7 +87,7 @@ BEHAVIORAL_FUNCTIONS_LIST_FILE = DATA_DIR / "behavioral_functions_list.json"
 CONTRADICTIONS_FILE = DATA_DIR / "contradictions.json"
 
 # ===== Model/Config/Concepts =====
-SELF_MODEL_FILE = DATA_DIR / "self_model.json"
+SELF_MODEL_FILE = DATA_DIR / "identity_state.json"
 RELATIONSHIPS_FILE = DATA_DIR / "relationships.json"
 MODEL_CONFIG_FILE = DATA_DIR / "model_config.json"
 CONCEPTS_FILE = DATA_DIR / "concepts.json"
@@ -138,29 +138,29 @@ FEEDBACK_LOG = DATA_DIR / "feedback_log.json"
 REWARD_TRACE = DATA_DIR / "reward_trace.json"
 
 # ===== Affect =====
-AFFECT_STATE_FILE = DATA_DIR / "affect_state.json"
-EMOTIONAL_SENSITIVITY_FILE = DATA_DIR / "emotion_sensitivity.json"
-AFFECT_MODEL_FILE = DATA_DIR / "affect_model.json"
-AFFECT_DRIFT_FILE = DATA_DIR / "affect_drift.json"
-CUSTOM_EMOTION = DATA_DIR / "custom_emotion.json"
+AFFECT_STATE_FILE = DATA_DIR / "control_signals_state.json"
+EMOTIONAL_SENSITIVITY_FILE = DATA_DIR / "signal_sensitivity.json"
+AFFECT_MODEL_FILE = DATA_DIR / "control_signals_model.json"
+AFFECT_DRIFT_FILE = DATA_DIR / "control_signals_drift.json"
+CUSTOM_EMOTION = DATA_DIR / "custom_signal.json"
 MODE_FILE = DATA_DIR / "mode.json"
 SPEAKER_STATE_FILE = DATA_DIR / "speaker_state.json"
-AFFECT_FUNCTION_MAP_FILE = DATA_DIR / "affect_function_map.json"
-EMOTION_FUNCTION_MAP_FILE = DATA_DIR / "emotion_function_map.json"
-EMOTION_DRIFT = DATA_DIR / "emotion_drift.json"
+AFFECT_FUNCTION_MAP_FILE = DATA_DIR / "control_signals_function_map.json"
+EMOTION_FUNCTION_MAP_FILE = DATA_DIR / "signal_function_map.json"
+EMOTION_DRIFT = DATA_DIR / "signal_drift.json"
 SANDBOX_TMP_DIR = DATA_DIR / "sandbox_tmp"
 
 # ===== Cycle/Meta =====
 CYCLE_COUNT_FILE = DATA_DIR / "cycle_count.json"
 
 # ===== Dreams =====
-DREAM_LOG         = DATA_DIR / "dream_log.json"
+DREAM_LOG         = DATA_DIR / "idle_consolidation_log.json"
 
 # ===== Death / Continuity =====
 FINAL_THOUGHTS    = DATA_DIR / "final_thoughts.json"
 
 # ===== Autobiography =====
-AUTOBIOGRAPHY            = DATA_DIR / "autobiography.json"
+AUTOBIOGRAPHY            = DATA_DIR / "run_history.json"
 NARRATIVE_PRESSURE_FILE  = DATA_DIR / "narrative_pressure.json"
 
 # ===== Threads of attention =====
@@ -200,10 +200,10 @@ HABITUATION_FILE = DATA_DIR / "habituation.json"
 OPINIONS_FILE = DATA_DIR / "opinions.json"
 
 # ===== Mood =====
-MOOD_FILE = DATA_DIR / "mood_state.json"
+MOOD_FILE = DATA_DIR / "smoothed_state.json"
 
 # ===== Body sense =====
-BODY_SENSE_FILE   = DATA_DIR / "body_sense.json"
+BODY_SENSE_FILE   = DATA_DIR / "resource_self_monitor.json"
 
 # ===== Predictions / surprise =====
 PREDICTIONS_FILE  = DATA_DIR / "predictions.json"
@@ -253,7 +253,7 @@ GOAL_TRAJECTORY_LOG_JSON = DATA_DIR / "goal_trajectory_log.json"
 LONG_JSON = ROOT_DIR / "long.json"
 PROMPTS_BACKUP_JSON = ROOT_DIR / "prompts_backup.json"
 PROPOSED_TOOLS_JSON = ROOT_DIR / "proposed_tools.json"
-SELF_MODEL_BACKUP_JSON = ROOT_DIR / "self_model_backup.json"
+SELF_MODEL_BACKUP_JSON = ROOT_DIR / "identity_state_backup.json"
 TOOL_CATALOG_JSON = ROOT_DIR / "tool_catalog.json"
 TOOL_EVALUATIONS_JSON = ROOT_DIR / "tool_evaluations.json"
 WORKING_JSON = ROOT_DIR / "working.json"
@@ -264,7 +264,7 @@ CONTRADICTIONS_JSON = DATA_DIR / "contradictions.json"
 EVOLUTION_ROADMAPS_JSON = DATA_DIR / "evolution_roadmaps.json"
 CHAT_LOG_JSON = TESTS_DIR / "chat_log.json"
 LONG_MEMORY_JSON = TESTS_DIR / "long_memory.json"
-EMOTION_SENSITIVITY_JSON = DATA_DIR / "emotion_sensitivity.json"
+EMOTION_SENSITIVITY_JSON = DATA_DIR / "signal_sensitivity.json"
 STATE_SNAPSHOT_FILE = DATA_DIR / "state_snapshot.json"
 MODEL_FAILURES_FILE = DATA_DIR / "model_failures.jsonl"
 INCIDENTS_FILE = DATA_DIR / "incidents.jsonl"
@@ -304,7 +304,7 @@ RSS_CACHE_FILE = DATA_DIR / "rss_cache.json"
 RSS_FEEDS_FILE = DATA_DIR / "rss_feeds.json"
 
 # ===== Self-belief revision ledger =====
-SELF_BELIEF_REVISIONS_FILE = DATA_DIR / "self_belief_revisions.json"
+SELF_BELIEF_REVISIONS_FILE = DATA_DIR / "identity_belief_revisions.json"
 
 # ===== Speech learning =====
 SPEECH_LOG_FILE    = DATA_DIR / "speech_log.json"       # scored reply history

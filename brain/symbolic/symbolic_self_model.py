@@ -32,7 +32,7 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
 from brain.paths import DATA_DIR
 
-SELF_MODEL_SYMBOLIC_FILE = DATA_DIR / "symbolic_self_model.json"
+SELF_MODEL_SYMBOLIC_FILE = DATA_DIR / "symbolic_identity_state.json"
 
 # Persistent per-domain action credits (BEHAVIOR_FIX_PLAN Phase 4 / audit §9):
 # domain quality used to depend only on rules, so scores never moved no matter

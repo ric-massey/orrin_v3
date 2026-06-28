@@ -60,7 +60,7 @@ def _revise_weak_area_beliefs(goal: Dict[str, Any]) -> None:
         from brain.paths import DATA_DIR
         from brain.utils.json_utils import load_json as _load, save_json as _save
 
-        sym_path = DATA_DIR / "symbolic_self_model.json"
+        sym_path = DATA_DIR / "symbolic_identity_state.json"
         revisions_path = SELF_BELIEF_REVISIONS_FILE
 
         model: Dict[str, Any] = _load(sym_path, default_type=dict) or {}

@@ -22,7 +22,7 @@ def _seed_affect_state(path, core_overrides):
 
 
 def _isolate(monkeypatch, tmp_path, core_overrides):
-    affect_file = tmp_path / "affect_state.json"
+    affect_file = tmp_path / "control_signals_state.json"
     wm_file = tmp_path / "working_memory.json"
     wm_file.write_text("[]")
     _seed_affect_state(affect_file, core_overrides)

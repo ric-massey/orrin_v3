@@ -198,7 +198,7 @@ def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypat
     from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
     monkeypatch.setattr(bs, "DATA_DIR", tmp_path)
-    monkeypatch.setattr(bs, "BODY_SENSE_FILE", tmp_path / "body_sense.json")
+    monkeypatch.setattr(bs, "BODY_SENSE_FILE", tmp_path / "resource_self_monitor.json")
     bs._bands = None
     bs._dream_bands = None
 

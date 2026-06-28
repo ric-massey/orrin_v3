@@ -49,8 +49,8 @@ touches a model:
 
 A language model, when one is configured, is just another tool this machinery can reach for. The
 engineering terms above name specific mechanisms — see the
-[mechanism map](docs/ARCHITECTURE.md#terminology-functional-analogues-not-claims). Orrin is a research
-prototype, not a chatbot, a production assistant, or a claim of human consciousness.
+[mechanism map](docs/ARCHITECTURE.md#terminology-engineering-terms-not-claims). Orrin is a research
+prototype, not a chatbot, a production assistant, or a claim of machine sentience.
 
 ---
 
@@ -59,41 +59,41 @@ prototype, not a chatbot, a production assistant, or a claim of human consciousn
 Orrin is a long-lived Python process plus cooperating daemons:
 
 - **Continuous loop** (`brain/ORRIN_loop.py`) — cycles through sensing, recall, workspace prep,
-  ignition, function/action selection, execution, reward accounting, persistence, maintenance, and
-  sleep, independently of user input.
-- **Decoupled intelligence** — the LLM is an optional tool-call organ, not the central controller.
-  The loop, goals, memory, affect-like regulation, host sensing, and action selection continue in
-  symbolic-only mode.
+  ignition, function/action selection, execution, reward accounting, persistence, maintenance, and an
+  idle/consolidation phase, independently of user input.
+- **Decoupled intelligence** — the LLM is an optional tool-call interface, not the central
+  controller. The loop, goals, memory, control-signal regulation, host sensing, and action selection
+  continue in symbolic-only mode.
 - **Symbolic core** — memory, causal/world models, goal management, reward, metacognition, action
   arbitration, and persistence are Python subsystems with JSON/WAL-backed state, so Orrin has
   continuity across restarts.
-- **Embodied context** — host disk, swap, memory, battery, idle state, and resource ceilings feed
-  both low-level safety reflexes and higher-level felt-state signals. The machine is the runtime
+- **Host-coupled context** — host disk, swap, memory, battery, idle state, and resource ceilings feed
+  both low-level safety reflexes and higher-level internal-state signals. The machine is the runtime
   substrate *and* part of the agent's context.
-- **Observable runtime** — the backend and React UI expose the loop, goals, memory, affect-like
+- **Observable runtime** — the backend and React UI expose the loop, goals, memory, control-signal
   state, workspace contents, learning traces, and health through named rooms rather than hiding
   behavior inside a prompt transcript.
 
 ```text
 State + Memory + Goals
         ↓
-Affect / Body / Drives
+Control Signals / Host State / Demands
         ↓
-Global Workspace          ← salience competition; one winner becomes "conscious"
+Workspace Arbitration     ← salience competition; one winner is broadcast
         ↓
 Action Selector           ← bandit; workspace winner is a prior on the pick
         ↓
 Tools / Reflection / Research / Code / Communication
         ↓
-Reward + Memory Update + Sleep/Consolidation
+Reward + Memory Update + Idle Consolidation
 ```
 
 ```text
                        ┌──────────────────────────────────────────┐
                        │            COGNITIVE LOOP (brain)          │
-   sensory stream ───► │  perceive → reflect → plan → act → repeat │ ───► tools / actions
-   user input    ───►  │   (bandit picks the next function; affect │
-                       │    + drives + memory feed every stage)    │
+   input stream  ───►  │  perceive → reflect → plan → act → repeat │ ───► tools / actions
+   user input    ───►  │  (bandit picks the next function; signals │
+                       │    + demands + memory feed every stage)   │
                        └───┬───────────┬───────────┬────────────┬──┘
                            │           │           │            │
                   ┌────────▼──┐ ┌──────▼─────┐ ┌───▼──────┐ ┌───▼────────┐
@@ -108,8 +108,9 @@ The cognitive loop runs continuously; the daemons run alongside it. The Executiv
 steps off-thread, Memory ingests and consolidates, the Supervisor watches for stalls/errors/host-resource
 danger, and the Backend streams telemetry to the UI (and, opt-in, Prometheus).
 
-**→ Full mechanism walkthrough — ignition, the Global Workspace, the two affect readers, mortality,
-selfhood, embodiment, and the scientific citations — is in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).**
+**→ Full mechanism walkthrough — ignition, the workspace, the two control-signal readers, the
+runtime-lifetime horizon, identity/continuity, host coupling, and the scientific citations — is in
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).**
 
 ---
 
@@ -119,8 +120,9 @@ Orrin is a long-lived process that:
 
 - **Runs a cognitive cycle continuously** (perceive → reflect → plan → act), choosing its own next
   function via a bandit selector rather than waiting for prompts.
-- **Has a homeostatic affect system** — core affect (valence + arousal) plus drives, fatigue, and
-  reward, integrated through a stability budget so it doesn't lurch.
+- **Has a regulated control-signal system** — internal-state signals (a reward signal + activation
+  level) plus demands, throttle, and reward accounting, integrated through a stability budget so it
+  doesn't lurch.
 - **Pursues goals at multiple timescales** — seeded lifetime goals down to short-term subgoals, with
   planning, adaptation, and reactive replanning. Two cooperating subsystems split the work: an
   in-process **Executive** (advances goal steps every ~7s) and a durable **Goals daemon** (owns goal
@@ -129,14 +131,14 @@ Orrin is a long-lived process that:
   description-logic inheritance, Pearl-style causal reasoning, predictive processing — and goes
   further: forms concepts, draws analogies, compresses/forgets its own rules, and runs autonomous
   experiments, all without an LLM.
-- **Remembers, consolidates, and forgets** — working memory, long-term memory, dream-cycle
-  consolidation, and an embedding-based store.
+- **Remembers, consolidates, and forgets** — working memory, long-term memory, idle-consolidation
+  cycles, and an embedding-based store.
 - **Monitors its own health *and the machine's*** — a supervisor liveness subsystem plus an autonomic
   `HostResourceGuard` that watches free disk, swap, and memory and gently pauses heavy cycles before
   the host is endangered (`supervisor/host_resources.py`).
-- **Has a finite lifespan** — a persistent mortality clock that colours long-term prioritization and
-  eventually stops the loop.
-- **Is watched by "peers"** — observer entities (Architect, Affect Historian, Goal Auditor, Observer,
+- **Has a finite runtime horizon** — a persistent runtime-lifetime clock that colours long-term
+  prioritization and eventually stops the loop.
+- **Is watched by "peers"** — observer entities (Architect, Signal Historian, Goal Auditor, Observer,
   Reward Auditor) that read Orrin's state from outside and *propose* things worth attending to,
   never issue commands.
 
@@ -157,7 +159,8 @@ When Orrin "acts," it calls real tools, not just internal state updates:
 - **Files & code:** read/write files, search/grep its own source, run sandboxed Python
   (timeout-guarded), and — gated behind the LLM tool — write, review, and commit extensions to its
   own codebase. It can author entirely new cognitive functions for itself, stored under the data
-  directory (`brain/agency/self_code.py`), so its repertoire travels with the mind, not the repo.
+  directory (`brain/agency/self_code.py`), so its repertoire travels with the runtime state, not the
+  repo.
 - **The web:** web search, scrape pages (robots-aware), fetch & read URLs, Wikipedia, RSS. Search
   uses [Serper.dev](https://serper.dev) and needs `SERPER_API_KEY`; without it, "looking outward"
   falls back to searching Orrin's own files.
@@ -169,8 +172,8 @@ When Orrin "acts," it calls real tools, not just internal state updates:
 - **Communication:** speak/announce to the UI and respond to your input — subject to its own speech
   gate, so it doesn't narrate every thought.
 
-Every action also updates Orrin's persisted state (affect, memory, world/causal models,
-autobiography), so behavior accumulates over time rather than resetting each cycle.
+Every action also updates Orrin's persisted state (control signals, memory, world/causal models,
+run history), so behavior accumulates over time rather than resetting each cycle.
 
 ---
 
@@ -183,12 +186,12 @@ Orrin runs on its own initiative — it is **not** prompt-driven — but you are
   (`/api/agent/response/{id}`). Orrin chooses *when* and *whether* to respond — replies arrive on its
   cadence, not instantly.
 - **Watch it think.** The UI is a set of named rooms, not one dashboard: **Watch** (a newcomer's
-  front door — a breathing mood-orb and one plain-language thought line), **Face** (conversation),
-  **Cognition** (active function, drives, symbolic state), **Life** (felt life-status / mortality),
+  front door — a state orb and one plain-language thought line), **Face** (conversation),
+  **Cognition** (active function, demands, symbolic state), **Life** (runtime-lifetime status),
   **Memory** (an explorer over what it remembers), **Timeline** (what happened while you were away),
   **Learning** (behavior changes as before→after→because diffs), and **Brain** (full telemetry).
-  A **bio↔engineering dialect toggle** re-words every surface live — mind-like terms translate back
-  into the underlying operational signal.
+  Every surface reads in one consistent engineering vocabulary — each label names the underlying
+  operational signal.
 
 Orrin also reaches *out* — it can announce to the dashboard, leave notes on your desktop, and notice
 whether you're active at the machine.
@@ -199,24 +202,24 @@ whether you're active at the machine.
 
 | Path | What it is |
 |------|------------|
-| `brain/` | The cognitive core. Entry point `brain/ORRIN_loop.py`. Subsystems: `affect/` (core-affect model, arbiter, homeostasis, reward), `cognition/` (functions, planning, metacognition, prediction), `symbolic/` (rule engine, causal graph, inference), `cog_memory/` (working + long memory), `embodiment/` (sensory stream, world model, drives, system presence), `think/` (loop, bandit selector, action arbiter), `behavior/` (expression, speech gate, tools), `core/`, `agency/`, `eval/`, `peers/`, `utils/`. |
+| `brain/` | The cognitive core. Entry point `brain/ORRIN_loop.py`. Subsystems: `control_signals/` (internal-state model, arbiter, setpoint regulation, reward), `cognition/` (functions, planning, metacognition, prediction), `symbolic/` (rule engine, causal graph, inference), `cog_memory/` (working + long memory), `runtime_coupling/` (input stream, world model, demands, system presence), `motivation/` (demand-pressure accumulators), `think/` (loop, bandit selector, action arbiter), `behavior/` (expression, speech gate, tools), `core/`, `agency/`, `eval/`, `peers/`, `utils/`. |
 | `goals/` | **Goals daemon** — the durable goal lifecycle store (`goals_daemon.py`) with its own WAL + snapshots, decoupled from the cognitive cycle. Distinct from the in-process **Executive** (`brain/cognition/planning/executive.py`). |
 | `memory/` | Memory daemon — ingestion, embedding, compaction, lexicon. |
-| `brain/peers/` | **Peer entities** — outside observers (Architect, Affect Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle. |
-| `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later retrievals/goal closures) and **drive-expectations** (learns which actions satisfy which drives). |
-| `supervisor/` | Liveness & error subsystem — heartbeat detection, error checking, lifespan/death continuity, and `host_resources.py` (the autonomic `HostResourceGuard`). |
+| `brain/peers/` | **Peer entities** — outside observers (Architect, Signal Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle. |
+| `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later retrievals/goal closures) and **demand-expectations** (learns which actions satisfy which demands). |
+| `supervisor/` | Liveness & error subsystem — heartbeat detection, error checking, runtime-lifetime continuity, and `host_resources.py` (the autonomic `HostResourceGuard`). |
 | `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams brain state to the UI over WebSocket or an in-process bridge (`server/bridge.py`, used by the native window). |
-| `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms + a Settings page (keys, privacy, existence mode, mind export/import). |
+| `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms + a Settings page (keys, privacy, existence mode, state-archive export/import). |
 | `packaging/` | Native desktop-app build: PyInstaller spec, model pre-bundler, entitlements, and the per-OS build/sign/notarize runbook (`packaging/README.md`). |
 | `observability/` | Prometheus metrics exporter + dashboard server. Opt-in (`ORRIN_METRICS=1`). |
 | `docs/` | Design plans, benchmarks, and an `archive/` of audits and fix records. Start at [`docs/README.md`](docs/README.md). |
 | `tests/` | Pytest suite across brain / goals / memory. |
 | `main.py` | Top-level launcher — boots the brain loop, daemons, backend API, and UI. |
-| `watchdogs.py` | Assembles the supervisor's `HealthBus`/`HealthTelemetrySampler` and guards (heartbeat, lifespan, no-goals, memory health, repeat-loop). |
+| `watchdogs.py` | Assembles the supervisor's `HealthBus`/`HealthTelemetrySampler` and guards (heartbeat, runtime-lifetime, no-goals, memory health, repeat-loop). |
 | `reset_orrin.py` | Resets Orrin's persisted state (with snapshotting). |
 | `run_orrin.sh` / `run_orrin.bat` | Run wrappers with auto-restart and macOS sleep prevention. |
 
-> **Two state trees, on purpose.** `brain/data/` holds the cognitive core's state ("the mind");
+> **Two state trees, on purpose.** `brain/data/` holds the cognitive core's runtime state;
 > `data/` (repo root) holds the background daemons' WAL/snapshot state. Details in
 > [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md#state-layout-two-trees-on-purpose).
 
@@ -301,8 +304,8 @@ are in [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md).**
 
 Orrin can run as a self-contained **native desktop application** — its own window (WKWebView on
 macOS, WebView2 on Windows, WebKitGTK on Linux), no browser tab, no localhost port, no Python or Node
-required on the user's machine. The mind lives in a per-user data directory, and API keys go in the
-OS keychain.
+required on the user's machine. The runtime state lives in a per-user data directory, and API keys go
+in the OS keychain.
 
 - **Builds** come from the cross-platform CI (`.github/workflows/build.yml`): a matrix across macOS
   (arm64 + Intel), Windows, and Linux (PyInstaller can't cross-compile). Triggered by a pushed `v*`
@@ -352,7 +355,7 @@ without installation.
 
 | You want… | Read |
 |-----------|------|
-| The mechanism-level walkthrough (ignition, workspace, affect, embodiment, citations) | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| The mechanism-level walkthrough (ignition, workspace, control signals, host coupling, citations) | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
 | Env vars, Docker, remote access, metrics, state layout, reset | [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) |
 | The full design-doc index (by track) | [`docs/README.md`](docs/README.md) |
 | The benchmark suite + claims-vs-evidence ledger | [`docs/Capability, Benchmarks & Evidence/`](docs/Capability,%20Benchmarks%20%26%20Evidence/) |
@@ -368,7 +371,7 @@ This is an experimental prototype; the caveats are real and the surface keeps mo
 
 - **Weak stability guarantees.** State formats, env vars, and internal APIs still change fast. The
   schema spine stamps state and refuses to load newer-build state, but the migration registry is
-  nearly empty, so a long-running mind may not survive a big upgrade. Export from Settings before
+  nearly empty, so a long-running instance may not survive a big upgrade. Export from Settings before
   updating; treat `reset_orrin.py` as part of the workflow.
 - **Not security-hardened.** Orrin runs sandboxed Python, reads/writes your filesystem, and opens
   allow-listed apps. Run it on a machine you trust; the [remote-access](docs/CONFIGURATION.md#remote-access)
@@ -379,14 +382,14 @@ This is an experimental prototype; the caveats are real and the surface keeps mo
   `sentence-transformers` (and PyTorch). Some paths degrade gracefully (semantic similarity falls
   back to token-Jaccard), but there's no first-class build that drops the ML stack.
 - **Desktop builds are unsigned.** Signing/notarization needs paid developer certs and is deferred.
-- **Conscious→unconscious write-back is still missing.** Ignition landed, but feedback is largely
-  one-directional today — a conscious conclusion can act on the world without reshaping a drive or a
-  salience prior. Closing that loop is parked under a "coherent-but-adult" design decision.
+- **Broadcast→substrate write-back is still missing.** Ignition landed, but feedback is largely
+  one-directional today — a broadcast workspace conclusion can act on the world without reshaping a
+  demand or a salience prior. Closing that loop is parked under a "coherent-but-adult" design decision.
 - **Language organ is in progress.** A native language subsystem is an active workstream
   (`brain/cognition/language/`: tokenizer, acquisition, a native LM, voice) but is not yet Orrin's
   primary means of expression.
-- **Open research questions.** Do body bands measurably improve stability? Does sleep consolidation
-  improve future behavior? Does the workspace prior make action selection more coherent? Can
+- **Open research questions.** Do host-resource bands measurably improve stability? Does idle
+  consolidation improve future behavior? Does the workspace prior make action selection more coherent? Can
   self-written code preserve continuity under tests? These are evidence targets, not settled claims.
 
 ---

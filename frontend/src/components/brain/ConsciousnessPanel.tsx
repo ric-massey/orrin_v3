@@ -20,7 +20,7 @@ import { HitMissStrip } from "./viz";
  *   • The competition  — …WITH the ranked runners-up that almost won (the
  *                        "losers" used to be computed then discarded).
  *   • Stream           — the actual stream of conscious moments the panel is
- *                        named for (tail of conscious_stream.json).
+ *                        named for (tail of workspace_broadcast.json).
  *   • Breakthroughs    — what the Monitor OFFERED (it competes, never seizes).
  *   • Watchdog         — the dumb structural stall-detector (fires regardless, I12).
  *   • Executive lane   — the backgrounded plan-step "dribble", queue rows included.
@@ -224,7 +224,7 @@ export default function ConsciousnessPanel({ telemetry }: { telemetry: Telemetry
             title="Attention arbitration (Global Workspace)"
             perspective="in-attention"
             what="What holds attention right now. Each cycle every subsystem offers content (a signal, the goal, a candidate thought); they compete on salience and ONE winner is selected and broadcast to everything else. You see the winner, the ranked runners-up that almost won, the Monitor's interrupt requests (it competes, never seizes), and the structural watchdog. The Stream tab is the persisted broadcast log."
-            source="workspace/monitor/executive blocks via the telemetry socket · Stream: GET /api/attention over brain/data/conscious_stream.json"
+            source="workspace/monitor/executive blocks via the telemetry socket · Stream: GET /api/attention over brain/data/workspace_broadcast.json"
             good="A broadcast log that moves between sources (not stuck on one signal — habituation working), and interrupt requests that get honored when they matter."
             src={{ file: "brain/cognition/global_workspace.py", start: 136, end: 230, label: "update_workspace" }}
           />

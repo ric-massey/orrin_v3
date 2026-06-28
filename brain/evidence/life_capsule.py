@@ -121,15 +121,15 @@ _RAW_STREAMS = (
     "effect_ledger.jsonl",
     "outcome_metrics.json",
     "runstate.json",
-    "lifespan.json",
-    "autobiography.json",
+    "runtime_lifetime.json",
+    "run_history.json",
     "relationships.json",
-    "conscious_stream.json",
+    "workspace_broadcast.json",
     "action_reward_ema.json",
 )
 # Files NEVER embedded: model weights (size+no value), private thoughts (most sensitive).
 _RAW_NEVER = ("native_lm.pt",)
-_RAW_LOCAL_ONLY = ("conscious_stream.json",)  # excluded from --share builds
+_RAW_LOCAL_ONLY = ("workspace_broadcast.json",)  # excluded from --share builds
 
 
 def _copy_raw(data_dir: Path, raw_dir: Path, *, share: bool) -> Dict[str, Any]:
@@ -162,7 +162,7 @@ def _copy_raw(data_dir: Path, raw_dir: Path, *, share: bool) -> Dict[str, Any]:
 # ──────────────────────────────────────────────────────────────────────────────
 def _provenance(reason: str) -> Dict[str, Any]:
     data_dir = paths.DATA_DIR
-    lifespan = _read_json(data_dir / "lifespan.json", {}) or {}
+    lifespan = _read_json(data_dir / "runtime_lifetime.json", {}) or {}
     runstate = _read_json(data_dir / "runstate.json", {}) or {}
     orrin_flags = {k: v for k, v in os.environ.items() if k.startswith("ORRIN_")}
     try:

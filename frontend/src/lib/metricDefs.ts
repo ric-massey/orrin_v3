@@ -5,7 +5,7 @@
 // same definitions instead of duplicating copy.
 //
 // UNIT: every value is shown as a 0-100 "level" - normalized intensity. 0 =
-// none, 100 = full. For bipolar signals (Valence, Arousal) 50 = neutral.
+// none, 100 = full. For bipolar signals (Reward signal, Activation level) 50 = neutral.
 
 export type SrcRef = { file: string; start: number; end: number; label: string };
 export type PerspectiveLayer = "dev-only" | "agent-accessible" | "in-attention";
@@ -30,8 +30,8 @@ export type MetricDef = {
 
 export const METRICS: MetricDef[] = [
   {
-    key: "valence_raw", label: "Raw valence", color: "hsl(348 83% 55%)", bipolar: true, signed: true,
-    desc: "Uncompressed pleasant-unpleasant signal.", lo: "unpleasant", hi: "pleasant",
+    key: "valence_raw", label: "Raw reward signal", color: "hsl(348 83% 55%)", bipolar: true, signed: true,
+    desc: "Uncompressed negative–positive reward signal.", lo: "negative", hi: "positive",
     perspective: "dev-only",
     long: "The direct -1 to +1 valence emitted by the control-signal system, without the Face's centered 0 to 1 presentation mapping.",
     measure: "Direct affect_state.valence telemetry; no centering or compression.",
@@ -46,8 +46,8 @@ export const METRICS: MetricDef[] = [
     src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_affect" },
   },
   {
-    key: "valence", label: "Valence", color: "hsl(217 91% 60%)", bipolar: true,
-    desc: "Its overall pleasant–unpleasant tone.", lo: "unpleasant", hi: "pleasant",
+    key: "valence", label: "Reward signal", color: "hsl(217 91% 60%)", bipolar: true,
+    desc: "Its overall negative–positive reward tone.", lo: "negative", hi: "positive",
     perspective: "agent-accessible",
     long: "Valence is the pleasant↔unpleasant axis of core affect (Russell's circumplex). It's not one signal — it's the net hedonic sign of every active signal at once.",
     terms: [
@@ -55,10 +55,10 @@ export const METRICS: MetricDef[] = [
       { t: "Hedonic sign", d: "Whether the blend of active signals leans good (+) or bad (−)." },
     ],
     measure: "Intensity-weighted average of every active signal × its valence coefficient (positive_valence +0.9, wonder +0.55 … impasse −0.6, conflict −0.75), clamped to −1…+1, then mapped so 50 = neutral.",
-    src: { file: "brain/affect/affect_dynamics.py", start: 157, end: 242, label: "compute_valence_activation_level + _VALENCE table" },
+    src: { file: "brain/control_signals/affect_dynamics.py", start: 157, end: 242, label: "compute_valence_activation_level + _VALENCE table" },
   },
   {
-    key: "arousal", label: "Arousal", color: "hsl(262 83% 62%)", bipolar: true, signed: true,
+    key: "arousal", label: "Activation level", color: "hsl(262 83% 62%)", bipolar: true, signed: true,
     desc: "How activated vs. calm its state is.", lo: "calm", hi: "activated",
     perspective: "agent-accessible",
     long: "Arousal is the activation↔deactivation axis of core affect — how energized/alert its whole system is, independent of whether the reward sign is positive or negative. High arousal + positive = excited; high arousal + negative = stressed.",
@@ -67,11 +67,11 @@ export const METRICS: MetricDef[] = [
       { t: "Deactivation", d: "Low-energy, settled states (reflection, calm, melancholy)." },
     ],
     measure: "A TONIC weighted mean of active signals × their activation coefficient (conflict +0.9, threat +0.8 … reflective −0.1, melancholy −0.35), PLUS a phasic spike: the strongest fast-arouser (surprise / threat / conflict / urgency) lifts arousal above the tonic background, then subsides as it decays. Clamped to −1…+1.",
-    src: { file: "brain/affect/affect_dynamics.py", start: 182, end: 263, label: "_ACTIVATION_LEVEL + _PHASIC_AROUSERS + compute" },
+    src: { file: "brain/control_signals/affect_dynamics.py", start: 182, end: 263, label: "_ACTIVATION_LEVEL + _PHASIC_AROUSERS + compute" },
   },
   {
-    key: "homeostasis", label: "Homeostasis", color: "hsl(142 71% 45%)",
-    desc: "How close its whole affect sits to rest.", lo: "agitated", hi: "settled",
+    key: "homeostasis", label: "Setpoint proximity", color: "hsl(142 71% 45%)",
+    desc: "How close its whole signal state sits to rest.", lo: "agitated", hi: "settled",
     perspective: "agent-accessible",
     long: "A single 'is it settled?' reading: how far its entire signal vector currently sits from its resting setpoints. 100 = everything near its baseline (at rest); it dips when signals deviate (agitation, saturation) and recovers as they decay back.",
     terms: [
@@ -79,7 +79,7 @@ export const METRICS: MetricDef[] = [
       { t: "Deviation", d: "Distance of a signal from its setpoint right now; summed across the vector." },
     ],
     measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority affect.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/control-signals and the runtime itself read one number (no longer invented in the telemetry helper).",
-    src: { file: "brain/affect/homeostasis.py", start: 74, end: 124, label: "homeostasis_index — the single authority" },
+    src: { file: "brain/control_signals/homeostasis.py", start: 74, end: 124, label: "homeostasis_index — the single authority" },
   },
   {
     key: "energy", label: "Energy", color: "hsl(38 92% 50%)",
@@ -91,7 +91,7 @@ export const METRICS: MetricDef[] = [
       { t: "Fatigue (resource_deficit)", d: "An accumulating drain. It ticks up a little every cycle (+0.002) and faster when it over-uses effortful functions; it decays toward a 0.15 baseline (faster, ×0.06, once severely depleted >0.75 — active recovery)." },
     ],
     measure: "energy = 1 − resource_deficit. resource_deficit accumulates per cycle and decays toward an allostatic setpoint; recovery accelerates when exhausted.",
-    src: { file: "brain/affect/update_affect_state.py", start: 629, end: 640, label: "resource_deficit accumulation + recovery" },
+    src: { file: "brain/control_signals/update_affect_state.py", start: 629, end: 640, label: "resource_deficit accumulation + recovery" },
   },
   {
     key: "fatigue", label: "Fatigue", color: "hsl(18 58% 50%)",
@@ -116,7 +116,7 @@ export const METRICS: MetricDef[] = [
       { t: "Flow bonus", d: "Repeated action-oriented choices lift motivation/confidence a little (being in flow is itself rewarding)." },
     ],
     measure: "A core signal: raised by reward writes + flow, pulled back toward its 0.50 setpoint each cycle (per-call homeostatic decay).",
-    src: { file: "brain/affect/setpoints.py", start: 27, end: 101, label: "setpoints + CORE_BASELINES (resting values)" },
+    src: { file: "brain/control_signals/setpoints.py", start: 27, end: 101, label: "setpoints + CORE_BASELINES (resting values)" },
   },
   {
     key: "confidence", label: "Confidence", color: "hsl(190 85% 50%)",
@@ -128,7 +128,7 @@ export const METRICS: MetricDef[] = [
       { t: "Cross-inhibition", d: "When threat is high it actively pulls confidence down, and vice-versa — they can't both be maxed." },
     ],
     measure: "A core signal: lifted by confirmed predictions/flow, cut by surprise; decays toward a 0.45 setpoint; antagonistic with threat/uncertainty.",
-    src: { file: "brain/affect/homeostasis.py", start: 30, end: 95, label: "ANTAGONISTS + cross-inhibition" },
+    src: { file: "brain/control_signals/homeostasis.py", start: 30, end: 95, label: "ANTAGONISTS + cross-inhibition" },
   },
   {
     key: "curiosity", label: "Curiosity", color: "hsl(280 70% 66%)",
@@ -152,7 +152,7 @@ export const METRICS: MetricDef[] = [
       { t: "Regulation", d: "When load is high it picks calming strategies (grounding, reappraisal) more often." },
     ],
     measure: "negative_load(affect) — weighted sum of impasse/threat/conflict/risk/etc. — normalized to 0–1 for display.",
-    src: { file: "brain/affect/observers.py", start: 44, end: 95, label: "negative_load" },
+    src: { file: "brain/control_signals/observers.py", start: 44, end: 95, label: "negative_load" },
   },
   {
     key: "stability", label: "Stability", color: "hsl(160 60% 46%)",
@@ -164,7 +164,7 @@ export const METRICS: MetricDef[] = [
       { t: "Affect velocity", d: "How much the whole vector moved this cycle; capped so one chaotic cycle can't lurch everything." },
     ],
     measure: "1 − avg_negative × 2 + avg_positive × 0.25, clamped to 0–1; further cut by indecision/ping-pong patterns.",
-    src: { file: "brain/affect/update_affect_state.py", start: 525, end: 542, label: "new_stability computation" },
+    src: { file: "brain/control_signals/update_affect_state.py", start: 525, end: 542, label: "new_stability computation" },
   },
   {
     key: "learning", label: "Learning", color: "hsl(48 95% 55%)",

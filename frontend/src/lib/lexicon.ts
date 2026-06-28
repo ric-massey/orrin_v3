@@ -64,7 +64,7 @@ export const LEX = {
   workspace_tagline: "priority-arbitrated broadcast bus",
 
   // ── Control-signal rings ──────────────────────────────────────────────────
-  valence_label: "Hedonic score",
+  valence_label: "Reward signal",
   valence_hint: "reward sign − ↔ +",
   arousal_label: "Activation",
   arousal_hint: "low ↔ high activation",

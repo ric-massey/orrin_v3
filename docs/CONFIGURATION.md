@@ -29,9 +29,9 @@ Orrin reads many `ORRIN_*` variables; the full set is discoverable with
 | `ORRIN_EXECUTIVE_DAEMON` | `1` | In-process Executive that advances goal steps. Set `0` to disable. |
 | `ORRIN_EXECUTIVE_DAEMON_INTERVAL` | `7` | Seconds between Executive goal-step advances. |
 | `ORRIN_CYCLE_SLEEP` | `1` | Seconds between cognitive cycles. |
-| `ORRIN_IGNITION_GATE` | `1` | Conscious ignition gate — only salient/uncertain/conflicted cycles ignite into deliberate cognition. Set `0` for always-on. |
-| `ORRIN_WORKSPACE_PRIOR` | `1` | Make the Global Workspace winner an additive prior on the action pick. Set `0` to decouple. |
-| `ORRIN_CONFLICT_RECRUIT` | `1` | Let conscious conflict/uncertainty recruit System-2 deliberation (`inner_loop`). Set `0` to disable. |
+| `ORRIN_IGNITION_GATE` | `1` | Deliberation gate — only salient/uncertain/conflicted cycles ignite into expensive deliberate cognition. Set `0` for always-on. |
+| `ORRIN_WORKSPACE_PRIOR` | `1` | Make the workspace-arbitration winner an additive prior on the action pick. Set `0` to decouple. |
+| `ORRIN_CONFLICT_RECRUIT` | `1` | Let workspace conflict/uncertainty recruit System-2 deliberation (`inner_loop`). Set `0` to disable. |
 | `OPENAI_API_KEY` | _(unset)_ | Default LLM provider key. With no provider configured anywhere, all brain LLM tool calls are skipped (symbolic-only). Other providers use `ANTHROPIC_API_KEY` / `GOOGLE_API_KEY` / etc. |
 | `SERPER_API_KEY` | _(unset)_ | When absent, web search errors and "looking outward" falls back to local file search. |
 | `ORRIN_LLM_TOOL_ONLY` | `1` | Gate the LLM to tool-only use (no free-form generation). |
@@ -39,7 +39,7 @@ Orrin reads many `ORRIN_*` variables; the full set is discoverable with
 | `ORRIN_STRICT` | `0` | Strict fail-closed mode (surface errors instead of degrading silently). |
 | `ORRIN_ONCE` / `ORRIN_BENCHMARK` | _(unset)_ | Single-cycle / benchmark run modes — useful for testing. |
 | `ORRIN_FORGET_ON_START` | `0` | Wipe accumulated state on startup (like a reset). |
-| `ORRIN_LIFESPAN_MIN_DAYS` / `ORRIN_LIFESPAN_MAX_DAYS` | _(built-in band)_ | Bounds for the lifespan rolled at birth/reset (the mortality clock). |
+| `ORRIN_LIFESPAN_MIN_DAYS` / `ORRIN_LIFESPAN_MAX_DAYS` | _(built-in band)_ | Bounds for the runtime-lifetime budget rolled on first run/reset (the finite-horizon clock). |
 | `ORRIN_DATA_HOME` | _(unset)_ | Use a per-user data directory (set automatically in the frozen desktop app). |
 | `ORRIN_BACKEND_HOST` / `ORRIN_BACKEND_PORT` | `127.0.0.1` / `8800` | Where the telemetry backend binds. |
 | `ORRIN_METRICS` / `ORRIN_METRICS_PORT` | `0` / _(OS-assigned)_ | Set `ORRIN_METRICS=1` to start the Prometheus exporter (off by default). Port is OS-assigned unless pinned (the Docker stack pins `9100`). |
@@ -52,8 +52,9 @@ Orrin reads many `ORRIN_*` variables; the full set is discoverable with
 
 Orrin's persisted state is split across **two** directories. This is intentional, not a duplicate:
 
-- **`brain/data/`** holds the **cognitive core's** state: affect, context, working/long memory,
-  world & causal models, autobiography, learning stats, cognition history. This is "the mind."
+- **`brain/data/`** holds the **cognitive core's** state: control signals, context, working/long
+  memory, world & causal models, run history, learning stats, cognition history. This is the runtime
+  state.
 - **`data/`** (repo root) holds the **background daemons'** state: `data/goals/` (the goals daemon's
   WAL, snapshots, and state), `data/memory/wal/`, and `data/media/`.
 
@@ -73,16 +74,16 @@ just to keep size under control:
 - **History is windowed.** `cognition_history.json` keeps the last ~500 cycles; heavy payloads
   (candidate lists, full goal context) are stripped to compact summaries before saving.
 - **Memory forgets on purpose.** Working memory is small and fixed; long-term memory is consolidated
-  during the dream cycle and decays/forgets rather than growing without bound.
+  during the idle-consolidation cycle and decays/forgets rather than growing without bound.
 - **Regenerable runtime files are git-ignored** so they never bloat the repo, while Orrin's actual
-  mind-state (memory, identity, learning, models) stays tracked.
+  persisted state (memory, identity, learning, models) stays tracked.
 
 ---
 
 ## Resetting state
 
-`reset_orrin.py` is for **starting a fresh mind**, not routine maintenance. It snapshots first, so a
-reset is recoverable.
+`reset_orrin.py` is for **starting from fresh state**, not routine maintenance. It snapshots first, so
+a reset is recoverable.
 
 ```bash
 python reset_orrin.py                # snapshot + reset

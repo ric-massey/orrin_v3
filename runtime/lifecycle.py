@@ -44,7 +44,7 @@ def pulse_loop(ctx: RuntimeContext, stop: threading.Event) -> None:
         _now_wall = time.time()
         if _now_wall - last_active_rec > 30.0:
             try:
-                from brain.cognition.mortality import record_active_now as _rec_active
+                from brain.cognition.runtime_lifetime import record_active_now as _rec_active
                 _rec_active()
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
@@ -140,7 +140,7 @@ def graceful_shutdown(ctx: RuntimeContext) -> None:
     # Stamp 'last alive at = now' so 'sleep' mode credits the closed interval exactly
     # from here (§10.3). Cheap and important to do before threads wind down.
     try:
-        from brain.cognition.mortality import record_active_now as _rec_active
+        from brain.cognition.runtime_lifetime import record_active_now as _rec_active
         _rec_active()
     except Exception as _e:
         _log.warning("silent except: %s", _e)

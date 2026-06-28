@@ -182,9 +182,9 @@ function clamp01(n: number): number {
 
 // Engineering label for the current signal state (mirrors NarrativeStatusCard).
 function moodWord(valence: number, arousal: number) {
-  if (valence > 0.6 && arousal > 0.55) return "high +valence";
-  if (valence > 0.6) return "+valence";
-  if (valence < 0.4 && arousal > 0.55) return "high −valence";
-  if (valence < 0.4) return "−valence";
+  if (valence > 0.6 && arousal > 0.55) return "high +reward";
+  if (valence > 0.6) return "+reward";
+  if (valence < 0.4 && arousal > 0.55) return "high −reward";
+  if (valence < 0.4) return "−reward";
   return "near setpoint";
 }

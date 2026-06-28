@@ -33,7 +33,7 @@ interface CapsuleSummary {
   claims?: CapsuleClaim[];
 }
 
-// The evidence export (Part IX) — list sealed Life Capsules, build one on demand,
+// The evidence export (Part IX) — list sealed run capsules, build one on demand,
 // download a `.orrinlife.zip`, and read its summary inline. Mirrors the diagnostics
 // export contract: owner-only server-side, no silent telemetry, JSON for summary +
 // build, binary zip for the download (which the native bridge can't proxy).
@@ -117,12 +117,12 @@ export function LifeCapsuleSection() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-base">
-          <Archive className="h-4 w-4" /> Life Capsules
+          <Archive className="h-4 w-4" /> Run Capsules
         </CardTitle>
         <CardDescription>
           One run, sealed whole — the evidence record. Each capsule holds the raw streams
           plus cleaned tables, a queryable database, metrics, and an evidence-linked
-          claims ledger. Built automatically at shutdown and end-of-life; you can also
+          claims ledger. Built automatically at shutdown and end-of-run; you can also
           seal one now.
         </CardDescription>
       </CardHeader>

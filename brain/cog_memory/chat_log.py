@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, Union
 import re
 import textwrap
 
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 import brain.paths as paths
 from brain.utils.append import append_to_json
 # generate_response/llm_ok are imported deferred inside summarize_chat_to_long_memory
@@ -75,7 +75,7 @@ def _create_chat_entry(
         "speaker": speaker,
         "role": role,            # compatibility for renderer/main.js
         "content": clean,
-        "emotion": detect_affect_keyword(clean),
+        "emotion": detect_signal_keyword(clean),
         # Keep both fields for compatibility, but they will be strictly monotonic across entries
         "timestamp": ts,
         "ts": ts,

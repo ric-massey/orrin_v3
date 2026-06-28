@@ -73,8 +73,8 @@ def read_host_resources() -> Dict[str, float]:
 def _nudge(context: Dict, key: str, delta: float, source: str) -> None:
     """Gentle, capped, TTL'd affect nudge via the arbiter (single-writer discipline)."""
     try:
-        from brain.control_signals.arbiter import submit_affect
-        submit_affect(context, key, delta, weight=0.5, source=source, ttl_cycles=3)
+        from brain.control_signals.arbiter import submit_signal
+        submit_signal(context, key, delta, weight=0.5, source=source, ttl_cycles=3)
     except Exception as exc:  # affect nudge best-effort — record
         record_failure("host_interoception._nudge", exc)
 

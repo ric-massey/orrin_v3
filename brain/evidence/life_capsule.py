@@ -47,7 +47,7 @@ from brain.evidence.life_capsule_ingest import (  # noqa: F401
     _FOLLOWTHROUGH_WINDOW, classify_action, _ACTION_CLASS, _SIGNAL_EXPECTED_CLASS,
     _now_iso, _read_json, _iter_jsonl, _sha256_text, _sha256_file, _iso_to_epoch,
     _last_run_segment, _git_sha, _redact_home,
-    _parse_decisions, _parse_affect, _parse_behavior_changes, _parse_goals,
+    _parse_decisions, _parse_signal, _parse_behavior_changes, _parse_goals,
     _parse_artifacts, _parse_memory_events, _parse_peers, _derive_signals,
 )
 # The derived->interpreted layer (metrics, claims ledger, LLM bundle) was
@@ -308,7 +308,7 @@ def build_life_capsule(
         "cycles": cycles,
         "decisions": decisions,
         "rewards": rewards,
-        "affect": _guard("affect", lambda: _parse_affect(data_dir), []),
+        "affect": _guard("affect", lambda: _parse_signal(data_dir), []),
         "behavior_changes": _guard("behavior_changes", lambda: _parse_behavior_changes(data_dir), []),
         "goals": _guard("goals", lambda: _parse_goals(data_dir, state_dir), []),
         "artifacts": _guard("artifacts", lambda: _parse_artifacts(data_dir), []),

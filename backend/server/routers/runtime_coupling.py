@@ -203,7 +203,7 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
 
 
 @router.get("/control-signals")
-async def affect() -> JSONResponse:
+async def control_signals() -> JSONResponse:
     """Ground-truth affect vector straight from affect_state.json (representation
     B), so panels can cross-check the transformed telemetry stream (C). Exposes
     the raw -1..1 valence, the full core_signals vector, and the brain's own
@@ -227,7 +227,7 @@ async def affect() -> JSONResponse:
 
 
 @router.get("/resources")
-async def vitals() -> JSONResponse:
+async def resources() -> JSONResponse:
     """The L0 vital-signs aggregator: every chip computed server-side from one or
     two fields of one file each, so the row polls ONE url on ONE timer — and
     external monitors get a single 'how is Orrin?' answer."""

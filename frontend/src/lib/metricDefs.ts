@@ -35,7 +35,7 @@ export const METRICS: MetricDef[] = [
     perspective: "dev-only",
     long: "The direct -1 to +1 valence emitted by the control-signal system, without the Face's centered 0 to 1 presentation mapping.",
     measure: "Direct affect_state.valence telemetry; no centering or compression.",
-    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_affect" },
+    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_signal" },
   },
   {
     key: "impasse_raw", label: "Raw impasse", color: "hsl(0 84% 50%)",
@@ -43,7 +43,7 @@ export const METRICS: MetricDef[] = [
     perspective: "agent-accessible",
     long: "The direct impasse signal, shown separately from aggregate distress so a blocked goal cannot be hidden by normalization.",
     measure: "Direct core_signals.impasse_signal telemetry, clamped only to 0 to 1.",
-    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_affect" },
+    src: { file: "brain/ORRIN_loop.py", start: 194, end: 250, label: "_emit_signal" },
   },
   {
     key: "valence", label: "Reward signal", color: "hsl(217 91% 60%)", bipolar: true,

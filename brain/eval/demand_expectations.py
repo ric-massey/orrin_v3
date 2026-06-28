@@ -88,7 +88,7 @@ def record_outcome(action: str, drive: str, actual_relief: float) -> None:
         gap = actual_relief - expected
 
         # Route gap to affect system
-        _route_affect(action, drive, gap, actual_relief, expected)
+        _route_signal(action, drive, gap, actual_relief, expected)
 
         # EMA update — learn from this outcome, but don't let the expectation
         # collapse fully to void-speak levels.  Floor preserves residual expected_gain.
@@ -103,23 +103,23 @@ def _cache_update(key: str, value: float) -> None:
         _cache[key] = value
 
 
-def _bump_affect_file(emotion: str, amount: float) -> None:
+def _bump_signal_file(emotion: str, amount: float) -> None:
     """
     Submit a small affect increment for a context-free background path.
 
     Previously wrote affect_state.json directly (a last-writer-wins race with the
     main loop, V3_AUDIT §1.1). Now routes the increment through the AffectArbiter's
     thread-safe inbox (context=None); the main loop drains and applies it at
-    commit_affect, so update_affect_state remains the sole file writer.
+    commit_signals, so update_signal_state remains the sole file writer.
     """
     try:
-        from brain.control_signals.arbiter import submit_affect
-        submit_affect(None, emotion, float(amount), source="drive_expect", ttl_cycles=2)
+        from brain.control_signals.arbiter import submit_signal
+        submit_signal(None, emotion, float(amount), source="drive_expect", ttl_cycles=2)
     except Exception as _e:
-        record_failure("drive_expectations._bump_affect_file", _e)
+        record_failure("drive_expectations._bump_signal_file", _e)
 
 
-def _route_affect(
+def _route_signal(
     action: str,
     drive: str,
     gap: float,
@@ -144,7 +144,7 @@ def _route_affect(
 
     if gap < 0:
         # Disappointment: reached out, expected relief, got less.
-        _bump_affect_file("reward_negative", magnitude)
+        _bump_signal_file("reward_negative", magnitude)
         try:
             from brain.utils.log import log_activity
             log_activity(
@@ -152,10 +152,10 @@ def _route_affect(
                 f"{expected:.2f} (gap {gap:.2f}) → reward_negative +{magnitude:.2f}"
             )
         except Exception as _e:
-            record_failure("drive_expectations._route_affect", _e)
+            record_failure("drive_expectations._route_signal", _e)
     else:
         # Delight: contact landed better than expected.
-        _bump_affect_file("reward_positive", magnitude)
+        _bump_signal_file("reward_positive", magnitude)
         try:
             from brain.utils.log import log_activity
             log_activity(
@@ -163,4 +163,4 @@ def _route_affect(
                 f"{expected:.2f} (gap +{gap:.2f}) → reward_positive +{magnitude:.2f}"
             )
         except Exception as _e:
-            record_failure("drive_expectations._route_affect.2", _e)
+            record_failure("drive_expectations._route_signal.2", _e)

@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 import re
 import uuid
 
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 # update_values_with_lessons (cognition, L3) is imported deferred at its call site
 # below so this storage module (L2) does not import cognition at load time.
 from brain.paths import LONG_MEMORY_FILE, PRIVATE_THOUGHTS_FILE
@@ -49,7 +49,7 @@ _IDENTITY_AFFIRM_RE = re.compile(
 
 
 def _signal_name(e: Any) -> str:
-    """Coerce an emotion (possibly dict from detect_affect) into a lowercase string."""
+    """Coerce an emotion (possibly dict from detect_signal) into a lowercase string."""
     if isinstance(e, dict):
         return str(e.get("emotion", "neutral")).lower()
     return str(e or "neutral").lower()
@@ -129,7 +129,7 @@ def update_long_memory(
         if extra and isinstance(extra, dict):
             for k, v in extra.items():
                 entry.setdefault(k, v)
-        entry["emotion"] = _signal_name(emotion or detect_affect_keyword(content))
+        entry["emotion"] = _signal_name(emotion or detect_signal_keyword(content))
         if emotional_snapshot and not entry.get("emotional_context"):
             entry["emotional_context"] = emotional_snapshot
     elif isinstance(new, str):
@@ -138,7 +138,7 @@ def update_long_memory(
             "id": str(uuid.uuid4()),
             "timestamp": now,
             "content": content,
-            "emotion": _signal_name(emotion or detect_affect_keyword(content)),
+            "emotion": _signal_name(emotion or detect_signal_keyword(content)),
             "emotional_context": emotional_snapshot,
             "event_type": event_type,
             "agent": agent,
@@ -446,7 +446,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
                         "id": str(uuid.uuid4()),
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "content": _summary_content,
-                        "emotion": _signal_name(detect_affect_keyword(summary)),
+                        "emotion": _signal_name(detect_signal_keyword(summary)),
                         "event_type": "memory_prune_summary",
                         "agent": "orrin",
                         "importance": 1,

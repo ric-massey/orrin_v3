@@ -179,7 +179,7 @@ def sanitize_all(paths_module=None) -> Dict[str, int]:
     P = paths_module
     results: Dict[str, int] = {}
 
-    _run(getattr(P, "AFFECT_STATE_FILE", None), "affect_state", _sanitize_signal_state, results)
+    _run(getattr(P, "SIGNAL_STATE_FILE", None), "affect_state", _sanitize_signal_state, results)
     _run(getattr(P, "CYCLE_COUNT_FILE",      None), "cycle_count",     _sanitize_cycle_count,   results)
     _run(getattr(P, "BANDIT_STATE_FILE",     None), "bandit_state",    _sanitize_bandit_state,  results)
 

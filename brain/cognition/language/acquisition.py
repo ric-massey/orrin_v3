@@ -385,8 +385,8 @@ def narrate_experience(context) -> str:
     if not perceived:
         return ""
     try:
-        from brain.control_signals.signal_summary import describe_dominant_affect
-        feel = (describe_dominant_affect(perceived) or "").strip()
+        from brain.control_signals.signal_summary import describe_dominant_signal
+        feel = (describe_dominant_signal(perceived) or "").strip()
     except Exception:
         feel = ""
     if not feel or feel.startswith("quiet") or "no strong pull" in feel \

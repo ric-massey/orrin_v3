@@ -13,11 +13,11 @@ from typing import Any, Dict, List, Tuple
 from brain.utils.json_utils import load_json
 from brain.utils.goals import extract_current_focus_goal
 from brain.utils.failure_counter import record_failure
-from brain.paths import FOCUS_GOAL, AFFECT_STATE_FILE, SELF_MODEL_FILE
+from brain.paths import FOCUS_GOAL, SIGNAL_STATE_FILE, SELF_MODEL_FILE
 
 
 def _dominant_signal() -> str:
-    emo: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    emo: Dict[str, Any] = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
     core = emo.get("core_signals", {})
     if isinstance(core, dict) and core:
         try:
@@ -68,7 +68,7 @@ def _dominant_signal_and_stagnation_signal(context: Dict[str, Any] | None = None
     if context is not None:
         emo = context.get("affect_state") or {}
     else:
-        emo = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+        emo = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
     core = emo.get("core_signals", {}) or {}
     stagnation_signal = float(core.get("stagnation_signal", emo.get("stagnation_signal", 0.0)) or 0.0)
     dom: str | None = None

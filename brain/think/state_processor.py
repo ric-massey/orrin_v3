@@ -39,7 +39,7 @@ def compute_cycle_state(
     dominant_intensity = 0.0
     try:
         from brain.control_signals.signal_summary import (
-            render_affect_state as _dfs,
+            render_signal_state as _dfs,
             valence_summary_line as _acl,
         )
         affect_description = _dfs(emo_state)
@@ -156,7 +156,7 @@ def _compute_output_seed(
     # Strong affect presses for expression
     if dominant_intensity > 0.60:
         try:
-            from brain.control_signals.signal_summary import describe_dominant_affect as _dom
+            from brain.control_signals.signal_summary import describe_dominant_signal as _dom
             sense = _dom(emo_state)
             if sense:
                 seeds.append(sense)

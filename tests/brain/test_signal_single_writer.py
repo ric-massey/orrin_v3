@@ -2,14 +2,14 @@
 #
 # These assert the Phase-1 contract from V3_AUDIT.md §1.1 / Deliverable 2 Contract A:
 #   - daemons and context-less producers submit affect PROPOSALS, never write
-#     AFFECT_STATE_FILE directly;
-#   - the thread-safe module inbox is drained by commit_affect on the main loop;
+#     SIGNAL_STATE_FILE directly;
+#   - the thread-safe module inbox is drained by commit_signals on the main loop;
 #   - scalar top-level targets (resource_deficit) are applied directly at commit;
 #   - concurrent submissions never lose updates (no last-writer-wins race).
 import threading
 
 import brain.control_signals.arbiter as arbiter
-from brain.control_signals.arbiter import submit_affect, commit_affect
+from brain.control_signals.arbiter import submit_signal, commit_signals
 
 
 def _ctx(**core):
@@ -24,7 +24,7 @@ def setup_function(_):
 
 def test_daemon_submission_routes_to_threadsafe_inbox():
     # context=None → goes to the module inbox, NOT to any context dict.
-    submit_affect(None, "motivation", +0.10, source="daemon")
+    submit_signal(None, "motivation", +0.10, source="daemon")
     with arbiter._inbox_lock:
         assert len(arbiter._inbox) == 1
         assert arbiter._inbox[0]["target"] == "motivation"
@@ -32,8 +32,8 @@ def test_daemon_submission_routes_to_threadsafe_inbox():
 
 def test_commit_drains_inbox_into_state():
     ctx = _ctx(motivation=0.5)
-    submit_affect(None, "motivation", +0.12, source="daemon")
-    applied = commit_affect(ctx)
+    submit_signal(None, "motivation", +0.12, source="daemon")
+    applied = commit_signals(ctx)
     assert "motivation" in applied
     # inbox emptied after the drain
     with arbiter._inbox_lock:
@@ -42,8 +42,8 @@ def test_commit_drains_inbox_into_state():
 
 def test_scalar_target_applied_directly():
     ctx = _ctx(motivation=0.5)  # resource_deficit seeded at 0.5
-    submit_affect(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
-    commit_affect(ctx)
+    submit_signal(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
+    commit_signals(ctx)
     # resource_deficit moves toward setpoint (0.15) immediately, clamped >= 0.
     assert ctx["affect_state"]["resource_deficit"] < 0.5
     assert ctx["affect_state"]["resource_deficit"] >= 0.0
@@ -55,7 +55,7 @@ def test_concurrent_submissions_are_not_lost():
 
     def worker():
         for _ in range(N):
-            submit_affect(None, "motivation", +0.001, source="t")
+            submit_signal(None, "motivation", +0.001, source="t")
 
     threads = [threading.Thread(target=worker) for _ in range(8)]
     for t in threads:
@@ -79,14 +79,14 @@ def test_drain_consolidations_does_not_write_affect_file(monkeypatch):
     monkeypatch.setattr(consolidation, "_save_queue", lambda q: None)
 
     # save_json must NOT be called with the affect file by drain_consolidations.
-    from brain.paths import AFFECT_STATE_FILE
+    from brain.paths import SIGNAL_STATE_FILE
     calls = []
     monkeypatch.setattr(consolidation, "save_json", lambda p, d: calls.append(str(p)))
 
     ctx = _ctx(reward_positive=0.3)
     consolidation.drain_consolidations(ctx)
 
-    assert str(AFFECT_STATE_FILE) not in calls
+    assert str(SIGNAL_STATE_FILE) not in calls
     # It submitted a proposal into the context instead.
     props = ctx.get("_affect_proposals") or []
     assert any(p["target"] == "reward_positive" for p in props)

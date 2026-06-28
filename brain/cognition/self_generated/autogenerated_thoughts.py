@@ -70,8 +70,8 @@ def _compose_spontaneous_thought(
     """
     # Humanized felt state — grounded affect prose, never a raw signal name.
     try:
-        from brain.control_signals.signal_summary import describe_dominant_affect
-        feel = (describe_dominant_affect(emo) or "").strip()
+        from brain.control_signals.signal_summary import describe_dominant_signal
+        feel = (describe_dominant_signal(emo) or "").strip()
     except Exception:
         feel = ""
     has_feel = bool(feel) and "hard to name" not in feel and not feel.startswith("quiet")

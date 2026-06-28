@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timezone
 from brain.utils.log import log_private, log_error
 from brain.cog_memory.working_memory import update_working_memory
-from brain.control_signals.threat_detector import process_affective_signals
+from brain.control_signals.threat_detector import process_signals
 
 # Affect → preferred function when affectively dysregulated
 _EMO_DRIVE_MAP = {
@@ -51,7 +51,7 @@ def persistent_drive_loop(context, self_model, memory):
         # hysteresis against the last choice: an acute spike still dominates, a
         # moderate spike blends, and a boundary crossing no longer flip-flops the
         # whole loop. Mirrors the live select_function threat lane.
-        context, threat_detector_response = process_affective_signals(context)
+        context, threat_detector_response = process_signals(context)
         if threat_detector_response.get("threat_detected"):
             shortcut = threat_detector_response.get("shortcut_function", "self_soothing")
             tags = threat_detector_response.get("threat_tags", [])

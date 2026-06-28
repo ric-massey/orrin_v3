@@ -19,7 +19,7 @@ import time
 from typing import Any, Dict, Tuple
 from brain.think.signal_router import process_inputs
 from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS
-from brain.control_signals.update_signal_state import update_affect_state
+from brain.control_signals.update_signal_state import update_signal_state
 from brain.control_signals.reflect_on_signals import reflect_on_affect
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.load_utils import load_context
@@ -31,7 +31,7 @@ from brain.paths import (
 )
 
 from brain.loop.telemetry import (
-    _push_event, _emit_affect, _emit_goals, _emit_llm_cost, _ui_stage, _ui_memory,
+    _push_event, _emit_signal, _emit_goals, _emit_llm_cost, _ui_stage, _ui_memory,
 )
 # The affect-decay stage lives in signal_decay; re-exported so ORRIN_loop and
 # the stage's unit tests keep importing it from brain.loop.sense.
@@ -83,10 +83,10 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # Run emotional state update AFTER context is loaded so _ne_proxy,
     # _stability_signal_proxy, and all neuromodulator values are written directly
     # into context["affect_state"] and available to every system this cycle.
-    update_affect_state(context)
+    update_signal_state(context)
 
     # Mirror the freshly-updated affect to the Face & Brain UI (fail-safe).
-    _emit_affect(context)
+    _emit_signal(context)
     _emit_goals(context)
     _emit_llm_cost(context)
     _ui_stage("reflect", "Reflecting — integrating affect & signals.")
@@ -322,7 +322,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
             # writes, so this competes with (and nets against) every other
             # affect source this cycle instead of clobbering them.
             try:
-                from brain.control_signals.arbiter import submit_affect as _submit_affect
+                from brain.control_signals.arbiter import submit_signal as _submit_affect
                 _submit_affect(context, "impasse_signal", +0.04, source="goal_stall")
                 _submit_affect(context, "motivation",     -0.03, source="goal_stall")
                 _submit_affect(context, "stagnation_signal", +0.03, source="goal_stall")

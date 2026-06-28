@@ -1,7 +1,7 @@
-# brain/control_signals/apply_affective_feedback.py
+# brain/control_signals/apply_signal_feedback.py
 from datetime import datetime, timezone
-from brain.utils.affect_signal_utils import log_penalty_signal, log_uncertainty_spike 
-from brain.control_signals.update_signal_state import update_affect_state
+from brain.utils.signal_keyword_utils import log_penalty_signal, log_uncertainty_spike 
+from brain.control_signals.update_signal_state import update_signal_state
 from brain.control_signals.modes_and_signals import set_current_mode
 from brain.control_signals.signal_drift import check_affect_drift
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
@@ -32,7 +32,7 @@ def _parse_iso_ts(ts: str) -> datetime:
     except (ValueError, TypeError):  # intentional: unparseable timestamp → now
         return datetime.now(timezone.utc)
 
-def apply_affective_feedback(context):
+def apply_signal_feedback(context):
     """
     Simulates realistic affective dynamics including domain-specific confidence,
     emotional memory decay, narrative feedback, suppression, and dominant emotion blending.
@@ -209,7 +209,7 @@ def apply_affective_feedback(context):
 
     if top_two:
         # Use the mode map rather than raw emotion name — sets a meaningful mode string
-        from brain.control_signals.modes_and_signals import recommend_mode_from_affect_state as _rmfe
+        from brain.control_signals.modes_and_signals import recommend_mode_from_signal_state as _rmfe
         set_current_mode(_rmfe())
         # Only reward clarity when emotion is genuinely elevated but not stuck at ceiling
         if 0.7 < top_two[0][1] < 0.96:
@@ -231,6 +231,6 @@ def apply_affective_feedback(context):
             })
 
     # === G. Update final state, then check drift against fresh values ===
-    update_affect_state(context=context, trigger=None)
+    update_signal_state(context=context, trigger=None)
     check_affect_drift(context, max_cycles=10)
     return context

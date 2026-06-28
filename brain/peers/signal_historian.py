@@ -18,7 +18,7 @@ from brain.core.runtime_log import get_logger
 from typing import Any, Dict, List
 
 from brain.peers.peer_base import BasePeer
-from brain.paths import AFFECT_STATE_FILE
+from brain.paths import SIGNAL_STATE_FILE
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
@@ -49,7 +49,7 @@ class SignalHistorian(BasePeer):
 
         try:
             from brain.utils.json_utils import load_json
-            state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+            state = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
             core = state.get("core_signals") or {}
             stability = float(state.get("affect_stability", 1.0) or 1.0)
             triggers = state.get("recent_triggers") or []

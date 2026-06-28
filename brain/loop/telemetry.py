@@ -6,7 +6,7 @@ memory inspector). They are deliberately non-blocking: the telemetry bridge buff
 on a daemon thread and never raises, and if the backend is absent everything
 no-ops. The cognitive loop must never block or crash on telemetry.
 
-run_cognitive_loop imports `_bridge`, `_push_event`, `_emit_affect`, `_emit_goals`,
+run_cognitive_loop imports `_bridge`, `_push_event`, `_emit_signal`, `_emit_goals`,
 `_ui_stage`, `_ui_memory` back from here; the rest (`_f`, `_clamp01`,
 `_learning_pulse`, `_push_catalog_once`) are private to this module.
 """
@@ -143,7 +143,7 @@ _DISTRESS_LOAD_DIVISOR = 2.5  # negative_load can exceed 1; scale to fit the 0..
 _HOMEOSTASIS_FALLBACK = 0.8   # used only if affect_state carries no homeostasis yet
 
 
-def _emit_affect(context: "Context") -> None:
+def _emit_signal(context: "Context") -> None:
     """
     Push the current affect state to the UI as valence/arousal/homeostasis
     (each normalised to 0..1) plus a few extra signals. Drives the Face mood
@@ -177,7 +177,7 @@ def _emit_affect(context: "Context") -> None:
         except Exception:
             distress = _clamp01(_f(cs.get("impasse_signal")))
 
-        tb.affect(
+        tb.signals(
             # top-level valence runs roughly -1..1; centre it on 0.5 for the UI's
             # agent-accessible chart. The uncompressed value also ships as
             # `valence_raw` (dev-only metric), so no number is hidden — the
@@ -203,7 +203,7 @@ def _emit_affect(context: "Context") -> None:
             learning=_clamp01(_learning_pulse(context)),
         )
     except Exception as exc:  # telemetry must never crash the loop — record, no-op
-        record_failure("loop_telemetry._emit_affect", exc)
+        record_failure("loop_telemetry._emit_signal", exc)
         return
 
 

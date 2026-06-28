@@ -31,8 +31,8 @@ _REQUIRED_GATE_FAMILIES: List[Tuple[str, FrozenSet[str]]] = [
         "threat_detector/emotional-processing",
         frozenset({
             "idle_consolidation_logic",
-            "process_affective_signals",
-            "update_affect_state",
+            "process_signals",
+            "update_signal_state",
             "check_affect_drift",
         }),
     ),

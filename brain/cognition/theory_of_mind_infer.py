@@ -88,7 +88,7 @@ def _infer_cognitive_state(sig: Dict[str, bool]) -> str:
     return "attending"            # present but not specifically goal-directed
 
 
-def _infer_affective_state(sig: Dict[str, bool], person_model: Dict[str, Any]) -> str:
+def _infer_signal_state(sig: Dict[str, bool], person_model: Dict[str, Any]) -> str:
     """
     What do they FEEL — their emotional register this turn?
     Affective empathy: insula/ACC route; distinct from cognitive state.

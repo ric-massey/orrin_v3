@@ -193,7 +193,7 @@ def test_body_sense_uses_separate_sleep_phase_band(tmp_path, monkeypatch):
 
 def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypatch):
     import brain.control_signals.arbiter as arbiter
-    from brain.control_signals.arbiter import commit_affect, submit_affect
+    from brain.control_signals.arbiter import commit_signals, submit_signal
     import brain.cognition.resource_self_monitor as bs
     from brain.cognition.idle_consolidation.consolidation_cycle import set_consolidating
 
@@ -229,8 +229,8 @@ def test_completed_sleep_is_net_negative_despite_high_vitals(tmp_path, monkeypat
         assert body["vitals"]["rss_mb"] > 1400
         assert body["vitals"]["cpu_util"] > 0.70
 
-        submit_affect(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
-        commit_affect(context)
+        submit_signal(None, "resource_deficit", -0.35, source="dream_rest", ttl_cycles=2)
+        commit_signals(context)
     finally:
         set_consolidating(False)
         with arbiter._inbox_lock:

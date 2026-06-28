@@ -7,7 +7,7 @@ import time
 from typing import Any, Dict, List
 
 from brain.utils.json_utils import load_json
-from brain.utils.affect_signal_utils import dominant_signal
+from brain.utils.signal_keyword_utils import dominant_signal
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
@@ -23,7 +23,7 @@ from brain.think.thought_stream import emit_thought
 from brain.behavior.speak import OrrinSpeaker
 from brain.cognition.self_state.relationships import update_relationship_model
 from brain.cognition.self_state.self_model_conflicts import update_self_model
-from brain.control_signals.signal_learning import update_affect_function_map
+from brain.control_signals.signal_learning import update_signal_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
@@ -344,7 +344,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         )
 
         # NOTE: stagnation_signal is now driven authoritatively by select_function's
-        # anti-repeat guard, which submits it through submit_affect() into
+        # anti-repeat guard, which submits it through submit_signal() into
         # core_signals (where the reader looks first) so it actually persists and
         # accumulates across cycles. The old top-level `emo["stagnation_signal"] +=`
         # writer here was clobbered by per-cycle decay and never reached core_signals,
@@ -379,7 +379,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         if dom_emo:
             try:
                 _last_reward = float(context.get("last_reward") or 0.5)
-                update_affect_function_map(dom_emo, fn_name, reward_signal=_last_reward)
+                update_signal_function_map(dom_emo, fn_name, reward_signal=_last_reward)
             except Exception as _e:
                 record_failure("think_module.think.8", _e)
 

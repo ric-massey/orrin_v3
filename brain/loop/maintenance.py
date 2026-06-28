@@ -5,7 +5,7 @@ ORRIN_loop entrypoint).
 selection-starved when left to the bandit (cold-start trap): goal retirement,
 satiety closure, stale-plan pruning, and the other periodic housekeeping that
 must happen regardless of what the cycle chose. Decoupled from selection (no
-double execution — the same precedent as the per-cycle update_affect_state
+double execution — the same precedent as the per-cycle update_signal_state
 upkeep), keyed off the cycle count. Pure `context -> context`; fail-safe.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ def run_maintenance_tier(context: Context) -> Context:
     # it here on slow cadences, decoupled from selection. fade_goals is in
     # _ALWAYS_EXCLUDE so it never ALSO competes as a deliberate choice
     # (no double execution). This is the same precedent the codebase uses
-    # for update_affect_state and the apply_* per-cycle upkeep.
+    # for update_signal_state and the apply_* per-cycle upkeep.
     try:
         _mcycle = get_cycle_count()
 

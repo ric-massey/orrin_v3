@@ -7,7 +7,7 @@ from brain.utils.self_model import get_self_model, save_self_model, ensure_self_
 from brain.utils.log import log_error, log_private
 from brain.utils.log_reflection import log_reflection
 from brain.cog_memory.working_memory import update_working_memory
-from brain.control_signals.update_signal_state import update_affect_state
+from brain.control_signals.update_signal_state import update_signal_state
 from brain.cognition.maintenance.self_modeling import self_model_maintenance_cycle
 from brain.cognition.planning.goals import maybe_complete_goals
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
@@ -278,7 +278,7 @@ def reflect_on_self_beliefs():
             neutral_count += 1
             save_neutral_count(neutral_count)
             update_working_memory("😐 No meaningful belief update.")
-            update_affect_state(trigger="reflection_stagnation")
+            update_signal_state(trigger="reflection_stagnation")
         else:
             neutral_count = 0
             save_neutral_count(neutral_count)

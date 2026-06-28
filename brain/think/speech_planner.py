@@ -160,7 +160,7 @@ def _sym_dict_lookup(topics: List[str]) -> str:
 
 # ── Affect helpers ────────────────────────────────────────────────────────────
 
-def _dominant_affect(affect: Dict) -> Tuple[str, float]:
+def _dominant_signal(affect: Dict) -> Tuple[str, float]:
     """Return (affect_name, value) for the strongest signal in affect_state."""
     core = affect.get("core_signals") or affect
     if not isinstance(core, dict):
@@ -294,7 +294,7 @@ def _plan_core(
     topics      = comprehension.get("topics", [])
     epistemic   = _get_epistemic(memories[0] if memories else None)
 
-    affect_name, affect_val = _dominant_affect(affect)
+    affect_name, affect_val = _dominant_signal(affect)
     tone   = _tone_label(affect_name, affect_val)
     length = _length_for_register(register, _response_length(intent, tone))
 

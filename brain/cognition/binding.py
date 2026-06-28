@@ -89,7 +89,7 @@ def _item(
     return item
 
 
-def _dominant_affect(context: Dict[str, Any]) -> Optional[Tuple[str, float, str]]:
+def _dominant_signal(context: Dict[str, Any]) -> Optional[Tuple[str, float, str]]:
     state = context.get("affect_state") or {}
     core = state.get("core_signals") or state
     if not isinstance(core, dict):
@@ -137,7 +137,7 @@ def _collect_items(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             known_entities=known, role_hint="interlocutor", dedupe_text=user_input.lower(),
         ))
 
-    dominant = _dominant_affect(context)
+    dominant = _dominant_signal(context)
     if dominant:
         emotion, intensity, cause = dominant
         add(_item(

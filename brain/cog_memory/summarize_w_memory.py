@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List
 
 from brain.utils.memory_utils import summarize_memories
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 from brain.cog_memory.long_memory import update_long_memory
 from brain.utils.embedder import get_embedding
 from brain.utils.log import log_private, log_error
@@ -55,7 +55,7 @@ def summarize_and_promote_working_memory(memories: List[Dict[str, Any]]) -> None
 
     summary_entry = {
         "content": content_str,
-        "emotion": _signal_name(detect_affect_keyword(summary_text)),
+        "emotion": _signal_name(detect_signal_keyword(summary_text)),
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "event_type": "summary",
         "agent": "orrin",

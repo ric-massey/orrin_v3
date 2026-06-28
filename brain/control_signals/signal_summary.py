@@ -145,7 +145,7 @@ def _sense_for(name: str, value: float) -> str:
     return ""
 
 
-def render_affect_state(
+def render_signal_state(
     affect_state: Dict[str, Any],
     body_sense: List[str] = None,
     use_hedonic_adjustment: bool = True,
@@ -233,7 +233,7 @@ def render_affect_state(
     return phrase
 
 
-def describe_dominant_affect(affect_state: Dict[str, Any]) -> str:
+def describe_dominant_signal(affect_state: Dict[str, Any]) -> str:
     """
     Single-sentence felt sense of the strongest emotion only.
     Uses hedonic-adjusted intensity so adapted states don't dominate.

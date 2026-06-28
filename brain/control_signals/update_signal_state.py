@@ -1,4 +1,4 @@
-# brain/control_signals/update_affect_state.py
+# brain/control_signals/update_signal_state.py
 #
 # Per-cycle affect state update: applies triggers, appraisal nudges, decay,
 # habituation, velocity, and oscillation detection to core_signals.
@@ -14,13 +14,13 @@ from statistics import mean
 from typing import Any
 
 from brain.utils.json_utils import load_json, save_json
-from brain.control_signals.signals import get_all_affect_names, deliver_affect_based_rewards
+from brain.control_signals.signals import get_all_signal_names, deliver_signal_based_rewards
 from brain.control_signals.signal_dynamics import (
     decay_habituation, capture_prev_core,
     apply_velocity_dynamics, compute_valence_activation_level, update_smoothed_state,
     update_hedonic_baselines,
 )
-from brain.control_signals.signal_buffer import drain_affect_queue
+from brain.control_signals.signal_buffer import drain_signal_queue
 from brain.control_signals.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
     EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE,
@@ -28,10 +28,10 @@ from brain.control_signals.homeostasis import (
 )
 from brain.control_signals.setpoints import CORE_BASELINES
 from brain.utils.log import log_activity
-from brain.control_signals.modes_and_signals import recommend_mode_from_affect_state, set_current_mode, get_current_mode
+from brain.control_signals.modes_and_signals import recommend_mode_from_signal_state, set_current_mode, get_current_mode
 from brain.utils.timing import get_time_since_last_active
 
-from brain.paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
+from brain.paths import SIGNAL_STATE_FILE, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
 # Per-cycle pattern phases, extracted to affect_patterns.py (Phase 4.5C).
 from brain.control_signals.signal_patterns import (
@@ -39,7 +39,7 @@ from brain.control_signals.signal_patterns import (
 )
 _log = get_logger(__name__)
 
-def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
+def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     from brain.cog_memory.working_memory import update_working_memory
 
     # Prefer in-memory state from context (authoritative); only read disk when truly absent.
@@ -49,18 +49,18 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     if context is not None:
         state = context.get("affect_state")
     if not isinstance(state, dict):
-        state = load_json(AFFECT_STATE_FILE, default_type=dict)
+        state = load_json(SIGNAL_STATE_FILE, default_type=dict)
     if not isinstance(state, dict):
         state = {}
     # If core_signals is missing, seed it from the file rather than discarding the whole state
     if not state.get("core_signals"):
-        _disk = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+        _disk = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
         if isinstance(_disk.get("core_signals"), dict):
             state["core_signals"] = _disk["core_signals"]
     # Pin the canonical schema (D9): nested core_signals + required scalars. As the
     # sole writer, normalizing here means the canonical layout is what gets persisted.
-    from brain.control_signals.observers import normalize_affect_state
-    state = normalize_affect_state(state)
+    from brain.control_signals.observers import normalize_signal_state
+    state = normalize_signal_state(state)
     working = load_json(WORKING_MEMORY_FILE, default_type=list)
 
     if not isinstance(state, dict) or not isinstance(working, list):
@@ -88,9 +88,9 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
     opposites = ANTAGONISTS
 
     # --- Ensure all baseline emotions exist in core map ---
-    # get_all_affect_names() reads affect_model.json which may be empty on first boot.
+    # get_all_signal_names() reads affect_model.json which may be empty on first boot.
     # Always seed from baseline directly so expected_gain, reward_positive, reward_negative, conflict_signal etc. are never missing.
-    model_emotions = get_all_affect_names() or []
+    model_emotions = get_all_signal_names() or []
     core = state.get("core_signals", {})
     if not isinstance(core, dict):
         core = {}
@@ -127,7 +127,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
                 core = _emo_tmp.get("core_signals", core)
                 state["resource_deficit"] = _emo_tmp.get("resource_deficit", state.get("resource_deficit", 0.0))
     except Exception as _e:
-        log_activity(f"[update_affect_state] interoception failed: {_e}")
+        log_activity(f"[update_signal_state] interoception failed: {_e}")
 
     # Snapshot core BEFORE this cycle's modifications (velocity needs prev state)
     prev_core = capture_prev_core(state, core)
@@ -291,7 +291,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         if _rd <= _rd_thresh - 0.05 and state.get("_rd_fatigue_noted"):
             state["_rd_fatigue_noted"] = False
     except Exception as _e:
-        log_activity(f"[update_affect_state] stress_load allostatic load failed: {_e}")
+        log_activity(f"[update_signal_state] stress_load allostatic load failed: {_e}")
 
     # === Trigger-Based Emotion Nudging ===
     if trigger:
@@ -332,7 +332,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
                 current = float(core.get("stagnation_signal", 0.0))
                 core["stagnation_signal"] = round(current + (target - current) * 0.25, 4)
         except Exception as _e:
-            record_failure("update_affect_state.update_affect_state", _e)
+            record_failure("update_signal_state.update_signal_state", _e)
 
     # Time-without-interaction gently raises stagnation_signal; hard cap at 0.60
     if hours_idle > 1.0:
@@ -375,14 +375,14 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
                 excess    = val - ceiling
                 core[emo] = max(ceiling, val - excess * _CEILING_RATE)
         except Exception as _e:
-            record_failure("update_affect_state.update_affect_state.4", _e)
+            record_failure("update_signal_state.update_signal_state.4", _e)
 
     detect_oscillation_and_flatline(state, core, context, now, update_working_memory)
 
     # === Drain buffered emotion changes BEFORE velocity so buffered deltas are subject
     # to the same velocity constraints as direct emotion writes. Previously this ran
     # after velocity, which let buffered changes bypass the smoothing gate entirely.
-    drain_affect_queue(state, core)
+    drain_signal_queue(state, core)
 
     # === Velocity dynamics (drag + refractory) — applied after drain, before clamp ===
     apply_velocity_dynamics(core, prev_core, state)
@@ -415,8 +415,8 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
 
     # === Deliver reward & adjust mode if needed ===
     if context is not None:
-        deliver_affect_based_rewards(context, core, new_stability)
-        recommended = recommend_mode_from_affect_state()
+        deliver_signal_based_rewards(context, core, new_stability)
+        recommended = recommend_mode_from_signal_state()
         current_mode = get_current_mode()
         if recommended != current_mode:
             set_current_mode(
@@ -447,7 +447,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
             if val > ceiling:
                 core[emo] = max(ceiling, val - (val - ceiling) * _CEILING_RATE)
         except Exception as _e:
-            record_failure("update_affect_state.update_affect_state.6", _e)
+            record_failure("update_signal_state.update_signal_state.6", _e)
 
     # === Decay flat reward fields at a per-call rate (not hours-based) ===
     # hours_passed is ~0.005 at 20s cycles — hours-based decay (apply_restoring_forces)
@@ -483,7 +483,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         }
         # Reward-pumped drives need a stronger restoring force: their pumps fire
         # every cycle (+0.04–0.08) while this pull only runs when
-        # update_affect_state is selected, so at 2 %/call exploration_drive
+        # update_signal_state is selected, so at 2 %/call exploration_drive
         # saturated in minutes and took hours to droop back (FINDINGS 2026-06-12 §2).
         _PUMPED_DRIVES = {"exploration_drive", "motivation", "connection"}
 
@@ -507,7 +507,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
                 _base = _setpoint(_k)
                 state[_k] = max(0.0, min(1.0, float(_val) + (_base - float(_val)) * _decay_rate(_k)))
     except Exception as _e:
-        record_failure("update_affect_state.update_affect_state.7", _e)
+        record_failure("update_signal_state.update_signal_state.7", _e)
 
     # Sync canonical values back to top-level so readers of state[k] see current values
     for _dk in _dup_keys:
@@ -567,7 +567,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
                 _v = float(core[_nk])
                 core[_nk] = max(0.0, min(1.0, _v + (_sp_drain(_nk) - _v) * 0.02))
     except Exception as _e:
-        record_failure("update_affect_state.update_affect_state.8", _e)
+        record_failure("update_signal_state.update_signal_state.8", _e)
 
     # === Save State ===
     state["core_signals"] = core
@@ -594,7 +594,7 @@ def update_affect_state(context: Any = None, trigger: Any = None) -> Any:
         pass
     state["last_updated"] = now.isoformat()
 
-    save_json(AFFECT_STATE_FILE, state)
+    save_json(SIGNAL_STATE_FILE, state)
     if context is not None:
         context["affect_state"] = state  # keep context in sync with disk
     log_activity("🧠 Affect state updated.")

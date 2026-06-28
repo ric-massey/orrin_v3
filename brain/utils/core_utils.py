@@ -11,7 +11,7 @@ from brain.core.config.settings import model_roles
 from brain.utils.log import log_model_issue, log_activity
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 from brain.paths import KNOWLEDGE
-from brain.utils.affect_signal_utils import detect_affect_keyword
+from brain.utils.signal_keyword_utils import detect_signal_keyword
 
 load_dotenv()
 
@@ -60,7 +60,7 @@ def extract_knowledge_from_reflection(reflection_text: str) -> None:
                 "source": reflection_text[:80],
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "event_type": "reflection",
-                "emotion": detect_affect_keyword(norm),
+                "emotion": detect_signal_keyword(norm),
                 "confidence": 0.8,
                 "relevance": keywords,
                 "reference_count": 0,

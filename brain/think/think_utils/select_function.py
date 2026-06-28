@@ -196,7 +196,7 @@ def select_function(
     Back-compat selector with multi-factor scoring (no new files):
       - Directive alignment (keyword overlap)
       - Focus-goal alignment (keyword overlap)
-      - Emotion bias (if AFFECT_STATE_FILE holds per-emotion fn weights)
+      - Emotion bias (if SIGNAL_STATE_FILE holds per-emotion fn weights)
       - Novelty/recency (rare & not recently used → higher)
       - stagnation_signal boosts novelty weight
       - Bandit scores used as a hint (small weight), not the decider
@@ -238,7 +238,7 @@ def select_function(
     if threat_detector_response is not _UNSET:
         try:
             _amy = threat_detector_response
-            # threat_detector_response may be a dict (from process_affective_signals) or a float
+            # threat_detector_response may be a dict (from process_signals) or a float
             if isinstance(_amy, dict):
                 feats["threat_detector_response"] = float(_amy.get("spike_intensity") or 0.0)
             else:

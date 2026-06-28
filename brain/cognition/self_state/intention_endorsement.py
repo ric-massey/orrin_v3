@@ -202,8 +202,8 @@ def reflect_on_desire(context: Dict[str, Any] = None) -> str:
         # Make the refusal real: damp the feeling via the safe arbiter path.
         if is_affect:
             try:
-                from brain.control_signals.arbiter import submit_affect
-                submit_affect(context, key, -0.06, source="second_order_volition", ttl_cycles=2)
+                from brain.control_signals.arbiter import submit_signal
+                submit_signal(context, key, -0.06, source="second_order_volition", ttl_cycles=2)
             except Exception as exc:  # affect damp best-effort — record
                 record_failure("intention_endorsement.reflect_on_desire", exc)
     elif stance == "endorse":

@@ -119,7 +119,7 @@ class HomeostasisDaemon:
                             "depleted. Rest, lighter functions, or energy recovery needed."
                         ),
                         "tags":        ["resource_deficit", "rest", "recovery", "internal"],
-                        "suggested_fn": "update_affect_state",
+                        "suggested_fn": "update_signal_state",
                     })
                     penalty += 0.35
                 elif resource_deficit >= _RESOURCE_DEFICIT_WARN:
@@ -131,7 +131,7 @@ class HomeostasisDaemon:
                             "functions and avoid compute-heavy operations."
                         ),
                         "tags":        ["resource_deficit", "low_energy", "internal"],
-                        "suggested_fn": "update_affect_state",
+                        "suggested_fn": "update_signal_state",
                     })
                     penalty += 0.15
         except Exception as _e:

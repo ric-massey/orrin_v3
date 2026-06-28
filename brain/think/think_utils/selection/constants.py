@@ -33,17 +33,17 @@ _ALWAYS_EXCLUDE = frozenset({
     "prune_satisfied_steps", "met_milestone_tokens", "unmet_milestone_texts",
     # Per-cycle UPKEEP that already runs automatically every cycle and was ALSO
     # competing as a deliberate "choice" (~22% of all selections), double-applying
-    # when picked: update_affect_state runs at ~9 sites; the apply_* pressures run
+    # when picked: update_signal_state runs at ~9 sites; the apply_* pressures run
     # in finalize.py each cycle. Excluding them from SELECTION loses no behaviour —
     # they still run automatically — and frees those cycles for real cognition.
-    "update_affect_state",
+    "update_signal_state",
     "apply_lifetime_pressure", "apply_temporal_pressure",
     "apply_habituation", "apply_fragmentation_cost",
     # Closure/maintenance UPKEEP now runs deterministically on a slow cadence in
     # ORRIN_loop's maintenance block (retirement/fade/satiety), NOT as a deliberate
     # emotion-cued choice. fade_goals is dispatchable and was in the bandit pool but
     # never won (no prior, cold-start starvation). Excluding it follows the same
-    # precedent as update_affect_state/apply_* — it still runs automatically every
+    # precedent as update_signal_state/apply_* — it still runs automatically every
     # cadence window, and selection stays honest (only deliberate cognition competes).
     "fade_goals",
     # Need injected args the dispatcher can't supply bare (name/description/body),

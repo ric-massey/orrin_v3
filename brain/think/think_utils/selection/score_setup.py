@@ -143,7 +143,7 @@ def build_score_inputs(
     _energy_boost = compute_energy_boost(context, actions)
 
     # === Emotional mode → function selection translation ===
-    # recommend_mode_from_affect_state() returns "focused"/"creative"/"exploratory" etc.
+    # recommend_mode_from_signal_state() returns "focused"/"creative"/"exploratory" etc.
     # select_function reads attention_mode ("alert"/"wandering"/"drowsy") from signal_router.
     # These are two different vocabularies that never talked to each other — this block
     # bridges them by translating the emotional mode into direct function score boosts.

@@ -145,7 +145,7 @@ def compute_energy_boost(context: Dict[str, Any], actions: List[str]) -> Dict[st
 def compute_emo_mode_boost() -> Dict[str, float]:
     """Emotional mode → function score boosts.
 
-    Bridges recommend_mode_from_affect_state()'s vocabulary
+    Bridges recommend_mode_from_signal_state()'s vocabulary
     ("focused"/"creative"/"exploratory") to direct per-function boosts via the
     weighted "emo_<mode>:<w>" tags in the capability manifest.
     """

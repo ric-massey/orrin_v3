@@ -22,7 +22,7 @@ Usage (producer)
     from backend.telemetry_bridge import get_bridge
     tb = get_bridge()
     tb.set_node("reflect", narrative="Reflecting…", cycle=42)
-    tb.affect(valence=0.62, arousal=0.40, homeostasis=0.85, motivation=0.7)
+    tb.signals(valence=0.62, arousal=0.40, homeostasis=0.85, motivation=0.7)
     tb.log("info", "select_function", "chose reflect (spike=0.31)")
     tb.memory("write", store="working", key="goal:summarize", summary="+0.2", salience=0.6)
 
@@ -218,9 +218,9 @@ class TelemetryBridge:
         """Set the human-readable Face status string without changing the node."""
         self.update(narrative=narrative)
 
-    def affect(self, *, valence: Optional[float] = None, arousal: Optional[float] = None,
-               homeostasis: Optional[float] = None, **extra: float) -> None:
-        """Push affect telemetry. Extra kwargs (motivation, threat_level, …) ring under 'extra'."""
+    def signals(self, *, valence: Optional[float] = None, arousal: Optional[float] = None,
+                homeostasis: Optional[float] = None, **extra: float) -> None:
+        """Push control-signal telemetry. Extra kwargs (motivation, threat_level, …) ring under 'extra'."""
         payload: Dict[str, Any] = {}
         if valence is not None:
             payload["valence"] = valence
@@ -384,7 +384,7 @@ if __name__ == "__main__":
     for i in range(40):
         n = nodes[i % 4]
         tb.set_node(n, narrative=f"{n.title()}…", cycle=i)
-        tb.affect(valence=0.5 + 0.3 * math.sin(i / 5), arousal=0.4 + 0.2 * math.cos(i / 3),
+        tb.signals(valence=0.5 + 0.3 * math.sin(i / 5), arousal=0.4 + 0.2 * math.cos(i / 3),
                   homeostasis=0.7 + 0.2 * math.sin(i / 8), motivation=0.6)
         tb.log("info", "demo", f"cycle {i} → {n}")
         for item in tb.get_pending_inputs():

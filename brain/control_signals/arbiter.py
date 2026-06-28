@@ -10,17 +10,17 @@
 # updates were silently clobbered. This is the affect half of the "split brain".
 #
 # THE V2 MODEL: propose -> integrate -> commit once
-#   1. During the cycle, every subsystem calls submit_affect(...) instead of
+#   1. During the cycle, every subsystem calls submit_signal(...) instead of
 #      mutating affect_state. Nothing is applied yet, so there is no ordering
 #      race and nobody reads half-applied state.
-#   2. At cycle end, commit_affect(...) integrates ALL proposals at once:
+#   2. At cycle end, commit_signals(...) integrates ALL proposals at once:
 #        - contradictory pushes on the same signal net out (weighted sum),
 #        - a homeostatic stability budget caps the total change a single cycle
 #          can make, so one chaotic cycle can't fragment the whole state,
 #        - deltas that push a signal AWAY from its setpoint cost double against
 #          the budget, so the system resists being driven far from equilibrium.
 #   3. The integrated deltas are queued into the existing affect_buffer, so they
-#      drain gradually over the next few cycles through update_affect_state's
+#      drain gradually over the next few cycles through update_signal_state's
 #      normal velocity / clamp / ceiling / baseline-decay machinery.
 #
 # This generalises affect_buffer.py (previously used only by reward signals) to
@@ -34,7 +34,7 @@ from __future__ import annotations
 import threading
 from typing import Any, Dict, List, Optional
 
-from brain.control_signals.signal_buffer import queue_affect_change
+from brain.control_signals.signal_buffer import queue_signal_change
 from brain.control_signals.setpoints import setpoint
 from brain.config.tuning import AFFECT_AWAY_COST_MULTIPLIER, AFFECT_STABILITY_BUDGET
 from brain.utils.log import log_activity
@@ -65,7 +65,7 @@ _SCALAR_TARGETS = frozenset({"resource_deficit", "affect_stability"})
 # always-on Monitor + Executive could collectively peg the velocity budget and
 # wash out the focal (Deliberate) resolution. Each BACKGROUND lane gets a ceiling
 # (a fraction of STABILITY_BUDGET); the Deliberate lane — the conscious focal mind —
-# is bounded only by the global budget. Still integrated once by commit_affect.
+# is bounded only by the global budget. Still integrated once by commit_signals.
 _LANE_SUBCAP = {"monitor": 0.20, "executive": 0.20}   # × STABILITY_BUDGET; deliberate uncapped
 
 
@@ -114,7 +114,7 @@ def _apply_lane_subcaps(proposals: List[Dict[str, Any]]) -> List[Dict[str, Any]]
 # Daemons (dream, tool_runner, tamper_guard) run on separate threads and must NOT
 # touch affect_state on disk or mutate the shared context dict's proposal list
 # without coordination. Instead they submit proposals here, into a lock-guarded
-# module-level inbox, which the main loop drains during commit_affect(). This is
+# module-level inbox, which the main loop drains during commit_signals(). This is
 # the single mechanism that replaces every daemon's load->mutate->save_json race.
 _inbox_lock = threading.Lock()
 _inbox: List[Dict[str, Any]] = []
@@ -130,7 +130,7 @@ def _make_proposal(target: str, delta: float, weight: float, source: str, ttl_cy
     }
 
 
-def submit_affect(
+def submit_signal(
     context: Optional[Dict[str, Any]],
     target: str,
     delta: float,
@@ -140,7 +140,7 @@ def submit_affect(
     ttl_cycles: int = 3,
 ) -> None:
     """
-    Propose a change to an affect signal. Accumulated, not applied — commit_affect()
+    Propose a change to an affect signal. Accumulated, not applied — commit_signals()
     integrates all proposals at cycle end.
 
     target:     core-signal name, e.g. "impasse_signal", "motivation"; or a
@@ -153,7 +153,7 @@ def submit_affect(
 
     Threading: pass a live `context` dict from the main cognitive loop. Daemons on
     other threads MUST pass context=None — the proposal is then queued onto the
-    thread-safe module inbox and drained by the main loop's commit_affect(). This
+    thread-safe module inbox and drained by the main loop's commit_signals(). This
     is what keeps daemons off the affect file entirely.
     """
     try:
@@ -202,7 +202,7 @@ def _integrate(proposals: List[Dict[str, Any]]):
     return nets, ttls
 
 
-def commit_affect(context: Dict[str, Any]) -> Dict[str, float]:
+def commit_signals(context: Dict[str, Any]) -> Dict[str, float]:
     """
     Integrate all submitted affect proposals into a single bounded delta vector and
     queue it into the affect_buffer for gradual application. Returns the applied
@@ -289,7 +289,7 @@ def commit_affect(context: Dict[str, Any]) -> Dict[str, float]:
             new_val = max(0.0, min(1.0, _current(t) + d))
             state[t] = round(new_val, 4)
         else:
-            queue_affect_change(state, t, d, ttl_cycles=ttls.get(t, 3), source="arbiter")
+            queue_signal_change(state, t, d, ttl_cycles=ttls.get(t, 3), source="arbiter")
         applied[t] = round(d, 4)
 
     context[_PROP_KEY] = []

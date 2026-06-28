@@ -1,15 +1,15 @@
 from brain.cognition.idle_consolidation import compose_consolidation  # ✅ use compose_consolidation(self_model, recent)
 from brain.control_signals.signal_drift import check_affect_drift
 from brain.behavior.behavior_generation import generate_behavior_from_integration
-from brain.control_signals.update_signal_state import update_affect_state
+from brain.control_signals.update_signal_state import update_signal_state
 from brain.control_signals.reflect_on_signals import reflect_on_affect
-from brain.control_signals.apply_signal_feedback import apply_affective_feedback
-from brain.control_signals.threat_detector import process_affective_signals
+from brain.control_signals.apply_signal_feedback import apply_signal_feedback
+from brain.control_signals.threat_detector import process_signals
 from brain.cog_memory.working_memory import update_working_memory
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.control_signals.reward_signals.resource_deficit import update_function_usage_fatigue
 from brain.utils.json_utils import load_json
-from brain.paths import AFFECT_STATE_FILE
+from brain.paths import SIGNAL_STATE_FILE
 import json  # NEW
 
 
@@ -99,19 +99,19 @@ def idle_consolidation_logic(context):
         reflect_on_affect(context, self_model, long_memory)
 
     # --- Apply feedback and process threat_detector ---
-    maybe_ctx = apply_affective_feedback(context)
+    maybe_ctx = apply_signal_feedback(context)
     if isinstance(maybe_ctx, dict):
         context = maybe_ctx
 
-    context, threat_detector_response = process_affective_signals(context)
+    context, threat_detector_response = process_signals(context)
 
     # --- Update emotional state and refresh from disk ---
     try:
-        update_affect_state(context)  # preferred signature
+        update_signal_state(context)  # preferred signature
     except TypeError:
-        update_affect_state()         # fallback to no-arg variant
+        update_signal_state()         # fallback to no-arg variant
 
-    affect_state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    affect_state = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
     context["affect_state"] = affect_state  # mirror fresh state
 
     return context, affect_state, threat_detector_response

@@ -8,7 +8,7 @@ from brain.utils.events import emit_event, DECISION
 from brain.behavior.tools.toolkit import evaluate_tool_use
 from brain.cognition.planning.motivations import adjust_goal_weights
 from brain.cog_memory.working_memory import update_working_memory
-from brain.control_signals.update_signal_state import update_affect_state
+from brain.control_signals.update_signal_state import update_signal_state
 from brain.think.think_utils.escalate import is_agentic_action
 from brain.paths import (
     ACTION_FILE,
@@ -352,7 +352,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         context["speech_done"] = True
         affect_state["social_deficit"] = affect_state.get("social_deficit", 0.0) * 0.5
         # pass context so state updates in-place consistently
-        update_affect_state(context=context)
+        update_signal_state(context=context)
 
         _reward(context, signal="connection", actual=0.7, expected=0.4, effort=0.4, mode="tonic", source="social_deficit_reconnect")
 

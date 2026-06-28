@@ -75,7 +75,7 @@ def shape_cognition_reward(
     # learning event is selecting the right strategy given the current
     # emotional state, not a measurable downstream state change.
     # Emotional state does not update within a single cognitive cycle —
-    # update_affect_state() runs at cycle start, not inside functions.
+    # update_signal_state() runs at cycle start, not inside functions.
     # Measuring pre/post delta within one cycle produces a spurious zero
     # because the comparison window is too narrow. Sheppes et al. (2014):
     # the bandit must learn that regulation during high-distress states
@@ -84,7 +84,7 @@ def shape_cognition_reward(
     _REGULATION_FNS = frozenset({
         "attempt_regulation", "reflect_on_affect",
         "investigate_unexplained_emotions", "check_affect_drift",
-        "reflect_on_emotion_model", "apply_affective_feedback",
+        "reflect_on_emotion_model", "apply_signal_feedback",
     })
     if fn_name in _REGULATION_FNS and not _is_failure:
         try:
@@ -291,7 +291,7 @@ def shape_cognition_reward(
     # introspective picks even on cycles where env_snapshot
     # measured zero observable change (delta_reward=0.000,
     # thrash=True) — which is how assess_goal_progress +
-    # update_affect_state became 60% of all decisions while
+    # update_signal_state became 60% of all decisions while
     # outward action paid less. If a self-inspection function
     # produced no observable change (no milestone, no memory
     # write, no tool resolution, WM unchanged), its reward is
@@ -299,7 +299,7 @@ def shape_cognition_reward(
     # that DOES move something external (env_r ≥ 0.35) still
     # pays in full.
     _INTROSPECTIVE_FNS = frozenset({
-        "assess_goal_progress", "update_affect_state",
+        "assess_goal_progress", "update_signal_state",
         "search_own_files", "reflect_on_internal_agents",
         "reflect_on_affect", "reflect_on_emotion_model",
         "check_affect_drift", "audit_reflective_claims",

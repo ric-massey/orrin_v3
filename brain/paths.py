@@ -138,7 +138,7 @@ FEEDBACK_LOG = DATA_DIR / "feedback_log.json"
 REWARD_TRACE = DATA_DIR / "reward_trace.json"
 
 # ===== Affect =====
-AFFECT_STATE_FILE = DATA_DIR / "control_signals_state.json"
+SIGNAL_STATE_FILE = DATA_DIR / "control_signals_state.json"
 EMOTIONAL_SENSITIVITY_FILE = DATA_DIR / "signal_sensitivity.json"
 AFFECT_MODEL_FILE = DATA_DIR / "control_signals_model.json"
 AFFECT_DRIFT_FILE = DATA_DIR / "control_signals_drift.json"
@@ -146,7 +146,7 @@ CUSTOM_EMOTION = DATA_DIR / "custom_signal.json"
 MODE_FILE = DATA_DIR / "mode.json"
 SPEAKER_STATE_FILE = DATA_DIR / "speaker_state.json"
 AFFECT_FUNCTION_MAP_FILE = DATA_DIR / "control_signals_function_map.json"
-EMOTION_FUNCTION_MAP_FILE = DATA_DIR / "signal_function_map.json"
+SIGNAL_FUNCTION_MAP_FILE = DATA_DIR / "signal_function_map.json"
 EMOTION_DRIFT = DATA_DIR / "signal_drift.json"
 SANDBOX_TMP_DIR = DATA_DIR / "sandbox_tmp"
 

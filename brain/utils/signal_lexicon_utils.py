@@ -1,4 +1,4 @@
-# utils/affect_utils.py
+# utils/signal_lexicon_utils.py
 # Pure, dependency-light affect helpers (Layer L1).
 #
 # This module imports ONLY from utils/ and paths/ (plus stdlib). It must never
@@ -7,7 +7,7 @@
 # the affect ↔ cog_memory import cycle.
 #
 # The keyword-detection logic here was extracted verbatim from the keyword path
-# of affect.affect.detect_affect, which now delegates to it (single source of
+# of affect.affect.detect_signal, which now delegates to it (single source of
 # truth — no duplication).
 import re
 
@@ -15,7 +15,7 @@ from brain.utils.json_utils import load_json
 from brain.paths import AFFECT_MODEL_FILE, CUSTOM_EMOTION
 
 
-def detect_affect_keyword(text) -> dict:
+def detect_signal_keyword(text) -> dict:
     """Keyword-only emotion detection (no LLM, no side effects).
 
     Scores ``text`` against the keyword lists in AFFECT_MODEL_FILE and

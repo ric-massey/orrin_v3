@@ -16,7 +16,7 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_error, log_activity
 from brain.utils.failure_counter import record_failure
 from brain.paths import (
-    WORKING_MEMORY_FILE, LONG_MEMORY_FILE, AFFECT_STATE_FILE, BANDIT_STATE_FILE,
+    WORKING_MEMORY_FILE, LONG_MEMORY_FILE, SIGNAL_STATE_FILE, BANDIT_STATE_FILE,
     REFLECTION as REFLECTION_LOG_FILE, CHAT_LOG_FILE,
     COGNITIVE_FUNCTIONS_LIST_FILE,
 )
@@ -37,7 +37,7 @@ def _validate_boot_files() -> None:
         # so a bad shape persisted across boots (run audit #5).
         (REFLECTION_LOG_FILE,   list,  []),
         (CHAT_LOG_FILE,         list,  []),
-        (AFFECT_STATE_FILE,  dict,  {}),
+        (SIGNAL_STATE_FILE,  dict,  {}),
         (BANDIT_STATE_FILE,     dict,  {}),
     ]
     for path, expected_type, safe_default in checks:

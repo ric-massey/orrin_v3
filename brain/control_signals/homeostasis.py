@@ -6,7 +6,7 @@
 # Restoring/decay logic used to be scattered across at least six locations with
 # independent rates and targets, and two of them disagreed on where a signal
 # should rest (the now-deleted decay_affect_state pulled everything toward 0.5,
-# while update_affect_state decays toward per-signal baselines). A homeostatic
+# while update_signal_state decays toward per-signal baselines). A homeostatic
 # system cannot have two setpoints for one signal.
 #
 # This module centralises the restoring forces that act on core_signals each
@@ -62,7 +62,7 @@ DEFAULT_MAX_L1 = 1.80
 # ── Display homeostasis index — the single owner of "is he settled?" ──────────
 # How close the WHOLE core vector sits to its resting setpoints: 1.0 = everything
 # at rest, falling as signals deviate (agitation or saturation). This used to be
-# computed inline inside the telemetry helper (ORRIN_loop._emit_affect), which
+# computed inline inside the telemetry helper (ORRIN_loop._emit_signal), which
 # meant the number the UI charted existed *only* in the translator — asking the
 # brain "what is your homeostasis" gave a different answer than the chart
 # (SPLIT_CONSCIOUSNESS_TELEMETRY_AUDIT_2026-06-19, F2). It now lives here, is
@@ -115,7 +115,7 @@ def homeostasis_index(core: Dict[str, float]) -> float:
 
 # ── Homeostatic ceilings — the single source of truth ────────────────────────
 # Per-signal soft maxima. Negative/conflicting signals cap lower than positive
-# drives. update_affect_state claws any signal above its ceiling back down at
+# drives. update_signal_state claws any signal above its ceiling back down at
 # CEILING_RATE per cycle. CRUCIAL: drive/reward *pumps* (cognitive_cost flow,
 # temporal_pressure anticipation, prediction-error surprise) must also respect
 # these via pump_signal() — when they capped at 1.0 instead, they out-ran the
@@ -156,7 +156,7 @@ def pump_signal(core: Dict[str, float], key: str, delta: float, *, default: floa
 
     - Positive delta: result is capped at ceiling_for(key). If the signal is
       ALREADY at/over the ceiling (legacy overshoot), no boost is added — the
-      clawback in update_affect_state owns bringing it back down at its own rate.
+      clawback in update_signal_state owns bringing it back down at its own rate.
     - Non-positive delta: applied with a hard 0.0 floor (drains are never blocked).
     """
     cur = float(core.get(key, default) or default)
@@ -182,7 +182,7 @@ def apply_restoring_forces(
     cross-inhibition to `core` in place.
 
     Mirrors the exact numeric behaviour previously inlined in
-    update_affect_state, now owned here so there is one restoring-force authority.
+    update_signal_state, now owned here so there is one restoring-force authority.
     Honours state["emotional_decay"] (default True) for the baseline decay.
     """
     # ── 1. Baseline decay: exponential approach to each signal's resting value ──

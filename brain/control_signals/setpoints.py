@@ -9,7 +9,7 @@
 # away are expensive (and therefore the first to be trimmed when the per-cycle
 # stability budget is exceeded).
 #
-# Values mirror the baselines already used inside update_affect_state.py
+# Values mirror the baselines already used inside update_signal_state.py
 # (_flat_baselines + the negative/positive baseline of 0.0 / neutral 0.5) so the
 # arbiter and the existing decay machinery agree on the same targets.
 #
@@ -61,8 +61,8 @@ SETPOINTS = {
 # ── Personality decay baselines (single source of truth) ──────────────────────
 # CORE_BASELINES are the per-signal resting values the decay law pulls each core
 # signal toward each cycle (owned by homeostasis.apply_restoring_forces, imported
-# by update_affect_state). Previously these lived as an inline `baseline` dict
-# inside update_affect_state.py; co-locating them here makes setpoints.py the one
+# by update_signal_state). Previously these lived as an inline `baseline` dict
+# inside update_signal_state.py; co-locating them here makes setpoints.py the one
 # place that answers "where does this signal rest?".
 #
 # Relationship to SETPOINTS: SETPOINTS is the arbiter's homeostatic *away-cost*

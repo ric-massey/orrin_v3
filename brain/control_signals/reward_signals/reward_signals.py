@@ -4,11 +4,11 @@ import random
 from typing import Any, Dict, Optional
 
 from brain.control_signals.reward_signals.reward_spike import log_reward_spike
-from brain.control_signals.signal_buffer import queue_affect_change
+from brain.control_signals.signal_buffer import queue_signal_change
 from brain.utils.json_utils import save_json
 from brain.utils.log import log_activity
 from brain.utils.signal_utils import create_signal
-from brain.paths import AFFECT_STATE_FILE, REWARD_TRACE
+from brain.paths import SIGNAL_STATE_FILE, REWARD_TRACE
 
 
 def release_reward_signal(
@@ -29,7 +29,7 @@ def release_reward_signal(
     affect_state = context.get("affect_state")
     if not isinstance(affect_state, dict) or not affect_state.get("core_signals"):
         from brain.utils.json_utils import load_json as _load_emo
-        affect_state = _load_emo(AFFECT_STATE_FILE, default_type=dict) or {}
+        affect_state = _load_emo(SIGNAL_STATE_FILE, default_type=dict) or {}
         context["affect_state"] = affect_state
     reward_trace = context.setdefault("reward_trace", [])
     last_tags = context.get("last_tags", [])
@@ -94,8 +94,8 @@ def release_reward_signal(
             motivation_gain *= 1.7 + random.uniform(-0.2, 0.2)
             exploration_drive_gain  *= 1.7 + random.uniform(-0.2, 0.2)
 
-        queue_affect_change(affect_state, "motivation", motivation_gain, source="reward_signal")
-        queue_affect_change(affect_state, "exploration_drive",  exploration_drive_gain,  source="reward_signal")
+        queue_signal_change(affect_state, "motivation", motivation_gain, source="reward_signal")
+        queue_signal_change(affect_state, "exploration_drive",  exploration_drive_gain,  source="reward_signal")
 
         log_reward_spike("reward_signal", strength=strength, tags=last_tags)
 
@@ -106,7 +106,7 @@ def release_reward_signal(
         stagnation_signal   = float(core_emo.get("stagnation_signal",   affect_state.get("stagnation_signal",   0.3)) or 0.3)
 
         exploration_drive_gain = base_exploration_drive_gain * (1 + 0.5 * stagnation_signal) * (1 - resource_deficit) * _expl_gate
-        queue_affect_change(affect_state, "exploration_drive", exploration_drive_gain, source="novelty")
+        queue_signal_change(affect_state, "exploration_drive", exploration_drive_gain, source="novelty")
 
         log_reward_spike("novelty", strength=strength, tags=last_tags)
 
@@ -120,8 +120,8 @@ def release_reward_signal(
         risk_estimate = float(core_emo.get("risk_estimate", 0.0) or 0.0)
         # High risk_estimate blunts stability_signal effect (consistent with 5-HT/anxiolytic research)
         stability_signal_strength = base_gain * (1 - 0.5 * risk_estimate)
-        queue_affect_change(affect_state, "reward_positive",       stability_signal_strength,        source="stability_signal")
-        queue_affect_change(affect_state, "risk_estimate",   -stability_signal_strength * 0.4, source="stability_signal")
+        queue_signal_change(affect_state, "reward_positive",       stability_signal_strength,        source="stability_signal")
+        queue_signal_change(affect_state, "risk_estimate",   -stability_signal_strength * 0.4, source="stability_signal")
 
         log_reward_spike("stability_signal", strength=strength, tags=last_tags)
 
@@ -130,10 +130,10 @@ def release_reward_signal(
     # Models oxytocinergic affiliation: lowers social_penalty and social_deficit, promotes openness
     # (Heinrichs 2003).
     elif signal_type == "connection":
-        queue_affect_change(affect_state, "social_deficit", -0.08 * strength, source="connection")
-        queue_affect_change(affect_state, "social_penalty",      -0.05 * strength, source="connection")
-        queue_affect_change(affect_state, "exploration_drive",   0.05 * strength, source="connection")
-        queue_affect_change(affect_state, "motivation",  0.04 * strength, source="connection")
+        queue_signal_change(affect_state, "social_deficit", -0.08 * strength, source="connection")
+        queue_signal_change(affect_state, "social_penalty",      -0.05 * strength, source="connection")
+        queue_signal_change(affect_state, "exploration_drive",   0.05 * strength, source="connection")
+        queue_signal_change(affect_state, "motivation",  0.04 * strength, source="connection")
 
         log_reward_spike("connection", strength=strength, tags=last_tags)
 
@@ -147,9 +147,9 @@ def release_reward_signal(
         positive_valence_gain       = base_positive_valence_gain * (1.0 - resource_deficit * 0.4)  # resource_deficit blunts hedonic response
         confidence_gain = 0.05 * strength
         motivation_settle = -0.02 * strength  # completion → slight satiation (wanting reduces)
-        queue_affect_change(affect_state, "reward_positive",        positive_valence_gain,         source="completion_signal")
-        queue_affect_change(affect_state, "confidence", confidence_gain,  source="completion_signal")
-        queue_affect_change(affect_state, "motivation", motivation_settle, source="completion_signal")
+        queue_signal_change(affect_state, "reward_positive",        positive_valence_gain,         source="completion_signal")
+        queue_signal_change(affect_state, "confidence", confidence_gain,  source="completion_signal")
+        queue_signal_change(affect_state, "motivation", motivation_settle, source="completion_signal")
         log_reward_spike("completion_signal", strength=strength, tags=last_tags)
 
     # === Large RPE impulse — direction-aware ===
@@ -195,7 +195,7 @@ def release_reward_signal(
     if len(reward_trace) > 50:
         reward_trace.pop(0)
 
-    # Persist reward trace only. Emotional state is NOT saved here — update_affect_state()
+    # Persist reward trace only. Emotional state is NOT saved here — update_signal_state()
     # owns that save and applies ceilings, velocity, and hedonic adaptation before writing.
     # Saving mid-cycle would bypass those constraints and cause ceiling violations on disk.
     save_json(REWARD_TRACE, reward_trace)

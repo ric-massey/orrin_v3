@@ -24,7 +24,7 @@ from brain.cognition.planning.reflection import record_decision
 from brain.utils.get_cycle_count import get_cycle_count
 from brain.utils.json_utils import load_json
 from brain.utils.log import log_error, log_activity, log_model_issue
-from brain.utils.affect_signal_utils import log_penalty_signal
+from brain.utils.signal_keyword_utils import log_penalty_signal
 from brain.utils.error_router import route_exception
 from brain.cognition.repair.auto_repair import try_auto_repair
 from brain.utils.failure_counter import record_failure
@@ -35,7 +35,7 @@ from brain.paths import (
 from brain.loop.telemetry import _push_event, _ui_memory, _bridge
 from brain.loop.invoke import _invoke_cognition
 from brain.loop.cognition_reward import shape_cognition_reward
-from brain.utils.affect_signal_utils import log_uncertainty_spike
+from brain.utils.signal_keyword_utils import log_uncertainty_spike
 from brain.think.loop_helpers import execute_action_via_registries, compute_reward
 
 _log = get_logger(__name__)
@@ -183,7 +183,7 @@ def execute_cognition_function(
     # if that function is actually registered and callable.
     #
     # Bounded, not absolute: a persistent alert used to re-fire this
-    # override on EVERY cycle, which (a) made update_affect_state
+    # override on EVERY cycle, which (a) made update_signal_state
     # ~23% of all decisions and (b) vetoed every ε-exploration pick,
     # so dormant functions never got trials. Two bounds fix that:
     #   • cooldown — the same repair fn runs at most once per
@@ -383,9 +383,9 @@ def execute_cognition_function(
 
             # === Agency-based causal learning (Pearl Level 2) — stash ===
             # Learn what this action does to Orrin's felt state. The felt
-            # consequence isn't visible yet: commit_affect (cycle end) only
+            # consequence isn't visible yet: commit_signals (cycle end) only
             # QUEUES the cycle's affect changes, which drain at NEXT cycle's
-            # update_affect_state. So stash (action, this cycle's pre-affect)
+            # update_signal_state. So stash (action, this cycle's pre-affect)
             # and attribute the change at the start of next cycle, once it
             # has actually landed. Gopnik (child-as-scientist) / Damasio
             # (somatic markers) / Thorndike (law of effect): you learn
@@ -450,7 +450,7 @@ def execute_cognition_function(
                     key=lambda k: float(_core_pre.get(k) or 0.0),
                 ) if _core_pre else ""
                 if _dom_emo:
-                    from brain.control_signals.signal_learning import update_affect_function_map as _uefm
+                    from brain.control_signals.signal_learning import update_signal_function_map as _uefm
                     _uefm(_dom_emo, fn_name, reward_signal=reward)
             except Exception as e:
                 record_failure("ORRIN_loop.emotion_function_map", e)

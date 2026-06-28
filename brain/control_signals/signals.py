@@ -3,10 +3,10 @@ from brain.utils.generate_response import generate_response, get_thinking_model,
 from brain.utils.json_utils import load_json, save_json, extract_json
 from brain.utils.log import log_error
 from brain.utils.coerce_to_string import coerce_to_string
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 
 from brain.paths import (
-    AFFECT_STATE_FILE,
+    SIGNAL_STATE_FILE,
     LONG_MEMORY_FILE,
     MODEL_CONFIG_FILE,
     AFFECT_MODEL_FILE,
@@ -27,7 +27,7 @@ def investigate_unexplained_emotions(context, self_model, memory):
     from brain.cog_memory.working_memory import update_working_memory
     from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
-    affect_state = load_json(AFFECT_STATE_FILE, default_type=dict)
+    affect_state = load_json(SIGNAL_STATE_FILE, default_type=dict)
     if not isinstance(affect_state, dict):
         affect_state = {}
 
@@ -133,7 +133,7 @@ def investigate_unexplained_emotions(context, self_model, memory):
         })
 
         # Append the reflection's trigger metadata onto the LIVE in-context
-        # affect_state when present, so update_affect_state (the sole writer)
+        # affect_state when present, so update_signal_state (the sole writer)
         # persists it — no direct affect-file write, no race. Fall back to a
         # direct write only for genuinely context-less callers.
         _ctx_state = context.get("affect_state") if isinstance(context, dict) else None
@@ -147,7 +147,7 @@ def investigate_unexplained_emotions(context, self_model, memory):
             })
 
         if not isinstance(_ctx_state, dict):
-            save_json(AFFECT_STATE_FILE, affect_state)
+            save_json(SIGNAL_STATE_FILE, affect_state)
 
         # Modulate reward by resource_deficit and motivation for consistency
         resource_deficit = float(affect_state.get("resource_deficit", 0.0))
@@ -189,10 +189,10 @@ def investigate_unexplained_emotions(context, self_model, memory):
         )
 
 
-def detect_affect(text, use_gpt=True):
+def detect_signal(text, use_gpt=True):
     # Keyword path — pure logic shared with the storage layer via
-    # utils.affect_utils (single source of truth; no duplication).
-    kw = detect_affect_keyword(text)
+    # utils.signal_lexicon_utils (single source of truth; no duplication).
+    kw = detect_signal_keyword(text)
     if kw.get("intensity", 0.0) > 0.0:
         return kw
 
@@ -216,12 +216,12 @@ def detect_affect(text, use_gpt=True):
                     "intensity": round(float(data.get("intensity", 0.5)), 2),
                 }
         except Exception as e:
-            log_error(f"❌ detect_affect GPT fallback failed: {e}")
+            log_error(f"❌ detect_signal GPT fallback failed: {e}")
 
     return {"emotion": "neutral", "intensity": 0.0}
 
 
-def deliver_affect_based_rewards(context, core_signals, stability):
+def deliver_signal_based_rewards(context, core_signals, stability):
     from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 
     if not core_signals or not isinstance(core_signals, dict):
@@ -278,7 +278,7 @@ def deliver_affect_based_rewards(context, core_signals, stability):
         )
 
 
-def get_all_affect_names():
+def get_all_signal_names():
     """Load emotion names from emotion model JSON."""
     data = load_json(AFFECT_MODEL_FILE, default_type=dict)
     return list(data.keys()) if isinstance(data, dict) else []

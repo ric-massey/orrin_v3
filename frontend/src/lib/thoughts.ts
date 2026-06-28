@@ -41,14 +41,14 @@ export const THOUGHTS: Record<string, string> = {
   reflect_on_cognition_rhythm: "reflect_on_cognition_rhythm() · meta-cadence review",
 
   // Control signals
-  update_affect_state: "update_affect_state() · stepping the control-signal model",
+  update_signal_state: "update_signal_state() · stepping the control-signal model",
   reflect_on_affect: "reflect_on_affect() · introspecting current signal state",
   reflect_on_emotion_model: "reflect_on_emotion_model() · reviewing the signal model",
   investigate_unexplained_emotions: "investigate_unexplained_emotions() · tracing signal anomalies",
   check_affect_drift: "check_affect_drift() · setpoint-drift detection",
   attempt_regulation: "attempt_regulation() · setpoint self-regulation",
-  apply_affective_feedback: "apply_affective_feedback() · folding signals into control",
-  affect_driven_mode_shift: "affect_driven_mode_shift() · signal-gated mode switch",
+  apply_signal_feedback: "apply_signal_feedback() · folding signals into control",
+  signal_driven_mode_shift: "signal_driven_mode_shift() · signal-gated mode switch",
 
   // Memory
   detect_memory_contradictions: "detect_memory_contradictions() · consistency scan",

@@ -1,6 +1,6 @@
 # Invariant tests (Finding 11): affect signals must always end a cycle clamped
 # to [0, 1], no matter how out-of-range the on-disk state is when a cycle
-# starts. update_affect_state is the sole writer of AFFECT_STATE_FILE; this
+# starts. update_signal_state is the sole writer of SIGNAL_STATE_FILE; this
 # guards that contract against regressions in any of the many decay/ceiling/
 # velocity passes it runs each cycle.
 import json
@@ -26,7 +26,7 @@ def _isolate(monkeypatch, tmp_path, core_overrides):
     wm_file = tmp_path / "working_memory.json"
     wm_file.write_text("[]")
     _seed_affect_state(affect_file, core_overrides)
-    monkeypatch.setattr(uas, "AFFECT_STATE_FILE", affect_file)
+    monkeypatch.setattr(uas, "SIGNAL_STATE_FILE", affect_file)
     monkeypatch.setattr(uas, "WORKING_MEMORY_FILE", wm_file)
     return affect_file
 
@@ -35,7 +35,7 @@ def test_clamps_signals_blown_far_above_one(monkeypatch, tmp_path):
     overrides = {k: 999.0 for k in uas.CORE_BASELINES}
     affect_file = _isolate(monkeypatch, tmp_path, overrides)
 
-    uas.update_affect_state(context=None)
+    uas.update_signal_state(context=None)
 
     saved = json.loads(affect_file.read_text())
     core = saved["core_signals"]
@@ -48,7 +48,7 @@ def test_clamps_signals_blown_far_below_zero(monkeypatch, tmp_path):
     overrides = {k: -50.0 for k in uas.CORE_BASELINES}
     affect_file = _isolate(monkeypatch, tmp_path, overrides)
 
-    uas.update_affect_state(context=None)
+    uas.update_signal_state(context=None)
 
     saved = json.loads(affect_file.read_text())
     core = saved["core_signals"]
@@ -64,7 +64,7 @@ def test_resource_and_social_deficit_clamped(monkeypatch, tmp_path):
     raw["social_deficit"] = -3.0
     affect_file.write_text(json.dumps(raw))
 
-    uas.update_affect_state(context=None)
+    uas.update_signal_state(context=None)
 
     saved = json.loads(affect_file.read_text())
     assert 0.0 <= saved["resource_deficit"] <= 1.0
@@ -79,7 +79,7 @@ def test_repeated_cycles_stay_clamped(monkeypatch, tmp_path):
     affect_file = _isolate(monkeypatch, tmp_path, overrides)
 
     for _ in range(5):
-        uas.update_affect_state(context=None)
+        uas.update_signal_state(context=None)
 
     saved = json.loads(affect_file.read_text())
     core = saved["core_signals"]

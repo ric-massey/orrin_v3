@@ -8,7 +8,7 @@ from pathlib import Path
 from brain.utils.json_utils import load_json, save_json
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.paths import (
-    AFFECT_STATE_FILE as _AFFECT_STATE_FILE,
+    SIGNAL_STATE_FILE as _AFFECT_STATE_FILE,
     FEEDBACK_LOG_JSON as _FEEDBACK_LOG_JSON,
     REWARD_TRACE_JSON as _REWARD_TRACE_JSON,
 )
@@ -18,7 +18,7 @@ _log = get_logger(__name__)
 def _as_path(p: Union[str, Path]) -> Path:
     return p if isinstance(p, Path) else Path(p)
 
-AFFECT_STATE_FILE: Path = _as_path(_AFFECT_STATE_FILE)
+SIGNAL_STATE_FILE: Path = _as_path(_AFFECT_STATE_FILE)
 FEEDBACK_LOG_JSON: Path = _as_path(_FEEDBACK_LOG_JSON)
 REWARD_TRACE_JSON: Path = _as_path(_REWARD_TRACE_JSON)
 
@@ -73,7 +73,7 @@ def log_feedback(
 
         # 2) Prepare reward context (in-memory structure)
         #    Use string keys (not Path objects) for robustness.
-        affect_state = load_json(AFFECT_STATE_FILE, default_type=dict)
+        affect_state = load_json(SIGNAL_STATE_FILE, default_type=dict)
         reward_trace = load_json(REWARD_TRACE_JSON, default_type=list)
 
         ctx: Dict[str, Any] = {
@@ -124,7 +124,7 @@ def log_feedback(
         # The affect_state here is a THROWAWAY disk snapshot (built at step 2), not
         # the live loop context — writing it back would overwrite concurrent
         # core_signal changes from the main loop (the last-writer-wins race in
-        # V3_AUDIT §1.1). update_affect_state is the sole affect writer; the small
+        # V3_AUDIT §1.1). update_signal_state is the sole affect writer; the small
         # tonic nudge from this telemetry event is intentionally not persisted to
         # affect here. The reward trace is independent and safe to persist.
         save_json(REWARD_TRACE_JSON, new_ctx.get(_REWARD_TRACE, reward_trace))

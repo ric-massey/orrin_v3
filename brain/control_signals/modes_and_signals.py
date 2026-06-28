@@ -9,10 +9,10 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity, log_error
 from brain.cog_memory.working_memory import update_working_memory
 
-from brain.paths import MODE_FILE, PRIVATE_THOUGHTS_FILE, AFFECT_STATE_FILE
+from brain.paths import MODE_FILE, PRIVATE_THOUGHTS_FILE, SIGNAL_STATE_FILE
 
 # Mode arbiter (BEHAVIOR_FIX_PLAN Phase 4): set_current_mode is the ONE mode
-# authority — modes_and_affect's automatic adjustment and update_affect_state's
+# authority — modes_and_affect's automatic adjustment and update_signal_state's
 # dominant-emotion shift both propose through here (two controllers were
 # fighting one knob, audit §10). Two stabilizers:
 #   * dwell time   — a committed mode holds for _MODE_DWELL_S before any switch;
@@ -101,8 +101,8 @@ def set_current_mode(mode: str, reason: Optional[str] = None) -> None:
     except Exception as e:
         log_error(f"⚠️ Failed to set mode to '{mode}': {e}")
 
-def recommend_mode_from_affect_state(min_intensity: float = 0.55, skip_neutral: bool = True) -> str:
-    state: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict)
+def recommend_mode_from_signal_state(min_intensity: float = 0.55, skip_neutral: bool = True) -> str:
+    state: Dict[str, Any] = load_json(SIGNAL_STATE_FILE, default_type=dict)
     core: Dict[str, Any] = state.get("core_signals", {}) if isinstance(state, dict) else {}
 
     if not isinstance(core, dict) or not core:
@@ -152,12 +152,12 @@ def recommend_mode_from_affect_state(min_intensity: float = 0.55, skip_neutral: 
 
     return emotion_mode_map.get(emotion, "adaptive")
 
-def affect_driven_mode_shift() -> None:
+def signal_driven_mode_shift() -> None:
     """
     Automatically adjusts Orrin's operating mode based on emotional state.
     """
     try:
-        recommended_mode = recommend_mode_from_affect_state()
+        recommended_mode = recommend_mode_from_signal_state()
         current_mode = get_current_mode()
         if recommended_mode != current_mode:
             set_current_mode(recommended_mode, reason="Emotional state shift detected.")

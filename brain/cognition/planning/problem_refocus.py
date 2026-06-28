@@ -174,7 +174,7 @@ def _reconcile_capability_health(context: Dict[str, Any]) -> None:
 
 # ── Affect / reward nudges (light, honest) ─────────────────────────────────────
 
-def _bump_problem_affect(context: Dict[str, Any], tool: bool = False) -> None:
+def _bump_problem_signal(context: Dict[str, Any], tool: bool = False) -> None:
     """A surfaced blocker is mildly stressful and focusing — nudge impasse/uncertainty.
 
     A registry-tool outage (tool=True) is curiosity-grade, not impasse-grade:
@@ -196,7 +196,7 @@ def _bump_problem_affect(context: Dict[str, Any], tool: bool = False) -> None:
                 emo.update(core)
         context["affect_state"] = emo
     except Exception as _e:
-        record_failure("problem_refocus._bump_problem_affect", _e)
+        record_failure("problem_refocus._bump_problem_signal", _e)
 
 
 def _release(context: Dict[str, Any], actual: float, source: str) -> None:
@@ -316,7 +316,7 @@ def _start_fix(
             add_goal(dict(fix_goal))
         except Exception as _e:
             record_failure("problem_refocus._start_fix.2", _e)
-        _bump_problem_affect(context, tool=True)
+        _bump_problem_signal(context, tool=True)
         update_working_memory({
             "content": (
                 f"Noticed {desc} A tool I sometimes use is down — "
@@ -333,7 +333,7 @@ def _start_fix(
 
     # Interrupt: the problem is now what he's working on.
     context["committed_goal"] = fix_goal
-    _bump_problem_affect(context)
+    _bump_problem_signal(context)
 
     parked_title = parked_goal.get("title") or parked_goal.get("name") or "my goal"
     update_working_memory({

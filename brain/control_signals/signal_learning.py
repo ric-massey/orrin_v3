@@ -3,7 +3,7 @@
 # Associative learning: maps affect signals to cognitive functions over time.
 # Reinforced associations survive; unreinforced ones decay at DECAY_RATE per update.
 from brain.core.runtime_log import get_logger
-from brain.paths import EMOTION_FUNCTION_MAP_FILE
+from brain.paths import SIGNAL_FUNCTION_MAP_FILE
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
@@ -14,7 +14,7 @@ MAX_ASSOCIATIONS_PER_EMOTION = 5
 MIN_REINFORCEMENT_THRESHOLD = 2
 DECAY_RATE = 0.05  # 5% decay per update — unused associations fade
 
-def update_affect_function_map(emotion: str, function_name: str, reward_signal=None):
+def update_signal_function_map(emotion: str, function_name: str, reward_signal=None):
     """
     Reinforce (emotion -> function) with optional reward scaling.
     Apply gentle decay to others. Prune rarely-used entries, but
@@ -27,7 +27,7 @@ def update_affect_function_map(emotion: str, function_name: str, reward_signal=N
     emotion_key = str(emotion).strip().lower()
     fn_key = str(function_name).strip()
 
-    raw_map = load_json(EMOTION_FUNCTION_MAP_FILE, default_type=dict)
+    raw_map = load_json(SIGNAL_FUNCTION_MAP_FILE, default_type=dict)
     if not isinstance(raw_map, dict):
         raw_map = {}
 
@@ -42,7 +42,7 @@ def update_affect_function_map(emotion: str, function_name: str, reward_signal=N
             increment = float(reward_signal)
             increment = max(0.1, min(increment, 5.0))  # clamp
         except Exception as _e:
-            record_failure("affect_learning.update_affect_function_map", _e)
+            record_failure("affect_learning.update_signal_function_map", _e)
 
     # Decay existing counts a bit (simulate forgetting)
     for fn in list(emotion_dict.keys()):
@@ -77,6 +77,6 @@ def update_affect_function_map(emotion: str, function_name: str, reward_signal=N
         pruned[best_func] = best_count
 
     raw_map[emotion_key] = pruned
-    save_json(EMOTION_FUNCTION_MAP_FILE, raw_map)
+    save_json(SIGNAL_FUNCTION_MAP_FILE, raw_map)
 
     return pruned  # optional: return the updated mapping for this emotion

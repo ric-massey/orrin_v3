@@ -15,7 +15,7 @@ from brain.config import tuning as _tuning
 from brain.think.bandit import contextual_bandit as bandit
 from brain.utils.json_utils import load_json
 from brain.utils.failure_counter import record_failure
-from brain.paths import AFFECT_STATE_FILE, EMOTION_FUNCTION_MAP_FILE
+from brain.paths import SIGNAL_STATE_FILE, SIGNAL_FUNCTION_MAP_FILE
 from brain.think.think_utils.selection.constants import FALLBACK_ACTIONS
 from brain.think.think_utils.selection.state import _dominant_signal
 from brain.think.think_utils.selection.catalog import _tag_weights
@@ -51,7 +51,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
                     "self_review": 0.56},
     "reward_negative":     {"reflect_on_affect": 0.85, "attempt_regulation": 0.78,
                     "narrative_update": 0.75, "reflection": 0.68,
-                    "reflect_on_emotion_model": 0.64, "apply_affective_feedback": 0.60},
+                    "reflect_on_emotion_model": 0.64, "apply_signal_feedback": 0.60},
     "conflict_signal":       {"attempt_regulation": 0.88, "reflect_on_affect": 0.80,
                     "detect_memory_contradictions": 0.72, "reflection": 0.68,
                     "reflect_on_emotion_model": 0.64, "investigate_unexplained_emotions": 0.62},
@@ -82,12 +82,12 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
 def _signal_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     """
     Use *only existing state* to bias functions by emotion:
-    - First look inside AFFECT_STATE_FILE:
+    - First look inside SIGNAL_STATE_FILE:
         - emotion_function_map[dominant] / function_preferences[dominant] / emotion_function_weights[dominant]
-    - Then (fallback) look inside EMOTION_FUNCTION_MAP_FILE if present.
+    - Then (fallback) look inside SIGNAL_FUNCTION_MAP_FILE if present.
     Normalizes to [0..1] with a floor, and handles singletons.
     """
-    emo_state: Dict[str, Any] = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+    emo_state: Dict[str, Any] = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
     dom = _dominant_signal()
     candidates = (
         (emo_state.get("emotion_function_map") or {}),
@@ -102,10 +102,10 @@ def _signal_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
                     pref[fn] = float(wt)
             break
 
-    # 🔁 fallback: dedicated map file produced by update_affect_function_map(...)
-    if not pref and EMOTION_FUNCTION_MAP_FILE:
+    # 🔁 fallback: dedicated map file produced by update_signal_function_map(...)
+    if not pref and SIGNAL_FUNCTION_MAP_FILE:
         try:
-            external_map: Dict[str, Any] = load_json(EMOTION_FUNCTION_MAP_FILE, default_type=dict) or {}
+            external_map: Dict[str, Any] = load_json(SIGNAL_FUNCTION_MAP_FILE, default_type=dict) or {}
             block = external_map.get(dom)
             if isinstance(block, dict):
                 for fn, wt in block.items():

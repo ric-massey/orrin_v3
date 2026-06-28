@@ -1,6 +1,6 @@
 # brain/control_signals/affect_patterns.py
 #
-# Per-cycle affect pattern phases extracted from update_affect_state
+# Per-cycle affect pattern phases extracted from update_signal_state
 # (CODEBASE_CLEANUP_PLAN 4.5C) to bring that module under the 600-line soft
 # limit. Two cohesive phases that operate on the same per-cycle (state, core)
 # scope as the parent, lifted verbatim:
@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from typing import Dict
 
-from brain.control_signals.signals import detect_affect
+from brain.control_signals.signals import detect_signal
 from brain.control_signals.signal_dynamics import get_habit_factor, record_habit
 from brain.control_signals.homeostasis import pump_signal
 from brain.utils.failure_counter import record_failure
@@ -114,7 +114,7 @@ def apply_wm_triggers_and_appraisal(
         if any(m in content.lower() for m in _INTROSPECTIVE_MARKERS):
             continue
         timestamp = thought.get("timestamp") or now.isoformat()
-        detection = detect_affect(content)
+        detection = detect_signal(content)
 
         if isinstance(detection, str):
             emotion = detection
@@ -192,7 +192,7 @@ def apply_wm_triggers_and_appraisal(
                         "timestamp": timestamp,
                     })
                 except Exception as _e:
-                    record_failure("update_affect_state.update_affect_state.2", _e)
+                    record_failure("update_signal_state.update_signal_state.2", _e)
 
     # === Appraisal-theory nudges (goal × event → emotion, no LLM) ===
     # Complements the keyword trigger loop with goal-relevance × congruence × agency.
@@ -222,7 +222,7 @@ def apply_wm_triggers_and_appraisal(
                             "ts":      now.isoformat(),
                         })
     except Exception as _e:
-        record_failure("update_affect_state.update_affect_state.3", _e)
+        record_failure("update_signal_state.update_signal_state.3", _e)
 
     # Novel events (triggers) relieve stagnation_signal a bit; wonder decays gently each update
     if new_triggers:
@@ -285,7 +285,7 @@ def detect_oscillation_and_flatline(state, core, context, now, update_working_me
                 })
                 osc_counts[emo_flag] = 0
     except Exception as _e:
-        record_failure("update_affect_state.update_affect_state.5", _e)
+        record_failure("update_signal_state.update_signal_state.5", _e)
 
     # === Flatline detection — LOW variance at HIGH value (the osc detector's blind spot) ===
     # The variance detector above fires only on CHAOS (high variance). Its mirror
@@ -339,4 +339,4 @@ def detect_oscillation_and_flatline(state, core, context, now, update_working_me
             else:
                 state["_flatline_streak"] = 0
     except Exception as _e:
-        record_failure("update_affect_state.update_affect_state.flatline", _e)
+        record_failure("update_signal_state.update_signal_state.flatline", _e)

@@ -116,7 +116,7 @@ def _draft_prompt(
 
     felt_line = ""
     try:
-        from brain.control_signals.signal_summary import describe_dominant_affect as _dfs
+        from brain.control_signals.signal_summary import describe_dominant_signal as _dfs
         _sense = _dfs(context.get("affect_state") or {})
         if _sense:
             felt_line = f"Right now I notice: {_sense}\n"

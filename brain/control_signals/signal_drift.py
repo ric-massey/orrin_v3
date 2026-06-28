@@ -11,17 +11,17 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private, log_activity
 from brain.utils.generate_response import generate_response, get_thinking_model, llm_ok
 from brain.control_signals.modes_and_signals import get_current_mode, set_current_mode
-from brain.control_signals.signals import detect_affect
+from brain.control_signals.signals import detect_signal
 from brain.cog_memory.working_memory import update_working_memory
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
-from brain.paths import AFFECT_STATE_FILE, EMOTION_DRIFT  # Path objects
+from brain.paths import SIGNAL_STATE_FILE, EMOTION_DRIFT  # Path objects
 
 
 def _mean_abs_dev(context) -> float | None:
     """Current affect displacement from setpoints, or None when unavailable."""
     state = (context or {}).get("affect_state") if isinstance(context, dict) else None
     if not isinstance(state, dict):
-        state = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+        state = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
     core = state.get("core_signals") or {}
     if not isinstance(core, dict):
         return None
@@ -92,7 +92,7 @@ def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int
                 "event_type": "drift_intervention",
                 "importance": 2,
                 "priority": 2,
-                "emotion": (detect_affect(current_mode, use_gpt=False) or {}).get("emotion", "neutral"),
+                "emotion": (detect_signal(current_mode, use_gpt=False) or {}).get("emotion", "neutral"),
             })
 
             shadow_prompt = (
@@ -107,7 +107,7 @@ def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int
                 "event_type": "shadow_dialogue",
                 "importance": 2,
                 "priority": 2,
-                "emotion": (detect_affect(reflection or "", use_gpt=False) or {}).get("emotion", "neutral"),
+                "emotion": (detect_signal(reflection or "", use_gpt=False) or {}).get("emotion", "neutral"),
             })
             log_activity(f"Shadow self dialogue triggered due to emotional drift in {current_mode}.")
             # reward_signal reward for breaking free
@@ -129,7 +129,7 @@ def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int
                 "event_type": "drift_intervention",
                 "importance": 2,
                 "priority": 2,
-                "emotion": (detect_affect(current_mode, use_gpt=False) or {}).get("emotion", "neutral"),
+                "emotion": (detect_signal(current_mode, use_gpt=False) or {}).get("emotion", "neutral"),
             })
 
             result = llm_ok(generate_response(
@@ -142,7 +142,7 @@ def check_affect_drift(context: Optional[Dict[str, Any]] = None, max_cycles: int
                 "event_type": "gentle_reflection",
                 "importance": 2,
                 "priority": 2,
-                "emotion": (detect_affect(result or "", use_gpt=False) or {}).get("emotion", "neutral"),
+                "emotion": (detect_signal(result or "", use_gpt=False) or {}).get("emotion", "neutral"),
             })
             log_activity(f"Gentle reflection initiated to address drift in {current_mode}.")
             # Novelty reward for introspective creativity

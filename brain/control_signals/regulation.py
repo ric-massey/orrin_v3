@@ -368,7 +368,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     # Apply the strategy to a working copy, then diff to derive per-emotion deltas
     # and route them through the AffectArbiter as proposals. This keeps regulation
     # on the single convergence path (no direct affect-file write, no last-writer
-    # race with update_affect_state) while preserving the exact same deltas.
+    # race with update_signal_state) while preserving the exact same deltas.
     # affect_stability lives top-level, never in core_signals — seed the working
     # copy with its real value so the side-effect diff has an honest baseline.
     # (Without this, before.get(emo, new) defaulted to the NEW value for any key
@@ -377,13 +377,13 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     before = dict(core)
     _apply_strategy(core, emotion, strategy, succeeded)
 
-    from brain.control_signals.arbiter import submit_affect
+    from brain.control_signals.arbiter import submit_signal
     for _emo, _new in core.items():
         # Absent-before keys start from 0.0 (a signal not in core_signals is at
         # rest), so a side-effect that introduces one still produces its delta.
         _delta = float(_new) - float(before.get(_emo, 0.0))
         if abs(_delta) >= 1e-4:
-            submit_affect(context, _emo, _delta, source="regulation", ttl_cycles=2)
+            submit_signal(context, _emo, _delta, source="regulation", ttl_cycles=2)
 
     # Log this attempt
     outcome = "succeeded" if succeeded else "failed"

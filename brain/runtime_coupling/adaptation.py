@@ -10,7 +10,7 @@ slightly different. This module implements that at three levels:
 1. Hebbian emotion→function reinforcement
    Whatever function ran under whatever dominant emotion gets a weighted
    update in the emotion_function_map. Stronger reward = stronger trace.
-   This runs on top of (not replacing) the existing update_affect_function_map.
+   This runs on top of (not replacing) the existing update_signal_function_map.
 
 2. Spreading activation update
    The function that ran primes related functions for the next cycle.
@@ -77,7 +77,7 @@ def apply_adaptation(
 def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> None:
     """
     Strengthen or weaken the emotion→function association for what just ran.
-    This complements the existing update_affect_function_map (which is called
+    This complements the existing update_signal_function_map (which is called
     in ORRIN_loop on the cognition path). This fires on ALL paths including
     action and fallback, so no event goes unlearned.
     """
@@ -98,8 +98,8 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
     increment = float(reward) * dom_intensity * _HEBBIAN_SCALE
 
     try:
-        from brain.control_signals.signal_learning import update_affect_function_map
-        update_affect_function_map(dominant, fn_name, reward_signal=increment)
+        from brain.control_signals.signal_learning import update_signal_function_map
+        update_signal_function_map(dominant, fn_name, reward_signal=increment)
     except Exception as _e:
         record_failure("adaptation._hebbian_update", _e)
 
@@ -110,8 +110,8 @@ def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> Non
         if second_val > 0.40:
             secondary_increment = float(reward) * second_val * _HEBBIAN_SCALE * 0.5
             try:
-                from brain.control_signals.signal_learning import update_affect_function_map
-                update_affect_function_map(second_emo, fn_name, reward_signal=secondary_increment)
+                from brain.control_signals.signal_learning import update_signal_function_map
+                update_signal_function_map(second_emo, fn_name, reward_signal=secondary_increment)
             except Exception as _e:
                 record_failure("adaptation._hebbian_update.2", _e)
 

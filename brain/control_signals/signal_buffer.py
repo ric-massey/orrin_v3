@@ -9,8 +9,8 @@ responses to rewards and setbacks actually work in humans. A surprising success
 doesn't snap confidence; it builds it over the next few minutes.
 
 Interface:
-    queue_affect_change(state, emotion, delta, ttl_cycles=3, source="")
-    drain_affect_queue(state, core)   # called each update_affect_state cycle
+    queue_signal_change(state, emotion, delta, ttl_cycles=3, source="")
+    drain_signal_queue(state, core)   # called each update_signal_state cycle
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from brain.utils.log import log_activity
 _QUEUE_KEY = "_emotion_queue"
 
 
-def queue_affect_change(
+def queue_signal_change(
     state: Dict[str, Any],
     emotion: str,
     delta: float,
@@ -48,7 +48,7 @@ def queue_affect_change(
     })
 
 
-def drain_affect_queue(
+def drain_signal_queue(
     state: Dict[str, Any],
     core: Dict[str, float],
 ) -> None:

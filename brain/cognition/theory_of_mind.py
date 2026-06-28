@@ -22,7 +22,7 @@
 #     impaired affective; some autism profiles show the reverse.
 #     In conversation: their cognitive agenda (goal/task orientation) and affective
 #     register (emotional state) are separable and should be tracked independently.
-#     → Added `_infer_cognitive_state()` (mental agenda) alongside `_infer_affective_state()`
+#     → Added `_infer_cognitive_state()` (mental agenda) alongside `_infer_signal_state()`
 #       (renamed and refocused from the old `_infer_state`).
 #
 #   Feldman (2007) — Interpersonal synchrony.
@@ -71,7 +71,7 @@ from brain.utils.failure_counter import record_failure
 # theory_of_mind_infer.py (Phase 4.5C). Re-imported so the simulate() pipeline
 # below + _extract_keywords' _STOPWORDS keep their references.
 from brain.cognition.theory_of_mind_infer import (  # noqa: F401
-    _STOPWORDS, _ling_signals, _infer_cognitive_state, _infer_affective_state,
+    _STOPWORDS, _ling_signals, _infer_cognitive_state, _infer_signal_state,
     _infer_intention, _detect_shift, _predict_next_intention, _family_of,
     _predict_next_family,
 )
@@ -337,7 +337,7 @@ def simulate(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
     # Singer & Lamm: separate cognitive and affective inference
     cognitive_state = _infer_cognitive_state(sig)
-    affective_state = _infer_affective_state(sig, person_model)
+    affective_state = _infer_signal_state(sig, person_model)
     intention       = _infer_intention(sig)
 
     tom = _load_tom_state(person_id)

@@ -21,7 +21,7 @@ from brain.utils.json_utils import save_json
 from brain.utils.log import log_error, log_activity
 from brain.utils.failure_counter import record_failure
 from brain.paths import (
-    RELATIONSHIPS_FILE, MODEL_CONFIG_FILE, AFFECT_STATE_FILE,
+    RELATIONSHIPS_FILE, MODEL_CONFIG_FILE, SIGNAL_STATE_FILE,
 )
 # Preflight validators live in boot_checks; re-exported so existing callers
 # (ORRIN_loop, runtime-surface test) keep importing them from brain.loop.boot.
@@ -353,18 +353,18 @@ def _boot_context() -> Context:
         from brain.control_signals.regulation import attempt_regulation as _ar
         from brain.control_signals.signal_drift import check_affect_drift as _ced
         from brain.control_signals.reflect_on_signals import reflect_on_affect as _roe
-        from brain.control_signals.update_signal_state import update_affect_state as _ues
-        from brain.control_signals.apply_signal_feedback import apply_affective_feedback as _aef
-        from brain.control_signals.modes_and_signals import affect_driven_mode_shift as _edms
+        from brain.control_signals.update_signal_state import update_signal_state as _ues
+        from brain.control_signals.apply_signal_feedback import apply_signal_feedback as _aef
+        from brain.control_signals.modes_and_signals import signal_driven_mode_shift as _edms
         from brain.control_signals.signals import investigate_unexplained_emotions as _iue
         from brain.control_signals.stagnation_signal_escalation import update_stagnation_signal_escalation as _ube
         from brain.control_signals.reflect_on_signal_model import reflect_on_emotion_model as _roem
         COGNITIVE_FUNCTIONS["attempt_regulation"]            = {"function": _ar,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["check_affect_drift"]           = {"function": _ced,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["reflect_on_affect"]           = {"function": _roe,  "is_cognition": True}
-        COGNITIVE_FUNCTIONS["update_affect_state"]        = {"function": _ues,  "is_cognition": True}
-        COGNITIVE_FUNCTIONS["apply_affective_feedback"]      = {"function": _aef,  "is_cognition": True}
-        COGNITIVE_FUNCTIONS["affect_driven_mode_shift"]     = {"function": _edms, "is_cognition": True}
+        COGNITIVE_FUNCTIONS["update_signal_state"]        = {"function": _ues,  "is_cognition": True}
+        COGNITIVE_FUNCTIONS["apply_signal_feedback"]      = {"function": _aef,  "is_cognition": True}
+        COGNITIVE_FUNCTIONS["signal_driven_mode_shift"]     = {"function": _edms, "is_cognition": True}
         COGNITIVE_FUNCTIONS["investigate_unexplained_emotions"] = {"function": _iue, "is_cognition": True}
         COGNITIVE_FUNCTIONS["update_stagnation_signal_escalation"]     = {"function": _ube,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["reflect_on_emotion_model"]      = {"function": _roem, "is_cognition": True}
@@ -440,9 +440,9 @@ def _boot_context() -> Context:
                 _core[k] = _POSITIVE_CEILING
         affect_state["core_signals"] = _core
     context["affect_state"] = affect_state
-    # Persist the capped state so it survives into the first update_affect_state call
+    # Persist the capped state so it survives into the first update_signal_state call
     try:
-        save_json(AFFECT_STATE_FILE, affect_state)
+        save_json(SIGNAL_STATE_FILE, affect_state)
     except Exception as _e:
         record_failure("ORRIN_loop._boot_context", _e)
 

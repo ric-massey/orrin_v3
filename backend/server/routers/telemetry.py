@@ -241,7 +241,7 @@ async def chat_history(n: int = 100) -> JSONResponse:
 
 # ── Consolidation / language / monitor ledgers ──────────────────────────────
 @router.get("/idle-consolidation")
-async def dreams(n: int = 12) -> JSONResponse:
+async def idle_consolidation(n: int = 12) -> JSONResponse:
     """What he consolidates while idle: dream_log sweeps + symbolic dream
     insights. Honesty note: consolidation/recombination are often EMPTY strings
     on a fresh run — the client must render 'slept, nothing consolidated'

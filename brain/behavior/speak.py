@@ -99,7 +99,7 @@ class OrrinSpeaker:
             emotions = (affect_state.get("core_signals") or affect_state) or {}
             threat_level  = float(emotions.get("threat_level", 0))
             social_penalty = float(emotions.get("social_penalty", 0))
-            if self.detect_affectal_inhibition(threat_level, social_penalty):
+            if self.detect_signal_inhibition(threat_level, social_penalty):
                 log_private(f"🛑 Suppressed — threat_level={threat_level:.2f}, social_penalty={social_penalty:.2f}")
                 return ""
 
@@ -470,7 +470,7 @@ class OrrinSpeaker:
 
     # ---------- gates ----------
 
-    def detect_affectal_inhibition(self, threat_level: float, social_penalty: float) -> bool:
+    def detect_signal_inhibition(self, threat_level: float, social_penalty: float) -> bool:
         return threat_level > 0.4 or social_penalty > 0.4
 
     def check_timing_context(self, context: Dict) -> bool:

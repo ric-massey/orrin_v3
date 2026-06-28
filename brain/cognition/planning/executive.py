@@ -308,8 +308,8 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     try:
                         from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
                         if not consolidating_now():
-                            from brain.control_signals.arbiter import submit_affect
-                            submit_affect(context, "resource_deficit", _EXEC_STEP_DEFICIT,
+                            from brain.control_signals.arbiter import submit_signal
+                            submit_signal(context, "resource_deficit", _EXEC_STEP_DEFICIT,
                                           weight=1.0, source="executive_step", ttl_cycles=2)
                     except Exception as exc:
                         record_failure("executive.step_resource_cost", exc)
@@ -389,7 +389,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
 #     never mutates the main loop's live context dict.
 #
 # KNOWN LIMITATION (why it's not yet the default): affect emitted by cognitive
-# functions that a step runs (submit_affect on the daemon's private context) is not
+# functions that a step runs (submit_signal on the daemon's private context) is not
 # committed into the main affect state — the goal/WM/long-memory artifacts persist,
 # but affect fidelity from daemon-run steps is reduced. Enable only experimentally
 # until that path routes daemon affect through the thread-safe arbiter inbox.
@@ -406,18 +406,18 @@ def is_daemon_running() -> bool:
     return _daemon_running
 
 
-def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
+def _harvest_daemon_signal(ctx: Dict[str, Any]) -> None:
     """Route affect produced by the daemon's step into the AffectArbiter's
-    thread-safe inbox (submit_affect with context=None) so the MAIN loop's
-    commit_affect applies it. Without this the daemon's private context is
+    thread-safe inbox (submit_signal with context=None) so the MAIN loop's
+    commit_signals applies it. Without this the daemon's private context is
     discarded and the affect — including the goal-COMPLETION reward (felt
     achievement) — leaks (dual_process_loop.md I8/§9). Captures BOTH pipelines:
-    arbiter proposals (submit_affect → _affect_proposals) and the reward buffer
-    (release_reward_signal → queue_affect_change → affect_state['_emotion_queue']).
+    arbiter proposals (submit_signal → _affect_proposals) and the reward buffer
+    (release_reward_signal → queue_signal_change → affect_state['_emotion_queue']).
     Caller clears these collections BEFORE the tick, so only this tick's affect is
     harvested (never the loop's pending affect carried in the loaded snapshot)."""
     try:
-        from brain.control_signals.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_signal
     except Exception as exc:
         record_failure("executive.harvest_daemon_affect.import", exc)
         return
@@ -425,7 +425,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
         if not isinstance(p, dict):
             continue
         try:
-            submit_affect(None, str(p.get("target") or ""), float(p.get("delta") or 0.0),
+            submit_signal(None, str(p.get("target") or ""), float(p.get("delta") or 0.0),
                           weight=float(p.get("weight") or 1.0),
                           source=f"daemon:{p.get('source', '')}"[:48],
                           ttl_cycles=int(p.get("ttl") or 3))
@@ -440,7 +440,7 @@ def _harvest_daemon_affect(ctx: Dict[str, Any]) -> None:
             if abs(total) < 1e-4:
                 continue
             try:
-                submit_affect(None, str(e.get("emotion") or ""), total, weight=1.0,
+                submit_signal(None, str(e.get("emotion") or ""), total, weight=1.0,
                               source=f"daemon:{e.get('source', 'reward')}"[:48],
                               ttl_cycles=int(e.get("cycles_left") or 3))
             except Exception as exc:
@@ -471,7 +471,7 @@ def _daemon_loop(stop_event: "threading.Event") -> None:
                 if isinstance(_st, dict) and _st.get("core_signals") is not None:
                     _st["_emotion_queue"] = []
                 executive_tick(ctx)         # own snapshot; goals persist via GoalArbiter
-                _harvest_daemon_affect(ctx)  # daemon affect → arbiter inbox (no leak)
+                _harvest_daemon_signal(ctx)  # daemon affect → arbiter inbox (no leak)
                 # Daemon-on telemetry (UI_FIXES Fix 1): the main loop skips its
                 # interleaved tick while we own execution, so its `executive`
                 # block would go stale. Push our summary to the bridge directly —

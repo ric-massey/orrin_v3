@@ -311,7 +311,7 @@ def _parse_decisions(data_dir: Path) -> Tuple[List[dict], List[dict], List[dict]
     return cycles, decisions, rewards
 
 
-def _parse_affect(data_dir: Path) -> List[dict]:
+def _parse_signal(data_dir: Path) -> List[dict]:
     """telemetry_archive.jsonl → the full affect time series (this run only)."""
     rows = [
         {

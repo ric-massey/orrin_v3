@@ -269,9 +269,9 @@ def _fire_introspection_miss(pred: Dict, context: Dict[str, Any]) -> None:
     except Exception as _e:
         record_failure("prediction._fire_introspection_miss", _e)
     try:
-        from brain.control_signals.arbiter import submit_affect
-        submit_affect(context, "exploration_drive", +0.04, source="introspection_miss")
-        submit_affect(context, "confidence", -0.03, source="introspection_miss")
+        from brain.control_signals.arbiter import submit_signal
+        submit_signal(context, "exploration_drive", +0.04, source="introspection_miss")
+        submit_signal(context, "confidence", -0.03, source="introspection_miss")
     except Exception as _e:
         record_failure("prediction._fire_introspection_miss.2", _e)
     log_private(f"[prediction] introspection miss: {text}")

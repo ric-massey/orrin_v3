@@ -18,7 +18,7 @@ SCIENTIFIC BASIS:
                    episodes, and other things called emotion."
                    Psychological Review, 106(3), 631–657.
 
-Called from update_affect_state at specific points in the update cycle.
+Called from update_signal_state at specific points in the update cycle.
 """
 from __future__ import annotations
 from brain.core.runtime_log import get_logger

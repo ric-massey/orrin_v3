@@ -13,7 +13,7 @@ coping capacity using five appraisal dimensions.
   novelty     — how unexpected is this?
 
 Output: list of {emotion, delta, cause} dicts ready to be applied to
-affect_state.core_signals by update_affect_state.
+affect_state.core_signals by update_signal_state.
 
 SCIENTIFIC BASIS:
   Roseman (1996) — "Appraisal determinants of emotions: Constructing a more

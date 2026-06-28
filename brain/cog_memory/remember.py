@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from typing import Any, Optional, List
 import uuid
 
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 from brain.paths import LONG_MEMORY_FILE
 from brain.utils.embedder import get_embedding
 from brain.utils.json_utils import load_json, save_json
@@ -68,7 +68,7 @@ def remember(
         log_error(f"remember: embedding failed: {exc}")
         emb = []
 
-    detected = _signal_name(emotion or detect_affect_keyword(content_str))
+    detected = _signal_name(emotion or detect_signal_keyword(content_str))
     emotional_snapshot = _snapshot_signal(context)
     importance = min(10, importance + _signal_importance_boost(emotional_snapshot))
 

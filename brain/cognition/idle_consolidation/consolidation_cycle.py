@@ -511,13 +511,13 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     run_symbolic_maintenance(context, dream_entry, _this_count, _dream_completed)
 
     # Dreaming = rest — reduce accumulated resource_deficit.
-    # This runs on the dream DAEMON thread, so it must never write AFFECT_STATE_FILE
-    # (that races the main loop's update_affect_state). Instead submit a proposal to
+    # This runs on the dream DAEMON thread, so it must never write SIGNAL_STATE_FILE
+    # (that races the main loop's update_signal_state). Instead submit a proposal to
     # the thread-safe arbiter inbox with context=None; the main loop drains and
-    # applies it during commit_affect(). resource_deficit is a registered scalar
+    # applies it during commit_signals(). resource_deficit is a registered scalar
     # target, so the arbiter applies the reduction directly (clamped, budgeted).
     try:
-        from brain.control_signals.arbiter import submit_affect as _submit_affect
+        from brain.control_signals.arbiter import submit_signal as _submit_affect
         # Allostatic recovery scaling (proactive_resource_plan.md Phase 4 / C3):
         # a longer high-load burn earns DEEPER rest — recovery sleep is what
         # discharges allostatic load (McEwen & Wingfield 2003). Read the load from
@@ -528,7 +528,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
         _allo_load = 0.0
         try:
             from brain.utils.json_utils import load_json as _lj
-            from brain.paths import AFFECT_STATE_FILE as _ASF
+            from brain.paths import SIGNAL_STATE_FILE as _ASF
             _allo_load = float((_lj(_ASF, default_type=dict) or {}).get("_allostatic_load", 0.0) or 0.0)
         except Exception:
             _allo_load = 0.0

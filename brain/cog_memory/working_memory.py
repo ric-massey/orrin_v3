@@ -7,12 +7,12 @@ from typing import Any, List, Optional
 import uuid
 import numpy as np
 
-from brain.utils.affect_utils import detect_affect_keyword
+from brain.utils.signal_lexicon_utils import detect_signal_keyword
 from brain.utils.embedder import get_embedding
 from brain.utils.json_utils import load_json, save_json, modify_json, AbortModify
 from brain.utils.log import log_private, log_error
 from brain.cog_memory.summarize_w_memory import summarize_and_promote_working_memory
-from brain.paths import WORKING_MEMORY_FILE, AFFECT_STATE_FILE
+from brain.paths import WORKING_MEMORY_FILE, SIGNAL_STATE_FILE
 import os as _os
 from brain.utils.failure_counter import record_failure
 # WM similarity + chunk-merge layer, extracted to working_memory_chunk.py
@@ -79,7 +79,7 @@ def _effective_working_cap() -> int:
     if now - _wm_cap_last_read >= _WM_CAP_READ_TTL_S:
         _wm_cap_last_read = now
         try:
-            _a = load_json(AFFECT_STATE_FILE, default_type=dict) or {}
+            _a = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
             rd = float(_a.get("resource_deficit", 0.5) or 0.5)
             _wm_cap_cached_energy = max(0.0, min(1.0, 1.0 - rd))
         except (TypeError, ValueError):  # intentional: bad affect value → keep last energy
@@ -144,7 +144,7 @@ def update_working_memory(
         entry.setdefault("id", str(uuid.uuid4()))
         entry.setdefault("timestamp", now)
         entry.setdefault("content", "")
-        entry.setdefault("emotion", emotion or _signal_name(detect_affect_keyword(entry.get("content", ""))))
+        entry.setdefault("emotion", emotion or _signal_name(detect_signal_keyword(entry.get("content", ""))))
         entry.setdefault("event_type", event_type)
         entry.setdefault("agent", agent)
         entry.setdefault("importance", importance)
@@ -162,7 +162,7 @@ def update_working_memory(
         entry = {
             "id": str(uuid.uuid4()),
             "content": content,
-            "emotion": emotion or _signal_name(detect_affect_keyword(content)),
+            "emotion": emotion or _signal_name(detect_signal_keyword(content)),
             "timestamp": now,
             "event_type": event_type,
             "agent": agent,

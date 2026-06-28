@@ -282,10 +282,10 @@ def generate_response(
 
         _emo_state: Dict[str, Any] = {}
         try:
-            from brain.paths import AFFECT_STATE_FILE
+            from brain.paths import SIGNAL_STATE_FILE
             # Was reading the legacy emotion_state.json (renamed to affect_state.json
             # in the affect rename) → it silently read nothing.
-            _raw_emo = load_json(AFFECT_STATE_FILE, default_type=dict)
+            _raw_emo = load_json(SIGNAL_STATE_FILE, default_type=dict)
             _core = _raw_emo.get("core_signals")
             _emo_state = {**_raw_emo, **_core} if isinstance(_core, dict) else _raw_emo
         except Exception as _e:

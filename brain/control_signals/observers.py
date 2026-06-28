@@ -8,7 +8,7 @@
 # the formula lives in N places it drifts. These helpers are the single definition
 # each consumer reads instead of recomputing.
 #
-# normalize_affect_state additionally pins the canonical schema (Contract E):
+# normalize_signal_state additionally pins the canonical schema (Contract E):
 # core_signals nested, the required scalars present — so the dual nested/flat
 # layout branching elsewhere degrades to dead defensive code rather than a live
 # fork in behaviour.
@@ -57,7 +57,7 @@ def negative_load(affect_state: Any) -> float:
     return total
 
 
-def normalize_affect_state(state: Any) -> Dict[str, Any]:
+def normalize_signal_state(state: Any) -> Dict[str, Any]:
     """
     Coerce an affect_state dict to the canonical schema in place and return it:
       { core_signals: {str: float}, resource_deficit, affect_stability,
@@ -65,7 +65,7 @@ def normalize_affect_state(state: Any) -> Dict[str, Any]:
 
     Non-destructive: a legacy flat-layout state has its numeric emotion keys
     migrated into core_signals (scalars excluded); required scalars are seeded if
-    missing. Called by the sole writer (update_affect_state) on load so every
+    missing. Called by the sole writer (update_signal_state) on load so every
     cycle persists the canonical layout.
     """
     if not isinstance(state, dict):

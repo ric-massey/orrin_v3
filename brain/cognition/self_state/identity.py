@@ -13,7 +13,7 @@ _log = get_logger(__name__)
 _IDENTITY_LOCK = threading.Lock()
 
 
-def _describe_affect_state(affect_state: Dict[str, Any]) -> str:
+def _describe_signal_state(affect_state: Dict[str, Any]) -> str:
     """
     Convert emotional state dict to a natural-language sentence Orrin can reason from.
     Handles both flat dicts and nested core_signals shape.
@@ -120,9 +120,9 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # the old path silently failed and affect_state stayed empty.)
     if affect_state is None:
         try:
-            from brain.paths import AFFECT_STATE_FILE
+            from brain.paths import SIGNAL_STATE_FILE
             from brain.utils.json_utils import load_json as _lj
-            _raw = _lj(AFFECT_STATE_FILE, default_type=dict) or {}
+            _raw = _lj(SIGNAL_STATE_FILE, default_type=dict) or {}
             core = _raw.get("core_signals")
             affect_state = {**_raw, **core} if isinstance(core, dict) else _raw
         except Exception:
@@ -133,7 +133,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # Uses the *perceived* state (what Orrin thinks he feels) rather than ground truth —
     # the actual state drives unconscious machinery and is never directly reported here.
     try:
-        from brain.control_signals.signal_summary import render_affect_state as _dfs
+        from brain.control_signals.signal_summary import render_signal_state as _dfs
         _body_tokens = []
         _perceived_emo = None
         _clarity = 1.0
@@ -160,7 +160,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
         except Exception as _e:
             record_failure("identity.build_system_prompt.2", _e)
     except Exception:
-        emotion_line = _describe_affect_state(affect_state or {})
+        emotion_line = _describe_signal_state(affect_state or {})
 
     # --- Retrieved memories (injected from cycle context via runtime_ctx) ---
     memory_section = ""

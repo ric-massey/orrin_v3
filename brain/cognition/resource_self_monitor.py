@@ -307,7 +307,7 @@ def interoceptive_deltas(body_states: List[str], affect_state: Dict[str, Any]) -
     return affect_state
 
 
-def merge_into_affect_state(body_states: List[str], affect_state: Dict[str, Any]) -> Dict[str, Any]:
+def merge_into_signal_state(body_states: List[str], affect_state: Dict[str, Any]) -> Dict[str, Any]:
     """Alias kept for call-site compatibility. Delegates to interoceptive_deltas."""
     return interoceptive_deltas(body_states, affect_state)
 
@@ -384,7 +384,7 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
 
     # Merge into affect_state
     emo = context.get("affect_state") or {}
-    context["affect_state"] = merge_into_affect_state(felt, emo)
+    context["affect_state"] = merge_into_signal_state(felt, emo)
 
     try:
         save_json(BODY_SENSE_FILE, body_sense)

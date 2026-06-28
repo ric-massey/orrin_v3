@@ -144,7 +144,7 @@ def test_mark_goal_failed_survives_metrics_import_failure(monkeypatch, _quiet_go
 def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
     import brain.control_signals.regulation as reg
     import brain.cog_memory.working_memory as wm
-    from brain.control_signals.arbiter import commit_affect
+    from brain.control_signals.arbiter import commit_signals
 
     log_state = {}
     monkeypatch.setattr(reg, "_load_log", lambda: log_state)
@@ -161,7 +161,7 @@ def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
         },
     }
     assert reg.attempt_regulation(context) is True
-    applied = commit_affect(context)
+    applied = commit_signals(context)
 
     state = context["affect_state"]
     # (a) the side-effect never lands inside core_signals

@@ -109,8 +109,8 @@ def drain_consolidations(context: Dict[str, Any]) -> None:
     Apply one cycle of tinting from each active consolidation entry.
 
     Each tint is submitted as an AffectArbiter proposal rather than written to
-    AFFECT_STATE_FILE directly — so consolidation no longer races the main loop's
-    update_affect_state, and the tints are subject to the same homeostatic budget
+    SIGNAL_STATE_FILE directly — so consolidation no longer races the main loop's
+    update_signal_state, and the tints are subject to the same homeostatic budget
     as every other affect producer. The consolidation queue file (NOT affect_state)
     is still advanced here. Called once per cycle from the main loop.
     """
@@ -118,7 +118,7 @@ def drain_consolidations(context: Dict[str, Any]) -> None:
     if not queue:
         return
 
-    from brain.control_signals.arbiter import submit_affect
+    from brain.control_signals.arbiter import submit_signal
 
     remaining = []
     for entry in queue:
@@ -130,7 +130,7 @@ def drain_consolidations(context: Dict[str, Any]) -> None:
             continue
 
         # Propose the tint to the convergence layer instead of writing it.
-        submit_affect(context, emotion, tint, source="consolidation", ttl_cycles=2)
+        submit_signal(context, emotion, tint, source="consolidation", ttl_cycles=2)
 
         entry["cycles_remaining"] = cycles - 1
         if entry["cycles_remaining"] > 0:

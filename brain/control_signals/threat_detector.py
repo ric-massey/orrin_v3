@@ -1,5 +1,5 @@
 # threat_detector.py — rule-based threat classification (no LLM)
-from brain.utils.affect_signal_utils import dominant_signal
+from brain.utils.signal_keyword_utils import dominant_signal
 from brain.utils.log import log_activity
 
 # Thresholds for threat detection
@@ -13,7 +13,7 @@ _SPIKE_EXTREME         = 0.90  # any emotion this high + very low stability
 _SPIKE_STABILITY_FLOOR = 0.35
 
 
-def process_affective_signals(context):
+def process_signals(context):
     affect_state = context.get("affect_state", {}) or {}
 
     # === Extract core emotions (only numeric values) ===

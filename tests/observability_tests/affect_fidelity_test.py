@@ -9,7 +9,7 @@
 # This test pins the two semantic properties the audit's fixes establish:
 #   1. Homeostasis is no longer invented in the telemetry helper — it is the
 #      single authority's number (affect.homeostasis.homeostasis_index), written
-#      onto affect_state and merely READ by _emit_affect. So the value the UI
+#      onto affect_state and merely READ by _emit_signal. So the value the UI
 #      charts equals the value the brain holds.
 #   2. The transformed valence the chart reads round-trips back to the raw
 #      brain valence through the documented presentation mapping (no hidden
@@ -35,7 +35,7 @@ def test_homeostasis_index_is_deterministic_and_settled_at_rest():
 def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
     """The number the UI charts must equal the brain's own homeostasis, proving
     the value is no longer fabricated inside the translator (audit F2)."""
-    # _emit_affect lives in the loop's telemetry stage now (Phase 4A); test it there.
+    # _emit_signal lives in the loop's telemetry stage now (Phase 4A); test it there.
     import brain.loop.telemetry as tele
 
     captured: dict = {}
@@ -53,7 +53,7 @@ def test_emit_affect_reads_stored_homeostasis_not_a_reinvented_one():
             "setpoint_proximity": 0.123,  # persisted key (was "homeostasis"); emit must use THIS
             "core_signals": {"motivation": 0.5, "impasse_signal": 0.9},
         }}
-        tele._emit_affect(context)
+        tele._emit_signal(context)
     finally:
         tele._bridge = orig
 
@@ -71,5 +71,5 @@ def test_update_affect_state_stamps_homeostasis_onto_canonical_state():
     chart (C) read one number rather than two clocks."""
     from brain.control_signals.homeostasis import homeostasis_index
     core = {"motivation": 0.6, "confidence": 0.55, "impasse_signal": 0.2}
-    # Mirror what update_affect_state stores: round(homeostasis_index(core), 4).
+    # Mirror what update_signal_state stores: round(homeostasis_index(core), 4).
     assert round(homeostasis_index(core), 4) == round(homeostasis_index(dict(core)), 4)

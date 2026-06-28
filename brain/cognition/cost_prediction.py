@@ -53,7 +53,7 @@ _NUDGE_CLAMP = 0.012          # max |Δresource_deficit| per act
 _NUDGE_MIN = 0.0005           # ignore negligible surprises
 
 
-def _affect_enabled() -> bool:
+def _signals_enabled() -> bool:
     return env_bool("ORRIN_INTEROCEPTIVE_AFFECT", True)
 
 # Class priors (ms) for cold-start — this IS dual_process_loop's I9 "automaticity
@@ -265,7 +265,7 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
         pe = record_cost(fn, latency_ms)                 # learn (EMA); pe = |actual−expected|
         nudge = 0.0
         # Phase 1 (C1): make the surprise FELT — signed, asymmetric, capped, flagged.
-        if _affect_enabled() and isinstance(context, dict):
+        if _signals_enabled() and isinstance(context, dict):
             signed = float(latency_ms) - predicted       # >0 costlier (strain), <0 cheaper (ease)
             raw = signed * (_NUDGE_GAIN_UP if signed > 0 else _NUDGE_GAIN_DOWN)
             nudge = max(-_NUDGE_CLAMP, min(_NUDGE_CLAMP, raw))
@@ -277,8 +277,8 @@ def observe(fn: str, latency_ms: float, context: Dict[str, Any]) -> Dict[str, An
                 pass
             if abs(nudge) >= _NUDGE_MIN:
                 try:
-                    from brain.control_signals.arbiter import submit_affect
-                    submit_affect(context, "resource_deficit", nudge,
+                    from brain.control_signals.arbiter import submit_signal
+                    submit_signal(context, "resource_deficit", nudge,
                                   weight=0.5, source="interoception:pe", ttl_cycles=3)
                 except Exception:
                     nudge = 0.0

@@ -3,25 +3,25 @@ from datetime import datetime, timezone
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private, log_error
 # NOTE: affect.* imports are intentionally deferred into the function that needs
-# them (detect_affect_keyword) so this L1 utils module does not import the L3
+# them (detect_signal_keyword) so this L1 utils module does not import the L3
 # affect package at load time.
 from brain.paths import (
-    AFFECT_STATE_FILE,
+    SIGNAL_STATE_FILE,
     EMOTIONAL_SENSITIVITY_FILE, 
 )
 
 # NOTE: decay_affect_state() was deleted in the V3 convergence refactor (D3).
-# It pulled every signal toward 0.5, contradicting update_affect_state's decay
+# It pulled every signal toward 0.5, contradicting update_signal_state's decay
 # toward per-signal baselines — two setpoints for one signal. It had no callers.
 # The single restoring-force authority is now affect.homeostasis.apply_restoring_forces,
 # decaying toward affect.setpoints.CORE_BASELINES.
 
 
-def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=None):
+def adjust_signal_state(emotion: str, amount: float, reason: str = "", context=None):
     """Adjust a single core emotion with sensitivity, clamped to [0,1].
 
     When a live context is supplied, the change is routed through the
-    AffectArbiter (affect.arbiter.submit_affect) as a proposal rather than being
+    AffectArbiter (affect.arbiter.submit_signal) as a proposal rather than being
     written straight to the affect_state file. This keeps the in-loop callers on
     the single convergence path (no last-writer-wins file races, gradual drain).
     The legacy direct-file path is preserved only for context-less callers.
@@ -30,7 +30,7 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
         log_private(f"Refused to change emotion '{emotion}' due to direct user command.")
         return
 
-    state_path = AFFECT_STATE_FILE
+    state_path = SIGNAL_STATE_FILE
     sensitivity_path = EMOTIONAL_SENSITIVITY_FILE
 
     sensitivity = load_json(sensitivity_path, default_type=dict)
@@ -40,8 +40,8 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
     # Live-context path: submit a proposal to the convergence layer and return.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
         try:
-            from brain.control_signals.arbiter import submit_affect
-            submit_affect(context, emotion, scaled_amount, source=(reason or "adjust")[:40])
+            from brain.control_signals.arbiter import submit_signal
+            submit_signal(context, emotion, scaled_amount, source=(reason or "adjust")[:40])
             context.setdefault("raw_signals", []).append({
                 "source": "emotion",
                 "content": f"Emotion adjusted: {emotion} by {round(scaled_amount, 4)} due to {reason or 'unspecified'}",
@@ -51,7 +51,7 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
             log_private(f"Emotion proposal: {emotion} by {round(scaled_amount, 4)} ({reason or 'unspecified'})")
             return
         except Exception as _e:
-            log_error(f"adjust_affect_state arbiter submit failed, falling back to file: {_e}")
+            log_error(f"adjust_signal_state arbiter submit failed, falling back to file: {_e}")
 
     # Legacy direct-file path (context-less callers only).
     state = load_json(state_path, default_type=dict)
@@ -100,7 +100,7 @@ def adjust_affect_state(emotion: str, amount: float, reason: str = "", context=N
 _warned_no_emotion_keywords = False
 
 
-def detect_affect_keyword(text: str) -> str:
+def detect_signal_keyword(text: str) -> str:
     from brain.control_signals.model import load_signal_keywords  # deferred (keeps utils L1 at load time)
     global _warned_no_emotion_keywords
     text = (text or "").lower()
@@ -128,8 +128,8 @@ def log_penalty_signal(context, emotion: str = "impasse_signal", increment: floa
     falls back to a direct file write only for genuinely context-less callers."""
     # Live-context path: propose the increment to the convergence layer.
     if isinstance(context, dict) and isinstance(context.get("affect_state"), dict):
-        from brain.control_signals.arbiter import submit_affect
-        submit_affect(context, emotion, float(increment), source="penalty_signal", ttl_cycles=2)
+        from brain.control_signals.arbiter import submit_signal
+        submit_signal(context, emotion, float(increment), source="penalty_signal", ttl_cycles=2)
         log_private(f"⚠️ penalty_signal proposal: {emotion} += {round(float(increment), 4)}")
         context.setdefault("raw_signals", []).append({
             "source": "emotion",
@@ -140,13 +140,13 @@ def log_penalty_signal(context, emotion: str = "impasse_signal", increment: floa
         return
 
     # Legacy direct-file path (context-less callers only).
-    full_state = load_json(AFFECT_STATE_FILE, default_type=dict)
+    full_state = load_json(SIGNAL_STATE_FILE, default_type=dict)
     if not isinstance(full_state, dict):
         full_state = {}
     core_signals = dict(full_state.get("core_signals", {}))
     core_signals[emotion] = min(core_signals.get(emotion, 0.0) + float(increment), 1.0)
     full_state["core_signals"] = core_signals
-    save_json(AFFECT_STATE_FILE, full_state)
+    save_json(SIGNAL_STATE_FILE, full_state)
     log_private(f"⚠️ penalty_signal signal: {emotion} increased to {core_signals[emotion]}")
 
 

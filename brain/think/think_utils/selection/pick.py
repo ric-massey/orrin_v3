@@ -183,7 +183,7 @@ def apply_antirepeat_and_metarut(
     _REGULATION_GUARD_EXEMPT = frozenset({
         "attempt_regulation", "reflect_on_affect",
         "investigate_unexplained_emotions", "reflect_on_emotion_model",
-        "apply_affective_feedback",
+        "apply_signal_feedback",
     })
     _guard_distress_high = False
     try:
@@ -244,17 +244,17 @@ def apply_antirepeat_and_metarut(
         record_failure("select_function.select_function.15", _e)
 
     # Stagnation signal (Fix #2): drive it from the actual repeat *attempt*
-    # detected above, routed through submit_affect so it lands in core_signals
+    # detected above, routed through submit_signal so it lands in core_signals
     # (where _dominant_signal_and_stagnation_signal reads it first) and persists
-    # across cycles via commit_affect — the old top-level writer in think_module
+    # across cycles via commit_signals — the old top-level writer in think_module
     # never reached core_signals and stayed pinned at 0.000.
     try:
-        from brain.control_signals.arbiter import submit_affect
+        from brain.control_signals.arbiter import submit_signal
         if _repeat_attempt:
-            submit_affect(context, "stagnation_signal", +0.06,
+            submit_signal(context, "stagnation_signal", +0.06,
                           source="select_repeat", ttl_cycles=4)
         else:
-            submit_affect(context, "stagnation_signal", -0.02,
+            submit_signal(context, "stagnation_signal", -0.02,
                           source="select_fresh", ttl_cycles=4)
     except Exception as _e:
         record_failure("select_function.select_function.16", _e)

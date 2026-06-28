@@ -9,7 +9,7 @@
 #   - High user affect intensity → more contagion
 #   - High Orrin stability → less permeable to outside affect
 #   - Relationship influence modulates the channel
-#   - The caught affect fades naturally via update_affect_state's decay
+#   - The caught affect fades naturally via update_signal_state's decay
 #
 # Called once per genuinely new user message from handle_user_input.
 #
@@ -24,7 +24,7 @@ from __future__ import annotations
 from typing import Any, Dict
 
 from brain.utils.log import log_private
-from brain.control_signals.signals import detect_affect
+from brain.control_signals.signals import detect_signal
 
 
 # What Orrin catches from each detected user affect signal.
@@ -66,7 +66,7 @@ def apply_signal_contagion(
 
 
 def _apply(user_text: str, context: Dict[str, Any], influence: float) -> None:
-    result = detect_affect(user_text, use_gpt=False)
+    result = detect_signal(user_text, use_gpt=False)
     if not isinstance(result, dict):
         return
 

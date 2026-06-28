@@ -61,7 +61,7 @@ _EMOTION_DEFAULTS: Dict[str, float] = {
 }
 
 
-def _fix_emotion_dict(d: Dict[str, Any]) -> bool:
+def _fix_signal_dict(d: Dict[str, Any]) -> bool:
     """Coerce null/non-finite emotion values in-place. Returns True if any fix applied."""
     changed = False
     for k, default in _EMOTION_DEFAULTS.items():
@@ -76,19 +76,19 @@ def _fix_emotion_dict(d: Dict[str, Any]) -> bool:
     return changed
 
 
-def _sanitize_emotion_state(data: Any) -> Tuple[Dict[str, Any], bool]:
+def _sanitize_signal_state(data: Any) -> Tuple[Dict[str, Any], bool]:
     if not isinstance(data, dict):
         return {}, True
 
     changed = False
 
     # Fix top-level emotion keys (used directly by ORRIN_loop.py boot/cycle code)
-    changed |= _fix_emotion_dict(data)
+    changed |= _fix_signal_dict(data)
 
     # Fix nested core_signals sub-dict (used by signal_utils, memory_io, etc.)
     core = data.get("core_signals")
     if isinstance(core, dict):
-        changed |= _fix_emotion_dict(core)
+        changed |= _fix_signal_dict(core)
     elif core is not None:
         # core_signals exists but is the wrong type — reset to empty dict
         data["core_signals"] = {}
@@ -179,7 +179,7 @@ def sanitize_all(paths_module=None) -> Dict[str, int]:
     P = paths_module
     results: Dict[str, int] = {}
 
-    _run(getattr(P, "AFFECT_STATE_FILE", None), "affect_state", _sanitize_emotion_state, results)
+    _run(getattr(P, "AFFECT_STATE_FILE", None), "affect_state", _sanitize_signal_state, results)
     _run(getattr(P, "CYCLE_COUNT_FILE",      None), "cycle_count",     _sanitize_cycle_count,   results)
     _run(getattr(P, "BANDIT_STATE_FILE",     None), "bandit_state",    _sanitize_bandit_state,  results)
 

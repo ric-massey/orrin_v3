@@ -26,7 +26,7 @@ _INTROSPECTIVE_FNS = frozenset({
 _INTROSPECTIVE_KEYWORDS = ("reflect", "introspect", "consolidat", "self_state", "ident", "narrat", "meta")
 
 
-def _dreaming_now() -> bool:
+def _consolidating_now() -> bool:
     """True while the dream daemon is in the sleep phase."""
     try:
         from brain.cognition.idle_consolidation.consolidation_cycle import consolidating_now
@@ -68,7 +68,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         core = emo  # flat format
 
     penalties: list[str] = []
-    sleeping = _dreaming_now()
+    sleeping = _consolidating_now()
 
     # ── 1. RECURSIVE THOUGHT → RESOURCE_DEFICIT ────────────────────────────────────────
     # Each consecutive repeat past 2 drains energy. Thinking the same thought

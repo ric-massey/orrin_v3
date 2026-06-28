@@ -31,7 +31,7 @@ def write(daemon: Any, kind: str, content: str, meta: Optional[Dict[str, Any]] =
         _log.warning("memory_io.write failed: %s", e)
 
 
-def _dominant_mood(context: Dict[str, Any]) -> Optional[str]:
+def _dominant_state(context: Dict[str, Any]) -> Optional[str]:
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
     if not core:
@@ -48,7 +48,7 @@ def flush_working_memory(daemon: Any, context: Dict[str, Any]) -> None:
     if not wm:
         return
     tail = wm[-3:] if len(wm) > 3 else wm
-    mood_tag = _dominant_mood(context)
+    mood_tag = _dominant_state(context)
     cc = context.get("cycle_count") or {}
     cycle = cc.get("count", 0) if isinstance(cc, dict) else int(cc or 0)
     for entry in tail:

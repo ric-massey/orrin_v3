@@ -368,7 +368,7 @@ def effective_intensity(
 _MOOD_DRIFT_RATE = 0.018   # per-cycle drift toward current valence
 _MOOD_INITIAL    = 0.0
 
-def update_mood(state: Dict[str, Any], valence: float) -> float:
+def update_smoothed_state(state: Dict[str, Any], valence: float) -> float:
     """
     Drift mood slowly toward current valence.
     Returns updated mood in [-1, +1].
@@ -379,7 +379,7 @@ def update_mood(state: Dict[str, Any], valence: float) -> float:
     state["smoothed_state"] = mood  # was "mood" key
     return mood
 
-def mood_delta_modifier(mood: float, delta: float) -> float:
+def smoothed_state_delta_modifier(mood: float, delta: float) -> float:
     """
     Scale an appraisal delta by current mood.
     Good mood (>0): amplifies positive deltas, dampens negative.

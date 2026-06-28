@@ -40,7 +40,7 @@ def emit_trace(**payload) -> None:
         log_model_issue(f"Trace emit failed: {_e}")
 
 
-def emotional_delta_reward(pre: dict, post: dict) -> float:
+def signal_delta_reward(pre: dict, post: dict) -> float:
     """
     Derive a [0, 1] reward from the change in emotional state caused by a function.
     Positive delta on exploration_drive/confidence/reward_positive/motivation → higher reward.

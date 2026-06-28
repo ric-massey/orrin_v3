@@ -418,7 +418,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
 
     # ── Wonder: apply sitting-with bias when wonder is elevated ──
     try:
-        from brain.cognition.novelty import apply_wonder_bias as _awb
+        from brain.cognition.novelty import apply_novelty_bias as _awb
         _awb(context)
     except Exception as e:
         record_failure("ORRIN_loop.wonder_bias", e)

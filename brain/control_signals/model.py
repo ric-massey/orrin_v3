@@ -104,7 +104,7 @@ DEFAULT_EMOTION_KEYWORDS: Dict[str, List[str]] = {
 }
 
 
-def seed_default_emotion_keywords(force: bool = False) -> bool:
+def seed_default_signal_keywords(force: bool = False) -> bool:
     """Seed AFFECT_MODEL_FILE from DEFAULT_EMOTION_KEYWORDS when it is missing
     or empty (or unconditionally with force=True). Returns True if it wrote.
 
@@ -124,7 +124,7 @@ def seed_default_emotion_keywords(force: bool = False) -> bool:
     return False
 
 
-def load_emotion_keywords() -> Dict[str, List[str]]:
+def load_signal_keywords() -> Dict[str, List[str]]:
     """Load emotion->keywords map, normalized to {str: [str, ...]}."""
     try:
         raw: Any = load_json(AFFECT_MODEL_FILE, default_type=dict)

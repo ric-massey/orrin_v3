@@ -50,7 +50,7 @@ def run(ctx: RuntimeContext) -> None:
         )
         ctx.cog_thread.start()
         print("[brain] cognitive loop thread started")
-        lifecycle.maybe_start_vital_calibration_stress(ctx)
+        lifecycle.maybe_start_resource_calibration_stress(ctx)
         try:
             from brain.utils import boot_events as _boot
             _boot.emit("Starting cognition")

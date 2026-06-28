@@ -81,7 +81,7 @@ _bands: BodyBands | None = None          # wake-phase envelope
 _dream_bands: BodyBands | None = None    # sleep-phase envelope
 
 
-def _is_dreaming() -> bool:
+def _is_consolidating() -> bool:
     """True while a dream cycle is in flight. Lazy + fail-safe: if the dream module
     can't be reached we treat it as awake (the conservative direction — the wake
     band still alarms on departure)."""
@@ -181,7 +181,7 @@ def compute_body_states(vitals: Dict[str, float]) -> List[str]:
     Phase-aware (§3.2 SL2): during a dream the vitals are observed into, and
     measured against, a SEPARATE sleep-phase band, so the dream's own heavy
     consolidation reads as normal-for-sleeping rather than as distress."""
-    dreaming = _is_dreaming()
+    dreaming = _is_consolidating()
     bands = _get_bands(dreaming)
 
     rss    = vitals.get("rss_mb", 0.0)
@@ -363,7 +363,7 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception:
         prior = {}
 
-    dreaming = _is_dreaming()
+    dreaming = _is_consolidating()
     bands = _get_bands(dreaming)   # the phase compute_body_states just observed into
     body_sense = {
         "body_states": felt,

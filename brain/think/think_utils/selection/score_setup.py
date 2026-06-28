@@ -14,7 +14,7 @@ from typing import Any, Callable, Dict, List, Optional
 from brain.config import tuning as _tuning
 from brain.utils.failure_counter import record_failure
 from brain.think.think_utils.selection.scoring import (
-    _emotion_pref_scores_for_dominant, _semantic_emotion_prior, _bandit_hint_scores,
+    _signal_pref_scores_for_dominant, _semantic_signal_prior, _bandit_hint_scores,
 )
 from brain.think.think_utils.selection.state import (
     _get_directive_text, _get_focus_goal_text, _recent_picks_from_ctx,
@@ -46,12 +46,12 @@ def build_score_inputs(
     focus_goal_text = _get_focus_goal_text()
     recent = _recent_picks_from_ctx(context)
     dominant, stagnation_signal = _dominant_signal_and_stagnation_signal(context)
-    emo_pref = _emotion_pref_scores_for_dominant(actions)
+    emo_pref = _signal_pref_scores_for_dominant(actions)
     band_hint = _bandit_hint_scores(actions, feats)
 
     # Semantic emotion priors: fire immediately from cycle 1.
     # As the learned map fills in, learned scores gain weight (0.5 each when both present).
-    sem_prior = _semantic_emotion_prior(actions, dominant)
+    sem_prior = _semantic_signal_prior(actions, dominant)
 
     # Weights: emotion raised to 0.25 now that it carries real signal.
     # Novelty weight reduced (was 0.20) — was driving look_outward to 33% of cycles.

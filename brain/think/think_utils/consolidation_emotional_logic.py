@@ -13,7 +13,7 @@ from brain.paths import AFFECT_STATE_FILE
 import json  # NEW
 
 
-def dreams_and_emotional_logic(context):
+def idle_consolidation_logic(context):
     """
     Handles dreaming, drift checks, behavior generation (side effects),
     emotion reflection, feedback application, threat_detector pass, and state update.

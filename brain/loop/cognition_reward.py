@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from brain.think.loop_helpers import emotional_delta_reward, blend_reward
+from brain.think.loop_helpers import signal_delta_reward, blend_reward
 from brain.utils.failure_counter import record_failure
 from brain.loop.constants import _OUTWARD_FNS
 
@@ -41,9 +41,9 @@ def shape_cognition_reward(
     _is_failure = is_failure
 
     # Blend: env-delta (40%) + status (20%) + emotional delta (40%).
-    # emotional_delta_reward captures how the function actually moved
+    # signal_delta_reward captures how the function actually moved
     # Orrin's internal state — the reward signal the bandit was missing.
-    _emo_r = emotional_delta_reward(_emo_pre, _emo_post)
+    _emo_r = signal_delta_reward(_emo_pre, _emo_post)
     base_reward = blend_reward(0.6 * _env_r + 0.4 * _status_r, _emo_r)
     _blended_reward = base_reward
     try:
@@ -191,7 +191,7 @@ def shape_cognition_reward(
     # penalizes look_outward as a connection substitute; this bonus
     # creates the opposing pull toward genuine restorative solo work.
     _INTROVERT_FNS = frozenset({
-        "run_symbolic_dream", "run_rule_compression",
+        "run_symbolic_consolidation", "run_rule_compression",
         "run_forgetting_cycle", "run_symbolic_prediction_cycle",
         "reflect_on_affect", "narrative_update",
         "update_latent_identity", "propose_value_revision",
@@ -251,7 +251,7 @@ def shape_cognition_reward(
         "write_cognitive_function", "write_tool", "discover_new_emotion",
         "run_self_improvement", "reflect_on_affect", "reflect_on_emotion_model",
         "update_latent_identity", "narrative_update", "propose_value_revision",
-        "run_symbolic_dream", "run_rule_compression", "audit_reflective_claims",
+        "run_symbolic_consolidation", "run_rule_compression", "audit_reflective_claims",
         "investigate_unexplained_emotions", "detect_memory_contradictions",
         "repair_contradictions", "run_symbolic_prediction_cycle",
         "run_forgetting_cycle", "run_benchmark", "reflect_on_cognition_rhythm",

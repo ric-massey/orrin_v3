@@ -4,7 +4,7 @@ def test_sensory_stream_splits_home_and_world_sense(monkeypatch):
     stream = InputStream()
     monkeypatch.setattr(
         stream,
-        "_system_vitals",
+        "_system_resources",
         lambda: {"cpu_percent": 12.0, "memory_percent": 40.0, "memory_available_gb": 4.2, "disk_percent": 55.0},
     )
     monkeypatch.setattr(stream, "_detect_code_changes", lambda: False)

@@ -301,7 +301,7 @@ def _apply_strategy(
             core["impasse_signal"] = min(0.6, cur_impasse + 0.02)
 
 
-def _find_target_emotion(core: Dict[str, float]) -> Optional[Tuple[str, float]]:
+def _find_target_signal(core: Dict[str, float]) -> Optional[Tuple[str, float]]:
     """Find the highest-intensity eligible emotion above threshold."""
     candidates = []
     for emotion in _EMOTION_PRIORITY:
@@ -335,7 +335,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     # Measured-effect verdict for the previous attempt (regulation honesty).
     _verify_pending_effect(log, core, current_cycle)
 
-    target = _find_target_emotion(core)
+    target = _find_target_signal(core)
     if target is None:
         _save_log(log)
         return False

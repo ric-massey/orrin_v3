@@ -129,7 +129,7 @@ def _infrastructure_healthy() -> tuple[bool, str]:
     return True, ""
 
 
-def _apply_emotional_uplift(context: Dict[str, Any], deltas: Dict[str, float]) -> None:
+def _apply_signal_uplift(context: Dict[str, Any], deltas: Dict[str, float]) -> None:
     """Gently boost positive emotions in context['affect_state']."""
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
@@ -145,7 +145,7 @@ def _apply_emotional_uplift(context: Dict[str, Any], deltas: Dict[str, float]) -
     context["affect_state"] = emo
 
 
-def _apply_emotional_drain(context: Dict[str, Any], delta: float = 0.06) -> None:
+def _apply_signal_drain(context: Dict[str, Any], delta: float = 0.06) -> None:
     """Mild distress when health degrades."""
     emo = context.get("affect_state") or {}
     core = emo.get("core_signals") or emo
@@ -276,7 +276,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
                     state["milestones_fired"] = fired
 
                 # Emotional uplift
-                _apply_emotional_uplift(context, deltas)
+                _apply_signal_uplift(context, deltas)
 
                 # Bandit reward
                 _inject_bandit_reward(bandit_r)
@@ -313,7 +313,7 @@ def check_and_reward(context: Dict[str, Any]) -> None:
 
         # After several consecutive sick cycles, fire a distress signal
         if state["sick_streak"] >= _SICK_STREAK_REQ:
-            _apply_emotional_drain(context)
+            _apply_signal_drain(context)
             try:
                 from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({

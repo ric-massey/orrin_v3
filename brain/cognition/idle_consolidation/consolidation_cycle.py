@@ -134,7 +134,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     # Builds rule chains, analogy transfers, and surfaces contradictions from WM.
     # Done first so its insights are available to the LLM consolidation prompts.
     try:
-        from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
+        from brain.symbolic.symbolic_dream import run_symbolic_consolidation as _rsd
         _sym_dream_result = _rsd(context)
         log_activity(
             f"[dream] Symbolic pass: chains={_sym_dream_result.get('chains',0)} "
@@ -382,7 +382,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Check recombination output for wonder triggers
     try:
-        from brain.cognition.novelty import detect_wonder_trigger as _dwt
+        from brain.cognition.novelty import detect_novelty_trigger as _dwt
         if results.get("recombination"):
             _dwt(results["recombination"], context)
     except Exception as _e:

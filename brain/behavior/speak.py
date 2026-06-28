@@ -295,7 +295,7 @@ class OrrinSpeaker:
                 dominant_intensity = _v
                 dominant_signal = _ename
 
-        def _emotion_congruence(mem: Dict) -> float:
+        def _signal_congruence(mem: Dict) -> float:
             """Score boost if memory's stored emotion matches current dominant emotion."""
             if not dominant_signal or dominant_intensity < 0.2:
                 return 0.0
@@ -339,7 +339,7 @@ class OrrinSpeaker:
             if _ict is not None and _ict(content):
                 continue  # corruption artifacts (chunk headers, truncations)
             overlap = len(twords & set(content.lower().split()))
-            congruence = _emotion_congruence(m)
+            congruence = _signal_congruence(m)
             importance_w = float(m.get("importance", 1)) * 0.3
             if (overlap >= 2 or congruence >= 0.3) and 12 <= len(content) <= 180:
                 candidates.append((overlap + congruence + importance_w, content))
@@ -371,7 +371,7 @@ class OrrinSpeaker:
                 if 12 <= len(content) <= 180:
                     overlap    = len(twords & set(content.lower().split()))
                     strength   = float(rm.get("strength", 0.0) or 0.0)
-                    congruence = _emotion_congruence(rm)
+                    congruence = _signal_congruence(rm)
                     candidates.append((3.0 + overlap + strength * 2.5 + congruence, content))
 
         if not candidates:

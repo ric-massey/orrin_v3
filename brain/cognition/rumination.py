@@ -302,9 +302,9 @@ def _seed_from_context(
     # The threat_detector biases retrieval toward emotionally congruent content — memories
     # matching the current affective state get priority access (Bower 1981; Kensinger 2008).
     try:
-        from brain.cog_memory.working_memory import get_emotionally_salient_wm
+        from brain.cog_memory.working_memory import get_signal_salient_wm
         _activation_level = float((affect_state.get("activation_level") or affect_state.get("_ne_proxy") or 0.5))
-        salient_wm = get_emotionally_salient_wm(
+        salient_wm = get_signal_salient_wm(
             dominant_signal=dominant_ruminative,
             dominant_intensity=dominant_intensity,
             n=10,

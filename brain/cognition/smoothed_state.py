@@ -67,7 +67,7 @@ def _energy(core: Dict, emo: Dict) -> float:
 
 # ── Main entry point ───────────────────────────────────────────────────────────
 
-def update_mood(context: Dict[str, Any]) -> Dict:
+def update_smoothed_state(context: Dict[str, Any]) -> Dict:
     """
     Called each cycle from finalize.py.
     Updates EMA mood, applies amplification, sets context["_mood"].

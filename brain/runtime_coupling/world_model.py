@@ -121,7 +121,7 @@ class WorldModel:
         situation = self._classify_situation(snap, anomalies)
 
         # Causal layer: record the outcome quality of the PREVIOUS situation before overwriting it
-        quality = self._emotional_quality(context)
+        quality = self._signal_quality(context)
         if quality is not None:
             with self._lock:
                 self._situation_outcomes[self._prev_situation].append(quality)
@@ -451,7 +451,7 @@ class WorldModel:
     # Causal layer
 
     @staticmethod
-    def _emotional_quality(context: Optional[Dict[str, Any]]) -> Optional[float]:
+    def _signal_quality(context: Optional[Dict[str, Any]]) -> Optional[float]:
         """
         Proxy for how well Orrin is doing internally at this moment.
         Returns a [0,1] ratio of positive to total emotional activation.

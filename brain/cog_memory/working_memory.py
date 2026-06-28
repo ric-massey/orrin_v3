@@ -105,7 +105,7 @@ _DIGEST_RATE_LIMIT_S: float = 60.0
 
 
 
-def _emotion_name(e: Any) -> str:
+def _signal_name(e: Any) -> str:
     if isinstance(e, dict):
         return str(e.get("emotion", "neutral")).lower()
     return str(e or "neutral").lower()
@@ -144,7 +144,7 @@ def update_working_memory(
         entry.setdefault("id", str(uuid.uuid4()))
         entry.setdefault("timestamp", now)
         entry.setdefault("content", "")
-        entry.setdefault("emotion", emotion or _emotion_name(detect_affect_keyword(entry.get("content", ""))))
+        entry.setdefault("emotion", emotion or _signal_name(detect_affect_keyword(entry.get("content", ""))))
         entry.setdefault("event_type", event_type)
         entry.setdefault("agent", agent)
         entry.setdefault("importance", importance)
@@ -162,7 +162,7 @@ def update_working_memory(
         entry = {
             "id": str(uuid.uuid4()),
             "content": content,
-            "emotion": emotion or _emotion_name(detect_affect_keyword(content)),
+            "emotion": emotion or _signal_name(detect_affect_keyword(content)),
             "timestamp": now,
             "event_type": event_type,
             "agent": agent,
@@ -398,7 +398,7 @@ _EMOTION_VALENCE: dict = {
     "motivation": +1, "novelty_signal": +1, "gratitude": +1,
 }
 
-def _emotional_salience(entry: dict, dominant_signal: str, dominant_intensity: float) -> float:
+def _signal_salience(entry: dict, dominant_signal: str, dominant_intensity: float) -> float:
     """
     Score an entry by how salient it is given the current emotional state.
     Higher = more likely to surface in retrieval.
@@ -431,7 +431,7 @@ def _emotional_salience(entry: dict, dominant_signal: str, dominant_intensity: f
     return score
 
 
-def get_emotionally_salient_wm(
+def get_signal_salient_wm(
     dominant_signal: str = "",
     dominant_intensity: float = 0.5,
     n: int = 7,
@@ -453,7 +453,7 @@ def get_emotionally_salient_wm(
         return []
 
     def _ne_salience(m: dict) -> float:
-        base = _emotional_salience(m, dominant_signal, dominant_intensity)
+        base = _signal_salience(m, dominant_signal, dominant_intensity)
         # NE gain: high activation_level steepens the salience gradient so the most
         # charged items dominate. Entries below the noise floor get suppressed.
         if base > 2.0:

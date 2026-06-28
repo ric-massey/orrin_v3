@@ -152,7 +152,7 @@ def update_relationship_model(context):
 
             # Relationship emotional feedback: did this interaction meet Orrin's relational wants?
             # Pure computation (mutates r + context only) — safe to run under the lock.
-            _apply_relationship_emotion_feedback(r, emotion, old_depth, old_trust, context)
+            _apply_relationship_signal_feedback(r, emotion, old_depth, old_trust, context)
 
         # --- lock released; relationships.json already saved ---
 
@@ -276,7 +276,7 @@ def _update_their_impression_of_me(
     )
 
 
-def _apply_relationship_emotion_feedback(
+def _apply_relationship_signal_feedback(
     r: Dict[str, Any],
     emotion: str,
     old_depth: float,
@@ -336,7 +336,7 @@ def _apply_relationship_emotion_feedback(
         wants["understanding"] = round(min(1.0, max(0.0, float(wants.get("understanding",0.5)) + (0.05 if understanding_met else -0.03))), 3)
         wants["meaning"]       = round(min(1.0, max(0.0, float(wants.get("meaning",      0.5)) + (0.05 if meaning_met      else -0.03))), 3)
     except Exception as _e:
-        record_failure("relationships._apply_relationship_emotion_feedback", _e)
+        record_failure("relationships._apply_relationship_signal_feedback", _e)
 
 
 def update_person_model(user_id: str) -> None:

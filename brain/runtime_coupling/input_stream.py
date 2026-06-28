@@ -110,7 +110,7 @@ class InputStream:
         field: Dict[str, Any] = {}
 
         # System-wide vitals
-        field["system"] = self._system_vitals()
+        field["system"] = self._system_resources()
 
         # File-system change detection, split by felt zone. Home is the local
         # den/workspace; world is outside/unknown. Keep fs_changes as a legacy
@@ -136,9 +136,9 @@ class InputStream:
         field["home_sense"]["log_tail"] = field["log_tail"]
 
         # Derived moods. environment_mood remains as the legacy merged field.
-        field["home_sense"]["mood"] = self._derive_home_mood(field)
-        field["world_sense"]["mood"] = self._derive_world_mood(field)
-        field["environment_mood"] = self._derive_mood(field)
+        field["home_sense"]["mood"] = self._derive_home_state(field)
+        field["world_sense"]["mood"] = self._derive_world_state(field)
+        field["environment_mood"] = self._derive_state(field)
 
         field["sampled_at"] = time.time()
         return field
@@ -146,7 +146,7 @@ class InputStream:
     # ------------------------------------------------------------------
     # System vitals (whole machine, complements body_sense.py's per-process view)
 
-    def _system_vitals(self) -> Dict[str, float]:
+    def _system_resources(self) -> Dict[str, float]:
         vitals: Dict[str, float] = {}
         try:
             import psutil
@@ -172,7 +172,7 @@ class InputStream:
                     parts = lines[-1].split()
                     vitals["disk_percent"] = float(parts[4].rstrip("%"))
             except Exception as _e:
-                record_failure("sensory_stream.InputStream._system_vitals", _e)
+                record_failure("sensory_stream.InputStream._system_resources", _e)
         return vitals
 
     # ------------------------------------------------------------------
@@ -255,7 +255,7 @@ class InputStream:
     # ------------------------------------------------------------------
     # Derive moods from the sampled state
 
-    def _derive_home_mood(self, field: Dict[str, Any]) -> str:
+    def _derive_home_state(self, field: Dict[str, Any]) -> str:
         sys = field.get("system", {})
         cpu = sys.get("cpu_percent", 0.0)
         mem = sys.get("memory_percent", 0.0)
@@ -273,7 +273,7 @@ class InputStream:
             return "still"         # quiet, open
         return "ambient"           # baseline
 
-    def _derive_world_mood(self, field: Dict[str, Any]) -> str:
+    def _derive_world_state(self, field: Dict[str, Any]) -> str:
         world = field.get("world_sense") or {}
         changes = len(world.get("fs_changes", []))
         if changes > 5:
@@ -282,9 +282,9 @@ class InputStream:
             return "stirring"
         return "distant"
 
-    def _derive_mood(self, field: Dict[str, Any]) -> str:
-        home_mood = ((field.get("home_sense") or {}).get("mood")) or self._derive_home_mood(field)
-        world_mood = ((field.get("world_sense") or {}).get("mood")) or self._derive_world_mood(field)
+    def _derive_state(self, field: Dict[str, Any]) -> str:
+        home_mood = ((field.get("home_sense") or {}).get("mood")) or self._derive_home_state(field)
+        world_mood = ((field.get("world_sense") or {}).get("mood")) or self._derive_world_state(field)
         if home_mood in ("transformed", "pressured", "active"):
             return home_mood
         if world_mood in ("active", "stirring"):

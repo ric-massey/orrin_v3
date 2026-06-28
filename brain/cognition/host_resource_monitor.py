@@ -52,7 +52,7 @@ def _bands() -> BodyBands:
     return _host_bands
 
 
-def read_host_vitals() -> Dict[str, float]:
+def read_host_resources() -> Dict[str, float]:
     """Host-wide metrics (the WHOLE machine, tabs included — not Orrin's RSS). Same
     psutil calls HostResourceGuard uses; this is the felt-body read of them."""
     v: Dict[str, float] = {}
@@ -66,7 +66,7 @@ def read_host_vitals() -> Dict[str, float]:
             v["battery_percent"] = float(bat.percent)
             v["battery_plugged"] = 1.0 if bat.power_plugged else 0.0
     except Exception as e:
-        _log.warning("read_host_vitals failed: %s", e)
+        _log.warning("read_host_resources failed: %s", e)
     return v
 
 
@@ -85,7 +85,7 @@ def update_host_interoception(context: Dict) -> Dict:
     stress is deviation-based and suppressed during host somatic infancy; battery is
     handled separately as a real external mortality scale."""
     bands = _bands()
-    v = read_host_vitals()
+    v = read_host_resources()
 
     for name in ("disk_free_gb", "swap_used_gb", "vmem_percent"):
         if name in v:

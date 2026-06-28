@@ -101,7 +101,7 @@ _NOISE_PREFIX = (
 )
 
 
-def _emotional_experience(max_chars: int = 24000) -> str:
+def _signal_experience(max_chars: int = 24000) -> str:
     """
     His own memories, weighted by the emotional WEIGHT they carry — read from the
     SAME affect fields (`emotional_context`, `importance`) his memory system uses.
@@ -113,7 +113,7 @@ def _emotional_experience(max_chars: int = 24000) -> str:
     try:
         lm = load_json(LONG_MEMORY_FILE, default_type=list) or []
     except Exception as exc:  # data/schema: record so a persistent read failure isn't invisible
-        record_failure("acquisition._emotional_experience", exc)
+        record_failure("acquisition._signal_experience", exc)
         return ""
     weighted: List[str] = []
     for e in lm[-400:]:
@@ -435,7 +435,7 @@ def experience_corpus(max_chars: int = 300000) -> str:
     distribution shock when the lifelong loop takes over), not just public-domain
     books."""
     parts: List[str] = []
-    for fn in (_read_prose, _conversations, _emotional_experience, _felt_narrative,
+    for fn in (_read_prose, _conversations, _signal_experience, _felt_narrative,
                _inner_monologue, grounded_experience, _dialogue_experience, _learned_words):
         try:
             t = fn()
@@ -521,7 +521,7 @@ def consolidate_language(steps: int = 60) -> Dict:
     conv = _conversations()
     if conv:
         parts += [conv, conv]                # upweight social language
-    emo = _emotional_experience()            # memories weighted by felt weight
+    emo = _signal_experience()            # memories weighted by felt weight
     if emo:
         parts.append(emo)
     felt = _felt_narrative()                 # his own felt summaries of experience

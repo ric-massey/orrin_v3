@@ -9,7 +9,7 @@ from brain.cog_memory.long_memory import update_long_memory
 from brain.utils.embedder import get_embedding
 from brain.utils.log import log_private, log_error
 
-def _emotion_name(e: Any) -> str:
+def _signal_name(e: Any) -> str:
     if isinstance(e, dict):
         return str(e.get("emotion", "neutral")).lower()
     return str(e or "neutral").lower()
@@ -55,7 +55,7 @@ def summarize_and_promote_working_memory(memories: List[Dict[str, Any]]) -> None
 
     summary_entry = {
         "content": content_str,
-        "emotion": _emotion_name(detect_affect_keyword(summary_text)),
+        "emotion": _signal_name(detect_affect_keyword(summary_text)),
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "event_type": "summary",
         "agent": "orrin",

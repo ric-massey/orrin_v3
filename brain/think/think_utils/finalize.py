@@ -437,8 +437,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.21", _e)
 
     try:
-        from brain.cognition.smoothed_state import update_mood
-        update_mood(context)
+        from brain.cognition.smoothed_state import update_smoothed_state
+        update_smoothed_state(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.22", _e)
 

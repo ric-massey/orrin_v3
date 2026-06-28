@@ -48,14 +48,14 @@ _IDENTITY_AFFIRM_RE = re.compile(
 )
 
 
-def _emotion_name(e: Any) -> str:
+def _signal_name(e: Any) -> str:
     """Coerce an emotion (possibly dict from detect_affect) into a lowercase string."""
     if isinstance(e, dict):
         return str(e.get("emotion", "neutral")).lower()
     return str(e or "neutral").lower()
 
 
-def _snapshot_emotion(context: Optional[dict]) -> dict:
+def _snapshot_signal(context: Optional[dict]) -> dict:
     """Capture key emotion intensities from context at the moment of storage."""
     if not context:
         return {}
@@ -72,7 +72,7 @@ def _snapshot_emotion(context: Optional[dict]) -> dict:
     return snapshot
 
 
-def _emotion_importance_boost(emotional_snapshot: dict) -> int:
+def _signal_importance_boost(emotional_snapshot: dict) -> int:
     """Return 0–2 importance bonus for memories formed during high-emotion moments."""
     if not emotional_snapshot:
         return 0
@@ -107,8 +107,8 @@ def update_long_memory(
     """Append a new event to long-term memory, with duplicate prevention and embedding generation."""
     now = datetime.now(timezone.utc).isoformat()
 
-    emotional_snapshot = _snapshot_emotion(context)
-    emotion_boost = _emotion_importance_boost(emotional_snapshot)
+    emotional_snapshot = _snapshot_signal(context)
+    emotion_boost = _signal_importance_boost(emotional_snapshot)
 
     # Build the entry from either a dict or a string
     if isinstance(new, dict):
@@ -129,7 +129,7 @@ def update_long_memory(
         if extra and isinstance(extra, dict):
             for k, v in extra.items():
                 entry.setdefault(k, v)
-        entry["emotion"] = _emotion_name(emotion or detect_affect_keyword(content))
+        entry["emotion"] = _signal_name(emotion or detect_affect_keyword(content))
         if emotional_snapshot and not entry.get("emotional_context"):
             entry["emotional_context"] = emotional_snapshot
     elif isinstance(new, str):
@@ -138,7 +138,7 @@ def update_long_memory(
             "id": str(uuid.uuid4()),
             "timestamp": now,
             "content": content,
-            "emotion": _emotion_name(emotion or detect_affect_keyword(content)),
+            "emotion": _signal_name(emotion or detect_affect_keyword(content)),
             "emotional_context": emotional_snapshot,
             "event_type": event_type,
             "agent": agent,
@@ -278,7 +278,7 @@ def reevaluate_memory_significance() -> None:
             continue
 
         content = str(mem.get("content", "")).lower()
-        emotion = _emotion_name(mem.get("emotion", "neutral"))
+        emotion = _signal_name(mem.get("emotion", "neutral"))
         score = int(mem.get("effectiveness_score") or 5)
 
         # Reward memories tagged as lessons or containing strong affective content
@@ -331,7 +331,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
     def memory_score(mem: dict) -> int:
         try:
             score = 0
-            emotion = _emotion_name(mem.get("emotion", ""))
+            emotion = _signal_name(mem.get("emotion", ""))
             content = str(mem.get("content", "")).lower()
 
             if emotion in STRONG_EMOTIONS:
@@ -446,7 +446,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
                         "id": str(uuid.uuid4()),
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "content": _summary_content,
-                        "emotion": _emotion_name(detect_affect_keyword(summary)),
+                        "emotion": _signal_name(detect_affect_keyword(summary)),
                         "event_type": "memory_prune_summary",
                         "agent": "orrin",
                         "importance": 1,

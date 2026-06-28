@@ -73,7 +73,7 @@ export const THOUGHTS: Record<string, string> = {
   symbolic_route: "symbolic_route() · rule-engine inference",
   run_symbolic_prediction_cycle: "run_symbolic_prediction_cycle() · symbolic forecast",
   run_rule_compression: "run_rule_compression() · rule-set compaction",
-  run_symbolic_dream: "run_symbolic_dream() · offline symbolic recombination",
+  run_symbolic_consolidation: "run_symbolic_consolidation() · offline symbolic recombination",
 
   // Self-improvement / self-code
   run_self_improvement: "run_self_improvement() · self-tuning pass",

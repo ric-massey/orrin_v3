@@ -13,9 +13,9 @@ from brain.utils.log import log_error, log_private
 # here so the two storage paths share one implementation (structure audit §8).
 from brain.cog_memory.long_memory import (
     DUPLICATE_WINDOW,
-    _emotion_name,
-    _snapshot_emotion,
-    _emotion_importance_boost,
+    _signal_name,
+    _snapshot_signal,
+    _signal_importance_boost,
 )
 
 
@@ -68,9 +68,9 @@ def remember(
         log_error(f"remember: embedding failed: {exc}")
         emb = []
 
-    detected = _emotion_name(emotion or detect_affect_keyword(content_str))
-    emotional_snapshot = _snapshot_emotion(context)
-    importance = min(10, importance + _emotion_importance_boost(emotional_snapshot))
+    detected = _signal_name(emotion or detect_affect_keyword(content_str))
+    emotional_snapshot = _snapshot_signal(context)
+    importance = min(10, importance + _signal_importance_boost(emotional_snapshot))
 
     entry = {
         "id": str(uuid.uuid4()),

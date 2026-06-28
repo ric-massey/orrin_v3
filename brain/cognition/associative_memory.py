@@ -53,7 +53,7 @@ _EMOTION_FAMILIES: List[frozenset] = [
 ]
 
 
-def _emotion_resonance(mem_emotion: str, current_core: Dict) -> float:
+def _signal_resonance(mem_emotion: str, current_core: Dict) -> float:
     """
     How much does this memory's single emotion tag resonate with current state?
     - Exact match on a currently-dominant emotion: 0.9
@@ -138,7 +138,7 @@ def _recency_decay(mem_ts: str) -> float:
 
 
 def _score(memory: Dict, current_core: Dict, wm_words: frozenset) -> float:
-    er    = _emotion_resonance(memory.get("emotion", ""), current_core)
+    er    = _signal_resonance(memory.get("emotion", ""), current_core)
     so    = _semantic_overlap(str(memory.get("content") or ""), wm_words)
     tr    = _temporal_resonance(memory.get("timestamp") or memory.get("created_at") or "")
     decay = _recency_decay(memory.get("timestamp") or memory.get("created_at") or "")

@@ -11,7 +11,7 @@ from brain.utils.affect_signal_utils import dominant_signal
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
-from brain.think.think_utils.consolidation_emotional_logic import dreams_and_emotional_logic
+from brain.think.think_utils.consolidation_emotional_logic import idle_consolidation_logic
 from brain.think.think_utils.reflect_on_directive import reflect_on_directive
 from brain.think.think_utils.select_function import select_function  # NEW API supports legacy triple if kwargs passed
 from brain.think.think_utils.finalize import finalize_cycle
@@ -112,7 +112,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         speaker                   = context.get("speaker", OrrinSpeaker(self_model, long_memory))
 
         # === 2) Dreams & emotional logic ===
-        context, affect_state, threat_detector_response = dreams_and_emotional_logic(context)
+        context, affect_state, threat_detector_response = idle_consolidation_logic(context)
 
         # === 2b) Introspective perception — imperfect by design ===
         # Computes what Orrin *thinks* he feels, which may differ from ground truth.

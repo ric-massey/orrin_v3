@@ -165,19 +165,19 @@ def build() -> WatchdogInputs:
     sustain_s = max(0.5, sustain_s)
     calibration_sample_s = max(0.2, calibration_sample_s)
 
-    def vital_on_warn(msg: str) -> None:
+    def resource_on_warn(msg: str) -> None:
         print(f"[vital] WARN {msg}")
         _host_flag("warn", msg)
 
-    def vital_on_shed(msg: str) -> None:
+    def resource_on_shed(msg: str) -> None:
         print(f"[vital] SHED — {msg}")
         _host_flag("pause", msg)
 
-    def vital_on_recover(msg: str) -> None:
+    def resource_on_recover(msg: str) -> None:
         print(f"[vital] recover — {msg}")
         _host_flag("ok", msg)
 
-    def vital_shed_action(reason: str) -> None:
+    def resource_shed_action(reason: str) -> None:
         """The autonomic gasp: let go of the heaviest disposable thing, in priority
         order, until Orrin is back above his granted-body floor. Reversible, never
         fatal. Only called when the guard is armed (not observe-only).
@@ -216,10 +216,10 @@ def build() -> WatchdogInputs:
         host_on_resume=host_on_resume,
         get_own_rss_bytes=get_own_rss_bytes,
         get_budget_bytes=get_budget_bytes,
-        vital_on_warn=vital_on_warn,
-        vital_on_shed=vital_on_shed,
-        vital_on_recover=vital_on_recover,
-        vital_shed_fn=vital_shed_action,
+        resource_on_warn=resource_on_warn,
+        resource_on_shed=resource_on_shed,
+        resource_on_recover=resource_on_recover,
+        vital_shed_fn=resource_shed_action,
         vital_warn_frac=warn_frac,
         vital_shed_frac=shed_frac,
         vital_recover_frac=recover_frac,

@@ -43,7 +43,7 @@ def patched(monkeypatch, tmp_path):
     monkeypatch.setattr(ui_mod, "read_recent_errors_jsonl", lambda *a, **k: [])
 
     import brain.cognition.novelty as wonder_mod
-    monkeypatch.setattr(wonder_mod, "detect_wonder_trigger", lambda *a, **k: None)
+    monkeypatch.setattr(wonder_mod, "detect_novelty_trigger", lambda *a, **k: None)
     import brain.cognition.comprehension as comp_mod
     monkeypatch.setattr(comp_mod, "comprehend", lambda *a, **k: None)
     import brain.cognition.self_state.values_check as vc_mod

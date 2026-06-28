@@ -255,7 +255,7 @@ def handle_user_input(
         try:
             # Wonder trigger detection — runs on every user input
             try:
-                from brain.cognition.novelty import detect_wonder_trigger as _dwt
+                from brain.cognition.novelty import detect_novelty_trigger as _dwt
                 _dwt(user_input, context)
             except Exception as _e:
                 record_failure("user_input.handle_user_input.2", _e)
@@ -269,8 +269,8 @@ def handle_user_input(
             except Exception:
                 # Fallback: raw contagion if comprehension unavailable
                 try:
-                    from brain.cognition.contagion import apply_emotional_contagion
-                    apply_emotional_contagion(user_input, context, influence=influence)
+                    from brain.cognition.contagion import apply_signal_contagion
+                    apply_signal_contagion(user_input, context, influence=influence)
                 except Exception as _e:
                     record_failure("user_input.handle_user_input.3", _e)
 

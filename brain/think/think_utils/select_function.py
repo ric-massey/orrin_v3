@@ -32,7 +32,7 @@ from brain.think.think_utils.selection.pick import (
 from brain.think.think_utils.selection.score_setup import build_score_inputs
 from brain.think.think_utils.selection.score_actions import score_candidates
 from brain.think.think_utils.selection.scoring import (  # noqa: F401
-    _SEMANTIC_PRIORS, _emotion_pref_scores_for_dominant, _semantic_emotion_prior,
+    _SEMANTIC_PRIORS, _signal_pref_scores_for_dominant, _semantic_signal_prior,
     _devalue_prior, _novelty_score, _bandit_pick_with_info, _bandit_hint_scores,
     _ensure_min_candidates,
 )

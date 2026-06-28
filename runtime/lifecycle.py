@@ -332,7 +332,7 @@ def make_on_signal(ctx: RuntimeContext):
     return _on_signal
 
 
-def maybe_start_vital_calibration_stress(ctx: RuntimeContext) -> None:
+def maybe_start_resource_calibration_stress(ctx: RuntimeContext) -> None:
     mode = os.environ.get("ORRIN_VITAL_CALIBRATION_STRESS", "").strip().lower()
     if not mode:
         return

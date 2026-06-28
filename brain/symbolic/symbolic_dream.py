@@ -40,7 +40,7 @@ _MAX_TRANSFERS   = 6
 _MIN_CHAIN_SCORE = 0.38
 
 
-def run_symbolic_dream(context: Optional[Dict] = None) -> Dict:
+def run_symbolic_consolidation(context: Optional[Dict] = None) -> Dict:
     """
     Zero-LLM dream pass.  Returns summary of insights generated.
     """
@@ -99,7 +99,7 @@ def run_symbolic_dream(context: Optional[Dict] = None) -> Dict:
         existing.append(entry)
         save_json(SYMBOLIC_DREAM_LOG, existing[-50:])
     except Exception as _e:
-        record_failure("symbolic_dream.run_symbolic_dream", _e)
+        record_failure("symbolic_dream.run_symbolic_consolidation", _e)
 
     log_activity(
         f"[sym_dream] Complete: {len(chain_insights)} chain(s), "

@@ -240,7 +240,7 @@ def _log_crystallization(
 
 # ─── Dream-cycle hook ────────────────────────────────────────────────────────
 
-def crystallize_dream_insights(dream_entry: Dict) -> int:
+def crystallize_idle_insights(dream_entry: Dict) -> int:
     """
     Call from idle_consolidation_cycle.py after a completed cycle.
     Crystallizes consolidation + processing insights into permanent rules.

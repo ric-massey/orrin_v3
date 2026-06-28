@@ -23,7 +23,7 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
     # Knowledge crystallization — extract permanent rules from dream insights.
     # Runs after skill synthesis so synthesized code and dream text are both available.
     try:
-        from brain.symbolic.crystallization import crystallize_dream_insights as _cdi
+        from brain.symbolic.crystallization import crystallize_idle_insights as _cdi
         _cryst_count = _cdi(dream_entry)
         if _cryst_count:
             log_activity(f"[dream] crystallized {_cryst_count} new symbolic rule(s) from dream insights")

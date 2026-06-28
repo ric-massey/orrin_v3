@@ -249,7 +249,7 @@ _BLOCKED_WORDS = frozenset({
 })
 
 
-def _anticipatory_emotions(context: Dict[str, Any], core: Dict[str, Any]) -> Optional[str]:
+def _anticipatory_signals(context: Dict[str, Any], core: Dict[str, Any]) -> Optional[str]:
     """
     Generate anticipatory emotional states from committed goals and social context.
     Returns a label describing what kind of anticipation fired, or None.
@@ -414,7 +414,7 @@ def _apply(context: Dict[str, Any]) -> Dict[str, Any]:
                 core["impasse_signal"] = min(1.0, float(core.get("impasse_signal") or 0.0) + bump)
 
     # ── 2. Anticipatory emotions (forward-looking, from goals + social) ──────
-    anticip_type = _anticipatory_emotions(context, core)
+    anticip_type = _anticipatory_signals(context, core)
 
     # ── 3. Scheduled task queue ───────────────────────────────────────────────
     fired = _drain_scheduled_tasks()

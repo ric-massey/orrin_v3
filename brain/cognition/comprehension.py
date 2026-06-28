@@ -89,8 +89,8 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
     # Emotional contagion from parsed emotion (more precise than raw keyword detection)
     if emotion not in ("neutral", "unknown", "") and intensity > 0.05:
         try:
-            from brain.cognition.contagion import apply_emotional_contagion
-            apply_emotional_contagion(user_text, context)
+            from brain.cognition.contagion import apply_signal_contagion
+            apply_signal_contagion(user_text, context)
         except Exception as _e:
             record_failure("comprehension._apply_to_state", _e)
 

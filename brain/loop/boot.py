@@ -377,13 +377,13 @@ def _boot_context() -> Context:
         from brain.symbolic.prediction_engine import run_symbolic_prediction_cycle as _rspc
         from brain.symbolic.rule_forgetting import run_forgetting_cycle as _rfc
         from brain.symbolic.rule_compressor import run_rule_compression as _rrc
-        from brain.symbolic.symbolic_dream import run_symbolic_dream as _rsd
+        from brain.symbolic.symbolic_dream import run_symbolic_consolidation as _rsd
         from brain.symbolic.host_actions import run_embodied_cycle as _rec2
         COGNITIVE_FUNCTIONS["run_benchmark"]                 = {"function": _rb,   "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_symbolic_prediction_cycle"] = {"function": _rspc, "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_forgetting_cycle"]          = {"function": _rfc,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_rule_compression"]          = {"function": _rrc,  "is_cognition": True}
-        COGNITIVE_FUNCTIONS["run_symbolic_dream"]            = {"function": _rsd,  "is_cognition": True}
+        COGNITIVE_FUNCTIONS["run_symbolic_consolidation"]            = {"function": _rsd,  "is_cognition": True}
         COGNITIVE_FUNCTIONS["run_embodied_cycle"]            = {"function": _rec2, "is_cognition": True}
     except Exception as e:
         log_error(f"Failed to register symbolic cycle functions: {e}")

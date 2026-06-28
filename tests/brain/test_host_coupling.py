@@ -82,7 +82,7 @@ def test_host_interoception_silent_in_infancy(monkeypatch):
     import brain.cognition.host_resource_monitor as hi
     hi._host_bands = None
     # Force a tiny sample set → host bands not converged → infancy → no felt stress.
-    monkeypatch.setattr(hi, "read_host_vitals", lambda: {
+    monkeypatch.setattr(hi, "read_host_resources", lambda: {
         "disk_free_gb": 1.0, "swap_used_gb": 9.0, "vmem_percent": 99.0,
     })
     ctx = {}
@@ -102,7 +102,7 @@ def test_host_interoception_feels_departure_after_convergence(monkeypatch):
         g.observe("vmem_percent", 60 + 4 * math.sin(i / 5.0))
     assert not g.in_infancy()
     # Now a genuine swap climb far above the learned band → "sluggish".
-    monkeypatch.setattr(hi, "read_host_vitals", lambda: {
+    monkeypatch.setattr(hi, "read_host_resources", lambda: {
         "disk_free_gb": 200.0, "swap_used_gb": 6.0, "vmem_percent": 60.0,
     })
     out = hi.update_host_interoception({})
@@ -117,7 +117,7 @@ def test_battery_drain_is_felt_gently(monkeypatch):
         g.observe("disk_free_gb", 200.0)
         g.observe("swap_used_gb", 1.0)
         g.observe("vmem_percent", 60.0)
-    monkeypatch.setattr(hi, "read_host_vitals", lambda: {
+    monkeypatch.setattr(hi, "read_host_resources", lambda: {
         "disk_free_gb": 200.0, "swap_used_gb": 1.0, "vmem_percent": 60.0,
         "battery_percent": 10.0, "battery_plugged": 0.0,
     })

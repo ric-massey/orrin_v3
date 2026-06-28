@@ -79,7 +79,7 @@ _SEMANTIC_PRIORS: Dict[str, Dict[str, float]] = {
 }
 
 
-def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
+def _signal_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
     """
     Use *only existing state* to bias functions by emotion:
     - First look inside AFFECT_STATE_FILE:
@@ -112,7 +112,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
                     if fn in actions and isinstance(wt, (int, float)):
                         pref[fn] = float(wt)
         except Exception as _e:
-            record_failure("select_function._emotion_pref_scores_for_dominant", _e)
+            record_failure("select_function._signal_pref_scores_for_dominant", _e)
 
     if not pref:
         return {}
@@ -129,7 +129,7 @@ def _emotion_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
 
 
 
-def _semantic_emotion_prior(actions: List[str], dominant: str) -> Dict[str, float]:
+def _semantic_signal_prior(actions: List[str], dominant: str) -> Dict[str, float]:
     """
     Return semantic prior scores [0..1] for actions based on dominant emotion.
     Uses the hard-coded _SEMANTIC_PRIORS table so emotion drives selection from

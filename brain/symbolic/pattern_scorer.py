@@ -200,7 +200,7 @@ def _grounding_score(domain: str) -> float:
 
 # ─── Component 3: Emotional valence ──────────────────────────────────────────
 
-def _emotional_valence(query: str, context: Dict) -> Tuple[float, float]:
+def _signal_valence(query: str, context: Dict) -> Tuple[float, float]:
     """
     Fast valence and activation_level from current emotional state.
     valence: -1.0 (aversive) → +1.0 (appetitive)
@@ -230,7 +230,7 @@ def _emotional_valence(query: str, context: Dict) -> Tuple[float, float]:
         valence = max(-1.0, min(1.0, valence))
         activation_level = max(0.0,  min(1.0, activation_level))
     except Exception as _e:
-        record_failure("pattern_scorer._emotional_valence", _e)
+        record_failure("pattern_scorer._signal_valence", _e)
 
     return valence, activation_level
 
@@ -314,7 +314,7 @@ def score_signal(query: str, context: Optional[Dict] = None) -> Dict:
     domain      = _infer_domain(tokens)
     familiarity = _pattern_familiarity(tokens, domain)
     grounding   = _grounding_score(domain)
-    valence, activation_level = _emotional_valence(query, ctx)
+    valence, activation_level = _signal_valence(query, ctx)
     abstraction = _classify_abstraction(query, tokens)
     confidence  = _compute_pattern_confidence(familiarity, grounding, domain, ctx)
 

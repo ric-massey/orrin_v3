@@ -3,8 +3,8 @@
 # unfittable content — spikes the wonder emotion, biases function selection
 # toward sitting-with rather than acting-on, and increases dream-cycle weight.
 #
-# detect_wonder_trigger(text, context)  — call on each user input and memory
-# apply_wonder_bias(context)            — call from signal_router/loop to bias selection
+# detect_novelty_trigger(text, context)  — call on each user input and memory
+# apply_novelty_bias(context)            — call from signal_router/loop to bias selection
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
@@ -41,7 +41,7 @@ _WONDER_SPIKE = 0.18     # how much wonder rises on trigger
 _WONDER_MAX   = 0.85     # cap so wonder doesn't overwhelm everything
 
 
-def detect_wonder_trigger(text: str, context: Dict[str, Any]) -> float:
+def detect_novelty_trigger(text: str, context: Dict[str, Any]) -> float:
     """
     Scan text for wonder triggers. If found, spike wonder in affect_state.
     Returns the spike amount (0.0 if no trigger).
@@ -81,7 +81,7 @@ def detect_wonder_trigger(text: str, context: Dict[str, Any]) -> float:
             context=context,
         )
     except Exception as _e:
-        record_failure("wonder.detect_wonder_trigger", _e)
+        record_failure("wonder.detect_novelty_trigger", _e)
 
     return spike
 
@@ -102,7 +102,7 @@ def _apply_spike(spike: float, context: Dict[str, Any]) -> None:
     context["affect_state"] = emo
 
 
-def apply_wonder_bias(context: Dict[str, Any]) -> None:
+def apply_novelty_bias(context: Dict[str, Any]) -> None:
     """
     When wonder is high, inject a 'sit_with_wonder' signal that routes toward
     reflective/introspective functions rather than action-oriented ones.
@@ -126,7 +126,7 @@ def apply_wonder_bias(context: Dict[str, Any]) -> None:
         )
         context.setdefault("raw_signals", []).append(sig)
     except Exception as _e:
-        record_failure("wonder.apply_wonder_bias", _e)
+        record_failure("wonder.apply_novelty_bias", _e)
 
     # Bias: mark context so cognition selection can weight toward reflection
     context["_wonder_bias"] = wonder

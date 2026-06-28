@@ -48,7 +48,7 @@ _MAX_BLEED = 0.42   # ceiling — Orrin can't be overwhelmed even by intense aff
 _MIN_BLEED = 0.08   # floor — always a trace effect from genuine affect
 
 
-def apply_emotional_contagion(
+def apply_signal_contagion(
     user_text: str,
     context: Dict[str, Any],
     influence: float = 0.5,

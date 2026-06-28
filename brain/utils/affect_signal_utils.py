@@ -101,10 +101,10 @@ _warned_no_emotion_keywords = False
 
 
 def detect_affect_keyword(text: str) -> str:
-    from brain.control_signals.model import load_emotion_keywords  # deferred (keeps utils L1 at load time)
+    from brain.control_signals.model import load_signal_keywords  # deferred (keeps utils L1 at load time)
     global _warned_no_emotion_keywords
     text = (text or "").lower()
-    emotion_keywords = load_emotion_keywords()
+    emotion_keywords = load_signal_keywords()
     if not emotion_keywords:
         # Once per session — an empty model is a boot-time fact, not a
         # per-utterance event (boot reseeds it; see affect.model).

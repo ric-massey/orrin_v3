@@ -10,7 +10,7 @@
 # Dimensions:
 #   valence   — positive vs negative aggregate. Range ~[-0.8..0.8]
 #   energy    — activation_level proxy: motivation + exploration_drive - resource_deficit - low_affect_signal
-#   stability — smoothed affect_stability field
+#   stability — smoothed signal_stability field
 #
 # Effect: after all per-cycle affect bumps, mood nudges affect further in
 # the mood-consistent direction — proportional amplification, not override.
@@ -90,7 +90,7 @@ def _update(context: Dict[str, Any]) -> Dict:
 
     cur_val  = _valence(core)
     cur_nrg  = _energy(core, emo)
-    cur_stab = float(emo.get("affect_stability") or 0.6)
+    cur_stab = float(emo.get("signal_stability") or 0.6)
 
     stored   = load_json(MOOD_FILE, default_type=dict) or {}
     old_val  = float(stored.get("valence")   or cur_val)

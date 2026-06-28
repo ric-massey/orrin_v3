@@ -31,7 +31,7 @@ def reflect_on_affect(context: Any, self_model: Any, memory: Any) -> Any:
     if not isinstance(attachment, dict): attachment = {}
     if not isinstance(triggers, list): triggers = []
 
-    stability = float(affect_state.get("affect_stability", 0.5) or 0.5)
+    stability = float(affect_state.get("signal_stability", 0.5) or 0.5)
     resource_deficit = float(affect_state.get("resource_deficit", 0.0) or 0.0)
     motivation = float(affect_state.get("motivation", 0.5) or 0.5)
     excitement = float(affect_state.get("excitement", 0.0) or 0.0)
@@ -88,7 +88,7 @@ def reflect_on_affect(context: Any, self_model: Any, memory: Any) -> Any:
         "recent_triggers": triggers,
         "emotion_summary": emotion_summary,
         "strongest_emotions": strongest,
-        "affect_stability": stability,
+        "signal_stability": stability,
         "instructions": coerce_to_string(
             "I am currently experiencing these strong emotions: "
             f"{top_emotions}\n"

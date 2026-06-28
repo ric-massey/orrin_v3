@@ -95,7 +95,7 @@ def idle_consolidation_logic(context):
             })
 
     # --- Reflect on emotions (every 10 cycles or low stability) ---
-    if (cycles % 10 == 0) or (affect_state.get("affect_stability", 1.0) < 0.6):
+    if (cycles % 10 == 0) or (affect_state.get("signal_stability", 1.0) < 0.6):
         reflect_on_affect(context, self_model, long_memory)
 
     # --- Apply feedback and process threat_detector ---

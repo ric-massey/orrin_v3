@@ -85,7 +85,7 @@ def persistent_drive_loop(context, self_model, memory):
             return chosen
 
         # === 2. Stable → hand off to bandit (the right tool for function selection)
-        stability = context.get("affect_state", {}).get("affect_stability", 1.0)
+        stability = context.get("affect_state", {}).get("signal_stability", 1.0)
         if stability > 0.60:
             update_working_memory({
                 "content": "✅ Affectively grounded — handing off to bandit.",

@@ -2,7 +2,14 @@
 
 Date: 2026-06-27
 Status: **Tier A DONE 2026-06-27** (P1+P2+P4 implemented, `make verify` 1105 passed,
-frontend typecheck+build green). Tier B **FROZEN**; Tier C **DEFERRED** (gated).
+frontend typecheck+build green). Tier B **FROZEN**.
+**Tier C DONE 2026-06-28** — `affect_stability → signal_stability` migrated: added the
+read-old/write-new shim to `data_schema.MIGRATIONS` (control_signals_state.json `top`),
+renamed all 84 code refs + `arbiter._SCALAR_TARGETS` + the runtime_coupling wire field +
+4 test files, ran the one-time backfill (on-disk key flipped, value 0.8646 preserved →
+restart continuity verified). Full suite **1160 passed, 1 skipped**; headless single-cycle
+boot clean. The only biological residue remaining is the 5 **deliberately-frozen Tier-B
+action names** (see below). The rename is otherwise complete.
 Parent: `ANALOGUE_REMOVAL_PLAN_2026-06-26.md` (Phases 1–4 DONE). This plan finishes
 the one tier that plan **deliberately left undone**: the biological **function /
 method / symbol names** inside the already-renamed modules.

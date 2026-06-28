@@ -92,7 +92,7 @@ def _read_gate_state(context: Dict) -> Dict[str, float]:
         "risk_estimate":       float(core.get("risk_estimate")      or 0.0),
         "reward_negative":       float(core.get("reward_negative")      or 0.0),
         "social_penalty":         float(core.get("social_penalty")        or 0.0),
-        "stability":     float(emo.get("affect_stability") or 0.5),
+        "stability":     float(emo.get("signal_stability") or 0.5),
         "fragmentation": float(context.get("_fragmentation_level") or 0.0),
     }
 

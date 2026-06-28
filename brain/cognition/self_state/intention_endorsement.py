@@ -52,7 +52,7 @@ _GLOSS = {
     "novelty_exploration_drive": "seeking what's new",
     "exploration_drive": "seeking what's new",
     "autonomy": "thinking and choosing for myself",
-    "affect_stability": "staying steady",
+    "signal_stability": "staying steady",
     "restlessness": "a restless urge to move for its own sake",
     "impasse_signal": "the feeling of being stuck",
     "risk_estimate": "a sense of risk",

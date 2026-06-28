@@ -18,7 +18,7 @@ def _seed(path, core_overrides, resource_deficit, extra=None):
         "core_signals": core,
         "resource_deficit": resource_deficit,
         "social_deficit": 0.0,
-        "affect_stability": 1.0,
+        "signal_stability": 1.0,
         # Recent timestamp so the decay-to-baseline pass is ~0 and the tax is visible.
         "last_updated": datetime.now(timezone.utc).isoformat(),
     }

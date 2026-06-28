@@ -334,7 +334,7 @@ def _has_real_artifact(goal: Dict[str, Any]) -> bool:
         return False
     try:
         from brain.cognition.quality_predicate import assess_artifact_file
-    except Exception:  # predicate unavailable → no partial-artifact credit (fail-closed)
+    except ImportError:  # predicate unavailable → no partial-artifact credit (fail-closed)
         return False
     return any(assess_artifact_file(p).ok for p in paths)
 

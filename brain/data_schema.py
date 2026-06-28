@@ -107,6 +107,10 @@ MIGRATIONS: Dict[str, Dict[str, Any]] = {
             "homeostasis": "setpoint_proximity",  # setpoint regulation index
             "valence": "reward_signal",           # hedonic scalar, sign -1..1
             "mood": "smoothed_state",             # slow EMA of reward_signal
+            # Tier C (FUNCTION_RENAME_COMPLETION_PLAN): the persisted regulatory
+            # scalar + arbiter _SCALAR_TARGETS member. Read-old/write-new shim so a
+            # restart keeps the live stability value instead of resetting to default.
+            "affect_stability": "signal_stability",
         },
         # core_signals holds the per-signal vector; rename the biological names.
         "nested": {"core_signals": {

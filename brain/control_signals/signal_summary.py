@@ -126,7 +126,7 @@ _FELT: Dict[str, List[Tuple[float, str]]] = {
 }
 
 # Emotions to skip — these are handled via body_sense or are too granular
-_SKIP = {"dominant", "affect_stability", "mode", "last_updated",
+_SKIP = {"dominant", "signal_stability", "mode", "last_updated",
          "emotional_congruence", "core_signals"}
 
 # Negative emotions — get a slightly more prominent weighting
@@ -204,7 +204,7 @@ def render_signal_state(
 
     # Build the description by stacking 1-3 sensations
     parts = [t[3] for t in top]
-    stability = float(emo.get("affect_stability") or core.get("affect_stability") or 1.0)
+    stability = float(emo.get("signal_stability") or core.get("signal_stability") or 1.0)
 
     if len(parts) == 1:
         body_line = _body_line(body_sense)

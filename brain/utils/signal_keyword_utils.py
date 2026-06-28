@@ -68,14 +68,14 @@ def adjust_signal_state(emotion: str, amount: float, reason: str = "", context=N
     new_value = round(core[emotion] + scaled_amount, 4)
     core[emotion] = max(0.0, min(1.0, new_value))
 
-    stability = float(state.get("affect_stability") or 1.0)
+    stability = float(state.get("signal_stability") or 1.0)
     if scaled_amount > 0:
         stability = min(1.0, stability + (scaled_amount * 0.1))
     elif scaled_amount < 0:
         stability = max(0.0, stability - (abs(scaled_amount) * 0.1))
 
     state["core_signals"] = core
-    state["affect_stability"] = round(stability, 4)
+    state["signal_stability"] = round(stability, 4)
     state["last_updated"] = datetime.now(timezone.utc).isoformat()
     state.setdefault("recent_triggers", []).append({
         "event": reason or f"adjusted_{emotion}",

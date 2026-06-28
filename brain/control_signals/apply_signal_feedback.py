@@ -12,7 +12,7 @@ from brain.control_signals.reward_signals.reward_signals import release_reward_s
 # (dominant-emotion blending here, pre-workspace binding in cognition/binding.py)
 # filters by ONE shared definition instead of each inventing its own taxonomy.
 NON_EMOTION_SIGNALS = frozenset({
-    "confidence", "affect_stability", "resource_deficit", "stability_signal",
+    "confidence", "signal_stability", "resource_deficit", "stability_signal",
     "connection", "social_deficit", "stagnation_signal", "activation_level",
 })
 
@@ -168,7 +168,7 @@ def apply_signal_feedback(context):
         })
 
     # === D. Sudden Mood Collapse — Trigger Secondary Effects ===
-    stability = float(affect_state.get("affect_stability", 1.0) or 1.0)
+    stability = float(affect_state.get("signal_stability", 1.0) or 1.0)
     if stability < 0.35:
         log_uncertainty_spike(context, increment=0.2)
     elif stability > 0.75:

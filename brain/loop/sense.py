@@ -269,7 +269,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     context = _apply_transient_signal_decay(context)
     affect_state = context.get("affect_state", {})
 
-    if float(affect_state.get("affect_stability") or 1.0) < 0.6:
+    if float(affect_state.get("signal_stability") or 1.0) < 0.6:
         reflect_on_affect(context, context.get("self_model", {}), context.get("long_memory", []))
 
     # ── Goal stall pressure ───────────────────────────────────────────

@@ -39,7 +39,7 @@ class SignalHistorian(BasePeer):
                         return True
                 except Exception as _e:
                     record_failure("signal_historian.SignalHistorian.should_wake", _e)
-        stability = float(emo.get("affect_stability", 1.0) or 1.0)
+        stability = float(emo.get("signal_stability", 1.0) or 1.0)
         if stability < 0.40:
             return True
         return False
@@ -51,7 +51,7 @@ class SignalHistorian(BasePeer):
             from brain.utils.json_utils import load_json
             state = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
             core = state.get("core_signals") or {}
-            stability = float(state.get("affect_stability", 1.0) or 1.0)
+            stability = float(state.get("signal_stability", 1.0) or 1.0)
             triggers = state.get("recent_triggers") or []
         except (OSError, ValueError, TypeError, AttributeError):  # intentional: missing/malformed affect state → unchanged signals
             return signals

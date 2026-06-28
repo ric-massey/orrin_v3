@@ -12,7 +12,7 @@
 #   < 5 cycles:   nothing extra — stagnation_signal is registered but not acute
 #   5-10 cycles:  mild discomfort signal → nudges toward novelty-seeking
 #   10-20 cycles: penalty_signal signal + urgency → strong novelty push, stability cost
-#   > 20 cycles:  intense pressure + affect_stability drop + existential signal
+#   > 20 cycles:  intense pressure + signal_stability drop + existential signal
 #
 # Reset conditions:
 #   - A novel action was taken (action_type not in last 5 picks)
@@ -97,9 +97,9 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         )
         context.setdefault("raw_signals", []).append(sig)
 
-        # Small stability cost — affect_stability is top-level, not inside core_signals
-        current_stab = float(emo_state.get("affect_stability") or 0.5)
-        emo_state["affect_stability"] = max(0.0, current_stab - 0.02)
+        # Small stability cost — signal_stability is top-level, not inside core_signals
+        current_stab = float(emo_state.get("signal_stability") or 0.5)
+        emo_state["signal_stability"] = max(0.0, current_stab - 0.02)
         if "core_signals" in emo_state:
             emo_state["core_signals"] = core
         context["affect_state"] = emo_state
@@ -119,9 +119,9 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         context.setdefault("raw_signals", []).append(sig)
 
         # Stronger stability cost + stagnation_signal spike
-        # affect_stability is top-level; stagnation_signal is in core_signals
-        current_stab = float(emo_state.get("affect_stability") or 0.5)
-        emo_state["affect_stability"] = max(0.0, current_stab - 0.04)
+        # signal_stability is top-level; stagnation_signal is in core_signals
+        current_stab = float(emo_state.get("signal_stability") or 0.5)
+        emo_state["signal_stability"] = max(0.0, current_stab - 0.04)
         core["stagnation_signal"] = min(1.0, stagnation_signal + 0.05)
         if "core_signals" in emo_state:
             emo_state["core_signals"] = core

@@ -15,7 +15,7 @@ def _seed_affect_state(path, core_overrides):
         "core_signals": core,
         "resource_deficit": 0.15,
         "social_deficit": 0.0,
-        "affect_stability": 1.0,
+        "signal_stability": 1.0,
         "last_updated": "1970-01-01T00:00:00+00:00",
     }
     path.write_text(json.dumps(state))

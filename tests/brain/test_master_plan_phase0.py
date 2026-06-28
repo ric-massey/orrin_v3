@@ -8,7 +8,7 @@
 #       record_failure(site, exc) is never shadowed; both failure paths
 #       (metrics call raising, import missing) must still complete the
 #       long-memory write and emotional penalty.
-# 0.3 — a regulation attempt with an affect_stability side-effect routes the
+# 0.3 — a regulation attempt with an signal_stability side-effect routes the
 #       delta through the AffectArbiter to the TOP-LEVEL field, never into
 #       core_signals (convergence path must not silently regress).
 import pytest
@@ -139,7 +139,7 @@ def test_mark_goal_failed_survives_metrics_import_failure(monkeypatch, _quiet_go
     assert context["affect_state"]["core_signals"]["impasse_signal"] > 0.1
 
 
-# ── 0.3 regulation affect_stability routing ──────────────────────────────────
+# ── 0.3 regulation signal_stability routing ──────────────────────────────────
 
 def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
     import brain.control_signals.regulation as reg
@@ -157,7 +157,7 @@ def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
         "cycle_count": 100,
         "affect_state": {
             "core_signals": {"impasse_signal": 0.9, "confidence": 0.5},
-            "affect_stability": 0.5,
+            "signal_stability": 0.5,
         },
     }
     assert reg.attempt_regulation(context) is True
@@ -165,7 +165,7 @@ def test_regulation_stability_side_effect_stays_out_of_core(monkeypatch):
 
     state = context["affect_state"]
     # (a) the side-effect never lands inside core_signals
-    assert "affect_stability" not in state["core_signals"]
+    assert "signal_stability" not in state["core_signals"]
     # (b) the top-level field actually moved (reappraisal carries +0.04)
-    assert "affect_stability" in applied
-    assert state["affect_stability"] > 0.5
+    assert "signal_stability" in applied
+    assert state["signal_stability"] > 0.5

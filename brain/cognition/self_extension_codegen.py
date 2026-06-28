@@ -257,8 +257,8 @@ def _apply_fragmentation_cost(context: Dict, amount: float) -> None:
         _afc(context, override_cost=amount)
     except Exception:
         emo = context.get("affect_state") or {}
-        stab = float(emo.get("affect_stability") or 0.7)
-        emo["affect_stability"] = max(0.1, stab - amount)
+        stab = float(emo.get("signal_stability") or 0.7)
+        emo["signal_stability"] = max(0.1, stab - amount)
         context["affect_state"] = emo
 
 

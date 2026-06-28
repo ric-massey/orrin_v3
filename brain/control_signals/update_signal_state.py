@@ -574,16 +574,16 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     state["recent_triggers"] = (triggers_log + new_triggers)[-25:]
     state["recent_emotion_causes"] = recent_causes[-20:]  # capped; newest first via append
     state["social_deficit"] = social_deficit
-    # affect_stability is mostly DERIVED from core deviations, but the arbiter
+    # signal_stability is mostly DERIVED from core deviations, but the arbiter
     # may also apply direct scalar deltas to it (regulation side-effects route
     # through _SCALAR_TARGETS — RUN_ISSUES_2026-06-10 §2). A hard overwrite
     # discarded any applied delta within one cycle; blend toward the derived
     # value instead, so a regulation boost registers and then converges back.
     try:
-        _prev_stab = float(state.get("affect_stability"))
+        _prev_stab = float(state.get("signal_stability"))
     except (TypeError, ValueError):
         _prev_stab = new_stability
-    state["affect_stability"] = round(_prev_stab + (new_stability - _prev_stab) * 0.5, 4)
+    state["signal_stability"] = round(_prev_stab + (new_stability - _prev_stab) * 0.5, 4)
     # Display homeostasis ("is he settled?") — computed by the single authority in
     # homeostasis.py and stored on the canonical state so the chart, the REST
     # panels and the brain itself all read one number (was previously invented in

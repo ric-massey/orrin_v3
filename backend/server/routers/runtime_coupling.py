@@ -219,7 +219,7 @@ async def control_signals() -> JSONResponse:
         "homeostasis": a.get("setpoint_proximity"),  # the brain's own index (persisted key; wire field kept)
         "resource_deficit": a.get("resource_deficit"),
         "allostatic_load": a.get("_allostatic_load"),  # (T0.1) behaviourally-active load
-        "affect_stability": a.get("affect_stability"),
+        "signal_stability": a.get("signal_stability"),
         "affect_quadrant": a.get("affect_quadrant"),
         "core_signals": core,                        # the full vector, raw
         "last_updated": a.get("last_updated"),

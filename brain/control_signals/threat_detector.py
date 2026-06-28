@@ -24,7 +24,7 @@ def process_signals(context):
         # Flat state — exclude non-emotion scalars only
         core = {k: float(v) for k, v in affect_state.items()
                 if isinstance(v, (int, float)) and k not in {
-                    "affect_stability", "confidence_by_domain",
+                    "signal_stability", "confidence_by_domain",
                     "resource_deficit", "reward_signal", "activation_level", "mood",
                 }}
 
@@ -37,7 +37,7 @@ def process_signals(context):
 
     # Scalar snapshots — resource_deficit and stability are top-level; motivation may be in core_signals
     resource_deficit    = float(affect_state.get("resource_deficit",             0.0) or 0.0)
-    stability  = float(affect_state.get("affect_stability", 1.0) or 1.0)
+    stability  = float(affect_state.get("signal_stability", 1.0) or 1.0)
     motivation = float(core.get("motivation", affect_state.get("motivation", 0.5)) or 0.5)
 
     # Recent reward summary (for context dict — kept for downstream readers)

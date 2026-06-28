@@ -96,7 +96,7 @@ def apply_fragmentation_cost(context: Dict[str, Any]) -> None:
     """
     Called once per cycle from finalize.py.
     - Increments cycles_unresolved for active contradictions
-    - Deducts from affect_stability proportional to fragmentation
+    - Deducts from signal_stability proportional to fragmentation
     - Bumps social_penalty/uncertainty
     - Surfaces hottest contradiction to working memory (rate-limited)
     - Sets context["_fragmentation_score"]
@@ -124,7 +124,7 @@ def apply_fragmentation_cost(context: Dict[str, Any]) -> None:
         emo  = context.get("affect_state") or {}
         core = emo.get("core_signals") or emo
         if isinstance(core, dict):
-            stab_key = "affect_stability"
+            stab_key = "signal_stability"
             stab = float(emo.get(stab_key) or 0.75)
             emo[stab_key] = max(0.1, stab - score * 0.04)
 
@@ -456,8 +456,8 @@ def reconcile_identity(context: Dict[str, Any] = None) -> str:
 
     # Stability reward for completing a reconciliation
     emo  = context.get("affect_state") or {}
-    stab = float(emo.get("affect_stability") or 0.75)
-    emo["affect_stability"] = min(1.0, stab + 0.08)
+    stab = float(emo.get("signal_stability") or 0.75)
+    emo["signal_stability"] = min(1.0, stab + 0.08)
     context["affect_state"] = emo
 
     return outcome_text

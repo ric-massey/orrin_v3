@@ -18,7 +18,7 @@
 #
 # Success probability formula:
 #   base = 0.55  (moderate baseline; regulation fails roughly half the time at rest)
-#   + affect_stability * 0.25   (stable states regulate more easily)
+#   + signal_stability * 0.25   (stable states regulate more easily)
 #   + confidence * 0.15         (self-trust helps)
 #   + intensity_mobilisation    (acute distress mobilises regulation — you ground
 #                                hardest when most activated; up to +0.22)
@@ -94,13 +94,13 @@ _STRATEGIES: Dict[str, Dict[str, Any]] = {
         "target_delta": -0.18,
         # No exploration_drive side-effect: calming distress must not re-ignite a
         # competing appetitive drive (it fed the chronic exploration over-dominance).
-        "side_effects": {"affect_stability": +0.04},
+        "side_effects": {"signal_stability": +0.04},
     },
     "distancing": {
         "applies_to": {"impasse_signal", "conflict_signal", "rejection_signal"},
         "description": "Stepping back to observe this feeling rather than being inside it.",
         "target_delta": -0.15,
-        "side_effects": {"affect_stability": +0.05},
+        "side_effects": {"signal_stability": +0.05},
     },
     "grounding": {
         "applies_to": {"risk_estimate", "threat_level", "uncertainty"},
@@ -119,7 +119,7 @@ _STRATEGIES: Dict[str, Dict[str, Any]] = {
         "applies_to": {"social_deficit", "social_penalty"},
         "description": "I would offer this tenderness to anyone else. I can offer it to myself.",
         "target_delta": -0.16,
-        "side_effects": {"social_penalty": -0.08, "affect_stability": +0.06},
+        "side_effects": {"social_penalty": -0.08, "signal_stability": +0.06},
     },
 }
 
@@ -330,7 +330,7 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
 
     # resource_deficit and stability are top-level fields, not inside core_signals
     resource_deficit   = float(emo_state.get("resource_deficit", 0.0) or 0.0)
-    stability = float(emo_state.get("affect_stability", 0.5) or 0.5)
+    stability = float(emo_state.get("signal_stability", 0.5) or 0.5)
 
     # Measured-effect verdict for the previous attempt (regulation honesty).
     _verify_pending_effect(log, core, current_cycle)
@@ -369,11 +369,11 @@ def attempt_regulation(context: Dict[str, Any]) -> bool:
     # and route them through the AffectArbiter as proposals. This keeps regulation
     # on the single convergence path (no direct affect-file write, no last-writer
     # race with update_signal_state) while preserving the exact same deltas.
-    # affect_stability lives top-level, never in core_signals — seed the working
+    # signal_stability lives top-level, never in core_signals — seed the working
     # copy with its real value so the side-effect diff has an honest baseline.
     # (Without this, before.get(emo, new) defaulted to the NEW value for any key
     # absent from core_signals and every stability side-effect diffed to zero.)
-    core["affect_stability"] = stability
+    core["signal_stability"] = stability
     before = dict(core)
     _apply_strategy(core, emotion, strategy, succeeded)
 

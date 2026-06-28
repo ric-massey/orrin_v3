@@ -94,12 +94,12 @@ def _sanitize_signal_state(data: Any) -> Tuple[Dict[str, Any], bool]:
         data["core_signals"] = {}
         changed = True
 
-    # Fix affect_stability (key may exist with null value)
-    if "affect_stability" in data:
-        stab = data["affect_stability"]
+    # Fix signal_stability (key may exist with null value)
+    if "signal_stability" in data:
+        stab = data["signal_stability"]
         fixed = _safe_float(stab, 1.0)
         if fixed != stab:
-            data["affect_stability"] = fixed
+            data["signal_stability"] = fixed
             changed = True
 
     return data, changed

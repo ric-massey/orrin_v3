@@ -15,7 +15,7 @@ Six drives:
   meaning      — builds when actions don't connect to goals/values
   rest         — builds with sustained non-contemplative activity
   integrity    — builds when value dissonance is detected in WM
-  coherence    — builds when affect_stability is low
+  coherence    — builds when signal_stability is low
 
 The DemandEngine runs as a daemon thread, ticking every TICK_INTERVAL seconds.
 Callers use:
@@ -196,7 +196,7 @@ class DemandEngine:
             ),
             "coherence": Demand(
                 "coherence",
-                buildup_per_tick=0.0,  # driven by affect_stability reading
+                buildup_per_tick=0.0,  # driven by signal_stability reading
                 label="Coherence drive",
                 description="My internal state feels fragmented. I need to stabilize.",
                 tags=["coherence", "stability", "integration"],
@@ -310,7 +310,7 @@ class DemandEngine:
 
         # Coherence: satisfied each cycle proportional to emotional stability
         es = context.get("affect_state") or {}
-        stability = float(es.get("affect_stability") or 0.5)
+        stability = float(es.get("signal_stability") or 0.5)
         if stability > 0.65:
             self.satisfy("coherence", 0.08)
 
@@ -330,10 +330,10 @@ class DemandEngine:
             time.sleep(_TICK_INTERVAL)
 
     def _update_coherence_from_context(self, context: Dict[str, Any]) -> None:
-        """Demand coherence pressure inversely from affect_stability."""
+        """Demand coherence pressure inversely from signal_stability."""
         try:
             es = context.get("affect_state") or {}
-            stability = float(es.get("affect_stability") or 0.5)
+            stability = float(es.get("signal_stability") or 0.5)
             # Coherence pressure = how much instability is present
             instability = max(0.0, 1.0 - stability)
             # Nudge toward instability reading (smooth, not snap)

@@ -38,7 +38,7 @@ _DRIVE_DEFAULTS: Dict[str, tuple] = {
     "competence":          (0.20, 0.00012, 0.0070, "do something and do it with care and skill"),
     "novelty_exploration_drive":   (0.35, 0.00018, 0.0065, "explore something unfamiliar or unexpected"),
     "autonomy":            (0.25, 0.00010, 0.0050, "choose your next action without being prompted"),
-    "affect_stability": (0.40, 0.00008, 0.0090, "settle, reflect, find equilibrium before acting"),
+    "signal_stability": (0.40, 0.00008, 0.0090, "settle, reflect, find equilibrium before acting"),
     "restlessness":        (0.20, 0.00025, 0.0100, "move, act — break inertia with any purposeful step"),
 }
 
@@ -47,13 +47,13 @@ _DRIVE_DEFAULTS: Dict[str, tuple] = {
 # Positive = facilitation, negative = inhibition.  Effects are scaled by
 # source's current activation and applied to target's current value each tick.
 _CROSS_EFFECTS: List[tuple] = [
-    ("connection",          "affect_stability",  +0.010),   # contact soothes
+    ("connection",          "signal_stability",  +0.010),   # contact soothes
     ("connection",          "autonomy",             -0.008),   # yearning for connection slightly erodes felt autonomy
     ("novelty_exploration_drive",   "world_mastery",        +0.012),   # exploration_drive fuels mastery drive
     ("novelty_exploration_drive",   "restlessness",         +0.006),   # exploration_drive is also an itch
     ("restlessness",        "competence",           +0.010),   # restlessness pushes toward action/competence
-    ("affect_stability", "restlessness",         -0.015),   # stability damps restlessness
-    ("affect_stability", "autonomy",             +0.008),   # settled state supports chosen action
+    ("signal_stability", "restlessness",         -0.015),   # stability damps restlessness
+    ("signal_stability", "autonomy",             +0.008),   # settled state supports chosen action
     ("competence",          "autonomy",             +0.006),   # skilled action reinforces agency
     ("world_mastery",       "novelty_exploration_drive",    -0.005),   # mastery slightly reduces raw novelty resource_demand
 ]
@@ -63,20 +63,20 @@ _CROSS_EFFECTS: List[tuple] = [
 # the reward signal (amount = base * ((reward + 1) / 2)).
 _FN_SATISFIES: Dict[str, List[tuple]] = {
     # (drive, base_amount)
-    "speak":              [("connection", 0.35), ("affect_stability", 0.10)],
+    "speak":              [("connection", 0.35), ("signal_stability", 0.10)],
     "respond":            [("connection", 0.30), ("competence", 0.10)],
-    "introspect":         [("affect_stability", 0.25), ("autonomy", 0.15)],
-    "reflect":            [("affect_stability", 0.20), ("world_mastery", 0.10)],
+    "introspect":         [("signal_stability", 0.25), ("autonomy", 0.15)],
+    "reflect":            [("signal_stability", 0.20), ("world_mastery", 0.10)],
     "look_outward":       [("world_mastery", 0.30), ("novelty_exploration_drive", 0.20)],
     "web_search":         [("world_mastery", 0.25), ("novelty_exploration_drive", 0.25)],
     "pursue_goal":        [("competence", 0.30), ("autonomy", 0.25)],
     "plan":               [("competence", 0.20), ("autonomy", 0.20)],
-    "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("affect_stability", 0.20)],
+    "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("signal_stability", 0.20)],
     "wonder":             [("novelty_exploration_drive", 0.35), ("world_mastery", 0.15)],
     "generate_intrinsic_goals": [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
-    "self_review":        [("competence", 0.15), ("affect_stability", 0.15)],
+    "self_review":        [("competence", 0.15), ("signal_stability", 0.15)],
     "metacognition":      [("autonomy", 0.20), ("world_mastery", 0.10)],
-    "memory_consolidate": [("affect_stability", 0.15), ("world_mastery", 0.10)],
+    "memory_consolidate": [("signal_stability", 0.15), ("world_mastery", 0.10)],
 }
 
 

@@ -86,14 +86,14 @@ def compute_perceived_state(context: Dict[str, Any]) -> Dict[str, Any]:
     active_vals = [
         float(v) for k, v in core_actual.items()
         if isinstance(v, (int, float)) and float(v) >= _NOISE_FLOOR
-        and k not in {"dominant", "affect_stability", "mode", "last_updated",
+        and k not in {"dominant", "signal_stability", "mode", "last_updated",
                       "emotional_congruence", "core_signals"}
     ]
     if granularity < _GRAN_THRESHOLD and len(active_vals) >= 3:
         return _granularity_failure(actual, core_actual, active_vals, clarity, granularity)
 
     # ── Normal path: label confusion + intensity noise + suppression ──────────
-    _meta = {"dominant", "affect_stability", "mode", "last_updated",
+    _meta = {"dominant", "signal_stability", "mode", "last_updated",
              "emotional_congruence", "core_signals"}
 
     perceived_core: Dict[str, float]          = {}
@@ -292,7 +292,7 @@ def _compute_granularity(core_signals: Dict[str, Any]) -> float:
     Primary source: alexithymia research — the core introspective failure is not
     mislabeling but failure to differentiate adjacent states at all.
     """
-    _skip = {"dominant", "affect_stability", "mode", "last_updated",
+    _skip = {"dominant", "signal_stability", "mode", "last_updated",
              "emotional_congruence", "core_signals"}
     vals = sorted(
         (float(v) for k, v in core_signals.items()
@@ -330,7 +330,7 @@ def _compute_clarity(actual: Dict[str, Any], context: Dict[str, Any]) -> float:
       - Attention hijacking (one emotion consuming bandwidth)
       - Pending emotional integration (the knowing/feeling gap)
     """
-    stability = float(actual.get("affect_stability") or 1.0)
+    stability = float(actual.get("signal_stability") or 1.0)
     clarity   = stability
 
     core      = actual.get("core_signals") or {}

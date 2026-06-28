@@ -132,8 +132,8 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
         and rp6[-2] == rp6[-4]   # other function two ago
         and rp6[-1] != rp6[-2]   # they're different (actual alternation)
     ):
-        old_stab = float(emo.get("affect_stability", 0.75))
-        emo["affect_stability"] = max(0.1, old_stab - 0.06)
+        old_stab = float(emo.get("signal_stability", 0.75))
+        emo["signal_stability"] = max(0.1, old_stab - 0.06)
         core["uncertainty"] = min(1.0, float(core.get("uncertainty", 0.0)) + 0.05)
         penalties.append(
             f"cognitive indecision ({rp6[-2]} ↔ {rp6[-1]}) "

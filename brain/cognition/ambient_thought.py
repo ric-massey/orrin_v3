@@ -224,7 +224,7 @@ def _generate_fragment(
     active_emos = {
         k: float(v) for k, v in core_signals.items()
         if isinstance(v, (int, float)) and float(v) >= 0.30
-        and k not in {"dominant", "affect_stability", "mode", "last_updated",
+        and k not in {"dominant", "signal_stability", "mode", "last_updated",
                       "emotional_congruence", "core_signals"}
     }
 

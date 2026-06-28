@@ -25,7 +25,7 @@ NEGATIVE_SIGNALS = (
 # Top-level scalars that are NOT core emotion signals — used to keep them out of
 # core_signals when migrating a legacy flat-layout state.
 _NON_CORE_SCALARS = frozenset({
-    "resource_deficit", "affect_stability", "reward_signal", "activation_level", "mood",
+    "resource_deficit", "signal_stability", "reward_signal", "activation_level", "mood",
     "stability_decay_rate", "emotional_decay", "last_updated", "affect_quadrant",
     "social_deficit", "_ne_proxy", "_stability_signal_proxy", "_affect_velocity_l1",
 })
@@ -60,7 +60,7 @@ def negative_load(affect_state: Any) -> float:
 def normalize_signal_state(state: Any) -> Dict[str, Any]:
     """
     Coerce an affect_state dict to the canonical schema in place and return it:
-      { core_signals: {str: float}, resource_deficit, affect_stability,
+      { core_signals: {str: float}, resource_deficit, signal_stability,
         _emotion_queue, last_updated, ... }
 
     Non-destructive: a legacy flat-layout state has its numeric emotion keys
@@ -69,7 +69,7 @@ def normalize_signal_state(state: Any) -> Dict[str, Any]:
     cycle persists the canonical layout.
     """
     if not isinstance(state, dict):
-        return {"core_signals": {}, "resource_deficit": 0.15, "affect_stability": 1.0,
+        return {"core_signals": {}, "resource_deficit": 0.15, "signal_stability": 1.0,
                 "_emotion_queue": []}
 
     core = state.get("core_signals")
@@ -82,6 +82,6 @@ def normalize_signal_state(state: Any) -> Dict[str, Any]:
         state["core_signals"] = core
 
     state.setdefault("resource_deficit", 0.15)
-    state.setdefault("affect_stability", 1.0)
+    state.setdefault("signal_stability", 1.0)
     state.setdefault("_emotion_queue", [])
     return state

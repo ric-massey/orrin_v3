@@ -32,7 +32,7 @@ def test_normalize_migrates_flat_to_nested():
 def test_normalize_seeds_required_scalars():
     norm = normalize_signal_state({"core_signals": {}})
     assert "resource_deficit" in norm
-    assert "affect_stability" in norm
+    assert "signal_stability" in norm
     assert norm["_emotion_queue"] == []
 
 

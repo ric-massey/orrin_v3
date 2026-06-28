@@ -20,6 +20,10 @@
     "definition": "action_prior(lens: 'Dict[str, Any] | None', action: 'str', description: 'str' = '') -> 'float'"
   },
   {
+    "name": "action_satiety",
+    "definition": "action_satiety(fn: 'str') -> 'float'\nPublic read of an action's current decayed satiety in [0,1] (T2.1 / WS-2).\n    The selector uses this to GENERALLY suppress a recently-over-used action, not\n    only outward reads — a fully-satiated action (satiety 1.0) was still being\n    selected most because suppression only ever touched the outward family.\n    Fail-safe → 0.0 (no suppression)."
+  },
+  {
     "name": "active_commitment",
     "definition": "active_commitment(context: 'Dict[str, Any]') -> 'Optional[str]'"
   },
@@ -97,7 +101,7 @@
   },
   {
     "name": "apply_fragmentation_cost",
-    "definition": "apply_fragmentation_cost(context: 'Dict[str, Any]') -> 'None'\nCalled once per cycle from finalize.py.\n    - Increments cycles_unresolved for active contradictions\n    - Deducts from affect_stability proportional to fragmentation\n    - Bumps social_penalty/uncertainty\n    - Surfaces hottest contradiction to working memory (rate-limited)\n    - Sets context[\"_fragmentation_score\"]"
+    "definition": "apply_fragmentation_cost(context: 'Dict[str, Any]') -> 'None'\nCalled once per cycle from finalize.py.\n    - Increments cycles_unresolved for active contradictions\n    - Deducts from signal_stability proportional to fragmentation\n    - Bumps social_penalty/uncertainty\n    - Surfaces hottest contradiction to working memory (rate-limited)\n    - Sets context[\"_fragmentation_score\"]"
   },
   {
     "name": "apply_goal_lens",
@@ -844,6 +848,10 @@
     "definition": "invent_new_value(context)"
   },
   {
+    "name": "is_autonomic_maintenance",
+    "definition": "is_autonomic_maintenance(alert: 'Dict[str, Any]') -> 'bool'\nTrue when an alert is pure housekeeping (handled autonomically by its\n    suggested_fn), so it must never be escalated into a conscious survival goal."
+  },
+  {
     "name": "is_daemon_running",
     "definition": "is_daemon_running() -> 'bool'\nTrue when the continuous Executive daemon owns step execution (so the main\n    loop must skip its interleaved executive_tick to avoid double execution)."
   },
@@ -989,7 +997,7 @@
   },
   {
     "name": "mark_goal_completed",
-    "definition": "mark_goal_completed(goal: 'Dict[str, Any]', context: 'Optional[Dict[str, Any]]' = None) -> 'None'"
+    "definition": "mark_goal_completed(goal: 'Dict[str, Any]', context: 'Optional[Dict[str, Any]]' = None, *, satiety_close: 'bool' = False) -> 'None'"
   },
   {
     "name": "mark_goal_failed",

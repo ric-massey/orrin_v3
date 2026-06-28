@@ -54,11 +54,11 @@ _PROP_KEY = "_affect_proposals"
 # Top-level scalar fields that are NOT core_signals but may still be proposed
 # against (e.g. resource_deficit). These are applied directly to the affect_state
 # dict at commit time rather than drained gradually through the core buffer.
-# affect_stability is here because regulation strategies carry stability
+# signal_stability is here because regulation strategies carry stability
 # side-effects; without it those proposals drained into the core buffer where
 # the signal doesn't live and were dropped as "unknown emotion" every cycle
 # (RUN_ISSUES_2026-06-10 §2 — regulation of stability was silently broken).
-_SCALAR_TARGETS = frozenset({"resource_deficit", "affect_stability"})
+_SCALAR_TARGETS = frozenset({"resource_deficit", "signal_stability"})
 
 # ── I16: per-lane affect sub-budgets ────────────────────────────────────────
 # The three dual-process roles emit affect every cycle. Without sub-caps the

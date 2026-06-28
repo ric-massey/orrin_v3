@@ -66,9 +66,9 @@ def _snapshot_signal(context: Optional[dict]) -> dict:
     keys = ("reward_positive", "reward_negative", "exploration_drive", "impasse_signal", "confidence",
             "motivation", "stagnation_signal", "expected_gain", "threat_level", "social_penalty")
     snapshot = {k: round(float(core.get(k) or 0.0), 3) for k in keys if float(core.get(k) or 0.0) >= 0.05}
-    stability = emo.get("affect_stability")
+    stability = emo.get("signal_stability")
     if stability is not None:
-        snapshot["affect_stability"] = round(float(stability), 3)
+        snapshot["signal_stability"] = round(float(stability), 3)
     return snapshot
 
 

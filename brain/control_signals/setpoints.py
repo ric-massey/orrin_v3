@@ -54,7 +54,7 @@ SETPOINTS = {
     "resource_deficit":  0.15,
     # Stability rests moderately high: regulation pushing it up is restoring
     # (cheap), agitation pushing it down is a deviation (expensive).
-    "affect_stability":  0.65,
+    "signal_stability":  0.65,
 }
 
 

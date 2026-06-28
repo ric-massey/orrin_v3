@@ -76,7 +76,7 @@ _DRIVES: Dict[str, Dict] = {
             "plan_self_evolution", "simulate_future_selves",
         }),
         "label": "wants coherence, routine, familiar ground",
-        "strength_fn": lambda emo, core: float(emo.get("affect_stability") or 0.5),
+        "strength_fn": lambda emo, core: float(emo.get("signal_stability") or 0.5),
     },
     "usefulness": {
         # P7 — repointed at actual PRODUCTION / CONTACT, not going-through-the-motions
@@ -132,7 +132,7 @@ _DRIVE_SIGNAL: Dict[str, str] = {
     "mastery":             "exploration_drive",
     "autonomy":            "motivation",
     "usefulness":          "motivation",
-    "stability":           "affect_stability",
+    "stability":           "signal_stability",
     "identity_consistency": "confidence",
 }
 # Cycles the same top conflict must persist before active discharge kicks in.

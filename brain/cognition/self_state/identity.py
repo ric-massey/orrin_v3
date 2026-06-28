@@ -56,7 +56,7 @@ def _describe_signal_state(affect_state: Dict[str, Any]) -> str:
         return "mildly"
 
     parts = [f"{_intensity(v)} {_ADJ.get(name, name)}" for name, v in active[:3]]
-    stability = float(affect_state.get("affect_stability") or 1.0)
+    stability = float(affect_state.get("signal_stability") or 1.0)
     stability_note = ""
     if stability < 0.5:
         stability_note = " My emotional stability is low — I may be more reactive than usual."

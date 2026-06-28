@@ -33,7 +33,7 @@ def _dominant_signal() -> str:
             return max(core.items(), key=lambda kv: float(kv[1]))[0]
         except Exception as _e:
             record_failure("llm_stub._dominant_signal", _e)
-    flat = {k: v for k, v in emo.items() if isinstance(v, (int, float)) and k != "affect_stability"}
+    flat = {k: v for k, v in emo.items() if isinstance(v, (int, float)) and k != "signal_stability"}
     if flat:
         try:
             return max(flat.items(), key=lambda kv: float(kv[1]))[0]

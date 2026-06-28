@@ -81,7 +81,7 @@ def _apply(user_text: str, context: Dict[str, Any], influence: float) -> None:
         return
 
     emo = context.get("affect_state") or {}
-    stability = float(emo.get("affect_stability") or 0.6)
+    stability = float(emo.get("signal_stability") or 0.6)
 
     # More stable → less permeable. More influential relationship → more permeable.
     # bleed_scale in [_MIN_BLEED .. _MAX_BLEED]

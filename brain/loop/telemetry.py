@@ -200,7 +200,7 @@ def _emit_signal(context: "Context") -> None:
             # `allostatic_load` that pinned to 1.0 off raw exploration_drive.
             allostatic_load=_clamp01(_f(a.get("_allostatic_load"))),
             distress=distress,
-            stability=_clamp01(_f(a.get("affect_stability"), 0.7)),
+            stability=_clamp01(_f(a.get("signal_stability"), 0.7)),
             learning=_clamp01(_learning_pulse(context)),
         )
     except Exception as exc:  # telemetry must never crash the loop — record, no-op

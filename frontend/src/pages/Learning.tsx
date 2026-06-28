@@ -9,6 +9,16 @@ import IntelligenceGrowthPanel from "@/components/IntelligenceGrowthPanel";
 // makes as a before → after → because diff. The engine (behavioral_adaptation.py) has
 // always rewritten behaviour; until now nothing surfaced the rewrite.
 
+interface Outcome {
+  status?: "pending" | "resolved";
+  landed?: boolean;
+  relieved?: boolean;
+  signal?: string;
+  signal_delta?: number | null;
+  expected_class?: string;
+  expected_class_after?: number;
+  k?: number;
+}
 interface Change {
   when?: string;
   pattern?: string;
@@ -17,6 +27,7 @@ interface Change {
   new_action?: string;
   reason?: string;
   evidence?: string;
+  outcome?: Outcome;
 }
 interface Feed {
   changes?: Change[];
@@ -312,9 +323,49 @@ function ChangeCard({ c }: { c: Change }) {
               <span className="font-medium text-foreground">Because:</span> {c.reason}
             </p>
           )}
+
+          <OutcomeRow outcome={c.outcome} />
         </CardContent>
       </Card>
     </li>
+  );
+}
+
+// R1 (SIGNAL_TO_ACTION_AUDIT §1.4): the follow-through verdict. The engine arms a
+// corrective; K cycles later the audit records whether the expected action class
+// rose AND the originating signal fell — "did it land?", not just "was it armed?".
+function OutcomeRow({ outcome }: { outcome?: Outcome }) {
+  if (!outcome) return null;
+  if (outcome.status === "pending") {
+    return (
+      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+        <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/50" />
+        Waiting to see if it lands (next {outcome.k ?? 8} cycles)…
+      </div>
+    );
+  }
+  const landed = !!outcome.landed;
+  const delta = outcome.signal_delta;
+  return (
+    <div className="flex flex-wrap items-center gap-2 border-t border-dashed pt-2 text-[11px]">
+      <span className={landed ? "font-medium text-signal-ok" : "font-medium text-signal-warn"}>
+        {landed ? "✓ Landed" : "Didn’t land"}
+      </span>
+      {outcome.signal && delta != null && (
+        <span className="text-muted-foreground">
+          {outcome.signal} {delta <= 0 ? "" : "+"}
+          <span className={delta < 0 ? "text-signal-ok tabular-nums" : "text-signal-warn tabular-nums"}>
+            {delta.toFixed(2)}
+          </span>
+          {delta < 0 ? " (relieved)" : " (no relief)"}
+        </span>
+      )}
+      {outcome.expected_class && (
+        <span className="text-muted-foreground">
+          {outcome.expected_class} ×{outcome.expected_class_after ?? 0}
+        </span>
+      )}
+    </div>
   );
 }
 

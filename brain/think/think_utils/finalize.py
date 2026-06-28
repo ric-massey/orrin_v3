@@ -57,6 +57,15 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     """
     reason_text = _reason_text(reason)  # NEW
 
+    # R1 — feed this cycle's executed function to the signal→action follow-through
+    # audit (records its action class + resolves any corrective whose K-cycle window
+    # has elapsed). Best-effort: telemetry must never break the cycle's finalize.
+    try:
+        from brain.cognition.signal_action_audit import tick as _sa_tick
+        _sa_tick(context, next_function)
+    except Exception as _sae:
+        record_failure("finalize_cycle.signal_action_audit", _sae)
+
     # Log which function was chosen
     update_working_memory({
         "content": f"🧠 Chose: {next_function} — {reason_text}",  # NEW: use readable text

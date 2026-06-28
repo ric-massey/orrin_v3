@@ -216,6 +216,31 @@ cadence.
 
 ---
 
+## 5. Resolution (status) — ALL RECOMMENDATIONS ADDRESSED
+
+- **R1 — signal→action follow-through audit: DONE 2026-06-28.**
+  `brain/cognition/signal_action_audit.py` adds (1) `classify_action()` — the
+  seven-class taxonomy (reflex/regulatory/orienting/communicative/productive/
+  maintenance/failed-blocked), built on the existing `_OUTWARD_*` selection tiers;
+  and (2) a deferred follow-through audit: when `behavioral_adaptation` arms a
+  corrective it stamps an `_audit_id` + pending `outcome`, and K cycles later the
+  audit writes back whether the **expected class rose** (vs the K cycles before)
+  **and the originating signal fell** (the relief test) — i.e. *did it land?*, not
+  *was it armed?*. Surfaced on the Learning page (`OutcomeRow` in `Learning.tsx`)
+  and aggregable via `audit_summary()`. Tests: `tests/brain/test_signal_action_audit.py`.
+- **R2 — break "closed loop running open": DONE 2026-06-28.**
+  `goal_closure._closed_loop_break` (wired in `goal_execution.py`): a sustained
+  armed-but-preempted streak forces one grounded pursuit (cooldown-bounded,
+  `ORRIN_CLOSED_LOOP_BREAK`).
+- **R3 — never ship a release valve that can't release: DONE 2026-06-28.**
+  `consolidation_cycle._submit_retreat_discharge`: the threat-retreat now
+  discharges the elevated threat/impasse that elected it.
+- **R4 — do NOT add an artifact-cadence rule:** honoured — no cadence rule added.
+
+This audit's actionable findings are fully discharged; archive when convenient.
+
+---
+
 *Code consulted: `brain/cognition/behavioral_adaptation.py`,
 `brain/cognition/planning/pursue_goal.py` (`_survival_critical`),
 `brain/think/think_utils/select_function.py` (outward tiers, action_arbiter

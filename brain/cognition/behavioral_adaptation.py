@@ -206,7 +206,7 @@ def apply_behavioral_adaptations(
 
         # Capture the rewrite as a structured before→after→because record. This is
         # the only place the engine's self-edits become inspectable in the UI.
-        changes.append({
+        _rec: Dict[str, Any] = {
             "when": datetime.now(timezone.utc).isoformat(),
             "pattern": ptype,
             "situation": obs,
@@ -214,7 +214,21 @@ def apply_behavioral_adaptations(
             "new_action": _describe_state(ptype, current_bias, action=True, context=context),
             "reason": _REASONS.get(ptype, ""),
             "evidence": obs,
-        })
+        }
+        # R1 — register this armed corrective for follow-through. The audit snapshots
+        # the originating signal + expected action class now and writes the `outcome`
+        # (did the right class rise + did the signal fall?) back into this record K
+        # cycles later. Best-effort; an audit hiccup must never block the rewrite.
+        try:
+            from brain.cognition.signal_action_audit import new_audit_id, note_armed
+            _aid = new_audit_id()
+            _stub = note_armed(_aid, ptype)
+            if _stub is not None:
+                _rec["_audit_id"] = _aid
+                _rec["outcome"] = _stub
+        except Exception as _ae:
+            log_private(f"[behavioral_adapt] follow-through registration skipped: {_ae}")
+        changes.append(_rec)
 
     if changes:
         _persist_changes(changes)

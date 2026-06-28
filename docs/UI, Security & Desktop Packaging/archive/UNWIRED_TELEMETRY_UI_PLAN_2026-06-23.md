@@ -1,7 +1,11 @@
 # Unwired Telemetry → UI Plan
 
 **Created:** 2026-06-23
-**Status:** proposed (UI audit done; no code changed yet)
+**Status:** DONE 2026-06-28 — 3A (`gate_report` → `GET /api/intelligence` +
+`IntelligenceGrowthPanel` on the Learning page) and 3B (`core_values` chips in
+`SelfModelPanel`) both implemented and tested. The only unaddressed item is the
+explicitly **optional** `get_human_model()` badge (3C); `record_exception()` was
+excluded by design (error logger, not a UI feed). Archived as complete.
 **Scope:** surface the "built-but-never-wired" stats/report feeds the Phase-6
 dead-code triage found — the ones that are *intended dashboard data*, not actual
 cruft. This is the "implement, don't delete" half of the Phase-6 dead-API owner

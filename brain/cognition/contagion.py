@@ -24,7 +24,7 @@ from __future__ import annotations
 from typing import Any, Dict
 
 from brain.utils.log import log_private
-from brain.control_signals.affect import detect_affect
+from brain.control_signals.signals import detect_affect
 
 
 # What Orrin catches from each detected user affect signal.

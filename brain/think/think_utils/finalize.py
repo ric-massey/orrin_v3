@@ -8,7 +8,7 @@ from brain.utils.events import emit_event, DECISION
 from brain.behavior.tools.toolkit import evaluate_tool_use
 from brain.cognition.planning.motivations import adjust_goal_weights
 from brain.cog_memory.working_memory import update_working_memory
-from brain.control_signals.update_affect_state import update_affect_state
+from brain.control_signals.update_signal_state import update_affect_state
 from brain.think.think_utils.escalate import is_agentic_action
 from brain.paths import (
     ACTION_FILE,
@@ -437,7 +437,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.21", _e)
 
     try:
-        from brain.cognition.mood import update_mood
+        from brain.cognition.smoothed_state import update_mood
         update_mood(context)
     except Exception as _e:
         record_failure("finalize.finalize_cycle.22", _e)

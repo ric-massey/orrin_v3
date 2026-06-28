@@ -6,7 +6,7 @@ import math
 
 import pytest
 
-from brain.cognition import body_budget as bb
+from brain.cognition import host_budget as bb
 from brain.cognition import resource_cadence as mb
 
 

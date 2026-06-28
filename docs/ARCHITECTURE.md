@@ -37,7 +37,7 @@ If you are trying to understand the source, read it in this order:
 | How do memory and consolidation work? | `memory/memory_daemon.py`, `memory/wal.py`, `memory/retrieval.py`, `brain/cog_memory/` |
 | How do durable goals work? | `goals/goals_daemon.py`, `goals/store.py`, `goals/wal.py`, `goals/runner.py` |
 | How are in-loop goal steps advanced? | `brain/cognition/planning/executive.py` |
-| How does host coupling work? | `supervisor/host_resources.py`, `brain/cognition/host_resource_monitor.py`, `resource_self_monitor.py`, `body_band.py`, `resource_cadence.py`, `body_budget.py` |
+| How does host coupling work? | `supervisor/host_resources.py`, `brain/cognition/host_resource_monitor.py`, `resource_self_monitor.py`, `host_band.py`, `resource_cadence.py`, `host_budget.py` |
 | How does ignition / the workspace work? | `brain/cognition/global_workspace.py`, `brain/think/deliberation_gate.py`, `brain/loop/deliberate.py` |
 | Where are LLM calls gated? | `brain/utils/generate_response.py`, `brain/utils/llm_providers/`, `brain/cognition/tools/ask_llm.py` |
 | What does the UI show? | `backend/server/`, `frontend/src/pages/`, `frontend/src/components/brain/` |
@@ -127,7 +127,7 @@ halves read it differently:
   (`brain/think/think_utils/select_function.py`), the attention hijacker
   (`brain/cognition/attention.py`), and the cost-prediction / EVC layer
   (`brain/cognition/cost_prediction.py`) use the numbers directly to bias what runs next.
-- **The reasoning layer never receives a number.** `brain/control_signals/affect_summary.py` renders
+- **The reasoning layer never receives a number.** `brain/control_signals/signal_summary.py` renders
   the signals into qualitative state descriptions that name the *quality* ("a heaviness, like moving
   through something thick"), never the signal label or its value. Only that text reaches the
   inner-loop prompt, the self-descriptor, and the speech gate. Signals are adaptation-adjusted first,
@@ -183,7 +183,7 @@ behavior. The same host metrics feed three deliberately separate mappings.
   deliberately separate from the deliberative loop, because a thrashing loop can't be asked to
   rescue the substrate it runs on.
 - **Control signals (deviation from a learned band).** The resource self-monitoring layer
-  (`brain/cognition/host_resource_monitor.py`, `resource_self_monitor.py`, `body_band.py`) feeds the
+  (`brain/cognition/host_resource_monitor.py`, `resource_self_monitor.py`, `host_band.py`) feeds the
   *same* host metrics into internal-state signals, but on **deviation from a learned band** rather
   than absolute thresholds — low/falling disk reads as a constriction signal, rising swap as a
   slowdown signal, a draining battery as a finite-horizon signal. A small or busy machine is
@@ -192,7 +192,7 @@ behavior. The same host metrics feed three deliberately separate mappings.
   machine's size — a small machine simply runs at a slower cadence, not a degraded one.
 - **Calibration on a new machine.** `infancy.py` learns *that machine's* normal oscillation before
   the runtime trusts its own deviation signals.
-- **RAM budget.** A user-facing slider (`body_budget.py`, how much of the machine the runtime is
+- **RAM budget.** A user-facing slider (`host_budget.py`, how much of the machine the runtime is
   allowed to use) feeds both the resource-cadence policy and the reported "100%".
 
 Three mappings stay separate by design: absolute capacity → cadence, deviation → control signals,

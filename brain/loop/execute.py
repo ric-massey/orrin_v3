@@ -450,7 +450,7 @@ def execute_cognition_function(
                     key=lambda k: float(_core_pre.get(k) or 0.0),
                 ) if _core_pre else ""
                 if _dom_emo:
-                    from brain.control_signals.affect_learning import update_affect_function_map as _uefm
+                    from brain.control_signals.signal_learning import update_affect_function_map as _uefm
                     _uefm(_dom_emo, fn_name, reward_signal=reward)
             except Exception as e:
                 record_failure("ORRIN_loop.emotion_function_map", e)

@@ -80,7 +80,7 @@ ShedFn = Callable[[str], None]   # the actual load-shedding action (provided by 
 NowFn = Callable[[], float]
 
 GetOwnRssBytes = Callable[[], float]   # psutil.Process().memory_info().rss
-GetBudgetBytes = Callable[[], float]   # cognition.body_budget.budget_bytes()
+GetBudgetBytes = Callable[[], float]   # cognition.host_budget.budget_bytes()
 
 
 @dataclass

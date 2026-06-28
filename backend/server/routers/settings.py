@@ -48,7 +48,7 @@ async def get_settings(request: Request) -> Dict[str, Any]:
     # reads embodiment.metabolism); the UI already renders it as "Resource cadence".
     embodiment: Dict[str, Any] = {}
     try:
-        from brain.cognition.body_budget import budget_status as _bs
+        from brain.cognition.host_budget import budget_status as _bs
         from brain.cognition.resource_cadence import resource_cadence_status as _ms
         from brain.cognition.infancy import infancy_status as _is
         embodiment = {"budget": _bs(), "metabolism": _ms(), "infancy": _is()}
@@ -99,7 +99,7 @@ async def update_settings(payload: Dict[str, Any], request: Request) -> Dict[str
             # prefs.set: it refuses an unviable grant loudly (§11.4.3) and a meaningful
             # resize re-enters a partial somatic infancy (§11.4.2). Skip the generic path.
             if k == "body_budget_fraction":
-                from brain.cognition.body_budget import set_budget_fraction
+                from brain.cognition.host_budget import set_budget_fraction
                 budget_result = set_budget_fraction(v)
                 if budget_result.get("ok"):
                     changed.append("pref:body_budget_fraction")

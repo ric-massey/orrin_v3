@@ -190,7 +190,7 @@ def _express(
     """
     try:
         from brain.utils.generate_response import generate_response, llm_ok
-        from brain.control_signals.affect_summary import describe_dominant_affect as _dfs
+        from brain.control_signals.signal_summary import describe_dominant_affect as _dfs
 
         emo  = affect_state or {}
         core = emo.get("core_signals") or emo

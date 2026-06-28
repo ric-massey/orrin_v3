@@ -17,8 +17,8 @@ from __future__ import annotations
 
 from typing import Dict
 
-from brain.control_signals.affect import detect_affect
-from brain.control_signals.affect_dynamics import get_habit_factor, record_habit
+from brain.control_signals.signals import detect_affect
+from brain.control_signals.signal_dynamics import get_habit_factor, record_habit
 from brain.control_signals.homeostasis import pump_signal
 from brain.utils.failure_counter import record_failure
 

@@ -382,7 +382,7 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
 
     # Check recombination output for wonder triggers
     try:
-        from brain.cognition.wonder import detect_wonder_trigger as _dwt
+        from brain.cognition.novelty import detect_wonder_trigger as _dwt
         if results.get("recombination"):
             _dwt(results["recombination"], context)
     except Exception as _e:

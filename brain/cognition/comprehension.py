@@ -134,7 +134,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
 
 def _fallback(user_text: str) -> Dict[str, Any]:
     """Rule-based fallback when LLM parse fails."""
-    from brain.control_signals.affect import detect_affect
+    from brain.control_signals.signals import detect_affect
     result    = detect_affect(user_text, use_gpt=False)
     emotion   = "neutral"
     intensity = 0.0

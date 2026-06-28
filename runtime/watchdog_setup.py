@@ -119,7 +119,7 @@ def build() -> WatchdogInputs:
             # floor can never disagree. Falls back to a conservative full-RAM ceiling
             # if body_budget is unavailable, so the guard degrades to never-trips.
             try:
-                from brain.cognition.body_budget import budget_bytes
+                from brain.cognition.host_budget import budget_bytes
                 return float(budget_bytes())
             except Exception:
                 return float(_psutil.virtual_memory().total)

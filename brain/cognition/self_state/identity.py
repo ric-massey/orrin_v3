@@ -133,7 +133,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     # Uses the *perceived* state (what Orrin thinks he feels) rather than ground truth —
     # the actual state drives unconscious machinery and is never directly reported here.
     try:
-        from brain.control_signals.affect_summary import render_affect_state as _dfs
+        from brain.control_signals.signal_summary import render_affect_state as _dfs
         _body_tokens = []
         _perceived_emo = None
         _clarity = 1.0
@@ -191,7 +191,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     goal_line = ""
     try:
         from brain.utils.runtime_ctx import get_cycle_context
-        from brain.control_signals.affect_summary import format_goal_state as _gfo
+        from brain.control_signals.signal_summary import format_goal_state as _gfo
         _rtx = get_cycle_context()
         _goal = _rtx.get("committed_goal") or {}
         _orientation = _gfo(_goal)

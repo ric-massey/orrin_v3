@@ -14,13 +14,13 @@ from statistics import mean
 from typing import Any
 
 from brain.utils.json_utils import load_json, save_json
-from brain.control_signals.affect import get_all_affect_names, deliver_affect_based_rewards
-from brain.control_signals.affect_dynamics import (
+from brain.control_signals.signals import get_all_affect_names, deliver_affect_based_rewards
+from brain.control_signals.signal_dynamics import (
     decay_habituation, capture_prev_core,
     apply_velocity_dynamics, compute_valence_activation_level, update_mood,
     update_hedonic_baselines,
 )
-from brain.control_signals.affect_buffer import drain_affect_queue
+from brain.control_signals.signal_buffer import drain_affect_queue
 from brain.control_signals.homeostasis import (
     apply_restoring_forces, apply_cross_inhibition, enforce_velocity_budget, ANTAGONISTS,
     EMO_CEILINGS, DEFAULT_CEILING, CEILING_RATE,
@@ -28,13 +28,13 @@ from brain.control_signals.homeostasis import (
 )
 from brain.control_signals.setpoints import CORE_BASELINES
 from brain.utils.log import log_activity
-from brain.control_signals.modes_and_affect import recommend_mode_from_affect_state, set_current_mode, get_current_mode
+from brain.control_signals.modes_and_signals import recommend_mode_from_affect_state, set_current_mode, get_current_mode
 from brain.utils.timing import get_time_since_last_active
 
 from brain.paths import AFFECT_STATE_FILE, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
 # Per-cycle pattern phases, extracted to affect_patterns.py (Phase 4.5C).
-from brain.control_signals.affect_patterns import (
+from brain.control_signals.signal_patterns import (
     apply_wm_triggers_and_appraisal, detect_oscillation_and_flatline,
 )
 _log = get_logger(__name__)

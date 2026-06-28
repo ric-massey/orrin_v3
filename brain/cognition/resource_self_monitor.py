@@ -44,7 +44,7 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
 from brain.paths import BODY_SENSE_FILE, DATA_DIR
 from brain.utils.failure_counter import record_failure
-from brain.cognition.body_band import BodyBands
+from brain.cognition.host_band import BodyBands
 _log = get_logger(__name__)
 
 # Absolute backstops (NOT felt-state triggers). FD genuinely near the OS limit is

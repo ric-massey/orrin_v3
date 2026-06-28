@@ -180,7 +180,7 @@ def render_affect_state(
     for name, val in flat.items():
         if use_hedonic_adjustment and hedonic_baselines:
             try:
-                from brain.control_signals.affect_dynamics import effective_intensity as _ei
+                from brain.control_signals.signal_dynamics import effective_intensity as _ei
                 eff = _ei(name, val, hedonic_baselines)
             except Exception:
                 eff = val
@@ -252,7 +252,7 @@ def describe_dominant_affect(affect_state: Dict[str, Any]) -> str:
 
     # Apply hedonic adjustment before ranking
     try:
-        from brain.control_signals.affect_dynamics import effective_intensity as _ei
+        from brain.control_signals.signal_dynamics import effective_intensity as _ei
         effective = {k: _ei(k, v, hedonic_baselines) for k, v in flat.items()}
     except Exception:
         effective = flat

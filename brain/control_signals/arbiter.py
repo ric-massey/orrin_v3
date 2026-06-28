@@ -34,7 +34,7 @@ from __future__ import annotations
 import threading
 from typing import Any, Dict, List, Optional
 
-from brain.control_signals.affect_buffer import queue_affect_change
+from brain.control_signals.signal_buffer import queue_affect_change
 from brain.control_signals.setpoints import setpoint
 from brain.config.tuning import AFFECT_AWAY_COST_MULTIPLIER, AFFECT_STABILITY_BUDGET
 from brain.utils.log import log_activity

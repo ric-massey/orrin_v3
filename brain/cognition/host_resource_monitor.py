@@ -29,7 +29,7 @@ from brain.core.runtime_log import get_logger
 from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_private
 from brain.paths import DATA_DIR
-from brain.cognition.body_band import BodyBands
+from brain.cognition.host_band import BodyBands
 
 _log = get_logger(__name__)
 

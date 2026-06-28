@@ -23,7 +23,7 @@ from brain.think.thought_stream import emit_thought
 from brain.behavior.speak import OrrinSpeaker
 from brain.cognition.self_state.relationships import update_relationship_model
 from brain.cognition.self_state.self_model_conflicts import update_self_model
-from brain.control_signals.affect_learning import update_affect_function_map
+from brain.control_signals.signal_learning import update_affect_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,

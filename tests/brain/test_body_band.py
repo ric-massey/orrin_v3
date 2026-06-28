@@ -9,7 +9,7 @@ import math
 
 import pytest
 
-from brain.cognition.body_band import Band, BodyBands
+from brain.cognition.host_band import Band, BodyBands
 
 
 def _breathe(band: Band, center=920.0, amp=40.0, period=9.0, n=500):

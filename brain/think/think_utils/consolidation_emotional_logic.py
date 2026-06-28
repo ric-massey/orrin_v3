@@ -1,9 +1,9 @@
 from brain.cognition.idle_consolidation import compose_consolidation  # ✅ use compose_consolidation(self_model, recent)
-from brain.control_signals.affect_drift import check_affect_drift
+from brain.control_signals.signal_drift import check_affect_drift
 from brain.behavior.behavior_generation import generate_behavior_from_integration
-from brain.control_signals.update_affect_state import update_affect_state
-from brain.control_signals.reflect_on_affect import reflect_on_affect
-from brain.control_signals.apply_affective_feedback import apply_affective_feedback
+from brain.control_signals.update_signal_state import update_affect_state
+from brain.control_signals.reflect_on_signals import reflect_on_affect
+from brain.control_signals.apply_signal_feedback import apply_affective_feedback
 from brain.control_signals.threat_detector import process_affective_signals
 from brain.cog_memory.working_memory import update_working_memory
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal

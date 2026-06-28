@@ -255,7 +255,7 @@ def handle_user_input(
         try:
             # Wonder trigger detection — runs on every user input
             try:
-                from brain.cognition.wonder import detect_wonder_trigger as _dwt
+                from brain.cognition.novelty import detect_wonder_trigger as _dwt
                 _dwt(user_input, context)
             except Exception as _e:
                 record_failure("user_input.handle_user_input.2", _e)

@@ -19,7 +19,7 @@ interface SelfModel {
   identity?: string;
   emotion?: string;
   core_directive?: { statement?: string };
-  core_values?: unknown[];
+  core_values?: Array<string | { value?: string }>;
   traits?: unknown[];
   weaknesses?: string[];
   knowledge_domains?: Record<string, number>;
@@ -33,6 +33,9 @@ export default function SelfModelPanel() {
   const [view, setView] = useState<"identity" | "revisions" | "opinions">("identity");
   const m = data?.model;
   const domains = Object.entries(m?.knowledge_domains || {}).sort((a, b) => b[1] - a[1]);
+  const values = (m?.core_values || [])
+    .map((v) => (typeof v === "string" ? v : v?.value || ""))
+    .filter(Boolean);
   const revisions = data?.revisions || [];
   const opinions = data?.opinions || [];
 
@@ -76,6 +79,16 @@ export default function SelfModelPanel() {
               )}
               {m.note && <p className="mt-1 text-[10.5px] italic text-muted-foreground/80">“{m.note}”</p>}
             </div>
+            {values.length > 0 && (
+              <div>
+                <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Core values</div>
+                <div className="flex flex-wrap items-center gap-1">
+                  {values.map((v, i) => (
+                    <span key={`${v}-${i}`} className="rounded bg-secondary px-1.5 py-0 text-[9.5px] text-foreground/90">{v}</span>
+                  ))}
+                </div>
+              </div>
+            )}
             {domains.length > 0 && (
               <div>
                 <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">Knowledge-domain confidence (its own estimate)</div>

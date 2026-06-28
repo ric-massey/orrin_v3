@@ -6,6 +6,7 @@
 # goal title, recent working memory, or user input), runs grep_files, and writes
 # findings to working memory and long memory so future cycles can build on them.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Dict, Any, List
 
@@ -44,7 +45,7 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
 
     # Derive query if not explicitly given
     if not query:
-        goal = context.get("committed_goal") or {}
+        goal = bound_goal(context) or {}
         query = (goal.get("title") or goal.get("name") or "").strip()
 
     if not query:
@@ -99,8 +100,8 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     # keeps re-running the same search over a finite corpus is seen as making no
     # NEW progress. Feeds the satiety close (Fix 1) and the stall signature (Fix 3).
     # Recorded for BOTH outcomes: empty matches ⇒ a barren call (raises the streak).
-    _goal_id = str((context.get("committed_goal") or {}).get("id")
-                   or (context.get("committed_goal") or {}).get("title") or "")
+    _goal_id = str((bound_goal(context) or {}).get("id")
+                   or (bound_goal(context) or {}).get("title") or "")
     try:
         from brain.cognition import novelty_memory
         # Novelty unit = the FILE (area), not file:line. An exploration goal asks

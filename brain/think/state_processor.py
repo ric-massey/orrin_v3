@@ -9,6 +9,7 @@ Orrin's architecture already knows what's active, what's unresolved, and
 whether something is pressing for expression.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, Tuple
@@ -59,7 +60,7 @@ def compute_cycle_state(
     goal_progress = 0.0
     try:
         from brain.control_signals.signal_summary import format_goal_state as _gfo
-        goal = context.get("committed_goal") or {}
+        goal = bound_goal(context) or {}
         goal_orientation = _gfo(goal)
         goal_stuck = bool(goal.get("stuck") or goal.get("blocked"))
         goal_progress = float(goal.get("progress") or 0.0)
@@ -91,7 +92,7 @@ def compute_cycle_state(
         dominant_signal=dominant_signal,
         dominant_intensity=dominant_intensity,
         tensions=tensions,
-        goal=context.get("committed_goal") or {},
+        goal=bound_goal(context) or {},
         user_input=user_input,
     )
 

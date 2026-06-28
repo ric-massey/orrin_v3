@@ -24,6 +24,7 @@
 #   is repeated.
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import hashlib
 from datetime import datetime, timezone
@@ -135,7 +136,7 @@ def _apply(context: Dict[str, Any]) -> Dict:
         wm_factors.append(get_factor(key, store))
 
     # ── 2. Active goal ─────────────────────────────────────────────────────────
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_factor = 1.0
     if isinstance(goal, dict) and (goal.get("title") or goal.get("id")):
         goal_key = f"goal:{goal.get('id') or goal.get('title')}"

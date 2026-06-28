@@ -9,6 +9,7 @@
 # metacog_flush and its external callers (calibration, behavioral_adaptation,
 # life_capsule_ingest).
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import random
 from collections import Counter
@@ -107,7 +108,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
                 "grep_files", "look_outward", "look_around", "seek_novelty",
                 "pursue_committed_goal", "assess_goal_progress",
             }
-            _gd = context.get("committed_goal")
+            _gd = bound_goal(context)
             if isinstance(_gd, dict) and (_gd.get("title") or _gd.get("id")) and top_fn in _GOAL_DRIVEN_FNS:
                 _gid = str(_gd.get("id") or _gd.get("title") or "goal")
                 _gs = context.setdefault("_monitor_state", {}).setdefault(
@@ -138,7 +139,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
     # ── 3. Goal debt avoidance ────────────────────────────────────────────────
     # action_debt grows when a committed goal gets no action taken on it.
     debt = int(context.get("action_debt", 0) or 0)
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_title = goal.get("title", "") if isinstance(goal, dict) else ""
     try:
         from brain.cognition.action_accounting import cycle_produced_goal_action

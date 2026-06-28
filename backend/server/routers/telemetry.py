@@ -484,6 +484,48 @@ async def self_box(n: int = 20) -> JSONResponse:
     })
 
 
+@router.get("/intelligence")
+async def intelligence(days: int = 7) -> JSONResponse:
+    """Symbolic-intelligence growth over the last N days (the "is it getting
+    smarter?" read). A pure projection over brain/data/symbolic_progress.json —
+    deliberately NOT a call into llm_gate.gate_report(), because that flushes the
+    *live* session counters, and in this backend process those counters are always
+    zero: flushing here would write empty snapshots into the brain's progress file.
+    So we replicate report()'s aggregation as a read-only roll-up of the rows the
+    brain already persisted (progress_tracker.flush writes them each dream cycle)."""
+    cap = max(1, min(90, days))
+    history = [d for d in _read_json("symbolic_progress.json", []) if isinstance(d, dict)]
+    recent = history[-cap:]
+    if not recent:
+        return JSONResponse({"summary": "No symbolic progress data yet.", "days": [], "overall_ratio": 0.0})
+
+    total_sym = sum(int(d.get("symbolic_hits", 0) or 0) for d in recent)
+    total_llm = sum(int(d.get("llm_calls", 0) or 0) for d in recent)
+    total_q = total_sym + total_llm
+    overall_ratio = round(total_sym / total_q, 3) if total_q else 0.0
+    latest = recent[-1]
+    return JSONResponse({
+        "summary": (
+            f"{cap}-day symbolic intelligence report | "
+            f"{total_sym}/{total_q} queries resolved symbolically ({overall_ratio:.1%}) | "
+            f"Rules: {recent[0].get('rules_total', 0)}→{latest.get('rules_total', 0)} "
+            f"(+{int(latest.get('rules_total', 0)) - int(recent[0].get('rules_total', 0))})"
+        ),
+        "days": recent,
+        "overall_ratio": overall_ratio,
+        "rules_start": int(recent[0].get("rules_total", 0) or 0),
+        "rules_end": int(latest.get("rules_total", 0) or 0),
+        "rules_growth": int(latest.get("rules_total", 0) or 0) - int(recent[0].get("rules_total", 0) or 0),
+        "experiments_run": sum(int(d.get("experiments_run", 0) or 0) for d in recent),
+        "experiments_succeeded": sum(int(d.get("experiments_succeeded", 0) or 0) for d in recent),
+        "sub_goals_spawned": sum(int(d.get("sub_goals_spawned", 0) or 0) for d in recent),
+        "conflicts_detected": sum(int(d.get("conflicts_detected", 0) or 0) for d in recent),
+        "concept_depth": float(latest.get("avg_concept_depth", 0) or 0),
+        "causal_density": float(latest.get("causal_graph_density", 0) or 0),
+        "goal_completion_rate": float(latest.get("goal_completion_rate", 0) or 0),
+    })
+
+
 @router.get("/people")
 async def people() -> JSONResponse:
     """Who he knows (box ⑧): person models from relationships.json + the known-

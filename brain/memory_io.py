@@ -10,6 +10,7 @@
 # ingest/query the v2 MemoryDaemon (embedding, salience, compaction). The daemon
 # is passed in by the caller — this module holds no global state.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List, Optional
@@ -201,7 +202,7 @@ def inject_into_context(daemon: Any, context: Dict[str, Any],
     """Query v2 for relevant memories and inject into context['retrieved_memories']."""
     if daemon is None:
         return 0
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     lens = context.get("goal_lens") or {}
     goal_text = " ".join([
         str(goal.get("title") or goal.get("name") or "").strip(),

@@ -9,6 +9,7 @@
 # so they are truthful and not LLM-guessed.  Orrin can introspect and adjust
 # these weights as he learns what "making progress" means for different goal kinds.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict
 
@@ -43,7 +44,7 @@ def compute_goal_progress(
       +0.10  each working-memory entry in the last 5 that names the goal (max 2)
       -0.20  stalling: action_debt >= _STALL_THRESHOLD cycles without acting
     """
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict) or not goal.get("title"):
         return 0.5  # no goal active → neutral, don't penalize
 
@@ -97,7 +98,7 @@ def goal_weighted_reward(
     cycle actually moved toward the goal, 40% by the function's own quality.
     This creates a strong incentive to stay goal-directed.
     """
-    if not (context.get("committed_goal") or {}).get("title"):
+    if not (bound_goal(context) or {}).get("title"):
         return base_reward
 
     gp = compute_goal_progress(context, action_was_taken=action_was_taken, fn_name=fn_name)

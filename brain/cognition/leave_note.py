@@ -5,6 +5,7 @@
 # symbolic/causal tags, telemetry) is unreachable from here.
 # (EXPRESSION_MEMBRANE_FIX_PLAN E1/E4, 2026-06-14.)
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import re
 from typing import Any, Dict, Optional
@@ -74,7 +75,45 @@ def _seed_from_goal(goal: Dict[str, Any]) -> Optional[str]:
         seed = f"what I actually know about {title or 'this'}: {body}"
         if crit:
             seed += f" — toward: {crit}"
-        return seed if _qualifies_as_seed(seed) else None
+        # T2.4 — this branch is the goal's grounded_parts PLANNING SKELETON, the
+        # ×56 template note ("...: question or desired change; relevant evidence;
+        # reasoned conclusion"). Route a real finding instead (see
+        # _seed_from_goal_finding, tried first in leave_note); only let the skeleton
+        # through if the SHARED T0.5 predicate judges it real work against this goal
+        # — which it won't when it is purely the template, closing the loophole.
+        if not _qualifies_as_seed(seed):
+            return None
+        try:
+            from brain.cognition.quality_predicate import is_real_work
+            if not is_real_work(seed, goal=goal):
+                return None
+        except Exception as exc:  # predicate unavailable — fall back to the weak gate
+            record_failure("leave_note.seed_quality", exc)
+        return seed
+    return None
+
+
+def _seed_from_goal_finding(goal: Dict[str, Any]) -> Optional[str]:
+    """T2.4 — route the note body from the goal's ACTUAL finding / produced content,
+    not its grounded_parts planning skeleton. Reads the same real-evidence fields the
+    T0.5 predicate grounds against (finding / answer / conclusion / produced_content /
+    result), and returns the finding as a seed only when it passes that shared
+    predicate — so provenance reaches the ANSWER, not just the topic."""
+    if not isinstance(goal, dict):
+        return None
+    title = str(goal.get("title") or "this")
+    for k in ("finding", "answer", "conclusion", "produced_content", "result"):
+        v = goal.get(k)
+        if isinstance(v, str) and v.strip():
+            text = " ".join(v.split())[:240]
+            seed = f"what I found out about {title}: {text}"
+            try:
+                from brain.cognition.quality_predicate import is_real_work
+                if not is_real_work(seed, goal=goal):
+                    continue
+            except Exception as exc:
+                record_failure("leave_note.finding_quality", exc)
+            return seed
     return None
 
 
@@ -106,14 +145,18 @@ def leave_note(context: Dict[str, Any] = None) -> str:
 
     from brain.behavior.express_to_user import build_motive, express_to_user
 
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal = goal if isinstance(goal, dict) else {}
 
-    # Seed, best provenance first: the goal's own grounded comprehension, then a
-    # quality-gated recent finding. The seed is a meaning kernel — the expression
-    # door rewords/sanitises it, so the membrane stays intact. Empty seed →
-    # unchanged (affect-kernel) behaviour for a spontaneous felt note.
-    seed = _seed_from_goal(goal) or _seed_from_recent_finding()
+    # Seed, best provenance first (T2.4 — route from the FINDING, not the template):
+    # the goal's own produced finding, then a quality-gated recent finding, then —
+    # only as a last resort and only if the shared T0.5 predicate accepts it — the
+    # goal's grounded comprehension. This stops the note body from carrying the
+    # grounded_parts planning skeleton (the ×56 template note). The seed is a meaning
+    # kernel — the expression door rewords/sanitises it, so the membrane stays intact.
+    seed = (_seed_from_goal_finding(goal)
+            or _seed_from_recent_finding()
+            or _seed_from_goal(goal))
 
     # F5 #5: a note whose goal demands a real artifact must carry real content —
     # never fall back to the affect kernel and emit another boilerplate note.

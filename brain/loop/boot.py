@@ -10,6 +10,7 @@ two are private to this stage (only `_verify_production_capability` is also used
 by a runtime-surface test).
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 from typing import Any, Dict
@@ -462,7 +463,7 @@ def _boot_context() -> Context:
     # Prevents the cold-start deadlock where thinking needs a goal but goal creation
     # needs thinking. Only fires when no committed goal survived the previous session.
     # The seed is concrete enough to act on immediately (search + store result).
-    if not context.get("committed_goal"):
+    if not bound_goal(context):
         try:
             from datetime import datetime as _dt, timezone as _tz
             _boot_ts = _dt.now(_tz.utc).isoformat()

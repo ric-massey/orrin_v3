@@ -18,6 +18,7 @@
 # met when ≥ half its non-trivial tokens appear in any of the last 10 WM entries.
 # This is intentionally approximate; the goal is a signal, not a classifier.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import hashlib
 import time
@@ -184,7 +185,7 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
     Marks newly-met milestones in-place with met=True and met_at timestamp.
     Returns count of newly ticked milestones.
     """
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict):
         return 0
 
@@ -255,7 +256,7 @@ def take_snapshot(context: Dict[str, Any]) -> Dict[str, Any]:
     Capture a lightweight state bundle before or after a cognition step.
     """
     wm = context.get("working_memory") or []
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     milestones = goal.get("milestones") or []
 
     return {

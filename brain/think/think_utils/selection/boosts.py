@@ -9,6 +9,7 @@
 # record_failure tags, same returned deltas — the per-weight multipliers and
 # caps stay in select_function()'s scoring loop, which is the combiner.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict, List
 
@@ -362,7 +363,7 @@ def compute_goal_recruit(context: Dict[str, Any], actions: List[str], defs: Dict
     """
     _goal_recruit: Dict[str, float] = {}
     try:
-        _grg = context.get("committed_goal") or {}
+        _grg = bound_goal(context) or {}
         if isinstance(_grg, dict):
             _grg_text = " ".join(
                 str(_grg.get(k, "") or "") for k in ("title", "name", "description")

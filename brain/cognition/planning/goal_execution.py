@@ -7,6 +7,7 @@ refractory cooldown. The plan/closure/planning helpers are imported downward
 (no cycle); pursue_goal re-exports pursue_committed_goal and _STEP_MAX_ATTEMPTS.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import json as _json
@@ -26,6 +27,7 @@ from brain.utils.llm_gate import llm_callable_by
 from brain.utils.failure_counter import record_failure
 from brain.cognition.planning.goal_closure import (
     _tier_closure_enabled, _survival_preempt_enabled, _survival_critical,
+    _closed_loop_break,
     _finalize_goal_completion, _maybe_close_on_tier, _degrade_or_disengage,
     _repromote_if_recovered,
 )
@@ -70,7 +72,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     if now - _last_pursuit_ts < _COOLDOWN_S:
         return {"status": "ok", "skipped": True, "reason": "cooldown"}
 
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict) or not (goal.get("title") or goal.get("name")):
         return {"status": "ok", "skipped": True, "reason": "no_committed_goal"}
 
@@ -102,10 +104,17 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     if _survival_preempt_enabled():
         _crit, _why = _survival_critical(context)
         if _crit:
-            log_activity(f"[pursue_goal] survival preemption ({_why}) — yielding pursuit "
-                         f"of '{goal_title[:60]}' this cycle (resumable).")
-            return {"status": "ok", "skipped": True, "reason": "survival_preempt",
-                    "detail": _why, "goal": goal_title}
+            # R2 — "closed loop running open": if a behavioral corrective has been
+            # armed but survival preemption has overridden it for a full window,
+            # force ONE grounded pursuit (bounded by a cooldown) rather than yield
+            # again. Otherwise yield as normal — survival precedence is untouched.
+            if not _closed_loop_break(context, _why):
+                log_activity(f"[pursue_goal] survival preemption ({_why}) — yielding pursuit "
+                             f"of '{goal_title[:60]}' this cycle (resumable).")
+                return {"status": "ok", "skipped": True, "reason": "survival_preempt",
+                        "detail": _why, "goal": goal_title}
+        else:
+            context["_preempt_open_streak"] = 0  # not preempting → clear the open-loop streak
 
     _last_pursuit_ts = now
     context["_pursue_cooldown_until"] = now + _COOLDOWN_S

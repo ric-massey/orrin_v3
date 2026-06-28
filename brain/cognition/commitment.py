@@ -17,6 +17,7 @@
 # The decay + auto-clear are deliberate: a follow-through bias that never weakens
 # would just be a rut. This shields follow-through without locking in. Symbolic, no LLM.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import json
 import time
@@ -35,7 +36,7 @@ _MIN_STRENGTH = 0.2          # even a humbled vow must outlive the clear thresho
 
 
 def _goal_title(context: Dict[str, Any]) -> str:
-    cg = context.get("committed_goal")
+    cg = bound_goal(context)
     if isinstance(cg, dict):
         return str(cg.get("title") or cg.get("name") or "")
     return ""

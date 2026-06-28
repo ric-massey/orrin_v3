@@ -1,4 +1,5 @@
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from typing import Dict, Any
 
 def context_key(context: Dict[str, Any]) -> str:
@@ -12,7 +13,7 @@ def context_key(context: Dict[str, Any]) -> str:
     else:
         dom = emo_state.get("dominant", "neutral") if isinstance(emo_state, dict) else "neutral"
 
-    goal_ctx = (context.get("committed_goal") or {}) or (context.get("focus_goal") or {})
+    goal_ctx = (bound_goal(context) or {}) or (context.get("focus_goal") or {})
     goal_tier = goal_ctx.get("tier", "none") if isinstance(goal_ctx, dict) else "none"
 
     mode_val = context.get("mode", "default")

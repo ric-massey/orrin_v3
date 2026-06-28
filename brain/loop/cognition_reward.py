@@ -11,6 +11,7 @@
 # adjustments, and the introspection outcome-coupling cap. Same record_failure
 # tags, same context mutations (reward_rate / outward digest) as before.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict
 
@@ -52,7 +53,7 @@ def shape_cognition_reward(
             context,
             reward=float(_blended_reward),
             committed_goal_id=(
-                (context.get("committed_goal") or {}).get("id")
+                (bound_goal(context) or {}).get("id")
             ),
         )
         context["_reward_rate_updated_this_cycle"] = True

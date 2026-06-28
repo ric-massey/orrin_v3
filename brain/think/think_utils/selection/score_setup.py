@@ -7,6 +7,7 @@ as the `ScoreInputs` bundle that `score_actions.score_candidates` consumes. Kept
 separate from the scoring loop so each stays focused and under the size limit.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import statistics as _statistics
 from typing import Any, Callable, Dict, List, Optional
@@ -152,7 +153,7 @@ def build_score_inputs(
     # Compute goal status before neuromodulator block — used at line 749.
     # Was previously defined at line 815, causing NameError inside the try block
     # that silently killed all NE, stability_signal, and stress_load boosts.
-    _goal_obj_pre = context.get("committed_goal") if context else None
+    _goal_obj_pre = bound_goal(context) if context else None
     _has_committed_goal = (
         isinstance(_goal_obj_pre, dict)
         and bool(_goal_obj_pre.get("title") or _goal_obj_pre.get("name"))
@@ -224,7 +225,7 @@ def build_score_inputs(
                 goal_type_of, is_mismatched_doing_action, EXCLUSIVE_DOING,
             )
             _mismatch_fn = is_mismatched_doing_action
-            _goal_type = goal_type_of(context.get("committed_goal") or {})
+            _goal_type = goal_type_of(bound_goal(context) or {})
             # Type-based recruitment (EXPLORE_EXPLOIT_VALUE_PLAN §6.4 Fix A; Miller & Cohen
             # 2001 guided activation): a strongly-typed goal categorically recruits its OWN
             # means — e.g. an acquire_knowledge goal pulls research_topic/wikipedia_search —

@@ -9,6 +9,7 @@ mutates context in place. Fail-safe — the pulse tick, the ORRIN_ONCE exit, the
 per-cycle GC/finetune cadence, and the cadence sleep stay in the loop.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import json
 from brain.core.runtime_log import get_logger
@@ -61,7 +62,7 @@ def _emit_production_telemetry(context: Context) -> None:
     """Persist one durable, bounded production-loop record for this cycle (F6)."""
     global _handoff_total, _attempt_total, _success_total
     try:
-        goal = context.get("committed_goal")
+        goal = bound_goal(context)
         goal = goal if isinstance(goal, dict) else {}
         gid = str(goal.get("id") or goal.get("title") or "") or None
         hydrated = bool(goal.get("grounded_parts") and goal.get("definition_of_done"))
@@ -114,7 +115,7 @@ def _emit_production_telemetry(context: Context) -> None:
 # your future self choosing to call it). It carries a substantial deferred bonus, but
 # decays 1/n with repeated re-use of the SAME artifact so re-invoking junk can't farm
 # it. Paid here, in the loop's post-cycle stage, because it must land on the live cycle
-# context before commit_affect integrates the cycle's affect proposals — and because the
+# context before commit_signals integrates the cycle's affect proposals — and because the
 # effect ledger lives in agency/ (loop→agency is an allowed edge; think→agency is not).
 REUSE_REWARD = 0.9
 
@@ -156,7 +157,7 @@ def _pay_artifact_reuse(context: Context) -> None:
 
 def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any, _cycle_num: Any) -> Context:
     # ── Tier-3 production-loop closure: reward re-use of Orrin's own artifacts ──
-    # Runs before commit_affect so the reward's affect proposals are integrated
+    # Runs before commit_signals so the reward's affect proposals are integrated
     # into this same cycle.
     _pay_artifact_reuse(context)
 
@@ -266,14 +267,14 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
 
     # ── Affect convergence: integrate this cycle's affect proposals ────
     # Every subsystem that wanted to change affect this cycle submitted a
-    # proposal via affect.arbiter.submit_affect() instead of mutating
+    # proposal via affect.arbiter.submit_signal() instead of mutating
     # affect_state directly. Commit integrates them all at once (weighted
     # sum nets contradictions), applies the homeostatic stability budget,
     # and queues the result into the affect_buffer so it drains gradually
-    # through next cycle's update_affect_state. This is the single commit
+    # through next cycle's update_signal_state. This is the single commit
     # point that replaces the old last-writer-wins races.
     try:
-        from brain.control_signals.arbiter import commit_affect as _commit_affect
+        from brain.control_signals.arbiter import commit_signals as _commit_affect
         _commit_affect(context)
     except Exception as _aae:
         record_failure("ORRIN_loop.affect_commit", _aae)
@@ -381,7 +382,7 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
             log_error(f"goal_io.sync_proposed_goals failed: {e}")
 
         # Record goal progress note every 5 cycles so long memory has a trail
-        if context.get("committed_goal"):
+        if bound_goal(context):
             try:
                 goal_io.record_goal_progress(context)
             except Exception as e:
@@ -466,6 +467,12 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
         from brain.cognition.global_workspace import update_workspace as _uw
         _moment = _uw(context)
         if _moment:
+            # Top-down write-back (TOPDOWN_WRITEBACK plan): the conscious winner
+            # nudges priors back down — a decaying affect proposal (integrated by
+            # next cycle's commit_signals) plus salience-prior priming for theme
+            # continuity. Bias only, never preempt; fail-safe inside.
+            from brain.cognition.workspace_writeback import write_back as _write_back
+            _write_back(context, _moment)
             tb = _bridge()
             if tb is not None:
                 tb.update(extra={"awareness": _moment.get("content", "")})

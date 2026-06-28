@@ -19,6 +19,7 @@ The backend — working memory, symbolic/causal/rule tags, telemetry — is
 unreachable from here. The door consumes a Motive, never raw representation.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import dataclasses
 from dataclasses import dataclass
@@ -63,7 +64,7 @@ EXPRESSIVE_FUNCTIONS = frozenset({
 
 
 def _goal_why(context: Dict[str, Any]) -> str:
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     if not isinstance(goal, dict):
         return ""
     spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
@@ -72,7 +73,7 @@ def _goal_why(context: Dict[str, Any]) -> str:
 
 
 def _goal_id(context: Dict[str, Any]) -> str:
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     if not isinstance(goal, dict):
         return ""
     return str(goal.get("id") or goal.get("title") or goal.get("name") or "")

@@ -1,3 +1,4 @@
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 import time
 import threading
@@ -193,7 +194,7 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
         from brain.utils.runtime_ctx import get_cycle_context
         from brain.control_signals.signal_summary import format_goal_state as _gfo
         _rtx = get_cycle_context()
-        _goal = _rtx.get("committed_goal") or {}
+        _goal = bound_goal(_rtx) or {}
         _orientation = _gfo(_goal)
         if _orientation:
             goal_line = f"\n{_orientation}"

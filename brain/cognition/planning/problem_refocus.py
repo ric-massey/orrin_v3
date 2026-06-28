@@ -26,6 +26,7 @@
 # boot do not. Only one problem is handled at a time, and a fix micro-goal can
 # never itself trigger another refocus (no nesting).
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 from typing import Any, Dict, List, Optional, Tuple
@@ -532,7 +533,7 @@ def handle_problem_refocus(context: Optional[Dict[str, Any]] = None) -> Dict[str
         return {"status": "ok"}
 
     capability, desc, detect_totals = detection
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if capability in _TOOL_CAPABILITIES:
         # Background curiosity investigation — needs no goal to park.
         if isinstance(goal, dict) and goal.get("_is_fix_goal"):

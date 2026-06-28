@@ -4,6 +4,7 @@
 # Goals are marked source="intrinsic" and injected into context["proposed_goals"]
 # for goal_io to pick up. Runs from dream cycle on slower cadence.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import json
@@ -178,6 +179,15 @@ def _build_committed_goal(g: Dict, gid: str) -> Dict:
     if g.get("requires_artifact"):
         cg["requires_artifact"] = True
         cg["deadline_cycles"] = g.get("deadline_cycles")
+    # T2.3 — record the `attempted` funnel stage: a goal serving this drive's
+    # aspiration was committed for pursuit (not merely generated). This is what
+    # makes the scoreboard's per-aspiration `attempted` non-zero, so coverage can be
+    # read as generated → attempted → progressed → completed per aspiration.
+    try:
+        from brain.cognition.objective_scoreboard import record_by_drive
+        record_by_drive(drive, "attempted")
+    except Exception:  # intentional: scoreboard is best-effort, never block a commit
+        pass
     try:
         from brain.cognition.planning.goal_comprehension import hydrate_goal_model
         return hydrate_goal_model(cg)
@@ -202,7 +212,7 @@ def _evict_spent_committed_goal(context: Dict[str, Any]) -> bool:
     intrinsic goal is legitimately id-less until the v2 projection assigns one, so
     evicting on `id is None` would thrash a healthy pending goal out of the slot every
     cycle."""
-    cg = context.get("committed_goal")
+    cg = bound_goal(context)
     if not isinstance(cg, dict):
         return False
     status = str(cg.get("status") or "").lower()
@@ -232,15 +242,15 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     # terminal goal can never wedge the loop (see _evict_spent_committed_goal).
     _evict_spent_committed_goal(context)
 
-    if context.get("_suppress_intrinsic_goals") and context.get("committed_goal"):
+    if context.get("_suppress_intrinsic_goals") and bound_goal(context):
         log_activity("[intrinsic_goals] Skipped while patch-leave suppression is active.")
         return []
-    if int(context.get("action_debt", 0) or 0) > 0 and context.get("committed_goal"):
+    if int(context.get("action_debt", 0) or 0) > 0 and bound_goal(context):
         log_activity("[intrinsic_goals] Skipped while the committed goal has open action debt.")
         return []
 
     now = time.time()
-    has_goal = bool(context.get("committed_goal"))
+    has_goal = bool(bound_goal(context))
     interval = _MIN_INTERVAL_S if has_goal else _BOOTSTRAP_INTERVAL_S
     # P4 — habituate goal-spawning against its own track record, the way exploration
     # already habituates. The run showed generate_intrinsic_goals learned to 0.39
@@ -353,7 +363,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             context=context,
         )
         log_activity(f"[intrinsic_goals] Symbolic goal proposed: '{_tgoal['title']}'")
-        if not context.get("committed_goal"):
+        if not bound_goal(context):
             ts = datetime.now(timezone.utc).isoformat()
             # P7 — choose the committed goal by competition among live proposals
             # (pressure + usefulness drive), not "first generated wins".
@@ -541,7 +551,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         # If no committed goal is active, immediately adopt the highest-priority one.
         # This bypasses the GoalsAPI round-trip so Orrin has a goal within the same
         # cycle rather than waiting for sync_proposed_goals → GoalsAPI → get_committed_goal.
-        if not context.get("committed_goal"):
+        if not bound_goal(context):
             # P7 — competition among live proposals, not highest-priority-first.
             _winner = _select_commit_proposal(context.get("proposed_goals"), context) \
                 or max(goals, key=lambda g: g.get("priority", 3))

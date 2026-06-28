@@ -13,6 +13,7 @@ codebase's first extracted `stage(context) -> context`) lives here too; it is
 re-exported from ORRIN_loop for its existing unit tests.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 import time
@@ -198,7 +199,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # is active, inject a signal that biases the signal_router + selector toward
     # reflection, self-examination, and long-term thinking.
     try:
-        if context.get("_rest_mode") and not context.get("committed_goal"):
+        if context.get("_rest_mode") and not bound_goal(context):
             from brain.utils.signal_utils import create_signal as _cs
             _rest_note = (
                 context.get("_rest_mode_note")
@@ -254,7 +255,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # directly (not via bandit) so Orrin always has something to pursue.
     # Rate-limited: only attempt once every 90s so we don't hammer the
     # RepeatLoopGuard with rapid no-op calls across consecutive cycles.
-    if not context.get("committed_goal"):
+    if not bound_goal(context):
         _now_bt = time.monotonic()
         _last_bt = context.get("_last_bootstrap_ts", 0.0)
         if _now_bt - _last_bt >= 90.0:
@@ -280,7 +281,7 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # and identity investment (goal overlap with values/identity) so the
     # decision to release or rethink is meaningfully contextualised.
     try:
-        _stalled_goal = context.get("committed_goal") or {}
+        _stalled_goal = bound_goal(context) or {}
         if isinstance(_stalled_goal, dict) and _stalled_goal.get("_stalled"):
             _sg_title    = (_stalled_goal.get("title") or "")[:60]
             _sg_replans  = int(_stalled_goal.get("_replan_count") or 3)

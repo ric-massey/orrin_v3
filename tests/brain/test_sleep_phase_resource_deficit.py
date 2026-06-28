@@ -26,7 +26,7 @@ def test_interoception_positive_latency_nudge_is_suppressed_during_sleep(monkeyp
     monkeypatch.setattr(cost_prediction, "predict_cost", lambda fn, context: 100.0)
     monkeypatch.setattr(cost_prediction, "record_cost", lambda fn, latency_ms: latency_ms - 100.0)
     monkeypatch.setattr(
-        "control_signals.arbiter.submit_signal",
+        "brain.control_signals.arbiter.submit_signal",
         lambda context, target, delta, **kwargs: calls.append((target, delta, kwargs)),
     )
 

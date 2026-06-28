@@ -24,6 +24,7 @@
 #     many rounds it should run (separate from depth_bandit, which uses harder
 #     outcome data).  Based on current EWMA success rate.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import math
@@ -206,7 +207,7 @@ def _depth_preference() -> float:
 def _emit(decision: str, context: Dict[str, Any], round_num: int, reason: str = "") -> None:
     try:
         from brain.think.thought_stream import emit_thought
-        goal       = (context.get("committed_goal") or {}).get("title", "")
+        goal       = (bound_goal(context) or {}).get("title", "")
         confidence = round(_draft_confidence(context), 2)
         debt       = int(context.get("action_debt", 0) or 0)
         emit_thought(
@@ -316,7 +317,7 @@ def simulate_outcome(context: Dict[str, Any], content: str) -> bool:
     """
     try:
         from brain.think.simulate import simulate_lookahead
-        goal_title  = (context.get("committed_goal") or {}).get("title", "")
+        goal_title  = (bound_goal(context) or {}).get("title", "")
         intent      = (f"Output toward goal '{goal_title}': {content[:200]}"
                        if goal_title else f"Output: {content[:200]}")
         draft_conf  = _draft_confidence(context)
@@ -456,7 +457,7 @@ def decide(
         log_private("[meta_ctrl] energy=low/rest → think_more≥0.68 output≥0.78")
 
     debt     = int(context.get("action_debt", 0) or 0)
-    has_goal = bool(context.get("committed_goal"))
+    has_goal = bool(bound_goal(context))
     act_now  = bool(context.get("act_now"))
 
     # ── 1. Hard ceiling ────────────────────────────────────────────────────────

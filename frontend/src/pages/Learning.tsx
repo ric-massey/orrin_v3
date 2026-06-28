@@ -1,6 +1,7 @@
 import { ArrowRight, GitBranch, Repeat2, Target, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { usePolledJSON } from "@/lib/usePolled";
+import IntelligenceGrowthPanel from "@/components/IntelligenceGrowthPanel";
 
 // Learning (UI master plan §5.1): the behavior-change log. The dashboard is strong at
 // STOCKS (counts that exist now) and weak at FLOWS (what changed and why). This room
@@ -143,6 +144,8 @@ export default function Learning() {
         <GoalProgressCard progress={learning?.goal_progress} />
         <RutCard rut={learning?.rut} />
       </section>
+
+      <IntelligenceGrowthPanel />
 
       <section className="space-y-3 border-t pt-5">
         <div className="space-y-1">

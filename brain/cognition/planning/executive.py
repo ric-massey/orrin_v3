@@ -15,6 +15,7 @@
 # is a flip, not a rewrite), submit satisfaction affect (I8/I16), self-credit
 # reward to lane="executive", reset agency (I13). None of that happens yet.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import os
 import threading
@@ -164,7 +165,7 @@ def _committed_goals(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     if isinstance(cg, list) and cg:
         goals = [g for g in cg if isinstance(g, dict)]
     else:
-        one = context.get("committed_goal")
+        one = bound_goal(context)
         if isinstance(one, dict):
             goals = [one]
     return goals[:_DEFAULT_QUEUE_K]
@@ -189,7 +190,7 @@ def _build_queue(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     seen, queue = set(), []
     src = context.get("committed_goals")
     if not isinstance(src, list) or not src:
-        one = context.get("committed_goal")
+        one = bound_goal(context)
         src = [one] if isinstance(one, dict) else []
     for g in src:
         if not isinstance(g, dict):
@@ -262,7 +263,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
         allocation = _allocate_steps(queue, rr, budget)
 
         from brain.cognition.planning.pursue_goal import pursue_committed_goal as _pursue
-        primary = context.get("committed_goal")
+        primary = bound_goal(context)
         primary_id = primary.get("id") if isinstance(primary, dict) else None
         advanced: List[Dict[str, Any]] = []
 
@@ -278,7 +279,7 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                 try:
                     result = _pursue(context)
                 finally:
-                    post = context.get("committed_goal")
+                    post = bound_goal(context)
                     if post is None:
                         # target completed (pursue clears it). Keep None only if
                         # the target WAS the deliberate focus; else restore it.

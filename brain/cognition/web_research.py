@@ -8,6 +8,7 @@
 #   research_topic(context)   — search DuckDuckGo + Wikipedia for a topic
 #   fetch_and_read(context)   — fetch and read any URL (RSS links, Wikipedia pages, etc.)
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import json
@@ -194,7 +195,7 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
     cands: list = []
 
     # 1. Committed goal title — only when it names a CONCRETE, external subject.
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     if isinstance(goal, dict):
         title = _clean_query(goal.get("title") or goal.get("description") or "").strip()
         if title and len(title) > 5 and _is_concrete_topic(title) and _is_external_subject(title):
@@ -433,7 +434,7 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
     #    always promised this; it was never implemented). A research-shaped goal
     #    like "Research black holes and write what I find" resolves to the
     #    best-matching Wikipedia article.
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     topic = str(goal.get("title") or goal.get("name") or "").strip() if isinstance(goal, dict) else ""
     if topic and _is_concrete_topic(topic) and _is_external_subject(topic):
         url = _wiki_url_for(topic)

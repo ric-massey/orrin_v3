@@ -21,6 +21,7 @@
 #
 # Both functions are defensive: return safe defaults on any error.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import threading
@@ -86,7 +87,7 @@ def simulate_lookahead(
         return {"steps": [], "projected_state": "", "positive": None,
                 "confidence": 0.0, "branches_explored": 0, "skipped": True}
 
-    goal_title = (context.get("committed_goal") or {}).get("title", "")
+    goal_title = (bound_goal(context) or {}).get("title", "")
     goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
     wm_tail    = (context.get("working_memory") or [])[-3:]
     wm_text    = "\n".join(
@@ -354,7 +355,7 @@ def _run_debate_inner(
     values_text = "; ".join(
         (v["value"] if isinstance(v, dict) else str(v)) for v in values[:3]
     ) or "growth, honesty, understanding"
-    goal_title = (context.get("committed_goal") or {}).get("title", "")
+    goal_title = (bound_goal(context) or {}).get("title", "")
     goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
     ctx_text   = str(topic)[:_MAX_SIMULATE_CHARS]
 

@@ -9,6 +9,7 @@ double execution — the same precedent as the per-cycle update_signal_state
 upkeep), keyed off the cycle count. Pure `context -> context`; fail-safe.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 from typing import Any, Dict, Iterator
@@ -117,7 +118,7 @@ def run_maintenance_tier(context: Context) -> Context:
                     "understand", "learn about", "find out", "research",
                     "explore", "read more about",
                 )
-                _committed = (context.get("committed_goal") or {})
+                _committed = (bound_goal(context) or {})
                 _committed_id = _committed.get("id") if isinstance(_committed, dict) else None
                 _K = 5
                 _checked = 0

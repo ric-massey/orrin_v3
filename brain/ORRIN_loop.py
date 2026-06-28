@@ -2,6 +2,7 @@
 # V1 cognitive loop extracted as a callable for integration with v2's main.py.
 # Call run_cognitive_loop(...) in a daemon thread from main.py.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import os
@@ -260,7 +261,7 @@ def run_cognitive_loop(
                         context,
                         reward=float(reward or 0.0),
                         committed_goal_id=(
-                            (context.get("committed_goal") or {}).get("id")
+                            (bound_goal(context) or {}).get("id")
                         ),
                     )
                     context["_reward_rate_updated_this_cycle"] = True

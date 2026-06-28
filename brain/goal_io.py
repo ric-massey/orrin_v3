@@ -10,6 +10,7 @@
 # the single source of truth for lifecycle/priority; this module is a thin
 # consumer of it + its event stream.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import threading
@@ -422,7 +423,7 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
 
 def record_goal_progress(context: Dict[str, Any]) -> None:
     """Every 5 cycles, write a goal-progress note to long memory (no GoalsAPI needed)."""
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict) or not goal.get("title"):
         return
     cc = context.get("cycle_count") or {}

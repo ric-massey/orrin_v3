@@ -27,6 +27,10 @@ from brain.cognition.intrinsic_objectives import objective_pressure, _serves_asp
 
 _log = get_logger(__name__)
 
+# T2.3 — an aspiration whose recruitment pressure is at/above this is "starved":
+# if the candidate pool can serve it, the coverage floor picks it deterministically.
+_COVERAGE_FLOOR_PRESSURE = 0.5
+
 
 def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
     """Goals that deepen a concept Orrin has actually learned (from the KG).
@@ -545,6 +549,19 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
     try:
         pressure = objective_pressure(context)
         if pressure:
+            # T2.3 Change 2 — generation COVERAGE FLOOR (round-robin, on top of the
+            # weighting). When an aspiration is genuinely starved (pressure above the
+            # floor) AND the pool has a candidate that serves it, pick that candidate
+            # DETERMINISTICALLY rather than leaving its recruitment to a probabilistic
+            # draw it kept losing. Pressure decays as the direction gets contributions,
+            # so the floor rotates across aspirations — every aspiration with an
+            # available candidate gets a minimum share of generation over the window.
+            starved = max(pressure, key=pressure.get)
+            if float(pressure.get(starved, 0.0)) >= _COVERAGE_FLOOR_PRESSURE:
+                floor_cands = [g for g in pool
+                               if _serves_aspiration(str(g.get("driven_by", ""))) == starved]
+                if floor_cands:
+                    return random.choice(floor_cands)
             scored = [
                 (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
                 for g in pool

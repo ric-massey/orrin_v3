@@ -1,5 +1,6 @@
 # think/think_module.py
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import sys
@@ -228,7 +229,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
                     _cm_learn(_kg_user_text, source="user_input")
                 except Exception as _e:
                     record_failure("think_module.think.2", _e)
-            _kg_query = _kg_user_text or (context.get("committed_goal") or {}).get("title", "")
+            _kg_query = _kg_user_text or (bound_goal(context) or {}).get("title", "")
             context["_kg_text"] = _kg_ctx(_kg_query, limit=4) if _kg_query else ""
         except Exception:
             context["_kg_text"] = ""
@@ -250,11 +251,11 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Act-now nudge if stalled on a committed goal
         try:
             debt = int(context.get("action_debt", 0) or 0)
-            if bool(context.get("committed_goal")) and debt >= 2:
+            if bool(bound_goal(context)) and debt >= 2:
                 context["act_now"] = True
                 context["reflection_budget_exhausted"] = True
                 context["discouraged_functions"] = ["reflect", "plan", "analyz", "deliberat"]
-                mv = (context["committed_goal"] or {}).get("next_action")
+                mv = (bound_goal(context) or {}).get("next_action")
                 if isinstance(mv, dict):
                     context["minimum_viable_action"] = mv
                 if callable(wm_updater):
@@ -334,7 +335,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
             return {"context": context}
 
         fn_name = fn_name.strip()
-        goal_title_for_emit = (context.get("committed_goal") or {}).get("title", "")
+        goal_title_for_emit = (bound_goal(context) or {}).get("title", "")
         emit_thought(
             "function_selected",
             f"Selected: {fn_name}",
@@ -424,7 +425,7 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
                     if not _topic:
                         _tns = context.get("active_tensions") or []
                         _topic = ((_tns[0].get("title") if _tns else "")
-                                  or (context.get("committed_goal") or {}).get("title", ""))
+                                  or (bound_goal(context) or {}).get("title", ""))
                     if _topic:
                         from brain.think.inner_loop import run_inner_loop as _ril
                         _ctext = "\n".join(

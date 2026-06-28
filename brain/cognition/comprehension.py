@@ -13,6 +13,7 @@ working memory events, goal relevance signals. He doesn't understand words.
 He feels what they do to him.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict
@@ -121,7 +122,7 @@ def _apply_to_state(parsed: Dict, user_text: str, context: Dict[str, Any]) -> No
 
     # Goal relevance signal
     try:
-        goal       = context.get("committed_goal") or {}
+        goal       = bound_goal(context) or {}
         goal_title = (goal.get("title") or "").lower()
         if concept and goal_title:
             c_words = set(concept.lower().split())

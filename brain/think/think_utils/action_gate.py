@@ -1,4 +1,5 @@
 # think/think_utils/action_gate.py
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 import random
 import json
@@ -71,7 +72,7 @@ def evaluate_and_act_if_needed(
 
     # Inner-loop phase: apply act bias from meta_controller if set
     if phase == "inner_loop" and context.get("_inner_loop_act_bias"):
-        if not context.get("act_now") and context.get("committed_goal"):
+        if not context.get("act_now") and bound_goal(context):
             context["act_now"] = True
 
     # Inject a direct user reply before everything else (90% respond rate)

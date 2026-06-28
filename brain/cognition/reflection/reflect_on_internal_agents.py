@@ -1,4 +1,5 @@
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 import json
 from datetime import datetime, timezone
@@ -71,7 +72,7 @@ def _infer_topic(ctx: Dict[str, Any]) -> str:
             return str(fg.get("name") or fg.get("intent") or "current priorities")
         return str(fg)
 
-    cg = ctx.get("committed_goal")
+    cg = bound_goal(ctx)
     if isinstance(cg, dict):
         return str(cg.get("intent") or cg.get("name") or "committed goal")
 
@@ -408,7 +409,7 @@ def critique_draft(draft: str, context: Optional[Dict[str, Any]] = None) -> str:
             for a in agents[:3]
             if isinstance(a, dict)
         )
-        goal_title = (context.get("committed_goal") or {}).get("title", "")
+        goal_title = (bound_goal(context) or {}).get("title", "")
         goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
 
         prompt = (

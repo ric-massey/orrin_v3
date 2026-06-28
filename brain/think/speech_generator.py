@@ -18,6 +18,7 @@
 # speech_pipeline.py computes both before calling here so the work is never
 # duplicated — intent classification and memory retrieval each happen once.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict, List, Optional
@@ -71,7 +72,7 @@ def generate_speech(
 
         # ── Stage 3: Response Planning ────────────────────────────────────────
         from brain.think.speech_planner import plan_response
-        goal = context.get("committed_goal") or {}
+        goal = bound_goal(context) or {}
         plan = plan_response(
             comprehension, memories, inner, affect_state, goal,
             theory_of_mind=theory_of_mind,

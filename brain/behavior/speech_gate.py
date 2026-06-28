@@ -19,6 +19,7 @@ Suppression conditions (silence or minimal hold):
   very high resource_deficit + no inner thought
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import random
@@ -209,7 +210,7 @@ def _express(
 
         felt = _dfs(affect_state)
 
-        cg  = context.get("committed_goal") or {}
+        cg  = bound_goal(context) or {}
         cgs = context.get("committed_goals") or ([cg] if cg else [])
         goal_titles = [
             g.get("title", "") for g in cgs

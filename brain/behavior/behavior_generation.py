@@ -1,5 +1,6 @@
 # behavior/behavior_generation.py
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from pathlib import Path
 from typing import Any, Dict, List
@@ -69,7 +70,7 @@ def generate_behavior_from_integration(context: Dict[str, Any]) -> List[Dict[str
     # the active goal lived in context["committed_goal"] but this only read
     # focus_goal, so it found no topic and spammed an error every idle cycle.
     if (not topic or not isinstance(topic, str)):
-        _cg = context.get("committed_goal")
+        _cg = bound_goal(context)
         if isinstance(_cg, dict):
             topic = _cg.get("title") or _cg.get("name") or ""
 

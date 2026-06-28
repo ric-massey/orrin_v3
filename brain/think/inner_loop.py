@@ -32,6 +32,7 @@
 #     "confidence":       float,
 #   }
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import threading
@@ -99,10 +100,10 @@ def _draft_prompt(
 
     try:
         from brain.control_signals.signal_summary import format_goal_state as _gfo
-        goal_line = _gfo(context.get("committed_goal") or {})
+        goal_line = _gfo(bound_goal(context) or {})
         goal_line = (goal_line + "\n") if goal_line else ""
     except Exception:
-        goal_title = (context.get("committed_goal") or {}).get("title", "")
+        goal_title = (bound_goal(context) or {}).get("title", "")
         goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
     tensions     = context.get("active_tensions") or []
     tension_line = f"Unresolved tension: {tensions[0].get('title', '')}\n" if tensions else ""
@@ -150,7 +151,7 @@ def _draft_prompt(
 
 
 def _revise_prompt(draft: str, critique: str, topic: str, context: Dict[str, Any]) -> str:
-    goal_title = (context.get("committed_goal") or {}).get("title", "")
+    goal_title = (bound_goal(context) or {}).get("title", "")
     goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
     return (
         f"You are Orrin, an evolving autonomous AI.\n\n"
@@ -174,7 +175,7 @@ def _tot_branch(topic: str, context_text: str, context: Dict[str, Any]) -> str:
     values_text = "; ".join(
         (v["value"] if isinstance(v, dict) else str(v)) for v in values[:3]
     ) or "growth, honesty, understanding"
-    goal_title = (context.get("committed_goal") or {}).get("title", "")
+    goal_title = (bound_goal(context) or {}).get("title", "")
     goal_line  = f"Active goal: {goal_title}\n" if goal_title else ""
 
     angles = [
@@ -387,7 +388,7 @@ def run_inner_loop(
     meta_decision:    str   = "output"
     round_num:        int   = 0
     final_confidence: float = 0.5
-    goal_title: str = (context.get("committed_goal") or {}).get("title", "")
+    goal_title: str = (bound_goal(context) or {}).get("title", "")
 
     for round_num in range(1, max_rounds + 1):
 
@@ -425,7 +426,7 @@ def run_inner_loop(
         # ── High-energy early exit: r=1 adequate confidence → act now ────────
         if round_num == 1 and (energy_state == "high" or action_bias > 0.65):
             if final_confidence > 0.38:
-                meta_decision = "act" if context.get("committed_goal") else "output"
+                meta_decision = "act" if bound_goal(context) else "output"
                 content = draft
                 log_activity(
                     f"[inner_loop] high-energy early exit r=1 "

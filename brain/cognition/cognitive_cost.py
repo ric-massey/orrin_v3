@@ -10,6 +10,7 @@
 #   excessive introspection → resource_deficit + reduced action effectiveness
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from typing import Dict, Any
 
 from brain.utils.log import log_private
@@ -141,7 +142,7 @@ def _apply(context: Dict[str, Any], next_function: str, repeat_count: int) -> No
 
     # ── 5. UNRESOLVED GOALS → TENSION ─────────────────────────────────────────
     # A goal that keeps not getting done builds real impasse_signal.
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if isinstance(goal, dict) and goal.get("title"):
         from brain.cognition.reward_rate import accrue_leave_pressure, patch_deficit
 

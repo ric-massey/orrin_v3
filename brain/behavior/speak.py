@@ -1,5 +1,6 @@
 # brain/behavior/speak.py
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import time
@@ -178,7 +179,7 @@ class OrrinSpeaker:
         self.conversation_history.append({"thought": thought, "tone": tone_data.get("tone")})
         context["last_tone"] = tone_data.get("tone", "neutral")
 
-        _goal = context.get("committed_goal")
+        _goal = bound_goal(context)
         _intention = (
             _goal.get("title", "") if isinstance(_goal, dict) else str(_goal or "")
         ) or tone_data.get("intention", "") or "express"

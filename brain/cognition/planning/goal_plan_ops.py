@@ -7,6 +7,7 @@
 # in-memory goal dict; callers persist it. No dependency on the rest of goals.py,
 # which re-exports these names.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Callable, List, Dict, Optional
 

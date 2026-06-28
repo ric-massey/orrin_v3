@@ -14,6 +14,7 @@
 # update_working_memory is passed in (the parent imports it lazily to dodge a
 # circular import) so the call binding is unchanged.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Dict
 
@@ -199,7 +200,7 @@ def apply_wm_triggers_and_appraisal(
     # Mood modulates appraisal sensitivity: good mood dampens negative events, bad amplifies.
     try:
         from brain.control_signals.appraisal import appraise_working_memory as _appraise
-        _cg   = (context or {}).get("committed_goal") or {}
+        _cg   = bound_goal((context or {})) or {}
         _cgs  = (context or {}).get("committed_goals") or ([_cg] if _cg else [])
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]
         _current_mood = float(state.get("smoothed_state", 0.0) or 0.0)  # was "mood" key

@@ -7,6 +7,7 @@ imports it to score the cycle's outcome. Clark (1997): acting on the environment
 is constitutive of cognition.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 # Functions that constitute genuine outward action — coupling cognition to the
 # world. These receive a standing reward bonus so the bandit learns to value
@@ -44,7 +45,7 @@ def _state_satisfaction(context: dict, is_agentic: bool) -> float:
         score += 0.20
 
     # Goal progress bonus: did working memory reference the goal?
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_title = (goal.get("title") or "").strip().lower()
     if goal_title:
         wm = context.get("working_memory") or []

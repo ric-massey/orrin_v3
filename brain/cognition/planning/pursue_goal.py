@@ -20,6 +20,7 @@ assess_goal_progress():
   - Stores both _drift_detected (bool) and _drift_score (float 0.0–1.0).
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import re
@@ -91,7 +92,7 @@ def attend_goal(context: Optional[Dict[str, Any]] = None) -> str:
     deliberate mind can think about, supervise, or recommit to it.
     """
     context = context or {}
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict):
         return "No committed goal to attend to."
     title = goal.get("title") or goal.get("name") or "(untitled)"
@@ -121,7 +122,7 @@ def redirect_goal_plan(context: Optional[Dict[str, Any]] = None) -> str:
     conscious mind steering the autopilot when the current approach isn't working.
     Non-destructive (re-plans, never kills)."""
     context = context or {}
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict):
         return "No committed goal to redirect."
     title = goal.get("title") or goal.get("name") or "(untitled)"
@@ -148,7 +149,7 @@ def abandon_goal(context: Optional[Dict[str, Any]] = None) -> str:
     Marking-failed feeds the self-repair loop and is a CONSCIOUS decision, never the
     Executive's."""
     context = context or {}
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict):
         return "No committed goal to abandon."
     title = goal.get("title") or goal.get("name") or "(untitled)"

@@ -19,6 +19,7 @@ LLM role (when used):
   - Never sees the full context unfiltered; prompt is constrained to mode+seeds
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import random
@@ -50,7 +51,7 @@ def _harvest(context: Dict[str, Any]) -> Dict[str, Any]:
 
     inner = (context.get("_inner_loop_output") or "").strip()
 
-    cg = context.get("committed_goal") or {}
+    cg = bound_goal(context) or {}
     committed_goals: List[Dict] = context.get("committed_goals") or ([cg] if cg else [])
     goal_titles = [
         g.get("title", "") for g in committed_goals

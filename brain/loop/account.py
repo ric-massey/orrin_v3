@@ -8,6 +8,7 @@ watchdog (force a minimum-viable action when a goal has gone too long without
 one), and emit the transparency trace. Mutates context in place; fail-safe.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 import time
@@ -43,7 +44,7 @@ def account_action(
         record_failure("ORRIN_loop.run_cognitive_loop.25", _e)
 
     try:
-        if context.get("committed_goal"):
+        if bound_goal(context):
             context["action_debt"] = 0 if acted_this_cycle else int(context.get("action_debt", 0)) + 1
     except Exception as _e:
         log_model_issue(f"Guardrail accounting issue: {_e}")
@@ -52,10 +53,10 @@ def account_action(
     try:
         STALL_SEC = 180
         now = time.time()
-        if context.get("committed_goal"):
+        if bound_goal(context):
             last_ts = float(context.get("last_action_ts", 0.0) or 0.0)
             if (now - last_ts) > STALL_SEC:
-                goal = context.get("committed_goal") or {}
+                goal = bound_goal(context) or {}
                 mv = goal.get("next_action")
                 if isinstance(mv, dict):
                     mv_type = mv.get("type")
@@ -101,7 +102,7 @@ def account_action(
             debt=context.get("action_debt", 0),
             mode=context.get("mode"),
             emotions=context.get("affect_state", {}),
-            committed=bool(context.get("committed_goal")),
+            committed=bool(bound_goal(context)),
             last_action_ts=context.get("last_action_ts"),
         )
     except Exception as _e:

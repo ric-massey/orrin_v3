@@ -16,6 +16,7 @@
 # Shenhav et al. 2013 EVC penalty (`s_evc`) to every action, so adding it here would
 # double-count.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import json
 import time
@@ -137,12 +138,25 @@ def _decayed_satiety(fn: str) -> float:
     return _clamp(s)
 
 
+def action_satiety(fn: str) -> float:
+    """Public read of an action's current decayed satiety in [0,1] (T2.1 / WS-2).
+    The selector uses this to GENERALLY suppress a recently-over-used action, not
+    only outward reads — a fully-satiated action (satiety 1.0) was still being
+    selected most because suppression only ever touched the outward family.
+    Fail-safe → 0.0 (no suppression)."""
+    try:
+        return _decayed_satiety(fn)
+    except Exception as exc:
+        record_failure("exploration_value.action_satiety", exc)
+        return 0.0
+
+
 # ── Components (each fail-safe → neutral) ──────────────────────────────────────
 
 def _has_open_question(context: Dict[str, Any]) -> bool:
     """A genuine curiosity gap: a live committed goal, or an unresolved question in
     working memory that isn't internal-state bookkeeping. Cheap, context-only."""
-    if isinstance(context.get("committed_goal"), dict) and context["committed_goal"]:
+    if isinstance(bound_goal(context), dict) and bound_goal(context):
         return True
     wm = context.get("working_memory") or []
     for e in reversed(wm[-6:]):
@@ -269,7 +283,7 @@ def record_reach_outcome(fn: str, result_text: str,
             if isinstance(core, dict):
                 current = float(core.get("exploration_drive", 0.0) or 0.0)
                 core["exploration_drive"] = max(0.0, current - 0.20 * novelty)
-            if context.get("committed_goal"):
+            if bound_goal(context):
                 context["action_debt"] = 0
                 context["__acted_this_tick__"] = True
             context["_reach_consumed_info_gain"] = round(novelty, 4)

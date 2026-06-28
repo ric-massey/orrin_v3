@@ -1,3 +1,4 @@
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 import json
 
@@ -521,7 +522,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         # the same candidates-list bloat already stripped from context.json /
         # cognition_history). Store compact summaries instead — the full records
         # live in cognition_history.json.
-        _gc = context.get("committed_goal") or context.get("focus_goal") or {}
+        _gc = bound_goal(context) or context.get("focus_goal") or {}
         goal_summary = None
         if isinstance(_gc, dict):
             goal_summary = {"id": _gc.get("id"), "title": _gc.get("title") or _gc.get("name")}

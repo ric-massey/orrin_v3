@@ -26,6 +26,7 @@
 # functions Orrin can otherwise choose directly — so a step dispatches the
 # real tool (research_topic, fetch_and_read, …), not a stand-in.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict, Iterable, Optional, Tuple
 
@@ -311,7 +312,7 @@ def execute_step_action(fn_name: str, context: Dict[str, Any],
     try:
         from brain.behavior.express_to_user import EXPRESSIVE_FUNCTIONS
         if fn_name in EXPRESSIVE_FUNCTIONS:
-            g = goal if isinstance(goal, dict) else (context.get("committed_goal") or {})
+            g = goal if isinstance(goal, dict) else (bound_goal(context) or {})
             spec_raw = g.get("spec")
             spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
             why = str(spec.get("description") or g.get("description")

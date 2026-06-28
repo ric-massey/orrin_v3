@@ -155,6 +155,44 @@ def _phase(fraction: float) -> str:
     return "terminal"
 
 
+# T1.3 — the urgency phase is driven by a REAL/FELT BLEND (owner decision
+# 2026-06-28). The lifespan-noise `_felt_fraction` barely moves in a single run, so
+# the late/terminal urgency injections never fired; keying urgency purely to the
+# session-arc clock risks "feeling mortal every session." The blend ramps WITHIN a
+# run (so urgency actually builds) while still respecting whole-life position.
+# Actual TERMINATION stays on the real clock only (real_frac >= 1.0) — this only
+# moves the felt *urgency* phase, never the death deadline.
+_SESSION_FULL_FELT_CYCLES = 150.0   # "night" arc onset = a full felt session
+_BLEND_SESSION_WEIGHT = 0.5         # 0.5*session-arc + 0.5*real life-fraction
+
+
+def _session_fraction(context: Dict) -> float:
+    """Within-run progress [0..1] from the temporal session-arc (felt_cycles),
+    capped at the 'night' arc onset. Fail-safe: 0.0 when no temporal state yet."""
+    try:
+        ts = context.get("temporal_state") if isinstance(context, dict) else None
+        if not isinstance(ts, dict):
+            return 0.0
+        felt_cycles = float(ts.get("felt_cycles") or 0.0)
+        return max(0.0, min(1.0, felt_cycles / _SESSION_FULL_FELT_CYCLES))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _blended_fraction(real_frac: float, session_frac: float) -> float:
+    """Urgency fraction = blend of within-run session-arc and whole-life position.
+
+    The blend (0.5*session + 0.5*real) lets a long session lift a young run's
+    urgency so the phase ramps WITHIN a run. But a pure blend would let a fresh
+    session at 95% real life read as 'early' (0.5*0 + 0.5*0.95 = 0.475) — which
+    breaks the other half of the decision, "still respects the 60-day arc." So the
+    whole-life fraction is also a floor: urgency never reads younger than real life
+    actually is. Both stated intents hold — ramps within a run AND respects the arc."""
+    w = _BLEND_SESSION_WEIGHT
+    blend = w * session_frac + (1.0 - w) * real_frac
+    return max(0.0, min(1.0, max(real_frac, blend)))
+
+
 def _parse_dt(s: Any) -> Optional[datetime]:
     if not s or not isinstance(s, str):
         return None
@@ -400,7 +438,11 @@ def apply_lifetime_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
         data = _load_lifespan()
         real_frac  = _life_fraction(data)
         felt_frac  = _felt_fraction(data)
-        phase      = _phase(felt_frac)
+        # T1.3 — drive the urgency phase off the real/felt BLEND so late/terminal
+        # injections actually fire within a run; termination still keys off real_frac.
+        session_frac = _session_fraction(context)
+        urgency_frac = _blended_fraction(real_frac, session_frac)
+        phase      = _phase(urgency_frac)
         days_left  = _days_remaining_felt(data)
 
         # ── Signal effects ─────────────────────────────────────────────────
@@ -425,6 +467,8 @@ def apply_lifetime_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
             "phase": phase,
             "real_fraction": round(real_frac, 4),
             "felt_fraction": round(felt_frac, 4),
+            "session_fraction": round(session_frac, 4),
+            "urgency_fraction": round(urgency_frac, 4),
             "days_remaining_felt": round(days_left, 2),
             "terminate": real_frac >= 1.0,
         }

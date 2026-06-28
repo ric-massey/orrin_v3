@@ -7,6 +7,7 @@ from select_function for its external importers (loop_helpers, contextual_bandit
 local_search_signal). Imports its readers downward (state, text) — no cycle.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict
 
@@ -76,7 +77,7 @@ def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
     # Goal stalled: 1.0 when the committed goal has hit the stall threshold.
     # Bandit learns that plan_self_evolution/reflection get rewarded when stalled.
     try:
-        _cg = ctx.get("committed_goal") or {}
+        _cg = bound_goal(ctx) or {}
         if isinstance(_cg, dict) and _cg.get("_stalled"):
             features["goal_stalled"] = 1.0
     except Exception as _e:
@@ -101,7 +102,7 @@ def extract_features(context: Dict[str, Any]) -> Dict[str, float]:
     # Identity investment: keyword overlap between the active goal and identity_story
     # + core_values. Higher overlap → bandit learns goal-pursuit functions get rewarded.
     try:
-        _cg = ctx.get("committed_goal") or {}
+        _cg = bound_goal(ctx) or {}
         if isinstance(_cg, dict):
             _goal_text = ((_cg.get("title") or "") + " " + (_cg.get("description") or "")).strip()
             if _goal_text:

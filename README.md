@@ -378,13 +378,16 @@ This is an experimental prototype; the caveats are real and the surface keeps mo
   tunnel is unauthenticated by default.
 - **Behaviour is emergent and under-tested.** Long runs can drift into uncharacterized states; the
   benchmarks probe pieces, not the whole.
+- **No developmental arc, by design (coherent-but-adult).** The broadcast→substrate loop is now
+  closed, but only in a *decaying* form: conscious conclusions nudge priors and then drain back to
+  the shipped-adult baseline (`brain/cognition/workspace_writeback.py`). There is deliberately **no
+  promotion path** by which a conclusion becomes a durable, baseline-shifting prior — the substrate
+  tracks recent conclusions for coherence but never ontogenetically *becomes* someone else. This is a
+  permanent design decision, not a TODO.
 - **No slim / low-resource install profile.** The embedding store hard-depends on
   `sentence-transformers` (and PyTorch). Some paths degrade gracefully (semantic similarity falls
   back to token-Jaccard), but there's no first-class build that drops the ML stack.
 - **Desktop builds are unsigned.** Signing/notarization needs paid developer certs and is deferred.
-- **Broadcast→substrate write-back is still missing.** Ignition landed, but feedback is largely
-  one-directional today — a broadcast workspace conclusion can act on the world without reshaping a
-  demand or a salience prior. Closing that loop is parked under a "coherent-but-adult" design decision.
 - **Language organ is in progress.** A native language subsystem is an active workstream
   (`brain/cognition/language/`: tokenizer, acquisition, a native LM, voice) but is not yet Orrin's
   primary means of expression.

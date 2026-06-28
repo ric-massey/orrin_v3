@@ -18,6 +18,7 @@
 #   findings." The Psychology of Learning and Motivation, 26, 125–173.
 #   Meta-level monitoring → object-level control (suppression feedback loop).
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from datetime import datetime, timezone
@@ -203,7 +204,7 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
 
     if not isinstance(exec_summary, dict):
         exec_summary = context.get("_exec_dryrun") or {}
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     goal = goal if isinstance(goal, dict) else None
     state = context.setdefault("_monitor_state", {})
 
@@ -297,9 +298,9 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
                 )
                 goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                                    source="metacog.hard_disengage")
-                if context.get("committed_goal") is goal or \
-                   (isinstance(context.get("committed_goal"), dict) and
-                    context["committed_goal"].get("id") == goal.get("id")):
+                if bound_goal(context) is goal or \
+                   (isinstance(bound_goal(context), dict) and
+                    bound_goal(context).get("id") == goal.get("id")):
                     context["committed_goal"] = None
                 gs["stall"] = 0
                 log_private(f"[monitor] HARD-DISENGAGE '{title}' after {_stalled} stalled "

@@ -10,6 +10,7 @@ the cycle's (context, reward); feats/acted are internal. The if/elif that select
 the path stays in the loop.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 import time
@@ -74,7 +75,7 @@ def execute_behavior_action(
             try:
                 from brain.eval.evaluator_wal import append_pending as _ew_append_ua
                 _ew_append_ua(_decision_id, str(action_type or "unknown_action"), feats, get_cycle_count(),
-                              committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                              committed_goal_id=(bound_goal(context) or {}).get("id") or None)
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.11", _e)
     else:
@@ -144,7 +145,7 @@ def execute_behavior_action(
                 try:
                     from brain.eval.evaluator_wal import append_pending as _ew_append_a
                     _ew_append_a(_decision_id, action_type, feats, get_cycle_count(),
-                                 committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                                 committed_goal_id=(bound_goal(context) or {}).get("id") or None)
                 except Exception as _ewa_e:
                     log_model_issue(f"[evaluator] Path A WAL append failed: {_ewa_e}")
         except Exception as e:
@@ -162,7 +163,7 @@ def execute_behavior_action(
                 try:
                     from brain.eval.evaluator_wal import append_pending as _ew_append_ae
                     _ew_append_ae(_decision_id, str(action_type or "unknown_action"), feats or {}, get_cycle_count(),
-                                  committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                                  committed_goal_id=(bound_goal(context) or {}).get("id") or None)
                 except Exception as _ewa_e2:
                     log_model_issue(f"[evaluator] Path A WAL append (error branch) failed: {_ewa_e2}")
 
@@ -290,7 +291,7 @@ def execute_cognition_function(
                     # milestones (hollow guard), so this only closes a goal that
                     # is genuinely finished (milestones tick on real artifacts:
                     # note_written / research / production traces — env_snapshot).
-                    _cgoal = context.get("committed_goal")
+                    _cgoal = bound_goal(context)
                     if isinstance(_cgoal, dict) and _cgoal.get("status") != "completed":
                         _gms = [m for m in (_cgoal.get("milestones") or []) if isinstance(m, dict)]
                         _cyc_now = get_cycle_count()
@@ -308,7 +309,7 @@ def execute_cognition_function(
                                 if _cgoal.get("status") == "completed":
                                     _ga.apply((lambda _g: (lambda _t: _mugit(_t, _g)))(_cgoal),
                                               source="loop.milestones_all_met")
-                                    if (context.get("committed_goal") or {}).get("id") == _cgoal.get("id"):
+                                    if (bound_goal(context) or {}).get("id") == _cgoal.get("id"):
                                         context["committed_goal"] = None
                                     log_activity(f"[loop] Goal completed (milestones met): {(_cgoal.get('title') or '?')[:50]}")
                             except Exception as _mce:
@@ -432,7 +433,7 @@ def execute_cognition_function(
                     record_failure("ORRIN_loop.update_depth", e)
             # Mark acceptance: succeeded + (no goal OR goal was referenced in WM)
             try:
-                _goal_title = ((context.get("committed_goal") or {}).get("title") or "").lower()
+                _goal_title = ((bound_goal(context) or {}).get("title") or "").lower()
                 _wm_refs = any(
                     _goal_title in str(e).lower()
                     for e in (context.get("working_memory") or [])[-3:]
@@ -461,8 +462,8 @@ def execute_cognition_function(
             if _decision_id:
                 try:
                     _cur_cycle = get_cycle_count()
-                    _goal_id = str((context.get("committed_goal") or {}).get("id") or
-                                   (context.get("committed_goal") or {}).get("title") or "")
+                    _goal_id = str((bound_goal(context) or {}).get("id") or
+                                   (bound_goal(context) or {}).get("title") or "")
                     if _mem_daemon:
                         import brain.memory_io as memory_io
                         memory_io.write(
@@ -499,7 +500,7 @@ def execute_cognition_function(
                 try:
                     from brain.eval.evaluator_wal import append_pending as _ew_append_ufn
                     _ew_append_ufn(_decision_id, fn_name, feats, get_cycle_count(),
-                                   committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                                   committed_goal_id=(bound_goal(context) or {}).get("id") or None)
                 except Exception as _e:
                     record_failure("ORRIN_loop.run_cognitive_loop.24", _e)
     except Exception as e:
@@ -560,7 +561,7 @@ def execute_fallback(context: Context, _evaluator: Any, COG_MAP: Any) -> Tuple[C
             try:
                 from brain.eval.evaluator_wal import append_pending as _ew_append_c1
                 _ew_append_c1(_fb_decision_id, "reflect_on_self_beliefs", feats or {}, get_cycle_count(),
-                              committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                              committed_goal_id=(bound_goal(context) or {}).get("id") or None)
             except Exception as _ewc1_e:
                 log_model_issue(f"[evaluator] Path C WAL append failed: {_ewc1_e}")
     else:
@@ -573,7 +574,7 @@ def execute_fallback(context: Context, _evaluator: Any, COG_MAP: Any) -> Tuple[C
             try:
                 from brain.eval.evaluator_wal import append_pending as _ew_append_c2
                 _ew_append_c2(_fb_decision_id, sel, feats or {}, get_cycle_count(),
-                              committed_goal_id=(context.get("committed_goal") or {}).get("id") or None)
+                              committed_goal_id=(bound_goal(context) or {}).get("id") or None)
             except Exception as _ewc2_e:
                 log_model_issue(f"[evaluator] Path C (sel) WAL append failed: {_ewc2_e}")
         if isinstance(exec_result, dict) and exec_result.get("success"):

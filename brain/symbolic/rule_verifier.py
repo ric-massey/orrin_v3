@@ -44,6 +44,19 @@ _TOMBSTONE_THRESH = 0.20    # soft-delete below this
 _WAL_WINDOW      = 300      # seconds to look back when matching outcome to firing
 _WAL_MAX_LINES   = 5_000    # hard cap before rotation
 
+# ── Outcome-based authority (Core Architecture Master Plan T1.2) ──────────────
+# A rule that mispredicts N times in a row loses firing priority WITHOUT human
+# action — the run had PLANNING wrong 893/893 yet still firing heavily because
+# nothing decayed a rule's authority on sustained error. Two guards keep decay
+# from becoming deletion (an under-learned domain needs acquisition, not having
+# its last rule stripped — SOCIAL already sits at 0 learned rules):
+#   • MIN_SAMPLE — a rule must have enough resolved outcomes before retirement.
+#   • domain floor — never tombstone the LAST usable rule in a domain.
+_MISS_STREAK_N   = 4        # consecutive mispredictions that trip authority loss
+_MIN_SAMPLE      = 5        # resolved outcomes before a rule may be retired
+_AUTHORITY_DECAY = 0.15     # extra confidence cut once the miss streak trips
+_AUTHORITY_FLOOR = 0.15     # decay priority TOWARD this, never to zero
+
 
 # ─── WAL helpers ──────────────────────────────────────────────────────────────
 
@@ -204,21 +217,51 @@ def _adjust_confidence(
         # evidence could ever move it again. Below-ceiling confidence keeps
         # every rule revisable.
         new_conf = round(max(0.10, min(0.98, old_conf + delta)), 4)
+
+        # T1.2 — outcome-based authority. Track resolved-outcome count and the
+        # consecutive-misprediction streak so a rule that is *sustainedly* wrong
+        # loses firing priority on its own. A reward clears the streak.
+        rule["outcome_count"] = int(rule.get("outcome_count", 0)) + 1
+        if verdict in ("penalty", "prediction_miss"):
+            rule["consecutive_misses"] = int(rule.get("consecutive_misses", 0)) + 1
+        else:
+            rule["consecutive_misses"] = 0
+
+        authority_lost = False
+        if (rule["consecutive_misses"] >= _MISS_STREAK_N
+                and rule["outcome_count"] >= _MIN_SAMPLE):
+            # Sustained error → strip priority toward the floor (never to zero):
+            # a rule pinned at 0 is as broken as one pinned at 1.0.
+            new_conf = round(max(_AUTHORITY_FLOOR, new_conf - _AUTHORITY_DECAY), 4)
+            authority_lost = True
+
         rule["confidence"] = new_conf
 
         log_activity(
             f"[rule_verifier] Rule '{rule_id}' {verdict}: "
-            f"conf {old_conf:.3f} → {new_conf:.3f} (outcome={outcome_score:.2f})"
+            f"conf {old_conf:.3f} → {new_conf:.3f} (outcome={outcome_score:.2f}"
+            f"{', authority-stripped' if authority_lost else ''})"
         )
 
         # Flag for revision if confidence fell below threshold
         if new_conf < _REVISION_THRESH and old_conf >= _REVISION_THRESH:
             _flag_for_revision(rule, outcome_score, firing_entry)
 
-        # Soft-delete if below tombstone threshold
+        # Soft-delete if below tombstone threshold — but never RETIRE past the
+        # over-retirement guard: an under-learned rule (too few samples) or the
+        # last usable rule in its domain is floored, not tombstoned, so decay
+        # can't leave a domain with zero usable rules.
         if new_conf <= _TOMBSTONE_THRESH:
-            rule["source"] = "tombstoned"
-            log_activity(f"[rule_verifier] Rule '{rule_id}' tombstoned (conf={new_conf:.3f})")
+            if _retirement_allowed(rule, rules):
+                rule["source"] = "tombstoned"
+                log_activity(f"[rule_verifier] Rule '{rule_id}' tombstoned (conf={new_conf:.3f})")
+            else:
+                rule["confidence"] = max(new_conf, _AUTHORITY_FLOOR)
+                log_activity(
+                    f"[rule_verifier] Rule '{rule_id}' retirement-exempt "
+                    f"(samples={rule['outcome_count']}, last-in-domain guard) — "
+                    f"floored at {rule['confidence']:.3f}, not tombstoned."
+                )
 
         save_json(SYMBOLIC_RULES_FILE, rules)
         # Invalidate cache
@@ -228,6 +271,38 @@ def _adjust_confidence(
         except Exception as _e:
             record_failure("rule_verifier._adjust_confidence", _e)
         break
+
+
+def _rule_domain(rule: Dict) -> str:
+    """Best-effort domain of a rule, from its conclusion + conditions text."""
+    try:
+        from brain.symbolic.prediction_engine import classify_domain
+        text = " ".join([str(rule.get("conclusion") or "")]
+                        + [str(c) for c in (rule.get("conditions") or [])])
+        return classify_domain(text)
+    except Exception as _e:
+        record_failure("rule_verifier._rule_domain", _e)
+        return "GENERAL"
+
+
+def _is_usable(rule: Dict) -> bool:
+    """A rule still able to fire: not tombstoned and above the tombstone floor."""
+    return (rule.get("source") != "tombstoned"
+            and float(rule.get("confidence", 0.0) or 0.0) > _TOMBSTONE_THRESH)
+
+
+def _retirement_allowed(rule: Dict, rules: List[Dict]) -> bool:
+    """Over-retirement guard. Refuse to tombstone a rule when (a) it has too few
+    resolved outcomes to judge (under-learned → needs acquisition, not deletion),
+    or (b) it is the last usable rule in its domain (a domain must never be left
+    with zero usable rules purely by retirement — SOCIAL already sits at 0)."""
+    if int(rule.get("outcome_count", 0)) < _MIN_SAMPLE:
+        return False
+    domain = _rule_domain(rule)
+    siblings = sum(1 for r in rules
+                   if r.get("id") != rule.get("id")
+                   and _is_usable(r) and _rule_domain(r) == domain)
+    return siblings > 0
 
 
 def weaken_rule_confidence(rule_id: str, *, amount: float = 0.03) -> None:
@@ -270,3 +345,66 @@ def mark_revision_resolved(rule_id: str, *, action: str = "keep") -> None:
         if r.get("rule_id") == rule_id and r.get("status") == "pending":
             r["status"] = action
     save_json(REVISIONS_FILE, revisions)
+
+
+def drain_revisions() -> Dict[str, int]:
+    """Resolve every PENDING rule revision against the rule's current state, so a
+    flagged revision never sits 'pending' forever (the run had 37 stuck). Decided
+    by outcome, not by hand (T1.2 — "applied/rejected within a bounded window";
+    called each dream cycle, so the window is one consolidation):
+
+      • rule gone / already tombstoned     → "retired"
+      • confidence recovered ≥ revision thr → "kept"   (it earned its way back)
+      • still degraded, retirement allowed  → "retired" (tombstone the persistent
+                                                          mispredictor)
+      • still degraded, retirement guarded  → "weakened" (under-learned / last in
+                                                          domain — keep, don't strip)
+
+    Returns a small tally for the dream-cycle log. Fail-safe."""
+    tally = {"kept": 0, "weakened": 0, "retired": 0}
+    try:
+        revisions = load_json(REVISIONS_FILE, default_type=list) or []
+        pending = [r for r in revisions if r.get("status") == "pending"]
+        if not pending:
+            return tally
+
+        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        rules = get_all_rules()
+        by_id = {r.get("id"): r for r in rules}
+        rules_changed = False
+
+        for rev in pending:
+            rid = rev.get("rule_id")
+            rule = by_id.get(rid)
+            if rule is None or rule.get("source") == "tombstoned":
+                rev["status"] = "retired"
+                tally["retired"] += 1
+                continue
+            conf = float(rule.get("confidence", 0.0) or 0.0)
+            if conf >= _REVISION_THRESH:
+                rev["status"] = "kept"
+                tally["kept"] += 1
+            elif _retirement_allowed(rule, rules):
+                rule["source"] = "tombstoned"
+                rules_changed = True
+                rev["status"] = "retired"
+                tally["retired"] += 1
+            else:
+                # Under-learned or last-in-domain: don't strip it, keep it
+                # revisable. Resolve the revision so it stops blocking the queue.
+                rev["status"] = "weakened"
+                tally["weakened"] += 1
+
+        save_json(REVISIONS_FILE, revisions)
+        if rules_changed:
+            save_json(SYMBOLIC_RULES_FILE, rules)
+            try:
+                from brain.symbolic import rule_engine as _re
+                _re._rules_cache = []
+            except Exception as _e:
+                record_failure("rule_verifier.drain_revisions.cache", _e)
+        if any(tally.values()):
+            log_activity(f"[rule_verifier] Drained revisions: {tally}")
+    except Exception as _e:
+        record_failure("rule_verifier.drain_revisions", _e)
+    return tally

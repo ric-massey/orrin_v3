@@ -9,6 +9,7 @@ falls back through a few call shapes. run_cognitive_loop re-imports
 `_invoke_cognition`; `_build_kwargs_for` is private to this stage.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import inspect
 from typing import Any, Callable, Dict, Optional, Sequence
@@ -45,8 +46,8 @@ def _build_kwargs_for(fn: Callable[..., Any], name: str, ctx: Dict[str, Any]) ->
         "memories": recent,
         "retrieved_memories": ctx.get("retrieved_memories", []),
         "speaker": ctx.get("speaker"),
-        "goal": ctx.get("committed_goal") or ctx.get("focus_goal"),
-        "focus_goal": ctx.get("focus_goal") or ctx.get("committed_goal"),
+        "goal": bound_goal(ctx) or ctx.get("focus_goal"),
+        "focus_goal": ctx.get("focus_goal") or bound_goal(ctx),
     }
     built: Dict[str, Any] = {}
     for p in sig.parameters.values():

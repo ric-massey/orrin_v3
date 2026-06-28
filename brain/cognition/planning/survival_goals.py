@@ -47,6 +47,19 @@ MIN_REFIRE_INTERVAL_S = 1800.0
 # but only after MIN_REFIRE_INTERVAL_S (see _in_refractory).
 _TERMINAL_STATUSES = frozenset({"completed", "abandoned", "failed", "dormant"})
 
+# T2.2 — the autonomic-vs-felt boundary. Pure housekeeping deficits (file-size /
+# WAL / cache / memory-bloat) are handled AUTONOMICALLY: their suggested_fn runs via
+# the tier-1 override path without ever becoming a conscious, committed goal. Only
+# *felt* deficits (resource exhaustion, rest/recovery) recruit a cortical survival
+# intention. An alert carrying any of these tags is autonomic and is never recruited.
+_AUTONOMIC_TAGS = frozenset({"maintenance", "reaper_risk"})
+
+
+def is_autonomic_maintenance(alert: Dict[str, Any]) -> bool:
+    """True when an alert is pure housekeeping (handled autonomically by its
+    suggested_fn), so it must never be escalated into a conscious survival goal."""
+    return bool(_AUTONOMIC_TAGS & {str(t) for t in (alert.get("tags") or [])})
+
 
 def _homeostatic_signal(alert: Dict[str, Any]) -> str:
     """The drive a survival goal is `driven_by` — the alert's homeostatic signal.
@@ -72,7 +85,15 @@ def build_survival_goal(alert: Dict[str, Any]) -> Dict[str, Any]:
     desc = (str(alert.get("description") or aid or "a homeostatic deficit")).strip()
     first_step = (str(alert.get("suggested_fn") or "").strip()) or "rest"
     drive = _homeostatic_signal(alert)
-    title = f"Restore: {desc}"[:120]
+    # T2.2 — title is keyed to the STABLE deficit (the alert id / drive), never the
+    # count-bearing description. The run recruited 627 times but accumulated 233
+    # DISTINCT goals because "Restore: long_memory has 12345 entries" changed every
+    # recurrence, so each re-recruit forked a new v2 title instead of reusing one.
+    # The varying count stays in the description (informative); the title stays
+    # stable so recurrences collapse onto one goal and no conscious goal title ever
+    # carries a raw file/entry count.
+    label = aid.replace("_", " ").strip() or drive or "homeostatic deficit"
+    title = f"Restore: {label}"[:120]
     return {
         "title": title,
         "name": title,  # v1 compat
@@ -150,6 +171,10 @@ def recruit_survival_goal(alert: Dict[str, Any],
     context = context if context is not None else {}
     aid = str(alert.get("id") or "")
     if not aid:
+        return None
+    # Autonomic-vs-felt boundary (T2.2): housekeeping deficits are handled by their
+    # suggested_fn autonomically and must never become a conscious goal.
+    if is_autonomic_maintenance(alert):
         return None
     if _in_refractory(aid, context):
         return None

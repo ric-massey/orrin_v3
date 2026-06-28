@@ -21,6 +21,7 @@ To use for fine-tuning:
   → writes data/training_export.jsonl in chat-completion format
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import json
@@ -109,7 +110,7 @@ def record_trace(
     except Exception as _e:
         record_failure("trace_buffer.record_trace", _e)
 
-    goal = ctx.get("committed_goal") or {}
+    goal = bound_goal(ctx) or {}
     goal_title = goal.get("title", "") if isinstance(goal, dict) else ""
 
     trace = {

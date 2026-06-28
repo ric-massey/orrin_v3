@@ -8,6 +8,7 @@
 #   - All code is validated in the sandbox before being registered
 #   - A manifest is kept so Orrin knows what he has written
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import ast
@@ -406,7 +407,7 @@ def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
     disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win.
     """
     ctx = context or {}
-    goal = ctx.get("committed_goal") or {}
+    goal = bound_goal(ctx) or {}
     topic = (goal.get("title") or goal.get("kind") or "explore") if isinstance(goal, dict) else "explore"
     safe_topic = topic.lower().replace(" ", "_")[:40]
     fn_name = f"reflect_on_{safe_topic}"

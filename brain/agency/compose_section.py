@@ -1,5 +1,6 @@
 """Substantial, cumulative production for long-form goals."""
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import re
 from pathlib import Path
@@ -52,7 +53,7 @@ def _draft(goal: Dict[str, Any], section: str, context: Dict[str, Any]) -> str:
 
 def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dict[str, Any]:
     ctx = context or {}
-    goal = ctx.get("committed_goal") or kwargs.get("goal") or {}
+    goal = bound_goal(ctx) or kwargs.get("goal") or {}
     if not isinstance(goal, dict) or not (goal.get("title") or goal.get("name")):
         return {"success": False, "error": "No committed goal"}
     gid = str(goal.get("id") or _slug(str(goal.get("title") or goal.get("name"))))

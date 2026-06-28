@@ -11,6 +11,7 @@
 # Writes to working memory. Whether it gets spoken is the speaker's decision.
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import random
@@ -172,7 +173,7 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
     ]
     recent_text = "\n".join(f"- {s}" for s in recent_snippets if s.strip())
 
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_text = (goal.get("title") or "") if isinstance(goal, dict) else ""
 
     # Suppressed impulse — something wanted but not done

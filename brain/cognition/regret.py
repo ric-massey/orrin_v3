@@ -16,6 +16,7 @@
 #       Writes to WM + long memory.
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import time
@@ -197,7 +198,7 @@ def _symbolic_regret(context: Dict[str, Any], recent_history: list, impulses: li
     # 2) A goal gone dull from circling without moving on it.
     hab = float(context.get("_goal_habituation_factor") or 1.0)
     debt = int(context.get("action_debt") or 0)
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     gtitle = (goal.get("title") or "") if isinstance(goal, dict) else ""
     if hab < 0.50 and debt >= 4 and gtitle:
         lines.append(f"I've circled {gtitle} until it's gone dull, and still haven't moved on it.")
@@ -255,7 +256,7 @@ def _reflect(context: Dict[str, Any]) -> str:
             if isinstance(imp, dict)
         )
 
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_text = ""
     if isinstance(goal, dict) and goal.get("title"):
         debt = int(context.get("action_debt") or 0)

@@ -9,6 +9,7 @@ pursue_goal, which re-imports these (and shares the _FINALIZED_IDS dedup dict,
 the same object, so finalize-once stays coherent across both modules).
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import copy
 import time
@@ -81,6 +82,69 @@ def _survival_critical(context: Dict[str, Any]) -> Tuple[bool, str]:
     return False, ""
 
 
+# Closed-loop-break tuning (SIGNAL_TO_ACTION_AUDIT §2 / R2).
+_PREEMPT_OPEN_THRESHOLD = 10        # consecutive armed-but-preempted cycles before a break
+_PREEMPT_BREAK_COOLDOWN_S = 60.0    # after a break, let survival precedence stand this long
+
+
+def _closed_loop_break_enabled() -> bool:
+    """Flag gate (house pattern). OFF ⇒ survival preempt always wins, even when a
+    corrective is armed and stuck. Default ON — the break is bounded (one grounded
+    pursuit, then a cooldown) and only fires on a *sustained* armed-but-preempted
+    streak, which is pathological, not healthy regulation. Set
+    ORRIN_CLOSED_LOOP_BREAK=0 to restore strict survival precedence."""
+    return env_bool("ORRIN_CLOSED_LOOP_BREAK", True)
+
+
+def _closed_loop_break(context: Dict[str, Any], why: str) -> bool:
+    """R2 — detect and break a "closed loop running open": survival preemption
+    yielding goal pursuit while a behavioral corrective is ARMED
+    (``_force_action_next``, set by behavioral_adaptation on goal-avoidance /
+    reflection-imbalance) and the impasse is not relieving. When that conjunction
+    holds for _PREEMPT_OPEN_THRESHOLD consecutive cycles, return True to force ONE
+    grounded pursuit — breaking the freeze the audit observed (212 cycles of
+    "thinking but not doing"). Bounded by a cooldown so it can never thrash survival
+    precedence: at most one forced pursuit per _PREEMPT_BREAK_COOLDOWN_S.
+
+    Returns False (preemption should yield as normal) when the corrective is not
+    armed, during the post-break cooldown, or before the streak fills — i.e. healthy
+    survival precedence is untouched; only the pathological sustained-stall is broken.
+    The streak lives in ``context`` (persists across cycles); this is its sole writer
+    on the armed path. Reset on the not-critical path by the caller."""
+    if not _closed_loop_break_enabled():
+        return False
+    if not bool(context.get("_force_action_next")):
+        context["_preempt_open_streak"] = 0  # no corrective armed → ordinary regulation
+        return False
+    now = time.time()
+    if now < float(context.get("_preempt_break_cooldown_until", 0) or 0):
+        return False  # just broke — let survival precedence stand for the cooldown
+    streak = int(context.get("_preempt_open_streak", 0) or 0) + 1
+    context["_preempt_open_streak"] = streak
+    if streak < _PREEMPT_OPEN_THRESHOLD:
+        return False
+    context["_preempt_open_streak"] = 0
+    context["_preempt_break_cooldown_until"] = now + _PREEMPT_BREAK_COOLDOWN_S
+    log_activity(
+        f"[pursue_goal] closed-loop break: survival preempt ({why}) held "
+        f"{_PREEMPT_OPEN_THRESHOLD} cycles with a corrective armed — forcing one "
+        f"grounded pursuit to break the freeze (resumable)."
+    )
+    try:
+        update_working_memory({
+            "content": (
+                f"[impasse] Survival preemption held {_PREEMPT_OPEN_THRESHOLD} cycles while "
+                f"action was armed ({why}) — broke the freeze with one grounded step."
+            ),
+            "event_type": "closed_loop_break",
+            "importance": 3,
+            "priority": 3,
+        })
+    except Exception as _e:
+        record_failure("goal_closure._closed_loop_break", _e)
+    return True
+
+
 def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
                               context: Dict[str, Any], reason: str = "plan complete") -> None:
     """Single, idempotent goal-completion path (Fix 1d). Fires the achievement
@@ -148,7 +212,11 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
                  expected_reward=0.5, effort=0.8, mode="phasic", source="goal_completion")
         except Exception as _ee:
             log_activity(f"[pursue_goal] completion_signal release failed: {_ee}")
-        mark_goal_completed(goal, context=context)
+        # A satiety/tier close means the underlying need is sated — a legitimate
+        # close reason for a directional goal, independent of the milestone gate
+        # (T2.2). Pass it through so mark_goal_completed allows it for non-artifact
+        # goals (artifact goals still require their artifact).
+        mark_goal_completed(goal, context=context, satiety_close=reason.startswith("satiety"))
         # mark_goal_completed refuses hollow completion (goals.py:575). Only persist
         # and clear the slot if the close actually took.
         if goal.get("status") != "completed":

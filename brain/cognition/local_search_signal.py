@@ -12,6 +12,7 @@
 #   The signal strength is graded rather than binary, mirroring Metcalfe &
 #   Shimamura (1994) who found FOK varies continuously with cue familiarity.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import re
@@ -81,7 +82,7 @@ def inject_local_search_signal(context: Dict[str, Any]) -> float:
 
     # Collect candidate texts: goal, user input, recent WM
     candidates: List[str] = []
-    goal = ctx.get("committed_goal") or {}
+    goal = bound_goal(ctx) or {}
     if isinstance(goal, dict):
         g = (goal.get("title") or goal.get("name") or "").strip()
         if g:

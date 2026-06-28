@@ -5,6 +5,7 @@
 # tool_runner. The result arrives asynchronously and gets tagged
 # kind="world_perception" source="outward" in long memory.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import re
@@ -240,7 +241,7 @@ def _form_query(context: Dict[str, Any]) -> str:
                 "[inhibition]", "[associative_memory]", "[working_memory]")
     # Also skip the committed goal's own title — searching for that just finds
     # the goal back in our own files and produces zero new information.
-    committed = context.get("committed_goal") or context.get("focus_goal") or {}
+    committed = bound_goal(context) or context.get("focus_goal") or {}
     _committed_title = ""
     if isinstance(committed, dict):
         _committed_title = (committed.get("title") or committed.get("name") or "").strip().lower()

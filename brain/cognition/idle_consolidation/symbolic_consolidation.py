@@ -116,19 +116,27 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
     except Exception as _prde:
         log_activity(f"[dream] symbolic prediction cycle skipped: {_prde}")
 
-    # Rule verifier review — surface pending rule revisions.
+    # Rule verifier review — DRAIN pending rule revisions (T1.2). Revisions used
+    # to only be surfaced and then sat 'pending' forever (the run had 37 stuck);
+    # now each consolidation resolves every pending revision by outcome (kept /
+    # weakened / retired) so authority decay happens with no human action, then
+    # surfaces only what genuinely remains needing attention.
     try:
-        from brain.symbolic.rule_verifier import get_pending_revisions as _gpr
+        from brain.symbolic.rule_verifier import drain_revisions as _drain, get_pending_revisions as _gpr
+        _tally = _drain()
+        if any(_tally.values()):
+            log_activity(
+                f"[dream] Rule revisions drained: kept={_tally['kept']} "
+                f"weakened={_tally['weakened']} retired={_tally['retired']}."
+            )
         _revisions = _gpr()
         if _revisions:
-            log_activity(f"[dream] {len(_revisions)} rule(s) pending revision review.")
             try:
                 from brain.cog_memory.working_memory import update_working_memory as _uwm
                 _uwm({
                     "content": (
-                        f"[rule_verifier] {len(_revisions)} rule(s) have degraded confidence "
-                        f"and need review. Most recent: "
-                        f"{_revisions[-1].get('rule_conclusion','?')[:100]}"
+                        f"[rule_verifier] {len(_revisions)} rule(s) still need review after "
+                        f"draining. Most recent: {_revisions[-1].get('rule_conclusion','?')[:100]}"
                     ),
                     "event_type": "rule_revision",
                     "importance": 3,

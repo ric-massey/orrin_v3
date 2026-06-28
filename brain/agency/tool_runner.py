@@ -16,6 +16,7 @@
 # present, write long memory with event_type=intent so the cognition layer
 # can later query by semantic role rather than always seeing "tool_use".
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import importlib
@@ -287,7 +288,7 @@ def _pick_tool_from_context(context: Dict[str, Any]) -> Optional[Dict[str, Any]]
     Returns {"tool": name, "args": ...} or None.
     """
     wm: List[Any] = context.get("working_memory") or []
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     goal_text = (goal.get("title") or goal.get("name") or "") if isinstance(goal, dict) else str(goal)
 
     # Collect recent text to scan
@@ -367,7 +368,7 @@ def decide_to_use_tools(context: Dict[str, Any] = None, **_) -> None:
 def decide_to_search(context: Dict[str, Any] = None, **_) -> None:
     """Orrin performs a web search based on his current goal or working memory."""
     ctx = context or {}
-    goal = ctx.get("committed_goal") or {}
+    goal = bound_goal(ctx) or {}
     query = (goal.get("title") or goal.get("name") or "") if isinstance(goal, dict) else str(goal)
 
     if not query:
@@ -388,7 +389,7 @@ def decide_to_search(context: Dict[str, Any] = None, **_) -> None:
 def decide_to_run_code(context: Dict[str, Any] = None, **_) -> None:
     """Orrin writes and runs a small Python script to explore or compute something."""
     ctx = context or {}
-    goal = ctx.get("committed_goal") or {}
+    goal = bound_goal(ctx) or {}
     topic = (goal.get("title") or goal.get("name") or "current state") if isinstance(goal, dict) else "current state"
 
     code = (

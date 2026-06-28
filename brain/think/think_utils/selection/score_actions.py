@@ -15,7 +15,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, FrozenSet, List, Optional, Tuple
 
-from brain.control_signals.reward_signals.action_reward_ema import get_associability, _ASSOC_DEFAULT
+from brain.control_signals.reward_signals.action_reward_ema import (
+    get_associability, get_expected, _ASSOC_DEFAULT, _DEFAULT as _EXPECTED_DEFAULT,
+)
 from brain.utils.failure_counter import record_failure
 from brain.think.think_utils.selection.text import _kw_overlap_score
 from brain.think.think_utils.selection.scoring import _novelty_score, _devalue_prior
@@ -30,6 +32,21 @@ from brain.think.think_utils.selection.tag_sets import (
 # uncertainty signal, measured RELATIVE to its neutral prior so a well-modelled
 # action gets no bonus and only genuinely volatile/under-explored ones are lifted.
 _W_EXPLORE = 0.12
+
+# Direct EXPLOITATION weight (T2.1 / WS-2). The selector already had the uncertainty
+# (explore) half but no reward-LEVEL half, so the highest-reward action could be
+# selected almost never (run_forgetting_cycle, EMA 0.755, picked 2×). Lift an action
+# by how far its learned expected reward exceeds the neutral prior — the exploit
+# counterpart to s_explore (clamped at 0 so below-prior actions aren't double-penalised
+# beyond their satiety/devaluation terms).
+_W_EXPLOIT = 0.25
+
+# Per-action SATIETY suppression weight (T2.1 / WS-2). A fully-satiated action was
+# still selected most because suppression only ever touched the OUTWARD family
+# (via reach_value). Generalise it: any over-used action is damped by its decayed
+# satiety. Outward fns are exempt here — reach_value already folds their satiety in,
+# so applying it again would double-count.
+_W_SATIETY = 0.30
 
 # No-goal suppression: pursue_committed_goal and assess_goal_progress are
 # useless (and waste a full LLM cycle) when there is no committed goal.
@@ -200,6 +217,16 @@ def score_candidates(
         # (associability above its neutral prior). Clamped at 0 so confidently
         # modelled actions are neither bonused nor penalised (Gershman 2018).
         s_explore   = _W_EXPLORE * max(0.0, get_associability(context, name) - _ASSOC_DEFAULT)
+        # Direct exploitation: lift by learned expected reward above the neutral prior.
+        s_exploit   = _W_EXPLOIT * max(0.0, get_expected(context, name) - _EXPECTED_DEFAULT)
+        # General satiety suppression (non-outward; outward handled by reach_value).
+        s_satiety = 0.0
+        if name not in _REACH_FNS:
+            try:
+                from brain.cognition.exploration_value import action_satiety as _action_satiety
+                s_satiety = -_W_SATIETY * _action_satiety(name)
+            except Exception as exc:
+                record_failure("select_function.action_satiety", exc)
 
         # Curiosity nudge toward dormant capability (Fix #3).
         s_curio = 0.0
@@ -214,7 +241,7 @@ def score_candidates(
             s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
         except Exception as exc:
             record_failure("select_function.goal_lens_prior", exc)
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_curio + s_evc + s_workspace + s_uncon_damp
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_exploit + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
         # here: pursue_committed_goal is no longer a deliberate candidate (it runs in
@@ -335,6 +362,6 @@ def score_candidates(
             except Exception as exc:
                 record_failure("select_function.fn_suppression", exc)
 
-        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore}))
+        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety}))
 
     return scored

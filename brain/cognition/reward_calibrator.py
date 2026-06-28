@@ -26,6 +26,7 @@ This module does NOT replace the existing reward signals file — it wraps
 `calibrated_reward()` entry point for high-level cognition.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 from typing import Any, Dict
@@ -121,7 +122,7 @@ def check_and_reward_goal_closure(context: Dict[str, Any]) -> bool:
     Detect if a goal was completed this cycle and release a calibrated reward.
     Returns True if a goal was closed.
     """
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     if not goal:
         return False
     if goal.get("status") in ("completed", "closed", "done"):

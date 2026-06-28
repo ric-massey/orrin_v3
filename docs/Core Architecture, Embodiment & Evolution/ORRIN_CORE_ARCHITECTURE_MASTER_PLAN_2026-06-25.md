@@ -54,11 +54,22 @@ Track 2 (embodiment) is independent and deferrable. Do Track 1 first.
 ### Execution order
 
 ```
-Phase 0 (now, all parallel):  T0.1  T0.2  T0.3  T0.4  T0.5(quality predicate)
-Phase 1 (the blocker):        T1.1  T1.2  [T1.3]  → T1.P (fast) → T1.G CLOSURE RUN (gate)
+Phase 0 (DONE 2026-06-26):    ☑T0.1 ☑T0.2 ☑T0.3 ☑T0.4 ◧T0.5(needs Ric's exemplars)
+Phase 1 (CODE DONE 06-28):    ☑T1.1 ☑T1.2 ☑T1.3 → ☑T1.P → ☐T1.G CLOSURE RUN (live, gate)
 Phase 2 (after Phase 1):      T2.1  T2.2  T2.3  T2.4
-Phase 3 (after closure green):T3.1
+Phase 3 (CODE DONE 06-28):    ☑T3.1  (behavioural confirmation rides on the T1.G run)
 ```
+
+> **Phase-1 status (2026-06-28).** All buildable Phase-1 code is done and tested
+> (full suite **1124 passed**): T1.1 capstone affect-close loop **+ the `bound_goal`
+> reader migration**, T1.2 rule authority + revision drain, T1.3 urgency blend, T1.P
+> forced-production. The `bound_goal` migration routed ~73 files' `committed_goal` reads
+> through `global_workspace.bound_goal()` (writes untouched; `bound_goal` relaxed to
+> match legacy `.get` truthiness; `runtime_coupling` deliberately kept raw to preserve
+> the package-layering ratchet; exotic receivers left working). **Remaining to call
+> Phase 1 complete — both NON-CODE:** (a) **T1.G** — the multi-day live closure
+> validation run (the gate; an operator runs it, mind the restart-wedge gotcha);
+> (b) **T0.5** positive exemplars (Ric authors the quality standard).
 
 **Hard rule:** do **not** start production-output polish or aspiration-*completion*
 balance (Phase 3) before T1.1 + T1.2 are green. They sit downstream; polishing first
@@ -218,7 +229,29 @@ the anti-exemplars are already on disk from this run):
 *T1.1 + T1.2 in parallel, then integrate. T1.3 belongs here (load-bearing for "finishes
 things"). Ends with the closure validation run, which is the gate to Phase 2.*
 
-#### ☐ T1.1 — Goal closure core  *(WS-1, capstone)*
+#### ☑ T1.1 — Goal closure core  *(WS-1, capstone)*  — DONE 2026-06-28
+> **Done 2026-06-28:** the capstone affect-close loop is built and unit-tested. New
+> `brain/cognition/planning/goal_satisfaction.py::close_affect_loop`, called from the
+> single completion chokepoint `mark_goal_completed` (`goal_outcomes.py`) after the close
+> is confirmed real: it (a) records the **satisfaction handshake** — `satisfied_need` +
+> `satisfaction_evidence` (milestones-met / verified-artifact / significance) stamped onto
+> the goal *before* it is archived; (b) **relaxes the spawning drive** via a bounded,
+> floored, decaying `submit_signal` nudge keyed by `driven_by → need-signal`
+> (`world_knowledge→exploration_drive`, `genuine_contact→social_deficit`,
+> `output_producing→stagnation_signal`, `problem_solving→impasse_signal`, …) — never
+> below `_DRIVE_FLOOR`, the overshoot guard; (c) lets **contentment** (`satisfaction_signal`)
+> rise then drain. A hollow close (`grounded=False`) records the gap but closes **no loop**
+> — relaxation/contentment require real evidence, so the hollow-completion bug can't
+> relocate into affect. Tests: `tests/brain/test_goal_satisfaction.py` (7).
+> **Already in place (verified):** id-writeback (`goal_io.py:408-414`) + its regression
+> test (`tests/goals_test/test_canonical_goal_id.py`); the artifact-content gate via the
+> T0.5 predicate. **`bound_goal()` reader migration DONE** (Goals-Master-Plan §A): ~73
+> files' `committed_goal` reads now route through `global_workspace.bound_goal()` (writes
+> untouched; `bound_goal` relaxed to legacy `.get` truthiness so it's behaviour-equivalent;
+> `runtime_coupling` kept raw to preserve the layering ratchet). Full suite 1124 green.
+> **Optional leftover:** a felt-origin DONE-gate beyond the milestone guard (the affect
+> loop already only *closes* on evidence); live verification in T1.G.
+
 **Root cause pinned:** `sync_proposed_goals()` calls `api.create_goal(...)` at
 `brain/goal_io.py:373` and **discards the returned `Goal`** — `goals/api.py:203` returns
 it with its id, but nothing captures it or writes it back onto the v1 node. So
@@ -264,7 +297,24 @@ re-committed).
   zero**; `contentment` rises on satisfaction and resumes its drain afterward; the
   64×-style re-commit loop cannot occur; the id-writeback regression test passes.
 
-#### ☐ T1.2 — Prediction & rule authority  *(WS-3)*
+#### ☑ T1.2 — Prediction & rule authority  *(WS-3)*  — DONE 2026-06-28
+> **Built & tested** (`brain/symbolic/rule_verifier.py`, `tests/brain/test_rule_authority.py`).
+> (1) **Outcome-based authority decay:** `_adjust_confidence` now tracks per-rule
+> `outcome_count` + `consecutive_misses`; a rule wrong `_MISS_STREAK_N`(4)× in a row
+> *above the min-sample gate* loses firing priority — confidence stripped toward
+> `_AUTHORITY_FLOOR`(0.15), never to zero. A reward clears the streak. (2) **Revision
+> queue drained:** new `drain_revisions()` resolves every pending revision each dream
+> cycle (kept / weakened / retired) — wired into `symbolic_consolidation` replacing the
+> old surface-only log, so nothing sits `pending` forever (was 37 stuck). Bounded window
+> = one consolidation. (3) **Over-retirement guard:** `_retirement_allowed` refuses to
+> tombstone an under-learned rule (`outcome_count < _MIN_SAMPLE`) or the last usable rule
+> in its domain — decay can't strip a domain (e.g. SOCIAL) to zero usable rules.
+> (4) **Accuracy field:** already reconciled via the conservative `reliability` blend
+> (`prediction_engine.py:151-156`, min of graded-EMA and Laplace binary), which the
+> consumers (`meta_controller`, `get_domain_error_rates`) already read — so a wrong-100%
+> domain surfaces ~1.0 error rate. No further change needed.
+
+**Original task detail (all addressed above):**
 - [ ] **Outcome-based rule authority:** a rule's firing priority decays automatically with
       sustained prediction error; wrong-100% rules lose the priority floor (today PLANNING
       is wrong 893/893 yet keeps firing heavily).
@@ -284,7 +334,22 @@ re-committed).
   priority with no human action; a proposed revision reaches applied/rejected within a
   bounded window; no domain is left with zero usable rules purely by retirement.
 
-#### ☐ T1.3 — Mortality forward-pressure (pin the clock source, then build)  *(WS-8a)*
+#### ☑ T1.3 — Mortality forward-pressure (pin the clock source, then build)  *(WS-8a)*  — DONE 2026-06-28
+> **DECISION (owner, 2026-06-28): real/felt BLEND.** Built & tested
+> (`runtime_lifetime.py`, `tests/brain/test_lifetime_urgency_clock.py`). The urgency
+> phase now keys off `_blended_fraction(real_frac, session_frac)` =
+> `max(real_frac, 0.5*session + 0.5*real)`, where `session_frac` comes from the
+> temporal session-arc (`temporal_state.felt_cycles`, capped at the night-arc onset).
+> A long session lifts a young run's phase past `early` (so the middle/late injections
+> fire within a run), while real life-fraction is a **floor** so a fresh session late in
+> life still reads its true age ("respects the 60-day arc"). **Termination stays on the
+> real clock only** (`real_frac >= 1.0`) — death-screen fix preserved. `summary` now
+> surfaces `session_fraction`/`urgency_fraction` for the T1.G ramp check. Note: from a
+> session alone the phase reaches `middle` (0.5 weight); `late` from session-alone would
+> need weight >0.5 — confirm the ramp is "meaningful, not instant" in T1.G and tune the
+> weight there if needed.
+
+**Original task detail:**
 The urgency machinery (late/terminal phases injecting motivation/impasse/loss/meaning)
 is built but **never fired** in the run. **Correction to the original diagnosis:**
 `mortality.py:382` *already* derives `phase` from `_felt_fraction()`, **not** the real
@@ -306,7 +371,18 @@ that doesn't advance meaningfully in a run.
 - **Done when:** over a normal-length run the mortality phase advances past "early" and at
   least the `late` urgency injections fire and are visible in affect.
 
-#### ☐ T1.P — Forced-production test (deterministic; gates T1.G)  *(de-risks "0 output")*
+#### ☑ T1.P — Forced-production test (deterministic; gates T1.G)  *(de-risks "0 output")*  — DONE 2026-06-28
+> **Built** (`tests/brain/test_forced_production.py`). Injects a committed
+> `output_producing`/`requires_artifact` making-goal, forces the producer path
+> (`compose_section`) with the **LLM unavailable** (worst case — the offline `_draft`
+> fallback), and asserts: (a) a real-content artifact lands on disk and passes the
+> **T0.5 predicate** the way `artifact_satisfied` calls it (`assess_artifact_file`,
+> goal=None → negative gates), and (b) the making-goal is DONE-able through the v2
+> `artifact_satisfied` gate once that file is its artifact. Negative control: a stub
+> `s_*_ok.txt` passes neither, so the gate isn't trivially green. Producer-on-demand is
+> proven in seconds with no autonomous loop — the only T1.G variable left is **routing**.
+
+**Original task detail:**
 The reason "production is downstream of closure" is currently a *bet*: production was only
 ever exercised by the slow autonomous run, which can't tell **"producer broken"** from
 **"producer never invoked"** (the run: *"the bad case never occurred because production
@@ -336,7 +412,15 @@ do not use the slow run to discover producer bugs the fast test catches.
       closure is green**, that **falsifies "production is merely downstream of closure"** and
       **triggers a dedicated producer/selection task** (don't ship the run as green). Read it
       from the T0.3 production funnel to see which edge dropped.
-- [ ] **Goals-Master-Plan §A:** v1→v2 id-writeback verified live (D2).
+- [ ] **T3.1 partial-credit read-off (rides on this run — separate scorecard).** The
+      same run validates T3.1: confirm (a) ≥2–3 aspirations accrue **non-zero
+      `partial_credit`** that moves their `progress` *between* full completions (graded
+      movement, not a step-function from 0 → completion); and (b) **anti-rubber-stamp
+      holds live** — no aspiration's `partial_credit` rises without an underlying
+      met-milestone / T0.5-passing artifact on the contributing goal, and partial never
+      substitutes for a real completion. Distinct from "closure is green": the loop can
+      close yet partial credit still fail to register (or leak). Read `partial_credit` +
+      `progress` off the aspiration nodes in the goal store.
 - [ ] **Production-Loop §5.2 staged smoke run:** bounded goal ("Write a three-section
       synthesis of what I know about emergence"); pass = committed goal hydrated before
       selection, lens active ≥80% of non-rest cycles, explicit `compose_section` handoff,
@@ -352,10 +436,18 @@ do not use the slow run to discover producer bugs the fast test catches.
 
 ---
 
-### PHASE 2 — Selection + coverage
+### PHASE 2 — Selection + coverage  — CODE DONE 2026-06-28
+
+> **Phase-2 status (2026-06-28).** All four tasks built + unit-tested (full suite
+> **1147 passed**). T2.1 selector exploitation + general satiety; T2.2 survival
+> recruit dedup + autonomic boundary + satiety-close; T2.3 aspiration coverage floor
+> + credit-by-intent + `attempted` funnel stage; T2.4 note body routed from the
+> finding (skeleton rejected by the T0.5 predicate). Behavioural confirmation rides
+> on the same live run as T1.G.
 *After Phase 1 integrates.*
 
-#### ☐ T2.1 — Selector wiring  *(WS-2 — partly built)*
+#### ☑ T2.1 — Selector wiring  *(WS-2)*  — DONE 2026-06-28
+> Wired direct EXPLOITATION (`get_expected` above the neutral prior, `_W_EXPLOIT`) and a GENERAL per-action SATIETY suppression (`action_satiety`, `_W_SATIETY`; outward fns exempt — reach_value already folds their satiety in) into `score_actions.py`. Goal-lens confirmed already a wired additive input (`s_goal_lens`); the run's 0.0 was the open-loop/no-committed-goal symptom (T1.1), not a wiring gap. Tests: `tests/brain/test_selector_exploit_satiety.py`.
 **Built:** the selector already consumes learned stats, EVC, associability, and outward
 satiety. **Remaining delta (the two that explain the run):**
 - [ ] Feed **direct positive exploitation** from `action_reward_ema.get_expected()` into
@@ -368,7 +460,8 @@ satiety. **Remaining delta (the two that explain the run):**
 - **Done when:** a high-reward, low-satiety action's selection frequency rises vs baseline;
   a fully-satiated action's frequency falls.
 
-#### ☐ T2.2 — Survival / maintenance subsystem  *(WS-4)*
+#### ☑ T2.2 — Survival / maintenance subsystem  *(WS-4)*  — DONE 2026-06-28
+> Recruit title is now keyed to the STABLE deficit (alert id), not the count-bearing description (collapses 627→233; no conscious title carries a raw count). Autonomic-vs-felt boundary: housekeeping alerts (tags maintenance/reaper_risk) are handled by their suggested_fn and never become conscious goals (`is_autonomic_maintenance`). Satiety tier-closure now allowed independent of the milestone gate for NON-artifact goals (artifact goals still require production; satiety pays no production reward but relaxes the spawning drive via the T1.1 affect loop). Tests: `test_survival_recruit_dedup.py`, `test_satiety_close.py`. NOTE: the run_forgetting_cycle→long_memory remedy MISMATCH (forgetting only prunes rules) is now autonomic-only and no longer churns a conscious recruit; left as a lower-severity follow-up.
 - [ ] **Dedup recruits on the deficit key**, not the entry-count-bearing title (627
       recruits → 233 distinct goals because the title carries a raw count).
 - [ ] **Fix the remedy:** `run_forgetting_cycle` pruned 0 every run — a restoration goal
@@ -383,7 +476,8 @@ satiety. **Remaining delta (the two that explain the run):**
   demonstrably reduces the deficit and closes on satiety; no conscious goal title ever
   contains a raw file/entry count.
 
-#### ☐ T2.3 — Aspiration coverage floor + credit-by-intent  *(WS-7 Changes 2, 3)*
+#### ☑ T2.3 — Aspiration coverage floor + credit-by-intent  *(WS-7 Changes 2, 3)*  — DONE 2026-06-28
+> Change 2: a generation COVERAGE FLOOR in `_varied_symbolic_goal` — a starved aspiration (pressure ≥ floor) with an available candidate is picked deterministically (round-robin via pressure decay). Change 3: `_evidenced_aspiration` blends the goal's INTENT (driven_by→serves) at one keyword-hit, so a generic-text making goal is credited to its aspiration while real keyword evidence can still diverge. Also recorded the `attempted` funnel stage at commit. Tests: `test_aspiration_coverage_credit.py`.
 *(Seed-at-birth, scoreboard, and the orphaned-`will` mapping are in T0.3.)* End-of-life
 coverage was 20% / 0% / 0% / 0% — three never moved off zero.
 - [ ] **Generation coverage floor (Change 2, biggest lever).** Over a rolling window each
@@ -404,7 +498,8 @@ coverage was 20% / 0% / 0% / 0% — three never moved off zero.
 - **Honesty guard:** the floor must lift generation/attempts, **never** auto-credit —
   credit still requires real evidence, or you've moved the hollow-closure bug up a layer.
 
-#### ☐ T2.4 — Production content: route output body from the finding, not the template  *(run issue #4; persists from 06-18)*
+#### ☑ T2.4 — Production content: route output body from the finding, not the template  *(run issue #4)*  — DONE 2026-06-28
+> `leave_note` seed priority is now finding-first: `_seed_from_goal_finding` (the goal's real finding/produced content) → recent finding → grounded_parts comprehension ONLY if the shared T0.5 predicate judges it real work. The grounded_parts planning skeleton (the ×56 template note) is now rejected by `is_real_work`. Tests: `test_note_finding_routing.py`.
 **Problem.** The note/output body carries the goal's *planning template*, not its *answer*.
 The most common note (×56) was literally *"what I actually know about [topic]: question or
 desired change; relevant evidence; reasoned conclusion…"* — the `grounded_parts` prompt
@@ -426,13 +521,28 @@ notes" form-fix landed) but is **still severed at the answer.**
 ### PHASE 3 — Aspiration completion balance
 *Only after closure (T1.1) is green.*
 
-#### ☐ T3.1 — Partial credit on real progress  *(WS-7 Change 4)*
-- [ ] Graded credit on genuine sub-progress (a real milestone/artifact step) so
+#### ☑ T3.1 — Partial credit on real progress  *(WS-7 Change 4)*  — CODE DONE 2026-06-28
+> **Built** in `intrinsic_objectives.credit_objectives` (`_partial_progress_units` +
+> `partials` rollup). An open (non-completed) goal now credits its aspiration a
+> FRACTION of a completion when it shows real evidenced sub-progress, so aspirations
+> accumulate signal between full completions (the run ended 20/0/0/0 because nothing
+> short of completion moved the needle). **Evidence = the same grounding closure
+> uses:** milestones actually `met` (the field `goal_outcomes._grounded` reads) and a
+> real artifact judged by the shared **T0.5 predicate** (`assess_artifact_file`) — a
+> stub/template earns nothing. **Anti-rubber-stamp invariants:** (a) partial is capped
+> at `_PARTIAL_CAP`(0.5) so an open goal can never be worth as much as a completion;
+> (b) it feeds `progress` only, never `contribution_count` (which still gates the
+> milestone scaffolding on real completions); (c) it is RECOMPUTED from current
+> evidence each rollup, not accumulated, so re-running can't farm it. Failed/cancelled
+> goals earn nothing. New `partial_credit` field on each aspiration node for
+> visibility. Tests: `tests/brain/test_partial_credit.py` (6).
+- [x] Graded credit on genuine sub-progress (a real milestone/artifact step) so
       aspirations accumulate signal between full completions.
 - **Guard:** rides on the **same satisfaction-evidence rule** as closure — it cannot
   become rubber-stamping.
 - **Done when:** at least 2–3 aspirations show genuine *completions* over a full life
-  (moves 20/0/0/0 toward real balance).
+  (moves 20/0/0/0 toward real balance). *(Behavioural — verified in the T1.G live run,
+  alongside Phase 2's confirmation.)*
 
 ---
 

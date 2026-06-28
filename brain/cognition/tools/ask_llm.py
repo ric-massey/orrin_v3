@@ -15,6 +15,7 @@
 # The LLM is a resource, not Orrin's mind.
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from brain.core.runtime_log import get_logger
 import time
@@ -166,7 +167,7 @@ def ask_llm_for_research(context: Dict[str, Any]) -> str:
     Cognition function: Orrin uses LLM as a research tool.
     Pulls the research topic from context (committed goal or working memory).
     """
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     topic = goal.get("title") or goal.get("name", "")
 
     if not topic:

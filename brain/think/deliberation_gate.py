@@ -19,6 +19,7 @@ from going fully dormant during extended quiet periods while still giving
 genuine idle time between dispatches.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from typing import Tuple
 
 from brain.utils.get_cycle_count import get_cycle_count
@@ -50,7 +51,7 @@ def should_think(context: dict) -> Tuple[bool, str]:
     emo     = context.get("affect_state") or {}
     core    = emo.get("core_signals") if isinstance(emo.get("core_signals"), dict) else emo
     signals = context.get("raw_signals") or []
-    goal    = context.get("committed_goal") or {}
+    goal    = bound_goal(context) or {}
     pre     = context.get("_emo_pre_cycle") or {}  # baseline snapshotted before pipeline
 
     # 1. User input — always engage when someone speaks

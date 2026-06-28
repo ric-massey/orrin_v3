@@ -9,6 +9,7 @@ out via _load_behavioral_names). Imports its shared inputs downward (constants),
 so no cycle back to the core selector, which re-imports these names.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict, List, Tuple
 
@@ -165,7 +166,7 @@ def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
 
 def _planned_action_recruitment(context: Dict[str, Any], actions: List[str]) -> Dict[str, float]:
     """Bounded deliberate boost for an explicit Executive handoff."""
-    goal = context.get("committed_goal") or {}
+    goal = bound_goal(context) or {}
     need_fn = goal.get("_needs_deliberate_action") if isinstance(goal, dict) else None
     if not need_fn or need_fn not in actions:
         return {}

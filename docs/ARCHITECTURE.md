@@ -111,8 +111,18 @@ Two further couplings make broadcast, action, and reasoning line up rather than 
   al. 2001).
 
 All three are fail-safe and feature-flagged (`ORRIN_IGNITION_GATE`, `ORRIN_WORKSPACE_PRIOR`,
-`ORRIN_CONFLICT_RECRUIT`). The broadcast→substrate write-back is still missing — feedback today
-is largely one-directional (see [Known limitations](../README.md#known-limitations--whats-next)).
+`ORRIN_CONFLICT_RECRUIT`).
+
+The downward path is now closed in a **decaying** form (`brain/cognition/workspace_writeback.py`,
+on the main path, no flag). After a conscious moment is selected, write-back nudges priors back
+*down*: a small, low-weight, TTL-bounded affect proposal (integrated by next cycle's `commit_signals`)
+keyed to the *kind* of conclusion, plus Hebbian priming of the winner's tokens in a bounded,
+per-cycle-decaying salience-prior store that biases the next competition toward the same theme.
+Two properties make it permanent and safe to keep on: every write **decays** (affect TTL drain +
+salience decay), and there is **no promotion path** to a durable baseline, to `concept_memory`, or
+to identity — the substrate *tracks* recent conclusions for long-run coherence but never *becomes* a
+different substrate ("coherent-but-adult"; no ontogeny). Reflex floors and absolute scalars are never
+write-back targets ("refuse-to-imprint" by construction).
 
 ---
 

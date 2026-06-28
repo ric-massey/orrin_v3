@@ -28,6 +28,7 @@
 #   No LLM interpretation — purely structural comparison.
 #
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import re
@@ -398,7 +399,7 @@ def check_predictions(context: Dict[str, Any]) -> int:
         # Default ON (opt out with ORRIN_HARD_DISENGAGE=0) — same gate as metacog's
         # hard escalator this feeds.
         _on = env_bool("ORRIN_HARD_DISENGAGE", True)
-        _gd = context.get("committed_goal") if isinstance(context, dict) else None
+        _gd = bound_goal(context) if isinstance(context, dict) else None
         if _on and _evaluated_mismatches and isinstance(_gd, dict) and (_gd.get("id") or _gd.get("title")):
             _miss = sum(_evaluated_mismatches) / len(_evaluated_mismatches)
             _gid = str(_gd.get("id") or _gd.get("title") or "goal")

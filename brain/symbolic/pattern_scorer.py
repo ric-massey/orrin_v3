@@ -16,6 +16,7 @@
 #   update_world_model(domain, event_type, success)
 #   decay_patterns()   ← called from rule_forgetting.run_forgetting_cycle()
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import math
@@ -220,7 +221,7 @@ def _signal_valence(query: str, context: Dict) -> Tuple[float, float]:
             activation_level = exploration_drive * 0.3 + excitement * 0.4 + impasse_signal * 0.3
 
         # Goal-proximity bonus: query overlap with current goal → positive valence
-        focus = context.get("focus_goal") or context.get("committed_goal")
+        focus = context.get("focus_goal") or bound_goal(context)
         if isinstance(focus, dict):
             goal_text = str(focus.get("intent", "") or focus.get("name", "")).lower()
             overlap = sum(1 for w in goal_text.split() if len(w) > 3 and w in query.lower())

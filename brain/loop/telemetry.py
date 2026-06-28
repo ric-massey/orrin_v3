@@ -11,6 +11,7 @@ run_cognitive_loop imports `_bridge`, `_push_event`, `_emit_signal`, `_emit_goal
 `_learning_pulse`, `_push_catalog_once`) are private to this module.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict, List
 
@@ -258,7 +259,7 @@ def _emit_goals(context: "Context") -> None:
         from brain.paths import GOALS_FILE
 
         goals_raw: List[Any] = load_json(GOALS_FILE, default_type=list) or []
-        committed = context.get("committed_goal") if isinstance(context, dict) else None
+        committed = bound_goal(context) if isinstance(context, dict) else None
         committed_id = committed.get("id") if isinstance(committed, dict) else None
 
         from brain.goal_io import summarize_goal_tree

@@ -1,5 +1,6 @@
 """Single source of truth for whether a cycle produced goal-relevant action."""
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 from typing import Any, Dict
 
@@ -25,7 +26,7 @@ def mark_consequential_cognition(
         and float(info_gain) > 0.0
     )
     produced = external or (internal and not is_stagnating(context))
-    if produced and context.get("committed_goal"):
+    if produced and bound_goal(context):
         context["_consequential_cognition_this_cycle"] = True
         context["__acted_this_tick__"] = True
         # P1 reward split: tag the credit KIND so finalize can pay production more
@@ -43,7 +44,7 @@ def mark_consequential_cognition(
 
 def cycle_produced_goal_action(context: Dict[str, Any]) -> bool:
     """Return the authoritative goal-action result for the current cycle."""
-    if not context.get("committed_goal"):
+    if not bound_goal(context):
         return False
     if context.get("__acted_this_tick__"):
         return True

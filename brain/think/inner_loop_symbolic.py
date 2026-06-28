@@ -19,6 +19,7 @@
 #
 # Returns the same dict as run_inner_loop, plus "mode": "symbolic".
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import time
@@ -298,7 +299,7 @@ def run_inner_loop_symbolic(
         except Exception:
             max_rounds = _DEFAULT_ROUNDS
 
-    goal_title: str = (context.get("committed_goal") or {}).get("title", "")
+    goal_title: str = (bound_goal(context) or {}).get("title", "")
     content: str = ""
     critique_applied = False
     escalated = False

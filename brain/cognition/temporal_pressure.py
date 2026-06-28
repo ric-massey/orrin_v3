@@ -12,6 +12,7 @@
 #   - Session age + time of day      → written to context for inner_loop
 
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import math
@@ -262,7 +263,7 @@ def _anticipatory_signals(context: Dict[str, Any], core: Dict[str, Any]) -> Opti
     _last_anticip_ts = now_ts
 
     # Gather committed goal(s)
-    cg  = context.get("committed_goal") or {}
+    cg  = bound_goal(context) or {}
     cgs = context.get("committed_goals") or ([cg] if cg else [])
     goals = [g for g in cgs if isinstance(g, dict) and g.get("title")]
     if not goals:

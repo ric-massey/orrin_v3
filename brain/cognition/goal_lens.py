@@ -1,5 +1,6 @@
 """Bounded goal-conditioned modulation shared by cognition consumers."""
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import re
 from typing import Any, Dict, Iterable
@@ -49,7 +50,7 @@ def apply_goal_lens(context: Dict[str, Any]) -> Dict[str, Any]:
     """Populate or clear context['goal_lens']; never overrides reflex/safety routing."""
     if not isinstance(context, dict):
         return context
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict) or str(goal.get("status") or "").lower() in _TERMINAL:
         context.pop("goal_lens", None)
         return context

@@ -7,6 +7,7 @@ downward-only (no cycle); pursue_goal re-exports assess_goal_progress and
 adapt_subgoals.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
 import re
@@ -40,7 +41,7 @@ def assess_goal_progress(context: Optional[Dict[str, Any]] = None) -> Dict[str, 
     causes pursue_committed_goal() to replan on the next call.
     """
     context = context or {}
-    goal    = context.get("committed_goal")
+    goal    = bound_goal(context)
     if not isinstance(goal, dict) or not goal.get("title"):
         return {"status": "ok", "skipped": True}
 
@@ -254,7 +255,7 @@ def adapt_subgoals(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     global _last_adapt_ts
     context = context or {}
 
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if not isinstance(goal, dict) or not (goal.get("title") or goal.get("name")):
         return {"status": "ok", "skipped": True, "reason": "no_committed_goal"}
     if goal.get("status") in ("completed", "abandoned", "failed"):

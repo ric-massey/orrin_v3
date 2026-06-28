@@ -74,6 +74,9 @@ _DRIVE_CREDIT_ALPHA   = 0.25    # EMA learning rate for the learned link
 _PRIOR_SEED_WEIGHT    = 0.50    # the prior's standing weight; an evidenced
                                 # aspiration must EXCEED this to take over
 _DRIVE_CREDIT_IDS_CAP = 500     # bound the per-goal idempotency ledger
+_INTENT_PRIOR_WEIGHT  = 1        # T2.3 — intent (driven_by→serves) blended into
+                                 # evidence at one keyword-hit: decides generic/
+                                 # ambiguous goals, but real keyword evidence wins
 
 # Keyword signatures used to classify which aspiration a completed goal's outcome
 # advanced. Coarse on purpose — a clear keyword winner is the evidence; ties /
@@ -146,11 +149,21 @@ def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
         record_failure("intrinsic_goals.evidenced_aspiration", exc)
 
     text = " ".join(parts).lower()
-    if not text.strip():
-        return None
     scores = {asp: sum(1 for kw in kws if kw in text) for asp, kws in _ASPIRATION_KEYWORDS.items()}
-    best = max(scores, key=scores.get)
-    return best if scores[best] > 0 else None
+    # T2.3 Change 3 — credit by INTENT, not just biased text. The goal's own
+    # driven_by/serves tag is blended in as a prior so a "make things" / "be useful"
+    # goal is credited to its aspiration even when its title reads generic and trips
+    # no outcome keyword (the run's making goals scored 0 and the credit defaulted to
+    # whatever keyword the intake-heavy text happened to hit). Weighted at one
+    # keyword-hit so it DECIDES ambiguous/generic cases but real keyword evidence
+    # (≥2 hits elsewhere) can still legitimately diverge from the prior — preserving
+    # the learned-link's whole point.
+    intent = _serves_aspiration(str(goal.get("driven_by") or spec.get("driven_by") or ""))
+    if intent in scores:
+        scores[intent] += _INTENT_PRIOR_WEIGHT
+    if not any(scores.values()):
+        return None
+    return max(scores, key=scores.get)
 
 
 def _goal_completion_reward(goal: Dict[str, Any]) -> float:
@@ -276,6 +289,69 @@ _ASPIRATION_TARGET = 20          # contributions for "full" directional progress
 _ASPIRATION_MILESTONE_EVERY = 5  # a visible milestone every N contributions
 
 
+# ── Phase 3 / T3.1: partial credit on real sub-progress (WS-7 Change 4) ─────────
+# An aspiration shouldn't have to wait for a goal to fully COMPLETE before it sees
+# any movement — a goal that has genuinely met some of its milestones, or already
+# produced a real artifact, has advanced its direction. credit_objectives credits
+# that as a FRACTION of a completion, so aspirations accumulate signal between full
+# completions (the run ended 20/0/0/0 partly because nothing short of completion
+# ever moved the needle).
+#
+# Anti-rubber-stamp (the explicit T3.1 guard — "rides on the same satisfaction-
+# evidence rule as closure"):
+#   * Evidence is the SAME grounding closure uses — milestones actually `met`
+#     (the field goal_outcomes._grounded reads) and a real artifact judged by the
+#     shared T0.5 quality predicate. Status moving / a milestone merely existing
+#     earns nothing.
+#   * Partial is strictly < a completion (capped at _PARTIAL_CAP): an unfinished
+#     goal can never be worth as much as a finished one.
+#   * It is RECOMPUTED from current evidence on every rollup, not accumulated, so
+#     re-running credit_objectives can't farm credit — a goal sitting at "2 of 5
+#     milestones met" contributes the same fraction every pass until it advances.
+_PARTIAL_CAP = 0.5   # max credit (in completion-units) an open goal can earn
+
+
+def _real_milestones(goal: Dict[str, Any]) -> tuple[int, int]:
+    """(# milestones actually `met`, # total) — the same grounding signal the
+    completion gate reads (goal_outcomes `_grounded = all m.get('met')`)."""
+    ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
+    return sum(1 for m in ms if m.get("met")), len(ms)
+
+
+def _has_real_artifact(goal: Dict[str, Any]) -> bool:
+    """True if the goal already points at a produced artifact whose CONTENT passes
+    the shared T0.5 predicate (a stub / template skeleton does not count) — the
+    same bar artifact_satisfied uses to close the file-existence loophole."""
+    paths: List[str] = []
+    v = goal.get("artifacts")
+    if isinstance(v, list):
+        paths += [str(p) for p in v if p]
+    for key in ("artifact_path", "produced_artifact", "output_path"):
+        p = goal.get(key)
+        if isinstance(p, str) and p:
+            paths.append(p)
+    if not paths:
+        return False
+    try:
+        from brain.cognition.quality_predicate import assess_artifact_file
+    except Exception:  # predicate unavailable → no partial-artifact credit (fail-closed)
+        return False
+    return any(assess_artifact_file(p).ok for p in paths)
+
+
+def _partial_progress_units(goal: Dict[str, Any]) -> float:
+    """Graded sub-completion credit for a still-open goal, in completion-units and
+    strictly below _PARTIAL_CAP. Zero unless there is REAL evidence (a met milestone
+    or a real artifact) — never a reward for merely existing."""
+    met, total = _real_milestones(goal)
+    ms_frac = (met / total) if (total > 0 and met > 0) else 0.0
+    art = 1.0 if _has_real_artifact(goal) else 0.0
+    if ms_frac <= 0.0 and art <= 0.0:
+        return 0.0
+    raw = min(1.0, 0.6 * ms_frac + 0.4 * art)   # both evidence sources, weighted
+    return round(_PARTIAL_CAP * raw, 3)
+
+
 def credit_objectives(context: Dict[str, Any] = None) -> str:
     """Roll completed short-term goals UP into the long-term aspirations they
     serve, so the enduring goals actually ADVANCE instead of sitting at
@@ -293,6 +369,10 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
 
     # Tally completed short-term contributions per aspiration, across both stores.
     contributions: Dict[str, List[str]] = {}
+    # (T3.1) Fractional sub-completion credit from still-open goals, keyed the same
+    # way (aspiration title, lower-cased). Summed into progress alongside the
+    # integer completion count below; never folded into contribution_count itself.
+    partials: Dict[str, float] = {}
     pools = [goals]
     try:
         comp = load_json(COMPLETED_GOALS_FILE, default_type=list) or []
@@ -308,13 +388,26 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
     credit_changed = False
 
     seen_ids: set = set()
+    partial_seen: set = set()
     for pool in pools:
         for g in pool:
             if not isinstance(g, dict) or g.get("_aspiration") or g.get("kind") == "aspiration":
                 continue
-            if g.get("status") != "completed":
-                continue
             gid = g.get("id") or g.get("title")
+            if g.get("status") != "completed":
+                # (T3.1) An open goal can still credit its aspiration FRACTIONALLY
+                # if it shows real evidenced sub-progress. Skip terminal-but-not-
+                # completed (failed/cancelled) goals — only live goals count.
+                if g.get("status") in ("failed", "cancelled", "abandoned") or gid in partial_seen:
+                    continue
+                units = _partial_progress_units(g)
+                if units > 0.0:
+                    partial_seen.add(gid)
+                    serves = str(g.get("serves")
+                                 or _serves_aspiration(g.get("driven_by", "")) or "").strip()
+                    if serves:
+                        partials[serves.lower()] = round(partials.get(serves.lower(), 0.0) + units, 3)
+                continue
             if gid in seen_ids:
                 continue
             seen_ids.add(gid)
@@ -355,11 +448,18 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
         if g.get("status") == "completed":          # protection: never complete
             g["status"] = "in_progress"
             changed = True
-        contribs = contributions.get(str(g.get("title", "")).lower(), [])
+        title_key = str(g.get("title", "")).lower()
+        contribs = contributions.get(title_key, [])
         n = len(contribs)
-        new_prog = round(min(1.0, n / _ASPIRATION_TARGET), 3)
-        if g.get("contribution_count") != n or g.get("progress") != new_prog:
+        # (T3.1) Open-goal partial credit adds to PROGRESS but not to the integer
+        # contribution_count (which still gates milestone scaffolding on real
+        # completions). Capped at the target so partials can't overshoot 100%.
+        part = round(min(float(_ASPIRATION_TARGET), partials.get(title_key, 0.0)), 3)
+        new_prog = round(min(1.0, (n + part) / _ASPIRATION_TARGET), 3)
+        if (g.get("contribution_count") != n or g.get("progress") != new_prog
+                or round(float(g.get("partial_credit", 0.0) or 0.0), 3) != part):
             g["contribution_count"] = n
+            g["partial_credit"] = part
             g["progress"] = new_prog
             g["recent_contributions"] = contribs[-5:]
             ms = [m for m in (g.get("milestones") or []) if isinstance(m, dict)]
@@ -371,7 +471,8 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
                            "reached_ts": datetime.now(timezone.utc).isoformat()})
             g["milestones"] = ms
             changed = True
-        summary.append(f"{str(g.get('title',''))[:34]} — {n} ({int(new_prog*100)}%)")
+        _ptag = f"+{part:.2f}" if part > 0 else ""
+        summary.append(f"{str(g.get('title',''))[:34]} — {n}{_ptag} ({int(new_prog*100)}%)")
 
     if changed:
         try:

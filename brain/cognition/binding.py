@@ -5,6 +5,7 @@ Workspace competition. It never removes atomic candidates or declares anything
 conscious; composites must win the existing salience competition.
 """
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import re
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
@@ -166,7 +167,7 @@ def _collect_items(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             hijack_emotion=(tags[-1] if signal.get("_hijack") and tags else None),
         ))
 
-    goal = context.get("committed_goal")
+    goal = bound_goal(context)
     if isinstance(goal, dict):
         title = _text(goal.get("title") or goal.get("name"))
         if title:

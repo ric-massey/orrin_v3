@@ -22,6 +22,7 @@
 # Orrin's reasoning without dominating it. High attention load suppresses
 # them; they surface freely during wandering/drowsy modes.
 from __future__ import annotations
+from brain.cognition.global_workspace import bound_goal
 
 import random
 import uuid
@@ -246,7 +247,7 @@ def _generate_fragment(
 
     # Source 2: Zeigarnik — committed/active goal (unfinished loops surface)
     elif roll < 0.60:
-        goal = context.get("committed_goal") or {}
+        goal = bound_goal(context) or {}
         title = (goal.get("title") or goal.get("name") or "").strip()
         if title:
             content = rng.choice(_ZEIGARNIK_TEMPLATES).format(title=title)

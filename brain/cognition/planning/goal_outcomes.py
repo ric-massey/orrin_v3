@@ -60,7 +60,8 @@ def achievement_significance(goal: Optional[Dict[str, Any]]) -> float:
     return max(0.4, min(1.3, diff * nov))
 
 
-def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> None:
+def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None,
+                        *, satiety_close: bool = False) -> None:
     # Single-chokepoint guard against HOLLOW completion. A goal with explicit success
     # milestones is only "completed" when its objective is actually met — finishing the
     # plan steps is not enough. This protects every caller (pursue_goal, action_gate, …)
@@ -75,8 +76,17 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # reward and re-archived a duplicate.
     if goal.get("status") == "completed":
         return
+    # T2.2 — satiety close. For a DIRECTIONAL growth/core goal, the underlying need
+    # being SATED (novelty exhausted / info-gap closed) IS the objective met — it is a
+    # legitimate close reason orthogonal to milestone completion, which the run blocked
+    # ("satiety-close blocked by objective not met", satiety stuck at 0 all life). So a
+    # satiety close bypasses the milestone gate — but ONLY for non-artifact goals: an
+    # artifact/production goal must still produce its artifact (no hollow production),
+    # and the +1.0 production reward still keys off real grounding below (satiety pays
+    # no production reward, so it can't become a cheap reward farm).
+    _satiety_ok = bool(satiety_close) and not _is_artifact_gated(goal)
     _ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
-    if _ms and not all(m.get("met") for m in _ms):
+    if _ms and not all(m.get("met") for m in _ms) and not _satiety_ok:
         try:
             from brain.cognition.planning.env_snapshot import apply_milestone_updates
             if context:
@@ -135,6 +145,21 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
             f"[goals] Completed {(goal.get('title') or goal.get('name') or '?')!r} "
             "without completion reward: no environment delta or verified artifact."
         )
+    # T1.1 capstone — close the loop back to affect. Record the satisfaction
+    # handshake (which need was met + the evidence) and, on a REAL close, relax the
+    # spawning drive (bounded, floored) and let contentment rise then drain. A
+    # hollow close (_grounded False) closes no loop. Stamped onto `goal` BEFORE the
+    # archive write below so the handshake is persisted with the completed record.
+    try:
+        from brain.cognition.planning.goal_satisfaction import close_affect_loop
+        # A satiety close is genuine evidence the spawning need is met (gated by
+        # is_sated), so it relaxes the drive + pays contentment even though it fired
+        # no production reward — "the need is exhausted" is exactly what the loop
+        # should close on. (Hollow closes, grounded=False & not satiety, still don't.)
+        _need_met = _grounded or _satiety_ok
+        close_affect_loop(goal, _ctx, _need_met, _sig)
+    except Exception as _e:
+        record_failure("goals.mark_goal_completed.satisfaction", _e)
     # Archive to completed goals file so Signal B can fire. Replace any prior
     # record with the same id — re-completion of a resurrected goal was appending
     # the same id repeatedly (FINDINGS 2026-06-12 §1B: g_3a933aec31 stored 8×).

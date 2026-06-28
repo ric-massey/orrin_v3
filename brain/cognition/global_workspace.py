@@ -77,7 +77,7 @@ def _workspace_reference_text(context: Dict[str, Any]) -> str:
     gw = context.get("global_workspace") or {}
     if isinstance(gw, dict):
         parts.append(str(gw.get("content") or ""))
-    cg = context.get("committed_goal")
+    cg = bound_goal(context)
     if isinstance(cg, dict):
         parts.append(str(cg.get("title") or cg.get("name") or ""))
         parts.append(str(cg.get("description") or ""))
@@ -132,7 +132,7 @@ def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     # The goal he is pursuing. Carry its id so the conscious moment can be bound to
     # the authoritative goal OBJECT, not just a text echo of its title (D3).
-    cg = context.get("committed_goal")
+    cg = bound_goal(context)
     if isinstance(cg, dict) and (cg.get("title") or cg.get("name")):
         out.append({"source": "goal",
                     "content": f"working toward: {cg.get('title') or cg.get('name')}",
@@ -208,6 +208,15 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     conscious moment, or None when nothing is salient. Fail-safe.
     """
     try:
+        # Top-down write-back: drain the salience-prior store one step before this
+        # cycle's competition reads it (the store is designed to forget — decay is
+        # the only persistence). Cheap; fail-safe inside.
+        try:
+            from brain.cognition.workspace_writeback import tick_salience_priors
+            tick_salience_priors(context)
+        except Exception as exc:
+            record_failure("global_workspace.tick_priors", exc)
+
         cands = _candidates(context)
         if not cands:
             return None
@@ -228,6 +237,14 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                     c["salience"] += min(0.18, 0.18 * lens_rel)
             except Exception as exc:
                 record_failure("global_workspace.goal_lens_relevance", exc)
+            try:
+                from brain.cognition.workspace_writeback import salience_prior as _sp
+                sp = _sp(context, c.get("content") or "")
+                if sp:
+                    c["salience_prior"] = round(sp, 3)
+                    c["salience"] += sp
+            except Exception as exc:
+                record_failure("global_workspace.salience_prior", exc)
             rel = _subconscious_relevance(c, context)
             if rel is not None:
                 c["subconscious_relevance"] = round(rel, 3)
@@ -274,6 +291,7 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 **({"subconscious_relevance": c["subconscious_relevance"]} if c.get("subconscious_relevance") is not None else {}),
                 **({"subconscious_gate": c["subconscious_gate"]} if c.get("subconscious_gate") else {}),
                 **({"goal_lens_relevance": c["goal_lens_relevance"]} if c.get("goal_lens_relevance") is not None else {}),
+                **({"salience_prior": c["salience_prior"]} if c.get("salience_prior") is not None else {}),
             } for c in ranked[:6]]
         except Exception as exc:
             record_failure("global_workspace.candidate_telemetry", exc)
@@ -354,9 +372,15 @@ def bound_goal(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     for tier/origin/plan after Part II). When the workspace currently has a goal in
     focus, its conscious moment carries `goal_id` bound to THIS object's id — so the
     awareness view and the pursuit view can't drift into two different goals.
-    Returns None when no goal is committed."""
+    Returns None when no goal is committed.
+
+    Accepts any non-empty committed_goal dict (not only one with a title): some
+    callers read control flags off an in-flight goal — `_drift_detected`,
+    `_needs_deliberate_action` — before/while a title settles. This keeps the
+    single accessor behaviour-equivalent to the legacy `context.get("committed_goal")`
+    truthiness it replaced (an empty/absent goal is still falsy → None)."""
     cg = context.get("committed_goal")
-    if isinstance(cg, dict) and (cg.get("title") or cg.get("name")):
+    if isinstance(cg, dict) and cg:
         return cg
     return None
 

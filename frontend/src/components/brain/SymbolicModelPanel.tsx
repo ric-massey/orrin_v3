@@ -30,7 +30,7 @@ interface Progress {
   causal_graph_density?: number; avg_rule_depth?: number; top_meta_rule?: string;
 }
 
-export default function SymbolicMindPanel() {
+export default function SymbolicModelPanel() {
   const data = usePoll<{
     progress?: Progress; llm_off?: boolean; rules_total?: number; rules?: Rule[];
     causal_total?: number; causal?: Edge[]; domains?: Record<string, { rule_total?: number; rule_hits?: number }>;

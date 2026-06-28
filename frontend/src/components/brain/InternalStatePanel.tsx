@@ -29,7 +29,7 @@ interface Lifespan { born_at?: string; lifespan_days?: number; final_thoughts_wr
 
 const words = (s?: string) => (s || "").replace(/_/g, " ");
 
-export default function InnerWeatherPanel() {
+export default function InternalStatePanel() {
   const data = usePoll<{ temporal?: Temporal; mood?: Mood; lifespan?: Lifespan }>(`${API}/innerweather`, 15_000);
   const t = data?.temporal;
   const mood = data?.mood;

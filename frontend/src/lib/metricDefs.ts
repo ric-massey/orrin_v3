@@ -1,7 +1,7 @@
 // Shared catalogue of chartable signals + their *meaning* (UI_FIXES Fix 6):
 // a deep explanation, definitions of the terms involved, how the value is
 // actually measured, and a pointer to the real source code that computes it.
-// Extracted from MetricsStrip so AffectRings (and future panels) reuse the
+// Extracted from MetricsStrip so ControlSignalRings (and future panels) reuse the
 // same definitions instead of duplicating copy.
 //
 // UNIT: every value is shown as a 0-100 "level" - normalized intensity. 0 =
@@ -49,25 +49,25 @@ export const METRICS: MetricDef[] = [
     key: "valence", label: "Reward signal", color: "hsl(217 91% 60%)", bipolar: true,
     desc: "Its overall negative–positive reward tone.", lo: "negative", hi: "positive",
     perspective: "agent-accessible",
-    long: "Valence is the pleasant↔unpleasant axis of core affect (Russell's circumplex). It's not one signal — it's the net hedonic sign of every active signal at once.",
+    long: "The reward signal is the negative↔positive axis of the control-signal state (the pleasant↔unpleasant 'valence' axis of Russell's circumplex — the design's provenance). It's not one signal — it's the net reward sign of every active signal at once.",
     terms: [
-      { t: "Core affect", d: "The always-on background signal state, summarized on two axes: valence (pleasant↔unpleasant) and arousal (calm↔activated)." },
-      { t: "Hedonic sign", d: "Whether the blend of active signals leans good (+) or bad (−)." },
+      { t: "Control-signal state", d: "The always-on background signal state, summarized on two axes: reward (negative↔positive) and activation (calm↔activated)." },
+      { t: "Reward sign", d: "Whether the blend of active signals leans positive (+) or negative (−)." },
     ],
-    measure: "Intensity-weighted average of every active signal × its valence coefficient (positive_valence +0.9, wonder +0.55 … impasse −0.6, conflict −0.75), clamped to −1…+1, then mapped so 50 = neutral.",
-    src: { file: "brain/control_signals/affect_dynamics.py", start: 157, end: 242, label: "compute_valence_activation_level + _VALENCE table" },
+    measure: "Intensity-weighted average of every active signal × its reward coefficient (reward_positive +0.9, novelty_signal +0.55 … impasse_signal −0.6, conflict_signal −0.75), clamped to −1…+1, then mapped so 50 = neutral.",
+    src: { file: "brain/control_signals/signal_dynamics.py", start: 157, end: 242, label: "compute_valence_activation_level + _VALENCE table" },
   },
   {
     key: "arousal", label: "Activation level", color: "hsl(262 83% 62%)", bipolar: true, signed: true,
     desc: "How activated vs. calm its state is.", lo: "calm", hi: "activated",
     perspective: "agent-accessible",
-    long: "Arousal is the activation↔deactivation axis of core affect — how energized/alert its whole system is, independent of whether the reward sign is positive or negative. High arousal + positive = excited; high arousal + negative = stressed.",
+    long: "Activation is the activation↔deactivation axis of the control-signal state — how energized/alert the whole system is, independent of whether the reward sign is positive or negative. High activation + positive = excited; high activation + negative = stressed.",
     terms: [
-      { t: "Activation", d: "Mobilization/alertness — the system keyed up (threat, excitement, drive)." },
-      { t: "Deactivation", d: "Low-energy, settled states (reflection, calm, melancholy)." },
+      { t: "Activation", d: "Mobilization/alertness — the system keyed up (threat, excitement, demand)." },
+      { t: "Deactivation", d: "Low-energy, settled states (reflection, calm, low-affect signal)." },
     ],
-    measure: "A TONIC weighted mean of active signals × their activation coefficient (conflict +0.9, threat +0.8 … reflective −0.1, melancholy −0.35), PLUS a phasic spike: the strongest fast-arouser (surprise / threat / conflict / urgency) lifts arousal above the tonic background, then subsides as it decays. Clamped to −1…+1.",
-    src: { file: "brain/control_signals/affect_dynamics.py", start: 182, end: 263, label: "_ACTIVATION_LEVEL + _PHASIC_AROUSERS + compute" },
+    measure: "A TONIC weighted mean of active signals × their activation coefficient (conflict_signal +0.9, threat_level +0.8 … reflective −0.1, low_affect_signal −0.35), PLUS a phasic spike: the strongest fast-arouser (prediction_error_signal / threat_level / conflict_signal / urgency) lifts activation above the tonic background, then subsides as it decays. Clamped to −1…+1.",
+    src: { file: "brain/control_signals/signal_dynamics.py", start: 182, end: 263, label: "_ACTIVATION_LEVEL + _PHASIC_AROUSERS + compute" },
   },
   {
     key: "homeostasis", label: "Setpoint proximity", color: "hsl(142 71% 45%)",
@@ -78,7 +78,7 @@ export const METRICS: MetricDef[] = [
       { t: "Setpoint", d: "The resting value each signal drifts back toward when nothing pushes it (e.g. impasse rests at ~0, motivation at ~0.5)." },
       { t: "Deviation", d: "Distance of a signal from its setpoint right now; summed across the vector." },
     ],
-    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority affect.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/control-signals and the runtime itself read one number (no longer invented in the telemetry helper).",
+    measure: "1 − (mean |signal − setpoint| over all core signals) × 1.6, clamped to 0–1. Computed by the single authority control_signals.homeostasis.homeostasis_index and stored on affect_state each cycle, so the chart, /api/control-signals and the runtime itself read one number (no longer invented in the telemetry helper).",
     src: { file: "brain/control_signals/homeostasis.py", start: 74, end: 124, label: "homeostasis_index — the single authority" },
   },
   {
@@ -91,7 +91,7 @@ export const METRICS: MetricDef[] = [
       { t: "Fatigue (resource_deficit)", d: "An accumulating drain. It ticks up a little every cycle (+0.002) and faster when it over-uses effortful functions; it decays toward a 0.15 baseline (faster, ×0.06, once severely depleted >0.75 — active recovery)." },
     ],
     measure: "energy = 1 − resource_deficit. resource_deficit accumulates per cycle and decays toward an allostatic setpoint; recovery accelerates when exhausted.",
-    src: { file: "brain/control_signals/update_affect_state.py", start: 629, end: 640, label: "resource_deficit accumulation + recovery" },
+    src: { file: "brain/control_signals/update_signal_state.py", start: 629, end: 640, label: "resource_deficit accumulation + recovery" },
   },
   {
     key: "fatigue", label: "Fatigue", color: "hsl(18 58% 50%)",
@@ -151,7 +151,7 @@ export const METRICS: MetricDef[] = [
       { t: "Negative load", d: "Weighted sum of the active distress signals, so one big or several small all register." },
       { t: "Regulation", d: "When load is high it picks calming strategies (grounding, reappraisal) more often." },
     ],
-    measure: "negative_load(affect) — weighted sum of impasse/threat/conflict/risk/etc. — normalized to 0–1 for display.",
+    measure: "negative_load(signals) — weighted sum of impasse/threat/conflict/risk/etc. — normalized to 0–1 for display.",
     src: { file: "brain/control_signals/observers.py", start: 44, end: 95, label: "negative_load" },
   },
   {
@@ -161,10 +161,10 @@ export const METRICS: MetricDef[] = [
     long: "How steady vs. churning its signal state is right now. High when the signal vector is calm and consistent; it drops when negatives dominate or it ping-pongs between states. Stability gates regulation success (it's easier to settle when already fairly steady).",
     terms: [
       { t: "Volatility", d: "Rapid swings / contradictory states — destabilizing (e.g. A↔B↔A cognitive indecision)." },
-      { t: "Affect velocity", d: "How much the whole vector moved this cycle; capped so one chaotic cycle can't lurch everything." },
+      { t: "Signal velocity", d: "How much the whole vector moved this cycle; capped so one chaotic cycle can't lurch everything." },
     ],
     measure: "1 − avg_negative × 2 + avg_positive × 0.25, clamped to 0–1; further cut by indecision/ping-pong patterns.",
-    src: { file: "brain/control_signals/update_affect_state.py", start: 525, end: 542, label: "new_stability computation" },
+    src: { file: "brain/control_signals/update_signal_state.py", start: 525, end: 542, label: "new_stability computation" },
   },
   {
     key: "learning", label: "Learning", color: "hsl(48 95% 55%)",

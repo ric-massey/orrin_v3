@@ -8,27 +8,27 @@ import { API } from "@/lib/cognitive";
 import { fetchJSON } from "@/lib/fetchJSON";
 import { useLocalStorage } from "@/lib/useLocalStorage";
 import CognitiveSphere from "@/components/brain/CognitiveSphere";
-import AffectRings from "@/components/brain/AffectRings";
+import ControlSignalRings from "@/components/brain/ControlSignalRings";
 import MemoryInspector from "@/components/brain/MemoryInspector";
 import LiveConsole from "@/components/brain/LiveConsole";
 import MetricsStrip from "@/components/brain/MetricsStrip";
 import GoalsPanel from "@/components/brain/GoalsPanel";
-import ConsciousnessPanel from "@/components/brain/ConsciousnessPanel";
-import VitalSignsRow from "@/components/brain/VitalSignsRow";
+import AttentionPanel from "@/components/brain/AttentionPanel";
+import ResourceSignsRow from "@/components/brain/ResourceSignsRow";
 import BenchmarkPanel from "@/components/brain/BenchmarkPanel";
 import GoalHealthPanel from "@/components/brain/GoalHealthPanel";
-import InnerWeatherPanel from "@/components/brain/InnerWeatherPanel";
-import SymbolicMindPanel from "@/components/brain/SymbolicMindPanel";
+import InternalStatePanel from "@/components/brain/InternalStatePanel";
+import SymbolicModelPanel from "@/components/brain/SymbolicModelPanel";
 import PredictionsPanel from "@/components/brain/PredictionsPanel";
-import DrivesPanel from "@/components/brain/DrivesPanel";
+import DemandsPanel from "@/components/brain/DemandsPanel";
 import LearningPanel from "@/components/brain/LearningPanel";
 import TensionsPanel from "@/components/brain/TensionsPanel";
 import HealthPanel from "@/components/brain/HealthPanel";
 import SelfModelPanel from "@/components/brain/SelfModelPanel";
 import RelationshipsPanel from "@/components/brain/RelationshipsPanel";
-import DreamsPanel from "@/components/brain/DreamsPanel";
+import IdleConsolidationPanel from "@/components/brain/IdleConsolidationPanel";
 import LanguagePanel from "@/components/brain/LanguagePanel";
-import type { LiveIntero } from "@/components/brain/DrivesPanel";
+import type { LiveIntero } from "@/components/brain/DemandsPanel";
 import { useLexicon } from "@/lib/lexicon";
 import { cn } from "@/lib/utils";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -179,24 +179,24 @@ export default function Brain() {
   // Panel registry — ids must match PANEL_IDS / defaultLayouts.
   const panels = useMemo<Record<PanelId, React.ReactNode>>(() => ({
     sphere: <CognitiveSphere telemetry={t} />,
-    affect: <AffectRings affect={t.affect} />,
+    affect: <ControlSignalRings affect={t.affect} />,
     metrics: <MetricsStrip telemetry={t} />,
     memory: <MemoryInspector telemetry={t} />,
-    consciousness: <ConsciousnessPanel telemetry={t} />,
+    consciousness: <AttentionPanel telemetry={t} />,
     goals: <GoalsPanel telemetry={t} />,
     console: <LiveConsole telemetry={t} />,
     bench: <BenchmarkPanel />,
     goalhealth: <GoalHealthPanel />,
-    weather: <InnerWeatherPanel />,
-    symbolic: <SymbolicMindPanel />,
+    weather: <InternalStatePanel />,
+    symbolic: <SymbolicModelPanel />,
     predictions: <PredictionsPanel />,
-    drives: <DrivesPanel live={t.interoception as LiveIntero | null} />,
+    drives: <DemandsPanel live={t.interoception as LiveIntero | null} />,
     learning: <LearningPanel />,
     tensions: <TensionsPanel />,
     health: <HealthPanel />,
     self: <SelfModelPanel />,
     relationships: <RelationshipsPanel />,
-    dreams: <DreamsPanel />,
+    dreams: <IdleConsolidationPanel />,
     language: <LanguagePanel />,
   }), [t]);
 
@@ -234,7 +234,7 @@ export default function Brain() {
             box (UI_FIXES §new-surfaces). */}
         <div className="flex flex-wrap items-start gap-2">
           <div className="min-w-0 flex-1 basis-full sm:basis-0">
-            <VitalSignsRow />
+            <ResourceSignsRow />
           </div>
           {!isPhone && (
             <button

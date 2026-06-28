@@ -20,7 +20,7 @@ function fmtDate(ts?: string): string {
   return isNaN(d.getTime()) ? "" : d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 }
 
-export default function DreamsPanel() {
+export default function IdleConsolidationPanel() {
   const data = usePoll<{ dreams?: Dream[]; symbolic?: SymbolicDream[]; total?: number }>(`${API}/dreams?n=12`, 30_000);
   const dreams = data?.dreams || [];
   const symbolic = data?.symbolic || [];

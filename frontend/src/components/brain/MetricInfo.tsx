@@ -7,7 +7,7 @@ import { PerspectiveBadge } from "./PerspectiveBadge";
 
 // Shared metric info popover (UI_FIXES Fix 6): the full info "page" for one
 // signal — what it is, the terms, how it's measured, the 0–100 scale, and (on
-// demand) the real source code. Extracted from MetricsStrip so AffectRings'
+// demand) the real source code. Extracted from MetricsStrip so ControlSignalRings'
 // rings/bars get the same ℹ️ → Code chain the metrics legend already had.
 
 // Scrollable view of the real code behind a number — the L5 leaf every drawer

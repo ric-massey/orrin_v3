@@ -174,7 +174,7 @@ function MomentDrawer({
   );
 }
 
-export default function ConsciousnessPanel({ telemetry }: { telemetry: TelemetryState }) {
+export default function AttentionPanel({ telemetry }: { telemetry: TelemetryState }) {
   const [tab, setTab] = useState<"now" | "stream" | "verdicts">("now");
   const [stream, setStream] = useState<Moment[]>([]);
   const [drawer, setDrawer] = useState<{ moment: Moment; withCompetition?: boolean } | null>(null);

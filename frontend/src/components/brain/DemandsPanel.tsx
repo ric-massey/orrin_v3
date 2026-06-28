@@ -29,7 +29,7 @@ export interface LiveIntero {
   [k: string]: unknown;
 }
 
-export default function DrivesPanel({ live }: { live?: LiveIntero | null }) {
+export default function DemandsPanel({ live }: { live?: LiveIntero | null }) {
   const data = usePoll<{
     drives?: Record<string, number>;
     energy?: { mode?: string; level?: number };

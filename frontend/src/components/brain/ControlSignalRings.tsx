@@ -19,7 +19,7 @@ interface RingDef {
 // panel silently truncated to the FIRST four in arbitrary object-key order).
 const EXTRAS_VISIBLE = 6;
 
-export default function AffectRings({ affect }: { affect: Affect }) {
+export default function ControlSignalRings({ affect }: { affect: Affect }) {
   const [expanded, setExpanded] = useState(false);
   const [infoKey, setInfoKey] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);

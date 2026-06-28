@@ -18,7 +18,7 @@ interface VitalChip {
   detail?: string;
 }
 
-export default function VitalSignsRow() {
+export default function ResourceSignsRow() {
   const url = `${API}/vitals`;
   const data = usePoll<{ chips?: VitalChip[] }>(url, 10_000);
   const chips = data?.chips || [];

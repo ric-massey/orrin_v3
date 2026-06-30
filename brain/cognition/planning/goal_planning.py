@@ -364,6 +364,20 @@ def _bootstrap_goal_plan(
                 from brain.cognition.planning.goals import mark_goal_failed
                 mark_goal_failed(goal, reason=f"plan_generation_failed_{fail_count}x", context=context)
                 context["committed_goal"] = None
+                # Put the abandoned title on the regeneration cooldown ledger, or the
+                # intrinsic-goal generator (which only dedups against ACTIVE and
+                # recently-COMPLETED titles) recreates this exact unplannable goal next
+                # cycle — the loop that had him re-adopting "The causes of …" forever
+                # and never acting. Same ledger goal_closure/goal_outcomes use.
+                try:
+                    import time as _t
+                    from brain.cognition.intrinsic_goals import (
+                        _RECENTLY_COMPLETED, _persist_recently_completed,
+                    )
+                    _RECENTLY_COMPLETED[str(goal_title).strip().lower()] = _t.time()
+                    _persist_recently_completed()
+                except Exception as _ce:
+                    record_failure("goal_planning.plan_fail_cooldown", _ce)
                 update_working_memory(
                     f"[goal_abandoned] '{goal_title}' failed to generate a plan after "
                     f"{fail_count} attempts — releasing so I can move on."

@@ -124,16 +124,53 @@ def build_motive(context: Dict[str, Any], *, intent: str,
     return motive
 
 
+def _motive_to_thought(motive: Motive, context: Dict[str, Any]) -> Dict[str, Any]:
+    """Bridge the expression Motive to a thought object (THOUGHT_OBJECT_SPEC.md)
+    for the native renderer. Membrane-safe: the affect carries the FELT label, not
+    the raw key. Fail-safe."""
+    from brain.utils.felt_lexicon import felt_label
+    felt = ""
+    try:
+        felt = felt_label(_dominant_signal(context))
+    except Exception:
+        felt = ""
+    concept_refs = []
+    if motive.goal_id:
+        concept_refs.append({"type": "goal", "handle": motive.goal_id})
+    return {
+        "intent": motive.intent or "express",
+        "recipient": motive.recipient,
+        "affect": {"felt": felt},
+        "concept_refs": concept_refs,
+        "stance": "first_person",
+    }
+
+
 def compose_from_motive(motive: Motive, context: Dict[str, Any]) -> str:
     """Compose person-facing language from the motive + current affect.
 
-    Reuses the authoring organ (expression.express) — affect-driven,
-    vocabulary-based, congruence-checked. It NEVER reads working memory or any
-    symbolic/telemetry field; the only content kernel it sees is the motive's
-    own (sanitized) seed.
+    Phase 2D (LM-as-mouth): first try rendering through the native organ
+    (conditioned on the thought object), GATED so it only takes over from the
+    templates when it is fluent and the rendering is faithful (membrane-clean,
+    reconstruction-consistent — conditional_render.render_from_thought). Until
+    then this falls through to the authoring organ below, unchanged — authenticity
+    over fluency.
+
+    The fallback reuses expression.express — affect-driven, vocabulary-based,
+    congruence-checked. It NEVER reads working memory or any symbolic/telemetry
+    field; the only content kernel it sees is the motive's own (sanitized) seed.
     """
     from brain.think.cycle_state import CycleState
     from brain.behavior import expression
+
+    # ── Native mouth first (gated; returns None until the organ is fluent) ──
+    try:
+        from brain.cognition.language.conditional_render import render_from_thought
+        rendered = render_from_thought(_motive_to_thought(motive, context))
+        if rendered:
+            return strip_internal(rendered)
+    except Exception as _e:
+        record_failure("express_to_user.compose.native_render", _e)
 
     # The seed is meaning, but a caller may have handed in something with a
     # leaked tag — sanitize before composition so a kernel is reworded, never a
@@ -286,6 +323,15 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
                 if _row is not None and _row.significance > 0 and isinstance(context, dict):
                     context["_production_effect_this_cycle"] = True
                     context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
+                # P1a: capture the artifact TEXT keyed by content_hash so a later-
+                # credited prose artifact can be retrieved as an exemplar (the ledger
+                # stores only the hash). Bounded + floor-gated; junk is not stored.
+                if _row is not None:
+                    try:
+                        from brain.agency.effect_artifacts import capture as _cap_artifact
+                        _cap_artifact(text, content_hash=_row.content_hash)
+                    except Exception as _ce:
+                        record_failure("express_to_user.capture_artifact", _ce)
             except Exception as _e:
                 record_failure("express_to_user.record_effect", _e)
 

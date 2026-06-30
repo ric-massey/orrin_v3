@@ -1,20 +1,21 @@
 # Finding 1 (decompose run_cognitive_loop into stage(context) -> context
-# functions): _apply_transient_signal_decay is the first extracted stage —
-# it decays short-lived affect signals and tracks the sustained-crisis
-# counter (_extreme_cycles) that the emergency_self_modification gate reads.
+# functions): _apply_transient_signal_decay is the first extracted stage. It
+# tracks the sustained-crisis counter (_extreme_cycles) that the
+# emergency_self_modification gate reads. Per the Grounded Cognition plan
+# (Phase 1B / invariant #1) it NO LONGER decays signals — homeostasis is the
+# single owner of restoring forces on core signals; this stage only keeps the
+# stagnation read-fallback consistent with core and does crisis detection.
 # Importing ORRIN_loop is slow (~5s, pulls in the whole cognition stack) but
 # does not register signal handlers or start threads at module scope, so it
 # is safe to import directly here.
-import pytest
-
-import brain.ORRIN_loop as loop
 from brain.config.tuning import (
-    AFFECT_TRANSIENT_DECAY,
     CRISIS_ABOVE_HALF_COUNT,
     CRISIS_ABOVE_HALF_THRESHOLD,
     CRISIS_ACUTE_PEAK,
     CRISIS_CHRONIC_MEAN,
 )
+
+import brain.ORRIN_loop as loop
 
 
 def test_returns_same_context_object():
@@ -23,21 +24,32 @@ def test_returns_same_context_object():
     assert result is context
 
 
-def test_decays_transient_signals_and_floors_small_values():
+def test_does_not_decay_signals_second_authority_removed():
+    """invariant #1: this stage must NOT pull signals toward baseline — that is
+    homeostasis's sole job. Top-level signals are left untouched here."""
     context = {
         "affect_state": {
             "impasse_signal": 1.0,
             "penalty_signal": 0.1,
-            "threat_level": 0.04,  # below the 0.05 floor after one decay
+            "threat_level": 0.5,
             "uncertainty": 0.5,
         }
     }
     loop._apply_transient_signal_decay(context)
     affect_state = context["affect_state"]
-    assert affect_state["impasse_signal"] == pytest.approx(1.0 * AFFECT_TRANSIENT_DECAY)
-    assert affect_state["penalty_signal"] == pytest.approx(0.1 * AFFECT_TRANSIENT_DECAY)
-    assert affect_state["uncertainty"] == pytest.approx(0.5 * AFFECT_TRANSIENT_DECAY)
-    assert affect_state["threat_level"] == 0.0
+    # unchanged — no second decay law acts here
+    assert affect_state["impasse_signal"] == 1.0
+    assert affect_state["penalty_signal"] == 0.1
+    assert affect_state["threat_level"] == 0.5
+    assert affect_state["uncertainty"] == 0.5
+
+
+def test_stagnation_fallback_mirrors_core():
+    """The top-level stagnation_signal read-fallback tracks the authoritative
+    core value (homeostasis owns its decay) — not an independent shadow."""
+    context = {"affect_state": {"core_signals": {"stagnation_signal": 0.42}}}
+    loop._apply_transient_signal_decay(context)
+    assert context["affect_state"]["stagnation_signal"] == 0.42
 
 
 def test_defaults_missing_stagnation_signal_to_zero():

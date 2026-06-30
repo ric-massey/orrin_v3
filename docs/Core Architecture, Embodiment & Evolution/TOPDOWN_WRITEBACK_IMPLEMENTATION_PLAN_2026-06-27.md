@@ -63,6 +63,19 @@ design — not a safety dial we might later turn off.
 
 ## 2. Where it hooks (verified call sites)
 
+> **CORRECTION (2026-06-29, after an 8h validation run found write-back never
+> fired).** The original claim below — that the conscious winner is set by the
+> *end-of-cycle* `update_workspace` in `finalize.py` — is **wrong**. There are TWO
+> `update_workspace` calls per cycle. The **pre-think** call in
+> `brain/loop/deliberate.py` (after the Monitor offers + binding) is the one that
+> decides the substantive winner (binding/monitor conclusions) **and then consumes
+> `_bound_candidates` / `_workspace_offers`**. By the `finalize` call those candidates
+> are gone, so it only ever sees a starved low-salience leftover → `_is_conclusion`
+> is False → `write_back` silently no-ops. **Fix: the hook lives at the pre-think
+> call in `deliberate.py`, not `finalize.py`.** The unit tests passed because they
+> call `write_back` directly with a qualifying moment and never exercise the
+> two-call ordering — only a live run surfaced it.
+
 The conscious winner of a cycle is set by the end-of-cycle
 `update_workspace(context)` in `brain/loop/finalize.py:466-467`. Crucially,
 `commit_affect(context)` already ran earlier in the same cycle

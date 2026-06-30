@@ -179,12 +179,16 @@ def apply_wm_triggers_and_appraisal(
                     "cause":   content[:120],
                     "ts":      timestamp,
                 })
-                # Surface as a working-memory note so Orrin can read the why
+                # Surface as a working-memory note so Orrin can read the why — in
+                # felt language ("a sense of being stuck grew because…"), not the raw
+                # signal key + precise delta (felt_lexicon membrane). Raw key kept in
+                # the structured `emotion` field for internal routing only.
                 try:
+                    from brain.utils.felt_lexicon import felt_label as _felt
                     update_working_memory({
                         "content": (
-                            f"[emotion/cause] {emotion.capitalize()} rose by "
-                            f"{delta:.2f} because: {content[:100]}"
+                            f"[emotion/cause] A sense of {_felt(str(emotion))} grew "
+                            f"because: {content[:100]}"
                         ),
                         "event_type": "affect_cause",
                         "emotion": emotion,
@@ -205,7 +209,14 @@ def apply_wm_triggers_and_appraisal(
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]
         _current_mood = float(state.get("smoothed_state", 0.0) or 0.0)  # was "mood" key
         if _gtitles:
-            _appraisal_deltas = _appraise(working, _gtitles, state, mood=_current_mood)
+            # Persist the habituation recency map on affect_state so a recurring
+            # thought stops pumping its emotion every cycle (RUN diag 2026-06-29).
+            _hab_map = state.get("_appraisal_habituation")
+            if not isinstance(_hab_map, dict):
+                _hab_map = {}
+                state["_appraisal_habituation"] = _hab_map
+            _appraisal_deltas = _appraise(working, _gtitles, state, mood=_current_mood,
+                                          habituation=_hab_map)
             for _adj in _appraisal_deltas:
                 _emo = _adj.get("emotion", "")
                 _d   = float(_adj.get("delta") or 0)
@@ -325,10 +336,12 @@ def detect_oscillation_and_flatline(state, core, context, now, update_working_me
                 cur_stag = float(core.get("stagnation_signal", 0.0) or 0.0)
                 core["stagnation_signal"] = min(0.60, cur_stag + 0.20)
                 if context is not None and (_flat_streak == 1 or _flat_streak % 5 == 0):
+                    from brain.utils.felt_lexicon import felt_label as _felt
+                    _flat_felt = ", ".join(dict.fromkeys(_felt(e) for e in flat_high))
                     update_working_memory({
                         "content": (
                             "I've been running hot and flat — "
-                            f"{', '.join(flat_high)} pinned high with almost no movement "
+                            f"{_flat_felt} all pinned high with almost no movement "
                             f"for {_FLAT_WINDOW}+ cycles. This sameness is its own signal: "
                             "I should seek novelty or change what I'm doing."
                         ),

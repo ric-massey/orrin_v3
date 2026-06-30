@@ -103,10 +103,15 @@ def gather_signals(context: Dict[str, Any]) -> List[Dict[str, Any]]:
         except (ValueError, TypeError):  # intentional: non-numeric signal value → skip
             continue
         if v > 0.6:
+            # Perceivable content is felt language, not the raw key + precise value
+            # ("a strong feeling of being stuck", not "Emotion 'impasse_signal' is
+            # elevated at 0.84") — imprecise interoception (felt_lexicon membrane).
+            # The raw key stays in `tags` for internal routing only.
+            from brain.utils.felt_lexicon import felt_label as _felt
             signals.append(
                 create_signal(
                     source="emotion",
-                    content=f"Emotion '{emotion}' is elevated at {round(v, 3)}.",
+                    content=f"A strong feeling of {_felt(str(emotion))}.",
                     signal_strength=_clamp01(v),
                     tags=["emotion", str(emotion)],
                     novelty=random.uniform(0.1, 0.6),

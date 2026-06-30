@@ -141,8 +141,14 @@ def _collect_items(context: Dict[str, Any]) -> List[Dict[str, Any]]:
     dominant = _dominant_signal(context)
     if dominant:
         emotion, intensity, cause = dominant
+        # The conscious CONTENT is felt language ("a strong sense of being stuck"),
+        # never the raw signal key — he feels a mood, not a variable name
+        # (felt_lexicon membrane). The raw `emotion=` is kept for the internal affect
+        # coupling (appraisal/hijack links key off it); only the perceivable string
+        # is translated.
+        from brain.utils.felt_lexicon import felt_label as _felt
         add(_item(
-            "affect", f"a strong sense of {emotion.replace('_', ' ')}",
+            "affect", f"a strong sense of {_felt(emotion)}",
             0.40 + 0.40 * intensity, known_entities=known,
             role_hint="affect", emotion=emotion, intensity=intensity,
             appraisal_cause=cause,
@@ -356,7 +362,10 @@ def _render(facets: Dict[str, Any], cluster: List[Dict[str, Any]]) -> str:
 
     affect = facets.get("affect")
     if isinstance(affect, dict) and affect:
-        parts.append(next(iter(affect)).replace("_", " "))
+        # Felt language in the conscious composite, not the raw signal key
+        # (felt_lexicon membrane); the raw key stays in `facets["affect"]` for coupling.
+        from brain.utils.felt_lexicon import felt_label as _felt
+        parts.append(_felt(next(iter(affect))))
     if facets.get("memory"):
         parts.append(f"remembering {_text(facets['memory'])}")
     if facets.get("goal"):

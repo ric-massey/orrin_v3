@@ -75,6 +75,7 @@ _tracked_progress: Dict[str, int] = {}                      # goal_id -> max com
 # as re-use of a specific produced artifact — the tier-3, ungameable signal.
 _artifact_names: Dict[str, str] = {}                        # name -> content_hash
 _hash_goal: Dict[str, str] = {}                             # content_hash -> goal_id (back-reference)
+_hash_kind: Dict[str, str] = {}                             # content_hash -> effect kind (for the quality-standard proposer)
 # Tier-3 re-use credits awaiting payout. Re-use is detected wherever an artifact is
 # invoked (tool_runner.dispatch, cognition dispatch) — which is often outside any
 # context that can persist affect changes. finalize_cycle drains this on the LIVE
@@ -256,6 +257,8 @@ def _hydrate() -> None:
                         if gid and not row.get("dedupe"):
                             _goal_effects.setdefault(str(gid), []).append(h)
                             _hash_goal[h] = str(gid)
+                            if row.get("kind"):
+                                _hash_kind[h] = str(row.get("kind"))
                             try:
                                 sig = float(row.get("significance") or 0.0)
                                 if sig > 0.0:
@@ -398,6 +401,7 @@ def record_effect(
             gid = str(goal_id)
             _goal_effects.setdefault(gid, []).append(content_hash)
             _hash_goal[content_hash] = gid
+            _hash_kind[content_hash] = kind
             _goal_significance[gid] = max(_goal_significance.get(gid, 0.0), row.significance)
             if kind == "tracked_work":
                 try:
@@ -457,6 +461,25 @@ def significance_for_goal(goal_id: str) -> float:
     _hydrate()
     with _lock:
         return float(_goal_significance.get(str(goal_id), 0.0))
+
+
+def kind_for_hash(content_hash: str) -> Optional[str]:
+    """The effect kind recorded for a credited artifact's content_hash, or None.
+    Read by the quality-standard proposer to pick the kind-aware promotion anchor
+    (code/tool → reuse; prose → long-memory persistence)."""
+    if not content_hash:
+        return None
+    _hydrate()
+    with _lock:
+        return _hash_kind.get(content_hash)
+
+
+def credited_goal_ids() -> List[str]:
+    """Goal ids that have at least one credited (non-dedupe) effect. The candidate
+    set the promotion proposer walks (read-only)."""
+    _hydrate()
+    with _lock:
+        return list(_goal_effects.keys())
 
 
 def mark_reused(content_hash: str) -> int:
@@ -547,5 +570,6 @@ def reset_for_tests() -> None:
         _tracked_progress.clear()
         _artifact_names.clear()
         _hash_goal.clear()
+        _hash_kind.clear()
         _pending_reuse.clear()
         _hydrated = False

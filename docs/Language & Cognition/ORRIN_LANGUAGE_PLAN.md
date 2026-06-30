@@ -2,6 +2,13 @@
 
 *Draft — 2026-06-04*
 
+> **Cross-ref (2026-06-29):** This plan is compatible with
+> `../Core Architecture, Embodiment & Evolution/GROUNDED_COGNITION_DIRECTION_2026-06-29.md`
+> *provided the native LM stays render-only* — Phase-2 corpus schooling teaches the mouth
+> *how to say,* never *what to say,* and external text must not enter concept formation
+> (that is the real "corpus contamination" risk, not training the language organ on syntax).
+> See that doc's "Part D′ — Relation to the existing language docs" for the full reconciliation.
+
 ## The goal
 
 **Make Orrin as good as a human at language — not better than ChatGPT.**

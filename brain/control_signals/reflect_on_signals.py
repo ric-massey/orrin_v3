@@ -80,7 +80,10 @@ def reflect_on_affect(context: Any, self_model: Any, memory: Any) -> Any:
         investigate_unexplained_emotions(context, self_model, memory)
 
     # === Build reflection context ===
-    top_emotions = ", ".join(f"{k} ({round(v, 2)})" for k, v in strongest) if strongest else "none"
+    # Felt language for the LLM prompt — the introspection contract says raw
+    # core_signals are "NEVER directly reported to the LLM" (felt_lexicon membrane).
+    from brain.utils.felt_lexicon import felt_label as _felt
+    top_emotions = ", ".join(dict.fromkeys(_felt(k) for k, _v in strongest)) if strongest else "none"
 
     context_for_llm = {
         **data,

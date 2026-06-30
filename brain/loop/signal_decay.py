@@ -1,11 +1,20 @@
-"""Cognitive-loop affect-decay stage (Phase 4.5B, from sense.py).
+"""Cognitive-loop crisis-detection stage (Phase 4.5B, from sense.py).
 
-`_apply_transient_signal_decay` — the codebase's first extracted
-`stage(context) -> context` pipeline stage: it decays short-lived affect signals
-toward zero each cycle and tracks sustained crisis for the
-emergency_self_modification gate. sense.py re-exports it (so ORRIN_loop and the
-stage's unit tests keep importing it from brain.loop.sense), and the sense stage
-calls it once per cycle.
+`_apply_transient_signal_decay` — an extracted `stage(context) -> context`
+pipeline stage that tracks sustained crisis for the emergency_self_modification
+gate. sense.py re-exports it (so ORRIN_loop and the stage's unit tests keep
+importing it from brain.loop.sense), and the sense stage calls it once per cycle.
+
+NOTE (Grounded Cognition plan, Phase 1B / invariant #1): this stage used to ALSO
+decay a handful of negative signals toward zero each cycle — a SECOND decay
+authority competing with homeostasis.apply_restoring_forces. That decay was
+vestigial: the canonical store for those signals is `core_signals`, and this stage
+operated on the TOP-LEVEL affect_state shadow, which is empty for all of them
+except `stagnation_signal` (a mere read-fallback). So the lines decayed nothing
+live for 5/6 keys and ran an independent second decay law on one fallback shadow.
+The single owner of restoring forces on core signals is `homeostasis`; this stage
+now only keeps the stagnation read-fallback CONSISTENT with the authoritative core
+value (no independent decay) and does its real job — crisis detection.
 """
 from __future__ import annotations
 
@@ -13,7 +22,6 @@ from typing import Any, Dict
 
 from brain.utils.failure_counter import record_failure
 from brain.config.tuning import (
-    AFFECT_TRANSIENT_DECAY,
     CRISIS_ABOVE_HALF_COUNT,
     CRISIS_ABOVE_HALF_THRESHOLD,
     CRISIS_ACUTE_PEAK,
@@ -39,12 +47,14 @@ def _apply_transient_signal_decay(context: "Context") -> "Context":
     untouched for this cycle.
     """
     affect_state = context.get("affect_state", {})
-    affect_state.setdefault("stagnation_signal", 0.0)
-    for k in ["impasse_signal", "penalty_signal", "conflict_signal", "threat_level", "stagnation_signal", "uncertainty"]:
-        if k in affect_state:
-            affect_state[k] = float(affect_state[k] or 0.0) * AFFECT_TRANSIENT_DECAY
-            if affect_state[k] < 0.05:
-                affect_state[k] = 0.0
+    # Keep the top-level stagnation_signal read-fallback consistent with the
+    # authoritative core value (homeostasis owns its decay) — do NOT run a second
+    # decay law here (invariant #1; see module docstring).
+    _core = affect_state.get("core_signals")
+    if isinstance(_core, dict) and "stagnation_signal" in _core:
+        affect_state["stagnation_signal"] = _core["stagnation_signal"]
+    else:
+        affect_state.setdefault("stagnation_signal", 0.0)
     context["affect_state"] = affect_state
 
     # Track sustained crisis for emergency_self_modification gate.

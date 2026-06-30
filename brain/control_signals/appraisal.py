@@ -23,7 +23,18 @@ SCIENTIFIC BASIS:
   Lazarus (1991) — "Emotion and Adaptation." Oxford University Press.
 """
 from __future__ import annotations
+import re
+import time
 from typing import Any, Dict, List
+
+# Number-normalizing key so counter-style recurrences ("Goal avoidance: 54 / 55
+# consecutive cycles") collapse to ONE habituation key.
+_DIGIT_RE = re.compile(r"\d+")
+_WS_RE = re.compile(r"\s+")
+
+
+def _habituation_key(text: str) -> str:
+    return _WS_RE.sub(" ", _DIGIT_RE.sub("#", (text or "").lower())).strip()[:80]
 
 # ── Word sets for dimension detection ─────────────────────────────────────────
 
@@ -31,6 +42,22 @@ _BLOCK_WORDS = frozenset({
     "fail", "failed", "can't", "cannot", "blocked", "stuck", "error",
     "broken", "unable", "wrong", "problem", "issue", "refused", "denied",
     "prevented", "missing", "lost", "couldn't", "won't", "didn't work",
+    # Stall / avoidance / stagnation markers — a self-report of "I'm thinking
+    # but not doing" is a BLOCK, not a neutral event. Without these the metacog
+    # avoidance/stagnation lines score 0 block-words, fall through to the
+    # mood-bias branch, and (because mood is pinned positive) get read as
+    # goal-CONGRUENT → reward/confidence/motivation boosts. That is the loop that
+    # rewards paralysis. (RUN diagnosis 2026-06-29.)
+    "avoidance", "avoiding", "not doing", "no action", "without taking action",
+    "stagnation", "stagnant", "rumination", "ruminating", "going in circles",
+    "💔", "gave up", "no progress", "spinning",
+})
+# Markers that a setback is a REPEAT / dead end (not a fresh, surmountable
+# challenge). Used to deny the high-coping "challenge response" its motivation
+# reward when the same thing keeps failing.
+_REPEATED_FAILURE_WORDS = frozenset({
+    "consecutive", "_3x", "3x", "again", "repeated", "repeatedly", "still ",
+    "keeps", "kept", "every cycle", "over and over",
 })
 _HELP_WORDS = frozenset({
     "done", "finished", "completed", "achieved", "success", "solved",
@@ -166,16 +193,31 @@ def appraise_event(
     cause = event_text[:80]
     out: List[Dict[str, Any]] = []
 
+    # Did the congruence come from a REAL help-signal in the text, or only from a
+    # mood bias on an ambiguous event? (raw==0 in _goal_congruence → mood inferred.)
+    genuine_help = _hits(text, _HELP_WORDS) > _hits(text, _BLOCK_WORDS)
+
     # Goal-relevant events
     if rel >= 0.15:
-        if cong > 0:
-            # Congruent: goal is being helped
+        if cong > 0 and genuine_help:
+            # Congruent by a real achievement signal: goal is genuinely being helped.
             positive_valence_d  = round(rel * cert * 0.22, 3)
             conf_d = round(rel * cert * 0.12, 3)
             mot_d  = round(rel        * 0.10, 3)
             if positive_valence_d  > 0.02: out.append({"emotion": "reward_positive",        "delta": positive_valence_d,  "cause": cause})
             if conf_d > 0.02: out.append({"emotion": "confidence", "delta": conf_d, "cause": cause})
             if mot_d  > 0.02: out.append({"emotion": "motivation", "delta": mot_d,  "cause": cause})
+
+        elif cong > 0:
+            # Congruence inferred from a positive MOOD on an ambiguous event (no real
+            # help-word). Mood-congruent interpretation is fine (Bower 1981), but it
+            # must NOT mint reward_positive/motivation out of nothing — that is the
+            # runaway where good mood → "reward" → better mood, which kept his reward
+            # pinned at ~0.89 on dream/analogy content while nothing was achieved
+            # (RUN diag 2026-06-29). Allow only a faint exploration nudge.
+            expl_d = round(rel * cert * 0.05, 3)
+            if expl_d > 0.02:
+                out.append({"emotion": "exploration_drive", "delta": expl_d, "cause": cause})
 
         elif cong < 0:
             # Incongruent: goal is being blocked
@@ -196,11 +238,21 @@ def appraise_event(
 
             else:
                 # Circumstantial: risk_estimate (low coping) or challenge response (high coping)
+                repeated = _hits(text, _REPEATED_FAILURE_WORDS) > 0
                 if cope < 0.45:
                     out.append({"emotion": "risk_estimate",      "delta": round(intensity * 0.15, 3), "cause": cause})
                     if cert < 0.40:
                         out.append({"emotion": "threat_level",     "delta": round(intensity * 0.08, 3), "cause": cause})
+                elif repeated:
+                    # A REPEATED setback is a dead end, not a surmountable challenge:
+                    # high coping must NOT turn it into a motivation reward (that is
+                    # how a 3x-failed goal kept pinning motivation/reward high while
+                    # nothing moved). Register it as impasse + a confidence dip so the
+                    # stall actually creates pressure to disengage. (RUN diag 2026-06-29.)
+                    out.append({"emotion": "impasse_signal", "delta": round(intensity * 0.16, 3), "cause": cause})
+                    out.append({"emotion": "confidence",     "delta": round(-intensity * 0.06, 3), "cause": cause})
                 else:
+                    # Fresh, surmountable challenge: high coping reframes it as drive.
                     out.append({"emotion": "motivation",   "delta": round(intensity * 0.10, 3), "cause": cause})
                     out.append({"emotion": "impasse_signal",  "delta": round(intensity * 0.07, 3), "cause": cause})
 
@@ -227,17 +279,35 @@ def appraise_event(
     return [r for r in out if abs(r.get("delta", 0)) >= 0.02]
 
 
+# Habituation window: a recurring event re-appraised within this many seconds is
+# damped (you stop reacting to the same standing condition). Re-sensitizes once the
+# event has been gone this long. Mirrors emotional habituation/adaptation.
+_HABITUATION_WINDOW_S = 90.0
+_HABITUATION_MAX = 96          # bound the per-state recency map
+
+
 def appraise_working_memory(
     working_memory: List[Dict[str, Any]],
     goal_titles: List[str],
     affect_state: Dict[str, Any],
     lookback: int = 6,
     mood: float = 0.0,
+    habituation: Dict[str, Any] | None = None,
 ) -> List[Dict[str, Any]]:
     """
     Appraise recent working memory entries.
     Skips emotion-bookkeeping entries to avoid feedback loops.
     Returns merged list of {emotion, delta, cause}.
+
+    HABITUATION (RUN diag 2026-06-29). update_signal_state appraises the last
+    `lookback` WM entries EVERY cycle and ACCUMULATES the deltas into core signals.
+    Without habituation a persistent/recurring thought ("Goal avoidance: N
+    consecutive cycles", a lingering dream) is re-appraised every cycle and pumps
+    its emotion to saturation — the mechanism that pinned reward at ~0.89 and then
+    impasse at ~0.84. When a `habituation` dict is supplied (persisted on
+    affect_state), a repeated number-normalized event is damped by 0.5 per recent
+    repeat (down to 1/16), so the FIRST few appraisals land but a standing condition
+    stops pumping. Re-sensitizes after `_HABITUATION_WINDOW_S` of absence.
     """
     _skip_types = frozenset({
         "affect_analysis", "unexplained_affect_reflection",
@@ -250,9 +320,37 @@ def appraise_working_memory(
         and e.get("event_type") not in _skip_types
         and e.get("content")
     ]
+
+    _now = time.time()
+    if isinstance(habituation, dict):
+        for _k in list(habituation.keys()):
+            _e = habituation.get(_k)
+            if not isinstance(_e, dict) or (_now - float(_e.get("ts", 0) or 0)) > _HABITUATION_WINDOW_S:
+                habituation.pop(_k, None)
+
     for entry in recent:
         text = str(entry.get("content", "") or "").strip()
         if len(text) < 15:
             continue
-        out.extend(appraise_event(text, goal_titles, affect_state, mood=mood))
+        deltas = appraise_event(text, goal_titles, affect_state, mood=mood)
+        if not deltas:
+            continue
+        if isinstance(habituation, dict):
+            key = _habituation_key(text)
+            seen = habituation.get(key)
+            count = int(seen.get("count", 0)) if isinstance(seen, dict) else 0
+            habituation[key] = {"ts": _now, "count": count + 1}
+            factor = 0.5 ** min(count, 4)   # full, then halve each repeat → 1/16 floor
+            if factor < 1.0:
+                damped = []
+                for d in deltas:
+                    nd = round(float(d.get("delta", 0.0)) * factor, 3)
+                    if abs(nd) >= 0.02:
+                        damped.append({**d, "delta": nd})
+                deltas = damped
+        out.extend(deltas)
+
+    if isinstance(habituation, dict) and len(habituation) > _HABITUATION_MAX:
+        for _k in sorted(habituation, key=lambda k: habituation[k].get("ts", 0))[: len(habituation) - _HABITUATION_MAX]:
+            habituation.pop(_k, None)
     return out

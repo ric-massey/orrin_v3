@@ -1,4 +1,4 @@
-import { ArrowRight, GitBranch, Repeat2, Target, TrendingUp } from "lucide-react";
+import { ArrowRight, GitBranch, Repeat2, ShieldCheck, Target, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { usePolledJSON } from "@/lib/usePolled";
 import IntelligenceGrowthPanel from "@/components/IntelligenceGrowthPanel";
@@ -80,6 +80,40 @@ interface LearningStatus {
   };
 }
 
+// Quality-standard evolution (T0.5 adaptation layer): the golden set develops from
+// Orrin's own demonstrated-good work, on evidence of downstream effect. Promotions
+// (raising the bar) auto-apply; loosening waits HERE for human ratification. This
+// panel is the audit/drift view; ratify actions are owner-only (control-authorized).
+interface QSEvidence {
+  goals?: string[];
+  significance?: number | null;
+  reuse_count?: number | null;
+  memory_refs?: string[];
+  signal_prior?: number | null;
+}
+interface QSRow {
+  id?: string;
+  kind?: string;
+  direction?: string;
+  status?: string;
+  needs_rule_review?: boolean;
+  failing_reason?: string | null;
+  reason?: string | null;
+  note?: string | null;
+  artifact_path?: string | null;
+  goal_id?: string | null;
+  evidence?: QSEvidence;
+  ts?: string;
+  reviewer?: string | null;
+  reversible?: boolean;
+}
+interface QSReview {
+  queue?: QSRow[];
+  applied?: QSRow[];
+  rejected?: QSRow[];
+  counts?: { pending_review?: number; applied?: number; rejected?: number; total?: number };
+}
+
 // A plain-language name + accent per pattern type, so the log reads as behaviour, not
 // internal jargon. Keys mirror _classify() in behavioral_adaptation.py.
 const PATTERN_META: Record<string, { label: string; tone: string }> = {
@@ -94,6 +128,7 @@ export default function Learning() {
   const feed = usePolledJSON<Feed>("/api/behavior-changes?n=60");
   const beliefs = usePolledJSON<BeliefFeed>("/api/belief-revisions?n=80");
   const learning = usePolledJSON<LearningStatus>("/api/learning?n=10");
+  const quality = usePolledJSON<QSReview>("/api/quality-standard/review");
   const changes = feed?.changes ?? [];
   const byPattern = feed?.by_pattern ?? {};
   const revisions = beliefs?.revisions ?? [];
@@ -202,7 +237,105 @@ export default function Learning() {
           </ul>
         )}
       </section>
+
+      <QualityStandardSection review={quality} />
     </div>
+  );
+}
+
+// The quality-standard evolution audit (T0.5 adaptation layer). Read-only here:
+// shows what's awaiting human ratification and the applied/rejected drift trail.
+// Loosening the bar is owner-only and never happens from this page.
+function QualityStandardSection({ review }: { review?: QSReview | null }) {
+  const queue = review?.queue ?? [];
+  const applied = review?.applied ?? [];
+  return (
+    <section className="space-y-3 border-t pt-5">
+      <div className="space-y-1">
+        <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight">
+          <ShieldCheck className="h-4 w-4 text-primary" />
+          What counts as good work
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          The quality bar develops from Orrin's own work that proved good downstream
+          (reused, or kept as important). Raising the bar applies automatically; loosening
+          it is held here for your ratification. signal_prior only orders the queue — it is
+          never a vote.
+        </p>
+      </div>
+
+      {queue.length === 0 ? (
+        <Card>
+          <CardContent className="py-6 text-center text-sm italic text-muted-foreground">
+            {review == null ? "Loading…" : "Nothing awaiting ratification — the bar hasn't been asked to loosen."}
+          </CardContent>
+        </Card>
+      ) : (
+        <ul className="space-y-3">
+          {queue.map((r, i) => (
+            <QualityRow key={`${r.id ?? ""}-${i}`} r={r} />
+          ))}
+        </ul>
+      )}
+
+      {applied.length > 0 && (
+        <div className="rounded-lg border bg-muted/30 p-3">
+          <Label>Applied</Label>
+          <span className="text-xs text-muted-foreground">
+            {applied.length} change{applied.length === 1 ? "" : "s"} to the golden set — all reversible from their logged provenance.
+          </span>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function QualityRow({ r }: { r: QSRow }) {
+  const ev = r.evidence ?? {};
+  const lower = r.direction === "lower" || r.kind === "suspect";
+  return (
+    <li>
+      <Card>
+        <CardContent className="space-y-2 py-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`rounded px-1.5 py-0.5 text-[10px] font-medium uppercase ${lower ? "bg-signal-warn/20 text-signal-warn" : "bg-signal-ok/20 text-signal-ok"}`}>
+                {r.kind === "suspect" ? "suspect" : r.needs_rule_review ? "needs rule review" : r.direction === "lower" ? "loosen" : "promote"}
+              </span>
+              <span className="truncate text-sm font-medium">
+                {r.artifact_path ? r.artifact_path.split("/").pop() : r.goal_id || "candidate"}
+              </span>
+            </div>
+            <span className="shrink-0 text-xs text-muted-foreground">{relTime(r.ts)}</span>
+          </div>
+
+          {(r.note || r.reason || r.failing_reason) && (
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {r.note || r.reason || r.failing_reason}
+            </p>
+          )}
+
+          <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+            {ev.reuse_count != null && ev.reuse_count > 0 && (
+              <span><Label>Reuse</Label><span className="tabular-nums text-foreground">×{ev.reuse_count}</span></span>
+            )}
+            {ev.memory_refs != null && ev.memory_refs.length > 0 && (
+              <span><Label>Persisted</Label><span className="tabular-nums text-foreground">{ev.memory_refs.length}</span></span>
+            )}
+            {ev.significance != null && (
+              <span><Label>Significance</Label><span className="tabular-nums text-foreground">{Number(ev.significance).toFixed(2)}</span></span>
+            )}
+            {ev.signal_prior != null && (
+              <span className="italic">order hint {Number(ev.signal_prior).toFixed(2)} (not a vote)</span>
+            )}
+          </div>
+
+          <p className="text-[11px] text-muted-foreground">
+            Ratify from the owner console — this view is read-only.
+          </p>
+        </CardContent>
+      </Card>
+    </li>
   );
 }
 

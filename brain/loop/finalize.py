@@ -467,12 +467,11 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
         from brain.cognition.global_workspace import update_workspace as _uw
         _moment = _uw(context)
         if _moment:
-            # Top-down write-back (TOPDOWN_WRITEBACK plan): the conscious winner
-            # nudges priors back down — a decaying affect proposal (integrated by
-            # next cycle's commit_signals) plus salience-prior priming for theme
-            # continuity. Bias only, never preempt; fail-safe inside.
-            from brain.cognition.workspace_writeback import write_back as _write_back
-            _write_back(context, _moment)
+            # NOTE: top-down write-back is hooked at the PRE-THINK update_workspace
+            # in deliberate.py — that call decides the substantive conscious winner
+            # and consumes the binding/offer candidates, so it is the only place a
+            # real conclusion is available. This end-of-cycle call sees only the
+            # post-action leftover; it just captures it for the awareness bridge.
             tb = _bridge()
             if tb is not None:
                 tb.update(extra={"awareness": _moment.get("content", "")})

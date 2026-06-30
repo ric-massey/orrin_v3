@@ -37,6 +37,10 @@ SETPOINTS = {
     "stagnation_signal": 0.0,
     "loss_signal":       0.0,
     "dread":             0.0,
+    # Transient positive affect from goal completion — at rest he is not
+    # currently satisfied, so it fades to calm (explicit, not the silent 0.0
+    # default: every signal declares its baseline — by-construction guarantee).
+    "satisfaction_signal": 0.0,
     "social_comparison_signal":          0.0,
     "low_affect_signal":        0.0,
     "uncertainty":       0.05,

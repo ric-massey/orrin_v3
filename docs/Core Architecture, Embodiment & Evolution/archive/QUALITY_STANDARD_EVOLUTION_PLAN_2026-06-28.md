@@ -1,11 +1,49 @@
 # Quality-Standard Evolution — letting the bar develop without letting it be gamed
 
 Date: 2026-06-28
-**Status:** Proposed (design only — no code). Spec to ratify before building.
+**Status:** IMPLEMENTED 2026-06-29 — archived. The spec was ratified and built; see
+`QUALITY_STANDARD_EVOLUTION_IMPLEMENTATION_PLAN_2026-06-28.md` (same archive dir) for
+the build (package `brain/cognition/quality_standard/`). The auditor's caution below
+was addressed in §0 of that implementation plan.
 Parent: `ORRIN_CORE_ARCHITECTURE_MASTER_PLAN_2026-06-25.md` §T0.5 (the quality
 predicate + golden set). This plan adds the *adaptation layer* T0.5 deliberately
 left out: how the standard itself develops over Orrin's life instead of staying a
 frozen, human-authored snapshot.
+
+> **Auditor's caution (2026-06-28, against codebase HEAD).** The *direction* and the
+> safety framing below are sound, but this spec is **not build-ready** — it oversells
+> "rides machinery that already exists." Three load-bearing assumptions don't match
+> code reality:
+>
+> 1. **The anchor points at the wrong module — the real one is live.** §4.1 names
+>    `production_funnel` credit as "the anchor," but the funnel only records the
+>    `candidate` stage (`credited` is deferred to T1.P) — it's telemetry, not the
+>    ledger. The *actual* anchor exists and is operational: `brain/agency/effect_ledger.py`
+>    (`significance_for_goal`, `has_qualifying_effect`, `effects_for_goal`, reuse via
+>    `mark_reused`), already fed by the producer paths (`express_to_user`,
+>    `compose_section`, `code_writer`) and gating goal closure. So P1 has a real input
+>    today — it must read the effect ledger, not the funnel. **One genuine gap:** the
+>    ledger is content-addressed and does *not* persist artifact text (only
+>    `content_hash`), so turning a credited artifact into an exemplar file needs an
+>    artifact-text capture step the plan doesn't mention.
+> 2. **The `value_revisions` pattern gives nothing for free on the safety-critical
+>    leg.** `propose_value_revision` (`value_evolution.py`) is a cognition function
+>    Orrin invokes and which *applies its own decision* — the "ratify" is Orrin's own
+>    deliberation, **no human in the loop**. The human-ratification path for loosening
+>    exemplars (the single most important guardrail) has to be built net-new; only the
+>    file/provenance *schema* is reusable, not the control flow.
+> 3. **"Re-tune the predicate until the exemplar passes" assumes a knob that doesn't
+>    exist.** The predicate is hard rule-gates, not a threshold ("Not a single
+>    threshold to optimize against" — its own header). Making a rejected exemplar pass
+>    means editing rule logic, a code change that can regress other fixtures. Because
+>    the regression test loads exemplars dynamically (`iterdir`), an auto-applied
+>    `promote` (P2) the rules reject would **wedge the test red with no automatic
+>    remedy**. P4's "re-tune loop" is manual code work, not an optimizer.
+>
+> Treat as a parked design doc until T1.P lands and the human-ratify path is scoped.
+> Smaller flags: `signal_prior` as a stored row field invites the emotions-as-evidence
+> leak §7 warns against (keep it a non-persisted ordering hint); "externally/user-
+> validated" (§4.2) has no input wired behind it.
 
 ---
 

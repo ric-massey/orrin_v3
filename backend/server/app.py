@@ -42,6 +42,7 @@ from .routers import settings as settings_routes
 from .routers import agent as agent_routes
 from .routers import update as update_routes
 from .routers import control as control_routes
+from .routers import quality_standard as quality_standard_routes
 
 
 # Built React UI (Vite `dist/`). The native pywebview window loads this over the
@@ -96,6 +97,7 @@ api.include_router(source_routes.router)
 api.include_router(telemetry_routes.router)
 api.include_router(cognition_routes.router)
 api.include_router(runtime_coupling_routes.router)
+api.include_router(quality_standard_routes.read_router)  # read-only audit view
 
 
 # ── New information surfaces (UI_FIXES §new-surfaces) ───────────────────────
@@ -159,6 +161,7 @@ app.include_router(settings_routes.router)
 app.include_router(agent_routes.router)
 app.include_router(update_routes.router)
 app.include_router(control_routes.router)
+app.include_router(quality_standard_routes.router)
 
 # ── Control: lifecycle handlers (stop / reset / restart) ─────────────────────
 # The registry + the routes that drive it now live in lifecycle.py and

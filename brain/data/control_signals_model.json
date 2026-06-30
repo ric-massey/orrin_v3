@@ -1,5 +1,5 @@
 {
-  "positive_valence": [
+  "reward_positive": [
     "happy",
     "glad",
     "great",
@@ -19,7 +19,7 @@
     "proud",
     "cheerful"
   ],
-  "negative_valence": [
+  "reward_negative": [
     "frustrated",
     "frustrating",
     "frustration",
@@ -39,7 +39,7 @@
     "disappointed",
     "disgusted"
   ],
-  "melancholy": [
+  "low_affect_signal": [
     "sad",
     "sadness",
     "lonely",
@@ -55,7 +55,7 @@
     "mourning",
     "hopeless"
   ],
-  "jealousy": [
+  "social_comparison_signal": [
     "jealous",
     "jealousy",
     "envy",
@@ -64,7 +64,7 @@
     "resentment",
     "covet"
   ],
-  "surprise": [
+  "prediction_error_signal": [
     "surprised",
     "surprising",
     "surprise",
@@ -79,7 +79,7 @@
     "whoa",
     "wow"
   ],
-  "wonder": [
+  "novelty_signal": [
     "wonder",
     "wondering",
     "curious",
@@ -93,7 +93,7 @@
     "mystery",
     "mysterious"
   ],
-  "contentment": [
+  "satisfaction_signal": [
     "content",
     "calm",
     "peaceful",
@@ -107,7 +107,7 @@
     "ease",
     "soothing"
   ],
-  "compassion": [
+  "affiliation_signal": [
     "sorry",
     "sympathy",
     "sympathetic",

@@ -25,6 +25,7 @@ from typing import Any, Dict, List, Optional
 from brain.paths import DATA_DIR
 from brain.utils.log import log_private
 from brain.utils.failure_counter import record_failure
+from brain.utils.felt_lexicon import felt_label
 
 _STREAM_FILE = DATA_DIR / "workspace_broadcast.json"
 _STREAM_MAX = 200          # persisted stream length
@@ -117,8 +118,15 @@ def _candidates(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             dom = max(nums, key=nums.get)
             val = nums[dom]
             if val >= 0.5:
+                # MEMBRANE (invariant #2): the perceivable CONTENT is a felt
+                # translation, never the raw signal key. The machine key rides in
+                # the structured `focus_signal` field so consumers (e.g.
+                # intention_endorsement) read the field instead of regex-parsing
+                # the felt prose back into a key — decoupling the two roles the
+                # string used to carry (parse-coupling).
                 out.append({"source": "affect",
-                            "content": f"a strong sense of {dom.replace('_', ' ')}",
+                            "content": f"a strong sense of {felt_label(dom)}",
+                            "focus_signal": dom,
                             "salience": 0.40 + 0.40 * val})
 
     # The most salient external/internal signal this cycle.
@@ -310,6 +318,12 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             moment["wants"] = winner["wants"]
         if winner.get("kind"):
             moment["kind"] = winner["kind"]
+        # Carry the structured signal key (membrane invariant #2) so consumers
+        # read the field rather than parsing it out of the felt content string.
+        # Both affect emitters supply it: the workspace candidate as `focus_signal`,
+        # the bound situation as `emotion`.
+        if winner.get("focus_signal") or winner.get("emotion"):
+            moment["focus_signal"] = winner.get("focus_signal") or winner.get("emotion")
         if winner.get("source") == "binding":
             for key in ("facets", "object", "members", "referent_links"):
                 if winner.get(key) is not None:

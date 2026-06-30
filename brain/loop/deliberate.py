@@ -62,7 +62,22 @@ def prepare_workspace(context: Context) -> Context:
         record_failure("ORRIN_loop.metacog_monitor", _mone)
     try:
         from brain.cognition.global_workspace import update_workspace as _uw_pre
-        _uw_pre(context)
+        _pre_moment = _uw_pre(context)
+        # Top-down write-back (TOPDOWN_WRITEBACK plan): hook HERE, not at the
+        # end-of-cycle update_workspace. This PRE-THINK call is the one that decides
+        # the substantive conscious winner (binding/monitor conclusions) and then
+        # CONSUMES _bound_candidates / _workspace_offers — so by the finalize call
+        # those candidates are gone and only a starved leftover remains. The conscious
+        # winner nudges priors back down: a decaying affect proposal (integrated by
+        # this cycle's later commit_signals → biases the next competition) plus
+        # salience-prior priming for theme continuity. Bias only, never preempt;
+        # fail-safe inside.
+        if _pre_moment:
+            try:
+                from brain.cognition.workspace_writeback import write_back as _write_back
+                _write_back(context, _pre_moment)
+            except Exception as _wbe:
+                record_failure("ORRIN_loop.workspace_writeback", _wbe)
         # Mirror the §19.1 monitor + workspace blocks to the UI (fail-safe).
         _tb_mon = _bridge()
         if _tb_mon is not None:

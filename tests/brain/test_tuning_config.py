@@ -59,17 +59,16 @@ def test_selector_source_has_no_leftover_hardcoded_weights():
     assert "w_drive = _tuning.SELECTOR_W_DRIVE" in src
 
 
-def test_orrin_loop_reads_crisis_and_decay_constants_from_tuning():
-    """The transient-signal decay + sustained-crisis stage
-    (_apply_transient_signal_decay) was extracted to brain/loop/signal_decay.py
-    in Phase 4.5B (it lived in brain/loop/sense.py after Phase 4A); its wiring is
-    pinned by source inspection there: the decay and the crisis detection must
-    reference config.tuning's names, and the bare literals Finding 9 named (0.92
-    decay; 0.85/0.50/0.70 crisis thresholds) must no longer appear in that block."""
+def test_orrin_loop_reads_crisis_constants_from_tuning():
+    """The sustained-crisis stage (_apply_transient_signal_decay) was extracted to
+    brain/loop/signal_decay.py in Phase 4.5B; its crisis detection must reference
+    config.tuning's names, not bare literals (Finding 9). NOTE: the transient
+    SIGNAL DECAY this stage used to run was removed in the Grounded Cognition plan
+    (Phase 1B / invariant #1) — homeostasis is the single decay authority — so
+    AFFECT_TRANSIENT_DECAY is no longer referenced here."""
     src = (_REPO_ROOT / "brain" / "loop" / "signal_decay.py").read_text()
     assert "from brain.config.tuning import (" in src
     for name in (
-        "AFFECT_TRANSIENT_DECAY",
         "CRISIS_ACUTE_PEAK",
         "CRISIS_ABOVE_HALF_THRESHOLD",
         "CRISIS_ABOVE_HALF_COUNT",
@@ -77,7 +76,8 @@ def test_orrin_loop_reads_crisis_and_decay_constants_from_tuning():
     ):
         assert name in src
 
-    assert "* AFFECT_TRANSIENT_DECAY" in src
+    # The second decay authority is gone — no decay multiply remains in the stage.
+    assert "AFFECT_TRANSIENT_DECAY" not in src
     assert "* 0.92" not in src
     assert "_peak >= CRISIS_ACUTE_PEAK and _above_half >= CRISIS_ABOVE_HALF_COUNT" in src
     assert "_peak >= 0.85" not in src

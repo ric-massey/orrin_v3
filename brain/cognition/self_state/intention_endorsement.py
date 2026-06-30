@@ -31,6 +31,7 @@ from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json
 from brain.utils.self_model import get_self_model
+from brain.utils.felt_lexicon import felt_label
 from brain.utils.log import log_private
 from brain.cog_memory.working_memory import update_working_memory
 
@@ -86,11 +87,12 @@ def _desire_in_focus(context: Dict[str, Any]) -> Optional[Tuple[str, str, bool]]
     first the felt desire in the global workspace, else the dominant drive.
     """
     gw = context.get("global_workspace") or {}
-    content = str(gw.get("content", ""))
-    m = re.search(r"a strong sense of ([a-z _]+)", content)
-    if m:
-        key = m.group(1).strip().replace(" ", "_")
-        return key, _GLOSS.get(key, key.replace("_", " ")), True
+    # MEMBRANE (invariant #2): read the structured signal key off the workspace
+    # moment, never regex it back out of the felt content string. The workspace
+    # carries the machine key in `focus_signal`; the prose stays felt-only.
+    key = str(gw.get("focus_signal", "")).strip()
+    if key:
+        return key, _GLOSS.get(key, felt_label(key)), True
 
     # Fall back to the strongest standing drive.
     drives = (load_json(DATA_DIR / "motivation_state.json", default_type=dict) or {}).get("drives") or {}

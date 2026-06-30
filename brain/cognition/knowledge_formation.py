@@ -104,7 +104,7 @@ _PATTERN_MODELS: Dict[str, Dict] = {
             "cause":     "high uncertainty or task complexity triggers analysis paralysis: "
                          "reflection is cognitively safer than action (Bandura, 1977: "
                          "low self-efficacy predicts avoidance of challenging tasks)",
-            "effect":    "action_debt accumulates; goal recedes; impasse_signal rises",
+            "effect":    "action_debt accumulates; goal recedes; a sense of being stuck grows",
             "mechanism": "Avoidance is negatively reinforced — it temporarily reduces risk_estimate "
                          "without actually reducing the goal gap. The bandit learns to "
                          "select comfortable functions because they avoid the aversive "

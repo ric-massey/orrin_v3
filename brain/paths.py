@@ -172,6 +172,21 @@ STAGNATION_SIGNAL_LOG       = DATA_DIR / "stagnation_signal_log.json"
 # ===== Value revisions =====
 VALUE_REVISIONS   = DATA_DIR / "value_revisions.json"
 
+# ===== Quality-standard evolution (T0.5 adaptation layer) =====
+# Candidate store for golden-set revisions (mirrors VALUE_REVISIONS' provenance
+# schema). NON-COGNITION: written by the background proposer/gate, applied only by
+# the human-ratify path. See brain/cognition/quality_standard/.
+QUALITY_STANDARD_REVISIONS = DATA_DIR / "quality_standard_revisions.json"
+# Bounded sidecar that captures artifact TEXT at production time, keyed by the
+# effect ledger's content_hash (the ledger itself stores only the hash). A
+# later-credited artifact is retrieved from here to become an exemplar file (P1a).
+EFFECT_ARTIFACTS_DIR = DATA_DIR / "effect_artifacts"
+# The live golden set the gate promotes into / the ratify path edits. Repo-root
+# tests/ tree (NOT brain/tests), the same dir the T0.5 regression iterdir-scans.
+QUALITY_GOLDEN_DIR     = _REPO_ROOT / "tests" / "fixtures" / "quality_golden"
+QUALITY_EXEMPLARS_DIR  = QUALITY_GOLDEN_DIR / "exemplars"
+QUALITY_ANTI_EXEMPLARS_DIR = QUALITY_GOLDEN_DIR / "anti_exemplars"
+
 # ===== Known persons (multi-person identity) =====
 KNOWN_PERSONS_FILE = DATA_DIR / "known_persons.json"
 

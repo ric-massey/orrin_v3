@@ -176,6 +176,15 @@ def _record_code_effect(kind: str, full_code: str, context, goal_id, name=None) 
         if _row is not None and _row.significance > 0 and isinstance(context, dict):
             context["_production_effect_this_cycle"] = True
             context.setdefault("_effect_rows_this_cycle", []).append(_row.to_json())
+        # P1a: capture the code TEXT keyed by content_hash so a later-reused
+        # tool/function can be retrieved as an exemplar (the ledger stores only the hash).
+        if _row is not None:
+            try:
+                from brain.agency.effect_artifacts import capture as _cap_artifact
+                _cap_artifact(full_code, content_hash=_row.content_hash)
+            except Exception as _ce:
+                from brain.utils.failure_counter import record_failure
+                record_failure("code_writer.capture_artifact", _ce)
     except Exception as _e:
         from brain.utils.failure_counter import record_failure
         record_failure("code_writer.record_effect", _e)

@@ -64,6 +64,25 @@ def _edge_id(cause: str, effect: str) -> str:
     return hashlib.md5(f"{cause.lower()}→{effect.lower()}".encode()).hexdigest()[:12]
 
 
+def _edge_domain(cause: str, effect: str) -> str:
+    """'self' when either side names an internal signal/affect/function identifier
+    (self-regulation knowledge), else 'world'. Lets world consumers exclude
+    self-referential edges so raw signal keys never become world/goal content."""
+    from brain.utils.felt_lexicon import is_internal_identifier
+    return "self" if (is_internal_identifier(cause) or is_internal_identifier(effect)) else "world"
+
+
+def is_self_edge(edge: Dict) -> bool:
+    """True for a self-model edge. Uses the stored `domain` tag, falling back to a
+    live computation for legacy edges written before the tag existed."""
+    if not isinstance(edge, dict):
+        return False
+    dom = edge.get("domain")
+    if dom in ("self", "world"):
+        return dom == "self"
+    return _edge_domain(str(edge.get("cause", "")), str(edge.get("effect", ""))) == "self"
+
+
 def _compute_causal_score(edge: Dict) -> float:
     """
     causal_score integrates three Pearl levels:
@@ -147,7 +166,11 @@ def update_edge(
             _save_edges(edges)
             return edge
 
-    # New edge
+    # New edge. `domain` segregates SELF-model edges (a cause or effect that names an
+    # internal signal/affect/function identifier — e.g. "look_outward → impasse_signal
+    # falls") from WORLD edges. Self edges are legitimate self-regulation knowledge but
+    # must not surface as world content or research-goal frontiers (felt_lexicon
+    # membrane); world consumers filter on this tag.
     edge = {
         "id":                   eid,
         "cause":                cause,
@@ -159,6 +182,7 @@ def update_edge(
         "confound_score":       0.0,
         "causal_score":         0.0,
         "layer":                2 if intervention else (3 if counterfactual else 1),
+        "domain":               _edge_domain(cause, effect),
         "source":               source,
         "created_at":           ts,
         "last_updated":         ts,
@@ -236,7 +260,10 @@ def get_effects(cause: str, *, min_score: float = _MIN_CAUSAL_SCR) -> List[Dict]
 
 
 def get_causal_effects(query: str) -> List[str]:
-    effects = get_effects(query)
+    # Feeds world-event simulation (perceivable predictions), so exclude self-model
+    # edges — predicting "this event → impasse_signal rises" as a world outcome is
+    # the leak (felt_lexicon membrane).
+    effects = [e for e in get_effects(query) if not is_self_edge(e)]
     return [e["effect"] for e in effects[:3]]
 
 
@@ -252,7 +279,14 @@ def causal_explanation(query: str) -> Optional[str]:
     best = max(relevant, key=lambda e: e["causal_score"])
     layer_label = {1: "associated with", 2: "causes (intervention)", 3: "counterfactually causes"}
     pred = layer_label.get(best.get("layer", 1), "associated with")
-    return (f"[causal] '{best['cause'][:60]}' {pred} '{best['effect'][:60]}' "
+    # This string is perceivable (inner-loop reads it), so translate any internal
+    # signal identifiers to felt language (felt_lexicon membrane).
+    try:
+        from brain.utils.felt_lexicon import felt_label as _felt
+        _cause, _effect = _felt(best["cause"][:60]), _felt(best["effect"][:60])
+    except Exception:
+        _cause, _effect = best["cause"][:60], best["effect"][:60]
+    return (f"[causal] '{_cause}' {pred} '{_effect}' "
             f"(score={best['causal_score']:.2f}, n={best['evidence_count']}, L{best.get('layer',1)})")
 
 
@@ -306,8 +340,16 @@ def record_intervention(action: str, observed_effect: str) -> Dict:
     return update_edge(action, observed_effect, confirmed=True, intervention=True, source="intervention")
 
 
-def get_all_edges() -> List[Dict]:
-    return _load_edges()
+def get_all_edges(domain: Optional[str] = None) -> List[Dict]:
+    """All causal edges. `domain="world"` returns only world edges (excludes
+    self-model edges whose cause/effect names an internal signal); `domain="self"`
+    returns only self edges. Default returns everything (back-compatible)."""
+    edges = _load_edges()
+    if domain == "world":
+        return [e for e in edges if not is_self_edge(e)]
+    if domain == "self":
+        return [e for e in edges if is_self_edge(e)]
+    return edges
 
 
 def update_from_prediction_outcome(pred: Dict, correct: bool) -> Optional[Dict]:

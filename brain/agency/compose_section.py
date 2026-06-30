@@ -82,6 +82,13 @@ def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dic
         "tracked_work", content, goal_id=gid, context=ctx,
         metadata={"path": str(path), "section": section, "completed_sections": completed_sections},
     )
+    # P1a: capture the section TEXT keyed by content_hash for later promotion.
+    if row is not None:
+        try:
+            from brain.agency.effect_artifacts import capture as _cap_artifact
+            _cap_artifact(content, content_hash=row.content_hash)
+        except Exception as exc:
+            record_failure("compose_section.capture_artifact", exc)
     goal["tracked_work_path"] = str(path)
     goal["tracked_work"] = True
     if pending is not None and row is not None:

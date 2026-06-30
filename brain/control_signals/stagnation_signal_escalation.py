@@ -80,7 +80,7 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         # Mild discomfort
         sig = _cs(
             source="stagnation_signal_escalation",
-            content=f"stagnation_signal_discomfort: {cycles} cycles of sameness. Something needs to change.",
+            content=f"{cycles} cycles of sameness. Something needs to change.",
             signal_strength=0.45 + (cycles - _MILD_THRESHOLD) * 0.02,
             tags=["stagnation_signal", "seek_novelty", "discomfort", "internal"],
         )
@@ -91,7 +91,7 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         # penalty_signal + stability cost
         sig = _cs(
             source="stagnation_signal_escalation",
-            content=f"stagnation_signal_penalty_signal: {cycles} cycles of the same. This is genuinely uncomfortable now.",
+            content=f"{cycles} cycles of the same. This is genuinely uncomfortable now.",
             signal_strength=0.65 + (cycles - _PENALTY_SIGNAL_THRESHOLD) * 0.015,
             tags=["stagnation_signal", "penalty_signal", "seek_novelty", "urgent", "internal"],
         )
@@ -110,7 +110,7 @@ def update_stagnation_signal_escalation(context: Dict[str, Any]) -> None:
         sig = _cs(
             source="stagnation_signal_escalation",
             content=(
-                f"stagnation_signal_acute: {cycles} cycles of going nowhere. "
+                f"{cycles} cycles of going nowhere. "
                 "I am not using myself. Something essential in me is going unused."
             ),
             signal_strength=min(0.90, 0.80 + (cycles - _ACUTE_THRESHOLD) * 0.01),

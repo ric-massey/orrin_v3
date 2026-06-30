@@ -13,6 +13,7 @@
 # dream cycle AND lightly during idle (#4).
 from __future__ import annotations
 
+import json
 import random
 import re
 import time
@@ -46,6 +47,17 @@ _REPLAY_KEEP = 400000
 _FELT_FILE = _DATA_DIR / "language" / "felt_experience.txt"
 _FELT_KEEP = 120000               # cap the felt-narrative corpus (chars)
 _NARRATE_MIN_INTERVAL_S = 90.0    # min seconds between narrations, so the fast (~10s) cognitive cycle can't flood the corpus
+
+# Phase 2B (Grounded Cognition plan, THOUGHT_OBJECT_SPEC.md): a sidecar that
+# captures the STRUCTURED thought object alongside each templated narration as a
+# (thought_object -> narration) conditioning pair, so the conditional-decoder
+# training set accumulates while every other phase proceeds. Realises the TODO at
+# narrate_experience: the native organ should one day write this narration itself,
+# conditioned on the thought object instead of a template. Machine-facing training
+# data (NOT a perceivable store) — so the thought object may carry the raw signal
+# key as conditioning input; only the rendered OUTPUT is membrane-sealed.
+_NARRATION_PAIRS_FILE = _DATA_DIR / "language" / "narration_pairs.jsonl"
+_NARRATION_PAIRS_KEEP = 5000      # cap the conditioning-pair set (lines, JSONL)
 _last_narrate = 0.0
 
 # Log-noise filtering, extracted to acquisition_noise.py (Phase 4.5C).
@@ -359,6 +371,69 @@ def _append_felt(line: str) -> None:
     _FELT_FILE.write_text(combined, encoding="utf-8")
 
 
+def _perceived_dominant_key(perceived: Dict) -> str:
+    """The dominant signal KEY behind the felt summary (argmax of perceived
+    affect). Conditioning input for the decoder — machine-facing, fail-safe to ''."""
+    try:
+        core = perceived.get("core_signals") if isinstance(perceived, dict) else None
+        src = core if isinstance(core, dict) else perceived
+        nums = {str(k): float(v) for k, v in (src or {}).items()
+                if isinstance(v, (int, float))}
+        return max(nums, key=nums.get) if nums else ""
+    except Exception:
+        return ""
+
+
+def _build_thought_object(context: Dict, feel: str, picked: str) -> Dict:
+    """Assemble the structured thought object for the narration pair, per
+    THOUGHT_OBJECT_SPEC.md §8 (the narrate_experience case). Fail-safe."""
+    perceived = context.get("perceived_affect_state") or {}
+    affect: Dict = {"felt": feel}
+    key = _perceived_dominant_key(perceived)
+    if key:
+        affect["signal"] = key       # conditioning input only (spec §5)
+    concept_refs = []
+    if picked:
+        concept_refs.append({"type": "act", "handle": picked})
+    try:
+        from brain.cognition.global_workspace import bound_goal
+        goal = bound_goal(context) or {}
+        gid = str(goal.get("id") or goal.get("title") or goal.get("name") or "")
+        if gid:
+            concept_refs.append({"type": "goal", "handle": gid})
+    except Exception:
+        pass
+    return {
+        "intent": "narrate_experience",
+        "recipient": "self",
+        "affect": affect,
+        "concept_refs": concept_refs,
+        "stance": "first_person",
+    }
+
+
+def _append_narration_pair(thought: Dict, narration: str) -> None:
+    """Append one (thought_object -> narration) conditioning pair as a JSONL line,
+    bounded to the most recent _NARRATION_PAIRS_KEEP lines. Best-effort."""
+    try:
+        line = json.dumps({"thought": thought, "narration": narration},
+                          ensure_ascii=False)
+    except Exception as exc:
+        record_failure("acquisition._append_narration_pair.encode", exc)
+        return
+    try:
+        _NARRATION_PAIRS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        existing: List[str] = []
+        if _NARRATION_PAIRS_FILE.exists():
+            existing = _NARRATION_PAIRS_FILE.read_text(
+                encoding="utf-8", errors="ignore").splitlines()
+        existing.append(line)
+        _NARRATION_PAIRS_FILE.write_text(
+            "\n".join(existing[-_NARRATION_PAIRS_KEEP:]) + "\n", encoding="utf-8")
+    except Exception as exc:
+        record_failure("acquisition._append_narration_pair.write", exc)
+
+
 def narrate_experience(context) -> str:
     """Write ONE first-person, felt summary of what he just did and how he
     PERCEIVES he felt — his ASSUMPTION of what happened, in his own words. This is
@@ -407,6 +482,11 @@ def narrate_experience(context) -> str:
     except Exception as exc:  # external I/O: record a felt-corpus append failure
         record_failure("acquisition.narrate_experience", exc)
         return ""
+    # Phase 2B: capture the (thought_object -> narration) conditioning pair on the
+    # SAME throttle, so the conditional decoder's training set accumulates. The
+    # template is the teacher; the structured input is what the native organ will
+    # one day render from instead. Best-effort — never blocks narration.
+    _append_narration_pair(_build_thought_object(context, feel, picked), line)
     return line
 
 
@@ -539,6 +619,16 @@ def consolidate_language(steps: int = 60) -> Dict:
     vocab = _learned_words()                 # symbolic knowledge → his language (word-meaning)
     if vocab:
         parts.append(vocab)
+    # Phase 2C/2D: the (thought_object -> narration) pairs, formatted as
+    # `prefix + narration`, so the organ learns to RENDER conditionally (not just
+    # free-run). Upweighted: this is what turns the mouth on. Fail-safe.
+    try:
+        from brain.cognition.language.conditional_render import narration_pairs_corpus
+        cond = narration_pairs_corpus()
+        if cond:
+            parts += [cond, cond]
+    except Exception as exc:
+        record_failure("acquisition.consolidate_language.cond_pairs", exc)
 
     recent = "\n".join(p for p in parts if p)[-_MAX_BLOCK:]
     if not recent or len(recent) < 2000:

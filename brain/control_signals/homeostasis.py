@@ -184,6 +184,19 @@ def apply_restoring_forces(
     Mirrors the exact numeric behaviour previously inlined in
     update_signal_state, now owned here so there is one restoring-force authority.
     Honours state["emotional_decay"] (default True) for the baseline decay.
+
+    ALLOSTASIS NOTE (Grounded Cognition plan, Phase 1B / invariant #1): this decays
+    toward a FIXED baseline on purpose — it is NOT forced return-to-zero, and the
+    setpoint is deliberately not value-tracking. Allostasis (a standing condition
+    holding a signal elevated) is emergent: a genuine problem is re-driven by fresh
+    appraisal every cycle, so drive-vs-decay settles at an elevated EQUILIBRIUM,
+    while a one-off spike with no re-drive decays back to baseline. A value-tracking
+    setpoint would create positive feedback (high signal → high setpoint → less
+    decay → saturation) — the very runaway the appraisal-saturation fix removed.
+    The one signal with an explicit shifting setpoint is resource_deficit
+    (cost_prediction.allostatic_setpoint), where mandatory recovery is needed and a
+    bounded load integrator prevents the runaway. See
+    tests/brain/test_homeostasis.py::test_standing_pressure_holds_signal_elevated_but_spike_decays.
     """
     # ── 1. Baseline decay: exponential approach to each signal's resting value ──
     if state.get("emotional_decay", True):

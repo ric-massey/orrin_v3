@@ -189,16 +189,27 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     ]
     if not frontiers:
         return []
+    # The causal graph is his SELF-MODEL: every effect in it is one of his own
+    # internal states (impasse_signal, affective_regulation, reward_negative…), not
+    # a world topic. So the answer to "what causes this" lives in his own substrate,
+    # not on the web — framing these as research_topic/wikipedia goals made them
+    # unplannable (there is no article on an internal signal), and they spun the
+    # loop: generate → fail to plan 3× → abandon → regenerate the next variant.
+    # Frame them as self-investigation instead (search_own_files / grep_files over
+    # his own code via the "my own code" intent family), which is both plannable and
+    # the tool that genuinely serves an internal causal gap. Drive is self_exploration
+    # so the gap ladders under "Understand my own mind", not "Understand the world".
     return [
         _mk_goal(
-            f"The causes of {name}",
+            f"Trace in my own code what drives '{name}'",
             f"My causal model says I've seen '{name}' happen but I don't really know "
-            f"what causes it. Use research_topic / wikipedia_search / fetch_and_read to "
-            f"investigate what actually brings '{name}' about, then write what I learn "
-            f"to long memory.",
-            driven_by="world_knowledge",
-            milestones=[f"A possible cause of '{name}' was investigated.",
-                        f"A finding about what brings '{name}' about was written to long memory."],
+            f"what brings it about. '{name}' is one of my own internal states, so the "
+            f"answer is in my substrate, not on the web: use search_own_files / "
+            f"grep_files to find where '{name}' is computed and what moves it, then "
+            f"write what I learn to long memory.",
+            driven_by="self_exploration",
+            milestones=[f"Where '{name}' is computed in my own code was located.",
+                        f"A finding about what drives '{name}' was written to long memory."],
         )
         for name in _weighted_sample(frontiers, limit)
     ]

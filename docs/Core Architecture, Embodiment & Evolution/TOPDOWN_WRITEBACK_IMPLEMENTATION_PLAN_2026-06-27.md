@@ -1,6 +1,7 @@
 # Top-Down Write-Back — Implementation Plan (2026-06-27)
 
 **Status:** proposed → to build on the main code path (no feature flag).
+**Unblocks when:** built on the main path, or explicitly dropped.
 **Closes:** the "broadcast→substrate write-back is still missing" limitation
 (`docs/ARCHITECTURE.md` §Global workspace; `README.md` §Known limitations).
 **Supersedes the parking of:** Seam #4, but in its *decaying-only* form (see §1).

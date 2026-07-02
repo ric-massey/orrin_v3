@@ -2,6 +2,8 @@
 
 **Date:** 2026-06-25 (rev. 2 — corrected to the no-LLM-cognition principle)
 **Status:** Proposed — for review and work-splitting
+**Blocked on:** the AD1/D8 fork (LLM-free creativity) in
+`docs/Behavioral Evaluation & Runtime Diagnostics/IMPLEMENTATION_PLAN_AUDIT_REMEDIATION_2026-07-01.md`
 **Scope:** Where understanding/creation illegitimately come from an LLM; creative connection-making; the novelty drive; cross-drive tuning
 **Provenance:** Verified this pass against source (`reasoning_router.py`, `opinions_formation.py`, the 77 `generate_response` call sites, `analogy_engine.py`, `motivation/substrate.py`).
 

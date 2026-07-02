@@ -10,6 +10,10 @@ the signals below move, the fix is "shipped" but not "proven" — `looks better`
 not a result. A run that doesn't move these is a **failed fix, not a matter of
 interpretation**.
 
+> **2026-07-01:** the AR1–AR4 work in `docs/Behavioral Evaluation & Runtime
+> Diagnostics/IMPLEMENTATION_PLAN_AUDIT_REMEDIATION_2026-07-01.md` is what should
+> move signals 5/6/7/9 on the next run.
+
 ---
 
 ## Run 1 result — 2026-06-19 life: **FAILED** (re-test required)

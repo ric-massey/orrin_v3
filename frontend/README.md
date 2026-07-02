@@ -14,7 +14,7 @@ connection and a common bio/engineering dialect toggle:
 - **Settings** - providers, privacy, lifecycle, updates, and mind transfer
 
 See the top-level [README](../README.md#the-ui) and the
-[UI/security/desktop master plan](../docs/UI%2C%20Security%20%26%20Desktop%20Packaging/UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md)
+[UI/security/desktop master plan](../docs/UI%2C%20Security%20%26%20Desktop%20Packaging/archive/UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md)
 for the full system overview and current status.
 
 Requires Node.js 20.19+ or 22.12+.

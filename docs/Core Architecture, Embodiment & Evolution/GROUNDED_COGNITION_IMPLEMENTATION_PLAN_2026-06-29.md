@@ -1,6 +1,8 @@
 # Grounded Cognition — Implementation Plan (2026-06-29)
 
-Status: **build plan.** Implements `GROUNDED_COGNITION_DIRECTION_2026-06-29.md`. The
+Status: **Phases 1/2/3/4A done (commit `8351ea1`); Phase 2 built but dormant behind the
+fluency gate (voice unchanged until the native organ is ready); Phase 4B fork + Phase 5
+(hierarchical skills) open.** Implements `archive/GROUNDED_COGNITION_DIRECTION_2026-06-29.md`. The
 direction doc deliberately left the "how" open; this is the how. It is written against
 the *actual* codebase, which already contains more of the scaffolding than the direction
 doc implies — so much of this is **re-pointing and sealing existing machinery, not

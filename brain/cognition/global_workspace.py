@@ -215,6 +215,14 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     broadcast it into context, and extend the continuous stream. Returns the
     conscious moment, or None when nothing is salient. Fail-safe.
     """
+    # P7 ablation entry point: `workspace` off ⇒ no competition, no conscious
+    # winner, no broadcast — every caller already tolerates the None return.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("workspace"):
+            return None
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     try:
         # Top-down write-back: drain the salience-prior store one step before this
         # cycle's competition reads it (the store is designed to forget — decay is

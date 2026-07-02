@@ -67,6 +67,7 @@ _lock = threading.RLock()
 _seen_hashes: set[str] = set()
 _recent_by_kind: Dict[str, Deque[Tuple[str, str]]] = {}   # kind -> deque[(hash, normalized)]
 _reuse_counts: Dict[str, int] = {}                          # content_hash -> times referenced again
+_correction_counts: Dict[str, int] = {}                     # content_hash -> times CORRECTED (P2b, mirror of reuse)
 _goal_effects: Dict[str, List[str]] = {}                    # goal_id -> [content_hash, ...]
 _goal_significance: Dict[str, float] = {}                   # goal_id -> max effect significance
 _tracked_progress: Dict[str, int] = {}                      # goal_id -> max completed sections
@@ -207,6 +208,14 @@ def _structural_significance(
     if kind == "message_answered":
         # a delivered message to a real peer is structurally meaningful
         return 0.5
+    if kind == "tool_run_effect":
+        # P3 produce-and-check: a passing sandbox check is a *verified* computational
+        # result — it either ran and asserted true or it didn't. Stronger evidence
+        # than a note (which only has to be well-formed), so it carries code-tier
+        # significance. This is the first emitter of the kind (nothing produced it
+        # before P3), and it is what lets a verifiable "understand X" goal close on
+        # a check-pass instead of on "stopped feeling new".
+        return 0.6
     if kind == "tracked_work":
         meta = metadata or {}
         # Credit cumulative work only when it names a durable path and advances
@@ -452,6 +461,21 @@ def effects_for_goal(goal_id: str) -> List[str]:
         return list(_goal_effects.get(str(goal_id), []))
 
 
+def has_effect_kind(goal_id: str, kind: str) -> bool:
+    """True if a *novel* (credited) effect of exactly `kind` was recorded for this
+    goal. P3's check-pass proxy: `has_effect_kind(gid, "tool_run_effect")` lets
+    `is_sated` close a verifiable goal on a passed sandbox check specifically,
+    rather than on any effect (which `has_qualifying_effect` would accept)."""
+    if not goal_id or not kind:
+        return False
+    _hydrate()
+    with _lock:
+        for h in _goal_effects.get(str(goal_id), []):
+            if _hash_kind.get(h) == kind:
+                return True
+        return False
+
+
 def significance_for_goal(goal_id: str) -> float:
     """Max structural significance among a goal's recorded effects (P8). Feeds the
     completion metric so mean_significance reflects real produced work, not the
@@ -513,6 +537,46 @@ def mark_reused(content_hash: str) -> int:
     return n
 
 
+def mark_corrected(content_hash: str) -> int:
+    """The mirror of `mark_reused` (P2b): the person CORRECTED this produced artifact,
+    so it was wrong/unwanted — write its significance DOWN, and pull the owning goal's
+    recorded significance down with it. Re-use is the ungameable *positive* signal; a
+    human correction of produced work is the ungameable *negative* one. Returns the new
+    correction count for the hash."""
+    if not content_hash:
+        return 0
+    _hydrate()
+    gid = None
+    with _lock:
+        _correction_counts[content_hash] = _correction_counts.get(content_hash, 0) + 1
+        n = _correction_counts[content_hash]
+        gid = _hash_goal.get(content_hash)
+        if gid:
+            prior = _goal_significance.get(gid, 0.0)
+            # halve, then a floor penalty — a corrected artifact should not keep a
+            # high headline significance (it did not land).
+            _goal_significance[gid] = round(max(0.0, prior * 0.5 - 0.1), 4)
+    try:
+        _append_row(EffectRow(
+            ts=now_iso_z(), cycle=0, kind="correction",
+            content_hash=content_hash, novelty=0.0,
+            significance=0.0, goal_id=gid, char_len=0, dedupe=False,
+            metadata=None,
+        ))
+    except Exception as exc:
+        record_failure("effect_ledger.mark_corrected", exc)
+    return n
+
+
+def correction_count(content_hash: str) -> int:
+    """How many times this artifact has been corrected (0 if never). Read-only."""
+    if not content_hash:
+        return 0
+    _hydrate()
+    with _lock:
+        return int(_correction_counts.get(content_hash, 0))
+
+
 def note_artifact_use(name: str) -> Optional[int]:
     """Record that an Orrin-authored, named artifact (a tool / cognitive function)
     was invoked by name — the canonical tier-3 re-use event. Returns the new re-use
@@ -565,6 +629,7 @@ def reset_for_tests() -> None:
         _seen_hashes.clear()
         _recent_by_kind.clear()
         _reuse_counts.clear()
+        _correction_counts.clear()
         _goal_effects.clear()
         _goal_significance.clear()
         _tracked_progress.clear()

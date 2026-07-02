@@ -93,7 +93,11 @@ def lm_draft(context: Dict, plan: Dict, comprehension: Dict) -> str:
         if not lm_ready():
             return ""
         draft = native_lm.generate(_prompt(comprehension, plan), length=60, temperature=0.7)
-        parts = re.split(r"(?<=[.!?])\s+", (draft or "").strip())
+        # Strip any conditioning scaffold the (possibly prefix-trained) organ emits
+        # before it reaches perceivable speech (membrane defense).
+        from brain.utils.felt_lexicon import strip_scaffold
+        draft = strip_scaffold(draft or "")
+        parts = re.split(r"(?<=[.!?])\s+", draft.strip())
         draft = " ".join(parts[:2]).strip()
         if _acceptable(draft, comprehension):
             log_activity("[voice] native organ produced reply (gated + checked)")

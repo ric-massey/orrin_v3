@@ -250,6 +250,15 @@ def generate_response(
     Error messages are NEVER returned as content. Use llm_ok(result, caller) to
     safely extract content and track per-caller failure rates.
     """
+    # P7 ablation entry point: `llm_tools` off ⇒ every LLM call fails closed
+    # with the standard error shape every caller already handles.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("llm_tools"):
+            return {"status": "error", "content": None,
+                    "error": "llm_tools ablated for this run"}
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     load_dotenv()
 
     selected_cfg: Dict[str, Any] = {}
@@ -280,14 +289,16 @@ def generate_response(
                     selected_cfg[k] = nested[k]
             selected_cfg["model"] = nested.get("model") or nested.get("name") or "gpt-4.1"
 
+        # P6 (the veil): the system prompt is conscious-facing content, so the
+        # affect it reflects must be the PERCEIVED projection, not ground truth.
+        # felt_affect() is the one substrate→consciousness door — it returns the
+        # cycle's published projection when one exists and computes one (loading
+        # the raw file inside the veil) when called out-of-cycle. The old code
+        # loaded SIGNAL_STATE_FILE raw here, handing the prompt ground-truth keys.
         _emo_state: Dict[str, Any] = {}
         try:
-            from brain.paths import SIGNAL_STATE_FILE
-            # Was reading the legacy emotion_state.json (renamed to affect_state.json
-            # in the affect rename) → it silently read nothing.
-            _raw_emo = load_json(SIGNAL_STATE_FILE, default_type=dict)
-            _core = _raw_emo.get("core_signals")
-            _emo_state = {**_raw_emo, **_core} if isinstance(_core, dict) else _raw_emo
+            from brain.control_signals.introspection import felt_affect
+            _emo_state = felt_affect()
         except Exception as _e:
             record_failure("generate_response.generate_response", _e)
 

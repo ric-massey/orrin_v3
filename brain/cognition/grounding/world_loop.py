@@ -84,7 +84,7 @@ def extract_features(command: str) -> Set[str]:
         tree = ast.parse(command)
     except SyntaxError:
         return {"syntax_error"}
-    except Exception:
+    except Exception:  # intentional: any non-syntax parse failure classifies as unparseable
         return {"unparseable"}
 
     assigned = _assigned_names(tree)

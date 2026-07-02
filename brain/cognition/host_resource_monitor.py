@@ -84,6 +84,13 @@ def update_host_interoception(context: Dict) -> Dict:
     Writes context['host_body'] (telemetry) and submits gentle affect nudges. Felt
     stress is deviation-based and suppressed during host somatic infancy; battery is
     handled separately as a real external mortality scale."""
+    # P7 ablation entry point: `host_coupling` off ⇒ no body sense, no nudges.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("host_coupling"):
+            return {}
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     bands = _bands()
     v = read_host_resources()
 

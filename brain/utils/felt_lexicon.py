@@ -100,6 +100,44 @@ def is_internal_identifier(text: str) -> bool:
     return any(w in _SIGNAL_KEYS for w in _WORD_RE.findall(low))
 
 
+# ── Conditioning-scaffold sanitizer (membrane defense) ────────────────────────
+# The native LM is conditioned for rendering by a serialized thought-object prefix
+# (`<say {intent} | {felt} | {handles}>`, conditional_render.serialize_thought). A
+# checkpoint trained on those prefixes can regurgitate the scaffold in free speech
+# ("say express_state curiosity …"), and the prefix can survive a render. The
+# scaffold is implementation plumbing — it must never reach perceivable speech, so
+# every speech boundary strips it here.
+_SCAFFOLD_INTENTS = (
+    "express_state", "narrate_experience", "report_blocker", "share_finding",
+    "check_in", "ask_question", "reflect", "express", "speak",
+)
+_SCAFFOLD_BRACKET_RE = re.compile(r"<\s*say\b[^>]*>", re.IGNORECASE)
+_SCAFFOLD_BARE_RE = re.compile(
+    r"\bsay\s+(?:" + "|".join(_SCAFFOLD_INTENTS) + r")\b[^:.\n]{0,48}:?\s*",
+    re.IGNORECASE,
+)
+
+
+def has_scaffold(text: str) -> bool:
+    """True if `text` carries the conditioning-scaffold vocabulary (so a renderer
+    can reject a leaked render)."""
+    if not text:
+        return False
+    return bool(_SCAFFOLD_BRACKET_RE.search(text) or _SCAFFOLD_BARE_RE.search(text))
+
+
+def strip_scaffold(text: str) -> str:
+    """Remove any conditioning-scaffold prefix/artifacts from generated speech —
+    the bracketed `<say …>` form, a degraded bare `say {intent} … :` prefix, and
+    stray ` | ` separators. A clean string passes through unchanged."""
+    if not text:
+        return text
+    s = _SCAFFOLD_BRACKET_RE.sub(" ", str(text))
+    s = _SCAFFOLD_BARE_RE.sub(" ", s)
+    s = s.replace(" | ", " ")
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def felt_label(text: str) -> str:
     """Translate a signal key (or a '{signal} rises/falls' phrase) into felt language.
     A non-internal string passes through unchanged; an unrecognised internal

@@ -94,6 +94,16 @@ def _lock_path_for(path: Path) -> Path:
     return path.with_suffix(path.suffix + ".lock")
 
 
+def _persistence_enabled() -> bool:
+    """P7 ablation flag for durable writes (lazy import — no boot cycle).
+    Fail-safe: any error means persistence stays ON."""
+    try:
+        from brain.run_config import subsystem_enabled
+        return subsystem_enabled("persistence")
+    except Exception:  # intentional: fail-safe — persistence stays ON if the flag can't be read
+        return True
+
+
 def save_json(filepath: Union[str, Path], data: Any) -> None:
     """
     Atomically write JSON to disk.
@@ -108,6 +118,10 @@ def save_json(filepath: Union[str, Path], data: Any) -> None:
     exclusive, and load_json takes a shared lock on the same inode so reads never
     observe a half-written read-modify-write window.
     """
+    # P7 ablation entry point: `persistence` off ⇒ the run is amnesic — every
+    # durable write becomes a no-op (readers fall back to defaults/last state).
+    if not _persistence_enabled():
+        return
     path = Path(filepath)
     path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -268,6 +282,11 @@ def modify_json(
             data = default_type()
 
         yield data
+
+        # P7 ablation: `persistence` off ⇒ callers still mutate the in-memory
+        # dict (this cycle sees its own change), but nothing lands on disk.
+        if not _persistence_enabled():
+            return
 
         # Write while lock is still held
         with tempfile.NamedTemporaryFile(

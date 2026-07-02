@@ -84,6 +84,12 @@ def strip_internal(text: str) -> str:
     cleaned = _BRACKET_TAG_RE.sub(" ", str(text))
     # Drop any remaining standalone bracket groups (e.g. "[NORMAL]").
     cleaned = re.sub(r"\[[^\]]*\]", " ", cleaned)
+    # Strip any leaked native-LM conditioning scaffold ("say express_state …").
+    try:
+        from brain.utils.felt_lexicon import strip_scaffold
+        cleaned = strip_scaffold(cleaned)
+    except Exception:  # intentional: optional scrubber — cleaning continues without it
+        pass
     # Remove leaked paths.
     cleaned = _PATH_RE.sub(" ", cleaned)
     # Strip emoji/telemetry glyphs.

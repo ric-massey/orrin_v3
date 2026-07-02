@@ -36,6 +36,17 @@ Context = Dict[str, Any]
 
 def _boot_context() -> Context:
     """Load and reset context at startup."""
+    # P7 run stamping: resolve the ablation config ONCE at boot and announce the
+    # stamp in the activity trace, so every run's log opens with its config and
+    # the Life Capsule provenance (which re-reads the same module) agrees.
+    try:
+        from brain import run_config as _runcfg
+        _runcfg.reload()
+        _off = sorted(_runcfg.ablated())
+        log_activity(f"[boot] Run stamp: {_runcfg.run_stamp()}"
+                     + (f" — ablated: {', '.join(_off)}" if _off else " — all subsystems on"))
+    except Exception as e:
+        log_error(f"run_config stamp failed: {e}")
     _validate_boot_files()
     production_capability_status: Dict[str, Any] = {}
     for path in [RELATIONSHIPS_FILE, MODEL_CONFIG_FILE]:

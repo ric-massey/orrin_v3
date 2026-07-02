@@ -38,6 +38,31 @@ def test_no_engineering_identifier_survives_translation():
             assert key not in out, f"{key!r} leaked through felt_label as {out!r}"
 
 
+def test_strip_scaffold_removes_conditioning_prefix():
+    # The exact leak seen in the 2026-06-30 run: the serialized thought-object
+    # prefix surfaced in perceivable speech. It must be stripped, content kept.
+    from brain.utils.felt_lexicon import strip_scaffold, has_scaffold
+    leaked = "say express_state curiosity pen uestion: Are these genuine? Something present but hard to name."
+    out = strip_scaffold(leaked)
+    assert out.startswith("Are these genuine")
+    assert "express_state" not in out
+    assert not out.lower().startswith("say express_state")
+    # bracketed form too
+    assert strip_scaffold("<say narrate_experience | being stuck> I looked at my files.") \
+        == "I looked at my files."
+    # detection
+    assert has_scaffold(leaked)
+    assert not has_scaffold("Are these genuine feelings?")
+    # clean speech is untouched
+    assert strip_scaffold("I felt stuck, so I searched my files.") == "I felt stuck, so I searched my files."
+
+
+def test_strip_scaffold_does_not_eat_ordinary_say():
+    # "say" not followed by an intent token is ordinary language — keep it.
+    from brain.utils.felt_lexicon import strip_scaffold
+    assert strip_scaffold("I wanted to say hello to you.") == "I wanted to say hello to you."
+
+
 def test_causal_graph_tags_self_vs_world_edges(tmp_path, monkeypatch):
     import brain.symbolic.causal_graph as cg
     monkeypatch.setattr(cg, "EDGES_FILE", tmp_path / "edges.json", raising=False)

@@ -5,7 +5,6 @@
 # the min-sample gate) loses priority with no human action; a proposed revision
 # reaches applied/rejected within a bounded window; no domain is left with zero
 # usable rules purely by retirement.
-import importlib
 
 import pytest
 

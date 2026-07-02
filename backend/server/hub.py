@@ -122,6 +122,7 @@ class Hub:
             "workspace": None,     # Global Workspace winner (+candidates)
             "interoception": None, # live per-act cost model (Fix 7)
             "llm_cost": None,      # reasoning-cache health + symbolic-vs-LLM ratio
+            "lived": None,         # P7/A1 curated lived surface (attending-to, …)
             "updated_at": time.time(),
         }
         # Sliding affect/metric history replayed to new clients so the Brain

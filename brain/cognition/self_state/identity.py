@@ -116,16 +116,15 @@ def build_system_prompt(self_model=None, affect_state: Optional[Dict[str, Any]] 
     current_time = datetime.now(timezone.utc).strftime("%A, %B %d at %I:%M %p")
     time_since = get_time_since_last_active()
 
-    # Load affect state from file if not passed in. (Was reading the legacy
-    # emotion_state.json — renamed to affect_state.json in the affect rename, so
-    # the old path silently failed and affect_state stayed empty.)
+    # P6 (the veil): when no affect is passed in, read through felt_affect —
+    # the ONE substrate→consciousness door. The old fallback loaded
+    # SIGNAL_STATE_FILE raw, so a boot/out-of-cycle prompt was built from
+    # ground-truth keys with no clarity noise — a leak straight past the
+    # perceived projection this function is careful to prefer below.
     if affect_state is None:
         try:
-            from brain.paths import SIGNAL_STATE_FILE
-            from brain.utils.json_utils import load_json as _lj
-            _raw = _lj(SIGNAL_STATE_FILE, default_type=dict) or {}
-            core = _raw.get("core_signals")
-            affect_state = {**_raw, **core} if isinstance(core, dict) else _raw
+            from brain.control_signals.introspection import felt_affect
+            affect_state = felt_affect()
         except Exception:
             affect_state = {}
 

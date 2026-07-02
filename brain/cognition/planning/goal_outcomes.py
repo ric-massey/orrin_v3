@@ -17,6 +17,8 @@ from brain.cog_memory.working_memory import update_working_memory
 from brain.control_signals.reward_signals.reward_signals import release_reward_signal
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
+from brain.utils.env import env_bool
+from brain.agency.effect_ledger import has_qualifying_effect
 from brain.paths import COMPLETED_GOALS_FILE
 from brain.cognition.planning.goal_store import load_goals, save_goals
 from brain.cognition.planning.goal_plan_ops import TERMINAL_STEP_STATUSES
@@ -26,6 +28,16 @@ from brain.cognition.planning.goal_criteria import (
 from brain.cognition.planning.goal_belief import _revise_weak_area_beliefs
 
 _log = get_logger(__name__)
+
+
+def _require_effect_for_closure() -> bool:
+    """P1 flag (B2/C2). ON ⇒ a satiety close of a non-artifact goal requires a
+    durable, novel effect on the ledger — killing the "feels-familiar" closure path
+    that filed hollow 7ms DONE flips with empty artifact folders. Default ON; set
+    ORRIN_REQUIRE_EFFECT_FOR_CLOSURE=0 to restore the legacy satiety-only close for
+    A/B ablation. Ships paired with the maintenance-sweep watchdog so a goal that
+    can't produce an effect disengages (Wrosch) rather than becoming immortal."""
+    return env_bool("ORRIN_REQUIRE_EFFECT_FOR_CLOSURE", True)
 
 
 def achievement_significance(goal: Optional[Dict[str, Any]]) -> float:
@@ -76,6 +88,18 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # reward and re-archived a duplicate.
     if goal.get("status") == "completed":
         return
+    # P4 — a DIRECTIONAL long-term driver (directional / never_complete) is
+    # committable-but-non-terminal: it spawns and sequences sub-tasks forever and must
+    # never itself file DONE, no matter how it's reached (satiety sweep, milestone, or a
+    # direct call). Its sub-tasks close on P1+P3 rules; the parent stays open by design.
+    if bool(goal.get("directional") or goal.get("never_complete")) or \
+            str(goal.get("tier") or goal.get("kind") or "").lower() == "long_term":
+        log_activity(
+            f"[goals] Not completing directional driver "
+            f"{(goal.get('title') or goal.get('name') or '?')!r} — it stays open by "
+            f"design (spawns sub-tasks; never terminal)."
+        )
+        return
     # T2.2 — satiety close. For a DIRECTIONAL growth/core goal, the underlying need
     # being SATED (novelty exhausted / info-gap closed) IS the objective met — it is a
     # legitimate close reason orthogonal to milestone completion, which the run blocked
@@ -84,8 +108,40 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # artifact/production goal must still produce its artifact (no hollow production),
     # and the +1.0 production reward still keys off real grounding below (satiety pays
     # no production reward, so it can't become a cheap reward farm).
-    _satiety_ok = bool(satiety_close) and not _is_artifact_gated(goal)
+    # P1 (B2/C2) — the satiety bypass now also requires a durable, novel EFFECT on the
+    # ledger for a non-artifact goal. A goal that only ever read (recorded nothing)
+    # can no longer satiety-close: "the drive quenched" is not "I made something."
+    # (Artifact goals were already gated via _is_artifact_gated + the _grounded reward
+    # gate below; this closes the non-artifact "understand X" gap.) The old behavior is
+    # recoverable via ORRIN_REQUIRE_EFFECT_FOR_CLOSURE for A/B ablation.
+    gid = str(goal.get("id") or goal.get("title") or "")
+    _has_effect = bool(gid) and has_qualifying_effect(gid, goal)
+    _satiety_ok = (bool(satiety_close) and not _is_artifact_gated(goal)
+                   and (_has_effect or not _require_effect_for_closure()))
+    # Give just-met milestones a chance to register before the satiety refusal below,
+    # so a satiety close that coincides with a milestone finally being met isn't
+    # wrongly refused for lack of an effect (milestone completion is its own path).
+    if bool(satiety_close) and context:
+        try:
+            from brain.cognition.planning.env_snapshot import apply_milestone_updates
+            apply_milestone_updates(context)
+        except Exception as _e:
+            record_failure("goals.mark_goal_completed.msrefresh", _e)
     _ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
+    _all_ms_met = bool(_ms) and all(m.get("met") for m in _ms)
+    # Sated-but-empty ⇒ refuse the close outright, even for a MILESTONE-LESS goal (the
+    # old milestone gate below only fired when milestones existed, so a milestone-less
+    # growth goal used to file a hollow DONE the instant it felt familiar). It stays
+    # open to be re-aimed (Phase 3) or disengaged by the maintenance watchdog. Genuine
+    # milestone completion is still an independent, un-gated close path.
+    if (bool(satiety_close) and not _is_artifact_gated(goal)
+            and _require_effect_for_closure() and not _has_effect and not _all_ms_met):
+        log_activity(
+            f"[goals] Refusing satiety close of "
+            f"{(goal.get('title') or goal.get('name') or '?')!r} — drive sated but no "
+            f"qualifying effect recorded; keeping open to re-aim, not marking complete."
+        )
+        return
     if _ms and not all(m.get("met") for m in _ms) and not _satiety_ok:
         try:
             from brain.cognition.planning.env_snapshot import apply_milestone_updates
@@ -325,7 +381,18 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     """
     Mark a goal as failed, write it to long-term memory, and inflict emotional penalty_signal.
     This should feel like a genuine setback — impasse_signal and reward_negative, not just a log line.
+
+    IDEMPOTENT: re-marking an already-failed goal is a no-op. Without this guard a
+    goal routed through more than one failure path (drain queue + closure + a later
+    walk) re-counted into `goals_failed` AND re-inflicted the full emotional penalty
+    each time — the 2026-06-30 run logged ~25.5k "failures" over 7.9k cycles, and
+    the repeated penalty quietly pumped the negative signals. A terminal goal has
+    already failed once; failing it again is not a new setback.
     """
+    if not isinstance(goal, dict):
+        return
+    if goal.get("status") == "failed":
+        return
     goal["status"] = "failed"
     now = now_iso_z()
     goal["failed_timestamp"] = now

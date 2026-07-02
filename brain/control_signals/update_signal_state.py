@@ -474,7 +474,20 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     # feelings are phasic: a trigger makes a peak that then subsides (opponent-
     # process, Solomon & Corbit 1974; allostasis), instead of a stuck maxed state.
     # Negatives clear a touch faster so distress doesn't linger between spikes.
+    # B3 / P5 — the 2026-07-01 run confirmed drives PIN at this flat rate (pump
+    # beats decay; motivation/curiosity/confidence sat ~0.84 all life). Fix is a
+    # time-at-ceiling accelerator on THIS existing pull (homeostasis.pin_multiplier),
+    # not a second decay law: a fresh spike decays at the base rate; a signal that
+    # has sat pinned grows a stronger counter-force until it actually relaxes
+    # (opponent-process b-process growth, Solomon & Corbit 1974). The whole
+    # per-call pull is behind signal_decay_enabled() so the ablation panel can
+    # reproduce "hot and flat" directly.
     try:
+        from brain.control_signals.homeostasis import (
+            signal_decay_enabled as _decay_on,
+            update_pin_streaks as _update_pins,
+            pin_multiplier as _pin_mult,
+        )
         from brain.control_signals.setpoints import setpoint as _setpoint
         _NEG_SIGNALS = {
             "impasse_signal", "conflict_signal", "threat_level", "reward_negative",
@@ -489,23 +502,29 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
 
         def _decay_rate(k: str) -> float:
             if k in _PUMPED_DRIVES:
-                return 0.05
-            return 0.025 if k in _NEG_SIGNALS else 0.02
+                base = 0.05
+            else:
+                base = 0.025 if k in _NEG_SIGNALS else 0.02
+            # Time-at-ceiling accelerator: chronic pinning strengthens the pull
+            # (up to PIN_ACCEL_MAX×); capped so one call can never overshoot.
+            return min(0.25, base * _pin_mult(state, k))
 
-        for _k in list(core.keys()):
-            _cv = core.get(_k)
-            if not isinstance(_cv, (int, float)):
-                continue
-            _cv = float(_cv)
-            _base = _setpoint(_k)
-            core[_k] = max(0.0, min(1.0, _cv + (_base - _cv) * _decay_rate(_k)))
-        # Mirror the decay onto the top-level reward fields that also live there
-        # (those not covered by the dup-key re-sync below).
-        for _k in ("motivation", "exploration_drive", "confidence", "uncertainty", "connection"):
-            _val = state.get(_k)
-            if isinstance(_val, (int, float)):
+        if _decay_on():
+            _update_pins(state, core)   # advance streaks ONCE, before the pull
+            for _k in list(core.keys()):
+                _cv = core.get(_k)
+                if not isinstance(_cv, (int, float)):
+                    continue
+                _cv = float(_cv)
                 _base = _setpoint(_k)
-                state[_k] = max(0.0, min(1.0, float(_val) + (_base - float(_val)) * _decay_rate(_k)))
+                core[_k] = max(0.0, min(1.0, _cv + (_base - _cv) * _decay_rate(_k)))
+            # Mirror the decay onto the top-level reward fields that also live there
+            # (those not covered by the dup-key re-sync below).
+            for _k in ("motivation", "exploration_drive", "confidence", "uncertainty", "connection"):
+                _val = state.get(_k)
+                if isinstance(_val, (int, float)):
+                    _base = _setpoint(_k)
+                    state[_k] = max(0.0, min(1.0, float(_val) + (_base - float(_val)) * _decay_rate(_k)))
     except Exception as _e:
         record_failure("update_signal_state.update_signal_state.7", _e)
 
@@ -527,7 +546,26 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     except Exception:
         _resource_deficit_baseline = 0.15
     resource_deficit = float(state.get("resource_deficit", _resource_deficit_baseline) or _resource_deficit_baseline)
-    resource_deficit = min(1.0, resource_deficit + 0.002)   # gentle accumulation
+    # ALLOSTATIC FATIGUE (2026-06-30): accumulation scales with how hard the cycle
+    # actually WORKED, so energy BREATHES instead of pinning near 100%. The old flat
+    # +0.002 was ~12x weaker than the recovery, so fatigue could never climb. Now
+    # heavy cognition tires and idle/rest restores: activity ∈ [0,1] from this cycle's
+    # measured cognitive cost (cost_prediction), falling back to the energy_mode, then
+    # a mid default. Tuned so the resting equilibrium is ~0.25 (energy ~75%) and a
+    # sustained-heavy equilibrium is ~0.65 (energy ~35%) at the default τ=0.15 — a
+    # human-like band rather than a flatline. Recovery toward the (idle-deepening)
+    # allostatic τ is unchanged, so rest still pulls it back down.
+    _activity = 0.5
+    try:
+        _cp = context.get("_cost_prediction") if isinstance(context, dict) else None
+        if isinstance(_cp, dict) and _cp.get("actual_ms"):
+            _activity = max(0.0, min(1.0, float(_cp["actual_ms"]) / 800.0))   # ~800ms = a heavy cycle
+        else:
+            _mode = context.get("energy_mode") if isinstance(context, dict) else None
+            _activity = {"rest": 0.2, "reactive": 0.5, "active": 0.75, "neutral": 0.5}.get(str(_mode), 0.5)
+    except Exception:
+        _activity = 0.5
+    resource_deficit = min(1.0, resource_deficit + 0.0025 + 0.010 * _activity)
     _fat_pull = _resource_deficit_baseline - resource_deficit
     _fat_decay_rate = 0.025 if resource_deficit < 0.75 else 0.06  # accelerated recovery from exhaustion
     resource_deficit = max(0.0, min(1.0, resource_deficit + _fat_pull * _fat_decay_rate))

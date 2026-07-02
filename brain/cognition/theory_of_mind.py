@@ -98,12 +98,36 @@ def _update_belief_model(
 ) -> Dict[str, Any]:
     belief = dict(belief)
 
+    # P2b — a correction of PRODUCED WORK (an artifact/effect) is stronger evidence of
+    # misalignment than any conversational cue: the person is telling us the output was
+    # wrong, not just reacting in chat. It is weighted ~2× a conversational correction
+    # (consecutive_misalignments += 2) and shifts a persistent `preference_alignment`
+    # signal AWAY from the corrected approach, so the next attempt can consult it. This
+    # is the produced-work channel the conversational is_correction path lacked. Handled
+    # first so it dominates any co-occurring conversational cue.
+    if sig.get("is_artifact_correction"):
+        belief["feels_understood"] = False
+        belief["satisfied_last"]   = False
+        belief["in_alignment"]     = False
+        belief["consecutive_misalignments"] = belief.get("consecutive_misalignments", 0) + 2
+        belief["belief_discordance"] = True
+        belief["artifact_corrections"] = belief.get("artifact_corrections", 0) + 1
+        if sig.get("correction_note"):
+            belief["last_artifact_correction"] = str(sig["correction_note"])[:280]
+        belief["preference_alignment"] = round(
+            max(-1.0, float(belief.get("preference_alignment", 0.0)) - 0.4), 3)
+        return belief
+
     if sig["is_affirming"] and not sig["has_neg_words"]:
         belief["feels_understood"] = True
         belief["satisfied_last"]   = True
         belief["in_alignment"]     = True
         belief["consecutive_misalignments"] = 0
         belief["belief_discordance"] = False
+        # an affirmation of produced work nudges predicted preference back toward
+        # alignment (bounded), the positive mirror of the correction shift above.
+        belief["preference_alignment"] = round(
+            min(1.0, float(belief.get("preference_alignment", 0.0)) + 0.2), 3)
 
     elif sig["is_frustrated"] or (sig["is_correction"] and sig["has_neg_words"]):
         belief["feels_understood"] = False
@@ -287,6 +311,47 @@ def _save_tom_state(person_id: str, state: Dict[str, Any]) -> None:
         save_json(RELATIONSHIPS_FILE, rels)
     except Exception as _e:
         record_failure("theory_of_mind._save_tom_state", _e)
+
+
+def register_artifact_correction(
+    person_id: str,
+    note: str = "",
+    *,
+    goal_id: str = "",
+    content_hash: str = "",
+) -> Dict[str, Any]:
+    """P2b — record that the person CORRECTED a piece of produced work, and update the
+    ToM belief model with higher weight than a conversational correction. Returns the
+    updated belief_model (with the shifted `preference_alignment`). Persists into the
+    person's `tom_state.belief_model` in relationships.json. Fail-safe: returns {} on
+    any error. `feedback_log.log_correction` is the usual caller (it also writes the
+    typed feedback event and the effect-ledger significance write-down)."""
+    if not person_id:
+        return {}
+    try:
+        state = _load_tom_state(person_id)
+        belief = state.get("belief_model") or {
+            "feels_understood": None, "in_alignment": None, "satisfied_last": None,
+            "consecutive_misalignments": 0, "belief_discordance": False,
+        }
+        sig = {
+            "is_artifact_correction": True,
+            "correction_note": note or "",
+            # conversational flags unused by the artifact branch, present for safety
+            "is_affirming": False, "has_neg_words": False, "is_frustrated": False,
+            "is_correction": True, "is_question": False, "is_personal": False,
+        }
+        belief = _update_belief_model(belief, sig, "", "")
+        if goal_id:
+            belief["last_corrected_goal"] = str(goal_id)
+        if content_hash:
+            belief["last_corrected_hash"] = str(content_hash)
+        state["belief_model"] = belief
+        _save_tom_state(person_id, state)
+        return belief
+    except Exception as exc:
+        record_failure("theory_of_mind.register_artifact_correction", exc)
+        return {}
 
 
 def _person_model_for(person_id: str) -> Dict[str, Any]:

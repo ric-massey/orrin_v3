@@ -82,6 +82,22 @@ def run_maintenance_tier(context: Context) -> Context:
             except Exception as _e:
                 record_failure("ORRIN_loop.run_cognitive_loop.32", _e)
 
+        # P4 — Long-term goal driver (% 50, offset 25): give the directional long-term
+        # goal the wheel. Promote the single driver, absorb finished sub-task gaps into
+        # its frontier (the cross-session thread), and spawn the next concrete sub-task
+        # aimed at that frontier. Low cadence (offset from retirement) — no per-cycle cost.
+        if _mcycle > 0 and _mcycle % 50 == 25:
+            try:
+                from brain.cognition.planning.long_term_driver import run_long_term_driver
+                _lt = run_long_term_driver(context)
+                if _lt.get("spawned"):
+                    log_activity(
+                        f"[maintenance] Long-term driver {_lt.get('driver')!r} advanced "
+                        f"its thread → frontier {_lt.get('frontier')!r}."
+                    )
+            except Exception as _e:
+                record_failure("ORRIN_loop.run_cognitive_loop.longterm", _e)
+
         # B2 — Goal fading (% 60): decay unattended goals toward dormant.
         # fade_goals is self-contained and records abandonment closures.
         if _mcycle > 0 and _mcycle % 60 == 0:
@@ -111,6 +127,9 @@ def run_maintenance_tier(context: Context) -> Context:
                 from brain.cognition.planning.goal_satiety import (
                     is_sated, _is_filesystem_exploration,
                 )
+                from brain.cognition.planning.goal_closure import _degrade_or_disengage
+                from brain.cognition.planning.goal_criteria import PRODUCTION_DEADLINE_CYCLES
+                from brain.agency.effect_ledger import has_qualifying_effect
                 from brain.cognition.planning.outcome_metrics import (
                     record_satiety_closure, record_maintenance_execution,
                 )
@@ -154,8 +173,12 @@ def run_maintenance_tier(context: Context) -> Context:
                     _checked += 1
                     _sated, _reason = is_sated(_g, context)
                     if not _sated:
+                        _g.pop("_sated_since_cycle", None)  # drive un-quenched → reset watchdog clock
                         continue
-                    mark_goal_completed(_g, context=context)
+                    # Route the sweep through the SAME satiety gate as the pursuit path
+                    # (satiety_close=True), so P1's effect requirement applies to both
+                    # close sites and they can't diverge on what "sated" allows.
+                    mark_goal_completed(_g, context=context, satiety_close=True)
                     if _g.get("status") == "completed":
                         goal_arbiter.apply(
                             (lambda _gg: (lambda _t: merge_updated_goal_into_tree(_t, _gg)))(_g),
@@ -166,6 +189,32 @@ def run_maintenance_tier(context: Context) -> Context:
                             f"[maintenance] Satiety-closed "
                             f"'{(_g.get('title') or _g.get('name') or '?')[:50]}' ({_reason})."
                         )
+                    else:
+                        # P1 watchdog: the satiety close was REFUSED (sated but no
+                        # qualifying effect on the ledger). Don't leave it immortal —
+                        # stamp when the drive first quenched, and once it stays
+                        # sated-but-empty past PRODUCTION_DEADLINE_CYCLES, disengage it
+                        # (Wrosch: degrade to a simpler achievable step, else abandon).
+                        _gid = str(_g.get("id") or "")
+                        if _gid and has_qualifying_effect(_gid, _g):
+                            continue  # it did produce something — not a hollow goal
+                        _stamp = _g.get("_sated_since_cycle")
+                        _wtitle = str(_g.get("title") or _g.get("name") or "?")[:50]
+                        if _stamp is None:
+                            _g["_sated_since_cycle"] = _mcycle
+                            goal_arbiter.apply(
+                                (lambda _gg: (lambda _t: merge_updated_goal_into_tree(_t, _gg)))(_g),
+                                source="maintenance.satiety_watchdog_stamp",
+                            )
+                        elif (_mcycle - int(_stamp)) > PRODUCTION_DEADLINE_CYCLES:
+                            _degrade_or_disengage(
+                                _g, context, _wtitle, "sated but produced nothing"
+                            )
+                            log_activity(
+                                f"[maintenance] Watchdog disengaged/degraded "
+                                f"'{_wtitle}' — sated for >{PRODUCTION_DEADLINE_CYCLES} "
+                                f"cycles with no produced effect."
+                            )
                 if _sated_closed:
                     record_satiety_closure(_sated_closed)
                 record_maintenance_execution()

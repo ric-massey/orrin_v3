@@ -68,6 +68,27 @@ EXEMPT: dict[str, str] = {
     # a genuine decomposition candidate (split the harness from the specs), out of
     # scope for the exception-handling pass.
     "brain/benchmarks/__init__.py": "608 lines; harness/specs split candidate",
+    # 640 lines — was 575 (under the limit) before the grounding-plan P2b/P3 work
+    # added cohesive ledger ops: tool_run_effect significance + has_effect_kind (P3
+    # check-pass gate) and mark_corrected/correction_count (P2b, the write-down mirror
+    # of mark_reused). These belong with the ledger; a future split of the
+    # significance/novelty scoring helpers from the persistence core brings it under.
+    "brain/agency/effect_ledger.py": "640 lines; scoring/persistence split candidate (P2b/P3)",
+    # 679 lines — was 648 (already over) before P2a added the reward-weighted diet
+    # (block weighting + reward channel). The training/consolidation passes belong
+    # together; a future split of the corpus-assembly helpers (sources → weighted
+    # blocks) from the bout runner brings it under.
+    "brain/cognition/language/acquisition.py": "679 lines; corpus-assembly split candidate (P2a)",
+    # 638 lines — was exactly 600 at the ratchet baseline; the grounded-cognition
+    # appraisal work plus P5's time-at-ceiling accelerator on the per-call
+    # restoring pull crossed it. The decay/ceiling/velocity passes are one
+    # pipeline; the standing decomposition candidate is extracting the per-call
+    # restoring-force block into signal_dynamics (where its siblings live).
+    "brain/control_signals/update_signal_state.py": "638 lines; restoring-force extraction candidate (P5)",
+    # 619 lines — was 585 before the grounding-plan symbolic goal generators grew
+    # (frontier/introspective reframe). Generator-per-drive is cohesive; a future
+    # split into a package (one module per generator family) brings it under.
+    "brain/cognition/intrinsic_generators.py": "619 lines; generator-family split candidate",
 }
 
 

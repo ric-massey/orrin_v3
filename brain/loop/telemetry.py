@@ -273,6 +273,28 @@ def _emit_goals(context: "Context") -> None:
         return
 
 
+_LAST_LIVED_PUSH = 0.0
+_LIVED_PUSH_INTERVAL = 2.0   # seconds; the lived view changes at cycle pace
+def _emit_lived(context: "Context") -> None:
+    """P7 / A1: ship the curated lived surface (attending-to / pressured-by /
+    what-changed / avoiding / trying-to-resolve) to the UI. Fail-safe."""
+    tb = _bridge()
+    if tb is None:
+        return
+    try:
+        import time as _t
+        global _LAST_LIVED_PUSH
+        now = _t.time()
+        if now - _LAST_LIVED_PUSH < _LIVED_PUSH_INTERVAL:
+            return
+        _LAST_LIVED_PUSH = now
+        from brain.loop.lived_surface import assemble_lived_surface
+        tb.update(lived=assemble_lived_surface(context))
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_lived", exc)
+        return
+
+
 _LAST_LLM_COST_PUSH = 0.0
 _LLM_COST_PUSH_INTERVAL = 3.0   # seconds; cache/gate stats drift slowly
 def _emit_llm_cost(context: "Context") -> None:

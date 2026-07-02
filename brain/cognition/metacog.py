@@ -48,6 +48,15 @@ _log = get_logger(__name__)
 
 def metacog_init(context: Dict[str, Any]) -> None:
     """Call at the top of each cognitive cycle to reset the trace buffer."""
+    # P7 ablation entry point: `metacognition` off ⇒ no trace buffer is created,
+    # so metacog_note/metacog_monitor become no-ops (they tolerate the absence).
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("metacognition"):
+            context.pop("metacog", None)
+            return
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     context["metacog"] = {
         "cycle_start": datetime.now(timezone.utc).isoformat(),
         "entries": [],
@@ -193,6 +202,13 @@ def metacog_monitor(context: Dict[str, Any], exec_summary: Optional[Dict[str, An
     breakthrough candidates to the Global Workspace on stuck / objective-unmet /
     milestone / idle, with a dumb watchdog (I12) for stalls. Fail-safe; mutates no
     goal/reward state."""
+    # P7 ablation entry point: `metacognition` off ⇒ the watcher never offers.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("metacognition"):
+            return
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     try:
         from brain.cognition.global_workspace import offer_to_workspace
     except ImportError:  # intentional: no workspace → the monitor can't offer; skip

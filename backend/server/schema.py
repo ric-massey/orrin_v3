@@ -163,6 +163,7 @@ class TelemetryFrame(BaseModel):
     workspace: Optional[Dict[str, Any]] = None    # Global Workspace winner (free-form)
     interoception: Optional[Dict[str, Any]] = None  # live per-act cost model (free-form)
     llm_cost: Optional[LlmCost] = None            # reasoning-cache health + symbolic-vs-LLM ratio
+    lived: Optional[Dict[str, Any]] = None        # P7/A1 curated lived surface (free-form)
 
 
 # Every wire model, in dependency order — the single list the codegen walks and
@@ -196,5 +197,5 @@ def validate_frame(frame: Dict[str, Any]) -> List[str]:
 # explicitly in hub.merge and are NOT in this tuple.
 LATEST_WINS_KEYS = (
     "narrative", "cycle", "active_fn", "active_lane", "fn_recent", "catalog",
-    "executive", "monitor", "workspace", "interoception", "llm_cost",
+    "executive", "monitor", "workspace", "interoception", "llm_cost", "lived",
 )

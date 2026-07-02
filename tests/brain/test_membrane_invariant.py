@@ -107,3 +107,85 @@ def test_stagnation_escalation_content_is_felt():
     assert not _has_engineering_identifier(sig.get("content", "")), sig.get("content")
     # The machine classification is preserved structurally, in tags.
     assert "stagnation_signal" in (sig.get("tags") or [])
+
+
+# --- P6: the standing veil guard (substrate → consciousness one-way) ----------
+#
+# Audit record (2026-07-01, closes plan P6 change 1): the consciousness-side
+# sweep found two residual raw reads and both are now routed through
+# introspection.felt_affect (the one door): identity.build_system_prompt's
+# boot-time fallback and generate_response's system-prompt affect load — both
+# previously loaded SIGNAL_STATE_FILE raw. Modules examined and left OUT of the
+# guard set because they are SUBSTRATE-side (they may hold raw keys by design):
+#   - control_signals/introspection.py — the projection producer (the veil itself)
+#   - cognition/global_workspace.py — the substrate→conscious chokepoint; its
+#     OUTPUT is felt (tested above), its input is necessarily raw
+#   - self_state/latent_identity.py — derives the LATENT identity vector
+#     (unconscious machinery; nothing it writes is perceivable content)
+#   - self_state/values_check.py — emotional bias on a symbolic refusal
+#     threshold (unconscious modulation, like the arbiter)
+#   - self_state/fragmentation.py — MUTATES affect_state (substrate mechanism)
+
+# Consciousness-tagged modules: code whose output is conscious-facing content
+# (system prompts, spoken/rendered language, speakability). These must reach
+# affect ONLY via the perceived projection (felt_affect / perceived_affect_state)
+# — never the raw state file, never context["affect_state"].
+_CONSCIOUSNESS_MODULES = [
+    "brain/cognition/self_state/identity.py",
+    "brain/cognition/self_state/intention_endorsement.py",
+    "brain/cognition/language/voice.py",
+    "brain/cognition/language/conditional_render.py",
+    "brain/think/speech_builder.py",
+    "brain/behavior/speakability.py",
+    "brain/utils/generate_response.py",
+]
+
+_RAW_ACCESS = re.compile(
+    r"SIGNAL_STATE_FILE"                 # direct raw-state file access
+    r"|\.get\(\s*[\"']affect_state[\"']" # raw substrate view off a context dict
+    r"|\[\s*[\"']affect_state[\"']\s*\]"
+)
+
+
+def _code_lines(path):
+    """Source lines with comments stripped (a mention in prose is not a leak)."""
+    import pathlib
+    text = pathlib.Path(path).read_text(encoding="utf-8")
+    return [line.split("#", 1)[0] for line in text.splitlines()]
+
+
+def test_consciousness_modules_never_read_raw_substrate():
+    """Standing guard: a consciousness-tagged module acquiring a raw affect
+    access path (state file or context['affect_state']) fails here, at the
+    commit that introduces it. Route it through introspection.felt_affect."""
+    import pathlib
+    root = pathlib.Path(__file__).resolve().parents[2]
+    leaks = []
+    for rel in _CONSCIOUSNESS_MODULES:
+        path = root / rel
+        assert path.exists(), f"guard set names a missing module: {rel}"
+        for i, line in enumerate(_code_lines(path), start=1):
+            if _RAW_ACCESS.search(line):
+                leaks.append(f"{rel}:{i}: {line.strip()}")
+    assert not leaks, (
+        "raw substrate access from consciousness-side code (use "
+        "introspection.felt_affect — the one door):\n" + "\n".join(leaks))
+
+
+def test_felt_affect_returns_projection_not_ground_truth():
+    """The one door returns the cycle's published projection when present, and
+    never hands back the raw affect_state object."""
+    from brain.control_signals.introspection import felt_affect
+
+    published = {"core_signals": {"impasse_signal": 0.4}}
+    raw = {"core_signals": {"impasse_signal": 0.92}}
+    ctx = {"perceived_affect_state": published, "affect_state": raw}
+    assert felt_affect(ctx) is published
+
+    # No published projection → computed on the spot, and it is NOT the raw dict.
+    ctx2 = {"affect_state": raw}
+    out = felt_affect(ctx2)
+    assert out is not raw
+    assert isinstance(out, dict)
+    # ...and the computed projection is cached for the rest of the cycle.
+    assert ctx2.get("perceived_affect_state") is out

@@ -84,7 +84,12 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     # Run emotional state update AFTER context is loaded so _ne_proxy,
     # _stability_signal_proxy, and all neuromodulator values are written directly
     # into context["affect_state"] and available to every system this cycle.
-    update_signal_state(context)
+    # P7 ablation entry point: with `signals` ablated the whole affect/control
+    # update is skipped — downstream readers see whatever static state loaded
+    # from disk (flattened priorities), which is the predicted failure mode.
+    from brain.run_config import subsystem_enabled as _sub_on
+    if _sub_on("signals"):
+        update_signal_state(context)
 
     # Mirror the freshly-updated affect to the Face & Brain UI (fail-safe).
     _emit_signal(context)
@@ -216,6 +221,11 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
         record_failure("ORRIN_loop.rest_mode_signal", _rse)
 
     # Pull committed goals (plural) directly from the single GoalsAPI
+    # P7 ablation entry point: `goals` off ⇒ nothing commits, pursuit has no
+    # spine, behavior drifts — the predicted failure mode the panel demonstrates.
+    if _goals_api and not _sub_on("goals"):
+        context["committed_goals"] = []
+        _goals_api = None
     if _goals_api:
         import brain.goal_io as goal_io
         try:

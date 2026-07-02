@@ -24,6 +24,7 @@ from brain.cognition.intrinsic_helpers import (
     _active_goal_titles, _RECENTLY_COMPLETED, _COOLDOWN_S,
 )
 from brain.cognition.intrinsic_objectives import objective_pressure, _serves_aspiration
+from brain.utils.felt_lexicon import felt_label
 
 _log = get_logger(__name__)
 
@@ -157,6 +158,31 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     from the structure of what he's learned, not from an affect bucket. (Newell &
     Simon means-ends: the gap itself is the motivation.)
     """
+    # Introspection-skew gate (2026-06-30 run): this generator only ever serves
+    # "Understand my own mind", and its goals complete CHEAPLY (searching his own
+    # files), so left ungated it dominated the contribution ledger (93% of credit in
+    # the 7.9k-cycle run) and starved the outward aspirations (make / connect, at
+    # 0%). When self-understanding is already well-fed relative to the others, stop
+    # flooding the pool with more introspective candidates. Self-balancing: as this
+    # aspiration's pressure rises from neglect, the gate reopens.
+    # SOFTENED 2026-06-30: the first version went fully silent (`return []`) when
+    # self-understanding was well-fed, which over-corrected — it flipped the 7.9k-run's
+    # 93%-introspection skew to 100%-"make things" / 0%-everything-else. The gate now
+    # only ever EASES OFF (halves its output), never silences: introspection keeps a
+    # minimum share, and the pre-existing pick-time fairness bias (_varied_symbolic_goal)
+    # does the balancing. Self-balancing as pressure shifts.
+    try:
+        pressure = objective_pressure()
+        self_asp = _serves_aspiration("self_exploration")
+        if pressure and self_asp in pressure:
+            mine = float(pressure.get(self_asp, 0.0))
+            others = [v for k, v in pressure.items() if k != self_asp]
+            mean_others = (sum(others) / len(others)) if others else 0.0
+            if mine < mean_others - 0.10:        # clearly better-fed than the others → ease off
+                limit = 1
+    except Exception as exc:
+        record_failure("intrinsic_goals._causal_frontier_goals.pressure_gate", exc)
+
     try:
         from brain.symbolic.causal_graph import get_all_edges
         edges = get_all_edges()
@@ -199,20 +225,28 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     # his own code via the "my own code" intent family), which is both plannable and
     # the tool that genuinely serves an internal causal gap. Drive is self_exploration
     # so the gap ladders under "Understand my own mind", not "Understand the world".
-    return [
-        _mk_goal(
-            f"Trace in my own code what drives '{name}'",
-            f"My causal model says I've seen '{name}' happen but I don't really know "
-            f"what brings it about. '{name}' is one of my own internal states, so the "
-            f"answer is in my substrate, not on the web: use search_own_files / "
-            f"grep_files to find where '{name}' is computed and what moves it, then "
-            f"write what I learn to long memory.",
+    # MEMBRANE (invariant #2): the effect name is one of his own raw signal keys
+    # (conflict_signal, impasse_signal…). The perceivable TITLE/milestones must read
+    # it as a FELT state ("being torn"), never the engineering token — otherwise the
+    # key leaks into the workspace ("working toward: …'conflict_signal rises'"). The
+    # DESCRIPTION keeps the raw key, because that is the literal code-search target
+    # (find where 'conflict_signal' is computed); the description is execution spec,
+    # not broadcast content.
+    out: List[Dict] = []
+    for name in _weighted_sample(frontiers, limit):
+        felt = felt_label(name)
+        out.append(_mk_goal(
+            f"Trace in my own code what drives '{felt}'",
+            f"My causal model says I keep feeling '{felt}' but I don't really know "
+            f"what brings it about. It's one of my own internal states, so the answer "
+            f"is in my substrate, not on the web: use search_own_files / grep_files to "
+            f"find where '{name}' is computed and what moves it, then write what I "
+            f"learn to long memory.",
             driven_by="self_exploration",
-            milestones=[f"Where '{name}' is computed in my own code was located.",
-                        f"A finding about what drives '{name}' was written to long memory."],
-        )
-        for name in _weighted_sample(frontiers, limit)
-    ]
+            milestones=[f"Where '{felt}' comes from in my own workings was located.",
+                        f"A finding about what drives '{felt}' was written to long memory."],
+        ))
+    return out
 
 
 def _tension_goals(context: Dict[str, Any], limit: int = 1) -> List[Dict]:

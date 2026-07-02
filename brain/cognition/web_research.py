@@ -258,6 +258,10 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     or exploration_drive, then queries DuckDuckGo and Wikipedia, and stores the result
     in long-term memory so it accumulates over time.
     """
+    # P7 ablation entry point: `research_tools` off ⇒ no outward reach.
+    from brain.run_config import subsystem_enabled as _sub_on
+    if not _sub_on("research_tools"):
+        return {"changed": False, "reason": "research_tools ablated for this run"}
     global _last_research
     now = time.time()
     if now - _last_research < _RESEARCH_INTERVAL:
@@ -327,6 +331,10 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     or the current committed goal. Strips HTML and stores the text in long memory.
     Lets Orrin actually read articles he encounters, not just headlines.
     """
+    # P7 ablation entry point: `research_tools` off ⇒ no outward reach.
+    from brain.run_config import subsystem_enabled as _sub_on
+    if not _sub_on("research_tools"):
+        return {"changed": False, "reason": "research_tools ablated for this run"}
     global _last_fetch
     now = time.time()
     if now - _last_fetch < _FETCH_INTERVAL:

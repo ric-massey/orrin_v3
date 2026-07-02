@@ -10,6 +10,7 @@ import { LanguageSection } from "./settings/LanguageSection";
 import { BackupSection } from "./settings/BackupSection";
 import { LifeCapsuleSection } from "./settings/LifeCapsuleSection";
 import { ResetSection } from "./settings/ResetSection";
+import { RunConfigSection } from "./settings/RunConfigSection";
 import { controlHeaders, type SettingsStatus } from "./settings/shared";
 
 export default function Settings() {
@@ -67,6 +68,7 @@ export default function Settings() {
       <ExistenceSection status={status} onChanged={refresh} />
       <LanguageSection />
       <BackupSection />
+      <RunConfigSection />
       <LifeCapsuleSection />
       <UpdatesSection status={status} onChanged={refresh} />
       <ResetSection />

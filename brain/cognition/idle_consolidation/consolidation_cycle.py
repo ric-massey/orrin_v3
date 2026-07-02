@@ -72,6 +72,13 @@ def should_consolidate(context: Dict[str, Any]) -> bool:
     Wonder affinity (set by wonder.py when wonder > 0.55) can shorten the minimum
     interval by up to 50% so high-wonder states trigger dream processing sooner.
     """
+    # P7 ablation entry point: `idle_consolidation` off ⇒ never dream.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("idle_consolidation"):
+            return False
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     now = time.time()
     affinity = float(context.get("_dream_affinity", 0.0) or 0.0)
     min_interval = _DREAM_MIN_INTERVAL_S * max(0.5, 1.0 - affinity)
@@ -89,6 +96,14 @@ def idle_consolidation_cycle(context: Dict[str, Any] = None) -> Dict[str, Any]:
     Full dream cycle: consolidate, recombine, process.
     Returns a summary dict; side effects write to DREAM_LOG and long_memory.
     """
+    # P7 ablation entry point (also guards direct callers that bypass
+    # should_consolidate): `idle_consolidation` off ⇒ no dream, empty summary.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        if not _sub_on("idle_consolidation"):
+            return {"skipped": "ablated"}
+    except Exception:  # intentional: ablation-gate fail-safe — a flag-read error must never break the subsystem (stays ON)
+        pass
     # Dreaming does NOT require the LLM. Human sleep-dependent consolidation is
     # entirely internal — hippocampal replay, schema abstraction, synaptic
     # downscaling, emotional reprocessing — with no external oracle. Nearly every

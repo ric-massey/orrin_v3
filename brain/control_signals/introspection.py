@@ -58,6 +58,46 @@ _SUPPRESS_CEILING = 0.38   # below this: can silently drop from awareness
 _GRAN_THRESHOLD   = 0.35   # below this: granularity failure mode
 
 
+def felt_affect(context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """The ONE DOOR from substrate affect to consciousness (P6 / A3, the veil).
+
+    Consciousness-side code (system-prompt builders, self-description, voice)
+    must read affect through this — never `context["affect_state"]` and never
+    SIGNAL_STATE_FILE. Returns the *perceived* projection (same shape as
+    affect_state, with core_signals = the perceived values, including this
+    cycle's clarity noise / label confusion / suppression).
+
+    - If the cycle already computed a projection (think_module publishes
+      `perceived_affect_state`), that one is returned — one projection per cycle.
+    - Otherwise the projection is computed here; loading the raw state file, when
+      no context carries affect at all (boot / out-of-cycle callers), happens
+      INSIDE the veil so no caller ever holds the raw keys.
+    The membrane guard in tests/brain/test_membrane_invariant.py enforces that
+    consciousness-tagged modules have no other affect access path.
+    """
+    ctx: Dict[str, Any] = context if isinstance(context, dict) else {}
+    perceived = ctx.get("perceived_affect_state")
+    if isinstance(perceived, dict) and perceived:
+        return perceived
+    if not isinstance(ctx.get("affect_state"), dict):
+        try:
+            from brain.paths import SIGNAL_STATE_FILE
+            from brain.utils.json_utils import load_json
+            raw = load_json(SIGNAL_STATE_FILE, default_type=dict) or {}
+        except Exception:
+            raw = {}
+        ctx = dict(ctx)
+        ctx["affect_state"] = raw
+    try:
+        out = compute_perceived_state(ctx)
+        perceived = out.get("perceived_affect_state") or {}
+    except Exception:
+        perceived = {}
+    if isinstance(context, dict) and perceived:
+        context["perceived_affect_state"] = perceived   # one projection per cycle
+    return perceived
+
+
 def compute_perceived_state(context: Dict[str, Any]) -> Dict[str, Any]:
     """
     Produce the perceived emotional state that reaches Orrin's conscious reasoning.

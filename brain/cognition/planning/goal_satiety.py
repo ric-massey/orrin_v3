@@ -87,6 +87,23 @@ def is_sated(goal: Dict[str, Any], context: Optional[Dict[str, Any]] = None) -> 
             return False, ""
         goal_id = str(goal.get("id") or goal.get("title") or goal.get("name") or "")
 
+        # Proxy 0 (P3) — VERIFIABLE goals close on a CHECK-PASS, and on nothing else.
+        # A goal in a checkable domain (math/physics/code/statistics/logic) is
+        # "understood" only once produce_and_check has recorded a passing sandbox
+        # check (a tool_run_effect on the ledger). It is deliberately NOT closed by
+        # the uncertainty/novelty proxies below — otherwise it would satiety-close on
+        # "stopped feeling new" without ever attempting the check the plan requires.
+        # A passing check is itself the work, so this precedes the work-gate.
+        try:
+            from brain.cognition.produce_and_check import is_verifiable_goal
+            if is_verifiable_goal(goal):
+                from brain.agency.effect_ledger import has_effect_kind
+                if goal_id and has_effect_kind(goal_id, "tool_run_effect"):
+                    return True, "check_passed"
+                return False, "awaiting_check"
+        except Exception as _e:
+            log_private(f"[goal_satiety] verifiable check-pass proxy failed: {_e}")
+
         # No cycle-1 closure — require real work first.
         if not _did_exploration_work(goal, goal_id):
             return False, "no_work_yet"

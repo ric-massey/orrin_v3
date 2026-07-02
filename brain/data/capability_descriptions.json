@@ -12,6 +12,7 @@
   "decide_to_search": "Decide whether the current question needs an external search and dispatch the right search action.",
 
   "research_topic": "Research a topic on the web: run a search, gather sources, and read summaries to learn about an external subject, question, event, or idea.",
+  "produce_and_check": "Attempt a checkable answer for a verifiable goal (math, physics, statistics, code, logic): write a small self-checking snippet, run it in the sandbox, and pass or fail on the result — understanding by attempting, not by reading.",
   "fetch_and_read": "Fetch a specific URL or article link and read its full text content.",
   "wikipedia_search": "Search Wikipedia and read encyclopedia entries about a topic.",
   "fetch_wikipedia": "Fetch a Wikipedia page and store its content for reading.",

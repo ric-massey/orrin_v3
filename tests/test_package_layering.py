@@ -56,6 +56,11 @@ BASELINE_EDGES = {
     ('control_signals', 'cog_memory'), ('control_signals', 'cognition'), ('control_signals', 'config'),
     ('control_signals', 'core'), ('control_signals', 'registry'), ('control_signals', 'symbolic'),
     ('control_signals', 'utils'),
+    # P2b: feedback_log.log_correction writes a corrected artifact's significance down
+    # via effect_ledger (mark_corrected) — control_signals → agency. No cycle
+    # (effect_ledger doesn't import control_signals); mirrors the existing
+    # cognition → agency edge.
+    ('control_signals', 'agency'),
     ('agency', 'behavior'), ('agency', 'cog_memory'), ('agency', 'cognition'),
     ('agency', 'core'), ('agency', 'registry'), ('agency', 'think'),
     ('agency', 'utils'),

@@ -27,6 +27,12 @@ def integrate_recall_and_baseline(context: Context, _mem_daemon: Any) -> Context
     # When comprehension parsed an input concept this cycle, use it as the
     # query so retrieved memories are relevant to what was just said, not
     # just to whatever goal/thought was already active.
+    # P7 ablation entry point: `memory` off ⇒ no long-term recall reaches the
+    # cycle (continuity collapse — the predicted failure mode). Fail-safe:
+    # retrieved_memories is still an empty list, never an exception.
+    from brain.run_config import subsystem_enabled as _sub_on
+    if not _sub_on("memory"):
+        _mem_daemon = None
     if _mem_daemon:
         import brain.memory_io as memory_io
         try:

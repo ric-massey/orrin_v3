@@ -9,7 +9,6 @@ pursue_goal, which re-imports these (and shares the _FINALIZED_IDS dedup dict,
 the same object, so finalize-once stays coherent across both modules).
 """
 from __future__ import annotations
-from brain.cognition.global_workspace import bound_goal
 
 import copy
 import time

@@ -132,3 +132,103 @@ def log_feedback(
     except Exception as _e:
         # Telemetry should never break the main flow
         record_failure("feedback_log.log_feedback", _e)
+
+
+def _reopen_goal_for_correction(goal_id: str, note: str) -> bool:
+    """Re-open the corrected goal so the next attempt aims at the correction: a
+    completed/failed goal is set back to in_progress and stamped with the gap.
+    Best-effort; returns True if a matching goal was found and updated."""
+    if not goal_id:
+        return False
+    try:
+        from brain.cognition.planning.goal_store import load_goals, save_goals
+    except Exception as _e:
+        record_failure("feedback_log._reopen_goal_for_correction.import", _e)
+        return False
+    goals = load_goals()
+    if not isinstance(goals, list):
+        return False
+    changed = [False]
+    _closed = {"completed", "failed", "done"}
+
+    def _walk(nodes: List[dict]) -> None:
+        for g in nodes:
+            if not isinstance(g, dict):
+                continue
+            if str(g.get("id") or "") == goal_id:
+                if str(g.get("status") or "").lower() in _closed:
+                    g["status"] = "in_progress"
+                g["_correction_gap"] = str(note or "")[:280]
+                g.setdefault("history", []).append(
+                    {"event": "corrected", "note": str(note or "")[:200]})
+                changed[0] = True
+            if isinstance(g.get("subgoals"), list):
+                _walk(g["subgoals"])
+
+    _walk(goals)
+    if changed[0]:
+        save_goals(goals)
+    return changed[0]
+
+
+def log_correction(
+    goal_id: str = "",
+    content_hash: str = "",
+    note: str = "",
+    person_id: str = "",
+    reopen_goal: bool = True,
+) -> Dict[str, Any]:
+    """P2b — the person CORRECTED a piece of PRODUCED WORK (an artifact/effect), not
+    just a chat turn. Records a typed `correction` event and closes the loop:
+
+      1) append a ``{"type": "correction", ...}`` event to the feedback log;
+      2) write the corrected effect's significance DOWN on the ledger (mark_corrected);
+      3) update the person's ToM belief model with higher weight than a chat correction
+         (register_artifact_correction), shifting predicted preference;
+      4) re-open / re-aim the owning goal so the next attempt reflects the correction.
+
+    Each step is best-effort and independent — a failure in one never skips the rest.
+    Returns a small summary dict."""
+    ts = datetime.now(timezone.utc).isoformat()
+    out: Dict[str, Any] = {"logged": False, "significance_written_down": False,
+                           "belief_updated": False, "goal_reopened": False}
+    # 1) typed feedback event (the `correction` type feedback_log lacked)
+    try:
+        events = load_json(FEEDBACK_LOG_JSON, default_type=list)
+        if not isinstance(events, list):
+            events = []
+        events.append({
+            "type": "correction", "goal_id": str(goal_id or ""),
+            "content_hash": str(content_hash or ""), "note": str(note or "")[:500],
+            "person_id": str(person_id or ""), "ts": ts,
+        })
+        save_json(FEEDBACK_LOG_JSON, events[-1000:])
+        out["logged"] = True
+    except Exception as _e:
+        record_failure("feedback_log.log_correction.event", _e)
+    # 2) significance write-down on the corrected artifact
+    if content_hash:
+        try:
+            from brain.agency.effect_ledger import mark_corrected
+            mark_corrected(str(content_hash))
+            out["significance_written_down"] = True
+        except Exception as _e:
+            record_failure("feedback_log.log_correction.ledger", _e)
+    # 3) ToM belief update — higher weight than a conversational correction
+    if person_id:
+        try:
+            from brain.cognition.theory_of_mind import register_artifact_correction
+            belief = register_artifact_correction(
+                str(person_id), str(note or ""), goal_id=str(goal_id or ""),
+                content_hash=str(content_hash or ""))
+            out["belief_updated"] = bool(belief)
+            out["preference_alignment"] = belief.get("preference_alignment") if belief else None
+        except Exception as _e:
+            record_failure("feedback_log.log_correction.tom", _e)
+    # 4) re-open / re-aim the owning goal
+    if reopen_goal and goal_id:
+        try:
+            out["goal_reopened"] = _reopen_goal_for_correction(str(goal_id), str(note or ""))
+        except Exception as _e:
+            record_failure("feedback_log.log_correction.reopen", _e)
+    return out

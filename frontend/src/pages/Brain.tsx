@@ -28,6 +28,7 @@ import SelfModelPanel from "@/components/brain/SelfModelPanel";
 import RelationshipsPanel from "@/components/brain/RelationshipsPanel";
 import IdleConsolidationPanel from "@/components/brain/IdleConsolidationPanel";
 import LanguagePanel from "@/components/brain/LanguagePanel";
+import LivedSurfacePanel from "@/components/brain/LivedSurfacePanel";
 import type { LiveIntero } from "@/components/brain/DemandsPanel";
 import { useLexicon } from "@/lib/lexicon";
 import { cn } from "@/lib/utils";
@@ -45,7 +46,7 @@ type Layouts = Record<string, LayoutItem[]>;
 
 const PANEL_IDS = [
   "sphere", "affect", "metrics", "memory",
-  "consciousness", "goals", "console",
+  "consciousness", "lived", "goals", "console",
   "bench", "goalhealth", "weather", "symbolic", "predictions", "drives",
   "learning", "tensions", "health", "self", "relationships", "dreams", "language",
 ] as const;
@@ -65,8 +66,9 @@ function defaultLayouts(): Layouts {
     { i: "metrics", x: 0, y: 18, w: 8, h: 6, minW: 4, minH: 4 },
     { i: "memory", x: 0, y: 24, w: 8, h: 7, minW: 4, minH: 5 },
     { i: "consciousness", x: 8, y: 0, w: 4, h: 8, minW: 3, minH: 5 },
-    { i: "goals", x: 8, y: 8, w: 4, h: 7, minW: 3, minH: 5 },
-    { i: "console", x: 8, y: 15, w: 4, h: 10, minW: 3, minH: 5 },
+    { i: "lived", x: 8, y: 8, w: 4, h: 7, minW: 3, minH: 5 },
+    { i: "goals", x: 8, y: 15, w: 4, h: 7, minW: 3, minH: 5 },
+    { i: "console", x: 8, y: 22, w: 4, h: 10, minW: 3, minH: 5 },
     ...DEEP_PANELS.map((id, k) => ({
       i: id, x: (k % 3) * 4, y: 31 + Math.floor(k / 3) * 9, w: 4, h: 9, minW: 3, minH: 5,
     })),
@@ -75,6 +77,7 @@ function defaultLayouts(): Layouts {
     { i: "sphere", x: 0, y: 0, w: 8, h: 11, minW: 4, minH: 7 },
     { i: "consciousness", x: 0, y: 11, w: 4, h: 8, minW: 3, minH: 5 },
     { i: "goals", x: 4, y: 11, w: 4, h: 8, minW: 3, minH: 5 },
+    { i: "lived", x: 0, y: 19, w: 8, h: 7, minW: 3, minH: 5 },
     { i: "affect", x: 0, y: 19, w: 8, h: 7, minW: 4, minH: 5 },
     { i: "metrics", x: 0, y: 26, w: 8, h: 6, minW: 4, minH: 4 },
     { i: "memory", x: 0, y: 32, w: 4, h: 9, minW: 3, minH: 5 },
@@ -183,6 +186,7 @@ export default function Brain() {
     metrics: <MetricsStrip telemetry={t} />,
     memory: <MemoryInspector telemetry={t} />,
     consciousness: <AttentionPanel telemetry={t} />,
+    lived: <LivedSurfacePanel telemetry={t} />,
     goals: <GoalsPanel telemetry={t} />,
     console: <LiveConsole telemetry={t} />,
     bench: <BenchmarkPanel />,

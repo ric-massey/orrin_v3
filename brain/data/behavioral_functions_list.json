@@ -29,7 +29,7 @@
   },
   {
     "name": "compose_from_motive",
-    "definition": "compose_from_motive(motive: 'Motive', context: 'Dict[str, Any]') -> 'str'\nCompose person-facing language from the motive + current affect.\n\n    Reuses the authoring organ (expression.express) — affect-driven,\n    vocabulary-based, congruence-checked. It NEVER reads working memory or any\n    symbolic/telemetry field; the only content kernel it sees is the motive's\n    own (sanitized) seed."
+    "definition": "compose_from_motive(motive: 'Motive', context: 'Dict[str, Any]') -> 'str'\nCompose person-facing language from the motive + current affect.\n\n    Phase 2D (LM-as-mouth): first try rendering through the native organ\n    (conditioned on the thought object), GATED so it only takes over from the\n    templates when it is fluent and the rendering is faithful (membrane-clean,\n    reconstruction-consistent — conditional_render.render_from_thought). Until\n    then this falls through to the authoring organ below, unchanged — authenticity\n    over fluency.\n\n    The fallback reuses expression.express — affect-driven, vocabulary-based,\n    congruence-checked. It NEVER reads working memory or any symbolic/telemetry\n    field; the only content kernel it sees is the motive's own (sanitized) seed."
   },
   {
     "name": "delay_between_requests",

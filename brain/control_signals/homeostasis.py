@@ -23,9 +23,10 @@
 # Cannon (1932) homeostasis; Russell & Barrett (2000) core affect.
 from __future__ import annotations
 
-from typing import Dict, List
+import os
+from typing import Any, Dict, List
 
-from brain.control_signals.setpoints import CORE_BASELINES
+from brain.control_signals.setpoints import CORE_BASELINES, setpoint
 
 # Antagonist pairs for sustained cross-inhibition. When a dominant signal is
 # chronically elevated, its antagonists are pulled toward baseline faster than
@@ -205,6 +206,75 @@ def apply_restoring_forces(
             target = CORE_BASELINES.get(emo, 0.0)
             neutral_pull = target - val_f
             core[emo] = max(0.0, min(1.0, val_f + neutral_pull * (1 - pow(1 - decay_rate, hours_passed))))
+
+
+# ── B3 / P5: time-at-ceiling accelerator on the per-call restoring pull ───────
+# Diagnosis (B3_DECAY_DIAGNOSIS_2026-07-01.md): the 2026-07-01 run confirmed the
+# drives themselves pin (~0.84 all life) — pump rate beats the flat per-call decay
+# rate, so the restoring pull settles at an elevated equilibrium and never breaks
+# it. Per the plan ("tune the existing law, do not add a second one"), this does
+# NOT add a new decay law: it scales the EXISTING per-call restoring rate up the
+# longer a signal has sat pinned far above its setpoint, so chronic saturation
+# relaxes while a fresh acute spike still decays at the base rate (urgency and
+# the survival floor are untouched — a spike has streak 0). Opponent-process
+# habituation: repeated/sustained stimulation strengthens the b-process
+# (Solomon & Corbit 1974) — the counter-force GROWS with time-at-ceiling.
+#
+# Tunables (env-overridable so the ablation panel / experiments can move them
+# without code edits; P7 reads the same knobs):
+#   ORRIN_SIGNAL_DECAY      — master switch for the per-call restoring pull
+#                             (default on; off reproduces "hot and flat" for A/B)
+#   ORRIN_PIN_MARGIN        — how far above setpoint counts as "pinned"
+#   ORRIN_PIN_ACCEL_WINDOW  — calls-at-pin for the multiplier to grow by 1×
+#   ORRIN_PIN_ACCEL_MAX     — cap on the multiplier
+def _env_float(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, "") or default)
+    except (TypeError, ValueError):
+        return default
+
+
+PIN_MARGIN       = _env_float("ORRIN_PIN_MARGIN", 0.20)
+PIN_ACCEL_WINDOW = max(1.0, _env_float("ORRIN_PIN_ACCEL_WINDOW", 40.0))
+PIN_ACCEL_MAX    = max(1.0, _env_float("ORRIN_PIN_ACCEL_MAX", 4.0))
+_PIN_STREAK_KEY  = "_pin_streaks"
+
+
+def signal_decay_enabled() -> bool:
+    """Master switch for the per-call restoring pull (ablation knob, default on)."""
+    return str(os.environ.get("ORRIN_SIGNAL_DECAY", "1")).strip().lower() not in (
+        "0", "false", "no", "off")
+
+
+def update_pin_streaks(state: Dict[str, Any], core: Dict[str, float]) -> Dict[str, int]:
+    """Advance the per-signal time-at-ceiling counters (call ONCE per cycle).
+
+    A signal counts as pinned while it sits more than PIN_MARGIN above its
+    resolved setpoint. Dropping back below the margin clears its streak — so the
+    accelerator releases as soon as the signal actually relaxes, giving
+    rise-and-relax rather than a one-way clamp. Streaks persist in `state` (the
+    affect-state file) so a pin that spans process restarts still accelerates.
+    """
+    streaks = state.get(_PIN_STREAK_KEY)
+    if not isinstance(streaks, dict):
+        streaks = {}
+        state[_PIN_STREAK_KEY] = streaks
+    for key, val in list(core.items()):
+        if not isinstance(val, (int, float)):
+            continue
+        if float(val) - setpoint(key) > PIN_MARGIN:
+            streaks[key] = int(streaks.get(key, 0)) + 1
+        elif key in streaks:
+            del streaks[key]
+    return streaks
+
+
+def pin_multiplier(state: Dict[str, Any], key: str) -> float:
+    """Read-only accelerator on the per-call restoring rate: 1.0 for a fresh
+    spike, growing linearly with time-at-ceiling to PIN_ACCEL_MAX."""
+    streaks = state.get(_PIN_STREAK_KEY)
+    n = int(streaks.get(key, 0)) if isinstance(streaks, dict) else 0
+    return 1.0 + min(PIN_ACCEL_MAX - 1.0, n / PIN_ACCEL_WINDOW)
 
 
 def apply_cross_inhibition(core: Dict[str, float]) -> None:

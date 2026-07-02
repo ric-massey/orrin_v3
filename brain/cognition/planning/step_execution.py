@@ -39,7 +39,7 @@ from brain.utils.log import log_activity, log_error
 _KNOWN_FN_NAMES = (
     "research_topic", "fetch_and_read", "wikipedia_search",
     "search_own_files", "grep_files", "leave_note", "look_outward",
-    "look_around", "seek_novelty", "compose_section",
+    "look_around", "seek_novelty", "compose_section", "produce_and_check",
 )
 
 # Habitual intention→act mappings, checked in order (specific before generic).
@@ -48,6 +48,15 @@ _INTENT_RULES: Tuple[Tuple[Tuple[str, ...], str], ...] = (
     (("fetch", "read a full", "read the article", "read full", "open the link",
       "read article", "rss link"), "fetch_and_read"),
     (("wikipedia", "wiki ", "encyclopedia"), "wikipedia_search"),
+    # P3 produce-and-check: a step that says to WORK/VERIFY/COMPUTE an answer maps to
+    # the sandbox checker, not to reading. Placed before "research" so "check the
+    # derivation" / "verify the result" route to attempting-and-checking, not looking
+    # it up again. (Kept clear of the production-word gate above: these run a check,
+    # they don't write a registered function/tool.)
+    (("check the answer", "check the result", "check my work", "check the derivation",
+      "verify", "compute", "calculate", "work the problem", "solve the", "solve for",
+      "test the answer", "sanity check", "run the numbers", "prove that",
+      "produce and check", "check it against"), "produce_and_check"),
     (("research", "duckduckgo", "search the web", "web search", "investigate",
       "find out", "look up", "look it up", "dig into", "read about",
       "study", "learn about"), "research_topic"),
@@ -104,6 +113,10 @@ _PROCEDURAL_DEFAULT = frozenset({
     "search_own_files", "grep_files", "list_directory", "search_files",
     "look_outward", "look_around", "survey_environment", "read_clipboard",
     "seek_novelty", "leave_note", "write_desktop_note", "save_note",
+    # P3 produce-and-check: reversible (isolated sandbox, ledger row only on pass),
+    # so the background Executive lane may run it — a plan step "check the answer"
+    # advances without waiting on the conscious thread.
+    "produce_and_check",
 })
 
 

@@ -26,7 +26,7 @@ from brain.utils.log import log_activity
 from brain.paths import (
     DATA_DIR as _DATA_DIR,
     PRIVATE_THOUGHTS_FILE, LONG_MEMORY_FILE, CHAT_LOG_FILE, BODY_SENSE_FILE,
-    PREDICTIONS_FILE, SPEECH_LOG_FILE, KNOWLEDGE_GRAPH_FILE,
+    PREDICTIONS_FILE, SPEECH_LOG_FILE, KNOWLEDGE_GRAPH_FILE, COGNITION_HISTORY_FILE,
 )
 
 from brain.cognition.language import native_lm, library
@@ -380,7 +380,7 @@ def _perceived_dominant_key(perceived: Dict) -> str:
         nums = {str(k): float(v) for k, v in (src or {}).items()
                 if isinstance(v, (int, float))}
         return max(nums, key=nums.get) if nums else ""
-    except Exception:
+    except Exception:  # intentional: conditioning input only — degrade to no signal key
         return ""
 
 
@@ -401,7 +401,7 @@ def _build_thought_object(context: Dict, feel: str, picked: str) -> Dict:
         gid = str(goal.get("id") or goal.get("title") or goal.get("name") or "")
         if gid:
             concept_refs.append({"type": "goal", "handle": gid})
-    except Exception:
+    except Exception:  # intentional: goal ref is optional — the thought object stands without it
         pass
     return {
         "intent": "narrate_experience",
@@ -585,59 +585,90 @@ def read_a_book(context=None, steps: int = 45) -> str:
     return line
 
 
+def _recent_reward_weight() -> float:
+    """Reward channel (grounding plan P2a): scale experience-derived language by how
+    REWARDING recent life has been, so grounded experience is trained on harder when
+    it paid off. Reuses episode_replay's cycle-reward notion — the mean reward over
+    recent cognition history, mapped into [1.0, 2.0]. Neutral (1.0) on thin history,
+    so a fresh mind is never penalised. Book prose is deliberately NOT scaled by this
+    (it stays a flat, capped floor); only the experience blocks are."""
+    try:
+        hist = load_json(COGNITION_HISTORY_FILE, default_type=list) or []
+        rewards = [float(c.get("reward", 0.0) or 0.0)
+                   for c in hist[-40:] if isinstance(c, dict)]
+        if len(rewards) < 5:
+            return 1.0
+        mean_r = sum(rewards) / len(rewards)
+        return 1.0 + max(0.0, min(1.0, mean_r))     # [1.0, 2.0]
+    except Exception as exc:
+        record_failure("acquisition._recent_reward_weight", exc)
+        return 1.0
+
+
 def consolidate_language(steps: int = 60) -> Dict:
     """One developmental bout: gather experience (library-led), interleave replay,
-    train. Fail-safe; no-op if torch unavailable."""
+    train on a REWARD-FILTERED diet. Fail-safe; no-op if torch unavailable.
+
+    P2a — the corpus is now a list of ``(text, weight)`` blocks rather than a flat
+    concatenation. Book/library prose gets a neutral, capped floor weight so imitation
+    can't dominate; experience-derived sources (memories, felt narrative, grounding,
+    dialogue) are weighted UP and further scaled by the recent-reward channel, so the
+    native LM's sampler eats grounded experience more often than book prose."""
     if not native_lm.available():
         return {"available": False}
 
-    parts: List[str] = []
+    rw = _recent_reward_weight()             # how grounded/rewarding recent life was
+    blocks: List = []                        # (text, weight) — the reward-filtered diet
     lib = library.read_text(_MAX_BLOCK)      # the big, clean English signal
     if lib:
-        parts.append(lib)
+        blocks.append((lib, 1.0))            # book prose: neutral, capped FLOOR (never reward-scaled)
     prose = _read_prose()
     if prose:
-        parts += [prose, prose]              # upweight scarce researched English
+        blocks.append((prose, 2.0))          # researched English — scarce, curated
     conv = _conversations()
     if conv:
-        parts += [conv, conv]                # upweight social language
-    emo = _signal_experience()            # memories weighted by felt weight
+        blocks.append((conv, 2.0))           # social language — curated
+    emo = _signal_experience()               # memories weighted by felt weight
     if emo:
-        parts.append(emo)
+        blocks.append((emo, 1.0 * rw))       # experience — reward-scaled
     felt = _felt_narrative()                 # his own felt summaries of experience
     if felt:
-        parts += [felt, felt]                # upweight: his own voice, scarce + high-value
+        blocks.append((felt, 2.0 * rw))      # his own voice — scarce, high-value, reward-scaled
     mono = _inner_monologue()
     if mono:
-        parts.append(mono)
+        blocks.append((mono, 1.0 * rw))
     grounded = grounded_experience()         # words bound to felt body + sensed world
     if grounded:
-        parts += [grounded, grounded]        # upweight: grounding is scarce, high-value
+        blocks.append((grounded, 2.0 * rw))  # grounding — highest-value, reward-scaled
     dialogue = _dialogue_experience()        # his own replies, weighted by how they landed
     if dialogue:
-        parts.append(dialogue)               # production→learning + comprehension↔production
+        blocks.append((dialogue, 1.0 * rw))  # production→learning + comprehension↔production
     vocab = _learned_words()                 # symbolic knowledge → his language (word-meaning)
     if vocab:
-        parts.append(vocab)
-    # Phase 2C/2D: the (thought_object -> narration) pairs, formatted as
-    # `prefix + narration`, so the organ learns to RENDER conditionally (not just
-    # free-run). Upweighted: this is what turns the mouth on. Fail-safe.
-    try:
-        from brain.cognition.language.conditional_render import narration_pairs_corpus
-        cond = narration_pairs_corpus()
-        if cond:
-            parts += [cond, cond]
-    except Exception as exc:
-        record_failure("acquisition.consolidate_language.cond_pairs", exc)
+        blocks.append((vocab, 1.0))
+    # NOTE (Phase 2 bug fix, 2026-06-30): the (thought_object -> narration) pairs are
+    # deliberately NOT folded into this free-generation corpus. Doing so taught the
+    # organ the serialization scaffold ("<say {intent} | {felt} | …>") as ordinary
+    # next-token text, so it regurgitated "say express_state curiosity …" into
+    # perceivable speech — and gave it artificially low perplexity on the pair
+    # format, gaming the render fluency gate. A contamination-free CONDITIONAL
+    # training path (masked-loss on the prefix, or a learned conditioning embedding
+    # rather than an inline string) is the real Phase-2C work; until it exists the
+    # pairs (still logged by narrate_experience) only accumulate. The native LM is
+    # the MOUTH of his own thoughts, never trained to emit the plumbing.
 
-    recent = "\n".join(p for p in parts if p)[-_MAX_BLOCK:]
-    if not recent or len(recent) < 2000:
+    total_chars = sum(len(t) for t, _ in blocks)
+    if not blocks or total_chars < 2000:
         return {"available": True, "skipped": "not enough clean language yet"}
 
+    # Interleave a little replay (old learning) as a neutral FLOOR block so the
+    # reward-weighting can never erase breadth / drive catastrophic forgetting.
+    recent = "\n".join(t for t, _ in blocks)[-_MAX_BLOCK:]
     replay = _update_replay(recent)
-    block = (recent + "\n" + replay) if replay else recent
+    if replay:
+        blocks.append((replay, 1.0))
 
-    loss = native_lm.train_on(block, steps=steps)
+    loss = native_lm.train_on(blocks, steps=steps)
     st = native_lm.status()
     if loss is not None:
         log_activity(

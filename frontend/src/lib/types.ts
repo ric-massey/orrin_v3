@@ -133,6 +133,16 @@ export interface MonitorBlock { recent_breakthroughs?: Breakthrough[]; watchdog?
 export interface WorkspaceCandidate { source?: string; content?: string; salience?: number; kind?: string; wants?: string; object?: string; facets?: Record<string, unknown>; members?: string[] }
 export interface WorkspaceBlock { conscious?: WorkspaceConscious; candidates?: WorkspaceCandidate[] }
 
+/** P7/A1 — the curated lived-surface projection (brain/loop/lived_surface.py).
+ *  Felt language only; every field degrades to ""/[] rather than raw keys. */
+export interface LivedSurface {
+  attending_to: string;
+  pressured_by: string[];
+  what_changed: string;
+  avoiding: string;
+  trying_to_resolve: string;
+}
+
 /** The merged client-side view of the system, produced by useTelemetry(). */
 export interface TelemetryState {
   activeNode: string | null;
@@ -157,6 +167,8 @@ export interface TelemetryState {
   interoception: Record<string, unknown> | null;
   /** LLM-cost telemetry: reasoning-cache health + symbolic-vs-LLM ratio. */
   llmCost: LlmCost | null;
+  /** P7/A1 curated lived surface: what it's like to be him right now. */
+  lived: LivedSurface | null;
   /** Free-form extras the loop pushes (e.g. awareness). */
   extra: Record<string, unknown>;
   connected: boolean;

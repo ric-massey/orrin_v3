@@ -34,7 +34,7 @@ from typing import Dict, List, Optional
 
 from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
-from brain.utils.felt_lexicon import is_internal_identifier
+from brain.utils.felt_lexicon import is_internal_identifier, strip_scaffold, has_scaffold
 
 # Same sidecar the narrator writes (Phase 2B).
 _PAIRS_FILE = DATA_DIR / "language" / "narration_pairs.jsonl"
@@ -93,7 +93,7 @@ def _read_pairs(limit: Optional[int] = None) -> List[Dict]:
             rec = json.loads(ln)
             if isinstance(rec, dict) and rec.get("narration"):
                 out.append(rec)
-        except Exception:
+        except Exception:  # intentional: skip a malformed narration-log line, keep scanning
             continue
     return out
 
@@ -198,13 +198,19 @@ def render_from_thought(thought: Dict, *, length: int = 60,
     except Exception as exc:
         record_failure("conditional_render.render_from_thought", exc)
         return None
-    # generate() returns prefix+continuation — keep only the continuation.
+    # generate() returns prefix+continuation. The exact prefix rarely survives the
+    # tokenizer intact, so don't rely on startswith — strip the scaffold robustly
+    # (handles the degraded "say {intent} … :" form too).
     text = raw[len(prefix):] if raw.startswith(prefix) else raw
+    text = strip_scaffold(text)
     # The organ may run on past a natural stop; keep the first sentence-ish span.
     text = text.strip().split("\n", 1)[0].strip()
     if not text:
         return None
-    # The bright line (spec §4) — reject anything that isn't a faithful rendering.
+    # The bright line (spec §4) — reject anything that isn't a faithful rendering,
+    # and reject outright if any conditioning scaffold still leaked through.
+    if has_scaffold(text):
+        return None
     if not (_non_degenerate(text) and _membrane_clean(text)
             and _reconstruction_ok(thought, text)):
         return None

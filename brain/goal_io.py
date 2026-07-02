@@ -262,10 +262,18 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
             name = n.get("name") or n.get("title")
             status = str(n.get("status") or "").lower()
             tier = str(n.get("tier") or n.get("kind") or "").lower()
+            # P4 — a `long_term` goal is normally non-committable (a signpost), but a
+            # DIRECTIONAL one (marked directional / never_complete) IS committable: it
+            # becomes the active driver that spawns and sequences the next concrete
+            # sub-task. It still never files DONE (mark_goal_completed guards that), so
+            # it's committable-but-non-terminal. `aspiration` stays non-committable.
+            committable_tier = (tier not in _NONCOMMITTABLE_TIERS) or (
+                tier == "long_term"
+                and bool(n.get("directional") or n.get("never_complete")))
             if (n.get("name") != _BUCKET_NAME and name
                     and status in _COMMITTABLE_STATUSES
                     and status not in _V1_TERMINAL
-                    and tier not in _NONCOMMITTABLE_TIERS):
+                    and committable_tier):
                 found.append(n)
             walk(n.get("subgoals"))
 
@@ -275,7 +283,23 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
                        _priority_rank(g.get("priority"))),
         reverse=True,
     )
-    return [dict(g) for g in found[:limit]]
+    # P4 cap (change 4): exactly ONE directional long_term goal drives at a time — the
+    # highest-ranked one. The rest of the committed slots go to ordinary goals so the
+    # never-ending driver can never starve the pool; extra directionals stay signposts.
+    result: List[Dict[str, Any]] = []
+    seen_directional = False
+    for g in found:
+        tier = str(g.get("tier") or g.get("kind") or "").lower()
+        is_directional = tier == "long_term" and bool(
+            g.get("directional") or g.get("never_complete"))
+        if is_directional:
+            if seen_directional:
+                continue
+            seen_directional = True
+        result.append(g)
+        if len(result) >= limit:
+            break
+    return [dict(g) for g in result]
 
 
 def _reconcile_open_v2_into_v1(api) -> None:

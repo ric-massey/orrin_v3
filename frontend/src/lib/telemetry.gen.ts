@@ -86,5 +86,6 @@ export const TelemetryFrameSchema = z.looseObject({
   "workspace": z.record(z.string(), z.unknown()).nullable().optional(),
   "interoception": z.record(z.string(), z.unknown()).nullable().optional(),
   "llm_cost": LlmCostSchema.nullable().optional(),
+  "lived": z.record(z.string(), z.unknown()).nullable().optional(),
 });
 export type TelemetryFrame = z.infer<typeof TelemetryFrameSchema>;

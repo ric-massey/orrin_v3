@@ -48,6 +48,23 @@ _device = "cpu"
 _vocab = 0
 _meta: Dict = {"steps": 0, "tokens_seen": 0, "born": None}
 
+# B3 / P5 — repetition guard for generate(). The sampler previously had NO
+# repetition control (temperature only), so a small model could loop the same
+# phrase; the 06-29 run showed exactly that failure. CTRL-style penalty
+# (Keskar et al. 2019): a token seen in the recent window has its logit divided
+# by the penalty (positive logits) or multiplied (negative), before softmax.
+# Env-tunable so the ablation panel / experiments can move it without code edits.
+def _env_num(name: str, default: float) -> float:
+    import os
+    try:
+        return float(os.environ.get(name, "") or default)
+    except (TypeError, ValueError):
+        return default
+
+
+_REP_PENALTY = max(1.0, _env_num("ORRIN_LM_REP_PENALTY", 1.3))
+_REP_WINDOW = int(max(0.0, _env_num("ORRIN_LM_REP_WINDOW", 64)))
+
 # Checkpoint write throttle: the model+optimizer is ~50 MB, so saving every bout
 # (the idle loop runs often) is needless disk churn. Save at most this often;
 # call flush() to force a save at the end of a pretraining run.
@@ -238,24 +255,56 @@ def ensure_tokenizer(seed_text: str = "") -> bool:
 
 
 @_locked
-def train_on(text: str, steps: int = 60, batch: int = 16) -> Optional[float]:
-    """One bout of learning on a block of his experience. Returns avg loss."""
-    if not _TORCH or not text:
+def train_on(data, steps: int = 60, batch: int = 16) -> Optional[float]:
+    """One bout of learning on his experience. Returns avg loss.
+
+    `data` is either a plain ``str`` (legacy: one block, weight 1.0) or a list of
+    ``(text, weight)`` blocks (grounding plan P2a — reward-filtered diet). With
+    weighted blocks, each training window's SOURCE block is chosen in proportion to
+    its weight, so reward-/grounding-weighted experience is sampled MORE often than
+    book prose — the diet is *filtered*, not merely concatenated. The realised mix
+    is stored on `_meta["last_mix"]` and surfaced by `status()`."""
+    if not _TORCH:
         return None
-    if not ensure_tokenizer(text):
+    # Normalise to (text, weight) blocks; keep the old str signature working.
+    if isinstance(data, str):
+        blocks = [(data, 1.0)] if data.strip() else []
+    else:
+        blocks = [(str(t), float(w)) for (t, w) in (data or [])
+                  if t and str(t).strip() and float(w) > 0.0]
+    if not blocks:
+        return None
+    combined = "\n".join(t for t, _ in blocks)
+    if not ensure_tokenizer(combined):
         return None
     if not _ensure():
         return None
-    ids = tok.encode(text)
-    if len(ids) < _BLOCK + 2:
+    # Tokenise each block; keep those long enough to yield at least one window.
+    tensors: list = []
+    weights: list = []
+    for text, w in blocks:
+        ids = tok.encode(text)
+        if len(ids) >= _BLOCK + 2:
+            tensors.append(torch.tensor(ids, dtype=torch.long))
+            weights.append(max(1e-6, float(w)))
+    if not tensors:
         return None
-    t = torch.tensor(ids, dtype=torch.long)
+    wt = torch.tensor(weights, dtype=torch.float)
+    wt = wt / wt.sum()                         # source-block sampling distribution
     _model.train()
-    total, n = 0.0, 0
+    total, n, toks = 0.0, 0, 0
     for _ in range(steps):
-        ix = torch.randint(0, len(t) - _BLOCK - 1, (batch,))
-        x = torch.stack([t[i:i + _BLOCK] for i in ix]).to(_device)
-        y = torch.stack([t[i + 1:i + _BLOCK + 1] for i in ix]).to(_device)
+        # Choose each window's source block in proportion to its (reward) weight,
+        # then a random window within that block.
+        src = torch.multinomial(wt, batch, replacement=True)
+        xs, ys = [], []
+        for b in range(batch):
+            t = tensors[int(src[b])]
+            i = int(torch.randint(0, len(t) - _BLOCK - 1, (1,)).item())
+            xs.append(t[i:i + _BLOCK])
+            ys.append(t[i + 1:i + _BLOCK + 1])
+        x = torch.stack(xs).to(_device)
+        y = torch.stack(ys).to(_device)
         logits = _model(x)
         loss = F.cross_entropy(logits.reshape(-1, _vocab), y.reshape(-1))
         _opt.zero_grad()
@@ -264,14 +313,35 @@ def train_on(text: str, steps: int = 60, batch: int = 16) -> Optional[float]:
         _opt.step()
         total += float(loss.item())
         n += 1
+        toks += batch * _BLOCK
     _meta["steps"] = int(_meta.get("steps", 0)) + steps
-    _meta["tokens_seen"] = int(_meta.get("tokens_seen", 0)) + len(ids)
+    _meta["tokens_seen"] = int(_meta.get("tokens_seen", 0)) + sum(len(t) for t in tensors)
+    _meta["last_mix"] = {
+        "blocks": len(tensors),
+        "weights": [round(float(x), 3) for x in wt.tolist()],
+        "reward_weighted": len({round(w, 3) for w in weights}) > 1,
+        "sampled_tokens": toks,
+    }
     _save()
     return total / max(1, n)
 
 
+def _apply_repetition_penalty(logits, recent_ids, penalty: float):
+    """CTRL-style repetition penalty (Keskar et al. 2019), in place: a token in
+    the recent window becomes less likely — divide a positive logit by the
+    penalty, multiply a negative one. penalty <= 1.0 is a no-op."""
+    if penalty <= 1.0 or not recent_ids:
+        return logits
+    for t in set(int(i) for i in recent_ids):
+        if 0 <= t < logits.shape[-1]:
+            v = float(logits[t])
+            logits[t] = v / penalty if v > 0 else v * penalty
+    return logits
+
+
 @_locked
-def generate(prompt: str = "", length: int = 80, temperature: float = 0.8) -> str:
+def generate(prompt: str = "", length: int = 80, temperature: float = 0.8,
+             repetition_penalty: float = _REP_PENALTY) -> str:
     """Sample text in his own voice — however crude — from what he's learned."""
     if not _ensure():
         return ""
@@ -282,6 +352,8 @@ def generate(prompt: str = "", length: int = 80, temperature: float = 0.8) -> st
         for _ in range(length):
             x = torch.tensor([ids[-_BLOCK:]], dtype=torch.long, device=_device)
             logits = _model(x)[0, -1] / max(1e-3, temperature)
+            _apply_repetition_penalty(
+                logits, ids[-_REP_WINDOW:] if _REP_WINDOW else [], repetition_penalty)
             p = F.softmax(logits, dim=-1)
             nxt = int(torch.multinomial(p, 1).item())
             ids.append(nxt)
@@ -331,4 +403,7 @@ def status() -> Dict:
         "train_steps": _meta.get("steps", 0),
         "tokens_seen": _meta.get("tokens_seen", 0),
         "age_hours": round(age_h, 2),
+        # P2a — the realised training mix of the last bout: per-source-block sampling
+        # weights and whether the diet was reward-weighted (vs flat concatenation).
+        "training_mix": _meta.get("last_mix"),
     }

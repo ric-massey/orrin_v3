@@ -8,6 +8,7 @@ the handlers, exactly as in app.py.
 from __future__ import annotations
 
 import contextlib
+import os
 from typing import Any, Dict
 
 from fastapi import APIRouter, Request
@@ -155,3 +156,52 @@ async def llm_test(request: Request) -> Dict[str, Any]:
         return {"ok": False, "message": "This provider isn't configured yet (add a key or endpoint)."}
     ok, message = provider.test_connection()
     return {"ok": bool(ok), "message": message, "provider": provider.id, "model": provider.model}
+
+
+# ── P7 / A2: the ablation panel (run configuration) ─────────────────────────────
+
+@router.get("/api/run-config")
+async def get_run_config(request: Request) -> Dict[str, Any]:
+    """The ablation panel's read: which subsystems the CURRENT run has live
+    (with its stamp), plus what data/run_config.json holds for the NEXT run.
+    Flags are boot-time by design — mid-run toggling would make traces
+    unattributable — so `pending` is what a restart will pick up."""
+    authorize_control(request)
+    import json as _json
+    from brain import run_config as _rc
+    from brain.paths import DATA_DIR as _dd
+    pending: list[str] = []
+    with contextlib.suppress(Exception):
+        _cfg = _json.loads((_dd / "run_config.json").read_text("utf-8"))
+        raw = _cfg.get("ablate") or []
+        pending = [str(x) for x in raw if str(x) in _rc.SUBSYSTEMS]
+    return {
+        "subsystems": list(_rc.SUBSYSTEMS),
+        "current": _rc.snapshot(),
+        "run_stamp": _rc.run_stamp(),
+        "pending_ablate": pending,
+        "env_override": bool((os.environ.get("ORRIN_ABLATE") or "").strip()),
+    }
+
+
+@router.post("/api/run-config")
+async def update_run_config(payload: Dict[str, Any], request: Request) -> Dict[str, Any]:
+    """Write the NEXT run's ablation list to data/run_config.json.
+    Body: {"ablate": ["memory", ...]} — unknown names rejected, empty list = all on.
+    Takes effect at the next boot (run_config.reload() happens in _boot_context)."""
+    authorize_control(request)
+    import json as _json
+    from brain import run_config as _rc
+    from brain.paths import DATA_DIR as _dd
+    raw = (payload or {}).get("ablate") or []
+    if not isinstance(raw, list):
+        return {"ok": False, "error": "ablate must be a list of subsystem names"}
+    names = [str(x).strip().lower() for x in raw]
+    unknown = [n for n in names if n not in _rc.SUBSYSTEMS]
+    if unknown:
+        return {"ok": False, "error": f"unknown subsystems: {', '.join(unknown)}",
+                "subsystems": list(_rc.SUBSYSTEMS)}
+    (_dd / "run_config.json").write_text(
+        _json.dumps({"ablate": sorted(set(names))}, indent=2), "utf-8")
+    return {"ok": True, "pending_ablate": sorted(set(names)),
+            "note": "applies at next boot; current run is unchanged"}

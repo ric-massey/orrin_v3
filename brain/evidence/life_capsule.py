@@ -170,11 +170,20 @@ def _provenance(reason: str) -> Dict[str, Any]:
         schema_v = _sm.read_version()
     except Exception:
         schema_v = None
+    # P7 run stamping: the run's ablation config rides in provenance so traces
+    # from different configurations are comparable (and the stamp names them).
+    try:
+        from brain import run_config as _rc
+        _stamp, _run_cfg = _rc.run_stamp(), _rc.snapshot()
+    except Exception:
+        _stamp, _run_cfg = "", {}
     return {
         "captured_at": _now_iso(),
         "build_reason": reason,
         "capsule_schema_version": CAPSULE_SCHEMA_VERSION,
         "git_sha": _git_sha(paths.ROOT_DIR.parent),
+        "run_stamp": _stamp,
+        "run_config": _run_cfg,
         "orrin_flags": orrin_flags,
         "state_schema_version": schema_v,
         "lifespan": lifespan,

@@ -40,6 +40,7 @@ _USER_HELPFUL_DEFAULT: frozenset[str] = frozenset({
     "research_topic",
     "fetch_and_read",
     "wikipedia_search",
+    "produce_and_check",
 })
 
 # Pure introspection — valuable, but should yield to helpfulness when user is present.
@@ -85,6 +86,10 @@ _EXECUTION_FNS: frozenset[str] = frozenset({
     "leave_note", "save_note", "write_desktop_note", "read_a_book",
     "write_cognitive_function", "write_tool",
     "decide_to_write_code", "synthesize_from_gap",
+    # P3 produce-and-check: attempting a checkable answer IS an execution act (it
+    # runs code and produces a verified effect), not deliberation — count it so a
+    # think-only rut can be broken by actually checking something.
+    "produce_and_check",
     # generate_intrinsic_goals removed: producing more goals is deliberation,
     # not acting on one. Counting it as execution let a think-only rut satisfy
     # the meta-rut breaker's "acted" check (2026-06-12: 1186 picks, 5900-cycle
@@ -151,6 +156,10 @@ _SAFE_TO_EXPLORE_DEFAULT: frozenset[str] = frozenset({
     # propose_extension / commit_extension stay excluded: they mutate the
     # gestation pipeline's persistent proposal state.
     "decide_to_write_code", "synthesize_from_gap",
+    # P3 produce-and-check: reversible (runs untrusted code in an isolated sandbox,
+    # commits only a ledger row on pass). Must be force-samplable or the arm stays
+    # cold forever — the exact 5900-cycle starvation noted above for code-writing.
+    "produce_and_check",
 })
 
 # ── Phase 4 (function_selection_fix_v2 §5): tag-derived boost sets ────────────

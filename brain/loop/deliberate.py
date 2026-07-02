@@ -101,6 +101,15 @@ def prepare_workspace(context: Context) -> Context:
     except Exception as _uwe:
         record_failure("ORRIN_loop.workspace_pre_think", _uwe)
 
+    # P7 / A1: emit the curated lived surface HERE — the conscious winner is
+    # fresh (pre-think update_workspace just ran) and committed goals are
+    # already pulled, so every field reflects this cycle. Fail-safe inside.
+    try:
+        from brain.loop.telemetry import _emit_lived
+        _emit_lived(context)
+    except Exception as _le:
+        record_failure("ORRIN_loop.lived_surface", _le)
+
     return context
 
 

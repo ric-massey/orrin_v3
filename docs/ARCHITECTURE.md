@@ -228,6 +228,17 @@ Beyond goals, Orrin builds and queries world/causal/knowledge models symbolicall
 processing. It also forms new concepts, draws analogies, synthesises/abstracts/compresses/forgets
 its own rules, and runs autonomous experiments — all without an LLM.
 
+**Production is visible on the effect ledger** (`brain/agency/effect_ledger.py`, AR1): every
+durable artifact records a content-addressed, novelty-deduped effect at the moment it is made —
+symbolic productions (synthesized principles, crystallized skills, resolved experiments,
+established causal edges → `symbolic_artifact`, via `brain/symbolic/symbolic_effects.py`), v2
+handler artifacts (research memos, housekeeping reports → `file_write`, via the runner's
+DONE-step chokepoint reading `Step.artifacts`), delivered notes/replies, verified sandbox checks
+(`produce_and_check` → `tool_run_effect`), and tracked-work sections. Reward keys on the ledger:
+a credited effect pays production reward at record time (`finalize_cycle`), goal closure and
+milestone checks ground on `has_qualifying_effect`, and making actions pay per attempt so the
+per-cycle gradient never favors pure intake (AR4).
+
 ---
 
 ## Learning surfaces

@@ -155,11 +155,53 @@ def _pay_artifact_reuse(context: Context) -> None:
         record_failure("ORRIN_loop.artifact_reuse", _e)
 
 
+# AR4 — symbolic production pays at record time, not only at goal close. A
+# credited symbolic_artifact (synthesized rule / crystallized skill / resolved
+# experiment / established causal edge) queues its credit in the ledger; it is
+# paid here, significance-scaled, so LLM-free cognition pays like production
+# per artifact. The ledger caps both the queue drain (4/cycle) and record-time
+# crediting (rolling window), so a synthesis storm cannot farm this.
+SYMBOLIC_PRODUCTION_REWARD = 0.7
+
+
+def _pay_symbolic_production(context: Context) -> None:
+    """Pay queued symbolic production credits on the live cycle context."""
+    try:
+        from brain.agency.effect_ledger import drain_pending_production
+        credits = drain_pending_production()
+        if not credits:
+            return
+        from brain.control_signals.reward_signals.reward_signals import release_reward
+        _reward: Any = release_reward  # untyped emitter — call through Any
+        from brain.cog_memory.working_memory import update_working_memory
+        for _pc in credits:
+            _sig = max(0.0, min(1.0, float(_pc.get("significance") or 0.0)))
+            _bonus = round(SYMBOLIC_PRODUCTION_REWARD * _sig, 3)
+            if _bonus <= 0.0:
+                continue
+            _reward(context, signal="reward_signal", actual=_bonus, expected=0.4,
+                    effort=0.4, mode="phasic", source="symbolic_production")
+            _reward(context, signal="completion_signal", actual=_bonus, expected=0.4,
+                    effort=0.4, mode="phasic", source="symbolic_production")
+            update_working_memory({
+                "content": (f"Made something: {_pc.get('sub_kind') or 'symbolic artifact'}"
+                            f" credited on the effect ledger (+{_bonus})"),
+                "event_type": "reward",
+                "importance": 2,
+                "priority": 2,
+            })
+    except Exception as _e:
+        record_failure("ORRIN_loop.symbolic_production", _e)
+
+
 def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any, _cycle_num: Any) -> Context:
     # ── Tier-3 production-loop closure: reward re-use of Orrin's own artifacts ──
     # Runs before commit_signals so the reward's affect proposals are integrated
     # into this same cycle.
     _pay_artifact_reuse(context)
+
+    # ── AR4: pay queued symbolic production credits (record-time reward) ──
+    _pay_symbolic_production(context)
 
     # ── F6: durable per-cycle production-loop telemetry (run-archive verifiable) ──
     _emit_production_telemetry(context)

@@ -69,6 +69,29 @@ def shape_cognition_reward(
         reward = _gwr_cog(base_reward, context, action_was_taken=not _is_failure, fn_name=fn_name)
     except Exception:
         reward = base_reward
+    # AR4 (audit R1): making pays per attempt. The per-cycle gradient favored
+    # intake — any signal-moving read paid every cycle, while production paid
+    # only a rare lump at goal close — so a reward-maximizing selector
+    # rationally drifted back to reading. A making attempt (trying to produce
+    # a checkable/durable thing) now pays a standing credit comparable to an
+    # intake action's bonuses, pass OR fail: trying to make is never locally
+    # worse than reading. A verified produce_and_check pass pays more (its
+    # credited tool_run_effect separately pays production reward at record
+    # time). Placed BEFORE the habituation block so repeated identical
+    # attempts with a flat reward EMA decay like any other stale loop.
+    _MAKING_FNS = frozenset({
+        "produce_and_check", "compose_section", "write_tool",
+        "write_cognitive_function",
+    })
+    if fn_name in _MAKING_FNS and not _is_failure:
+        reward += 0.15
+        try:
+            _g_mk = bound_goal(context) or {}
+            if fn_name == "produce_and_check" and _g_mk.get("_check_passed"):
+                reward += 0.10
+        except Exception as _e:
+            record_failure("cognition_reward.making_attempt", _e)
+
     # Regulation discharge bonus — reward regulation when distress
     # was actually present at execution time.
     # Aldao et al. (2010) meta-analysis of emotion regulation:

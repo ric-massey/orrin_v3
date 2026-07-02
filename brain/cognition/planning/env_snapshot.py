@@ -131,6 +131,12 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
     _RESEARCH_HINTS = ("finding", "research", "summary of findings", "search was performed",
                        "results were retrieved", "written to long memory", "stored in long memory")
     if any(h in text_lower for h in _RESEARCH_HINTS):
+        # AR7/G3: a real ledger effect for THIS goal is the strongest evidence a
+        # finding was produced — honest work that recorded a credited artifact
+        # (research memo, symbolic artifact, note) must not fail the milestone
+        # gate because its prose doesn't echo the milestone's keywords.
+        if context.get("_goal_has_effect"):
+            return True
         # Real long-memory growth since the goal committed = a finding was genuinely
         # stored (set by apply_milestone_updates; robust to WM pruning).
         if context.get("_research_progressed"):
@@ -198,6 +204,16 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
     # WM), so "a finding was written to long memory" is verified by real long-memory
     # GROWTH since this goal was committed — robust to the WM pruning/timing that left
     # the transient "[research]" marker invisible. Baseline lazily on first sight.
+    # AR7/G3: effect-ledger grounding for the milestone check — the durable,
+    # ungameable record of whether this goal produced anything real.
+    try:
+        from brain.agency.effect_ledger import has_qualifying_effect
+        gid = str(goal.get("id") or "")
+        context["_goal_has_effect"] = bool(gid) and has_qualifying_effect(gid, goal)
+    except Exception as exc:
+        record_failure("env_snapshot.goal_has_effect", exc)
+        context["_goal_has_effect"] = False
+
     try:
         _lm_now = _lm_total(context)
         if goal.get("_lm_baseline") is None:

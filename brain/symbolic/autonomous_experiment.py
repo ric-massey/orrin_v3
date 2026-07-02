@@ -57,7 +57,7 @@ def run_experiment_cycle(context: Optional[Dict] = None) -> Dict:
         try:
             exp    = design_experiment(goal)
             result = run_sandbox_experiment(exp)
-            record_experiment_result(exp, result)
+            record_experiment_result(exp, result, context=ctx)
             run_count += 1
             log_activity(
                 f"[experiment] Ran '{exp['probe_type']}' for goal "
@@ -287,7 +287,9 @@ def _try_crystallize_from_gap(experiment: Dict, domain: str) -> None:
         log_activity(f"[experiment] Crystallization from gap failed: {e}")
 
 
-def record_experiment_result(experiment: Dict, result: Dict) -> None:
+def record_experiment_result(
+    experiment: Dict, result: Dict, *, context: Optional[Dict] = None
+) -> None:
     """
     Feed results back into the symbolic learning systems AND actively revise rules.
 
@@ -346,6 +348,26 @@ def record_experiment_result(experiment: Dict, result: Dict) -> None:
             update_pattern_weights(_dom, _tokens, hit_rate)
     except Exception as _e:
         record_failure("autonomous_experiment.record_experiment_result.4", _e)
+
+    # AR1: a resolved experiment is produced, measured structure — hypothesis,
+    # probes, and a quantitative outcome. Record it whether it confirmed or
+    # refuted (a clean refutation is knowledge too); the ledger's novelty gates
+    # keep re-running the same probe from re-crediting.
+    try:
+        from brain.symbolic.symbolic_effects import record_symbolic_effect
+        record_symbolic_effect(
+            "experiment",
+            (f"[experiment resolved] goal: {goal_text}; domain: {domain or 'general'}; "
+             f"probe: {experiment.get('probe_type', '?')}; "
+             f"hypothesis: {experiment.get('hypothesis', '')}; "
+             f"outcome: hit_rate={hit_rate} over {result.get('total_queries', 0)} queries, "
+             f"success={success}, rules_fired={len(rules_fired)}, "
+             f"domain_error={result.get('domain_error', 0.0)}"),
+            context=context,
+            metadata={"experiment_id": experiment.get("id"), "success": bool(success)},
+        )
+    except Exception as _e:
+        record_failure("autonomous_experiment.record_effect", _e)
 
     # Persist experiment with result
     _save_experiment({**experiment, "result": result, "status": "completed"})

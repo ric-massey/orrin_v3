@@ -79,8 +79,6 @@ from watchdogs import Pulse, start_watchdogs
 from observability.metrics import serve_metrics
 
 # --- Memory subsystem ---
-from memory.store.inmem import InMemoryStore
-from memory.memory_daemon import MemoryDaemon
 from memory.health import snapshot as memory_snapshot  # rich snapshot
 
 # --- Goals subsystem ---
@@ -211,10 +209,9 @@ except Exception as _e:
     _log.warning("silent except: %s", _e)
 
 # ---------- Memory subsystem ----------
-store = InMemoryStore()
-daemon = MemoryDaemon(store)
-daemon.start()
-print("[memory] MemoryDaemon started with InMemoryStore")
+# Store + daemon + AR6 WAL boot replay (recall survives restart) — runtime/memory_boot.py.
+from runtime.memory_boot import start_memory as _start_memory
+store, daemon = _start_memory()
 
 # Boot sequence (§9.7) — emit each milestone AFTER it actually comes up, so the
 # wake-up screen reflects real readiness. Best-effort; never let it break boot.

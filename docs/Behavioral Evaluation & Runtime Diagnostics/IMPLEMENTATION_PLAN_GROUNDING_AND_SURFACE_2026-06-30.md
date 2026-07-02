@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-30
 **Derives from:** `archive/SYNTHESIS_GROUNDING_AND_SURFACE_2026-06-30.md`
-**Status:** P1–P8 built 2026-07-01 (committed 2026-07-02); staging run + ten-round proof pending — run after AR1–AR4 land; gated on NEXT_RUN_TESTS §8.
+**Status:** P1–P8 built 2026-07-01 (committed 2026-07-02); AR1–AR9 of the audit-remediation plan also landed 2026-07-02 — the stamped staging run + ten-round proof is NEXT; gated on NEXT_RUN_TESTS §8.
 
 > **The bet, in one sentence.** Pick one build, close the full loop end-to-end —
 > *machine verifies → Ric corrects → both signals train the persistent model and

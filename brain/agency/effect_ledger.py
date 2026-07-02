@@ -35,6 +35,7 @@ import hashlib
 import json
 import re
 import threading
+import time
 from collections import deque
 from dataclasses import dataclass, asdict
 from typing import Any, Deque, Dict, List, Optional, Tuple
@@ -56,7 +57,17 @@ MIN_ARTIFACT_CHARS = 120  # set between the failure case (~40-char affect string
 EFFECT_KINDS = frozenset({
     "file_write", "tool_written", "tool_run_effect", "note_novel",
     "message_answered", "code_committed", "external_post", "tracked_work",
+    "symbolic_artifact",
 })
+
+# AR1 rate cap: a rule-synthesis/crystallization storm must not farm production
+# credit. At most _SYMBOLIC_CAP credited symbolic_artifact effects per rolling
+# _SYMBOLIC_CAP_WINDOW_S; beyond that a row is still appended (for the record)
+# but earns nothing. Time-based rather than cycle-based because the symbolic
+# producers (dream cycle, crystallization) often run without a cycle context.
+_SYMBOLIC_CAP = 6
+_SYMBOLIC_CAP_WINDOW_S = 600.0
+_symbolic_credit_times: Deque[float] = deque(maxlen=_SYMBOLIC_CAP)
 
 # How many recent same-kind effects to compare against for near-dup detection.
 _NOVELTY_WINDOW = 64
@@ -84,6 +95,12 @@ _hash_kind: Dict[str, str] = {}                             # content_hash -> ef
 # "emotional state is NOT saved here" — it must run on the cycle's own context).
 _pending_reuse: List[Dict[str, Any]] = []
 _PENDING_REUSE_MAX = 64
+# AR4: credited symbolic artifacts pay production reward the moment they are
+# recorded, not only at goal close — the symbolic producers run outside any
+# context that can persist affect, so (like re-use) the credit is queued here
+# and paid by finalize_cycle on the live cycle context.
+_pending_production: List[Dict[str, Any]] = []
+_PENDING_PRODUCTION_MAX = 64
 _hydrated = False
 
 
@@ -216,6 +233,14 @@ def _structural_significance(
         # before P3), and it is what lets a verifiable "understand X" goal close on
         # a check-pass instead of on "stopped feeling new".
         return 0.6
+    if kind == "symbolic_artifact":
+        # AR1: a synthesized rule / crystallized skill / resolved experiment /
+        # established causal edge is verified structure the engine itself checked
+        # (compression test, establishment gate, sandbox probes) — tool-tier
+        # significance, scaled by what kind of structure it is. An experiment
+        # carries measured evidence, so it sits at the top of the band.
+        sub = str((metadata or {}).get("kind") or "")
+        return 0.6 if sub == "experiment" else 0.5
     if kind == "tracked_work":
         meta = metadata or {}
         # Credit cumulative work only when it names a durable path and advances
@@ -361,6 +386,17 @@ def record_effect(
         if is_dup:
             nov = 0.0
         sig = 0.0 if nov <= 0.0 else _structural_significance(kind, raw, normalized, metadata)
+        # AR1 rate cap — symbolic credit beyond the rolling window earns nothing.
+        if kind == "symbolic_artifact" and sig > 0.0:
+            now_m = time.monotonic()
+            while _symbolic_credit_times and (now_m - _symbolic_credit_times[0]) > _SYMBOLIC_CAP_WINDOW_S:
+                _symbolic_credit_times.popleft()
+            if len(_symbolic_credit_times) >= _SYMBOLIC_CAP:
+                sig = 0.0
+                metadata = dict(metadata or {})
+                metadata["rate_capped"] = True
+            else:
+                _symbolic_credit_times.append(now_m)
         # The active goal's definition of done is the local standard of good.
         # For prose-like output, structural quality alone is insufficient when
         # the content has no detectable relationship to the inhabited goal.
@@ -420,6 +456,17 @@ def record_effect(
                     )
                 except Exception as exc:
                     record_failure("effect_ledger.record_tracked_progress", exc)
+        # AR4: queue the production credit for finalize_cycle to pay on the live
+        # cycle context (symbolic producers can't persist affect themselves).
+        if kind == "symbolic_artifact":
+            _pending_production.append({
+                "kind": kind,
+                "sub_kind": str((metadata or {}).get("kind") or ""),
+                "significance": row.significance,
+                "goal_id": row.goal_id,
+            })
+            if len(_pending_production) > _PENDING_PRODUCTION_MAX:
+                del _pending_production[:-_PENDING_PRODUCTION_MAX]
         _log.debug("effect recorded kind=%s novelty=%.3f sig=%.3f goal=%s",
                    kind, row.novelty, row.significance, goal_id)
         return row
@@ -616,6 +663,20 @@ def drain_pending_reuse() -> List[Dict[str, Any]]:
         return out
 
 
+def drain_pending_production(limit: int = 4) -> List[Dict[str, Any]]:
+    """AR4: hand queued symbolic production credits to the reward layer.
+    Each entry: {kind, sub_kind, significance, goal_id}. Capped per drain so a
+    burst can't dump unbounded reward into one cycle (the rest pay next cycle);
+    the record-time rate cap already bounds total volume."""
+    _hydrate()
+    with _lock:
+        if not _pending_production:
+            return []
+        out = _pending_production[:max(1, int(limit))]
+        del _pending_production[:len(out)]
+        return out
+
+
 def reuse_count(content_hash: str) -> int:
     _hydrate()
     with _lock:
@@ -637,4 +698,6 @@ def reset_for_tests() -> None:
         _hash_goal.clear()
         _hash_kind.clear()
         _pending_reuse.clear()
+        _pending_production.clear()
+        _symbolic_credit_times.clear()
         _hydrated = False

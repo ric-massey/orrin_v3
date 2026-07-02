@@ -35,7 +35,11 @@ def _write_text(dirpath: Path, name: str, text: str) -> str:
 
 def _write_json(dirpath: Path, name: str, obj: Any) -> str:
     p = dirpath / name
-    p.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    # default=str: the summary meta embeds asdict(goal), whose datetimes/enums are
+    # not JSON-native — without it every synthesize step died AFTER writing the
+    # memo (latent until AR2 first routed real goals here).
+    p.write_text(json.dumps(obj, indent=2, ensure_ascii=False, default=str),
+                 encoding="utf-8")
     return str(p)
 
 
@@ -245,6 +249,10 @@ class ResearchHandler(BaseGoalHandler):
                     memo = _offline_fallback_memo(goal, synth_kind, include_citations, snippets)
 
                 out_path = _write_text(art_dir, output_name, memo)
+                # AR1: the memo is the produced deliverable (fetched docs are
+                # source material, not production) — register it on the step so
+                # artifact_satisfied and the runner's effect chokepoint see it.
+                step.artifacts.append(out_path)
                 meta = {
                     "goal": asdict(goal),
                     "output": out_path,

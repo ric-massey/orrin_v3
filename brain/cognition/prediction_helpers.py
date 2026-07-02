@@ -20,7 +20,6 @@ from typing import Any, Dict, List, Optional, Tuple
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity, log_private
 from brain.utils.signal_utils import create_signal
-from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
 from brain.utils.failure_counter import record_failure
 
@@ -313,14 +312,26 @@ def _fire_surprise(prediction_text: str, mismatch: float, context: Dict[str, Any
         affect.update(core)
     context["affect_state"] = affect
 
-    update_long_memory(
-        f"[prediction error] '{prediction_text[:100]}' did not materialise (mismatch={mismatch:.2f}). "
-        f"Updating internal model.",
-        emotion="exploration_drive",
-        event_type="prediction_error",
-        importance=3,
-        context=context,
-    )
+    # AR6 (audit M1): a per-cycle prediction error is telemetry, not an episodic
+    # memory — written to long memory it recurred 34–39× per prediction and
+    # evicted real findings. Route it to a capped metrics log instead; the
+    # surprise signal + affect update above are what cognition actually consumes.
+    try:
+        import json as _json
+        from brain.paths import DATA_DIR as _DATA_DIR
+        from brain.utils.json_utils import cap_jsonl as _cap_jsonl
+        from brain.utils.timeutils import now_iso_z as _now_iso_z
+        _plog = _DATA_DIR / "prediction_metrics.jsonl"
+        _plog.parent.mkdir(parents=True, exist_ok=True)
+        with _plog.open("a", encoding="utf-8") as _fh:
+            _fh.write(_json.dumps({
+                "ts": _now_iso_z(),
+                "prediction": prediction_text[:200],
+                "mismatch": round(float(mismatch), 3),
+            }) + "\n")
+        _cap_jsonl(_plog, max_lines=5000)
+    except Exception as _e:
+        record_failure("prediction._fire_surprise.metrics", _e)
     log_private(f"[prediction] Surprise: mismatch={mismatch:.2f}, text='{prediction_text[:60]}'")
 
 

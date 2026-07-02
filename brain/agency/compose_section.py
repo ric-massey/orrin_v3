@@ -32,6 +32,31 @@ def _draft(goal: Dict[str, Any], section: str, context: Dict[str, Any]) -> str:
         text = llm_ok(generate_response(prompt, config={"model": get_thinking_model()}), "goals")
         if text and len(text.strip()) >= MIN_ARTIFACT_CHARS:
             return text.strip()
+    # AR3 (audit D6): LLM-off composition speaks with his own trained organ, not
+    # a fixed template that games the artifact gate with identical boilerplate.
+    # Maturity-gated on the same voice.lm_ready check the mouth uses, so an
+    # immature organ never fills a manuscript with noise; the template below is
+    # only the not-ready fallback, and the honest MIN_ARTIFACT_CHARS floor still
+    # applies to whatever the organ produces.
+    try:
+        from brain.cognition.language.voice import lm_ready
+        if lm_ready():
+            from brain.cognition.language import native_lm
+            from brain.utils.felt_lexicon import strip_scaffold
+            parts_hint = ", ".join(map(str, (goal.get("grounded_parts") or [])[:3]))
+            prompt = f"{title} — {section}"
+            if parts_hint:
+                prompt += f" (connecting {parts_hint})"
+            prompt += ": "
+            text = strip_scaffold(
+                native_lm.generate(prompt, length=400, temperature=0.7) or ""
+            ).strip()
+            if text.startswith(prompt):
+                text = text[len(prompt):].strip()
+            if len(text) >= MIN_ARTIFACT_CHARS:
+                return text
+    except Exception as exc:
+        record_failure("compose_section.native_draft", exc)
     parts = goal.get("grounded_parts") or ["purpose", "evidence", "implications"]
     paragraphs = [
         f"# {section}\n",

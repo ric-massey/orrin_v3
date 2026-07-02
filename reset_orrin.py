@@ -18,7 +18,7 @@ What this clears (so a fresh run starts as a true newborn):
       experiential corpus and reading history (kept native_lm.pt — the trained model)
     • concepts.json + attention_value_weights.json — these LOOK like config but are
       actually run-learned/contaminated, so they are wiped, not kept
-    • self_model.json — stripped back to its seed (directive/identity/values/traits/
+    • identity_state.json — stripped back to its seed (directive/identity/values/traits/
       roles); learned fields (knowledge_domains, weaknesses, recent_focus,
       identity_story, latent vector, …) reset so no prior-run self-narrative carries over
     • brain/logs/*.txt, *.log, *.jsonl — emptied
@@ -217,7 +217,10 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
     json_to_clear = [f for f in sorted(DATA_DIR.glob("*.json")) if f.name not in keep]
     print(f"\n[1] {tag} {len(json_to_clear)} brain/data/*.json files...")
     for f in json_to_clear:
-        if f.name == "self_model.json":
+        if f.name in ("identity_state.json", "self_model.json"):
+            # AR9/O2: the model file was renamed self_model.json → identity_state.json
+            # (paths.SELF_MODEL_FILE); the old name is matched too so a stale tree
+            # still gets the structured strip instead of a blanket wipe.
             _reset_self_model(f, dry_run)
         elif f.name.endswith(".corrupt.json") or ".corrupt." in f.name:
             _delete(f, dry_run)          # salvage artifacts: delete outright
@@ -230,8 +233,10 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
     for f in streams:
         _empty_file(f, dry_run)
 
-    # ── 3. transient dirs: rotated/, sandbox_tmp/ ────────────────────────────
-    for sub in ("rotated", "sandbox_tmp"):
+    # ── 3. transient dirs: rotated/, sandbox_tmp/, effect_artifacts/ ─────────
+    # effect_artifacts/ (AR9/O2): captured artifact TEXT keyed by content hash —
+    # run-produced state; leaving it made a "clean instance" carry prior-run work.
+    for sub in ("rotated", "sandbox_tmp", "effect_artifacts"):
         d = DATA_DIR / sub
         if d.exists():
             n = sum(1 for _ in d.glob("*"))

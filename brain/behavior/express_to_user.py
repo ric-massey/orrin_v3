@@ -284,8 +284,13 @@ _ROUTES = {
 }
 
 
-def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None) -> Dict[str, Any]:
+def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None,
+                    *, credit: bool = True) -> Dict[str, Any]:
     """Compose from `motive`, enforce speakability, stamp, and route to `channel`.
+
+    credit=False (AR7/G4) delivers the message but records no effect: a note
+    seeded only from felt state is expression, not production — it must never
+    earn artifact credit.
 
     Returns {"success", "channel", "text", "motive"}.
     """
@@ -313,7 +318,7 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
     # outward effect. Content-addressed + deduped, so 100 identical empty notes
     # collapse to one production. A None return = nothing novel = no credit; the
     # reward split (P1) keys production reward on a non-None row this cycle.
-    if ok:
+    if ok and credit:
         _kind = {"note": "note_novel", "desktop": "note_novel",
                  "reply": "message_answered"}.get(channel)
         if _kind:

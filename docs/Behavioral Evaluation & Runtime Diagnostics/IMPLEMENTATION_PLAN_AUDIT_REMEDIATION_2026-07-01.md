@@ -2,7 +2,31 @@
 
 **Date:** 2026-07-01
 **Derives from:** `CODEBASE_AUDIT_2026-07-01.md` (13 parts, 22 findings, 6 passes).
-**Status:** Proposed — the build plan for the audit's findings.
+**Status:** AR1–AR9 BUILT 2026-07-02 (`make verify` green, 1334 tests); the stamped
+staging run against `NEXT_RUN_TESTS.md` §8 is the remaining gate. Architectural
+forks (AD1–AD5, GOAL_STORE_UNIFICATION, D8) remain decisions, not scheduled here.
+
+Build notes (deviations/discoveries, 2026-07-02):
+- AR1: causal edges record on **establishment** (the verified moment), not on first
+  add — a bare new edge is a hypothesis and can't honestly clear MIN_ARTIFACT_CHARS.
+  Crystallization records one effect per batch, not per rule. Symbolic credit is
+  rate-capped (6 per rolling 10 min) at the ledger.
+- AR2: routing goals to the ResearchHandler exposed a latent bug — its synthesize
+  step always died on a non-JSON-serializable `asdict(goal)` (never seen because
+  nothing reached the handler before). Fixed with `default=str`. The memo path now
+  also registers on `Step.artifacts` (feeds both `artifact_satisfied` and AR1).
+- AR3: the leave_note half was already built (T2.4 finding-seeded notes + the
+  Phase-2C/2D fluency-gated native render in the expression door); the remaining
+  gap was `compose_section._draft`, now native-LM-drafted behind `voice.lm_ready`.
+- AR4: symbolic credits queue in the ledger and are paid by `finalize_cycle`
+  (`_pay_symbolic_production`, significance-scaled), mirroring the reuse payout.
+- AR8: accumulation was already activity-scaled (2026-06-30); the remaining gap was
+  the `energy_mode` fallback ("active"=0.75 → equilibrium ≈0.55, forever under the
+  0.60 arming line). Dynamics extracted to `_update_resource_deficit` + simulated
+  in `test_energy_breathes.py`; "active" now 1.0 (equilibrium ≈0.64, load arms).
+- AR9: `reset_orrin.py` also matches the old `self_model.json` name so a stale tree
+  still gets the structured strip; boot writability probe lives in
+  `runtime/preflight._check_data_writable` (exit 3, names `chflags nouchg`).
 
 > **The bet, in one sentence.** Orrin already *makes things* LLM-free — symbolic
 > rules, skills, experiments, causal knowledge, and (via the v2 daemon) research

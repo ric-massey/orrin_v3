@@ -31,9 +31,23 @@ _REPETITIVE_EVENT_TYPES = frozenset({
     # goals, commitments, and metacog observations recur slower than the
     # 10-entry default window, so they need the wide prefix-match window too.
     "intrinsic_goal", "commitment", "metacog_pattern",
+    # AR6 (audit M1): known-periodic instrumentation — the same event recurring
+    # with only its numbers changed (mismatch=0.42 vs 0.43) slipped the prefix
+    # match and piled up 34–39 copies each, evicting real findings.
+    "prediction_error", "introspection_miss",
 })
 _REPETITIVE_DEDUP_WINDOW: int = 200
 _REPETITIVE_PREFIX: int = 120
+
+# AR6: digits are noise for periodic-event identity — normalize them out of the
+# dedup key so a recurring entry can't slip the window by carrying a fresh number.
+_DEDUP_NUM_RE = re.compile(r"\d+(?:\.\d+)?")
+
+
+def _dedup_key(event_type: str, content: str) -> str:
+    if event_type in _REPETITIVE_EVENT_TYPES:
+        return _DEDUP_NUM_RE.sub("#", content[:_REPETITIVE_PREFIX])
+    return content
 
 
 def _dedup_window_for(event_type: str) -> int:
@@ -184,8 +198,7 @@ def update_long_memory(
     # plain load_json→mutate→save_json sequence leaves open).
     _et = entry.get("event_type", "")
     _new_content = entry.get("content", "")
-    _repetitive = _et in _REPETITIVE_EVENT_TYPES
-    _new_key = _new_content[:_REPETITIVE_PREFIX] if _repetitive else _new_content
+    _new_key = _dedup_key(_et, _new_content)
 
     _edge_window: list = []
     _over_cap = False
@@ -200,9 +213,7 @@ def update_long_memory(
             for m in memories[-_dedup_window_for(_et):]:
                 if m.get("event_type", "") != _et:
                     continue
-                _m_content = m.get("content", "")
-                _m_key = _m_content[:_REPETITIVE_PREFIX] if _repetitive else _m_content
-                if _m_key == _new_key:
+                if _dedup_key(_et, m.get("content", "")) == _new_key:
                     raise AbortModify("duplicate")
             memories.append(entry)
             _edge_window = memories[-21:-1]

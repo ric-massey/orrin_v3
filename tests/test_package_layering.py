@@ -61,6 +61,11 @@ BASELINE_EDGES = {
     # (effect_ledger doesn't import control_signals); mirrors the existing
     # cognition → agency edge.
     ('control_signals', 'agency'),
+    # AR1 (audit D7): symbolic production points (rule_synthesis, crystallization,
+    # autonomous_experiment, causal_graph) record their artifacts on the effect
+    # ledger via symbolic_effects — symbolic → agency. No cycle (effect_ledger
+    # doesn't import symbolic); mirrors the cognition → agency edge.
+    ('symbolic', 'agency'),
     ('agency', 'behavior'), ('agency', 'cog_memory'), ('agency', 'cognition'),
     ('agency', 'core'), ('agency', 'registry'), ('agency', 'think'),
     ('agency', 'utils'),

@@ -166,13 +166,15 @@ class MemoryDaemon:
             ev = self.ingest_q.get()
             drained += 1
 
-            # Metrics + WAL for the raw event
+            # Metrics + WAL for the raw event. AR6: a boot-replayed event came
+            # FROM the WAL — appending it again would grow the log every restart.
             bump_ingest()
-            try:
-                wal_append_event(ev)
-            except Exception:
-                self._flush_failures += 1  # count WAL misses
-                pass
+            if not (ev.meta or {}).get("_replay"):
+                try:
+                    wal_append_event(ev)
+                except Exception:
+                    self._flush_failures += 1  # count WAL misses
+                    pass
 
             # Build item (sanitize meta, precomputed _vec support, salience/novelty, kind priors)
             res = build_item_from_event(

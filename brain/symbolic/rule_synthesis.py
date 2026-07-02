@@ -320,6 +320,24 @@ def synthesise_rules(*, force: bool = False) -> Dict:
             existing_ids.add(parent_rule["id"])
             total_new += 1
 
+            # AR1: a synthesized principle is produced structure — record it on
+            # the effect ledger so the production system can see it.
+            try:
+                from brain.symbolic.symbolic_effects import record_symbolic_effect
+                claim = fields.get("causal_claim") or {}
+                record_symbolic_effect(
+                    "rule",
+                    (f"[synthesized L{parent_level} principle] "
+                     f"conditions: {', '.join(fields['conditions'])}; "
+                     f"conclusion: {fields['conclusion']}; "
+                     f"causal: {claim.get('cause', '')} -> {claim.get('effect', '')} "
+                     f"({claim.get('mechanism', '')}); "
+                     f"generalised from {len(cluster)} L{child_level} rules"),
+                    metadata={"rule_id": parent_rule["id"], "level": parent_level},
+                )
+            except Exception as _e:
+                record_failure("rule_synthesis.record_effect", _e)
+
             log_activity(
                 f"[rule_synthesis] L{parent_level} rule '{parent_rule['id']}' "
                 f"from {len(cluster)} L{child_level} rules: "

@@ -39,6 +39,48 @@ from brain.control_signals.signal_patterns import (
 )
 _log = get_logger(__name__)
 
+def _update_resource_deficit(context: Any, state: dict) -> float:
+    """AR8 (audit R2) — the rise-and-recover fatigue dynamics, in one place.
+
+    Accumulation scales with how hard the cycle actually WORKED; recovery pulls
+    toward a context-adaptive allostatic τ (Sterling 2012; McEwen & Wingfield
+    2003 via cost_prediction.allostatic_setpoint, which also accrues
+    _allostatic_load while resource_deficit runs above 0.60 and forces τ down
+    once load passes 0.5). Equilibria at τ=0.15: rest ≈ 0.31, neutral ≈ 0.45,
+    sustained active/heavy ≈ 0.64 (equilibrium = τ + 39·gain) — above the 0.60
+    arming line, so the exhaustion dynamics are reachable on both the
+    measured-cost path and the energy_mode fallback (the fallback's "active"
+    was 0.75, whose ≈0.55 equilibrium could never arm — audit finding R2).
+    Mutates state["resource_deficit"]; returns the new value.
+    """
+    # Decay rate 0.025; if resource_deficit is very high (>0.75), decay is faster.
+    try:
+        from brain.cognition.cost_prediction import allostatic_setpoint as _allo_tau
+        _resource_deficit_baseline = _allo_tau(context, state)
+    except Exception:
+        _resource_deficit_baseline = 0.15
+    resource_deficit = float(state.get("resource_deficit", _resource_deficit_baseline) or _resource_deficit_baseline)
+    # ALLOSTATIC FATIGUE (2026-06-30): accumulation scales with this cycle's
+    # measured cognitive cost (cost_prediction), falling back to the energy_mode,
+    # then a mid default — heavy cognition tires, idle/rest restores.
+    _activity = 0.5
+    try:
+        _cp = context.get("_cost_prediction") if isinstance(context, dict) else None
+        if isinstance(_cp, dict) and _cp.get("actual_ms"):
+            _activity = max(0.0, min(1.0, float(_cp["actual_ms"]) / 800.0))   # ~800ms = a heavy cycle
+        else:
+            _mode = context.get("energy_mode") if isinstance(context, dict) else None
+            _activity = {"rest": 0.2, "reactive": 0.5, "active": 1.0, "neutral": 0.5}.get(str(_mode), 0.5)
+    except Exception:
+        _activity = 0.5
+    resource_deficit = min(1.0, resource_deficit + 0.0025 + 0.010 * _activity)
+    _fat_pull = _resource_deficit_baseline - resource_deficit
+    _fat_decay_rate = 0.025 if resource_deficit < 0.75 else 0.06  # accelerated recovery from exhaustion
+    resource_deficit = max(0.0, min(1.0, resource_deficit + _fat_pull * _fat_decay_rate))
+    state["resource_deficit"] = round(resource_deficit, 4)
+    return resource_deficit
+
+
 def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     from brain.cog_memory.working_memory import update_working_memory
 
@@ -534,42 +576,10 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
             state[_dk] = core[_dk]
 
     # === resource_deficit: accumulates per call, decays toward an ALLOSTATIC target ===
-    # Phase 2 (C3, docs/proactive_resource_plan.md): the recovery target is no longer
-    # a fixed 0.15 — it is a context-adaptive τ (recover deeper when idle; tolerate
-    # more deficit during a live/critical exchange) with allostatic-load forced
-    # recovery. Sterling (2012) allostasis = predictive regulation; McEwen & Wingfield
-    # (2003) allostatic load. Falls back to 0.15 when disabled/absent.
-    # Decay rate 0.025; if resource_deficit is very high (>0.75), decay is faster.
-    try:
-        from brain.cognition.cost_prediction import allostatic_setpoint as _allo_tau
-        _resource_deficit_baseline = _allo_tau(context, state)
-    except Exception:
-        _resource_deficit_baseline = 0.15
-    resource_deficit = float(state.get("resource_deficit", _resource_deficit_baseline) or _resource_deficit_baseline)
-    # ALLOSTATIC FATIGUE (2026-06-30): accumulation scales with how hard the cycle
-    # actually WORKED, so energy BREATHES instead of pinning near 100%. The old flat
-    # +0.002 was ~12x weaker than the recovery, so fatigue could never climb. Now
-    # heavy cognition tires and idle/rest restores: activity ∈ [0,1] from this cycle's
-    # measured cognitive cost (cost_prediction), falling back to the energy_mode, then
-    # a mid default. Tuned so the resting equilibrium is ~0.25 (energy ~75%) and a
-    # sustained-heavy equilibrium is ~0.65 (energy ~35%) at the default τ=0.15 — a
-    # human-like band rather than a flatline. Recovery toward the (idle-deepening)
-    # allostatic τ is unchanged, so rest still pulls it back down.
-    _activity = 0.5
-    try:
-        _cp = context.get("_cost_prediction") if isinstance(context, dict) else None
-        if isinstance(_cp, dict) and _cp.get("actual_ms"):
-            _activity = max(0.0, min(1.0, float(_cp["actual_ms"]) / 800.0))   # ~800ms = a heavy cycle
-        else:
-            _mode = context.get("energy_mode") if isinstance(context, dict) else None
-            _activity = {"rest": 0.2, "reactive": 0.5, "active": 0.75, "neutral": 0.5}.get(str(_mode), 0.5)
-    except Exception:
-        _activity = 0.5
-    resource_deficit = min(1.0, resource_deficit + 0.0025 + 0.010 * _activity)
-    _fat_pull = _resource_deficit_baseline - resource_deficit
-    _fat_decay_rate = 0.025 if resource_deficit < 0.75 else 0.06  # accelerated recovery from exhaustion
-    resource_deficit = max(0.0, min(1.0, resource_deficit + _fat_pull * _fat_decay_rate))
-    state["resource_deficit"] = round(resource_deficit, 4)
+    # AR8 (audit R2): extracted to _update_resource_deficit so the rise-and-recover
+    # dynamics are testable in isolation (test_energy_breathes.py) — ~20 consumers
+    # read this signal, so the tuning is guarded by simulation, not vibes.
+    _update_resource_deficit(context, state)
 
     # === Hedonic adaptation — sustained states lose their felt charge ===
     update_hedonic_baselines(state, core)

@@ -33,6 +33,7 @@ from typing import Dict, List, Optional
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 from brain.paths import DATA_DIR
 
 CAUSAL_GRAPH_FILE = DATA_DIR / "causal_graph.json"
@@ -115,6 +116,26 @@ def _maybe_establish(edge: Dict) -> None:
         edge["established"] = True
         log_activity(f"[causal] Established (locked): "
                      f"'{edge['cause'][:40]}' → '{edge['effect'][:40]}'")
+        # AR1: establishment is the verified moment — the edge survived enough
+        # evidence + interventions to lock. Record it once as produced causal
+        # knowledge (a bare new edge is a hypothesis, not a production).
+        try:
+            from brain.symbolic.symbolic_effects import record_symbolic_effect
+            record_symbolic_effect(
+                "causal_edge",
+                (f"[causal edge established] cause: {edge.get('cause', '')}; "
+                 f"effect: {edge.get('effect', '')}; "
+                 f"strength={edge.get('strength', 0.0)} "
+                 f"causal_score={edge.get('causal_score', 0.0)}; "
+                 f"evidence: {edge.get('evidence_count', 0)} confirmations, "
+                 f"{edge.get('intervention_count', 0)} interventions, "
+                 f"{edge.get('counterfactual_count', 0)} counterfactuals; "
+                 f"layer L{edge.get('layer', 1)}; domain {edge.get('domain', 'world')}; "
+                 f"source {edge.get('source', '?')}"),
+                metadata={"edge_id": edge.get("id"), "domain": edge.get("domain")},
+            )
+        except Exception as _e:
+            record_failure("causal_graph.record_effect", _e)
 
 
 def is_established(cause: str, effect: str) -> bool:

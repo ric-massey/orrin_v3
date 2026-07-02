@@ -216,6 +216,20 @@ def crystallize(
         )
     if added:
         _log_crystallization(query, response, added, caller, rejected)
+        # AR1: crystallized skill-rules are produced structure that passed the
+        # compression test — one effect per batch (not per rule), so one response
+        # can't farm four credits.
+        try:
+            from brain.symbolic.symbolic_effects import record_symbolic_effect
+            body = "; ".join(r.get("conclusion", "") for r in added)
+            record_symbolic_effect(
+                "skill",
+                (f"[crystallized skill] query: {query[:160]}; "
+                 f"conditions: {', '.join(conditions)}; rules: {body}"),
+                metadata={"rule_ids": [r["id"] for r in added], "caller": caller},
+            )
+        except Exception as _e:
+            record_failure("crystallization.record_effect", _e)
 
     return added
 

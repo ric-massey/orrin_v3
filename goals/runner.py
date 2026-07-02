@@ -314,6 +314,7 @@ class StepRunner:
                 extra = {"duration_sec": max(0.0, time.perf_counter() - t0)}
                 if step.status == Status.DONE:
                     self._emit_step_event("StepFinished", step, goal_kind=goal.kind, extra=extra)
+                    self._record_step_effects(goal, step)
                     _dbg("finished step:", step.id)
                 elif step.status == Status.FAILED:
                     self._emit_step_event("StepFailed", step, goal_kind=goal.kind, extra=extra)
@@ -375,6 +376,38 @@ class StepRunner:
             time.sleep(0.02)
 
     # ----- helpers -----
+
+    def _record_step_effects(self, goal: Goal, step: Step) -> None:
+        """AR1 (audit D7): a DONE step that wrote real artifacts records them on
+        the effect ledger, so v2 handler production (research memos, housekeeping
+        reports, code files) is visible to the goal/production/reward system.
+
+        Reads Step.artifacts only — handlers put *produced* paths there, never
+        fetched source material — and the ledger's own gates (novelty dedup,
+        MIN_ARTIFACT_CHARS, structural significance) decide what actually earns
+        credit. Never raises: ledger trouble must not fail the step.
+        """
+        paths = [p for p in (step.artifacts or []) if p]
+        if not paths:
+            return
+        try:
+            from pathlib import Path as _Path
+            from brain.agency.effect_ledger import record_effect
+            for p in paths[:8]:
+                fp = _Path(str(p))
+                if not fp.is_file():
+                    continue
+                try:
+                    text = fp.read_text(encoding="utf-8", errors="replace")[:65536]
+                except OSError:
+                    continue
+                record_effect(
+                    "file_write", text, goal_id=goal.id,
+                    metadata={"path": str(fp), "goal_kind": goal.kind,
+                              "step": step.name, "source": "goals.runner"},
+                )
+        except Exception as e:
+            _log.warning("step effect recording failed: %s", e)
 
     def _maybe_finalize_goal(self, goal: Goal, last_step: Step) -> bool:
         """

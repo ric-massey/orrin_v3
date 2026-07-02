@@ -124,7 +124,8 @@ def _enrich_goal_zone(goal: Dict[str, Any]) -> Dict[str, Any]:
 
 def _mk_goal(title: str, description: str, driven_by: str = None,
              priority: int = 3, milestones: List = None,
-             requires_artifact: bool = False, deadline_cycles: int = None) -> Dict:
+             requires_artifact: bool = False, deadline_cycles: int = None,
+             kind: str = "generic", spec: Dict = None) -> Dict:
     """Build a well-formed proposed-goal dict from parts.
 
     P5: the default driver is no longer hard-coded to "world_knowledge" — that
@@ -136,6 +137,11 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
     requires_artifact (P2): the goal completes ONLY when a matching effect-ledger
     row exists for it — no self-report can close it. deadline_cycles arms the
     timeout → mark_goal_failed path.
+
+    kind/spec (AR2): a generator that knows its goal is executable by a v2 handler
+    passes the handler kind (e.g. "research" with {queries, synth_kind}) so the
+    goal reaches a real synthesizer instead of parking in the v1 self-report path.
+    Introspective goals (searching his own code/memory) must stay "generic".
     """
     if not driven_by:
         driven_by = _fairness_default_drive()
@@ -146,11 +152,13 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
     ]
     goal = {
         "title": title, "name": title, "description": description,
-        "priority": priority, "kind": "generic", "source": "intrinsic",
+        "priority": priority, "kind": str(kind or "generic"), "source": "intrinsic",
         "tier": _classify_tier(title, driven_by, description),
         "driven_by": driven_by, "created_ts": ts, "status": "proposed",
         "milestones": ms,
     }
+    if spec:
+        goal["spec"] = dict(spec)
     if requires_artifact:
         goal["requires_artifact"] = True
         if deadline_cycles is None:
@@ -245,6 +253,17 @@ def _acceptable_goal_subject(text: str) -> bool:
     if "source=" in low or "http://" in low or "https://" in low or "www." in low:
         return False
     if "untrusted" in low or "external/" in low:
+        return False
+    # AR7/G5: internal diagnostic strings must never become goal subjects —
+    # failure-counter categories ("effect_ledger.gate.rejected"), dotted module
+    # paths ("brain.cognition.leave_note"), snake_case internals with dots, and
+    # signal/gate identifiers all read as machinery, not topics.
+    if re.search(r"\b[a-z_][a-z0-9_]{2,}\.[a-z_][a-z0-9_]{2,}\b", low):
+        return False
+    if ".gate." in low or low.startswith("gate.") or "record_failure" in low:
+        return False
+    # A subject that is one long snake_case identifier is an internal name.
+    if len(words_sc := low.split()) <= 2 and any("_" in w for w in words_sc):
         return False
     # Reject verb-phrase / instruction fragments — a subject is a noun, not a verb.
     words = low.split()

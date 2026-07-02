@@ -94,6 +94,13 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                 driven_by="world_knowledge",
                 milestones=[f"A new angle on {name} was researched.",
                             f"A new fact about {name} was written to long memory."],
+                # AR2: route to the v2 ResearchHandler, whose extractive
+                # synthesizer produces a sourced memo artifact LLM-free — not the
+                # v1 self-report detour that produced hollow notes.
+                kind="research", requires_artifact=True,
+                spec={"queries": [name, f"{name} explained",
+                                  f"what is not obvious about {name}"],
+                      "synth_kind": "memo"},
             )
             for name in chosen
         ]
@@ -133,6 +140,9 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
                 f"and write what I find to long memory.",
                 driven_by="world_knowledge",
                 milestones=[f"Investigated: {q[:50]}", "A finding was written to long memory."],
+                # AR2: a genuine open question is web research — v2 handler kind.
+                kind="research", requires_artifact=True,
+                spec={"queries": [q], "synth_kind": "memo"},
             ))
             if len(out) >= limit:
                 return out
@@ -534,11 +544,76 @@ def _goal_from_recent_research(long_mem: list, scan: int = 30) -> Optional[Dict]
                 driven_by="world_knowledge",
                 milestones=[f"A new angle on '{topic[:50]}' was researched.",
                             "A new finding was written to long memory."],
+                # AR2: follow-up on prior web research is web research.
+                kind="research", requires_artifact=True,
+                spec={"queries": [topic, f"{topic} deeper analysis"],
+                      "synth_kind": "memo"},
             )
     except Exception as exc:  # long-memory scan failed — record, no follow-up goal
         record_failure("intrinsic_goals._goal_from_recent_research", exc)
         return None
     return None
+
+
+# ── AR5 (audit G2/AD4): goal BIRTH-RATE quota ────────────────────────────────
+# ~95% of generated goals were "understand X" — even with a making path built
+# (AR1–AR3), make/connect goals must actually be BORN to compete for slots.
+# Pick-time pressure weighting (P3/T2.3 below) only fires on hard starvation;
+# this quota watches the actual births over a rolling window and narrows the
+# candidate pool when the mix drifts: make/connect births below the floor →
+# this round must pick a maker/contact candidate if one exists; intake births
+# above the cap → intake candidates sit this round out. Keyed to the same
+# aspiration scoreboard mapping (_serves_aspiration) the pressure weighting
+# uses, so a learned drive→aspiration link moves the quota too.
+_BIRTH_WINDOW = 12
+_MAKE_CONNECT_FLOOR = 0.25   # min share of output_producing + genuine_contact births
+_INTAKE_CAP = 0.60           # max share of world_knowledge births
+_MIN_BIRTHS_TO_JUDGE = 4     # don't enforce a ratio on a near-empty window
+_recent_births: List[str] = []   # aspiration-drive keys of recent births
+
+
+def _aspiration_drive_of(goal: Dict) -> str:
+    """The aspiration-family drive a goal's driven_by serves (prior/learned)."""
+    served = _serves_aspiration(str(goal.get("driven_by", "")))
+    low = served.lower()
+    if "make" in low or "produce" in low:
+        return "output_producing"
+    if "useful" in low or "connected" in low:
+        return "genuine_contact"
+    if "own mind" in low or "how i work" in low:
+        return "self_understanding"
+    if "world" in low:
+        return "world_knowledge"
+    return str(goal.get("driven_by", "")) or "other"
+
+
+def _record_birth(goal: Dict) -> None:
+    _recent_births.append(_aspiration_drive_of(goal))
+    del _recent_births[:-_BIRTH_WINDOW]
+
+
+def _quota_filter(pool: List[Dict]) -> List[Dict]:
+    """Narrow the candidate pool when recent births violate the quota.
+    Never empties the pool — a constraint with no serving candidate is skipped
+    (forcing unmakeable make-goals would just spam failures)."""
+    births = list(_recent_births)
+    if len(births) < _MIN_BIRTHS_TO_JUDGE:
+        return pool
+    n = len(births)
+    make_share = sum(1 for b in births
+                     if b in ("output_producing", "genuine_contact")) / n
+    intake_share = sum(1 for b in births if b == "world_knowledge") / n
+    if make_share < _MAKE_CONNECT_FLOOR:
+        makers = [g for g in pool if _aspiration_drive_of(g)
+                  in ("output_producing", "genuine_contact")]
+        if makers:
+            return makers
+    if intake_share > _INTAKE_CAP:
+        non_intake = [g for g in pool
+                      if _aspiration_drive_of(g) != "world_knowledge"]
+        if non_intake:
+            return non_intake
+    return pool
 
 
 def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[Dict]:
@@ -588,6 +663,10 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
 
     if not pool:
         return None   # nothing real to pursue right now — originate nothing, not a template
+    # AR5 — birth-rate quota: narrow the pool when the recent birth mix violates
+    # the make/connect floor or the intake cap (see _quota_filter above).
+    pool = _quota_filter(pool)
+    chosen: Optional[Dict] = None
     # P3 — bias the pick toward starved aspirations so a 0%-progress direction
     # ("Make things") actually gets recruited instead of losing every uniform draw
     # to the abundant intake candidates.
@@ -606,14 +685,18 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
                 floor_cands = [g for g in pool
                                if _serves_aspiration(str(g.get("driven_by", ""))) == starved]
                 if floor_cands:
-                    return random.choice(floor_cands)
-            scored = [
-                (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
-                for g in pool
-            ]
-            picked = _weighted_sample(scored, 1)
-            if picked:
-                return picked[0]
+                    chosen = random.choice(floor_cands)
+            if chosen is None:
+                scored = [
+                    (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
+                    for g in pool
+                ]
+                picked = _weighted_sample(scored, 1)
+                if picked:
+                    chosen = picked[0]
     except Exception as exc:  # aspiration weighting optional — record, pick at random
         record_failure("intrinsic_goals._varied_symbolic_goal.pressure", exc)
-    return random.choice(pool)
+    if chosen is None:
+        chosen = random.choice(pool)
+    _record_birth(chosen)   # AR5 — the quota watches actual births
+    return chosen

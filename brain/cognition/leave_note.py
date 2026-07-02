@@ -166,8 +166,11 @@ def leave_note(context: Dict[str, Any] = None) -> str:
 
     # The owning goal ID rides through build_motive (it stamps motive.goal_id),
     # so a goal-linked note can be alignment-scored against its goal (F5 #2).
+    # AR7/G4: a note with no grounded finding (seed=None → felt-state kernel) is
+    # still delivered — expression is legitimate — but earns NO effect credit;
+    # only a finding-seeded note is production.
     motive = build_motive(context, intent="leave_note", recipient="Ric", seed=seed)
-    result = express_to_user(motive, "note", context)
+    result = express_to_user(motive, "note", context, credit=seed is not None)
     content = (result or {}).get("text") or ""
     if not content:
         return "Nothing worth noting right now."

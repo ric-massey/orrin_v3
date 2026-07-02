@@ -5,7 +5,8 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Iterator, Optional, Dict, Any
+from typing import Iterable, Iterator, List, Optional, Dict, Any
+from collections import deque
 import json
 import gzip
 import os
@@ -308,6 +309,35 @@ def append_event(ev: Event) -> None:
 
 def append_items(items: Iterable[MemoryItem]) -> int:
     return DEFAULT_WAL.append_items(items)
+
+
+def replay_recent_events(limit: int = 500) -> List[Event]:
+    """AR6 (audit M3): the last `limit` WAL events, ready to re-ingest at boot so
+    semantic recall is non-empty on the first cycle after a restart. Capped so a
+    large log can't stall boot; each event is marked meta._replay so the daemon
+    does not append it to the WAL a second time (which would grow the log every
+    restart)."""
+    path = MEMCFG.WAL_EVENTS_PATH
+    if not Path(path).exists():
+        return []
+    recent: "deque[Dict[str, Any]]" = deque(maxlen=max(1, int(limit)))
+    try:
+        for rec in WAL.replay_events(path):
+            recent.append(rec)
+    except Exception as _e:
+        _log.warning("WAL replay read stopped early: %s", _e)
+    out: List[Event] = []
+    skipped = 0
+    for rec in recent:
+        try:
+            ev = WAL.record_to_event(rec)
+            ev.meta["_replay"] = True
+            out.append(ev)
+        except Exception:  # intentional: malformed WAL row — skip it, count it
+            skipped += 1
+    if skipped:
+        _log.warning("WAL replay skipped %d malformed record(s)", skipped)
+    return out
 
 def flush() -> None:
     DEFAULT_WAL.flush()

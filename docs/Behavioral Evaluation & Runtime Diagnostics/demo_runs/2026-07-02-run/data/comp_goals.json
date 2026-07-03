@@ -1,0 +1,186 @@
+[
+  {
+    "id": "ltc_aspiration-self_understa_1",
+    "name": "Understand Understand my own mind and how I work more deeply",
+    "title": "Understand Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: Understand my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-02T11:19:43.437413Z",
+    "last_updated": "2026-07-02T12:40:16.024019Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "Understand my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-02T11:19:43.437413Z",
+        "frontier": "Understand my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-02T12:40:16.024019Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 49,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: Understand my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-02T12:36:30.038742Z",
+        "completed_at": "2026-07-02T12:37:40.644003Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'Understand my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-02T12:36:30.038742Z",
+        "completed_at": "2026-07-02T12:39:27.597602Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'Understand my own mind and how I work' appears to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-02T12:36:30.038742Z",
+        "completed_at": "2026-07-02T12:40:02.980274Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-02T12:40:16.024019Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": false,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-02T11:18:56.113107+00:00",
+    "milestones": [],
+    "subgoals": [
+      {
+        "id": "ltc_aspiration-self_understa_1",
+        "name": "Understand Understand my own mind and how I work more deeply",
+        "title": "Understand Understand my own mind and how I work more deeply",
+        "description": "Work the frontier of “aspiration-self_understanding”: Understand my own mind and how I work.",
+        "tier": "core",
+        "status": "completed",
+        "timestamp": "2026-07-02T11:19:43.437413Z",
+        "last_updated": "2026-07-02T12:40:16.024019Z",
+        "emotional_intensity": 0.6,
+        "parent": "aspiration-self_understanding",
+        "_frontier_child": true,
+        "frontier_target": "Understand my own mind and how I work",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-02T11:19:43.437413Z",
+            "frontier": "Understand my own mind and how I work"
+          },
+          {
+            "event": "completed",
+            "timestamp": "2026-07-02T12:40:16.024019Z"
+          }
+        ],
+        "subgoals": [],
+        "_last_progress_cycle": 49,
+        "plan": [
+          {
+            "step": "Call search_own_files to make progress on: Understand my own mind and how I work",
+            "status": "completed",
+            "generated_at": "2026-07-02T12:36:30.038742Z",
+            "completed_at": "2026-07-02T12:37:40.644003Z"
+          },
+          {
+            "step": "Call grep_files to pin down the exact occurrences of 'Understand my own mind and how I work'",
+            "status": "completed",
+            "generated_at": "2026-07-02T12:36:30.038742Z",
+            "completed_at": "2026-07-02T12:39:27.597602Z"
+          },
+          {
+            "step": "Write one concrete thing learned where 'Understand my own mind and how I work' appears to working memory",
+            "status": "completed",
+            "generated_at": "2026-07-02T12:36:30.038742Z",
+            "completed_at": "2026-07-02T12:40:02.980274Z"
+          }
+        ],
+        "_step_attempts": {},
+        "completed_timestamp": "2026-07-02T12:40:16.024019Z",
+        "satisfied_need": null,
+        "satisfaction_evidence": {
+          "grounded": false,
+          "milestones_met": 0,
+          "milestones_total": 0,
+          "verified_artifact": false,
+          "significance": 1.187
+        }
+      }
+    ],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "Understand my own mind and how I work",
+    "_frontier_seq": 1
+  },
+  {
+    "name": "Strengthen EMOTIONAL symbolic reasoning",
+    "description": "The EMOTIONAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-02T11:46:25.265846+00:00",
+    "last_updated": "2026-07-02T16:29:54.311763Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-02T11:46:25.265846+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-02T16:29:54.311763Z"
+      }
+    ],
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen EMOTIONAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-02T14:38:33.235982Z",
+        "completed_at": "2026-07-02T14:38:33.509704Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen EMOTIONAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-02T14:38:33.235982Z",
+        "completed_at": "2026-07-02T16:29:54.296103Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-02T16:29:54.311763Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  }
+]

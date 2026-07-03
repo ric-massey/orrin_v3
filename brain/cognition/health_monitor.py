@@ -252,6 +252,13 @@ def check_and_reward(context: Dict[str, Any]) -> None:
     state = _load_state()
     now = time.time()
     state["last_check_ts"] = now
+    # Stamp the real cycle (stuck at 0 all of the 2026-07-02 run). Note the
+    # 1-in-5 cadence: total_healthy_cycles counts CHECKS, not loop cycles.
+    try:
+        _cc = context.get("cycle_count")
+        state["cycle"] = int(_cc.get("count", 0) if isinstance(_cc, dict) else (_cc or 0))
+    except (TypeError, ValueError, AttributeError):  # intentional: bad counter shape → keep old value
+        pass
 
     cycle_healthy = health_score >= _HEALTH_THRESHOLD
 

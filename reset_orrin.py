@@ -14,8 +14,9 @@ What this clears (so a fresh run starts as a true newborn):
       private_thoughts, activity_log, run_log, …) — truncated to empty
     • brain/data/*.corrupt*.json salvage artifacts — deleted
     • brain/data/rotated/ + sandbox_tmp/ — emptied
-    • brain/data/language/felt_experience.txt + book_reads.json — the native-LM
-      experiential corpus and reading history (kept native_lm.pt — the trained model)
+    • brain/data/language/felt_experience.txt + narration_pairs.jsonl + book_reads.json
+      — the native-LM experiential corpus, thought→narration pairs, and reading
+      history (kept native_lm.pt — the trained model)
     • concepts.json + attention_value_weights.json — these LOOK like config but are
       actually run-learned/contaminated, so they are wiped, not kept
     • identity_state.json — stripped back to its seed (directive/identity/values/traits/
@@ -24,7 +25,7 @@ What this clears (so a fresh run starts as a true newborn):
     • brain/logs/*.txt, *.log, *.jsonl — emptied
     • outbox/notes.json — emptied
     • root data/ tree — goals/ (state.jsonl, wal.log, artifacts, snapshots,
-      wal-rotated), memory/wal/, media/, and alive_brain_state.json
+      wal-rotated), memory/wal/, media/, and runtime_state.json (né alive_brain_state.json)
 
 What this KEEPS regardless (config/knowledge + trained artifacts):
     knowledge_base.json, model_config.json, cognitive_functions.json,
@@ -138,7 +139,8 @@ DEFAULTS: dict = {
 
 # brain/data/language: native_lm.pt + tokenizer.json are kept (trained model + vocab);
 # the rest is run-accumulated corpus/state and gets cleared.
-LANGUAGE_EMPTY_FILE = {"felt_experience.txt", "replay_corpus.txt"}  # truncate to ""
+LANGUAGE_EMPTY_FILE = {"felt_experience.txt", "replay_corpus.txt",
+                       "narration_pairs.jsonl"}  # truncate to ""
 LANGUAGE_DEFAULTS = {"book_reads.json": {}}      # reading history -> {}
 LANGUAGE_CLEAR_DIRS = ("library",)               # downloaded reading material (recreated on demand)
 
@@ -302,9 +304,12 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
                 _empty_file(p, dry_run)
             else:
                 _delete(p, dry_run)
-    alive = ROOT_DATA_DIR / "alive_brain_state.json"
-    if alive.exists():
-        _write_json(alive, {"last": {}, "created_once": []}, dry_run)
+    # runtime_state.json is the post-rename name of alive_brain_state.json
+    # (brain/data_schema.py); match both so a stale tree still gets cleared.
+    for state_name in ("alive_brain_state.json", "runtime_state.json"):
+        alive = ROOT_DATA_DIR / state_name
+        if alive.exists():
+            _write_json(alive, {"last": {}, "created_once": []}, dry_run)
 
     print(f"\nKept {len(keep & {f.name for f in DATA_DIR.glob('*.json')})} "
           f"config/knowledge json files + native_lm.pt + self_code scaffolding.")
@@ -349,7 +354,8 @@ def _is_recognized(path: Path, hard: bool) -> bool:
         return True
 
     # root data/ tree
-    if path == ROOT_DATA_DIR / "alive_brain_state.json":
+    if path.parent == ROOT_DATA_DIR and name in ("alive_brain_state.json",
+                                                  "runtime_state.json"):
         return True
     try:
         rel = path.relative_to(ROOT_DATA_DIR).parts

@@ -245,6 +245,18 @@ def best_analogue_answer(query: str) -> Optional[str]:
     solution = a["mapped_solution"]
     if len(solution) < 20:
         return None
+    # Prose, not the debug header: this string is a resolved ANSWER — it flows
+    # through the reasoning router into working memory and, on 2026-07-02, all
+    # the way into the dying identity story as "[analogy/GENERAL] Similar
+    # situation (score=0.305): …" — bracket tags and similarity score included.
+    # The converter already existed in symbolic_fluency; this path bypassed it.
+    try:
+        from brain.symbolic.symbolic_fluency import explain_analogy
+        prose = explain_analogy(a, query)
+        if prose and len(prose.strip()) >= 20:
+            return prose.strip()
+    except Exception:  # intentional: prose converter optional → legacy format below
+        pass
     intent = a.get("intent_type", "")
     rels = ", ".join(a.get("structural_relations", [])[:3])
     header = f"[analogy/{intent}]" + (f" [{rels}]" if rels else "")

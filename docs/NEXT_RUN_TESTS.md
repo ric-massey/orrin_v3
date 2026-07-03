@@ -16,6 +16,45 @@ interpretation**.
 
 ---
 
+## Run 2 result — 2026-07-02 life: **FAILED** (5 ✅ 9 ✅ 6 ❌ 7 ❌ — re-test required)
+
+Second acceptance run (clean newborn via `reset_orrin.py`, **10,071 cycles in
+~9.2 h**, launch #0 only, zero crashes, operator SIGTERM → graceful stop). This
+was also the staging run for Grounding & Surface P1–P8 + Audit Remediation
+AR1–AR9 (commit `db4a139`). Full per-signal analysis + captured data:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-02-run/`.
+
+**Verdict: gate NOT passed.** The Run-2 gate required 5, 6, 7, and 9 to move;
+two did — a big step up from Run 1 (which failed all four), but still shipped,
+not proven.
+
+| # | Signal | Run 2 | Result |
+|---|---|---|---|
+| 1 | Fewer repeated understanding goals | 3 distinct / 3 completed, no repeats | 🟢 |
+| 2 | Nonzero goal duration | median 10,920.8 s | 🟢 |
+| 3 | Nonzero satiety closures | 0 | 🔴 |
+| 4 | Some legitimate failures | 66+ `no_artifact_by_deadline` (activity logs) | 🟢 |
+| 5 | Higher mean significance | **1.114** (was 0.0); 150 ledger rows, 89 nonzero | ✅ **MOVED** |
+| 6 | Aspiration diversity | all four aspirations at 0 contributions | ❌ **FAIL** |
+| 7 | Artifacts useful / reused | 0 reuse; `production_attempt_count` 0 all run | ❌ **FAIL** |
+| 8 | No resurrection / orphan-RUNNING | desyncs repaired 0, clean death | 🟢 |
+| 9 | Selection follows learned value | high-EMA `research_topic` share 8.7%→15.7%; `generate_intrinsic_goals` off #1 | ✅ **MOVED** |
+
+**Root causes (detail in the run analysis):** S6 is over-determined — completed
+goals carry no `serves`, two had `driven_by=None`, a `comp_goals` status-at-copy
+bug makes `credit_objectives` skip one, and 31 aspiration-attributed ledger rows
+never reach `mark_objective_contribution`. S7 is a **lane split** —
+`produce_and_check` has the *top* reward EMA (0.7651) but runs in the
+executive-daemon lane (`step_exec`), and the production loop's attempt/handoff
+counters + ledger crediting listen only to the conscious lane, so production
+attempts stayed 0 for the entire run.
+
+**Re-test gate (Run 3):** signals **6 and 7 must move** (≥1 aspiration off 0%;
+≥1 production attempt and ≥1 reuse back-ref) while 5 and 9 hold. Until then this
+doc and its companions stay live.
+
+---
+
 ## Run 1 result — 2026-06-19 life: **FAILED** (re-test required)
 
 The first acceptance run happened (born 2026-06-19 22:17 UTC, stopped at cycle

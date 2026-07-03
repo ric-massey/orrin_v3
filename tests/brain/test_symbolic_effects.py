@@ -19,10 +19,13 @@ _RULE_TEXT = (
 
 @pytest.fixture(autouse=True)
 def _isolate(tmp_path):
+    from brain.cognition.global_workspace import reset_bound_goal_mirror_for_tests
     el.EFFECT_LEDGER_FILE = tmp_path / "effect_ledger.jsonl"
     el.reset_for_tests()
+    reset_bound_goal_mirror_for_tests()
     yield
     el.reset_for_tests()
+    reset_bound_goal_mirror_for_tests()
 
 
 def test_symbolic_artifact_is_a_valid_kind():
@@ -42,9 +45,21 @@ def test_rule_effect_credits_and_binds_to_committed_goal():
 
 
 def test_ungoaled_when_no_committed_goal():
+    # No committed goal anywhere (context empty, mirror empty) → ungoaled.
     row = record_symbolic_effect("rule", _RULE_TEXT, context={})
     assert row is not None
     assert row.goal_id is None
+
+
+def test_mirror_attributes_contextless_effects():
+    # 2026-07-02 fix: a contextless producer (edge establishment,
+    # crystallization) still binds to the recently committed goal via the
+    # workspace mirror — anonymous effects starved aspiration crediting.
+    from brain.cognition.global_workspace import bound_goal
+    bound_goal({"committed_goal": {"id": "goal-88", "title": "make a thing"}})
+    row = record_symbolic_effect("rule", _RULE_TEXT, context=None)
+    assert row is not None
+    assert row.goal_id == "goal-88"
 
 
 def test_duplicate_rule_dedupes_no_double_credit():

@@ -22,8 +22,10 @@ shared `archive/` at the docs root). Run reports live under
   runtime. Live: `CODEBASE_AUDIT_2026-07-01.md` (system-wide audit),
   `IMPLEMENTATION_PLAN_AUDIT_REMEDIATION_2026-07-01.md` (AR1–AR9 fixes),
   `IMPLEMENTATION_PLAN_GROUNDING_AND_SURFACE_2026-06-30.md` (P1–P8 built;
-  staging run pending), `B3_DECAY_DIAGNOSIS_2026-07-01.md` (blocked on AR8),
+  staging run done 2026-07-02, §8 gate not passed — S6/S7 open),
   plus all dated `demo_runs/` (indexed by `demo_runs/DEMO_RUNS.md`).
+  `B3_DECAY_DIAGNOSIS_2026-07-01.md` closed 2026-07-02 (AR8 + rise-and-recover
+  proven) → `archive/`.
 
 - **Core Architecture, Embodiment & Evolution/** — the core build track. Live:
   `ORRIN_CORE_ARCHITECTURE_MASTER_PLAN_2026-06-25.md` (Phase 0 done; Phase 1

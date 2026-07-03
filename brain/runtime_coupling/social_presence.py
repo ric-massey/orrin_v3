@@ -88,6 +88,12 @@ class SocialPresenceModel:
         self._last_user_time: float = time.time()   # when the user last spoke
         self._last_orrin_time: float = time.time()  # when Orrin last responded
         self._session_start: float = time.time()
+        # Nobody-here guard: this model describes "the current user's
+        # engagement" — before anyone has EVER spoken this process, there is no
+        # user to be distant. The 2026-07-02 run read 6,858 s of solitude as a
+        # 0.95-pressure "distant" person and ignited the workspace on it 109+
+        # times/hour while alone.
+        self._ever_spoke: bool = False
 
         # Engagement quality history (rolling)
         self._quality_history: List[float] = [0.7]  # [0,1] per message
@@ -149,6 +155,7 @@ class SocialPresenceModel:
 
     def mark_user_spoke(self, quality: float = 0.7) -> None:
         with self._lock:
+            self._ever_spoke = True
             now = time.time()
             gap = now - self._last_user_time
             old_pattern = self._pattern_for_silence(gap)
@@ -212,6 +219,12 @@ class SocialPresenceModel:
     def _accumulate_pressure(self) -> None:
         """Build social pressure proportional to silence duration."""
         with self._lock:
+            if not self._ever_spoke:
+                # No user has ever been here this process — there is no
+                # engagement to model and no one to be "distant". Connection
+                # hunger stays the drive engine's job; this stays at floor.
+                self._pressure = _PRESSURE_FLOOR
+                return
             silence_s = time.time() - self._last_user_time
             # Build pressure with silence, but curve it — first minutes matter more
             raw = _PRESSURE_BUILDUP * silence_s

@@ -177,6 +177,16 @@ def save_goals(goals: List[Dict[str, Any]]) -> None:
             for g in overflow:
                 if not any(a.get("title") == g.get("title") and
                            a.get("name") == g.get("name") for a in archived):
+                    # A displaced live goal was never completed — stamp the copy
+                    # honestly so credit_objectives and the funnel stats can't
+                    # mistake (or skip-count) it as a completion record. The
+                    # 2026-07-02 run's comp_goals held an "in_progress" entry
+                    # from exactly this path (S6 status-at-copy).
+                    if str(g.get("status") or "").lower() not in (
+                            "completed", "failed", "abandoned", "cancelled"):
+                        g = dict(g)
+                        g["status"] = "archived"
+                        g["archived_reason"] = "overflow"
                     archived.append(g)
             save_json(COMPLETED_GOALS_FILE, archived[-200:])
         except Exception as _e:

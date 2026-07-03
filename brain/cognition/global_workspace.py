@@ -403,8 +403,51 @@ def bound_goal(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     truthiness it replaced (an empty/absent goal is still falsy → None)."""
     cg = context.get("committed_goal")
     if isinstance(cg, dict) and cg:
+        _publish_bound_goal_id(cg)
         return cg
     return None
+
+
+# ── Bound-goal mirror (contextless attribution) ────────────────────────────────
+# Some producers (symbolic engine, daemons) record durable effects from call
+# chains no context reaches — the 2026-07-02 run left 116/150 ledger rows with
+# goal_id null, which starved aspiration crediting. bound_goal() refreshes this
+# mirror on every context-bearing call, so a contextless writer can still
+# attribute its effect to the goal that was committed moments ago. Staleness is
+# bounded: readers ignore a mirror older than _BOUND_MIRROR_TTL_S.
+import threading as _gw_threading
+import time as _gw_time
+
+_BOUND_MIRROR_TTL_S = 300.0
+_bound_mirror_lock = _gw_threading.Lock()
+_bound_mirror: Dict[str, Any] = {"goal_id": None, "ts": 0.0}
+
+
+def _publish_bound_goal_id(goal: Dict[str, Any]) -> None:
+    gid = goal.get("id") or goal.get("title") or goal.get("name")
+    if not gid:
+        return
+    with _bound_mirror_lock:
+        _bound_mirror["goal_id"] = str(gid)
+        _bound_mirror["ts"] = _gw_time.time()
+
+
+def last_bound_goal_id() -> Optional[str]:
+    """The most recently seen committed goal's id, or None when nothing has been
+    committed recently (TTL guards against attributing to a long-dead goal)."""
+    with _bound_mirror_lock:
+        gid = _bound_mirror.get("goal_id")
+        ts = float(_bound_mirror.get("ts") or 0.0)
+    if gid and (_gw_time.time() - ts) <= _BOUND_MIRROR_TTL_S:
+        return str(gid)
+    return None
+
+
+def reset_bound_goal_mirror_for_tests() -> None:
+    """Clear the bound-goal mirror — test-only helper."""
+    with _bound_mirror_lock:
+        _bound_mirror["goal_id"] = None
+        _bound_mirror["ts"] = 0.0
 
 
 def goal_in_focus(context: Dict[str, Any]) -> bool:

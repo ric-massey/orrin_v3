@@ -438,9 +438,13 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     advance_goal_plan(goal, next_step_dict)
     _attempts_map.pop(_step_key, None)
     # Real progress resets the stall/replan state so a future drift doesn't
-    # inherit a stale counter from an unrelated earlier replan cycle.
-    goal.pop("_replan_count", None)
-    goal.pop("_stalled", None)
+    # inherit a stale counter from an unrelated earlier replan cycle. A GIVE-UP
+    # advance is not progress — resetting on it blinded the metacog watchdog to
+    # the 2026-07-02 stuck-step loop (regenerated plans failing the same two
+    # steps for 1.7 h while the stall counter kept going back to zero).
+    if _executed:
+        goal.pop("_replan_count", None)
+        goal.pop("_stalled", None)
     context["committed_goal"] = goal
 
     # Sense of agency (efference copy): a real act discharged this cycle. This is

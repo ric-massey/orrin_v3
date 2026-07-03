@@ -103,9 +103,15 @@ class Demand:
         label: str,
         description: str,
         tags: List[str],
+        leak_per_tick: float = 0.0,
     ) -> None:
         self.name = name
         self.buildup_per_tick = buildup_per_tick
+        # Proportional leak (fraction of current pressure shed per tick). A drive
+        # with a leak equilibrates at buildup/leak instead of pinning at 1.0 —
+        # the 2026-07-02 run showed a leak-less rest drive saturating and owning
+        # ~74% of all conscious ignitions with nothing able to discharge it.
+        self.leak_per_tick = leak_per_tick
         self.label = label
         self.description = description
         self.tags = tags
@@ -114,7 +120,8 @@ class Demand:
 
     def tick(self) -> None:
         with self._lock:
-            self.pressure = min(1.0, self.pressure + self.buildup_per_tick)
+            p = self.pressure + self.buildup_per_tick - self.leak_per_tick * self.pressure
+            self.pressure = max(0.0, min(1.0, p))
 
     def satisfy(self, amount: float) -> None:
         with self._lock:
@@ -183,6 +190,11 @@ class DemandEngine:
             "rest": Demand(
                 "rest",
                 buildup_per_tick=0.002,
+                # Equilibrium buildup/leak = 0.002/0.003 ≈ 0.67: high enough to
+                # keep signalling (>0.35), below the urgent line (0.70), and it
+                # can never pin at 1.0 — the drive breathes even when no rest
+                # behavior exists yet (SL1–SL5 unbuilt).
+                leak_per_tick=0.003,
                 label="Rest drive",
                 description="I've been processing continuously. I need space to integrate.",
                 tags=["rest", "contemplation", "integration"],
@@ -272,8 +284,12 @@ class DemandEngine:
         ):
             self.satisfy("meaning", 0.18)
 
-        # Rest: contemplative or dream function
-        _rest_keywords = {"dream", "sit_with", "meditate", "integration", "rest"}
+        # Rest: contemplative, dream, or consolidating function. "consolidat"
+        # covers idle_consolidation_cycle — the organ that actually does the
+        # integrating the rest drive asks for (2026-07-02: the old keyword set
+        # matched no function the selector ever picked, so rest never discharged).
+        _rest_keywords = {"dream", "sit_with", "meditate", "integration", "rest",
+                          "consolidat"}
         if any(k in fn for k in _rest_keywords):
             self.satisfy("rest", 0.35)
 

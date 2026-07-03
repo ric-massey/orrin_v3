@@ -169,6 +169,36 @@ def record_failure(site: str, exc: Exception) -> None:
         raise exc
 
 
+def record_goal_failure(goal_id: str, title: str, reason: str) -> None:
+    """Machine-readable goal-failure telemetry, same file/rotation as exception
+    failures (distinguished by site="goal_failure" + the goal fields). The
+    2026-07-02 run had nine goal failures and failures.jsonl recorded none of
+    them — failure evidence survived only as activity-log prose. Never raises;
+    not rate-limited (goal failures are rare and each one matters)."""
+    try:
+        path = _data_dir() / "failures.jsonl"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            if path.exists() and path.stat().st_size > _JSONL_MAX_BYTES:
+                path.replace(path.with_suffix(".jsonl.1"))
+        except Exception as _e:
+            _log.warning("silent except: %s", _e)
+        line = json.dumps(
+            {
+                "ts": datetime.now(timezone.utc).isoformat(),
+                "site": "goal_failure",
+                "goal_id": str(goal_id or "")[:80],
+                "title": str(title or "")[:160],
+                "reason": str(reason or "")[:200],
+            },
+            ensure_ascii=False,
+        ) + "\n"
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(line)
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+
+
 @contextlib.contextmanager
 def guard(site: str) -> Iterator[None]:
     """

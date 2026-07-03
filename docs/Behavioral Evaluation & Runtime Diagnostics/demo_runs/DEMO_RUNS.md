@@ -20,6 +20,7 @@ targets" below.)*
 | `2026-06-25-run/` | ~17,352 cycles (~25 h) | First life under the new goal architecture; intent-vs-behaviour companion to `PRE_RUN_NOTE_2026-06-24.md`; before/after for the 06-18 ops + production findings. |
 | `2026-06-29-run/` | 1,459 cycles (~47 min, diagnostic) | Short operator-stopped run; "hot and flat" — exposed the diagnosis (appraisal habituation, felt-lexicon membrane, goal-spam reframe) that drove the grounding-and-surface work. Before picture. |
 | `2026-07-01-run/` | 14,472 cycles (~21.7 h) | First life under P1 effect-gated goal closure + disengage watchdog; the *after* picture for Phase 1 of the grounding-and-surface plan. |
+| `2026-07-02-run/` | 10,071 cycles (~9.2 h) | §8 acceptance Run 2 + Grounding & Surface (P1–P8) / AR1–AR9 staging run (7-doc set incl. deeper pass + data-file audit). Gate NOT passed: S5 significance (1.114) + S9 selection→value moved; S6 aspiration crediting + S7 production lane split failed. Drives now breathe (closes B3). **First captured life with a real interlocutor** — 10 utterances / 10 replies, unregistered by the person model. Second pass found the **rest-drive ignition monopoly** (~74% of cycles at `drive_rest@1.00`, no sleep behavior; consolidation blackout by 10:45) and AR2's missing `ctx.web_search` hook. Includes `data/` capture set. |
 
 ## Pending capture targets
 

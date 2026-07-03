@@ -187,8 +187,15 @@ def _apply(context: Dict[str, Any]) -> Dict:
     return summary
 
 
+# Hard size cap. wm:<hash> keys accrue ~1,700/h (2026-07-02: 15,469 keys in
+# 9.2 h with zero eviction — the 30-day age rule can never fire inside one
+# life). When over cap, the lowest-signal entries (fewest hits, oldest) go.
+_STORE_MAX_KEYS = 5000
+
+
 def _prune_store(store: Dict) -> None:
-    """Remove entries older than 30 days with count < 3 (noise, not signal)."""
+    """Remove entries older than 30 days with count < 3 (noise, not signal),
+    then enforce the hard size cap."""
     now = datetime.now(timezone.utc)
     stale = []
     for key, entry in store.items():
@@ -212,3 +219,10 @@ def _prune_store(store: Dict) -> None:
             stale.append(key)
     for key in stale:
         store.pop(key, None)
+
+    if len(store) > _STORE_MAX_KEYS:
+        def _rank(kv):
+            entry = kv[1] if isinstance(kv[1], dict) else {}
+            return (int(entry.get("count") or 0), str(entry.get("last_seen") or ""))
+        for key, _ in sorted(store.items(), key=_rank)[: len(store) - _STORE_MAX_KEYS]:
+            store.pop(key, None)

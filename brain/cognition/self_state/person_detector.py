@@ -42,6 +42,8 @@ from typing import Dict, Any, Optional, Tuple
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private, log_activity
 from brain.paths import DATA_DIR
+from datetime import datetime, timezone
+
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
 
@@ -265,12 +267,49 @@ def _detect_relation(raw_name: str) -> Optional[Tuple[str, str]]:
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
+_last_interaction_sig: Optional[str] = None
+
+
+def _record_interaction(context: Dict[str, Any], person_id: str) -> None:
+    """Write the fact of contact onto the person record when the user actually
+    speaks. Identity *resolution* only saves at session-mint time — the
+    2026-07-02 life had two real conversations (10 utterances) and
+    known_persons.json never moved off its birth-second write, so the first
+    relationship of his existence left no trace on the organ built to hold it."""
+    global _last_interaction_sig
+    text = (context.get("latest_user_input") or "").strip()
+    if not text or not person_id:
+        return
+    sig = f"{person_id}:{hash(text)}"
+    if sig == _last_interaction_sig:   # same utterance, don't double-count
+        return
+    _last_interaction_sig = sig
+    persons = _load()
+    p = persons.get(person_id)
+    if not isinstance(p, dict):
+        return
+    # A gap of > 30 min since the previous contact starts a new session.
+    try:
+        last = str(p.get("last_seen") or "")
+        prev = datetime.fromisoformat(last.replace("Z", "+00:00")) if last else None
+        gap_s = (datetime.now(timezone.utc) - prev).total_seconds() if prev else None
+    except Exception:
+        gap_s = None
+    if gap_s is None or gap_s > 1800:
+        p["session_count"] = int(p.get("session_count", 0) or 0) + 1
+    p["last_seen"] = now_iso_z()
+    p["messages_received"] = int(p.get("messages_received", 0) or 0) + 1
+    _save(persons)
+
+
 def detect_and_set_person_id(context: Dict[str, Any]) -> str:
     """
     Main entry point — call once per cycle before cognitive processing.
 
     Resolves who is speaking, writes context["person_id"], context["person_display_name"],
-    and context["person_type"]. Returns the resolved person_id.
+    and context["person_type"]. Returns the resolved person_id. When the user
+    spoke, the contact itself is recorded on the person record
+    (_record_interaction) regardless of which resolution path fired.
 
     Priority:
       1. Context already has person_id set (another module resolved it this cycle)
@@ -280,6 +319,15 @@ def detect_and_set_person_id(context: Dict[str, Any]) -> str:
 
     Note: context["user_id"] is kept as an alias for backward compatibility.
     """
+    pid = _detect_person_id(context)
+    try:
+        _record_interaction(context, pid)
+    except Exception as _e:
+        record_failure("person_detector.record_interaction", _e)
+    return pid
+
+
+def _detect_person_id(context: Dict[str, Any]) -> str:
     global _session_person_id
 
     # 1. Another module already resolved it this cycle

@@ -1,0 +1,21 @@
+{
+  "cycle": 0.39,
+  "leave_note": 0.555,
+  "generate_intrinsic_goals": 0.4346,
+  "research_topic": 0.6138,
+  "assess_goal_progress": 0.3428,
+  "look_outward": 0.1645,
+  "attend_goal": 0.4991,
+  "produce_and_check": 0.7651,
+  "thread_continue": 0.5355,
+  "write_desktop_note": 0.6306,
+  "look_around": 0.4551,
+  "notify_user": 0.4517,
+  "search_own_files": 0.3438,
+  "run_embodied_observation": 0.595,
+  "reflect_on_self_beliefs": 0.35,
+  "prediction_hit": 0.2,
+  "read_a_book": 0.5462,
+  "wikipedia_search": 0.5578,
+  "narrative_update": 0.6678
+}

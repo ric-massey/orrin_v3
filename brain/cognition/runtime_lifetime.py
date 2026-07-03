@@ -401,7 +401,16 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
     save_json(FINAL_THOUGHTS_FILE, existing)
 
     data["final_thoughts_written"] = True
-    save_json(LIFESPAN_FILE, data)
+    # Set the durable flag via a FRESH read-modify-write: `data` here can be a
+    # snapshot loaded before other shutdown writers ran, and saving it wholesale
+    # let a concurrent writer's stale copy win the race — the 2026-07-02 run
+    # died with final_thoughts.json written but the flag still false.
+    try:
+        fresh = load_json(LIFESPAN_FILE, default_type=dict) or {}
+        fresh["final_thoughts_written"] = True
+        save_json(LIFESPAN_FILE, fresh)
+    except Exception:
+        save_json(LIFESPAN_FILE, data)
 
     log_private(f"[lifetime] Final thoughts written: {text[:200]}")
     log_activity("[lifetime] Final thoughts recorded.")

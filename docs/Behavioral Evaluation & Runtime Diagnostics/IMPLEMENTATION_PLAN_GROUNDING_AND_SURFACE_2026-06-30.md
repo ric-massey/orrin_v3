@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-30
 **Derives from:** `archive/SYNTHESIS_GROUNDING_AND_SURFACE_2026-06-30.md`
-**Status:** P1–P8 built 2026-07-01 (committed 2026-07-02); AR1–AR9 of the audit-remediation plan also landed 2026-07-02 — the stamped staging run + ten-round proof is NEXT; gated on NEXT_RUN_TESTS §8.
+**Status:** P1–P8 built 2026-07-01 (committed 2026-07-02); AR1–AR9 landed 2026-07-02. Staging run DONE 2026-07-02 (10,071 cycles, `demo_runs/2026-07-02-run/`): §8 gate NOT passed — S5/S9 moved, S6/S7 failed (aspiration crediting broken; production lane split). B3 reality-check closed (drives breathe — B3 doc archived). Ten-round proof + S6/S7 fixes remain; still gated on NEXT_RUN_TESTS §8.
 
 > **The bet, in one sentence.** Pick one build, close the full loop end-to-end —
 > *machine verifies → Ric corrects → both signals train the persistent model and

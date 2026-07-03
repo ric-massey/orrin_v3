@@ -6,6 +6,10 @@
 do not re-litigate B3.
 **Unblocks/archives when:** AR8 (energy breathes) lands and a run shows
 rise-and-recover curves.
+**CLOSED 2026-07-02:** condition met — AR8 landed (commit `db4a139`) and the
+2026-07-02 run (10,065 telemetry rows) shows full low→high recovery arcs:
+curiosity **180**, motivation **26**, confidence 2 — vs. this doc's pinned-flat
+0.81–0.84 evidence from 07-01. See `demo_runs/2026-07-02-run/2026-07-02_run_analysis.md`.
 
 ## The question
 

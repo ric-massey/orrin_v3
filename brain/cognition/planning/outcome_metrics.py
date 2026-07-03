@@ -211,6 +211,18 @@ def flush() -> Dict[str, Any]:
 
     existing = existing[-_KEEP_DAYS:]
     save_json(OUTCOME_METRICS_FILE, existing)
+    # The counters this snapshot carried are now IN today's row, and
+    # _merge_entries SUMS counters on the next flush — so the session must hand
+    # over deltas, not its life-to-date totals. Leaving it cumulative re-added
+    # the whole session every flush (~every 60 maintenance cycles): the
+    # 2026-07-02 run wrote goals_failed=3909 off ~2 dozen real failures. The
+    # averaging lists stay (mean/median are _LATEST keys — overwritten whole,
+    # never summed).
+    with _lock:
+        for key in ("goals_completed", "goals_failed", "goals_retired",
+                    "satiety_closures", "abandonment_closures",
+                    "maintenance_executions", "store_desyncs_repaired"):
+            _session[key] = 0
     return snap
 
 

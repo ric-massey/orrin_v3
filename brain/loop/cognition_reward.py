@@ -84,13 +84,28 @@ def shape_cognition_reward(
         "write_cognitive_function",
     })
     if fn_name in _MAKING_FNS and not _is_failure:
-        reward += 0.15
         try:
             _g_mk = bound_goal(context) or {}
-            if fn_name == "produce_and_check" and _g_mk.get("_check_passed"):
+            # Consecutive identical attempts (same fn on the same goal with no
+            # check-pass between them) decay the standing credit 0.15 → 0.075 →
+            # 0.05 → …: trying to make still beats reading, but a stuck loop
+            # re-running one failing check ~8×/min can no longer pay itself into
+            # the top reward EMA (2026-07-02 §4).
+            _mk_key = f"{fn_name}:{_g_mk.get('id') or _g_mk.get('title') or ''}"
+            _passed = bool(fn_name == "produce_and_check" and _g_mk.get("_check_passed"))
+            _streak = context.get("_making_attempt_streak")
+            if not isinstance(_streak, dict):
+                _streak = {}
+                context["_making_attempt_streak"] = _streak
+            _n = int(_streak.get(_mk_key, 0) or 0)
+            reward += 0.15 / (1.0 + _n)
+            _streak.clear()  # only ever track the current key
+            _streak[_mk_key] = 0 if _passed else _n + 1
+            if _passed:
                 reward += 0.10
         except Exception as _e:
             record_failure("cognition_reward.making_attempt", _e)
+            reward += 0.15
 
     # Regulation discharge bonus — reward regulation when distress
     # was actually present at execution time.

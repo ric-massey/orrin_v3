@@ -61,7 +61,7 @@
   },
   {
     "name": "express_to_user",
-    "definition": "express_to_user(motive: 'Motive', channel: 'str', context: 'Dict[str, Any]' = None) -> 'Dict[str, Any]'\nCompose from `motive`, enforce speakability, stamp, and route to `channel`.\n\n    Returns {\"success\", \"channel\", \"text\", \"motive\"}."
+    "definition": "express_to_user(motive: 'Motive', channel: 'str', context: 'Dict[str, Any]' = None, *, credit: 'bool' = True) -> 'Dict[str, Any]'\nCompose from `motive`, enforce speakability, stamp, and route to `channel`.\n\n    credit=False (AR7/G4) delivers the message but records no effect: a note\n    seeded only from felt state is expression, not production — it must never\n    earn artifact credit.\n\n    Returns {\"success\", \"channel\", \"text\", \"motive\"}."
   },
   {
     "name": "filter_memories",

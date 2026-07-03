@@ -40,6 +40,16 @@ def record_symbolic_effect(
             goal_id = str(gid) if gid else None
         except Exception as _e:
             record_failure("symbolic_effects.bound_goal", _e)
+    if goal_id is None:
+        # Contextless call chains (edge establishment, crystallization) still
+        # attribute to the recently committed goal via the workspace mirror —
+        # anonymous effects can't feed aspiration credit (2026-07-02: 116/150
+        # rows had goal_id null for exactly this reason).
+        try:
+            from brain.cognition.global_workspace import last_bound_goal_id
+            goal_id = last_bound_goal_id()
+        except Exception as _e:
+            record_failure("symbolic_effects.goal_mirror", _e)
     try:
         from brain.agency.effect_ledger import record_effect
         meta = dict(metadata or {})

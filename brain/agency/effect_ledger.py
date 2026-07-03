@@ -101,6 +101,10 @@ _PENDING_REUSE_MAX = 64
 # and paid by finalize_cycle on the live cycle context.
 _pending_production: List[Dict[str, Any]] = []
 _PENDING_PRODUCTION_MAX = 64
+# S7 lane bridge: every recorded row (any kind, any lane/thread) lands here so
+# the production-funnel telemetry can count attempts from ALL producers, not
+# just the two conscious-lane writers that hand-fed the old context list.
+_recent_rows: deque = deque(maxlen=256)
 _hydrated = False
 
 
@@ -340,7 +344,14 @@ def _cycle_from(context: Optional[Dict[str, Any]], cycle: Optional[int]) -> int:
                 return int(cc.get("count", 0) or 0)
             except (TypeError, ValueError):  # intentional: non-int count → 0
                 return 0
-    return 0
+    # No caller-supplied cycle: read the persisted counter so contextless
+    # writers (symbolic engine, goal runner) don't all stamp cycle 0 —
+    # 119/150 rows in the 2026-07-02 run were time-blind for this reason.
+    try:
+        from brain.utils.get_cycle_count import get_cycle_count
+        return int(get_cycle_count() or 0)
+    except Exception:  # intentional: counter unreadable → 0 (old behavior)
+        return 0
 
 
 # ── public API ───────────────────────────────────────────────────────────────
@@ -432,6 +443,11 @@ def record_effect(
             metadata=dict(metadata or {}) or None,
         )
         _append_row(row)
+        # S7 lane bridge: every recorded row — any kind, any thread — is visible
+        # to the production-funnel telemetry via drain_rows_since_last(). The
+        # 2026-07-02 run counted 0 attempts in 10k cycles because the funnel
+        # read a context list only two conscious-lane writers populated.
+        _recent_rows.append(row.to_json())
 
         # Even a dedupe row is remembered (so the next identical one also dedupes),
         # but it earns nothing and is not attributed to a goal as a production.
@@ -677,6 +693,17 @@ def drain_pending_production(limit: int = 4) -> List[Dict[str, Any]]:
         return out
 
 
+def drain_recent_rows() -> List[Dict[str, Any]]:
+    """S7 lane bridge: hand every effect row recorded since the last drain to the
+    production-funnel telemetry (finalize). Rows come from ALL lanes — conscious
+    writers, the symbolic engine, the goals-daemon runner — so the funnel's
+    attempt/success counters can no longer be blind to a whole lane."""
+    with _lock:
+        out = list(_recent_rows)
+        _recent_rows.clear()
+        return out
+
+
 def reuse_count(content_hash: str) -> int:
     _hydrate()
     with _lock:
@@ -699,5 +726,6 @@ def reset_for_tests() -> None:
         _hash_kind.clear()
         _pending_reuse.clear()
         _pending_production.clear()
+        _recent_rows.clear()
         _symbolic_credit_times.clear()
         _hydrated = False

@@ -34,17 +34,31 @@ def _log_private(text: str, ctx: HandlerContext) -> None:
         _log.warning("silent except: %s", _e)
 
 
+# Spec directives this handler can execute in-daemon. Goal comprehension
+# (hydrate_goal_model) now attaches a declarative spec (definition_of_done /
+# plan / milestones / requires_artifact) to EVERY goal, so "spec is empty" no
+# longer identifies external pursuit — keying on it sent every comprehended
+# goal down the daemon path, where the unknown-spec fall-through completed the
+# step in ms and the artifact gate failed the goal before the cognitive loop
+# ever worked it (2026-07-02 run: NEW→FAILED in 7ms).
+_DAEMON_EXECUTABLE_KEYS = ("reflect", "investigate", "process_todos")
+
+
+def _daemon_executable(spec: Dict[str, Any]) -> bool:
+    return any(spec.get(k) for k in _DAEMON_EXECUTABLE_KEYS)
+
+
 class GenericHandler(BaseGoalHandler):
     kind = "generic"
 
     def plan(self, goal: Goal, ctx: HandlerContext) -> List[Step]:
         spec = getattr(goal, "spec", None) or {}
-        if not spec:
-            # No executable spec → the cognitive loop pursues this goal, not the
-            # daemon. A WAITING placeholder keeps the goal alive until the brain
-            # mirrors its close via close_goal_v2(). The old READY "noop" step
-            # fake-completed every spec-less goal within seconds while the loop
-            # worked it for hours (FINDINGS 2026-06-12 data sweep §6).
+        if not _daemon_executable(spec):
+            # No daemon-executable directive → the cognitive loop pursues this
+            # goal, not the daemon. A WAITING placeholder keeps the goal alive
+            # until the brain mirrors its close via close_goal_v2(). The old
+            # READY "noop" step fake-completed every such goal within seconds
+            # while the loop worked it for hours (FINDINGS 2026-06-12 §6).
             return [Step(id=str(uuid.uuid4()), goal_id=goal.id, name="external_pursuit", action={}, status=Status.WAITING)]
         return [Step(id=str(uuid.uuid4()), goal_id=goal.id, name="execute", action={}, status=Status.READY)]
 
@@ -54,8 +68,8 @@ class GenericHandler(BaseGoalHandler):
 
         spec = getattr(goal, "spec", None) or {}
 
-        # No spec — externally pursued; park the step instead of fake-completing
-        if not spec:
+        # Not daemon-executable — externally pursued; park instead of fake-completing
+        if not _daemon_executable(spec):
             return replace(step, status=Status.WAITING)
 
         # --- Reflection goal (low emotional stability) ---

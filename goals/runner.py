@@ -263,6 +263,13 @@ class StepRunner:
                       int(step.attempts or 0),
                       step.started_at.isoformat() if step.started_at else None)
 
+        # A worker is executing this step NOW — say so before the first tick.
+        # When a handler raised on its very first tick, started_at stayed None,
+        # StepStarted never emitted, and the goal never flipped to RUNNING —
+        # broken goals died looking READY (2026-07-02 §5).
+        if step.started_at is None:
+            step.started_at = UTCNOW()
+
         while not self._stop_evt.is_set():
             try:
                 new = handler.tick(goal, step, self._handler_ctx(goal))
@@ -273,6 +280,13 @@ class StepRunner:
                 step.last_error = f"{type(e).__name__}: {e}"
                 step.attempts = int(step.attempts or 0) + 1
                 _dbg("tick raised:", step.last_error, "attempts:", step.attempts, "/", step.max_attempts)
+                # Machine-readable failure telemetry: the 2026-07-02 run's nine
+                # handler crashes survived only as activity-log prose.
+                try:
+                    from brain.utils.failure_counter import record_failure
+                    record_failure(f"goals.runner.tick.{goal.kind}", e)
+                except Exception:  # intentional: telemetry must never mask the step error
+                    pass
                 if step.attempts >= step.max_attempts:
                     step.status = Status.FAILED
                     if step.finished_at is None:
@@ -439,12 +453,40 @@ class StepRunner:
             return False
 
         # If anything failed and nothing else is pending → FAIL the goal.
+        # A pending step whose dependencies (transitively) include a terminally
+        # FAILED step can never run — count it as dead, not pending. Without
+        # this, a failed keystone step left its dependents WAITING forever and
+        # the goal died looking READY (2026-07-02: three research goals stuck
+        # NEW→READY→READY with their search step FAILED at attempt 3).
         any_failed = any(s.status == Status.FAILED for s in steps)
-        any_pending = any(s.status not in {Status.DONE, Status.CANCELLED, Status.FAILED} for s in steps)
+        if any_failed:
+            by_step_id = {s.id: s for s in steps}
+            dead: set[str] = {s.id for s in steps if s.status == Status.FAILED}
+            changed_dead = True
+            while changed_dead:
+                changed_dead = False
+                for s in steps:
+                    if s.id in dead:
+                        continue
+                    if any(d in dead for d in (s.deps or []) if d in by_step_id):
+                        dead.add(s.id)
+                        changed_dead = True
+            any_pending = any(
+                s.status not in {Status.DONE, Status.CANCELLED, Status.FAILED}
+                and s.id not in dead
+                for s in steps
+            )
+        else:
+            any_pending = any(s.status not in {Status.DONE, Status.CANCELLED, Status.FAILED} for s in steps)
         if any_failed and not any_pending:
             ng = replace(goal, status=Status.FAILED, updated_at=UTCNOW(), last_error=last_step.last_error)
             _upsert_goal(self.store, ng)
             self._emit_goal_event("GoalFailed", ng, extra={"step_id": last_step.id})
+            try:
+                from brain.utils.failure_counter import record_goal_failure
+                record_goal_failure(goal.id, goal.title, last_step.last_error or "step_failed")
+            except Exception:  # intentional: telemetry must never block goal finalization
+                pass
             _dbg("finalized goal FAILED:", goal.id)
             return True
 

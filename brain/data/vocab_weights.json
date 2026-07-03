@@ -18,5 +18,15 @@
     "uses": 1,
     "successes": 1,
     "weight": 2.0
+  },
+  "b4cc73721963": {
+    "uses": 2,
+    "successes": 2,
+    "weight": 2.0
+  },
+  "21bf09298464": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
   }
 }

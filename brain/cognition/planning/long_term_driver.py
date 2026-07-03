@@ -24,6 +24,29 @@ from brain.utils.log import log_activity
 _TERMINAL = {"completed", "failed", "done", "abandoned", "retired"}
 
 
+def _bare_topic(s: str) -> str:
+    """Reduce a (possibly already-templated) string to its bare topic before it is
+    re-templated. Without this, frontier strings built from prior goal TITLES got
+    re-wrapped into "Understand Understand X more deeply" (2026-07-02 title-dup —
+    the doubled title leaked verbatim into chat replies through the membrane)."""
+    out = str(s or "").strip()
+    for _ in range(6):  # idempotent: also unstack our own beyond/retry prefixes
+        before = out
+        low = out.lower()
+        for pref in ("beyond ", "retry "):
+            if low.startswith(pref):
+                out = out[len(pref):].strip()
+                low = out.lower()
+        try:
+            from brain.cognition.intrinsic_helpers import _strip_goal_scaffold
+            out = _strip_goal_scaffold(out) or out
+        except Exception:  # intentional: scaffold-strip helper optional → keep raw text
+            pass
+        if out == before:
+            break
+    return out
+
+
 def _is_directional(goal: Dict[str, Any]) -> bool:
     return isinstance(goal, dict) and bool(
         goal.get("directional") or goal.get("never_complete"))
@@ -86,7 +109,7 @@ def ensure_frontier(goal: Dict[str, Any]) -> str:
         subj = str(goal.get("topic") or goal.get("title") or goal.get("name")
                    or goal.get("description") or "").strip()
         # strip a leading "Self-Evolution:" / "Understand" scaffold for a cleaner gap
-        frontier = subj or "the next unknown"
+        frontier = _bare_topic(subj) or "the next unknown"
         goal["frontier"] = frontier
     return frontier
 
@@ -123,10 +146,10 @@ def absorb_finished_subtasks(goal: Dict[str, Any]) -> Optional[str]:
             outcome = "gap"
         elif status in ("completed", "done"):
             # a passed sub-task deepens the thread: the frontier moves on from this rung
-            new_frontier = f"beyond {c.get('frontier_target') or c.get('title') or 'it'}"
+            new_frontier = f"beyond {_bare_topic(c.get('frontier_target') or c.get('title') or 'it')}"
             outcome = "advanced"
         else:
-            new_frontier = f"retry {c.get('frontier_target') or c.get('title') or 'it'}"
+            new_frontier = f"retry {_bare_topic(c.get('frontier_target') or c.get('title') or 'it')}"
             outcome = "retry"
         goal.setdefault("frontier_thread", []).append({
             "ts": now_iso_z(),
@@ -152,21 +175,42 @@ def spawn_frontier_subtask(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     seq = int(goal.get("_frontier_seq") or 0) + 1
     goal["_frontier_seq"] = seq
     now = now_iso_z()
-    title = f"Understand {frontier} more deeply"
+    # Defensive re-clean before templating: a frontier inherited from older
+    # state can still carry goal-phrasing scaffold ("Understand X more deeply"),
+    # and wrapping that again produces the title-dup bug. Preserve a leading
+    # beyond/retry prefix (it IS the frontier semantics), bare the rest.
+    _ftxt = str(frontier or "").strip()
+    _fprefix = ""
+    _flow = _ftxt.lower()
+    for _p in ("beyond ", "retry "):
+        if _flow.startswith(_p):
+            _fprefix, _ftxt = _ftxt[:len(_p)], _ftxt[len(_p):].strip()
+            break
+    if "understand" in _ftxt.lower() or "more deeply" in _ftxt.lower():
+        _ftxt = _bare_topic(_ftxt)
+    frontier_clean = f"{_fprefix}{_ftxt}".strip() or frontier
+    title = f"Understand {frontier_clean} more deeply"
     sub = {
         "id": f"ltc_{_key(goal)[:24]}_{seq}",
         "name": title,
         "title": title,
-        "description": f"Work the frontier of “{_key(goal)}”: {frontier}.",
+        "description": f"Work the frontier of “{_key(goal)}”: {frontier_clean}.",
         "tier": "core",
         "status": "pending",
         "timestamp": now,
         "last_updated": now,
         "emotional_intensity": 0.6,
         "parent": _key(goal),
+        # S6: a frontier child advances its parent's direction — say so in the
+        # fields credit_objectives actually reads (serves + driven_by). The
+        # 2026-07-02 run's completions carried neither, so no aspiration ever
+        # saw a contribution.
+        "serves": str(goal.get("serves") or goal.get("title")
+                      or goal.get("name") or "")[:160],
+        "driven_by": str(goal.get("driven_by") or "self_understanding"),
         "_frontier_child": True,
-        "frontier_target": frontier,
-        "history": [{"event": "created", "timestamp": now, "frontier": frontier}],
+        "frontier_target": frontier_clean,
+        "history": [{"event": "created", "timestamp": now, "frontier": frontier_clean}],
         "subgoals": [],
     }
     goal.setdefault("subgoals", []).append(sub)

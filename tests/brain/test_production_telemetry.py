@@ -8,7 +8,7 @@ from the ledger rows.
 
 import json
 
-import brain.loop.finalize as fin
+import brain.loop.production_telemetry as fin
 
 
 def test_effect_rejection_reason_from_rows():
@@ -45,7 +45,7 @@ def test_emit_writes_durable_record_with_named_fields(tmp_path, monkeypatch):
         "_production_effect_this_cycle": True,
         "_effect_rows_this_cycle": [{"significance": 0.6, "novelty": 0.7}],
     }
-    fin._emit_production_telemetry(ctx)
+    fin.emit_production_telemetry(ctx)
 
     rows = _read_lines(log)
     assert len(rows) == 1
@@ -78,11 +78,11 @@ def test_rejected_effect_is_recorded_and_counts_accumulate(tmp_path, monkeypatch
     monkeypatch.setattr(fin, "_success_total", 0, raising=False)
 
     # a duplicate effect: attempt yes, success no, reason duplicate
-    fin._emit_production_telemetry({
+    fin.emit_production_telemetry({
         "_effect_rows_this_cycle": [{"significance": 0.0, "dedupe": True}],
     })
     # an empty cycle: no attempt
-    fin._emit_production_telemetry({})
+    fin.emit_production_telemetry({})
 
     rows = _read_lines(log)
     assert rows[0]["production_attempt"] is True

@@ -439,23 +439,11 @@ if _HAVE_GOALS_DAEMON:
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
 
-        _EMOTION_STATE_PATH = REPO_ROOT / "brain" / "data" / "emotion_state.json"
-
-        def _get_emotional_state() -> dict:
-            """Read Orrin's current emotional state from v1's persisted file."""
-            try:
-                import json as _json
-                raw = _EMOTION_STATE_PATH.read_text(encoding="utf-8")
-                data = _json.loads(raw)
-                # Flatten: prefer core_emotions block if present, fall back to top-level
-                core = data.get("core_emotions")
-                if isinstance(core, dict):
-                    merged = dict(data)
-                    merged.update(core)
-                    return merged
-                return data
-            except (OSError, ValueError, AttributeError):  # intentional: missing/bad state → empty
-                return {}
+        # GoalsDaemon ctx hooks (runtime/goal_web_hooks.py): AR2 web hooks +
+        # the emotion-state reader.
+        from runtime.goal_web_hooks import goal_web_search as _goal_web_search
+        from runtime.goal_web_hooks import goal_web_fetch as _goal_web_fetch
+        from runtime.goal_web_hooks import get_emotional_state as _get_emotional_state
 
         _goals_daemon = GoalsDaemon(
             store=_goal_store,
@@ -467,6 +455,11 @@ if _HAVE_GOALS_DAEMON:
                 "get_memory_health": get_memory_health,
                 "api": _goals_api,
                 "get_emotional_state": _get_emotional_state,
+                # AR2 research-handler hooks. No "llm" hook on purpose: the LLM
+                # is tool-only gated, and the handler's offline extractive memo
+                # is the honest fallback.
+                "web_search": _goal_web_search,
+                "web_fetch": _goal_web_fetch,
             },
             reaper_sink=_goals_reaper_sink,
             memory_writer=_goal_memory_writer,

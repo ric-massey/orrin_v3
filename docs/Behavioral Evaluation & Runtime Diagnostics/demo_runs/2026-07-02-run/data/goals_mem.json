@@ -1,0 +1,508 @@
+[
+  {
+    "name": "Strengthen COGNITIVE symbolic reasoning",
+    "description": "The COGNITIVE domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "dormant",
+    "timestamp": "2026-07-02T11:46:25.265846+00:00",
+    "last_updated": "2026-07-02T18:40:25.305758+00:00",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-02T11:46:25.265846+00:00"
+      }
+    ],
+    "motivational_weight": 0.2
+  },
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-07-02T11:19:03.184748Z",
+    "last_updated": "2026-07-02T16:29:55.089896Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [
+      {
+        "title": "Investigate: No committed goal right now — capacity to choose what matter",
+        "name": "Investigate: No committed goal right now — capacity to choose what matter",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Call research_topic to make progress on: Investigate: No committed goal right now — capacity to choose what matter",
+            "status": "pending",
+            "generated_at": "2026-07-02T20:13:42.328585Z"
+          },
+          {
+            "step": "Call fetch_and_read to read a full source about Investigate: No committed goal right now — capacity to choose what matter",
+            "status": "pending",
+            "generated_at": "2026-07-02T20:13:42.328585Z"
+          },
+          {
+            "step": "Write one concrete thing learned about Investigate: No committed goal right now — capacity to choose what matter to working memory",
+            "status": "pending",
+            "generated_at": "2026-07-02T20:13:42.328585Z"
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "Relevant evidence or observations have been recorded.",
+            "criterion_kind": "evidence",
+            "met": false
+          },
+          {
+            "milestone": "A reasoned conclusion directly answers the goal.",
+            "criterion_kind": "quality",
+            "met": false
+          },
+          {
+            "milestone": "At least one observable consequence or next decision is identified.",
+            "criterion_kind": "outcome",
+            "met": false
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-07-02T11:19:03.184703Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-07-02T11:19:03.184674Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-07-02T11:19:03.184685Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-07-02T11:19:03.184687Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-07-02T11:19:03.184689Z"
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "Relevant evidence or observations have been recorded.",
+              "criterion_kind": "evidence",
+              "met": false
+            },
+            {
+              "milestone": "A reasoned conclusion directly answers the goal.",
+              "criterion_kind": "quality",
+              "met": false
+            },
+            {
+              "milestone": "At least one observable consequence or next decision is identified.",
+              "criterion_kind": "outcome",
+              "met": false
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-02T11:19:03.184703Z"
+        },
+        "timestamp": "2026-07-02T11:19:03.184742Z",
+        "last_updated": "2026-07-02T20:13:42.328585Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-02T11:19:03.184742Z"
+          }
+        ],
+        "_lm_baseline": 8,
+        "_last_progress_cycle": 4,
+        "_step_attempts": {},
+        "_completion_attempts": 1
+      },
+      {
+        "title": "Understand stoic philosophy and daily life more deeply",
+        "name": "Understand stoic philosophy and daily life more deeply",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Establish question or desired change",
+            "status": "pending",
+            "generated_at": "2026-07-02T16:29:55.089858Z"
+          },
+          {
+            "step": "Establish relevant evidence",
+            "status": "pending",
+            "generated_at": "2026-07-02T16:29:55.089865Z"
+          },
+          {
+            "step": "Establish reasoned conclusion",
+            "status": "pending",
+            "generated_at": "2026-07-02T16:29:55.089868Z"
+          },
+          {
+            "step": "Establish observable consequence",
+            "status": "pending",
+            "generated_at": "2026-07-02T16:29:55.089870Z"
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "Relevant evidence or observations have been recorded.",
+            "criterion_kind": "evidence",
+            "met": false
+          },
+          {
+            "milestone": "A reasoned conclusion directly answers the goal.",
+            "criterion_kind": "quality",
+            "met": false
+          },
+          {
+            "milestone": "At least one observable consequence or next decision is identified.",
+            "criterion_kind": "outcome",
+            "met": false
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-07-02T16:29:55.089887Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-07-02T16:29:55.089858Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-07-02T16:29:55.089865Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-07-02T16:29:55.089868Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-07-02T16:29:55.089870Z"
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "Relevant evidence or observations have been recorded.",
+              "criterion_kind": "evidence",
+              "met": false
+            },
+            {
+              "milestone": "A reasoned conclusion directly answers the goal.",
+              "criterion_kind": "quality",
+              "met": false
+            },
+            {
+              "milestone": "At least one observable consequence or next decision is identified.",
+              "criterion_kind": "outcome",
+              "met": false
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-02T16:29:55.089887Z"
+        },
+        "timestamp": "2026-07-02T16:29:55.089892Z",
+        "last_updated": "2026-07-02T16:29:55.089892Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-02T16:29:55.089892Z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-02T11:18:56.113107+00:00",
+    "milestones": [],
+    "subgoals": [
+      {
+        "id": "ltc_aspiration-self_understa_2",
+        "name": "Understand beyond Understand my own mind and how I work more deeply",
+        "title": "Understand beyond Understand my own mind and how I work more deeply",
+        "description": "Work the frontier of “aspiration-self_understanding”: beyond Understand my own mind and how I work.",
+        "tier": "core",
+        "status": "pending",
+        "timestamp": "2026-07-02T12:41:07.866381Z",
+        "last_updated": "2026-07-02T20:27:08.594304Z",
+        "emotional_intensity": 0.6,
+        "parent": "aspiration-self_understanding",
+        "_frontier_child": true,
+        "frontier_target": "beyond Understand my own mind and how I work",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-02T12:41:07.866381Z",
+            "frontier": "beyond Understand my own mind and how I work"
+          }
+        ],
+        "subgoals": [],
+        "_last_progress_cycle": 2127,
+        "plan": [
+          {
+            "step": "Call search_own_files to make progress on: beyond Understand my own mind and how I work",
+            "status": "completed",
+            "generated_at": "2026-07-02T20:27:08.594304Z",
+            "completed_at": "2026-07-02T20:28:20.744681Z"
+          },
+          {
+            "step": "Call grep_files to pin down the exact occurrences of 'beyond Understand my own mind and how I work'",
+            "status": "completed",
+            "generated_at": "2026-07-02T20:27:08.594304Z",
+            "completed_at": "2026-07-02T20:30:09.774956Z"
+          },
+          {
+            "step": "Write one concrete thing learned where 'beyond Understand my own mind and how I work' appears to working memory",
+            "status": "completed",
+            "generated_at": "2026-07-02T20:27:08.594304Z",
+            "completed_at": "2026-07-02T20:30:49.842855Z"
+          }
+        ],
+        "_step_attempts": {}
+      }
+    ],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "beyond Understand my own mind and how I work",
+    "_frontier_seq": 2,
+    "frontier_thread": [
+      {
+        "ts": "2026-07-02T12:41:07.866374Z",
+        "from": "Understand my own mind and how I work",
+        "outcome": "advanced",
+        "to": "beyond Understand my own mind and how I work",
+        "subtask": "ltc_aspiration-self_understa_1"
+      }
+    ],
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-02T16:27:35.145352Z",
+        "completed_at": "2026-07-02T16:27:36.085744Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "pending",
+        "generated_at": "2026-07-02T16:27:35.145352Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "pending",
+        "generated_at": "2026-07-02T16:27:35.145352Z"
+      }
+    ],
+    "last_updated": "2026-07-02T16:27:35.145352Z",
+    "_step_attempts": {
+      "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'": 2
+    }
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-07-02T11:18:56.113107+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-07-02T11:18:56.113107+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-07-02T11:18:56.113107+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "_artifact_first_seen_cycle": 200
+  }
+]

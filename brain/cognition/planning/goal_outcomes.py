@@ -402,6 +402,17 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
         "reason": reason or "unknown",
         "timestamp": now,
     })
+    # Machine-readable failure record (failures.jsonl) — the 2026-07-02 audit
+    # found failure evidence surviving only as activity-log prose.
+    try:
+        from brain.utils.failure_counter import record_goal_failure
+        record_goal_failure(
+            str(goal.get("id") or ""),
+            str(goal.get("title") or goal.get("name") or ""),
+            reason or "unknown",
+        )
+    except Exception as _e:
+        record_failure("goals.mark_goal_failed.telemetry", _e)
 
     # Mirror into the v2 store (no-op when the failure event CAME from v2 — the
     # goal is already terminal there). Same resurrection guard as completion.

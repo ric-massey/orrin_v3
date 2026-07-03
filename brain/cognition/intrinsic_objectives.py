@@ -330,13 +330,25 @@ def _has_real_artifact(goal: Dict[str, Any]) -> bool:
         p = goal.get(key)
         if isinstance(p, str) and p:
             paths.append(p)
-    if not paths:
-        return False
-    try:
-        from brain.cognition.quality_predicate import assess_artifact_file
-    except ImportError:  # predicate unavailable → no partial-artifact credit (fail-closed)
-        return False
-    return any(assess_artifact_file(p).ok for p in paths)
+    if paths:
+        try:
+            from brain.cognition.quality_predicate import assess_artifact_file
+            if any(assess_artifact_file(p).ok for p in paths):
+                return True
+        except ImportError:  # predicate unavailable → fall through to the ledger check
+            pass
+    # Ledger bridge (S6): a novel, credited effect attributed to this goal is the
+    # same evidence the completion gate reads (has_qualifying_effect). Without
+    # this, work recorded straight onto the ledger — symbolic artifacts, runner
+    # memos — earned aspirations nothing until the goal fully closed.
+    gid = str(goal.get("id") or "")
+    if gid:
+        try:
+            from brain.agency.effect_ledger import has_qualifying_effect
+            return bool(has_qualifying_effect(gid, goal))
+        except Exception:  # intentional: ledger unavailable → no partial credit (fail-closed)
+            return False
+    return False
 
 
 def _partial_progress_units(goal: Dict[str, Any]) -> float:
@@ -398,7 +410,8 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
                 # (T3.1) An open goal can still credit its aspiration FRACTIONALLY
                 # if it shows real evidenced sub-progress. Skip terminal-but-not-
                 # completed (failed/cancelled) goals — only live goals count.
-                if g.get("status") in ("failed", "cancelled", "abandoned") or gid in partial_seen:
+                if g.get("status") in ("failed", "cancelled", "abandoned", "archived") \
+                        or gid in partial_seen:
                     continue
                 units = _partial_progress_units(g)
                 if units > 0.0:

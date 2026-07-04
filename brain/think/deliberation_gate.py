@@ -20,9 +20,11 @@ genuine idle time between dispatches.
 """
 from __future__ import annotations
 from brain.cognition.global_workspace import bound_goal
+from collections import deque
 from typing import Tuple
 
 from brain.utils.get_cycle_count import get_cycle_count
+from brain.utils.log import log_activity
 
 
 # ── Tuneable thresholds ───────────────────────────────────────────────────────
@@ -37,6 +39,32 @@ _STAGNATION_SIGNAL_THRESHOLD       = 0.55   # stagnation_signal > this → think
 _WONDER_THRESHOLD        = 0.50   # wonder > this → think (something interesting)
 _ACTION_DEBT_TRIGGER     = 2      # cycles inactive on a committed goal → think
 MAX_SILENT_CYCLES        = 3      # hard floor: think at least every N cycles
+
+# ── B1 ignition habituation (RUN4_FIX_PLAN §B1 — the jammed-horn law) ──────────
+# Trigger 3 fires on any raw signal ≥ 0.60 and short-circuits every lower trigger,
+# so an unchanged social_presence@1.00 (or action_debt, or drive_rest — three
+# lives, three horns) won ignition every cycle forever and starved emotion /
+# prediction-error / consolidation. Habituation attenuates a signal that keeps
+# firing at the SAME (source, quantized-value) key: eff = raw / (1 + k·n_identical).
+# The instant the value changes the key changes and full strength returns — this
+# habituates to SAMENESS, not to the source. One mechanism at the gate, not a
+# fourth per-drive patch.
+_IGNITION_WINDOW      = 50    # M: how many recent trigger-3 wins to remember
+_HABITUATION_K        = 0.25  # a key that won 12 of the last 50 → ×0.25
+
+
+def _ignition_window(context: dict) -> "deque":
+    win = context.get("_ignition_recent")
+    if not isinstance(win, deque):
+        win = deque(maxlen=_IGNITION_WINDOW)
+        context["_ignition_recent"] = win
+    return win
+
+
+def _sig_key(source, strength) -> tuple:
+    """The habituation identity of a signal: its source + coarsely-quantized
+    strength. A changed value ⇒ changed key ⇒ full strength returns."""
+    return (str(source or "?"), round(float(strength or 0.0), 1))
 
 
 # ── Trigger evaluation ────────────────────────────────────────────────────────
@@ -63,14 +91,43 @@ def should_think(context: dict) -> Tuple[bool, str]:
     if uncertainty > _UNCERTAINTY_THRESHOLD:
         return True, f"high_uncertainty({uncertainty:.2f})"
 
-    # 3. Strong inbound signal — drive pressure or environment demanding attention
-    strong = [
-        s for s in signals
-        if isinstance(s, dict) and float(s.get("signal_strength", 0) or 0) >= _SIGNAL_STRENGTH_TRIGGER
-    ]
+    # 3. Strong inbound signal — drive pressure or environment demanding attention.
+    # B1: rank by EFFECTIVE strength (raw attenuated by how often this exact
+    # (source, quantized value) key has already won recently), so a jammed horn
+    # demotes below the 0.60 line and the gate FALLS THROUGH to triggers 4–14,
+    # restoring the emotion / prediction-check / consolidation diet.
+    win = _ignition_window(context)
+    strong = []
+    for s in signals:
+        if not isinstance(s, dict):
+            continue
+        raw = float(s.get("signal_strength", 0) or 0)
+        if raw <= 0.0:
+            continue
+        key = _sig_key(s.get("source"), raw)
+        n_identical = sum(1 for k in win if k == key)
+        eff = raw / (1.0 + _HABITUATION_K * n_identical)
+        if eff >= _SIGNAL_STRENGTH_TRIGGER:
+            strong.append((s, raw, eff, key))
     if strong:
-        top = max(strong, key=lambda s: s.get("signal_strength", 0))
-        return True, f"strong_signal({top.get('source','?')}@{top.get('signal_strength',0):.2f})"
+        s, raw, eff, key = max(strong, key=lambda t: t[2])
+        win.append(key)   # append only on a genuine trigger-3 win (plan §B1)
+        src = s.get("source", "?")
+        if eff < raw - 1e-6:
+            log_activity(f"[deliberation_gate] strong_signal_habituated "
+                         f"({src}@{raw:.2f}→eff {eff:.2f}) still fired")
+        return True, f"strong_signal({src}@{raw:.2f})"
+    # A raw-strong signal that got habituated BELOW the line does NOT short-circuit
+    # — the gate falls through to triggers 4–14 (the restored emotion/prediction
+    # diet). Recovery is by value change, not window aging: a changed value is a
+    # new key with a zero streak, so full strength returns immediately.
+    _habituated = [s for s in signals if isinstance(s, dict)
+                   and float(s.get("signal_strength", 0) or 0) >= _SIGNAL_STRENGTH_TRIGGER]
+    if _habituated:
+        _top = max(_habituated, key=lambda s: s.get("signal_strength", 0))
+        log_activity(f"[deliberation_gate] strong_signal_habituated "
+                     f"({_top.get('source','?')}@{float(_top.get('signal_strength',0) or 0):.2f}) "
+                     f"demoted — falling through to lower triggers")
 
     # 4. Sudden negative affective spike — distress that warrants processing
     for emotion in ("impasse_signal", "threat_level", "conflict_signal", "social_penalty", "loss_signal"):

@@ -5,6 +5,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
 import json
+import re
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -62,6 +63,43 @@ def _unique_preserve(seq: List[Any]) -> List[Any]:
         seen.add(s)
         out.append(s)
     return out
+
+
+_TOPIC_STOP = frozenset({
+    "that", "this", "with", "have", "what", "your", "about", "they", "them",
+    "from", "would", "could", "there", "their", "thing", "understand",
+    "research", "memo", "into", "know", "written", "turn",
+})
+
+
+def _topic_tokens(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]{4,}", str(text or "").lower())
+            if w not in _TOPIC_STOP}
+
+
+def _find_prior_memo(art_base: Path, goal: Goal, exclude_dir: Path) -> Optional[Path]:
+    """A2.2 (RUN4_FIX_PLAN): the most topic-overlapping memo a PRIOR goal wrote,
+    so a new synthesis can build on it — the cheapest genuine reuse arc. Scans
+    recent .md artifacts across goal dirs; requires >=2 shared content words."""
+    toks = _topic_tokens(goal.title or "")
+    if not toks or not art_base.is_dir():
+        return None
+    try:
+        memos = sorted((p for p in art_base.glob("*/*.md") if p.parent != exclude_dir),
+                       key=lambda p: p.stat().st_mtime, reverse=True)[:40]
+    except OSError:
+        return None
+    best: Optional[Path] = None
+    best_ov = 0
+    for p in memos:
+        try:
+            head = p.read_text(encoding="utf-8", errors="ignore")[:800]
+        except OSError:
+            continue
+        ov = len(toks & _topic_tokens(p.name + " " + head))
+        if ov > best_ov:
+            best, best_ov = p, ov
+    return best if best_ov >= 2 else None
 
 
 def _load_latest_json(art_dir: Path, startswith: str) -> Optional[Any]:
@@ -241,12 +279,31 @@ class ResearchHandler(BaseGoalHandler):
                     except (OSError, KeyError):  # intentional: skip unreadable doc
                         continue
 
+                # A2.2 (RUN4_FIX_PLAN): build on a prior same-topic memo when one
+                # exists — read it into the synthesis sources, cite it, and credit
+                # tier-3 re-use through the ledger's path→hash index.
+                prior_memo = _find_prior_memo(art_dir.parent, goal, art_dir)
+                if prior_memo is not None:
+                    try:
+                        prior_txt = prior_memo.read_text(encoding="utf-8", errors="ignore")
+                        snippets.insert(0, (f"my prior memo: {prior_memo.name}", prior_txt[:4000]))
+                    except OSError:
+                        prior_memo = None
+                if prior_memo is not None:
+                    try:
+                        from brain.agency.effect_ledger import mark_reused_path
+                        mark_reused_path(prior_memo)
+                    except Exception as _e:
+                        _log.warning("prior-memo reuse credit failed: %s", _e)
+
                 if callable(llm):
                     prompt = _make_synthesis_prompt(goal, synth_kind, include_citations, style, snippets)
                     memo = llm(prompt) or ""
                 else:
                     # Minimal offline fallback: stitch together extracts
                     memo = _offline_fallback_memo(goal, synth_kind, include_citations, snippets)
+                if prior_memo is not None:
+                    memo += f"\n\n---\nBuilds on: {prior_memo}\n"
 
                 out_path = _write_text(art_dir, output_name, memo)
                 # AR1: the memo is the produced deliverable (fetched docs are

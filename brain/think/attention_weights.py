@@ -42,10 +42,15 @@ def update_attention_weights(context: Dict[str, Any], reward: float) -> None:
     reward = float(reward)
     is_positive = reward >= _REWARD_THRESHOLD
 
+    # RUN4_FIX_PLAN §3.3 — floor channels at 0.01 (same class as drive-pinning,
+    # opposite direction): a source that decayed/unlearned to 0.0 can never
+    # recover (delta scales with `current`), so it goes permanently deaf. A small
+    # floor keeps every channel minimally reachable so learning can lift it again.
+    _FLOOR = 0.01
     # Global decay first — all sources fade slightly each call so stale
     # associations from old context don't persist forever.
     for src in list(weights.keys()):
-        weights[src] = max(0.0, weights[src] * _DECAY)
+        weights[src] = max(_FLOOR, weights[src] * _DECAY)
 
     for src in sources:
         current = float(weights.get(src, 0.5))
@@ -53,7 +58,7 @@ def update_attention_weights(context: Dict[str, Any], reward: float) -> None:
             delta = _LR_POS * (1.0 - current)   # asymptote at 1.0
         else:
             delta = -_LR_NEG * current           # asymptote at 0.0
-        weights[src] = max(0.0, min(1.0, current + delta))
+        weights[src] = max(_FLOOR, min(1.0, current + delta))
 
     try:
         save_json(_WEIGHTS_PATH, weights)

@@ -53,6 +53,11 @@ BASELINE_EDGES = {
     ('(root)', 'cog_memory'), ('(root)', 'cognition'), ('(root)', 'core'),
     ('(root)', 'eval'), ('(root)', 'loop'), ('(root)', 'registry'),
     ('(root)', 'think'), ('(root)', 'utils'),
+    # RUN4_FIX_PLAN A2: goal_io credits tier-3 re-use of a produced artifact when a
+    # new goal's spec references a prior goal's artifact dir — goal_io (root) →
+    # agency (effect_ledger.mark_reused_path). No cycle (effect_ledger doesn't
+    # import goal_io); mirrors the existing cognition/control_signals → agency edges.
+    ('(root)', 'agency'),
     ('control_signals', 'cog_memory'), ('control_signals', 'cognition'), ('control_signals', 'config'),
     ('control_signals', 'core'), ('control_signals', 'registry'), ('control_signals', 'symbolic'),
     ('control_signals', 'utils'),

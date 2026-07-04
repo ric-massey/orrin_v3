@@ -217,7 +217,12 @@ def score_candidates(
         # (associability above its neutral prior). Clamped at 0 so confidently
         # modelled actions are neither bonused nor penalised (Gershman 2018).
         s_explore   = _W_EXPLORE * max(0.0, get_associability(context, name) - _ASSOC_DEFAULT)
-        # Direct exploitation: lift by learned expected reward above the neutral prior.
+        # Direct exploitation: RUN4_FIX_PLAN A4 promotes this from one additive
+        # term (~0.12 max among ~25) to a MULTIPLICATIVE modulator applied after
+        # the sum, so the learned reward EMA has real authority over selection
+        # (the 2026-07-03 run: EMA contributed too little to outvote a 0.706
+        # affect coupling). s_exploit is kept only for telemetry now — it is NOT
+        # summed into `total` (that would double-count the modulator).
         s_exploit   = _W_EXPLOIT * max(0.0, get_expected(context, name) - _EXPECTED_DEFAULT)
         # General satiety suppression (non-outward; outward handled by reach_value).
         s_satiety = 0.0
@@ -241,7 +246,20 @@ def score_candidates(
             s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
         except Exception as exc:
             record_failure("select_function.goal_lens_prior", exc)
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_exploit + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp
+
+        # A4 (RUN4_FIX_PLAN §1.3, S9): give the learned reward EMA real authority.
+        # For a MATURE action (>=8 scored observations — same maturity gate s_curio
+        # uses), scale the whole positive score by (0.5 + EMA): neutral 0.5 → ×1.0,
+        # a low-EMA action (look_outward ~0.150 → ×0.65) is demoted, a high-EMA one
+        # (research_topic ~0.674 → ×1.17) is promoted. Immature actions keep ×1.0 —
+        # exploration stays the additive s_explore/s_curio term's job. Guarded on
+        # total>0 so the modulator can't perversely lift a suppressed (negative)
+        # score, consistent with the repetition/suppression multipliers below.
+        _n_obs = int((_stats.get(name) or {}).get("count", 0))
+        if _n_obs >= 8 and total > 0:
+            _ema = float(get_expected(context, name))
+            total *= max(0.0, 0.5 + _ema)
 
         # (Dual-process Phase 2) The pursue-on-cooldown yield band-aid was removed
         # here: pursue_committed_goal is no longer a deliberate candidate (it runs in

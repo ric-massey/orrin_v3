@@ -55,7 +55,11 @@ def emit_production_telemetry(context: Context) -> None:
 
         lens = context.get("_goal_lens_telemetry")
         lens = lens if isinstance(lens, dict) else {}
-        pending = goal.get("_needs_deliberate_action") or None
+        # A2.3: a staged production handoff (make-shaped act dispatched with a
+        # committed make-goal, set by step_execution) counts alongside the
+        # older "needs deliberate action" marker. Popped — one handoff per stage.
+        pending = (context.pop("pending_production_action", None)
+                   or goal.get("_needs_deliberate_action") or None)
 
         # S7 lane bridge: the ledger drain sees every recorded effect from every
         # lane (conscious, symbolic engine, goals-daemon runner); the context

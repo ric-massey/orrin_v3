@@ -1,9 +1,11 @@
 # goals/handlers/generic.py
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
+import re
 import sys
 import uuid
-from typing import Any, Dict, List, Optional
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import replace
 from ..model import Goal, Step, Status
 from .base import BaseGoalHandler, HandlerContext
@@ -41,11 +43,59 @@ def _log_private(text: str, ctx: HandlerContext) -> None:
 # goal down the daemon path, where the unknown-spec fall-through completed the
 # step in ms and the artifact gate failed the goal before the cognitive loop
 # ever worked it (2026-07-02 run: NEW→FAILED in 7ms).
-_DAEMON_EXECUTABLE_KEYS = ("reflect", "investigate", "process_todos")
+# `synthesize` (RUN4_FIX_PLAN A3): a make-goal directive the daemon can run
+# offline — read prior memos on the topic, compose a synthesis, write it as a
+# real artifact through the same effect-ledger path research memos use. This is
+# the daemon-executable lane that lets a "turn what I know into a written
+# synthesis" goal get PURSUED instead of parking WAITING for a conscious lane
+# that the ignition monopoly starved for 8 h (2026-07-03 run).
+_DAEMON_EXECUTABLE_KEYS = ("reflect", "investigate", "process_todos", "synthesize")
+
+_SYN_STOP = frozenset({
+    "that", "this", "with", "have", "what", "your", "about", "they", "them",
+    "from", "would", "could", "there", "their", "thing", "understand",
+    "research", "memo", "into", "know", "written", "turn", "synthesis",
+})
 
 
 def _daemon_executable(spec: Dict[str, Any]) -> bool:
     return any(spec.get(k) for k in _DAEMON_EXECUTABLE_KEYS)
+
+
+def _syn_tokens(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]{4,}", str(text or "").lower())
+            if w not in _SYN_STOP}
+
+
+def _artifacts_base(ctx: HandlerContext) -> Path:
+    return Path(ctx.get("artifacts_dir") or "data/goals/artifacts")
+
+
+def _gather_prior_memos(topic: str, ctx: HandlerContext,
+                        exclude: Optional[str] = None) -> List[Tuple[Path, str]]:
+    """The most topic-overlapping prior memos across goal artifact dirs (>=1
+    shared content word), newest first. Read to build ON, and reuse-credited."""
+    base = _artifacts_base(ctx)
+    toks = _syn_tokens(topic)
+    if not toks or not base.is_dir():
+        return []
+    try:
+        memos = sorted((p for p in base.glob("*/*.md")
+                        if not (exclude and str(p.parent.name) == exclude)),
+                       key=lambda p: p.stat().st_mtime, reverse=True)
+    except OSError:
+        return []
+    out: List[Tuple[Path, str]] = []
+    for p in memos:
+        try:
+            txt = p.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        if len(toks & _syn_tokens(p.name + " " + txt[:1200])) >= 1:
+            out.append((p, txt))
+        if len(out) >= 6:
+            break
+    return out
 
 
 class GenericHandler(BaseGoalHandler):
@@ -109,6 +159,61 @@ class GenericHandler(BaseGoalHandler):
             analysis = _llm_call(prompt, ctx)
             _log_private(f"[investigate:{investigate}] {analysis}", ctx)
             return replace(step, status=Status.DONE, attempts=step.attempts + 1)
+
+        # --- Synthesis goal (RUN4_FIX_PLAN A3): make a written synthesis from
+        # what he already knows, building on prior memos on the topic. ---
+        if spec.get("synthesize"):
+            topic = str(spec.get("synthesize") or goal.title or "").strip()
+            priors = _gather_prior_memos(topic, ctx, exclude=goal.id) \
+                if spec.get("from_artifacts", True) else []
+            # Credit tier-3 re-use of each prior memo read (pairs with A2).
+            for p, _txt in priors:
+                try:
+                    from brain.agency.effect_ledger import mark_reused_path
+                    mark_reused_path(p)
+                except Exception as _e:
+                    _log.warning("synthesis reuse credit failed: %s", _e)
+            prior_block = "\n\n".join(
+                f"[prior: {p.name}]\n{txt[:3000]}" for p, txt in priors
+            ) or "(no prior memos found — synthesize from what you understand)"
+            prompt = (
+                f"You are Orrin, writing a synthesis about: {topic}. "
+                f"Using your prior notes below, write a clear, NOVEL synthesis in "
+                f"your own words that connects at least two ideas — not a restatement "
+                f"of one fact. 3-6 paragraphs.\n\nPRIOR NOTES:\n{prior_block}"
+            )
+            memo = _llm_call(prompt, ctx)
+            if not memo or memo.startswith("[llm_unavailable"):
+                # Offline fallback: an honest stitched synthesis of the priors so
+                # the make-goal still produces a real artifact (native-LM deploy).
+                if priors:
+                    memo = (f"# Synthesis: {topic}\n\n"
+                            "Drawing together what I've noted so far:\n\n"
+                            + "\n\n".join(f"- From {p.name}: {txt[:600].strip()}"
+                                          for p, txt in priors))
+                else:
+                    # Nothing to build on and no LM — fail honestly, don't fake it.
+                    _log_private(f"[synthesize:{topic}] no priors, no LM — cannot produce", ctx)
+                    return replace(step, status=Status.FAILED, attempts=step.attempts + 1,
+                                   last_error="synthesize: no source material and LLM unavailable")
+                if priors:
+                    memo += f"\n\n---\nBuilds on: {', '.join(str(p) for p, _ in priors)}\n"
+            try:
+                base = _artifacts_base(ctx) / goal.id
+                base.mkdir(parents=True, exist_ok=True)
+                out_path = base / "synthesis.md"
+                out_path.write_text(memo, encoding="utf-8")
+                # Register on the step so the runner's effect chokepoint records
+                # it as a produced file_write (same path research memos use).
+                arts = list(step.artifacts or [])
+                arts.append(str(out_path))
+                _log_private(f"[synthesize:{topic}] wrote {out_path.name} "
+                             f"({len(priors)} prior memo(s) reused)", ctx)
+                return replace(step, status=Status.DONE, attempts=step.attempts + 1,
+                               artifacts=arts)
+            except OSError as _e:
+                return replace(step, status=Status.FAILED, attempts=step.attempts + 1,
+                               last_error=f"synthesize: write failed: {_e}")
 
         # --- TODO processing ---
         if spec.get("process_todos"):

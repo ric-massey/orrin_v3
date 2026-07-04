@@ -35,6 +35,10 @@ _log = get_logger(__name__)
 _POLL_INTERVAL = 15      # seconds between presence polls
 _PRESSURE_BUILDUP = 0.0008  # per second of silence → 0.6 pressure after ~750s (12.5 min)
 _PRESSURE_FLOOR = 0.05   # never fully zero — connection is always somewhere in mind
+_PRESSURE_CEIL_DISTANT = 0.60  # someone gone >1h is an absence, not a rising emergency
+_SIGNAL_THRESHOLD = 0.50  # pressure below this stays felt, not workspace-igniting
+_SIGNAL_CEIL = 0.85      # presence may compete for ignition but never saturate it
+
 
 # -------------------------------------------------------------------
 # Singleton
@@ -107,8 +111,12 @@ class SocialPresenceModel:
         self._last_pattern: str = "present"
         self._door_event: Optional[Dict[str, Any]] = None
 
-        # Cached USER_INPUT mtime for change detection
-        self._last_input_mtime: float = 0.0
+        # Cached USER_INPUT mtime for change detection. Seeded with the file's
+        # current mtime: content left over from a previous life must not count
+        # as this life's user speaking (the 2026-07-03 run minted a "person" at
+        # boot from a stale file and spent 84% of its ignitions on the silence
+        # that followed).
+        self._last_input_mtime: float = self._current_input_mtime()
 
         self._thread = threading.Thread(
             target=self._run, name="orrin-social", daemon=True
@@ -130,11 +138,11 @@ class SocialPresenceModel:
                 self._last_pattern = pattern
 
             signal = None
-            if pressure > 0.40:
+            if pressure > _SIGNAL_THRESHOLD:
                 signal = {
                     "source": "social_presence",
                     "content": self._pressure_message(silence_s, pattern, pressure),
-                    "signal_strength": min(1.0, pressure * 1.1),
+                    "signal_strength": min(_SIGNAL_CEIL, pressure),
                     "tags": ["social", "presence", "internal"],
                     "social_pressure": pressure,
                     "social_pattern": pattern,
@@ -200,6 +208,16 @@ class SocialPresenceModel:
                 record_failure("social_presence.SocialPresenceModel._run", _e)
             time.sleep(_POLL_INTERVAL)
 
+    @staticmethod
+    def _current_input_mtime() -> float:
+        try:
+            from brain.paths import USER_INPUT
+            p = Path(USER_INPUT)
+            return p.stat().st_mtime if p.exists() else 0.0
+        except Exception as _e:
+            record_failure("social_presence.SocialPresenceModel._current_input_mtime", _e)
+            return 0.0
+
     def _poll_user_input(self) -> None:
         """Detect new input by watching USER_INPUT mtime."""
         try:
@@ -228,7 +246,11 @@ class SocialPresenceModel:
             silence_s = time.time() - self._last_user_time
             # Build pressure with silence, but curve it — first minutes matter more
             raw = _PRESSURE_BUILDUP * silence_s
-            target = min(0.95, _PRESSURE_FLOOR + raw * (1.0 - self._social_confidence * 0.3))
+            # Once the user has been gone over an hour ("distant"), the felt
+            # state is absence, not mounting urgency — ease toward a lower
+            # ceiling instead of climbing forever.
+            ceil = _PRESSURE_CEIL_DISTANT if silence_s >= 3600 else 0.95
+            target = min(ceil, _PRESSURE_FLOOR + raw * (1.0 - self._social_confidence * 0.3))
             # Smooth approach to target
             self._pressure = self._pressure + (target - self._pressure) * 0.1
             self._pressure = max(_PRESSURE_FLOOR, min(1.0, self._pressure))

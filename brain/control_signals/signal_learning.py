@@ -76,7 +76,49 @@ def update_signal_function_map(emotion: str, function_name: str, reward_signal=N
         best_func, best_count = sorted_funcs[0]
         pruned[best_func] = best_count
 
+    # RUN4_FIX_PLAN A4.2: bound coupling growth so one association can't dominate
+    # the signal (2026-07-03: exploration_drive→look_outward reached 0.706 while
+    # every other coupling sat ~0.195 — affect routing structurally outvoted
+    # learned value). L1-normalize per signal, then cap any single share at 0.5,
+    # redistributing the excess proportionally across the rest. With >=2 entries
+    # no coupling can exceed 0.5, so the max/next ratio is bounded.
+    pruned = _bound_coupling_shares(pruned)
+
     raw_map[emotion_key] = pruned
     save_json(SIGNAL_FUNCTION_MAP_FILE, raw_map)
 
     return pruned  # optional: return the updated mapping for this emotion
+
+
+_COUPLING_CAP = 0.5
+
+
+def _bound_coupling_shares(entries: dict) -> dict:
+    """L1-normalize a signal's couplings to sum 1.0 and cap any single share at
+    _COUPLING_CAP, spreading the trimmed excess across the uncapped rest. A lone
+    entry is left at 1.0 (nothing to dominate). Fail-safe: returns the input
+    unchanged on any arithmetic problem."""
+    try:
+        vals = {k: max(0.0, float(v)) for k, v in entries.items()}
+        total = sum(vals.values())
+        if len(vals) <= 1 or total <= 0.0:
+            return entries
+        shares = {k: v / total for k, v in vals.items()}
+        # Iteratively cap + redistribute (at most a few passes for 5 entries).
+        for _ in range(len(shares)):
+            over = {k: s for k, s in shares.items() if s > _COUPLING_CAP + 1e-9}
+            if not over:
+                break
+            excess = sum(s - _COUPLING_CAP for s in over.values())
+            for k in over:
+                shares[k] = _COUPLING_CAP
+            uncapped = [k for k in shares if k not in over]
+            base = sum(shares[k] for k in uncapped)
+            if base <= 0.0 or not uncapped:
+                break
+            for k in uncapped:
+                shares[k] += excess * (shares[k] / base)
+        return {k: round(s, 6) for k, s in shares.items()}
+    except Exception as _e:
+        record_failure("affect_learning._bound_coupling_shares", _e)
+        return entries

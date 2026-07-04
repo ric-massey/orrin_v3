@@ -359,6 +359,21 @@ def committed_goals_v1(api, context: Dict[str, Any] | None = None,
     return _committable_from_v1_tree(limit)
 
 
+def _credit_spec_artifact_refs(spec: Dict[str, Any]) -> None:
+    """A2.2 (RUN4_FIX_PLAN): a new goal whose spec references a prior goal's
+    artifact is *building on produced work* — credit tier-3 re-use at bind time.
+    Scans the spec's string values for paths under the artifacts tree."""
+    try:
+        import json as _json
+        import re as _re
+        from brain.agency.effect_ledger import mark_reused_path
+        blob = _json.dumps(spec, default=str)
+        for m in set(_re.findall(r"[\w./~-]*goals/artifacts/[\w./-]+", blob)):
+            mark_reused_path(m)
+    except Exception as _e:
+        record_failure("goal_io._credit_spec_artifact_refs", _e)
+
+
 def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
     """Create executable goals from context['proposed_goals'] via GoalsAPI.create_goal."""
     proposed: List[Dict[str, Any]] = context.get("proposed_goals") or []
@@ -430,6 +445,7 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                 # node so v1↔v2 share one identity from this instant on. gd.get("id")
                 # may be None for a never-committed proposal — then v2 mints and we
                 # stamp that single id back here.
+                _credit_spec_artifact_refs(spec)
                 created = api.create_goal(title=title, kind=kind, spec=spec,
                                           priority=gd.get("priority", "NORMAL"),
                                           tags=gd.get("tags") or [], id=gd.get("id"))
@@ -471,11 +487,27 @@ def record_goal_progress(context: Dict[str, Any]) -> None:
         record_failure("goal_io.record_goal_progress", _e)
 
 
-# ---------- event-bus driven failed-goal reaction ----------
+# ---------- event-bus driven terminal-goal reaction ----------
+_V2_EVENT_TERMINAL = {"done", "failed", "cancelled"}
+
+
 def _on_event(event: Dict[str, Any]) -> None:
-    """GoalsAPI event-bus subscriber: enqueue goals that transitioned to FAILED."""
+    """GoalsAPI event-bus / daemon-sink subscriber: react to TERMINAL goal
+    transitions (Run 4 fix A1). Previously only `failed` was handled, so a v2
+    DONE never touched the v1 mirror — the mirror stayed `in_progress` until
+    the 200-cycle reconciler logged a "resurrection repaired" (12 repairs ≈ 12
+    completions in the 2026-07-03 run). Now every terminal status closes the
+    v1 mirror at the event itself; the reconciler stays purely an instrument.
+
+    Idempotence is free: a v1-initiated close already removed/terminated the
+    v1 node before close_goal_v2 fired this event, so close_v1_mirror no-ops."""
     try:
-        if str(event.get("status", "")).lower() == "failed":
+        if event.get("step_id"):
+            return   # step lifecycle event (daemon sink forwards those too)
+        status = str(event.get("status", "")).lower()
+        if status not in _V2_EVENT_TERMINAL:
+            return
+        if status == "failed":
             with _q_lock:
                 _failed_q.append({
                     "id": event.get("goal_id"),
@@ -483,8 +515,25 @@ def _on_event(event: Dict[str, Any]) -> None:
                     "name": event.get("title"),
                     "kind": event.get("goal_kind"),
                 })
+        try:
+            from brain.cognition.planning.goal_reconcile import close_v1_mirror
+            close_v1_mirror(str(event.get("goal_id") or ""),
+                            str(event.get("title") or ""),
+                            status.upper())
+        except Exception as _e:
+            record_failure("goal_io._on_event.close_mirror", _e)
     except Exception as _e:
         record_failure("goal_io._on_event", _e)
+
+
+def on_goal_event(event: Dict[str, Any]) -> None:
+    """Public entry for goal lifecycle events that do NOT flow through the
+    GoalsAPI bus — daemon-side finalization (`goals_daemon._finalize_goals`,
+    `runner._maybe_finalize_goal`) emits only to the reaper sink, so main.py's
+    sink forwards those events here. Without this bridge a daemon-side DONE
+    never reached any brain listener at all."""
+    if isinstance(event, dict):
+        _on_event(event)
 
 
 def install_event_handler(api) -> bool:

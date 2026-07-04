@@ -136,12 +136,25 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # milestone completion is still an independent, un-gated close path.
     if (bool(satiety_close) and not _is_artifact_gated(goal)
             and _require_effect_for_closure() and not _has_effect and not _all_ms_met):
-        log_activity(
-            f"[goals] Refusing satiety close of "
-            f"{(goal.get('title') or goal.get('name') or '?')!r} — drive sated but no "
-            f"qualifying effect recorded; keeping open to re-aim, not marking complete."
-        )
-        return
+        # B3 (RUN4_FIX_PLAN §B3) — make the refusal PRODUCTIVE, not terminal. A
+        # read-heavy "understand X" goal records no ledger effect, so it can never
+        # satiety-close (19 refusals, 0 closures, three runs). On the FIRST refusal,
+        # write down what was learned as a note through the effect-ledger path: the
+        # note IS the qualifying effect, so this pass can now close legitimately.
+        # If the goal genuinely learned nothing, the note fails the ledger's gates
+        # (no credited effect) and the refusal stands.
+        if not goal.get("_learned_note_attempted"):
+            goal["_learned_note_attempted"] = True
+            from brain.cognition.planning.satiety_note import write_learned_note
+            if write_learned_note(goal, context) and gid:
+                _has_effect = has_qualifying_effect(gid, goal)
+        if not _has_effect:
+            log_activity(
+                f"[goals] Refusing satiety close of "
+                f"{(goal.get('title') or goal.get('name') or '?')!r} — drive sated but no "
+                f"qualifying effect recorded; keeping open to re-aim, not marking complete."
+            )
+            return
     if _ms and not all(m.get("met") for m in _ms) and not _satiety_ok:
         try:
             from brain.cognition.planning.env_snapshot import apply_milestone_updates

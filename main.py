@@ -431,8 +431,15 @@ if _HAVE_GOALS_DAEMON:
                 _log.warning("silent except: %s", _e)
 
         def _goals_reaper_sink(event: dict) -> None:
-            """Fan goal daemon events out to: (1) AliveBrain event bus, (2) the new UI's Live Console."""
+            """Fan goal daemon events out to: (1) AliveBrain event bus, (2) the new UI's Live Console,
+            (3) goal_io's terminal-transition handler (A1: daemon-side DONE/FAILED/CANCELLED
+            close the v1 mirror at the event; these never flow through the GoalsAPI bus)."""
             record_event(event)
+            try:
+                from brain import goal_io as _gio
+                _gio.on_goal_event(event)
+            except Exception as _e:
+                _log.warning("goal_io.on_goal_event failed: %s", _e)
             try:
                 from backend.telemetry_bridge import get_bridge
                 get_bridge().log("info", "goals", str(event.get("kind", "goal_event")))

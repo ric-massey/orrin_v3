@@ -1,0 +1,1227 @@
+[
+  {
+    "id": "ltc_aspiration-self_understa_1",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T02:05:48.295159Z",
+    "last_updated": "2026-07-03T03:06:26.990043Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T02:05:48.295159Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T03:06:26.990043Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 33,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-03T03:02:57.074524Z",
+        "completed_at": "2026-07-03T03:04:08.698161Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-03T03:02:57.074524Z",
+        "completed_at": "2026-07-03T03:05:50.807792Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-03T03:02:57.074524Z",
+        "completed_at": "2026-07-03T03:06:26.972669Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T03:06:26.990043Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-self_understa_2",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T03:08:46.889542Z",
+    "last_updated": "2026-07-03T04:10:23.787134Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T03:08:46.889542Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T04:10:23.787134Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 1737,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-03T04:07:23.279661Z",
+        "completed_at": "2026-07-03T04:08:35.776620Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-03T04:07:23.279661Z",
+        "completed_at": "2026-07-03T04:10:23.762886Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T04:07:23.279661Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T04:10:23.787134Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "title": "Open question: What would I explore if I had no consequences?",
+    "name": "Open question: What would I explore if I had no consequences?",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-03T03:06:27.152698Z",
+        "completed_at": "2026-07-03T04:29:29.189338Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-03T03:06:27.152708Z",
+        "completed_at": "2026-07-03T04:38:08.200736Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-03T03:06:27.152711Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-03T03:06:27.152714Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-03T03:06:27.152736Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-03T03:06:27.152698Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-03T03:06:27.152708Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-03T03:06:27.152711Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-03T03:06:27.152714Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-03T03:06:27.152736Z"
+    },
+    "timestamp": "2026-07-03T03:06:27.152742Z",
+    "last_updated": "2026-07-03T04:38:08.268316Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T03:06:27.152742Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T04:38:08.268316Z"
+      }
+    ],
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_baseline": 1552,
+    "completed_timestamp": "2026-07-03T04:38:08.268316Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "id": "ltc_aspiration-self_understa_3",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T04:11:37.406723Z",
+    "last_updated": "2026-07-03T05:12:33.085143Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T04:11:37.406723Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T05:12:33.085143Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 3087,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-03T05:08:30.483115Z",
+        "completed_at": "2026-07-03T05:09:43.134510Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-03T05:08:30.483115Z",
+        "completed_at": "2026-07-03T05:12:32.874308Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T05:08:30.483115Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T05:12:33.085143Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-self_understa_4",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T05:15:04.491476Z",
+    "last_updated": "2026-07-03T06:17:06.895741Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T05:15:04.491476Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T06:17:06.895741Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 4182,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-03T06:15:53.409706Z",
+        "completed_at": "2026-07-03T06:17:06.866000Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "skipped",
+        "generated_at": "2026-07-03T06:15:53.409706Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T06:15:53.409706Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T06:17:06.895741Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-self_understa_5",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T06:19:56.271308Z",
+    "last_updated": "2026-07-03T07:20:59.552496Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T06:19:56.271308Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T07:20:59.552496Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 5276,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-03T07:19:44.809572Z",
+        "completed_at": "2026-07-03T07:20:58.981163Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "skipped",
+        "generated_at": "2026-07-03T07:19:44.809572Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T07:19:44.809572Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T07:20:59.552496Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "g_37fff942b8",
+    "title": "Understand evolutionary biology more deeply",
+    "name": "Understand evolutionary biology more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "evolutionary biology",
+        "evolutionary biology explained",
+        "what is not obvious about evolutionary biology"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-07-03T08:12:46.251146Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-07-03T08:12:46.251167Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-07-03T08:12:46.251170Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-07-03T08:12:46.251173Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-07-03T08:12:46.251179Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on evolutionary biology was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about evolutionary biology was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-03T08:12:46.251276Z",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-07-03T08:12:46.251146Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-07-03T08:12:46.251167Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-07-03T08:12:46.251170Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-07-03T08:12:46.251173Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-07-03T08:12:46.251179Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on evolutionary biology was researched.",
+        "met": true,
+        "met_at": 1783066590.3629792
+      },
+      {
+        "text": "A new fact about evolutionary biology was written to long memory.",
+        "met": true,
+        "met_at": 1783066590.3629792
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-03T08:12:46.251276Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-07-03T08:12:47.611881Z",
+    "last_updated": "2026-07-03T08:16:30.365157Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T08:12:47.611881Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T08:16:30.365157Z"
+      }
+    ],
+    "_lm_baseline": 1925,
+    "_last_progress_cycle": 7101,
+    "completed_timestamp": "2026-07-03T08:16:30.365157Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "ltc_aspiration-world_knowled_1",
+    "name": "Understand the world more deeply",
+    "title": "Understand the world more deeply",
+    "description": "Work the frontier of “aspiration-world_knowledge”: the world.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T08:18:56.269340Z",
+    "last_updated": "2026-07-03T09:21:11.745454Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-world_knowledge",
+    "serves": "Understand the world more deeply",
+    "driven_by": "world_knowledge",
+    "_frontier_child": true,
+    "frontier_target": "the world",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T08:18:56.269340Z",
+        "frontier": "the world"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T09:21:11.745454Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 7128,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: the world",
+        "status": "completed",
+        "generated_at": "2026-07-03T09:19:58.264437Z",
+        "completed_at": "2026-07-03T09:21:11.641581Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about the world",
+        "status": "skipped",
+        "generated_at": "2026-07-03T09:19:58.264437Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Write one concrete thing learned about the world to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T09:19:58.264437Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T09:21:11.745454Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-genuine_conta_1",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T09:23:36.928953Z",
+    "last_updated": "2026-07-03T11:28:03.299119Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T09:23:36.928953Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T11:28:03.299119Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 7679,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T11:26:56.092266Z",
+        "completed_at": "2026-07-03T11:28:03.235857Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "skipped",
+        "generated_at": "2026-07-03T11:26:56.092266Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T11:26:56.092266Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T11:28:03.299119Z",
+    "satisfied_need": "social_deficit",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "title": "Understand evolutionary biology and cooperation more deeply",
+    "name": "Understand evolutionary biology and cooperation more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-03T05:12:36.110679Z",
+        "completed_at": "2026-07-03T09:23:31.324088Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-03T05:12:36.110693Z",
+        "completed_at": "2026-07-03T10:39:18.606759Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "completed",
+        "generated_at": "2026-07-03T05:12:36.110695Z",
+        "completed_at": "2026-07-03T12:02:21.757226Z"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-03T05:12:36.110698Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-03T05:12:36.110721Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-03T05:12:36.110679Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-03T05:12:36.110693Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-03T05:12:36.110695Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-03T05:12:36.110698Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-03T05:12:36.110721Z"
+    },
+    "timestamp": "2026-07-03T05:12:36.110727Z",
+    "last_updated": "2026-07-03T12:02:21.821592Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T05:12:36.110727Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T12:02:21.821592Z"
+      }
+    ],
+    "_lm_baseline": 2001,
+    "_last_progress_cycle": 7673,
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T12:02:21.821592Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "id": "ltc_aspiration-genuine_conta_2",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T11:42:01.711755Z",
+    "last_updated": "2026-07-03T12:44:58.443186Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T11:42:01.711755Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T12:44:58.443186Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 8829,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T12:43:46.718584Z",
+        "completed_at": "2026-07-03T12:44:58.336052Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "skipped",
+        "generated_at": "2026-07-03T12:43:46.718584Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-03T12:43:46.718584Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T12:44:58.443186Z",
+    "satisfied_need": "social_deficit",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-genuine_conta_3",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T12:50:30.825606Z",
+    "last_updated": "2026-07-03T13:52:21.814962Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T12:50:30.825606Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T13:52:21.814962Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 9531,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T13:50:02.193316Z",
+        "completed_at": "2026-07-03T13:51:09.356661Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T13:50:02.193316Z",
+        "completed_at": "2026-07-03T13:51:46.658754Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-03T13:50:02.193316Z",
+        "completed_at": "2026-07-03T13:52:21.237931Z"
+      }
+    ],
+    "_step_attempts": {},
+    "_plan_versions": [
+      {
+        "version": 0,
+        "steps": [
+          {
+            "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+            "status": "completed",
+            "generated_at": "2026-07-03T13:02:57.380971Z",
+            "completed_at": "2026-07-03T13:03:58.548209Z"
+          },
+          {
+            "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+            "status": "completed",
+            "generated_at": "2026-07-03T13:02:57.380971Z",
+            "completed_at": "2026-07-03T13:04:31.220738Z"
+          },
+          {
+            "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+            "status": "pending",
+            "generated_at": "2026-07-03T13:02:57.380971Z"
+          }
+        ],
+        "saved_at": "2026-07-03T13:04:34.363052+00:00",
+        "reason": "adapt_subgoals"
+      }
+    ],
+    "completed_timestamp": "2026-07-03T13:52:21.814962Z",
+    "satisfied_need": "social_deficit",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-genuine_conta_4",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T13:53:35.380657Z",
+    "last_updated": "2026-07-03T14:56:05.114112Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T13:53:35.380657Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T14:56:05.114112Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 10178,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T14:53:11.488103Z",
+        "completed_at": "2026-07-03T14:54:53.539144Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T14:53:11.488103Z",
+        "completed_at": "2026-07-03T14:55:26.799405Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-03T14:53:11.488103Z",
+        "completed_at": "2026-07-03T14:56:04.665804Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T14:56:05.114112Z",
+    "satisfied_need": "social_deficit",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "id": "ltc_aspiration-genuine_conta_5",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-03T15:02:29.410933Z",
+    "last_updated": "2026-07-03T16:04:01.533208Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T15:02:29.410933Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-03T16:04:01.533208Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 10727,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:00:49.185840Z",
+        "completed_at": "2026-07-03T16:02:25.534836Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:00:49.185840Z",
+        "completed_at": "2026-07-03T16:02:58.043520Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:00:49.185840Z",
+        "completed_at": "2026-07-03T16:04:01.511574Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-03T16:04:01.533208Z",
+    "satisfied_need": "social_deficit",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  }
+]

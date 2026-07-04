@@ -59,6 +59,13 @@ EXCLUDE_FRAGMENTS = (
 # Frozen with a reason; expected to trend down. ``test_module_size.py`` fails if
 # one is deleted or drops under the limit (so the exemption can't go stale).
 EXEMPT: dict[str, str] = {
+    # 604 lines — was 595 (already at the limit) before RUN4 B4.1 added the
+    # make-shaped credit guard to _evidenced_aspiration (a research/intake memo can
+    # no longer wear the making hat). Bundles aspiration bootstrapping + crediting +
+    # the learned drive→aspiration EMA + partial-credit scoring: a genuine
+    # decomposition candidate (split the crediting core from the learning ledger),
+    # out of scope for this behavioural-fix pass.
+    "brain/cognition/intrinsic_objectives.py": "604 lines; crediting/learning split candidate (RUN4 B4)",
     # 603 lines — consciousness telemetry panel; 3 over after the 4E split. A
     # future presentational sub-panel extraction brings it under (real FE change,
     # out of scope for the enforcement pass).

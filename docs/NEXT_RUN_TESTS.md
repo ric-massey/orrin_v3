@@ -16,6 +16,84 @@ interpretation**.
 
 ---
 
+## Run 3 result — 2026-07-03 life: **FAILED** (6 ✅ 5 ✅ 7 🟡 8 🔴 9 ❓ — re-test required)
+
+Third acceptance run (clean newborn via `reset_orrin.py` at 21:55 EDT,
+**11,333 cycles in ~14.2 h**, launch #0 only, zero crashes, operator SIGTERM →
+graceful stop). This was also the staging run for the 2026-07-02 fix round
+(commit `dc0bce4` — 12 items, S6/S7 seams + rest drive + AR2 hooks). Full
+per-signal analysis + captured data:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-03-run/`.
+Reading note: the run straddled midnight — `outcome_metrics.json` holds two
+daily rows; totals below sum both.
+
+**Verdict: gate NOT passed — but the biggest single-run movement yet.** The
+Run-3 gate required 6 and 7 to move while 5 and 9 held. S6 moved decisively
+(passes its target outright); S7 half-moved (attempts and artifacts real, reuse
+still zero); S5 held; S9 no longer shows a visible EMA→selection link once fix
+#10 removed the stuck-loop self-payment; and S8 regressed with a newly exposed
+systematic desync. Per the decision rule ("if 8 or 9 fail, the fix is cosmetic
+regardless of 1–7"), still shipped, not proven.
+
+| # | Signal | Run 3 | Result |
+|---|---|---|---|
+| 1 | Fewer repeated understanding goals | 14 completed / 7 distinct; max repeat 5× over 11.3k cycles (0.44/1k, under target — but repeats returned; Run 2: 3/3 distinct) | 🟢 |
+| 2 | Nonzero goal duration | median 3,722.4 s; completions spread hourly across the whole life | 🟢 |
+| 3 | Nonzero satiety closures | **0** (19 "Refusing satiety close" refusals) | 🔴 |
+| 4 | Some legitimate failures | **94 machine-readable rows in `failures.jsonl`** (54 flagship `no_artifact_by_deadline`, 34 research `no URLs to fetch`) | 🟢 |
+| 5 | Higher mean significance | **1.197** (Run 2: 1.114) — held after the lanes were bridged; Run 2's number was not a metering artifact | ✅ **HELD** |
+| 6 | Aspiration diversity | **contributions 5/2/5/2, all four off 0, top share 36%** (was 0/0/0/0) | ✅ **MOVED — PASSES** |
+| 7 | Artifacts useful / reused | attempts 0→**163**, successes **102**, **11 research memos** (first ever) + 1 tool-validated effect — but **0 reuse back-refs** (`mark_reused` has no call sites) and handoffs 0 | 🟡 **HALF-MOVED** |
+| 8 | No resurrection / orphan-RUNNING | `store_desyncs_repaired` **12** (Run 2: 0) — all `resurrection repaired … re-closed in v1`, tracking v2 completions ~1:1; invisible before because nothing completed | 🔴 **REGRESSED — escalation rule triggered** |
+| 9 | Selection follows learned value | corr(EMA, share-delta) ≈ **−0.15**; lowest-EMA major (`look_outward` 0.150) share *rose*; the EMA is a minority term in the multi-factor ranker — Run 2's link was partly the now-removed loop self-payment | ❓ **NOT CLEARLY HELD** |
+
+**Root causes (detail in the run analysis):** S7's reuse half has *zero call
+sites* — memos are written and never read back, and the conscious lane never
+stages a production action (handoff 0). S8 is a **v2→v1 completion-bridge
+leak**: every v2 completion resurrects its v1 mirror, which the 200-cycle
+reconciler re-closes — per this doc's own rule, persistent repairs = real
+desync source → **escalate to GOAL_STORE_UNIFICATION**. S9 is structurally
+diluted: the dying decision snapshot shows the EMA folded into a multi-factor
+rank (`emo 0.312 / goal 0.297 / band 0.25 / dir 0.22 …`) where affect outvotes
+learned value; decide the EMA's intended authority before Run 4 or the signal
+stays untestable. Also relevant: the ignition monopoly relocated
+(`social_presence` 84% of ignitions — third jammed horn in three lives) and
+starved the consolidation organs again; the fix belongs at the ignition layer.
+
+**Re-test gate (Run 4):** signals **7 (reuse half), 8, and 9 must move**
+(≥1 `mark_reused`/tier-3 row; desync repairs back to ~0 or the bridge
+unified; a demonstrable EMA→share link) while **5 and 6 hold**. Until then
+this doc and its companions stay live.
+
+### S9 — the EMA's intended authority (decided for Run 4, fix A4)
+
+The reward EMA now has **multiplicative** authority over selection, not one
+additive term among ~25. In `score_actions.py`, after the multi-factor sum, a
+**mature** action (≥8 scored observations — the same maturity gate `s_curio`
+uses) has its whole positive score scaled by **(0.5 + EMA)**:
+
+- neutral EMA 0.5 → ×1.0 (no change),
+- `look_outward` at EMA 0.150 → ×0.65 (demoted),
+- `research_topic` at EMA 0.674 → ×1.17 (promoted),
+- an immature action (n < 8) keeps ×1.0 — exploration stays the additive
+  `s_explore`/`s_curio` term's job.
+
+The old additive `s_exploit` term is **removed from the sum** (kept only for
+telemetry) so the modulator is not double-counted. In parallel, per-signal
+affect couplings are **L1-normalized and capped at 0.5 share**
+(`signal_learning._bound_coupling_shares`) so no single coupling (2026-07-03:
+`exploration_drive→look_outward` at 0.706) can structurally outvote value.
+
+**S9 passes in Run 4 iff:** a mature action's final score scales by (0.5 + EMA);
+**expected observable:** `corr(EMA, share-delta) > 0` **and** `look_outward`
+share *falls* while its EMA stays **< 0.3**.
+
+> **Run 4 prep:** every open issue + build order + pre-run checklist is
+> consolidated in `docs/Behavioral Evaluation & Runtime Diagnostics/`
+> `RUN4_ISSUES_AND_IMPROVEMENTS_2026-07-04.md`.
+
+---
+
 ## Run 2 result — 2026-07-02 life: **FAILED** (5 ✅ 9 ✅ 6 ❌ 7 ❌ — re-test required)
 
 Second acceptance run (clean newborn via `reset_orrin.py`, **10,071 cycles in

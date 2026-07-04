@@ -160,7 +160,7 @@ class DemandEngine:
     def __init__(self) -> None:
         # Buildup rates tuned so drives reach urgency in realistic timeframes:
         #   exploration:  0.5 pressure in ~50 ticks (8 min of repetitive picks)
-        #   social:       0.6 pressure in ~180 ticks (30 min of silence)
+        #   social:       signal (~0.35) in ~35 min of silence; equilibrium ≈0.66
         #   meaning:      0.5 pressure in ~100 ticks (16 min without goal progress)
         #   rest:         0.4 pressure in ~200 ticks (33 min sustained activity)
         #   integrity:    only builds from explicit dissonance events (no tick)
@@ -176,6 +176,11 @@ class DemandEngine:
             "social": Demand(
                 "social",
                 buildup_per_tick=0.0033,
+                # Equilibrium buildup/leak = 0.0033/0.005 ≈ 0.66: connection
+                # hunger keeps signalling (>0.35 in ~35 min of silence) but can
+                # never pin at 1.0 and own ignition — the 2026-07-03 run spent
+                # 84% of its ignitions on social signals while alone.
+                leak_per_tick=0.005,
                 label="Social drive",
                 description="The silence has been growing. I notice the absence of connection.",
                 tags=["social", "connection", "presence"],

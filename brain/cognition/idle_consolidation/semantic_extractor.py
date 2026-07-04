@@ -28,6 +28,7 @@ from typing import Any, Dict, List, Tuple
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_activity
+from brain.utils.failure_counter import record_failure
 from brain.paths import DATA_DIR
 
 try:
@@ -212,6 +213,29 @@ def extract_semantic_facts() -> Dict[str, Any]:
                 "last_seen":  last_seen.get(k, ""),
             }
             new_count += 1
+
+    # RUN4_FIX_PLAN §3.10 — decay/re-test facts NOT re-observed this scan. A
+    # high-confidence fact learned from a source lane that has since changed or
+    # been removed (2026-07-03: produce_and_check neutral, n=228, conf 0.979,
+    # learned from the removed stuck loop) otherwise stays pinned forever. A fact
+    # not seen this pass loses a little confidence; if the pattern is still real
+    # it gets re-observed above and recovers, if the lane is gone it fades and
+    # stops dominating. A well-supported fact decays slower (count-scaled floor).
+    _observed = set(by_triple.keys())
+    _STALE_DECAY = 0.03
+    for k, fact in index.items():
+        if k in _observed:
+            continue
+        try:
+            n = int(fact.get("count") or 0)
+            floor = max(0.1, 0.5 - min(0.3, n / 1000.0))   # strong facts settle higher, not to 0
+            conf = float(fact.get("confidence") or 0.5)
+            new_conf = max(floor, round(conf - _STALE_DECAY, 3))
+            if new_conf != conf:
+                fact["confidence"] = new_conf
+                fact["stale_decayed"] = True
+        except Exception as exc:
+            record_failure("semantic_extractor.stale_decay", exc)
 
     # Save back as a flat list sorted by count (most-supported facts first).
     merged = sorted(index.values(), key=lambda f: -int(f.get("count") or 0))

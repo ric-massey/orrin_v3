@@ -255,6 +255,6 @@ def _emit_telemetry(context: Dict[str, Any], moment: Dict[str, Any],
         _WRITEBACK_LOG.parent.mkdir(parents=True, exist_ok=True)
         with _WRITEBACK_LOG.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(record) + "\n")
-        cap_jsonl(_WRITEBACK_LOG, max_lines=20000)
+        cap_jsonl(_WRITEBACK_LOG, max_lines=8000)   # RUN4_FIX_PLAN §3.6 — tighter cap (~1 MB/run footprint)
     except Exception as exc:
         record_failure("workspace_writeback.telemetry", exc)

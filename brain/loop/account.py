@@ -97,12 +97,24 @@ def account_action(
                 chosen = f"ACTION:{a.get('type', 'unknown')}"
             elif "next_function" in result:
                 chosen = f"FN:{result.get('next_function')}"
+        # RUN4_FIX_PLAN §3.5 — slim trace rows: record only the top few active
+        # signals (name→value) instead of the whole affect_state snapshot, and the
+        # committed goal's id rather than the full goal. trace.jsonl is capped at
+        # 3000 lines but each row carried the entire emotion+goal blob.
+        _emo = context.get("affect_state") or {}
+        _core = _emo.get("core_signals") if isinstance(_emo.get("core_signals"), dict) else _emo
+        _top_emo = {}
+        if isinstance(_core, dict):
+            _nums = [(k, float(v)) for k, v in _core.items()
+                     if isinstance(v, (int, float)) and float(v) >= 0.1]
+            _top_emo = {k: round(v, 3) for k, v in sorted(_nums, key=lambda kv: kv[1], reverse=True)[:5]}
+        _goal = bound_goal(context) or {}
         emit_trace(
             chosen=chosen,
             debt=context.get("action_debt", 0),
             mode=context.get("mode"),
-            emotions=context.get("affect_state", {}),
-            committed=bool(bound_goal(context)),
+            emotions=_top_emo,
+            committed_id=(str(_goal.get("id") or _goal.get("title") or "") or None),
             last_action_ts=context.get("last_action_ts"),
         )
     except Exception as _e:

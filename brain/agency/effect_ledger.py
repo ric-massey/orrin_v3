@@ -86,6 +86,11 @@ _tracked_progress: Dict[str, int] = {}                      # goal_id -> max com
 # so a later invocation by name (tool_runner / cognition dispatch) can be recognized
 # as re-use of a specific produced artifact — the tier-3, ungameable signal.
 _artifact_names: Dict[str, str] = {}                        # name -> content_hash
+# A2.1 (RUN4_FIX_PLAN): normalized artifact path -> content_hash. The missing
+# primitive that let mark_reused sit uncalled: read paths open FILES, and
+# nothing could resolve a path back to the hash the ledger credits. Persisted
+# implicitly — rebuilt at hydrate from each row's metadata.path.
+_path_hash: Dict[str, str] = {}                             # normalized path -> content_hash
 _hash_goal: Dict[str, str] = {}                             # content_hash -> goal_id (back-reference)
 _hash_kind: Dict[str, str] = {}                             # content_hash -> effect kind (for the quality-standard proposer)
 # Tier-3 re-use credits awaiting payout. Re-use is detected wherever an artifact is
@@ -138,6 +143,18 @@ _TEMPLATE_RE = re.compile(
 def _normalize(content: str) -> str:
     """Whitespace/case-normalize so trivial reformatting can't dodge the dedup."""
     return _WS_RE.sub(" ", str(content or "")).strip().lower()
+
+
+def _norm_path(p: Any) -> Optional[str]:
+    """Canonical form for the path→hash index (A2.1): absolute, resolved."""
+    try:
+        from pathlib import Path
+        s = str(p or "").strip()
+        if not s:
+            return None
+        return str(Path(s).expanduser().resolve())
+    except (OSError, ValueError):  # intentional: unresolvable path → not indexable
+        return None
 
 
 def _real_content_len(normalized: str) -> int:
@@ -288,6 +305,13 @@ def _hydrate() -> None:
                         if (isinstance(meta_top, dict) and meta_top.get("name")
                                 and row.get("kind") in ("tool_written", "code_committed")):
                             _artifact_names[str(meta_top["name"])] = h
+                        # path → hash index (A2.1): any row that names the file
+                        # it wrote lets a later read resolve that file to the
+                        # credited artifact.
+                        if isinstance(meta_top, dict) and meta_top.get("path"):
+                            np = _norm_path(meta_top["path"])
+                            if np:
+                                _path_hash[np] = h
                         # re-use counts are persisted as their own rows
                         if row.get("kind") == "reuse":
                             _reuse_counts[h] = _reuse_counts.get(h, 0) + 1
@@ -391,6 +415,12 @@ def record_effect(
     with _lock:
         if _artifact_name and kind in ("tool_written", "code_committed"):
             _artifact_names[str(_artifact_name)] = content_hash
+        # A2.1: index the written file's path → hash (dedupe rows too — a
+        # rewrite still leaves the file resolvable to its credited content).
+        if isinstance(metadata, dict) and metadata.get("path"):
+            _np = _norm_path(metadata["path"])
+            if _np:
+                _path_hash[_np] = content_hash
         is_dup = content_hash in _seen_hashes
         nov = _compute_novelty(kind, normalized, content_hash) if novelty is None else float(novelty)
         # An explicit caller-supplied novelty still can't beat the exact-dup gate.
@@ -569,6 +599,33 @@ def credited_goal_ids() -> List[str]:
         return list(_goal_effects.keys())
 
 
+def hash_for_path(path: Any) -> Optional[str]:
+    """Resolve a file path back to the content_hash of the ledger row that wrote
+    it, or None for a file the ledger never produced (A2.1 — the primitive every
+    read-path reuse credit needs). Accepts any path form; normalizes the same way
+    the write-side index does."""
+    np = _norm_path(path)
+    if not np:
+        return None
+    _hydrate()
+    with _lock:
+        return _path_hash.get(np)
+
+
+def mark_reused_path(path: Any) -> Optional[int]:
+    """Convenience for read paths (A2.2): if `path` resolves to a produced
+    artifact, credit tier-3 re-use and return the new reuse count; else None.
+    Never raises — reading must not break because crediting did."""
+    try:
+        h = hash_for_path(path)
+        if not h:
+            return None
+        return mark_reused(h)
+    except Exception as exc:
+        record_failure("effect_ledger.mark_reused_path", exc)
+        return None
+
+
 def mark_reused(content_hash: str) -> int:
     """Tier-3 (deferred, strong) significance: the artifact was referenced again
     later — a tool invoked, a memo cited by a later goal, a message replied to.
@@ -722,6 +779,7 @@ def reset_for_tests() -> None:
         _goal_significance.clear()
         _tracked_progress.clear()
         _artifact_names.clear()
+        _path_hash.clear()
         _hash_goal.clear()
         _hash_kind.clear()
         _pending_reuse.clear()

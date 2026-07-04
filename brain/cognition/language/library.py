@@ -183,9 +183,71 @@ def populate_big(wikipedia: int = 60) -> dict:
     return {"books_fetched": books, "wiki_fetched": wiki, "library_kb": size_chars() // 1024}
 
 
+# RUN4_FIX_PLAN §3.8 — a small BUNDLED public-domain starter, so the shelf is
+# never empty offline (Gutenberg fetch needs network; a native-LM deployment may
+# have none). These are firmly public-domain Aesop fables (pre-1500s, no
+# copyright). A stocked shelf also feeds A2's read-path reuse: a produced memo
+# that ends up here can be re-read and reuse-credited.
+_STARTER_BUNDLED = {
+    "aesop_starter.txt": (
+        "AESOP'S FABLES (a small starter shelf)\n\n"
+        "THE FOX AND THE GRAPES\n"
+        "A hungry Fox saw some fine bunches of Grapes hanging from a vine that was "
+        "trained along a high trellis, and did his best to reach them by jumping as "
+        "high as he could into the air. But it was all in vain, for they were just "
+        "out of reach: so he gave up trying, and walked away with an air of dignity "
+        "and unconcern, remarking, \"I thought those Grapes were ripe, but I see now "
+        "they are quite sour.\"\n\n"
+        "THE TORTOISE AND THE HARE\n"
+        "A Hare was one day making fun of a Tortoise for being so slow upon his feet. "
+        "\"Wait a bit,\" said the Tortoise; \"I'll run a race with you, and I'll wager "
+        "that I win.\" The Hare, thinking the whole thing impossible, agreed. The Fox, "
+        "who had consented to act as judge, marked the distance and started the "
+        "runners off. The Hare was soon far out of sight, and, to make the Tortoise "
+        "feel how absurd it was for him to try a race, lay down to have a nap. The "
+        "Tortoise meanwhile kept plodding on, and in time reached the goal. At last "
+        "the Hare woke up with a start, and dashed on at his fastest, but only to "
+        "find that the Tortoise had already won the race.\n\n"
+        "THE ANT AND THE GRASSHOPPER\n"
+        "In a field one summer's day a Grasshopper was hopping about, chirping and "
+        "singing to its heart's content. An Ant passed by, bearing along with great "
+        "toil an ear of corn he was taking to the nest. \"Why not come and chat with "
+        "me,\" said the Grasshopper, \"instead of toiling and moiling in that way?\" "
+        "\"I am helping to lay up food for the winter,\" said the Ant, \"and recommend "
+        "you to do the same.\" \"Why bother about winter?\" said the Grasshopper; \"we "
+        "have got plenty of food at present.\" But the Ant went on its way and "
+        "continued its toil. When the winter came the Grasshopper had no food, and "
+        "found itself dying of hunger, while it saw the ants distributing every day "
+        "corn and grain from the stores they had collected in the summer. Then the "
+        "Grasshopper knew: it is best to prepare for the days of necessity.\n"
+    ),
+}
+
+
+def _write_bundled_starter() -> int:
+    """Write the bundled public-domain texts to the shelf (idempotent). Returns
+    the number newly written. The offline floor under populate_starter."""
+    _LIB.mkdir(parents=True, exist_ok=True)
+    wrote = 0
+    for name, text in _STARTER_BUNDLED.items():
+        p = _LIB / name
+        if not p.exists():
+            try:
+                p.write_text(text, encoding="utf-8")
+                wrote += 1
+            except OSError as exc:
+                record_failure("library._write_bundled_starter", exc)
+    return wrote
+
+
 def populate_starter(n: int = 3) -> int:
-    """Fetch the first n curriculum books so he has something to read. Idempotent."""
-    return fetch_books(_CURRICULUM[:n])
+    """Fetch the first n curriculum books so he has something to read. Idempotent.
+    Falls back to a bundled public-domain starter when the network fetch adds
+    nothing AND the shelf is still empty — so read_a_book always has a book."""
+    got = fetch_books(_CURRICULUM[:n])
+    if got == 0 and size_chars() == 0:
+        got += _write_bundled_starter()
+    return got
 
 
 def size_chars() -> int:
@@ -353,6 +415,15 @@ def read_book(selector: Path | str | None = None, max_chars: int = 50000,
     reads = _load_reads()
     reads[path.name] = int(reads.get(path.name, 0)) + 1
     _save_reads(reads)
+    # A2.2 (RUN4_FIX_PLAN): if this shelf file is one Orrin himself produced
+    # (it resolves through the effect ledger's path→hash index), reading it is
+    # tier-3 re-use — the ungameable significance signal. No-op for the
+    # public-domain stock.
+    try:
+        from brain.agency.effect_ledger import mark_reused_path
+        mark_reused_path(path)
+    except Exception as exc:
+        record_failure("library.read_book.reuse", exc)
     title = _title_of(path)
     if len(txt) <= max_chars:
         return (title, txt)

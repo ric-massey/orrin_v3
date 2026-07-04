@@ -346,6 +346,15 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     if not url:
         return "No URL found to read right now."
 
+    # A2.2 (RUN4_FIX_PLAN): if the source being opened is a local file Orrin
+    # produced (resolves via the ledger's path→hash index), credit tier-3
+    # re-use. A web URL simply doesn't resolve — no-op.
+    try:
+        from brain.agency.effect_ledger import mark_reused_path
+        mark_reused_path(url[7:] if url.startswith("file://") else url)
+    except Exception as _e:
+        record_failure("web_research.fetch_and_read.reuse", _e)
+
     log_activity(f"[web_research] Fetching URL: {url}")
     raw = _get(url, timeout=12)
     if not raw:

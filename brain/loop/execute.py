@@ -263,6 +263,14 @@ def execute_cognition_function(
                 args=result.get("args") if isinstance(result, dict) else None,
                 kwargs=result.get("kwargs") if isinstance(result, dict) else None,
             )
+            # B2: a protected integrative organ that ran via ignition resets its
+            # timer, so the finalize fallback only fires when ignition truly
+            # missed it (RUN4_FIX_PLAN §B2).
+            try:
+                from brain.loop.organ_timers import mark_ran as _organ_mark_ran
+                _organ_mark_ran(fn_name)
+            except Exception as _ome:
+                record_failure("ORRIN_loop.organ_mark_ran", _ome)
             try:
                 _lat_ms = (time.perf_counter() - _cost_t0) * 1000.0
                 from brain.cognition.cost_prediction import observe as _cost_observe

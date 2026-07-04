@@ -87,6 +87,13 @@ CORE_BASELINES = {
     "conflict_signal":   0.01,
     "threat_level":      0.01,
     "reward_negative":  0.01,
+    # RUN4_FIX_PLAN §3.1 — the deliberation gate already treats social_penalty as
+    # spike-worthy, but it was only in SETPOINTS, never seeded into `core`, so the
+    # emotion buffer dropped every social_penalty delta as an "unknown emotion".
+    # Seeding it here (a negative signal, resting near zero) registers it in the
+    # buffer's vocabulary. loss_signal is registered for the same reason.
+    "social_penalty":    0.01,
+    "loss_signal":       0.0,
     "prediction_error_signal": 0.02,
     "rejection_signal":  0.01,
     "stagnation_signal": 0.0,

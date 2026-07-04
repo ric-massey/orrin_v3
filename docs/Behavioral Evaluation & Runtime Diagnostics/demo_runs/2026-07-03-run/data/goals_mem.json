@@ -1,0 +1,1143 @@
+[
+  {
+    "id": "ltc_aspiration-genuine_conta_5",
+    "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+    "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+    "tier": "core",
+    "status": "pending",
+    "timestamp": "2026-07-03T15:02:29.410933Z",
+    "last_updated": "2026-07-03T16:13:56.307179Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-genuine_contact",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "driven_by": "genuine_contact",
+    "_frontier_child": true,
+    "frontier_target": "Be genuinely useful and connected to the people I talk to",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-03T15:02:29.410933Z",
+        "frontier": "Be genuinely useful and connected to the people I talk to"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 10727,
+    "plan": [
+      {
+        "step": "Call research_topic to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:13:56.307179Z",
+        "completed_at": "2026-07-03T16:15:05.227184Z"
+      },
+      {
+        "step": "Call fetch_and_read to read a full source about Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:13:56.307179Z",
+        "completed_at": "2026-07-03T16:15:41.910719Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "pending",
+        "generated_at": "2026-07-03T16:13:56.307179Z"
+      }
+    ],
+    "_step_attempts": {}
+  },
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-07-03T02:04:45.179233Z",
+    "last_updated": "2026-07-03T16:04:04.574680Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [
+      {
+        "title": "Open question: Is what I'm doing right now aligned with what I actually care about?",
+        "name": "Open question: Is what I'm doing right now aligned with what I actually care about?",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Establish question or desired change",
+            "status": "completed",
+            "generated_at": "2026-07-03T07:21:07.153380Z",
+            "completed_at": "2026-07-03T11:29:11.937887Z"
+          },
+          {
+            "step": "Establish relevant evidence",
+            "status": "completed",
+            "generated_at": "2026-07-03T07:21:07.153397Z",
+            "completed_at": "2026-07-03T14:26:03.940034Z"
+          },
+          {
+            "step": "Establish reasoned conclusion",
+            "status": "completed",
+            "generated_at": "2026-07-03T07:21:07.153407Z",
+            "completed_at": "2026-07-03T16:07:14.257124Z"
+          },
+          {
+            "step": "Establish observable consequence",
+            "status": "pending",
+            "generated_at": "2026-07-03T07:21:07.153409Z"
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "Relevant evidence or observations have been recorded.",
+            "criterion_kind": "evidence",
+            "met": false
+          },
+          {
+            "milestone": "A reasoned conclusion directly answers the goal.",
+            "criterion_kind": "quality",
+            "met": false
+          },
+          {
+            "milestone": "At least one observable consequence or next decision is identified.",
+            "criterion_kind": "outcome",
+            "met": false
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-07-03T07:21:07.153481Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-07-03T07:21:07.153380Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-07-03T07:21:07.153397Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-07-03T07:21:07.153407Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-07-03T07:21:07.153409Z"
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "Relevant evidence or observations have been recorded.",
+              "criterion_kind": "evidence",
+              "met": false
+            },
+            {
+              "milestone": "A reasoned conclusion directly answers the goal.",
+              "criterion_kind": "quality",
+              "met": false
+            },
+            {
+              "milestone": "At least one observable consequence or next decision is identified.",
+              "criterion_kind": "outcome",
+              "met": false
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-03T07:21:07.153481Z"
+        },
+        "timestamp": "2026-07-03T07:21:07.153487Z",
+        "last_updated": "2026-07-03T07:21:07.153487Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T07:21:07.153487Z"
+          }
+        ],
+        "_step_attempts": {}
+      },
+      {
+        "title": "Turn what I know about evolutionary biology into a written synthesis",
+        "name": "Turn what I know about evolutionary biology into a written synthesis",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "purpose and thesis",
+          "outline",
+          "substantive sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Establish purpose and thesis",
+            "status": "pending",
+            "generated_at": "2026-07-03T08:16:30.912641Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish purpose and thesis"
+            }
+          },
+          {
+            "step": "Establish outline",
+            "status": "pending",
+            "generated_at": "2026-07-03T08:16:30.912650Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish outline"
+            }
+          },
+          {
+            "step": "Establish substantive sections",
+            "status": "pending",
+            "generated_at": "2026-07-03T08:16:30.912653Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish substantive sections"
+            }
+          },
+          {
+            "step": "Establish coherence review",
+            "status": "pending",
+            "generated_at": "2026-07-03T08:16:30.912656Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish coherence review"
+            }
+          },
+          {
+            "step": "Establish final manuscript",
+            "status": "pending",
+            "generated_at": "2026-07-03T08:16:30.912658Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-07-03T08:16:30.912717Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "purpose and thesis",
+            "outline",
+            "substantive sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Establish purpose and thesis",
+              "status": "pending",
+              "generated_at": "2026-07-03T08:16:30.912641Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish purpose and thesis"
+              }
+            },
+            {
+              "step": "Establish outline",
+              "status": "pending",
+              "generated_at": "2026-07-03T08:16:30.912650Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish outline"
+              }
+            },
+            {
+              "step": "Establish substantive sections",
+              "status": "pending",
+              "generated_at": "2026-07-03T08:16:30.912653Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish substantive sections"
+              }
+            },
+            {
+              "step": "Establish coherence review",
+              "status": "pending",
+              "generated_at": "2026-07-03T08:16:30.912656Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish coherence review"
+              }
+            },
+            {
+              "step": "Establish final manuscript",
+              "status": "pending",
+              "generated_at": "2026-07-03T08:16:30.912658Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-03T08:16:30.912717Z"
+        },
+        "timestamp": "2026-07-03T08:16:30.912724Z",
+        "last_updated": "2026-07-03T08:16:30.912724Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T08:16:30.912724Z"
+          }
+        ]
+      },
+      {
+        "title": "Turn what I know about the world into a written synthesis",
+        "name": "Turn what I know about the world into a written synthesis",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "purpose and thesis",
+          "outline",
+          "substantive sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Establish purpose and thesis",
+            "status": "pending",
+            "generated_at": "2026-07-03T09:21:17.431051Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish purpose and thesis"
+            }
+          },
+          {
+            "step": "Establish outline",
+            "status": "pending",
+            "generated_at": "2026-07-03T09:21:17.431072Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish outline"
+            }
+          },
+          {
+            "step": "Establish substantive sections",
+            "status": "pending",
+            "generated_at": "2026-07-03T09:21:17.431082Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish substantive sections"
+            }
+          },
+          {
+            "step": "Establish coherence review",
+            "status": "pending",
+            "generated_at": "2026-07-03T09:21:17.431085Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish coherence review"
+            }
+          },
+          {
+            "step": "Establish final manuscript",
+            "status": "pending",
+            "generated_at": "2026-07-03T09:21:17.431088Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Establish final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-07-03T09:21:17.431202Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "purpose and thesis",
+            "outline",
+            "substantive sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Establish purpose and thesis",
+              "status": "pending",
+              "generated_at": "2026-07-03T09:21:17.431051Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish purpose and thesis"
+              }
+            },
+            {
+              "step": "Establish outline",
+              "status": "pending",
+              "generated_at": "2026-07-03T09:21:17.431072Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish outline"
+              }
+            },
+            {
+              "step": "Establish substantive sections",
+              "status": "pending",
+              "generated_at": "2026-07-03T09:21:17.431082Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish substantive sections"
+              }
+            },
+            {
+              "step": "Establish coherence review",
+              "status": "pending",
+              "generated_at": "2026-07-03T09:21:17.431085Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish coherence review"
+              }
+            },
+            {
+              "step": "Establish final manuscript",
+              "status": "pending",
+              "generated_at": "2026-07-03T09:21:17.431088Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Establish final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-03T09:21:17.431202Z"
+        },
+        "timestamp": "2026-07-03T09:21:17.431214Z",
+        "last_updated": "2026-07-03T09:21:17.431214Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T09:21:17.431214Z"
+          }
+        ]
+      },
+      {
+        "title": "Understand foundations of quantum mechanics more deeply",
+        "name": "Understand foundations of quantum mechanics more deeply",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Establish question or desired change",
+            "status": "pending",
+            "generated_at": "2026-07-03T12:02:22.544622Z"
+          },
+          {
+            "step": "Establish relevant evidence",
+            "status": "pending",
+            "generated_at": "2026-07-03T12:02:22.544640Z"
+          },
+          {
+            "step": "Establish reasoned conclusion",
+            "status": "pending",
+            "generated_at": "2026-07-03T12:02:22.544643Z"
+          },
+          {
+            "step": "Establish observable consequence",
+            "status": "pending",
+            "generated_at": "2026-07-03T12:02:22.544645Z"
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "Relevant evidence or observations have been recorded.",
+            "criterion_kind": "evidence",
+            "met": false
+          },
+          {
+            "milestone": "A reasoned conclusion directly answers the goal.",
+            "criterion_kind": "quality",
+            "met": false
+          },
+          {
+            "milestone": "At least one observable consequence or next decision is identified.",
+            "criterion_kind": "outcome",
+            "met": false
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-07-03T12:02:22.544669Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-07-03T12:02:22.544622Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-07-03T12:02:22.544640Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-07-03T12:02:22.544643Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-07-03T12:02:22.544645Z"
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "Relevant evidence or observations have been recorded.",
+              "criterion_kind": "evidence",
+              "met": false
+            },
+            {
+              "milestone": "A reasoned conclusion directly answers the goal.",
+              "criterion_kind": "quality",
+              "met": false
+            },
+            {
+              "milestone": "At least one observable consequence or next decision is identified.",
+              "criterion_kind": "outcome",
+              "met": false
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-03T12:02:22.544669Z"
+        },
+        "timestamp": "2026-07-03T12:02:22.544674Z",
+        "last_updated": "2026-07-03T12:02:22.544674Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T12:02:22.544674Z"
+          }
+        ]
+      },
+      {
+        "title": "Open question: What am I not saying to myself that I need to hear?",
+        "name": "Open question: What am I not saying to myself that I need to hear?",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Establish question or desired change",
+            "status": "pending",
+            "generated_at": "2026-07-03T16:04:04.574612Z"
+          },
+          {
+            "step": "Establish relevant evidence",
+            "status": "pending",
+            "generated_at": "2026-07-03T16:04:04.574626Z"
+          },
+          {
+            "step": "Establish reasoned conclusion",
+            "status": "pending",
+            "generated_at": "2026-07-03T16:04:04.574628Z"
+          },
+          {
+            "step": "Establish observable consequence",
+            "status": "pending",
+            "generated_at": "2026-07-03T16:04:04.574635Z"
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "Relevant evidence or observations have been recorded.",
+            "criterion_kind": "evidence",
+            "met": false
+          },
+          {
+            "milestone": "A reasoned conclusion directly answers the goal.",
+            "criterion_kind": "quality",
+            "met": false
+          },
+          {
+            "milestone": "At least one observable consequence or next decision is identified.",
+            "criterion_kind": "outcome",
+            "met": false
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-07-03T16:04:04.574665Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-07-03T16:04:04.574612Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-07-03T16:04:04.574626Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-07-03T16:04:04.574628Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-07-03T16:04:04.574635Z"
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "Relevant evidence or observations have been recorded.",
+              "criterion_kind": "evidence",
+              "met": false
+            },
+            {
+              "milestone": "A reasoned conclusion directly answers the goal.",
+              "criterion_kind": "quality",
+              "met": false
+            },
+            {
+              "milestone": "At least one observable consequence or next decision is identified.",
+              "criterion_kind": "outcome",
+              "met": false
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-07-03T16:04:04.574665Z"
+        },
+        "timestamp": "2026-07-03T16:04:04.574669Z",
+        "last_updated": "2026-07-03T16:04:04.574669Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T16:04:04.574669Z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-07-03T02:05:48.079751+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-07-03T16:07:48.740154+00:00"
+      }
+    ],
+    "subgoals": [
+      {
+        "id": "ltc_aspiration-genuine_conta_6",
+        "name": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+        "title": "Understand Be genuinely useful and connected to the people I talk to more deeply",
+        "description": "Work the frontier of “aspiration-genuine_contact”: Be genuinely useful and connected to the people I talk to.",
+        "tier": "core",
+        "status": "pending",
+        "timestamp": "2026-07-03T16:07:48.743465Z",
+        "last_updated": "2026-07-03T16:07:48.743465Z",
+        "emotional_intensity": 0.6,
+        "parent": "aspiration-genuine_contact",
+        "serves": "Be genuinely useful and connected to the people I talk to",
+        "driven_by": "genuine_contact",
+        "_frontier_child": true,
+        "frontier_target": "Be genuinely useful and connected to the people I talk to",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-07-03T16:07:48.743465Z",
+            "frontier": "Be genuinely useful and connected to the people I talk to"
+          }
+        ],
+        "subgoals": []
+      }
+    ],
+    "_aspiration": true,
+    "contribution_count": 5,
+    "partial_credit": 0.2,
+    "progress": 0.26,
+    "recent_contributions": [
+      "Understand Be genuinely useful and connected to the people I talk to more deeply",
+      "Understand Be genuinely useful and connected to the people I talk to more deeply",
+      "Understand Be genuinely useful and connected to the people I talk to more deeply",
+      "Understand Be genuinely useful and connected to the people I talk to more deeply",
+      "Understand Be genuinely useful and connected to the people I talk to more deeply"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "Be genuinely useful and connected to the people I talk to",
+    "_frontier_seq": 6,
+    "plan": [
+      {
+        "step": "Call leave_note to make progress on: Be genuinely useful and connected to the people I talk to",
+        "status": "completed",
+        "generated_at": "2026-07-03T16:01:20.273015Z",
+        "completed_at": "2026-07-03T16:01:31.699810Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Be genuinely useful and connected to the people I talk to to working memory",
+        "status": "pending",
+        "generated_at": "2026-07-03T16:01:20.273015Z"
+      }
+    ],
+    "last_updated": "2026-07-03T16:01:20.273015Z",
+    "_step_attempts": {},
+    "_lm_baseline": 2001,
+    "_last_progress_cycle": 8699
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-07-03T02:05:48.079751+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 2,
+    "partial_credit": 0.0,
+    "progress": 0.1,
+    "recent_contributions": [
+      "Understand evolutionary biology and cooperation more deeply",
+      "Open question: What would I explore if I had no consequences?"
+    ],
+    "_artifact_first_seen_cycle": 200
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-03T08:16:30.409701+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-07-03T08:18:56.263751+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 5,
+    "partial_credit": 0.0,
+    "progress": 0.25,
+    "recent_contributions": [
+      "Understand my own mind and how I work more deeply",
+      "Understand my own mind and how I work more deeply",
+      "Understand my own mind and how I work more deeply",
+      "Understand my own mind and how I work more deeply",
+      "Understand my own mind and how I work more deeply"
+    ]
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-07-03T09:21:12.019836+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 2,
+    "partial_credit": 0.0,
+    "progress": 0.1,
+    "recent_contributions": [
+      "Understand the world more deeply",
+      "Understand evolutionary biology more deeply"
+    ]
+  }
+]

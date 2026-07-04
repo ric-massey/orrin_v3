@@ -450,6 +450,13 @@ def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> Li
             driven_by="output_producing",
             requires_artifact=True,
             milestones=[f"A novel synthesis about '{topic[:50]}' was produced and delivered."],
+            # RUN4_FIX_PLAN A3: give the make-goal a daemon-executable `synthesize`
+            # lane so it gets PURSUED (reads prior memos, builds a synthesis,
+            # writes a real artifact) instead of parking WAITING for a conscious
+            # lane the ignition monopoly starved. HIGH priority (4 on v1's 1–5
+            # scale) so it also ranks against core goals in the committed set.
+            priority=4,
+            spec={"synthesize": topic, "from_artifacts": True},
         ))
     return out
 
@@ -592,6 +599,37 @@ def _record_birth(goal: Dict) -> None:
     del _recent_births[:-_BIRTH_WINDOW]
 
 
+_CANDIDATE_ASPIRATION_CAP = 0.50   # B4.2: max share of the candidate pool one aspiration may hold
+
+
+def _cap_candidate_aspiration_share(pool: List[Dict]) -> List[Dict]:
+    """B4.2 (RUN4_FIX_PLAN §B4): cap any single aspiration's share of the CANDIDATE
+    pool at ~50%, so generation itself can't be a monoculture (2026-07-03: 158/162
+    candidates targeted one aspiration). Trims the over-represented aspiration's
+    candidates down to the cap; never drops below one candidate per aspiration and
+    never empties the pool. Complements _quota_filter (which watches actual births)
+    by acting one stage earlier, on what's even offered."""
+    if len(pool) <= 2:
+        return pool
+    by_asp: Dict[str, List[Dict]] = {}
+    for g in pool:
+        by_asp.setdefault(_aspiration_drive_of(g), []).append(g)
+    if len(by_asp) <= 1:
+        return pool   # only one aspiration available — nothing to balance against
+    # A group's share is ≤ 50% iff it holds no more than the SUM of all the other
+    # groups. Trim only the dominant group down to that bound (at most one group
+    # can exceed 50%), so the result is balanced without emptying minorities.
+    counts = {a: len(c) for a, c in by_asp.items()}
+    dom = max(counts, key=counts.get)
+    others_total = sum(c for a, c in counts.items() if a != dom)
+    out: List[Dict] = []
+    for a, cands in by_asp.items():
+        if a == dom and len(cands) > others_total:
+            cands = random.sample(cands, max(1, others_total))
+        out.extend(cands)
+    return out or pool
+
+
 def _quota_filter(pool: List[Dict]) -> List[Dict]:
     """Narrow the candidate pool when recent births violate the quota.
     Never empties the pool — a constraint with no serving candidate is skipped
@@ -663,6 +701,9 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
 
     if not pool:
         return None   # nothing real to pursue right now — originate nothing, not a template
+    # B4.2 — cap any single aspiration's share of the candidate pool at ~50% so
+    # generation itself isn't a monoculture (before the birth-rate quota narrows it).
+    pool = _cap_candidate_aspiration_share(pool)
     # AR5 — birth-rate quota: narrow the pool when the recent birth mix violates
     # the make/connect floor or the intake cap (see _quota_filter above).
     pool = _quota_filter(pool)

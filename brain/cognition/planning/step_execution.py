@@ -143,6 +143,28 @@ def _procedural_from_manifest() -> frozenset[str]:
 
 _PROCEDURAL_FNS = _procedural_from_manifest()
 
+# A2.3 (RUN4_FIX_PLAN): acts whose dispatch is a production ATTEMPT — the
+# make-shaped end of the intention→act table. Used to stage the funnel's
+# handoff marker when a committed make-goal exists.
+_MAKE_SHAPED_FNS = frozenset({
+    "decide_to_write_code", "compose_section", "produce_and_check",
+    "leave_note", "write_desktop_note", "save_note",
+    "write_cognitive_function", "write_tool",
+})
+
+
+def _goal_is_make_shaped(goal: Any) -> bool:
+    """A committed goal that exists to PRODUCE. Shared definition in goal_criteria
+    (RUN4_FIX_PLAN §A2/§B4), with the artifact-gated fallback for this handoff use."""
+    try:
+        from brain.cognition.planning.goal_criteria import (
+            goal_is_make_shaped, _is_artifact_gated,
+        )
+        return goal_is_make_shaped(goal) or _is_artifact_gated(goal)
+    except Exception:  # intentional: criteria module unavailable → not make-shaped
+        return isinstance(goal, dict) and (
+            str(goal.get("driven_by") or "").lower() == "output_producing")
+
 
 def is_procedural(fn_name: str) -> bool:
     """True if `fn_name` is safe for the background Executive lane to execute."""
@@ -338,6 +360,18 @@ def execute_step_action(fn_name: str, context: Dict[str, Any],
             _motive_set = True
     except Exception as e:
         log_error(f"[step_exec] motive threading failed for '{fn_name}': {e}")
+
+    # A2.3 (RUN4_FIX_PLAN): production handoff. A make-shaped act actually being
+    # DISPATCHED (not merely selected) while a committed make-goal exists is the
+    # funnel's handoff moment — stage it so production_telemetry counts it.
+    if fn_name in _MAKE_SHAPED_FNS:
+        _g = goal if isinstance(goal, dict) else (bound_goal(context) or {})
+        if _goal_is_make_shaped(_g):
+            context["pending_production_action"] = {
+                "fn": fn_name,
+                "goal_id": str(_g.get("id") or _g.get("title") or ""),
+                "step": (step_text or "")[:120],
+            }
 
     try:
         out = fn(context)

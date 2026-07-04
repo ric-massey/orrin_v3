@@ -1,0 +1,40 @@
+[
+  {
+    "date": "2026-07-02",
+    "active_goals": 7,
+    "average_goal_age": 4234.8,
+    "goals_completed": 1,
+    "goals_failed": 12,
+    "goals_retired": 3,
+    "satiety_closures": 0,
+    "abandonment_closures": 0,
+    "maintenance_selections": 173,
+    "store_desyncs_repaired": 2,
+    "mean_significance": 1.187,
+    "median_seconds_to_complete": 3638.7,
+    "completion_rate": 0.062,
+    "abandonment_rate": 0.0,
+    "closure_frequency": 3,
+    "exploration_selections": 10833,
+    "closure_selections": 0
+  },
+  {
+    "date": "2026-07-03",
+    "active_goals": 12,
+    "average_goal_age": 19320.9,
+    "goals_completed": 13,
+    "goals_failed": 44,
+    "goals_retired": 26,
+    "satiety_closures": 0,
+    "abandonment_closures": 0,
+    "maintenance_selections": 519,
+    "store_desyncs_repaired": 10,
+    "mean_significance": 1.197,
+    "median_seconds_to_complete": 3722.4,
+    "completion_rate": 0.157,
+    "abandonment_rate": 0.0,
+    "closure_frequency": 26,
+    "exploration_selections": 13296,
+    "closure_selections": 0
+  }
+]

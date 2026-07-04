@@ -38,6 +38,28 @@ def _is_artifact_gated(goal: Dict[str, Any]) -> bool:
     ))
 
 
+_MAKE_SHAPED_KINDS = {"coding", "code_edit"}
+
+
+def goal_is_make_shaped(goal: Dict[str, Any]) -> bool:
+    """RUN4_FIX_PLAN §B4/§A2 — a goal that exists to PRODUCE: a coding kind, a
+    generic goal carrying a synthesize/make spec, or an explicitly output-driven
+    goal. A research/intake goal is NOT make-shaped even though it writes a memo
+    file, so it can't wear the making hat and inflate output_producing credit.
+    Shared home so step_execution (handoff) and intrinsic_objectives (credit)
+    agree on one definition."""
+    if not isinstance(goal, dict):
+        return False
+    if str(goal.get("kind") or "").lower() in _MAKE_SHAPED_KINDS:
+        return True
+    if str(goal.get("driven_by") or "").lower() == "output_producing":
+        return True
+    spec_raw = goal.get("spec")
+    spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}
+    return bool(spec.get("synthesize") or spec.get("make")
+                or str(spec.get("driven_by") or "").lower() == "output_producing")
+
+
 def _definition_of_done(goal: Dict[str, Any]) -> List[Dict[str, Any]]:
     spec_raw = goal.get("spec")
     spec: Dict[str, Any] = spec_raw if isinstance(spec_raw, dict) else {}

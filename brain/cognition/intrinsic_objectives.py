@@ -17,6 +17,7 @@ from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
 from brain.utils.env import env_bool
 from brain.paths import GOALS_FILE, COMPLETED_GOALS_FILE, DATA_DIR
+from brain.cognition.planning.goal_criteria import goal_is_make_shaped as _goal_is_make_shaped  # B4.1
 
 _log = get_logger(__name__)
 
@@ -121,6 +122,10 @@ def _save_drive_credit(d: Dict[str, Any]) -> None:
         record_failure("intrinsic_goals.save_drive_credit", exc)
 
 
+_OUTPUT_PRODUCING_TITLE = next((t for t, d in _ASPIRATIONS
+                                if d == "output_producing"), "")
+
+
 def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
     """Which aspiration did this completed goal's OUTCOME actually advance?
 
@@ -161,6 +166,10 @@ def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
     intent = _serves_aspiration(str(goal.get("driven_by") or spec.get("driven_by") or ""))
     if intent in scores:
         scores[intent] += _INTENT_PRIOR_WEIGHT
+    # B4.1: making credit requires a make-shaped goal — a research/intake memo
+    # writes a file but isn't "making", so strip the making aspiration from it.
+    if _OUTPUT_PRODUCING_TITLE in scores and not _goal_is_make_shaped(goal):
+        scores[_OUTPUT_PRODUCING_TITLE] = 0
     if not any(scores.values()):
         return None
     return max(scores, key=scores.get)

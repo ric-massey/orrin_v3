@@ -24,7 +24,7 @@
 from __future__ import annotations
 
 from brain.core.runtime_log import get_logger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from brain.utils.log import log_activity
 from brain.utils.timeutils import now_iso_z
@@ -34,6 +34,63 @@ _log = get_logger(__name__)
 
 _V2_TERMINAL = {"DONE", "FAILED", "CANCELLED"}
 _V1_TERMINAL = {"completed", "failed", "abandoned", "cancelled"}
+
+
+def close_v1_mirror(goal_id: str, title: str, v2_status: str,
+                    *, event: str = "closed_from_v2_event") -> bool:
+    """Close the v1 mirror of a v2-terminal goal — the shared v1-close primitive
+    (Run 4 fix A1). Finds the node by id (title fallback, case-insensitive), sets
+    completed/failed, appends a history entry, and saves through the GoalArbiter
+    so any thread (the API event bus fires on the daemon thread) can call it
+    safely. Idempotent: no node, or an already-terminal node, is a no-op.
+
+    Returns True only when a LIVE v1 node was actually closed — so the
+    reconciler can keep counting genuine repairs while the event-driven caller
+    treats False as "nothing to do"."""
+    sname = str(v2_status or "").upper()
+    if sname not in _V2_TERMINAL:
+        return False
+    gid = str(goal_id or "")
+    tkey = str(title or "").strip().lower()
+    if not gid and not tkey:
+        return False
+    closed = {"ok": False}
+
+    def _walk(nodes: Any, pred: Callable[[Dict[str, Any]], bool]) -> Optional[Dict[str, Any]]:
+        for n in nodes or []:
+            if isinstance(n, dict):
+                if pred(n):
+                    return n
+                hit = _walk(n.get("subgoals"), pred)
+                if hit is not None:
+                    return hit
+        return None
+
+    def _mut(tree: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        node = _walk(tree, lambda n: n.get("id") == gid) if gid else None
+        if node is None and tkey:
+            node = _walk(tree, lambda n: (str(n.get("title") or n.get("name") or "")
+                                          .strip().lower() == tkey))
+        if node is not None and str(node.get("status", "")).lower() not in _V1_TERMINAL:
+            now = now_iso_z()
+            node["status"] = "completed" if sname == "DONE" else "failed"
+            node["last_updated"] = now
+            node.setdefault("history", []).append({
+                "event": event, "v2_status": sname, "timestamp": now,
+            })
+            closed["ok"] = True
+        return tree
+
+    try:
+        from brain.cognition.planning import goal_arbiter
+        goal_arbiter.apply(_mut, source="close_v1_mirror")
+    except Exception as _e:
+        record_failure("goal_reconcile.close_v1_mirror", _e)
+        return False
+    if closed["ok"]:
+        log_activity(f"[goal_io] v1 mirror closed from v2 terminal: "
+                     f"'{(title or gid)[:50]}' ({sname}).")
+    return closed["ok"]
 
 
 def _v2_status_name(g: Any) -> str:
@@ -82,7 +139,7 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
         return 0
 
     try:
-        from brain.cognition.planning.goals import load_goals, save_goals
+        from brain.cognition.planning.goals import load_goals
         tree = load_goals()
     except Exception as _e:
         record_failure("goal_reconcile.load_goals", _e)
@@ -91,8 +148,6 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
         return 0
 
     v1_by_id, v1_by_title = _index_v1(tree)
-    changed_v1 = False
-    now = now_iso_z()
 
     for g in v2_goals:
         try:
@@ -113,16 +168,14 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
 
             if v2_terminal and not v1_terminal:
                 # resurrection — v2 closed it, v1 still thinks it's live.
-                node["status"] = "completed" if sname == "DONE" else "failed"
-                node["last_updated"] = now
-                node.setdefault("history", []).append({
-                    "event": "reconciled_to_v2_terminal",
-                    "v2_status": sname, "timestamp": now,
-                })
-                changed_v1 = True
-                repairs += 1
-                log_activity(f"[goal_reconcile] resurrection repaired: '{title[:50]}' "
-                             f"re-closed in v1 ({sname}).")
+                # A1: shared close primitive (same one the event bus now uses),
+                # so this pass stays the *instrument*: any repair counted here
+                # means a terminal event was missed — a genuine unknown seam.
+                if close_v1_mirror(str(gid or ""), title,
+                                   sname, event="reconciled_to_v2_terminal"):
+                    repairs += 1
+                    log_activity(f"[goal_reconcile] resurrection repaired: '{title[:50]}' "
+                                 f"re-closed in v1 ({sname}).")
             elif v1_terminal and not v2_terminal:
                 # orphan-RUNNING — v1 closed it, v2 still NEW/READY/RUNNING/BLOCKED.
                 tgt = "DONE" if v1status == "completed" else "FAILED"
@@ -132,13 +185,6 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
                                  f"closed in v2 ({tgt}).")
         except Exception as _e:
             record_failure("goal_reconcile.repair", _e)
-
-    if changed_v1:
-        try:
-            from brain.cognition.planning.goals import save_goals
-            save_goals(tree)
-        except Exception as _e:
-            record_failure("goal_reconcile.save_goals", _e)
 
     if repairs:
         try:

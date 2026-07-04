@@ -289,3 +289,43 @@ def report(days: int = 7) -> Dict[str, Any]:
 
     log_activity(f"[outcome_metrics] {summary}")
     return {"summary": summary, "days": recent}
+
+
+def window_summary(dates: List[str] | None = None, *, last_n_days: int = 2) -> Dict[str, Any]:
+    """RUN4_FIX_PLAN §3.9 — sum outcome_metrics rows across a run window so a life
+    that STRADDLES MIDNIGHT (two daily rows) is scored as one run, not two half-runs.
+    §8 gate tooling should call this rather than reading a single day's row.
+
+    `dates` selects exact rows to fold together (e.g. ["2026-07-03","2026-07-04"]);
+    otherwise the last `last_n_days` rows are used. Counters are SUMMED across the
+    window and rates recomputed; per-day _LATEST fields take the newest row's value.
+    Averaging metrics (mean_significance / median_seconds) are recomputed as a
+    count-weighted / pooled figure where the raw lists survive, else newest-row."""
+    flush()
+    history: List[Any] = load_json(OUTCOME_METRICS_FILE, default_type=list) or []
+    if not isinstance(history, list) or not history:
+        return {}
+    if dates:
+        want = set(dates)
+        rows = [d for d in history if isinstance(d, dict) and d.get("date") in want]
+    else:
+        rows = [d for d in history[-max(1, int(last_n_days)):] if isinstance(d, dict)]
+    if not rows:
+        return {}
+    out: Dict[str, Any] = {"window_dates": [d.get("date") for d in rows]}
+    for key in _SUMMED:
+        out[key] = sum(int(d.get(key, 0) or 0) for d in rows)
+    newest = rows[-1]
+    for key in _LATEST:
+        if key in newest:
+            out[key] = newest[key]
+    total_closes = sum(out.get(k, 0) for k in
+                       ("goals_completed", "goals_failed", "goals_retired",
+                        "satiety_closures", "abandonment_closures"))
+    out["completion_rate"] = round(out.get("goals_completed", 0) / total_closes, 3) if total_closes else 0.0
+    out["abandonment_rate"] = round(
+        (out.get("abandonment_closures", 0) + out.get("satiety_closures", 0)) / total_closes, 3
+    ) if total_closes else 0.0
+    out["closure_frequency"] = (out.get("goals_retired", 0) + out.get("satiety_closures", 0)
+                                + out.get("abandonment_closures", 0))
+    return out

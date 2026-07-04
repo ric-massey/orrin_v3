@@ -431,6 +431,19 @@ def persist_and_periodic(context: Context, _goals_api: Any, _mem_daemon: Any, _e
     except Exception as _de:
         log_error(f"idle_consolidation_cycle check failed: {_de}")
 
+    # B2 — timer-protect the consolidation organs (RUN4_FIX_PLAN §B2). The dream
+    # has its own timer (never missed 5/5); the OTHER integrative organs are
+    # ignition-gated and went dark under the 2026-07-03 monopoly. Run one overdue
+    # organ per protected slot, on the same host/resource guard the dream honors.
+    try:
+        from supervisor.host_resources import heavy_cycles_paused as _heavy_paused2
+        from supervisor.resource_floor import resource_floor_shedding as _rfs2
+        if (not _heavy_paused2()) and (not _rfs2()):
+            from brain.loop.organ_timers import run_due_organs as _run_due_organs
+            _run_due_organs(context)
+    except Exception as _oe:
+        log_error(f"organ timer fallback failed: {_oe}")
+
     # Global workspace (unity layer): converge this cycle's parallel
     # contents into a single conscious moment, broadcast it, and extend
     # the continuous stream of experience. Makes him one experiencer

@@ -1,5 +1,10 @@
 # Orrin
 
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Experimental-orange?style=flat-square)](https://github.com/ric-massey/orrin_v3)
+[![GitHub Stars](https://img.shields.io/github/stars/ric-massey/orrin_v3?style=social)](https://github.com/ric-massey/orrin_v3)
+
 **Orrin is an autonomous cognitive runtime: a program that starts on its own, runs continuously,
 pursues its own objectives, remembers across restarts, and monitors the machine it runs on — written
 in plain Python.**
@@ -29,7 +34,42 @@ not just one-shot prompts?
 
 ---
 
-## What's actually here
+## 🚀 Quick Start
+
+```bash
+# 1. Clone and enter the repo
+git clone https://github.com/ric-massey/orrin_v3.git
+cd orrin_v3
+
+# 2. Set up a virtual environment and install dependencies
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+# 3. (Optional) Configure API keys
+cp .env.example .env
+# Add OPENAI_API_KEY and/or SERPER_API_KEY if you have them
+
+# 4. Run Orrin
+./run_orrin.sh  # or: python main.py
+```
+
+Then open the **UI** at `http://localhost:8800` and watch Orrin think.
+
+---
+
+## 🧠 Key Ideas
+
+- **Symbolic-first cognition** — memory, goals, and control signals work independently of any LLM
+- **Continuous autonomy** — picks its own next action via a bandit selector, not waiting for prompts
+- **Persistent memory** — runs across restarts with full state continuity and consolidation
+- **Regulated control signals** — reward, activation, priority weights, and throttle keep behavior stable
+- **Observable runtime** — live UI exposes the cognitive loop, not a chat transcript
+- **Host-aware** — monitors CPU, disk, memory, battery and respects your machine's health
+
+---
+
+## What's Actually Here
 
 Strip the framing and Orrin is a long-lived process with its own machinery, most of which never
 touches a model:
@@ -52,9 +92,13 @@ engineering terms above name specific mechanisms — see the
 [mechanism map](docs/ARCHITECTURE.md#terminology-engineering-terms-not-claims). Orrin is a research
 prototype, not a chatbot, a production assistant, or a claim of machine sentience.
 
+![Orrin Learning room showing behavior changes, goal progress, rut pressure, and belief revisions](docs/images/orrin_learning_ui.png)
+
+*The real Learning UI: before → after → because, goal movement, rut pressure, and belief revision in one view.*
+
 ---
 
-## System architecture
+## 🏗️ System Architecture
 
 Orrin is a long-lived Python process plus cooperating daemons:
 
@@ -98,9 +142,9 @@ Reward + Memory Update + Idle Consolidation
                            │           │           │            │
                   ┌────────▼──┐ ┌──────▼─────┐ ┌───▼──────┐ ┌───▼────────┐
                   │ Executive │ │   Memory   │ │  Health  │ │  Backend   │
-                  │  daemon   │ │   daemon   │ │ liveness │ │ telemetry  │
-                  │ (goal     │ │ (ingest /  │ │ + error  │ │  + Face &  │
-                  │  steps)   │ │ consolidate)│ │ checker │ │  Brain UI  │
+                  │  daemon   │ │   daemon   │ │ liveness │ │  telemetry │
+                  │ (goal     │ │ (ingest /  │ │ + error  │ │   + Face & │
+                  │  steps)   │ │ consolidate)│ │ checker  │ │  Brain UI  │
                   └───────────┘ └────────────┘ └──────────┘ └────────────┘
 ```
 
@@ -114,7 +158,7 @@ runtime-lifetime horizon, identity/continuity, host coupling, and the scientific
 
 ---
 
-## What it does
+## ⚙️ What It Does
 
 Orrin is a long-lived process that:
 
@@ -145,14 +189,9 @@ Orrin is a long-lived process that:
 The design rule throughout: **the brain never silently depends on an LLM.** Set no API key and Orrin
 still runs — it skips the LLM-backed tool calls and stays symbolic.
 
-![Orrin Learning room showing behavior changes, goal progress, rut pressure, and belief revisions](docs/images/orrin_learning_ui.png)
-
-*The real Learning UI rendered with representative staging data: before → after → because, goal
-movement, rut pressure, and belief revision in one view.*
-
 ---
 
-## What Orrin actually does (its actions)
+## 🎯 What Orrin Actually Does (Its Actions)
 
 When Orrin "acts," it calls real tools, not just internal state updates:
 
@@ -177,7 +216,7 @@ run history), so behavior accumulates over time rather than resetting each cycle
 
 ---
 
-## Interacting with Orrin
+## 💬 Interacting with Orrin
 
 Orrin runs on its own initiative — it is **not** prompt-driven — but you are not just a spectator:
 
@@ -198,15 +237,15 @@ whether you're active at the machine.
 
 ---
 
-## Repository layout
+## 📁 Repository Layout
 
 | Path | What it is |
 |------|------------|
-| `brain/` | The cognitive core. Entry point `brain/ORRIN_loop.py`. Subsystems: `control_signals/` (internal-state model, arbiter, setpoint regulation, reward), `cognition/` (functions, planning, metacognition, prediction), `symbolic/` (rule engine, causal graph, inference), `cog_memory/` (working + long memory), `runtime_coupling/` (input stream, world model, demands, system presence), `motivation/` (demand-pressure accumulators), `think/` (loop, bandit selector, action arbiter), `behavior/` (expression, speech gate, tools), `core/`, `agency/`, `eval/`, `peers/`, `utils/`. |
-| `goals/` | **Goals daemon** — the durable goal lifecycle store (`goals_daemon.py`) with its own WAL + snapshots, decoupled from the cognitive cycle. Distinct from the in-process **Executive** (`brain/cognition/planning/executive.py`). |
+| `brain/` | The cognitive core. Entry point `brain/ORRIN_loop.py`. Subsystems: `control_signals/` (internal-state model, arbiter, setpoint regulation, reward), `cognition/` (functions, planning,[...] |
+| `goals/` | **Goals daemon** — the durable goal lifecycle store (`goals_daemon.py`) with its own WAL + snapshots, decoupled from the cognitive cycle. Distinct from the in-process **Executive**[...] |
 | `memory/` | Memory daemon — ingestion, embedding, compaction, lexicon. |
 | `brain/peers/` | **Peer entities** — outside observers (Architect, Signal Historian, Goal Auditor, Observer, Reward Auditor) that watch Orrin's state and inject signals each cycle. |
-| `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later retrievals/goal closures) and **demand-expectations** (learns which actions satisfy which demands). |
+| `brain/eval/` | Delayed-learning daemons — the **evaluator** (credit-assigns past decisions from later retrievals/goal closures) and **demand-expectations** (learns which actions satisfy whic[...] |
 | `supervisor/` | Liveness & error subsystem — heartbeat detection, error checking, runtime-lifetime continuity, and `host_resources.py` (the autonomic `HostResourceGuard`). |
 | `backend/` | FastAPI telemetry bridge + UI launcher (`:8800`). Streams brain state to the UI over WebSocket or an in-process bridge (`server/bridge.py`, used by the native window). |
 | `frontend/` | Vite + React + TypeScript UI (`:5173` in dev). Named rooms + a Settings page (keys, privacy, existence mode, state-archive export/import). |
@@ -225,7 +264,7 @@ whether you're active at the machine.
 
 ---
 
-## Requirements
+## 📋 Requirements
 
 - **Python 3.10+** and the packages in `requirements.txt` (NumPy, requests, BeautifulSoup,
   sentence-transformers, watchdog, openai, python-dotenv, psutil, prometheus_client, spaCy; plus
@@ -251,7 +290,7 @@ first-class low-resource profile yet.
 
 ---
 
-## Setup
+## 🛠️ Setup
 
 ```bash
 # 1. Clone and enter the repo
@@ -279,7 +318,7 @@ cd frontend && npm install
 
 ---
 
-## Running
+## ▶️ Running
 
 ```bash
 ./run_orrin.sh                 # simplest: auto-restart on crash, keeps macOS awake
@@ -300,7 +339,7 @@ are in [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md).**
 
 ---
 
-## Desktop app
+## 🖥️ Desktop App
 
 Orrin can run as a self-contained **native desktop application** — its own window (WKWebView on
 macOS, WebView2 on Windows, WebKitGTK on Linux), no browser tab, no localhost port, no Python or Node
@@ -324,7 +363,7 @@ export/import a state archive by hand from Settings at any time.
 
 ---
 
-## Tests
+## 🧪 Tests
 
 ```bash
 pytest                  # full suite
@@ -336,7 +375,7 @@ without installation.
 
 ---
 
-## Troubleshooting
+## 🐛 Troubleshooting
 
 - **Blank native window / UI won't start.** The native window loads `frontend/dist`, so it needs a
   built UI — run `cd frontend && npm run build` once (or use a packaged app). For the dev path,
@@ -351,7 +390,7 @@ without installation.
 
 ---
 
-## Going deeper
+## 📚 Going Deeper
 
 | You want… | Read |
 |-----------|------|
@@ -365,7 +404,7 @@ without installation.
 
 ---
 
-## Known limitations & what's next
+## ⚡ Known Limitations & What's Next
 
 This is an experimental prototype; the caveats are real and the surface keeps moving.
 
@@ -397,7 +436,7 @@ This is an experimental prototype; the caveats are real and the surface keeps mo
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Orrin is an experimental, single-developer research project — no formal roadmap or contribution
 process — but it's open source (Apache-2.0) and you're welcome to fork, tinker, file issues, or open
@@ -410,6 +449,6 @@ a PR. Know that the codebase moves fast. A few conventions keep things sane:
 
 ---
 
-## License
+## 📄 License
 
 Apache License 2.0 — see [`LICENSE`](LICENSE).

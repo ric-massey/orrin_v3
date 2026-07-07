@@ -23,7 +23,7 @@ from brain.paths import COMPLETED_GOALS_FILE
 from brain.cognition.planning.goal_store import load_goals, save_goals
 from brain.cognition.planning.goal_plan_ops import TERMINAL_STEP_STATUSES
 from brain.cognition.planning.goal_criteria import (
-    _is_artifact_gated, PRODUCTION_DEADLINE_CYCLES,
+    _is_artifact_gated,
 )
 from brain.cognition.planning.goal_belief import _revise_weak_area_beliefs
 
@@ -338,12 +338,12 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # (close → spawn-same → close churn). The hook bypasses the rate limiter but
     # still honours _RECENTLY_COMPLETED.
     try:
-        import time as _time
-        from brain.cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
+        # F6: one chokepoint records both the cooldown stamp and the per-life
+        # completion count (escalating-cooldown / respawn-cap input).
+        from brain.cognition.intrinsic_helpers import note_title_completion
         _done_title = (goal.get("title") or goal.get("name") or "").strip().lower()
         if _done_title:
-            _RECENTLY_COMPLETED[_done_title] = _time.time()
-            _persist_recently_completed()
+            note_title_completion(_done_title)
     except Exception as _e:
         record_failure("goals.mark_goal_completed.6", _e)
 
@@ -406,6 +406,21 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
         return
     if goal.get("status") == "failed":
         return
+    # F2 (2026-07-05 findings): an aspiration is a standing value, not a
+    # 2-attempt task — it can be edited, never failed. The failure machinery
+    # failed the aspiration nodes round-robin all life and `output_producing`
+    # was absent from the store at death.
+    try:
+        from brain.cognition.planning.goal_criteria import is_aspiration
+        if is_aspiration(goal):
+            log_activity(
+                f"[goals] REFUSED to fail aspiration "
+                f"'{str(goal.get('title') or goal.get('id') or '?')[:60]}' "
+                f"({reason or 'no reason'}) — standing values are edited, never failed."
+            )
+            return
+    except ImportError:
+        pass
     goal["status"] = "failed"
     now = now_iso_z()
     goal["failed_timestamp"] = now
@@ -526,68 +541,10 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     log_activity(f"❌ Goal '{goal_name}' marked failed. Reason: {reason or 'none'}")
 
 
-def fail_overdue_artifact_goals(context: Optional[Dict[str, Any]] = None) -> int:
-    """P2 — timeout → failure for artifact-gated goals. Walks the goal store; an
-    output_producing / requires_artifact goal that has been alive past its
-    deadline_cycles WITHOUT a qualifying effect is routed into the existing
-    mark_goal_failed path (reason="no_artifact_by_deadline"). This is what turns the
-    run's hollow "0 failures" into a meaningful non-zero — a make-things goal that
-    produced nothing is a real, staked failure, not a quiet fade.
-
-    Cadence is measured in cognitive cycles: each goal's first observation cycle is
-    stamped on first sight, and the deadline is measured from there. Run on the same
-    low cadence as the P6 reconciler (every PRODUCTION_DEADLINE_CYCLES cycles)."""
-    try:
-        from brain.utils.get_cycle_count import get_cycle_count
-        cur = int(get_cycle_count() or 0)
-    except Exception as _e:
-        record_failure("goals.fail_overdue_artifact_goals.cycle", _e)
-        return 0
-    try:
-        goals = load_goals()
-    except Exception as _e:
-        record_failure("goals.fail_overdue_artifact_goals.load", _e)
-        return 0
-    if not isinstance(goals, list):
-        return 0
-
-    from brain.agency.effect_ledger import has_qualifying_effect
-    failed: List[Dict[str, Any]] = []
-    changed = False
-
-    def _walk(nodes: List[Dict[str, Any]]) -> None:
-        nonlocal changed
-        for g in nodes:
-            if not isinstance(g, dict):
-                continue
-            status = g.get("status")
-            if _is_artifact_gated(g) and status in ("proposed", "pending", "in_progress", "active", "committed"):
-                seen = g.get("_artifact_first_seen_cycle")
-                if seen is None:
-                    g["_artifact_first_seen_cycle"] = cur
-                    changed = True
-                else:
-                    deadline = int(g.get("deadline_cycles") or PRODUCTION_DEADLINE_CYCLES)
-                    gid = str(g.get("id") or "")
-                    overdue = (cur - int(seen)) > deadline
-                    if overdue and not (gid and has_qualifying_effect(gid, g)):
-                        failed.append(g)
-            _walk(g.get("subgoals") or [])
-
-    _walk(goals)
-    if changed and not failed:
-        try:
-            save_goals(goals)
-        except Exception as _e:
-            record_failure("goals.fail_overdue_artifact_goals.stamp", _e)
-    for g in failed:
-        try:
-            mark_goal_failed(g, reason="no_artifact_by_deadline", context=context)
-        except Exception as _e:
-            record_failure("goals.fail_overdue_artifact_goals.fail", _e)
-    if failed:
-        log_activity(f"[goals] Failed {len(failed)} artifact-gated goal(s) past deadline "
-                     f"with no produced artifact.")
-    return len(failed)
+# P2 deadline enforcement extracted to goal_deadlines.py (module-size
+# decomposition); re-exported so callers keep importing it from here/goals.py.
+from brain.cognition.planning.goal_deadlines import (  # noqa: E402
+    fail_overdue_artifact_goals as fail_overdue_artifact_goals,
+)
 
 

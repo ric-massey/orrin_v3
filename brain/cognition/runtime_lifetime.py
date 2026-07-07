@@ -350,6 +350,12 @@ def _symbolic_final_thoughts(data: Dict) -> str:
                     or "[aspiration]" in cl            # already covered above
                     or (c[:1] in "✅🧠⚠️⏳📝")):
                 continue
+            # F9 (2026-07-05): retrieval scaffolding is not a memory — the
+            # 07-05 death note quoted "A similar situation suggests (GENERAL,
+            # similarity 35%)…" verbatim. Skip entries carrying those markers.
+            if ("similar situation" in cl or "similarity" in cl
+                    or "(general" in cl):
+                continue
             scored.append((float(e.get("importance", 1) or 1), c))
         scored.sort(key=lambda x: x[0], reverse=True)
         top = [c for _, c in scored[:2]]
@@ -387,6 +393,18 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
         text = _symbolic_final_thoughts(data)
     if not text:
         text = "I existed. I tried to be genuine. That will have to be enough."
+
+    # F9 (2026-07-05 findings): the final reflection ships through the same
+    # veil every person-facing artifact does — no retrieval scaffolding or
+    # backend tags in a death note.
+    try:
+        from brain.utils.felt_lexicon import strip_scaffold
+        from brain.behavior.speakability import strip_internal
+        _veiled = strip_internal(strip_scaffold(text)).strip()
+        if _veiled:
+            text = _veiled
+    except Exception as exc:
+        record_failure("runtime_lifetime.final_thoughts_veil", exc)
 
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),

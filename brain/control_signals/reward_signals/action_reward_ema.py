@@ -100,6 +100,10 @@ _KNOWN_PSEUDO_ACTIONS = frozenset({
     "prediction_hit",
     "contradiction_resolved",
     "retrieval_auxiliary",
+    # problem_refocus._release event channels (F9, 2026-07-05: the
+    # "unregistered-action" warning at 07:42Z was this, not a typo).
+    "problem_workaround",
+    "problem_resolved",
 })
 
 

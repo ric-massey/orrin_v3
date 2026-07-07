@@ -21,6 +21,22 @@ from brain.utils.json_utils import load_json
 PRODUCTION_DEADLINE_CYCLES = 200
 
 
+def is_aspiration(goal: Any) -> bool:
+    """F2 (2026-07-05 findings) — a standing value, not a task. Aspirations are
+    directional: they persist for the whole life, are never pursued/committed
+    directly, and can be EDITED but never failed or completed. The 2026-07-05
+    run failed aspiration nodes round-robin all life ("objective unmet after 2
+    attempts") and `output_producing` was dead at death. One shared definition
+    so the failure paths, the executive queue, and the deadline walker agree."""
+    if not isinstance(goal, dict):
+        return False
+    if goal.get("_aspiration") or str(goal.get("kind") or "").lower() == "aspiration":
+        return True
+    if str(goal.get("tier") or "").lower() in ("aspiration", "long_term"):
+        return True
+    return str(goal.get("id") or "").startswith("aspiration-")
+
+
 def _is_artifact_gated(goal: Dict[str, Any]) -> bool:
     """A goal that may complete ONLY when a real durable effect was recorded for it."""
     if not isinstance(goal, dict):

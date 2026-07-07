@@ -324,6 +324,31 @@ def score_candidates(
         if context.get("_suppress_intrinsic_goals") and name == "generate_intrinsic_goals":
             total -= 1.0
 
+        # F5 (2026-07-05 findings): pool-depth term. When generated candidates
+        # far outrun attempts (07-05: 1,508 → 224, this action again the #1
+        # conscious pick at 45/183), generating more is displacement activity —
+        # demote it in proportion to the backlog. Ratio computed once per cycle
+        # (scoreboard read cached on context).
+        if name == "generate_intrinsic_goals":
+            _cc = context.get("cycle_count")
+            _cyc = int((_cc or {}).get("count", 0) if isinstance(_cc, dict) else (_cc or 0))
+            _cached = context.get("_gen_pool_ratio")
+            if not (isinstance(_cached, tuple) and len(_cached) == 2 and _cached[0] == _cyc):
+                _pool_ratio = 0.0
+                try:
+                    from brain.cognition.objective_scoreboard import scoreboard as _sb
+                    _stages = _sb()
+                    _gen = sum(int(s.get("generated", 0) or 0) for s in _stages.values())
+                    _att = sum(int(s.get("attempted", 0) or 0) for s in _stages.values())
+                    if _gen >= 20:
+                        _pool_ratio = _gen / float(_att + 1)
+                except Exception as exc:
+                    record_failure("select_function.gen_pool_ratio", exc)
+                _cached = (_cyc, _pool_ratio)
+                context["_gen_pool_ratio"] = _cached
+            if _cached[1] > 3.0:
+                total -= min(0.5, 0.12 * (_cached[1] - 3.0))
+
         # Will/commitment follow-through bias (cognition/will.py): a small,
         # decaying boost to actually pursuing the committed goal, so fresh resolve
         # is shielded from impulse switching. Capped + decaying so it never

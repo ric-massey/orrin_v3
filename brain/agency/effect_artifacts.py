@@ -38,7 +38,11 @@ try:
 except Exception:  # pragma: no cover - defensive
     _MIN_CHARS = 120
 
-_MAX_FILES = 600          # bounded sidecar; oldest captures evicted past this
+# Bounded sidecar; oldest captures evicted past this. Raised 600 → 4000 (F3,
+# 2026-07-05 findings): ledger-referenced note bodies must stay resolvable for a
+# whole life — the 07-05 run's only good writing survived nowhere else. At
+# ~1-2 KB per capture this is still only a few MB.
+_MAX_FILES = 4000
 _lock = threading.Lock()
 
 

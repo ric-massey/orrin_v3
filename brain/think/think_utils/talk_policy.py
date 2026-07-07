@@ -1,6 +1,6 @@
 # think/think_utils/talk_policy.py
 from brain.core.runtime_log import get_logger
-import os, sys, time
+import os, re, sys, time
 from brain.utils.log import log_activity, log_model_issue
 from brain.behavior.speak import _derive_tone
 from brain.utils.failure_counter import record_failure
@@ -120,6 +120,53 @@ def talk_policy_score_bias(action_type, context, affect_state):
     b = _talk_drive_signal(context, affect_state)
     return 0.10 * (b - STAGNATION_SIGNAL_TALK_THRESHOLD)  # small nudge above threshold
 
+# ===== Self-initiated speech habituation (F7, 2026-07-05 findings) =====
+# The 07-05 run sent 388 near-identical express_state utterances ("something
+# present but hard to name… Am I off on that?"), 4 of them inside 40 seconds.
+# Two gates, both only for SELF-INITIATED speech (a user reply is never gated):
+#   * minimum-interval floor between any two self-initiated sends;
+#   * content habituation — repeating essentially the same utterance requires
+#     an escalating interval (base × 2^n_identical), the B1 eff=raw/(1+k·n)
+#     idea applied to the mouth.
+_SELF_SPEAK_MIN_INTERVAL_S = 90.0
+_SELF_SPEAK_SIMILAR = 0.75          # token-Jaccard at/above this = "the same thing"
+_SELF_SPEAK_REPEAT_BASE_S = 600.0   # first repeat waits 10 min, then 20, 40…
+_SELF_SPEAK_WINDOW = 24             # utterances remembered
+_self_speech_log: list = []         # [(token_set, ts), ...] newest last
+_last_self_speak_ts: float = 0.0
+
+_WORD_RE_TP = re.compile(r"[a-z']{2,}")
+
+
+def _utterance_tokens(text: str) -> frozenset:
+    return frozenset(_WORD_RE_TP.findall(str(text or "").lower()))
+
+
+def _self_speech_allowed(text: str, now: float = None) -> bool:
+    """Gate a self-initiated utterance; records it when allowed."""
+    global _last_self_speak_ts
+    now = time.time() if now is None else now
+    if now - _last_self_speak_ts < _SELF_SPEAK_MIN_INTERVAL_S:
+        return False
+    toks = _utterance_tokens(text)
+    if toks:
+        n_identical = 0
+        last_similar_ts = 0.0
+        for prior, ts in _self_speech_log:
+            union = len(toks | prior)
+            if union and len(toks & prior) / union >= _SELF_SPEAK_SIMILAR:
+                n_identical += 1
+                last_similar_ts = max(last_similar_ts, ts)
+        if n_identical:
+            required = _SELF_SPEAK_REPEAT_BASE_S * (2 ** min(n_identical - 1, 5))
+            if now - last_similar_ts < required:
+                return False
+    _self_speech_log.append((toks, now))
+    del _self_speech_log[:-_SELF_SPEAK_WINDOW]
+    _last_self_speak_ts = now
+    return True
+
+
 # ===== “Speak” plumbing (no direct speaker.speak) =====
 def _emit_reply_line(text: str) -> None:
     try:
@@ -197,6 +244,14 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
                     context["_self_motive"] = _self_motive.to_dict()
             except Exception as _self_e:
                 log_model_issue(f"self-speech compose failed, falling back to raw: {_self_e}")
+            # F7 (2026-07-05): content habituation + minimum-interval floor for
+            # self-initiated speech — saying essentially the same thing again
+            # requires an escalating interval; a user reply is never gated here.
+            if not _self_speech_allowed(txt):
+                log_activity("[talk_policy] self-speech suppressed — repeated "
+                             "content / minimum-interval floor (F7 habituation).")
+                context.pop("_self_motive", None)
+                return ""
 
         # Route through should_speak (owns chat log write, SSE, timing gate).
         rendered = speaker.should_speak(txt, emo, context, force_speak=True) or ""

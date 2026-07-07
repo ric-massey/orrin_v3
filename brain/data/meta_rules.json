@@ -6,7 +6,7 @@
     "action": "prefer_hits",
     "priority": 3,
     "reward": 0.0,
-    "applications": 14293,
+    "applications": 14348,
     "source": "builtin",
     "rationale": "Rules that have been applied more often have proven themselves in practice."
   },

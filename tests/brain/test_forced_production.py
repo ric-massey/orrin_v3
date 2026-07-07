@@ -31,13 +31,41 @@ from goals.model import Goal, Step, Status, artifact_satisfied
 _STUB = "snapshot_goals → goals_state_20260622-004100.jsonl (lines=0)"
 
 
+_ORGAN_TEXT = (
+    "The thesis of this synthesis is that global order can arise from local "
+    "interactions without any central controller. Each part adjusts only to its "
+    "neighbours, yet the whole settles into patterns that no single part encodes; "
+    "the ant colony's foraging trails and a market's price discovery both carry "
+    "this signature. The evidence gathered so far supports treating emergence as "
+    "a measurable property of interaction structure rather than a metaphor."
+)
+
+_MATERIAL = [
+    ("note_novel (2026-07-05)",
+     "Local interactions between simple parts produce global order that none of "
+     "the parts encodes on its own — ant colonies and market prices both show "
+     "this signature clearly in the collected observations.", ""),
+    ("long memory",
+     "Removing the central controller from the simulation did not destroy the "
+     "pattern; the order re-formed from the local rules alone.", ""),
+]
+
+
 @pytest.fixture
 def _isolate(tmp_path, monkeypatch):
     monkeypatch.setattr(el, "EFFECT_LEDGER_FILE", tmp_path / "effect_ledger.jsonl")
     monkeypatch.setattr(cs, "TRACKED_WORK_DIR", tmp_path / "tracked_work")
-    # Force the OFFLINE producer path (no LLM): the deterministic _draft fallback
-    # is the worst case — if even that makes real work, production-on-demand holds.
+    # Force the OFFLINE producer path (no LLM): with F1 (2026-07-05 findings)
+    # the offline writer is the trained organ drafting FROM real material — the
+    # fixed template fallback is gone (it was the Run-4 manuscript stamper), so
+    # the deterministic worst case is organ + material, stubbed here.
     monkeypatch.setattr(cs, "llm_callable_by", lambda *_a, **_k: False)
+    monkeypatch.setattr(cs, "_gather_material", lambda goal, section: list(_MATERIAL))
+    import brain.cognition.language.voice as voice
+    import brain.cognition.language.native_lm as nlm
+    monkeypatch.setattr(voice, "lm_ready", lambda: True)
+    monkeypatch.setattr(nlm, "generate",
+                        lambda prompt, length=400, temperature=0.7, **k: prompt + _ORGAN_TEXT)
     el.reset_for_tests()
     yield tmp_path
     el.reset_for_tests()

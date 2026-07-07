@@ -416,6 +416,26 @@ def _boot_context() -> Context:
     except Exception as _sg_err:
         log_error(f"state_guard sanitize_all failed at boot: {_sg_err}")
 
+    # F2 (2026-07-05 findings) — boot invariant: all four enduring aspirations
+    # exist in the goal store before the first cycle. The 2026-07-05 life ended
+    # with aspiration-output_producing failed-and-removed 104 s before death;
+    # the lazy re-seed (credit_objectives) masked the loss all run and death
+    # unmasked it. _ensure_aspirations is idempotent.
+    try:
+        from brain.cognition.intrinsic_objectives import _ensure_aspirations
+        _ensure_aspirations()
+    except Exception as _asp_err:
+        log_error(f"[boot] Could not ensure aspirations exist: {_asp_err}")
+
+    # F8 (2026-07-05 findings) — silent-death detection: segment 1 died with no
+    # shutdown record and nobody knew for ~10 h. If the heartbeat shows a gap
+    # with no clean shutdown, record it as first-class lifecycle data.
+    try:
+        from brain.utils.heartbeat import check_silent_death
+        check_silent_death()
+    except Exception as _hb_err:
+        log_error(f"[boot] Silent-death check failed: {_hb_err}")
+
     context = load_context()
     context["_production_capability_status"] = production_capability_status
     context.setdefault("committed_goal", None)

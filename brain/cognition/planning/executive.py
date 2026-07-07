@@ -144,14 +144,29 @@ def _record_history(summary: Dict[str, Any], reward: Optional[float] = None) -> 
         record_failure("executive.record_history", exc)
 
 
-def _outcome_reward(result: Any) -> float:
+def _outcome_reward(result: Any, effect: Optional[Dict[str, Any]] = None) -> float:
     """Map a pursue_committed_goal result to an observed (actual) reward.
     A blocked/retry/error outcome must register as LOW reward so the per-action
     EMA learns the action is failing — previously no reward was written at all
-    and nothing ever learned that fetch_and_read could not succeed."""
+    and nothing ever learned that fetch_and_read could not succeed.
+
+    F1c (2026-07-05 findings): when the step's act recorded a ledger effect,
+    the effect's VALUE is the reward — novelty×significance for a credited row,
+    near-zero for a dedupe. The flat 0.6 "step advanced" reward is only the
+    fallback for steps with no ledger-visible outcome; it was what kept
+    compose_section's EMA neutral through ~160 worthless repetitions (the
+    executive lane's learning blindness)."""
+    if isinstance(effect, dict):
+        if not effect.get("credited"):
+            return 0.05   # the act ran but produced nothing new — near-failure
+        _nov = max(0.0, float(effect.get("novelty") or 0.0))
+        _sig = max(0.0, float(effect.get("significance") or 0.0))
+        return min(0.95, 0.3 + 0.45 * _nov * min(1.5, _sig))
     status = (result.get("status") if isinstance(result, dict) else None) or ""
-    if status in ("retry", "blocked", "stalled", "error"):
+    if status in ("retry", "blocked", "stalled", "error", "disengaged", "failed"):
         return 0.05
+    if status == "awaiting_deliberate":
+        return 0.2   # honest hand-off: the act did not run on this lane
     if isinstance(result, dict) and result.get("skipped"):
         return 0.2   # no-op tick: neither success nor failure
     return 0.6       # the step advanced — real procedural progress
@@ -202,6 +217,16 @@ def _build_queue(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             continue
         if g.get("status") in ("paused", "completed", "failed"):
             continue
+        # F2 (2026-07-05 findings): aspirations are never pursued directly —
+        # they sat in_progress/HIGH in the store, got pulled into this queue,
+        # were planned like tasks, and the milestone gate failed them round-
+        # robin every ~30-60 min for the whole life.
+        try:
+            from brain.cognition.planning.goal_criteria import is_aspiration
+            if is_aspiration(g):
+                continue
+        except ImportError:
+            pass
         seen.add(gid)
         queue.append(g)
         if len(queue) >= _DEFAULT_QUEUE_K:
@@ -276,6 +301,9 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
 
                 # Swap the target in for the step-runner, then restore focus.
                 context["committed_goal"] = target
+                # F1c: clear before the step so a stale effect from an earlier
+                # tick can never be attributed to this one.
+                context.pop("_last_effect_outcome", None)
                 try:
                     result = _pursue(context)
                 finally:
@@ -323,7 +351,11 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                     _reward: Optional[float] = None
                     try:
                         from brain.control_signals.reward_signals.reward_engine import submit_reward
-                        _reward = _outcome_reward(result)
+                        # F1c: the step's ledger effect (if any) carries the real
+                        # outcome value — a deduped/zero-value effect posts as
+                        # near-failure, so the daemon lane learns too.
+                        _effect = context.pop("_last_effect_outcome", None)
+                        _reward = _outcome_reward(result, effect=_effect)
                         submit_reward(context, actual=_reward, action_type=fn,
                                       kind="reward_signal", effort=0.3,
                                       source="executive_step")

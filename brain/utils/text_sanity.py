@@ -96,6 +96,47 @@ _Q_OPEN_RE = re.compile(r"\[EXTERNAL/UNTRUSTED\s+source=[^\]]*\]")
 _Q_STRIP_RE = re.compile(r"\[EXTERNAL/UNTRUSTED\s+source=[^\]]*\]\s*|\s*\[/EXTERNAL\]")
 
 
+# ── F3 (2026-07-05 findings): signal-to-markup gate for external intake ────────
+# The 07-05 run stored 2,000 chars of raw Twitter CSS (`:host{display:inline-
+# block…`) as a long memory. Tag stripping misses style rules that ride inside
+# templates/shadow DOM and inline JSON; these predicates catch the residue so
+# markup soup never becomes a memory.
+
+# A CSS/JS rule body: `selector{prop:val;…}` — prose essentially never nests
+# braces around semicolon-delimited runs.
+_CSS_RULE_RE = re.compile(r"[#.@:\w\s,>\[\]\"'=^$*()~-]{0,80}\{[^{}]{0,800}\}")
+# Minified-code fingerprints that survive rule removal.
+_CODE_RESIDUE_RE = re.compile(
+    r"(?:!important|;\s*[\w-]+\s*:|function\s*\(|=>|var\(--|@media\b|@font-face\b)"
+)
+_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'’-]*")
+
+
+def strip_markup_noise(text: str) -> str:
+    """Remove CSS/JS rule soup that survives HTML tag stripping. Repeated passes
+    handle nested rules flattened by the tag stripper; whitespace is squeezed."""
+    t = str(text or "")
+    for _ in range(5):
+        t2 = _CSS_RULE_RE.sub(" ", t)
+        if t2 == t:
+            break
+        t = t2
+    t = _CODE_RESIDUE_RE.sub(" ", t)
+    return re.sub(r"\s{2,}", " ", t).strip()
+
+
+def prose_ratio(text: str) -> float:
+    """Fraction of non-space characters that belong to natural-language words.
+    English prose scores ~0.8+; stylesheet/script/JSON residue falls well below
+    0.5. Empty text scores 0.0."""
+    t = str(text or "")
+    dense = len(re.sub(r"\s+", "", t))
+    if not dense:
+        return 0.0
+    word_chars = sum(len(m.group(0)) for m in _WORD_RE.finditer(t))
+    return word_chars / dense
+
+
 def _truncate_plain(text: str, limit: int) -> str:
     if len(text) <= limit:
         return text

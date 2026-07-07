@@ -190,6 +190,17 @@ def spawn_frontier_subtask(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         _ftxt = _bare_topic(_ftxt)
     frontier_clean = f"{_fprefix}{_ftxt}".strip() or frontier
     title = f"Understand {frontier_clean} more deeply"
+    # F6 (2026-07-05 findings): a title that has already completed repeatedly
+    # this life (escalating cooldown / per-life cap) must not be respawned by
+    # the frontier either — three titles completed 14× each as ~90 s loops.
+    try:
+        from brain.cognition.intrinsic_helpers import title_respawn_blocked
+        if title_respawn_blocked(title):
+            log_activity(f"[long_term] frontier child {title!r} blocked — "
+                         "completed too often/recently this life.")
+            return None
+    except ImportError:
+        pass
     sub = {
         "id": f"ltc_{_key(goal)[:24]}_{seq}",
         "name": title,

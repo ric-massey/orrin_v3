@@ -17,7 +17,7 @@ from typing import Dict, Any, List
 
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
-from brain.paths import RECENTLY_COMPLETED_FILE, COMPLETED_GOALS_FILE
+from brain.paths import DATA_DIR, RECENTLY_COMPLETED_FILE, COMPLETED_GOALS_FILE
 from brain.cognition.intrinsic_objectives import _fairness_default_drive
 
 _log = get_logger(__name__)
@@ -417,3 +417,67 @@ def _persist_recently_completed() -> None:
         save_json(RECENTLY_COMPLETED_FILE, _RECENTLY_COMPLETED)
     except Exception as _e:
         record_failure("intrinsic_goals._persist_recently_completed", _e)
+
+
+# ── F6 (2026-07-05 findings): per-title completion counts ──────────────────────
+# The 07-05 run completed three "Understand X more deeply" titles 14/14/13
+# times each — ~90 s research_topic → satiety-note churn the 6 h cooldown alone
+# can't stop, because the respawn paths (frontier spawner, generators) create
+# the same title fresh. Counts persist for the life; past the cap the title is
+# simply not spawnable again, and the cooldown doubles per prior completion so
+# repeat #2 and #3 already slow down.
+_TITLE_COUNTS_FILE = DATA_DIR / "completed_title_counts.json"
+TITLE_COMPLETION_CAP = 5
+
+
+def _load_title_counts() -> dict:
+    try:
+        d = load_json(_TITLE_COUNTS_FILE, default_type=dict) or {}
+        return d if isinstance(d, dict) else {}
+    except Exception as exc:
+        record_failure("intrinsic_goals._load_title_counts", exc)
+        return {}
+
+
+_TITLE_COUNTS: dict = _load_title_counts()
+
+
+def note_title_completion(title: str) -> int:
+    """Record a completion of `title` in both the cooldown dict and the per-life
+    count. Returns the new count. Call from every completion chokepoint that
+    stamps _RECENTLY_COMPLETED."""
+    t = str(title or "").strip().lower()
+    if not t:
+        return 0
+    _RECENTLY_COMPLETED[t] = time.time()
+    _persist_recently_completed()
+    n = int(_TITLE_COUNTS.get(t, 0) or 0) + 1
+    _TITLE_COUNTS[t] = n
+    try:
+        if len(_TITLE_COUNTS) > 500:
+            for k in sorted(_TITLE_COUNTS, key=_TITLE_COUNTS.get)[:100]:
+                _TITLE_COUNTS.pop(k, None)
+        save_json(_TITLE_COUNTS_FILE, _TITLE_COUNTS)
+    except Exception as exc:
+        record_failure("intrinsic_goals.note_title_completion", exc)
+    return n
+
+
+def title_completion_count(title: str) -> int:
+    return int(_TITLE_COUNTS.get(str(title or "").strip().lower(), 0) or 0)
+
+
+def title_respawn_blocked(title: str, now: float | None = None) -> bool:
+    """True when `title` must not be spawned again: past the per-life cap, or
+    inside its escalating cooldown (base cooldown × 2^(completions−1))."""
+    t = str(title or "").strip().lower()
+    if not t:
+        return False
+    n = title_completion_count(t)
+    if n >= TITLE_COMPLETION_CAP:
+        return True
+    ts = _RECENTLY_COMPLETED.get(t)
+    if not isinstance(ts, (int, float)):
+        return False
+    cooldown = _COOLDOWN_S * (2 ** max(0, n - 1))
+    return ((now if now is not None else time.time()) - ts) < cooldown

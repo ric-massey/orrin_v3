@@ -38,6 +38,47 @@ _FETCH_INTERVAL    = 30.0     # URL fetching: at most once per 30 seconds
 _last_research: float = 0.0
 _last_fetch: float    = 0.0
 
+# F4 (2026-07-05 findings): a substantial read becomes a MEMO ARTIFACT, not
+# only a memory. The 07-05 life wrote 0 memos (Run 3: 11) because all frontier
+# research ran as conscious research_topic calls that stored to long_memory —
+# leaving the A2 reuse hooks (builds-on scan, hash_for_path/mark_reused) aimed
+# at an empty population. Below this floor the read stays memory-only.
+_MEMO_MIN_CHARS = 400
+
+
+def _write_research_memo(topic: str, body: str, ctx: Dict[str, Any],
+                         source: str) -> None:
+    """Write a memo .md under data/goals/artifacts/<goal>/ and record it on the
+    effect ledger (path-indexed, body captured) so later reads can be credited
+    as reuse and later goals can build on it. Fail-safe; dedupe is the ledger's."""
+    if len(str(body or "").strip()) < _MEMO_MIN_CHARS:
+        return
+    try:
+        from brain.paths import GOALS_DIR
+        goal = bound_goal(ctx) or {}
+        gid = str((goal.get("id") if isinstance(goal, dict) else "")
+                  or "conscious-research")
+        slug = re.sub(r"[^a-z0-9_-]+", "-", str(topic).lower()).strip("-")[:60] or "memo"
+        memo_dir = GOALS_DIR / "artifacts" / re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64]
+        memo_dir.mkdir(parents=True, exist_ok=True)
+        path = memo_dir / f"memo_{slug}.md"
+        content = (f"# Research memo: {topic}\n\n{str(body).strip()}\n\n"
+                   f"---\nsource: {source} · "
+                   f"{time.strftime('%Y-%m-%d %H:%MZ', time.gmtime())}\n")
+        from brain.agency.effect_ledger import record_effect
+        row = record_effect(
+            "file_write", content,
+            goal_id=(gid if gid != "conscious-research" else None), context=ctx,
+            metadata={"path": str(path), "source": f"{source}_memo", "topic": str(topic)[:80]},
+        )
+        if row is None:
+            return   # nothing novel — don't stamp a duplicate memo file
+        path.write_text(content, encoding="utf-8")
+        log_activity(f"[web_research] Memo artifact written: {path.name} "
+                     f"({len(content)} chars).")
+    except Exception as exc:
+        record_failure("web_research._write_research_memo", exc)
+
 
 
 
@@ -303,6 +344,9 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     )
 
     update_working_memory(f"[research] {topic}: {result_q[:300]}")
+    # F4: a substantial research result also becomes a memo artifact so the
+    # reuse machinery has a population to hit.
+    _write_research_memo(topic, result, ctx, source="research_topic")
     try:
         from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{topic} {result[:1200]}", source="web_research", context=ctx)
@@ -367,7 +411,13 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
         return f"Could not decode content from {url}"
 
     text = _html_to_text(html, max_chars=3000)
-    if len(text) < 100:
+    # F3 (2026-07-05 findings): signal-to-markup gate. Tag stripping misses CSS
+    # riding inside templates/shadow DOM — the 07-05 run stored 2,000 chars of
+    # raw Twitter CSS as a long memory. Strip the residue and reject pages whose
+    # remaining text is less than half prose.
+    from brain.utils.text_sanity import prose_ratio, strip_markup_noise
+    text = strip_markup_noise(text)
+    if len(text) < 100 or prose_ratio(text) < 0.5:
         _last_fetch = now
         return f"Page at {url} had no readable content."
 
@@ -391,6 +441,9 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     )
 
     update_working_memory(f"Read article: {title_q} ({len(text)} chars of content)")
+    # F4: a substantial read also becomes a memo artifact (reuse population).
+    _write_research_memo(title, f"{text}\n\n(read from: {url})", ctx,
+                         source="fetch_and_read")
     try:
         from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{title} {text[:1600]}", source="fetch_and_read", context=ctx)

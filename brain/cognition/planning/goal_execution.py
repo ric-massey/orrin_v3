@@ -402,41 +402,29 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         return {"status": "awaiting_deliberate", "goal": goal_title,
                 "next_step": next_step, "needs": _act_fn, "round": _rounds}
 
-    _attempts_map = goal.setdefault("_step_attempts", {})
+    # F1b (2026-07-05 findings): attempts are counted in the DURABLE per-(goal,
+    # step) store, not only on the goal dict — the executive queue re-pulls goal
+    # dicts from the v2 store each tick, so an in-dict counter reset every retry
+    # and one step was retried 146× with `_step_attempts` empty. Retry pacing +
+    # the give-up→goal-failure escalation live with the counters (step_attempts).
+    from brain.cognition.planning.step_attempts import clear_attempt, handle_unexecuted_step
     _step_key = next_step[:120]
+    _gid = str(goal.get("id") or goal_title)
 
     if _act_fn and not _executed:
         # The act was recognised but produced no effect (throttled, no URL,
-        # nothing found). Leave the step pending and retry — unless we have tried
-        # enough times, in which case advance with an honest blocker note so
-        # adapt_subgoals / drift can route around the unreachable step.
-        _n = int(_attempts_map.get(_step_key, 0)) + 1
-        _attempts_map[_step_key] = _n
-        context["committed_goal"] = goal
-        if _n < _STEP_MAX_ATTEMPTS:
-            update_working_memory(
-                f"[goal_blocked] '{goal_title}': step did not take hold "
-                f"(attempt {_n}/{_STEP_MAX_ATTEMPTS}) — {next_step[:80]}"
-            )
-            try:
-                from brain.cognition.planning.goals import merge_updated_goal_into_tree
-                from brain.cognition.planning import goal_arbiter
-                # Atomic load→merge→save through the GoalArbiter (no uncoordinated
-                # load_goals/save_goals race; daemon-ready). dual_process_loop.md Phase 1.
-                goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
-                                   source="pursue_goal.blocked_retry")
-            except Exception as _e:
-                record_failure("pursue_goal.pursue_committed_goal.3", _e)
-            return {"status": "retry", "goal": goal_title, "next_step": next_step, "attempt": _n}
-        update_working_memory(
-            f"[goal_blocked] '{goal_title}': could not execute after {_n} "
-            f"attempts — {next_step[:80]}. Moving on."
-        )
+        # nothing found). Retry up to the cap; past it, advance with an honest
+        # blocker note (None) or escalate the goal to a real failure (dict).
+        _blocked = handle_unexecuted_step(goal, goal_title, next_step, context,
+                                          max_attempts=_STEP_MAX_ATTEMPTS)
+        if _blocked is not None:
+            return _blocked
 
     # ── Advance: the act took hold, OR the step is internal, OR we gave up ────
     log_activity(f"[pursue_goal] Executing step: {next_step[:80]}")
     advance_goal_plan(goal, next_step_dict)
-    _attempts_map.pop(_step_key, None)
+    clear_attempt(_gid, _step_key)
+    goal.setdefault("_step_attempts", {}).pop(_step_key, None)
     # Real progress resets the stall/replan state so a future drift doesn't
     # inherit a stale counter from an unrelated earlier replan cycle. A GIVE-UP
     # advance is not progress — resetting on it blinded the metacog watchdog to
@@ -548,7 +536,14 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         if _ms and not all(m.get("met") for m in _ms):
             _attempts = int(goal.get("_completion_attempts", 0)) + 1
             goal["_completion_attempts"] = _attempts
-            _unmet = [m.get("text", "?") for m in _ms if not m.get("met")]
+            # F2 (2026-07-05): milestones carry their criterion under several
+            # keys (`text`, `label`, `desc`, …) depending on the writer — the
+            # bare .get("text", "?") rendered every failure reason as ['?', '?'].
+            _unmet = [
+                str(m.get("text") or m.get("label") or m.get("desc")
+                    or m.get("criterion") or m.get("description") or "?")[:80]
+                for m in _ms if not m.get("met")
+            ]
             try:
                 # NB: set_goal_plan is already a module-level import (top of file) —
                 # don't re-import it here or it becomes a function-local and shadows

@@ -128,3 +128,6 @@ brain/logs/
 # Life Capsules — per-run evidence exports (generated, never source)
 exports/life_capsules/
 *.orrinlife.zip
+
+# Local/runtime backups
+.backups/

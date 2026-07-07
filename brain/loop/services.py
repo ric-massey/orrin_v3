@@ -106,6 +106,14 @@ def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
         except Exception as e:
             record_failure("ORRIN_loop.tool_runner_stop", e)
 
+    # F8 (2026-07-05 findings): this is a deliberate exit — mark it so the next
+    # boot's silent-death check doesn't misread the gap as an unexplained death.
+    try:
+        from brain.utils.heartbeat import mark_clean_shutdown
+        mark_clean_shutdown()
+    except Exception as e:
+        record_failure("ORRIN_loop.heartbeat_shutdown", e)
+
     # Session epilogue (master plan Phase 2.1): an ordinary shutdown writes a
     # short reflection and a session_close autobiography entry, so a routine
     # restart stops being a small amnesia. Budgeted (≤10 s) and crash-proof

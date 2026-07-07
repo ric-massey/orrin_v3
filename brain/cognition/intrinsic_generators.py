@@ -21,7 +21,8 @@ from brain.utils.failure_counter import record_failure
 from brain.paths import THREADS_FILE, DATA_DIR
 from brain.cognition.intrinsic_helpers import (
     _mk_goal, _acceptable_goal_subject, _strip_goal_scaffold, _weighted_sample,
-    _active_goal_titles, _RECENTLY_COMPLETED, _COOLDOWN_S,
+    _active_goal_titles, _RECENTLY_COMPLETED, _COOLDOWN_S,  # noqa: F401 (re-exported)
+    title_respawn_blocked as _title_respawn_blocked,
 )
 from brain.cognition.intrinsic_objectives import objective_pressure, _serves_aspiration
 from brain.utils.felt_lexicon import felt_label
@@ -121,8 +122,20 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
     """Goals from genuine, well-formed open questions surfaced in memory."""
     out, seen = [], set()
     sources = list((context.get("working_memory") or [])[-12:]) + list(long_mem[-20:])
+    # F7 (2026-07-05 findings): a question the USER asked is addressed TO Orrin
+    # — it belongs to the conversational path, never the intrinsic-question
+    # miner. Ric's "What do you think?" became three funnel candidates. Skip
+    # entries whose provenance is user speech, and the miner also never treats
+    # the latest live user input as its own open question.
+    _live_user = str(context.get("latest_user_input") or "").strip().lower()
     for entry in reversed(sources):
+        if isinstance(entry, dict) and (
+                str(entry.get("event_type") or "").startswith("user")
+                or str(entry.get("agent") or "").lower() == "user"):
+            continue
         text = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
+        if text.startswith("[input/"):
+            continue   # comprehension's structured record of what the user said
         if "?" not in text:
             continue
         for m in _QUESTION_RE.finditer(text):
@@ -130,6 +143,8 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
             low = q.lower()
             if not q or low in seen or not _acceptable_goal_subject(q):
                 continue
+            if _live_user and low in _live_user:
+                continue   # F7: verbatim user speech is not Orrin's open question
             seen.add(low)
             # Title is noun-phrased ("Open question: …") so it survives the
             # _acceptable_goal_subject title-filter in _varied_symbolic_goal — a
@@ -630,6 +645,45 @@ def _cap_candidate_aspiration_share(pool: List[Dict]) -> List[Dict]:
     return out or pool
 
 
+# F5 (2026-07-05 findings): candidate generation must track ATTEMPTS, not just
+# share. The B4.2 pool cap balanced the pool per-draw, but over the life one
+# aspiration still generated 1,270 candidates and converted 1 — the ignition
+# monopoly relocated upstream to the generator. An aspiration whose recent
+# generated:attempted ratio is past this is over-generating into a pool nobody
+# drains; its candidates are trimmed to one until attempts catch up.
+_ATTEMPT_QUOTA_RATIO = 3.0
+_ATTEMPT_QUOTA_MIN_GENERATED = 12
+
+
+def _attempt_rate_quota(pool: List[Dict]) -> List[Dict]:
+    """Trim candidates of any aspiration whose rolling generated count is more
+    than _ATTEMPT_QUOTA_RATIO× its attempted count (scoreboard window). Keeps
+    one candidate per trimmed aspiration; never empties the pool."""
+    if len(pool) <= 1:
+        return pool
+    try:
+        from brain.cognition.objective_scoreboard import scoreboard
+        stages = scoreboard()
+    except Exception as exc:
+        record_failure("intrinsic_goals._attempt_rate_quota", exc)
+        return pool
+    if not stages:
+        return pool
+    out: List[Dict] = []
+    trimmed: set = set()
+    for g in pool:
+        asp = _serves_aspiration(str(g.get("driven_by", "")))
+        s = stages.get(asp) or {}
+        gen = int(s.get("generated", 0) or 0)
+        att = int(s.get("attempted", 0) or 0)
+        if gen >= _ATTEMPT_QUOTA_MIN_GENERATED and gen > _ATTEMPT_QUOTA_RATIO * (att + 1):
+            if asp in trimmed:
+                continue   # one candidate already kept for this backlogged aspiration
+            trimmed.add(asp)
+        out.append(g)
+    return out or pool
+
+
 def _quota_filter(pool: List[Dict]) -> List[Dict]:
     """Narrow the candidate pool when recent births violate the quota.
     Never empties the pool — a constraint with no serving candidate is skipped
@@ -695,7 +749,11 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
             continue
         if t in active:
             continue
-        if t in _RECENTLY_COMPLETED and (now - _RECENTLY_COMPLETED[t]) < _COOLDOWN_S:
+        # F6 (2026-07-05 findings): escalating cooldown + per-life cap. The flat
+        # 6 h cooldown let three titles complete 14× each; a repeat completion
+        # now doubles the cooldown each time and a title capped at
+        # TITLE_COMPLETION_CAP completions is not spawnable again this life.
+        if _title_respawn_blocked(t, now):
             continue
         pool.append(g)
 
@@ -704,6 +762,9 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
     # B4.2 — cap any single aspiration's share of the candidate pool at ~50% so
     # generation itself isn't a monoculture (before the birth-rate quota narrows it).
     pool = _cap_candidate_aspiration_share(pool)
+    # F5 — attempt-rate quota: an aspiration generating far more candidates than
+    # ever get ATTEMPTED is trimmed to one until the backlog drains.
+    pool = _attempt_rate_quota(pool)
     # AR5 — birth-rate quota: narrow the pool when the recent birth mix violates
     # the make/connect floor or the intake cap (see _quota_filter above).
     pool = _quota_filter(pool)

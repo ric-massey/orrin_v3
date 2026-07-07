@@ -266,6 +266,21 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
                 interval *= 1.0 + min(2.0, (0.45 - _giv) * 6.0)
         except (TypeError, ValueError):  # intentional: bad EMA value → no backoff
             pass
+        # F5 (2026-07-05 findings): pool-depth backoff. When the rolling window
+        # shows far more candidates generated than ever ATTEMPTED (07-05: 1,508
+        # generated → 224 attempted, generate_intrinsic_goals again the #1
+        # conscious pick), generating more is pure displacement — stretch the
+        # cooldown up to 3× until the backlog drains.
+        try:
+            from brain.cognition.objective_scoreboard import scoreboard as _sb
+            _stages = _sb()
+            _gen = sum(int(s.get("generated", 0) or 0) for s in _stages.values())
+            _att = sum(int(s.get("attempted", 0) or 0) for s in _stages.values())
+            if _gen >= 20 and _gen > 3 * (_att + 1):
+                _ratio = _gen / float(_att + 1)
+                interval *= 1.0 + min(2.0, (_ratio - 3.0) * 0.5)
+        except Exception as _e:
+            record_failure("intrinsic_goals.pool_depth_backoff", _e)
     if now - _LAST_INTRINSIC_TS < interval:
         return []
     # Don't set _LAST_INTRINSIC_TS until LLM succeeds — a transient failure shouldn't

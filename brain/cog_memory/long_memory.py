@@ -181,6 +181,20 @@ def update_long_memory(
         log_private("[long_memory] Skipped identity-affirmation block (lives in self_model/KG).")
         return
 
+    # F3 (2026-07-05 findings): external perception must clear a minimum
+    # signal-to-markup bar before it becomes a memory — the 07-05 run held
+    # 2,000 chars of verbatim Twitter CSS in long_memory while its own learned
+    # notes were pruned away. Applied only to world_perception (the external
+    # intake event type), so internal notes with odd punctuation are untouched.
+    if entry.get("event_type") == "world_perception":
+        from brain.utils.text_sanity import prose_ratio, strip_markup_noise
+        _clean = strip_markup_noise(entry.get("content", ""))
+        if len(_clean) < 40 or prose_ratio(_clean) < 0.4:
+            log_private("[long_memory] Skipped markup-soup perception entry "
+                        f"(prose_ratio={prose_ratio(_clean):.2f}).")
+            return
+        entry["content"] = _clean
+
     # Cap content to prevent runaway entries from bloating the file.
     # Boundary-safe: a raw slice can cut through an [EXTERNAL/UNTRUSTED …]
     # wrapper and store a corrupt, re-ingestible tag fragment.

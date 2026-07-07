@@ -286,8 +286,18 @@ def _result_is_real(out: Any) -> bool:
     if isinstance(out, dict):
         if out.get("changed") is False:
             return False
+        # F1 (2026-07-05): an explicit boolean `success` is the tool's own
+        # honest gate (ledger-credited for producers like compose_section) and
+        # outranks the text heuristics. Before this, compose_section's dict had
+        # none of the text keys below, so txt was "" and the judgment was blind
+        # — every stamped section read as "no effect" while the file grew.
+        if out.get("success") is False:
+            return False
+        if out.get("success") is True:
+            return True
         txt = str(out.get("result") or out.get("summary")
-                  or out.get("content") or out.get("status") or "")
+                  or out.get("content") or out.get("error")
+                  or out.get("status") or "")
     else:
         txt = str(out)
     s = txt.strip().lower()

@@ -485,7 +485,34 @@ def record_effect(
         dq = _recent_by_kind.setdefault(kind, deque(maxlen=_NOVELTY_WINDOW))
         dq.append((content_hash, normalized))
 
-        if row.dedupe or row.significance <= 0.0:
+        _credited = not (row.dedupe or row.significance <= 0.0)
+        # F1c (2026-07-05 findings): expose this effect's VALUE to the caller's
+        # lane so learning isn't conscious-lane-only — the executive lane paid a
+        # flat per-step reward and compose_section's EMA sat neutral through
+        # ~160 zero-value repetitions. The executive pops this after each step
+        # and posts novelty×significance into the same EMA think() learns from.
+        if isinstance(context, dict):
+            context["_last_effect_outcome"] = {
+                "kind": kind,
+                "credited": _credited,
+                "novelty": row.novelty,
+                "significance": row.significance,
+                "ts": time.time(),
+            }
+        # F3 (2026-07-05 findings): a credited prose effect's BODY is an
+        # artifact, not a memory — capture it in the content-addressed sidecar
+        # at the single record chokepoint, so memory hygiene (pruner, decay)
+        # can never eat the only copy of a ledger-credited note again. capture()
+        # is idempotent and floor-gated; junk below MIN_ARTIFACT_CHARS is not
+        # stored.
+        if _credited:
+            try:
+                from brain.agency.effect_artifacts import capture as _capture_artifact
+                _capture_artifact(raw, content_hash=content_hash)
+            except Exception as exc:
+                record_failure("effect_ledger.capture_artifact", exc)
+
+        if not _credited:
             return None
 
         if goal_id:

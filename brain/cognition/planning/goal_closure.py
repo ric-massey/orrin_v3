@@ -228,9 +228,10 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
         context["_last_bootstrap_ts"] = 0.0
         log_activity(f"[pursue_goal] Goal '{goal_title}' closed ({reason}).")
         try:
-            from brain.cognition.intrinsic_goals import _RECENTLY_COMPLETED, _persist_recently_completed
-            _RECENTLY_COMPLETED[goal_title.strip().lower()] = time.time()
-            _persist_recently_completed()
+            # F6: one chokepoint records both the cooldown stamp and the
+            # per-life completion count (escalating-cooldown / respawn-cap input).
+            from brain.cognition.intrinsic_helpers import note_title_completion
+            note_title_completion(goal_title)
         except Exception as _e:
             record_failure("pursue_goal._finalize_goal_completion", _e)
     except Exception as _e:
@@ -275,7 +276,22 @@ def _maybe_close_on_tier(goal: Dict[str, Any], goal_title: str, next_step: str,
         from brain.cognition.planning.goal_satiety import is_sated
         sated, sreason = is_sated(goal, context)
         if sated:
-            close, why = True, f"satiety:{sreason}"
+            # F6 (2026-07-05 findings): a real definition-of-done. 41 frontier
+            # children completed as ~90 s single-research_topic loops — steps
+            # 2-3 of their 3-step plans skipped as "goal completed" every time,
+            # dragging median seconds-to-complete from 3,722 to 85.5. A goal
+            # with a multi-step plan may not satiety-close before at least TWO
+            # steps have actually completed (or a milestone was genuinely met).
+            _plan_steps = [p for p in (goal.get("plan") or []) if isinstance(p, dict)]
+            _steps_done = sum(1 for p in _plan_steps if p.get("status") == "completed")
+            _ms_met = any(m.get("met") for m in _ms)
+            if len(_plan_steps) >= 2 and _steps_done < 2 and not _ms_met:
+                log_activity(
+                    f"[pursue_goal] satiety close deferred for '{goal_title[:60]}' — "
+                    f"only {_steps_done}/{len(_plan_steps)} plan steps done, no milestone met."
+                )
+            else:
+                close, why = True, f"satiety:{sreason}"
 
     if not close:
         return None

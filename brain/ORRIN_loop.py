@@ -206,6 +206,14 @@ def run_cognitive_loop(
             log_activity(f"Starting cycle at {timestamp}")
             _push_event("cycle_start", ts=timestamp, cycle=get_cycle_count())
 
+            # F8 (2026-07-05 findings): liveness heartbeat (throttled to ~1/min)
+            # so a lid-close/SIGKILL death is detectable at the next boot.
+            try:
+                from brain.utils.heartbeat import beat as _heartbeat
+                _heartbeat(cycle=get_cycle_count())
+            except Exception as _hb_e:
+                record_failure("ORRIN_loop.heartbeat", _hb_e)
+
             context, affect_state = sense_and_refresh(_goals_api, timestamp)
             if context.get("emergency_action"):
                 emergency = context["emergency_action"]

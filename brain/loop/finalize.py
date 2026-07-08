@@ -27,6 +27,10 @@ from brain.paths import (
 _log = get_logger(__name__)
 Context = Dict[str, Any]
 
+# F21 — context keys already reported by the bloat guard this process (the
+# per-cycle repeat wrote 5,708 identical lines to model_failures.txt on 07-05).
+_bloat_guard_logged: "set[str]" = set()
+
 # F6 — durable production-loop telemetry lives in production_telemetry.py
 # (extracted whole; finalize stays the post-cycle stage that invokes it).
 from brain.loop.production_telemetry import emit_production_telemetry as _emit_production_telemetry
@@ -284,11 +288,17 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
                 continue
             if _csz > _CTX_KEY_MAX_BYTES:
                 del _ctx_to_save[_ck]
-                log_model_issue(
-                    f"context.json bloat guard: stripped key '{_ck}' "
-                    f"({_csz} bytes > {_CTX_KEY_MAX_BYTES}) — add it to its "
-                    f"own file or to _CTX_STRIP"
-                )
+                # F21: one warning per key per process — this fired every cycle
+                # for the same key and filled model_failures.txt with 5,708
+                # identical lines (07-05). The strip itself still happens every
+                # cycle; only the log is deduplicated.
+                if _ck not in _bloat_guard_logged:
+                    _bloat_guard_logged.add(_ck)
+                    log_model_issue(
+                        f"context.json bloat guard: stripped key '{_ck}' "
+                        f"({_csz} bytes > {_CTX_KEY_MAX_BYTES}) — add it to its "
+                        f"own file or to _CTX_STRIP"
+                    )
         save_json(CONTEXT, _ctx_to_save)
     except Exception as _e:
         log_model_issue(f"Context save failed: {_e}")

@@ -320,16 +320,24 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                         context["committed_goal"] = primary  # restore focus
 
                 status = (result.get("status") if isinstance(result, dict) else None) or ""
+                # F16 (2026-07-08 addendum): a cooldown skip means the act NEVER
+                # RAN — a recognized fn on a skipped tick must not post a reward,
+                # emit function_executed, or count as a production attempt.
+                # Reported separately so "recognized" ≠ "ran" in the telemetry.
+                _cooldown_skip = (isinstance(result, dict) and result.get("skipped")
+                                  and result.get("reason") == "cooldown")
                 rec = {
                     "goal_id": target_id,
                     "goal_title": str(target.get("title") or target.get("name") or "")[:120],
                     "step": str(step_text)[:160] if step_text else None,
                     "fn": fn,
-                    "status": status or "ok",
+                    "status": "cooldown_skipped" if _cooldown_skip else (status or "ok"),
                 }
                 advanced.append(rec)
+                if _cooldown_skip:
+                    summary["cooldown_skipped"] = int(summary.get("cooldown_skipped", 0) or 0) + 1
 
-                if fn:
+                if fn and not _cooldown_skip:
                     # I9 — charge the (cheap) cost of one executive step. Only
                     # when a real procedural action ran; idle ticks are free. During
                     # the sleep phase this ordinary procedural cost must not fight

@@ -70,12 +70,24 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
     Heuristic check: is this milestone observable in recent working memory?
     Returns True if already marked met, or if keyword evidence is found.
     """
+    return _milestone_evidence(milestone, context) is not None
+
+
+def _milestone_evidence(milestone: Dict[str, Any], context: Dict[str, Any]) -> "str | None":
+    """The evidence source-type that satisfies this milestone, or None if unmet.
+
+    F11 (2026-07-08 addendum): each met milestone is stamped with WHERE the
+    evidence came from, so downstream pruning/completion can refuse a milestone
+    that only instrumentation "proved". Values: prior_met, production_wm,
+    note_wm, goal_effect, research_lm_growth, research_wm, keyword_overlap,
+    tool_use_wm, speech_wm.
+    """
     if milestone.get("met"):
-        return True
+        return str(milestone.get("evidence_source") or "prior_met")
 
     text = milestone.get("text", "")
     if not text:
-        return False
+        return None
 
     text_lower = text.lower()
     wm = context.get("working_memory") or []
@@ -102,8 +114,8 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
             if (("wrote new" in es and ("function" in es or "tool" in es))
                     or "wrote and registered" in es
                     or "synthesized and registered" in es):
-                return True
-        return False  # production milestone with no real artifact evidence → unmet
+                return "production_wm"
+        return None  # production milestone with no real artifact evidence → unmet
 
     # NOTE milestones ("the note was written / left / delivered", "wrote a note to
     # Ric"). leave_note/write_desktop_note write the note to the outbox and drop a
@@ -121,8 +133,8 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
                 et, es = "", str(entry).lower()
             if et in ("note_written", "leave_note", "desktop_note") \
                     or "[note_written]" in es or es.startswith("left a note"):
-                return True
-        return False  # note milestone, no real note artifact yet → unmet
+                return "note_wm"
+        return None  # note milestone, no real note artifact yet → unmet
 
     # RESEARCH / FINDING milestones ("a finding/summary was written to long memory",
     # "a search was performed", "results were retrieved"). research_topic/wikipedia/
@@ -136,11 +148,13 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
         # (research memo, symbolic artifact, note) must not fail the milestone
         # gate because its prose doesn't echo the milestone's keywords.
         if context.get("_goal_has_effect"):
-            return True
-        # Real long-memory growth since the goal committed = a finding was genuinely
-        # stored (set by apply_milestone_updates; robust to WM pruning).
+            return "goal_effect"
+        # Real RESEARCH-typed long-memory growth since the goal committed = a
+        # finding was genuinely stored (set by apply_milestone_updates; robust to
+        # WM pruning). F11: this flag now counts only research-like event types,
+        # never goal_progress/metacog_pattern/chunk instrumentation.
         if context.get("_research_progressed"):
-            return True
+            return "research_lm_growth"
         for entry in wm[-12:]:
             if isinstance(entry, dict):
                 et = str(entry.get("event_type", "")).lower()
@@ -151,12 +165,12 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
             # type, which look_around/environment perceptions also use (would false-tick).
             if es.startswith(("[research]", "[wikipedia]", "[fetch", "[llm_research]")) \
                     or "[research]" in es or et == "llm_tool_research":
-                return True
-        return False  # research milestone, no real retrieval yet → unmet
+                return "research_wm"
+        return None  # research milestone, no real retrieval yet → unmet
 
     key_tokens = _milestone_tokens(text)
     if len(key_tokens) < 2:
-        return False
+        return None
 
     threshold = max(2, len(key_tokens) // 2)
 
@@ -164,7 +178,7 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
         entry_str = str(entry.get("content", entry) if isinstance(entry, dict) else entry).lower()
         hits = sum(1 for t in key_tokens if t in entry_str)
         if hits >= threshold:
-            return True
+            return "keyword_overlap"
 
     # Tool-USE / request milestones (a tool was queued/used/requested — NOT
     # produced). "action" is deliberately excluded here: an ordinary cognition pick
@@ -174,15 +188,15 @@ def _milestone_met(milestone: Dict[str, Any], context: Dict[str, Any]) -> bool:
         for entry in wm[-5:]:
             etype = (entry.get("event_type", "") if isinstance(entry, dict) else "").lower()
             if etype in ("tool_use", "tool_request", "tool_result"):
-                return True
+                return "tool_use_wm"
 
     if any(w in text_lower for w in ("sent", "message", "said", "reply", "spoke")):
         for entry in wm[-5:]:
             etype = (entry.get("event_type", "") if isinstance(entry, dict) else "").lower()
             if etype in ("speech", "reply", "social_deficit"):
-                return True
+                return "speech_wm"
 
-    return False
+    return None
 
 
 def apply_milestone_updates(context: Dict[str, Any]) -> int:
@@ -214,11 +228,15 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
         record_failure("env_snapshot.goal_has_effect", exc)
         context["_goal_has_effect"] = False
 
+    # F11 (2026-07-08 addendum): "research progressed" counts only research-like
+    # long-memory growth. The old total-count proxy ticked on the goal_progress
+    # entry record_goal_progress wrote every 5 cycles, so routine instrumentation
+    # satisfied "a finding was written" and frontier children closed in ~90 s.
     try:
-        _lm_now = _lm_total(context)
-        if goal.get("_lm_baseline") is None:
-            goal["_lm_baseline"] = _lm_now
-        context["_research_progressed"] = _lm_now > int(goal.get("_lm_baseline") or 0)
+        _lm_now = _lm_research_total(context)
+        if goal.get("_lm_research_baseline") is None:
+            goal["_lm_research_baseline"] = _lm_now
+        context["_research_progressed"] = _lm_now > int(goal.get("_lm_research_baseline") or 0)
     except Exception:
         context["_research_progressed"] = False
 
@@ -227,11 +245,14 @@ def apply_milestone_updates(context: Dict[str, Any]) -> int:
     for ms in milestones:
         if not isinstance(ms, dict) or ms.get("met"):
             continue
-        if _milestone_met(ms, context):
+        source = _milestone_evidence(ms, context)
+        if source is not None:
             ms["met"] = True
             ms["met_at"] = now
+            ms["evidence_source"] = source   # F11: provenance for downstream gates
             ticked += 1
-            log_private(f"[env_snapshot] milestone ticked: {ms.get('text','')[:80]}")
+            log_private(f"[env_snapshot] milestone ticked ({source}): "
+                        f"{ms.get('text','')[:80]}")
 
     return ticked
 
@@ -247,6 +268,33 @@ def _lm_total(context: Dict[str, Any]) -> int:
         return len(data) if isinstance(data, list) else 0
     except Exception as e:
         record_failure("env_snapshot._lm_total", e)
+        return 0
+
+
+# F11: event types that count as research/finding evidence. Instrumentation
+# types (goal_progress, metacog_pattern, chunk, goal_pursuit, …) never qualify —
+# they record that pursuit HAPPENED, not that anything was learned.
+_RESEARCH_EVENT_TYPES = frozenset({
+    "world_perception", "research", "finding", "llm_tool_research",
+    "web_research", "wikipedia", "dream_insight",
+})
+
+
+def _lm_research_total(context: Dict[str, Any]) -> int:
+    """Count long-memory entries whose event_type is research-like."""
+    try:
+        from brain.paths import LONG_MEMORY_FILE
+        import json as _json
+        data = _json.loads(LONG_MEMORY_FILE.read_bytes())
+        if not isinstance(data, list):
+            return 0
+        return sum(
+            1 for e in data
+            if isinstance(e, dict)
+            and str(e.get("event_type") or "") in _RESEARCH_EVENT_TYPES
+        )
+    except Exception as e:
+        record_failure("env_snapshot._lm_research_total", e)
         return 0
 
 

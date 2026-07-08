@@ -87,8 +87,12 @@ class EvaluatorDaemon:
             # Signal A: retrieval
             reward_a = self._check_retrieval(context, did, age)
 
-            # Signal B: goal closure
-            reward_b = self._check_goal_closure(context, origin_goal, origin_cycle, age)
+            # Signal B: goal closure (F15: chronology + grounded-effect gated,
+            # significance-scaled — never a flat proximity payout)
+            reward_b = self._check_goal_closure(
+                context, origin_goal, origin_cycle, age,
+                origin_ts=float(entry.get("ts") or 0.0),
+            )
 
             # Prune if too old without signal
             should_prune = age > AGE_TIMEOUT
@@ -100,8 +104,11 @@ class EvaluatorDaemon:
                     reward += reward_a
                     resolved_by = "retrieval_A"
                 if reward_b is not None:
-                    reward += min(GOAL_CLOSURE_REWARD, reward_b)
-                    resolved_by = resolved_by + "+goal_B" if reward_a is not None else "goal_B"
+                    # F15: significance-scaled grounded closure (may exceed the
+                    # old flat 0.55 for a hard goal; total still capped at 1.0).
+                    reward += reward_b
+                    _b_tag = "goal_B_grounded"
+                    resolved_by = resolved_by + "+" + _b_tag if reward_a is not None else _b_tag
                 reward = min(1.0, reward)
 
                 if not should_prune and action:
@@ -168,10 +175,20 @@ class EvaluatorDaemon:
         origin_goal_id: Optional[str],
         origin_cycle: int,
         age: int,
+        origin_ts: float = 0.0,
     ) -> Optional[float]:
+        """F15 (2026-07-08 addendum): the closure reward pays for CAUSING a real
+        completion, not for proximity to any completion. In the 07-05 WAL all
+        500 resolved rows were flat-0.55 goal_B — the evaluator bulk-credited
+        generate_intrinsic_goals/assess_goal_progress for standing near cheap
+        frontier closures, directly reinforcing the F5/F6 generator loop. Now:
+          * the completion must be STRICTLY AFTER the decision (timestamp),
+          * the closed goal must carry a qualifying credited effect,
+          * the reward scales with the closure's significance."""
         if not origin_goal_id or age > M_GOAL:
             return None
         try:
+            from datetime import datetime, timezone
             from brain.utils.json_utils import load_json
             completed = load_json(COMPLETED_GOALS_FILE, default_type=list)
             if not isinstance(completed, list):
@@ -181,8 +198,33 @@ class EvaluatorDaemon:
                     continue
                 # v1 goals use "name"; v2 goals use "id"/"title" — check all three
                 goal_key = str(g.get("id", "") or g.get("title", "") or g.get("name", ""))
-                if goal_key and goal_key == str(origin_goal_id):
-                    return GOAL_CLOSURE_REWARD
+                if not goal_key or goal_key != str(origin_goal_id):
+                    continue
+                # Chronology: completion must postdate the decision. An
+                # unparseable/absent completion stamp fails closed (no reward).
+                done_at = str(g.get("completed_timestamp") or "")
+                try:
+                    dt = datetime.fromisoformat(done_at.replace("Z", "+00:00"))
+                    done_ts = dt.replace(tzinfo=dt.tzinfo or timezone.utc).timestamp()
+                except (ValueError, TypeError):
+                    return None
+                if origin_ts and done_ts <= origin_ts:
+                    return None
+                # Grounding: the closed goal must have produced something real.
+                try:
+                    from brain.agency.effect_ledger import has_qualifying_effect
+                    if not has_qualifying_effect(str(g.get("id") or goal_key), g):
+                        return None
+                except Exception as _ge:
+                    record_failure("evaluator_daemon._check_goal_closure.effect", _ge)
+                    return None
+                # Significance-scaled (achievement_significance ∈ [0.4, 1.3]).
+                try:
+                    from brain.cognition.planning.goal_outcomes import achievement_significance
+                    sig = achievement_significance(g)
+                except Exception:
+                    sig = 1.0
+                return round(GOAL_CLOSURE_REWARD * max(0.4, min(1.3, sig)), 4)
         except Exception as _e:
             record_failure("evaluator_daemon.EvaluatorDaemon._check_goal_closure", _e)
         return None

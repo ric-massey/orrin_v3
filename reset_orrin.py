@@ -235,10 +235,11 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
     for f in streams:
         _empty_file(f, dry_run)
 
-    # ── 3. transient dirs: rotated/, sandbox_tmp/, effect_artifacts/ ─────────
+    # ── 3. transient dirs: rotated/, sandbox_tmp/, effect_artifacts/, tracked_work/ ──
     # effect_artifacts/ (AR9/O2): captured artifact TEXT keyed by content hash —
     # run-produced state; leaving it made a "clean instance" carry prior-run work.
-    for sub in ("rotated", "sandbox_tmp", "effect_artifacts"):
+    # tracked_work/ holds compose_section manuscripts — prior-run output, same rule.
+    for sub in ("rotated", "sandbox_tmp", "effect_artifacts", "tracked_work"):
         d = DATA_DIR / sub
         if d.exists():
             n = sum(1 for _ in d.glob("*"))

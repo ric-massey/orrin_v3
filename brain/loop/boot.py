@@ -432,7 +432,13 @@ def _boot_context() -> Context:
     # with no clean shutdown, record it as first-class lifecycle data.
     try:
         from brain.utils.heartbeat import check_silent_death
-        check_silent_death()
+        _silent_death = check_silent_death()
+        if _silent_death:
+            # F22: "I nearly didn't wake up" — a recovered silent death is a
+            # natural compression shock to the FELT lifespan (the true clock
+            # and termination timing are untouched).
+            from brain.cognition.runtime_lifetime import register_lifespan_shock
+            register_lifespan_shock(1.0, "silent_death")
     except Exception as _hb_err:
         log_error(f"[boot] Silent-death check failed: {_hb_err}")
 

@@ -46,7 +46,7 @@ def _load() -> List[Dict]:
     data = load_json(OPINIONS_FILE, default_type=list) or []
     if not isinstance(data, list):
         return []
-    return _migrate_legacy_entries(data)
+    return _hygiene_pass(_migrate_legacy_entries(data))
 
 
 # Goal-churn boilerplate the old mention-counting extractor mined into topics
@@ -104,6 +104,69 @@ def _migrate_legacy_entries(data: List[Dict]) -> List[Dict]:
         _save(kept)
         log_private(f"[opinions] legacy migration: dropped {dropped} junk topics, "
                     f"re-graded {len(legacy) - dropped}.")
+    return kept
+
+
+_hygiene_done = False
+
+# Evidence kinds whose ref_id points at a long-memory entry (and can therefore
+# orphan when that memory is pruned). Experiment/prediction/reflection refs are
+# their own records and are never compacted here.
+_MEMORY_REF_KINDS = frozenset({"observation", "mention"})
+
+
+def _hygiene_pass(data: List[Dict]) -> List[Dict]:
+    """F21 (2026-07-08 addendum): store hygiene for CURRENT ledger-format
+    opinions — the legacy migration above only ever ran on pre-ledger entries,
+    so junk topics kept re-forming ('something', 'objective unmet') and 287 of
+    291 evidence refs pointed at pruned memories by the 07-05 death.
+      * junk topics are dropped regardless of schema generation;
+      * memory-referencing evidence whose ref no longer resolves is compacted
+        out (alpha/beta already absorbed its weight — confidence is unchanged),
+        with a per-opinion `evidence_compacted` counter for auditability.
+    One-shot per process, like the legacy migration."""
+    global _hygiene_done
+    if _hygiene_done:
+        return data
+    _hygiene_done = True
+    try:
+        from brain.paths import LONG_MEMORY_FILE, WORKING_MEMORY_FILE
+        live_ids = {
+            str(e.get("id"))
+            for f in (LONG_MEMORY_FILE, WORKING_MEMORY_FILE)
+            for e in (load_json(f, default_type=list) or [])
+            if isinstance(e, dict) and e.get("id")
+        }
+    except Exception as exc:
+        record_failure("opinions_store._hygiene_pass.memories", exc)
+        return data
+    kept: List[Dict] = []
+    dropped_topics = 0
+    compacted_refs = 0
+    for op in data:
+        if not isinstance(op, dict):
+            continue
+        if _legacy_topic_is_junk(op.get("topic", "")):
+            dropped_topics += 1
+            continue
+        evidence = op.get("evidence")
+        if isinstance(evidence, list) and evidence:
+            fresh = [
+                e for e in evidence
+                if not (isinstance(e, dict)
+                        and e.get("kind") in _MEMORY_REF_KINDS
+                        and str(e.get("ref_id") or "") not in live_ids)
+            ]
+            if len(fresh) != len(evidence):
+                compacted_refs += len(evidence) - len(fresh)
+                op["evidence_compacted"] = (int(op.get("evidence_compacted") or 0)
+                                            + len(evidence) - len(fresh))
+                op["evidence"] = fresh
+        kept.append(op)
+    if dropped_topics or compacted_refs:
+        _save(kept)
+        log_private(f"[opinions] hygiene: dropped {dropped_topics} junk topics, "
+                    f"compacted {compacted_refs} orphan evidence refs.")
     return kept
 
 

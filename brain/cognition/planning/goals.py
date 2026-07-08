@@ -434,10 +434,17 @@ def maybe_complete_goals() -> bool:
                 for s in plan
             )
             if all_steps_done and goal.get("status") != "completed":
+                # F12 (2026-07-08 addendum): mark_goal_completed is a GUARD that
+                # can refuse (hollow milestones, no grounded effect, directional
+                # driver). Every downstream effect — the archive append, the
+                # changed flag, the WM note — is gated on the actual status flip,
+                # so a refusal is never laundered into a recorded completion.
                 mark_goal_completed(goal)
-                completed_goals.append(goal)
-                changed = True
-                return True
+                if goal.get("status") == "completed":
+                    completed_goals.append(goal)
+                    changed = True
+                    return True
+                return False
             return all_steps_done
 
         subs = goal.get("subgoals")
@@ -445,9 +452,11 @@ def maybe_complete_goals() -> bool:
             all_done = all(check_and_complete(sub) for sub in subs)
             if all_done and goal.get("status") != "completed":
                 mark_goal_completed(goal)
-                completed_goals.append(goal)
-                changed = True
-                return True
+                if goal.get("status") == "completed":
+                    completed_goals.append(goal)
+                    changed = True
+                    return True
+                return False
             return all_done
         else:
             # Atomic: done only if explicitly completed
@@ -459,8 +468,11 @@ def maybe_complete_goals() -> bool:
     if changed:
         save_goals(goals)
         update_working_memory("🗂️ Ran maybe_complete_goals: marked some goals as completed.")
-        # Append newly completed to completed goals file
-        existing_completed.extend(completed_goals)
+        # Append newly completed to completed goals file — only goals whose
+        # status genuinely flipped (F12; the guard's refusals never land here).
+        existing_completed.extend(
+            g for g in completed_goals if g.get("status") == "completed"
+        )
         save_json(COMPLETED_GOALS_FILE, existing_completed)
     else:
         update_working_memory("maybe_complete_goals: No new goals completed.")

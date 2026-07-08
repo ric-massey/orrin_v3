@@ -50,8 +50,26 @@ def _plan_step(text: str, *, production: bool = False) -> Dict[str, Any]:
     return step
 
 
+# F10 (2026-07-08 addendum): a long-form plan that opens with compose_section
+# meets F1's grounded-or-failed composer with an empty material pool and stalls
+# on "nothing to synthesize" forever. The plan must gather before it composes.
+_GATHER_FUNCTIONS = ("research_topic", "fetch_and_read")
+
+
+def _gather_step(text: str, function: str) -> Dict[str, Any]:
+    return {
+        "step": text[:240], "status": "pending", "generated_at": now_iso_z(),
+        "action": {"function": function, "purpose": "gather_material",
+                   "topic": text[:160]},
+    }
+
+
 def _ensure_production_actions(model: Dict[str, Any]) -> None:
-    """Make long-form production executable without guessing from prose."""
+    """Make long-form production executable without guessing from prose.
+
+    F10: compose_section only attaches AFTER the plan has gather steps — the
+    first two actionless steps become material-gathering actions, and any step
+    whose text reads as gathering keeps a gather action instead of a compose."""
     if not model.get("tracked_work"):
         return
     model["requires_artifact"] = True
@@ -62,19 +80,30 @@ def _ensure_production_actions(model: Dict[str, Any]) -> None:
     plan = model.get("plan")
     if not isinstance(plan, list):
         return
+    gather_count = 0
     for item in plan:
         if not isinstance(item, dict):
             continue
         action = item.get("action")
         if isinstance(action, dict) and action.get("function"):
+            if (action.get("function") in _GATHER_FUNCTIONS
+                    or action.get("purpose") == "gather_material"):
+                gather_count += 1
             continue
         text = str(item.get("step") or "").strip()
-        if text:
-            item["action"] = {
-                "function": "compose_section",
-                "artifact_kind": "tracked_work",
-                "section": text[:160],
-            }
+        if not text:
+            continue
+        if gather_count < 2:
+            fn = _GATHER_FUNCTIONS[min(gather_count, len(_GATHER_FUNCTIONS) - 1)]
+            item["action"] = {"function": fn, "purpose": "gather_material",
+                              "topic": text[:160]}
+            gather_count += 1
+            continue
+        item["action"] = {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work",
+            "section": text[:160],
+        }
 
 
 def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
@@ -82,7 +111,10 @@ def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
     long_form = bool(_LONG_FORM.search(text))
     output = bool(_OUTPUT.search(text) or long_form)
     if long_form:
-        parts = ["purpose and thesis", "outline", "substantive sections", "coherence review", "final manuscript"]
+        # F10: gather → cite → synthesize → review, never five composes. The
+        # composer is grounded-or-failed (F1), so material must exist first.
+        parts = ["gathered source material", "a cited primary source",
+                 "synthesized sections", "coherence review", "final manuscript"]
         criteria = [
             _criterion("A persistent manuscript exists and contains a clear purpose or thesis.", kind="artifact"),
             _criterion("The manuscript has an explicit outline with at least three substantive sections.", kind="sections", target=3),
@@ -102,7 +134,18 @@ def _fallback(goal: Dict[str, Any]) -> Dict[str, Any]:
             _criterion("A reasoned conclusion directly answers the goal.", kind="quality"),
             _criterion("At least one observable consequence or next decision is identified.", kind="outcome"),
         ]
-    plan = [_plan_step(f"Establish {part}", production=long_form) for part in parts]
+    if long_form:
+        plan = [
+            _gather_step("Gather source material on the topic with research_topic",
+                         "research_topic"),
+            _gather_step("Read one primary source in depth with fetch_and_read",
+                         "fetch_and_read"),
+            _plan_step("Synthesize a section from the gathered sources", production=True),
+            _plan_step("Review the manuscript for coherence", production=True),
+            _plan_step("Complete the final manuscript", production=True),
+        ]
+    else:
+        plan = [_plan_step(f"Establish {part}") for part in parts]
     milestones = [
         {"milestone": row["criterion"], "criterion_kind": row["kind"], "met": False}
         for row in criteria

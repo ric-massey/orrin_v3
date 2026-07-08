@@ -89,6 +89,12 @@ BASELINE_EDGES = {
     ('runtime_coupling', 'control_signals'), ('runtime_coupling', 'cog_memory'), ('runtime_coupling', 'core'),
     ('runtime_coupling', 'registry'), ('runtime_coupling', 'symbolic'), ('runtime_coupling', 'utils'),
     ('eval', 'control_signals'), ('eval', 'core'), ('eval', 'think'), ('eval', 'utils'),
+    # F15 (2026-07-08 addendum): the evaluator's delayed goal-closure reward is
+    # gated on a grounded credited effect (effect_ledger.has_qualifying_effect)
+    # and scaled by the closure's significance (goal_outcomes.achievement_
+    # significance) — eval → agency/cognition. No cycle (neither package imports
+    # eval), and both edges follow LAYER_ORDER (eval sits above cognition/agency).
+    ('eval', 'agency'), ('eval', 'cognition'),
     ('evidence', 'utils'),
     ('loop', 'control_signals'), ('loop', 'agency'), ('loop', 'behavior'),
     ('loop', 'benchmarks'), ('loop', 'cog_memory'), ('loop', 'cognition'),

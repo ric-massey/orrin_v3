@@ -40,8 +40,14 @@ from brain.cognition.planning.goal_planning import (
 
 _log = get_logger(__name__)
 
-_last_pursuit_ts: float = 0.0
+# F16 (2026-07-08 addendum): the cooldown is PER GOAL. A module-global stamp
+# meant that after the first queued goal advanced, every other goal in the same
+# executive tick hit "cooldown" — multi-goal advancement was documented but not
+# real, and a recognized producer step could post a learning event without the
+# producer ever running. Bounded map: goal_id → last pursuit ts.
+_last_pursuit_by_goal: Dict[str, float] = {}
 _COOLDOWN_S: float = 30.0
+_COOLDOWN_MAP_MAX: int = 64
 _pursuit_call_count: int = 0
 # Give a recognised-but-ineffective step this many tries before advancing past it.
 _STEP_MAX_ATTEMPTS: int = 3
@@ -61,20 +67,23 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
       5. If drift detected → replan
       6. Update depth bandit with dual-signal reward
     """
-    global _last_pursuit_ts
     context = context or {}
 
     now = time.time()
-    # Publish the cooldown window so the SELECTOR can yield the turn to other
-    # cognition instead of repeatedly picking pursue only to no-op here — that
-    # spinning is ~1/3 of his pursue picks (the low-reward ones).
-    context["_pursue_cooldown_until"] = _last_pursuit_ts + _COOLDOWN_S
-    if now - _last_pursuit_ts < _COOLDOWN_S:
-        return {"status": "ok", "skipped": True, "reason": "cooldown"}
 
     goal = bound_goal(context)
     if not isinstance(goal, dict) or not (goal.get("title") or goal.get("name")):
         return {"status": "ok", "skipped": True, "reason": "no_committed_goal"}
+
+    # F16: per-goal refractory — one goal's advance never blocks another's.
+    _cool_key = str(goal.get("id") or goal.get("title") or goal.get("name") or "")
+    _last_ts = _last_pursuit_by_goal.get(_cool_key, 0.0)
+    # Publish the cooldown window so the SELECTOR can yield the turn to other
+    # cognition instead of repeatedly picking pursue only to no-op here — that
+    # spinning is ~1/3 of his pursue picks (the low-reward ones).
+    context["_pursue_cooldown_until"] = _last_ts + _COOLDOWN_S
+    if now - _last_ts < _COOLDOWN_S:
+        return {"status": "ok", "skipped": True, "reason": "cooldown"}
 
     # Release a goal that was already completed/abandoned/failed elsewhere
     # (e.g. goal_io/GoalsAPI marked it done but context still holds the old dict).
@@ -99,7 +108,7 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     # YIELD this cycle's pursuit — even for an "urgent" goal — so a long-running or
     # never-ending goal can't crowd out staying alive. Transient and resumable: it
     # does NOT fail or pause the goal, just declines to advance it now; next cycle,
-    # if the drive has cleared, pursuit proceeds. Checked BEFORE _last_pursuit_ts is
+    # if the drive has cleared, pursuit proceeds. Checked BEFORE the cooldown is
     # stamped so yielding doesn't consume the pursue cooldown. Flag-gated.
     if _survival_preempt_enabled():
         _crit, _why = _survival_critical(context)
@@ -116,7 +125,12 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         else:
             context["_preempt_open_streak"] = 0  # not preempting → clear the open-loop streak
 
-    _last_pursuit_ts = now
+    _last_pursuit_by_goal[_cool_key] = now
+    if len(_last_pursuit_by_goal) > _COOLDOWN_MAP_MAX:
+        for _k in sorted(_last_pursuit_by_goal,
+                         key=lambda k: _last_pursuit_by_goal[k])[
+                : len(_last_pursuit_by_goal) - _COOLDOWN_MAP_MAX]:
+            _last_pursuit_by_goal.pop(_k, None)
     context["_pursue_cooldown_until"] = now + _COOLDOWN_S
 
     # ── Energy-aware gate ────────────────────────────────────────────────────

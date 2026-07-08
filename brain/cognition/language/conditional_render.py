@@ -101,14 +101,18 @@ def _read_pairs(limit: Optional[int] = None) -> List[Dict]:
 def narration_pairs_corpus(max_chars: int = 50000) -> str:
     """Format the accumulated (thought -> narration) pairs as `prefix + narration`
     training text, so consolidation teaches the organ to render from the prefix.
-    Each example: '<say ...> narration' on its own line."""
+    Each example: '<say ...> narration' on its own line.
+
+    F20: read-side diversity cap — a store contaminated before the write-side
+    floor landed (07-05: one narration 968×) still trains at bounded repeats."""
+    from brain.cognition.language.acquisition_noise import diversity_cap_lines
     examples: List[str] = []
     for rec in _read_pairs():
         prefix = serialize_thought(rec.get("thought") or {})
         narration = str(rec.get("narration") or "").strip()
         if narration:
             examples.append(f"{prefix} {narration}")
-    return ("\n".join(examples))[-max_chars:]
+    return ("\n".join(diversity_cap_lines(examples)))[-max_chars:]
 
 
 # ── Validation (the bright line, spec §4) ────────────────────────────────────

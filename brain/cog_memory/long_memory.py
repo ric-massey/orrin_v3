@@ -39,6 +39,16 @@ _REPETITIVE_EVENT_TYPES = frozenset({
 _REPETITIVE_DEDUP_WINDOW: int = 200
 _REPETITIVE_PREFIX: int = 120
 
+# F17 (2026-07-08 addendum): self-instrumentation event types — records that
+# pursuit/housekeeping HAPPENED, not what was learned. They get no affect
+# importance bump at write time, no recency/affect value boost from the prune
+# scorer, and a hard share cap of the estate so telemetry can't compost real
+# findings (07-05: 1,431 of 2,001 entries were goal_progress at importance 4).
+_INSTRUMENTATION_EVENT_TYPES = frozenset({
+    "goal_progress", "metacog_pattern", "chunk",
+})
+_INSTRUMENTATION_MAX_SHARE = 0.40
+
 # AR6: digits are noise for periodic-event identity — normalize them out of the
 # dedup key so a recurring entry can't slip the window by carrying a fresh number.
 _DEDUP_NUM_RE = re.compile(r"\d+(?:\.\d+)?")
@@ -168,6 +178,12 @@ def update_long_memory(
     else:
         log_error("update_long_memory: Invalid 'new' argument.")
         return
+
+    # F17: instrumentation entries never carry the affect importance bump — a
+    # telemetry line written during a high-affect moment is still telemetry.
+    if entry.get("event_type") in _INSTRUMENTATION_EVENT_TYPES:
+        entry["importance"] = min(int(entry.get("importance") or 1), 1)
+        entry["priority"] = min(int(entry.get("priority") or 1), 1)
 
     # Don’t store empty/noise-only entries
     if not entry.get("content"):
@@ -358,8 +374,12 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
             score = 0
             emotion = _signal_name(mem.get("emotion", ""))
             content = str(mem.get("content", "")).lower()
+            # F17: instrumentation is excluded from the "valuable recent memory"
+            # boosts (affect, recency) — it survives only on its own merit, which
+            # is deliberately low.
+            instrumentation = mem.get("event_type") in _INSTRUMENTATION_EVENT_TYPES
 
-            if emotion in STRONG_EMOTIONS:
+            if emotion in STRONG_EMOTIONS and not instrumentation:
                 score += 3
             if "lesson:" in content:
                 score += 4
@@ -367,7 +387,7 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
 
             # Affective intensity at storage time — high-affect memories are harder to prune
             emo_ctx = mem.get("emotional_context") or {}
-            if isinstance(emo_ctx, dict):
+            if isinstance(emo_ctx, dict) and not instrumentation:
                 peak_intensity = max(
                     (emo_ctx.get(k, 0.0)
                      for k in ("impasse_signal", "reward_negative", "reward_positive", "threat_level", "social_penalty", "exploration_drive")),
@@ -383,9 +403,9 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
                 ts = mem.get("timestamp", "")
                 delta = datetime.now(timezone.utc) - datetime.fromisoformat(ts)
                 days_old = delta.days
-                if days_old < 3:
+                if days_old < 3 and not instrumentation:
                     score += 3
-                elif days_old < 7:
+                elif days_old < 7 and not instrumentation:
                     score += 1
                 elif days_old > 30:
                     score -= 2
@@ -460,8 +480,29 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
                 pins = pins[:_pin_cap]
 
             keep_count = max_total - len(foundational) - len(pins)
-            kept = foundational + pins + non_pins[: max(0, keep_count)]
-            removed.extend(non_pins[max(0, keep_count):])
+            survivors = non_pins[: max(0, keep_count)]
+            overflow = non_pins[max(0, keep_count):]
+
+            # F17: instrumentation-ratio guard — telemetry may not exceed
+            # _INSTRUMENTATION_MAX_SHARE of the surviving estate. Lowest-scored
+            # instrumentation entries (the list is already score-ordered) are
+            # composted first; real findings backfill from the overflow.
+            _instr = [m for m in survivors
+                      if m.get("event_type") in _INSTRUMENTATION_EVENT_TYPES]
+            _instr_cap = int(max_total * _INSTRUMENTATION_MAX_SHARE)
+            if len(_instr) > _instr_cap:
+                _drop_ids = {id(m) for m in _instr[_instr_cap:]}
+                survivors = [m for m in survivors if id(m) not in _drop_ids]
+                removed.extend(_instr[_instr_cap:])
+                backfill = [m for m in overflow
+                            if m.get("event_type") not in _INSTRUMENTATION_EVENT_TYPES]
+                n_backfill = max(0, keep_count - len(survivors))
+                survivors += backfill[:n_backfill]
+                _kept_ids = {id(m) for m in survivors}
+                overflow = [m for m in overflow if id(m) not in _kept_ids]
+
+            kept = foundational + pins + survivors
+            removed.extend(overflow)
 
             if removed:
                 summary = summarize_memories(removed)
@@ -496,6 +537,14 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
         # state file from disk on the brain thread during a prune. Runs outside
         # the lock to keep file contention low.
         update_values_with_lessons(kept)
+        # F18: the similarity graph follows the estate — drop edges whose
+        # endpoints just got pruned so recall never walks a ghost graph.
+        try:
+            from brain.utils.memory_graph import compact_against_live
+            compact_against_live({str(m.get("id")) for m in kept
+                                  if isinstance(m, dict) and m.get("id")})
+        except Exception as _e:
+            record_failure("long_memory.prune.graph_compact", _e)
 
     # Log pruning to private thoughts file
     try:

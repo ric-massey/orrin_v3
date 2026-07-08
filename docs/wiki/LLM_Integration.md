@@ -5,6 +5,17 @@ The decision loop, goals, memory, control signals, and action selection are full
 is one explicit tool among many, and the brain never silently depends on it — with no provider key
 configured, Orrin runs fully and simply skips LLM-backed tool calls.
 
+## Why the LLM isn't running the show
+
+The interpretability argument is real, but the deciding one is that **a pretrained external LLM is
+stagnant while everything else in Orrin grows.** Goals, memory, causal models, rules, and control
+set points all change with what the runtime lives through; the frozen weights behind an API call do
+not. Putting that model in charge would make the only decision-maker the only component that can't
+learn from its decisions. So the LLM stays a gated tool, and the language ability that would grow is
+grown natively instead — a from-scratch transformer that trains on Orrin's own experience and
+improves with it (see [Native Language Model](Native_Language_Model.md)). See
+[Symbolic-First Design](Symbolic_First_Design.md) for the full argument.
+
 ## The tool-only gate
 
 - `ORRIN_LLM_TOOL_ONLY=1` is the **default**. Free-form generation is off; the LLM is only reachable

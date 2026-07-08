@@ -462,7 +462,9 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
 
 
 def record_goal_progress(context: Dict[str, Any]) -> None:
-    """Every 5 cycles, write a goal-progress note to long memory (no GoalsAPI needed)."""
+    """Every 5 cycles, append a goal-progress line to goal_progress_log.jsonl.
+    F17 (2026-07-08): goal_progress is telemetry, not episodic memory — as LM
+    entries these were 1,431/2,001 rows at the 07-05 death, composting learning."""
     goal = bound_goal(context)
     if not isinstance(goal, dict) or not goal.get("title"):
         return
@@ -477,12 +479,16 @@ def record_goal_progress(context: Dict[str, Any]) -> None:
         if str(text or "").strip():
             last_thought = str(text).strip()[:120]
             break
-    note = (f"[Goal progress | cycle {cycle}] Goal: {goal.get('title')!r}. "
-            f"Recent cognitive actions: {', '.join(recent_picks) or 'none'}. "
-            f"Last thought: {last_thought or '(none)'}")
     try:
-        from brain.cog_memory.long_memory import update_long_memory
-        update_long_memory(note, emotion="motivation", event_type="goal_progress", importance=2, context=context)
+        from brain.paths import LOGS_DIR
+        from brain.utils.json_utils import append_jsonl
+        from brain.utils.timeutils import now_iso_z
+        append_jsonl(LOGS_DIR / "goal_progress_log.jsonl", {
+            "ts": now_iso_z(), "cycle": cycle,
+            "goal_id": str(goal.get("id") or ""),
+            "goal": str(goal.get("title") or "")[:160],
+            "recent_picks": recent_picks, "last_thought": last_thought,
+        })
     except Exception as _e:
         record_failure("goal_io.record_goal_progress", _e)
 

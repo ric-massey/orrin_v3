@@ -442,6 +442,13 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     except Exception as _e:
         record_failure("goals.mark_goal_failed.telemetry", _e)
 
+    # F22: a real failure compresses the FELT lifespan a little (one-shot shock
+    # consumed by recalibrate_felt_lifespan; termination timing untouched).
+    if isinstance(context, dict):
+        context["_felt_lifespan_shock"] = (
+            float(context.get("_felt_lifespan_shock") or 0.0) + 0.1
+        )
+
     # Mirror into the v2 store (no-op when the failure event CAME from v2 — the
     # goal is already terminal there). Same resurrection guard as completion.
     try:

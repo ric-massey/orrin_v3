@@ -236,8 +236,16 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
             try:
                 from brain.behavior.express_to_user import build_motive, compose_from_motive
                 from brain.behavior.speakability import is_speakable
+                # F19 (2026-07-08): the mouth picks a TYPED intent with a
+                # concrete referent first (share_artifact / share_finding /
+                # state_blocker / ask_grounded_question); express_state over raw
+                # affect is the last resort, not the default.
+                from brain.behavior.speech_content import choose_content_kernel
+                _kernel = choose_content_kernel(context)
+                _k_intent = str(_kernel.get("intent") or "express_state")
+                _k_seed = _kernel.get("seed") if _k_intent != "express_state" else txt
                 _self_motive = build_motive(
-                    context, intent="express_state", recipient="self", seed=txt)
+                    context, intent=_k_intent, recipient="self", seed=_k_seed)
                 _composed = compose_from_motive(_self_motive, context)
                 if _composed and is_speakable(_composed):
                     txt = _composed
@@ -272,8 +280,12 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
                 from brain.think.speech_log import log_reply as _log_reply
                 _self_motive = context.pop("_self_motive", None)
                 if not _speech_plan:
+                    # F19: self-initiated speech logs its TYPED intent so the
+                    # per-intent scorer and Run-5 speech-grounding analysis can
+                    # split referent-bearing replies from raw express_state.
+                    _self_intent = (_self_motive or {}).get("intent") if isinstance(_self_motive, dict) else None
                     _speech_plan = {
-                        "response_type": "answer" if user_input else "express_state",
+                        "response_type": "answer" if user_input else (_self_intent or "express_state"),
                         "tone": (_derive_tone(emo) or {}).get("tone", "neutral"),
                         # Provenance (E6/2.3): self-initiated speech now carries the
                         # motive it was composed from, so "why did he say this" is

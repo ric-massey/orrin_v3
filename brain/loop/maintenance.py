@@ -22,6 +22,14 @@ _log = get_logger(__name__)
 Context = Dict[str, Any]
 
 
+def _flat_goal_nodes(nodes: Any) -> Iterator[Dict[str, Any]]:
+    """Depth-first walk over a goal tree (roots + all nested subgoals)."""
+    for node in nodes or []:
+        if isinstance(node, dict):
+            yield node
+            yield from _flat_goal_nodes(node.get("subgoals") or [])
+
+
 def run_maintenance_tier(context: Context) -> Context:
     # ── Deterministic closure/maintenance tier (RECONCILED plan B/C/E) ──
     # Closure machinery already exists but was selection-starved — the
@@ -142,11 +150,26 @@ def run_maintenance_tier(context: Context) -> Context:
                 _K = 5
                 _checked = 0
                 _sated_closed = 0
-                for _g in load_goals():
+                # F13 (2026-07-08 addendum): recurse into subgoals — the live
+                # population is NESTED (the 07-05 tree was 6 roots / 29 subnodes
+                # under one bucket), so a top-level-only sweep never saw the
+                # frontier/open-question children the satiety predicate exists
+                # for. _K counts CHECKED nodes, not roots.
+                for _g in _flat_goal_nodes(load_goals()):
                     if _checked >= _K:
                         break
                     if not isinstance(_g, dict):
                         continue
+                    # F14: an active node without an id is a telemetry error,
+                    # not a silent skip — downstream joins need the id.
+                    if not _g.get("id") and str(_g.get("status") or "").lower() in (
+                        "in_progress", "pending", "committed"
+                    ):
+                        record_failure(
+                            "maintenance.satiety.idless_node",
+                            ValueError(f"id-less live goal "
+                                       f"{str(_g.get('title') or _g.get('name') or '?')[:60]!r}"),
+                        )
                     _status = str(_g.get("status") or "").lower()
                     if _status in _TERMINAL_STATUSES or _status in ("dormant", "paused"):
                         continue

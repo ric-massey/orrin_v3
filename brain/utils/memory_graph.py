@@ -66,6 +66,53 @@ def _maybe_compact(path: Path) -> None:
         record_failure("memory_graph._maybe_compact", _e)
 
 
+# F18 (2026-07-08 addendum): event types that never earn graph edges — recall
+# shaped by goal_progress/housekeeping-chunk/metacog-pattern telemetry is recall
+# shaped by an audit log (the 07-05 graph's top-degree retained nodes were
+# exactly these three).
+_NO_EDGE_EVENT_TYPES = frozenset({"goal_progress", "chunk", "metacog_pattern"})
+
+
+def compact_against_live(live_ids: Set[str]) -> int:
+    """Drop edges whose endpoints no longer exist in long memory (F18).
+
+    The byte-window compaction above bounds SIZE; this bounds TRUTH — the
+    07-05 graph held 49,307 edges over 15,738 node ids of which only 712 still
+    existed, so recall walked a ghost graph. Called after a long-memory prune
+    with the surviving entry ids. Returns the number of edges dropped."""
+    try:
+        path = Path(MEMORY_GRAPH_FILE)
+        if not path.exists() or not live_ids:
+            return 0
+        kept: List[str] = []
+        dropped = 0
+        for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            s = line.strip()
+            if not s:
+                continue
+            try:
+                edge = json.loads(s)
+            except json.JSONDecodeError:
+                dropped += 1
+                continue
+            if (isinstance(edge, dict)
+                    and edge.get("source") in live_ids
+                    and edge.get("target") in live_ids):
+                kept.append(s)
+            else:
+                dropped += 1
+        if dropped:
+            tmp = path.with_suffix(".jsonl.tmp")
+            tmp.write_text(("\n".join(kept) + "\n") if kept else "", encoding="utf-8")
+            tmp.replace(path)
+            _log.info("memory_graph live-compact: dropped %d orphan edges, kept %d",
+                      dropped, len(kept))
+        return dropped
+    except Exception as _e:
+        record_failure("memory_graph.compact_against_live", _e)
+        return 0
+
+
 def _tokenize(text: str) -> Set[str]:
     words = re.findall(r"[a-z]{4,}", text.lower())
     return {w for w in words if w not in _STOPWORDS}
@@ -90,6 +137,9 @@ def add_edges(new_entry: Dict, recent_entries: List[Dict]) -> None:
         new_text = str(new_entry.get("content") or "")
         if not new_id or not new_text.strip():
             return
+        # F18: instrumentation never becomes graph structure.
+        if new_entry.get("event_type") in _NO_EDGE_EVENT_TYPES:
+            return
         new_tokens = _tokenize(new_text)
         if len(new_tokens) < 4:
             return  # too short to form meaningful edges
@@ -105,6 +155,8 @@ def add_edges(new_entry: Dict, recent_entries: List[Dict]) -> None:
         candidates: List[Tuple[float, str]] = []
         for other in recent_entries:
             if not isinstance(other, dict):
+                continue
+            if other.get("event_type") in _NO_EDGE_EVENT_TYPES:
                 continue
             other_id = other.get("id")
             if not other_id or other_id == new_id:

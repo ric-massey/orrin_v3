@@ -97,8 +97,8 @@ def test_one_clean_cycle_clears_the_streak():
 def test_critical_alert_preempts_pursuit_without_mutating_goal(monkeypatch):
     monkeypatch.setattr(spr, "get_state", _critical_state)
     monkeypatch.setenv("ORRIN_SURVIVAL_PREEMPT", "1")
-    # avoid the pursue cooldown short-circuit
-    monkeypatch.setattr(gex, "_last_pursuit_ts", 0.0)
+    # avoid the pursue cooldown short-circuit (F16: cooldown is per-goal)
+    monkeypatch.setattr(gex, "_last_pursuit_by_goal", {})
 
     goal = {
         "id": "g-build-thing",

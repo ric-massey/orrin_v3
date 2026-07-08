@@ -17,10 +17,12 @@ def test_comprehension_builds_checkable_long_form_model(monkeypatch):
     assert goal["requires_artifact"] is True
     assert goal["tracked_work"] is True
     assert goal["artifact_strategy"]["function"] == "compose_section"
-    assert all(
-        step["action"]["function"] == "compose_section"
-        for step in goal["plan"]
-    )
+    # F10: the plan gathers before it composes — the grounded-or-failed composer
+    # needs material, so the first steps are research/fetch, then composes.
+    fns = [step["action"]["function"] for step in goal["plan"]]
+    assert fns[0] == "research_topic"
+    assert fns[1] == "fetch_and_read"
+    assert fns[2:] and all(fn == "compose_section" for fn in fns[2:])
 
 
 def test_hydration_promotes_spec_and_preserves_structured_production_action(monkeypatch):
@@ -37,7 +39,12 @@ def test_hydration_promotes_spec_and_preserves_structured_production_action(monk
     assert goal["definition_of_done"]
     assert goal["spec"]["definition_of_done"] == goal["definition_of_done"]
     assert goal["tracked_work"] is True
-    assert recognise_step_action(goal["plan"][0]) == "compose_section"
+    # F10: gather first; compose_section still present once material can exist.
+    assert recognise_step_action(goal["plan"][0]) == "research_topic"
+    assert any(
+        (step.get("action") or {}).get("function") == "compose_section"
+        for step in goal["plan"]
+    )
 
 
 def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
@@ -57,7 +64,12 @@ def test_intrinsic_commitment_is_hydrated_before_it_becomes_active(monkeypatch):
     assert goal["grounded_parts"]
     assert goal["definition_of_done"]
     assert goal["tracked_work"] is True
-    assert goal["plan"][0]["action"]["function"] == "compose_section"
+    # F10: the committed plan opens with material gathering, not a compose.
+    assert goal["plan"][0]["action"]["function"] == "research_topic"
+    assert any(
+        (step.get("action") or {}).get("function") == "compose_section"
+        for step in goal["plan"]
+    )
 
 
 def test_planned_action_recruitment_does_not_require_impasse():

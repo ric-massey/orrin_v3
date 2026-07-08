@@ -39,8 +39,15 @@ def action_prior(lens: Dict[str, Any] | None, action: str, description: str = ""
     prior = min(0.28, 0.28 * rel)
     if action in _PRODUCTION_ACTIONS:
         prior += 0.10 if lens.get("requires_artifact") else 0.04
-    if action == "compose_section" and lens.get("tracked_work"):
-        prior += 0.18
+    # F10: the compose boost is gated on material actually existing (≥2 usable
+    # sources in section_material), never on tracked_work alone — boosting the
+    # grounded-or-failed composer with an empty pool just buys honest stalls.
+    # While material is missing, the gather functions get the boost instead.
+    if lens.get("tracked_work"):
+        if action == "compose_section" and lens.get("material_ready"):
+            prior += 0.18
+        elif action in ("research_topic", "fetch_and_read") and not lens.get("material_ready"):
+            prior += 0.14
     if action in _DRIFT_ACTIONS and rel < 0.15:
         prior -= 0.12
     return max(-0.18, min(0.36, prior))
@@ -67,6 +74,25 @@ def apply_goal_lens(context: Dict[str, Any]) -> Dict[str, Any]:
     if not toks:
         context.pop("goal_lens", None)
         return context
+    tracked = bool(goal.get("tracked_work") or spec.get("tracked_work"))
+    # F10: material readiness for the compose gate — checked once per cycle
+    # (gather_material reads the ledger tail + long memory; too heavy per call).
+    cycle = context.get("cycle_count") or {}
+    cycle_id = int(cycle.get("count", 0) if isinstance(cycle, dict) else cycle or 0)
+    prev = context.get("goal_lens") if isinstance(context.get("goal_lens"), dict) else {}
+    material_ready = bool(prev.get("material_ready"))
+    if tracked:
+        cache = context.setdefault("_goal_lens_material_cache", {})
+        gid = str(goal.get("id") or goal.get("title") or "")
+        if cache.get("cycle") != cycle_id or cache.get("goal_id") != gid:
+            try:
+                from brain.cognition.section_material import MIN_MATERIAL, gather_material
+                material_ready = len(gather_material(goal, "")) >= MIN_MATERIAL
+            except Exception:
+                material_ready = False
+            cache.update({"cycle": cycle_id, "goal_id": gid, "ready": material_ready})
+        else:
+            material_ready = bool(cache.get("ready"))
     context["goal_lens"] = {
         "active": True,
         "goal_id": str(goal.get("id") or ""),
@@ -75,11 +101,10 @@ def apply_goal_lens(context: Dict[str, Any]) -> Dict[str, Any]:
         "grounded_parts": list(parts)[:8],
         "definition_of_done": list(criteria)[:8],
         "requires_artifact": bool(goal.get("requires_artifact") or spec.get("requires_artifact")),
-        "tracked_work": bool(goal.get("tracked_work") or spec.get("tracked_work")),
+        "tracked_work": tracked,
+        "material_ready": material_ready,
         "strength": 0.7,
     }
-    cycle = context.get("cycle_count") or {}
-    cycle_id = int(cycle.get("count", 0) if isinstance(cycle, dict) else cycle or 0)
     telemetry = context.setdefault("_goal_lens_telemetry", {})
     if telemetry.get("_last_cycle") != cycle_id:
         telemetry["_last_cycle"] = cycle_id

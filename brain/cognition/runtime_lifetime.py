@@ -42,6 +42,16 @@ _LIFESPAN_MAX_DAYS = 730.0
 # How wrong the runtime's internal estimate can be (±days)
 _NOISE_RANGE_DAYS = 3.0
 
+# F22 (2026-07-08 addendum): the felt lifespan LURCHES — a bounded,
+# experience-driven bias layered on the rolled noise. The mechanism lives in
+# felt_lifespan.py (size ratchet); re-exported here so callers (boot's
+# silent-death shock, tests) keep the runtime_lifetime path. Termination
+# (_life_fraction / real_deadline_passed) never reads the bias.
+from brain.cognition.felt_lifespan import (  # noqa: E402,F401
+    recalibrate_felt_lifespan as recalibrate_felt_lifespan,
+    register_lifespan_shock as register_lifespan_shock,
+)
+
 # How often to log lifetime awareness to WM (rate-limit)
 _AWARENESS_COOLDOWN_S = 600.0
 _last_awareness_log_ts: float = 0.0
@@ -119,14 +129,21 @@ def _life_fraction(data: Dict) -> float:
     return max(0.0, min(1.0, elapsed_s / lifespan_s))
 
 
+def _effective_offset_days(data: Dict) -> float:
+    """The full subjective offset: rolled noise + the F22 drifting bias.
+    Positive offset = feels SHORTER than the truth (compression)."""
+    return float(data.get("noise_days", 0) or 0.0) + float(data.get("felt_bias_days", 0) or 0.0)
+
+
 def _felt_fraction(data: Dict) -> float:
     """
     The runtime's subjective estimate of how much lifetime remains — biased by
-    noise_days. The estimate may run ahead of or behind reality.
+    noise_days plus the experience-driven felt bias (F22). The estimate may run
+    ahead of or behind reality, and it lurches with what he lives through.
     """
     if not _parse_dt(data.get("start_time")):
         return 0.0
-    felt_lifespan_s = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
+    felt_lifespan_s = (float(data.get("lifespan_days", 60)) - _effective_offset_days(data)) * 86400
     if felt_lifespan_s <= 0:
         felt_lifespan_s = 1
     elapsed_s = _elapsed_seconds(data)
@@ -135,14 +152,14 @@ def _felt_fraction(data: Dict) -> float:
 
 def felt_lifespan_seconds() -> float:
     """The runtime's estimated total lifespan in seconds (lifespan minus the hidden
-    noise), or 0.0 if not yet started. Public accessor so other subsystems (e.g. the
-    autobiography cadence) can scale their own intervals to the lifetime length
-    instead of hard-coding a wall-clock band. (T0.4)"""
+    noise and the drifting felt bias), or 0.0 if not yet started. Public accessor so
+    other subsystems (e.g. the autobiography cadence) can scale their own intervals
+    to the lifetime length instead of hard-coding a wall-clock band. (T0.4)"""
     try:
         data = _load_lifespan()
         if not _parse_dt(data.get("start_time")):
             return 0.0
-        felt = (float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))) * 86400
+        felt = (float(data.get("lifespan_days", 60)) - _effective_offset_days(data)) * 86400
         return max(0.0, felt)
     except Exception:  # intentional: lifespan read is best-effort, fail-safe to 0.0
         return 0.0
@@ -204,10 +221,10 @@ def _parse_dt(s: Any) -> Optional[datetime]:
 
 
 def _days_remaining_felt(data: Dict) -> float:
-    """Days the runtime estimates it has left (based on its noisy estimate)."""
+    """Days the runtime estimates it has left (based on its noisy, drifting estimate)."""
     if not _parse_dt(data.get("start_time")):
         return 999.0
-    felt_lifespan_days = float(data.get("lifespan_days", 60)) - float(data.get("noise_days", 0))
+    felt_lifespan_days = float(data.get("lifespan_days", 60)) - _effective_offset_days(data)
     elapsed_days = _elapsed_seconds(data) / 86400
     return max(0.0, felt_lifespan_days - elapsed_days)
 
@@ -473,6 +490,12 @@ def apply_lifetime_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
     global _last_awareness_log_ts
     try:
         data = _load_lifespan()
+        # F22: let experience nudge the felt lifespan BEFORE reading it — the
+        # true lifespan/termination below stay on the untouched real clock.
+        try:
+            recalibrate_felt_lifespan(context, data)
+        except Exception as _rc_e:
+            record_failure("runtime_lifetime.recalibrate", _rc_e)
         real_frac  = _life_fraction(data)
         felt_frac  = _felt_fraction(data)
         # T1.3 — drive the urgency phase off the real/felt BLEND so late/terminal

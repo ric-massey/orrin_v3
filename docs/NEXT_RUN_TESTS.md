@@ -316,3 +316,45 @@ three companion docs) can move to `archive/`. Until then, keep them live — the
 is in, the verdict is pending.
 
 *Created 2026-06-19. Companion to `ORRIN_PRODUCTION_REWARD_PLAN_2026-06-18.md` §8.*
+
+---
+
+## 6. Run 5 read-side analysis checks (2026-07-08 addendum)
+
+Not organ fixes — reporting the Run 5 analysis MUST include so the §8 gate can't
+be satisfied by partial truths (from the four 07-05 audit passes; built alongside
+F10–F22 in `RUN5_FIX_IMPLEMENTATION_2026-07-07.md`):
+
+1. **Production reset-safe totals** — sum `production_loop.jsonl` booleans across
+   counter resets; never trust the tail cumulative fields (they reset at relaunch;
+   the 07-05 tail was segment-2 only).
+2. **Funnel wiring** — verify `production_funnel.json` has stages beyond
+   `candidate`, or state explicitly that it's candidate-only.
+3. **Goal identity coverage** — % of live / failed / completed / effect rows with
+   stable ids (F14's observable; target ≥ 95%, no active artifact-gated goal
+   id-less).
+4. **Material class counts** — ledger rows split into readable body vs structural
+   graph effect (causal edges are *not* prose material) vs operational check vs
+   file write; only readable bodies count as synthesis material.
+5. **Material availability + transformation** — credited prose rows whose sidecar
+   body resolves; later artifacts that cite prior hashes / memo paths.
+6. **Memory composition** — instrumentation share of long memory and of the
+   memory graph (F17/F18 observables; instrumentation < 40% of the estate,
+   ≥ ~70% of graph endpoints resolve to live memories).
+7. **Delayed reward by source** — split resolved WAL rows by `resolved_by`:
+   retrieval_A / goal_B_grounded / pruned / pruned_overflow / apply_failed (F15
+   observable; never again 100% flat goal_B).
+8. **Cooldown truth** — recognized executive actions counted separately from
+   actions that actually ran (`cooldown_skipped` in the executive summary; F16
+   observable). Production attempts must correspond to producer runs.
+9. **Classifier agreement** — artifact-gated vs make-shaped vs production handoff
+   vs making-aspiration credit, reported separately (they overlap but don't mean
+   the same thing).
+10. **Speech grounding** — % of replies with a concrete referent (typed intents
+    share_artifact / share_finding / state_blocker / ask_grounded_question vs
+    express_state in the speech log), not just non-duplicate wording (F19).
+11. **Writeback pressure** — writeback rows/1k cycles, source share, % targeting
+    `motivation`, top actions when the writeback-derived prior > 0.10 (07-05:
+    binding wrote back on 9,299/9,300 cycles).
+
+*Added 2026-07-08 alongside the F10–F22 build.*

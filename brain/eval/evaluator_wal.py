@@ -8,7 +8,10 @@
 #   ts          : float — epoch seconds
 #   resolved    : bool  — True once a delayed reward has been applied
 #   reward      : float|null — populated on resolution; null while pending
-#   resolved_by : str|null  — "retrieval_A" | "goal_B" | "pruned"
+#   resolved_by : str|null  — "retrieval_A" | "goal_B_grounded" | "pruned" |
+#                             "pruned_overflow" | "apply_failed" (F15: goal_B pays
+#                             only for a grounded completion strictly after the
+#                             decision — proximity times out to "pruned")
 #   resolved_ts : float|null
 from __future__ import annotations
 from brain.core.runtime_log import get_logger

@@ -63,7 +63,7 @@ _last_narrate = 0.0
 # Log-noise filtering, extracted to acquisition_noise.py (Phase 4.5C).
 # Re-imported for the corpus readers below.
 from brain.cognition.language.acquisition_noise import (  # noqa: E402,F401
-    _is_log_noise, _clean_monologue,
+    _is_log_noise, _clean_monologue, diversity_cap_lines, _diversity_key,
 )
 
 
@@ -156,9 +156,11 @@ def _update_replay(new_text: str) -> str:
         # Scrub telemetry from BOTH old and new text: the already-stored
         # contamination is cleaned on this write, and no decision dump ever
         # trains the organ. Library/book prose passes through untouched.
-        combined = "\n".join(
-            ln for ln in (old + "\n" + new_text).splitlines() if not _is_log_noise(ln)
-        )[-_REPLAY_KEEP:]
+        # F20: then cap near-identical repeats — the organ must never train on
+        # one utterance thousands of times (07-05: "hard to name" 3,976×).
+        _lines = [ln for ln in (old + "\n" + new_text).splitlines()
+                  if not _is_log_noise(ln)]
+        combined = "\n".join(diversity_cap_lines(_lines))[-_REPLAY_KEEP:]
         _REPLAY_FILE.parent.mkdir(parents=True, exist_ok=True)
         _REPLAY_FILE.write_text(combined, encoding="utf-8")
         # Return the interleave sample from the SCRUBBED text, so a replayed slice
@@ -359,14 +361,17 @@ _NARRATE_FRAMES = (
 
 
 def _append_felt(line: str) -> None:
-    """Append one felt-summary line to his clean narrative corpus, capped."""
+    """Append one felt-summary line to his clean narrative corpus, capped.
+    F20: diversity-capped — the same felt sentence never accumulates past the
+    repeat cap (07-05: felt_experience.txt was 484 lines / 40 unique)."""
     old = ""
     try:
         if _FELT_FILE.exists():
             old = _FELT_FILE.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         old = ""
-    combined = (old + line.strip() + "\n")[-_FELT_KEEP:]
+    lines = [ln for ln in old.splitlines() if ln.strip()] + [line.strip()]
+    combined = ("\n".join(diversity_cap_lines(lines)) + "\n")[-_FELT_KEEP:]
     _FELT_FILE.parent.mkdir(parents=True, exist_ok=True)
     _FELT_FILE.write_text(combined, encoding="utf-8")
 
@@ -427,11 +432,30 @@ def _append_narration_pair(thought: Dict, narration: str) -> None:
         if _NARRATION_PAIRS_FILE.exists():
             existing = _NARRATION_PAIRS_FILE.read_text(
                 encoding="utf-8", errors="ignore").splitlines()
+        # F20: the conditioning set gets the same diversity floor as the replay
+        # corpus — a narration already at the repeat cap is not appended again
+        # (07-05: "hard to name" appeared 968× in narration_pairs.jsonl).
+        _key = _diversity_key(narration)
+        _repeats = sum(
+            1 for ln in existing
+            if _diversity_key(_narration_of(ln)) == _key
+        )
+        if _repeats >= 4:
+            return
         existing.append(line)
         _NARRATION_PAIRS_FILE.write_text(
             "\n".join(existing[-_NARRATION_PAIRS_KEEP:]) + "\n", encoding="utf-8")
     except Exception as exc:
         record_failure("acquisition._append_narration_pair.write", exc)
+
+
+def _narration_of(jsonl_line: str) -> str:
+    """The narration text of one narration-pairs JSONL line ('' on junk)."""
+    try:
+        rec = json.loads(jsonl_line)
+        return str(rec.get("narration") or "") if isinstance(rec, dict) else ""
+    except ValueError:
+        return ""
 
 
 def narrate_experience(context) -> str:

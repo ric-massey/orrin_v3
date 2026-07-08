@@ -49,9 +49,12 @@ def test_append_narration_pair_is_bounded(tmp_path, monkeypatch):
     pairs_file = tmp_path / "narration_pairs.jsonl"
     monkeypatch.setattr(acq, "_NARRATION_PAIRS_FILE", pairs_file)
     monkeypatch.setattr(acq, "_NARRATION_PAIRS_KEEP", 10)
-    for i in range(25):
-        acq._append_narration_pair({"i": i}, f"line {i}")
+    # Distinct narrations (F20 dedups repeats by digit-insensitive key, so the
+    # variety must be alphabetic for this size-bound test).
+    letters = "abcdefghijklmnopqrstuvwxy"
+    for ch in letters:
+        acq._append_narration_pair({"c": ch}, f"line about {ch}")
     lines = pairs_file.read_text(encoding="utf-8").splitlines()
     assert len(lines) == 10                       # capped
-    assert json.loads(lines[-1])["narration"] == "line 24"   # newest retained
-    assert json.loads(lines[0])["narration"] == "line 15"    # oldest dropped
+    assert json.loads(lines[-1])["narration"] == "line about y"   # newest retained
+    assert json.loads(lines[0])["narration"] == "line about p"    # oldest dropped

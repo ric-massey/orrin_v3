@@ -23,6 +23,38 @@ _log = get_logger(__name__)
 MAX_GOALS = 15
 
 
+# ── Goal identity (F14, 2026-07-08 addendum) ─────────────────────────────────
+# 31 of 35 live nodes in the 07-05 store had no `id`, so the effect ledger,
+# step-attempt counters, deadline failure, v2 close-mirror and the scoreboard
+# funnel all fell back to different join keys. Every node gets a stable id at
+# load/ingress. The id is DETERMINISTIC (content-hashed from title + creation
+# stamp), so an id-less node on disk resolves to the SAME id on every load even
+# before a writer persists it — a random mint here would change identity per
+# read and make the durable (goal, step) attempt key useless.
+
+def _mint_goal_id(g: Dict[str, Any]) -> str:
+    import hashlib
+    basis = (f"{g.get('title') or g.get('name') or g.get('description') or ''}"
+             f"|{g.get('timestamp') or g.get('created_at') or ''}")
+    if basis == "|":
+        basis = "|".join(sorted(str(k) for k in g.keys()))
+    return "g_" + hashlib.md5(basis.encode("utf-8", errors="replace")).hexdigest()[:12]
+
+
+def stamp_goal_ids(nodes: Any) -> int:
+    """Stamp a stable id on every id-less node in a goal tree (recursive).
+    Returns how many nodes were stamped."""
+    stamped = 0
+    for n in nodes or []:
+        if not isinstance(n, dict):
+            continue
+        if not n.get("id"):
+            n["id"] = _mint_goal_id(n)
+            stamped += 1
+        stamped += stamp_goal_ids(n.get("subgoals") or [])
+    return stamped
+
+
 
 
 
@@ -87,7 +119,9 @@ def load_goals() -> List[Dict[str, Any]]:
             _norm(sub)
         return g
 
-    return [_norm(g) for g in goals if isinstance(g, dict)]
+    tree = [_norm(g) for g in goals if isinstance(g, dict)]
+    stamp_goal_ids(tree)   # F14: identity at the load chokepoint (deterministic)
+    return tree
 
 
 _TERMINAL_STATUSES = {"completed", "failed", "abandoned", "cancelled"}
@@ -209,6 +243,8 @@ def add_goal(goal: Dict[str, Any], parent_name: Optional[str] = None) -> Dict[st
     g.setdefault("timestamp", now)
     g.setdefault("last_updated", now)
     g.setdefault("history", [{"event": "created", "timestamp": now}])
+    if not g.get("id"):
+        g["id"] = _mint_goal_id(g)   # F14: identity at ingress
 
     parent = _find_goal_by_name(full, parent_name) if parent_name else None
     if not parent:

@@ -61,6 +61,39 @@ def _is_log_noise(line: str) -> bool:
     return False
 
 
+# F20 (2026-07-08 addendum): diversity floor for the training corpora. The
+# 07-05 replay corpus was 5,309 lines with only 163 unique ("hard to name"
+# 3,976×) and native_lm.pt trained on it — the stuck phrase was written into
+# the language substrate itself, where no live talk-policy fix can unlearn it.
+# No single utterance may repeat past this cap in a training corpus.
+_DIVERSITY_LINE_CAP = 4
+
+_NORM_NUM_RE = re.compile(r"\d+(?:\.\d+)?")
+
+
+def _diversity_key(line: str) -> str:
+    """Repeat-identity for a corpus line: case/digits/whitespace-insensitive."""
+    s = _NORM_NUM_RE.sub("#", (line or "").strip().lower())
+    return re.sub(r"\s+", " ", s)[:160]
+
+
+def diversity_cap_lines(lines, cap: int = _DIVERSITY_LINE_CAP):
+    """Cap repeats of essentially-identical lines, preferring the most recent
+    occurrences (scan from the end), preserving original order of the kept."""
+    counts: dict = {}
+    keep_flags = []
+    for line in reversed(list(lines)):
+        key = _diversity_key(line)
+        if not key:
+            keep_flags.append(False)
+            continue
+        n = counts.get(key, 0)
+        counts[key] = n + 1
+        keep_flags.append(n < cap)
+    keep_flags.reverse()
+    return [ln for ln, keep in zip(lines, keep_flags) if keep]
+
+
 def _clean_monologue(text: str) -> str:
     """Keep only natural-language lines from his inner monologue — drop logs."""
     out = []

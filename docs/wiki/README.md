@@ -1,43 +1,48 @@
 # Wiki Index
 
-This index lists the created wiki pages and links to them.
+`docs/wiki/` is the source copy of the [GitHub Wiki](https://github.com/ric-massey/orrin_v3/wiki).
+Edit here, then sync to the wiki repository (`orrin_v3.wiki.git`). `_Sidebar.md` is the wiki's
+navigation sidebar.
 
-- Home
-- Glossary of Terms
-- FAQ
-- Quick Navigation Guide
-- What is Orrin?
-- The Cognitive Loop
-- Symbolic-First Design
-- Workspace & Ignition
-- Control Signals (Overview)
-- Host Coupling
-- Loop Phases: Detailed Walkthrough
-- Control Signals: Deep Dive
-- Memory System
-- Goals: Executive vs. Goals Daemon
-- Symbolic Reasoning
-- Peers (Outside Observers)
-- Action Selection & Bandit Learning
-- Learning & Adaptation
-- Control Signals Module
-- Cognition Module
-- Thinking / Action Selection
-- Symbolic Reasoning Subsystem
-- Memory System Subsystem
-- Goals Daemon Subsystem
-- Host Coupling & Supervisor
-- Peers Subsystem
-- Backend & Telemetry
-- LLM Integration
-- Adding a Custom Peer
-- Tuning Control Signal Setpoints
-- Extending Symbolic Operations
-- Debugging Memory Issues
-- Writing a Custom Cognitive Function
-- Configuration Reference
-- Running with Docker
-- Remote Access & Tunneling
-- Scientific Foundations
-- Benchmarks & Verification
+## Entry points
 
+Home · What is Orrin? · Quick Navigation Guide · Glossary · FAQ
+
+## Conceptual overview
+
+The Cognitive Loop · Symbolic-First Design · Workspace & Ignition · Control Signals (Overview) ·
+Host Coupling
+
+## Architecture
+
+Loop Phases: Detailed · Control Signals: Deep Dive · Memory System · Goals: Executive vs. Daemon ·
+Symbolic Reasoning · Peers · Action Selection & Bandit · Learning & Adaptation ·
+Binding & Workspace Writeback
+
+## Subsystem deep dives
+
+Control Signals Module · Cognition Module · Thinking/Action Selection · Symbolic Reasoning
+Subsystem · Memory System Subsystem · Goals Daemon Subsystem · Host Coupling & Supervisor ·
+Peers Subsystem · Backend & Telemetry · LLM Integration
+
+## Production and expression
+
+Production & the Effect Ledger · Quality Standard · Expression Membrane · Self-Code & Extension ·
+Native Language Model · Existence & Lifecycle
+
+## UI
+
+Face & Brain UI
+
+## How-to guides
+
+Adding a Custom Peer · Tuning Control Signals · Extending Symbolic Operations · Debugging Memory
+Issues · Writing a Custom Cognitive Function
+
+## Operations
+
+Configuration Reference · Running with Docker · Remote Access & Tunneling · Desktop Packaging
+
+## Research & evidence
+
+Scientific Foundations · Benchmarks & Verification

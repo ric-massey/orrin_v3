@@ -1,30 +1,36 @@
 ## Quick orientation for AI coding agents
 
-This file captures the minimal, actionable knowledge an AI assistant needs to be productive in Orrin 2.0.
-Keep suggestions small, testable, and aligned with existing patterns.
+This file captures the minimal, actionable knowledge an AI assistant needs to be productive in Orrin
+(v3). See `CLAUDE.md` for the fuller agent guide. Keep suggestions small, testable, and aligned with
+existing patterns.
 
 1) Big picture (how the system is organized)
-- Main loop / orchestrator: `main.py` drives the runtime; `reaper/` contains watchdog logic that can shut down the process when invariants fail.
+- Main loop / orchestrator: `main.py` drives the runtime; `supervisor/` + `watchdogs.py` contain the
+  liveness/error/resource/lifespan watchdogs that can pause or shut down the process when invariants fail.
 - Memory subsystem: `memory/` contains an always-on daemon that tails a WAL, embeds items, compacts, and serves retrievals (`memory/memory_daemon.py`, `memory/ingest.py`, `memory/retrieval.py`).
-- Goals subsystem: `goals/` is the planner/executor. `goals/goals_daemon.py` scans for NEW goals; `goals/runner.py` executes steps via handlers registered in `goals/registry.py` and `goals/auto/handlers/`.
-- LLM surface: `brain/utils/generate_response.py` is the canonical wrapper for OpenAI Responses API calls and handles retries, prompt logging, and structured output flags. (`main.py` puts `brain/` on `sys.path`, so it is imported as `utils.generate_response`.)
+- Goals subsystem: `goals/` is the planner/executor. `goals/goals_daemon.py` scans for NEW goals; `goals/runner.py` executes steps via handlers registered in `goals/registry.py`.
+- LLM surface: `brain/utils/generate_response.py` is the single gated chokepoint for LLM calls across
+  pluggable providers (OpenAI / Anthropic / Gemini / local, in `brain/utils/llm_providers/`). It handles
+  the tool-only allowlist, fail-closed contract, retries, and prompt logging. (`main.py` puts `brain/` on
+  `sys.path`, so it is imported as `utils.generate_response`.)
 - Observability/UI: `observability/` provides metrics; `frontend/` + `backend/` provide the Face & Brain UI (telemetry bridge). Dashboards poll local endpoints (/metrics, /memory/health).
 
 2) Key files to inspect when changing behavior
 - LLM: `brain/utils/generate_response.py` — env vars: `OPENAI_API_KEY`, `ORRIN_LLM_TOOL_ONLY` (defaults on; gates which callers may invoke the LLM), `ORRIN_LLM_DAILY_TOKEN_BUDGET` (router spend cap), `ORRIN_STRICT` (dev mode: re-raise swallowed programmer errors).
 - Goals: `goals/goals_daemon.py`, `goals/runner.py`, `goals/policy.py`, `goals/registry.py`, `goals/store.py`, `goals/wal.py`.
 - Memory: `memory/memory_daemon.py`, `memory/ingest.py`, `memory/wal.py`, `memory/compaction.py`, `memory/retrieval.py`.
-- Reaper: `reaper/reaper.py`, `reaper/liveness_cycle.py` — these implement safety checks and lifecycle constraints.
+- Supervisor: `supervisor/supervisor.py`, `supervisor/liveness_cycle.py`, `watchdogs.py` — these implement safety checks and lifecycle constraints.
 - Data layout: `data/` (goal state: `data/goals/state.jsonl`, snapshots, WALs, and `data/logs` for runtime logs and LLM prompt logs).
 
 3) Project-specific conventions and patterns
 - WAL-first persistence: many subsystems write/read from write-ahead logs and snapshots. Prefer small, idempotent writes and ensure readers can tail the WAL.
-- Daemon naming: long-running components end with `_daemon.py` and are expected to be resilient, idempotent, and to signal Reaper on fatal conditions.
+- Daemon naming: long-running components end with `_daemon.py` and are expected to be resilient, idempotent, and to signal the supervisor on fatal conditions.
+- State paths: resolve through `brain/paths.py` constants, never hand-built or `__file__`-relative paths (a hardcoded path bypasses `ORRIN_DATA_DIR` and breaks test isolation).
 - Handlers & registration: goal handlers live under `goals/auto/handlers/*` and are discovered/registered via `goals/registry.py` — follow that convention when adding new handlers.
 - LLM calls: Use `from utils.generate_response import generate_response` (resolves to `brain/utils/generate_response.py`) to centralize retries, logging, and config handling. The wrapper accepts `config={'expect_json': True}` for structured outputs. Note: callers are allowlisted (`ORRIN_LLM_TOOL_ONLY`); unknown callers are refused by default.
 
 4) How to run, test, and debug (developer workflows)
-- Environment: Python 3.11+ recommended. Create a venv and install deps:
+- Environment: Python 3.10+ required. Create a venv and install deps:
   - `python -m venv .venv && source .venv/bin/activate`
   - `pip install -U pip && pip install -r requirements.txt`
 - Tests: run from repo root with pytest. A minimal command: `python -m pytest -q` (repo includes `pytest.ini`).

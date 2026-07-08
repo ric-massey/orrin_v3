@@ -1,5 +1,6 @@
 # Orrin
 
+[![Tests](https://img.shields.io/github/actions/workflow/status/ric-massey/orrin_v3/tests.yml?branch=main&style=flat-square&label=tests)](https://github.com/ric-massey/orrin_v3/actions/workflows/tests.yml)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green?style=flat-square)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Experimental-orange?style=flat-square)](https://github.com/ric-massey/orrin_v3)

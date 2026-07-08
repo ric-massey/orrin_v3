@@ -11,12 +11,12 @@
 # during pretraining), then frozen — the model's vocabulary is tied to it.
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Iterable
 
+from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
 
-_PATH = Path(__file__).resolve().parents[2] / "data" / "language" / "tokenizer.json"
+_PATH = DATA_DIR / "language" / "tokenizer.json"
 _VOCAB_SIZE = 8192
 
 _tok = None

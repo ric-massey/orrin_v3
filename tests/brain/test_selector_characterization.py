@@ -20,8 +20,19 @@ import random
 import pytest
 
 import brain.think.think_utils.select_function as sf
+from brain.utils.embed_similarity import embeddings_available
 
 _SEED = 12345
+
+# Cases whose pinned decision recruits `research_topic` via the embedder's
+# semantic capability↔goal match (MiniLM). When the model can't load (offline
+# CI / HF rate-limit), `_capability_overlap` degrades to keyword-only and these
+# legitimately resolve to a different function — so the golden only holds with
+# the embedder present. Skip (don't fail) when it's genuinely unavailable; CI
+# prefetches the model so the real embeddings-on path is what normally runs.
+_EMBEDDING_DEPENDENT = frozenset(
+    {"deadline", "goal_research", "meta_rut", "neuro_focus", "suppress_delib"}
+)
 
 _GOAL_RESEARCH = {
     "title": "understand quantum entanglement",
@@ -146,6 +157,11 @@ def _warm_selector():
 @pytest.mark.parametrize("name", sorted(_CASES))
 def test_select_function_decision_is_pinned(name):
     ctx, expected = _CASES[name]
+    if name in _EMBEDDING_DEPENDENT and not embeddings_available():
+        pytest.skip(
+            "golden captured with MiniLM available; embedder unavailable "
+            "(offline / HF rate-limited) — capability match degrades to keyword-only"
+        )
     ctx = copy.deepcopy(ctx)
     # Disable the stochastic ε-exploration branch: it can override the argmax with
     # a random dormant safe fn whose pick depends on module-level cache state other

@@ -30,6 +30,21 @@ jobs:
           # but installed here so the real-SDK adapter verification actually runs in CI.
           pip install anthropic google-genai
 
+      # The selector characterization goldens are captured with the embedder
+      # available (the real-runtime path). MiniLM is fetched from the HF Hub on
+      # first use; unauthenticated CI IPs get rate-limited, the load throws, and
+      # embed_similarity latches its failure flag for the whole session — which
+      # silently degrades _capability_overlap to keyword-only and flips pinned
+      # decisions. Cache + retry the fetch so the model is reliably present.
+      - name: Cache embedding model (MiniLM)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-all-MiniLM-L6-v2-v1
+
+      - name: Prefetch embedding model
+        run: python .github/scripts/prefetch_models.py
+
       - name: Ruff (high-signal lint gate)
         run: python -m ruff check .
 
@@ -59,6 +74,17 @@ jobs:
           pip install -r requirements.txt -r backend/requirements.txt
           pip install pytest coverage
           pip install anthropic google-genai
+
+      # See the pytest job: the embedder must be present so characterization
+      # goldens run in the real embeddings-on path, not the keyword fallback.
+      - name: Cache embedding model (MiniLM)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-all-MiniLM-L6-v2-v1
+
+      - name: Prefetch embedding model
+        run: python .github/scripts/prefetch_models.py
 
       - name: Run suite under coverage
         run: |

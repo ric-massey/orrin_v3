@@ -37,8 +37,8 @@ _HOME_DIRS = {
 }
 _HOME_ROOT_FILES = {
     ".dockerignore", ".env", ".env.example", ".gitignore",
-    "Dockerfile", "LICENSE", "ORRIN_ACTIVITY_REPORT.md", "README.md",
-    "TEMPLATES.md", "docker-compose.yml", "expose_orrin.command", "main.py",
+    "CONTRIBUTING.md", "Dockerfile", "LICENSE", "README.md", "SECURITY.md",
+    "docker-compose.yml", "expose_orrin.command", "main.py",
     "pyproject.toml", "pytest.ini", "requirements.txt", "reset_orrin.py",
     "run_orrin.bat", "run_orrin.sh", "start_orrin.command", "watchdogs.py",
 }

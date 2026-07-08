@@ -20,7 +20,7 @@ Audience
 - Operators: deployment, telemetry, and host coupling guidance
 
 Source and maintenance
-- Origin: based on WIKI_STRUCTURE.md in the repository root.
+- Origin: based on the WIKI_STRUCTURE.md blueprint (now in `docs/archive/`).
 - Maintenance: update wiki pages when code or design changes. Use links to code pointers in each page.
 
 ---

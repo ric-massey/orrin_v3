@@ -83,6 +83,8 @@ brain/data/language/
 brain/data/_archive/
 brain/data/rotated/
 brain/data/notes/
+brain/data/effect_artifacts/
+brain/data/tracked_work/
 brain/data/*.jsonl
 brain/data/*.txt
 

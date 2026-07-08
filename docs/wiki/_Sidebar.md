@@ -2,6 +2,7 @@
 
 ### Start
 - [Home](Home)
+- [Getting Started](Getting_Started)
 - [What is Orrin?](What_is_Orrin)
 - [Quick Navigation](Quick_Navigation_Guide)
 - [FAQ](FAQ)
@@ -38,11 +39,17 @@
 - [Docker](Running_with_Docker)
 - [Remote Access](Remote_Access_Tunneling)
 - [Desktop Packaging](Desktop_Packaging)
+- [Security Model](Security_Model)
 - [Benchmarks](Benchmarks_and_Verification)
+- [Troubleshooting](Troubleshooting)
 - [Debugging Memory](Debugging_Memory_Issues)
 
 ### Development
+- [Contributing](Contributing)
 - [Cognition Module](Cognition_Module)
 - [Custom Cognitive Function](Writing_Custom_Cognitive_Function)
 - [Extending Symbolic Ops](Extending_Symbolic_Operations)
 - [Custom Peer](Adding_Custom_Peer)
+
+### Project
+- [Roadmap & Status](Roadmap_and_Status)

@@ -6,7 +6,7 @@ navigation sidebar.
 
 ## Entry points
 
-Home · What is Orrin? · Quick Navigation Guide · Glossary · FAQ
+Home · Getting Started · What is Orrin? · Quick Navigation Guide · Glossary · FAQ
 
 ## Conceptual overview
 
@@ -41,7 +41,12 @@ Issues · Writing a Custom Cognitive Function
 
 ## Operations
 
-Configuration Reference · Running with Docker · Remote Access & Tunneling · Desktop Packaging
+Configuration Reference · Running with Docker · Remote Access & Tunneling · Desktop Packaging ·
+Security Model · Troubleshooting
+
+## Project
+
+Roadmap & Status · Contributing
 
 ## Research & evidence
 

@@ -1,30 +1,51 @@
 # Loop Phases: Detailed Walkthrough
 
-Perceive
-- Inputs: filesystem events, socket messages, UI interactions, host telemetry.
-- Implementation notes: non-blocking IO, time budget enforcement.
+A stage-by-stage companion to [The Cognitive Loop](The_Cognitive_Loop). Each cycle of
+`brain/ORRIN_loop.py` runs these phases in order; the whole substrate runs every cycle, but
+*deliberate* cognition only when the ignition gate fires.
 
-Recall
-- Embedding-based retrieval with recency bias; fallback token overlap.
-- Memory DAOs expose top-K retrieval APIs.
+### 1. Perceive
+Non-blocking gather of filesystem changes (`fs_perception.py`), UI/agent events, incoming messages,
+and host telemetry, under a time budget so perception can't stall the loop.
 
-Prepare Workspace
-- Subsystems propose actions as candidate objects with metadata (priority, expected cost, prerequisites).
+### 2. Recall
+Embedding-based retrieval (similarity + recency + per-memory strength), with a keyword-overlap
+fallback when embeddings are unavailable. See [Memory System](Memory_System).
 
-Ignition
-- Deliberation gate evaluates proposals, control signals, and resource budgets.
+### 3. Prepare workspace
+Subsystems emit candidate contents; **binding** composes co-occurring fragments into unified
+situation candidates. All candidates enter the salience competition
+([Binding and Workspace Writeback](Binding_and_Workspace_Writeback)).
 
-Select Function/Action
-- Bandit selector ranks functions based on historical reward and exploration policy (UCB-like).
+### 4. Ignition
+`should_think()` weighs salience, uncertainty, control-signal spikes, prediction error, goal drift,
+and stagnation to decide reactive vs. deliberate. A periodic floor prevents indefinite silence.
 
-Execute
-- Functions execute within sandboxes, report effects and produce reward signals.
+### 5. Select function/action
+The contextual bandit scores functions from learned value plus control signals, demands, the
+workspace prior, and predicted cost; the action arbiter resolves the pick
+([Action Selection and Bandit](Action_Selection_and_Bandit)).
 
-Reward Accounting
-- Immediate reward and delayed evaluation via evaluator daemon reconciles long-term outcomes.
+### 6. Execute
+The chosen function runs; generated code runs in a sandbox (`sandbox_runner.py`). Durable outputs
+are recorded on the [effect ledger](Production_and_Effect_Ledger).
 
-Persist & Maintenance
-- WAL writes and snapshotting ensure durability.
+### 7. Reward accounting
+Immediate reward is assigned now (`finalize_cycle`), and delayed credit is queued for the evaluator
+daemons to reconcile later ([Learning and Adaptation](Learning_and_Adaptation)).
 
-Idle/Consolidate
-- Background embedding, clustering, and index updates.
+### 8. Persist
+Durable state and WAL checkpoints are written; goal-step attempts are persisted so a restart can't
+desync progress.
+
+### 9. Maintain
+Health checks, housekeeping, and supervisor heartbeats.
+
+### 10. Idle / consolidate
+At a low-power cadence: memory consolidation, replay, embedding pipeline work, and closed-time
+accounting.
+
+## Code pointers
+
+- `brain/ORRIN_loop.py`, `brain/loop/` — the loop and phase implementations
+- `brain/loop/deliberate.py` — the deliberate path taken on ignition

@@ -14,6 +14,7 @@ responds to the machine it runs on.
 
 ## Start Here
 
+- [Getting Started](Getting_Started.md) — install, run, and read the UI in your first hour
 - [What is Orrin?](What_is_Orrin.md)
 - [The Cognitive Loop](The_Cognitive_Loop.md)
 - [Quick Navigation Guide](Quick_Navigation_Guide.md)
@@ -60,19 +61,23 @@ responds to the machine it runs on.
 - [Running with Docker](Running_with_Docker.md)
 - [Remote Access & Tunneling](Remote_Access_Tunneling.md)
 - [Desktop Packaging](Desktop_Packaging.md)
+- [Security Model](Security_Model.md)
 - [Benchmarks and Verification](Benchmarks_and_Verification.md)
+- [Troubleshooting](Troubleshooting.md)
 - [Debugging Memory Issues](Debugging_Memory_Issues.md)
 
 ## Development
 
+- [Contributing](Contributing.md)
 - [Cognition Module](Cognition_Module.md)
 - [Writing a Custom Cognitive Function](Writing_Custom_Cognitive_Function.md)
 - [Extending Symbolic Operations](Extending_Symbolic_Operations.md)
 - [Adding a Custom Peer](Adding_Custom_Peer.md)
 - [Tuning Control Signals](Tuning_Control_Signals.md)
 
-## Research
+## Project
 
+- [Roadmap & Status](Roadmap_and_Status.md)
 - [Scientific Foundations](Scientific_Foundations.md)
 
 Source and maintenance: this wiki's source of truth is `docs/wiki/` in the main repository

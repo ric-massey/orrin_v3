@@ -5,6 +5,8 @@ of hiding behavior in a chat transcript. It reads the telemetry stream from `bac
 [Backend & Telemetry](Backend_Telemetry.md)); in the packaged desktop app it runs in a native
 pywebview window over an in-process bridge with no open port.
 
+![The Learning room, showing belief and behavior changes as before→after→because diffs](images/orrin_learning_ui.png)
+
 ## The rooms (`frontend/src/pages/`)
 
 | Room | What it shows |

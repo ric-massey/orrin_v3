@@ -3,34 +3,63 @@ import { colorFor } from "@/lib/cognitive";
 import { FnCatalog } from "@/lib/telemetry";
 
 const ANCHOR_R = 2.0;
-const NODE_R = 2.75;
-const ROAD_R = NODE_R - 0.34; // roads ride a shell just UNDER the nodes
+export const NODE_R = 2.75;
+/** The opaque core globe — sits under the node shell, occludes the far hemisphere. */
+export const CORE_R = 2.45;
+/** Default camera distance — far enough that the globe + anchor labels breathe. */
+export const CAM_Z = 8.4;
 
-// Great-circle arc on the inner road shell — clean gray/white "roads" the nodes
-// sit on top of, hugging the surface (no flashy arch).
-export function arcPoints(a: THREE.Vector3, b: THREE.Vector3, n = 16): THREE.Vector3[] {
-  const da = a.clone().normalize();
-  const db = b.clone().normalize();
+const GOLDEN = Math.PI * (3 - Math.sqrt(5));
+
+/**
+ * Flight-path arc between two nodes: starts and ends AT the node positions and
+ * lifts above the shell in between — short intra-cluster hops hug the surface,
+ * long cross-sphere transitions arc high enough to clear the globe (the roads
+ * used to ride a shell *below* the nodes, so they never visually touched what
+ * they connect). Slerp for direction + a sine-bumped radial profile; adaptive
+ * tessellation so long arcs stay smooth and short ones stay cheap.
+ */
+export function arcPoints(a: THREE.Vector3, b: THREE.Vector3): THREE.Vector3[] {
+  const ra = a.length() || NODE_R;
+  const rb = b.length() || NODE_R;
+  const da = a.clone().divideScalar(ra);
+  const db = b.clone().divideScalar(rb);
   const dot = THREE.MathUtils.clamp(da.dot(db), -1, 1);
   const omega = Math.acos(dot);
-  if (omega < 1e-3) return [da.multiplyScalar(ROAD_R), db.multiplyScalar(ROAD_R)];
+  const n = Math.max(10, Math.min(56, Math.round(omega * 34) + 8));
+  const lift = 0.05 + 0.42 * Math.pow(omega / Math.PI, 0.9);
   const so = Math.sin(omega);
   const pts: THREE.Vector3[] = [];
   for (let i = 0; i <= n; i++) {
     const t = i / n;
-    const s1 = Math.sin((1 - t) * omega) / so;
-    const s2 = Math.sin(t * omega) / so;
-    const p = da.clone().multiplyScalar(s1).add(db.clone().multiplyScalar(s2));
-    pts.push(p.multiplyScalar(ROAD_R));
+    let dir: THREE.Vector3;
+    if (so < 1e-4) {
+      dir = da.clone().lerp(db, t).normalize();
+    } else {
+      const s1 = Math.sin((1 - t) * omega) / so;
+      const s2 = Math.sin(t * omega) / so;
+      dir = da.clone().multiplyScalar(s1).add(db.clone().multiplyScalar(s2));
+    }
+    const r = THREE.MathUtils.lerp(ra, rb, t) + Math.sin(Math.PI * t) * lift;
+    pts.push(dir.multiplyScalar(r));
   }
   return pts;
 }
 
-// Gray→white by transition strength: faint paths are a dim gray, its strong loops
-// lighten toward soft white. Kept muted so the roads sit quietly under the nodes.
-export function roadColor(w: number): string {
-  const g = Math.round(90 + Math.min(120, w * 280)); // 90 (dim gray) → ~210 (soft white)
-  return `rgb(${g},${g + 4},${g + 9})`;
+/**
+ * Road styling normalized against the strongest visible edge, so the map reads
+ * the same on a young run (tiny bonuses) and a mature one: the busiest routes
+ * are always bright silver-blue trunks, one-offs stay faint hairlines.
+ */
+export function roadStyle(w: number, wMax: number) {
+  const s = wMax > 0 ? Math.pow(THREE.MathUtils.clamp(w / wMax, 0, 1), 0.6) : 0;
+  const g = Math.round(110 + s * 130);
+  return {
+    color: `rgb(${g},${Math.min(255, g + 7)},${Math.min(255, g + 22)})`,
+    width: 0.6 + s * 3.0,
+    opacity: 0.14 + s * 0.46,
+    strength: s,
+  };
 }
 
 // ── settings (fully customizable, persisted) ──────────────────────────────────
@@ -86,34 +115,39 @@ export function buildLayout(cat: FnCatalog): Layout {
   subs.forEach((s, i) => {
     const y = 1 - (i / Math.max(1, N - 1)) * 2;
     const r = Math.sqrt(Math.max(0, 1 - y * y));
-    const phi = i * Math.PI * (3 - Math.sqrt(5));
+    const phi = i * GOLDEN;
     anchors[s] = new THREE.Vector3(Math.cos(phi) * r, y, Math.sin(phi) * r).multiplyScalar(ANCHOR_R);
   });
   const nodes: LNode[] = [];
   const byName = new Map<string, LNode>();
-  let gi = 0;
-  for (const s of subs) {
+  subs.forEach((s, si) => {
     const aDir = anchors[s].clone().normalize();
     const t1 = new THREE.Vector3().crossVectors(aDir, new THREE.Vector3(0, 1, 0));
     if (t1.lengthSq() < 1e-4) t1.set(1, 0, 0);
     t1.normalize();
     const t2 = new THREE.Vector3().crossVectors(aDir, t1).normalize();
-    for (const name of cat.subsystems[s]) {
-      gi++;
-      const ang = rng(gi) * Math.PI * 2;
-      const rad = 0.12 + rng(gi + 7) * 0.55;
+    // Phyllotaxis disc per cluster: deterministic, evenly packed, no overlaps —
+    // the cluster's footprint grows with member count so dense subsystems get
+    // room instead of piling up. Nodes sit EXACTLY on the shell (the old random
+    // radial jitter is what made the roads look detached).
+    const members = [...cat.subsystems[s]].sort();
+    const clusterR = Math.min(0.82, 0.16 + Math.sqrt(members.length) * 0.075);
+    const spin = rng(si + 1) * Math.PI * 2; // per-cluster rotation so discs don't align
+    members.forEach((name, i) => {
+      const ang = spin + i * GOLDEN;
+      const rad = clusterR * Math.sqrt((i + 0.5) / members.length);
       const dir = aDir
         .clone()
         .add(t1.clone().multiplyScalar(Math.cos(ang) * rad))
         .add(t2.clone().multiplyScalar(Math.sin(ang) * rad))
         .normalize();
-      const pos = dir.multiplyScalar(NODE_R + (rng(gi + 13) - 0.5) * 0.25);
+      const pos = dir.multiplyScalar(NODE_R);
       const info = cat.functions[name];
       const node: LNode = { name, sub: s, color: colorFor(s), pos, count: info?.count ?? 0, reward: info?.avg_reward ?? 0 };
       nodes.push(node);
       byName.set(name, node);
-    }
-  }
+    });
+  });
   return { nodes, byName, anchors };
 }
 

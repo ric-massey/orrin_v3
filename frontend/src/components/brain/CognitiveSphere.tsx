@@ -13,7 +13,7 @@ import { useLexicon } from "@/lib/lexicon";
 import { useNavTarget } from "@/lib/navigate";
 import { FnCatalog, TelemetryState } from "@/lib/telemetry";
 import { PanelSubtitle } from "./Lex";
-import { type Settings, SKEY, loadSettings, buildLayout } from "./cognitiveSphere/layout";
+import { CAM_Z, type Settings, SKEY, loadSettings, buildLayout } from "./cognitiveSphere/layout";
 import { ControlsPanel } from "./cognitiveSphere/ControlsPanel";
 import { CognitionExplorer } from "./cognitiveSphere/CognitionExplorer";
 import { Scene } from "./cognitiveSphere/Scene";
@@ -129,7 +129,7 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
           <PanelInfo
             title="Function-call graph"
             perspective="dev-only"
-            what="Every cognitive function it can run, as a 3D map grouped by subsystem. The white comet is the deliberate (attention-winning) pick this cycle; the amber pulse is the executive lane quietly advancing a goal step in the background. Node size grows with real usage; the gray 'roads' are learned transitions between functions. Click any node to read its code and stats."
+            what="Every cognitive function it can run, as a 3D map grouped by subsystem. The white comet is the deliberate (attention-winning) pick this cycle; the amber pulse is the executive lane quietly advancing a goal step in the background. Node size grows with real usage; the silver roads are learned transitions — thicker and brighter where cognition actually travels, with pulses flowing in the transition's direction. Click any node to read its code and stats."
             source="GET /api/catalog (function registry + live decision_stats) · active lights from the telemetry socket"
             good="Two lanes visibly alive: the comet moving every ~20s cycle, and node sizes growing where it actually spends its cognition."
             src={{ file: "brain/registry/function_catalog.py", start: 1, end: 60, label: "build_catalog" }}
@@ -224,7 +224,7 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
                 </div>
               }
             >
-              <Canvas camera={{ position: [0, 0, 7.5], fov: 50 }} dpr={[1, 2]}>
+              <Canvas camera={{ position: [0, 0, CAM_Z], fov: 50 }} dpr={[1, 2]}>
                 <color attach="background" args={["#0a0d14"]} />
                 <Scene
                   layout={layout}

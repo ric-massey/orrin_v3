@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Html, Line, OrbitControls } from "@react-three/drei";
+import { Html, Line, OrbitControls, Stars } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { colorFor } from "@/lib/cognitive";
 import { FnCatalog, FnEvent } from "@/lib/telemetry";
-import { type Layout, type Settings, arcPoints, roadColor, sizeOf } from "./layout";
+import { CAM_Z, CORE_R, NODE_R, type Layout, type Settings, arcPoints, roadStyle, sizeOf } from "./layout";
 
 function CameraRig({ focus, resetTick, controls }: { focus: THREE.Vector3 | null; resetTick: number; controls: React.MutableRefObject<any> }) {
   const { camera } = useThree();
   const target = useRef(new THREE.Vector3());
-  const want = useRef(new THREE.Vector3(0, 0, 7.5));
+  const want = useRef(new THREE.Vector3(0, 0, CAM_Z));
   const until = useRef(0); // animate only briefly, then fully release control to OrbitControls
   const first = useRef(true);
   useEffect(() => {
@@ -23,7 +23,7 @@ function CameraRig({ focus, resetTick, controls }: { focus: THREE.Vector3 | null
       want.current.copy(focus).multiplyScalar(1.9);
     } else {
       target.current.set(0, 0, 0);
-      want.current.set(0, 0, 7.5);
+      want.current.set(0, 0, CAM_Z);
     }
     until.current = performance.now() + 650;
   }, [focus, resetTick]);
@@ -35,10 +35,113 @@ function CameraRig({ focus, resetTick, controls }: { focus: THREE.Vector3 | null
   return null;
 }
 
-// ── traveling light (follows real chain edges when they exist) ────────────────
-function TravelingLight({ layout, edgeSet, activeFn, fnRecent }: { layout: Layout; edgeSet: Set<string>; activeFn: string | null; fnRecent: FnEvent[] }) {
+// ── the core globe ────────────────────────────────────────────────────────────
+// An opaque, near-black glass body under the node shell: gives the map an actual
+// planet to sit on, occludes the far hemisphere (so the view reads as a surface,
+// not a tangle of both sides at once — this also stops phantom hovers on nodes
+// you can't see), and carries a soft fresnel rim + a faint graticule so scale
+// and rotation are always legible.
+const GLOBE_VERT = /* glsl */ `
+  varying vec3 vN;
+  varying vec3 vV;
+  varying vec3 vP;
+  void main() {
+    vec4 wp = modelMatrix * vec4(position, 1.0);
+    vN = normalize(mat3(modelMatrix) * normal);
+    vV = normalize(cameraPosition - wp.xyz);
+    vP = normalize(position);
+    gl_Position = projectionMatrix * viewMatrix * wp;
+  }
+`;
+const GLOBE_FRAG = /* glsl */ `
+  uniform vec3 uBase;
+  uniform vec3 uRim;
+  uniform vec3 uGridColor;
+  uniform float uGrid;
+  varying vec3 vN;
+  varying vec3 vV;
+  varying vec3 vP;
+  float gridLine(float x, float period) {
+    float h = abs(fract(x / period + 0.5) - 0.5) * period; // distance to nearest line
+    float aa = min(fwidth(x), 0.02) * 1.3;                 // cap: atan seam makes fwidth explode
+    return 1.0 - smoothstep(0.0, aa + 0.005, h);
+  }
+  void main() {
+    float ndv = clamp(dot(normalize(vN), normalize(vV)), 0.0, 1.0);
+    float fres = pow(1.0 - ndv, 2.0);
+    float lat = asin(clamp(vP.y, -1.0, 1.0));
+    float lon = atan(vP.z, vP.x);
+    float g = max(gridLine(lat, ${(Math.PI / 6).toFixed(6)}), gridLine(lon, ${(Math.PI / 6).toFixed(6)}));
+    float gridVis = (1.0 - fres) * uGrid;
+    vec3 col = uBase + uRim * fres + uGridColor * g * gridVis;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function useGlobeMaterial() {
+  return useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        vertexShader: GLOBE_VERT,
+        fragmentShader: GLOBE_FRAG,
+        uniforms: {
+          uBase: { value: new THREE.Color("#101828") },
+          uRim: { value: new THREE.Color("#4571b5") },
+          uGridColor: { value: new THREE.Color("#31517e") },
+          uGrid: { value: 0.5 },
+        },
+      }),
+    [],
+  );
+}
+
+// ── directional flow on the busiest roads ─────────────────────────────────────
+// Small additive pulses that travel from→to along the strongest learned
+// transitions: the roads stop being static string and read as *directed traffic*.
+type Road = { key: string; points: THREE.Vector3[]; color: string; width: number; opacity: number; strength: number };
+
+const FLOW_MAX = 14;
+function FlowDots({ roads }: { roads: Road[] }) {
+  const top = useMemo(
+    () => roads.filter((r) => r.strength > 0.22).sort((a, b) => b.strength - a.strength).slice(0, FLOW_MAX),
+    [roads],
+  );
+  const refs = useRef<(THREE.Mesh | null)[]>([]);
+  useFrame(() => {
+    const now = performance.now();
+    top.forEach((r, i) => {
+      const m = refs.current[i];
+      if (!m) return;
+      const period = 3200 - r.strength * 1400; // busier roads flow faster
+      const t = ((now + i * 517) % period) / period;
+      const f = t * (r.points.length - 1);
+      const k = Math.min(r.points.length - 2, Math.floor(f));
+      m.position.copy(r.points[k]).lerp(r.points[k + 1], f - k);
+      const mat = m.material as THREE.MeshBasicMaterial;
+      mat.opacity = (0.25 + r.strength * 0.5) * Math.sin(Math.PI * t); // ease in/out at the ends
+      m.scale.setScalar(0.7 + r.strength * 0.6);
+    });
+  });
+  return (
+    <group>
+      {top.map((r, i) => (
+        <mesh key={r.key} ref={(el) => (refs.current[i] = el)}>
+          <sphereGeometry args={[0.035, 10, 10]} />
+          <meshBasicMaterial color="#cfe0ff" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+// ── traveling light (the deliberate lane's comet) ─────────────────────────────
+// Follows the same flight-path arc the roads use (it used to cut straight
+// chords, detached from the road system), with a fading ghost trail.
+const TRAIL = 9;
+function TravelingLight({ layout, activeFn, fnRecent }: { layout: Layout; activeFn: string | null; fnRecent: FnEvent[] }) {
   const head = useRef<THREE.Mesh>(null);
   const halo = useRef<THREE.Mesh>(null);
+  const trail = useRef<(THREE.Mesh | null)[]>([]);
   const start = useRef(performance.now());
   const path = useMemo<THREE.Vector3[]>(() => {
     if (!activeFn) return [];
@@ -46,36 +149,38 @@ function TravelingLight({ layout, edgeSet, activeFn, fnRecent }: { layout: Layou
     if (!cur) return [];
     const prevName = [...fnRecent].reverse().find((e) => e.fn !== activeFn)?.fn;
     const prev = prevName ? layout.byName.get(prevName) : undefined;
-    if (!prev || !prevName) return [cur.pos];
-    // real learned edge → travel it straight; else route via subsystem anchors
-    if (edgeSet.has(`${prevName}>${activeFn}`) || edgeSet.has(`${activeFn}>${prevName}`)) {
-      return [prev.pos, cur.pos];
-    }
-    const aPrev = layout.anchors[prev.sub];
-    const aCur = layout.anchors[cur.sub];
-    return [prev.pos, aPrev, aCur, cur.pos].filter((p, i, arr) => i === 0 || !p.equals(arr[i - 1]));
-  }, [activeFn, fnRecent, layout, edgeSet]);
+    if (!prev) return [cur.pos];
+    return arcPoints(prev.pos, cur.pos);
+  }, [activeFn, fnRecent, layout]);
   useEffect(() => void (start.current = performance.now()), [activeFn]);
+
+  const sample = (t: number): THREE.Vector3 => {
+    if (path.length === 1) return path[0];
+    const f = THREE.MathUtils.clamp(t, 0, 1) * (path.length - 1);
+    const i = Math.min(path.length - 2, Math.floor(f));
+    return path[i].clone().lerp(path[i + 1], f - i);
+  };
+
   useFrame(() => {
     if (!head.current) return;
     const on = path.length > 0;
     head.current.visible = on;
     if (halo.current) halo.current.visible = on;
+    trail.current.forEach((m) => m && (m.visible = on && path.length > 1));
     if (!on) return;
-    const t = Math.min(1, (performance.now() - start.current) / 850);
-    let p: THREE.Vector3;
-    if (path.length === 1) p = path[0];
-    else {
-      const segs = path.length - 1;
-      const f = t * segs;
-      const i = Math.min(segs - 1, Math.floor(f));
-      p = path[i].clone().lerp(path[i + 1], f - i);
-    }
+    const t = Math.min(1, (performance.now() - start.current) / 1100);
+    const p = sample(t);
     head.current.position.copy(p);
     if (halo.current) {
       halo.current.position.copy(p);
       halo.current.scale.setScalar(1 + Math.sin(performance.now() / 180) * 0.25);
     }
+    trail.current.forEach((m, i) => {
+      if (!m) return;
+      m.position.copy(sample(t - (i + 1) * 0.045));
+      const mat = m.material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.4 * (1 - (i + 1) / (TRAIL + 1)) * (t >= 1 ? Math.max(0, 1.6 - t) : 1);
+    });
   });
   return (
     <group>
@@ -87,6 +192,12 @@ function TravelingLight({ layout, edgeSet, activeFn, fnRecent }: { layout: Layou
         <sphereGeometry args={[0.2, 16, 16]} />
         <meshBasicMaterial color="#ffffff" transparent opacity={0.25} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
+      {Array.from({ length: TRAIL }, (_, i) => (
+        <mesh key={i} ref={(el) => (trail.current[i] = el)}>
+          <sphereGeometry args={[0.055 - i * 0.004, 10, 10]} />
+          <meshBasicMaterial color="#dbe7ff" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+        </mesh>
+      ))}
     </group>
   );
 }
@@ -139,6 +250,48 @@ function ExecutiveLight({ layout, execFn }: { layout: Layout; execFn: string | n
   );
 }
 
+// ── subsystem names on the map ────────────────────────────────────────────────
+// The legend tells you the colors, but a map you can't read without
+// cross-referencing isn't a map. Visibility is a plain hemisphere test against
+// the camera (the globe hides the far side anyway), driven per-frame via style
+// opacity so React never re-renders during rotation.
+function AnchorLabels({ layout, hiddenSubs }: { layout: Layout; hiddenSubs: Record<string, boolean> }) {
+  const divs = useRef<Record<string, HTMLDivElement | null>>({});
+  const { camera } = useThree();
+  const entries = useMemo(
+    () =>
+      Object.entries(layout.anchors)
+        .filter(([sub]) => !hiddenSubs[sub])
+        .map(([sub, a]) => ({ sub, dir: a.clone().normalize(), pos: a.clone().normalize().multiplyScalar(NODE_R + 0.5) })),
+    [layout.anchors, hiddenSubs],
+  );
+  const camDir = useRef(new THREE.Vector3());
+  useFrame(() => {
+    camDir.current.copy(camera.position).normalize();
+    for (const e of entries) {
+      const el = divs.current[e.sub];
+      if (!el) continue;
+      const facing = e.dir.dot(camDir.current); // 1 = dead center, 0 = limb, <0 = far side
+      el.style.opacity = String(THREE.MathUtils.clamp((facing - 0.05) / 0.35, 0, 0.9));
+    }
+  });
+  return (
+    <>
+      {entries.map((e) => (
+        <Html key={`a-${e.sub}`} position={e.pos} center distanceFactor={11} zIndexRange={[15, 0]}>
+          <div
+            ref={(el) => (divs.current[e.sub] = el)}
+            className="pointer-events-none select-none whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: colorFor(e.sub), opacity: 0, textShadow: "0 0 10px rgba(0,0,0,0.95), 0 0 3px rgba(0,0,0,0.9)" }}
+          >
+            {e.sub}
+          </div>
+        </Html>
+      ))}
+    </>
+  );
+}
+
 function Pulse({ pos, color, r = 0.16 }: { pos: THREE.Vector3; color: string; r?: number }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(() => ref.current && ref.current.scale.setScalar(1 + Math.sin(performance.now() / 220) * 0.35));
@@ -179,6 +332,8 @@ export function Scene({
   controls: React.MutableRefObject<any>;
 }) {
   const nodeGeo = useMemo(() => new THREE.SphereGeometry(0.05, 18, 18), []);
+  const globeMat = useGlobeMaterial();
+  const globeRef = useRef<THREE.Mesh>(null);
 
   // visibility filter
   const visible = useMemo(() => {
@@ -191,33 +346,21 @@ export function Scene({
     return set;
   }, [layout, settings.hiddenSubs, settings.onlyUsed]);
 
-  const edgeSet = useMemo(() => {
-    const s = new Set<string>();
-    for (const e of catalog.edges || []) s.add(`${e.from}>${e.to}`);
-    return s;
-  }, [catalog.edges]);
-
-  // Glowing roads on the outer shell. Width scales with the learned transition
-  // strength, so heavily-travelled paths (its loops) swell into thick bright roads
-  // you can read at a glance; faint one-offs stay thin.
-  const roads = useMemo(() => {
+  // Roads: node-to-node flight paths, styled against the strongest visible edge
+  // so trunk routes read bright and one-offs stay hairlines (see layout.ts).
+  const roads = useMemo<Road[]>(() => {
     if (!settings.lines) return [];
-    const out: { key: string; points: THREE.Vector3[]; color: string; width: number; opacity: number }[] = [];
-    for (const e of catalog.edges || []) {
-      if (!visible.has(e.from) || !visible.has(e.to)) continue;
-      const a = layout.byName.get(e.from);
-      const b = layout.byName.get(e.to);
-      if (!a || !b) continue;
-      const w = e.weight || 0;
-      out.push({
-        key: `${e.from}>${e.to}`,
-        points: arcPoints(a.pos, b.pos),
-        color: roadColor(w),
-        width: 0.8 + Math.min(3.6, w * 10),
-        opacity: 0.12 + Math.min(0.2, w * 0.8),
-      });
-    }
-    return out;
+    const drawable = (catalog.edges || []).filter((e) => {
+      if (!visible.has(e.from) || !visible.has(e.to)) return false;
+      return layout.byName.has(e.from) && layout.byName.has(e.to);
+    });
+    const wMax = drawable.reduce((m, e) => Math.max(m, e.weight || 0), 0);
+    return drawable.map((e) => {
+      const a = layout.byName.get(e.from)!;
+      const b = layout.byName.get(e.to)!;
+      const st = roadStyle(e.weight || 0, wMax);
+      return { key: `${e.from}>${e.to}`, points: arcPoints(a.pos, b.pos), ...st };
+    });
   }, [catalog.edges, visible, layout, settings.lines]);
 
   const focusPos = focusNode ? layout.byName.get(focusNode)?.pos ?? null : null;
@@ -236,29 +379,40 @@ export function Scene({
 
   return (
     <>
-      <fog attach="fog" args={["#0a0d14", 7.5, 17]} />
-      <ambientLight intensity={0.45} />
-      <pointLight position={[6, 6, 8]} intensity={0.7} />
-      <pointLight position={[-7, -4, -6]} intensity={0.4} color="#5b8cff" />
-      <pointLight position={[0, 8, -4]} intensity={0.3} color="#ff7ad9" />
+      <fog attach="fog" args={["#0a0d14", 8, 19]} />
+      <ambientLight intensity={0.5} />
+      <hemisphereLight args={["#3a4a6b", "#0a0d14", 0.35]} />
+      <pointLight position={[6, 7, 8]} intensity={0.9} />
+      <pointLight position={[-7, -4, -6]} intensity={0.45} color="#5b8cff" />
+      <pointLight position={[0, 8, -4]} intensity={0.25} color="#ff7ad9" />
       <OrbitControls
         ref={controls}
         makeDefault
         enablePan={false}
         enableDamping
-        dampingFactor={0.1}
+        dampingFactor={0.08}
         autoRotate={settings.autoRotate && !hovered && !focusNode}
-        autoRotateSpeed={0.45}
-        minDistance={1.6}
+        autoRotateSpeed={0.35}
+        minDistance={3.3}
         maxDistance={13}
         zoomSpeed={0.3}
         zoomToCursor
       />
       <CameraRig focus={focusPos} resetTick={resetTick} controls={controls} />
 
+      {/* deep-space backdrop — parallax scale cue. Kept inside the fog's far
+          plane or the fog erases it entirely. */}
+      {settings.effects && <Stars radius={16} depth={9} count={1400} factor={2.2} saturation={0} fade speed={0.35} />}
+
+      {/* the core globe (also the pointer/label occluder for the far side) */}
+      <mesh ref={globeRef} material={globeMat}>
+        <sphereGeometry args={[CORE_R, 64, 64]} />
+      </mesh>
+
       {roads.map((r) => (
         <Line key={r.key} points={r.points} color={r.color} lineWidth={r.width} transparent opacity={r.opacity} />
       ))}
+      {settings.effects && roads.length > 0 && <FlowDots roads={roads} />}
 
       {layout.nodes.map((n) => {
         if (!visible.has(n.name)) return null;
@@ -290,11 +444,11 @@ export function Scene({
             <meshStandardMaterial
               color={n.color}
               emissive={n.color}
-              emissiveIntensity={(isActive ? 1.5 : isHover || isFocus ? 0.95 : dim ? 0.12 : 0.45) * (settings.effects ? 1 : 0.45)}
+              emissiveIntensity={(isActive ? 1.5 : isHover || isFocus ? 0.95 : dim ? 0.18 : 0.5) * (settings.effects ? 1 : 0.45)}
               metalness={0.3}
               roughness={0.35}
               transparent
-              opacity={dim ? 0.5 : 1}
+              opacity={dim ? 0.55 : 1}
             />
           </mesh>
         );
@@ -302,12 +456,14 @@ export function Scene({
 
       {activePos && <Pulse pos={activePos} color={activeColor} />}
       {focusPos && focusNode !== activeFn && <Pulse pos={focusPos} color="#ffffff" r={0.18} />}
-      <TravelingLight layout={layout} edgeSet={edgeSet} activeFn={activeFn} fnRecent={fnRecent} />
+      <TravelingLight layout={layout} activeFn={activeFn} fnRecent={fnRecent} />
       {/* executive (procedural) lane lights — Fix 1 / Gap 2; with multi-goal
           pursuit there can be up to K of them per tick (one per advanced goal) */}
       {execFns.map((fn) => (
         <ExecutiveLight key={fn} layout={layout} execFn={fn} />
       ))}
+
+      {settings.labels !== "none" && <AnchorLabels layout={layout} hiddenSubs={settings.hiddenSubs} />}
 
       {layout.nodes.map((n) => {
         if (!visible.has(n.name)) return null;
@@ -328,7 +484,7 @@ export function Scene({
       {/* subtle bloom — only the active node / comet should softly glow */}
       {settings.effects && (
         <EffectComposer>
-          <Bloom luminanceThreshold={0.55} luminanceSmoothing={0.9} intensity={0.35} mipmapBlur radius={0.5} />
+          <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} intensity={0.55} mipmapBlur radius={0.6} />
         </EffectComposer>
       )}
     </>

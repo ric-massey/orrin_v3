@@ -57,8 +57,17 @@ MIN_ARTIFACT_CHARS = 120  # set between the failure case (~40-char affect string
 EFFECT_KINDS = frozenset({
     "file_write", "tool_written", "tool_run_effect", "note_novel",
     "message_answered", "code_committed", "external_post", "tracked_work",
-    "symbolic_artifact",
+    "symbolic_artifact", "bookkeeping",
 })
+
+# Fix 5 (RUN6_FIX_PLAN_2026-07-08 §3): symbolic sub-kinds that are SELF-MODEL
+# BOOKKEEPING, not made things. "Causal edge established" rows were 116 of the
+# 152 credited effects in Run 5 (76 %) — pure self-model churn that overstated
+# the making organ ~4× (S5/S7) and polluted the aspiration/commitment value
+# signal. They are reclassified to the distinct `bookkeeping` kind: still
+# appended (and deduped) for the record, but they earn no significance, no
+# production credit, and no goal attribution — reported separately.
+_BOOKKEEPING_SUB_KINDS = frozenset({"causal_edge"})
 
 # AR1 rate cap: a rule-synthesis/crystallization storm must not farm production
 # credit. At most _SYMBOLIC_CAP credited symbolic_artifact effects per rolling
@@ -235,6 +244,9 @@ def _structural_significance(
     """
     if _real_content_len(normalized) < MIN_ARTIFACT_CHARS:
         return 0.0
+    if kind == "bookkeeping":
+        # Fix 5: self-model bookkeeping is never a production — recorded, not credited.
+        return 0.0
     if kind in ("tool_written", "code_committed"):
         # code must at least parse to be structurally significant
         try:
@@ -316,7 +328,10 @@ def _hydrate() -> None:
                         if row.get("kind") == "reuse":
                             _reuse_counts[h] = _reuse_counts.get(h, 0) + 1
                         gid = row.get("goal_id")
-                        if gid and not row.get("dedupe"):
+                        # bookkeeping rows never attribute to a goal (Fix 5) —
+                        # otherwise a rehydrate would hand has_qualifying_effect
+                        # a self-model row as artifact evidence.
+                        if gid and not row.get("dedupe") and row.get("kind") != "bookkeeping":
                             _goal_effects.setdefault(str(gid), []).append(h)
                             _hash_goal[h] = str(gid)
                             if row.get("kind"):
@@ -398,6 +413,10 @@ def record_effect(
     production reward on a non-None return.
     """
     _hydrate()
+    # Fix 5: route self-model bookkeeping to its own ledger class before any
+    # crediting logic runs (callers stay unchanged — the seam decides).
+    if kind == "symbolic_artifact" and str((metadata or {}).get("kind") or "") in _BOOKKEEPING_SUB_KINDS:
+        kind = "bookkeeping"
     if kind not in EFFECT_KINDS:
         # unknown kind: record nothing rather than silently miscredit
         return None
@@ -521,6 +540,15 @@ def record_effect(
             _hash_goal[content_hash] = gid
             _hash_kind[content_hash] = kind
             _goal_significance[gid] = max(_goal_significance.get(gid, 0.0), row.significance)
+            # Fix 2/4 (RUN6_FIX_PLAN §3): a credited effect is the "real action"
+            # signal the commitment score reads — it clears the goal's staleness
+            # and feeds its learned value, so pursuit that pays off keeps the
+            # driver slot and pursuit that never lands loses it.
+            try:
+                from brain.cognition.planning.commitment_value import note_goal_credit
+                note_goal_credit(gid, row.significance)
+            except Exception as exc:
+                record_failure("effect_ledger.note_goal_credit", exc)
             if kind == "tracked_work":
                 try:
                     _tracked_progress[gid] = max(

@@ -558,6 +558,48 @@ def objective_pressure(context: Dict[str, Any] = None) -> Dict[str, float]:
     return out
 
 
+def aspiration_credit_value(driven_by: str) -> Optional[float]:
+    """Fix 4 (RUN6_FIX_PLAN §3) — the credited-contribution signal for the
+    aspiration a drive serves, in [0,1], for goal_io's commitment score.
+
+    Commitment used to be chosen by tier+priority while credit was attributed by
+    driven_by — the two halves never talked, so Run 5 committed an aspiration
+    that earned 1 contribution while a barely-committed one earned 6. This feeds
+    the credit side back into commitment: share of contributions vs the
+    best-credited peer, blended with recency of the last real contribution.
+    Returns None when there is no evidence yet anywhere (cold start — the
+    commitment score then falls back to the goal's own effect EMA)."""
+    asp_title = _serves_aspiration(str(driven_by or ""))
+    if not asp_title:
+        return None
+    try:
+        goals = load_json(GOALS_FILE, default_type=list) or []
+    except Exception as exc:
+        record_failure("intrinsic_objectives.aspiration_credit_value", exc)
+        return None
+    asps = [g for g in goals if isinstance(g, dict)
+            and (g.get("_aspiration") or g.get("kind") == "aspiration")]
+    if not asps:
+        return None
+    counts = {str(g.get("title", "")): int(g.get("contribution_count", 0) or 0) for g in asps}
+    if not any(counts.values()):
+        return None
+    mine = next((g for g in asps if str(g.get("title", "")) == asp_title), None)
+    if mine is None:
+        return None
+    share = counts.get(asp_title, 0) / max(1, max(counts.values()))
+    recency = 0.0
+    last = mine.get("last_contribution_ts")
+    if last:
+        try:
+            idle = time.time() - datetime.fromisoformat(
+                str(last).replace("Z", "+00:00")).timestamp()
+            recency = max(0.0, 1.0 - min(1.0, max(0.0, idle) / _STARVED_IDLE_FULL_S))
+        except Exception as exc:
+            record_failure("intrinsic_objectives.aspiration_credit_recency", exc)
+    return round(0.6 * share + 0.4 * recency, 4)
+
+
 def _fairness_default_drive() -> str:
     """Demand of the most-starved aspiration (P3) — the new default for an untagged
     goal, so the path of least resistance stops being world_knowledge."""

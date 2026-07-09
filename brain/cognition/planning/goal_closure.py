@@ -129,6 +129,18 @@ def _closed_loop_break(context: Dict[str, Any], why: str) -> bool:
         f"{_PREEMPT_OPEN_THRESHOLD} cycles with a corrective armed — forcing one "
         f"grounded pursuit to break the freeze (resumable)."
     )
+    # Fix 3 (RUN6_FIX_PLAN §3): a sustained armed-but-preempted stall is the
+    # strongest avoidance evidence there is — weight it so the frozen goal's
+    # commitment rank drops (goal_io Fix 2) instead of only forcing action on it.
+    try:
+        _g = context.get("committed_goal")
+        if isinstance(_g, dict):
+            _gid = str(_g.get("id") or _g.get("title") or _g.get("name") or "")
+            if _gid:
+                from brain.cognition.planning.commitment_value import note_avoidance
+                note_avoidance(_gid, weight=5.0)
+    except Exception as _cve:
+        record_failure("goal_closure.note_avoidance", _cve)
     try:
         update_working_memory({
             "content": (
@@ -297,6 +309,16 @@ def _maybe_close_on_tier(goal: Dict[str, Any], goal_title: str, next_step: str,
         return None
     _finalize_goal_completion(goal, goal_title, context, reason=why)
     if goal.get("status") == "completed":
+        # Run-5 meter bug (RUN6_FIX_PLAN §4): this is THE satiety close path, and
+        # it never told outcome_metrics — S3 read 0 while 7 real satiety closes
+        # happened. The maintenance sweep records its own; this records the
+        # pursuit-path close so the gate reads honest numbers.
+        if why.startswith("satiety"):
+            try:
+                from brain.cognition.planning.outcome_metrics import record_satiety_closure
+                record_satiety_closure()
+            except Exception as _e:
+                record_failure("goal_closure.record_satiety_closure", _e)
         return {"status": "ok", "next_step": next_step, "goal": goal_title,
                 "steps_remaining": remaining, "closed": True, "reason": why}
     return None  # close was blocked (hollow) — keep pursuing via the normal path

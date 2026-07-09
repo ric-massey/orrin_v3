@@ -48,6 +48,26 @@ _W_EXPLOIT = 0.25
 # so applying it again would double-count.
 _W_SATIETY = 0.30
 
+# Fix 1 (RUN6_FIX_PLAN_2026-07-08 §3): learned value as a FIRST-CLASS additive
+# term. A4's multiplicative scaler alone spans ×0.65–×1.25 — a ±25 % nudge on a
+# ~20-term additive sum, so the worst-rewarded action still won on its additive
+# exploration lead (S9 failed Runs 4 & 5; look_outward realized reward 0.228 yet
+# picked heavily). For a MATURE action the EMA now competes inside the sum at a
+# weight sized to rival the affect/goal weights (~0.31/0.30): the EMA spans
+# ~0.15–0.75 around the 0.5 neutral, so 0.6 × (EMA−0.5) swings ±0.15 — on the
+# order of a strong affect-prior contribution, and decisive combined with the
+# exploration cap below and the (kept) multiplicative scaler.
+_W_VALUE = 0.6
+# Maturity gate for value authority — same ≥8-observation bar s_curio and the A4
+# scaler use, so exploration owns immature actions and value owns mature ones.
+_MATURITY_OBS = 8
+# Ceiling for the additive exploration group (s_outward + s_reach + s_explore +
+# s_curio) on a MATURE action: min(group, max(_EXPL_CAP_MIN, |s_value|)). A
+# chronically low-reward action can't win on exploration terms alone once its
+# realized reward is known; the floor keeps some exploration headroom for a
+# mature-but-neutral action.
+_EXPL_CAP_MIN = 0.12
+
 # No-goal suppression: pursue_committed_goal and assess_goal_progress are
 # useless (and waste a full LLM cycle) when there is no committed goal.
 # E6: pursue_committed_goal dropped (not in pool); the no-goal suppression
@@ -246,18 +266,35 @@ def score_candidates(
             s_goal_lens = _goal_lens_prior(context.get("goal_lens"), name, definition)
         except Exception as exc:
             record_failure("select_function.goal_lens_prior", exc)
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp
 
-        # A4 (RUN4_FIX_PLAN §1.3, S9): give the learned reward EMA real authority.
-        # For a MATURE action (>=8 scored observations — same maturity gate s_curio
-        # uses), scale the whole positive score by (0.5 + EMA): neutral 0.5 → ×1.0,
-        # a low-EMA action (look_outward ~0.150 → ×0.65) is demoted, a high-EMA one
-        # (research_topic ~0.674 → ×1.17) is promoted. Immature actions keep ×1.0 —
-        # exploration stays the additive s_explore/s_curio term's job. Guarded on
-        # total>0 so the modulator can't perversely lift a suppressed (negative)
-        # score, consistent with the repetition/suppression multipliers below.
+        # Fix 1 (RUN6_FIX_PLAN §3): value as a first-class additive term for a
+        # mature action, plus the exploration-group cap — see _W_VALUE above.
+        # Components are scaled proportionally so the capped group keeps its
+        # internal ratios (telemetry stays interpretable).
         _n_obs = int((_stats.get(name) or {}).get("count", 0))
-        if _n_obs >= 8 and total > 0:
+        s_value = 0.0
+        if _n_obs >= _MATURITY_OBS:
+            s_value = _W_VALUE * (float(get_expected(context, name)) - 0.5)
+            _expl_group = s_outward + s_reach + s_explore + s_curio
+            _expl_cap = max(_EXPL_CAP_MIN, abs(s_value))
+            if _expl_group > _expl_cap:
+                _sc = _expl_cap / _expl_group
+                s_outward *= _sc
+                s_reach *= _sc
+                s_explore *= _sc
+                s_curio *= _sc
+
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp + s_value
+
+        # A4 (RUN4_FIX_PLAN §1.3, S9): the multiplicative scaler is KEPT as the
+        # secondary nudge behind Fix 1's additive term. For a MATURE action, the
+        # whole positive score scales by (0.5 + EMA): neutral 0.5 → ×1.0, a
+        # low-EMA action (look_outward ~0.150 → ×0.65) is demoted, a high-EMA one
+        # (research_topic ~0.674 → ×1.17) is promoted. Immature actions keep ×1.0.
+        # Guarded on total>0 so the modulator can't perversely lift a suppressed
+        # (negative) score, consistent with the repetition/suppression multipliers
+        # below.
+        if _n_obs >= _MATURITY_OBS and total > 0:
             _ema = float(get_expected(context, name))
             total *= max(0.0, 0.5 + _ema)
 
@@ -405,6 +442,6 @@ def score_candidates(
             except Exception as exc:
                 record_failure("select_function.fn_suppression", exc)
 
-        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety}))
+        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety, "value": s_value}))
 
     return scored

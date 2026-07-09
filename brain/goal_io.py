@@ -249,9 +249,11 @@ def _priority_rank(p: Any) -> int:
 
 
 def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
-    """The committed goals, chosen from the v1 cognitive tree, tier-then-priority
-    ordered. Skips the Immediate-Actions container and directional/terminal goals.
-    Returns shallow copies so the loop's per-cycle edits don't corrupt the tree."""
+    """The committed goals, chosen from the v1 cognitive tree, ordered by the
+    commitment score (tier/priority + learned value − staleness − avoidance;
+    commitment_value.commit_score). Skips the Immediate-Actions container and
+    non-directional long_term / aspiration / terminal goals. Returns shallow
+    copies so the loop's per-cycle edits don't corrupt the tree."""
     tree = _load_v1_tree()
     found: List[Dict[str, Any]] = []
 
@@ -278,28 +280,14 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
             walk(n.get("subgoals"))
 
     walk(tree)
-    found.sort(
-        key=lambda g: (_tier_weight(g.get("tier") or g.get("kind")),
-                       _priority_rank(g.get("priority"))),
-        reverse=True,
-    )
-    # P4 cap (change 4): exactly ONE directional long_term goal drives at a time — the
-    # highest-ranked one. The rest of the committed slots go to ordinary goals so the
-    # never-ending driver can never starve the pool; extra directionals stay signposts.
-    result: List[Dict[str, Any]] = []
-    seen_directional = False
-    for g in found:
-        tier = str(g.get("tier") or g.get("kind") or "").lower()
-        is_directional = tier == "long_term" and bool(
-            g.get("directional") or g.get("never_complete"))
-        if is_directional:
-            if seen_directional:
-                continue
-            seen_directional = True
-        result.append(g)
-        if len(result) >= limit:
-            break
-    return [dict(g) for g in result]
+    # Fix 2 (RUN6_FIX_PLAN §3): ordering + the P4 directional cap now live in
+    # commitment_value.order_committable — sorted on a commitment SCORE (tier/
+    # priority + learned value − staleness − avoidance), not the raw
+    # tier+priority stable-sort that let one directional goal hold the driver
+    # slot 99.9 % of Run 5 with no path to let go.
+    from brain.cognition.planning.commitment_value import order_committable
+    return order_committable(found, tier_weight_fn=_tier_weight,
+                             priority_rank_fn=_priority_rank, limit=limit)
 
 
 def _reconcile_open_v2_into_v1(api) -> None:

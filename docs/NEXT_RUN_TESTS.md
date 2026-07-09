@@ -16,6 +16,49 @@ interpretation**.
 
 ---
 
+## Run 6 re-test gate (2026-07-09 — from `RUN6_FIX_PLAN_2026-07-08.md` §4)
+
+Run 4 (07-05) and Run 5 (07-08) results live in their run folders
+(`demo_runs/2026-07-05-run/`, `demo_runs/2026-07-08-run/`); Run 5's verdict:
+gate NOT passed, S6/S9 fail, and the recurring monopoly relocated to the
+*committed goal* (`self_understanding`, **99.9 %** of cycles). The Run 6 build
+(selection value authority + commitment score/rotation + avoidance-release +
+credit/commitment loop + ledger hygiene) targets the root: **learned outcomes
+now have authority over both selection and commitment.**
+
+**Run 6 passes iff all of the following hold:**
+
+- **S9 passes:** `corr(action_reward_ema, selection-share) > 0`; `look_outward`
+  share **falls** while its EMA stays < 0.3; no mature action (≥8 observations)
+  with realized reward < 0.3 sits in the top-3 selected.
+- **NEW S10 — anti-monopoly:** no single channel exceeds **~60 % of its layer**
+  for the life, at *every* layer the monopoly has relocated through: ignition
+  source (Runs 2–3), candidate-generator flavor (Run 4), and committed goal
+  (Run 5). For commitment specifically: no committed goal > ~60 % of cycles;
+  `genuine_contact` (0 in Run 5) gets committed and earns > 0 contributions;
+  the death snapshot's committed goal is not the one that owned the whole life.
+- **Avoidance releases commitment:** goal-avoidance events per life fall
+  sharply (Run 5: 240, all on one goal); no avoidance streak exceeds ~20 cycles
+  without a commitment change.
+- **Credit/commitment convergence:** by end of life the most-committed
+  aspiration and the top-credited aspiration are the same; no aspiration is
+  both "committed most" and "credited least".
+- **HOLDS:** S7 reuse ≥ Run 5 (8 reuse rows), S8 desyncs stay 0, all four
+  aspirations survive the whole life (F2), S5 mean significance > 0 — now
+  computed over readable-body material only (`bookkeeping` causal-edge rows are
+  a separate ledger class and excluded from production/significance counts;
+  read `bookkeeping_count` in `production_loop.jsonl` separately).
+- **Meters trusted:** `satiety_closures` now wired to the pursuit-path satiety
+  close (S3 read 0 in Run 5 while 7 real closes happened), and `reset_orrin.py`
+  clears `habituation.json` (91 % survived the Run-5 "clean" reset) — confirm a
+  fresh reset zeroes it before trusting S3 or any exploration-share number.
+
+New instrumentation to read: `brain/data/commitment_signals.json` (per-goal
+value EMA / staleness / avoidance the commitment score sorts on) and the
+per-candidate `value` component in the selection reason payload.
+
+---
+
 ## Run 3 result — 2026-07-03 life: **FAILED** (6 ✅ 5 ✅ 7 🟡 8 🔴 9 ❓ — re-test required)
 
 Third acceptance run (clean newborn via `reset_orrin.py` at 21:55 EDT,

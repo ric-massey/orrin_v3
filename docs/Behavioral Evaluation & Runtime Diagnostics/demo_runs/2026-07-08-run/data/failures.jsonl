@@ -1,0 +1,32 @@
+{"ts": "2026-07-08T13:32:26.039161+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.052279+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.090673+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.113877+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.186976+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.217046+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.240996+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.284556+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T13:32:26.454516+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "step_failed"}
+{"ts": "2026-07-08T13:32:30.588766+00:00", "site": "goal_failure", "goal_id": "g_77d3d3db35", "title": "Understand history more deeply", "reason": "unknown"}
+{"ts": "2026-07-08T14:31:53.036817+00:00", "site": "goal_failure", "goal_id": "g_f0fd8a600efa", "title": "Open question: Is what I'm doing right now aligned with what I actually care about?", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-08T14:34:46.205156+00:00", "site": "goal_failure", "goal_id": "g_f0fd8a600efa", "title": "Open question: Is what I'm doing right now aligned with what I actually care about?", "reason": "objective unmet after 2 attempts: ['?', '?']"}
+{"ts": "2026-07-08T15:48:10.961274+00:00", "site": "quality_standard.gate.write_exemplar", "error": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-consciousness-and-subjective-exper-04f556dc.md'"}
+{"ts": "2026-07-08T17:08:51.981859+00:00", "site": "goal_failure", "goal_id": "g_c857c1d16b", "title": "Understand biology more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T17:08:51.989202+00:00", "site": "goal_failure", "goal_id": "g_c857c1d16b", "title": "Understand biology more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T17:08:52.048778+00:00", "site": "goal_failure", "goal_id": "g_c857c1d16b", "title": "Understand biology more deeply", "reason": "step_failed"}
+{"ts": "2026-07-08T17:08:53.255235+00:00", "site": "goal_failure", "goal_id": "g_c857c1d16b", "title": "Understand biology more deeply", "reason": "unknown"}
+{"ts": "2026-07-08T18:48:11.697375+00:00", "site": "quality_standard.gate.write_exemplar", "error": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-consciousness-and-subjective-exper-04f556dc.md'"}
+{"ts": "2026-07-08T19:59:35.519415+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.548930+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.551742+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.553378+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.555679+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.556874+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T19:59:35.614291+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "step_failed"}
+{"ts": "2026-07-08T19:59:36.208882+00:00", "site": "goal_failure", "goal_id": "g_da938db928", "title": "Understand history of written language more deeply", "reason": "unknown"}
+{"ts": "2026-07-08T21:48:19.146431+00:00", "site": "quality_standard.gate.write_exemplar", "error": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-consciousness-and-subjective-exper-04f556dc.md'"}
+{"ts": "2026-07-08T22:24:15.008473+00:00", "site": "goal_failure", "goal_id": "g_a9cc879243", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T22:24:15.015858+00:00", "site": "goal_failure", "goal_id": "g_a9cc879243", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T22:24:15.021029+00:00", "site": "goal_failure", "goal_id": "g_a9cc879243", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-08T22:24:19.750977+00:00", "site": "goal_failure", "goal_id": "g_a9cc879243", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-09T00:06:22.970072+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}

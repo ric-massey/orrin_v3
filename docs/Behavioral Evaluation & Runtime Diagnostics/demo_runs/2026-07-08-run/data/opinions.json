@@ -1,0 +1,5184 @@
+[
+  {
+    "id": "437b930db8",
+    "topic": "something",
+    "view": "Something keeps surfacing — most sharply in \"Something in me urgency vs. routine, and something else won't let that be the whole story.\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.66,
+    "alpha": 5.15,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T12:43:08.745220+00:00",
+    "updated_at": "2026-07-09T00:21:35.883200+00:00",
+    "evidence_count": 16,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T12:43:08.745220+00:00",
+        "kind": "observation",
+        "ref_id": "6e1a8bc5-005c-461b-9a6f-b2d4b853d31c",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T13:13:10.437874+00:00",
+        "kind": "observation",
+        "ref_id": "6afb8178-4b2f-4cc2-b0be-2afb7fe2dd60",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T13:43:11.953294+00:00",
+        "kind": "observation",
+        "ref_id": "a147bd5d-0c4a-46be-9835-333758abd5fa",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T15:43:47.534936+00:00",
+        "kind": "observation",
+        "ref_id": "173d8d4b-2d0d-4831-823e-6e84e5627438",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:25:10.750338+00:00",
+        "kind": "observation",
+        "ref_id": "e5d08daf-d6a7-4fc6-af65-f71a736a46a1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:45:13.365337+00:00",
+        "kind": "observation",
+        "ref_id": "3e4ee64f-1947-4809-8707-832de90d51d2",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T20:05:15.799129+00:00",
+        "kind": "observation",
+        "ref_id": "68e972c5-7d79-4480-98d7-ffee1045ecf8",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T20:45:33.803141+00:00",
+        "kind": "observation",
+        "ref_id": "2d147bae-f706-49c3-a706-0f940b50aace",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:06:06.431895+00:00",
+        "kind": "observation",
+        "ref_id": "733234c4-17f2-4eb9-9cde-b6528ff8b0ee",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:26:08.421699+00:00",
+        "kind": "observation",
+        "ref_id": "174d7680-b252-4494-a6aa-1c94a8a502c3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:46:20.927510+00:00",
+        "kind": "observation",
+        "ref_id": "dccaec2a-207b-4be3-8665-78acc99bf94d",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T22:06:45.225093+00:00",
+        "kind": "observation",
+        "ref_id": "2e027660-111e-4a76-8ce6-aab91b5706ab",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T22:18:22.625497+00:00",
+        "kind": "mention",
+        "ref_id": "2346310a-678a-4427-ab6c-eaf59bf9bc8b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:56.379471+00:00",
+        "kind": "mention",
+        "ref_id": "6271e915-df29-4ac7-945b-b16d663781a3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:00.293065+00:00",
+        "kind": "mention",
+        "ref_id": "20fc48d7-0e89-450e-802c-b6835a9f9a81",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:00.293098+00:00",
+        "kind": "mention",
+        "ref_id": "7cd6ba0e-e081-4afb-a3b4-1de1a6011b5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:33.552564+00:00",
+        "kind": "mention",
+        "ref_id": "00b9cb79-a58c-4e22-a255-59a5bcd44e74",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:46.929442+00:00",
+        "kind": "mention",
+        "ref_id": "9f677268-63ac-4e3d-9a8f-58959d989ec6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:20:27.257262+00:00",
+        "kind": "mention",
+        "ref_id": "f56cb76c-2fca-463e-a96a-dd3ac6b7fc3f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:58.978102+00:00",
+        "kind": "mention",
+        "ref_id": "0667b6da-36d4-4a7f-82cc-88ee0b12d577",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:26.800603+00:00",
+        "kind": "mention",
+        "ref_id": "33c87b98-c971-4de9-8a52-96d319079bea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:29.874221+00:00",
+        "kind": "mention",
+        "ref_id": "e002836d-d5c8-4ac4-a624-7b49b596154a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:33.804983+00:00",
+        "kind": "mention",
+        "ref_id": "70d2155c-129d-4709-91dc-f75d5abbb8eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:38.417693+00:00",
+        "kind": "mention",
+        "ref_id": "57408f70-926e-4bc7-bc13-11000697419b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:00.321951+00:00",
+        "kind": "mention",
+        "ref_id": "3b8a98d8-f069-4ae5-8943-ad3ed472caff",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:03.292884+00:00",
+        "kind": "mention",
+        "ref_id": "b7a5fc2a-0f80-4f10-a669-a9e2a4880bc6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:09.091955+00:00",
+        "kind": "mention",
+        "ref_id": "67b4e961-11bb-44c3-aa1f-6c66d09017ab",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:46.388100+00:00",
+        "kind": "mention",
+        "ref_id": "8ffb7408-0d41-4a31-97b6-ee4df71ebcad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:19.263145+00:00",
+        "kind": "mention",
+        "ref_id": "ffafc528-82dc-42be-baf9-91c3c3a3014e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:56.515084+00:00",
+        "kind": "mention",
+        "ref_id": "9314216b-3959-4e09-a955-1d2c4d7d2d1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:59.478332+00:00",
+        "kind": "mention",
+        "ref_id": "6e7f29c6-43c3-421d-b1af-58cce4b54c67",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:59.478368+00:00",
+        "kind": "observation",
+        "ref_id": "6e7f29c6-43c3-421d-b1af-58cce4b54c67",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T22:29:04.356530+00:00",
+        "kind": "mention",
+        "ref_id": "e386ae26-b8f4-437d-bf5c-e5747a5cd21b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:39.451421+00:00",
+        "kind": "mention",
+        "ref_id": "febb4d14-6421-40fa-ad37-96dd7063397f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:49.682735+00:00",
+        "kind": "mention",
+        "ref_id": "578e2004-d104-4166-bcea-d6bd873bc470",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:43.513787+00:00",
+        "kind": "mention",
+        "ref_id": "0a5c0acb-9b2a-489b-a709-2c72e5405e67",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:04.541696+00:00",
+        "kind": "mention",
+        "ref_id": "3611a14d-430f-4666-a225-d53e0e460560",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162233+00:00",
+        "kind": "mention",
+        "ref_id": "8c1c4b1d-8b5c-40f6-ae45-a65ae873a7ab",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:27.987117+00:00",
+        "kind": "mention",
+        "ref_id": "0c1a2d29-038a-4505-a667-d1498a8b72be",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:41.944267+00:00",
+        "kind": "mention",
+        "ref_id": "d3a775df-e166-4d02-b2be-9d47d8602b43",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:54.626537+00:00",
+        "kind": "mention",
+        "ref_id": "bebbe9ec-5897-4e11-97ce-e59b4005a3d8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:43.611319+00:00",
+        "kind": "mention",
+        "ref_id": "1282fad8-f427-43d3-a599-a55911bb1bb3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:18.438494+00:00",
+        "kind": "mention",
+        "ref_id": "3059e85a-1c65-4884-b2b1-f45bf89d4a0f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:08.339314+00:00",
+        "kind": "mention",
+        "ref_id": "3107b372-eaa4-4114-8db8-a062fae10198",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:02.593147+00:00",
+        "kind": "mention",
+        "ref_id": "f6dec30f-3b26-4fcf-8348-f40dc33ec232",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:22.259067+00:00",
+        "kind": "mention",
+        "ref_id": "b85cd351-d7c0-499e-b00e-cc99eda5d601",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:41:26.176988+00:00",
+        "kind": "mention",
+        "ref_id": "74d74375-69c0-4dcc-84d2-cd7e8fcc98bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:52.316948+00:00",
+        "kind": "mention",
+        "ref_id": "5174335e-51a8-4021-9094-f78772dbc1e1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:52.316980+00:00",
+        "kind": "observation",
+        "ref_id": "5174335e-51a8-4021-9094-f78772dbc1e1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T22:52:23.855770+00:00",
+        "kind": "mention",
+        "ref_id": "7710adae-f79b-402f-8b0e-c3b400c06e73",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:02:03.650786+00:00",
+        "kind": "mention",
+        "ref_id": "edd963c7-f295-4873-9c6c-c941bd4a72f4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:02:48.697316+00:00",
+        "kind": "mention",
+        "ref_id": "86fd402f-4ae6-4a26-af24-a61a2e43be1e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:42.938508+00:00",
+        "kind": "mention",
+        "ref_id": "3900aa18-36ca-4da4-9819-4b55d4c6f348",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:24:46.207541+00:00",
+        "kind": "mention",
+        "ref_id": "7c5364e9-9794-4511-a8a3-44948478c1ee",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:27.572607+00:00",
+        "kind": "mention",
+        "ref_id": "65d53aea-1a3f-40e4-ba6a-456e73d58b3f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:27.572644+00:00",
+        "kind": "observation",
+        "ref_id": "65d53aea-1a3f-40e4-ba6a-456e73d58b3f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841223+00:00",
+        "kind": "mention",
+        "ref_id": "c2773a09-6a21-4548-b519-ce7a1d48ebc0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841258+00:00",
+        "kind": "observation",
+        "ref_id": "c2773a09-6a21-4548-b519-ce7a1d48ebc0",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-09T00:16:05.932741+00:00",
+        "kind": "mention",
+        "ref_id": "1625c8af-27cf-4c1b-984c-6c58dc304ce9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:35.883200+00:00",
+        "kind": "mention",
+        "ref_id": "09e50540-eea7-4499-a758-48ccca151217",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "6e1a8bc5-005c-461b-9a6f-b2d4b853d31c",
+      "9647729e-05e2-4cdd-aba9-c4058dd9b3ad"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  },
+  {
+    "id": "47cb06083e",
+    "topic": "concept",
+    "view": "Concept keeps landing badly — most sharply in \"emotional reflection: [symbolic] history (concept): is_a=systematic study of the past [history, concept]\n[rule] [symboli\". I've grown wary of it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-08T13:43:11.954809+00:00",
+    "updated_at": "2026-07-09T00:21:04.908421+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T13:43:11.954809+00:00",
+        "kind": "observation",
+        "ref_id": "d6328da5-0302-42ba-bbbc-40c9fd47d3bf",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:52:30.822881+00:00",
+        "kind": "mention",
+        "ref_id": "0d42fd16-5d0a-4ece-a44c-c29fcc5d7507",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:53:04.017168+00:00",
+        "kind": "mention",
+        "ref_id": "a469076e-3a82-457c-9896-0ffcfdf224d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:54:50.427483+00:00",
+        "kind": "mention",
+        "ref_id": "f8891aed-a9ed-4163-b214-4c08dd66969e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:09.351833+00:00",
+        "kind": "mention",
+        "ref_id": "5019752b-ff69-4d56-89be-c24f95f2d3ae",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:49.469059+00:00",
+        "kind": "mention",
+        "ref_id": "d7733ca4-d01d-4a37-8659-f28e782d7cf6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:58:45.231179+00:00",
+        "kind": "mention",
+        "ref_id": "40795379-0180-42bd-84eb-d7e1604b7402",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:59:36.633498+00:00",
+        "kind": "mention",
+        "ref_id": "9a4a92c8-d9b1-45a1-a054-45d074d60b23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:01:37.053868+00:00",
+        "kind": "mention",
+        "ref_id": "d8ed0bbe-9b8a-4ef7-96ce-31cf4efa647d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:07.939831+00:00",
+        "kind": "mention",
+        "ref_id": "1f4408b8-258f-4ac1-9816-db084a8c5b36",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:50.154247+00:00",
+        "kind": "mention",
+        "ref_id": "370c2fca-f023-43b0-ac86-4aed304c9dd1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:03:43.162686+00:00",
+        "kind": "mention",
+        "ref_id": "57947477-8705-4c16-a1b8-fca229c88002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:37.679031+00:00",
+        "kind": "mention",
+        "ref_id": "3c3db348-3011-47ce-93ae-dea2858f203e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:27.783476+00:00",
+        "kind": "mention",
+        "ref_id": "8611a4ba-8c25-4b93-b497-83e6637784a2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:06:15.646483+00:00",
+        "kind": "mention",
+        "ref_id": "a6ce8a4d-cb33-4873-936f-7711e9417caa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:07:12.967681+00:00",
+        "kind": "mention",
+        "ref_id": "bf6167f2-eb2d-4f12-b089-aec09aa99704",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:08:11.248586+00:00",
+        "kind": "mention",
+        "ref_id": "d0b48f91-82f2-49d6-9154-a036b477d73b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:05.459354+00:00",
+        "kind": "mention",
+        "ref_id": "fe67b629-5160-4688-86bf-c1edc28b3186",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.023508+00:00",
+        "kind": "mention",
+        "ref_id": "1adba368-484f-497d-84d0-9542265b7e77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.023586+00:00",
+        "kind": "mention",
+        "ref_id": "d49d93be-a265-4184-bba9-c1122e080035",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:10:47.439535+00:00",
+        "kind": "mention",
+        "ref_id": "45ce6d4a-3c82-461f-b087-0bb7a2316ead",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:00.388588+00:00",
+        "kind": "mention",
+        "ref_id": "dab51fde-0012-4d3e-b1b2-526726077f1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:53.690687+00:00",
+        "kind": "mention",
+        "ref_id": "87fb0077-5302-425b-bd52-0129c67c792d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:13:43.143780+00:00",
+        "kind": "mention",
+        "ref_id": "ca867873-6422-4134-b552-a6096f48f83f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:16.125932+00:00",
+        "kind": "mention",
+        "ref_id": "fff33a0f-3164-4c94-9063-6975ae2def7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:53.314029+00:00",
+        "kind": "mention",
+        "ref_id": "3544bb22-a07d-46fa-bca7-7b6eb840b62d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:44.629265+00:00",
+        "kind": "mention",
+        "ref_id": "1cd2680f-50ce-4fe5-bf9a-29c9b97e6937",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:17:21.211266+00:00",
+        "kind": "mention",
+        "ref_id": "55c33456-fe49-4226-99e0-943d0fa1cf4e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:42.048651+00:00",
+        "kind": "mention",
+        "ref_id": "5c796ee2-7cc5-4739-8bde-b1c9e6b59ada",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:17.019553+00:00",
+        "kind": "mention",
+        "ref_id": "fa141c68-c951-4168-9a2b-83582d9b64e2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:53.025941+00:00",
+        "kind": "mention",
+        "ref_id": "a886d71f-f7da-4bf5-b9f6-3154d4cf423d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:20:49.882585+00:00",
+        "kind": "mention",
+        "ref_id": "e433e61c-a8bb-4a8b-bba3-1884d566b8d4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:34.679456+00:00",
+        "kind": "mention",
+        "ref_id": "cf90a9c2-1e43-408f-960c-41e1d37efc91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:52.383663+00:00",
+        "kind": "mention",
+        "ref_id": "d1459302-62ef-4497-b014-ac6081be670c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:28.689409+00:00",
+        "kind": "mention",
+        "ref_id": "3d60fadb-19d4-4551-b9af-36859420ab3c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:04.589209+00:00",
+        "kind": "mention",
+        "ref_id": "b2dd4424-9d6e-48b0-8cb5-a4a5831e7c5e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:27:24.777418+00:00",
+        "kind": "mention",
+        "ref_id": "d2be5a54-0c44-4276-a343-e268bde93c24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:00.282798+00:00",
+        "kind": "mention",
+        "ref_id": "e77fd606-38f9-4a60-9f51-8764e5f25782",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:40.724672+00:00",
+        "kind": "mention",
+        "ref_id": "81fd0a5a-a2b8-484c-b17f-762bf7fb65f1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:16.830743+00:00",
+        "kind": "mention",
+        "ref_id": "b45a650a-477b-4cde-8d27-80409430bf98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.337683+00:00",
+        "kind": "mention",
+        "ref_id": "0b25f64b-e762-4a2d-95b8-74db0eb2de7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:36.506624+00:00",
+        "kind": "mention",
+        "ref_id": "77c766d8-1e0b-43bb-952f-bbd4f19399aa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:12.216747+00:00",
+        "kind": "mention",
+        "ref_id": "534167f3-d433-469a-900d-40b21c8f63b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:49.895596+00:00",
+        "kind": "mention",
+        "ref_id": "30b65414-0a32-45d7-8782-4782fc6c237c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:38.548404+00:00",
+        "kind": "mention",
+        "ref_id": "f41174cf-1181-46a1-a132-0ef97f37e2eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162330+00:00",
+        "kind": "mention",
+        "ref_id": "994d1bfa-b70f-493a-b89d-cba50aafaa9a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:33.843706+00:00",
+        "kind": "mention",
+        "ref_id": "b6b7d82e-d5f5-4994-8ad2-d4b0f80675fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:46.731261+00:00",
+        "kind": "mention",
+        "ref_id": "f29c7fe5-16f9-4a48-a976-2a68348aa6f2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:26.544007+00:00",
+        "kind": "mention",
+        "ref_id": "e74b0fc2-8150-4ce9-a39b-29617ab547b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:05.826976+00:00",
+        "kind": "mention",
+        "ref_id": "e27bc47b-108c-4c28-af3e-9d10476949ba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:36.205827+00:00",
+        "kind": "mention",
+        "ref_id": "587e718b-1cc9-479a-bd12-f805c62ab02e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:48.363594+00:00",
+        "kind": "mention",
+        "ref_id": "1bb5f4ba-41e5-4672-8db6-16d2b94457bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:32.015393+00:00",
+        "kind": "mention",
+        "ref_id": "3f0d8357-3632-4cf6-816f-e19edc08cf9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:55:29.946476+00:00",
+        "kind": "mention",
+        "ref_id": "5f4eebad-469a-44f5-b7cd-9466c781a358",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:56:09.290560+00:00",
+        "kind": "mention",
+        "ref_id": "5bd0865c-f396-46c0-9f4e-676907dcc6fb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:18.669174+00:00",
+        "kind": "mention",
+        "ref_id": "3455f1da-4243-4e50-a09a-efa092a9a023",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:30.988955+00:00",
+        "kind": "mention",
+        "ref_id": "d5382857-f8f2-41c7-a6d5-4426f126624c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521227+00:00",
+        "kind": "mention",
+        "ref_id": "0d234b53-54ec-44e5-a00c-3d048b12eefe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841296+00:00",
+        "kind": "mention",
+        "ref_id": "e2ee22ad-9229-4539-8374-67e255d266d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:04.908421+00:00",
+        "kind": "mention",
+        "ref_id": "2f82a8a2-5371-4dcc-b610-304b2e1d7645",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d6328da5-0302-42ba-bbbc-40c9fd47d3bf"
+    ],
+    "linked_opinion_ids": [
+      "7bf46ad61a"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "3cd15f8f29",
+    "topic": "history",
+    "view": "History keeps landing badly — most sharply in \"💔 Goal failed: Understand history more deeply.\". I've grown wary of it.",
+    "confidence": 0.44,
+    "alpha": 1.85,
+    "beta": 2.4,
+    "formed_at": "2026-07-08T14:13:12.817019+00:00",
+    "updated_at": "2026-07-09T00:21:04.908512+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T14:13:12.817019+00:00",
+        "kind": "observation",
+        "ref_id": "40387b6d-080e-4dfa-a311-3d994cae1f2b",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:59:38.631082+00:00",
+        "kind": "observation",
+        "ref_id": "a4245cf3-256a-4d8b-a4f3-965304003713",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:21:32.557197+00:00",
+        "kind": "mention",
+        "ref_id": "4042c351-b254-4058-aca2-035f45d9ccef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:23:03.547305+00:00",
+        "kind": "mention",
+        "ref_id": "3b2c5bc9-db14-4b4c-b00d-9e8e38f26e66",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:27:35.470963+00:00",
+        "kind": "mention",
+        "ref_id": "0649f85a-a4ca-487c-a6e9-3c39acf50801",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:43.916636+00:00",
+        "kind": "mention",
+        "ref_id": "fd1f5e44-13b5-4629-9a4c-f0a5e71b921e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:31:32.199028+00:00",
+        "kind": "mention",
+        "ref_id": "7f421768-84b6-46f1-814e-acb0313a0456",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:33:24.467451+00:00",
+        "kind": "mention",
+        "ref_id": "239890e3-71bb-4532-b716-1bd3ac4028da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:34:37.014383+00:00",
+        "kind": "mention",
+        "ref_id": "4952167e-760e-419e-82c7-e93cc292c580",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:35:11.695447+00:00",
+        "kind": "mention",
+        "ref_id": "2b666687-906e-4413-bcec-7ee2b6cef075",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:37:11.506302+00:00",
+        "kind": "mention",
+        "ref_id": "a69db5b9-5fd0-4ce5-89ad-663a140084cd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:37:52.438435+00:00",
+        "kind": "mention",
+        "ref_id": "08684f42-ff45-44a1-86a4-44d66bf2796e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:27.552908+00:00",
+        "kind": "mention",
+        "ref_id": "8338d3f3-9b7c-4aed-bfc4-93aada9a5144",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:39:06.372423+00:00",
+        "kind": "mention",
+        "ref_id": "fcdfef8d-8a9e-4de5-a81c-42266056c50f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:39:44.477693+00:00",
+        "kind": "mention",
+        "ref_id": "065ff39f-8ba2-4022-bf55-d574a38e5ec0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:22.140839+00:00",
+        "kind": "mention",
+        "ref_id": "df3b9543-7089-420c-8415-d02ccf072807",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:56.812483+00:00",
+        "kind": "mention",
+        "ref_id": "0c1460f9-bf00-469f-97b3-f1e189bd54fd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:42:17.073005+00:00",
+        "kind": "mention",
+        "ref_id": "619bf011-2afe-403d-aefb-003dd893b1f0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:42:51.495445+00:00",
+        "kind": "mention",
+        "ref_id": "d5a7d7d1-150b-4907-83f1-5b92471c42f4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:44:05.187567+00:00",
+        "kind": "mention",
+        "ref_id": "fd5a6ea3-4e20-484b-9eaf-cbaa18691393",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:48:57.374028+00:00",
+        "kind": "mention",
+        "ref_id": "ada8afc2-f41c-4ad0-aee7-25bb029d4d55",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:51:55.736907+00:00",
+        "kind": "mention",
+        "ref_id": "68770aba-ffd7-467f-aa78-bb3aee5e55a4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:52:00.316065+00:00",
+        "kind": "mention",
+        "ref_id": "a4245cf3-256a-4d8b-a4f3-965304003713",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:52:30.822962+00:00",
+        "kind": "mention",
+        "ref_id": "0d42fd16-5d0a-4ece-a44c-c29fcc5d7507",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:09.351913+00:00",
+        "kind": "mention",
+        "ref_id": "5019752b-ff69-4d56-89be-c24f95f2d3ae",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:49.469153+00:00",
+        "kind": "mention",
+        "ref_id": "d7733ca4-d01d-4a37-8659-f28e782d7cf6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:59:36.633630+00:00",
+        "kind": "mention",
+        "ref_id": "9a4a92c8-d9b1-45a1-a054-45d074d60b23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:50.154375+00:00",
+        "kind": "mention",
+        "ref_id": "370c2fca-f023-43b0-ac86-4aed304c9dd1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:03:43.162812+00:00",
+        "kind": "mention",
+        "ref_id": "57947477-8705-4c16-a1b8-fca229c88002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:27.783627+00:00",
+        "kind": "mention",
+        "ref_id": "8611a4ba-8c25-4b93-b497-83e6637784a2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:06:15.646622+00:00",
+        "kind": "mention",
+        "ref_id": "a6ce8a4d-cb33-4873-936f-7711e9417caa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:08:11.248727+00:00",
+        "kind": "mention",
+        "ref_id": "d0b48f91-82f2-49d6-9154-a036b477d73b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:05.459483+00:00",
+        "kind": "mention",
+        "ref_id": "fe67b629-5160-4688-86bf-c1edc28b3186",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.023778+00:00",
+        "kind": "mention",
+        "ref_id": "1adba368-484f-497d-84d0-9542265b7e77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:10:47.439651+00:00",
+        "kind": "mention",
+        "ref_id": "45ce6d4a-3c82-461f-b087-0bb7a2316ead",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:00.388749+00:00",
+        "kind": "mention",
+        "ref_id": "dab51fde-0012-4d3e-b1b2-526726077f1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:13:43.143864+00:00",
+        "kind": "mention",
+        "ref_id": "ca867873-6422-4134-b552-a6096f48f83f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:16.126015+00:00",
+        "kind": "mention",
+        "ref_id": "fff33a0f-3164-4c94-9063-6975ae2def7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:17:21.211344+00:00",
+        "kind": "mention",
+        "ref_id": "55c33456-fe49-4226-99e0-943d0fa1cf4e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:17.019650+00:00",
+        "kind": "mention",
+        "ref_id": "fa141c68-c951-4168-9a2b-83582d9b64e2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:53.026035+00:00",
+        "kind": "mention",
+        "ref_id": "a886d71f-f7da-4bf5-b9f6-3154d4cf423d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:34.679544+00:00",
+        "kind": "mention",
+        "ref_id": "cf90a9c2-1e43-408f-960c-41e1d37efc91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:28.689486+00:00",
+        "kind": "mention",
+        "ref_id": "3d60fadb-19d4-4551-b9af-36859420ab3c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:04.589290+00:00",
+        "kind": "mention",
+        "ref_id": "b2dd4424-9d6e-48b0-8cb5-a4a5831e7c5e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:27:24.777484+00:00",
+        "kind": "mention",
+        "ref_id": "d2be5a54-0c44-4276-a343-e268bde93c24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:00.282864+00:00",
+        "kind": "mention",
+        "ref_id": "e77fd606-38f9-4a60-9f51-8764e5f25782",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:16.830808+00:00",
+        "kind": "mention",
+        "ref_id": "b45a650a-477b-4cde-8d27-80409430bf98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.337771+00:00",
+        "kind": "mention",
+        "ref_id": "0b25f64b-e762-4a2d-95b8-74db0eb2de7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:12.216817+00:00",
+        "kind": "mention",
+        "ref_id": "534167f3-d433-469a-900d-40b21c8f63b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:38.548496+00:00",
+        "kind": "mention",
+        "ref_id": "f41174cf-1181-46a1-a132-0ef97f37e2eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162418+00:00",
+        "kind": "mention",
+        "ref_id": "994d1bfa-b70f-493a-b89d-cba50aafaa9a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:33.843781+00:00",
+        "kind": "mention",
+        "ref_id": "b6b7d82e-d5f5-4994-8ad2-d4b0f80675fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:26.544075+00:00",
+        "kind": "mention",
+        "ref_id": "e74b0fc2-8150-4ce9-a39b-29617ab547b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:05.827052+00:00",
+        "kind": "mention",
+        "ref_id": "e27bc47b-108c-4c28-af3e-9d10476949ba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:32.015461+00:00",
+        "kind": "mention",
+        "ref_id": "3f0d8357-3632-4cf6-816f-e19edc08cf9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:55:29.946548+00:00",
+        "kind": "mention",
+        "ref_id": "5f4eebad-469a-44f5-b7cd-9466c781a358",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:18.669250+00:00",
+        "kind": "mention",
+        "ref_id": "3455f1da-4243-4e50-a09a-efa092a9a023",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:30.989032+00:00",
+        "kind": "mention",
+        "ref_id": "d5382857-f8f2-41c7-a6d5-4426f126624c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841360+00:00",
+        "kind": "mention",
+        "ref_id": "e2ee22ad-9229-4539-8374-67e255d266d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:04.908512+00:00",
+        "kind": "mention",
+        "ref_id": "2f82a8a2-5371-4dcc-b610-304b2e1d7645",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "40387b6d-080e-4dfa-a311-3d994cae1f2b",
+      "0815f680-35e8-4a85-80b0-ebc03ca3e0ac",
+      "0fa812af-ae85-4810-8ebe-cd921ad3b6c4",
+      "3ce01584-2322-4d1f-9fe0-b3e8b1fa9402"
+    ],
+    "linked_opinion_ids": [
+      "7bf46ad61a",
+      "47cb06083e"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "5494af1f14",
+    "topic": "question",
+    "view": "Question keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T14:43:22.294259+00:00",
+    "updated_at": "2026-07-09T00:21:44.054320+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T14:43:22.294259+00:00",
+        "kind": "observation",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T15:13:23.153682+00:00",
+        "kind": "observation",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T22:33:44.427411+00:00",
+        "kind": "mention",
+        "ref_id": "047990fd-4142-4e5e-af9b-f60fb79639fe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:50.409969+00:00",
+        "kind": "mention",
+        "ref_id": "60ffd6a8-b7c6-4fe0-81e1-14876e3adfca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:02.800101+00:00",
+        "kind": "mention",
+        "ref_id": "daf5fef3-53ef-4abc-a93a-107dc230b323",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:12.479862+00:00",
+        "kind": "mention",
+        "ref_id": "ee1e693b-cf16-4bf8-a7ed-b5476f00e7f3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:25.252621+00:00",
+        "kind": "mention",
+        "ref_id": "2ea0bb3a-7e98-4ae0-8113-ee289c1e1d0d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:28.030866+00:00",
+        "kind": "mention",
+        "ref_id": "cbe369d8-93ed-4031-a3a2-3386c7838abf",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:42.659460+00:00",
+        "kind": "mention",
+        "ref_id": "06380453-9838-4abd-93f5-94ec56e7ccb9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:13.860210+00:00",
+        "kind": "mention",
+        "ref_id": "24f383da-cd5b-4287-85ee-93f6327387f8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:45.401035+00:00",
+        "kind": "mention",
+        "ref_id": "dca95303-e935-46aa-85fb-22034f1bbb5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:00.388344+00:00",
+        "kind": "mention",
+        "ref_id": "a6ffa076-8022-45e2-9505-341966bf76a9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:06.510061+00:00",
+        "kind": "mention",
+        "ref_id": "972f4408-fc00-49d1-abad-8473b6dc69c4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:41.944378+00:00",
+        "kind": "mention",
+        "ref_id": "d3a775df-e166-4d02-b2be-9d47d8602b43",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:54.626654+00:00",
+        "kind": "mention",
+        "ref_id": "bebbe9ec-5897-4e11-97ce-e59b4005a3d8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:57.604591+00:00",
+        "kind": "mention",
+        "ref_id": "95801fe3-aa8c-42cf-9116-ec0830e701cd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:04.232971+00:00",
+        "kind": "mention",
+        "ref_id": "0b556c8f-2c79-4855-92de-18af7c7de38e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:15.647768+00:00",
+        "kind": "mention",
+        "ref_id": "1a7e1014-eabb-4804-b22a-95f334d0a1cb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:21.361204+00:00",
+        "kind": "mention",
+        "ref_id": "075e6217-a24e-413a-83ab-f4b197d01841",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:30.244307+00:00",
+        "kind": "mention",
+        "ref_id": "787f486e-c72a-4f5d-9f6a-00cf430aaf2d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:36.381983+00:00",
+        "kind": "mention",
+        "ref_id": "fff91eaa-9cbe-42bf-a114-078508d638a1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:50.932002+00:00",
+        "kind": "mention",
+        "ref_id": "73c1f1ea-7f36-4f8a-aec8-d130f5f92ece",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:37:53.399251+00:00",
+        "kind": "mention",
+        "ref_id": "c6cbcdda-1907-4d45-98cd-9aa5e0b958d9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:18.438621+00:00",
+        "kind": "mention",
+        "ref_id": "3059e85a-1c65-4884-b2b1-f45bf89d4a0f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:24.672808+00:00",
+        "kind": "mention",
+        "ref_id": "1e71937f-81d4-4a9f-b4d5-8dd3a3a78207",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:33.295688+00:00",
+        "kind": "mention",
+        "ref_id": "0db38d7a-5458-4681-ab49-32aa91a6bbbd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:36.873712+00:00",
+        "kind": "mention",
+        "ref_id": "0a3ff7f4-7b36-43b1-9894-ee4f029763c9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:04.757561+00:00",
+        "kind": "mention",
+        "ref_id": "05168a3c-7717-4b0c-8443-df7991e747d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:19.479875+00:00",
+        "kind": "mention",
+        "ref_id": "e7f30a0c-e9d3-4591-95b6-85b7c1dee725",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:35.426535+00:00",
+        "kind": "mention",
+        "ref_id": "70097b85-a11b-4d81-8443-670c3f5d55e4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:56.168021+00:00",
+        "kind": "mention",
+        "ref_id": "a34a8184-587f-47b2-9bc3-91416e26bb33",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:02.593269+00:00",
+        "kind": "mention",
+        "ref_id": "f6dec30f-3b26-4fcf-8348-f40dc33ec232",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:16.894851+00:00",
+        "kind": "mention",
+        "ref_id": "f1520c0e-3453-4885-9dde-e2db23c417cd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:22.259290+00:00",
+        "kind": "mention",
+        "ref_id": "b85cd351-d7c0-499e-b00e-cc99eda5d601",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:48.363728+00:00",
+        "kind": "mention",
+        "ref_id": "7d1b4e4a-56c7-4ad0-a777-ca4fef531b9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:23.855882+00:00",
+        "kind": "mention",
+        "ref_id": "7710adae-f79b-402f-8b0e-c3b400c06e73",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:21.905708+00:00",
+        "kind": "mention",
+        "ref_id": "e73c7638-ffe3-4d9b-99e1-83edb57e49d9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:30.344010+00:00",
+        "kind": "mention",
+        "ref_id": "073c0479-2a6b-4b1a-9707-7d908d4907b7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:56.102725+00:00",
+        "kind": "mention",
+        "ref_id": "2e4bf36c-9530-4eaf-a0b2-861bd01fd4b3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:56:03.644277+00:00",
+        "kind": "mention",
+        "ref_id": "17c0daa6-5ed9-464f-be8c-5636591bb443",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:57:42.000379+00:00",
+        "kind": "mention",
+        "ref_id": "16bc7c10-3066-4f5f-ac0d-fb65a65566ee",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:00:53.004781+00:00",
+        "kind": "mention",
+        "ref_id": "9a53e340-40fa-47f6-a132-353f6497df0b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:01:54.219108+00:00",
+        "kind": "mention",
+        "ref_id": "3c3c33ac-2a75-4379-be47-25dae78ab754",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:01:57.245201+00:00",
+        "kind": "mention",
+        "ref_id": "69281f10-5c0c-4ec5-b9c3-92500e0bb1c3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:02:48.697425+00:00",
+        "kind": "mention",
+        "ref_id": "86fd402f-4ae6-4a26-af24-a61a2e43be1e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:02:51.611587+00:00",
+        "kind": "mention",
+        "ref_id": "33c5f1c2-3c0f-4e0b-abef-9b2050543953",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:35.554031+00:00",
+        "kind": "mention",
+        "ref_id": "3b0fff97-6447-4d44-8b72-3bffaaa9a230",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:42.938674+00:00",
+        "kind": "mention",
+        "ref_id": "28110214-78d4-4790-829b-9520ed670d96",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:09.550645+00:00",
+        "kind": "mention",
+        "ref_id": "d028995f-fb0a-4c47-b203-46eba87076b0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:24.094709+00:00",
+        "kind": "mention",
+        "ref_id": "23c14317-cbb6-4cea-b4fc-0371af9f5ec0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:07:51.054450+00:00",
+        "kind": "mention",
+        "ref_id": "a34fd207-2240-4acb-a585-3371b1746b73",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521364+00:00",
+        "kind": "mention",
+        "ref_id": "fbeccde1-3d05-414e-80f9-5c44d732bc49",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:15:49.310426+00:00",
+        "kind": "mention",
+        "ref_id": "d72157a1-ff94-4628-8220-40dea0b45199",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:16:05.933046+00:00",
+        "kind": "mention",
+        "ref_id": "11fb537a-0d84-4bb3-82e8-21f3e9bedec0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:16:12.816196+00:00",
+        "kind": "mention",
+        "ref_id": "6ee73b6f-14c0-4cff-a419-edb227a549b7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:20:51.808261+00:00",
+        "kind": "mention",
+        "ref_id": "82e273f7-5647-4ad7-a160-946d23839642",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:21.295026+00:00",
+        "kind": "mention",
+        "ref_id": "206bda72-fd81-4f00-8b9e-5b1fb9e74cd6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:28.572969+00:00",
+        "kind": "mention",
+        "ref_id": "4313e126-f0a0-42df-8a77-96206167030f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:35.883376+00:00",
+        "kind": "mention",
+        "ref_id": "09e50540-eea7-4499-a758-48ccca151217",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:44.054320+00:00",
+        "kind": "mention",
+        "ref_id": "a5c779ab-22a1-466a-95b8-dfeda527ebc2",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d7e429a5-6905-4d45-befd-01de3681adc1",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "3ab78224-1198-4cd0-b8b3-c59b6ef3cdc3"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  },
+  {
+    "id": "26934eb377",
+    "topic": "failed",
+    "view": "Failed keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.33,
+    "alpha": 1.4,
+    "beta": 2.85,
+    "formed_at": "2026-07-08T15:13:23.156290+00:00",
+    "updated_at": "2026-07-08T22:32:19.244733+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T15:13:23.156290+00:00",
+        "kind": "observation",
+        "ref_id": "40387b6d-080e-4dfa-a311-3d994cae1f2b",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T15:43:25.847166+00:00",
+        "kind": "mention",
+        "ref_id": "40387b6d-080e-4dfa-a311-3d994cae1f2b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T15:43:25.847197+00:00",
+        "kind": "mention",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T15:43:25.847230+00:00",
+        "kind": "observation",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "against",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T15:43:51.083906+00:00",
+        "kind": "mention",
+        "ref_id": "8dfa546d-e1a6-41c9-9515-76cc70a4f68a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:59:38.631150+00:00",
+        "kind": "mention",
+        "ref_id": "a4245cf3-256a-4d8b-a4f3-965304003713",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:07:29.485319+00:00",
+        "kind": "mention",
+        "ref_id": "95f923a0-7771-4284-b7ee-035a7464302f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:07:47.112171+00:00",
+        "kind": "mention",
+        "ref_id": "570294d1-3806-41ed-a07d-bd655559a0cd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:09:25.605620+00:00",
+        "kind": "mention",
+        "ref_id": "ee2c38aa-221b-46f0-bd3b-aa92c0695e4d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:21.605629+00:00",
+        "kind": "mention",
+        "ref_id": "f9b5379d-1295-460b-8864-459656e08c06",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:59.828060+00:00",
+        "kind": "mention",
+        "ref_id": "7bb843d8-5315-4223-a3c8-35240b870edb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:34.319002+00:00",
+        "kind": "mention",
+        "ref_id": "721ea7b4-86d2-4d7b-9e21-316c6c8ba67e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.337879+00:00",
+        "kind": "mention",
+        "ref_id": "2237c592-209b-4a61-9259-c0c5e970111c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:12.659206+00:00",
+        "kind": "mention",
+        "ref_id": "c0cb0044-e700-4001-a54a-8d13289bcf0d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:54.150782+00:00",
+        "kind": "mention",
+        "ref_id": "5e374b0c-6ad9-43b0-bdae-e3ec52d6d3ab",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:19.244733+00:00",
+        "kind": "mention",
+        "ref_id": "1277e43c-47a5-47d0-a726-6e4075f8f142",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "40387b6d-080e-4dfa-a311-3d994cae1f2b",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "9e8a0825-d2d9-4167-96ff-efdd9becea54"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14"
+    ],
+    "needs_review": true
+  },
+  {
+    "id": "cf167fbe11",
+    "topic": "doing right",
+    "view": "Doing right keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T15:43:51.088041+00:00",
+    "updated_at": "2026-07-08T22:53:56.102800+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T15:43:51.088041+00:00",
+        "kind": "observation",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T16:13:51.420169+00:00",
+        "kind": "observation",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:32:11.758550+00:00",
+        "kind": "mention",
+        "ref_id": "93b6ffb3-1920-4057-9569-27af033abd0a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:33:59.257816+00:00",
+        "kind": "mention",
+        "ref_id": "88946a51-31c5-4b70-bc0f-f4ae2aab0954",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:36:22.912981+00:00",
+        "kind": "mention",
+        "ref_id": "7ce4de5e-c91b-4fb9-998e-6aedc6cb1863",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:37:16.965994+00:00",
+        "kind": "mention",
+        "ref_id": "445ceb79-5f48-4913-949d-074d07e10e1f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:38:26.174018+00:00",
+        "kind": "mention",
+        "ref_id": "d57c9864-84f6-4c22-8ddd-3d1f042ec810",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:39:53.283549+00:00",
+        "kind": "mention",
+        "ref_id": "1a605437-84e9-4566-a904-7fc18e08427e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:40:27.290302+00:00",
+        "kind": "mention",
+        "ref_id": "f749e411-b899-4994-9ada-593cde11ad5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:46.419212+00:00",
+        "kind": "mention",
+        "ref_id": "0e738fb3-c42f-4387-bc4a-7b44c3c21b5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:57.213999+00:00",
+        "kind": "mention",
+        "ref_id": "7a6c22be-7789-4fda-b126-0415b3f3ce32",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:50:42.185659+00:00",
+        "kind": "mention",
+        "ref_id": "0e3d1b40-4a52-4f63-8883-6a74cefae679",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:55:32.541667+00:00",
+        "kind": "mention",
+        "ref_id": "675f9b74-d39c-41c6-9868-606769054aa3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:01:45.915131+00:00",
+        "kind": "mention",
+        "ref_id": "aaa4f67d-4c9f-419c-ba5c-bd4634381ec8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:03:29.747615+00:00",
+        "kind": "mention",
+        "ref_id": "c213b31b-52d0-415a-a1ce-d0a88e9133c0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:05.755428+00:00",
+        "kind": "mention",
+        "ref_id": "77c01850-de1a-48bf-a0d1-61ae62bb8004",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:32.309914+00:00",
+        "kind": "mention",
+        "ref_id": "14962f42-b0fb-4f6b-8ae6-8873762a2e80",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:45.292124+00:00",
+        "kind": "mention",
+        "ref_id": "5fe1e531-4395-4637-950b-200df3afc37d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:42:12.982128+00:00",
+        "kind": "mention",
+        "ref_id": "8cc2bb9e-ae4f-4c60-9984-352f7421367c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:46:53.431950+00:00",
+        "kind": "mention",
+        "ref_id": "88a78d43-1ac5-4423-90ec-87f7c6624e03",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:47:37.636238+00:00",
+        "kind": "mention",
+        "ref_id": "df6377a4-011e-439a-b9d5-bb5f6d85245a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:49:16.368087+00:00",
+        "kind": "mention",
+        "ref_id": "55ec2885-e2ac-42a4-b913-be6f09a790cb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:52:30.132618+00:00",
+        "kind": "mention",
+        "ref_id": "1c119f2c-650c-4ac3-ac6b-b584066f99b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:53:12.333497+00:00",
+        "kind": "mention",
+        "ref_id": "73528b31-215a-4f8f-933b-7ac1751fd478",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:58:18.241834+00:00",
+        "kind": "mention",
+        "ref_id": "9aca33f5-dc7c-4b5f-a409-7859114973c8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:00:30.236459+00:00",
+        "kind": "mention",
+        "ref_id": "b25db282-d76c-42f8-a9fd-0d484f3ce30f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:05:15.148399+00:00",
+        "kind": "mention",
+        "ref_id": "7d0c0608-0901-4a9a-97f9-0c7cdd70babd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:40.654340+00:00",
+        "kind": "mention",
+        "ref_id": "05d32912-b18a-4c53-8a7b-91a6cad0bfca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:55.595448+00:00",
+        "kind": "mention",
+        "ref_id": "bee710a9-054a-4032-86b3-9c862bd1ab23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:04.501284+00:00",
+        "kind": "mention",
+        "ref_id": "9726fe98-a7a5-401e-a160-c1115a2331bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:39.512171+00:00",
+        "kind": "mention",
+        "ref_id": "3bfa625b-947e-48f2-b408-50b49a9a5f59",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:25.475255+00:00",
+        "kind": "mention",
+        "ref_id": "30a03fcf-b419-48f7-b4e3-fc6f80e126d7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:47.757370+00:00",
+        "kind": "mention",
+        "ref_id": "4a817fa5-204d-46ec-99fc-4fbbcc30e237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:09.881569+00:00",
+        "kind": "mention",
+        "ref_id": "f982dfa1-2d42-459f-8ded-00fc8860a4ef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:53.532772+00:00",
+        "kind": "mention",
+        "ref_id": "8dc89cdc-a84a-4303-b6af-fe7030365194",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:31:19.537302+00:00",
+        "kind": "mention",
+        "ref_id": "1a4b1351-6e2e-428f-b738-30bb6d0000d6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:32:39.671665+00:00",
+        "kind": "mention",
+        "ref_id": "4d24133c-9151-4a4a-bfe9-30aa1fdfda29",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:33:51.348746+00:00",
+        "kind": "mention",
+        "ref_id": "c10eb598-f8a8-47bc-a5b1-f39f4ddbede3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:34:26.728172+00:00",
+        "kind": "mention",
+        "ref_id": "504409e7-b3fd-4b6d-82b0-d54bdd72100e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:31.660874+00:00",
+        "kind": "mention",
+        "ref_id": "28fbf689-3339-4b51-89ba-5752f623ff27",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:41.022539+00:00",
+        "kind": "mention",
+        "ref_id": "cefe85c9-7c67-4b5a-81b3-9af20731a041",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:10.358670+00:00",
+        "kind": "mention",
+        "ref_id": "50ab1c59-0a22-4f42-87f1-718de53a833b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:33.447347+00:00",
+        "kind": "mention",
+        "ref_id": "69b22db7-5d54-4862-aa7d-fb1404496f75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:36.153335+00:00",
+        "kind": "mention",
+        "ref_id": "9e5ad9b1-2e88-4adf-96be-a42f22442489",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:46.467224+00:00",
+        "kind": "mention",
+        "ref_id": "b11ece73-14a2-4560-b577-60fcc64c9bc2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:41:20.216699+00:00",
+        "kind": "mention",
+        "ref_id": "3dc0ac57-f081-48fe-8e2f-8a3b11d9f44d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:43:24.940850+00:00",
+        "kind": "mention",
+        "ref_id": "9ef93848-04f5-4abd-b82a-e3d21d64e521",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:44:28.868755+00:00",
+        "kind": "mention",
+        "ref_id": "84cb1101-56ab-4232-8131-5d53c38bee8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:45:46.396334+00:00",
+        "kind": "mention",
+        "ref_id": "95b798ec-df9c-4e38-be34-784d2d8d64f7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:46:17.152139+00:00",
+        "kind": "mention",
+        "ref_id": "7338f33d-f28b-4b7c-908b-2881a131b8da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:04.822260+00:00",
+        "kind": "mention",
+        "ref_id": "421100ed-2215-4275-8cf9-f375e489be7b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:04.129467+00:00",
+        "kind": "mention",
+        "ref_id": "5823fa79-0bef-4fed-b662-4e5dadb40d89",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:15.858724+00:00",
+        "kind": "mention",
+        "ref_id": "456ddcab-b917-4474-b9df-787a4cff70a6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:18.973934+00:00",
+        "kind": "mention",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:36.316189+00:00",
+        "kind": "mention",
+        "ref_id": "c8595138-7bc8-4723-a812-d0b83e3ede97",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:40.875014+00:00",
+        "kind": "mention",
+        "ref_id": "9a692c52-bb8d-4964-a7db-e17cd4329d19",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:45.401102+00:00",
+        "kind": "mention",
+        "ref_id": "dca95303-e935-46aa-85fb-22034f1bbb5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:33.295763+00:00",
+        "kind": "mention",
+        "ref_id": "0db38d7a-5458-4681-ab49-32aa91a6bbbd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:19.479954+00:00",
+        "kind": "mention",
+        "ref_id": "e7f30a0c-e9d3-4591-95b6-85b7c1dee725",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:56.102800+00:00",
+        "kind": "mention",
+        "ref_id": "2e4bf36c-9530-4eaf-a0b2-861bd01fd4b3",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d7e429a5-6905-4d45-befd-01de3681adc1",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "8dfa546d-e1a6-41c9-9515-76cc70a4f68a"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14",
+      "26934eb377"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "ef7c25e2d4",
+    "topic": "description=",
+    "view": "Description= keeps landing badly — most sharply in \"emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description= [history, concept, r\". I've grown wary of it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-08T16:14:13.489848+00:00",
+    "updated_at": "2026-07-09T00:21:04.908715+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T16:14:13.489848+00:00",
+        "kind": "observation",
+        "ref_id": "501d4d8e-f392-4280-a45e-fc6bc17f2fb4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:52:30.823144+00:00",
+        "kind": "mention",
+        "ref_id": "0d42fd16-5d0a-4ece-a44c-c29fcc5d7507",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:53:04.017391+00:00",
+        "kind": "mention",
+        "ref_id": "a469076e-3a82-457c-9896-0ffcfdf224d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:54:50.427695+00:00",
+        "kind": "mention",
+        "ref_id": "f8891aed-a9ed-4163-b214-4c08dd66969e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:09.352102+00:00",
+        "kind": "mention",
+        "ref_id": "5019752b-ff69-4d56-89be-c24f95f2d3ae",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:49.469393+00:00",
+        "kind": "mention",
+        "ref_id": "d7733ca4-d01d-4a37-8659-f28e782d7cf6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:58:45.231523+00:00",
+        "kind": "mention",
+        "ref_id": "40795379-0180-42bd-84eb-d7e1604b7402",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:59:36.634013+00:00",
+        "kind": "mention",
+        "ref_id": "9a4a92c8-d9b1-45a1-a054-45d074d60b23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:01:37.054174+00:00",
+        "kind": "mention",
+        "ref_id": "d8ed0bbe-9b8a-4ef7-96ce-31cf4efa647d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:07.940240+00:00",
+        "kind": "mention",
+        "ref_id": "1f4408b8-258f-4ac1-9816-db084a8c5b36",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:50.154661+00:00",
+        "kind": "mention",
+        "ref_id": "370c2fca-f023-43b0-ac86-4aed304c9dd1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:03:43.163088+00:00",
+        "kind": "mention",
+        "ref_id": "57947477-8705-4c16-a1b8-fca229c88002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:37.679386+00:00",
+        "kind": "mention",
+        "ref_id": "3c3db348-3011-47ce-93ae-dea2858f203e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:27.783957+00:00",
+        "kind": "mention",
+        "ref_id": "8611a4ba-8c25-4b93-b497-83e6637784a2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:06:15.646947+00:00",
+        "kind": "mention",
+        "ref_id": "a6ce8a4d-cb33-4873-936f-7711e9417caa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:07:12.967988+00:00",
+        "kind": "mention",
+        "ref_id": "bf6167f2-eb2d-4f12-b089-aec09aa99704",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:08:11.249112+00:00",
+        "kind": "mention",
+        "ref_id": "d0b48f91-82f2-49d6-9154-a036b477d73b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:05.459771+00:00",
+        "kind": "mention",
+        "ref_id": "fe67b629-5160-4688-86bf-c1edc28b3186",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.024309+00:00",
+        "kind": "mention",
+        "ref_id": "1adba368-484f-497d-84d0-9542265b7e77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.024367+00:00",
+        "kind": "mention",
+        "ref_id": "d49d93be-a265-4184-bba9-c1122e080035",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:10:47.439944+00:00",
+        "kind": "mention",
+        "ref_id": "45ce6d4a-3c82-461f-b087-0bb7a2316ead",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:00.389188+00:00",
+        "kind": "mention",
+        "ref_id": "dab51fde-0012-4d3e-b1b2-526726077f1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:53.691006+00:00",
+        "kind": "mention",
+        "ref_id": "87fb0077-5302-425b-bd52-0129c67c792d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:13:43.144053+00:00",
+        "kind": "mention",
+        "ref_id": "ca867873-6422-4134-b552-a6096f48f83f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:16.126219+00:00",
+        "kind": "mention",
+        "ref_id": "fff33a0f-3164-4c94-9063-6975ae2def7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:53.314251+00:00",
+        "kind": "mention",
+        "ref_id": "3544bb22-a07d-46fa-bca7-7b6eb840b62d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:44.629487+00:00",
+        "kind": "mention",
+        "ref_id": "1cd2680f-50ce-4fe5-bf9a-29c9b97e6937",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:17:21.211502+00:00",
+        "kind": "mention",
+        "ref_id": "55c33456-fe49-4226-99e0-943d0fa1cf4e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:42.048923+00:00",
+        "kind": "mention",
+        "ref_id": "5c796ee2-7cc5-4739-8bde-b1c9e6b59ada",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:17.019920+00:00",
+        "kind": "mention",
+        "ref_id": "fa141c68-c951-4168-9a2b-83582d9b64e2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:53.026251+00:00",
+        "kind": "mention",
+        "ref_id": "a886d71f-f7da-4bf5-b9f6-3154d4cf423d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:20:49.882844+00:00",
+        "kind": "mention",
+        "ref_id": "e433e61c-a8bb-4a8b-bba3-1884d566b8d4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:34.679778+00:00",
+        "kind": "mention",
+        "ref_id": "cf90a9c2-1e43-408f-960c-41e1d37efc91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:52.383896+00:00",
+        "kind": "mention",
+        "ref_id": "d1459302-62ef-4497-b014-ac6081be670c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:28.689691+00:00",
+        "kind": "mention",
+        "ref_id": "3d60fadb-19d4-4551-b9af-36859420ab3c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:04.589501+00:00",
+        "kind": "mention",
+        "ref_id": "b2dd4424-9d6e-48b0-8cb5-a4a5831e7c5e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:27:24.777635+00:00",
+        "kind": "mention",
+        "ref_id": "d2be5a54-0c44-4276-a343-e268bde93c24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:00.283018+00:00",
+        "kind": "mention",
+        "ref_id": "e77fd606-38f9-4a60-9f51-8764e5f25782",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:40.724890+00:00",
+        "kind": "mention",
+        "ref_id": "81fd0a5a-a2b8-484c-b17f-762bf7fb65f1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:16.830962+00:00",
+        "kind": "mention",
+        "ref_id": "b45a650a-477b-4cde-8d27-80409430bf98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.338000+00:00",
+        "kind": "mention",
+        "ref_id": "0b25f64b-e762-4a2d-95b8-74db0eb2de7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:36.506803+00:00",
+        "kind": "mention",
+        "ref_id": "77c766d8-1e0b-43bb-952f-bbd4f19399aa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:12.216971+00:00",
+        "kind": "mention",
+        "ref_id": "534167f3-d433-469a-900d-40b21c8f63b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:49.895835+00:00",
+        "kind": "mention",
+        "ref_id": "30b65414-0a32-45d7-8782-4782fc6c237c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:38.548676+00:00",
+        "kind": "mention",
+        "ref_id": "f41174cf-1181-46a1-a132-0ef97f37e2eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162649+00:00",
+        "kind": "mention",
+        "ref_id": "994d1bfa-b70f-493a-b89d-cba50aafaa9a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:33.843935+00:00",
+        "kind": "mention",
+        "ref_id": "b6b7d82e-d5f5-4994-8ad2-d4b0f80675fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:46.731474+00:00",
+        "kind": "mention",
+        "ref_id": "f29c7fe5-16f9-4a48-a976-2a68348aa6f2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:26.544228+00:00",
+        "kind": "mention",
+        "ref_id": "e74b0fc2-8150-4ce9-a39b-29617ab547b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:05.827223+00:00",
+        "kind": "mention",
+        "ref_id": "e27bc47b-108c-4c28-af3e-9d10476949ba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:36.206085+00:00",
+        "kind": "mention",
+        "ref_id": "587e718b-1cc9-479a-bd12-f805c62ab02e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:48.363831+00:00",
+        "kind": "mention",
+        "ref_id": "1bb5f4ba-41e5-4672-8db6-16d2b94457bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:32.015612+00:00",
+        "kind": "mention",
+        "ref_id": "3f0d8357-3632-4cf6-816f-e19edc08cf9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:55:29.946694+00:00",
+        "kind": "mention",
+        "ref_id": "5f4eebad-469a-44f5-b7cd-9466c781a358",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:56:09.290951+00:00",
+        "kind": "mention",
+        "ref_id": "5bd0865c-f396-46c0-9f4e-676907dcc6fb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:18.669445+00:00",
+        "kind": "mention",
+        "ref_id": "3455f1da-4243-4e50-a09a-efa092a9a023",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:30.989209+00:00",
+        "kind": "mention",
+        "ref_id": "d5382857-f8f2-41c7-a6d5-4426f126624c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521486+00:00",
+        "kind": "mention",
+        "ref_id": "0d234b53-54ec-44e5-a00c-3d048b12eefe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841527+00:00",
+        "kind": "mention",
+        "ref_id": "e2ee22ad-9229-4539-8374-67e255d266d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:04.908715+00:00",
+        "kind": "mention",
+        "ref_id": "2f82a8a2-5371-4dcc-b610-304b2e1d7645",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "501d4d8e-f392-4280-a45e-fc6bc17f2fb4"
+    ],
+    "linked_opinion_ids": [
+      "7bf46ad61a",
+      "47cb06083e",
+      "3cd15f8f29"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "a5597e8979",
+    "topic": "retired",
+    "view": "Retired keeps landing badly — most sharply in \"emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description= [history, concept, r\". I've grown wary of it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-08T16:46:18.760682+00:00",
+    "updated_at": "2026-07-09T00:21:04.908769+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T16:46:18.760682+00:00",
+        "kind": "observation",
+        "ref_id": "3d6746c5-3d04-4bc3-8b22-62d404eaca7a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:52:30.823193+00:00",
+        "kind": "mention",
+        "ref_id": "0d42fd16-5d0a-4ece-a44c-c29fcc5d7507",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:53:04.017434+00:00",
+        "kind": "mention",
+        "ref_id": "a469076e-3a82-457c-9896-0ffcfdf224d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:54:50.427739+00:00",
+        "kind": "mention",
+        "ref_id": "f8891aed-a9ed-4163-b214-4c08dd66969e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:09.352152+00:00",
+        "kind": "mention",
+        "ref_id": "5019752b-ff69-4d56-89be-c24f95f2d3ae",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:49.469455+00:00",
+        "kind": "mention",
+        "ref_id": "d7733ca4-d01d-4a37-8659-f28e782d7cf6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:58:45.231591+00:00",
+        "kind": "mention",
+        "ref_id": "40795379-0180-42bd-84eb-d7e1604b7402",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:59:36.634110+00:00",
+        "kind": "mention",
+        "ref_id": "9a4a92c8-d9b1-45a1-a054-45d074d60b23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:01:37.054225+00:00",
+        "kind": "mention",
+        "ref_id": "d8ed0bbe-9b8a-4ef7-96ce-31cf4efa647d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:07.940319+00:00",
+        "kind": "mention",
+        "ref_id": "1f4408b8-258f-4ac1-9816-db084a8c5b36",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:50.154739+00:00",
+        "kind": "mention",
+        "ref_id": "370c2fca-f023-43b0-ac86-4aed304c9dd1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:03:43.163161+00:00",
+        "kind": "mention",
+        "ref_id": "57947477-8705-4c16-a1b8-fca229c88002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:37.679453+00:00",
+        "kind": "mention",
+        "ref_id": "3c3db348-3011-47ce-93ae-dea2858f203e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:27.784046+00:00",
+        "kind": "mention",
+        "ref_id": "8611a4ba-8c25-4b93-b497-83e6637784a2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:06:15.647035+00:00",
+        "kind": "mention",
+        "ref_id": "a6ce8a4d-cb33-4873-936f-7711e9417caa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:07:12.968044+00:00",
+        "kind": "mention",
+        "ref_id": "bf6167f2-eb2d-4f12-b089-aec09aa99704",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:08:11.249211+00:00",
+        "kind": "mention",
+        "ref_id": "d0b48f91-82f2-49d6-9154-a036b477d73b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:05.459847+00:00",
+        "kind": "mention",
+        "ref_id": "fe67b629-5160-4688-86bf-c1edc28b3186",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.024475+00:00",
+        "kind": "mention",
+        "ref_id": "1adba368-484f-497d-84d0-9542265b7e77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.024529+00:00",
+        "kind": "mention",
+        "ref_id": "d49d93be-a265-4184-bba9-c1122e080035",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:10:47.440022+00:00",
+        "kind": "mention",
+        "ref_id": "45ce6d4a-3c82-461f-b087-0bb7a2316ead",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:00.389302+00:00",
+        "kind": "mention",
+        "ref_id": "dab51fde-0012-4d3e-b1b2-526726077f1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:53.691067+00:00",
+        "kind": "mention",
+        "ref_id": "87fb0077-5302-425b-bd52-0129c67c792d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:13:43.144103+00:00",
+        "kind": "mention",
+        "ref_id": "ca867873-6422-4134-b552-a6096f48f83f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:16.126274+00:00",
+        "kind": "mention",
+        "ref_id": "fff33a0f-3164-4c94-9063-6975ae2def7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:53.314296+00:00",
+        "kind": "mention",
+        "ref_id": "3544bb22-a07d-46fa-bca7-7b6eb840b62d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:44.629532+00:00",
+        "kind": "mention",
+        "ref_id": "1cd2680f-50ce-4fe5-bf9a-29c9b97e6937",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:17:21.211547+00:00",
+        "kind": "mention",
+        "ref_id": "55c33456-fe49-4226-99e0-943d0fa1cf4e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:42.048975+00:00",
+        "kind": "mention",
+        "ref_id": "5c796ee2-7cc5-4739-8bde-b1c9e6b59ada",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:17.019991+00:00",
+        "kind": "mention",
+        "ref_id": "fa141c68-c951-4168-9a2b-83582d9b64e2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:53.026308+00:00",
+        "kind": "mention",
+        "ref_id": "a886d71f-f7da-4bf5-b9f6-3154d4cf423d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:20:49.882892+00:00",
+        "kind": "mention",
+        "ref_id": "e433e61c-a8bb-4a8b-bba3-1884d566b8d4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:34.679840+00:00",
+        "kind": "mention",
+        "ref_id": "cf90a9c2-1e43-408f-960c-41e1d37efc91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:52.383940+00:00",
+        "kind": "mention",
+        "ref_id": "d1459302-62ef-4497-b014-ac6081be670c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:28.689745+00:00",
+        "kind": "mention",
+        "ref_id": "3d60fadb-19d4-4551-b9af-36859420ab3c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:04.589556+00:00",
+        "kind": "mention",
+        "ref_id": "b2dd4424-9d6e-48b0-8cb5-a4a5831e7c5e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:27:24.777679+00:00",
+        "kind": "mention",
+        "ref_id": "d2be5a54-0c44-4276-a343-e268bde93c24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:00.283061+00:00",
+        "kind": "mention",
+        "ref_id": "e77fd606-38f9-4a60-9f51-8764e5f25782",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:40.724932+00:00",
+        "kind": "mention",
+        "ref_id": "81fd0a5a-a2b8-484c-b17f-762bf7fb65f1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:16.831005+00:00",
+        "kind": "mention",
+        "ref_id": "b45a650a-477b-4cde-8d27-80409430bf98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.338059+00:00",
+        "kind": "mention",
+        "ref_id": "0b25f64b-e762-4a2d-95b8-74db0eb2de7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:36.506840+00:00",
+        "kind": "mention",
+        "ref_id": "77c766d8-1e0b-43bb-952f-bbd4f19399aa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:12.217014+00:00",
+        "kind": "mention",
+        "ref_id": "534167f3-d433-469a-900d-40b21c8f63b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:49.895881+00:00",
+        "kind": "mention",
+        "ref_id": "30b65414-0a32-45d7-8782-4782fc6c237c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:38.548727+00:00",
+        "kind": "mention",
+        "ref_id": "f41174cf-1181-46a1-a132-0ef97f37e2eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162712+00:00",
+        "kind": "mention",
+        "ref_id": "994d1bfa-b70f-493a-b89d-cba50aafaa9a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:33.843977+00:00",
+        "kind": "mention",
+        "ref_id": "b6b7d82e-d5f5-4994-8ad2-d4b0f80675fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:46.731518+00:00",
+        "kind": "mention",
+        "ref_id": "f29c7fe5-16f9-4a48-a976-2a68348aa6f2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:26.544272+00:00",
+        "kind": "mention",
+        "ref_id": "e74b0fc2-8150-4ce9-a39b-29617ab547b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:05.827270+00:00",
+        "kind": "mention",
+        "ref_id": "e27bc47b-108c-4c28-af3e-9d10476949ba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:36.206137+00:00",
+        "kind": "mention",
+        "ref_id": "587e718b-1cc9-479a-bd12-f805c62ab02e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:48.363872+00:00",
+        "kind": "mention",
+        "ref_id": "1bb5f4ba-41e5-4672-8db6-16d2b94457bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:32.015655+00:00",
+        "kind": "mention",
+        "ref_id": "3f0d8357-3632-4cf6-816f-e19edc08cf9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:55:29.946734+00:00",
+        "kind": "mention",
+        "ref_id": "5f4eebad-469a-44f5-b7cd-9466c781a358",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:56:09.291030+00:00",
+        "kind": "mention",
+        "ref_id": "5bd0865c-f396-46c0-9f4e-676907dcc6fb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:18.669499+00:00",
+        "kind": "mention",
+        "ref_id": "3455f1da-4243-4e50-a09a-efa092a9a023",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:30.989255+00:00",
+        "kind": "mention",
+        "ref_id": "d5382857-f8f2-41c7-a6d5-4426f126624c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521535+00:00",
+        "kind": "mention",
+        "ref_id": "0d234b53-54ec-44e5-a00c-3d048b12eefe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841570+00:00",
+        "kind": "mention",
+        "ref_id": "e2ee22ad-9229-4539-8374-67e255d266d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:04.908769+00:00",
+        "kind": "mention",
+        "ref_id": "2f82a8a2-5371-4dcc-b610-304b2e1d7645",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "3d6746c5-3d04-4bc3-8b22-62d404eaca7a"
+    ],
+    "linked_opinion_ids": [
+      "7bf46ad61a",
+      "47cb06083e",
+      "3cd15f8f29",
+      "ef7c25e2d4"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "7ddf80803d",
+    "topic": "actually",
+    "view": "Actually keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T17:16:20.035438+00:00",
+    "updated_at": "2026-07-08T23:40:24.521593+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T17:16:20.035438+00:00",
+        "kind": "observation",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T17:46:20.715543+00:00",
+        "kind": "observation",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T20:05:32.310009+00:00",
+        "kind": "mention",
+        "ref_id": "14962f42-b0fb-4f6b-8ae6-8873762a2e80",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:45.292247+00:00",
+        "kind": "mention",
+        "ref_id": "5fe1e531-4395-4637-950b-200df3afc37d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:06:57.239092+00:00",
+        "kind": "mention",
+        "ref_id": "8d2cf304-40ed-456e-9678-f712d218dedd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:42:12.982229+00:00",
+        "kind": "mention",
+        "ref_id": "8cc2bb9e-ae4f-4c60-9984-352f7421367c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:46:53.432053+00:00",
+        "kind": "mention",
+        "ref_id": "88a78d43-1ac5-4423-90ec-87f7c6624e03",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:47:37.636334+00:00",
+        "kind": "mention",
+        "ref_id": "df6377a4-011e-439a-b9d5-bb5f6d85245a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:49:16.368179+00:00",
+        "kind": "mention",
+        "ref_id": "55ec2885-e2ac-42a4-b913-be6f09a790cb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:52:30.132712+00:00",
+        "kind": "mention",
+        "ref_id": "1c119f2c-650c-4ac3-ac6b-b584066f99b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:53:12.333635+00:00",
+        "kind": "mention",
+        "ref_id": "73528b31-215a-4f8f-933b-7ac1751fd478",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:58:18.241945+00:00",
+        "kind": "mention",
+        "ref_id": "9aca33f5-dc7c-4b5f-a409-7859114973c8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:00:30.236552+00:00",
+        "kind": "mention",
+        "ref_id": "b25db282-d76c-42f8-a9fd-0d484f3ce30f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:05:15.148495+00:00",
+        "kind": "mention",
+        "ref_id": "7d0c0608-0901-4a9a-97f9-0c7cdd70babd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:11:32.109822+00:00",
+        "kind": "mention",
+        "ref_id": "74c1ae92-16ec-45ea-a1bd-5aa3a3d4a664",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:13:07.270102+00:00",
+        "kind": "mention",
+        "ref_id": "52a030a7-0883-4bc7-8a8c-07ed8b614d8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:14:55.232459+00:00",
+        "kind": "mention",
+        "ref_id": "e8296d69-34c9-42b4-a8fb-6021f0d375c7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:20:38.859608+00:00",
+        "kind": "mention",
+        "ref_id": "3f929253-6cb8-4b11-afee-ff338758ec13",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:40.654428+00:00",
+        "kind": "mention",
+        "ref_id": "05d32912-b18a-4c53-8a7b-91a6cad0bfca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:55.595542+00:00",
+        "kind": "mention",
+        "ref_id": "bee710a9-054a-4032-86b3-9c862bd1ab23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:23:20.904893+00:00",
+        "kind": "mention",
+        "ref_id": "e8a9419f-d35c-484b-847a-4c1fcd07d2d5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:04.501381+00:00",
+        "kind": "mention",
+        "ref_id": "9726fe98-a7a5-401e-a160-c1115a2331bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:39.512260+00:00",
+        "kind": "mention",
+        "ref_id": "3bfa625b-947e-48f2-b408-50b49a9a5f59",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:27:11.672174+00:00",
+        "kind": "mention",
+        "ref_id": "12fbea5f-1820-47a6-b644-d6457fb77f78",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:25.475350+00:00",
+        "kind": "mention",
+        "ref_id": "30a03fcf-b419-48f7-b4e3-fc6f80e126d7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:47.757459+00:00",
+        "kind": "mention",
+        "ref_id": "4a817fa5-204d-46ec-99fc-4fbbcc30e237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:09.881657+00:00",
+        "kind": "mention",
+        "ref_id": "f982dfa1-2d42-459f-8ded-00fc8860a4ef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:43.917011+00:00",
+        "kind": "mention",
+        "ref_id": "c9cab42b-11df-4e00-b529-c645f4228389",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:48.443304+00:00",
+        "kind": "mention",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:53.532967+00:00",
+        "kind": "mention",
+        "ref_id": "8dc89cdc-a84a-4303-b6af-fe7030365194",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:31:19.537403+00:00",
+        "kind": "mention",
+        "ref_id": "1a4b1351-6e2e-428f-b738-30bb6d0000d6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:32:39.671766+00:00",
+        "kind": "mention",
+        "ref_id": "4d24133c-9151-4a4a-bfe9-30aa1fdfda29",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:33:51.348847+00:00",
+        "kind": "mention",
+        "ref_id": "c10eb598-f8a8-47bc-a5b1-f39f4ddbede3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:34:26.728271+00:00",
+        "kind": "mention",
+        "ref_id": "504409e7-b3fd-4b6d-82b0-d54bdd72100e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:31.660988+00:00",
+        "kind": "mention",
+        "ref_id": "28fbf689-3339-4b51-89ba-5752f623ff27",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:41.022631+00:00",
+        "kind": "mention",
+        "ref_id": "cefe85c9-7c67-4b5a-81b3-9af20731a041",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:10.358801+00:00",
+        "kind": "mention",
+        "ref_id": "d8dcdc68-bb7a-4337-9126-2908f9fc3ebc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:10.358826+00:00",
+        "kind": "mention",
+        "ref_id": "50ab1c59-0a22-4f42-87f1-718de53a833b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:33.447440+00:00",
+        "kind": "mention",
+        "ref_id": "69b22db7-5d54-4862-aa7d-fb1404496f75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:36.153441+00:00",
+        "kind": "mention",
+        "ref_id": "9e5ad9b1-2e88-4adf-96be-a42f22442489",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:46.467371+00:00",
+        "kind": "mention",
+        "ref_id": "b11ece73-14a2-4560-b577-60fcc64c9bc2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:56.812840+00:00",
+        "kind": "mention",
+        "ref_id": "91eda7dc-4926-4cca-8c34-17f9c9dddef6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:41:20.216796+00:00",
+        "kind": "mention",
+        "ref_id": "3dc0ac57-f081-48fe-8e2f-8a3b11d9f44d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:42:33.997537+00:00",
+        "kind": "mention",
+        "ref_id": "2c5809b3-68df-449a-b6d8-1bc8265b3f7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:43:24.940963+00:00",
+        "kind": "mention",
+        "ref_id": "9ef93848-04f5-4abd-b82a-e3d21d64e521",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:44:28.868853+00:00",
+        "kind": "mention",
+        "ref_id": "84cb1101-56ab-4232-8131-5d53c38bee8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:45:46.396437+00:00",
+        "kind": "mention",
+        "ref_id": "95b798ec-df9c-4e38-be34-784d2d8d64f7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:46:17.152237+00:00",
+        "kind": "mention",
+        "ref_id": "7338f33d-f28b-4b7c-908b-2881a131b8da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:04.822417+00:00",
+        "kind": "mention",
+        "ref_id": "421100ed-2215-4275-8cf9-f375e489be7b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:21.876541+00:00",
+        "kind": "mention",
+        "ref_id": "28a90d08-6f71-4240-baee-f3a89cec031d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:04.129581+00:00",
+        "kind": "mention",
+        "ref_id": "5823fa79-0bef-4fed-b662-4e5dadb40d89",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:15.858828+00:00",
+        "kind": "mention",
+        "ref_id": "456ddcab-b917-4474-b9df-787a4cff70a6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:36.316308+00:00",
+        "kind": "mention",
+        "ref_id": "c8595138-7bc8-4723-a812-d0b83e3ede97",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:40.875127+00:00",
+        "kind": "mention",
+        "ref_id": "9a692c52-bb8d-4964-a7db-e17cd4329d19",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:45.401177+00:00",
+        "kind": "mention",
+        "ref_id": "dca95303-e935-46aa-85fb-22034f1bbb5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:33.295849+00:00",
+        "kind": "mention",
+        "ref_id": "0db38d7a-5458-4681-ab49-32aa91a6bbbd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:19.480040+00:00",
+        "kind": "mention",
+        "ref_id": "e7f30a0c-e9d3-4591-95b6-85b7c1dee725",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:56.102880+00:00",
+        "kind": "mention",
+        "ref_id": "2e4bf36c-9530-4eaf-a0b2-861bd01fd4b3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:00:53.004916+00:00",
+        "kind": "mention",
+        "ref_id": "9a53e340-40fa-47f6-a132-353f6497df0b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521593+00:00",
+        "kind": "mention",
+        "ref_id": "fbeccde1-3d05-414e-80f9-5c44d732bc49",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d7e429a5-6905-4d45-befd-01de3681adc1",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "1f958b8d-0d1d-413e-9971-618552cd3635"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14",
+      "26934eb377",
+      "cf167fbe11"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "165f93b99f",
+    "topic": "aligned",
+    "view": "Aligned keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T17:49:24.281812+00:00",
+    "updated_at": "2026-07-08T22:53:56.102913+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T17:49:24.281812+00:00",
+        "kind": "observation",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T18:19:27.021255+00:00",
+        "kind": "observation",
+        "ref_id": "f74443d7-dfb6-41aa-8794-c358d6041503",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:32:11.758663+00:00",
+        "kind": "mention",
+        "ref_id": "93b6ffb3-1920-4057-9569-27af033abd0a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:33:59.258025+00:00",
+        "kind": "mention",
+        "ref_id": "88946a51-31c5-4b70-bc0f-f4ae2aab0954",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:36:22.913167+00:00",
+        "kind": "mention",
+        "ref_id": "7ce4de5e-c91b-4fb9-998e-6aedc6cb1863",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:37:16.966232+00:00",
+        "kind": "mention",
+        "ref_id": "445ceb79-5f48-4913-949d-074d07e10e1f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:38:26.174221+00:00",
+        "kind": "mention",
+        "ref_id": "d57c9864-84f6-4c22-8ddd-3d1f042ec810",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:39:53.283734+00:00",
+        "kind": "mention",
+        "ref_id": "1a605437-84e9-4566-a904-7fc18e08427e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:40:27.290552+00:00",
+        "kind": "mention",
+        "ref_id": "f749e411-b899-4994-9ada-593cde11ad5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:46.419389+00:00",
+        "kind": "mention",
+        "ref_id": "0e738fb3-c42f-4387-bc4a-7b44c3c21b5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:57.214186+00:00",
+        "kind": "mention",
+        "ref_id": "7a6c22be-7789-4fda-b126-0415b3f3ce32",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:50:42.185795+00:00",
+        "kind": "mention",
+        "ref_id": "0e3d1b40-4a52-4f63-8883-6a74cefae679",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:55:32.541977+00:00",
+        "kind": "mention",
+        "ref_id": "675f9b74-d39c-41c6-9868-606769054aa3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:01:45.915310+00:00",
+        "kind": "mention",
+        "ref_id": "aaa4f67d-4c9f-419c-ba5c-bd4634381ec8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:03:29.747749+00:00",
+        "kind": "mention",
+        "ref_id": "c213b31b-52d0-415a-a1ce-d0a88e9133c0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:05.755567+00:00",
+        "kind": "mention",
+        "ref_id": "77c01850-de1a-48bf-a0d1-61ae62bb8004",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:32.310046+00:00",
+        "kind": "mention",
+        "ref_id": "14962f42-b0fb-4f6b-8ae6-8873762a2e80",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:45.292295+00:00",
+        "kind": "mention",
+        "ref_id": "5fe1e531-4395-4637-950b-200df3afc37d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:42:12.982270+00:00",
+        "kind": "mention",
+        "ref_id": "8cc2bb9e-ae4f-4c60-9984-352f7421367c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:46:53.432094+00:00",
+        "kind": "mention",
+        "ref_id": "88a78d43-1ac5-4423-90ec-87f7c6624e03",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:47:37.636372+00:00",
+        "kind": "mention",
+        "ref_id": "df6377a4-011e-439a-b9d5-bb5f6d85245a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:49:16.368215+00:00",
+        "kind": "mention",
+        "ref_id": "55ec2885-e2ac-42a4-b913-be6f09a790cb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:52:30.132750+00:00",
+        "kind": "mention",
+        "ref_id": "1c119f2c-650c-4ac3-ac6b-b584066f99b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:53:12.333687+00:00",
+        "kind": "mention",
+        "ref_id": "73528b31-215a-4f8f-933b-7ac1751fd478",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:58:18.241989+00:00",
+        "kind": "mention",
+        "ref_id": "9aca33f5-dc7c-4b5f-a409-7859114973c8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:00:30.236589+00:00",
+        "kind": "mention",
+        "ref_id": "b25db282-d76c-42f8-a9fd-0d484f3ce30f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:05:15.148533+00:00",
+        "kind": "mention",
+        "ref_id": "7d0c0608-0901-4a9a-97f9-0c7cdd70babd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:40.654463+00:00",
+        "kind": "mention",
+        "ref_id": "05d32912-b18a-4c53-8a7b-91a6cad0bfca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:55.595579+00:00",
+        "kind": "mention",
+        "ref_id": "bee710a9-054a-4032-86b3-9c862bd1ab23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:04.501420+00:00",
+        "kind": "mention",
+        "ref_id": "9726fe98-a7a5-401e-a160-c1115a2331bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:39.512296+00:00",
+        "kind": "mention",
+        "ref_id": "3bfa625b-947e-48f2-b408-50b49a9a5f59",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:25.475388+00:00",
+        "kind": "mention",
+        "ref_id": "30a03fcf-b419-48f7-b4e3-fc6f80e126d7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:47.757497+00:00",
+        "kind": "mention",
+        "ref_id": "4a817fa5-204d-46ec-99fc-4fbbcc30e237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:09.881693+00:00",
+        "kind": "mention",
+        "ref_id": "f982dfa1-2d42-459f-8ded-00fc8860a4ef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:53.533034+00:00",
+        "kind": "mention",
+        "ref_id": "8dc89cdc-a84a-4303-b6af-fe7030365194",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:31:19.537444+00:00",
+        "kind": "mention",
+        "ref_id": "1a4b1351-6e2e-428f-b738-30bb6d0000d6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:32:39.671808+00:00",
+        "kind": "mention",
+        "ref_id": "4d24133c-9151-4a4a-bfe9-30aa1fdfda29",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:33:51.348889+00:00",
+        "kind": "mention",
+        "ref_id": "c10eb598-f8a8-47bc-a5b1-f39f4ddbede3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:34:26.728313+00:00",
+        "kind": "mention",
+        "ref_id": "504409e7-b3fd-4b6d-82b0-d54bdd72100e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:31.661041+00:00",
+        "kind": "mention",
+        "ref_id": "28fbf689-3339-4b51-89ba-5752f623ff27",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:41.022674+00:00",
+        "kind": "mention",
+        "ref_id": "cefe85c9-7c67-4b5a-81b3-9af20731a041",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:10.358882+00:00",
+        "kind": "mention",
+        "ref_id": "50ab1c59-0a22-4f42-87f1-718de53a833b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:33.447479+00:00",
+        "kind": "mention",
+        "ref_id": "69b22db7-5d54-4862-aa7d-fb1404496f75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:36.153486+00:00",
+        "kind": "mention",
+        "ref_id": "9e5ad9b1-2e88-4adf-96be-a42f22442489",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:46.467429+00:00",
+        "kind": "mention",
+        "ref_id": "b11ece73-14a2-4560-b577-60fcc64c9bc2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:41:20.216838+00:00",
+        "kind": "mention",
+        "ref_id": "3dc0ac57-f081-48fe-8e2f-8a3b11d9f44d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:43:24.941009+00:00",
+        "kind": "mention",
+        "ref_id": "9ef93848-04f5-4abd-b82a-e3d21d64e521",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:44:28.868895+00:00",
+        "kind": "mention",
+        "ref_id": "84cb1101-56ab-4232-8131-5d53c38bee8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:45:46.396480+00:00",
+        "kind": "mention",
+        "ref_id": "95b798ec-df9c-4e38-be34-784d2d8d64f7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:46:17.152280+00:00",
+        "kind": "mention",
+        "ref_id": "7338f33d-f28b-4b7c-908b-2881a131b8da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:04.822482+00:00",
+        "kind": "mention",
+        "ref_id": "421100ed-2215-4275-8cf9-f375e489be7b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:04.129629+00:00",
+        "kind": "mention",
+        "ref_id": "5823fa79-0bef-4fed-b662-4e5dadb40d89",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:15.858870+00:00",
+        "kind": "mention",
+        "ref_id": "456ddcab-b917-4474-b9df-787a4cff70a6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:36.316354+00:00",
+        "kind": "mention",
+        "ref_id": "c8595138-7bc8-4723-a812-d0b83e3ede97",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:52.993020+00:00",
+        "kind": "mention",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:40.875165+00:00",
+        "kind": "mention",
+        "ref_id": "9a692c52-bb8d-4964-a7db-e17cd4329d19",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:45.401210+00:00",
+        "kind": "mention",
+        "ref_id": "dca95303-e935-46aa-85fb-22034f1bbb5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:33.295885+00:00",
+        "kind": "mention",
+        "ref_id": "0db38d7a-5458-4681-ab49-32aa91a6bbbd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:19.480076+00:00",
+        "kind": "mention",
+        "ref_id": "e7f30a0c-e9d3-4591-95b6-85b7c1dee725",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:56.102913+00:00",
+        "kind": "mention",
+        "ref_id": "2e4bf36c-9530-4eaf-a0b2-861bd01fd4b3",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d7e429a5-6905-4d45-befd-01de3681adc1",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "9f5581b8-b57b-4085-b0a1-5089258aa0ee"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14",
+      "26934eb377",
+      "cf167fbe11",
+      "7ddf80803d"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "45f3fdb131",
+    "topic": "actually care",
+    "view": "Actually care keeps surfacing — most sharply in \"💔 Goal failed: Open question: Is what I'm doing right now aligned with what I actually care about?. objective unmet afte\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.35,
+    "alpha": 1.4,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T18:21:03.053889+00:00",
+    "updated_at": "2026-07-08T22:53:56.102946+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T18:21:03.053889+00:00",
+        "kind": "observation",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T19:32:06.309038+00:00",
+        "kind": "mention",
+        "ref_id": "5944d09d-feee-4e0b-825c-ff127bb0c67d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:32:11.758695+00:00",
+        "kind": "mention",
+        "ref_id": "93b6ffb3-1920-4057-9569-27af033abd0a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:33:59.258078+00:00",
+        "kind": "mention",
+        "ref_id": "88946a51-31c5-4b70-bc0f-f4ae2aab0954",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:36:22.913218+00:00",
+        "kind": "mention",
+        "ref_id": "7ce4de5e-c91b-4fb9-998e-6aedc6cb1863",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:37:16.966292+00:00",
+        "kind": "mention",
+        "ref_id": "445ceb79-5f48-4913-949d-074d07e10e1f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:38:26.174275+00:00",
+        "kind": "mention",
+        "ref_id": "d57c9864-84f6-4c22-8ddd-3d1f042ec810",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:39:53.283780+00:00",
+        "kind": "mention",
+        "ref_id": "1a605437-84e9-4566-a904-7fc18e08427e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:40:27.290611+00:00",
+        "kind": "mention",
+        "ref_id": "f749e411-b899-4994-9ada-593cde11ad5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:46.419434+00:00",
+        "kind": "mention",
+        "ref_id": "0e738fb3-c42f-4387-bc4a-7b44c3c21b5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:47:57.214237+00:00",
+        "kind": "mention",
+        "ref_id": "7a6c22be-7789-4fda-b126-0415b3f3ce32",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:50:42.185834+00:00",
+        "kind": "mention",
+        "ref_id": "0e3d1b40-4a52-4f63-8883-6a74cefae679",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T19:55:32.542064+00:00",
+        "kind": "mention",
+        "ref_id": "675f9b74-d39c-41c6-9868-606769054aa3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:01:45.915360+00:00",
+        "kind": "mention",
+        "ref_id": "aaa4f67d-4c9f-419c-ba5c-bd4634381ec8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:03:29.747787+00:00",
+        "kind": "mention",
+        "ref_id": "c213b31b-52d0-415a-a1ce-d0a88e9133c0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:05.755606+00:00",
+        "kind": "mention",
+        "ref_id": "77c01850-de1a-48bf-a0d1-61ae62bb8004",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:32.310083+00:00",
+        "kind": "mention",
+        "ref_id": "14962f42-b0fb-4f6b-8ae6-8873762a2e80",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:05:45.292343+00:00",
+        "kind": "mention",
+        "ref_id": "5fe1e531-4395-4637-950b-200df3afc37d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:42:12.982310+00:00",
+        "kind": "mention",
+        "ref_id": "8cc2bb9e-ae4f-4c60-9984-352f7421367c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:46:53.432135+00:00",
+        "kind": "mention",
+        "ref_id": "88a78d43-1ac5-4423-90ec-87f7c6624e03",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:47:37.636409+00:00",
+        "kind": "mention",
+        "ref_id": "df6377a4-011e-439a-b9d5-bb5f6d85245a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:49:16.368252+00:00",
+        "kind": "mention",
+        "ref_id": "55ec2885-e2ac-42a4-b913-be6f09a790cb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:52:30.132787+00:00",
+        "kind": "mention",
+        "ref_id": "1c119f2c-650c-4ac3-ac6b-b584066f99b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:53:12.333738+00:00",
+        "kind": "mention",
+        "ref_id": "73528b31-215a-4f8f-933b-7ac1751fd478",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T20:58:18.242034+00:00",
+        "kind": "mention",
+        "ref_id": "9aca33f5-dc7c-4b5f-a409-7859114973c8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:00:30.236626+00:00",
+        "kind": "mention",
+        "ref_id": "b25db282-d76c-42f8-a9fd-0d484f3ce30f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:05:15.148572+00:00",
+        "kind": "mention",
+        "ref_id": "7d0c0608-0901-4a9a-97f9-0c7cdd70babd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:40.654498+00:00",
+        "kind": "mention",
+        "ref_id": "05d32912-b18a-4c53-8a7b-91a6cad0bfca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:21:55.595617+00:00",
+        "kind": "mention",
+        "ref_id": "bee710a9-054a-4032-86b3-9c862bd1ab23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:04.501459+00:00",
+        "kind": "mention",
+        "ref_id": "9726fe98-a7a5-401e-a160-c1115a2331bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:26:39.512332+00:00",
+        "kind": "mention",
+        "ref_id": "3bfa625b-947e-48f2-b408-50b49a9a5f59",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:25.475426+00:00",
+        "kind": "mention",
+        "ref_id": "30a03fcf-b419-48f7-b4e3-fc6f80e126d7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:28:47.757535+00:00",
+        "kind": "mention",
+        "ref_id": "4a817fa5-204d-46ec-99fc-4fbbcc30e237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:09.881729+00:00",
+        "kind": "mention",
+        "ref_id": "f982dfa1-2d42-459f-8ded-00fc8860a4ef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:29:53.533102+00:00",
+        "kind": "mention",
+        "ref_id": "8dc89cdc-a84a-4303-b6af-fe7030365194",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:31:19.537483+00:00",
+        "kind": "mention",
+        "ref_id": "1a4b1351-6e2e-428f-b738-30bb6d0000d6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:32:39.671847+00:00",
+        "kind": "mention",
+        "ref_id": "4d24133c-9151-4a4a-bfe9-30aa1fdfda29",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:33:51.348927+00:00",
+        "kind": "mention",
+        "ref_id": "c10eb598-f8a8-47bc-a5b1-f39f4ddbede3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:34:26.728352+00:00",
+        "kind": "mention",
+        "ref_id": "504409e7-b3fd-4b6d-82b0-d54bdd72100e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:31.661086+00:00",
+        "kind": "mention",
+        "ref_id": "28fbf689-3339-4b51-89ba-5752f623ff27",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:36:41.022710+00:00",
+        "kind": "mention",
+        "ref_id": "cefe85c9-7c67-4b5a-81b3-9af20731a041",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:38:10.358936+00:00",
+        "kind": "mention",
+        "ref_id": "50ab1c59-0a22-4f42-87f1-718de53a833b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:33.447515+00:00",
+        "kind": "mention",
+        "ref_id": "69b22db7-5d54-4862-aa7d-fb1404496f75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:36.153528+00:00",
+        "kind": "mention",
+        "ref_id": "9e5ad9b1-2e88-4adf-96be-a42f22442489",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:40:46.467484+00:00",
+        "kind": "mention",
+        "ref_id": "b11ece73-14a2-4560-b577-60fcc64c9bc2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:41:20.216876+00:00",
+        "kind": "mention",
+        "ref_id": "3dc0ac57-f081-48fe-8e2f-8a3b11d9f44d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:43:24.941053+00:00",
+        "kind": "mention",
+        "ref_id": "9ef93848-04f5-4abd-b82a-e3d21d64e521",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:44:28.868936+00:00",
+        "kind": "mention",
+        "ref_id": "84cb1101-56ab-4232-8131-5d53c38bee8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:45:46.396521+00:00",
+        "kind": "mention",
+        "ref_id": "95b798ec-df9c-4e38-be34-784d2d8d64f7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:46:17.152320+00:00",
+        "kind": "mention",
+        "ref_id": "7338f33d-f28b-4b7c-908b-2881a131b8da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:04.822544+00:00",
+        "kind": "mention",
+        "ref_id": "421100ed-2215-4275-8cf9-f375e489be7b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:04.129674+00:00",
+        "kind": "mention",
+        "ref_id": "5823fa79-0bef-4fed-b662-4e5dadb40d89",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:15.858911+00:00",
+        "kind": "mention",
+        "ref_id": "456ddcab-b917-4474-b9df-787a4cff70a6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:26:36.316400+00:00",
+        "kind": "mention",
+        "ref_id": "c8595138-7bc8-4723-a812-d0b83e3ede97",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:40.875204+00:00",
+        "kind": "mention",
+        "ref_id": "9a692c52-bb8d-4964-a7db-e17cd4329d19",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:45.401242+00:00",
+        "kind": "mention",
+        "ref_id": "dca95303-e935-46aa-85fb-22034f1bbb5d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:33.295921+00:00",
+        "kind": "mention",
+        "ref_id": "0db38d7a-5458-4681-ab49-32aa91a6bbbd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:38:41.897785+00:00",
+        "kind": "mention",
+        "ref_id": "d7e429a5-6905-4d45-befd-01de3681adc1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:19.480117+00:00",
+        "kind": "mention",
+        "ref_id": "e7f30a0c-e9d3-4591-95b6-85b7c1dee725",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:53:56.102946+00:00",
+        "kind": "mention",
+        "ref_id": "2e4bf36c-9530-4eaf-a0b2-861bd01fd4b3",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d7e429a5-6905-4d45-befd-01de3681adc1",
+      "f74443d7-dfb6-41aa-8794-c358d6041503",
+      "b5435a0a-59fb-45d4-8821-bab3cda9f9fc"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14",
+      "26934eb377",
+      "cf167fbe11",
+      "7ddf80803d",
+      "165f93b99f"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "7bf46ad61a",
+    "topic": "symbolic",
+    "view": "Symbolic keeps landing badly — most sharply in \"emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description= [history, concept, r\". I've grown wary of it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-08T18:54:00.832561+00:00",
+    "updated_at": "2026-07-09T00:21:04.908950+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T18:54:00.832561+00:00",
+        "kind": "observation",
+        "ref_id": "bf62b165-e164-4e00-86d1-2bd8de1a4ce6",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T21:52:30.823363+00:00",
+        "kind": "mention",
+        "ref_id": "0d42fd16-5d0a-4ece-a44c-c29fcc5d7507",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:53:04.017577+00:00",
+        "kind": "mention",
+        "ref_id": "a469076e-3a82-457c-9896-0ffcfdf224d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:54:50.427885+00:00",
+        "kind": "mention",
+        "ref_id": "f8891aed-a9ed-4163-b214-4c08dd66969e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:09.352324+00:00",
+        "kind": "mention",
+        "ref_id": "5019752b-ff69-4d56-89be-c24f95f2d3ae",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:57:49.469679+00:00",
+        "kind": "mention",
+        "ref_id": "d7733ca4-d01d-4a37-8659-f28e782d7cf6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:58:45.231823+00:00",
+        "kind": "mention",
+        "ref_id": "40795379-0180-42bd-84eb-d7e1604b7402",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T21:59:36.634440+00:00",
+        "kind": "mention",
+        "ref_id": "9a4a92c8-d9b1-45a1-a054-45d074d60b23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:01:37.054402+00:00",
+        "kind": "mention",
+        "ref_id": "d8ed0bbe-9b8a-4ef7-96ce-31cf4efa647d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:07.940592+00:00",
+        "kind": "mention",
+        "ref_id": "1f4408b8-258f-4ac1-9816-db084a8c5b36",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:02:50.155009+00:00",
+        "kind": "mention",
+        "ref_id": "370c2fca-f023-43b0-ac86-4aed304c9dd1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:03:43.163397+00:00",
+        "kind": "mention",
+        "ref_id": "57947477-8705-4c16-a1b8-fca229c88002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:04:37.679683+00:00",
+        "kind": "mention",
+        "ref_id": "3c3db348-3011-47ce-93ae-dea2858f203e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:05:27.784362+00:00",
+        "kind": "mention",
+        "ref_id": "8611a4ba-8c25-4b93-b497-83e6637784a2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:06:15.647339+00:00",
+        "kind": "mention",
+        "ref_id": "a6ce8a4d-cb33-4873-936f-7711e9417caa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:07:12.968225+00:00",
+        "kind": "mention",
+        "ref_id": "bf6167f2-eb2d-4f12-b089-aec09aa99704",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:08:11.249570+00:00",
+        "kind": "mention",
+        "ref_id": "d0b48f91-82f2-49d6-9154-a036b477d73b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:05.460117+00:00",
+        "kind": "mention",
+        "ref_id": "fe67b629-5160-4688-86bf-c1edc28b3186",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.024986+00:00",
+        "kind": "mention",
+        "ref_id": "1adba368-484f-497d-84d0-9542265b7e77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:09:59.025039+00:00",
+        "kind": "mention",
+        "ref_id": "d49d93be-a265-4184-bba9-c1122e080035",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:10:47.440293+00:00",
+        "kind": "mention",
+        "ref_id": "45ce6d4a-3c82-461f-b087-0bb7a2316ead",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:00.389712+00:00",
+        "kind": "mention",
+        "ref_id": "dab51fde-0012-4d3e-b1b2-526726077f1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:12:53.691278+00:00",
+        "kind": "mention",
+        "ref_id": "87fb0077-5302-425b-bd52-0129c67c792d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:13:43.144280+00:00",
+        "kind": "mention",
+        "ref_id": "ca867873-6422-4134-b552-a6096f48f83f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:16.126463+00:00",
+        "kind": "mention",
+        "ref_id": "fff33a0f-3164-4c94-9063-6975ae2def7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:14:53.314446+00:00",
+        "kind": "mention",
+        "ref_id": "3544bb22-a07d-46fa-bca7-7b6eb840b62d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:16:44.629683+00:00",
+        "kind": "mention",
+        "ref_id": "1cd2680f-50ce-4fe5-bf9a-29c9b97e6937",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:17:21.211695+00:00",
+        "kind": "mention",
+        "ref_id": "55c33456-fe49-4226-99e0-943d0fa1cf4e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:18:42.049149+00:00",
+        "kind": "mention",
+        "ref_id": "5c796ee2-7cc5-4739-8bde-b1c9e6b59ada",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:17.020243+00:00",
+        "kind": "mention",
+        "ref_id": "fa141c68-c951-4168-9a2b-83582d9b64e2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:19:53.026508+00:00",
+        "kind": "mention",
+        "ref_id": "a886d71f-f7da-4bf5-b9f6-3154d4cf423d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:20:49.883052+00:00",
+        "kind": "mention",
+        "ref_id": "e433e61c-a8bb-4a8b-bba3-1884d566b8d4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:21:34.680048+00:00",
+        "kind": "mention",
+        "ref_id": "cf90a9c2-1e43-408f-960c-41e1d37efc91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:22:52.384093+00:00",
+        "kind": "mention",
+        "ref_id": "d1459302-62ef-4497-b014-ac6081be670c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:23:28.689932+00:00",
+        "kind": "mention",
+        "ref_id": "3d60fadb-19d4-4551-b9af-36859420ab3c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:04.589749+00:00",
+        "kind": "mention",
+        "ref_id": "b2dd4424-9d6e-48b0-8cb5-a4a5831e7c5e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:27:24.777817+00:00",
+        "kind": "mention",
+        "ref_id": "d2be5a54-0c44-4276-a343-e268bde93c24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:00.283199+00:00",
+        "kind": "mention",
+        "ref_id": "e77fd606-38f9-4a60-9f51-8764e5f25782",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:40.725078+00:00",
+        "kind": "mention",
+        "ref_id": "81fd0a5a-a2b8-484c-b17f-762bf7fb65f1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:16.831146+00:00",
+        "kind": "mention",
+        "ref_id": "b45a650a-477b-4cde-8d27-80409430bf98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.338258+00:00",
+        "kind": "mention",
+        "ref_id": "0b25f64b-e762-4a2d-95b8-74db0eb2de7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:36.506952+00:00",
+        "kind": "mention",
+        "ref_id": "77c766d8-1e0b-43bb-952f-bbd4f19399aa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:31:12.217149+00:00",
+        "kind": "mention",
+        "ref_id": "534167f3-d433-469a-900d-40b21c8f63b4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:49.896020+00:00",
+        "kind": "mention",
+        "ref_id": "30b65414-0a32-45d7-8782-4782fc6c237c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:33:38.548885+00:00",
+        "kind": "mention",
+        "ref_id": "f41174cf-1181-46a1-a132-0ef97f37e2eb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:34:16.162926+00:00",
+        "kind": "mention",
+        "ref_id": "994d1bfa-b70f-493a-b89d-cba50aafaa9a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:35:33.844129+00:00",
+        "kind": "mention",
+        "ref_id": "b6b7d82e-d5f5-4994-8ad2-d4b0f80675fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:36:46.731648+00:00",
+        "kind": "mention",
+        "ref_id": "f29c7fe5-16f9-4a48-a976-2a68348aa6f2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:39:26.544410+00:00",
+        "kind": "mention",
+        "ref_id": "e74b0fc2-8150-4ce9-a39b-29617ab547b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:40:05.827419+00:00",
+        "kind": "mention",
+        "ref_id": "e27bc47b-108c-4c28-af3e-9d10476949ba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:36.206299+00:00",
+        "kind": "mention",
+        "ref_id": "587e718b-1cc9-479a-bd12-f805c62ab02e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:51:48.363998+00:00",
+        "kind": "mention",
+        "ref_id": "1bb5f4ba-41e5-4672-8db6-16d2b94457bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:52:32.015792+00:00",
+        "kind": "mention",
+        "ref_id": "3f0d8357-3632-4cf6-816f-e19edc08cf9c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:55:29.946864+00:00",
+        "kind": "mention",
+        "ref_id": "5f4eebad-469a-44f5-b7cd-9466c781a358",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:56:09.291274+00:00",
+        "kind": "mention",
+        "ref_id": "5bd0865c-f396-46c0-9f4e-676907dcc6fb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:03:18.669676+00:00",
+        "kind": "mention",
+        "ref_id": "3455f1da-4243-4e50-a09a-efa092a9a023",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:06:30.989422+00:00",
+        "kind": "mention",
+        "ref_id": "d5382857-f8f2-41c7-a6d5-4426f126624c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T23:40:24.521694+00:00",
+        "kind": "mention",
+        "ref_id": "0d234b53-54ec-44e5-a00c-3d048b12eefe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:06:22.841709+00:00",
+        "kind": "mention",
+        "ref_id": "e2ee22ad-9229-4539-8374-67e255d266d0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:04.908950+00:00",
+        "kind": "mention",
+        "ref_id": "2f82a8a2-5371-4dcc-b610-304b2e1d7645",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "bf62b165-e164-4e00-86d1-2bd8de1a4ce6"
+    ],
+    "linked_opinion_ids": [
+      "47cb06083e",
+      "3cd15f8f29",
+      "ef7c25e2d4",
+      "a5597e8979"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "67b0d7c169",
+    "topic": "understand",
+    "view": "Understand keeps surfacing — most sharply in \"💔 Goal failed: Understand history of written language more deeply.\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.35,
+    "alpha": 1.4,
+    "beta": 2.6,
+    "formed_at": "2026-07-08T20:09:25.612996+00:00",
+    "updated_at": "2026-07-09T00:21:48.415518+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-08T20:09:25.612996+00:00",
+        "kind": "observation",
+        "ref_id": "a4245cf3-256a-4d8b-a4f3-965304003713",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-08T20:39:32.097812+00:00",
+        "kind": "mention",
+        "ref_id": "a4245cf3-256a-4d8b-a4f3-965304003713",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:24:21.605927+00:00",
+        "kind": "mention",
+        "ref_id": "f9b5379d-1295-460b-8864-459656e08c06",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:28:59.828345+00:00",
+        "kind": "mention",
+        "ref_id": "7bb843d8-5315-4223-a3c8-35240b870edb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:34.319301+00:00",
+        "kind": "mention",
+        "ref_id": "721ea7b4-86d2-4d7b-9e21-316c6c8ba67e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:29:53.338314+00:00",
+        "kind": "mention",
+        "ref_id": "2237c592-209b-4a61-9259-c0c5e970111c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:12.659502+00:00",
+        "kind": "mention",
+        "ref_id": "c0cb0044-e700-4001-a54a-8d13289bcf0d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:30:54.151061+00:00",
+        "kind": "mention",
+        "ref_id": "5e374b0c-6ad9-43b0-bdae-e3ec52d6d3ab",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-08T22:32:19.245053+00:00",
+        "kind": "mention",
+        "ref_id": "1277e43c-47a5-47d0-a726-6e4075f8f142",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-09T00:21:48.415518+00:00",
+        "kind": "mention",
+        "ref_id": "8df7648c-585b-4053-9c80-967cb64f0f2a",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.75,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "a4245cf3-256a-4d8b-a4f3-965304003713",
+      "ee2c38aa-221b-46f0-bd3b-aa92c0695e4d"
+    ],
+    "linked_opinion_ids": [
+      "437b930db8",
+      "3cd15f8f29",
+      "5494af1f14",
+      "26934eb377",
+      "cf167fbe11",
+      "7ddf80803d",
+      "165f93b99f",
+      "45f3fdb131"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "13025fc839",
+    "topic": "aspiration",
+    "view": "Aspiration has mostly landed well across 1 recent moment — most sharply in \"Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 32%): [autobiography] Since my last ent\". I find myself drawn to it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-09T00:21:48.423139+00:00",
+    "updated_at": "2026-07-09T00:21:48.423139+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-09T00:21:48.423139+00:00",
+        "kind": "observation",
+        "ref_id": "8df7648c-585b-4053-9c80-967cb64f0f2a",
+        "direction": "for",
+        "weight": 0.25
+      }
+    ],
+    "salience": 0.3,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "8df7648c-585b-4053-9c80-967cb64f0f2a"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  }
+]

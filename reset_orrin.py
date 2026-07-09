@@ -73,12 +73,14 @@ ALWAYS_KEEP = {
 }
 
 # Kept by default, cleared with --hard (learned bandit/decision state).
+# habituation.json is NOT kept (Run-5 meter bug, RUN6_FIX_PLAN §4): 91 % of it
+# survived the "clean" reset before Run 5, so exploration suppression carried a
+# prior life into a newborn run — it's per-life satiety state, not learning.
 SOFT_KEEP = {
     "bandit_state.json",
     "decision_stats.json",
     "depth_stats.json",
     "emotion_function_map.json",
-    "habituation.json",
     "intuition_patterns.json",
     "reward_trace.json",
     "reflection_stats.json",

@@ -187,6 +187,20 @@ def apply_behavioral_adaptations(
                 context["_suppress_goal_deliberation"] = True
                 context["_suppress_intrinsic_goals"] = True
             context.setdefault("_escape_available", True)
+            # Fix 3 (RUN6_FIX_PLAN §3): avoidance must also be able to RELEASE the
+            # commitment, not only prod action on it. _force_action_next fights the
+            # symptom on the SAME goal — Run 5: 240 avoidance detections produced
+            # 240 bias nudges and zero escapes. This raises the avoided goal's
+            # commitment penalty so goal_io's Fix-2 score can rotate the driver.
+            try:
+                _g = context.get("committed_goal")
+                if isinstance(_g, dict):
+                    _gid = str(_g.get("id") or _g.get("title") or _g.get("name") or "")
+                    if _gid:
+                        from brain.cognition.planning.commitment_value import note_avoidance
+                        note_avoidance(_gid)
+            except Exception as _cve:
+                log_private(f"[behavioral_adapt] commitment avoidance signal skipped: {_cve}")
             log_private(
                 "[behavioral_adapt] goal_avoidance "
                 + ("→ patch-leave switch armed" if switched else "→ leave pressure accruing")

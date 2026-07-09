@@ -1,0 +1,148 @@
+[
+  {
+    "id": "a0eaa4a2763d6a89",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "04f556dc5a9fe02f3b584b7015d495980c2e129b65b3ad3ca2f4d197539dbb08",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "04f556dc5a9fe02f3b584b7015d495980c2e129b65b3ad3ca2f4d197539dbb08"
+      ],
+      "significance": 0.5,
+      "reuse_count": 0,
+      "memory_refs": [
+        "a90c0beb-8a03-40db-8452-3c1612dd20c8"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-08T15:48:10.738158Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-consciousness-and-subjective-exper-04f556dc.md'",
+    "updated_ts": "2026-07-08T21:48:19.146971Z"
+  },
+  {
+    "id": "87482808439ab303",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "562bc5244b9c1769a315231b1a24f8a6acb02b08767f1e366db9f289ff08e2d1",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "562bc5244b9c1769a315231b1a24f8a6acb02b08767f1e366db9f289ff08e2d1"
+      ],
+      "significance": 0.5,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3e942fd1-5874-4e1a-9545-8b7b3d86a0fe"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-08T15:48:10.762331Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-philosophy-of-time-562bc524.md'",
+    "updated_ts": "2026-07-08T21:48:19.151012Z"
+  },
+  {
+    "id": "096579f2e5f42f23",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "2971ba42202fdfbbaf47beae791ab1a523c6ead166965b8fad252f0196e8d4b0",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "2971ba42202fdfbbaf47beae791ab1a523c6ead166965b8fad252f0196e8d4b0"
+      ],
+      "significance": 0.5,
+      "reuse_count": 0,
+      "memory_refs": [
+        "c2cc5fca-50f4-421c-9cfd-8d41ce5dc22b",
+        "6760c98a-c020-4b04-a0cf-cc292b17f49a"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-08T15:48:10.787916Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-evolutionary-biology-2971ba42.md'",
+    "updated_ts": "2026-07-08T21:48:19.152441Z"
+  },
+  {
+    "id": "d254d301bcfcc80a",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "3db7bfe8cc55c0a5d01aa19a6c852a725b936002e3a485c8346fc477764ca2c8",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "3db7bfe8cc55c0a5d01aa19a6c852a725b936002e3a485c8346fc477764ca2c8"
+      ],
+      "significance": 0.5,
+      "reuse_count": 0,
+      "memory_refs": [
+        "a90c0beb-8a03-40db-8452-3c1612dd20c8"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-08T21:48:18.985177Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-consciousness-and-subjective-exper-3db7bfe8.md'",
+    "updated_ts": "2026-07-08T21:48:19.153913Z"
+  },
+  {
+    "id": "06991e7822643f6e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "5aaa7d06baaab89322ac62d347546a01e31727b7f76c29a7acdad47d1089bda2",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "5aaa7d06baaab89322ac62d347546a01e31727b7f76c29a7acdad47d1089bda2"
+      ],
+      "significance": 0.5,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3e942fd1-5874-4e1a-9545-8b7b3d86a0fe"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-08T21:48:19.000044Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-philosophy-of-time-5aaa7d06.md'",
+    "updated_ts": "2026-07-08T21:48:19.155366Z"
+  }
+]

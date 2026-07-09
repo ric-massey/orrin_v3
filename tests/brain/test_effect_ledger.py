@@ -139,3 +139,48 @@ def test_tracked_work_goal_waits_for_required_sections():
         )
         assert row is not None
         assert el.has_qualifying_effect("book-3", goal) is (count == 3)
+
+
+# ── Fix 5 (RUN6_FIX_PLAN_2026-07-08 §3): causal-edge rows are bookkeeping ─────────
+
+_EDGE = ("[causal edge established] cause: sustained reflection without action; "
+         "effect: rising action debt and goal avoidance pressure; strength=0.82 "
+         "causal_score=0.77; evidence: 9 confirmations, 3 interventions, "
+         "1 counterfactuals; layer L2; domain self")
+
+
+def test_causal_edge_is_bookkeeping_not_production():
+    """A 'causal edge established' row is self-model bookkeeping (76 % of Run 5's
+    credited effects) — recorded under its own ledger class, never credited."""
+    out = el.record_effect(
+        "symbolic_artifact", _EDGE, goal_id="g-edge",
+        metadata={"kind": "causal_edge", "edge_id": "e1"},
+    )
+    assert out is None                              # no production credit
+    assert not el.has_qualifying_effect("g-edge")   # no artifact evidence
+    assert el.significance_for_goal("g-edge") == 0.0
+    assert el.drain_pending_production() == []      # no queued reward
+    rows = el.drain_recent_rows()
+    assert len(rows) == 1
+    assert rows[0]["kind"] == "bookkeeping"         # reported separately
+    assert rows[0]["significance"] == 0.0
+
+
+def test_other_symbolic_sub_kinds_still_credit():
+    row = el.record_effect(
+        "symbolic_artifact", _LONG, goal_id="g-rule", metadata={"kind": "rule"},
+    )
+    assert row is not None and row.significance > 0.0
+    assert el.has_qualifying_effect("g-rule")
+
+
+def test_bookkeeping_rows_never_rehydrate_as_goal_evidence():
+    el.record_effect(
+        "symbolic_artifact", _EDGE, goal_id="g-edge2",
+        metadata={"kind": "causal_edge"},
+    )
+    # simulate a fresh process: hydrate goal attribution from the jsonl.
+    el._hydrated = False
+    el._goal_effects.clear()
+    el._seen_hashes.clear()
+    assert not el.has_qualifying_effect("g-edge2")

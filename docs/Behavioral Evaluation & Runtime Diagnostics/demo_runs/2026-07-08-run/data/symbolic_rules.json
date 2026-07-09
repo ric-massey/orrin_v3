@@ -1,0 +1,1250 @@
+[
+  {
+    "id": "e57d364e50",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grows' (score=0.36, n=1, L2)",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 2,
+    "source": "crystallization",
+    "created_at": "2026-06-30T13:18:09.120691+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 121,
+    "consecutive_misses": 2
+  },
+  {
+    "id": "1bc68d9a16",
+    "conditions": [
+      "goal",
+      "avoidance",
+      "thinking",
+      "not doing",
+      "action_debt",
+      "cycles"
+    ],
+    "negations": [],
+    "conclusion": "Sustained reflection without goal-directed action predicts continued stagnation. Thinking about a goal is not the same as pursuing it.",
+    "action": null,
+    "confidence": 0.98,
+    "hits": 36575,
+    "source": "knowledge_formation",
+    "created_at": "2026-06-30T13:18:14.835724+00:00",
+    "causal_claim": {
+      "cause": "high uncertainty or task complexity triggers analysis paralysis: reflection is cognitively safer than action (Bandura, 1977: low self-efficacy predicts avoidance of challenging tasks)",
+      "effect": "action_debt accumulates; goal recedes; a sense of being stuck grows",
+      "mechanism": "Avoidance is negatively reinforced — it temporarily reduces risk_estimate without actually reducing the goal gap. The bandit learns to select comfortable functions because they avoid the aversive experience of potentially failing at the goal."
+    },
+    "prediction": "If action_debt exceeds 8 cycles, the pattern becomes self-reinforcing and requires stronger intervention to break.",
+    "recommended_action": "Decompose the goal into the smallest executable action — one concrete step that takes ≤1 cognitive cycle. Attempt that step before any further reflection. Reduce task size, not effort.",
+    "abstraction_level": 2,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 149,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "b0de96c0d4",
+    "conditions": [
+      "event_recent:dream"
+    ],
+    "negations": [],
+    "conclusion": "'dream' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:26:31.465811+00:00",
+    "causal_claim": null,
+    "prediction": "'dream' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 6,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "a963e226a6",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.36,
+    "hits": 4,
+    "source": "tombstoned",
+    "created_at": "2026-06-30T13:26:43.971419+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 28,
+    "consecutive_misses": 1
+  },
+  {
+    "id": "0ad7857627",
+    "conditions": [
+      "function:look_around"
+    ],
+    "negations": [],
+    "conclusion": "uncertainty falls",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:28:16.057124+00:00",
+    "causal_claim": {
+      "cause": "look_around",
+      "effect": "uncertainty falls"
+    },
+    "prediction": "uncertainty falls",
+    "recommended_action": null,
+    "abstraction_level": 4,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "b5f712d159",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] consciousness and subjective experience (concept): description= [concept, consciousness, subjective, experience, retired]\n[symbolic] history (concept): is_a=systematic study of the past [history, concept]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 60,
+    "source": "tombstoned",
+    "created_at": "2026-06-30T13:28:58.056469+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 425,
+    "consecutive_misses": 92
+  },
+  {
+    "id": "1f33e98943",
+    "conditions": [
+      "function:look_outward"
+    ],
+    "negations": [],
+    "conclusion": "stagnation_signal rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:29:21.559911+00:00",
+    "causal_claim": {
+      "cause": "look_outward",
+      "effect": "stagnation_signal rises"
+    },
+    "prediction": "stagnation_signal rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "be01138cce",
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "negations": [],
+    "conclusion": "stagnation_signal falls",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:39:22.960571+00:00",
+    "causal_claim": {
+      "cause": "assess_goal_progress",
+      "effect": "stagnation_signal falls"
+    },
+    "prediction": "stagnation_signal falls",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "25afd9edb9",
+    "conditions": [
+      "event_recent:affective_regulation"
+    ],
+    "negations": [],
+    "conclusion": "'affective_regulation' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:40:12.438521+00:00",
+    "causal_claim": null,
+    "prediction": "'affective_regulation' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "446135fb15",
+    "conditions": [
+      "pattern:goal_avoidance"
+    ],
+    "negations": [],
+    "conclusion": "When avoiding action on a committed goal, suppress substitutes and pursue the goal.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "metacog",
+    "created_at": "2026-06-30T13:40:18.176804+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "2b05b1b8c0",
+    "conditions": [
+      "affect_chronic:satisfaction_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'satisfaction_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T13:41:44.081107+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 6,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "37e7b48255",
+    "conditions": [
+      "affect_chronic:affiliation_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'affiliation_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T13:42:21.897291+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "228fbf145b",
+    "conditions": [
+      "pattern:affect_stagnation"
+    ],
+    "negations": [],
+    "conclusion": "When one affect dominates for many cycles, deliberately shift attention to change it.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "metacog",
+    "created_at": "2026-06-30T13:42:40.069660+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "669871cdf4",
+    "conditions": [
+      "repeated",
+      "function",
+      "cycles",
+      "rut",
+      "stuck"
+    ],
+    "negations": [],
+    "conclusion": "Repeated execution of the same cognitive function indicates a rut: the selected action is no longer reducing the underlying error signal.",
+    "action": null,
+    "confidence": 0.75,
+    "hits": 577,
+    "source": "knowledge_formation",
+    "created_at": "2026-06-30T13:56:53.026861+00:00",
+    "causal_claim": {
+      "cause": "habitual function selection without observable outcome change",
+      "effect": "stagnation — error signal remains high, reward drops",
+      "mechanism": "Hebbian reinforcement of the dominant path crowds out exploration; the bandit over-exploits a locally rewarded action (Agrawal & Goyal, 2012: Thompson sampling requires exploration to avoid local optima)"
+    },
+    "prediction": "Without intervention, rut deepens over next 5–10 cycles and goal progress stalls further.",
+    "recommended_action": "Suppress the dominant function for 10–15 cycles; inject novelty pressure; select a function from a different cognitive category (action vs reflection, internal vs external).",
+    "abstraction_level": 2,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "bea43001b0",
+    "conditions": [
+      "function:decide_to_write_code"
+    ],
+    "negations": [],
+    "conclusion": "reward_positive rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T13:57:05.197579+00:00",
+    "causal_claim": {
+      "cause": "decide_to_write_code",
+      "effect": "reward_positive rises"
+    },
+    "prediction": "reward_positive rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "cff22f1208",
+    "conditions": [
+      "affect_chronic:exploration_drive"
+    ],
+    "negations": [],
+    "conclusion": "When 'exploration_drive' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T13:58:37.958718+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "18f1e77fab",
+    "conditions": [
+      "affect_chronic:novelty_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'novelty_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T14:01:39.695095+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "e1fb6d1924",
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "negations": [],
+    "conclusion": "impasse_signal falls",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T14:10:10.952743+00:00",
+    "causal_claim": {
+      "cause": "generate_intrinsic_goals",
+      "effect": "impasse_signal falls"
+    },
+    "prediction": "impasse_signal falls",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "25699fac4b",
+    "conditions": [
+      "function:wikipedia_search"
+    ],
+    "negations": [],
+    "conclusion": "exploration_drive rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T14:16:05.611251+00:00",
+    "causal_claim": {
+      "cause": "wikipedia_search",
+      "effect": "exploration_drive rises"
+    },
+    "prediction": "exploration_drive rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "8b4453820b",
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "negations": [],
+    "conclusion": "novelty_signal rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T14:21:35.201535+00:00",
+    "causal_claim": {
+      "cause": "generate_intrinsic_goals",
+      "effect": "novelty_signal rises"
+    },
+    "prediction": "novelty_signal rises",
+    "recommended_action": null,
+    "abstraction_level": 6,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "72f10e5024",
+    "conditions": [
+      "pattern:rut"
+    ],
+    "negations": [],
+    "conclusion": "When stuck repeating one function, force a different action.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "metacog",
+    "created_at": "2026-06-30T14:24:29.706492+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "9ae5757831",
+    "conditions": [
+      "affect_chronic:stagnation_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'stagnation_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T16:05:16.463093+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "988461de50",
+    "conditions": [
+      "affect_chronic:conflict_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'conflict_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T16:36:53.236876+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "8a0ff8b83b",
+    "conditions": [
+      "affect_chronic:reward_positive"
+    ],
+    "negations": [],
+    "conclusion": "When 'reward_positive' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T18:35:54.653822+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "837b3530f4",
+    "conditions": [
+      "event_recent:incubated_insight"
+    ],
+    "negations": [],
+    "conclusion": "'incubated_insight' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T18:37:19.351513+00:00",
+    "causal_claim": null,
+    "prediction": "'incubated_insight' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "5ca57d19e8",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] Joy (unknown) [joy, unknown]\n[symbolic] The Joy of Why' (concept): description= [work_of_art, concept, joy, retired]\n[symbolic] history (concept): is_a=systematic study of the past; description= [history, concept, retired]\n[symbolic] emergence in complex systems (concept): description= [systems, complex, emergence, concept, retired]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 48,
+    "source": "tombstoned",
+    "created_at": "2026-06-30T18:38:11.844928+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 122,
+    "consecutive_misses": 7
+  },
+  {
+    "id": "4e263ed5cd",
+    "conditions": [
+      "alternating",
+      "oscillation",
+      "between",
+      "cycles",
+      "unresolved"
+    ],
+    "negations": [],
+    "conclusion": "Alternation between two functions without resolution indicates an unresolved tension that neither function is equipped to dissolve alone.",
+    "action": null,
+    "confidence": 0.1,
+    "hits": 11,
+    "source": "tombstoned",
+    "created_at": "2026-06-30T19:27:00.980261+00:00",
+    "causal_claim": {
+      "cause": "two competing drives or goals of similar strength, each partially satisfied by different functions",
+      "effect": "no net progress on either goal; oscillation persists indefinitely",
+      "mechanism": "Action-selection instability: the bandit can't find a stable policy because neither function fully resolves the underlying conflict (Powers, 1973: competing control loops produce behavioural oscillation)"
+    },
+    "prediction": "Oscillation will continue until the underlying tension is explicitly named and one function given priority.",
+    "recommended_action": "Detect the tension explicitly; create a sub-goal that resolves it; or deliberately suppress one of the two functions for a full exploration pass.",
+    "abstraction_level": 2,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 22,
+    "consecutive_misses": 2
+  },
+  {
+    "id": "f8f100e9bb",
+    "conditions": [
+      "reflection",
+      "action",
+      "imbalance",
+      "over-processing",
+      "outward"
+    ],
+    "negations": [],
+    "conclusion": "Excess reflection without outward action indicates the cognitive system is generating information it is not using.",
+    "action": null,
+    "confidence": 0.75,
+    "hits": 159,
+    "source": "knowledge_formation",
+    "created_at": "2026-06-30T19:42:43.538391+00:00",
+    "causal_claim": {
+      "cause": "high exploration_drive and analytical drive with low action_vs_reflect_bias and no committed external goal",
+      "effect": "rich internal state with no environmental coupling; knowledge accumulates but is not tested against reality",
+      "mechanism": "Situated cognition (Lave, 1988): cognition is embedded in action. Reflection that never feeds action is not integrated knowledge — it is unverified belief. Without grounding in outcome, confidence calibration degrades."
+    },
+    "prediction": "Continued reflection-only cycles will produce increasingly abstract beliefs with lower predictive validity, as there is no error signal from reality to correct them.",
+    "recommended_action": "Force at least one external action per 3 reflective cycles. Preferred: look_outward, seek_novelty, or any goal-directed function. The action does not need to be large — any environmental coupling resets the loop.",
+    "abstraction_level": 2,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 11,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "25f5a7c3d3",
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "negations": [],
+    "conclusion": "motivation rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-06-30T20:05:50.588922+00:00",
+    "causal_claim": {
+      "cause": "generate_intrinsic_goals",
+      "effect": "motivation rises"
+    },
+    "prediction": "motivation rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "0317f7efb1",
+    "conditions": [
+      "affect_chronic:confidence"
+    ],
+    "negations": [],
+    "conclusion": "When 'confidence' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T23:26:58.136145+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "43afbc6788",
+    "conditions": [
+      "affect_chronic:threat_level"
+    ],
+    "negations": [],
+    "conclusion": "When 'threat_level' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-06-30T23:32:14.713015+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "470356807b",
+    "conditions": [
+      "pattern:reflect_imbalance"
+    ],
+    "negations": [],
+    "conclusion": "When over-reflecting without action, force an outward action.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "metacog",
+    "created_at": "2026-07-01T02:20:24.515031+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "2d5f4a71de",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] The Joy (concept): description= [joy, concept, work_of_art, retired]\n[symbolic] Joy (unknown) [joy, unknown]\n[symbolic] The Panic Divis (concept): description= [divis, concept, work_of_art, panic, retired]\n[symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.375,
+    "hits": 87,
+    "source": "tombstoned",
+    "created_at": "2026-07-01T02:33:24.348112+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 220,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "c370f91e8c",
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "negations": [],
+    "conclusion": "emotional reflection: [symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[symbolic] The",
+    "action": null,
+    "confidence": 0.71,
+    "hits": 0,
+    "source": "crystallization",
+    "created_at": "2026-07-01T05:15:13.677271+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 5,
+    "evidence_ids": [],
+    "parent_id": null,
+    "tombstoned": true,
+    "tombstoned_by": "meta_536432bad0"
+  },
+  {
+    "id": "5930deeb5e",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[analogy/GENERAL] Similar situation (score=0.328): emotional reflection: [symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[symbolic] The",
+    "action": null,
+    "confidence": 0.18,
+    "hits": 3,
+    "source": "tombstoned",
+    "created_at": "2026-07-01T05:15:34.035043+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 94,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "1154226b75",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "Emotion-related domains: EMOTIONAL.",
+    "action": null,
+    "confidence": 0.23,
+    "hits": 56,
+    "source": "tombstoned",
+    "created_at": "2026-07-02T11:19:22.042630+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 2,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 328,
+    "consecutive_misses": 2
+  },
+  {
+    "id": "0afdad53f5",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "Weak areas: EMOTIONAL, COGNITIVE, GENERAL.",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 8,
+    "source": "tombstoned",
+    "created_at": "2026-07-02T11:19:22.044565+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 39,
+    "consecutive_misses": 8
+  },
+  {
+    "id": "aa8b3189ed",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "Overall symbolic confidence: 0.64.",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 23,
+    "source": "tombstoned",
+    "created_at": "2026-07-02T11:19:22.046184+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 86,
+    "consecutive_misses": 7
+  },
+  {
+    "id": "63b53bb9e7",
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "negations": [],
+    "conclusion": "emotional reflection: Overall symbolic confidence: 0.64.",
+    "action": null,
+    "confidence": 0.71,
+    "hits": 0,
+    "source": "crystallization",
+    "created_at": "2026-07-02T11:24:37.675500+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "tombstoned": true,
+    "tombstoned_by": "meta_536432bad0"
+  },
+  {
+    "id": "770a9f7eaa",
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "negations": [],
+    "conclusion": "| [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+    "action": null,
+    "confidence": 0.71,
+    "hits": 0,
+    "source": "crystallization",
+    "created_at": "2026-07-02T11:24:37.678422+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "tombstoned": true,
+    "tombstoned_by": "meta_536432bad0"
+  },
+  {
+    "id": "345a13ceeb",
+    "conditions": [
+      "affect_chronic:impasse_signal"
+    ],
+    "negations": [],
+    "conclusion": "When 'impasse_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-07-02T12:34:31.800414+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "ead11d214c",
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "negations": [],
+    "conclusion": "confidence rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-02T12:36:10.097183+00:00",
+    "causal_claim": {
+      "cause": "generate_intrinsic_goals",
+      "effect": "confidence rises"
+    },
+    "prediction": "confidence rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "meta_536432bad0",
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "negations": [],
+    "conclusion": "[meta] When dream, processing: consider symbolic",
+    "action": null,
+    "confidence": 0.685,
+    "hits": 2,
+    "source": "rule_compressor",
+    "created_at": "2026-07-02T14:25:29.887097+00:00",
+    "compressed_from": [
+      "c370f91e8c",
+      "63b53bb9e7",
+      "770a9f7eaa"
+    ],
+    "outcome_count": 21,
+    "consecutive_misses": 3,
+    "parent_id": "c370f91e8c"
+  },
+  {
+    "id": "4ac1115702",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] history (concept): is_a=systematic study of the past; description= [history, concept, retired]\n[symbolic] The Daily Stoic (concept): description= [work_of_art, concept, daily, stoic, retired]\n[symbolic] emergence in complex systems (concept): description= [complex, concept, emergence, systems, retired]\n[symbolic] consciousness and subjective experience (concept): description= [concept, experience, consciousness, subjective, retired]\n[rule] [symbolic] The Joy (concept): description= [joy, concept, work_of_art, retired]\n[symbolic] Joy (unknown) [joy, unknown]\n[symbolic] The Panic Divis (concept): description= [divis, concept, work_of_art, panic, retired]\n[symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.15,
+    "hits": 7,
+    "source": "tombstoned",
+    "created_at": "2026-07-02T14:25:31.408657+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 36,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "3ea1cf72aa",
+    "conditions": [
+      "pattern:oscillation"
+    ],
+    "negations": [],
+    "conclusion": "When oscillating between two functions, break it by choosing a third.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "metacog",
+    "created_at": "2026-07-02T15:03:48.407406+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "56a9109318",
+    "conditions": [
+      "event_recent:symbolic_dream_insight"
+    ],
+    "negations": [],
+    "conclusion": "'symbolic_dream_insight' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-02T20:29:37.540404+00:00",
+    "causal_claim": null,
+    "prediction": "'symbolic_dream_insight' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "0455338e42",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "Drawing from a past case (GENERAL, similarity 32%): emotional reflection: Emotion-related domains: EMOTIONAL.",
+    "action": null,
+    "confidence": 0.155,
+    "hits": 11,
+    "source": "tombstoned",
+    "created_at": "2026-07-03T02:10:04.694276+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 155,
+    "consecutive_misses": 1
+  },
+  {
+    "id": "3be0aafb61",
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "negations": [],
+    "conclusion": "impasse_signal rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-03T03:28:21.930527+00:00",
+    "causal_claim": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal rises"
+    },
+    "prediction": "impasse_signal rises",
+    "recommended_action": null,
+    "abstraction_level": 4,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "b61daca123",
+    "conditions": [
+      "affect_chronic:uncertainty"
+    ],
+    "negations": [],
+    "conclusion": "When 'uncertainty' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-07-03T04:39:31.164970+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "33469c9374",
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "negations": [],
+    "conclusion": "uncertainty rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-03T05:00:29.929557+00:00",
+    "causal_claim": {
+      "cause": "assess_goal_progress",
+      "effect": "uncertainty rises"
+    },
+    "prediction": "uncertainty rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "2e443d3ce7",
+    "conditions": [
+      "function:look_around"
+    ],
+    "negations": [],
+    "conclusion": "exploration_drive falls",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-03T06:05:28.417907+00:00",
+    "causal_claim": {
+      "cause": "look_around",
+      "effect": "exploration_drive falls"
+    },
+    "prediction": "exploration_drive falls",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "0a76e8b070",
+    "conditions": [
+      "affect_chronic:motivation"
+    ],
+    "negations": [],
+    "conclusion": "When 'motivation' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "action": null,
+    "confidence": 0.6,
+    "hits": 0,
+    "source": "peer_signal_historian",
+    "created_at": "2026-07-05T03:47:33.827329+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "ab0f06fc18",
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "negations": [],
+    "conclusion": "satisfaction_signal rises",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-05T03:59:05.715664+00:00",
+    "causal_claim": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises"
+    },
+    "prediction": "satisfaction_signal rises",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "86c6431c09",
+    "conditions": [
+      "event_recent:commitment"
+    ],
+    "negations": [],
+    "conclusion": "'commitment' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-05T10:47:48.444588+00:00",
+    "causal_claim": null,
+    "prediction": "'commitment' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "10e6161528",
+    "conditions": [
+      "analyze",
+      "recent",
+      "emotional",
+      "patterns",
+      "stability"
+    ],
+    "negations": [],
+    "conclusion": "[symbolic] Dark Mode CLI Monorepo Skills (person) [monorepo, person, cli, mode, skills]\n[symbolic] history (concept): is_a=systematic study of the past; description= [concept, history, retired]\n[symbolic] The Daily Stoic (concept): description= [stoic, work_of_art, concept, daily, retired]\n[symbolic] nature (unknown) [unknown, nature]\n[rule] [symbolic] The Joy (concept): description= [joy, concept, work_of_art, retired]\n[symbolic] Joy (unknown) [joy, unknown]\n[symbolic] The Panic Divis (concept): description= [divis, concept, work_of_art, panic, retired]\n[symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]\n[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]",
+    "action": null,
+    "confidence": 0.33,
+    "hits": 141,
+    "source": "tombstoned",
+    "created_at": "2026-07-06T01:25:34.597670+00:00",
+    "causal_claim": null,
+    "prediction": null,
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null,
+    "outcome_count": 635,
+    "consecutive_misses": 0
+  },
+  {
+    "id": "f7e8cd4868",
+    "conditions": [
+      "event_recent:goal_failure"
+    ],
+    "negations": [],
+    "conclusion": "'goal_failure' events tend to recur in clusters.",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-06T03:56:07.266390+00:00",
+    "causal_claim": null,
+    "prediction": "'goal_failure' events tend to recur in clusters.",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  },
+  {
+    "id": "071e0a80d1",
+    "conditions": [
+      "function:thread_continue"
+    ],
+    "negations": [],
+    "conclusion": "confidence falls",
+    "action": null,
+    "confidence": 0.7,
+    "hits": 0,
+    "source": "confirmed_prediction",
+    "created_at": "2026-07-08T16:32:30.227254+00:00",
+    "causal_claim": {
+      "cause": "thread_continue",
+      "effect": "confidence falls"
+    },
+    "prediction": "confidence falls",
+    "recommended_action": null,
+    "abstraction_level": 1,
+    "evidence_ids": [],
+    "parent_id": null
+  }
+]

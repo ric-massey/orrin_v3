@@ -31,7 +31,7 @@ the LLM off to prove offline planning. Results and the claims-vs-evidence ledger
 - **Life capsules** (`brain/evidence/life_capsule.py`) — each run can be sealed into a
   self-describing `.orrinlife.zip` with raw streams, cleaned tables, a queryable SQLite DB,
   computed metrics, and a claims ledger. See
-  [Existence and Lifecycle](Existence_and_Lifecycle.md).
+  [Existence and Lifecycle](Existence_and_Lifecycle).
 - **Run reports** — every staging run gets a dated folder under
   `docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/` with findings, audits, and a
   pass/fail verdict against the acceptance gate in `docs/NEXT_RUN_TESTS.md`.

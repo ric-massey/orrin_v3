@@ -2,7 +2,7 @@
 
 `frontend/` is a Vite + React + TypeScript app that exposes the runtime as named **rooms** instead
 of hiding behavior in a chat transcript. It reads the telemetry stream from `backend/` (see
-[Backend & Telemetry](Backend_Telemetry.md)); in the packaged desktop app it runs in a native
+[Backend & Telemetry](Backend_Telemetry)); in the packaged desktop app it runs in a native
 pywebview window over an in-process bridge with no open port.
 
 ![The Learning room, showing belief and behavior changes as before→after→because diffs](images/orrin_learning_ui.png)
@@ -11,7 +11,7 @@ pywebview window over an in-process bridge with no open port.
 
 | Room | What it shows |
 |------|---------------|
-| **Face** | The person-facing surface: conversation and expressions composed through the [expression membrane](Expression_Membrane.md) |
+| **Face** | The person-facing surface: conversation and expressions composed through the [expression membrane](Expression_Membrane) |
 | **Brain** | The live internals: workspace/thought stream, control-signal rings, demands, attention, goals, internal state |
 | **Cognition** | Function-selection stats, per-function EMAs, thinking cost (tokens/cache), deliberation activity |
 | **Memory** | The memory inspector: working memory, long-term retrievals, consolidation activity |
@@ -25,7 +25,7 @@ pywebview window over an in-process bridge with no open port.
 
 The live "what it's thinking" line is the output of the global-workspace bottleneck — the winning
 content each cycle — not a printout of internal logs (see
-[Workspace and Ignition](Workspace_and_Ignition.md)). Hysteresis keeps it continuous rather than
+[Workspace and Ignition](Workspace_and_Ignition)). Hysteresis keeps it continuous rather than
 flickering.
 
 It is also **bilingual**: `frontend/src/lib/thoughts.ts` (sibling to `lexicon.ts`) renders the

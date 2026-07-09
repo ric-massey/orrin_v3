@@ -2,7 +2,7 @@
 
 `supervisor/` plus `watchdogs.py` keep the runtime alive and keep it from harming the machine it
 runs on. The design principle: the same host metrics feed **three deliberately separate mappings**
-(see [Host Coupling](Host_Coupling.md) for the conceptual view):
+(see [Host Coupling](Host_Coupling) for the conceptual view):
 
 1. **Absolute floors → reflex.** `supervisor/host_resources.py` (`HostResourceGuard`) watches
    disk/swap/memory below cognition and pauses heavy cycles at safety floors — separate from the
@@ -22,7 +22,7 @@ Started by `watchdogs.py` (`start_watchdogs`):
 - `liveness_cycle.py` — cycle-progress watchdog.
 - `lifespan.py` — a **per-process** uptime cutoff that resets on every restart. This is distinct
   from the runtime-lifetime clock (`brain/cognition/runtime_lifetime.py`), which is a persistent,
-  finite lifetime budget — see [Existence and Lifecycle](Existence_and_Lifecycle.md).
+  finite lifetime budget — see [Existence and Lifecycle](Existence_and_Lifecycle).
 - `memory.py` — process memory watchdog.
 - `no_goals.py` / `repeat.py` / `trend.py` — behavioral guards: no active goals, repetitive
   behavior, and degrading trends.

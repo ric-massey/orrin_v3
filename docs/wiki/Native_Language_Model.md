@@ -26,11 +26,11 @@ loop: **a pretrained model is frozen, and Orrin wants a language faculty that gr
 LLM's weights never change with what this runtime lives through; the native organ's do. So rather
 than borrow a fixed model, Orrin grows his own — a transformer that trains only on what he has read
 and said, and gets better as that corpus of lived experience accumulates. The external LLM (see
-[LLM Integration](LLM_Integration.md)) never writes Orrin's inner speech; the native organ and the
+[LLM Integration](LLM_Integration)) never writes Orrin's inner speech; the native organ and the
 symbolic templates do, and the UI's Language panel plus the bilingual thought line
 (`frontend/src/lib/thoughts.ts` / `lexicon.ts`) let you watch the vocabulary develop. This is why
 the LLM is contained to a gated tool rather than made the controller — see
-[Symbolic-First Design](Symbolic_First_Design.md) for the full argument.
+[Symbolic-First Design](Symbolic_First_Design) for the full argument.
 
 ## Relationship to memory
 

@@ -31,10 +31,10 @@ Inside the door:
 ## What this means in practice
 
 - The reasoning layer describes its own state in qualitative terms (see
-  [Control Signals](Control_Signals.md) — the reasoning layer never receives raw numbers), and the
+  [Control Signals](Control_Signals) — the reasoning layer never receives raw numbers), and the
   membrane keeps person-facing text consistent with that state estimate.
 - Delivered notes and replies are recorded as effects on the
-  [effect ledger](Production_and_Effect_Ledger.md), so communication counts as production.
+  [effect ledger](Production_and_Effect_Ledger), so communication counts as production.
 - Anything that bypasses `express_to_user` to reach a person is a bug by definition — there is one
   door on purpose, which makes auditing person-facing output tractable.
 

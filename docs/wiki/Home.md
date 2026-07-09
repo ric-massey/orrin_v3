@@ -14,71 +14,71 @@ responds to the machine it runs on.
 
 ## Start Here
 
-- [Getting Started](Getting_Started.md) — install, run, and read the UI in your first hour
-- [What is Orrin?](What_is_Orrin.md)
-- [The Cognitive Loop](The_Cognitive_Loop.md)
-- [Quick Navigation Guide](Quick_Navigation_Guide.md)
-- [Glossary](Glossary.md)
-- [FAQ](FAQ.md)
+- [Getting Started](Getting_Started) — install, run, and read the UI in your first hour
+- [What is Orrin?](What_is_Orrin)
+- [The Cognitive Loop](The_Cognitive_Loop)
+- [Quick Navigation Guide](Quick_Navigation_Guide)
+- [Glossary](Glossary)
+- [FAQ](FAQ)
 
 ## Core Architecture
 
-- [Symbolic-First Design](Symbolic_First_Design.md)
-- [Workspace and Ignition](Workspace_and_Ignition.md)
-- [Binding and Workspace Writeback](Binding_and_Workspace_Writeback.md)
-- [Thinking and Action Selection](Thinking_Action_Selection.md)
-- [Action Selection and Bandit](Action_Selection_and_Bandit.md)
-- [Learning and Adaptation](Learning_and_Adaptation.md)
-- [Loop Phases: Detailed](Loop_Phases_Detailed.md)
+- [Symbolic-First Design](Symbolic_First_Design)
+- [Workspace and Ignition](Workspace_and_Ignition)
+- [Binding and Workspace Writeback](Binding_and_Workspace_Writeback)
+- [Thinking and Action Selection](Thinking_Action_Selection)
+- [Action Selection and Bandit](Action_Selection_and_Bandit)
+- [Learning and Adaptation](Learning_and_Adaptation)
+- [Loop Phases: Detailed](Loop_Phases_Detailed)
 
 ## Subsystems
 
-- [Memory System](Memory_System.md) / [Memory Subsystem Deep Dive](Memory_System_Subsystem.md)
-- [Control Signals](Control_Signals.md) / [Deep Dive](Control_Signals_Deep_Dive.md) / [Module](Control_Signals_Module.md)
-- [Symbolic Reasoning](Symbolic_Reasoning.md) / [Subsystem Deep Dive](Symbolic_Reasoning_Subsystem.md)
-- [Goals: Executive vs. Daemon](Goals_Executive_vs_Daemon.md) / [Goals Daemon Subsystem](Goals_Daemon_Subsystem.md)
-- [Peers](Peers.md) / [Peers Subsystem](Peers_Subsystem.md)
-- [Host Coupling](Host_Coupling.md) / [Supervisor](Host_Coupling_Supervisor.md)
-- [LLM Integration](LLM_Integration.md)
+- [Memory System](Memory_System) / [Memory Subsystem Deep Dive](Memory_System_Subsystem)
+- [Control Signals](Control_Signals) / [Deep Dive](Control_Signals_Deep_Dive) / [Module](Control_Signals_Module)
+- [Symbolic Reasoning](Symbolic_Reasoning) / [Subsystem Deep Dive](Symbolic_Reasoning_Subsystem)
+- [Goals: Executive vs. Daemon](Goals_Executive_vs_Daemon) / [Goals Daemon Subsystem](Goals_Daemon_Subsystem)
+- [Peers](Peers) / [Peers Subsystem](Peers_Subsystem)
+- [Host Coupling](Host_Coupling) / [Supervisor](Host_Coupling_Supervisor)
+- [LLM Integration](LLM_Integration)
 
 ## Production and Expression
 
-- [Production and the Effect Ledger](Production_and_Effect_Ledger.md)
-- [Quality Standard](Quality_Standard.md)
-- [Expression Membrane](Expression_Membrane.md)
-- [Self-Code and Extension](Self_Code_and_Extension.md)
-- [Native Language Model](Native_Language_Model.md)
-- [Existence and Lifecycle](Existence_and_Lifecycle.md)
+- [Production and the Effect Ledger](Production_and_Effect_Ledger)
+- [Quality Standard](Quality_Standard)
+- [Expression Membrane](Expression_Membrane)
+- [Self-Code and Extension](Self_Code_and_Extension)
+- [Native Language Model](Native_Language_Model)
+- [Existence and Lifecycle](Existence_and_Lifecycle)
 
 ## The UI
 
-- [Face & Brain UI](Face_and_Brain_UI.md)
-- [Backend & Telemetry](Backend_Telemetry.md)
+- [Face & Brain UI](Face_and_Brain_UI)
+- [Backend & Telemetry](Backend_Telemetry)
 
 ## Running and Operating Orrin
 
-- [Configuration Reference](Configuration_Reference.md)
-- [Running with Docker](Running_with_Docker.md)
-- [Remote Access & Tunneling](Remote_Access_Tunneling.md)
-- [Desktop Packaging](Desktop_Packaging.md)
-- [Security Model](Security_Model.md)
-- [Benchmarks and Verification](Benchmarks_and_Verification.md)
-- [Troubleshooting](Troubleshooting.md)
-- [Debugging Memory Issues](Debugging_Memory_Issues.md)
+- [Configuration Reference](Configuration_Reference)
+- [Running with Docker](Running_with_Docker)
+- [Remote Access & Tunneling](Remote_Access_Tunneling)
+- [Desktop Packaging](Desktop_Packaging)
+- [Security Model](Security_Model)
+- [Benchmarks and Verification](Benchmarks_and_Verification)
+- [Troubleshooting](Troubleshooting)
+- [Debugging Memory Issues](Debugging_Memory_Issues)
 
 ## Development
 
-- [Contributing](Contributing.md)
-- [Cognition Module](Cognition_Module.md)
-- [Writing a Custom Cognitive Function](Writing_Custom_Cognitive_Function.md)
-- [Extending Symbolic Operations](Extending_Symbolic_Operations.md)
-- [Adding a Custom Peer](Adding_Custom_Peer.md)
-- [Tuning Control Signals](Tuning_Control_Signals.md)
+- [Contributing](Contributing)
+- [Cognition Module](Cognition_Module)
+- [Writing a Custom Cognitive Function](Writing_Custom_Cognitive_Function)
+- [Extending Symbolic Operations](Extending_Symbolic_Operations)
+- [Adding a Custom Peer](Adding_Custom_Peer)
+- [Tuning Control Signals](Tuning_Control_Signals)
 
 ## Project
 
-- [Roadmap & Status](Roadmap_and_Status.md)
-- [Scientific Foundations](Scientific_Foundations.md)
+- [Roadmap & Status](Roadmap_and_Status)
+- [Scientific Foundations](Scientific_Foundations)
 
 Source and maintenance: this wiki's source of truth is `docs/wiki/` in the main repository
 (originally based on the WIKI_STRUCTURE.md blueprint, now in `docs/archive/`). Update pages when

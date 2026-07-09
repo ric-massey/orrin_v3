@@ -22,11 +22,11 @@ and it is fenced accordingly — the guardrails are structural, not honor-system
 
 - The **Architect peer** (`brain/peers/architect.py`) reviews self-modifications before they
   happen — an outside observer whose whole job is proposed code (see
-  [Peers Subsystem](Peers_Subsystem.md)).
+  [Peers Subsystem](Peers_Subsystem)).
 - Verified sandbox checks (`produce_and_check`) are recorded on the
-  [effect ledger](Production_and_Effect_Ledger.md) as `tool_run_effect`, so proven code pays and
+  [effect ledger](Production_and_Effect_Ledger) as `tool_run_effect`, so proven code pays and
   unverified code doesn't.
-- The [quality standard](Quality_Standard.md) applies to produced artifacts, and Orrin cannot edit
+- The [quality standard](Quality_Standard) applies to produced artifacts, and Orrin cannot edit
   that standard.
 
 ## Registration

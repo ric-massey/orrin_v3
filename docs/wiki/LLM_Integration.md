@@ -13,8 +13,8 @@ set points all change with what the runtime lives through; the frozen weights be
 not. Putting that model in charge would make the only decision-maker the only component that can't
 learn from its decisions. So the LLM stays a gated tool, and the language ability that would grow is
 grown natively instead — a from-scratch transformer that trains on Orrin's own experience and
-improves with it (see [Native Language Model](Native_Language_Model.md)). See
-[Symbolic-First Design](Symbolic_First_Design.md) for the full argument.
+improves with it (see [Native Language Model](Native_Language_Model)). See
+[Symbolic-First Design](Symbolic_First_Design) for the full argument.
 
 ## The tool-only gate
 

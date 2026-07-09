@@ -7,7 +7,7 @@ workspace, goals, and learned value all converge into a single pick.
 
 1. **Deliberation gate** (`deliberation_gate.py`, `should_think()`) — decides whether this cycle
    ignites into full deliberation or stays in low-power default mode (see
-   [Workspace and Ignition](Workspace_and_Ignition.md)). Non-ignited cycles damp effortful
+   [Workspace and Ignition](Workspace_and_Ignition)). Non-ignited cycles damp effortful
    functions so quiet time drifts toward cheap work.
 2. **Function selector** (`think_utils/select_function.py`) — a contextual bandit picks the next
    cognitive function. Control-signal floats, demands, cost predictions, and the workspace winner
@@ -41,7 +41,7 @@ must be worth it. Attention can still be hijacked by urgent signals (`brain/cogn
 
 `speech_builder.py`, `speech_coherence.py`, `speech_comprehension.py` — building and checking
 person-facing utterances. Actual delivery goes through the one door:
-[Expression Membrane](Expression_Membrane.md).
+[Expression Membrane](Expression_Membrane).
 
 ## Debugging
 

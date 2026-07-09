@@ -3,7 +3,7 @@
 `goals/` is a separate, durable subsystem that owns goal **lifecycle and state** — planning NEW
 goals, scheduling READY steps, and running them via a worker pool — decoupled from the cognitive
 cycle. The in-loop counterpart is the Executive (`brain/cognition/planning/executive.py`), which
-advances goal steps every ~7s; see [Goals: Executive vs. Daemon](Goals_Executive_vs_Daemon.md).
+advances goal steps every ~7s; see [Goals: Executive vs. Daemon](Goals_Executive_vs_Daemon).
 
 ## Durability
 
@@ -21,7 +21,7 @@ advances goal steps every ~7s; see [Goals: Executive vs. Daemon](Goals_Executive
   a worker pool, and emits lifecycle events.
 - `goals/runner.py` — executes steps via handlers; on a step's DONE transition, any artifacts the
   handler recorded (`Step.artifacts`) are registered on the effect ledger, so goal work earns
-  production reward (see [Production and the Effect Ledger](Production_and_Effect_Ledger.md)).
+  production reward (see [Production and the Effect Ledger](Production_and_Effect_Ledger)).
 - `goals/schema.py` / `goals/model.py` — goal and step representations.
 - `goals/policy.py` / `goals/triggers.py` — admission policy and event triggers.
 - Goals span timescales, from seeded lifetime aspirations down to short-term subgoals, with plan

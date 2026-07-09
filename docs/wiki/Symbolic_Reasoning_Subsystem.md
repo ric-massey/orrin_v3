@@ -33,14 +33,14 @@ Autonomy and measurement
 - `ground_truth.py` / `benchmark.py` — checks conclusions against known facts; scores reasoning.
 - `self_improvement.py` — turns recurring reasoning failures into improvement goals.
 - `llm_gate.py` — the one place symbolic code may consult the LLM, subject to the global tool-only
-  gate (see [LLM Integration](LLM_Integration.md)).
+  gate (see [LLM Integration](LLM_Integration)).
 
 ## Production is visible
 
 Symbolic productions — synthesized principles, crystallized skills, resolved experiments,
 established causal edges — are recorded as `symbolic_artifact` effects on the effect ledger via
 `brain/symbolic/symbolic_effects.py`, so symbolic work earns production reward the same way file
-outputs do (see [Production and the Effect Ledger](Production_and_Effect_Ledger.md)).
+outputs do (see [Production and the Effect Ledger](Production_and_Effect_Ledger)).
 
 ## Persistence
 

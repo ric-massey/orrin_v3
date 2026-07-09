@@ -24,7 +24,7 @@ per-process uptime cutoff that resets on every restart.
 ## Restoration
 
 Idle cycles are not dead time: the idle/consolidation phase runs memory consolidation, replay, and
-closed-time accounting at a low-power cadence (see [The Cognitive Loop](The_Cognitive_Loop.md)).
+closed-time accounting at a low-power cadence (see [The Cognitive Loop](The_Cognitive_Loop)).
 
 ## Life capsules (the run record)
 

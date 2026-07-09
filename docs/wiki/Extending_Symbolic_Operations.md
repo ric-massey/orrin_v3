@@ -38,5 +38,5 @@ reasoning operation — without breaking the invariants the rest of the system r
 ## Code pointers
 
 - `brain/symbolic/` — the whole subsystem, mapped in
-  [Symbolic Reasoning Subsystem](Symbolic_Reasoning_Subsystem.md)
+  [Symbolic Reasoning Subsystem](Symbolic_Reasoning_Subsystem)
 - `tests/brain/` — existing test patterns to copy

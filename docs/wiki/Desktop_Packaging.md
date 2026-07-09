@@ -37,8 +37,8 @@ backend's `POST /api/settings` and `main.py`'s boot both go through it.
 ## Product surfaces
 
 The packaged app carries the full product: the UI rooms (see
-[Face & Brain UI](Face_and_Brain_UI.md)), Settings with keychain-backed keys, the existence model
-with its end-of-life screen (see [Existence and Lifecycle](Existence_and_Lifecycle.md)), and
+[Face & Brain UI](Face_and_Brain_UI)), Settings with keychain-backed keys, the existence model
+with its end-of-life screen (see [Existence and Lifecycle](Existence_and_Lifecycle)), and
 self-code support — all with the same symbolic-first, fail-closed behavior as a source run.
 
 ## Known limitations

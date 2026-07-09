@@ -1,7 +1,7 @@
 # Binding and Workspace Writeback
 
 Two mechanisms bracket the global-workspace competition described in
-[Workspace and Ignition](Workspace_and_Ignition.md): **binding** composes richer candidates on the
+[Workspace and Ignition](Workspace_and_Ignition): **binding** composes richer candidates on the
 way *in*, and **writeback** lets the winning content gently bias the substrate on the way *out*.
 
 ## Binding (pre-workspace)

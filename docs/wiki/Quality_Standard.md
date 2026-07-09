@@ -22,7 +22,7 @@ standard.** The bar only moves through human-ratified rule changes.
 
 ## Why it exists
 
-Production reward (see [Production and the Effect Ledger](Production_and_Effect_Ledger.md)) only
+Production reward (see [Production and the Effect Ledger](Production_and_Effect_Ledger)) only
 works if "production" can't be gamed. Without a bar, the cheapest path to reward is stamping out
 template output — which a staging run actually demonstrated (a 197KB fake manuscript from a
 template stamper). The quality standard is the counterweight: an artifact must pass the current

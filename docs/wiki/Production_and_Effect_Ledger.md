@@ -19,7 +19,7 @@ reward. It lives in `brain/agency/` — the action side — not in cognition.
 - **Goal handler artifacts** — research memos, housekeeping reports → `file_write`, registered at
   the goals runner's DONE-step chokepoint from `Step.artifacts`.
 - **Delivered notes and replies** — things a person actually received (through the
-  [expression membrane](Expression_Membrane.md)).
+  [expression membrane](Expression_Membrane)).
 - **Verified sandbox checks** — `produce_and_check` outputs that passed → `tool_run_effect`.
 - **Tracked-work sections** — durable sections of long-form work
   (`brain/data/tracked_work/`).
@@ -34,7 +34,7 @@ Artifact files are captured under `brain/data/effect_artifacts/` (`EFFECT_ARTIFA
   cannot claim completion without a qualifying recorded effect.
 - **Making actions pay per attempt**, so the per-cycle gradient never favors pure intake over
   production, even before an attempt succeeds.
-- Quality is enforced upstream by the [quality standard](Quality_Standard.md): passing the bar is
+- Quality is enforced upstream by the [quality standard](Quality_Standard): passing the bar is
   what makes an artifact creditable, so template-stamped or low-effort output doesn't pay.
 
 ## Fail-able aspirations

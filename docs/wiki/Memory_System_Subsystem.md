@@ -2,7 +2,7 @@
 
 Memory is split between the **memory daemon** (`memory/`, durable long-term storage with its own
 WAL) and the brain's in-loop **working memory** (`brain/cog_memory/`). For the conceptual view see
-[Memory System](Memory_System.md).
+[Memory System](Memory_System).
 
 ## The memory daemon (`memory/`)
 
@@ -23,7 +23,7 @@ WAL) and the brain's in-loop **working memory** (`brain/cog_memory/`). For the c
 - `brain/cog_memory/` holds the small, fixed-size working memory the loop actually thinks with.
 - During idle cycles the loop runs **consolidation**: working-memory items worth keeping are
   summarized and moved to long-term memory, and long-term memory is replayed/decayed. This is the
-  "idle/consolidate" phase of [The Cognitive Loop](The_Cognitive_Loop.md).
+  "idle/consolidate" phase of [The Cognitive Loop](The_Cognitive_Loop).
 - Retrieval quality is a learning signal: the delayed evaluator (`brain/eval/`) rewards the
   decision that stored a memory when that memory is later retrieved and used.
 
@@ -37,4 +37,4 @@ multi-day run should not need a reset for size reasons (see `docs/CONFIGURATION.
 
 - `memory/memory_daemon.py`, `memory/wal.py`, `memory/retrieval.py`
 - `brain/cog_memory/` — working memory
-- [Debugging Memory Issues](Debugging_Memory_Issues.md) — practical diagnosis
+- [Debugging Memory Issues](Debugging_Memory_Issues) — practical diagnosis

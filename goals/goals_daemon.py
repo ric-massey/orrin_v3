@@ -419,27 +419,28 @@ class GoalsDaemon:
             all_done = steps and all(s.status == Status.DONE for s in steps)
             any_failed = any(s.status == Status.FAILED for s in steps)
 
+            # No already-DONE/FAILED re-guards below: the terminal-status
+            # `continue` at the top of the loop means g is still open here
+            # (mypy 2.2 comparison-overlap proved the old guards dead code).
             if all_done:
-                if g.status != Status.DONE:
-                    # Artifact gate (no fabricated progress): see runner._maybe_finalize.
-                    # An artifact-requiring goal whose steps all ran but produced nothing
-                    # fails honestly rather than reporting a hollow DONE.
-                    if not artifact_satisfied(g, steps):
-                        ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(),
-                                     last_error="objective not met: required artifact not produced")
-                        _upsert_goal(self.store, ng)
-                        self._emit_goal_event("GoalFailed", ng, extra={
-                            "reason": "artifact_required_not_produced"})
-                    else:
-                        ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
-                        _upsert_goal(self.store, ng)
-                        self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
+                # Artifact gate (no fabricated progress): see runner._maybe_finalize.
+                # An artifact-requiring goal whose steps all ran but produced nothing
+                # fails honestly rather than reporting a hollow DONE.
+                if not artifact_satisfied(g, steps):
+                    ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(),
+                                 last_error="objective not met: required artifact not produced")
+                    _upsert_goal(self.store, ng)
+                    self._emit_goal_event("GoalFailed", ng, extra={
+                        "reason": "artifact_required_not_produced"})
+                else:
+                    ng = replace(g, status=Status.DONE, updated_at=UTCNOW())
+                    _upsert_goal(self.store, ng)
+                    self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
             elif any_failed and not (any_ready or any_running or any_waiting):
                 # No more work pending and at least one failed → mark goal failed
-                if g.status != Status.FAILED:
-                    ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(), last_error="step_failure")
-                    _upsert_goal(self.store, ng)
-                    self._emit_goal_event("GoalFailed", ng, extra={"reason": "step_failed"})
+                ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(), last_error="step_failure")
+                _upsert_goal(self.store, ng)
+                self._emit_goal_event("GoalFailed", ng, extra={"reason": "step_failed"})
 
     # ---------------- Helpers ----------------
 

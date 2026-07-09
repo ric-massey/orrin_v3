@@ -1,5 +1,15 @@
 # Master Status & Docs Organization Review (2026-07-07)
 
+> **Addendum 2026-07-09 — what's changed since this was written.** §0's "built
+> but uncommitted" state is over: F1–F22 were committed (`f0c4698`), staging
+> **Run 5 lived and ended 2026-07-08** (verdict in `demo_runs/2026-07-08-run/`:
+> gate NOT passed — S8/S7 held, S6/S9 fail, committed-goal monopoly 99.9 %),
+> and the **Run 6 build** landed 2026-07-09 (`RUN6_FIX_PLAN_2026-07-08.md`,
+> commit `584b76a`). §2c's archive moves are done. §3's wiki plan is executed
+> and exceeded: the wiki exists with ~50 pages, sourced from `docs/wiki/` and
+> synced to `orrin_v3.wiki.git`. §1's track table and §4 are otherwise still
+> accurate. This doc is now read-only history pending the next status pass.
+
 **Purpose.** Two things in one paper: (1) a current-truth pass over every live
 doc — what's actually done vs. open, correcting drift since the last index
 refresh — and (2) an assessment of the docs tree's organization plus a

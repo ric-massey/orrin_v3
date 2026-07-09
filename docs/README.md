@@ -5,31 +5,42 @@ level; superseded or completed docs move into that track's `archive/` (or the
 shared `archive/` at the docs root). Run reports live under
 `Behavioral Evaluation & Runtime Diagnostics/demo_runs/`, dated by run.
 
-*Index rewritten 2026-07-01 per `DOC_ARCHIVE_CHECKLIST_2026-07-01.md`.*
+*Index refreshed 2026-07-09 (previous rewrite 2026-07-01 per
+`DOC_ARCHIVE_CHECKLIST_2026-07-01.md`).*
 
 ## Root docs
 
 - `ARCHITECTURE.md` — living reference: how the system fits together.
 - `CONFIGURATION.md` — living reference: config surface and env vars.
-- `NEXT_RUN_TESTS.md` — the §8 acceptance gate for the production-reward work;
-  what to measure on the next clean-instance life run.
+- `NEXT_RUN_TESTS.md` — the §8 acceptance gate, plus the **Run 6 re-test gate**
+  (S9/S10 + holds) from `RUN6_FIX_PLAN_2026-07-08.md`; what to measure on the
+  next clean-instance life run.
+- `MASTER_STATUS_2026-07-07.md` — dated status + docs-organization review; its
+  §2c archive moves and §3 wiki plan are executed (see the addendum at its top).
 - `DOC_ARCHIVE_CHECKLIST_2026-07-01.md` — this clearance plan (living; archives
   once the tree is clean and the README diff matches).
+- `wiki/` — source copy of the [GitHub Wiki](https://github.com/ric-massey/orrin_v3/wiki);
+  edit here, then sync to `orrin_v3.wiki.git`.
 
 ## Tracks
 
 - **Behavioral Evaluation & Runtime Diagnostics/** — what Orrin actually does at
   runtime. Live: `CODEBASE_AUDIT_2026-07-01.md` (system-wide audit),
   `IMPLEMENTATION_PLAN_AUDIT_REMEDIATION_2026-07-01.md` (AR1–AR9 fixes),
-  `IMPLEMENTATION_PLAN_GROUNDING_AND_SURFACE_2026-06-30.md` (P1–P8 built;
-  staging run done 2026-07-02, §8 gate not passed — S6/S7 open),
-  plus all dated `demo_runs/` (indexed by `demo_runs/DEMO_RUNS.md`).
-  `B3_DECAY_DIAGNOSIS_2026-07-01.md` closed 2026-07-02 (AR8 + rise-and-recover
-  proven) → `archive/`.
+  `IMPLEMENTATION_PLAN_GROUNDING_AND_SURFACE_2026-06-30.md` (P1–P8 built),
+  `RUN5_FIX_IMPLEMENTATION_2026-07-07.md` (F1–F22 built, committed `f0c4698`;
+  Run 5 lived 2026-07-08), and `RUN6_FIX_PLAN_2026-07-08.md` (built 2026-07-09,
+  `584b76a` — value authority in selection + commitment score/rotation; gated on
+  the Run 6 staging life). Five staging runs so far (Runs 1–5); the §8 gate has
+  **never passed** — Run 5's verdict: S8/S7 held, S6/S9 fail, committed-goal
+  monopoly at 99.9 %. Run reports live in dated `demo_runs/` folders (indexed by
+  `demo_runs/DEMO_RUNS.md`). Archived: `B3_DECAY_DIAGNOSIS_2026-07-01.md`
+  (closed 2026-07-02), `RUN4_FIX_PLAN_2026-07-04.md` +
+  `RUN4_ISSUES_AND_IMPROVEMENTS_2026-07-04.md` (superseded by the Run 5 docs).
 
 - **Core Architecture, Embodiment & Evolution/** — the core build track. Live:
-  `ORRIN_CORE_ARCHITECTURE_MASTER_PLAN_2026-06-25.md` (Phase 0 done; Phase 1
-  code done, T1.G live run + T0.5 exemplars open),
+  `ORRIN_CORE_ARCHITECTURE_MASTER_PLAN_2026-06-25.md` (Phases 0/1/3 code done;
+  T1.G live-closure run + T0.5 exemplars open — both non-code, Ric-gated),
   `GROUNDED_COGNITION_IMPLEMENTATION_PLAN_2026-06-29.md` (Phases 1/2/3/4A done;
   Phase 2 dormant behind the fluency gate; 4B/5 open),
   `TOPDOWN_WRITEBACK_IMPLEMENTATION_PLAN_2026-06-27.md` (proposed, unbuilt).

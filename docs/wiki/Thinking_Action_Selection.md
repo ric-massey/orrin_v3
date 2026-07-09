@@ -12,7 +12,11 @@ workspace, goals, and learned value all converge into a single pick.
 2. **Function selector** (`think_utils/select_function.py`) — a contextual bandit picks the next
    cognitive function. Control-signal floats, demands, cost predictions, and the workspace winner
    (an additive prior, `ORRIN_WORKSPACE_PRIOR`) all bias the draw. The bandit honors an explicit
-   learning rate (constant-step), with a modulated adaptive rate available.
+   learning rate (constant-step), with a modulated adaptive rate available. Candidate scoring
+   (`think_utils/selection/score_actions.py`) also adds each action's learned reward EMA (once the
+   action is mature, ≥8 observations) directly, so
+   realized outcomes — not just priors — decide what wins (see
+   [Learning and Adaptation](Learning_and_Adaptation)).
 3. **Action arbiter** (`action_arbiter.py`) — the convergence layer's action half: reactive and
    analytical subsystems **propose**, the arbiter resolves, so nothing races on shared state.
 4. **Execution** — the chosen function runs; `sandbox_runner.py` executes generated code safely;

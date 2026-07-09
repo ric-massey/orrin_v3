@@ -27,6 +27,22 @@ flowchart LR
     CR --> B[Bandit / signal update]
 ```
 
+## Value authority: learning steers what runs *and* what's committed to
+
+Learned outcome value doesn't just tune the bandit's internals — it has explicit authority over
+both halves of behavior:
+
+- **Selection** — `brain/think/think_utils/selection/score_actions.py` adds each action's learned reward EMA
+  as an additive term in candidate scoring (with a cap on the exploration group), so an action
+  whose realized reward has collapsed stops winning on priors alone.
+- **Commitment** — `brain/cognition/planning/commitment_value.py` scores which goal holds the
+  driver slot: base tier/priority, **plus** a credited-effect value EMA, **minus** staleness
+  (driver cycles without a credited effect) and avoidance-streak penalties. A committed-but-unacted
+  goal loses rank and rotates out; once released, its penalties decay so it can recover when it's
+  actionable again. The survival-tier floor is preserved — the learned adjustment can cross
+  priority ranks but never a tier boundary. Per-goal signals persist in
+  `brain/data/commitment_signals.json`.
+
 ## Grounded reward
 
 Reward is denominated in **durable outward effects**, not internal churn, via the

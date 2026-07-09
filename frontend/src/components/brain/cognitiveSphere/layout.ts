@@ -110,7 +110,16 @@ function rng(i: number) {
 }
 
 export function buildLayout(cat: FnCatalog): Layout {
-  const subs = Object.keys(cat.subsystems).sort((a, b) => cat.subsystems[b].length - cat.subsystems[a].length);
+  const bySize = Object.keys(cat.subsystems).sort((a, b) => cat.subsystems[b].length - cat.subsystems[a].length);
+  // Anchor index maps directly to latitude (fibonacci sphere: first = north
+  // pole, last = south pole). Straight size order piled every big cluster onto
+  // the north half and left the south nearly bare — interleave instead, so the
+  // two biggest caps take opposite poles and node mass balances hemisphere to
+  // hemisphere.
+  const front: string[] = [];
+  const back: string[] = [];
+  bySize.forEach((s, i) => (i % 2 === 0 ? front.push(s) : back.push(s)));
+  const subs = [...front, ...back.reverse()];
   const anchors: Record<string, THREE.Vector3> = {};
   const N = subs.length;
   subs.forEach((s, i) => {
@@ -121,27 +130,38 @@ export function buildLayout(cat: FnCatalog): Layout {
   });
   const nodes: LNode[] = [];
   const byName = new Map<string, LNode>();
+  // Area-proportional spherical caps: each subsystem gets surface area in
+  // proportion to its member count (a 200-fn cluster used to be squeezed into
+  // the same fixed disc a 10-fn one got), filled with uniform-area spherical
+  // phyllotaxis — so node spacing is roughly CONSTANT across the whole globe
+  // and the surface between clusters isn't wasted. Nodes sit exactly on the
+  // shell (the old random radial jitter is what made the roads look detached).
+  const total = subs.reduce((m, s) => m + cat.subsystems[s].length, 0) || 1;
+  const FILL = 0.72; // fraction of the sphere the caps collectively claim
   subs.forEach((s, si) => {
     const aDir = anchors[s].clone().normalize();
     const t1 = new THREE.Vector3().crossVectors(aDir, new THREE.Vector3(0, 1, 0));
     if (t1.lengthSq() < 1e-4) t1.set(1, 0, 0);
     t1.normalize();
     const t2 = new THREE.Vector3().crossVectors(aDir, t1).normalize();
-    // Phyllotaxis disc per cluster: deterministic, evenly packed, no overlaps —
-    // the cluster's footprint grows with member count so dense subsystems get
-    // room instead of piling up. Nodes sit EXACTLY on the shell (the old random
-    // radial jitter is what made the roads look detached).
     const members = [...cat.subsystems[s]].sort();
-    const clusterR = Math.min(0.9, 0.18 + Math.sqrt(members.length) * 0.09);
-    const spin = rng(si + 1) * Math.PI * 2; // per-cluster rotation so discs don't align
+    const m = members.length;
+    // Cap size: fraction of total sphere area, floored so tiny clusters still
+    // separate their nodes, capped so no cluster wraps past the hemisphere.
+    const capFrac = Math.min(0.3, Math.max(0.006, (m / total) * FILL));
+    const cosTheta = 1 - 2 * capFrac;
+    const spin = rng(si + 1) * Math.PI * 2; // per-cluster rotation so caps don't align
     members.forEach((name, i) => {
+      // Uniform-area point i of m inside the cap around aDir (h = cos of the
+      // polar angle, swept from the rim toward the center).
+      const h = 1 - (1 - cosTheta) * ((i + 0.5) / m);
+      const r = Math.sqrt(Math.max(0, 1 - h * h));
       const ang = spin + i * GOLDEN;
-      const rad = clusterR * Math.sqrt((i + 0.5) / members.length);
       const dir = aDir
         .clone()
-        .add(t1.clone().multiplyScalar(Math.cos(ang) * rad))
-        .add(t2.clone().multiplyScalar(Math.sin(ang) * rad))
-        .normalize();
+        .multiplyScalar(h)
+        .add(t1.clone().multiplyScalar(Math.cos(ang) * r))
+        .add(t2.clone().multiplyScalar(Math.sin(ang) * r));
       const pos = dir.multiplyScalar(NODE_R);
       const info = cat.functions[name];
       const node: LNode = { name, sub: s, color: colorFor(s), pos, count: info?.count ?? 0, reward: info?.avg_reward ?? 0 };

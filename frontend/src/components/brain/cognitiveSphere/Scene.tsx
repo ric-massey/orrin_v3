@@ -460,11 +460,11 @@ export function Scene({
             <meshStandardMaterial
               color={n.color}
               emissive={n.color}
-              emissiveIntensity={(isActive ? 1.5 : isHover || isFocus ? 0.95 : dim ? 0.18 : 0.5) * (settings.effects ? 1 : 0.45)}
+              emissiveIntensity={(isActive ? 1.5 : isHover || isFocus ? 0.95 : dim ? 0.3 : 0.5) * (settings.effects ? 1 : 0.45)}
               metalness={0.3}
               roughness={0.35}
               transparent
-              opacity={dim ? 0.55 : 1}
+              opacity={dim ? 0.75 : 1}
             />
           </mesh>
         );

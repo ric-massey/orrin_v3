@@ -21,7 +21,7 @@ function fmtDate(ts?: string): string {
 }
 
 export default function IdleConsolidationPanel() {
-  const data = usePoll<{ dreams?: Dream[]; symbolic?: SymbolicDream[]; total?: number }>(`${API}/dreams?n=12`, 30_000);
+  const data = usePoll<{ dreams?: Dream[]; symbolic?: SymbolicDream[]; total?: number }>(`${API}/idle-consolidation?n=12`, 30_000);
   const dreams = data?.dreams || [];
   const symbolic = data?.symbolic || [];
 
@@ -39,7 +39,7 @@ export default function IdleConsolidationPanel() {
             src={{ file: "brain/cognition/dreaming/dream_cycle.py", start: 1, end: 60, label: "dream_cycle" }}
           />
           <PanelSubtitle id="dreams_sub" />
-          <StaleBadge url={`${API}/dreams`} pollMs={30_000} />
+          <StaleBadge url={`${API}/idle-consolidation`} pollMs={30_000} />
         </CardTitle>
         <span className="text-[11px] text-muted-foreground/60">{data?.total ?? 0} sweeps</span>
       </CardHeader>

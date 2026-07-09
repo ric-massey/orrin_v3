@@ -156,7 +156,8 @@ def felt_lifespan_seconds() -> float:
     other subsystems (e.g. the autobiography cadence) can scale their own intervals
     to the lifetime length instead of hard-coding a wall-clock band. (T0.4)"""
     try:
-        data = _load_lifespan()
+        # Non-initializing read: an accessor must not roll a lifespan as a side effect.
+        data = load_json(LIFESPAN_FILE, default_type=dict) or {}
         if not _parse_dt(data.get("start_time")):
             return 0.0
         felt = (float(data.get("lifespan_days", 60)) - _effective_offset_days(data)) * 86400
@@ -231,10 +232,12 @@ def _days_remaining_felt(data: Dict) -> float:
 
 def credit_sleep(seconds: float) -> Dict:
     """Add `seconds` of idle time to the ledger so that time costs no lifetime (§10.3).
-    Called on boot in 'sleep' existence mode to credit the window-closed interval."""
-    if seconds <= 0:
-        return _load_lifespan()
-    data = _load_lifespan()
+    Called on boot in 'sleep' existence mode to credit the window-closed interval.
+    Non-initializing: crediting sleep to a life that hasn't been rolled yet must not
+    roll one — with no lifespan there is nothing to credit."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    if seconds <= 0 or not (data.get("start_time") and data.get("lifespan_days")):
+        return data
     data["slept_seconds"] = float(data.get("slept_seconds") or 0.0) + float(seconds)
     save_json(LIFESPAN_FILE, data)
     log_activity(f"[lifetime] Idle {seconds / 3600:.1f}h — lifetime paused for that time.")
@@ -295,8 +298,22 @@ def life_status() -> Dict[str, Any]:
     """Read-only lifetime view for the Life Support page (§9.10). Exposes ONLY the
     *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing the
     real countdown would be reading something the runtime itself cannot (its estimate of
-    its lifespan is wrong by design); the page shows what it estimates."""
-    data = _load_lifespan()
+    its lifespan is wrong by design); the page shows what it estimates.
+
+    Reading a life must never CREATE one: the backend polls this for the UI, so before
+    a lifespan is rolled (fresh reset, brain not yet booted) it reports a not-started
+    view instead of calling _init_lifespan() — rolling belongs to the loop
+    (apply_lifetime_pressure), never to a GET."""
+    data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+    if not (data.get("start_time") and data.get("lifespan_days")):
+        return {
+            "born_at": None,
+            "age_days": 0.0,
+            "felt_days_remaining": None,
+            "felt_life_fraction": 0.0,
+            "phase": "early",
+            "final_thoughts_written": False,
+        }
     born = _parse_dt(data.get("start_time"))
     age_days = (datetime.now(timezone.utc) - born).total_seconds() / 86400 if born else 0.0
     felt_frac = _felt_fraction(data)

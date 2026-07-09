@@ -25,7 +25,8 @@ interface Temporal {
   last_landmark?: { content?: string; cycles_ago?: number; felt_distance?: string; importance?: number } | null;
 }
 interface Mood { valence?: number; energy?: number; stability?: number }
-interface Lifespan { born_at?: string; lifespan_days?: number; final_thoughts_written?: boolean }
+// Felt-only view from life_status() — the true lifespan/noise offset is never served (§10.3).
+interface Lifespan { born_at?: string | null; age_days?: number; felt_days_remaining?: number | null; final_thoughts_written?: boolean }
 
 const words = (s?: string) => (s || "").replace(/_/g, " ");
 
@@ -44,8 +45,8 @@ export default function InternalStatePanel() {
       ]
     : [];
 
-  let ageDays: number | null = null;
-  if (life?.born_at) {
+  let ageDays: number | null = life?.age_days ?? null;
+  if (ageDays == null && life?.born_at) {
     const born = new Date(life.born_at).getTime();
     if (!isNaN(born)) ageDays = (Date.now() - born) / 86_400_000;
   }
@@ -117,10 +118,10 @@ export default function InternalStatePanel() {
               </div>
             )}
 
-            {life && (ageDays != null || life.lifespan_days) && (
+            {life && life.born_at != null && (
               <div className="border-t border-border/60 pt-2 text-[10px] leading-snug text-muted-foreground">
                 {ageDays != null && <>Alive {ageDays.toFixed(1)} days</>}
-                {life.lifespan_days != null && <> of a projected ~{life.lifespan_days}-day lifespan</>}
+                {life.felt_days_remaining != null && <> · ~{Math.round(life.felt_days_remaining)} days left by his own estimate</>}
                 {" · "}final thoughts {life.final_thoughts_written ? "written" : "not yet written"}.
                 <span className="block text-muted-foreground/60">
                   cycles since contact: {t.cycles_since_contact ?? "—"} · session boundaries: {t.boundary_count ?? 0}

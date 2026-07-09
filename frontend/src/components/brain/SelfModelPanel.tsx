@@ -29,7 +29,7 @@ interface Revision { domain?: string; timestamp?: string; goal?: string; delta?:
 interface Opinion { topic?: string; view?: string; confidence?: number; updated_at?: string; evidence_count?: number }
 
 export default function SelfModelPanel() {
-  const data = usePoll<{ model?: SelfModel; revisions?: Revision[]; opinions?: Opinion[] }>(`${API}/self?n=30`, 30_000);
+  const data = usePoll<{ model?: SelfModel; revisions?: Revision[]; opinions?: Opinion[] }>(`${API}/identity?n=30`, 30_000);
   const [view, setView] = useState<"identity" | "revisions" | "opinions">("identity");
   const m = data?.model;
   const domains = Object.entries(m?.knowledge_domains || {}).sort((a, b) => b[1] - a[1]);
@@ -53,7 +53,7 @@ export default function SelfModelPanel() {
             src={{ file: "brain/utils/self_model.py", start: 1, end: 60, label: "self_model" }}
           />
           <PanelSubtitle id="self_sub" />
-          <StaleBadge url={`${API}/self`} pollMs={30_000} />
+          <StaleBadge url={`${API}/identity`} pollMs={30_000} />
         </CardTitle>
         <div className="flex rounded-md border border-border p-0.5">
           {(["identity", "revisions", "opinions"] as const).map((k) => (

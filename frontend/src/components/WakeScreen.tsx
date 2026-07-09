@@ -47,8 +47,11 @@ export default function WakeScreen() {
           return;
         }
       }
-      // Safety: never trap the window on the wake screen.
-      if (Date.now() - startedAt.current > 30000) {
+      // Safety: never trap the window on the wake screen. If the backend answers
+      // but no boot milestone ever appears, nothing is booting (viewing a stopped
+      // brain) — bail fast instead of holding a 30s "waking up" overlay.
+      const cap = feed && (feed.events?.length ?? 0) === 0 ? 5000 : 30000;
+      if (Date.now() - startedAt.current > cap) {
         setPhase("done");
         return;
       }

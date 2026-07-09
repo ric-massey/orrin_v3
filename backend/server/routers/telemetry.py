@@ -385,10 +385,20 @@ async def innerweather() -> JSONResponse:
     the strongest internal-state data in brain/data, fully hidden until now."""
     t = dict(_read_json("temporal_state.json", {}))
     t.pop("density_buffer", None)  # internal ring, large and meaningless to render
+    # Lifespan goes through life_status(): the raw file carries the TRUE
+    # `lifespan_days` + the hidden `noise_days` offset, which are never exposed
+    # (§10.3) — only the felt estimate is. Also fixes the panel's age line: the
+    # persisted key is `start_time`; life_status() serves it as `born_at`.
+    lifespan: dict = {}
+    try:
+        from brain.cognition.runtime_lifetime import life_status as _life_status
+        lifespan = _life_status()
+    except Exception as e:
+        record_failure("routers.telemetry.innerweather", e)
     return JSONResponse({
         "temporal": t,
         "mood": _read_json("smoothed_state.json", {}),
-        "lifespan": _read_json("runtime_lifetime.json", {}),
+        "lifespan": lifespan,
     })
 
 

@@ -35,7 +35,7 @@ export default function DemandsPanel({ live }: { live?: LiveIntero | null }) {
     energy?: { mode?: string; level?: number };
     body?: { body_states?: string[]; vitals?: { rss_mb?: number; cpu_util?: number }; dominant?: string };
     interoception?: IoRow[];
-  }>(`${API}/drives`, 15_000);
+  }>(`${API}/demands`, 15_000);
   const drives = Object.entries(data?.drives || {}).sort((a, b) => b[1] - a[1]);
   const io = (data?.interoception || []).slice(0, 8);
   const maxCost = Math.max(1, ...io.map((r) => Math.max(r.ema || 0, r.last || 0)));
@@ -54,7 +54,7 @@ export default function DemandsPanel({ live }: { live?: LiveIntero | null }) {
             src={{ file: "brain/cognition/cost_prediction.py", start: 1, end: 70, label: "cost model (interoception wire field)" }}
           />
           <PanelSubtitle id="drives_sub" />
-          <StaleBadge url={`${API}/drives`} pollMs={15_000} />
+          <StaleBadge url={`${API}/demands`} pollMs={15_000} />
         </CardTitle>
         <span className="text-[11px] text-muted-foreground/60">
           energy: {data?.energy?.mode ?? "—"}

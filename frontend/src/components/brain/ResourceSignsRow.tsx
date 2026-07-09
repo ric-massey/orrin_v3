@@ -19,7 +19,7 @@ interface VitalChip {
 }
 
 export default function ResourceSignsRow() {
-  const url = `${API}/vitals`;
+  const url = `${API}/resources`;
   const data = usePoll<{ chips?: VitalChip[] }>(url, 10_000);
   const chips = data?.chips || [];
 

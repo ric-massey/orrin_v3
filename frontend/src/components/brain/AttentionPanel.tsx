@@ -200,7 +200,7 @@ export default function AttentionPanel({ telemetry }: { telemetry: TelemetryStat
     if (tab !== "stream") return;
     let stop = false;
     const load = () =>
-      fetchJSON<{ moments?: Moment[] }>(`${API}/consciousness?n=80`, { ttlMs: TTL.short })
+      fetchJSON<{ moments?: Moment[] }>(`${API}/attention?n=80`, { ttlMs: TTL.short })
         .then((d) => { if (!stop && Array.isArray(d.moments)) setStream(d.moments); })
         .catch(() => {});
     load();

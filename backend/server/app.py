@@ -18,6 +18,7 @@ from typing import Any, AsyncIterator, Dict
 from pathlib import Path as _Path2
 
 from fastapi import APIRouter, FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -224,5 +225,32 @@ async def ws_telemetry(ws: WebSocket) -> None:
 # only catches built assets the SPA references (/assets/*, /orrin.svg, …). The
 # explicit "/" route above serves index.html. Skipped entirely when no build is
 # present (the bridge status page is then the only HTML).
+class _SPAStaticFiles(StaticFiles):
+    """Serve index.html for unknown extension-less paths so a hard reload on a
+    client-side route (/brain, /face, …) doesn't 404 — the UI uses BrowserRouter
+    over http, so deep links must fall back to the SPA shell. Asset misses
+    (paths with an extension) still 404 honestly."""
+
+    @staticmethod
+    def _spa_route(path: str) -> bool:
+        # Never mask an unknown API/WS path with HTML — a dead endpoint must 404
+        # loudly (that's how the frontend↔backend contract drift gets caught).
+        if path.startswith(("api/", "ws/")):
+            return False
+        return "." not in path.rsplit("/", 1)[-1]
+
+    async def get_response(self, path: str, scope):  # type: ignore[override]
+        try:
+            response = await super().get_response(path, scope)
+        except StarletteHTTPException as e:
+            # Starlette raises (not returns) the 404 for a missing file.
+            if e.status_code == 404 and self._spa_route(path):
+                return await super().get_response("index.html", scope)
+            raise
+        if response.status_code == 404 and self._spa_route(path):
+            return await super().get_response("index.html", scope)
+        return response
+
+
 if _ui_dist_ready():
-    app.mount("/", StaticFiles(directory=str(_UI_DIST), html=True), name="ui")
+    app.mount("/", _SPAStaticFiles(directory=str(_UI_DIST), html=True), name="ui")

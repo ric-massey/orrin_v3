@@ -58,9 +58,12 @@ shared `archive/` at the docs root). Run reports live under
 - **Capability, Benchmarks & Evidence/** — `BENCHMARKS.md` (run guide).
   `CLAIMS_AND_EVIDENCE.md` is retired to that track's `archive/`.
 
-- **UI, Security & Desktop Packaging/** — no live docs; the master plan
-  (`UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md`, all items closed) and its
-  consolidated sources are read-only history in `archive/`.
+- **UI, Security & Desktop Packaging/** — live:
+  `COMPANION_PRESENCE_MASTER_PLAN_2026-07-09.md` (proposed, unbuilt — OS
+  presence via tray/notifications, companion-mode UI, theory-of-mind room,
+  action ledger, body↔machine bridge; code-grounded, 6 phases). The prior
+  master plan (`UI_SECURITY_DESKTOP_MASTER_PLAN_2026-06-16.md`, all items
+  closed) and its consolidated sources are read-only history in `archive/`.
 
 ## Archive
 

@@ -27,16 +27,27 @@ from .schema import LATEST_WINS_KEYS, validate_frame
 
 _log = logging.getLogger(__name__)
 
+# Resolve the data root through brain.paths (golden rule 3): these were
+# __file__-relative, which bypassed ORRIN_DATA_DIR — a hub running against a
+# relocated data dir (tests, demos) silently wrote its history into the LIVE
+# brain/data tree. Same fallback state.py uses if brain/ isn't importable.
+try:
+    from brain.paths import DATA_DIR as _HUB_DATA_DIR
+except Exception:  # pragma: no cover - defensive
+    import os as _os
+    _env_data = _os.environ.get("ORRIN_DATA_DIR")
+    _HUB_DATA_DIR = Path(_env_data).resolve() if _env_data else Path(__file__).resolve().parents[2] / "brain" / "data"
+
 # Persist the metric history across restarts so the System Metrics chart is
 # CONTINUOUS — it doesn't blank out every time the brain/telemetry process bounces.
-_HISTORY_FILE = Path(__file__).resolve().parents[2] / "brain" / "data" / "telemetry_history.json"
+_HISTORY_FILE = _HUB_DATA_DIR / "telemetry_history.json"
 # Append-only long-term archive of every telemetry point. _HISTORY_FILE is a
 # rolling HISTORY_CAP window (sized for the live UI chart); it overwrites old
 # points, so it can never answer "how did valence/arousal/homeostasis/curiosity
 # change over a whole life?". This JSONL archive keeps every point forever (one
 # line per point) so metric history survives past the 240-sample window and
 # across restarts. Best-effort: telemetry must never crash the loop.
-_ARCHIVE_FILE = Path(__file__).resolve().parents[2] / "brain" / "data" / "telemetry_archive.jsonl"
+_ARCHIVE_FILE = _HUB_DATA_DIR / "telemetry_archive.jsonl"
 
 
 def _load_history() -> List[Dict[str, Any]]:

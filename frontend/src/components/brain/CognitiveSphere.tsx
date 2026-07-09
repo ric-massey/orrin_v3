@@ -27,6 +27,8 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
   const [settings, setSettings] = useState<Settings>(loadSettings);
   const [query, setQuery] = useState("");
   const [focusNode, setFocusNode] = useState<string | null>(null);
+  // Cluster fly-to (click a subsystem name on the globe) — node focus wins.
+  const [focusSub, setFocusSub] = useState<string | null>(null);
   const [resetTick, setResetTick] = useState(0);
   const tries = useRef(0);
   const controlsRef = useRef<any>(null);
@@ -109,8 +111,13 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
   // clicking a function (in the list or search) focuses it on the ball AND opens
   // its detail — the "show me exactly what this is doing" gesture for a dev.
   const pick = (name: string) => {
+    setFocusSub(null);
     setFocusNode(name);
     setSelected(name);
+  };
+  const pickSub = (sub: string) => {
+    setFocusNode(null);
+    setFocusSub(sub);
   };
   // Cross-box provenance links (Fix 4 step 4): other panels (e.g. the
   // Consciousness panel's executive fn) navigate here with a function name.
@@ -207,9 +214,15 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
             </div>
           )}
 
-          {focusNode && (
-            <button onClick={() => setFocusNode(null)} className="absolute left-1/2 top-2 z-30 -translate-x-1/2 rounded bg-card/90 px-2 py-0.5 font-mono text-[10px] text-muted-foreground shadow backdrop-blur hover:text-foreground">
-              ✕ {focusNode}
+          {(focusNode || focusSub) && (
+            <button
+              onClick={() => {
+                setFocusNode(null);
+                setFocusSub(null);
+              }}
+              className="absolute left-1/2 top-2 z-30 -translate-x-1/2 rounded bg-card/90 px-2 py-0.5 font-mono text-[10px] text-muted-foreground shadow backdrop-blur hover:text-foreground"
+            >
+              ✕ {focusNode || focusSub}
             </button>
           )}
 
@@ -237,6 +250,8 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
                   setHovered={setHovered}
                   onSelect={setSelected}
                   focusNode={focusNode}
+                  focusSub={focusSub}
+                  onPickSub={pickSub}
                   resetTick={resetTick}
                   controls={controlsRef}
                 />
@@ -253,7 +268,7 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
               <button onClick={() => zoom(1.25)} className="border-t border-border p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground" title="Zoom out" aria-label="Zoom out">
                 <Minus className="h-3.5 w-3.5" />
               </button>
-              <button onClick={() => { setFocusNode(null); setResetTick((k) => k + 1); }} className="border-t border-border p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground" title="Reset view" aria-label="Reset view">
+              <button onClick={() => { setFocusNode(null); setFocusSub(null); setResetTick((k) => k + 1); }} className="border-t border-border p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground" title="Reset view" aria-label="Reset view">
                 <Maximize2 className="h-3.5 w-3.5" />
               </button>
               <button
@@ -269,12 +284,12 @@ export default function CognitiveSphere({ telemetry }: { telemetry: TelemetrySta
 
           {/* legend — clickable to show/hide a subsystem */}
           {catalog && (
-            <div className="absolute bottom-2 left-2 right-2 flex flex-wrap gap-x-2 gap-y-1">
+            <div className="scrollbar-thin absolute bottom-0 left-0 right-0 flex gap-x-3 overflow-x-auto border-t border-border/40 bg-background/70 px-2 py-1.5 backdrop-blur">
               {subList.map((s) => (
                 <button
                   key={s.name}
                   onClick={() => toggleSub(s.name)}
-                  className={`flex items-center gap-1 text-[10px] transition-opacity hover:text-foreground ${settings.hiddenSubs[s.name] ? "opacity-30" : "text-muted-foreground"}`}
+                  className={`flex shrink-0 items-center gap-1 whitespace-nowrap text-[10px] transition-opacity hover:text-foreground ${settings.hiddenSubs[s.name] ? "opacity-30" : "text-muted-foreground"}`}
                   title={settings.hiddenSubs[s.name] ? `Show ${s.name}` : `Hide ${s.name}`}
                 >
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: colorFor(s.name) }} />

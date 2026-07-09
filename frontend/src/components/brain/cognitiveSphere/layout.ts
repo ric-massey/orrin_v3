@@ -6,8 +6,9 @@ const ANCHOR_R = 2.0;
 export const NODE_R = 2.75;
 /** The opaque core globe — sits under the node shell, occludes the far hemisphere. */
 export const CORE_R = 2.45;
-/** Default camera distance — far enough that the globe + anchor labels breathe. */
-export const CAM_Z = 8.4;
+/** Default camera distance — the globe fills the frame; detail comes from zooming
+ *  into a cluster (click its name) rather than from a busy overview. */
+export const CAM_Z = 7.6;
 
 const GOLDEN = Math.PI * (3 - Math.sqrt(5));
 
@@ -56,8 +57,8 @@ export function roadStyle(w: number, wMax: number) {
   const g = Math.round(110 + s * 130);
   return {
     color: `rgb(${g},${Math.min(255, g + 7)},${Math.min(255, g + 22)})`,
-    width: 0.6 + s * 3.0,
-    opacity: 0.14 + s * 0.46,
+    width: 0.5 + s * 2.4,
+    opacity: 0.09 + s * 0.38,
     strength: s,
   };
 }
@@ -131,7 +132,7 @@ export function buildLayout(cat: FnCatalog): Layout {
     // room instead of piling up. Nodes sit EXACTLY on the shell (the old random
     // radial jitter is what made the roads look detached).
     const members = [...cat.subsystems[s]].sort();
-    const clusterR = Math.min(0.82, 0.16 + Math.sqrt(members.length) * 0.075);
+    const clusterR = Math.min(0.9, 0.18 + Math.sqrt(members.length) * 0.09);
     const spin = rng(si + 1) * Math.PI * 2; // per-cluster rotation so discs don't align
     members.forEach((name, i) => {
       const ang = spin + i * GOLDEN;
@@ -151,8 +152,10 @@ export function buildLayout(cat: FnCatalog): Layout {
   return { nodes, byName, anchors };
 }
 
+// Compressed size range: usage still reads (busy nodes are clearly bigger) but
+// the spread stays calm — distinguishing nodes comes from spacing, not bulk.
 export function sizeOf(n: LNode, by: Settings["sizeBy"]) {
   if (by === "uniform") return 1;
-  if (by === "reward") return 0.7 + Math.max(0, Math.min(1, n.reward)) * 1.8;
-  return 0.7 + Math.min(2.2, Math.log2(1 + n.count) * 0.42); // usage
+  if (by === "reward") return 0.65 + Math.max(0, Math.min(1, n.reward)) * 1.2;
+  return 0.65 + Math.min(1.5, Math.log2(1 + n.count) * 0.3); // usage
 }

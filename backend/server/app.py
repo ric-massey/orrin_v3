@@ -88,10 +88,11 @@ app.add_middleware(
 
 
 # ── Read API router ──────────────────────────────────────────────────────────
-# Every read endpoint is registered on this router and mounted TWICE: at the
-# bare path (back-compat for curl/old clients) and under /api/ — the prefix the
-# Vite dev proxy forwards, so page-origin REST works over a tunnel/LAN exactly
-# like the /ws proxy does (UI_FIXES Fix 5). New endpoints should be born here.
+# Every read endpoint is registered on this router and mounted under /api/ —
+# the prefix the Vite dev proxy forwards, so page-origin REST works over a
+# tunnel/LAN exactly like the /ws proxy does (UI_FIXES Fix 5). New endpoints
+# should be born here. (Bare-path mounting was removed: it shadowed the SPA's
+# /memory and /learning pages — see the mount site below.)
 api = APIRouter()
 api.include_router(memory_routes.router)
 api.include_router(source_routes.router)
@@ -148,11 +149,13 @@ async def death(request: Request) -> JSONResponse:
     return JSONResponse(out)
 
 
-# Mount the read API twice: bare paths (back-compat) and under /api (the proxied
-# prefix that makes remote/tunnel REST work — Fix 5).
+# Mount the read API under /api only. It used to ALSO be mounted bare
+# ("back-compat for curl"), but the bare routes shadowed the SPA's client-side
+# pages of the same name — opening /memory or /learning in a browser returned
+# raw endpoint JSON instead of the app. Nothing in the repo consumes bare
+# paths (frontend, tests, and the bridge all use /api/*).
 from fastapi import Depends as _Depends  # noqa: E402
 
-app.include_router(api, dependencies=[_Depends(_authorize_read)])
 app.include_router(api, prefix="/api", dependencies=[_Depends(_authorize_read)])
 
 # Control surfaces that self-authorize (auth.authorize_control) and so are mounted
@@ -187,7 +190,7 @@ async def index():
         "color:#e5e5e5;padding:2rem'>"
         "<h2>Orrin Telemetry Bridge</h2>"
         "<p>WebSocket: <code>/ws/telemetry</code> &nbsp;·&nbsp; Ingest: "
-        "<code>POST /ingest</code> &nbsp;·&nbsp; Snapshot: <code>GET /state</code></p>"
+        "<code>POST /ingest</code> &nbsp;·&nbsp; Snapshot: <code>GET /api/state</code></p>"
         f"<p>Connected UI clients: {hub.client_count}</p>"
         "<p>No build found. Run <code>cd frontend &amp;&amp; npm run build</code>, "
         "or start the dev server with <code>ORRIN_UI_DEV=1</code>.</p>"

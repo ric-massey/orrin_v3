@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Html, Line, OrbitControls, Stars } from "@react-three/drei";
+import { Html, Line, OrbitControls } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { colorFor } from "@/lib/cognitive";
@@ -25,7 +25,7 @@ function CameraRig({ focus, resetTick, controls }: { focus: THREE.Vector3 | null
       target.current.set(0, 0, 0);
       want.current.set(0, 0, CAM_Z);
     }
-    until.current = performance.now() + 650;
+    until.current = performance.now() + 950;
   }, [focus, resetTick]);
   useFrame(() => {
     if (performance.now() > until.current) return; // idle → you have full control
@@ -100,7 +100,7 @@ function useGlobeMaterial() {
 // transitions: the roads stop being static string and read as *directed traffic*.
 type Road = { key: string; points: THREE.Vector3[]; color: string; width: number; opacity: number; strength: number };
 
-const FLOW_MAX = 14;
+const FLOW_MAX = 10;
 function FlowDots({ roads }: { roads: Road[] }) {
   const top = useMemo(
     () => roads.filter((r) => r.strength > 0.22).sort((a, b) => b.strength - a.strength).slice(0, FLOW_MAX),
@@ -118,7 +118,7 @@ function FlowDots({ roads }: { roads: Road[] }) {
       const k = Math.min(r.points.length - 2, Math.floor(f));
       m.position.copy(r.points[k]).lerp(r.points[k + 1], f - k);
       const mat = m.material as THREE.MeshBasicMaterial;
-      mat.opacity = (0.25 + r.strength * 0.5) * Math.sin(Math.PI * t); // ease in/out at the ends
+      mat.opacity = (0.18 + r.strength * 0.4) * Math.sin(Math.PI * t); // ease in/out at the ends
       m.scale.setScalar(0.7 + r.strength * 0.6);
     });
   });
@@ -126,7 +126,7 @@ function FlowDots({ roads }: { roads: Road[] }) {
     <group>
       {top.map((r, i) => (
         <mesh key={r.key} ref={(el) => (refs.current[i] = el)}>
-          <sphereGeometry args={[0.035, 10, 10]} />
+          <sphereGeometry args={[0.028, 10, 10]} />
           <meshBasicMaterial color="#cfe0ff" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
         </mesh>
       ))}
@@ -185,16 +185,16 @@ function TravelingLight({ layout, activeFn, fnRecent }: { layout: Layout; active
   return (
     <group>
       <mesh ref={head}>
-        <sphereGeometry args={[0.09, 16, 16]} />
+        <sphereGeometry args={[0.07, 16, 16]} />
         <meshBasicMaterial color="#ffffff" toneMapped={false} />
       </mesh>
       <mesh ref={halo}>
-        <sphereGeometry args={[0.2, 16, 16]} />
+        <sphereGeometry args={[0.15, 16, 16]} />
         <meshBasicMaterial color="#ffffff" transparent opacity={0.25} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
       {Array.from({ length: TRAIL }, (_, i) => (
         <mesh key={i} ref={(el) => (trail.current[i] = el)}>
-          <sphereGeometry args={[0.055 - i * 0.004, 10, 10]} />
+          <sphereGeometry args={[0.042 - i * 0.003, 10, 10]} />
           <meshBasicMaterial color="#dbe7ff" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
         </mesh>
       ))}
@@ -239,11 +239,11 @@ function ExecutiveLight({ layout, execFn }: { layout: Layout; execFn: string | n
   return (
     <group>
       <mesh ref={core}>
-        <sphereGeometry args={[0.08, 16, 16]} />
+        <sphereGeometry args={[0.065, 16, 16]} />
         <meshBasicMaterial color={EXEC_COLOR} transparent opacity={0.7} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
       <mesh ref={ring}>
-        <sphereGeometry args={[0.08, 12, 12]} />
+        <sphereGeometry args={[0.065, 12, 12]} />
         <meshBasicMaterial color={EXEC_COLOR} wireframe transparent opacity={0.25} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
     </group>
@@ -254,8 +254,9 @@ function ExecutiveLight({ layout, execFn }: { layout: Layout; execFn: string | n
 // The legend tells you the colors, but a map you can't read without
 // cross-referencing isn't a map. Visibility is a plain hemisphere test against
 // the camera (the globe hides the far side anyway), driven per-frame via style
-// opacity so React never re-renders during rotation.
-function AnchorLabels({ layout, hiddenSubs }: { layout: Layout; hiddenSubs: Record<string, boolean> }) {
+// opacity so React never re-renders during rotation. Clicking a name flies the
+// camera into that cluster — the intended way to inspect a module up close.
+function AnchorLabels({ layout, hiddenSubs, focusSub, onPickSub }: { layout: Layout; hiddenSubs: Record<string, boolean>; focusSub: string | null; onPickSub: (s: string) => void }) {
   const divs = useRef<Record<string, HTMLDivElement | null>>({});
   const { camera } = useThree();
   const entries = useMemo(
@@ -272,7 +273,9 @@ function AnchorLabels({ layout, hiddenSubs }: { layout: Layout; hiddenSubs: Reco
       const el = divs.current[e.sub];
       if (!el) continue;
       const facing = e.dir.dot(camDir.current); // 1 = dead center, 0 = limb, <0 = far side
-      el.style.opacity = String(THREE.MathUtils.clamp((facing - 0.05) / 0.35, 0, 0.9));
+      const vis = THREE.MathUtils.clamp((facing - 0.05) / 0.35, 0, e.sub === focusSub ? 1 : 0.9);
+      el.style.opacity = String(vis);
+      el.style.pointerEvents = vis > 0.25 ? "auto" : "none"; // don't catch clicks while invisible
     }
   });
   return (
@@ -281,8 +284,13 @@ function AnchorLabels({ layout, hiddenSubs }: { layout: Layout; hiddenSubs: Reco
         <Html key={`a-${e.sub}`} position={e.pos} center distanceFactor={11} zIndexRange={[15, 0]}>
           <div
             ref={(el) => (divs.current[e.sub] = el)}
-            className="pointer-events-none select-none whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.18em]"
+            onClick={(ev) => {
+              ev.stopPropagation();
+              onPickSub(e.sub);
+            }}
+            className="cursor-pointer select-none whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.18em] transition-transform hover:scale-110"
             style={{ color: colorFor(e.sub), opacity: 0, textShadow: "0 0 10px rgba(0,0,0,0.95), 0 0 3px rgba(0,0,0,0.9)" }}
+            title={`Fly to ${e.sub}`}
           >
             {e.sub}
           </div>
@@ -292,7 +300,7 @@ function AnchorLabels({ layout, hiddenSubs }: { layout: Layout; hiddenSubs: Reco
   );
 }
 
-function Pulse({ pos, color, r = 0.16 }: { pos: THREE.Vector3; color: string; r?: number }) {
+function Pulse({ pos, color, r = 0.12 }: { pos: THREE.Vector3; color: string; r?: number }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(() => ref.current && ref.current.scale.setScalar(1 + Math.sin(performance.now() / 220) * 0.35));
   return (
@@ -315,6 +323,8 @@ export function Scene({
   setHovered,
   onSelect,
   focusNode,
+  focusSub,
+  onPickSub,
   resetTick,
   controls,
 }: {
@@ -328,10 +338,12 @@ export function Scene({
   setHovered: (n: string | null) => void;
   onSelect: (n: string) => void;
   focusNode: string | null;
+  focusSub: string | null;
+  onPickSub: (s: string) => void;
   resetTick: number;
   controls: React.MutableRefObject<any>;
 }) {
-  const nodeGeo = useMemo(() => new THREE.SphereGeometry(0.05, 18, 18), []);
+  const nodeGeo = useMemo(() => new THREE.SphereGeometry(0.036, 16, 16), []);
   const globeMat = useGlobeMaterial();
   const globeRef = useRef<THREE.Mesh>(null);
 
@@ -363,7 +375,15 @@ export function Scene({
     });
   }, [catalog.edges, visible, layout, settings.lines]);
 
-  const focusPos = focusNode ? layout.byName.get(focusNode)?.pos ?? null : null;
+  // Camera focus: a picked node wins; else a picked cluster (fly to its anchor
+  // on the node shell — the "zoom into this module" gesture).
+  const focusPos = useMemo(() => {
+    if (focusNode) return layout.byName.get(focusNode)?.pos ?? null;
+    if (focusSub && layout.anchors[focusSub] && !settings.hiddenSubs[focusSub]) {
+      return layout.anchors[focusSub].clone().normalize().multiplyScalar(NODE_R);
+    }
+    return null;
+  }, [focusNode, focusSub, layout, settings.hiddenSubs]);
   const activePos = activeFn ? layout.byName.get(activeFn)?.pos : undefined;
   const activeColor = activeFn ? colorFor(layout.byName.get(activeFn)?.sub || "Other") : "#fff";
 
@@ -391,18 +411,14 @@ export function Scene({
         enablePan={false}
         enableDamping
         dampingFactor={0.08}
-        autoRotate={settings.autoRotate && !hovered && !focusNode}
-        autoRotateSpeed={0.35}
+        autoRotate={settings.autoRotate && !hovered && !focusNode && !focusSub}
+        autoRotateSpeed={0.25}
         minDistance={3.3}
-        maxDistance={13}
+        maxDistance={12}
         zoomSpeed={0.3}
         zoomToCursor
       />
       <CameraRig focus={focusPos} resetTick={resetTick} controls={controls} />
-
-      {/* deep-space backdrop — parallax scale cue. Kept inside the fog's far
-          plane or the fog erases it entirely. */}
-      {settings.effects && <Stars radius={16} depth={9} count={1400} factor={2.2} saturation={0} fade speed={0.35} />}
 
       {/* the core globe (also the pointer/label occluder for the far side) */}
       <mesh ref={globeRef} material={globeMat}>
@@ -455,7 +471,7 @@ export function Scene({
       })}
 
       {activePos && <Pulse pos={activePos} color={activeColor} />}
-      {focusPos && focusNode !== activeFn && <Pulse pos={focusPos} color="#ffffff" r={0.18} />}
+      {focusPos && focusNode !== activeFn && <Pulse pos={focusPos} color="#ffffff" r={0.14} />}
       <TravelingLight layout={layout} activeFn={activeFn} fnRecent={fnRecent} />
       {/* executive (procedural) lane lights — Fix 1 / Gap 2; with multi-goal
           pursuit there can be up to K of them per tick (one per advanced goal) */}
@@ -463,7 +479,9 @@ export function Scene({
         <ExecutiveLight key={fn} layout={layout} execFn={fn} />
       ))}
 
-      {settings.labels !== "none" && <AnchorLabels layout={layout} hiddenSubs={settings.hiddenSubs} />}
+      {settings.labels !== "none" && (
+        <AnchorLabels layout={layout} hiddenSubs={settings.hiddenSubs} focusSub={focusSub} onPickSub={onPickSub} />
+      )}
 
       {layout.nodes.map((n) => {
         if (!visible.has(n.name)) return null;

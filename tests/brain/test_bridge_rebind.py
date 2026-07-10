@@ -16,6 +16,7 @@ class _FakeWindow:
 def _make():
     b = br_mod.OrrinBridge.__new__(br_mod.OrrinBridge)
     b._window = None
+    b._extra_windows = []
     b._subscribed = False
     return b
 

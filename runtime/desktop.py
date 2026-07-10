@@ -122,6 +122,29 @@ def run(ctx: RuntimeContext) -> None:
             )
             ctx.bridge.attach_window(window)
 
+            # R8: the peripheral mini-orb — a second frameless, always-on-top
+            # window on the same bridge, opt-in via Settings ("widget_enabled",
+            # applied at launch). Best-effort: a failed widget must never block
+            # the main window.
+            try:
+                from brain.utils import prefs as _wprefs
+                if _wprefs.get("widget_enabled", False):
+                    _widget = webview.create_window(
+                        "Orrin (orb)",
+                        url=f"{ctx.bridge_window_file}#/widget",
+                        js_api=ctx.bridge,
+                        width=132, height=132,
+                        frameless=True, on_top=True, resizable=False,
+                    )
+                    ctx.bridge.attach_extra_window(_widget)
+
+                    def _widget_closed() -> None:
+                        ctx.bridge.detach_extra_window(_widget)
+                    _widget.events.closed += _widget_closed
+                    print("[widget] peripheral mini-orb window opened")
+            except Exception as _we:
+                _log.warning("mini-orb widget failed to open: %s", _we)
+
             # Signal → window teardown, off the handler stack. _on_signal only sets
             # main_stop (it must stay I/O-free); this watcher does the destroy that
             # returns webview.start() into graceful_shutdown. Daemon so it can't keep

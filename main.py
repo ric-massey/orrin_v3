@@ -197,6 +197,9 @@ try:
         _credited = _credit_sleep()
         if _credited > 0:
             print(f"[existence] Sleep mode — credited {_credited / 3600:.1f}h of closed time (no life lost)")
+            # R7: he registers the gap as himself (Journal shows it once). Fail-safe inside.
+            from brain.behavior.reunion import register_reunion as _register_reunion
+            _register_reunion(_credited)
 except Exception as _e:
     _log.warning("silent except: %s", _e)
 

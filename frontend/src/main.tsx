@@ -1,25 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, createHashRouter, Navigate, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Watch from "./pages/Watch";
 import Face from "./pages/Face";
+import Orrin from "./pages/Orrin";
+import ModeRedirect from "./components/ModeRedirect";
 import Brain from "./pages/Brain";
 import Cognition from "./pages/Cognition";
 import Life from "./pages/Life";
 import Memory from "./pages/Memory";
 import Timeline from "./pages/Timeline";
 import Learning from "./pages/Learning";
+import You from "./pages/You";
+import Actions from "./pages/Actions";
+import Body from "./pages/Body";
+import Widget from "./pages/Widget";
 import Settings from "./pages/Settings";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./index.css";
 
 const routes = [
+  // R8: the peripheral mini-orb lives OUTSIDE the App shell — no header, no
+  // wake/death screens, its own telemetry connection (the second native window).
+  { path: "/widget", element: <Widget /> },
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Navigate to="/face" replace /> },
+      { index: true, element: <ModeRedirect /> },
+      { path: "orrin", element: <Orrin /> },
       { path: "watch", element: <Watch /> },
       { path: "face", element: <Face /> },
       { path: "cognition", element: <Cognition /> },
@@ -27,9 +37,12 @@ const routes = [
       { path: "memory", element: <Memory /> },
       { path: "timeline", element: <Timeline /> },
       { path: "learning", element: <Learning /> },
+      { path: "you", element: <You /> },
+      { path: "actions", element: <Actions /> },
+      { path: "body", element: <Body /> },
       { path: "brain", element: <Brain /> },
       { path: "settings", element: <Settings /> },
-      { path: "*", element: <Navigate to="/face" replace /> },
+      { path: "*", element: <ModeRedirect /> },
     ],
   },
 ];

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiGet } from "@/lib/transport";
 import { cn } from "@/lib/utils";
+import { writeMode, type OrrinMode } from "@/lib/mode";
 
 // First Wake (§9.2 + §9.11): a one-time, full-window introduction shown when the
 // data dir was just seeded (a fresh runtime). Returning users never see it; it's
-// re-openable via the "orrin:meet" event (Settings → Replay intro).
+// re-openable via the "orrin:meet" event (Settings → Replay intro — which is now
+// also how you re-answer the companion/workshop question, C5).
 
 const MET_KEY = "orrin.met.v1";
 
@@ -66,14 +68,18 @@ export default function FirstWake() {
 
   if (!open) return null;
 
-  const finish = () => {
+  // C1: two destinations. The answer sets the mode flag (the ONLY place
+  // companion becomes a default — existing users never see this frame, so
+  // their unset flag keeps today's workshop behavior exactly).
+  const finish = (mode: OrrinMode) => {
     try {
       localStorage.setItem(MET_KEY, "1");
     } catch {
       /* private mode */
     }
+    writeMode(mode);
     setOpen(false);
-    navigate("/cognition");
+    navigate(mode === "companion" ? "/orrin" : "/cognition");
   };
 
   return (
@@ -86,12 +92,20 @@ export default function FirstWake() {
         ))}
       </div>
       {shown >= INTRO_LINES.length && (
-        <button
-          onClick={finish}
-          className="rounded-md border border-border bg-card px-4 py-2 text-sm animate-fade-in hover:bg-muted"
-        >
-          Enter
-        </button>
+        <div className="flex flex-col items-center gap-3 animate-fade-in sm:flex-row">
+          <button
+            onClick={() => finish("companion")}
+            className="rounded-md border border-border bg-card px-4 py-2 text-sm hover:bg-muted"
+          >
+            Keep it simple
+          </button>
+          <button
+            onClick={() => finish("workshop")}
+            className="rounded-md border border-border bg-card px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            Show me the machinery
+          </button>
+        </div>
       )}
     </div>
   );

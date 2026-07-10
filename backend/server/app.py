@@ -36,6 +36,7 @@ from .auth import (
 from .routers import memory as memory_routes
 from .routers import source as source_routes
 from .routers import telemetry as telemetry_routes
+from .routers import relationship as relationship_routes
 from .routers import cognition as cognition_routes
 from .routers import runtime_coupling as runtime_coupling_routes
 from .routers import diagnostics as diagnostics_routes
@@ -97,6 +98,7 @@ api = APIRouter()
 api.include_router(memory_routes.router)
 api.include_router(source_routes.router)
 api.include_router(telemetry_routes.router)
+api.include_router(relationship_routes.router)  # Track R views (R1/R2)
 api.include_router(cognition_routes.router)
 api.include_router(runtime_coupling_routes.router)
 api.include_router(quality_standard_routes.read_router)  # read-only audit view

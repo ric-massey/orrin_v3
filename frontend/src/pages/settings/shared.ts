@@ -36,6 +36,8 @@ export interface SettingsStatus {
     llm_model?: string;
     llm_base_url?: string;
     auto_update_check?: boolean;
+    trace_folder?: string;
+    widget_enabled?: boolean;
   };
   embodiment?: {
     budget?: {

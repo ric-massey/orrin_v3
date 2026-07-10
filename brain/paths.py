@@ -118,6 +118,11 @@ LONG_MEMORY_FILE   = DATA_DIR / "long_memory.json"
 MEMORY_GRAPH_FILE  = DATA_DIR / "memory_graph.jsonl"
 WORKING_MEMORY_FILE = DATA_DIR / "working_memory.json"
 CHAT_LOG_FILE = DATA_DIR / "chat_log.json"
+# P1 presence: delivered OS-notification timestamps (the rarity budget's state).
+PRESENCE_NOTIFY_FILE = DATA_DIR / "presence_notifications.json"
+# R7 reunion: the composed "you were away, time passed for me" line written at
+# boot after a credited sleep gap; the Journal shows it once per viewer.
+REUNION_FILE = DATA_DIR / "reunion.json"
 
 # ===== Prompts/Context =====
 REF_PROMPTS = DATA_DIR / "prompts.json"

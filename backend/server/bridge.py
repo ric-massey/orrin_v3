@@ -39,6 +39,9 @@ class OrrinBridge:
         # endpoints (localhost-only without a token) must accept it.
         self._client = TestClient(app, client=("127.0.0.1", 0))
         self._window: Any = None
+        # R8: secondary views (the peripheral mini-orb). Every telemetry push
+        # fans out to these too; hide/close semantics stay the main window's.
+        self._extra_windows: List[Any] = []
         self._subscribed = False
 
     # ── window wiring ─────────────────────────────────────────────────────────
@@ -59,17 +62,42 @@ class OrrinBridge:
         the sink stays registered (a cheap no-op) so reattach needs no re-subscribe."""
         self._window = None
 
+    def attach_extra_window(self, window: Any) -> None:
+        """R8: register a secondary view (the mini-orb). It receives the same
+        telemetry pushes as the main window; it never owns close semantics."""
+        if window is not None and window not in self._extra_windows:
+            self._extra_windows.append(window)
+            if self._subscribed:
+                self._push_snapshot()
+
+    def detach_extra_window(self, window: Any) -> None:
+        if window in self._extra_windows:
+            self._extra_windows.remove(window)
+
+    def dismiss_widget(self) -> Dict[str, Any]:
+        """js_api for the widget's ✕ — destroy every secondary window. The main
+        window and the runtime are untouched."""
+        wins, self._extra_windows = self._extra_windows, []
+        for w in wins:
+            try:
+                w.destroy()
+            except Exception as exc:  # already gone — record, keep going
+                record_failure("bridge.dismiss_widget", exc)
+        return {"ok": True}
+
     def _push(self, payload: Dict[str, Any]) -> None:
-        """Forward a snapshot/delta to the page. Double-encode through JSON so the
-        payload is a single safely-escaped JS string the page parses — avoids any
-        literal-injection / U+2028 hazards."""
-        win = self._window
-        if win is None:
+        """Forward a snapshot/delta to the page(s). Double-encode through JSON so
+        the payload is a single safely-escaped JS string the page parses — avoids
+        any literal-injection / U+2028 hazards."""
+        targets = ([self._window] if self._window is not None else []) + list(self._extra_windows)
+        if not targets:
             return
-        try:
-            win.evaluate_js(f"window.__orrinPush && window.__orrinPush({json.dumps(json.dumps(payload))})")
-        except Exception as exc:  # window gone/unwritable — record, drop the push
-            record_failure("bridge._push", exc)
+        js = f"window.__orrinPush && window.__orrinPush({json.dumps(json.dumps(payload))})"
+        for win in targets:
+            try:
+                win.evaluate_js(js)
+            except Exception as exc:  # window gone/unwritable — record, drop the push
+                record_failure("bridge._push", exc)
 
     # ── REST proxy (BridgeTransport.fetch → here) ─────────────────────────────
     def request(self, payload: Dict[str, Any]) -> Dict[str, Any]:

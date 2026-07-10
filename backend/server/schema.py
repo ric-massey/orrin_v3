@@ -164,6 +164,7 @@ class TelemetryFrame(BaseModel):
     interoception: Optional[Dict[str, Any]] = None  # live per-act cost model (free-form)
     llm_cost: Optional[LlmCost] = None            # reasoning-cache health + symbolic-vs-LLM ratio
     lived: Optional[Dict[str, Any]] = None        # P7/A1 curated lived surface (free-form)
+    decision: Optional[Dict[str, Any]] = None     # R4 live selection moment (free-form)
 
 
 # Every wire model, in dependency order — the single list the codegen walks and
@@ -198,4 +199,5 @@ def validate_frame(frame: Dict[str, Any]) -> List[str]:
 LATEST_WINS_KEYS = (
     "narrative", "cycle", "active_fn", "active_lane", "fn_recent", "catalog",
     "executive", "monitor", "workspace", "interoception", "llm_cost", "lived",
+    "decision",
 )

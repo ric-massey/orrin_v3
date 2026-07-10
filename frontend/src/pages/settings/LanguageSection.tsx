@@ -1,7 +1,8 @@
-import { Languages, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Languages } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+// The intro-replay button moved to HomeScreenSection (C5) — re-running the
+// intro is now also how you re-answer the companion/workshop question.
 export function LanguageSection() {
   return (
     <Card>
@@ -15,15 +16,6 @@ export function LanguageSection() {
           generated text is shown verbatim, unchanged by the interface labels.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={() => window.dispatchEvent(new Event("orrin:meet"))}
-        >
-          <Sparkles className="mr-1.5 h-4 w-4" /> Replay the intro
-        </Button>
-      </CardContent>
     </Card>
   );
 }

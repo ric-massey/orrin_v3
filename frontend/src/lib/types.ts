@@ -143,6 +143,18 @@ export interface LivedSurface {
   trying_to_resolve: string;
 }
 
+/** R4 — the live selection moment (brain/loop/telemetry._emit_decision):
+ *  what was considered, what won, and which scored factor tipped it. */
+export interface DecisionMoment {
+  picked: string;
+  considered: string[];
+  components: Record<string, number>;
+  top_factor: string;
+  conscious: boolean;
+  decision_id?: string | null;
+  ts?: number;
+}
+
 /** The merged client-side view of the system, produced by useTelemetry(). */
 export interface TelemetryState {
   activeNode: string | null;
@@ -169,6 +181,8 @@ export interface TelemetryState {
   llmCost: LlmCost | null;
   /** P7/A1 curated lived surface: what it's like to be him right now. */
   lived: LivedSurface | null;
+  /** R4 live decision moment: considered / picked / tipping factor. */
+  decision: DecisionMoment | null;
   /** Free-form extras the loop pushes (e.g. awareness). */
   extra: Record<string, unknown>;
   connected: boolean;

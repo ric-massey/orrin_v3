@@ -168,17 +168,20 @@ def _self_speech_allowed(text: str, now: float = None) -> bool:
 
 
 # ===== “Speak” plumbing (no direct speaker.speak) =====
-def _emit_reply_line(text: str) -> None:
+def _emit_reply_line(text: str, context: dict = None) -> None:
     try:
         if isinstance(text, str) and text.strip():
             sys.stdout.write(f"REPLY: {text}\n")
             sys.stdout.flush()
             log_activity(f"REPLY: {text[:200]}")  # also log for audit trail
-            # Deliver back to the Face UI message that prompted this (no-op when
-            # nothing is awaiting — i.e. spontaneous speech). Closes brain→Face.
+            # Deliver back to the Face UI message that prompted this. With
+            # nothing awaiting (spontaneous speech), the bridge may route it to
+            # an OS notification (P1) — but only if this cycle ignited, so the
+            # flag rides along from the cycle that produced the words.
             try:
                 from brain.behavior.face_bridge import deliver_reply as _deliver_reply
-                _deliver_reply(text)
+                _ignited = bool(isinstance(context, dict) and context.get("_conscious_cycle") is True)
+                _deliver_reply(text, ignited=_ignited)
             except Exception as _de:
                 record_failure("talk_policy._emit_reply_line", _de)
     except Exception as _e:
@@ -269,7 +272,7 @@ def speak_text(raw_text: str, context: dict, speaker) -> str:
 
         rendered = (rendered or "").strip()
         if rendered:
-            _emit_reply_line(rendered)
+            _emit_reply_line(rendered, context)
             context["last_ai_timestamp"] = time.time()
             # Log the reply so the evaluator can score it next cycle.
             # response_type/tone/source are populated at GENERATION time

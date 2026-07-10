@@ -143,6 +143,10 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
                     "signal_strength": min(0.50, 0.25 + _n * 0.04),
                     "tags": ["environment", "perception", "change", "world_changed", "external"],
                 })
+            # P3 (Companion & Presence): den-crowded / machine-pinned situation
+            # signals — ignition-competitive, each carrying its concrete metric.
+            from brain.loop.host_signals import inject_host_situation_signals
+            inject_host_situation_signals(context, _sf)
     except Exception as _se:
         record_failure("ORRIN_loop.sensory_read", _se)
 

@@ -190,6 +190,26 @@ def _record_code_effect(kind: str, full_code: str, context, goal_id, name=None) 
         record_failure("code_writer.record_effect", _e)
 
 
+def _announce_selfmod(kind: str, name: str, context) -> None:
+    """R5 (Companion & Presence plan): authoring a new piece of himself is a
+    headline, not buried Brain telemetry. Compose through the expression door
+    (membrane-clean) and offer it to the P1 presence channel — the ignition +
+    rarity budget in presence_notify still gates whether it actually shows."""
+    try:
+        from brain.behavior.express_to_user import Motive, compose_from_motive
+        from brain.behavior.presence_notify import notify_spontaneous
+        seed = f"I taught myself something new today — a {kind} called {name}"[:140]
+        text = compose_from_motive(
+            Motive(intent="announce_selfmod", recipient="Ric", seed=seed),
+            context if isinstance(context, dict) else {},
+        )
+        ignited = bool(isinstance(context, dict) and context.get("_conscious_cycle") is True)
+        notify_spontaneous(text, ignited=ignited)
+    except Exception as _e:
+        from brain.utils.failure_counter import record_failure
+        record_failure("code_writer.announce_selfmod", _e)
+
+
 def write_cognitive_function(
     name: str,
     description: str,
@@ -267,6 +287,7 @@ def write_cognitive_function(
 
     update_working_memory(f"Wrote new cognitive function: '{name}' — {description}")
     _record_code_effect("code_committed", full_code, context, goal_id, name=name)
+    _announce_selfmod("skill", name, context)
     return {"success": True, "path": str(file_path), "error": None}
 
 # Write a new tool
@@ -336,6 +357,7 @@ def write_tool(
 
     update_working_memory(f"Wrote new tool: '{name}' — {description}")
     _record_code_effect("tool_written", full_code, context, goal_id, name=name)
+    _announce_selfmod("tool", name, context)
     return {"success": True, "path": str(file_path), "error": None}
 
 # List and delete own code

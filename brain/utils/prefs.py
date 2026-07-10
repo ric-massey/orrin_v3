@@ -45,6 +45,11 @@ DEFAULTS: Dict[str, Any] = {
     "llm_base_url": "",
     # Auto-update (§10.7 / I7) — opt-in so nothing phones home for a new release silently.
     "auto_update_check": False,
+    # P4 traces (Companion & Presence): the ONE folder Orrin may leave real note
+    # files in. Empty = OFF (consent-first; nothing is ever written elsewhere).
+    "trace_folder": "",
+    # R8: the always-on-top peripheral mini-orb window (needs a restart to apply).
+    "widget_enabled": False,
 }
 
 

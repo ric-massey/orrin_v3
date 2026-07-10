@@ -55,10 +55,11 @@ def _emit_reply_from_speaker(speaker: OrrinSpeaker, text: str, context: Dict[str
         sys.stdout.flush()
     except Exception as _e:
         record_failure("think_module._emit_reply_from_speaker", _e)
-    # Deliver to the Face message awaiting a reply (no-op if nothing pending).
+    # Deliver to the Face message awaiting a reply. With nothing pending this is
+    # spontaneous speech — the bridge may notify the OS (P1) if the cycle ignited.
     try:
         from brain.behavior.face_bridge import deliver_reply as _deliver_reply
-        _deliver_reply(utterance)
+        _deliver_reply(utterance, ignited=bool(context.get("_conscious_cycle") is True))
     except Exception as _de:
         record_failure("think_module._emit_reply_from_speaker.2", _de)
     try:
@@ -351,7 +352,8 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # writer here was clobbered by per-cycle decay and never reached core_signals,
         # leaving the signal stuck at 0.000 — removed to avoid a dead second source.
 
-        # Stash decision metadata on context so downstream executors can learn/reward
+        # Stash decision metadata on context so downstream executors can learn/reward.
+        # (The loop emits it to the UI — R4 — right after think() returns.)
         try:
             context["last_decision"] = {
                 "picked": fn_name,

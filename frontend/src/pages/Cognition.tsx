@@ -6,6 +6,7 @@ import { usePolledJSON } from "@/lib/usePolled";
 import { useTelemetryState } from "../App";
 import InfoDot from "@/components/brain/InfoDot";
 import { ROOM_INFO } from "@/lib/roomMetrics";
+import { factorLabel } from "@/lib/decision";
 
 // Cognition (§9.3): a calm reading of feeds Orrin already produces, arranged as a
 // narrative — "what is it doing right now?". Pure composition: the live blocks come
@@ -133,6 +134,36 @@ export default function Cognition() {
             </ul>
           ) : (
             <Empty>Nothing is competing for attention.</Empty>
+          )}
+        </Block>
+
+        {/* R4 — the selection moment, live: considered / chose / tipping factor. */}
+        <Block title="Why this, live" className="sm:col-span-2">
+          {tel.decision?.picked ? (
+            <div className="space-y-1">
+              <p className="text-sm">
+                considered{" "}
+                {(tel.decision.considered.length > 0
+                  ? tel.decision.considered
+                  : [tel.decision.picked]
+                ).join(" / ")}{" "}
+                — chose <Hl>{tel.decision.picked}</Hl>
+                {tel.decision.top_factor && (
+                  <> because <Hl>{factorLabel(tel.decision.top_factor)}</Hl> scored highest</>
+                )}
+                .
+              </p>
+              <Meta>
+                {Object.entries(tel.decision.components)
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 5)
+                  .map(([k, v]) => `${factorLabel(k)} ${v >= 0 ? "+" : ""}${v.toFixed(2)}`)
+                  .join(" · ")}
+                {!tel.decision.conscious && " · quiet (unconscious) cycle"}
+              </Meta>
+            </div>
+          ) : (
+            <Empty>No selection has been made this session yet.</Empty>
           )}
         </Block>
 

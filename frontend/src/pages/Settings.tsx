@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { ShieldCheck } from "lucide-react";
 import { apiGet } from "@/lib/transport";
+import { HomeScreenSection } from "./settings/HomeScreenSection";
 import { UpdatesSection } from "./settings/UpdatesSection";
 import { LanguageModelSection } from "./settings/LanguageModelSection";
 import { ApiKeysSection } from "./settings/ApiKeysSection";
 import { TrustSection } from "./settings/TrustSection";
+import { TracesSection } from "./settings/TracesSection";
 import { ExistenceSection } from "./settings/ExistenceSection";
 import { LanguageSection } from "./settings/LanguageSection";
 import { BackupSection } from "./settings/BackupSection";
@@ -62,9 +64,11 @@ export default function Settings() {
         </div>
       )}
 
+      <HomeScreenSection status={status} onChanged={refresh} />
       <LanguageModelSection status={status} onChanged={refresh} />
       <ApiKeysSection status={status} onChanged={refresh} />
       <TrustSection status={status} onChanged={refresh} />
+      <TracesSection status={status} onChanged={refresh} />
       <ExistenceSection status={status} onChanged={refresh} />
       <LanguageSection />
       <BackupSection />

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Target, Brain, Moon, Lightbulb, Globe, UploadCloud, Circle } from "lucide-react";
+import { Target, Brain, Moon, Lightbulb, Globe, UploadCloud, Circle, Hammer } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { apiGet } from "@/lib/transport";
 import InfoDot from "@/components/brain/InfoDot";
@@ -11,9 +11,12 @@ import { ROOM_INFO } from "@/lib/roomMetrics";
 // needs no server session state.
 
 const LAST_SEEN_KEY = "orrin.lastSeen.v1";
+// R7: which reunion line this viewer has already seen (its ts) — shown once.
+const REUNION_SEEN_KEY = "orrin.reunionSeen.v1";
 
 interface ActEvent { type: string; ts: number; label: string }
 interface ActFeed { events?: ActEvent[]; summary?: Record<string, number>; since?: number }
+interface Reunion { text?: string; gap_s?: number; ts?: number }
 
 const ICON: Record<string, typeof Target> = {
   goal: Target,
@@ -22,6 +25,7 @@ const ICON: Record<string, typeof Target> = {
   belief: Lightbulb,
   web: Globe,
   finetune: UploadCloud,
+  selfmod: Hammer,
 };
 const SUMMARY_LABEL: Record<string, (n: number) => string> = {
   goal: (n) => `Generated ${n} goal${n === 1 ? "" : "s"}`,
@@ -30,7 +34,14 @@ const SUMMARY_LABEL: Record<string, (n: number) => string> = {
   belief: (n) => `Revised ${n} belief${n === 1 ? "" : "s"}`,
   web: (n) => `Visited ${n} site${n === 1 ? "" : "s"}`,
   finetune: (n) => `Ran ${n} fine-tune upload${n === 1 ? "" : "s"}`,
+  selfmod: (n) => `Taught himself ${n} new skill${n === 1 ? "" : "s"}`,
 };
+
+function formatGap(s: number): string {
+  if (s >= 86400) return `${Math.floor(s / 86400)} day${s >= 172800 ? "s" : ""} away`;
+  if (s >= 3600) return `${Math.floor(s / 3600)} hour${s >= 7200 ? "s" : ""} away`;
+  return `${Math.max(1, Math.floor(s / 60))} minutes away`;
+}
 
 function readLastSeen(): number {
   try {
@@ -46,6 +57,7 @@ export default function Timeline() {
   // Capture last-seen at mount; the summary is "since then". Advance it afterwards.
   const sinceRef = useRef<number>(readLastSeen());
   const [feed, setFeed] = useState<ActFeed | null>(null);
+  const [reunion, setReunion] = useState<Reunion | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -56,6 +68,31 @@ export default function Timeline() {
         if (res.ok && alive) setFeed((await res.json()) as ActFeed);
       } catch {
         /* honest-empty */
+      }
+    })();
+    // R7: his own registration of the gap — shown once per viewer, above the list.
+    (async () => {
+      try {
+        const res = await apiGet(`/api/reunion`);
+        if (!res.ok || !alive) return;
+        const r = (await res.json()) as Reunion;
+        if (!r?.text || !r?.ts) return;
+        let seen = 0;
+        try {
+          seen = Number(JSON.parse(localStorage.getItem(REUNION_SEEN_KEY) || "0"));
+        } catch {
+          /* private mode */
+        }
+        if (r.ts > seen && alive) {
+          setReunion(r);
+          try {
+            localStorage.setItem(REUNION_SEEN_KEY, JSON.stringify(r.ts));
+          } catch {
+            /* private mode */
+          }
+        }
+      } catch {
+        /* no reunion — the list stands alone */
       }
     })();
     // Advance "last seen" to now so the NEXT visit measures from here.
@@ -88,6 +125,16 @@ export default function Timeline() {
         </h1>
         <p className="text-sm text-muted-foreground">since {sinceLabel}</p>
       </div>
+
+      {/* R7 — he registers the gap as himself, before the list. His words, verbatim. */}
+      {reunion?.text && (
+        <div className="rounded-xl border bg-card p-4 animate-fade-in sm:p-5">
+          <p className="text-[15px] leading-relaxed">“{reunion.text}”</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">
+            — Orrin, waking after {formatGap(reunion.gap_s ?? 0)}
+          </p>
+        </div>
+      )}
 
       <Card>
         <CardContent className="pt-5">

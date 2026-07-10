@@ -118,11 +118,15 @@ def force_reply(context) -> None:
         return
 
 
-def deliver_reply(reply_text: str) -> None:
+def deliver_reply(reply_text: str, *, ignited: bool = False) -> None:
     """
     Deliver a freshly emitted reply back to every Face message awaiting one.
-    No-ops when there is nothing pending (e.g. spontaneous speech), so only
-    genuine responses to the user are delivered.
+
+    With nothing pending (spontaneous speech), the words used to die silently
+    here. Now they get somewhere to go (P1): an OS notification — but only when
+    the caller says the source cycle IGNITED (plumbed through the utterance
+    metadata, never re-decided at this bridge) and the presence budget in
+    presence_notify allows it. Ordinary replies to the user are unaffected.
     """
     if not reply_text or not reply_text.strip():
         return
@@ -130,6 +134,11 @@ def deliver_reply(reply_text: str) -> None:
         ids = list(_pending_ids)
         _pending_ids.clear()
     if not ids:
+        try:
+            from brain.behavior.presence_notify import notify_spontaneous
+            notify_spontaneous(reply_text, ignited=ignited)
+        except Exception as exc:  # presence channel is best-effort — record
+            record_failure("face_bridge.deliver_reply.spontaneous", exc)
         return
     tb = _bridge()
     if tb is None:

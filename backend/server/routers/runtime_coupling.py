@@ -179,6 +179,18 @@ async def activity(since: float = 0.0, limit: int = 200) -> JSONResponse:
                 for r in lst[-20:]:
                     if isinstance(r, dict):
                         add("belief", _coerce_ts(r), f"Revised a belief about {dom}")
+    # R5: self-modification is a headline — everything he authored (the self-code
+    # manifest carries written_at) surfaces as a first-class Journal event.
+    try:
+        from brain.agency.self_code import load_manifest as _load_manifest
+        for m in _load_manifest():
+            if isinstance(m, dict):
+                kind = "skill" if m.get("kind") == "cognitive_function" else str(m.get("kind") or "tool")
+                add("selfmod", _coerce_ts({"ts": m.get("written_at")}),
+                    f"Taught himself a new {kind}: {m.get('name')}")
+    except Exception as exc:  # self-code manifest optional — record, skip
+        record_failure("routers.runtime_coupling.activity.selfmod", exc)
+
     try:
         from brain.utils.egress import events as _eg_events
         for r in _eg_events(since):

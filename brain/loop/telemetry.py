@@ -295,6 +295,40 @@ def _emit_lived(context: "Context") -> None:
         return
 
 
+def _emit_decision(context: "Context") -> None:
+    """R4 (Companion & Presence plan): ship the selection MOMENT — what was
+    considered, what won, and which factor tipped it — from the reason payload
+    select_function already builds (per-candidate component scores incl. the
+    Run-6 `value` term). Un-throttled: one push per decision IS the cadence.
+    Fail-safe like every emitter here."""
+    tb = _bridge()
+    if tb is None:
+        return
+    try:
+        ld = context.get("last_decision") or {}
+        reason = ld.get("reason") or {}
+        picked = str(ld.get("picked") or "")
+        if not picked or not isinstance(reason, dict):
+            return
+        ranked = [r for r in (reason.get("ranked") or []) if isinstance(r, (list, tuple)) and r]
+        comp = (reason.get("component_scores") or {}).get(picked) or {}
+        components = {k: round(_f(v), 3) for k, v in comp.items()
+                      if isinstance(v, (int, float)) and abs(v) > 0.005}
+        top_factor = max(components, key=lambda k: components[k]) if components else ""
+        tb.update(decision={
+            "picked": picked,
+            "considered": [str(n) for n, *_ in ranked[:4]],
+            "components": components,
+            "top_factor": top_factor,
+            "conscious": bool(reason.get("conscious_cycle", True)),
+            "decision_id": reason.get("decision_id"),
+            "ts": ld.get("ts"),
+        })
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_decision", exc)
+        return
+
+
 _LAST_LLM_COST_PUSH = 0.0
 _LLM_COST_PUSH_INTERVAL = 3.0   # seconds; cache/gate stats drift slowly
 def _emit_llm_cost(context: "Context") -> None:

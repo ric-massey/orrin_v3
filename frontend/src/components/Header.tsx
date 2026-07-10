@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Activity,
   Brain as BrainIcon,
@@ -7,18 +6,22 @@ import {
   Clock,
   Database,
   Eye,
+  HeartPulse,
   MessageCircle,
   Network,
-  Power,
+  ListChecks,
   Settings as SettingsIcon,
   Sparkles,
   TrendingUp,
+  UserRound,
+  Wrench,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLexicon, type LexId } from "@/lib/lexicon";
 import { TelemetryState, useStreamStale } from "@/lib/telemetry";
-import { apiPost } from "@/lib/transport";
+import { isCompanionRoom, useMode } from "@/lib/mode";
+import StopButton from "@/components/StopButton";
 
 interface HeaderProps {
   telemetry: TelemetryState;
@@ -35,12 +38,31 @@ const ROOMS: { path: string; lex: LexId; icon: typeof Activity }[] = [
   { path: "/memory", lex: "nav_memory", icon: Database },
   { path: "/timeline", lex: "nav_timeline", icon: Clock },
   { path: "/learning", lex: "nav_learning", icon: TrendingUp },
+  { path: "/you", lex: "nav_you", icon: UserRound },
+  { path: "/actions", lex: "nav_actions", icon: ListChecks },
+  { path: "/body", lex: "nav_body", icon: HeartPulse },
   { path: "/brain", lex: "nav_brain", icon: Network },
+];
+
+// C3: the companion lens — same rooms, three doors. Settings rides on the
+// right-side gear as always, which is why it isn't listed here.
+const COMPANION_NAV: { path: string; lex: LexId; icon: typeof Activity }[] = [
+  { path: "/orrin", lex: "nav_orrin", icon: Sparkles },
+  { path: "/timeline", lex: "nav_journal", icon: Clock },
 ];
 
 export default function Header({ telemetry }: HeaderProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useLexicon();
+  const mode = useMode();
+
+  // C0's nav-depth rule: companion chrome only when standing in a companion
+  // room with mode=companion. Anywhere else shows the full workshop nav —
+  // but a companion user in the workshop keeps a way back (the door swings
+  // both ways).
+  const companionChrome = mode === "companion" && isCompanionRoom(location.pathname);
+  const rooms = companionChrome ? COMPANION_NAV : ROOMS;
 
   // M1: one liveness verdict — a connected-but-frozen stream reads "Stalled".
   const stale = useStreamStale(telemetry);
@@ -69,11 +91,20 @@ export default function Header({ telemetry }: HeaderProps) {
           <div className="hidden leading-tight min-[480px]:block">
             <div className="text-[15px] font-semibold tracking-tight">Orrin</div>
           </div>
+          {/* companion user standing in a workshop room — never strand them */}
+          {mode === "companion" && !companionChrome && (
+            <NavLink
+              to="/orrin"
+              className="ml-1 hidden shrink-0 rounded-full px-2 py-1 text-[13px] font-medium text-muted-foreground hover:text-foreground sm:block"
+            >
+              {t("nav_back_to_orrin")}
+            </NavLink>
+          )}
         </div>
 
         {/* Named-room nav */}
         <nav className="flex min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto sm:gap-1">
-          {ROOMS.map((r) => (
+          {rooms.map((r) => (
             <NavLink
               key={r.path}
               to={r.path}
@@ -98,9 +129,26 @@ export default function Header({ telemetry }: HeaderProps) {
           <div className="hidden items-center gap-2 text-xs text-muted-foreground lg:flex">
             <Circle className={cn("h-2.5 w-2.5 fill-current", status.color)} />
             <span className={status.color}>{status.label}</span>
-            <span className="text-border">·</span>
-            <span className="tabular-nums">cycle {telemetry.cycle}</span>
+            {/* the cycle counter is engineering chrome — companion mode hides it */}
+            {!companionChrome && (
+              <>
+                <span className="text-border">·</span>
+                <span className="tabular-nums">cycle {telemetry.cycle}</span>
+              </>
+            )}
           </div>
+
+          {companionChrome && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/cognition")}
+              title={t("nav_under_hood")}
+            >
+              <Wrench className="h-4 w-4" />
+              <span className="hidden sm:inline">{t("nav_under_hood")}</span>
+            </Button>
+          )}
 
           <Button
             variant="ghost"
@@ -111,46 +159,10 @@ export default function Header({ telemetry }: HeaderProps) {
           >
             <SettingsIcon className="h-4 w-4" />
           </Button>
-          <StopButton />
+          {/* C3: in companion chrome, Stop moves behind Settings */}
+          {!companionChrome && <StopButton />}
         </div>
       </div>
     </header>
-  );
-}
-
-function StopButton() {
-  const [stopping, setStopping] = useState(false);
-
-  const stop = async () => {
-    if (stopping) return;
-    if (!window.confirm("Stop Orrin? This halts the runtime (the cognitive loop and daemons). The window stays open so you can keep viewing the runtime state — close the window to quit.")) {
-      return;
-    }
-    setStopping(true);
-    const markStopped = () => window.dispatchEvent(new CustomEvent("orrin:stopped"));
-    try {
-      // SECURITY (H2/H3): destructive control action. The backend rejects untrusted
-      // Origins on /api/control/*; when VITE_CONTROL_TOKEN is configured it is sent
-      // so a remote-exposed backend can authorize the caller.
-      const token = import.meta.env.VITE_CONTROL_TOKEN as string | undefined;
-      const res = await apiPost(`/api/control/shutdown`, undefined, {
-        headers: token ? { "X-Orrin-Control-Token": token } : undefined,
-      });
-      if (res.ok) {
-        markStopped();
-      } else {
-        setStopping(false);
-        window.alert(`Couldn't stop Orrin: the backend refused the request (HTTP ${res.status}). A control token may be required for remote control.`);
-      }
-    } catch {
-      markStopped();
-    }
-  };
-
-  return (
-    <Button variant="destructive" size="sm" onClick={stop} disabled={stopping} title="Stop Orrin">
-      <Power className="h-4 w-4" />
-      <span className="hidden sm:inline">{stopping ? "Stopping…" : "Stop"}</span>
-    </Button>
   );
 }

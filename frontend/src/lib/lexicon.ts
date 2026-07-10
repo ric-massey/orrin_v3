@@ -93,6 +93,17 @@ export const LEX = {
   nav_brain: "Runtime",
   nav_settings: "Settings",
 
+  // ── Companion-mode nav (C3 — a relabeled lens over the same rooms) ────────
+  nav_orrin: "Orrin",
+  nav_journal: "Journal",
+  nav_under_hood: "Under the hood",
+  nav_back_to_orrin: "← back to Orrin",
+
+  // ── Relationship views (Track R) ──────────────────────────────────────────
+  nav_you: "Model of you",
+  nav_actions: "Action ledger",
+  nav_body: "Body ↔ machine",
+
   // ── Cognition view ────────────────────────────────────────────────────────
   cog_focus: "Active function (this cycle)",
   cog_goal: "Active goal + step",

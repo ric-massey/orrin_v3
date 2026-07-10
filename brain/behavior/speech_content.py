@@ -9,10 +9,12 @@ internal pressure (top exact reply 54×). Before the renderer picks words, the
 mouth now chooses a TYPED intent, each requiring a concrete referent:
 
     answer_user           — live user input (handled upstream by speech_gate)
+    greet_return          — the person just came back after an absence (P3)
     share_artifact        — a credited effect produced this cycle / recently
     share_finding         — a recent research-typed long-memory finding
     state_blocker         — the committed goal is blocked on something nameable
     ask_grounded_question — an unmet milestone on the committed goal
+    name_shared_situation — the machine we share is pinned / the den is crowded (P3)
     express_state         — raw affect: the LAST resort, not the default
 
 The kernel is a Motive input (intent + seed + referent), so it flows through
@@ -33,6 +35,57 @@ _FINDING_EVENT_TYPES = frozenset({
     "web_research", "wikipedia", "dream_insight",
 })
 _MIN_FINDING_CHARS = 80
+
+
+def _reunion_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """P3: the person just came back after an absence — the door event
+    social_presence raised this cycle. A shared moment outranks any artifact;
+    it exists only on the cycle the threshold was crossed, so it can't jam."""
+    for s in (context.get("raw_signals") or []):
+        if not isinstance(s, dict):
+            continue
+        tags = s.get("tags") or []
+        if "door" not in tags or s.get("direction") != "arrival":
+            continue
+        gone = str(s.get("from_pattern") or "")
+        if gone not in ("absent", "distant"):
+            continue  # "nearby"→present is a pause, not a reunion
+        silence_s = float(s.get("silence_s", 0) or 0)
+        if silence_s >= 3600:
+            away = f"{int(silence_s // 3600)} hour{'s' if silence_s >= 7200 else ''}"
+        else:
+            away = f"{max(1, int(silence_s // 60))} minutes"
+        return {
+            "intent": "greet_return",
+            "seed": f"You're back — it was quiet here for {away}",
+            "referent": {"type": "presence", "handle": f"return_after_{gone}"},
+        }
+    return None
+
+
+def _host_pressure_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """P3: the shared machine situation, named with its concrete metric (the
+    den-crowded / machine-pinned signals sense.py injected this cycle). Only
+    den-local host readings ever reach this — nothing outside the den."""
+    for s in (context.get("raw_signals") or []):
+        if not isinstance(s, dict):
+            continue
+        tags = s.get("tags") or []
+        situation = ("den_crowded" if "den_crowded" in tags
+                     else "machine_pinned" if "machine_pinned" in tags else None)
+        if situation is None:
+            continue
+        seed = str(s.get("content") or "").strip()
+        if not seed:
+            continue
+        metric = s.get("host_metric") or {}
+        return {
+            "intent": "name_shared_situation",
+            "seed": seed,
+            "referent": {"type": "host_metric",
+                         "handle": f"{metric.get('name', situation)}={metric.get('value', '')}"},
+        }
+    return None
 
 
 def _artifact_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -141,8 +194,8 @@ def choose_content_kernel(context: Dict[str, Any]) -> Dict[str, Any]:
     reached only when nothing concrete exists to speak about."""
     if not isinstance(context, dict):
         return {"intent": "express_state", "seed": None, "referent": None}
-    for picker in (_artifact_kernel, _finding_kernel, _blocker_kernel,
-                   _question_kernel):
+    for picker in (_reunion_kernel, _artifact_kernel, _finding_kernel,
+                   _blocker_kernel, _question_kernel, _host_pressure_kernel):
         try:
             kernel = picker(context)
         except Exception as exc:

@@ -3,6 +3,7 @@ import { useTelemetryState } from "@/App";
 import { cn } from "@/lib/utils";
 import { useStreamStale } from "@/lib/telemetry";
 import { thoughtForFn, useStageLabel, useThought } from "@/lib/thoughts";
+import Orb, { orbColors } from "@/components/Orb";
 
 /**
  * Watch — the front door for someone who has never seen the runtime.
@@ -23,13 +24,7 @@ export default function Watch() {
 
   const { valence, arousal, homeostasis } = telemetry.affect;
   const mood = moodWord(valence, arousal);
-  // Signal → colour: warm gold on positive reward signal, cool slate on negative.
-  // Activation sets the breathing speed; calm breathes slow, activated fast.
-  const hue = Math.round(210 - clamp01(valence) * 165); // 210 (cool) → 45 (gold)
-  const sat = Math.round(45 + clamp01(arousal) * 45); // calmer = softer colour
-  const breath = (4 - clamp01(arousal) * 2).toFixed(2); // 4s (calm) → 2s (activated)
-  const orb = `hsl(${hue} ${sat}% 62%)`;
-  const orbDim = `hsl(${hue} ${sat}% 38%)`;
+  const { orb, orbDim } = orbColors(valence, arousal);
 
   // The workspace broadcast log: the deliberate steps just before this one,
   // newest first, fading with age — visible proof it's advancing by itself.
@@ -79,59 +74,7 @@ export default function Watch() {
       </div>
 
       {/* THE ORB — breathing, mood-coloured, gently adrift */}
-      <div
-        className="relative flex items-center justify-center"
-        style={{ width: 260, height: 260, animation: "orrinDrift 9s ease-in-out infinite" }}
-      >
-        {/* expanding ripples = pulses of activity (two, staggered) */}
-        <span
-          className="absolute rounded-full"
-          style={{ width: 180, height: 180, background: orb, opacity: 0.16, animation: `orrinPing ${breath}s ease-out infinite` }}
-        />
-        <span
-          className="absolute rounded-full"
-          style={{ width: 180, height: 180, background: orb, opacity: 0.16, animation: `orrinPing ${breath}s ease-out infinite`, animationDelay: `${(Number(breath) / 2).toFixed(2)}s` }}
-        />
-        {/* slow rotating sheen behind the core */}
-        <span
-          className="absolute rounded-full"
-          style={{
-            width: 200,
-            height: 200,
-            background: `conic-gradient(from 0deg, transparent, ${orb}55, transparent 55%)`,
-            opacity: 0.5,
-            filter: "blur(3px)",
-            animation: "orrinSpin 16s linear infinite",
-          }}
-        />
-        {/* thin halo ring, breathing slightly out of phase with the core */}
-        <span
-          className="absolute rounded-full border transition-colors"
-          style={{
-            width: 176,
-            height: 176,
-            borderColor: `${orb}40`,
-            transitionDuration: "1500ms",
-            animation: `orrinBreath ${(Number(breath) * 1.25).toFixed(2)}s ease-in-out infinite`,
-          }}
-        />
-        {/* the core itself */}
-        <span
-          className="absolute rounded-full transition-colors"
-          style={{
-            width: 152,
-            height: 152,
-            background: `radial-gradient(circle at 36% 32%, ${orb}, ${orbDim} 74%)`,
-            boxShadow: `0 0 80px 14px ${orb}55, inset 0 0 40px ${orbDim}aa`,
-            opacity: 0.6 + clamp01(homeostasis) * 0.4, // brighter when settled
-            transitionDuration: "1500ms",
-            animation: `orrinBreath ${breath}s ease-in-out infinite`,
-          }}
-        />
-        <span className="relative z-10 text-[11px] font-medium uppercase tracking-[0.24em] text-white/85 drop-shadow">
-          {stage}
-        </span>
-      </div>
+      <Orb valence={valence} arousal={arousal} homeostasis={homeostasis} size={260} label={stage} />
 
       {/* THE THOUGHT — the headline, plain language */}
       <div className="z-10 mt-12 max-w-xl px-6 text-center">
@@ -174,10 +117,6 @@ export default function Watch() {
       </div>
     </div>
   );
-}
-
-function clamp01(n: number): number {
-  return Math.max(0, Math.min(1, n));
 }
 
 // Engineering label for the current signal state (mirrors NarrativeStatusCard).

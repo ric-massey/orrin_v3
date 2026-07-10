@@ -70,7 +70,37 @@ _ALLOWED_APPS_BY_OS: Dict[str, List[str]] = {
 _ALLOWED_APPS: List[str] = _ALLOWED_APPS_BY_OS.get(_PLATFORM, [])
 
 # Where Orrin drops desktop notes
-_DESKTOP_NOTES_DIR = Path.home() / "Desktop" / "Orrin_Notes"
+# P4 (Companion & Presence): real-world note traces are CONSENT-FIRST. The one
+# folder Orrin may write into comes from prefs ("trace_folder"); empty = OFF,
+# and no note is ever written anywhere else. Rarity budget: ≤1 trace per day.
+_TRACE_LEDGER = DATA_DIR / "trace_notes.json"
+_TRACE_DAILY_CAP = 1
+
+
+def _trace_folder() -> Optional[Path]:
+    """The consented traces folder, or None when the person hasn't opted in."""
+    try:
+        from brain.utils import prefs
+        raw = str(prefs.get("trace_folder", "") or "").strip()
+    except Exception as exc:
+        record_failure("system_presence._trace_folder", exc)
+        return None
+    return Path(raw).expanduser() if raw else None
+
+
+def _trace_budget_allows(now: Optional[float] = None) -> bool:
+    now = time.time() if now is None else now
+    sent = load_json(_TRACE_LEDGER, default_type=list)
+    sent = [float(t) for t in sent if isinstance(t, (int, float))] if isinstance(sent, list) else []
+    return sum(1 for t in sent if now - t < 24 * 3600.0) < _TRACE_DAILY_CAP
+
+
+def _record_trace(now: float) -> None:
+    sent = load_json(_TRACE_LEDGER, default_type=list)
+    sent = [float(t) for t in sent if isinstance(t, (int, float))] if isinstance(sent, list) else []
+    sent = [t for t in sent if now - t < 7 * 24 * 3600.0]
+    sent.append(now)
+    save_json(_TRACE_LEDGER, sent)
 
 # Where announcements land (read by dashboard)
 _ANNOUNCEMENTS_FILE = DATA_DIR / "announcements.json"
@@ -185,12 +215,15 @@ def open_application(app_name: str) -> Dict[str, Any]:
 
 def write_to_desktop_note(title: str, content: str) -> Dict[str, Any]:
     """
-    Write a timestamped note file to ~/Desktop/Orrin_Notes/.
+    Write a timestamped note file into the CONSENTED traces folder (P4).
 
-    This is Orrin "leaving a note" — a physical artifact on the shared
-    desktop visible to the human.  Grounded in enactivist thought: writing
-    is not a secondary output but constitutive of Orrin's thinking process
-    (Varela, Thompson & Rosch, 1991).
+    This is Orrin "leaving a note" — a physical artifact where the person will
+    stumble on it.  Grounded in enactivist thought: writing is not a secondary
+    output but constitutive of Orrin's thinking process (Varela, Thompson &
+    Rosch, 1991).  Consent-first: the person picks the folder in Settings
+    (prefs "trace_folder"); with it unset this refuses, and notes only ever
+    appear there.  Rarity: ≤1 per day — same budget class as the P1
+    notifications; a trace that fails to write consumes no budget.
 
     Args:
         title: Short label used in the filename (spaces replaced with underscores).
@@ -200,11 +233,19 @@ def write_to_desktop_note(title: str, content: str) -> Dict[str, Any]:
         {"success": bool, "path": str | None, "error": str | None}
     """
     try:
-        _DESKTOP_NOTES_DIR.mkdir(parents=True, exist_ok=True)
+        folder = _trace_folder()
+        if folder is None:
+            return {"success": False, "path": None,
+                    "error": "no consented traces folder — the person hasn't opted in (Settings → Traces)"}
+        now = time.time()
+        if not _trace_budget_allows(now):
+            return {"success": False, "path": None,
+                    "error": "trace budget spent — at most one note a day"}
+        folder.mkdir(parents=True, exist_ok=True)
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         safe_title = title.strip().replace(" ", "_")[:50]
         filename = f"{ts}_{safe_title}.txt"
-        note_path = _DESKTOP_NOTES_DIR / filename
+        note_path = folder / filename
 
         header = (
             f"Orrin's Note\n"
@@ -214,6 +255,7 @@ def write_to_desktop_note(title: str, content: str) -> Dict[str, Any]:
         )
         note_path.write_text(header + content, encoding="utf-8")
 
+        _record_trace(now)  # the write landed → consume today's trace budget
         note = f"Wrote desktop note '{title}' → {note_path}"
         log_activity(f"[system_presence] {note}")
         _append_to_working_memory(note)

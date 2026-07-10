@@ -50,6 +50,7 @@ from brain.utils.failure_counter import record_failure
 # brain/loop/telemetry.py (Phase 4A). The bridge buffers on a daemon thread and
 # never raises, so cognition never blocks or crashes on telemetry.
 from brain.loop.telemetry import (
+    _emit_decision,
     _push_event,
 )
 
@@ -239,6 +240,10 @@ def run_cognitive_loop(
 
             context = ignite(context)
             result = think(context)
+
+            # R4: surface the selection moment live (considered / picked /
+            # tipping factor) from the reason payload think() just stashed.
+            _emit_decision(context)
 
             _decision_id = (context.get("last_decision") or {}).get("reason", {}).get("decision_id")
             # Guarantee every cycle has a traceable decision_id so the evaluator WAL

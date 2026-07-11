@@ -202,6 +202,32 @@ def _record_topic_attempt(topic: str, success: bool) -> None:
             cache.pop(k, None)
 
 
+# Visited-URL cache: fetch_and_read had no per-URL dedup, so _pick_url's RSS
+# tier (which returns the first item of the first feed) re-served the identical
+# article every cycle. On 2026-07-11 a self_understanding aspiration re-read one
+# QuadRF blog post for hours at novelty 0.002 — the effect ledger deduped the
+# memo so it stayed invisible while the action kept firing. Read URLs are now
+# skipped for six hours (matching the topic cache's success TTL) so the feed is
+# walked, not pinned. In-process only, like _topic_cache — a fresh life restarts
+# clean, which is fine.
+_url_cache: Dict[str, float] = {}   # url -> last-read unix ts
+
+
+def _url_recently_read(url: str) -> bool:
+    ts = _url_cache.get(url.strip())
+    if ts is None:
+        return False
+    return (time.time() - ts) < _DONE_CACHE_TTL
+
+
+def _record_url_read(url: str) -> None:
+    cache = _url_cache
+    cache[url.strip()] = time.time()
+    if len(cache) > 500:
+        for k in sorted(cache, key=lambda k: cache[k])[:250]:
+            cache.pop(k, None)
+
+
 def _topic_from_knowledge_graph() -> str:
     """
     Pick a genuine subject from learned concepts: an under-explored concept entity
@@ -390,6 +416,11 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     if not url:
         return "No URL found to read right now."
 
+    # Mark before fetching: whatever the outcome, the same URL must not be
+    # re-served next cycle. This is what breaks the single-source re-read loop
+    # (2026-07-11) — success or transient failure, we move on to the next item.
+    _record_url_read(url)
+
     # A2.2 (RUN4_FIX_PLAN): if the source being opened is a local file Orrin
     # produced (resolves via the ledger's path→hash index), credit tier-3
     # re-use. A web URL simply doesn't resolve — no-op.
@@ -478,6 +509,8 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
         content = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
         urls = re.findall(r"https?://[^\s\"'>]{10,}", content)
         for u in urls:
+            if _url_recently_read(u):
+                continue  # already read this one recently — don't re-pin on it
             if any(skip in u for skip in ("wikipedia.org", "duckduckgo.com")):
                 if skipped_familiar is None:
                     skipped_familiar = u  # keep as last resort
@@ -495,8 +528,8 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
             items = (feed_data or {}).get("items") or []
             for item in items[:5]:
                 link = (item.get("link") or "").strip()
-                if link and link.startswith("http"):
-                    return link
+                if link and link.startswith("http") and not _url_recently_read(link):
+                    return link  # skip already-read items — walk the feed
     except Exception as _e:
         record_failure("web_research._pick_url", _e)
 

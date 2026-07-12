@@ -336,6 +336,15 @@ def executive_tick(context: Dict[str, Any]) -> Dict[str, Any]:
                 advanced.append(rec)
                 if _cooldown_skip:
                     summary["cooldown_skipped"] = int(summary.get("cooldown_skipped", 0) or 0) + 1
+                    # F8d: the per-tick summary is ephemeral — persist the F16
+                    # observable where run analysis reads (the daily snapshot).
+                    try:
+                        from brain.cognition.planning.outcome_metrics import (
+                            record_executive_cooldown_skip,
+                        )
+                        record_executive_cooldown_skip()
+                    except Exception as exc:
+                        record_failure("executive.record_cooldown_skip", exc)
 
                 if fn and not _cooldown_skip:
                     # I9 — charge the (cheap) cost of one executive step. Only

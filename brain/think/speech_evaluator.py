@@ -86,6 +86,40 @@ def _score(
     return round(score, 4), words, reply_time_s
 
 
+# ── F3c (RUN7_FIX_PLAN_2026-07-11): genuine_contact finally earns ─────────────
+# Two straight runs ended at 0 genuine_contact contributions with 75 real scored
+# speech rows — a missing wire, not missing behavior. A reply with a concrete
+# referent (or a direct answer) that the person demonstrably engaged with
+# (they replied; quality ≥ 0.5) IS the aspiration's evidence. Rate-capped to
+# one contribution per hour so this can't become the next pump.
+
+_GENUINE_CONTACT_TYPES = frozenset({"share_finding", "answer", "name_shared_situation"})
+_GENUINE_CONTACT_MIN_Q = 0.5
+_GENUINE_CONTACT_INTERVAL_S = 3600.0
+_last_genuine_contact_ts = 0.0
+
+
+def _maybe_credit_genuine_contact(pending: Dict[str, Any], quality: float) -> None:
+    global _last_genuine_contact_ts
+    try:
+        if quality < _GENUINE_CONTACT_MIN_Q:
+            return
+        if str(pending.get("response_type") or "") not in _GENUINE_CONTACT_TYPES:
+            return
+        now = time.time()
+        if now - _last_genuine_contact_ts < _GENUINE_CONTACT_INTERVAL_S:
+            return
+        from brain.cognition.intrinsic_objectives import mark_objective_contribution
+        mark_objective_contribution("genuine_contact")
+        _last_genuine_contact_ts = now
+        log_activity(
+            f"[speech_eval] genuine_contact credited — "
+            f"{pending.get('response_type')} reply scored {quality:.2f}"
+        )
+    except Exception as e:
+        log_error(f"[speech_evaluator] genuine_contact credit failed: {e}")
+
+
 # ── Public entry ──────────────────────────────────────────────────────────────
 
 def evaluate_last_reply(
@@ -139,6 +173,10 @@ def evaluate_last_reply(
             user_reply_words  = word_count,
             user_reply_time_s = rt,
         )
+
+        # F3c: a well-received, referent-bearing reply is a genuine_contact
+        # contribution (the person was present — they just replied).
+        _maybe_credit_genuine_contact(pending, quality)
 
         log_activity(
             f"[speech_eval] scored id={pending['id'][:8]} "

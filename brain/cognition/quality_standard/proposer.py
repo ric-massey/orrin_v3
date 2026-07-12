@@ -155,6 +155,20 @@ def propose_promotions(context: Optional[Dict[str, Any]] = None) -> List[Dict[st
         record_failure("quality_standard.proposer.credited_goal_ids", exc)
         return appended
 
+    # F6c (RUN7_FIX_PLAN, wiring C8): the same memo was re-nominated 189× in
+    # Run 6 because the near-dup check ran only at apply time, against a golden
+    # set that stayed empty. Compare against PENDING candidates' artifact texts
+    # too, before enqueueing.
+    pending_words: List[set] = []
+    try:
+        for r in revisions.pending(kind="promote"):
+            ph = (r.get("artifact_ref") or {}).get("content_hash")
+            ptext = effect_artifacts.load(ph) if ph else None
+            if ptext:
+                pending_words.append(_words(ptext))
+    except Exception as exc:
+        record_failure("quality_standard.proposer.pending_texts", exc)
+
     for gid in goal_ids:
         try:
             hashes = effect_ledger.effects_for_goal(gid)
@@ -187,6 +201,10 @@ def propose_promotions(context: Optional[Dict[str, Any]] = None) -> List[Dict[st
             if _is_near_duplicate_exemplar(text):
                 continue  # redundant with the existing golden set
 
+            tw = _words(text)
+            if any(_jaccard(tw, pw) >= 0.8 for pw in pending_words):
+                continue  # F6c: near-dup of an already-pending candidate
+
             candidate = revisions.make_candidate(
                 kind="promote",
                 direction="raise",   # promotion only ever RAISES the bar (auto-applicable)
@@ -204,6 +222,7 @@ def propose_promotions(context: Optional[Dict[str, Any]] = None) -> List[Dict[st
             if saved is candidate or saved.get("status") == "pending":
                 if saved is candidate:
                     appended.append(saved)
+                    pending_words.append(tw)  # F6c: dedup within this pass too
     if appended:
         log_activity(f"[quality_standard] {len(appended)} promotion candidate(s) proposed.")
     return appended

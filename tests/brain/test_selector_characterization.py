@@ -24,6 +24,18 @@ from brain.utils.embed_similarity import embeddings_available
 
 _SEED = 12345
 
+
+@pytest.fixture(autouse=True)
+def _fresh_learned_stats(tmp_path, monkeypatch):
+    """The goldens are pinned against EMPTY learned stats (what CI sees).
+    catalog now resolves decision_stats.json through brain.paths (Run 7 fix —
+    the old __file__ anchor leaked LIVE run state into these goldens), which
+    means other tests' reach/decision writes land in the shared session data
+    dir — so pin the stats source to an empty per-test path."""
+    from brain.think.think_utils.selection import catalog
+    monkeypatch.setattr(catalog, "_STATS_PATH", tmp_path / "decision_stats.json")
+    monkeypatch.setattr(catalog, "_STATS_CACHE", {"t": 0.0, "data": {}})
+
 # Cases whose pinned decision recruits `research_topic` via the embedder's
 # semantic capability↔goal match (MiniLM). When the model can't load (offline
 # CI / HF rate-limit), `_capability_overlap` degrades to keyword-only and these

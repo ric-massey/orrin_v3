@@ -60,9 +60,14 @@ def test_unparseable_code_has_zero_significance():
 
 def test_tracked_work_requires_progress_metadata():
     assert el.record_effect("tracked_work", _LONG, goal_id="book") is None
+    # A genuinely distinct section: under F2b (RUN7_FIX_PLAN) near-duplicate
+    # content pays proportionally to its novelty, so only fresh section prose
+    # carries the full section-scaled significance.
     row = el.record_effect(
         "tracked_work",
-        _LONG + " This second section advances a distinct implication.",
+        "The thesis chapter argues something else entirely: staged verification "
+        "beats stated confidence, cumulative manuscripts need durable paths, and "
+        "progress only counts when the sections exist on disk as real prose.",
         goal_id="book",
         metadata={"path": "/tmp/book.md", "section": "Thesis", "completed_sections": 1},
     )

@@ -427,6 +427,29 @@ def _boot_context() -> Context:
     except Exception as _asp_err:
         log_error(f"[boot] Could not ensure aspirations exist: {_asp_err}")
 
+    # F6b (RUN7_FIX_PLAN_2026-07-11) — exemplars-dir writability probe. Run 6's
+    # write_exemplar path failed 12× with EACCES and nothing screamed until
+    # minute 13; a dead promotion path must raise a real problem event on cycle 1.
+    try:
+        from brain.cognition.quality_standard.gate import writability_probe
+        _probe_ok, _probe_diag = writability_probe()
+        if not _probe_ok:
+            from brain.utils.failure_counter import record_failure as _rf
+            # Two ticks so the problem-refocus site-delta threshold (≥2) fires.
+            _probe_exc = OSError(f"exemplars dir not writable at boot: {_probe_diag}")
+            _rf("quality_standard.gate.write_exemplar", _probe_exc)
+            _rf("quality_standard.gate.write_exemplar", _probe_exc)
+            log_error(f"[boot] QUALITY EXEMPLARS DIR NOT WRITABLE — exemplar "
+                      f"promotion is dead until fixed. Diagnostics: {_probe_diag}")
+            from brain.cog_memory.working_memory import update_working_memory as _uwm_probe
+            _uwm_probe({
+                "content": ("⚠️ My exemplar folder isn't writable — I can't pin "
+                            f"good work until this is fixed ({_probe_diag.get('errno')})."),
+                "event_type": "problem_detected", "importance": 4, "priority": 3,
+            })
+    except Exception as _probe_err:
+        log_error(f"[boot] Exemplars writability probe failed to run: {_probe_err}")
+
     # F8 (2026-07-05 findings) — silent-death detection: segment 1 died with no
     # shutdown record and nobody knew for ~10 h. If the heartbeat shows a gap
     # with no clean shutdown, record it as first-class lifecycle data.

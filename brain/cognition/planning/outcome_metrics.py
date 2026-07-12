@@ -50,6 +50,7 @@ def _new_session() -> Dict[str, Any]:
         "abandonment_closures":  0,
         "maintenance_executions": 0,
         "store_desyncs_repaired": 0,
+        "executive_cooldown_skips": 0,
         # Lists for averaging
         "significances":         [],
         "seconds_to_complete":   [],
@@ -126,6 +127,15 @@ def record_store_desync_repair(n: int = 1) -> None:
         _session["store_desyncs_repaired"] += int(n)
 
 
+def record_executive_cooldown_skip(n: int = 1) -> None:
+    """F8d (RUN7_FIX_PLAN) — count executive ticks where a recognized action was
+    cooldown-SKIPPED and never ran (the F16 observable). Surfaced in the daily
+    snapshot so run analysis can split "recognized" from "actually ran"."""
+    _reset_session_if_new_day()
+    with _lock:
+        _session["executive_cooldown_skips"] += int(n)
+
+
 def record_goal_population(active_goals: int, average_goal_age: float) -> None:
     _reset_session_if_new_day()
     with _lock:
@@ -156,6 +166,7 @@ def _compute_snapshot() -> Dict[str, Any]:
         abandonment = _session["abandonment_closures"]
         maint       = _session["maintenance_executions"]
         desyncs     = _session["store_desyncs_repaired"]
+        cd_skips    = _session["executive_cooldown_skips"]
         sigs        = list(_session["significances"])
         secs        = list(_session["seconds_to_complete"])
         active      = _session["active_goals"]
@@ -180,6 +191,7 @@ def _compute_snapshot() -> Dict[str, Any]:
         "abandonment_closures":       abandonment,
         "maintenance_selections":     maint,
         "store_desyncs_repaired":     desyncs,
+        "executive_cooldown_skips":   cd_skips,
         "mean_significance":          mean_significance,
         "median_seconds_to_complete": median_seconds,
         "completion_rate":            completion_rate,
@@ -221,7 +233,8 @@ def flush() -> Dict[str, Any]:
     with _lock:
         for key in ("goals_completed", "goals_failed", "goals_retired",
                     "satiety_closures", "abandonment_closures",
-                    "maintenance_executions", "store_desyncs_repaired"):
+                    "maintenance_executions", "store_desyncs_repaired",
+                    "executive_cooldown_skips"):
             _session[key] = 0
     return snap
 
@@ -229,6 +242,7 @@ def flush() -> Dict[str, Any]:
 _SUMMED = (
     "goals_completed", "goals_failed", "goals_retired", "satiety_closures",
     "abandonment_closures", "maintenance_selections", "store_desyncs_repaired",
+    "executive_cooldown_skips",
 )
 _LATEST = (
     "active_goals", "average_goal_age", "mean_significance",

@@ -46,7 +46,7 @@ _REPLAY_KEEP = 400000
 # dropped and his felt account is what trains the organ.
 _FELT_FILE = _DATA_DIR / "language" / "felt_experience.txt"
 _FELT_KEEP = 120000               # cap the felt-narrative corpus (chars)
-_NARRATE_MIN_INTERVAL_S = 90.0    # min seconds between narrations, so the fast (~10s) cognitive cycle can't flood the corpus
+_NARRATE_MIN_INTERVAL_S = 90.0    # 90 seconds minimum between narrations — the much-faster cognitive cycle must not flood the corpus
 
 # Phase 2B (Grounded Cognition plan, THOUGHT_OBJECT_SPEC.md): a sidecar that
 # captures the STRUCTURED thought object alongside each templated narration as a

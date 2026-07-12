@@ -265,6 +265,22 @@ def audit_map_territory(context: Optional[Dict[str, Any]] = None) -> str:
         except Exception as e:
             record_failure(f"map_audit.{check.__name__}", e)
 
+    # F8b (RUN7_FIX_PLAN): a STANDING observation is reported once, not every
+    # audit forever — Run 6 re-reported the same comment misparse every ~75 min
+    # all life (same disease as fetch_and_read, different organ). Findings are
+    # keyed by content hash; only never-before-reported ones reach working
+    # memory. The JSONL keeps the full record either way.
+    state = load_json(_STATE_FILE, default_type=dict) or {}
+    reported: Dict[str, Any] = state.get("reported_findings") or {}
+    if not isinstance(reported, dict):
+        reported = {}
+
+    def _fkey(text: str) -> str:
+        import hashlib
+        return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+    new_findings = [f for f in findings if _fkey(f) not in reported]
+
     now_iso = datetime.now(timezone.utc).isoformat()
     try:
         _FINDINGS_LOG.parent.mkdir(parents=True, exist_ok=True)
@@ -272,15 +288,16 @@ def audit_map_territory(context: Optional[Dict[str, Any]] = None) -> str:
             f.write(json.dumps({
                 "ts": now_iso,
                 "findings": findings,
+                "new_findings": len(new_findings),
                 "duration_s": round(time.time() - started, 2),
             }, ensure_ascii=False) + "\n")
     except Exception as e:
         record_failure("map_audit.log", e)
 
-    if findings:
+    if new_findings:
         try:
             from brain.cog_memory.working_memory import update_working_memory
-            for finding in findings[:6]:   # surface the worst; the log holds all
+            for finding in new_findings[:6]:   # surface the worst; the log holds all
                 update_working_memory({
                     "content": f"[map drift] {finding}",
                     "event_type": "map_drift",
@@ -291,7 +308,13 @@ def audit_map_territory(context: Optional[Dict[str, Any]] = None) -> str:
         except Exception as e:
             record_failure("map_audit.wm", e)
 
-    state = load_json(_STATE_FILE, default_type=dict) or {}
+    for f_text in findings:
+        reported.setdefault(_fkey(f_text), now_iso)
+    if len(reported) > 500:   # bound the cache; oldest keys drop first
+        for k in sorted(reported, key=lambda k: str(reported[k]))[: len(reported) - 500]:
+            reported.pop(k, None)
+
+    state["reported_findings"] = reported
     state["last_run_ts"] = time.time()
     state["last_run_iso"] = now_iso
     state["last_findings_count"] = len(findings)
@@ -300,7 +323,8 @@ def audit_map_territory(context: Optional[Dict[str, Any]] = None) -> str:
     except Exception as e:
         record_failure("map_audit.state", e)
 
-    msg = (f"Map-territory audit: {len(findings)} drift finding(s)."
+    msg = (f"Map-territory audit: {len(findings)} drift finding(s) "
+           f"({len(new_findings)} new)."
            if findings else "Map-territory audit: map and territory agree.")
     log_activity(f"[map_audit] {msg}")
     return msg

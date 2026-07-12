@@ -29,9 +29,13 @@
 # that can fail.
 from __future__ import annotations
 
+import re
+
 from brain.core.runtime_log import get_logger
 from typing import Any, Callable, Dict, List, Optional
 
+from brain.paths import DATA_DIR
+from brain.utils.json_utils import modify_json
 from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
 
@@ -231,4 +235,63 @@ def apply_fix(capability: str, key: str, context: Dict[str, Any]) -> bool:
         return bool(m["fix"](context))
     except Exception as exc:  # fix action raised — record, report no fix taken
         record_failure("diagnosis.apply_fix", exc)
+        return False
+
+
+# ── Diagnostic evidence (RUN7_FIX_PLAN F7, wiring C1–C3) ────────────────────────
+# Three evidence primitives problem_refocus consumes:
+#   C2 — recovery must be VERIFIED by a re-attempt / side-effect-free probe;
+#   C3 — a persisted per-failure-key episode count refutes "transient" at 3;
+#   C1 — a dotted-module-path failure key names Orrin's OWN code (route inward).
+
+_RECURRENCE_FILE = DATA_DIR / "problem_recurrence.json"
+RECURRENCE_ESCALATE = 3
+
+_INTERNAL_KEY_RE = re.compile(r"^[a-z_][a-z0-9_]*(\.[a-z0-9_]+)+$", re.IGNORECASE)
+
+
+def is_internal_failure(capability: str) -> bool:
+    """C1: True when the failure key is a dotted internal module path (a
+    failure_counter site), i.e. the broken thing is Orrin's own machinery."""
+    return bool(_INTERNAL_KEY_RE.match(str(capability or "")))
+
+
+def bump_recurrence(capability: str) -> int:
+    """C3: increment and return the persisted episode count for this failure key.
+    Run 6 called the same write failure 'transient' twelve times over fifteen
+    hours; at RECURRENCE_ESCALATE the transient hypothesis is refuted."""
+    try:
+        with modify_json(_RECURRENCE_FILE, dict) as d:
+            n = int(d.get(str(capability), 0) or 0) + 1
+            d[str(capability)] = n
+            return n
+    except Exception as exc:
+        record_failure("diagnosis.bump_recurrence", exc)
+        return 1
+
+
+def _probe_write_exemplar() -> bool:
+    from brain.cognition.quality_standard.gate import writability_probe
+    ok, _diag = writability_probe()
+    return ok
+
+
+# C2: side-effect-free probes that RE-ATTEMPT a failed operation. Nine of Run
+# 6's twelve episodes declared "working again" ~3 s after parking, because
+# "failures stopped growing" is trivially true while nothing re-attempts.
+RECOVERY_PROBES: Dict[str, Callable[[], bool]] = {
+    "quality_standard.gate.write_exemplar": _probe_write_exemplar,
+}
+
+
+def recovery_probe(capability: str) -> Optional[bool]:
+    """Run the capability's recovery probe. True/False = verified working/broken;
+    None = no probe exists, so recovery cannot be verified at all."""
+    probe = RECOVERY_PROBES.get(str(capability or ""))
+    if probe is None:
+        return None
+    try:
+        return bool(probe())
+    except Exception as exc:
+        record_failure("diagnosis.recovery_probe", exc)
         return False

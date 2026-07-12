@@ -14,14 +14,19 @@ import time as _time
 from pathlib import Path as _Path
 from typing import Any, Dict, cast
 
+from brain.paths import DATA_DIR as _DATA_DIR
 from brain.utils.failure_counter import record_failure
 
 
-# NOTE parents[3]: this module lives at brain/think/think_utils/selection/, one
-# level deeper than select_function.py (where these paths were defined with
-# parents[2]). parents[3] keeps them anchored at the same brain/data/ dir.
-_STATS_PATH = _Path(__file__).resolve().parents[3] / "data" / "decision_stats.json"
+# Learned decision stats are RUNTIME state and must resolve through brain.paths
+# (ORRIN_DATA_DIR-aware). The old __file__ anchoring read the live brain/data
+# tree even under test isolation, so a life's learned stats leaked into the
+# selector goldens (look_outward devalued by Run 6 flipped a pinned decision).
+_STATS_PATH = _DATA_DIR / "decision_stats.json"
 _STATS_CACHE: Dict[str, Any] = {"t": 0.0, "data": {}}
+# The capability manifest is a COMMITTED seed read from the repo tree on
+# purpose (parents[3]: this module lives one level deeper than the
+# select_function.py these paths came from) — it ships with the code.
 _CAPS_PATH = _Path(__file__).resolve().parents[3] / "data" / "capability_descriptions.json"
 _CAPS_CACHE: Dict[str, Any] = {"t": 0.0, "data": {}, "tags": {}}
 

@@ -37,6 +37,23 @@ _FINDING_EVENT_TYPES = frozenset({
 _MIN_FINDING_CHARS = 80
 
 
+def _cut(text: str, limit: int) -> str:
+    """F8c (RUN7_FIX_PLAN): cut a person-facing seed at a sentence or word
+    boundary, never a raw slice — Run 6 shipped 'QuadRF can s' mid-referent."""
+    t = str(text or "").strip()
+    if len(t) <= limit:
+        return t
+    head = t[:limit]
+    for sep in (". ", "! ", "? "):
+        i = head.rfind(sep)
+        if i >= limit // 2:
+            return head[: i + 1].strip()
+    i = head.rfind(" ")
+    if i >= limit // 2:
+        head = head[:i]
+    return head.rstrip() + "…"
+
+
 def _reunion_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """P3: the person just came back after an absence — the door event
     social_presence raised this cycle. A shared moment outranks any artifact;
@@ -105,7 +122,7 @@ def _artifact_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             continue
         return {
             "intent": "share_artifact",
-            "seed": f"I made something: {seed[:140]}",
+            "seed": f"I made something: {_cut(seed, 140)}",
             "referent": {"type": "effect", "handle": str(row.get("content_hash") or "")},
         }
     return None
@@ -134,7 +151,7 @@ def _finding_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         context["_last_shared_finding_id"] = str(e.get("id") or "")
         return {
             "intent": "share_finding",
-            "seed": f"I learned something: {text[:140]}",
+            "seed": f"I learned something: {_cut(text, 140)}",
             "referent": {"type": "memory", "handle": str(e.get("id") or "")},
         }
     return None
@@ -152,14 +169,14 @@ def _blocker_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if needs:
         return {
             "intent": "state_blocker",
-            "seed": f"I'm stuck on '{title[:80]}' — it needs a kind of act I "
+            "seed": f"I'm stuck on '{_cut(title, 80)}' — it needs a kind of act I "
                     f"haven't managed yet",
             "referent": {"type": "goal", "handle": str(goal.get("id") or title)},
         }
     if goal.get("_stalled"):
         return {
             "intent": "state_blocker",
-            "seed": f"I keep replanning '{title[:80]}' without getting traction",
+            "seed": f"I keep replanning '{_cut(title, 80)}' without getting traction",
             "referent": {"type": "goal", "handle": str(goal.get("id") or title)},
         }
     return None
@@ -180,7 +197,7 @@ def _question_kernel(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             continue
         return {
             "intent": "ask_grounded_question",
-            "seed": f"About '{title[:60]}': I'm still working out — {text[:120]}",
+            "seed": f"About '{_cut(title, 60)}': I'm still working out — {_cut(text, 120)}",
             "referent": {"type": "milestone", "handle": text[:80]},
         }
     return None

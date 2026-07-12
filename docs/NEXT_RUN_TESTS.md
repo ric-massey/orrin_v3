@@ -59,6 +59,56 @@ per-candidate `value` component in the selection reason payload.
 
 ---
 
+## Run 6 result — 2026-07-10/11 life: **FAILED** (S10 🔴 avoidance 🔴 convergence 🔴 S7 🔴 · S9 🟡 · S8/meters/aspirations ✅)
+
+Sixth acceptance run (clean reset incl. habituation, commit `e4abfe7`,
+**13,341 cycles in ~15.5 h**, launch #0 only, zero crashes, operator stop →
+graceful death). Full analysis + captured data:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-11-run/`.
+
+**Verdict: gate NOT passed — but the failure changed species.** Every Run-6 fix
+is mechanically alive: value authority demoted `look_outward` from 4,899 picks to
+**88 (0.66 %, EMA 0.212)** — the first visible learned-value kill in six runs;
+commitment rotation fired (8+ goals held the driver slot; Run 5: one at 99.9 %);
+the `bookkeeping` ledger class landed (146 rows, `symbolic_artifact` 116 → 4);
+both meter bugs are fixed (`satiety_closures` **17**, habituation cleared at
+reset). And the life still ended in a **92 % committed-goal monopoly**
+(`self_understanding`), because a new pathology fed the new machinery poisoned
+reward: `fetch_and_read` re-read one RSS item all life, each re-written memo's
+fresh timestamp footer defeated the ledger's content-hash dedup, and **387
+credited rewrites of one memo** pumped the incumbent's commitment `value_ema` to
+0.8142 — the monopoly relocated *into the learned value signal itself* (Run 4:
+candidate generator → Run 5: static commit sort → Run 6: value EMA).
+
+- **S9** 🟡 — 2 of 3 observables pass (`look_outward` collapse; no mature
+  <0.3-reward action in top-3); `corr(EMA, share)` = **−0.03**, still not > 0.
+- **S10** 🔴 — selection layer diverse (top action 18.1 %), commitment layer 92 %;
+  `genuine_contact` never committed, **0 contributions** (2nd run at 0).
+- **Avoidance release** 🔴 — max streak 68 → **27** (release fires), but the
+  released goal wins the next commit sort on its pumped value: an
+  avoid→release→re-commit orbit. Needs a re-commit cooldown.
+- **Credit convergence** 🔴 — most-committed (`self_understanding`, 2) ≠
+  top-credited (`output_producing`, 7); credit keys off the committed goal, not
+  content — a *world-knowledge* memo paid `self_understanding` 403× while
+  `world_knowledge` earned 0.
+- **Holds:** S8 desyncs **0** (2nd consecutive clean run) ✅; all 4 aspirations
+  survived ✅; S5 readable-only 0.309 ✅ (caveat: the looped memo); **S7 reuse 2
+  (< 8) 🔴 REGRESSED**, syntheses 0, funnel still candidate-only.
+
+**Re-test gate (Run 7):** (a) commit + stage the `fetch_and_read` URL-dedup fix
+(`FETCH_REREAD_LOOP_FIX_2026-07-11.md` — built post-mortem, did not run in this
+life); (b) **anti-pump credit**: normalize volatile footers out of the ledger
+content hash and decay repeat-credit per artifact path (novelty < ε must gate
+credit, not just score); (c) **content-keyed credit** so an artifact pays the
+aspiration whose domain it serves; (d) **re-commit cooldown** on avoidance
+release; (e) fix or explain `write_exemplar` — **12× EACCES on the quality-golden
+exemplars dir from minute 13 of life** (writable post-mortem; add errno capture +
+a boot writability probe) — until then the quality standard cannot grow. Pass =
+no committed goal > 60 %, reuse ≥ 8 again, `genuine_contact` > 0, and the same
+artifact path credited ≤ ~3× per life.
+
+---
+
 ## Run 3 result — 2026-07-03 life: **FAILED** (6 ✅ 5 ✅ 7 🟡 8 🔴 9 ❓ — re-test required)
 
 Third acceptance run (clean newborn via `reset_orrin.py` at 21:55 EDT,

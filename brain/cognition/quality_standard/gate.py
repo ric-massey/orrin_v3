@@ -30,7 +30,9 @@
 # result. See the package header (__init__.py) for the full safety lineage.
 from __future__ import annotations
 
+import os
 import re
+import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -83,6 +85,45 @@ def regression_smoke() -> Tuple[bool, str]:
         if v.ok:
             return False, f"anti_exemplar_passed:{p.name}"
     return True, "ok"
+
+
+def _oserror_diagnostics(directory: Path, exc: OSError) -> Dict[str, Any]:
+    """F6a (RUN7_FIX_PLAN): twelve identical write_exemplar failures taught us
+    nothing because only the message survived. Capture errno + writability +
+    mode/ownership of the target dir and its parent alongside the exception."""
+    diag: Dict[str, Any] = {"errno": getattr(exc, "errno", None),
+                            "exception": f"{type(exc).__name__}: {exc}"[:200]}
+    for label, p in (("dir", directory), ("parent", directory.parent)):
+        try:
+            diag[f"{label}_path"] = str(p)
+            diag[f"{label}_exists"] = p.exists()
+            diag[f"{label}_w_ok"] = os.access(p, os.W_OK)
+            st = p.stat()
+            diag[f"{label}_mode"] = oct(st.st_mode)
+            diag[f"{label}_uid"] = st.st_uid
+            diag[f"{label}_gid"] = st.st_gid
+        except OSError as st_exc:
+            diag[f"{label}_stat_error"] = str(st_exc)[:120]
+    return diag
+
+
+def writability_probe() -> Tuple[bool, Dict[str, Any]]:
+    """F6b: touch + unlink a probe file in the exemplars dir. Side-effect-free
+    on success. Returns (ok, diagnostics). Run at boot — a dead promotion path
+    must scream on cycle 1, not minute 13 in a log nobody reads — and reused by
+    problem-refocus as the verified re-attempt for write-failure recovery (C2)."""
+    probe = paths.QUALITY_EXEMPLARS_DIR / f"_probe_{uuid.uuid4().hex[:8]}.tmp"
+    try:
+        paths.QUALITY_EXEMPLARS_DIR.mkdir(parents=True, exist_ok=True)
+        probe.write_text("probe", encoding="utf-8")
+        probe.unlink()
+        return True, {}
+    except OSError as exc:
+        try:
+            probe.unlink()
+        except OSError:
+            pass
+        return False, _oserror_diagnostics(paths.QUALITY_EXEMPLARS_DIR, exc)
 
 
 def _slug(text: str, content_hash: str) -> str:
@@ -166,8 +207,11 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
                 continue
             dest.write_text(text if text.endswith("\n") else text + "\n", encoding="utf-8")
         except OSError as exc:
+            diag = _oserror_diagnostics(paths.QUALITY_EXEMPLARS_DIR, exc)
             record_failure("quality_standard.gate.write_exemplar", exc)
-            revisions.mark(cid, "pending", apply_error=str(exc))
+            revisions.mark(cid, "pending", apply_error=str(exc), diagnostics=diag)
+            log_activity(f"[quality_standard] write_exemplar failed for {cid} — "
+                         f"diagnostics: {diag}")
             continue
 
         # Smoke check: catches a broken fixture file / IO error only — by the §P2

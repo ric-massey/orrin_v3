@@ -53,6 +53,17 @@ NEAR_DUP_SIM = 0.9        # standard near-dup threshold for text shingles
 NEAR_DUP_RESIDUAL = 0.15  # a near-dup stays on a slope, not a hard cliff like exact-dup
 MIN_ARTIFACT_CHARS = 120  # set between the failure case (~40-char affect strings) and a real finding
 
+# ── F2 (RUN7_FIX_PLAN_2026-07-11): anti-pump credit ─────────────────────────────
+# Run 6: one memo body re-recorded 387× under hash-fresh timestamp footers pumped
+# a committed goal's value EMA to 0.8142. Novelty existed but never GATED credit
+# (0.002-novelty rows paid full structural sig). These three knobs make the
+# credit substrate honest without touching the intentional near-dup slope.
+NOVELTY_CREDIT_FLOOR = 0.05   # below this, the row is recorded but treated as dedupe
+_NOVELTY_RAMP_CEIL = 0.30     # in [floor, ceil) sig scales by nov/ceil — pays proportionally
+# F2c: the n-th credited write of the same artifact path earns a decayed share;
+# beyond the schedule it earns nothing ("same path credited ≤ ~3× per life").
+_PATH_CREDIT_DECAY = (1.0, 0.5, 0.25)
+
 # kinds that correspond to a real outward act already taggable from the activity log
 EFFECT_KINDS = frozenset({
     "file_write", "tool_written", "tool_run_effect", "note_novel",
@@ -100,6 +111,9 @@ _artifact_names: Dict[str, str] = {}                        # name -> content_ha
 # nothing could resolve a path back to the hash the ledger credits. Persisted
 # implicitly — rebuilt at hydrate from each row's metadata.path.
 _path_hash: Dict[str, str] = {}                             # normalized path -> content_hash
+# F2c: normalized path -> credited-write count, rebuilt in _hydrate from row
+# metadata so the per-path decay survives restarts within a life.
+_path_credit_counts: Dict[str, int] = {}
 _hash_goal: Dict[str, str] = {}                             # content_hash -> goal_id (back-reference)
 _hash_kind: Dict[str, str] = {}                             # content_hash -> effect kind (for the quality-standard proposer)
 # Tier-3 re-use credits awaiting payout. Re-use is detected wherever an artifact is
@@ -147,11 +161,19 @@ _TEMPLATE_RE = re.compile(
     r"\b(todo|fixme|placeholder|lorem ipsum|note to self|nothing worth noting)\b",
     re.IGNORECASE,
 )
+# F2a: ISO-date/time-shaped tokens are volatile — a producer that stamps "now"
+# into its output mints a fresh hash per write and defeats the exact-dup gate
+# (the Run 6 memo footer). Stripped before hashing for EVERY producer, so an
+# identical body dedupes no matter who stamped it.
+_VOLATILE_STAMP_RE = re.compile(r"\b\d{4}-\d{2}-\d{2}[ t]?\d{0,2}:?\d{0,2}z?\b")
 
 
 def _normalize(content: str) -> str:
-    """Whitespace/case-normalize so trivial reformatting can't dodge the dedup."""
-    return _WS_RE.sub(" ", str(content or "")).strip().lower()
+    """Whitespace/case-normalize so trivial reformatting can't dodge the dedup,
+    and strip volatile date/time stamps so they can't mint a fresh hash (F2a)."""
+    s = _WS_RE.sub(" ", str(content or "")).strip().lower()
+    s = _VOLATILE_STAMP_RE.sub(" ", s)
+    return _WS_RE.sub(" ", s).strip()
 
 
 def _norm_path(p: Any) -> Optional[str]:
@@ -324,6 +346,14 @@ def _hydrate() -> None:
                             np = _norm_path(meta_top["path"])
                             if np:
                                 _path_hash[np] = h
+                                # F2c: replay credited writes per path so the
+                                # repeat-credit decay survives a restart.
+                                try:
+                                    if (not row.get("dedupe")
+                                            and float(row.get("significance") or 0.0) > 0.0):
+                                        _path_credit_counts[np] = _path_credit_counts.get(np, 0) + 1
+                                except (TypeError, ValueError):
+                                    pass
                         # re-use counts are persisted as their own rows
                         if row.get("kind") == "reuse":
                             _reuse_counts[h] = _reuse_counts.get(h, 0) + 1
@@ -436,6 +466,7 @@ def record_effect(
             _artifact_names[str(_artifact_name)] = content_hash
         # A2.1: index the written file's path → hash (dedupe rows too — a
         # rewrite still leaves the file resolvable to its credited content).
+        _np: Optional[str] = None
         if isinstance(metadata, dict) and metadata.get("path"):
             _np = _norm_path(metadata["path"])
             if _np:
@@ -445,7 +476,19 @@ def record_effect(
         # An explicit caller-supplied novelty still can't beat the exact-dup gate.
         if is_dup:
             nov = 0.0
-        sig = 0.0 if nov <= 0.0 else _structural_significance(kind, raw, normalized, metadata)
+        # F2b: novelty GATES credit. Below the floor → recorded, uncredited
+        # (Run 6's 0.002-novelty rows paid 0.314 each); on the ramp the
+        # intentional near-dup slope survives but pays proportionally.
+        # tool_run_effect is exempt from the FLOOR (never the exact-dup gate or
+        # the ramp): a sandbox-verified check is an event, not content a volatile
+        # token can mint, and produce_and_check's per-goal closure contract
+        # ("two goals synthesizing the same check each get their own credited
+        # effect") needs the row credited — the ramp already de-fangs repeat
+        # farming (a near-dup check pays ~0.09, not 0.6).
+        _floored = nov < NOVELTY_CREDIT_FLOOR and kind != "tool_run_effect"
+        sig = 0.0 if (nov <= 0.0 or _floored) else _structural_significance(kind, raw, normalized, metadata)
+        if sig > 0.0 and nov < _NOVELTY_RAMP_CEIL:
+            sig *= nov / _NOVELTY_RAMP_CEIL
         # AR1 rate cap — symbolic credit beyond the rolling window earns nothing.
         if kind == "symbolic_artifact" and sig > 0.0:
             now_m = time.monotonic()
@@ -460,6 +503,7 @@ def record_effect(
         # The active goal's definition of done is the local standard of good.
         # For prose-like output, structural quality alone is insufficient when
         # the content has no detectable relationship to the inhabited goal.
+        alignment: Optional[float] = None
         if sig > 0.0 and isinstance(context, dict) and kind in {
             "tracked_work", "note_novel", "file_write", "external_post", "message_answered",
         }:
@@ -479,6 +523,20 @@ def record_effect(
                 except Exception as exc:
                     record_failure("effect_ledger.goal_alignment", exc)
 
+        # F2c: repeat-credit decay per artifact path. The n-th credited write of
+        # the same file pays ×1/×0.5/×0.25 and nothing after — rewriting one memo
+        # can't be a career. tracked_work is exempt: a manuscript legitimately
+        # accumulates many sections at ONE path, records only the new section's
+        # text, and its rewrite pump is already closed by the novelty ramp.
+        if sig > 0.0 and _np and kind != "tracked_work":
+            _n_prior = _path_credit_counts.get(_np, 0)
+            if _n_prior >= len(_PATH_CREDIT_DECAY):
+                sig = 0.0
+                metadata = dict(metadata or {})
+                metadata["path_credit_capped"] = True
+            else:
+                sig *= _PATH_CREDIT_DECAY[_n_prior]
+
         row = EffectRow(
             ts=now_iso_z(),
             cycle=_cycle_from(context, cycle),
@@ -488,7 +546,7 @@ def record_effect(
             significance=round(float(sig), 4),
             goal_id=str(goal_id) if goal_id else None,
             char_len=len(raw),
-            dedupe=bool(is_dup or nov <= 0.0),
+            dedupe=bool(is_dup or nov <= 0.0 or _floored),
             metadata=dict(metadata or {}) or None,
         )
         _append_row(row)
@@ -505,6 +563,9 @@ def record_effect(
         dq.append((content_hash, normalized))
 
         _credited = not (row.dedupe or row.significance <= 0.0)
+        # F2c: only *credited* writes advance the per-path decay schedule.
+        if _credited and _np:
+            _path_credit_counts[_np] = _path_credit_counts.get(_np, 0) + 1
         # F1c (2026-07-05 findings): expose this effect's VALUE to the caller's
         # lane so learning isn't conscious-lane-only — the executive lane paid a
         # flat per-step reward and compose_section's EMA sat neutral through
@@ -546,7 +607,11 @@ def record_effect(
             # driver slot and pursuit that never lands loses it.
             try:
                 from brain.cognition.planning.commitment_value import note_goal_credit
-                note_goal_credit(gid, row.significance)
+                # F3a/F5: the EMA sample is weighted by how much the content
+                # actually relates to the goal, and by content diversity — a
+                # 0.14-aligned memo nudges value toward ~0.54, not 0.81.
+                note_goal_credit(gid, row.significance,
+                                 alignment=alignment, content_hash=content_hash)
             except Exception as exc:
                 record_failure("effect_ledger.note_goal_credit", exc)
             if kind == "tracked_work":
@@ -557,6 +622,20 @@ def record_effect(
                     )
                 except Exception as exc:
                     record_failure("effect_ledger.record_tracked_progress", exc)
+        # F3b (RUN7_FIX_PLAN): aspiration credit routes by CONTENT, not by which
+        # goal happened to hold the driver slot at write time — the QuadRF memo
+        # pays world_knowledge even when a self_understanding goal wrote it.
+        if kind in {"file_write", "note_novel", "tracked_work",
+                    "external_post", "message_answered"}:
+            try:
+                from brain.cognition.intrinsic_objectives import (
+                    mark_objective_contribution, route_artifact_drive,
+                )
+                _routed_drive = route_artifact_drive(raw)
+                if _routed_drive:
+                    mark_objective_contribution(_routed_drive)
+            except Exception as exc:
+                record_failure("effect_ledger.route_aspiration_credit", exc)
         # AR4: queue the production credit for finalize_cycle to pay on the live
         # cycle context (symbolic producers can't persist affect themselves).
         if kind == "symbolic_artifact":
@@ -835,6 +914,7 @@ def reset_for_tests() -> None:
         _tracked_progress.clear()
         _artifact_names.clear()
         _path_hash.clear()
+        _path_credit_counts.clear()
         _hash_goal.clear()
         _hash_kind.clear()
         _pending_reuse.clear()

@@ -59,6 +59,22 @@ _AVOID_GRACE = 2           # a lone detection doesn't move commitment; a streak 
 _RELEASE_DECAY = 0.90      # per-pull recovery decay while NOT holding the driver slot
 _GOALS_CAP = 200           # bound the per-goal signal table
 
+# F4 (RUN7_FIX_PLAN_2026-07-11): re-commit cooldown. Run 6's avoid→release→
+# re-commit orbit existed because avoidance was only a score penalty that decayed
+# ×0.9/pull once the slot was lost — a pumped incumbent re-won as soon as the
+# streak decayed. Losing the slot while the streak is still high (displaced BY
+# avoidance, not ordinary rotation) now stamps a temporal block: the goal is
+# ineligible for the driver slot, unconditionally — credit does NOT clear it and
+# the incumbent bonus does not apply — until the block decrements to zero.
+_RECOMMIT_AVOID_TRIGGER = 15    # ¾ of _AVOID_FULL
+_RECOMMIT_BLOCK_PULLS = 300     # pulls of driver-slot ineligibility
+
+# F3a: real work on the goal is counter-evidence to avoidance only when the
+# work actually relates to the goal; unrelated output is not.
+_AVOID_RELIEF_MIN_ALIGNMENT = 0.3
+# F5: recent credited content hashes kept per goal for diversity weighting.
+_CREDIT_HASH_WINDOW = 20
+
 
 def _gid(goal: Any) -> str:
     if not isinstance(goal, dict):
@@ -97,15 +113,31 @@ def _prune(goals: Dict[str, Any]) -> None:
 def note_driver_selected(chosen_id: str, candidate_ids: Iterable[str]) -> None:
     """Called by goal_io once per committed-goal pull with the goal holding the
     driver slot. The holder accrues staleness (reset only by a credited effect);
-    every other candidate's penalties DECAY — the release/recovery path."""
+    every other candidate's penalties DECAY — the release/recovery path. Also
+    runs the F4 re-commit cooldown: active blocks pay one pull, and a driver
+    displaced while its avoid streak was still high gets a fresh block."""
     chosen = str(chosen_id or "")
     if not chosen:
         return
     try:
         with modify_json(_SIGNALS_FILE, dict) as d:
             goals = d.setdefault("goals", {})
+            prev = str(d.get("driver") or "")
             d["driver"] = chosen
             now = time.time()
+            # F4: decrement every active block one pull (before any fresh stamp).
+            for r in goals.values():
+                if isinstance(r, dict):
+                    b = float(r.get("recommit_block_pulls", 0.0) or 0.0)
+                    if b > 0.0:
+                        r["recommit_block_pulls"] = max(0.0, b - 1.0)
+            # F4: displaced by avoidance (streak still ≥ trigger when the slot
+            # was lost, checked before this pull's decay) → temporal block.
+            if prev and prev != chosen:
+                pr = goals.get(prev)
+                if (isinstance(pr, dict)
+                        and float(pr.get("avoid_streak", 0.0)) >= _RECOMMIT_AVOID_TRIGGER):
+                    pr["recommit_block_pulls"] = float(_RECOMMIT_BLOCK_PULLS)
             row = _row(goals, chosen)
             row["stale_cycles"] = float(row.get("stale_cycles", 0.0)) + 1.0
             row["last_ts"] = now
@@ -140,25 +172,46 @@ def note_avoidance(goal_id: str, weight: float = 1.0) -> None:
         record_failure("commitment_value.note_avoidance", exc)
 
 
-def note_goal_credit(goal_id: str, significance: float) -> None:
+def note_goal_credit(goal_id: str, significance: float, *,
+                     alignment: Optional[float] = None,
+                     content_hash: Optional[str] = None) -> None:
     """A credited (novel, significant) effect landed for this goal — the "real
-    action" signal. Folds into the value EMA, clears staleness, and halves the
-    avoidance streak (real work on the goal is the strongest counter-evidence)."""
+    action" signal. Folds into the value EMA — weighted by how much the content
+    actually relates to the goal (F3a) and by content diversity (F5), so a
+    barely-related or single-family stream of output can't pump value — and
+    clears staleness (the goal DID act). The avoidance streak halves only when
+    alignment ≥ 0.3: unrelated output is not counter-evidence to avoidance.
+    Never touches an active recommit block (F4)."""
     gid = str(goal_id or "")
     if not gid:
         return
     try:
-        sample = max(0.0, min(1.0, 0.5 + float(significance or 0.0)))
+        sig = max(0.0, min(1.0, float(significance or 0.0)))
     except (TypeError, ValueError):
-        sample = 0.5
+        sig = 0.0
+    try:
+        align = 1.0 if alignment is None else max(0.0, min(1.0, float(alignment)))
+    except (TypeError, ValueError):
+        align = 1.0
     try:
         with modify_json(_SIGNALS_FILE, dict) as d:
             goals = d.setdefault("goals", {})
             row = _row(goals, gid)
+            # F5: distinct-hash share over the last credited effects. With the
+            # ledger's exact-dup gate live this rarely binds — it exists so the
+            # NEXT undiscovered volatile-token trick still can't buy a monopoly
+            # from a single content family.
+            hashes = [h for h in (row.get("recent_hashes") or []) if isinstance(h, str)]
+            if content_hash:
+                hashes = (hashes + [str(content_hash)])[-_CREDIT_HASH_WINDOW:]
+                row["recent_hashes"] = hashes
+            diversity = (len(set(hashes)) / len(hashes)) if hashes else 1.0
+            sample = max(0.0, min(1.0, 0.5 + sig * align * diversity))
             old = float(row.get("value_ema", 0.5))
             row["value_ema"] = round((1.0 - _VALUE_ALPHA) * old + _VALUE_ALPHA * sample, 4)
             row["stale_cycles"] = 0.0
-            row["avoid_streak"] = round(float(row.get("avoid_streak", 0.0)) * 0.5, 3)
+            if alignment is None or align >= _AVOID_RELIEF_MIN_ALIGNMENT:
+                row["avoid_streak"] = round(float(row.get("avoid_streak", 0.0)) * 0.5, 3)
             row["last_ts"] = time.time()
             _prune(goals)
     except Exception as exc:
@@ -205,7 +258,10 @@ def commit_score(goal: Dict[str, Any], *, tier_weight: int, priority_rank: int) 
         adjust = (_W_VALUE * (value - 0.5)
                   - _W_STALE * stale_norm
                   - _W_AVOID * avoid_norm)
-        if gid == str(d.get("driver") or ""):
+        # F4: no incumbency for a blocked goal — the block is temporal and
+        # unconditional, hysteresis be damned.
+        if gid == str(d.get("driver") or "") and float(
+                (row or {}).get("recommit_block_pulls", 0.0) or 0.0) <= 0.0:
             adjust += _W_INCUMBENT
         return base + adjust
     except Exception as exc:
@@ -237,6 +293,15 @@ def order_committable(
         ),
         reverse=True,
     )
+    # F4: a directional under an active re-commit block is ineligible for the
+    # driver slot — it stays a signpost and the next-best directional drives.
+    try:
+        _tbl = _load_signals().get("goals", {})
+        blocked = {g for g, r in _tbl.items() if isinstance(r, dict)
+                   and float(r.get("recommit_block_pulls", 0.0) or 0.0) > 0.0}
+    except Exception as exc:
+        record_failure("commitment_value.order_committable.blocked", exc)
+        blocked = set()
     result: List[Dict[str, Any]] = []
     seen_directional = False
     driver_id = ""
@@ -245,7 +310,7 @@ def order_committable(
         is_directional = tier == "long_term" and bool(
             g.get("directional") or g.get("never_complete"))
         if is_directional:
-            if seen_directional:
+            if seen_directional or _gid(g) in blocked:
                 continue
             seen_directional = True
             driver_id = _gid(g)

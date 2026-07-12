@@ -253,6 +253,10 @@ def _migrate_legacy_manifest() -> None:
 
 def load_manifest() -> List[Dict[str, Any]]:
     ensure_tree()
+    # F8a (RUN7_FIX_PLAN): on a fresh life the manifest legitimately doesn't
+    # exist until the first save_manifest — an empty list, not a failure row.
+    if not MANIFEST_FILE.exists():
+        return []
     try:
         data = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
         return data if isinstance(data, list) else []

@@ -37,6 +37,13 @@ from brain.utils.timeutils import now_iso_z
 from brain.cog_memory.working_memory import update_working_memory
 from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
+# RUN7_FIX_PLAN F7 (wiring C1–C3) — the diagnostic-evidence primitives live in
+# diagnosis.py: verified recovery probes (C2), the persisted recurrence count
+# that refutes "transient" at 3 episodes (C3), and internal-failure-key
+# detection so repair on Orrin's own code routes inward, not to the web (C1).
+from brain.cognition.planning.diagnosis import (
+    RECURRENCE_ESCALATE, bump_recurrence, is_internal_failure, recovery_probe,
+)
 
 _log = get_logger(__name__)
 
@@ -62,6 +69,12 @@ _FIX_GOAL_WEIGHT_CAP = 0.4
 
 def _cap_label(capability: str) -> str:
     return _CAP_LABELS.get(capability, capability)
+
+
+def _is_internal_failure(capability: str) -> bool:
+    """C1: the broken thing is Orrin's own machinery (never a labelled tool)."""
+    cap = str(capability or "")
+    return cap not in _CAP_LABELS and is_internal_failure(cap)
 
 
 def _cycle(context: Dict[str, Any]) -> int:
@@ -151,9 +164,12 @@ def _capability_healthy(capability: str, ap: Optional[Dict[str, Any]] = None) ->
             return _llm_fail_total() <= int(ap.get("detect_total", 0))
         return True
 
-    # Generic site: healthy iff its count hasn't grown past the detection point.
+    # Generic site, mid-episode (C2): a verified re-attempt is required before
+    # declaring "working again" — the count not growing means nothing when
+    # nothing re-attempts. No probe → recovery unverifiable → not recovered
+    # (the episode ends honestly in a workaround instead).
     if ap is not None:
-        return _site_fail_totals().get(capability, 0) <= int(ap.get("detect_total", 0))
+        return recovery_probe(capability) is True
     return True
 
 
@@ -251,6 +267,25 @@ def _build_fix_goal(
     # Diagnostic plan = the abduced candidate causes, ranked best-first. Each step
     # names a cause to check and whether to try a fix or route around it. Falls
     # back to a generic two-step probe if abduction produced nothing.
+    if _is_internal_failure(capability):
+        # C1: the broken thing is Orrin's own code — the plan looks INWARD
+        # (search_own_files / recorded diagnostics), never at the web.
+        goal["driven_by"] = "self_understanding"
+        goal["spec"]["driven_by"] = "self_understanding"
+        steps = [
+            f"Find {capability} in my own source (search_own_files) and read "
+            f"the failing function.",
+            "Check the recorded failure details (errno, diagnostics) against "
+            "what that code assumes about its environment.",
+            "Decide whether this is something I can fix in my own machinery "
+            "or must work around.",
+        ]
+        try:
+            from brain.cognition.planning.goals import set_goal_plan
+            set_goal_plan(goal, steps)
+        except Exception as _e:
+            record_failure("problem_refocus._build_fix_goal", _e)
+        return goal
     if hypotheses:
         steps = [
             (f"Check if it's {h['cause']} — "
@@ -306,6 +341,8 @@ def _start_fix(
         "hyp_tries": 0,             # cycles spent on the current candidate's fix
         "started_cycle": _cycle(context),
         "detect_total": int(detect_total),
+        # C3: how many episodes this same failure key has now caused, ever.
+        "recurrences": bump_recurrence(capability),
     }
     _lead = hypotheses[0]["cause"] if hypotheses else "an unknown cause"
     if _is_tool:
@@ -365,6 +402,11 @@ def _advance_fix(context: Dict[str, Any], ap: Dict[str, Any]) -> Dict[str, Any]:
         return _finish(context, ap, workaround=False)
 
     ap["attempts"] = int(ap.get("attempts", 0)) + 1
+
+    # C3: at the third episode for the same failure key the "transient"
+    # hypothesis is refuted — stop re-diagnosing, escalate to a workaround.
+    if int(ap.get("recurrences", 0)) >= RECURRENCE_ESCALATE:
+        return _finish(context, ap, workaround=True)
 
     # ── Abductive repair walk ────────────────────────────────────────────────
     # Step through the ranked candidate causes. For a confirmed FIXABLE cause,
@@ -465,10 +507,18 @@ def _finish(context: Dict[str, Any], ap: Dict[str, Any], workaround: bool) -> Di
             parked.pop(k, None)
         parked["last_updated"] = now_iso_z()
 
-        note = (
-            f"Couldn't fix {label} myself — working around it. "
-            f"Resuming '{str(ap.get('parked_title') or 'my goal')[:60]}' a different way."
-        )
+        recurrences = int(ap.get("recurrences", 0))
+        if recurrences >= RECURRENCE_ESCALATE:
+            # C3: honest wording — this is a recurring problem, not a transient.
+            note = (
+                f"{label} has now failed {recurrences} separate times — this is "
+                f"not transient, and I can't fix it myself. Working around it."
+            )
+        else:
+            note = (
+                f"Couldn't fix {label} myself — working around it. "
+                f"Resuming '{str(ap.get('parked_title') or 'my goal')[:60]}' a different way."
+            )
         _release(context, 0.5, "problem_workaround")  # relief at finding a way
         event = "problem_workaround"
     else:

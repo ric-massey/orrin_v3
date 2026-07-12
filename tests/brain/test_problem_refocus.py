@@ -12,7 +12,18 @@
 #
 # Failure detection and capability health are seam-injected via monkeypatch so
 # no real LLM/network is touched.
+import pytest
+
 import brain.cognition.planning.problem_refocus as pr
+
+
+@pytest.fixture(autouse=True)
+def _fresh_recurrence(tmp_path, monkeypatch):
+    """C3 (RUN7_FIX_PLAN) persists a per-life recurrence count per failure key;
+    each test here is its own life, so the counter must not leak across tests
+    (three llm episodes in this file would otherwise escalate the fourth)."""
+    import brain.cognition.planning.diagnosis as diag
+    monkeypatch.setattr(diag, "_RECURRENCE_FILE", tmp_path / "problem_recurrence.json")
 
 
 def _ctx(goal_title="Research black holes", **extra):

@@ -62,9 +62,12 @@ def _write_research_memo(topic: str, body: str, ctx: Dict[str, Any],
         memo_dir = GOALS_DIR / "artifacts" / re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64]
         memo_dir.mkdir(parents=True, exist_ok=True)
         path = memo_dir / f"memo_{slug}.md"
+        # F2a (RUN7_FIX_PLAN): no timestamp in the footer — a volatile stamp
+        # inside the hashed content minted a fresh hash per minute and defeated
+        # the ledger's exact-dup gate 373× in Run 6. The file's mtime carries
+        # the time; the ledger also strips date/time tokens before hashing.
         content = (f"# Research memo: {topic}\n\n{str(body).strip()}\n\n"
-                   f"---\nsource: {source} · "
-                   f"{time.strftime('%Y-%m-%d %H:%MZ', time.gmtime())}\n")
+                   f"---\nsource: {source}\n")
         from brain.agency.effect_ledger import record_effect
         row = record_effect(
             "file_write", content,
@@ -148,6 +151,10 @@ def _is_concrete_topic(text: str) -> bool:
 _INTERNAL_TEXT_RE = re.compile(
     r"\d{4}-\d{2}-\d{2}"            # ISO dates from generated goal titles
     r"|[\[\]]|source=|https?://"     # provenance wrappers / URLs
+    # C1 (RUN7_FIX_PLAN): a dotted internal module path (a failure-counter site
+    # like quality_standard.gate.write_exemplar) names Orrin's own code — Run 6
+    # episode 11 web-searched his own internal bug. Never a web query.
+    r"|\b[a-z_][a-z0-9_]*(?:\.[a-z0-9_]+){2,}\b"
     r"|\b(housekeeping|snapshot|telemetry|micro-?goal|subgoal|shadow question)\b",
     re.IGNORECASE,
 )

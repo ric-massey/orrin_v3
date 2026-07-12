@@ -600,6 +600,42 @@ def aspiration_credit_value(driven_by: str) -> Optional[float]:
     return round(0.6 * share + 0.4 * recency, 4)
 
 
+# F3b (RUN7_FIX_PLAN_2026-07-11): content-keyed aspiration routing. Aspiration
+# credit used to key off whichever goal held the driver slot at write time, so a
+# world-knowledge memo written under a self_understanding commitment paid the
+# wrong direction all life. A credited artifact is classified against the four
+# aspiration domains and the argmax above the floor receives the drive credit.
+_ROUTE_MIN_RELEVANCE = 0.1     # ≥2 domain-keyword hits at typical lens sizes
+_MIN_ROUTABLE_CHARS = 40
+
+
+def route_artifact_drive(text: Any) -> Optional[str]:
+    """Classify a credited artifact's CONTENT against the four aspiration
+    domains (goal_lens.relevance against each domain's title+keyword lens);
+    return the drive of the argmax aspiration above the floor, else None."""
+    body = str(text or "")
+    if len(body.strip()) < _MIN_ROUTABLE_CHARS:
+        return None
+    try:
+        from brain.cognition.goal_lens import _tokens, relevance
+    except Exception as exc:
+        record_failure("intrinsic_objectives.route_artifact_drive.import", exc)
+        return None
+    best_drive: Optional[str] = None
+    best = 0.0
+    for title, drive in _ASPIRATIONS:
+        kws = _ASPIRATION_KEYWORDS.get(title) or set()
+        lens = {"active": True, "tokens": _tokens(f"{title} {' '.join(sorted(kws))}")}
+        try:
+            r = relevance(lens, body)
+        except Exception as exc:
+            record_failure("intrinsic_objectives.route_artifact_drive", exc)
+            continue
+        if r > best:
+            best, best_drive = r, drive
+    return best_drive if best >= _ROUTE_MIN_RELEVANCE else None
+
+
 def _fairness_default_drive() -> str:
     """Demand of the most-starved aspiration (P3) — the new default for an untagged
     goal, so the path of least resistance stops being world_knowledge."""

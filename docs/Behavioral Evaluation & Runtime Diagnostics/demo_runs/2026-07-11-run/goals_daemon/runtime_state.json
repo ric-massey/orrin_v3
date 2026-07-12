@@ -1,0 +1,11 @@
+{
+  "last": {
+    "auto:deps-outdated": 1783771177.250616,
+    "auto:mypy-errors": 1783771979.1163242,
+    "auto:daily-snapshot:2026-07-11": 1783749599.9760342
+  },
+  "created_once": [
+    "auto:daily-snapshot:2026-07-10",
+    "auto:daily-snapshot:2026-07-11"
+  ]
+}

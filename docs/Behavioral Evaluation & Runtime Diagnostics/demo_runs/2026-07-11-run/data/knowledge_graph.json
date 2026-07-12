@@ -1,0 +1,4282 @@
+{
+  "entities": {
+    "1ecc7dba8bb8": {
+      "id": "1ecc7dba8bb8",
+      "name": "Orrin",
+      "type": "AI",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "ai",
+        "self",
+        "agent",
+        "cognitive"
+      ],
+      "properties": {
+        "role": "self",
+        "version": "v3"
+      },
+      "confidence": 1.0,
+      "never_decay": true,
+      "first_seen": "2026-07-10T20:48:40.470265Z",
+      "last_updated": "2026-07-10T20:48:40.470265Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "36b8e8bc1bef": {
+      "id": "36b8e8bc1bef",
+      "name": "Ric Massey",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "ric",
+        "ricmassey",
+        "user",
+        "person",
+        "human",
+        "creator"
+      ],
+      "properties": {
+        "role": "creator",
+        "username": "ricmassey",
+        "home": "/Users/ricmassey"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-10T20:48:40.470265Z",
+      "last_updated": "2026-07-10T20:48:40.470265Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "6402c1d600cc": {
+      "id": "6402c1d600cc",
+      "name": "Rics-MacBook-Air-3.local",
+      "type": "tool",
+      "aliases": [],
+      "tags": [
+        "computer",
+        "machine",
+        "hardware",
+        "darwin"
+      ],
+      "properties": {
+        "os": "Darwin 24.5.0",
+        "arch": "arm64",
+        "hostname": "Rics-MacBook-Air-3.local",
+        "load_1m": "6.0",
+        "process_count": "480",
+        "disk_used_pct": "95",
+        "time_of_day": "morning"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-10T20:48:40.470265Z",
+      "last_updated": "2026-07-11T12:15:57.128209Z",
+      "source": "bootstrap",
+      "mentions": 2669
+    },
+    "9220b4725352": {
+      "id": "9220b4725352",
+      "name": "orrin_v3",
+      "type": "project",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "project",
+        "brain",
+        "v3",
+        "python",
+        "ai",
+        "agent"
+      ],
+      "properties": {
+        "path": "/Users/ricmassey/orrin_v3",
+        "language": "Python"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-10T20:48:40.470265Z",
+      "last_updated": "2026-07-10T20:48:40.470265Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "d524605d0f85": {
+      "id": "d524605d0f85",
+      "name": "MacBook Air",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "macbook",
+        "air"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:48:40.470411Z",
+      "last_updated": "2026-07-10T20:48:40.470411Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "bfcd7e1585f5": {
+      "id": "bfcd7e1585f5",
+      "name": "Growth Growth",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "growth"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:48:41.514825Z",
+      "last_updated": "2026-07-11T12:03:22.557804Z",
+      "source": "spacy_propn",
+      "mentions": 88
+    },
+    "7a10f399752f": {
+      "id": "7a10f399752f",
+      "name": "afternoon",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "time",
+        "afternoon"
+      ],
+      "properties": {},
+      "confidence": 0.7316,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.198790Z",
+      "last_updated": "2026-07-11T02:00:00.545627Z",
+      "source": "long_memory_heuristic",
+      "mentions": 7
+    },
+    "b6fba500be5b": {
+      "id": "b6fba500be5b",
+      "name": "Hacker News",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "hacker",
+        "news",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.7399,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.237677Z",
+      "last_updated": "2026-07-10T20:53:36.265244Z",
+      "source": "long_memory_heuristic",
+      "mentions": 5
+    },
+    "86a28d88f007": {
+      "id": "86a28d88f007",
+      "name": "WiFi",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "wifi"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.237742Z",
+      "last_updated": "2026-07-11T12:15:19.977287Z",
+      "source": "long_memory_heuristic",
+      "mentions": 2440
+    },
+    "d19db96779be": {
+      "id": "d19db96779be",
+      "name": "UNTRUSTED source",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "untrusted",
+        "source"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.237804Z",
+      "last_updated": "2026-07-10T20:53:36.237804Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "18e7501046bd": {
+      "id": "18e7501046bd",
+      "name": "drones",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "drones"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.237820Z",
+      "last_updated": "2026-07-11T12:15:19.977747Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1231
+    },
+    "a81fecb038e8": {
+      "id": "a81fecb038e8",
+      "name": "teeth",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "teeth"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.251204Z",
+      "last_updated": "2026-07-10T20:53:36.251204Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "bb484fb85248": {
+      "id": "bb484fb85248",
+      "name": "spider silk",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "spider",
+        "silk"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.251229Z",
+      "last_updated": "2026-07-10T20:53:36.251229Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "89b505b3f366": {
+      "id": "89b505b3f366",
+      "name": "Hacker News] Snails'",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "hacker",
+        "snails",
+        "news"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.251282Z",
+      "last_updated": "2026-07-10T20:53:36.251282Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "4fd0653c4f2a": {
+      "id": "4fd0653c4f2a",
+      "name": "Cancel",
+      "type": "tool",
+      "aliases": [],
+      "tags": [
+        "tool",
+        "product",
+        "cancel"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.265257Z",
+      "last_updated": "2026-07-10T20:53:36.265257Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "e2416f8ff529": {
+      "id": "e2416f8ff529",
+      "name": "Mayor Mamdani",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "mayor",
+        "mamdani"
+      ],
+      "properties": {},
+      "confidence": 0.5862,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.265324Z",
+      "last_updated": "2026-07-10T20:53:36.265464Z",
+      "source": "long_memory_heuristic",
+      "mentions": 2
+    },
+    "163f1b1016a1": {
+      "id": "163f1b1016a1",
+      "name": "Protection Rules",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "rules",
+        "protection"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:53:36.265342Z",
+      "last_updated": "2026-07-10T20:53:36.265342Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "6554d9acca35": {
+      "id": "6554d9acca35",
+      "name": "wifi packets",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "wifi",
+        "packets",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "same",
+        "description": ""
+      },
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.323063Z",
+      "last_updated": "2026-07-11T12:15:19.815472Z",
+      "source": "definition",
+      "mentions": 405
+    },
+    "1e0e07f58dc6": {
+      "id": "1e0e07f58dc6",
+      "name": "wall - Jeff Geerling QuadRF",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "quadrf",
+        "jeff",
+        "org",
+        "geerling",
+        "wall"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416269Z",
+      "last_updated": "2026-07-11T12:15:19.977738Z",
+      "source": "fetch_and_read",
+      "mentions": 1626
+    },
+    "fadec7d3577b": {
+      "id": "fadec7d3577b",
+      "name": "Wireshark",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "wireshark"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416365Z",
+      "last_updated": "2026-07-11T12:15:19.977257Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "86ad89f306a8": {
+      "id": "86ad89f306a8",
+      "name": "Hackaday",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "date",
+        "hackaday"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416418Z",
+      "last_updated": "2026-07-11T12:15:19.977308Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "dfa963ef7faf": {
+      "id": "dfa963ef7faf",
+      "name": "Martin McCormick",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "martin",
+        "mccormick"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416438Z",
+      "last_updated": "2026-07-11T12:15:19.977332Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "46dcd4dd65b6": {
+      "id": "46dcd4dd65b6",
+      "name": "Moon",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "moon"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416455Z",
+      "last_updated": "2026-07-11T12:15:19.980160Z",
+      "source": "fetch_and_read",
+      "mentions": 806
+    },
+    "1a3f60cde435": {
+      "id": "1a3f60cde435",
+      "name": "antenna array",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "antenna",
+        "person",
+        "array"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416474Z",
+      "last_updated": "2026-07-11T12:15:19.977358Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "61485cee7e55": {
+      "id": "61485cee7e55",
+      "name": "Earth-Moon-Earth",
+      "type": "place",
+      "aliases": [],
+      "tags": [
+        "loc",
+        "moon",
+        "place",
+        "earth"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416495Z",
+      "last_updated": "2026-07-11T12:15:19.977376Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "54669547a225": {
+      "id": "54669547a225",
+      "name": "Martin",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "martin",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416511Z",
+      "last_updated": "2026-07-11T12:15:19.978826Z",
+      "source": "fetch_and_read",
+      "mentions": 1612
+    },
+    "9a8415159975": {
+      "id": "9a8415159975",
+      "name": "Dishy",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "dishy"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416526Z",
+      "last_updated": "2026-07-11T12:15:19.977449Z",
+      "source": "fetch_and_read",
+      "mentions": 806
+    },
+    "07db55ed85fa": {
+      "id": "07db55ed85fa",
+      "name": "SpaceX",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "spacex"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416540Z",
+      "last_updated": "2026-07-11T12:15:19.980283Z",
+      "source": "fetch_and_read",
+      "mentions": 1209
+    },
+    "1618398dfb8a": {
+      "id": "1618398dfb8a",
+      "name": "Starlink",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "starlink"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416554Z",
+      "last_updated": "2026-07-11T12:15:19.977427Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "045839ba74ed": {
+      "id": "045839ba74ed",
+      "name": "QuadRF",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "quadrf"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.416661Z",
+      "last_updated": "2026-07-11T12:15:19.980241Z",
+      "source": "fetch_and_read",
+      "mentions": 2439
+    },
+    "0b258603bf4d": {
+      "id": "0b258603bf4d",
+      "name": "source community",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "community",
+        "source"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417025Z",
+      "last_updated": "2026-07-11T12:15:19.977908Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "0284c6ac58cb": {
+      "id": "0284c6ac58cb",
+      "name": "tools",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "tools"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417164Z",
+      "last_updated": "2026-07-11T12:15:19.978489Z",
+      "source": "fetch_and_read",
+      "mentions": 806
+    },
+    "8d3a8dbf409a": {
+      "id": "8d3a8dbf409a",
+      "name": "hidden traffic",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "hidden",
+        "traffic"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417179Z",
+      "last_updated": "2026-07-11T12:15:19.978055Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "c981d125d1a5": {
+      "id": "c981d125d1a5",
+      "name": "software",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "software"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417366Z",
+      "last_updated": "2026-07-11T12:15:19.978254Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "85b9a29386ea": {
+      "id": "85b9a29386ea",
+      "name": "governments",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "governments"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417598Z",
+      "last_updated": "2026-07-11T12:15:19.978479Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "0abd414c18a2": {
+      "id": "0abd414c18a2",
+      "name": "inspiration",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "inspiration"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.417867Z",
+      "last_updated": "2026-07-11T12:15:19.978744Z",
+      "source": "fetch_and_read",
+      "mentions": 403
+    },
+    "ebc06d5fffa7": {
+      "id": "ebc06d5fffa7",
+      "name": "EME",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "eme",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.418671Z",
+      "last_updated": "2026-07-10T20:54:49.418671Z",
+      "source": "fetch_and_read:cooc",
+      "mentions": 1
+    },
+    "18a6de6a0925": {
+      "id": "18a6de6a0925",
+      "name": "Jul",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "jul"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.419199Z",
+      "last_updated": "2026-07-11T12:15:19.979918Z",
+      "source": "spacy_propn",
+      "mentions": 410
+    },
+    "accdc699a797": {
+      "id": "accdc699a797",
+      "name": "Raspberry Pi",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "pi",
+        "raspberry"
+      ],
+      "properties": {},
+      "confidence": 0.9794,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:54:49.419287Z",
+      "last_updated": "2026-07-11T12:15:19.980013Z",
+      "source": "spacy_propn",
+      "mentions": 403
+    },
+    "102e30ffbc1d": {
+      "id": "102e30ffbc1d",
+      "name": "packet analyzer",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "analyzer",
+        "concept",
+        "packet",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "computer program or computer hardware suc",
+        "description": ""
+      },
+      "confidence": 0.7698,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:55:58.519580Z",
+      "last_updated": "2026-07-10T21:07:33.928369Z",
+      "source": "definition",
+      "mentions": 8
+    },
+    "697b2c32cb69": {
+      "id": "697b2c32cb69",
+      "name": "packet capture",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "capture",
+        "concept",
+        "packet",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "process",
+        "description": ""
+      },
+      "confidence": 0.7698,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:55:58.519663Z",
+      "last_updated": "2026-07-10T21:07:33.928445Z",
+      "source": "definition",
+      "mentions": 8
+    },
+    "9c696545588c": {
+      "id": "9c696545588c",
+      "name": "Wikipedia/Packet",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "packet",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:55:58.584999Z",
+      "last_updated": "2026-07-10T21:07:33.958879Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "0f2f1adb8c6d": {
+      "id": "0f2f1adb8c6d",
+      "name": "analyzer",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "analyzer"
+      ],
+      "properties": {},
+      "confidence": 0.6979,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:55:58.585558Z",
+      "last_updated": "2026-07-10T21:07:33.901596Z",
+      "source": "web_research",
+      "mentions": 6
+    },
+    "44f196720558": {
+      "id": "44f196720558",
+      "name": "packet",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "packet"
+      ],
+      "properties": {},
+      "confidence": 0.6022,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:55:58.585577Z",
+      "last_updated": "2026-07-10T21:05:09.987222Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "59d8f3ec5b13": {
+      "id": "59d8f3ec5b13",
+      "name": "EXTERNAL",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "external"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:56:23.805160Z",
+      "last_updated": "2026-07-10T20:56:23.805160Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "98ef5fc82313": {
+      "id": "98ef5fc82313",
+      "name": "Jeff Geerling",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "jeff",
+        "geerling"
+      ],
+      "properties": {},
+      "confidence": 0.6201,
+      "never_decay": false,
+      "first_seen": "2026-07-10T20:56:23.805350Z",
+      "last_updated": "2026-07-10T22:44:50.624736Z",
+      "source": "spacy_propn",
+      "mentions": 7
+    },
+    "f6c70c9350ca": {
+      "id": "f6c70c9350ca",
+      "name": "Wikipedia",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.7399,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:02:51.928894Z",
+      "last_updated": "2026-07-11T09:38:33.466082Z",
+      "source": "web_research",
+      "mentions": 5
+    },
+    "ee4f1e55537d": {
+      "id": "ee4f1e55537d",
+      "name": "proce",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "proce"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:07:33.822811Z",
+      "last_updated": "2026-07-10T21:07:33.822811Z",
+      "source": "definition",
+      "mentions": 1
+    },
+    "167c73386300": {
+      "id": "167c73386300",
+      "name": "packet UNTRUSTED source",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "untrusted",
+        "source",
+        "packet"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:07:33.900533Z",
+      "last_updated": "2026-07-10T21:07:33.900533Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "c2e2d6621334": {
+      "id": "c2e2d6621334",
+      "name": "process",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "process"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:07:33.928462Z",
+      "last_updated": "2026-07-10T21:07:33.928462Z",
+      "source": "definition",
+      "mentions": 1
+    },
+    "a07ea4a811f1": {
+      "id": "a07ea4a811f1",
+      "name": "Wikipedia/Subjective",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "subjective",
+        "org",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:20:07.894700Z",
+      "last_updated": "2026-07-11T09:24:45.732629Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "e0996a37c13d": {
+      "id": "e0996a37c13d",
+      "name": "first",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "first",
+        "ordinal"
+      ],
+      "properties": {},
+      "confidence": 0.6865,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:20:07.894739Z",
+      "last_updated": "2026-07-11T09:24:45.732702Z",
+      "source": "web_research",
+      "mentions": 5
+    },
+    "9b38c68d0887": {
+      "id": "9b38c68d0887",
+      "name": "foundations of quantum mechanics",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "foundations",
+        "quantum",
+        "concept",
+        "mechanics",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "quantum mechanics book written by john vo",
+        "description": ""
+      },
+      "confidence": 0.7698,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.400193Z",
+      "last_updated": "2026-07-11T09:28:07.295525Z",
+      "source": "definition",
+      "mentions": 8
+    },
+    "56c3e9bf26c9": {
+      "id": "56c3e9bf26c9",
+      "name": "quantum",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "quantum",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.8081,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.522552Z",
+      "last_updated": "2026-07-11T11:00:52.804311Z",
+      "source": "web_research",
+      "mentions": 9
+    },
+    "4408ef5b09a0": {
+      "id": "4408ef5b09a0",
+      "name": "Wikipedia/Mathematical Foundations",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "wikipedia",
+        "mathematical",
+        "foundations",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.7591,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.522669Z",
+      "last_updated": "2026-07-11T09:28:07.398986Z",
+      "source": "web_research",
+      "mentions": 6
+    },
+    "b0babcf97f05": {
+      "id": "b0babcf97f05",
+      "name": "Quantum Mechanics",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "quantum",
+        "organization",
+        "mechanics"
+      ],
+      "properties": {},
+      "confidence": 0.8461,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.522737Z",
+      "last_updated": "2026-07-11T09:28:07.399028Z",
+      "source": "web_research",
+      "mentions": 12
+    },
+    "658d2cea03c1": {
+      "id": "658d2cea03c1",
+      "name": "John von Neumann",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "neumann",
+        "person",
+        "john",
+        "von"
+      ],
+      "properties": {},
+      "confidence": 0.7591,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.522838Z",
+      "last_updated": "2026-07-11T09:28:07.399047Z",
+      "source": "web_research",
+      "mentions": 6
+    },
+    "53b6036e82c6": {
+      "id": "53b6036e82c6",
+      "name": "von Neumann",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "neumann",
+        "person",
+        "von"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.522898Z",
+      "last_updated": "2026-07-11T09:28:07.399555Z",
+      "source": "web_research",
+      "mentions": 8
+    },
+    "e7e694c58cd5": {
+      "id": "e7e694c58cd5",
+      "name": "book",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "book"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.523709Z",
+      "last_updated": "2026-07-11T09:28:07.399461Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "cdf7e925f574": {
+      "id": "cdf7e925f574",
+      "name": "results",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "results"
+      ],
+      "properties": {},
+      "confidence": 0.6324,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.523750Z",
+      "last_updated": "2026-07-11T09:28:07.399476Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "fbf226ec4827": {
+      "id": "fbf226ec4827",
+      "name": "Mathematical Foundations",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "foundations",
+        "mathematical",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5888,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:24:02.524969Z",
+      "last_updated": "2026-07-11T09:28:07.400397Z",
+      "source": "spacy_propn",
+      "mentions": 6
+    },
+    "66f79d8a6327": {
+      "id": "66f79d8a6327",
+      "name": "history",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "history",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "systematic study of the past",
+        "description": ""
+      },
+      "confidence": 0.8294,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:29:03.718484Z",
+      "last_updated": "2026-07-11T09:29:45.457362Z",
+      "source": "definition",
+      "mentions": 12
+    },
+    "e9a17c25a265": {
+      "id": "e9a17c25a265",
+      "name": "Wikipedia/History: History",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "history",
+        "org",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.7399,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:29:03.779979Z",
+      "last_updated": "2026-07-11T09:29:45.456156Z",
+      "source": "web_research",
+      "mentions": 5
+    },
+    "8c6ffb589f9e": {
+      "id": "8c6ffb589f9e",
+      "name": "theorists",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "theorists"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:29:03.780141Z",
+      "last_updated": "2026-07-11T09:29:45.457319Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "11119f5f9c9f": {
+      "id": "11119f5f9c9f",
+      "name": "others",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "others"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:29:03.780207Z",
+      "last_updated": "2026-07-11T09:29:45.457454Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "769634389743": {
+      "id": "769634389743",
+      "name": "term history",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "history",
+        "unknown",
+        "term"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:29:03.780269Z",
+      "last_updated": "2026-07-11T09:29:45.458619Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "bb8499b5b0b8": {
+      "id": "bb8499b5b0b8",
+      "name": "Wikipedia/Emergence:",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "emergence",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.606821Z",
+      "last_updated": "2026-07-11T09:33:10.810740Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "8dd218684b32": {
+      "id": "8dd218684b32",
+      "name": "systems theory",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "theory",
+        "systems"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.607132Z",
+      "last_updated": "2026-07-11T09:33:10.811155Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "00b32f658d1b": {
+      "id": "00b32f658d1b",
+      "name": "philosophy",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "philosophy"
+      ],
+      "properties": {},
+      "confidence": 0.6324,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.607153Z",
+      "last_updated": "2026-07-11T09:33:10.811175Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "8718fcbd9367": {
+      "id": "8718fcbd9367",
+      "name": "complex entity",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "entity",
+        "complex"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.607207Z",
+      "last_updated": "2026-07-11T09:33:10.811242Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "d0449e860774": {
+      "id": "d0449e860774",
+      "name": "properties",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "properties"
+      ],
+      "properties": {},
+      "confidence": 0.6324,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.607223Z",
+      "last_updated": "2026-07-11T09:33:10.811257Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "c212f08ed115": {
+      "id": "c212f08ed115",
+      "name": "components",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "components"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:30:35.607263Z",
+      "last_updated": "2026-07-11T09:33:10.811304Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "fe05bcdcdc49": {
+      "id": "fe05bcdcdc49",
+      "name": "one",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "cardinal",
+        "one"
+      ],
+      "properties": {},
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:36:43.849139Z",
+      "last_updated": "2026-07-11T09:38:33.464150Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "335ce16b3fe4": {
+      "id": "335ce16b3fe4",
+      "name": "subject",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "subject"
+      ],
+      "properties": {},
+      "confidence": 0.6177,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:36:43.849476Z",
+      "last_updated": "2026-07-11T09:38:33.464651Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "53b0a1b2fadf": {
+      "id": "53b0a1b2fadf",
+      "name": "number",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "number"
+      ],
+      "properties": {},
+      "confidence": 0.6022,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:36:43.849499Z",
+      "last_updated": "2026-07-11T09:38:33.464670Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "714eea0f4c98": {
+      "id": "714eea0f4c98",
+      "name": "time",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "time"
+      ],
+      "properties": {},
+      "confidence": 0.6177,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:36:43.849563Z",
+      "last_updated": "2026-07-11T09:38:33.464730Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "d42c0112962b": {
+      "id": "d42c0112962b",
+      "name": "mind",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "mind",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6022,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:36:43.849578Z",
+      "last_updated": "2026-07-11T09:38:33.464744Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "6716043188ce": {
+      "id": "6716043188ce",
+      "name": "evolutionary biology",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "biology",
+        "evolutionary",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "subfield of biology that analyzes the fou",
+        "description": ""
+      },
+      "confidence": 0.7515,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.678311Z",
+      "last_updated": "2026-07-11T09:41:43.660858Z",
+      "source": "definition",
+      "mentions": 7
+    },
+    "126b9b5e8a29": {
+      "id": "126b9b5e8a29",
+      "name": "Wikipedia/Evolutionary",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "evolutionary",
+        "org",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.7591,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716595Z",
+      "last_updated": "2026-07-11T09:41:43.748989Z",
+      "source": "web_research",
+      "mentions": 6
+    },
+    "9f8f7eec5dea": {
+      "id": "9f8f7eec5dea",
+      "name": "four",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "four",
+        "unknown",
+        "cardinal"
+      ],
+      "properties": {},
+      "confidence": 0.7698,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716632Z",
+      "last_updated": "2026-07-11T09:44:45.020956Z",
+      "source": "web_research",
+      "mentions": 9
+    },
+    "9e727e6012dc": {
+      "id": "9e727e6012dc",
+      "name": "Charles Darwin",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "charles",
+        "darwin"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716654Z",
+      "last_updated": "2026-07-11T09:41:43.749060Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "85bca3279115": {
+      "id": "85bca3279115",
+      "name": "Alfred Russel Wallace",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "alfred",
+        "person",
+        "wallace",
+        "russel"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716677Z",
+      "last_updated": "2026-07-11T09:41:43.749085Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "4e40aab8dd63": {
+      "id": "4e40aab8dd63",
+      "name": "Gregor Mendel",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "mendel",
+        "gregor"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716695Z",
+      "last_updated": "2026-07-11T09:41:43.749795Z",
+      "source": "web_research",
+      "mentions": 8
+    },
+    "f8b698b5f63e": {
+      "id": "f8b698b5f63e",
+      "name": "R. A. Fisher",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "fisher"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716713Z",
+      "last_updated": "2026-07-11T09:41:43.749881Z",
+      "source": "web_research",
+      "mentions": 8
+    },
+    "34dc8e1804c0": {
+      "id": "34dc8e1804c0",
+      "name": "Darwin",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "darwin"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716727Z",
+      "last_updated": "2026-07-11T09:41:43.749893Z",
+      "source": "web_research",
+      "mentions": 8
+    },
+    "afbe95411b2e": {
+      "id": "afbe95411b2e",
+      "name": "Mendel",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "mendel"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716741Z",
+      "last_updated": "2026-07-11T09:41:43.749168Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "b6b9cd8ce46a": {
+      "id": "b6b9cd8ce46a",
+      "name": "Natural selection",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "natural",
+        "unknown",
+        "selection"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716859Z",
+      "last_updated": "2026-07-11T09:41:43.749684Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "c64033672f5c": {
+      "id": "c64033672f5c",
+      "name": "engine",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "engine"
+      ],
+      "properties": {},
+      "confidence": 0.6324,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716873Z",
+      "last_updated": "2026-07-11T09:41:43.749703Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "58703ec79fe2": {
+      "id": "58703ec79fe2",
+      "name": "laws",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "laws"
+      ],
+      "properties": {},
+      "confidence": 0.6324,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:38:23.716944Z",
+      "last_updated": "2026-07-11T09:41:43.749807Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "ca49ca4bb673": {
+      "id": "ca49ca4bb673",
+      "name": "CPU",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "cpu"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.345320Z",
+      "last_updated": "2026-07-10T21:39:54.345320Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "e83249bd3ba7": {
+      "id": "e83249bd3ba7",
+      "name": "Home",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "home"
+      ],
+      "properties": {},
+      "confidence": 0.8681,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.345513Z",
+      "last_updated": "2026-07-11T11:00:53.045574Z",
+      "source": "spacy_propn",
+      "mentions": 21
+    },
+    "41e131c13dda": {
+      "id": "41e131c13dda",
+      "name": "consciousness and subjective experience",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "experience",
+        "subjective",
+        "concept",
+        "consciousness",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.345653Z",
+      "last_updated": "2026-07-10T22:07:09.281596Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "e6d2fb81891c": {
+      "id": "e6d2fb81891c",
+      "name": "quantum mechanics foundations",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "foundations",
+        "quantum",
+        "concept",
+        "mechanics",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.363213Z",
+      "last_updated": "2026-07-11T11:00:52.667165Z",
+      "source": "research",
+      "mentions": 3
+    },
+    "93a12eb84d7d": {
+      "id": "93a12eb84d7d",
+      "name": "quantum mechanics]",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "quantum",
+        "mechanics"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.396854Z",
+      "last_updated": "2026-07-10T21:39:54.396854Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "7c006ab66b94": {
+      "id": "7c006ab66b94",
+      "name": "MIT News",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "news",
+        "mit"
+      ],
+      "properties": {},
+      "confidence": 0.7591,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418168Z",
+      "last_updated": "2026-07-10T21:39:54.459201Z",
+      "source": "long_memory_heuristic",
+      "mentions": 6
+    },
+    "c2c45258cc99": {
+      "id": "c2c45258cc99",
+      "name": "Discovery",
+      "type": "tool",
+      "aliases": [],
+      "tags": [
+        "tool",
+        "discovery",
+        "product"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418219Z",
+      "last_updated": "2026-07-10T21:39:54.418290Z",
+      "source": "long_memory_heuristic",
+      "mentions": 2
+    },
+    "350d8db6daa3": {
+      "id": "350d8db6daa3",
+      "name": "brighter efficient digital displays",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "displays",
+        "digital",
+        "unknown",
+        "efficient",
+        "brighter"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418312Z",
+      "last_updated": "2026-07-10T21:39:54.418312Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "d69204ff69c0": {
+      "id": "d69204ff69c0",
+      "name": "Researchers",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "researchers"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418382Z",
+      "last_updated": "2026-07-10T21:39:54.418382Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "e69ffdac3631": {
+      "id": "e69ffdac3631",
+      "name": "simple solution",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "solution",
+        "simple"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418400Z",
+      "last_updated": "2026-07-10T21:39:54.418400Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "276a52d1a1eb": {
+      "id": "276a52d1a1eb",
+      "name": "MIT News]",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "news",
+        "mit"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.418462Z",
+      "last_updated": "2026-07-10T21:39:54.418462Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "056f11827899": {
+      "id": "056f11827899",
+      "name": "design",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "design",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.438013Z",
+      "last_updated": "2026-07-10T21:39:54.438013Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "8ec4f1da630b": {
+      "id": "8ec4f1da630b",
+      "name": "MIT News] MIT",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "news",
+        "mit"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.438079Z",
+      "last_updated": "2026-07-10T21:39:54.438079Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "701a1e7d3505": {
+      "id": "701a1e7d3505",
+      "name": "MIT Lincoln Laboratory",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "organization",
+        "laboratory",
+        "lincoln",
+        "org",
+        "mit"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459225Z",
+      "last_updated": "2026-07-10T21:39:54.459225Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "bd9c8d386674": {
+      "id": "bd9c8d386674",
+      "name": "sized sensor",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "sized",
+        "sensor"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459322Z",
+      "last_updated": "2026-07-10T21:39:54.459322Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "8efa0fe1a5df": {
+      "id": "8efa0fe1a5df",
+      "name": "chemical threats",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "chemical",
+        "threats"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459345Z",
+      "last_updated": "2026-07-10T21:39:54.459345Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "f3a929b3364b": {
+      "id": "f3a929b3364b",
+      "name": "device",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "device"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459423Z",
+      "last_updated": "2026-07-10T21:39:54.459423Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "b747936c5831": {
+      "id": "b747936c5831",
+      "name": "service members",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "service",
+        "members"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459442Z",
+      "last_updated": "2026-07-10T21:39:54.459442Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "eb0c971dd656": {
+      "id": "eb0c971dd656",
+      "name": "TOSSIT",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "tossit"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459514Z",
+      "last_updated": "2026-07-10T21:39:54.459514Z",
+      "source": "long_memory_heuristic:cooc",
+      "mentions": 1
+    },
+    "95f45226727a": {
+      "id": "95f45226727a",
+      "name": "history of written language",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "history",
+        "language",
+        "concept",
+        "written",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.459801Z",
+      "last_updated": "2026-07-10T22:07:09.308539Z",
+      "source": "research",
+      "mentions": 3
+    },
+    "0a1d60115ed0": {
+      "id": "0a1d60115ed0",
+      "name": "Som",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "som"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.474629Z",
+      "last_updated": "2026-07-10T21:39:54.474629Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "e7ec53518402": {
+      "id": "e7ec53518402",
+      "name": "emergence in complex systems",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "systems",
+        "emergence",
+        "complex",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.474797Z",
+      "last_updated": "2026-07-10T22:07:09.316984Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "9b7a4211f07d": {
+      "id": "9b7a4211f07d",
+      "name": "philosophy of time",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "time",
+        "concept",
+        "philosophy",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.503397Z",
+      "last_updated": "2026-07-10T22:07:09.325886Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "bac0f07d41ca": {
+      "id": "bac0f07d41ca",
+      "name": "evolutionary biology and cooperation",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "cooperation",
+        "concept",
+        "biology",
+        "evolutionary",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:54.522192Z",
+      "last_updated": "2026-07-10T22:07:09.333768Z",
+      "source": "research",
+      "mentions": 3
+    },
+    "f4b90d5e36d9": {
+      "id": "f4b90d5e36d9",
+      "name": "Wikipedia/General",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "general",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:59.308172Z",
+      "last_updated": "2026-07-11T09:44:45.020836Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "1c1b9e266b93": {
+      "id": "1c1b9e266b93",
+      "name": "Einstein",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "einstein"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:59.308219Z",
+      "last_updated": "2026-07-11T09:44:45.020875Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "da22c8d70e24": {
+      "id": "da22c8d70e24",
+      "name": "Albert Einstein",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "albert",
+        "person",
+        "einstein"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:59.308243Z",
+      "last_updated": "2026-07-11T09:44:45.020908Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "72ec3b448904": {
+      "id": "72ec3b448904",
+      "name": "Isaac Newton's",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "newton",
+        "isaac"
+      ],
+      "properties": {},
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:59.308276Z",
+      "last_updated": "2026-07-11T09:44:45.020940Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "653d006f7951": {
+      "id": "653d006f7951",
+      "name": "May 1916",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "1916",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:39:59.308468Z",
+      "last_updated": "2026-07-10T21:39:59.308468Z",
+      "source": "web_research:cooc",
+      "mentions": 1
+    },
+    "860afcbe89eb": {
+      "id": "860afcbe89eb",
+      "name": "mathematics",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "mathematics",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "field of knowledge concerned with abstrac",
+        "description": ""
+      },
+      "confidence": 0.7698,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:41:35.877503Z",
+      "last_updated": "2026-07-11T09:47:27.102881Z",
+      "source": "definition",
+      "mentions": 8
+    },
+    "5840ceec4681": {
+      "id": "5840ceec4681",
+      "name": "Wikipedia/Mathematics: Mathematics",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "mathematics",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:41:35.903763Z",
+      "last_updated": "2026-07-11T09:47:27.101811Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "956534e2abca": {
+      "id": "956534e2abca",
+      "name": "Wikipedia/The Daily Stoic:",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "daily",
+        "organization",
+        "wikipedia",
+        "org",
+        "stoic"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.314860Z",
+      "last_updated": "2026-07-11T09:49:42.578726Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "770a01b050e4": {
+      "id": "770a01b050e4",
+      "name": "The Daily Stoic",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "work_of_art",
+        "daily",
+        "concept",
+        "stoic",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.7399,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.314921Z",
+      "last_updated": "2026-07-11T09:49:42.578782Z",
+      "source": "web_research",
+      "mentions": 5
+    },
+    "bb30fbdd9c81": {
+      "id": "bb30fbdd9c81",
+      "name": "366 Meditations on",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "366",
+        "meditations",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.314954Z",
+      "last_updated": "2026-07-11T09:49:42.578817Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "05be96f972d3": {
+      "id": "05be96f972d3",
+      "name": "the Art of Living",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "art",
+        "living"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.314982Z",
+      "last_updated": "2026-07-11T09:49:42.578843Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "8d0276065100": {
+      "id": "8d0276065100",
+      "name": "Ryan Holiday",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "ryan",
+        "person",
+        "holiday"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315005Z",
+      "last_updated": "2026-07-11T09:49:42.578863Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "65bdb2ec469f": {
+      "id": "65bdb2ec469f",
+      "name": "Stephen Hanselman",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "stephen",
+        "person",
+        "hanselman"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315027Z",
+      "last_updated": "2026-07-11T09:49:42.578882Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "5ad43148c90a": {
+      "id": "5ad43148c90a",
+      "name": "fifth",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "fifth",
+        "unknown",
+        "ordinal"
+      ],
+      "properties": {},
+      "confidence": 0.661,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315046Z",
+      "last_updated": "2026-07-11T09:49:42.578900Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "5bd80ca96f08": {
+      "id": "5bd80ca96f08",
+      "name": "Hanselman",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "hanselman"
+      ],
+      "properties": {},
+      "confidence": 0.6963,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315064Z",
+      "last_updated": "2026-07-11T09:49:42.578917Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "d788956320b2": {
+      "id": "d788956320b2",
+      "name": "Wisdom",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "wisdom"
+      ],
+      "properties": {},
+      "confidence": 0.5178,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315380Z",
+      "last_updated": "2026-07-11T09:49:42.579900Z",
+      "source": "spacy_propn",
+      "mentions": 4
+    },
+    "64d703b354fd": {
+      "id": "64d703b354fd",
+      "name": "Perseverance",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "perseverance"
+      ],
+      "properties": {},
+      "confidence": 0.5178,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:43:14.315415Z",
+      "last_updated": "2026-07-11T09:49:42.579941Z",
+      "source": "spacy_propn",
+      "mentions": 4
+    },
+    "6e927b4745bb": {
+      "id": "6e927b4745bb",
+      "name": "the nature of mathematics",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "mathematics",
+        "nature",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:46:51.103311Z",
+      "last_updated": "2026-07-10T22:07:09.361059Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "d8bd2d0e8230": {
+      "id": "d8bd2d0e8230",
+      "name": "stoic philosophy and daily life",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "daily",
+        "life",
+        "concept",
+        "stoic",
+        "philosophy",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:46:51.132150Z",
+      "last_updated": "2026-07-10T22:07:09.370290Z",
+      "source": "research",
+      "mentions": 2
+    },
+    "c50fd90ff478": {
+      "id": "c50fd90ff478",
+      "name": "replay_corpus.txt",
+      "type": "place",
+      "aliases": [],
+      "tags": [
+        "gpe",
+        "place",
+        "corpus",
+        "replay",
+        "txt"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T21:58:05.575541Z",
+      "last_updated": "2026-07-10T21:58:05.575541Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "da2c47cb1a87": {
+      "id": "da2c47cb1a87",
+      "name": "Quanta Magazine",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "quanta",
+        "magazine",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.657197Z",
+      "last_updated": "2026-07-10T22:06:28.697664Z",
+      "source": "long_memory_heuristic",
+      "mentions": 8
+    },
+    "1a93ec9b9c63": {
+      "id": "1a93ec9b9c63",
+      "name": "Simple Fluids",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "fluids",
+        "unknown",
+        "simple"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.657486Z",
+      "last_updated": "2026-07-10T22:06:28.657486Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "36fdb5241209": {
+      "id": "36fdb5241209",
+      "name": "David Kipping",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "david",
+        "person",
+        "kipping"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.677036Z",
+      "last_updated": "2026-07-10T22:06:28.677036Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "68bb280d09e5": {
+      "id": "68bb280d09e5",
+      "name": "Alien Civilizations",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "civilizations",
+        "unknown",
+        "alien"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.677235Z",
+      "last_updated": "2026-07-10T22:06:28.677235Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "766250612b00": {
+      "id": "766250612b00",
+      "name": "idea",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "idea"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.697721Z",
+      "last_updated": "2026-07-10T22:06:28.697721Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "b1649dd1ede6": {
+      "id": "b1649dd1ede6",
+      "name": "own goals",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "own",
+        "unknown",
+        "goals"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:06:28.697748Z",
+      "last_updated": "2026-07-10T22:06:28.697748Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "3e079e716676": {
+      "id": "3e079e716676",
+      "name": "deep history",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "history",
+        "deep",
+        "concept",
+        "retired"
+      ],
+      "properties": {
+        "is_a": "term for the study of the distant past of",
+        "description": ""
+      },
+      "confidence": 0.7316,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:24:52.421241Z",
+      "last_updated": "2026-07-10T22:34:29.719197Z",
+      "source": "definition",
+      "mentions": 6
+    },
+    "0c15168bf9ab": {
+      "id": "0c15168bf9ab",
+      "name": "Wikipedia/Deep",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "deep",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:24:52.527577Z",
+      "last_updated": "2026-07-10T22:33:45.125310Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "6816d1ea2088": {
+      "id": "6816d1ea2088",
+      "name": "scholars",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "scholars"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:24:52.528272Z",
+      "last_updated": "2026-07-10T22:33:45.125459Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "3fc88b83767a": {
+      "id": "3fc88b83767a",
+      "name": "part",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "part"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-10T22:24:52.528476Z",
+      "last_updated": "2026-07-10T22:24:52.528476Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "23d22c4e7fc6": {
+      "id": "23d22c4e7fc6",
+      "name": "lmao",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "lmao"
+      ],
+      "properties": {},
+      "confidence": 0.4776,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:34:35.686798Z",
+      "last_updated": "2026-07-10T23:49:31.884468Z",
+      "source": "spacy_propn",
+      "mentions": 3
+    },
+    "0b8a1caec23d": {
+      "id": "0b8a1caec23d",
+      "name": "broken",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "broken"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:35:05.649312Z",
+      "last_updated": "2026-07-10T23:35:05.649312Z",
+      "source": "user_input",
+      "mentions": 1
+    },
+    "1b669334dae8": {
+      "id": "1b669334dae8",
+      "name": "english",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "language",
+        "concept",
+        "english",
+        "norp",
+        "retired"
+      ],
+      "properties": {
+        "description": ""
+      },
+      "confidence": 0.8667,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:35:05.649352Z",
+      "last_updated": "2026-07-11T02:00:45.364543Z",
+      "source": "user_input",
+      "mentions": 14
+    },
+    "383d407b8cac": {
+      "id": "383d407b8cac",
+      "name": "bible",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "bible"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:35:05.649527Z",
+      "last_updated": "2026-07-10T23:35:05.649527Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "0465124d6429": {
+      "id": "0465124d6429",
+      "name": "West Germanic",
+      "type": "place",
+      "aliases": [],
+      "tags": [
+        "place",
+        "gpe",
+        "west",
+        "germanic"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:39:26.410834Z",
+      "last_updated": "2026-07-11T02:00:00.528007Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "b6ce68526de3": {
+      "id": "b6ce68526de3",
+      "name": "England",
+      "type": "place",
+      "aliases": [],
+      "tags": [
+        "gpe",
+        "place",
+        "england"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:39:26.410870Z",
+      "last_updated": "2026-07-11T02:00:00.527985Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "b681487927bb": {
+      "id": "b681487927bb",
+      "name": "Western",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "western",
+        "organization",
+        "norp"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:39:26.410955Z",
+      "last_updated": "2026-07-11T02:00:00.528028Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "39de1bfc96f4": {
+      "id": "39de1bfc96f4",
+      "name": "Hugo Blick",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "hugo",
+        "blick",
+        "person"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:39:26.410975Z",
+      "last_updated": "2026-07-10T23:39:26.410975Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "0803df4ff165": {
+      "id": "0803df4ff165",
+      "name": "space",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "space",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-10T23:46:56.626819Z",
+      "last_updated": "2026-07-10T23:46:56.626819Z",
+      "source": "user_input",
+      "mentions": 1
+    },
+    "ecafd4871b35": {
+      "id": "ecafd4871b35",
+      "name": "situa",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "situa"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-11T02:00:00.484759Z",
+      "last_updated": "2026-07-11T02:00:00.484759Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "d57fd91679ff": {
+      "id": "d57fd91679ff",
+      "name": "evening",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "evening",
+        "time"
+      ],
+      "properties": {},
+      "confidence": 0.7515,
+      "never_decay": false,
+      "first_seen": "2026-07-11T02:00:00.560896Z",
+      "last_updated": "2026-07-11T05:00:29.239654Z",
+      "source": "long_memory_heuristic",
+      "mentions": 8
+    },
+    "5542354e5214": {
+      "id": "5542354e5214",
+      "name": "situati",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "situati",
+        "person"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-11T05:00:29.002238Z",
+      "last_updated": "2026-07-11T05:00:29.002238Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "1be2a44cb53d": {
+      "id": "1be2a44cb53d",
+      "name": "night",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "night",
+        "time"
+      ],
+      "properties": {},
+      "confidence": 0.7515,
+      "never_decay": false,
+      "first_seen": "2026-07-11T05:00:29.318686Z",
+      "last_updated": "2026-07-11T11:00:53.044346Z",
+      "source": "long_memory_heuristic",
+      "mentions": 8
+    },
+    "c112e88173d4": {
+      "id": "c112e88173d4",
+      "name": "Network",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "organization",
+        "network"
+      ],
+      "properties": {},
+      "confidence": 0.7931,
+      "never_decay": false,
+      "first_seen": "2026-07-11T05:00:29.318807Z",
+      "last_updated": "2026-07-11T11:00:53.044485Z",
+      "source": "long_memory_heuristic",
+      "mentions": 8
+    },
+    "a07bdcbcbb02": {
+      "id": "a07bdcbcbb02",
+      "name": "Disk",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "disk"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-11T05:00:29.368566Z",
+      "last_updated": "2026-07-11T05:00:29.368566Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "a3e25005ad38": {
+      "id": "a3e25005ad38",
+      "name": "Wikipedia/Quantum",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "org",
+        "quantum",
+        "organization",
+        "wikipedia"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-11T09:01:45.998457Z",
+      "last_updated": "2026-07-11T11:00:52.804290Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "b42cf225e137": {
+      "id": "b42cf225e137",
+      "name": "quantum physics",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "physics",
+        "quantum",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-11T09:01:45.998537Z",
+      "last_updated": "2026-07-11T11:00:52.804367Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "efb04f17ddbf": {
+      "id": "efb04f17ddbf",
+      "name": "concepts",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "concepts"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-11T09:01:45.998922Z",
+      "last_updated": "2026-07-11T09:01:45.998922Z",
+      "source": "web_research",
+      "mentions": 1
+    }
+  },
+  "relations": [
+    {
+      "id": "8a8529c0ceb4",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "is_a",
+      "target_id": "9220b4725352",
+      "target_name": "orrin_v3",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:48:40.470328Z",
+      "last_updated": "2026-07-11T12:15:57.135060Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "3ede940a9ae5",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "knows",
+      "target_id": "36b8e8bc1bef",
+      "target_name": "Ric Massey",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:48:40.470367Z",
+      "last_updated": "2026-07-11T12:15:57.135071Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "6b497533bd4b",
+      "source_id": "36b8e8bc1bef",
+      "source_name": "Ric Massey",
+      "relation": "created",
+      "target_id": "1ecc7dba8bb8",
+      "target_name": "Orrin",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:48:40.470376Z",
+      "last_updated": "2026-07-11T12:15:57.135077Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "8ce804a251dd",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "d524605d0f85",
+      "target_name": "MacBook Air",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:48:40.470435Z",
+      "last_updated": "2026-07-11T12:15:57.135083Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "5a0487e59c7a",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "6402c1d600cc",
+      "target_name": "Rics-MacBook-Air-3.local",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:48:45.678699Z",
+      "last_updated": "2026-07-11T12:15:57.135090Z",
+      "source": "environment"
+    },
+    {
+      "id": "81f234568334",
+      "source_id": "d19db96779be",
+      "source_name": "UNTRUSTED source",
+      "relation": "spot",
+      "target_id": "18e7501046bd",
+      "target_name": "drones",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T20:53:36.237834Z",
+      "last_updated": "2026-07-10T20:53:36.237834Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "528de2cc366c",
+      "source_id": "b6fba500be5b",
+      "source_name": "Hacker News",
+      "relation": "related_to",
+      "target_id": "86a28d88f007",
+      "target_name": "WiFi",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T20:53:36.237878Z",
+      "last_updated": "2026-07-10T20:53:36.237878Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "dc3cca8e3992",
+      "source_id": "a81fecb038e8",
+      "source_name": "teeth",
+      "relation": "beat",
+      "target_id": "bb484fb85248",
+      "target_name": "spider silk",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T20:53:36.251243Z",
+      "last_updated": "2026-07-10T20:53:36.251243Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "51391905bf8e",
+      "source_id": "89b505b3f366",
+      "source_name": "Hacker News] Snails'",
+      "relation": "related_to",
+      "target_id": "9cdda67ded3f",
+      "target_name": "2015",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T20:53:36.251294Z",
+      "last_updated": "2026-07-10T20:53:36.251294Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "9bb1c957dbd1",
+      "source_id": "e2416f8ff529",
+      "source_name": "Mayor Mamdani",
+      "relation": "announce",
+      "target_id": "163f1b1016a1",
+      "target_name": "Protection Rules",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T20:53:36.265354Z",
+      "last_updated": "2026-07-10T20:53:36.265354Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "e29c487a3786",
+      "source_id": "045839ba74ed",
+      "source_name": "QuadRF",
+      "relation": "spot",
+      "target_id": "18e7501046bd",
+      "target_name": "drones",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.416682Z",
+      "last_updated": "2026-07-11T12:15:19.977564Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "c151c298937b",
+      "source_id": "1e0e07f58dc6",
+      "source_name": "wall - Jeff Geerling QuadRF",
+      "relation": "spot",
+      "target_id": "18e7501046bd",
+      "target_name": "drones",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.416785Z",
+      "last_updated": "2026-07-11T12:15:19.977753Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "dbd9d2a11dcc",
+      "source_id": "0284c6ac58cb",
+      "source_name": "tools",
+      "relation": "show",
+      "target_id": "8d3a8dbf409a",
+      "target_name": "hidden traffic",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.417190Z",
+      "last_updated": "2026-07-11T12:15:19.978069Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "462cf6e81b77",
+      "source_id": "045839ba74ed",
+      "source_name": "QuadRF",
+      "relation": "created",
+      "target_id": "c981d125d1a5",
+      "target_name": "software",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.417376Z",
+      "last_updated": "2026-07-11T12:15:19.978260Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "55795fc475c8",
+      "source_id": "85b9a29386ea",
+      "source_name": "governments",
+      "relation": "have",
+      "target_id": "0284c6ac58cb",
+      "target_name": "tools",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.417617Z",
+      "last_updated": "2026-07-11T12:15:19.978496Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "8615fced5f38",
+      "source_id": "54669547a225",
+      "source_name": "Martin",
+      "relation": "take",
+      "target_id": "0abd414c18a2",
+      "target_name": "inspiration",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.417878Z",
+      "last_updated": "2026-07-11T12:15:19.978752Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "0113c983c01f",
+      "source_id": "54669547a225",
+      "source_name": "Martin",
+      "relation": "works_on",
+      "target_id": "07db55ed85fa",
+      "target_name": "SpaceX",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.417969Z",
+      "last_updated": "2026-07-11T12:15:19.978842Z",
+      "source": "fetch_and_read"
+    },
+    {
+      "id": "4536f054d853",
+      "source_id": "86a28d88f007",
+      "source_name": "WiFi",
+      "relation": "related_to",
+      "target_id": "1e0e07f58dc6",
+      "target_name": "wall - Jeff Geerling QuadRF",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418358Z",
+      "last_updated": "2026-07-11T12:15:19.979179Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "c90290c5927b",
+      "source_id": "1e0e07f58dc6",
+      "source_name": "wall - Jeff Geerling QuadRF",
+      "relation": "related_to",
+      "target_id": "aee655773d85",
+      "target_name": "2026",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418371Z",
+      "last_updated": "2026-07-11T12:15:19.979197Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "7300e935abf3",
+      "source_id": "86ad89f306a8",
+      "source_name": "Hackaday",
+      "relation": "related_to",
+      "target_id": "dfa963ef7faf",
+      "target_name": "Martin McCormick",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418645Z",
+      "last_updated": "2026-07-11T12:15:19.979481Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "4ad1b55ea043",
+      "source_id": "dfa963ef7faf",
+      "source_name": "Martin McCormick",
+      "relation": "related_to",
+      "target_id": "46dcd4dd65b6",
+      "target_name": "Moon",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418653Z",
+      "last_updated": "2026-07-11T12:15:19.979488Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "9ec6e69f46de",
+      "source_id": "46dcd4dd65b6",
+      "source_name": "Moon",
+      "relation": "related_to",
+      "target_id": "1a3f60cde435",
+      "target_name": "antenna array",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418661Z",
+      "last_updated": "2026-07-11T12:15:19.979495Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "abd4a61dc947",
+      "source_id": "1a3f60cde435",
+      "source_name": "antenna array",
+      "relation": "related_to",
+      "target_id": "ebc06d5fffa7",
+      "target_name": "EME",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418680Z",
+      "last_updated": "2026-07-11T12:15:19.979502Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "c1125595639b",
+      "source_id": "ebc06d5fffa7",
+      "source_name": "EME",
+      "relation": "related_to",
+      "target_id": "61485cee7e55",
+      "target_name": "Earth-Moon-Earth",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418688Z",
+      "last_updated": "2026-07-11T12:15:19.979509Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "eaa9a8710244",
+      "source_id": "54669547a225",
+      "source_name": "Martin",
+      "relation": "related_to",
+      "target_id": "9a8415159975",
+      "target_name": "Dishy",
+      "confidence": 0.98,
+      "first_seen": "2026-07-10T20:54:49.418724Z",
+      "last_updated": "2026-07-11T12:15:19.979546Z",
+      "source": "fetch_and_read:cooc"
+    },
+    {
+      "id": "3c9272aba62d",
+      "source_id": "0f2f1adb8c6d",
+      "source_name": "analyzer",
+      "relation": "capture",
+      "target_id": "44f196720558",
+      "target_name": "packet",
+      "confidence": 0.76,
+      "first_seen": "2026-07-10T20:55:58.585589Z",
+      "last_updated": "2026-07-10T21:05:09.987246Z",
+      "source": "web_research"
+    },
+    {
+      "id": "0922efa19959",
+      "source_id": "59d8f3ec5b13",
+      "source_name": "EXTERNAL",
+      "relation": "related_to",
+      "target_id": "86a28d88f007",
+      "target_name": "WiFi",
+      "confidence": 0.82,
+      "first_seen": "2026-07-10T20:56:23.805185Z",
+      "last_updated": "2026-07-10T22:44:50.624331Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "49529ec13c55",
+      "source_id": "697b2c32cb69",
+      "source_name": "packet capture",
+      "relation": "is_a",
+      "target_id": "ee4f1e55537d",
+      "target_name": "proce",
+      "confidence": 0.5,
+      "first_seen": "2026-07-10T21:07:33.822847Z",
+      "last_updated": "2026-07-10T21:07:33.822847Z",
+      "source": "definition"
+    },
+    {
+      "id": "d3e7b0245b74",
+      "source_id": "167c73386300",
+      "source_name": "packet UNTRUSTED source",
+      "relation": "packet",
+      "target_id": "0f2f1adb8c6d",
+      "target_name": "analyzer",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T21:07:33.900610Z",
+      "last_updated": "2026-07-10T21:07:33.900610Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "92412998f396",
+      "source_id": "697b2c32cb69",
+      "source_name": "packet capture",
+      "relation": "is_a",
+      "target_id": "c2e2d6621334",
+      "target_name": "process",
+      "confidence": 0.5,
+      "first_seen": "2026-07-10T21:07:33.928491Z",
+      "last_updated": "2026-07-10T21:07:33.928491Z",
+      "source": "definition"
+    },
+    {
+      "id": "51bf656903c2",
+      "source_id": "a07ea4a811f1",
+      "source_name": "Wikipedia/Subjective",
+      "relation": "related_to",
+      "target_id": "e0996a37c13d",
+      "target_name": "first",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:20:07.895587Z",
+      "last_updated": "2026-07-11T09:24:45.734000Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "61a564fcd8a1",
+      "source_id": "e7e694c58cd5",
+      "source_name": "book",
+      "relation": "summarize",
+      "target_id": "cdf7e925f574",
+      "target_name": "results",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:24:02.523783Z",
+      "last_updated": "2026-07-11T09:28:07.399490Z",
+      "source": "web_research"
+    },
+    {
+      "id": "2a9e788b7710",
+      "source_id": "56c3e9bf26c9",
+      "source_name": "quantum",
+      "relation": "related_to",
+      "target_id": "4408ef5b09a0",
+      "target_name": "Wikipedia/Mathematical Foundations",
+      "confidence": 0.68,
+      "first_seen": "2026-07-10T21:24:02.524395Z",
+      "last_updated": "2026-07-11T09:28:07.399903Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "3093166adb9c",
+      "source_id": "4408ef5b09a0",
+      "source_name": "Wikipedia/Mathematical Foundations",
+      "relation": "related_to",
+      "target_id": "b0babcf97f05",
+      "target_name": "Quantum Mechanics",
+      "confidence": 0.75,
+      "first_seen": "2026-07-10T21:24:02.524425Z",
+      "last_updated": "2026-07-11T09:28:07.399914Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "b792b80ec436",
+      "source_id": "b0babcf97f05",
+      "source_name": "Quantum Mechanics",
+      "relation": "related_to",
+      "target_id": "658d2cea03c1",
+      "target_name": "John von Neumann",
+      "confidence": 0.75,
+      "first_seen": "2026-07-10T21:24:02.524448Z",
+      "last_updated": "2026-07-11T09:28:07.399923Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "a749178dbd72",
+      "source_id": "658d2cea03c1",
+      "source_name": "John von Neumann",
+      "relation": "related_to",
+      "target_id": "cb5e83048572",
+      "target_name": "1932",
+      "confidence": 0.75,
+      "first_seen": "2026-07-10T21:24:02.524477Z",
+      "last_updated": "2026-07-11T09:28:07.399937Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "ba6451087170",
+      "source_id": "8c6ffb589f9e",
+      "source_name": "theorists",
+      "relation": "categorize",
+      "target_id": "66f79d8a6327",
+      "target_name": "history",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:29:03.780173Z",
+      "last_updated": "2026-07-11T09:29:45.457380Z",
+      "source": "web_research"
+    },
+    {
+      "id": "075e10fa70cb",
+      "source_id": "8dd218684b32",
+      "source_name": "systems theory",
+      "relation": "occur_in",
+      "target_id": "00b32f658d1b",
+      "target_name": "philosophy",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:30:35.607166Z",
+      "last_updated": "2026-07-11T09:33:10.811188Z",
+      "source": "web_research"
+    },
+    {
+      "id": "30eddc6cf6c3",
+      "source_id": "8718fcbd9367",
+      "source_name": "complex entity",
+      "relation": "have",
+      "target_id": "d0449e860774",
+      "target_name": "properties",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:30:35.607235Z",
+      "last_updated": "2026-07-11T09:33:10.811266Z",
+      "source": "web_research"
+    },
+    {
+      "id": "9f8033e5da13",
+      "source_id": "335ce16b3fe4",
+      "source_name": "subject",
+      "relation": "focus_on",
+      "target_id": "53b0a1b2fadf",
+      "target_name": "number",
+      "confidence": 0.76,
+      "first_seen": "2026-07-10T21:36:43.849515Z",
+      "last_updated": "2026-07-11T09:38:33.464683Z",
+      "source": "web_research"
+    },
+    {
+      "id": "b7e2f2c38bef",
+      "source_id": "714eea0f4c98",
+      "source_name": "time",
+      "relation": "exist_of",
+      "target_id": "d42c0112962b",
+      "target_name": "mind",
+      "confidence": 0.76,
+      "first_seen": "2026-07-10T21:36:43.849591Z",
+      "last_updated": "2026-07-11T09:38:33.464754Z",
+      "source": "web_research"
+    },
+    {
+      "id": "665022b7ff0b",
+      "source_id": "b6b9cd8ce46a",
+      "source_name": "Natural selection",
+      "relation": "discover_as",
+      "target_id": "c64033672f5c",
+      "target_name": "engine",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:38:23.716884Z",
+      "last_updated": "2026-07-11T09:41:43.749718Z",
+      "source": "web_research"
+    },
+    {
+      "id": "573e5fc953a3",
+      "source_id": "4e40aab8dd63",
+      "source_name": "Gregor Mendel",
+      "relation": "discover",
+      "target_id": "58703ec79fe2",
+      "target_name": "laws",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:38:23.716954Z",
+      "last_updated": "2026-07-11T09:41:43.749818Z",
+      "source": "web_research"
+    },
+    {
+      "id": "ea9aaaf12453",
+      "source_id": "f8b698b5f63e",
+      "source_name": "R. A. Fisher",
+      "relation": "unify",
+      "target_id": "34dc8e1804c0",
+      "target_name": "Darwin",
+      "confidence": 0.83,
+      "first_seen": "2026-07-10T21:38:23.717006Z",
+      "last_updated": "2026-07-11T09:41:43.749919Z",
+      "source": "web_research"
+    },
+    {
+      "id": "86b776b318bd",
+      "source_id": "126b9b5e8a29",
+      "source_name": "Wikipedia/Evolutionary",
+      "relation": "related_to",
+      "target_id": "9f8f7eec5dea",
+      "target_name": "four",
+      "confidence": 0.75,
+      "first_seen": "2026-07-10T21:38:23.717048Z",
+      "last_updated": "2026-07-11T09:41:43.750237Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "b7175ad80c7f",
+      "source_id": "9e727e6012dc",
+      "source_name": "Charles Darwin",
+      "relation": "related_to",
+      "target_id": "85bca3279115",
+      "target_name": "Alfred Russel Wallace",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:38:23.717067Z",
+      "last_updated": "2026-07-11T09:41:43.750266Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "feb3dc01b51d",
+      "source_id": "f8b698b5f63e",
+      "source_name": "R. A. Fisher",
+      "relation": "related_to",
+      "target_id": "34dc8e1804c0",
+      "target_name": "Darwin",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:38:23.717092Z",
+      "last_updated": "2026-07-11T09:41:43.750302Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "478f035afd37",
+      "source_id": "34dc8e1804c0",
+      "source_name": "Darwin",
+      "relation": "related_to",
+      "target_id": "afbe95411b2e",
+      "target_name": "Mendel",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:38:23.717100Z",
+      "last_updated": "2026-07-11T09:41:43.750311Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "ca1ed69a61f1",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "b46da6ec3703",
+      "target_name": "50%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.345344Z",
+      "last_updated": "2026-07-10T21:39:54.345344Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "6da62d1d1d23",
+      "source_id": "93a12eb84d7d",
+      "source_name": "quantum mechanics]",
+      "relation": "related_to",
+      "target_id": "4408ef5b09a0",
+      "target_name": "Wikipedia/Mathematical Foundations",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.396875Z",
+      "last_updated": "2026-07-10T21:39:54.396875Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "faac43c97e19",
+      "source_id": "c2c45258cc99",
+      "source_name": "Discovery",
+      "relation": "lead_to",
+      "target_id": "350d8db6daa3",
+      "target_name": "brighter efficient digital displays",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T21:39:54.418329Z",
+      "last_updated": "2026-07-10T21:39:54.418329Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "7463dc5b17d0",
+      "source_id": "d69204ff69c0",
+      "source_name": "Researchers",
+      "relation": "find",
+      "target_id": "e69ffdac3631",
+      "target_name": "simple solution",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T21:39:54.418413Z",
+      "last_updated": "2026-07-10T21:39:54.418413Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "4d31a952432e",
+      "source_id": "c2c45258cc99",
+      "source_name": "Discovery",
+      "relation": "related_to",
+      "target_id": "276a52d1a1eb",
+      "target_name": "MIT News]",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.418472Z",
+      "last_updated": "2026-07-10T21:39:54.418472Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "a7aa53824123",
+      "source_id": "7c006ab66b94",
+      "source_name": "MIT News",
+      "relation": "related_to",
+      "target_id": "8ec4f1da630b",
+      "target_name": "MIT News] MIT",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.438093Z",
+      "last_updated": "2026-07-10T21:39:54.438093Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "ff18d3aef4ab",
+      "source_id": "bd9c8d386674",
+      "source_name": "sized sensor",
+      "relation": "detect",
+      "target_id": "8efa0fe1a5df",
+      "target_name": "chemical threats",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T21:39:54.459361Z",
+      "last_updated": "2026-07-10T21:39:54.459361Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "64022b42b291",
+      "source_id": "f3a929b3364b",
+      "source_name": "device",
+      "relation": "warn",
+      "target_id": "b747936c5831",
+      "target_name": "service members",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T21:39:54.459456Z",
+      "last_updated": "2026-07-10T21:39:54.459456Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "c4369e57819d",
+      "source_id": "eb0c971dd656",
+      "source_name": "TOSSIT",
+      "relation": "related_to",
+      "target_id": "701a1e7d3505",
+      "target_name": "MIT Lincoln Laboratory",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.459524Z",
+      "last_updated": "2026-07-10T21:39:54.459524Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "d5f9d5c74727",
+      "source_id": "701a1e7d3505",
+      "source_name": "MIT Lincoln Laboratory",
+      "relation": "related_to",
+      "target_id": "e0996a37c13d",
+      "target_name": "first",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:39:54.459536Z",
+      "last_updated": "2026-07-10T21:39:54.459536Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "92796551ca47",
+      "source_id": "f4b90d5e36d9",
+      "source_name": "Wikipedia/General",
+      "relation": "related_to",
+      "target_id": "1c1b9e266b93",
+      "target_name": "Einstein",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:39:59.308438Z",
+      "last_updated": "2026-07-11T09:44:45.021508Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "1f347f890643",
+      "source_id": "1c1b9e266b93",
+      "source_name": "Einstein",
+      "relation": "related_to",
+      "target_id": "da22c8d70e24",
+      "target_name": "Albert Einstein",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:39:59.308456Z",
+      "last_updated": "2026-07-11T09:44:45.021533Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "ba4825bec359",
+      "source_id": "da22c8d70e24",
+      "source_name": "Albert Einstein",
+      "relation": "related_to",
+      "target_id": "653d006f7951",
+      "target_name": "May 1916",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:39:59.308478Z",
+      "last_updated": "2026-07-11T09:44:45.021545Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "afa618dac2e3",
+      "source_id": "72ec3b448904",
+      "source_name": "Isaac Newton's",
+      "relation": "related_to",
+      "target_id": "9f8f7eec5dea",
+      "target_name": "four",
+      "confidence": 0.54,
+      "first_seen": "2026-07-10T21:39:59.308498Z",
+      "last_updated": "2026-07-11T09:44:45.021568Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "845dce3b16f6",
+      "source_id": "956534e2abca",
+      "source_name": "Wikipedia/The Daily Stoic:",
+      "relation": "related_to",
+      "target_id": "770a01b050e4",
+      "target_name": "The Daily Stoic",
+      "confidence": 0.54,
+      "first_seen": "2026-07-10T21:43:14.315157Z",
+      "last_updated": "2026-07-11T09:49:42.579556Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "cb6ecbe27f4f",
+      "source_id": "770a01b050e4",
+      "source_name": "The Daily Stoic",
+      "relation": "related_to",
+      "target_id": "bb30fbdd9c81",
+      "target_name": "366 Meditations on",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:43:14.315187Z",
+      "last_updated": "2026-07-11T09:49:42.579589Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "e2cf6e40eb32",
+      "source_id": "bb30fbdd9c81",
+      "source_name": "366 Meditations on",
+      "relation": "related_to",
+      "target_id": "05be96f972d3",
+      "target_name": "the Art of Living",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:43:14.315198Z",
+      "last_updated": "2026-07-11T09:49:42.579600Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "773399e84308",
+      "source_id": "05be96f972d3",
+      "source_name": "the Art of Living",
+      "relation": "related_to",
+      "target_id": "8d0276065100",
+      "target_name": "Ryan Holiday",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:43:14.315209Z",
+      "last_updated": "2026-07-11T09:49:42.579615Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "48c1d989bfda",
+      "source_id": "8d0276065100",
+      "source_name": "Ryan Holiday",
+      "relation": "related_to",
+      "target_id": "65bdb2ec469f",
+      "target_name": "Stephen Hanselman",
+      "confidence": 0.61,
+      "first_seen": "2026-07-10T21:43:14.315220Z",
+      "last_updated": "2026-07-11T09:49:42.579626Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "5e6c74e19b1f",
+      "source_id": "5ad43148c90a",
+      "source_name": "fifth",
+      "relation": "related_to",
+      "target_id": "5bd80ca96f08",
+      "target_name": "Hanselman",
+      "confidence": 0.54,
+      "first_seen": "2026-07-10T21:43:14.315243Z",
+      "last_updated": "2026-07-11T09:49:42.579652Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "aec0871a6bc1",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "ad753f8fc33b",
+      "target_name": "76%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T21:53:21.849230Z",
+      "last_updated": "2026-07-10T21:53:21.849230Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "1faf04738a32",
+      "source_id": "766250612b00",
+      "source_name": "idea",
+      "relation": "devise",
+      "target_id": "b1649dd1ede6",
+      "target_name": "own goals",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T22:06:28.697763Z",
+      "last_updated": "2026-07-10T22:06:28.697763Z",
+      "source": "long_memory_heuristic"
+    },
+    {
+      "id": "a4d4fcccab8f",
+      "source_id": "3e079e716676",
+      "source_name": "deep history",
+      "relation": "encourage",
+      "target_id": "6816d1ea2088",
+      "target_name": "scholars",
+      "confidence": 0.69,
+      "first_seen": "2026-07-10T22:24:52.528302Z",
+      "last_updated": "2026-07-10T22:33:45.125473Z",
+      "source": "web_research"
+    },
+    {
+      "id": "0f7db156abf5",
+      "source_id": "3e079e716676",
+      "source_name": "Deep history",
+      "relation": "form",
+      "target_id": "3fc88b83767a",
+      "target_name": "part",
+      "confidence": 0.62,
+      "first_seen": "2026-07-10T22:24:52.528498Z",
+      "last_updated": "2026-07-10T22:24:52.528498Z",
+      "source": "web_research"
+    },
+    {
+      "id": "682abe03b449",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "7f7cde037a58",
+      "target_name": "48%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T22:33:45.050945Z",
+      "last_updated": "2026-07-10T22:33:45.050945Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "5ec51700647b",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "fef591ee0b21",
+      "target_name": "43%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T22:52:13.950665Z",
+      "last_updated": "2026-07-10T22:52:13.950665Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "69ba303c221b",
+      "source_id": "0b8a1caec23d",
+      "source_name": "broken",
+      "relation": "related_to",
+      "target_id": "1b669334dae8",
+      "target_name": "english",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T23:35:05.649414Z",
+      "last_updated": "2026-07-10T23:35:05.649414Z",
+      "source": "user_input:cooc"
+    },
+    {
+      "id": "b55f15279250",
+      "source_id": "1b669334dae8",
+      "source_name": "english",
+      "relation": "related_to",
+      "target_id": "1b669334dae8",
+      "target_name": "English",
+      "confidence": 0.47,
+      "first_seen": "2026-07-10T23:39:26.411679Z",
+      "last_updated": "2026-07-11T02:00:00.528159Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "8780ce54ce91",
+      "source_id": "1b669334dae8",
+      "source_name": "English",
+      "relation": "related_to",
+      "target_id": "0465124d6429",
+      "target_name": "West Germanic",
+      "confidence": 0.47,
+      "first_seen": "2026-07-10T23:39:26.411711Z",
+      "last_updated": "2026-07-11T02:00:00.528179Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "789132579645",
+      "source_id": "0465124d6429",
+      "source_name": "West Germanic",
+      "relation": "related_to",
+      "target_id": "b6ce68526de3",
+      "target_name": "England",
+      "confidence": 0.47,
+      "first_seen": "2026-07-10T23:39:26.411724Z",
+      "last_updated": "2026-07-11T02:00:00.528186Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "c4eba9df4cf2",
+      "source_id": "1b669334dae8",
+      "source_name": "English",
+      "relation": "related_to",
+      "target_id": "b6ce68526de3",
+      "target_name": "England",
+      "confidence": 0.47,
+      "first_seen": "2026-07-10T23:39:26.411753Z",
+      "last_updated": "2026-07-11T02:00:00.528206Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "76c8f9179a6f",
+      "source_id": "b6ce68526de3",
+      "source_name": "England",
+      "relation": "related_to",
+      "target_id": "0465124d6429",
+      "target_name": "West Germanic",
+      "confidence": 0.47,
+      "first_seen": "2026-07-10T23:39:26.411764Z",
+      "last_updated": "2026-07-11T02:00:00.528213Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "bafa1a6ab831",
+      "source_id": "b681487927bb",
+      "source_name": "Western",
+      "relation": "related_to",
+      "target_id": "39de1bfc96f4",
+      "target_name": "Hugo Blick",
+      "confidence": 0.4,
+      "first_seen": "2026-07-10T23:39:26.411799Z",
+      "last_updated": "2026-07-10T23:39:26.411799Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "bbd1f74663f5",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "b129abe61c4b",
+      "target_name": "64%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T02:00:00.485688Z",
+      "last_updated": "2026-07-11T02:00:00.485688Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "dd67e845da11",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "67223e4b5dde",
+      "target_name": "22%",
+      "confidence": 0.47,
+      "first_seen": "2026-07-11T02:00:00.545783Z",
+      "last_updated": "2026-07-11T02:00:00.614207Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "6a141401e506",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "38d08201d6be",
+      "target_name": "49%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T02:00:00.561025Z",
+      "last_updated": "2026-07-11T02:00:00.561025Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "ec2f2c7bb835",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "2ef576d5146b",
+      "target_name": "53%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T02:00:00.577737Z",
+      "last_updated": "2026-07-11T02:00:00.577737Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "6787f4f86f3f",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "3bb15466942b",
+      "target_name": "35%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T02:00:00.597311Z",
+      "last_updated": "2026-07-11T02:00:00.597311Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "9a37965a5a88",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "f4b7e0a1d16b",
+      "target_name": "38%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.003361Z",
+      "last_updated": "2026-07-11T05:00:29.003361Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "073a015f005b",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "d5aad3c7c5da",
+      "target_name": "26%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.107080Z",
+      "last_updated": "2026-07-11T05:00:29.107080Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "8857c6b59d88",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "b77a111bfdc3",
+      "target_name": "75%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.176502Z",
+      "last_updated": "2026-07-11T05:00:29.176502Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "9b5c377ec808",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "b31374e66b88",
+      "target_name": "63%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.239898Z",
+      "last_updated": "2026-07-11T05:00:29.239898Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "8312cc60e4b6",
+      "source_id": "9ab5b46c770a",
+      "source_name": "7h 30",
+      "relation": "related_to",
+      "target_id": "1be2a44cb53d",
+      "target_name": "night",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.318984Z",
+      "last_updated": "2026-07-11T05:00:29.318984Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "fb910f83fabf",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "1c1d4ebb4c8c",
+      "target_name": "68%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.319046Z",
+      "last_updated": "2026-07-11T05:00:29.319046Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "18b51ede6977",
+      "source_id": "8396b0778555",
+      "source_name": "91%",
+      "relation": "related_to",
+      "target_id": "c112e88173d4",
+      "target_name": "Network",
+      "confidence": 0.54,
+      "first_seen": "2026-07-11T05:00:29.319164Z",
+      "last_updated": "2026-07-11T08:00:27.724834Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "9f99d1bd28e5",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "10afc7720366",
+      "target_name": "87%",
+      "confidence": 0.47,
+      "first_seen": "2026-07-11T05:00:29.368200Z",
+      "last_updated": "2026-07-11T05:00:29.368384Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "009f616e7917",
+      "source_id": "10afc7720366",
+      "source_name": "87%",
+      "relation": "related_to",
+      "target_id": "8396b0778555",
+      "target_name": "91%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T05:00:29.368403Z",
+      "last_updated": "2026-07-11T05:00:29.368403Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "47dbbd2b3601",
+      "source_id": "08d9f5ab4a54",
+      "source_name": "9h 0",
+      "relation": "related_to",
+      "target_id": "1be2a44cb53d",
+      "target_name": "night",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T08:00:27.724626Z",
+      "last_updated": "2026-07-11T08:00:27.724626Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "557ede10e9f1",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "df5b9760f364",
+      "target_name": "42%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T08:00:27.724714Z",
+      "last_updated": "2026-07-11T08:00:27.724714Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "62a449ed7669",
+      "source_id": "817ad7e69a97",
+      "source_name": "9h 30",
+      "relation": "related_to",
+      "target_id": "1be2a44cb53d",
+      "target_name": "night",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T08:00:27.839605Z",
+      "last_updated": "2026-07-11T08:00:27.839605Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "71fac67405c5",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "d4104e529ee6",
+      "target_name": "39%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T08:00:27.839661Z",
+      "last_updated": "2026-07-11T08:00:27.839661Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "b777cc4a0f69",
+      "source_id": "5f23ad53b129",
+      "source_name": "92%",
+      "relation": "related_to",
+      "target_id": "c112e88173d4",
+      "target_name": "Network",
+      "confidence": 0.54,
+      "first_seen": "2026-07-11T08:00:27.839770Z",
+      "last_updated": "2026-07-11T08:00:28.003059Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "5fde0e377a0a",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "4c245eda01ba",
+      "target_name": "61%",
+      "confidence": 0.47,
+      "first_seen": "2026-07-11T08:00:27.874955Z",
+      "last_updated": "2026-07-11T11:00:52.874335Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "778710d9dd50",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "1971b5043d8f",
+      "target_name": "60%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T08:00:28.002921Z",
+      "last_updated": "2026-07-11T08:00:28.002921Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "5f82fed884b2",
+      "source_id": "56c3e9bf26c9",
+      "source_name": "quantum",
+      "relation": "related_to",
+      "target_id": "a3e25005ad38",
+      "target_name": "Wikipedia/Quantum",
+      "confidence": 0.47,
+      "first_seen": "2026-07-11T09:01:45.999288Z",
+      "last_updated": "2026-07-11T11:00:52.804641Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "2f0c04d6593d",
+      "source_id": "a3e25005ad38",
+      "source_name": "Wikipedia/Quantum",
+      "relation": "related_to",
+      "target_id": "56c3e9bf26c9",
+      "target_name": "Quantum",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T09:01:45.999350Z",
+      "last_updated": "2026-07-11T09:01:45.999350Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "81f6c67fcf74",
+      "source_id": "56c3e9bf26c9",
+      "source_name": "Quantum",
+      "relation": "related_to",
+      "target_id": "b42cf225e137",
+      "target_name": "quantum physics",
+      "confidence": 0.47,
+      "first_seen": "2026-07-11T09:01:45.999366Z",
+      "last_updated": "2026-07-11T11:00:52.804690Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "fd2c16b16357",
+      "source_id": "9ec47261d29e",
+      "source_name": "93%",
+      "relation": "related_to",
+      "target_id": "c112e88173d4",
+      "target_name": "Network",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T11:00:52.874452Z",
+      "last_updated": "2026-07-11T11:00:52.874452Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "c71cae0828d3",
+      "source_id": "ca49ca4bb673",
+      "source_name": "CPU",
+      "relation": "related_to",
+      "target_id": "77947d93163a",
+      "target_name": "78%",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T11:00:53.044826Z",
+      "last_updated": "2026-07-11T11:00:53.044826Z",
+      "source": "long_memory_heuristic:cooc"
+    },
+    {
+      "id": "380e86db1f3f",
+      "source_id": "dd06bf5f831b",
+      "source_name": "94%",
+      "relation": "related_to",
+      "target_id": "c112e88173d4",
+      "target_name": "Network",
+      "confidence": 0.4,
+      "first_seen": "2026-07-11T11:00:53.045212Z",
+      "last_updated": "2026-07-11T11:00:53.045212Z",
+      "source": "long_memory_heuristic:cooc"
+    }
+  ],
+  "meta": {
+    "version": 1,
+    "last_updated": "2026-07-11T12:15:57.135107Z",
+    "last_consolidation": "2026-07-11T11:00:53.060041Z",
+    "entity_count": 161,
+    "relation_count": 108
+  }
+}

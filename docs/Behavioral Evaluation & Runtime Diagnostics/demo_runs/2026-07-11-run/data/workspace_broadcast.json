@@ -1,0 +1,2561 @@
+[
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.005,
+    "ts": 1783771321.783962,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.763
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.838,
+    "ts": 1783771323.194376,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.909,
+    "ts": 1783771326.275181,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of things going well.",
+    "source": "signal",
+    "salience": 0.744,
+    "ts": 1783771327.22281
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771330.3720078,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 1.159,
+    "ts": 1783771343.243978,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.973,
+    "ts": 1783771344.41274
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.952,
+    "ts": 1783771348.022448,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.78
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.85,
+    "ts": 1783771350.4137301,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.623,
+    "ts": 1783771357.894655
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771360.898421,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.793,
+    "ts": 1783771366.6780732
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771369.411595,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.73,
+    "ts": 1783771371.5256069,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.193,
+    "ts": 1783771377.978627,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.748,
+    "ts": 1783771381.2430332,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.014,
+    "ts": 1783771384.1431859,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.786
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771385.140463,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 0.821,
+    "ts": 1783771388.252931,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.801
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.742,
+    "ts": 1783771389.633848
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.637,
+    "ts": 1783771396.168819,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of curiosity. — curiosity",
+    "source": "binding",
+    "salience": 1.018,
+    "ts": 1783771399.145427,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.795
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.647,
+    "ts": 1783771403.193252,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of curiosity. — curiosity",
+    "source": "binding",
+    "salience": 0.828,
+    "ts": 1783771410.219739,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.819
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771412.1434639,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.813,
+    "ts": 1783771419.1267378
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1783771424.779265,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.032,
+    "ts": 1783771428.70821,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.831
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.652,
+    "ts": 1783771434.1688168,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.824,
+    "ts": 1783771437.65473,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.81
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771441.077722,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.847,
+    "ts": 1783771450.379615
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.666,
+    "ts": 1783771454.668549,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.832,
+    "ts": 1783771458.115423,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.829
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783771460.5383942,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.03,
+    "ts": 1783771463.5677462,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.824
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771464.820884,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.825,
+    "ts": 1783771469.619296,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.814
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.788,
+    "ts": 1783771475.232935
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.844,
+    "ts": 1783771502.7432,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.612,
+    "ts": 1783771507.8835042,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.728
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.543,
+    "ts": 1783771513.770092
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.952,
+    "ts": 1783771521.0125818,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771524.944469,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.752,
+    "ts": 1783771532.573733,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.804,
+    "ts": 1783771536.540396,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest.",
+    "source": "signal",
+    "salience": 0.65,
+    "ts": 1783771545.0149639
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.789,
+    "ts": 1783771555.499381,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.62,
+    "ts": 1783771558.6319702,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "just chose to attend goal",
+    "source": "action",
+    "salience": 0.45,
+    "ts": 1783771569.226293
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.883,
+    "ts": 1783771574.170796,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.811,
+    "ts": 1783771576.445833,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.988,
+    "ts": 1783771581.190161,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.72
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.729,
+    "ts": 1783771586.790146
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.812,
+    "ts": 1783771590.709873,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.846,
+    "ts": 1783771597.981898,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.808,
+    "ts": 1783771603.988377,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.771
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771605.467264,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1783771611.470315,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.818,
+    "ts": 1783771614.459779,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.796
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.728,
+    "ts": 1783771616.2046661
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.023,
+    "ts": 1783771619.664313,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of things going well.",
+    "source": "signal",
+    "salience": 0.727,
+    "ts": 1783771621.249635
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.848,
+    "ts": 1783771624.932419,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771628.194497,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.84,
+    "ts": 1783771636.8901708,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.156,
+    "ts": 1783771645.3612852,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.823,
+    "ts": 1783771647.310005
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 0.993,
+    "ts": 1783771650.710476,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.784,
+    "ts": 1783771652.597235,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 1.159,
+    "ts": 1783771656.759657,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771657.9503229,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771660.5023339,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.623,
+    "ts": 1783771663.985587
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.937,
+    "ts": 1783771670.653198,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.731
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.641,
+    "ts": 1783771673.329833,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.623,
+    "ts": 1783771680.8250391
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771683.790166,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.77,
+    "ts": 1783771686.477346
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771690.65413,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1783771693.274251,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.855,
+    "ts": 1783771696.588825,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.664,
+    "ts": 1783771699.299642,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.033,
+    "ts": 1783771706.994941,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.833
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771713.563408,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.034,
+    "ts": 1783771718.6619468,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.835
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.793,
+    "ts": 1783771720.238443
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.033,
+    "ts": 1783771723.210529,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.833
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783771728.054272,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.032,
+    "ts": 1783771731.395478,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.831
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783771733.129212,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "sameness — remembering I've been running hot and flat — drive, self-assurance, curiosity all pinned high with almost no movement for 8+ cycles. — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.909,
+    "ts": 1783771737.3023,
+    "kind": "situation",
+    "facets": {
+      "object": "sameness",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "I've been running hot and flat — drive, self-assurance, curiosity all pinned high with almost no movement for 8+ cycles."
+    },
+    "object": "sameness",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771743.2904,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.836,
+    "ts": 1783771775.485047
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.032,
+    "ts": 1783771782.820715,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.829
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783771784.9096909,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.909,
+    "ts": 1783771788.411652,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.665,
+    "ts": 1783771791.647821,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "sameness — remembering I've been running hot and flat — drive, self-assurance, curiosity all pinned high with almost no movement for 8+ cycles. — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.909,
+    "ts": 1783771795.3160572,
+    "kind": "situation",
+    "facets": {
+      "object": "sameness",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "I've been running hot and flat — drive, self-assurance, curiosity all pinned high with almost no movement for 8+ cycles."
+    },
+    "object": "sameness",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771797.2428758,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.828,
+    "ts": 1783771800.018877,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.82
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.821,
+    "ts": 1783771802.224968
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.828,
+    "ts": 1783771807.2239711,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.82
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.662,
+    "ts": 1783771808.1899068,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.621,
+    "ts": 1783771813.3468401
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771816.027942,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.825,
+    "ts": 1783771820.308688,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.812
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.598,
+    "ts": 1783771821.5772061
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.818,
+    "ts": 1783771824.189541,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.795
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1783771829.7426612,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.538,
+    "ts": 1783771836.211673
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783771840.560439,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.807,
+    "ts": 1783771845.8534331,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.755
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.538,
+    "ts": 1783771849.1297832
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.799,
+    "ts": 1783771852.086226,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.731
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.834,
+    "ts": 1783771853.083422,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.536,
+    "ts": 1783771857.543914
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.789,
+    "ts": 1783771862.4950001,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771864.54614,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.193,
+    "ts": 1783771870.367203,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 1.023,
+    "ts": 1783771871.767376
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 0.993,
+    "ts": 1783771875.4462771,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.867,
+    "ts": 1783771877.630202,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.97,
+    "ts": 1783771882.409487,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.825
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.823,
+    "ts": 1783771884.2919621
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771888.096309,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.818,
+    "ts": 1783771893.0513952
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771927.6877818,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783771928.899529,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.62,
+    "ts": 1783771933.1384761,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.963,
+    "ts": 1783771935.726516,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.807
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.625,
+    "ts": 1783771936.787651
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771940.8135529,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.625,
+    "ts": 1783771941.848932
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771944.570233,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.859,
+    "ts": 1783771947.8279018,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.193,
+    "ts": 1783771952.932081,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771954.075847,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.956,
+    "ts": 1783771957.621587,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.791
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.823,
+    "ts": 1783771959.816015
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.759,
+    "ts": 1783771962.633107,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.638,
+    "ts": 1783771964.054315,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.817,
+    "ts": 1783771966.7303622
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783771970.74259,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783771980.214644,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.763,
+    "ts": 1783771981.422677,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.0,
+    "ts": 1783771984.3650072,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.75
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.769,
+    "ts": 1783771991.426038
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.802,
+    "ts": 1783771997.020266,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.754
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1783771999.9477088,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783772004.431933,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.007,
+    "ts": 1783772009.440365,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.742
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1783772011.380404,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.807,
+    "ts": 1783772018.4496,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.736
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.781,
+    "ts": 1783772020.126493
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1783772024.826373,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783772028.111582,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.819,
+    "ts": 1783772034.1642041,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.799
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.867,
+    "ts": 1783772035.20107,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.843,
+    "ts": 1783772038.0469272,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.858
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.789,
+    "ts": 1783772043.7426581
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783772050.4894779,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783772053.850556,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.833,
+    "ts": 1783772063.242788,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.833
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1783772067.837974,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.032,
+    "ts": 1783772070.318003,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.83
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.77,
+    "ts": 1783772071.29559
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.845,
+    "ts": 1783772074.542007,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.661,
+    "ts": 1783772076.0180101,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.824,
+    "ts": 1783772080.551767,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.81
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1783772081.741389,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.789,
+    "ts": 1783772084.693456,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.664,
+    "ts": 1783772085.537087,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.822,
+    "ts": 1783772088.4350631,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.743,
+    "ts": 1783772091.063227
+  },
+  {
+    "content": "since — remembering Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.709,
+    "ts": 1783772096.019104,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1783772097.214675,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.193,
+    "ts": 1783772099.814559,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.827,
+    "ts": 1783772102.551017
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783772106.403971,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 1.159,
+    "ts": 1783772109.9132202,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.644,
+    "ts": 1783772111.1429708,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783772113.651692,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.756,
+    "ts": 1783772115.645717,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.938,
+    "ts": 1783772118.198286,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.732
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.631,
+    "ts": 1783772120.346129,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783772123.750255,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 1.00)",
+    "source": "signal",
+    "salience": 0.823,
+    "ts": 1783772125.94275
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 1.193,
+    "ts": 1783772130.187624,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.798,
+    "ts": 1783772130.947958
+  },
+  {
+    "content": "since: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering Dream: In a labyrinth at dusk, A similar situation suggest",
+    "source": "binding",
+    "salience": 0.993,
+    "ts": 1783772133.138096,
+    "kind": "situation",
+    "facets": {
+      "object": "since",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding",
+      "memory": "Dream: In a labyrinth at dusk, A similar situation suggests (GENERAL, similarity 34%): [autobiography] Since my last ent"
+    },
+    "object": "since",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.651,
+    "ts": 1783772135.144331,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783772142.869458,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1783772144.66133,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.96,
+    "ts": 1783772148.920397,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.8
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.657,
+    "ts": 1783772151.87233,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1783772155.340904,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.781,
+    "ts": 1783772158.141166
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.762,
+    "ts": 1783772164.2929862,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.657,
+    "ts": 1783772165.552991,
+    "focus_signal": "motivation"
+  }
+]

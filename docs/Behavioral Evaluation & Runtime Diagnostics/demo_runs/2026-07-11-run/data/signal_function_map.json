@@ -1,0 +1,27 @@
+{
+  "_schema_version": 2,
+  "motivation": {
+    "thread_continue": 0.9235549999999999
+  },
+  "confidence": {
+    "narrative_update": 0.195
+  },
+  "exploration_drive": {
+    "thread_continue": 0.1
+  },
+  "reward_positive": {
+    "narrative_update": 0.35
+  },
+  "novelty_signal": {
+    "look_around": 0.1
+  },
+  "impasse_signal": {
+    "assess_goal_progress": 0.1
+  },
+  "expected_gain": {
+    "assess_goal_progress": 0.195
+  },
+  "uncertainty": {
+    "generate_intrinsic_goals": 0.6913026522222222
+  }
+}

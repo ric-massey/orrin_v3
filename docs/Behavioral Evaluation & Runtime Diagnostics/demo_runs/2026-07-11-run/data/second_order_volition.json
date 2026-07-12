@@ -1,0 +1,1202 @@
+[
+ {
+  "ts": 1783746730.7460868,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783746877.9232872,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783746998.774444,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783747116.303675,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747249.627967,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747356.805345,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747467.542437,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747589.262951,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747701.4201531,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747816.316681,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783747922.9596329,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748046.184428,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748171.154138,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748271.7322738,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783748395.12192,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748500.582944,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748595.9274921,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748723.2132952,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783748825.905494,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783748952.101227,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783749057.163682,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749152.965088,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749294.911807,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749399.020979,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749561.400021,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749664.152215,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783749772.480005,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783749924.2929862,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750040.336085,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783750227.24805,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750441.400176,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783750534.071693,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750658.5990882,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750764.149347,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750869.88576,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783750964.6676521,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751067.853787,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751193.2681851,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751300.5016682,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751411.080554,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783751508.427467,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751612.6395981,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751789.158817,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751886.279568,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783751993.6989372,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752088.425081,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752187.8396428,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752297.812772,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752399.495829,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752500.2196312,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752607.33405,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752693.080873,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752803.725733,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783752905.52917,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753027.963052,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753127.44751,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753226.5229208,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753325.931094,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753436.151544,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753556.813026,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783753716.4516292,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783753820.0657191,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783753949.19605,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754065.3552299,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754185.797408,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754293.054487,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754411.165928,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754528.5818298,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754625.00944,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754747.148041,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754865.126295,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783754972.493711,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755087.3871748,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783755194.988831,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755325.782882,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755434.933686,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783755550.407153,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755688.586924,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755791.948957,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783755912.878808,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756016.8059509,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756134.9608252,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756269.696589,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756372.952258,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756483.510525,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756591.1226711,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756715.525269,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783756907.0623941,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757029.884023,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757176.321533,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757317.75516,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757449.368235,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757588.351197,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757696.352847,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757806.974766,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783757916.63117,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758033.100677,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758180.5268962,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758296.804109,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758415.2345679,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758528.962961,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758649.192203,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758802.1067362,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783758928.440338,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759050.2269561,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759181.694623,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759316.665631,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759481.6369002,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759628.358576,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759768.790375,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783759879.9871511,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760039.601857,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760184.5580711,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760318.4071271,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760469.022167,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760628.448958,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783760757.828376,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761084.7169979,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761203.5879118,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761338.932511,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761463.753691,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761612.778238,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761765.39103,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783761892.6753669,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762010.7677069,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762126.894166,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762231.435621,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762354.011672,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762466.4825118,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762583.018692,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762696.891371,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783762794.6630862,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783762831.995064,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783762971.5344908,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783763090.810348,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763219.202286,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763346.393621,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763471.079384,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763626.4890702,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763795.809775,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783763932.607836,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783764063.545187,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783764197.696173,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783764344.149324,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783764475.205596,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783764618.391962,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783764758.8976982,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783764881.9691432,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765032.362672,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783765154.144195,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765310.61844,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765432.254893,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765565.8907478,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765715.3036249,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765828.8876958,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783765958.4771981,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783766075.5461671,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783766203.549202,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783766349.966641,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783766476.475568,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783766608.664453,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783766749.819639,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783766876.8888152,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767009.357733,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767124.058464,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767252.935652,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783767373.615992,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767495.2981591,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767700.3714402,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783767855.248607,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768026.596905,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768193.7501702,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768316.6549509,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768481.274893,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768612.874759,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768771.469205,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783768915.1853209,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769044.058911,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769197.43221,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769335.18334,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769473.2020469,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769605.883897,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769749.62724,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783769921.2777112,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783770053.593962,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770206.833177,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770349.460993,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770463.9879858,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770629.506753,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770752.827269,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783770877.90196,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783770997.585092,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783771129.227338,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783771276.698387,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783771403.245445,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783771597.988758,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783771743.3006332,
+  "stance": "neutral",
+  "desire": "autonomy",
+  "statement": "I notice I'm drawn to thinking and choosing for myself; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783771893.057921,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783772043.7487931,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783772158.189121,
+  "stance": "neutral",
+  "desire": "world_mastery",
+  "statement": "I notice I'm drawn to understanding and mastering the world; I'll let it be for now without making it my master."
+ }
+]

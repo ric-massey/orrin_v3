@@ -1,0 +1,131 @@
+{
+  "goals": {
+    "g_4bcf2b2bd998": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.239,
+      "last_ts": 1783716578.037792
+    },
+    "aspiration-self_understanding": {
+      "value_ema": 0.8142,
+      "stale_cycles": 7.0,
+      "avoid_streak": 18.763,
+      "last_ts": 1783772164.974058
+    },
+    "ltc_aspiration-self_understa_1": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 2.867,
+      "last_ts": 1783716662.4657779
+    },
+    "g_52037d5c0a53": {
+      "value_ema": 0.5802,
+      "stale_cycles": 0.0,
+      "avoid_streak": 4.094,
+      "last_ts": 1783717181.709686
+    },
+    "g_095343dfeec6": {
+      "value_ema": 0.5823,
+      "stale_cycles": 0.0,
+      "avoid_streak": 4.676,
+      "last_ts": 1783717201.926705
+    },
+    "Figure out why quality_standard.gate.write_exemplar isn't working": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.0,
+      "avoid_streak": 16.0,
+      "last_ts": 1783767673.333376
+    },
+    "g_54ea2c5e7a2f": {
+      "value_ema": 0.7172,
+      "stale_cycles": 0.0,
+      "avoid_streak": 1.288,
+      "last_ts": 1783717476.299486
+    },
+    "g_b8b57ea24842": {
+      "value_ema": 0.6405,
+      "stale_cycles": 0.0,
+      "avoid_streak": 3.136,
+      "last_ts": 1783717543.4714482
+    },
+    "g_cd3a6cf9c7b3": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783717521.5885272
+    },
+    "g_71139b751ea5": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.0,
+      "avoid_streak": 2.285,
+      "last_ts": 1783717547.9360042
+    },
+    "intrinsic-2026-07-10T21:06:40.097918+00:00": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783717616.058364
+    },
+    "g_1421c4dd39b3": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783719117.450946
+    },
+    "g_696f8771833c": {
+      "value_ema": 0.7917,
+      "stale_cycles": 0.0,
+      "avoid_streak": 2.486,
+      "last_ts": 1783719825.616996
+    },
+    "g_f77488a36f65": {
+      "value_ema": 0.6843,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.346,
+      "last_ts": 1783720470.972554
+    },
+    "g_6132820139c9": {
+      "value_ema": 0.8024,
+      "stale_cycles": 0.0,
+      "avoid_streak": 6.171,
+      "last_ts": 1783721272.7005582
+    },
+    "g_1062c543aaa6": {
+      "value_ema": 0.5798,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.764,
+      "last_ts": 1783720565.177168
+    },
+    "intrinsic-2026-07-10T21:56:23.126598+00:00": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783720591.523786
+    },
+    "g_a11f97f0a5aa": {
+      "value_ema": 0.58,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783722228.265729
+    },
+    "g_9afd79e32dc3": {
+      "value_ema": 0.6825,
+      "stale_cycles": 0.0,
+      "avoid_streak": 4.565,
+      "last_ts": 1783722386.0832808
+    },
+    "ltc_aspiration-self_understa_232": {
+      "value_ema": 0.5806,
+      "stale_cycles": 0.0,
+      "avoid_streak": 4.552,
+      "last_ts": 1783760334.962688
+    },
+    "g_a35d9ec92fd9": {
+      "value_ema": 0.7777,
+      "stale_cycles": 0.0,
+      "avoid_streak": 5.852,
+      "last_ts": 1783760985.954407
+    }
+  },
+  "driver": "aspiration-self_understanding"
+}

@@ -1,0 +1,409 @@
+{
+  "events": [
+    {
+      "ts": 1783716536.310645,
+      "stage": "candidate",
+      "goal": "Open question: Where am I confusing comfort with correctness?"
+    },
+    {
+      "ts": 1783716536.311643,
+      "stage": "candidate",
+      "goal": "Open question: What is concrete and true right now?"
+    },
+    {
+      "ts": 1783716536.312445,
+      "stage": "candidate",
+      "goal": "Open question: What question would make me most uncomfortable to answer honestly?"
+    },
+    {
+      "ts": 1783716578.080598,
+      "stage": "candidate",
+      "goal": "Open question: Is what I'm doing right now aligned with what I actually care about?"
+    },
+    {
+      "ts": 1783716578.083749,
+      "stage": "candidate",
+      "goal": "Open question: What would I do differently if I knew no one was watching — including myself?"
+    },
+    {
+      "ts": 1783716578.0858629,
+      "stage": "candidate",
+      "goal": "Open question: What question would make me most uncomfortable to answer honestly?"
+    },
+    {
+      "ts": 1783716669.43105,
+      "stage": "candidate",
+      "goal": "Open question: What do you think?"
+    },
+    {
+      "ts": 1783717366.966366,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783717366.991859,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783717367.0310981,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783717367.041672,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1783717367.0859048,
+      "stage": "candidate",
+      "goal": "Open question: What do you think?"
+    },
+    {
+      "ts": 1783717367.763106,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783717367.767509,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783717367.771863,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783717367.779392,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1783717477.512724,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783717477.524262,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783717477.539547,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783717477.551628,
+      "stage": "candidate",
+      "goal": "Open question: What would the most honest version of me say right now?"
+    },
+    {
+      "ts": 1783717521.791859,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783717521.807252,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783717521.8291872,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783717600.034299,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783717600.043725,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783717600.0526211,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783719133.265076,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783719133.267925,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783719133.270567,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783719133.273587,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1783719133.276567,
+      "stage": "candidate",
+      "goal": "Open question: What\ndo you think?"
+    },
+    {
+      "ts": 1783719140.595076,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783719140.600797,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1783719140.610441,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783719140.6183329,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1783719140.6270552,
+      "stage": "candidate",
+      "goal": "Open question: What\ndo you think?"
+    },
+    {
+      "ts": 1783719140.630646,
+      "stage": "candidate",
+      "goal": "Open question: Is this goal really mine, or have I inherited it?"
+    },
+    {
+      "ts": 1783720426.9926789,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1783720426.996269,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1783720426.99949,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1783720427.0027788,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1783720435.266678,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1783720435.2732291,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1783720435.283493,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1783720435.288637,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1783720471.086081,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1783720471.088983,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783720471.09436,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1783720471.097454,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1783720471.104256,
+      "stage": "candidate",
+      "goal": "Open question: What would I do differently if I knew no one was watching — including myself?"
+    },
+    {
+      "ts": 1783720583.033184,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1783720583.036439,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783720583.045815,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1783720583.0495858,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1783720583.0546691,
+      "stage": "candidate",
+      "goal": "Open question: What would I do differently if I knew no one was watching — including myself?"
+    },
+    {
+      "ts": 1783722236.814288,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783722236.825309,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1783722236.844882,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1783722236.855307,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1783722237.6197782,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1783722237.62701,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1783722237.6348548,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783722237.6431842,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783722386.5520902,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783722386.581221,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1783722386.6094432,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1783722386.616323,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1783727336.756937,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783727336.7596831,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1783727336.762069,
+      "stage": "candidate",
+      "goal": "Understand packet analyzer more deeply"
+    },
+    {
+      "ts": 1783727336.765065,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1783727336.769372,
+      "stage": "candidate",
+      "goal": "Open question: What do you think?"
+    },
+    {
+      "ts": 1783727336.7721422,
+      "stage": "candidate",
+      "goal": "Open question: What' — they replied: 'like stars?"
+    },
+    {
+      "ts": 1783737718.3053372,
+      "stage": "candidate",
+      "goal": "Understand wifi packets more deeply"
+    },
+    {
+      "ts": 1783737718.309123,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1783737718.311775,
+      "stage": "candidate",
+      "goal": "Understand packet capture more deeply"
+    },
+    {
+      "ts": 1783737718.3145258,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1783760331.320283,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1783760331.3378592,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1783760331.349864,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1783760331.359416,
+      "stage": "candidate",
+      "goal": "Understand english more deeply"
+    }
+  ]
+}

@@ -12,6 +12,10 @@
     "definition": "assert_speakable(text: 'str') -> 'str'\nReturn `text` if speakable; raise SpeakabilityError otherwise.\n\n    The door calls this AFTER composition. A failure here means the composer\n    copied backend representation instead of composing from meaning — a bug to\n    fix at the source, not text to sanitize and ship."
   },
   {
+    "name": "budget_allows",
+    "definition": "budget_allows(now: 'float | None' = None) -> 'bool'\nTrue when the rarity budget has room right now (does not consume it)."
+  },
+  {
     "name": "build_motive",
     "definition": "build_motive(context: 'Dict[str, Any]', *, intent: 'str', recipient: 'str' = 'Ric', seed: 'str' = None) -> \"'Motive'\"\nConstruct a Motive from the committed goal + felt state, with the step's\n    intent threaded in by step_execution when present.\n\n    Provenance flows one of two ways:\n      • `context[\"_expression_motive\"]` — set by execute_step_action when an\n        expressive act is fired from a plan step, carrying the step's intent and\n        the owning goal's purpose (Phase 2 / E6). Its fields override the\n        goal-derived defaults so the act serves the reason it was triggered.\n      • otherwise the goal-derived defaults (Phase-1 local motive).\n    The seed always defaults to the affect meaning kernel — never a raw WM line."
   },
@@ -41,7 +45,7 @@
   },
   {
     "name": "deliver_reply",
-    "definition": "deliver_reply(reply_text: 'str') -> 'None'\nDeliver a freshly emitted reply back to every Face message awaiting one.\n    No-ops when there is nothing pending (e.g. spontaneous speech), so only\n    genuine responses to the user are delivered."
+    "definition": "deliver_reply(reply_text: 'str', *, ignited: 'bool' = False) -> 'None'\nDeliver a freshly emitted reply back to every Face message awaiting one.\n\n    With nothing pending (spontaneous speech), the words used to die silently\n    here. Now they get somewhere to go (P1): an OS notification — but only when\n    the caller says the source cycle IGNITED (plumbed through the utterance\n    metadata, never re-decided at this bridge) and the presence budget in\n    presence_notify allows it. Ordinary replies to the user are unaffected."
   },
   {
     "name": "drain_face_inputs",
@@ -100,6 +104,10 @@
     "definition": "load_private_thoughts_as_list(path) -> 'list'"
   },
   {
+    "name": "notify_spontaneous",
+    "definition": "notify_spontaneous(text: 'str', *, ignited: 'bool') -> 'bool'\nOffer a spontaneous utterance to the OS. Returns True only when a\n    notification was actually shown (and therefore budget was consumed)."
+  },
+  {
     "name": "pre_speak_check",
     "definition": "pre_speak_check(text: 'str', context: 'Dict[str, Any]', urgency: 'float' = 0.5) -> 'Tuple[str, str]'\nGiven a generated text, return (possibly adapted text, disposition).\n\n    disposition: \"as_is\" | \"revised\" | \"silent\"\n\n    Call this after express() generates text, before it enters pending_actions."
   },
@@ -110,6 +118,10 @@
   {
     "name": "reflect_on_result",
     "definition": "reflect_on_result(tool, reason, result)"
+  },
+  {
+    "name": "register_reunion",
+    "definition": "register_reunion(gap_s: 'float') -> 'bool'\nCompose and persist the reunion line for a credited sleep gap. Called at\n    boot right after credit_sleep_since_last_active(); returns True when a line\n    was written. Fail-safe — a broken composition must never break boot."
   },
   {
     "name": "reload_generated_module",

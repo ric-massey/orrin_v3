@@ -180,6 +180,10 @@
     "definition": "ask_llm_for_research(context: 'Dict[str, Any]') -> 'str'\nCognition function: Orrin uses LLM as a research tool.\n    Pulls the research topic from context (committed goal or working memory)."
   },
   {
+    "name": "aspiration_credit_value",
+    "definition": "aspiration_credit_value(driven_by: 'str') -> 'Optional[float]'\nFix 4 (RUN6_FIX_PLAN §3) — the credited-contribution signal for the\n    aspiration a drive serves, in [0,1], for goal_io's commitment score.\n\n    Commitment used to be chosen by tier+priority while credit was attributed by\n    driven_by — the two halves never talked, so Run 5 committed an aspiration\n    that earned 1 contribution while a barely-committed one earned 6. This feeds\n    the credit side back into commitment: share of contributions vs the\n    best-credited peer, blended with recency of the last real contribution.\n    Returns None when there is no evidence yet anywhere (cold start — the\n    commitment score then falls back to the goal's own effect EMA)."
+  },
+  {
     "name": "assess_artifact_file",
     "definition": "assess_artifact_file(path: 'str', *, goal: 'Optional[Dict[str, Any]]' = None) -> 'QualityVerdict'\nRead a produced artifact file and judge its CONTENT (used by\n    artifact_satisfied to close the file-existence loophole). A missing/unreadable\n    file is not real work."
   },
@@ -388,6 +392,10 @@
     "definition": "commit_extension(context: 'Dict[str, Any]') -> 'str'\nCognition function: attempt to commit a reviewed proposal.\n    Checks all gate conditions — gestation age, WM references, emotional stability,\n    values alignment, fragmentation level. If passed: writes code and registers it.\n    Identity disruption is real and immediate."
   },
   {
+    "name": "commit_score",
+    "definition": "commit_score(goal: 'Dict[str, Any]', *, tier_weight: 'int', priority_rank: 'int') -> 'float'\nThe full commitment score goal_io sorts on (Fix 2). Fail-safe: on any\n    signal-store trouble this degrades to the legacy tier/priority ordering."
+  },
+  {
     "name": "compose_consolidation",
     "definition": "compose_consolidation(self_model: Dict[str, Any], recent: List[Any]) -> str\nReturn a symbolic dream text based on self_model and recent thoughts."
   },
@@ -465,7 +473,7 @@
   },
   {
     "name": "credit_sleep",
-    "definition": "credit_sleep(seconds: 'float') -> 'Dict'\nAdd `seconds` of idle time to the ledger so that time costs no lifetime (§10.3).\n    Called on boot in 'sleep' existence mode to credit the window-closed interval."
+    "definition": "credit_sleep(seconds: 'float') -> 'Dict'\nAdd `seconds` of idle time to the ledger so that time costs no lifetime (§10.3).\n    Called on boot in 'sleep' existence mode to credit the window-closed interval.\n    Non-initializing: crediting sleep to a life that hasn't been rolled yet must not\n    roll one — with no lifespan there is nothing to credit."
   },
   {
     "name": "credit_sleep_since_last_active",
@@ -1065,7 +1073,7 @@
   },
   {
     "name": "life_status",
-    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only lifetime view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing the\n    real countdown would be reading something the runtime itself cannot (its estimate of\n    its lifespan is wrong by design); the page shows what it estimates."
+    "definition": "life_status() -> 'Dict[str, Any]'\nRead-only lifetime view for the Life Support page (§9.10). Exposes ONLY the\n    *felt* estimate and age — never the true `lifespan_days`/`noise_days`. Surfacing the\n    real countdown would be reading something the runtime itself cannot (its estimate of\n    its lifespan is wrong by design); the page shows what it estimates.\n\n    Reading a life must never CREATE one: the backend polls this for the UI, so before\n    a lifespan is rolled (fresh reset, brain not yet booted) it reports a not-started\n    view instead of calling _init_lifespan() — rolling belongs to the loop\n    (apply_lifetime_pressure), never to a GET."
   },
   {
     "name": "lifespan_rolled",
@@ -1296,6 +1304,18 @@
     "definition": "note_armed(audit_id: 'str', pattern: 'str', *, cycle: 'Optional[int]' = None) -> 'Optional[Dict[str, Any]]'\nRegister a just-armed corrective for follow-through. Snapshots the\n    originating signal value + expected class so the relief test can be measured K\n    cycles later. Returns the `outcome` stub to stamp on the behavior_changes\n    record (status=\"pending\"), or None for an unaudited pattern type."
   },
   {
+    "name": "note_avoidance",
+    "definition": "note_avoidance(goal_id: 'str', weight: 'float' = 1.0) -> 'None'\nFix 3 — a goal-avoidance detection on this committed goal. Raises the\n    avoidance penalty so avoidance can RELEASE the commitment, not only prod\n    action on it (`_force_action_next` fought the symptom 240× in Run 5 and\n    never touched commitment)."
+  },
+  {
+    "name": "note_driver_selected",
+    "definition": "note_driver_selected(chosen_id: 'str', candidate_ids: 'Iterable[str]') -> 'None'\nCalled by goal_io once per committed-goal pull with the goal holding the\n    driver slot. The holder accrues staleness (reset only by a credited effect);\n    every other candidate's penalties DECAY — the release/recovery path."
+  },
+  {
+    "name": "note_goal_credit",
+    "definition": "note_goal_credit(goal_id: 'str', significance: 'float') -> 'None'\nA credited (novel, significant) effect landed for this goal — the \"real\n    action\" signal. Folds into the value EMA, clears staleness, and halves the\n    avoidance streak (real work on the goal is the strongest counter-evidence)."
+  },
+  {
     "name": "note_intake_completed",
     "definition": "note_intake_completed(topic: 'str') -> 'None'"
   },
@@ -1322,6 +1342,10 @@
   {
     "name": "offer_to_workspace",
     "definition": "offer_to_workspace(context: 'Dict[str, Any]', candidate: 'Dict[str, Any]') -> 'None'\nThe single sanctioned way for the Executive/Monitor to push content toward\n    consciousness (I4). It is queued as a candidate for the NEXT update_workspace,\n    where it competes on salience — it does not flip an \"is conscious\" flag or\n    preempt the current pick (I7). `candidate`: {content, salience, source, wants,\n    kind, exempt_habituation}. Fail-safe and bounded."
+  },
+  {
+    "name": "order_committable",
+    "definition": "order_committable(found: 'List[Dict[str, Any]]', *, tier_weight_fn: 'Callable[[Any], int]', priority_rank_fn: 'Callable[[Any], int]', limit: 'int') -> 'List[Dict[str, Any]]'\nOrder goal_io's committable candidates by commit_score and apply the P4\n    directional cap — exactly ONE directional long_term goal drives at a time,\n    now the highest-SCORED one, so which directional drives rotates on learned\n    value/staleness/avoidance rather than a stable tie-break. Extra directionals\n    stay signposts; the remaining committed slots go to ordinary goals so the\n    never-ending driver can never starve the pool. Also feeds the rotation loop\n    (the slot-holder accrues staleness; released candidates decay/recover).\n    Returns shallow copies so per-cycle edits don't corrupt the tree."
   },
   {
     "name": "organ_fluent",
@@ -2002,6 +2026,10 @@
   {
     "name": "signal_driven_mode_shift",
     "definition": "signal_driven_mode_shift() -> 'None'\nAutomatically adjusts Orrin's operating mode based on emotional state."
+  },
+  {
+    "name": "signals_snapshot",
+    "definition": "signals_snapshot() -> 'Dict[str, Any]'\nRead-only copy of the signal table (telemetry / run analysis)."
   },
   {
     "name": "simulate",

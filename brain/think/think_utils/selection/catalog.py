@@ -120,6 +120,10 @@ def _tagged_or(tag_names: tuple[str, ...], default: frozenset[str]) -> frozenset
 def _learned_stats() -> Dict[str, Dict[str, float]]:
     if _time.time() - _STATS_CACHE["t"] < 15.0 and _STATS_CACHE["data"]:
         return cast(Dict[str, Dict[str, float]], _STATS_CACHE["data"])
+    if not _STATS_PATH.exists():
+        _STATS_CACHE["data"] = {}
+        _STATS_CACHE["t"] = _time.time()
+        return {}
     try:
         import json as _json
         d = _json.loads(_STATS_PATH.read_text("utf-8"))

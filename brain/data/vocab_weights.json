@@ -20,16 +20,21 @@
     "weight": 2.0
   },
   "b4cc73721963": {
-    "uses": 5,
-    "successes": 5,
+    "uses": 6,
+    "successes": 6,
     "weight": 2.0
   },
   "21bf09298464": {
-    "uses": 2,
-    "successes": 2,
+    "uses": 3,
+    "successes": 3,
     "weight": 2.0
   },
   "cceba1d59802": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "e53d6e5cff3f": {
     "uses": 1,
     "successes": 1,
     "weight": 2.0

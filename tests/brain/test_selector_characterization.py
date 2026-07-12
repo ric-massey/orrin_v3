@@ -36,6 +36,18 @@ def _fresh_learned_stats(tmp_path, monkeypatch):
     monkeypatch.setattr(catalog, "_STATS_PATH", tmp_path / "decision_stats.json")
     monkeypatch.setattr(catalog, "_STATS_CACHE", {"t": 0.0, "data": {}})
 
+
+def test_missing_learned_stats_file_is_newborn_empty(tmp_path, monkeypatch):
+    from brain.think.think_utils.selection import catalog
+
+    calls = []
+    monkeypatch.setattr(catalog, "_STATS_PATH", tmp_path / "decision_stats.json")
+    monkeypatch.setattr(catalog, "_STATS_CACHE", {"t": 0.0, "data": {}})
+    monkeypatch.setattr(catalog, "record_failure", lambda site, exc: calls.append((site, exc)))
+
+    assert catalog._learned_stats() == {}
+    assert calls == []
+
 # Cases whose pinned decision recruits `research_topic` via the embedder's
 # semantic capability↔goal match (MiniLM). When the model can't load (offline
 # CI / HF rate-limit), `_capability_overlap` degrades to keyword-only and these

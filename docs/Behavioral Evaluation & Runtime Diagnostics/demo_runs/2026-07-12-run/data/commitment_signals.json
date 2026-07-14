@@ -1,0 +1,193 @@
+{
+  "goals": {
+    "g_85f4ea08ca": {
+      "value_ema": 0.5,
+      "stale_cycles": 1.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783874015.350562
+    },
+    "g_1e82a9d1c8": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783874039.451825,
+      "recent_hashes": [
+        "1c1780c45023184d3a5b9cb441ef639f61339f7cfbd60ff6caa586b50451bedc"
+      ]
+    },
+    "g_73f5641fba": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "last_ts": 1783874044.208993,
+      "recent_hashes": [
+        "5cf4f7958dcd1a6a92afd2db8405cfb20bf3990ce80f1dcaf92a96eaf80d03b3"
+      ]
+    },
+    "g_de1a9baa65f4": {
+      "value_ema": 0.5333,
+      "stale_cycles": 0.0,
+      "avoid_streak": 1.643,
+      "last_ts": 1783874872.19047,
+      "recent_hashes": [
+        "2fc5cbfef5a1b3049950e6a23c602f65396366afb232258431e1ede4c0fc3996",
+        "52c805f4d9eeb2dc9a63bc129b775c47627c0002521edc493d73bcf31d34647a"
+      ]
+    },
+    "aspiration-self_understanding": {
+      "value_ema": 0.5196,
+      "stale_cycles": 10291.0,
+      "avoid_streak": 6852.526,
+      "last_ts": 1783903001.481194,
+      "recent_hashes": [
+        "e033808866e5e6d8cbafa4e62afba3d260c9e8500779ab303e178d84b0a63b09",
+        "8c112165e817a9ae548a7ce5f94476bdb73f7cb6bedffac2f302c3439a59bc22"
+      ]
+    },
+    "ltc_aspiration-self_understa_1": {
+      "value_ema": 0.5735,
+      "stale_cycles": 0.0,
+      "avoid_streak": 3.999,
+      "last_ts": 1783874163.973988,
+      "recent_hashes": [
+        "c136adbc192e9135d9ccb1323f71720d8846241d610c2c45c197b24d6a4879ee"
+      ]
+    },
+    "g_6edb606fd98e": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "7624611856cf3f4b26b0cadf923d12c678e82f88f796e08c37ce2e45e7880a0f"
+      ],
+      "last_ts": 1783874171.1418738
+    },
+    "g_c80ebe957170": {
+      "value_ema": 0.5893,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "9861476e91ecebef6e373441b97bf3f0ce4c5b5dacb52bb572e596591155e01b"
+      ],
+      "last_ts": 1783874227.671411
+    },
+    "g_7715a11edd9f": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.0,
+      "avoid_streak": 2.456,
+      "last_ts": 1783874706.2835178
+    },
+    "g_dc1fb99066": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "7b345fdc9c0c3d4f9488391beaa440dbca31a136771d17abeada2e79161ec010"
+      ],
+      "last_ts": 1783878819.559691
+    },
+    "intrinsic-2026-07-12T17:53:40.226423+00:00": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "2188608ab1ac8769ba84943312166ca9adbc567bc80f2e1f925ab3591fb01898"
+      ],
+      "last_ts": 1783878822.182644
+    },
+    "g_959bc92919e5": {
+      "value_ema": 0.5241,
+      "stale_cycles": 0.0,
+      "avoid_streak": 6.881,
+      "last_ts": 1783884484.65172,
+      "recent_hashes": [
+        "5378271ec47df9e9bc0f855805b784919ca633fc4ed6e0c8396c51e4b050728f",
+        "56c78826d1e21a533049462031d932667bdacdd837829be618a1c6ee3ca08441"
+      ]
+    },
+    "g_cfae3f4304e1": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 4.21,
+      "last_ts": 1783884528.6526878,
+      "recent_hashes": [
+        "4dfab74464cbb7a1e3021d76fb2b0a275f33403e5cec0e79ade98a714408536d"
+      ]
+    },
+    "g_994930127d57": {
+      "value_ema": 0.5244,
+      "stale_cycles": 0.0,
+      "avoid_streak": 6.179,
+      "last_ts": 1783884639.695012,
+      "recent_hashes": [
+        "f152d813068db8338e00983cb1a8e665837144e2406e8f62b07e1532aab2bf89",
+        "5ac126494741e5c63b4dbdb61d59987e26e8307769242aeb99e177c6c55775dc"
+      ]
+    },
+    "g_1068f3cd3c95": {
+      "value_ema": 0.5464,
+      "stale_cycles": 0.0,
+      "avoid_streak": 7.094,
+      "last_ts": 1783884754.428661,
+      "recent_hashes": [
+        "458cb8f30beed3889343461f88aea4c43c037655c4f3e05d339ce7981ca39963",
+        "e13bd91e2bb5008f505fb115264b65443282d579ce170eed739705509068bc49",
+        "b565b8ba58cba8b7143aa8147324fe30a3d134cf08cd1aa17b6a7dc4bb435879"
+      ]
+    },
+    "g_30858508b6d7": {
+      "value_ema": 0.5221,
+      "stale_cycles": 0.0,
+      "avoid_streak": 3.299,
+      "last_ts": 1783884853.9981718,
+      "recent_hashes": [
+        "5b4cce6ab5619428353fdca6dcf95838b2fef920cd02c8b5d0e418fe59e2ab55",
+        "33a722e200e99327dac4730dbab27418df765688e6928977c940fc0f984e166a"
+      ]
+    },
+    "g_286deca36640": {
+      "value_ema": 0.523,
+      "stale_cycles": 0.0,
+      "avoid_streak": 8.757,
+      "last_ts": 1783885649.7993522,
+      "recent_hashes": [
+        "b104c4767e80d27c01b741914cdb35cbbe313c934359d2c4bff5d64e54047d45"
+      ]
+    },
+    "Figure out why quality_standard.gate.write_exemplar isn't working": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.0,
+      "avoid_streak": 6.0,
+      "last_ts": 1783895931.349416
+    },
+    "g_082e77df86": {
+      "value_ema": 0.6666,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "6fa45291cc64dbd755574f3aacb4485194fb38523c506e9602e3b169d025708f",
+        "5ea91f1c247d195b95af11ebab16bfe766c73df0cbe06902b14b236e656ce7c9"
+      ],
+      "last_ts": 1783889942.9977732
+    },
+    "g_747b9462e5": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "bae596843e8c0b557ec168945e92071dba6b72b110fbdca55ac5fb8327189986"
+      ],
+      "last_ts": 1783896334.828189
+    },
+    "g_b094881f5b": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "90b1610e49e547c509a99c9466cab4a699237579e13126aa713864e2a4c5a4c3"
+      ],
+      "last_ts": 1783902709.440969
+    }
+  },
+  "driver": "aspiration-self_understanding"
+}

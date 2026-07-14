@@ -1,0 +1,21 @@
+{
+  "_schema_version": 2,
+  "motivation": {
+    "generate_intrinsic_goals": 0.60768
+  },
+  "confidence": {
+    "generate_intrinsic_goals": 0.1
+  },
+  "exploration_drive": {
+    "assess_goal_progress": 0.1
+  },
+  "impasse_signal": {
+    "research_topic": 0.3709875
+  },
+  "reward_positive": {
+    "narrative_update": 1.044496
+  },
+  "expected_gain": {
+    "generate_intrinsic_goals": 0.5344000000000001
+  }
+}

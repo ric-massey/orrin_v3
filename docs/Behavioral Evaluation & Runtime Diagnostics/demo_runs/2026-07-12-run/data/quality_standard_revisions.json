@@ -1,0 +1,588 @@
+[
+  {
+    "id": "c473ddff4cbf403b",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_de1a9baa65f4",
+      "content_hash": "52c805f4d9eeb2dc9a63bc129b775c47627c0002521edc493d73bcf31d34647a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_de1a9baa65f4"
+      ],
+      "effect_rows": [
+        "52c805f4d9eeb2dc9a63bc129b775c47627c0002521edc493d73bcf31d34647a"
+      ],
+      "significance": 0.3393,
+      "reuse_count": 0,
+      "memory_refs": [
+        "89ca6ee3-5df0-4cfa-a8e7-f3cbf91dc3dc"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_de1a9baa65f4",
+    "ts": "2026-07-12T19:38:33.475075Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-of-written-language-52c805f4.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-of-written-language-52c805f4.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.569526Z"
+  },
+  {
+    "id": "b28b04c12c61e68f",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "e033808866e5e6d8cbafa4e62afba3d260c9e8500779ab303e178d84b0a63b09",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "e033808866e5e6d8cbafa4e62afba3d260c9e8500779ab303e178d84b0a63b09"
+      ],
+      "significance": 0.3143,
+      "reuse_count": 0,
+      "memory_refs": [
+        "77afd24b-0f78-489a-97bc-4887427e2096"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-12T19:38:33.492426Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-philosophy-of-time-e0338088.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-philosophy-of-time-e0338088.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.592443Z"
+  },
+  {
+    "id": "5f449b81de0a09ba",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-self_understanding",
+      "content_hash": "8c112165e817a9ae548a7ce5f94476bdb73f7cb6bedffac2f302c3439a59bc22",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-self_understanding"
+      ],
+      "effect_rows": [
+        "8c112165e817a9ae548a7ce5f94476bdb73f7cb6bedffac2f302c3439a59bc22"
+      ],
+      "significance": 0.3143,
+      "reuse_count": 0,
+      "memory_refs": [
+        "c0ba0b76-5e23-4765-90eb-c25a1258c367",
+        "f6440f28-1bef-407a-8a61-e6d357fda017"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal aspiration-self_understanding",
+    "ts": "2026-07-12T19:38:33.504839Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-evolutionary-biology-8c112165.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-evolutionary-biology-8c112165.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.595728Z"
+  },
+  {
+    "id": "e2ba7ec7c65520c1",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "intrinsic-2026-07-12T17:53:40.226423+00:00",
+      "content_hash": "2188608ab1ac8769ba84943312166ca9adbc567bc80f2e1f925ab3591fb01898",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "intrinsic-2026-07-12T17:53:40.226423+00:00"
+      ],
+      "effect_rows": [
+        "2188608ab1ac8769ba84943312166ca9adbc567bc80f2e1f925ab3591fb01898"
+      ],
+      "significance": 0.4,
+      "reuse_count": 0,
+      "memory_refs": [
+        "7d57d8c9-0388-4b15-94e0-b58567d90999"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal intrinsic-2026-07-12T17:53:40.226423+00:00",
+    "ts": "2026-07-12T19:38:33.517304Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/by-analogy-by-analogy-general-similarity-66-rese-2188608a.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/by-analogy-by-analogy-general-similarity-66-rese-2188608a.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.599322Z"
+  },
+  {
+    "id": "04dd02e749cebb36",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_959bc92919e5",
+      "content_hash": "5378271ec47df9e9bc0f855805b784919ca633fc4ed6e0c8396c51e4b050728f",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_959bc92919e5"
+      ],
+      "effect_rows": [
+        "5378271ec47df9e9bc0f855805b784919ca633fc4ed6e0c8396c51e4b050728f"
+      ],
+      "significance": 0.3208,
+      "reuse_count": 0,
+      "memory_refs": [
+        "01534daf-e623-4011-aaa0-e9aa5049dcdf"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_959bc92919e5",
+    "ts": "2026-07-12T19:38:33.530317Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-more-deeply-5378271e.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-more-deeply-5378271e.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.601541Z"
+  },
+  {
+    "id": "fbb8dfb86540883e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_959bc92919e5",
+      "content_hash": "56c78826d1e21a533049462031d932667bdacdd837829be618a1c6ee3ca08441",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_959bc92919e5"
+      ],
+      "effect_rows": [
+        "56c78826d1e21a533049462031d932667bdacdd837829be618a1c6ee3ca08441"
+      ],
+      "significance": 0.3208,
+      "reuse_count": 0,
+      "memory_refs": [
+        "31641ccb-8fbe-4244-bf4d-db6173131d8f"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_959bc92919e5",
+    "ts": "2026-07-12T19:38:33.541932Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-claude-code-sends-4-7x-more-tokens-56c78826.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-claude-code-sends-4-7x-more-tokens-56c78826.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.604507Z"
+  },
+  {
+    "id": "c371a96707e68b30",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_994930127d57",
+      "content_hash": "f152d813068db8338e00983cb1a8e665837144e2406e8f62b07e1532aab2bf89",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_994930127d57"
+      ],
+      "effect_rows": [
+        "f152d813068db8338e00983cb1a8e665837144e2406e8f62b07e1532aab2bf89"
+      ],
+      "significance": 0.3192,
+      "reuse_count": 0,
+      "memory_refs": [
+        "cd41bbc4-8214-44ff-a982-8eb3c18e18be"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_994930127d57",
+    "ts": "2026-07-12T19:38:33.579081Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-i-love-llms-i-hate-hype-the-singul-f152d813.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-i-love-llms-i-hate-hype-the-singul-f152d813.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.607081Z"
+  },
+  {
+    "id": "420fd03899b6038a",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_994930127d57",
+      "content_hash": "5ac126494741e5c63b4dbdb61d59987e26e8307769242aeb99e177c6c55775dc",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_994930127d57"
+      ],
+      "effect_rows": [
+        "5ac126494741e5c63b4dbdb61d59987e26e8307769242aeb99e177c6c55775dc"
+      ],
+      "significance": 0.3192,
+      "reuse_count": 0,
+      "memory_refs": [
+        "c5302b6b-5c71-48b1-9a9b-4790f3dacb51"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_994930127d57",
+    "ts": "2026-07-12T19:38:33.592422Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-old-and-new-apps-via-modern-coding-5ac12649.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-old-and-new-apps-via-modern-coding-5ac12649.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.609668Z"
+  },
+  {
+    "id": "298cb7bbf5e66680",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1068f3cd3c95",
+      "content_hash": "458cb8f30beed3889343461f88aea4c43c037655c4f3e05d339ce7981ca39963",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1068f3cd3c95"
+      ],
+      "effect_rows": [
+        "458cb8f30beed3889343461f88aea4c43c037655c4f3e05d339ce7981ca39963"
+      ],
+      "significance": 0.332,
+      "reuse_count": 0,
+      "memory_refs": [
+        "5c31b5f0-9937-4f8c-ba8c-168acd0d50e8"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_1068f3cd3c95",
+    "ts": "2026-07-12T19:38:33.603332Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-don-t-you-mean-extinct-458cb8f3.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-don-t-you-mean-extinct-458cb8f3.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.612327Z"
+  },
+  {
+    "id": "9e26dda308c1f479",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1068f3cd3c95",
+      "content_hash": "e13bd91e2bb5008f505fb115264b65443282d579ce170eed739705509068bc49",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1068f3cd3c95"
+      ],
+      "effect_rows": [
+        "e13bd91e2bb5008f505fb115264b65443282d579ce170eed739705509068bc49"
+      ],
+      "significance": 0.332,
+      "reuse_count": 0,
+      "memory_refs": [
+        "02662eb5-b5e9-4727-a804-0d41877bd4ce"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_1068f3cd3c95",
+    "ts": "2026-07-12T19:38:33.614979Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-contingency-evolutionary-biology-w-e13bd91e.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-contingency-evolutionary-biology-w-e13bd91e.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.616878Z"
+  },
+  {
+    "id": "d121eea51af029f1",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1068f3cd3c95",
+      "content_hash": "b565b8ba58cba8b7143aa8147324fe30a3d134cf08cd1aa17b6a7dc4bb435879",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1068f3cd3c95"
+      ],
+      "effect_rows": [
+        "b565b8ba58cba8b7143aa8147324fe30a3d134cf08cd1aa17b6a7dc4bb435879"
+      ],
+      "significance": 0.332,
+      "reuse_count": 0,
+      "memory_refs": [
+        "5f7b53e7-2e5e-4018-a303-4064296209e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_1068f3cd3c95",
+    "ts": "2026-07-12T19:38:33.627392Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-evolutionary-developmental-biology-b565b8ba.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-evolutionary-developmental-biology-b565b8ba.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.619424Z"
+  },
+  {
+    "id": "2dd34ec82112aafc",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_30858508b6d7",
+      "content_hash": "5b4cce6ab5619428353fdca6dcf95838b2fef920cd02c8b5d0e418fe59e2ab55",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_30858508b6d7"
+      ],
+      "effect_rows": [
+        "5b4cce6ab5619428353fdca6dcf95838b2fef920cd02c8b5d0e418fe59e2ab55"
+      ],
+      "significance": 0.316,
+      "reuse_count": 0,
+      "memory_refs": [
+        "bc6e4078-64d4-47cb-80a2-2d6eddf2348d"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_30858508b6d7",
+    "ts": "2026-07-12T19:38:33.639228Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-deeper-and-deeper-wikipedia-5b4cce6a.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-deeper-and-deeper-wikipedia-5b4cce6a.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.621683Z"
+  },
+  {
+    "id": "208e37c1cba31bdd",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_30858508b6d7",
+      "content_hash": "33a722e200e99327dac4730dbab27418df765688e6928977c940fc0f984e166a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_30858508b6d7"
+      ],
+      "effect_rows": [
+        "33a722e200e99327dac4730dbab27418df765688e6928977c940fc0f984e166a"
+      ],
+      "significance": 0.316,
+      "reuse_count": 0,
+      "memory_refs": [
+        "695fde02-e1f0-4586-a0da-654a361cb6d5"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal g_30858508b6d7",
+    "ts": "2026-07-12T19:38:33.649531Z",
+    "apply_error": "[Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-deep-history-more-deeply-33a722e2.md'",
+    "diagnostics": {
+      "errno": 13,
+      "exception": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-deep-history-more-deeply-33a722e2.md'",
+      "dir_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars",
+      "dir_exists": true,
+      "dir_w_ok": false,
+      "dir_mode": "0o40500",
+      "dir_uid": 501,
+      "dir_gid": 20,
+      "parent_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden",
+      "parent_exists": true,
+      "parent_w_ok": false,
+      "parent_mode": "0o40500",
+      "parent_uid": 501,
+      "parent_gid": 20
+    },
+    "updated_ts": "2026-07-12T22:38:37.624033Z"
+  }
+]

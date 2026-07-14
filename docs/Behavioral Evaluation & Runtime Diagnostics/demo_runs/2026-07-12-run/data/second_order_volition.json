@@ -1,0 +1,1202 @@
+[
+ {
+  "ts": 1783889369.2779148,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889423.7332559,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889485.038924,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889536.2357109,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889588.502452,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783889644.235486,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783889700.206957,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889759.1695948,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889810.571139,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783889870.040386,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889919.813216,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783889973.695937,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890031.156908,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890081.541984,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890138.525134,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890190.7122471,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783890247.9389188,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890307.140883,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890361.681273,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783890425.425489,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890478.057139,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890534.858464,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890594.5213408,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890647.0884821,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890703.19928,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890756.046638,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783890809.917622,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783890867.989943,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783890923.696608,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783890978.452605,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891032.862976,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891090.5153642,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891150.312055,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891204.3163981,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783891262.1506822,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891316.614012,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783891370.568903,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891430.0063071,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891481.782474,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891537.474603,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891590.77013,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891646.1921122,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891708.769949,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891761.560082,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783891817.0748632,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891873.100011,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783891933.500347,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783891998.473333,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783892058.887806,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892119.9421608,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892186.492457,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892254.319615,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892323.613892,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892387.7067242,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892451.6108139,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892513.450017,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892574.2988212,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892641.796136,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892704.85759,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783892771.6419468,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892836.457036,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892900.148648,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783892971.536535,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893033.3918688,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893096.6899571,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783893155.6598148,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893218.854248,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783893286.246387,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783893349.488529,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893414.141064,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893475.677839,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893540.983552,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893608.5945868,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893679.28657,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783893740.95629,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893806.6139781,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893868.9153879,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783893935.8455071,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894002.666187,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894064.723226,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894123.752002,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783894187.093119,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783894254.3278441,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894325.5638971,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894389.358804,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894451.774793,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783894516.9251351,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894586.5581381,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894651.2364259,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894716.652462,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894782.306744,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783894847.651735,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783894919.92039,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783894987.296862,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783895064.849898,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895208.0372732,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895303.2236218,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895373.6955352,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895437.06231,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895500.411098,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895562.07424,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895629.8609018,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895700.795043,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783895772.773149,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783895841.4421928,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783895911.799663,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783895988.202865,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783896062.3491101,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896130.285384,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896201.692123,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896267.9038389,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896342.363179,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896414.0903769,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896482.0307221,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896555.792594,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783896622.593846,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783896697.1332521,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896772.280585,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896838.3048651,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896914.53192,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783896985.091573,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897056.27365,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783897131.250595,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783897207.880055,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897275.223993,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783897344.0263839,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783897416.908803,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897492.578901,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897665.040019,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897731.9531991,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897794.779957,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897862.206124,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897934.4715981,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783897999.898988,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898071.7064471,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898137.480793,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898213.145695,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898290.35097,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898363.960364,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898431.795669,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898501.521329,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898572.47447,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898646.027267,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898718.3948328,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898789.198563,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783898859.690721,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783898930.535497,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899008.42408,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899082.3700511,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899156.038267,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783899224.8237681,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899298.979869,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899377.465138,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783899445.9856691,
+  "stance": "neutral",
+  "desire": "expected_gain",
+  "statement": "I notice I'm drawn to something worth doing; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783899524.06442,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783899595.4503858,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899672.630105,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899753.819432,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899818.558409,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783899900.344743,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783899972.2548108,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900041.7813609,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900114.9122539,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900179.345572,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900254.304947,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900333.47446,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900411.2891588,
+  "stance": "endorse",
+  "desire": "competence",
+  "statement": "I reflect on my pull toward being capable and effective \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900491.0661728,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900568.8205812,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900644.6567512,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900713.6043541,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900787.1796842,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783900864.945141,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783900934.6104052,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783901016.8287098,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901086.9232872,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901162.770745,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783901241.4905899,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901311.985538,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783901389.8457532,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783901455.711838,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901529.005697,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901601.30226,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901675.7087722,
+  "stance": "endorse",
+  "desire": "confidence",
+  "statement": "I reflect on my pull toward self-assurance \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901754.8930292,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901826.666633,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783901902.5646248,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783901979.6649501,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902056.4910662,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783902133.899542,
+  "stance": "endorse",
+  "desire": "exploration_drive",
+  "statement": "I reflect on my pull toward seeking what's new \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902204.17553,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902278.274624,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902389.190119,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902464.247325,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783902553.899153,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783902637.125387,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902729.415835,
+  "stance": "endorse",
+  "desire": "connection",
+  "statement": "I reflect on my pull toward being close to and useful to others \u2014 and I choose it. It's mine."
+ },
+ {
+  "ts": 1783902820.661145,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783902903.749269,
+  "stance": "neutral",
+  "desire": "signal_stability",
+  "statement": "I notice I'm drawn to staying steady; I'll let it be for now without making it my master."
+ },
+ {
+  "ts": 1783903002.550446,
+  "stance": "neutral",
+  "desire": "motivation",
+  "statement": "I notice I'm drawn to drive to act; I'll let it be for now without making it my master."
+ }
+]

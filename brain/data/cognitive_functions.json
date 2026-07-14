@@ -280,6 +280,10 @@
     "definition": "bump_attempt(goal_id: 'str', step_key: 'str') -> 'int'\nCount one more failed attempt at this step; returns the new count."
   },
   {
+    "name": "bump_recurrence",
+    "definition": "bump_recurrence(capability: 'str') -> 'int'\nC3: increment and return the persisted episode count for this failure key.\n    Run 6 called the same write failure 'transient' twelve times over fifteen\n    hours; at RECURRENCE_ESCALATE the transient hypothesis is refuted."
+  },
+  {
     "name": "cadence_multiplier",
     "definition": "cadence_multiplier() -> 'float'\nMultiply the base inter-cycle sleep by this. A small budget runs at a slower\n    cadence — not a fault, just a lower clock rate (§7)."
   },
@@ -1004,6 +1008,10 @@
     "definition": "is_exhausted(goal_id: 'str') -> 'Tuple[bool, str]'\nSatiety signal for bounded-corpus exploration: True when at least one of the\n    goal's exploration actions has gone barren for ≥ threshold consecutive calls.\n    Returns (exhausted, reason)."
   },
   {
+    "name": "is_internal_failure",
+    "definition": "is_internal_failure(capability: 'str') -> 'bool'\nC1: True when the failure key is a dotted internal module path (a\n    failure_counter site), i.e. the broken thing is Orrin's own machinery."
+  },
+  {
     "name": "is_introspective",
     "definition": "is_introspective(fn: 'str') -> 'bool'\nTrue if the function is purely inward-facing with no external effect."
   },
@@ -1309,11 +1317,11 @@
   },
   {
     "name": "note_driver_selected",
-    "definition": "note_driver_selected(chosen_id: 'str', candidate_ids: 'Iterable[str]') -> 'None'\nCalled by goal_io once per committed-goal pull with the goal holding the\n    driver slot. The holder accrues staleness (reset only by a credited effect);\n    every other candidate's penalties DECAY — the release/recovery path."
+    "definition": "note_driver_selected(chosen_id: 'str', candidate_ids: 'Iterable[str]') -> 'None'\nCalled by goal_io once per committed-goal pull with the goal holding the\n    driver slot. The holder accrues staleness (reset only by a credited effect);\n    every other candidate's penalties DECAY — the release/recovery path. Also\n    runs the F4 re-commit cooldown: active blocks pay one pull, and a driver\n    displaced while its avoid streak was still high gets a fresh block."
   },
   {
     "name": "note_goal_credit",
-    "definition": "note_goal_credit(goal_id: 'str', significance: 'float') -> 'None'\nA credited (novel, significant) effect landed for this goal — the \"real\n    action\" signal. Folds into the value EMA, clears staleness, and halves the\n    avoidance streak (real work on the goal is the strongest counter-evidence)."
+    "definition": "note_goal_credit(goal_id: 'str', significance: 'float', *, alignment: 'Optional[float]' = None, content_hash: 'Optional[str]' = None) -> 'None'\nA credited (novel, significant) effect landed for this goal — the \"real\n    action\" signal. Folds into the value EMA — weighted by how much the content\n    actually relates to the goal (F3a) and by content diversity (F5), so a\n    barely-related or single-family stream of output can't pump value — and\n    clears staleness (the goal DID act). The avoidance streak halves only when\n    alignment ≥ 0.3: unrelated output is not counter-evidence to avoidance.\n    Never touches an active recommit block (F4)."
   },
   {
     "name": "note_intake_completed",
@@ -1556,6 +1564,10 @@
     "definition": "record_decision(fn_name: str, reason: str, *, reward: Optional[float] = None, context: Optional[Dict[str, Any]] = None) -> None"
   },
   {
+    "name": "record_executive_cooldown_skip",
+    "definition": "record_executive_cooldown_skip(n: 'int' = 1) -> 'None'\nF8d (RUN7_FIX_PLAN) — count executive ticks where a recognized action was\n    cooldown-SKIPPED and never ran (the F16 observable). Surfaced in the daily\n    snapshot so run analysis can split \"recognized\" from \"actually ran\"."
+  },
+  {
     "name": "record_failure",
     "definition": "record_failure() -> 'None'"
   },
@@ -1590,6 +1602,10 @@
   {
     "name": "record_store_desync_repair",
     "definition": "record_store_desync_repair(n: 'int' = 1) -> 'None'\nP6 — count goal-store desync repairs (resurrection / orphan-RUNNING /\n    double-home drift) made by reconcile_goal_stores. A counter that stays >0 cycle\n    after cycle means a real desync source remains and the v1↔v2 unification (§4c)\n    is no longer deferrable."
+  },
+  {
+    "name": "recovery_probe",
+    "definition": "recovery_probe(capability: 'str') -> 'Optional[bool]'\nRun the capability's recovery probe. True/False = verified working/broken;\n    None = no probe exists, so recovery cannot be verified at all."
   },
   {
     "name": "recruit_survival_goal",
@@ -1802,6 +1818,10 @@
   {
     "name": "revive_lifetime_goal_by_topic",
     "definition": "revive_lifetime_goal_by_topic(topic: 'str', context: 'Optional[Dict[str, Any]]' = None) -> 'None'\nWhen a topic fires in research/memory, boost motivational_weight for any\n    lifetime goal whose title or description overlaps with that topic."
+  },
+  {
+    "name": "route_artifact_drive",
+    "definition": "route_artifact_drive(text: 'Any') -> 'Optional[str]'\nClassify a credited artifact's CONTENT against the four aspiration\n    domains (goal_lens.relevance against each domain's title+keyword lens);\n    return the drive of the argmax aspiration above the floor, else None."
   },
   {
     "name": "run_active_experiment",
@@ -2330,6 +2350,10 @@
   {
     "name": "wrap_reflective_claim",
     "definition": "wrap_reflective_claim(claim_text: 'str', context: 'Dict[str, Any]', sources: 'Optional[List[str]]' = None, counterexample_search: 'bool' = True) -> 'Dict[str, Any]'\nAttach structured metadata to a reflective claim string.\n\n    Returns a dict with 'content' + metadata fields ready for long_memory."
+  },
+  {
+    "name": "writability_probe",
+    "definition": "writability_probe() -> 'Tuple[bool, Dict[str, Any]]'\nF6b: touch + unlink a probe file in the exemplars dir. Side-effect-free\n    on success. Returns (ok, diagnostics). Run at boot — a dead promotion path\n    must scream on cycle 1, not minute 13 in a log nobody reads — and reused by\n    problem-refocus as the verified re-attempt for write-failure recovery (C2)."
   },
   {
     "name": "write_back",

@@ -1,0 +1,55 @@
+{"ts": "2026-07-12T16:33:29.586421+00:00", "site": "quality_standard.gate.write_exemplar", "error": "OSError: exemplars dir not writable at boot: {'errno': 13, 'exception': \"PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/_probe_b17860"}
+{"ts": "2026-07-12T16:33:59.434369+00:00", "site": "goal_failure", "goal_id": "g_1e82a9d1c8", "title": "Open question: What am I not saying to myself that I need to hear?", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T16:33:59.460801+00:00", "site": "goal_failure", "goal_id": "g_1e82a9d1c8", "title": "Open question: What am I not saying to myself that I need to hear?", "reason": "step_failed"}
+{"ts": "2026-07-12T16:33:59.612949+00:00", "site": "goal_failure", "goal_id": "g_1e82a9d1c8", "title": "Open question: What am I not saying to myself that I need to hear?", "reason": "unknown"}
+{"ts": "2026-07-12T16:34:04.195613+00:00", "site": "goal_failure", "goal_id": "g_73f5641fba", "title": "Open question: What question would make me most uncomfortable to answer honestly?", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T16:34:04.200632+00:00", "site": "goal_failure", "goal_id": "g_73f5641fba", "title": "Open question: What question would make me most uncomfortable to answer honestly?", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T16:34:04.215327+00:00", "site": "goal_failure", "goal_id": "g_73f5641fba", "title": "Open question: What question would make me most uncomfortable to answer honestly?", "reason": "step_failed"}
+{"ts": "2026-07-12T16:34:05.662538+00:00", "site": "goal_failure", "goal_id": "g_73f5641fba", "title": "Open question: What question would make me most uncomfortable to answer honestly?", "reason": "unknown"}
+{"ts": "2026-07-12T16:39:21.282108+00:00", "site": "goal_failure", "goal_id": "g_de1a9baa65f4", "title": "Investigate: open — being stuck — toward Open question: What am I not say", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-12T16:41:34.895554+00:00", "site": "goal_failure", "goal_id": "g_7715a11edd9f", "title": "Open question: What do you think?", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-12T16:44:39.699459+00:00", "site": "goal_failure", "goal_id": "g_de1a9baa65f4", "title": "Investigate: open — being stuck — toward Open question: What am I not say", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-12T16:45:07.781797+00:00", "site": "goal_failure", "goal_id": "g_7715a11edd9f", "title": "Open question: What do you think?", "reason": "plan_generation_failed_3x"}
+{"ts": "2026-07-12T16:48:12.222043+00:00", "site": "goal_failure", "goal_id": "g_de1a9baa65f4", "title": "Investigate: open — being stuck — toward Open question: What am I not say", "reason": "objective unmet after 2 attempts: ['?', '?']"}
+{"ts": "2026-07-12T17:53:41.998317+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.002792+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.005500+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.020369+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.023533+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.026639+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.029258+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.033763+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:42.196120+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T17:53:43.263742+00:00", "site": "goal_failure", "goal_id": "g_dc1fb99066", "title": "Understand mathematics more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T19:38:33.661550+00:00", "site": "quality_standard.gate.write_exemplar", "error": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-of-written-language-52c805f4.md'"}
+{"ts": "2026-07-12T19:39:52.809285+00:00", "site": "goal_failure", "goal_id": "g_286deca36640", "title": "Understand Deeper and Deeper\" Single more deeply", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-12T19:45:06.525716+00:00", "site": "goal_failure", "goal_id": "g_286deca36640", "title": "Understand Deeper and Deeper\" Single more deeply", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-12T19:47:30.536237+00:00", "site": "goal_failure", "goal_id": "g_286deca36640", "title": "Understand Deeper and Deeper\" Single more deeply", "reason": "objective unmet after 2 attempts: ['?', '?']"}
+{"ts": "2026-07-12T20:59:01.526780+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.535654+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.543198+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.550266+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.559200+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.566093+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T20:59:01.685148+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "step_failed"}
+{"ts": "2026-07-12T20:59:03.384310+00:00", "site": "goal_failure", "goal_id": "g_082e77df86", "title": "Understand Claude Code: more deeply", "reason": "unknown"}
+{"ts": "2026-07-12T22:38:37.561406+00:00", "site": "quality_standard.gate.write_exemplar", "error": "PermissionError: [Errno 13] Permission denied: '/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/research-memo-history-of-written-language-52c805f4.md'"}
+{"ts": "2026-07-12T22:45:34.653225+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.656208+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.658809+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.661541+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.665311+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.679480+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-12T22:45:34.836826+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "step_failed"}
+{"ts": "2026-07-12T22:45:37.299234+00:00", "site": "goal_failure", "goal_id": "g_747b9462e5", "title": "Understand consciousness and subjective experience more deeply", "reason": "unknown"}
+{"ts": "2026-07-13T00:31:48.832964+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.837815+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.850096+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.856478+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.935344+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.961243+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.975202+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.981434+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:48.993463+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-13T00:31:49.460501+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "step_failed"}
+{"ts": "2026-07-13T00:31:52.023453+00:00", "site": "goal_failure", "goal_id": "g_b094881f5b", "title": "Understand claude more deeply", "reason": "unknown"}

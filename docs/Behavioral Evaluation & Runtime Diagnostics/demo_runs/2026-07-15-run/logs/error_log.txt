@@ -1,0 +1,20 @@
+
+[2026-07-15T06:27:46.578921Z] [boot] QUALITY EXEMPLARS DIR NOT WRITABLE — exemplar promotion is dead until fixed. Diagnostics: {'errno': 13, 'exception': "PermissionError: [Errno 13] Permission denied: '<repo>/tests/fixtures/quality_golden/exemplars/_probe_0cd432b2.tmp'", 'dir_path': '<repo>/tests/fixtures/quality_golden/exemplars', 'dir_exists': True, 'dir_w_ok': False, 'dir_mode': '0o40500', 'dir_uid': 501, 'dir_gid': 20, 'parent_path': '<repo>/tests/fixtures/quality_golden', 'parent_exists': True, 'parent_w_ok': False, 'parent_mode': '0o40500', 'parent_uid': 501, 'parent_gid': 20}
+
+[2026-07-15T08:04:08.667813Z] Goal failed: Understand mathematics more deeply — emotional response triggered.
+
+[2026-07-15T08:57:06.535022Z] [cognition] TypeError: make_candidate() missing 2 required keyword-only arguments: 'kind' and 'direction'
+
+[2026-07-15T08:57:06.535593Z] [cognition] TypeError: make_candidate() missing 2 required keyword-only arguments: 'kind' and 'direction'
+
+[2026-07-15T08:57:06.536821Z] [loop] TypeError: make_candidate() missing 2 required keyword-only arguments: 'kind' and 'direction'
+
+[2026-07-15T08:57:06.537083Z] [loop] TypeError: make_candidate() missing 2 required keyword-only arguments: 'kind' and 'direction'
+
+[2026-07-15T15:29:20.510951Z] [invoke_cognition] make_candidate needs ['kind', 'direction'] — not directly dispatchable; skipping
+
+[2026-07-15T15:29:55.241249Z] [boot] QUALITY EXEMPLARS DIR NOT WRITABLE — exemplar promotion is dead until fixed. Diagnostics: {'errno': 13, 'exception': "PermissionError: [Errno 13] Permission denied: '<repo>/tests/fixtures/quality_golden/exemplars/_probe_613ec6de.tmp'", 'dir_path': '<repo>/tests/fixtures/quality_golden/exemplars', 'dir_exists': True, 'dir_w_ok': False, 'dir_mode': '0o40500', 'dir_uid': 501, 'dir_gid': 20, 'parent_path': '<repo>/tests/fixtures/quality_golden', 'parent_exists': True, 'parent_w_ok': False, 'parent_mode': '0o40500', 'parent_uid': 501, 'parent_gid': 20}
+
+[2026-07-15T15:46:21.169347Z] Goal failed: Understand history more deeply — emotional response triggered.
+
+[2026-07-15T17:36:38.867308Z] Goal failed: Understand quantum mechanics foundations more deeply — emotional response triggered.

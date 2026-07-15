@@ -1,0 +1,744 @@
+{
+  "events": [
+    {
+      "ts": 1784096896.560961,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784096896.5627918,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784096896.563575,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784096896.5649369,
+      "asp": "Understand my own mind and how I work",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784096896.5654132,
+      "asp": "Understand my own mind and how I work",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784096899.128895,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784097020.559137,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784097020.5744011,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784097020.5772722,
+      "asp": "Understand my own mind and how I work",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784097020.6300428,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784097024.002387,
+      "asp": "Understand my own mind and how I work",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784097684.733629,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784099887.545673,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784099887.548342,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784099887.557493,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784099887.559256,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784099887.562866,
+      "asp": "Understand my own mind and how I work",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102642.788037,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102642.789939,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102642.7912269,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102642.7925498,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102642.795774,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.834537,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.836232,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.8403041,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.8420339,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.843798,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.845503,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.8523881,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102646.907999,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784102647.14276,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.1447449,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.146919,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.1487901,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.151959,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.166615,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784102647.17468,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784102648.1644318,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784102683.1062021,
+      "asp": "Understand the world more deeply",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784104635.096082,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.104901,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.111752,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.117224,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.276841,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784104635.631527,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.640872,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.650155,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.653076,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104635.671593,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784104677.267264,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784104748.497854,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104748.5059688,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104748.516992,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104748.522178,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104748.588938,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784104771.047679,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784104771.0879,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784104861.308136,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104861.3105779,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104861.31312,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104861.316184,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104861.320093,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104861.46645,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784104887.3157508,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784104958.8592892,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784104974.2841,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104974.305946,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104974.31794,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104974.327669,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104974.336423,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784104974.4800289,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784105010.3417869,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784129542.730217,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784129542.814244,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129542.816213,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129542.817585,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129542.818964,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129542.8718941,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784129578.414017,
+      "asp": "Understand my own mind and how I work",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784129613.2830222,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784129656.066985,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.06936,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.071317,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.073193,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.0752141,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.078984,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129656.1429389,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784129669.076716,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784129687.493542,
+      "asp": "Understand my own mind and how I work",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784129768.848545,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.851242,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.853409,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.8555222,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.8583019,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.860584,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129768.9240189,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784129775.652724,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784129859.289838,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784129881.993549,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129881.996027,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129881.9982212,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129882.000464,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129882.002591,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129882.0681999,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784129930.126634,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784129939.45728,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784129995.1800609,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129995.184681,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129995.191943,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129995.1956952,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784129995.312636,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784130033.171616,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784130044.090212,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784130107.959445,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130107.9622211,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130107.965452,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130107.96802,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130108.051278,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784130150.6586392,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130150.667446,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130150.678596,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130150.682915,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130150.694169,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130150.799314,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784130162.7692108,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784130162.7715,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784130218.086284,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784130263.547817,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130263.550455,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130263.55291,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130263.555825,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130263.559188,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130263.625893,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784130264.634523,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784130292.794817,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784130373.5643709,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130373.567323,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130373.5711849,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130373.573909,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784130373.7058911,
+      "asp": "Understand the world more deeply",
+      "stage": "attempted"
+    },
+    {
+      "ts": 1784130380.9494112,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    },
+    {
+      "ts": 1784130418.105383,
+      "asp": "Make things — produce work that didn't exist before",
+      "stage": "completed"
+    },
+    {
+      "ts": 1784136990.888788,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784136990.892052,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784136990.895956,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784136990.8990002,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784136990.9018502,
+      "asp": "Understand the world more deeply",
+      "stage": "generated"
+    },
+    {
+      "ts": 1784136998.6858182,
+      "asp": "Understand the world more deeply",
+      "stage": "progressed"
+    }
+  ]
+}

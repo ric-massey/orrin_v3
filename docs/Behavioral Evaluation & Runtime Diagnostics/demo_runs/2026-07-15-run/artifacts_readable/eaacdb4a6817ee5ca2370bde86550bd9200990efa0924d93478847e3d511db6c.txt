@@ -1,0 +1,8 @@
+[crystallized skill] query: analyze recent emotional patterns and stability; conditions: analyze, recent, emotional, patterns, stability; rules: [symbolic] nature (unknown) [nature, unknown]
+[rule] [symbolic] The Joy (concept): description= [joy, concept, work_of_art, retired]
+[symbolic] Joy (unknown) [joy, unknown]
+[symbolic] The Panic Divis (concept): description= [divis, concept, work_of_art, panic, retired]
+[symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]
+[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]
+[rule] [causal] 'evaluate_recent_cognition' causes (intervention) 'being stuck fades' (score=0.36, n=1, L2)
+[rule] [symbolic] history (concept): is_a=systematic study of the past [history, concept]

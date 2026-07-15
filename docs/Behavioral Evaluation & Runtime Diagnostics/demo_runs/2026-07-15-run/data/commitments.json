@@ -1,0 +1,137 @@
+[
+ {
+  "id": "a11978c7-6c09-412f-bb8e-fc850ebcd011",
+  "intention": "pursue: Open question: What would I do differently if I knew no one was watching \u2014 including myself?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "009f2c2c-ed55-4187-8fbd-d45a830633ba",
+  "formed_ts": 1784097020.6355479
+ },
+ {
+  "id": "e22d3ca4-277d-485b-bcfa-4fcca9110209",
+  "intention": "pursue: Turn what I know about mathematics into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b6d7f297-f435-416f-a938-388794169935",
+  "formed_ts": 1784102646.9141388
+ },
+ {
+  "id": "8f279955-752f-4d83-95c5-55d53e50f239",
+  "intention": "pursue: Understand foundations of quantum mechanics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "f93a7e26-6f44-46fd-8413-a31bb43bfb63",
+  "formed_ts": 1784104635.288081
+ },
+ {
+  "id": "93d976a4-72e4-48db-b7a5-4d933f505bb8",
+  "intention": "pursue: Understand The Daily Stoic more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1d9cddcf-3115-4691-96d7-284c31ce4671",
+  "formed_ts": 1784104748.5987022
+ },
+ {
+  "id": "414ae07f-cc6b-44dd-9300-c3181ea5f917",
+  "intention": "pursue: Understand history more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b3fb15f2-04b9-405a-94b0-09700e563f63",
+  "formed_ts": 1784104861.483291
+ },
+ {
+  "id": "af292ef9-5e47-4361-aa35-780cdb1b2ad1",
+  "intention": "pursue: Open question: What would I sacrifice to achieve this?",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "fe0e0f63-d989-40fd-baab-19c41a5247a9",
+  "formed_ts": 1784104974.5091782
+ },
+ {
+  "id": "4d4fac0f-8a81-4579-8044-5a69229d420c",
+  "intention": "pursue: Understand foundations of quantum mechanics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "515eb14a-db39-4d2e-bb32-0a862518413e",
+  "formed_ts": 1784129542.8794298
+ },
+ {
+  "id": "04f9a94e-fd1f-47b2-9cda-2f078d5e5390",
+  "intention": "pursue: Understand The Daily Stoic more deeply",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "75c28931-3ceb-4a9f-9e51-bac66cc31dba",
+  "formed_ts": 1784129656.153116
+ },
+ {
+  "id": "461fbfff-aba6-4ab6-b818-5bcc3d1fab85",
+  "intention": "pursue: Understand consciousness and subjective experience more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "01b0e1f8-9fd6-469c-9be4-514de8c62ad2",
+  "formed_ts": 1784129768.9340959
+ },
+ {
+  "id": "c39fa5e0-598d-4dcd-9446-1cf4b5c66de8",
+  "intention": "pursue: Understand biology evolutionary biology more deeply",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "97972aea-0ba3-4791-ae63-653466b24df2",
+  "formed_ts": 1784129882.078023
+ },
+ {
+  "id": "14d5647a-b2f2-4ad7-b4bc-7710fdf1a1f4",
+  "intention": "pursue: Understand history of written language more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "204e46f5-1746-4ed7-98f5-def9fc96818a",
+  "formed_ts": 1784129995.326129
+ },
+ {
+  "id": "c88d6fe3-34c5-414f-8b48-91f64a53abf4",
+  "intention": "pursue: Understand the nature of mathematics more deeply",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "e072c194-238b-4cd2-8e88-e33ab97de200",
+  "formed_ts": 1784130108.0624619
+ },
+ {
+  "id": "e4c137c3-e1b5-407d-a0c9-192f608cd0cd",
+  "intention": "pursue: Understand philosophy of time more deeply",
+  "strength": 0.467,
+  "initial_strength": 0.467,
+  "stance": "endorse",
+  "wm_id": "e202274e-0e4f-46c8-8f0b-c87ca2346630",
+  "formed_ts": 1784130150.8121479
+ },
+ {
+  "id": "f2512af2-2a39-4553-8d90-906b71300b72",
+  "intention": "pursue: Understand evolutionary biology more deeply",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "a77cd678-1059-49b7-a703-b4ee85e3098a",
+  "formed_ts": 1784130263.635194
+ },
+ {
+  "id": "bbdbecac-993d-47f3-a491-a00348b4647e",
+  "intention": "pursue: Understand history more deeply",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "991d70d3-4303-4cef-8314-160407cb9f28",
+  "formed_ts": 1784130373.712217
+ }
+]

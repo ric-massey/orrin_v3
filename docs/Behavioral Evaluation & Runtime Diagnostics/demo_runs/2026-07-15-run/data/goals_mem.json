@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-07-15T06:27:54.800623Z",
+    "last_updated": "2026-07-15T17:36:34.708111Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [],
+    "id": "g_0e8a380e939e",
+    "motivational_weight": 0.76
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-15T06:27:46.251355+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 2,
+    "partial_credit": 0.0,
+    "progress": 0.1,
+    "recent_contributions": [
+      "Understand my own mind and how I work more deeply",
+      "Understand my own mind and how I work more deeply"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 194,
+    "last_contribution_ts": "2026-07-15T15:34:47.494619+00:00"
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-07-15T06:27:46.251355+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "last_contribution_ts": "2026-07-15T17:36:38.687583+00:00",
+    "contribution_count": 1,
+    "partial_credit": 0.0,
+    "progress": 0.05,
+    "recent_contributions": [
+      "Understand mathematics more deeply"
+    ]
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-07-15T06:27:46.251355+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-07-15T06:27:46.251355+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-07-15T15:36:15.655765+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-07-15T15:44:24.637424+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 11,
+    "partial_credit": 0.0,
+    "progress": 0.55,
+    "recent_contributions": [
+      "Understand consciousness and subjective experience more deeply",
+      "Understand biology evolutionary biology more deeply",
+      "Understand history of written language more deeply",
+      "Understand the nature of mathematics more deeply",
+      "Understand philosophy of time more deeply"
+    ],
+    "last_contribution_ts": "2026-07-15T15:32:22.731272+00:00"
+  }
+]

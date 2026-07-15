@@ -1,0 +1,16 @@
+What I learned about my own mind and how I work more deeply:
+
+- [Chunk: [metacog/pattern] Goal avoidance: 13 consecutive cycles without taking action on 'Understand my own mind and how I work… / [metacog/pattern] Goal avoidance: 10 consecutive cycles without taking action on 'Understand my own mind and how I work…]
+- emotional reflection: [symbolic] history (concept): is_a=systematic study of the past [concept, history]
+[symbolic] nature (unknown) [nature, unknown]
+[rule] [symbolic] The Joy (concept): description= [joy, concept, work_of_art, retired]
+[symbolic] Joy (unknown) [joy, unknown]
+[symbolic] The Panic Divis (concept): description= [divis, concept, work_of_art, panic, retired]
+[symbolic] agentic AI era
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.10 better than I predicted. I can trust my judgement a bit more and act sooner.
+- I found something in the goal-tracking system outside me, external data, and an external memory store that relates to 'Understand my own mind and how I work more deeply':
+  In the goal-tracking system outside me: "name": "Understand my own mind and how I work more deeply",
+  In external data: "understand my own mind and how i work more deeply": 2,
+  In an external memory store: "content": "[goal_a
+- [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Make things — produce work that didn't exist before'. I'm thinking but not doing.
+- ⚠️ My exemplar folder isn't writable — I can't pin good work until this is fixed (13).

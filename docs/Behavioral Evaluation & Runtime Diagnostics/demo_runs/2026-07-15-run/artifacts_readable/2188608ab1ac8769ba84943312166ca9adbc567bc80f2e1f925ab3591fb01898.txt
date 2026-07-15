@@ -1,0 +1,3 @@
+By analogy By analogy (GENERAL, similarity 66%): [research] the nature of mathematics: [EXTERNAL/UNTRUSTED source=web_research:the nature of mathematics] Wikipedia/Mathematics: Mathematics is a field of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, and probabilities. It uses logical reasoning and pr
+
+Terms: functions=A TECHNICAL concept: When oscillating between two functions, break it by choosin

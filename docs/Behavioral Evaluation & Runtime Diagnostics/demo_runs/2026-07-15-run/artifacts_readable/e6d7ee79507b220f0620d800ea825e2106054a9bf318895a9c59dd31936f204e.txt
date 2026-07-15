@@ -1,0 +1,10 @@
+What I learned about The Daily Stoic more deeply:
+
+- [Chunk: [will] I resolve to: pursue: Understand The Daily Stoic more deeply — I stand behind this. (strength 0.38) / [will] I resolve to: pursue: Understand history more deeply — I stand behind this. (strength 0.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little more before committing.
+- I found something in the goal-tracking system outside me, external data, and an external memory store that relates to 'Understand my own mind and how I work more deeply':
+  In the goal-tracking system outside me: "name": "Understand my own mind and how I work more deeply",
+  In external data: "understand my own mind and how i work more deeply": 2,
+  In an external memory store: "content": "[goal_a
+- [Chunk: [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 10 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch

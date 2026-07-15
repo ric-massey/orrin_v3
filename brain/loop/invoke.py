@@ -74,7 +74,11 @@ def _invoke_cognition(
         sig = inspect.signature(fn)
         unsatisfied = [
             p.name for p in sig.parameters.values()
-            if p.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
+            if p.kind in (
+                inspect.Parameter.POSITIONAL_ONLY,
+                inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                inspect.Parameter.KEYWORD_ONLY,
+            )
             and p.default is inspect.Parameter.empty
             and p.name not in ("self", "cls")
             and p.name not in built

@@ -1,0 +1,212 @@
+{
+  "goals": {
+    "aspiration-self_understanding": {
+      "value_ema": 0.625,
+      "stale_cycles": 4.419,
+      "avoid_streak": 2.708,
+      "last_ts": 1784144475.627224,
+      "recent_hashes": [
+        "eaacdb4a6817ee5ca2370bde86550bd9200990efa0924d93478847e3d511db6c"
+      ]
+    },
+    "g_864e0fb7a7": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "5aead5115b62002331d0838d57442f7557446b5394f68088d083a3c4b76dbf41"
+      ],
+      "last_ts": 1784096899.127014
+    },
+    "aspiration-world_knowledge": {
+      "value_ema": 0.5132,
+      "stale_cycles": 2.435,
+      "avoid_streak": 2.435,
+      "last_ts": 1784144481.5590138,
+      "recent_hashes": [
+        "52c805f4d9eeb2dc9a63bc129b775c47627c0002521edc493d73bcf31d34647a"
+      ]
+    },
+    "ltc_aspiration-self_understa_1": {
+      "value_ema": 0.5735,
+      "stale_cycles": 0.0,
+      "avoid_streak": 1.768,
+      "last_ts": 1784097020.5524778,
+      "recent_hashes": [
+        "341702cceaad99d28017cac92681ce300965ff7c3d45d2efac5d6d62d40755fb"
+      ]
+    },
+    "g_2b4ca632c9d5": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "f7d0d4e769067d6c314e7357911e6f57d819aa232104353c32c3d562f8ec7cfb"
+      ],
+      "last_ts": 1784097133.029016
+    },
+    "aspiration-genuine_contact": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.005,
+      "avoid_streak": 0.005,
+      "last_ts": 1784102633.144
+    },
+    "g_27458bf5f3": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "48fb23bcc726aee872521a6a60d4661bb0d7c2d64eb52698fe1f5aff354f5d5b"
+      ],
+      "last_ts": 1784102646.752945
+    },
+    "intrinsic-2026-07-15T08:04:07.173865+00:00": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "2188608ab1ac8769ba84943312166ca9adbc567bc80f2e1f925ab3591fb01898"
+      ],
+      "last_ts": 1784102648.163572
+    },
+    "g_2cf74270244c": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "ce5f97048c867c38d73f93bfbc75cc5d49042addb3bb633c0348b33ab91d590c"
+      ],
+      "last_ts": 1784104677.2661629
+    },
+    "g_54a1abc0e8a0": {
+      "value_ema": 0.5296,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "436e6d8a08a78738c178f96eeb3c4dfd6dee039624d091ce219ab9295fe19887"
+      ],
+      "last_ts": 1784104771.086777
+    },
+    "aspiration-output_producing": {
+      "value_ema": 0.5,
+      "stale_cycles": 8.812000000000001,
+      "avoid_streak": 5.638,
+      "last_ts": 1784144496.529082
+    },
+    "g_dd0f1928f90b": {
+      "value_ema": 0.5312,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "dfaa73c63418dcb02dd823144f08e6f0827b27aa9cf53e25c53afd8bf0c6593d"
+      ],
+      "last_ts": 1784104958.8581529
+    },
+    "ltc_aspiration-self_understa_88": {
+      "value_ema": 0.5735,
+      "stale_cycles": 0.0,
+      "avoid_streak": 2.808,
+      "last_ts": 1784129542.72875,
+      "recent_hashes": [
+        "2f894f5c5d4154e9bb239d647b03c9c675dc26353c5c71d3c02a1eac1b055d5b"
+      ]
+    },
+    "g_d99ec8ede709": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "80426bb62be90ca2d8fecfe2bd4523b1337afb23bc996c496d829c51c5a16bbe"
+      ],
+      "last_ts": 1784129613.281966
+    },
+    "g_a2d37a36d8aa": {
+      "value_ema": 0.5651,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "e6d7ee79507b220f0620d800ea825e2106054a9bf318895a9c59dd31936f204e"
+      ],
+      "last_ts": 1784129687.4922829
+    },
+    "g_facb9304875b": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "25e08ffd36fb7523e6c9d911bce4c812b2d476702994ab6bff029ca32eb29a7d"
+      ],
+      "last_ts": 1784129859.288946
+    },
+    "g_65eca1b31a6d": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "6d4ecd98f656f5ff66df5e3cbae9a391b106e08cc29ea843191e1a7140962050"
+      ],
+      "last_ts": 1784129939.456409
+    },
+    "g_1dd0928cb37e": {
+      "value_ema": 0.5292,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "4630cf042900159d3d54eecb075180ece51c00dee5758363ca0e0acedda57fdb"
+      ],
+      "last_ts": 1784130033.168562
+    },
+    "g_307f24a1d925": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "48efbb9acff258837792a9a91df19bf0f1277a8ef10cfad9d407b2d5a14370c6"
+      ],
+      "last_ts": 1784130150.511103
+    },
+    "g_5bac0761f1a5": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "dff744c123864a085e78ea1eb01a86ef802fbd5b123d84e092ecffbd61601de6"
+      ],
+      "last_ts": 1784130218.085375
+    },
+    "g_a4be94613380": {
+      "value_ema": 0.5286,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "8a17c4c4b08224d6b37e8a2b2f5f26cf04daeb6e91dd30c21317a813a1f04684"
+      ],
+      "last_ts": 1784130292.793851
+    },
+    "intrinsic-2026-07-15T15:46:13.704775+00:00": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "84f366ab8caca27a41e74608316900e872927aa5cf9dd768b6d591ddad7eefa0"
+      ],
+      "last_ts": 1784130380.946762
+    },
+    "g_432cda2780": {
+      "value_ema": 0.5625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "6fd83f8b3dbd74c7e08b15b445d11f0c347da3d9e47b673a59856a8d6360089d"
+      ],
+      "last_ts": 1784136998.683155
+    },
+    "Figure out why quality_standard.gate.write_exemplar isn't working": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.0,
+      "avoid_streak": 1.0,
+      "last_ts": 1784140511.568506
+    }
+  },
+  "driver": "aspiration-output_producing"
+}

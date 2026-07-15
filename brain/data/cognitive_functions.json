@@ -1704,6 +1704,10 @@
     "definition": "reflect_on_think(t='think')"
   },
   {
+    "name": "refractory_events",
+    "definition": "refractory_events() -> 'List[Dict[str, Any]]'\nRun-analysis: every absolute-staleness refractory release this life\n    (F1). Empty list = the release never fired — read alongside the max\n    stale_cycles at death to decide whether Run 8's fix did anything."
+  },
+  {
     "name": "refresh_identity_story",
     "definition": "refresh_identity_story(*, narrative_hint: str = '', values_hint: str = '', context: Optional[Dict[str, Any]] = None) -> None\nRegenerate Orrin's identity_story from recent experience and current values,\n    then persist it to self_model.json.\n\n    Called after autobiography chapter entries and value revisions — the two\n    events that meaningfully change who Orrin is becoming.  Rate-limited\n    internally: skips if the existing identity_story was written less than 6 h ago.\n\n    narrative_hint  — recent autobiography text to ground the rewrite\n    values_hint     — comma-separated values string (falls back to self_model)\n    context         — passed through to llm for emotional colour; may be None"
   },

@@ -1,0 +1,9 @@
+What I learned about evolutionary biology more deeply:
+
+- [Chunk: [will] I resolve to: pursue: Understand evolutionary biology more deeply — I stand behind this. (strength 0.38) / [will] I resolve to: pursue: Understand the nature of mathematics more deeply — I stand behind this. (strength 0.]
+- [Chunk: [metacog/pattern] Goal avoidance: 15 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 20 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [Incubation insight] By analogy (GENERAL, similarity 38%): 📝 Working memory summary: - [will] I resolve to: pursue: Understand consciousness and subjective experience more deeply — I stand behind this. (strength 0.53) (felt neutral) {commitment}
+Event types: commitment
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little more before committing.
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.07 better than I predicted. I can trust my judgement a bit more and act sooner.
+- 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch

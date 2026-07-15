@@ -1,0 +1,29 @@
+[main] pulse=304052 cog_cycles=4252
+Orrin cognitive cycle 4253 complete.
+[main] pulse=304153 cog_cycles=42532026-07-15T04:57:06 [CRITICAL] runtime.crash_log: UNCAUGHT EXCEPTION in thread 'orrin-brain':
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/ricmassey/orrin_v3/brain/ORRIN_loop.py", line 319, in run_cognitive_loop
+    route_exception(e, phase="loop", context=context)
+  File "/Users/ricmassey/orrin_v3/brain/utils/error_router.py", line 104, in route_exception
+    raise e
+  File "/Users/ricmassey/orrin_v3/brain/ORRIN_loop.py", line 267, in run_cognitive_loop
+    context, reward, acted_this_cycle = execute_cognition_function(context, result, _decision_id, _evaluator, _mem_daemon, affect_state)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ricmassey/orrin_v3/brain/loop/execute.py", line 515, in execute_cognition_function
+    route_exception(e, phase="cognition", context=context, extra={"fn": fn_name})
+  File "/Users/ricmassey/orrin_v3/brain/utils/error_router.py", line 104, in route_exception
+    raise e
+  File "/Users/ricmassey/orrin_v3/brain/loop/execute.py", line 261, in execute_cognition_function
+    fn_result = _invoke_cognition(
+                ^^^^^^^^^^^^^^^^^^
+  File "/Users/ricmassey/orrin_v3/brain/loop/invoke.py", line 108, in _invoke_cognition
+    return fn(**built)
+           ^^^^^^^^^^^
+TypeError: make_candidate() missing 2 required keyword-only arguments: 'kind' and 'direction'
+
+
+Orrin cognitive cycle 4254 complete.

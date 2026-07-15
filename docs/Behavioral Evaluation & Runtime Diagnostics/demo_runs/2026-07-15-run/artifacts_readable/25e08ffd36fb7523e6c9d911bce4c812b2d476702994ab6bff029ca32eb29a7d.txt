@@ -1,0 +1,11 @@
+What I learned about consciousness and subjective experience more deeply:
+
+- emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description= [concept, history, retired]
+[symbolic] The Daily Stoic (concept): description= [stoic, concept, daily, work_of_art, retired]
+[symbolic] emergence in complex systems (concept): description= [systems, emergence, concept, complex, retired]
+[symbolic] consciousness and subjective experience (concept): d
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.07 better than I predicted. I can trust my judgement a bit more and act sooner.
+- [will] I resolve to: pursue: Understand consciousness and subjective experience more deeply — I stand behind this. (strength 0.53)
+- [Chunk: [will] I resolve to: pursue: Understand The Daily Stoic more deeply — I stand behind this. (strength 0.38) / [will] I resolve to: pursue: Understand history more deeply — I stand behind this. (strength 0.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little more before committing.
+- [Chunk: [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 10 consecutive cycles without taking action on 'Understand the world more deeply'.]

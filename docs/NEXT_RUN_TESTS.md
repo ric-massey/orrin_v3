@@ -120,6 +120,39 @@ work in `RUN8_FIX_PLAN` §6 (global pressure / phase) become warranted.
 
 ---
 
+## Run 8 result — 2026-07-15 life: **NOT PASSED as written, but the monopoly finally broke** (G1 ✅ · G2 ❌ · G4 ✅ · G5 🟡 · S10 ✅ · S6/S7 🔴)
+
+Eighth acceptance run (build `fc2b635` F1+F2, **9,785 cycles**, **two runtime
+segments split by a mid-life crash**). Full analysis:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-15-run/DEMO_RUN_2026-07-15.md`.
+
+**Verdict: objective achieved, formal gate not passed.** The ≥6-run
+committed-goal monopoly moved **90.9 % → 42.6 %** (S10 ✅ / G1 ✅) — all four
+aspirations drove the slot, `genuine_contact` committed for the first time,
+holds in both segments (54 % / 44 %, both < 60 %). **But F1 never fired**:
+`refractory_events` is empty, all `recommit_block_pulls` = 0, max `stale_cycles`
+= 8.8. **F2 (aspiration rotation) is the load-bearing lever** — it kept the slot
+turning so staleness never accumulated to F1's 250-cycle trip. So `G2` (release
+must fire) is unmet and `G5` regressed on reuse (2 < 4). `Pass = G1 ∧ G2 ∧ G4`
+→ **NOT passed**, but by prevention, not failure.
+
+**Two events dominate the engineering read:** (1) a real crash — uncaught
+`TypeError: make_candidate() missing … keyword-only arguments 'kind','direction'`
+at `invoke.py:108`, killed the brain thread at cycle ~4253; the dispatchability
+guard ignored required `KEYWORD_ONLY` params. Fixed mid-life (uncommitted
+`invoke.py`); segment 2 ran clean. (2) the watchdog took 6.5 h to notice the dead
+cognitive loop (pulse-based liveness, not cycle-advance).
+
+**Re-test gate (Run 9):** (a) **`ORRIN_STALE_REFRACTORY=0` ablation** — confirm
+occupancy stays < 60 % with F1 off (proves F2 is the lever; decide F1's fate);
+(b) commit `invoke.py` fix + regression test (required-keyword-only fn is skipped,
+not dispatched); (c) cycle-stall tripwire in the watchdog; (d) clear the
+`uchg`/`0o500` lock on the exemplars dir (the real `write_exemplar` EACCES cause,
+run 3); (e) contribution layer — reuse ≥ concrete referent, `genuine_contact`
+contribution > 0 (both untouched by the commitment-layer fix).
+
+---
+
 ## Run 7 result — 2026-07-12 life: **FAILED** (gate 1/4 · S10 🔴 · S6 🔴 · S7 🔴 · S9 🟡 · S1–S5/S8 ✅) — but the cause is isolated
 
 Seventh acceptance run (clean reset incl. habituation, commits `a63b160` +

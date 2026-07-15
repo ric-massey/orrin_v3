@@ -26,6 +26,7 @@
 # points are fail-safe — commitment feedback must never break the loop.
 from __future__ import annotations
 
+import os
 import time
 from typing import Any, Callable, Dict, Iterable, List, Optional
 
@@ -68,6 +69,17 @@ _GOALS_CAP = 200           # bound the per-goal signal table
 # the incumbent bonus does not apply — until the block decrements to zero.
 _RECOMMIT_AVOID_TRIGGER = 15    # ¾ of _AVOID_FULL
 _RECOMMIT_BLOCK_PULLS = 300     # pulls of driver-slot ineligibility
+
+# F1 (RUN8_FIX_PLAN_2026-07-14): absolute staleness refractory — the missing
+# ABSOLUTE release. Every other lever in commit_score is relative and caps at
+# −30; with no rival in range it did nothing while Run 7's holder rode
+# stale_cycles 120 → 10,291. A driver that holds the slot this many cycles with
+# ZERO credited effect (credit zeroes stale_cycles, so this can only trip on
+# genuine non-production) arms its OWN F4 block and yields — no rival required.
+_STALE_REFRACTORY_CYCLES = 250   # ~130 cycles past the −15 stale saturation:
+                                 # the relative machinery gets first refusal,
+                                 # then the absolute lever forces the yield.
+_STALE_REFRACTORY_ENABLED = os.environ.get("ORRIN_STALE_REFRACTORY", "1") != "0"
 
 # F3a: real work on the goal is counter-evidence to avoidance only when the
 # work actually relates to the goal; unrelated output is not.
@@ -141,6 +153,25 @@ def note_driver_selected(chosen_id: str, candidate_ids: Iterable[str]) -> None:
             row = _row(goals, chosen)
             row["stale_cycles"] = float(row.get("stale_cycles", 0.0)) + 1.0
             row["last_ts"] = now
+            # F1 (Run 8): absolute refractory release. The holder has occupied the
+            # driver slot for _STALE_REFRACTORY_CYCLES with no credited effect
+            # (credit zeroes stale_cycles); the −30 relative penalty saturated
+            # long ago and no rival displaced it. Arm its own block so
+            # order_committable makes it ineligible next pull — the slot yields
+            # even if nothing outscores it. Logged for the Run 8 gate.
+            if (_STALE_REFRACTORY_ENABLED
+                    and float(row.get("stale_cycles", 0.0)) >= _STALE_REFRACTORY_CYCLES
+                    and float(row.get("recommit_block_pulls", 0.0) or 0.0) <= 0.0):
+                row["recommit_block_pulls"] = float(_RECOMMIT_BLOCK_PULLS)
+                ev = d.get("refractory_events")
+                if not isinstance(ev, list):
+                    ev = []
+                d["refractory_events"] = (ev + [{
+                    "goal": chosen,
+                    "ts": now,
+                    "stale_cycles": float(row.get("stale_cycles", 0.0)),
+                    "avoid_streak": float(row.get("avoid_streak", 0.0)),
+                }])[-200:]
             for cid in candidate_ids:
                 cid = str(cid or "")
                 if not cid or cid == chosen or cid not in goals:
@@ -307,8 +338,13 @@ def order_committable(
     driver_id = ""
     for g in found:
         tier = str(g.get("tier") or g.get("kind") or "").lower()
+        # F2 (Run 8): treat any long-term aspiration as a direction. Only
+        # self_understanding ever acquired the directional/never_complete flags
+        # (causal-frontier promotion), so the directional cap governed a
+        # single-member pool and F1's release had nowhere to hand the slot. The
+        # _aspiration flag is set on exactly the four enduring directions.
         is_directional = tier == "long_term" and bool(
-            g.get("directional") or g.get("never_complete"))
+            g.get("directional") or g.get("never_complete") or g.get("_aspiration"))
         if is_directional:
             if seen_directional or _gid(g) in blocked:
                 continue
@@ -325,3 +361,11 @@ def order_committable(
 def signals_snapshot() -> Dict[str, Any]:
     """Read-only copy of the signal table (telemetry / run analysis)."""
     return _load_signals().get("goals", {})
+
+
+def refractory_events() -> List[Dict[str, Any]]:
+    """Run-analysis: every absolute-staleness refractory release this life
+    (F1). Empty list = the release never fired — read alongside the max
+    stale_cycles at death to decide whether Run 8's fix did anything."""
+    ev = _load_signals().get("refractory_events", [])
+    return ev if isinstance(ev, list) else []

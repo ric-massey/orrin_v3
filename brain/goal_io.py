@@ -268,10 +268,18 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
             # DIRECTIONAL one (marked directional / never_complete) IS committable: it
             # becomes the active driver that spawns and sequences the next concrete
             # sub-task. It still never files DONE (mark_goal_completed guards that), so
-            # it's committable-but-non-terminal. `aspiration` stays non-committable.
+            # it's committable-but-non-terminal.
+            # F2 (RUN8_FIX_PLAN_2026-07-14): the enduring aspirations (`_aspiration`)
+            # are also committable directions. Only one ever carried directional/
+            # never_complete (promote_one_directional caps at one), so admitting only
+            # those left order_committable's directional pool single-member and F1's
+            # release had nowhere to hand the slot. `_aspiration` marks exactly the
+            # four enduring directions; the directional cap in order_committable still
+            # lets only the highest-scored one drive at a time (the rest stay signposts).
             committable_tier = (tier not in _NONCOMMITTABLE_TIERS) or (
                 tier == "long_term"
-                and bool(n.get("directional") or n.get("never_complete")))
+                and bool(n.get("directional") or n.get("never_complete")
+                         or n.get("_aspiration")))
             if (n.get("name") != _BUCKET_NAME and name
                     and status in _COMMITTABLE_STATUSES
                     and status not in _V1_TERMINAL

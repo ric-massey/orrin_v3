@@ -59,6 +59,122 @@ per-candidate `value` component in the selection reason payload.
 
 ---
 
+## Run 8 re-test gate (2026-07-14 — from `RUN8_FIX_PLAN_2026-07-14.md`)
+
+Run 7 (2026-07-12 life, `demo_runs/2026-07-12-run/`) proved the Run-7 anti-pump
+worked *and* that it was not enough: the committed-goal monopoly survived at
+**90.9 %** (10,052 / 11,060 cycles) with `stale_cycles = 10,291` /
+`avoid_streak = 6,852` on `self_understanding` and **no** pumped value
+(`value_ema 0.5196`). Diagnosis (verified in `RUN8_FIX_PLAN` §1): every
+anti-monopoly lever in `commit_score` is *relative* and saturates at −30; with no
+rival in range it did nothing for ~10k cycles. Run 8 adds the missing **absolute**
+lever (F1): a holder that occupies the driver slot for `_STALE_REFRACTORY_CYCLES`
+(250) with **zero** credited effect arms its own `recommit_block_pulls` and yields
+the slot regardless of rivals — reusing Run 7's F4 block machinery.
+
+**This is a single-lever fix. The run must show it fired *and* that it did not
+just replace one pathology (monopoly) with another (forced churn / idleness).**
+
+**Run 8 passes iff all of the following hold** (read
+`brain/data/commitment_signals.json`: per-goal `stale_cycles`/`avoid_streak`/
+`recommit_block_pulls` + the new `refractory_events` list; committed-goal
+occupancy from the driver-slot share the run capture already computes):
+
+- **G1 — monopoly broken (headline):** no committed goal exceeds **~60 %** of
+  life cycles (Run 7: 90.9 %). This is the number the last six runs never moved.
+- **G2 — the release actually fired:** `refractory_events` is **non-empty** and
+  contains ≥ 1 release of the goal that would otherwise have monopolized; **max
+  `stale_cycles` at death is in the hundreds, not thousands** (target < ~550 =
+  `_STALE_REFRACTORY_CYCLES + _RECOMMIT_BLOCK_PULLS`). If `refractory_events` is
+  empty, F1 never triggered → **failed fix, not interpretation** (check the trip
+  condition / flag, don't reinterpret).
+- **G3 — release latency collapses:** cycles from a holder crossing the stale
+  ceiling to a durable driver change ≤ ~300 (one block), not 10,000; no
+  `avoid_streak` climbs into the thousands.
+- **G4 — persistence-under-progress preserved (anti-thrash guard):** **no
+  refractory event fires on a goal that is earning credit** — releases correlate
+  with `stale_cycles` (no credit), never with punishing productive work. A
+  directional that keeps producing may still hold the slot > 60 % *if its
+  contributions are real* — in that case G1 is met by contribution diversity, not
+  by starving it. Driver changes must track evidence, not a clock.
+- **G5 — HOLDS (no regression, and not idle):** value anti-pump holds
+  (`value_ema` not re-pumped, no memo loop); S8 desyncs stay 0; all four
+  aspirations survive; S7 reuse ≥ Run 7; and **production/contribution does not
+  collapse** — `self_understanding` should still *contribute* (Run 7:
+  `contribution_count` 1), just not *own* the slot. Breaking the monopoly by
+  making Orrin do nothing is a **failure**.
+
+**Decision rule:** **G1 is the headline, but G1 without G4 is a regression** —
+periodic switching regardless of evidence is the exact naive-regulator pathology
+the fix is designed to avoid. **Pass = G1 ∧ G2 ∧ G4, with G5 showing no
+regression.** Optional ablation arm: a second life with
+`ORRIN_STALE_REFRACTORY=0` should reproduce Run-7-shaped occupancy, isolating F1
+as the cause of any improvement.
+
+**If G1 misses but G2 fired** (releases happened, monopoly persisted): the block
+is too short or the ceiling too high → lower `_STALE_REFRACTORY_CYCLES` (250 →
+150) and/or raise `_RECOMMIT_BLOCK_PULLS`; do **not** re-architect. **If G4
+misses** (thrash): raise `_STALE_REFRACTORY_CYCLES` so productive holders get more
+rope. Only if F1 fires cleanly (G2, G4) yet G1 still misses does the deferred
+work in `RUN8_FIX_PLAN` §6 (global pressure / phase) become warranted.
+
+---
+
+## Run 7 result — 2026-07-12 life: **FAILED** (gate 1/4 · S10 🔴 · S6 🔴 · S7 🔴 · S9 🟡 · S1–S5/S8 ✅) — but the cause is isolated
+
+Seventh acceptance run (clean reset incl. habituation, commits `a63b160` +
+`bb3685a`, **11,060 cycles in ~8h 03m**, single segment, zero crashes, operator
+stop → clean death). Full analysis:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-12-run/DEMO_RUN_2026-07-12.md`.
+
+**Verdict: gate NOT passed — but Run 7 is the run that proved the monopoly is
+structural, not a reward artifact.** Every Run 7 credit fix landed and is visible
+in the data: the value pump is dead (`self_understanding.value_ema` **0.5196** vs
+Run 6's 0.8142), the memo loop is gone (max single-file rewrite **2×** vs 403×),
+the ledger rejected junk (8 `duplicate` + 4 `low_significance`), and content-keyed
+credit **decoupled the slot-holder from reward** — the incumbent earned **1**
+contribution while holding 90.9 % of life, the actual producer (`output_producing`)
+earned **7**. And the committed-goal monopoly **survived at 90.9 %** anyway
+(`aspiration-self_understanding`, 10,052 / 11,060 cycles, `stale_cycles` 10,291 /
+`avoid_streak` 6,852). Kill the pump, the monopoly stays → it was never the pump.
+
+**Run 7 re-test gate (from Run 6): 1 of 4.** no committed goal > 60 % → **90.9 %**
+❌ · reuse ≥ 8 → **4** (null referents) ❌ · `genuine_contact` > 0 → **0** (3rd
+run) ❌ · same artifact ≤ ~3× → **2×** ✅.
+
+- **S10** 🔴 — commitment 90.9 % on one goal; 106 driver transitions but **none
+  durable** (longest non-incumbent hold 324 cycles; one ~500-cycle research
+  interlude near cycle 5,300, then reclaimed for ~5,273 cycles to death).
+- **S6** 🔴 — contributions **1 / 3 / 0 / 7**; top share 63.6 %, `genuine_contact`
+  0. Note: the *contribution* layer is diverse (3 of 4 earned) — only the
+  *commitment* layer monopolizes. Content-keyed credit is why.
+- **S7** 🔴 — reuse **4** (Run 6: 2, doubled) but `path`/`ref` null; funnel still
+  candidate-only (72 events, no later stage).
+- **S9** 🟡 — `look_outward` demoted (EMA 0.22, avg reward 0.284); holds as Run 6.
+- **HOLDS** ✅ — S1 13 completed / **13 distinct** (0 repeats); S5 `mean_significance`
+  **1.205**; S8 desyncs **0** (3rd clean run); S3 satiety **12**; S4 failures **55**
+  real. Bonus: the Run-6 map-territory misread loop is **fixed** (6 audits, empty
+  findings); **first `synthesis.md`** produced (quality still poor).
+
+**Root cause (two reinforcing structural causes, detail in the verdict §4):**
+(1) every lever in `commit_score` is *relative* and saturates at −30, so with no
+rival within 30 pts it did nothing while the incumbent's counters climbed into
+five figures; (2) **the directional rotation pool has exactly one member** —
+only `self_understanding` carries the `directional`/`never_complete` flags (a
+downstream effect of the causal-frontier-introspection reframing), so "rotate
+among directionals" is a no-op and the one directional slot has a permanent
+occupant.
+
+**Re-test gate (Run 8):** built as `RUN8_FIX_PLAN_2026-07-14.md` + the **Run 8
+re-test gate** above. **F1** = absolute staleness refractory (arm the dormant
+`recommit_block_pulls` on stale-with-no-credit) for cause (1); the verdict adds
+**F2** = admit all four aspirations to the directional pool for cause (2) —
+without it F1 breaks the monopoly but leaves three of Orrin's four directions
+unable to ever drive. Pass = G1 (no goal > 60 %) ∧ G2 (release fired) ∧ G4
+(no thrash), G5 no regression.
+
+---
+
 ## Run 6 result — 2026-07-10/11 life: **FAILED** (S10 🔴 avoidance 🔴 convergence 🔴 S7 🔴 · S9 🟡 · S8/meters/aspirations ✅)
 
 Sixth acceptance run (clean reset incl. habituation, commit `e4abfe7`,

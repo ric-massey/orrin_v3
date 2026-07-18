@@ -1,0 +1,116 @@
+{
+  "queries": [
+    "mathematics",
+    "mathematics explained",
+    "what is not obvious about mathematics"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Mathematics_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/Set_%28mathematics%29",
+    "https://en.wikipedia.org/wiki/Discrete_mathematics",
+    "https://en.wikipedia.org/wiki/Matrix_%28mathematics%29",
+    "https://en.wikipedia.org/wiki/Wu-Tang_Clan",
+    "https://en.wikipedia.org/wiki/Explained_variation",
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+    "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences",
+    "https://en.wikipedia.org/wiki/Space_%28mathematics%29",
+    "https://en.wikipedia.org/wiki/Mathematical_coincidence",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+  ],
+  "results": [
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a field of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, and probabilities. It uses logical",
+      "query": "mathematics"
+    },
+    {
+      "title": "Mathematics (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/Mathematics_%28disambiguation%29",
+      "snippet": "Look up <span class=\"searchmatch\">mathematics</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Mathematics</span> is a field of knowledge. <span class=\"searchmatch\">Mathematics</span> may also refer to: <span class=\"searchmatch\">Mathematics</span> (producer), hip-hop",
+      "query": "mathematics"
+    },
+    {
+      "title": "Set (mathematics)",
+      "url": "https://en.wikipedia.org/wiki/Set_%28mathematics%29",
+      "snippet": "In <span class=\"searchmatch\">mathematics</span>, a set is a collection of different things; the things are called elements or members of the set and are typically <span class=\"searchmatch\">mathematical</span> objects:",
+      "query": "mathematics"
+    },
+    {
+      "title": "Discrete mathematics",
+      "url": "https://en.wikipedia.org/wiki/Discrete_mathematics",
+      "snippet": "Discrete <span class=\"searchmatch\">mathematics</span> is the study of <span class=\"searchmatch\">mathematical</span> structures that can be considered &quot;discrete&quot; (in a way analogous to discrete variables, having a one-to-one",
+      "query": "mathematics"
+    },
+    {
+      "title": "Matrix (mathematics)",
+      "url": "https://en.wikipedia.org/wiki/Matrix_%28mathematics%29",
+      "snippet": "In <span class=\"searchmatch\">mathematics</span>, a matrix (pl.: matrices) is a rectangular array of numbers or other <span class=\"searchmatch\">mathematical</span> objects with elements or entries arranged in rows and",
+      "query": "mathematics"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a field of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, and probabilities. It uses logical",
+      "query": "mathematics explained"
+    },
+    {
+      "title": "Wu-Tang Clan",
+      "url": "https://en.wikipedia.org/wiki/Wu-Tang_Clan",
+      "snippet": "&quot;<span class=\"searchmatch\">Mathematics</span> <span class=\"searchmatch\">Explains</span> Why Wu-Tang Dropped the &quot;Clan&quot; for &#039;The Saga Continues&#039; and How He Appreciates Martin Shkreli | Exclaim!&quot;. <span class=\"searchmatch\">Mathematics</span> <span class=\"searchmatch\">Explains</span> Why",
+      "query": "mathematics explained"
+    },
+    {
+      "title": "Explained variation",
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "snippet": "In statistics, <span class=\"searchmatch\">explained</span> variation measures the proportion to which a <span class=\"searchmatch\">mathematical</span> model accounts for the variation (dispersion) of a given data set.",
+      "query": "mathematics explained"
+    },
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "Philosophy of <span class=\"searchmatch\">mathematics</span> is the branch of philosophy that deals with the nature of <span class=\"searchmatch\">mathematics</span> and its relationship to other areas of philosophy, particularly",
+      "query": "mathematics explained"
+    },
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "Many <span class=\"searchmatch\">mathematical</span> problems have been stated but not yet solved. These problems come from many areas of <span class=\"searchmatch\">mathematics</span>, such as theoretical physics, computer",
+      "query": "mathematics explained"
+    },
+    {
+      "title": "Definitions of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "snippet": "abandoned in the 19th century as new branches of <span class=\"searchmatch\">mathematics</span> were developed, which bore no <span class=\"searchmatch\">obvious</span> relation to measurement or the physical world, such",
+      "query": "what is not obvious about mathematics"
+    },
+    {
+      "title": "The Unreasonable Effectiveness of Mathematics in the Natural Sciences",
+      "url": "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences",
+      "snippet": "Unreasonable Effectiveness of <span class=\"searchmatch\">Mathematics</span> in the Natural Sciences&quot; was the title of the 1959 Richard Courant Lecture in <span class=\"searchmatch\">Mathematical</span> Sciences, delivered at New",
+      "query": "what is not obvious about mathematics"
+    },
+    {
+      "title": "Space (mathematics)",
+      "url": "https://en.wikipedia.org/wiki/Space_%28mathematics%29",
+      "snippet": "geometry. It showed that axioms are <span class=\"searchmatch\">not</span> &quot;<span class=\"searchmatch\">obvious</span>&quot;, nor &quot;implications of definitions&quot;. Rather, they are hypotheses. To <span class=\"searchmatch\">what</span> extent do they correspond to an",
+      "query": "what is not obvious about mathematics"
+    },
+    {
+      "title": "Mathematical coincidence",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_coincidence",
+      "snippet": "might be the most <span class=\"searchmatch\">obvious</span> way to assess <span class=\"searchmatch\">mathematical</span> coincidences; but there <span class=\"searchmatch\">is</span> no standard, and the strong law of small numbers <span class=\"searchmatch\">is</span> the sort of thing",
+      "query": "what is not obvious about mathematics"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "<span class=\"searchmatch\">what</span> causes it. c. &quot;Dandruff&quot;. NHS. October 18, 2017. Retrieved July 2, 2022. Dandruff <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> caused by poor hygiene, although it may be more <span class=\"searchmatch\">obvious</span>",
+      "query": "what is not obvious about mathematics"
+    }
+  ],
+  "ts": "2026-07-15T08:04:04.430182+00:00"
+}

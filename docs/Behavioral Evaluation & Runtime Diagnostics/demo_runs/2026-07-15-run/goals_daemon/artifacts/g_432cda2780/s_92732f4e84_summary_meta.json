@@ -1,0 +1,165 @@
+{
+  "goal": {
+    "id": "g_432cda2780",
+    "title": "Understand quantum mechanics foundations more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "quantum mechanics foundations",
+        "quantum mechanics foundations explained",
+        "what is not obvious about quantum mechanics foundations"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-07-15T17:36:31.024257Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-07-15T17:36:31.024268Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-07-15T17:36:31.024270Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-07-15T17:36:31.024271Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-07-15T17:36:31.024273Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on quantum mechanics foundations was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about quantum mechanics foundations was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-15T17:36:31.024360Z",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "FAILED",
+    "created_at": "2026-07-15 17:36:31.024670+00:00",
+    "updated_at": "2026-07-15 17:36:38.665622+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 33.3,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ]
+    },
+    "last_error": "ValueError: no URLs to fetch",
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior memo: research_memo.md",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_foundations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Observable",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_08.txt"
+    }
+  ],
+  "ts": "2026-07-15T17:36:38.673557+00:00"
+}

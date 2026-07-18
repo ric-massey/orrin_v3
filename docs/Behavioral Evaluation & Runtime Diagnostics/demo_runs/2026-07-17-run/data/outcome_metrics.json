@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2026-07-17",
+    "active_goals": 5,
+    "average_goal_age": 32235.3,
+    "goals_completed": 12,
+    "goals_failed": 3,
+    "goals_retired": 18,
+    "satiety_closures": 13,
+    "abandonment_closures": 0,
+    "maintenance_selections": 632,
+    "store_desyncs_repaired": 2,
+    "executive_cooldown_skips": 216,
+    "mean_significance": 1.244,
+    "median_seconds_to_complete": 109.8,
+    "completion_rate": 0.261,
+    "abandonment_rate": 0.283,
+    "closure_frequency": 31,
+    "exploration_selections": 16869,
+    "closure_selections": 0
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "queries": [
+    "What would I explore if I had no consequences?"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/What_If_%28comics%29",
+    "https://en.wikipedia.org/wiki/I-No",
+    "https://en.wikipedia.org/wiki/Charles_I._Jones",
+    "https://en.wikipedia.org/wiki/Queens_of_the_Stone_Age_%28album%29",
+    "https://en.wikipedia.org/wiki/I_Knew_It%2C_I_Knew_You"
+  ],
+  "results": [
+    {
+      "title": "What If (comics)",
+      "url": "https://en.wikipedia.org/wiki/What_If_%28comics%29",
+      "snippet": "<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">If</span>, sometimes stylized as <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">If</span>...?, is a comic book anthology series published by Marvel Comics whose stories <span class=\"searchmatch\">explore</span> how the Marvel Universe",
+      "query": "What would I explore if I had no consequences?"
+    },
+    {
+      "title": "I-No",
+      "url": "https://en.wikipedia.org/wiki/I-No",
+      "snippet": "<span class=\"searchmatch\">I</span>-<span class=\"searchmatch\">No</span> (/ˈiːnoʊ/ EE-<span class=\"searchmatch\">no</span>; Japanese: イノ, romanized: Ino) is a character in Arc System Works&#039; Guilty Gear fighting game series. Created by Daisuke Ishiwatari",
+      "query": "What would I explore if I had no consequences?"
+    },
+    {
+      "title": "Charles I. Jones",
+      "url": "https://en.wikipedia.org/wiki/Charles_I._Jones",
+      "snippet": " &quot;The End of Economic Growth? Unintended <span class=\"searchmatch\">Consequences</span> of a Declining Population&quot; <span class=\"searchmatch\">explores</span> the <span class=\"searchmatch\">consequences</span> of falling birth rates. Since, in many models",
+      "query": "What would I explore if I had no consequences?"
+    },
+    {
+      "title": "Queens of the Stone Age (album)",
+      "url": "https://en.wikipedia.org/wiki/Queens_of_the_Stone_Age_%28album%29",
+      "snippet": "never get a chance to re-release this thing, and <span class=\"searchmatch\">what</span> <span class=\"searchmatch\">if</span> we just focused on the first record? <span class=\"searchmatch\">I</span> dunno <span class=\"searchmatch\">if</span> that means we&#039;re going to play it exactly start",
+      "query": "What would I explore if I had no consequences?"
+    },
+    {
+      "title": "I Knew It, I Knew You",
+      "url": "https://en.wikipedia.org/wiki/I_Knew_It%2C_I_Knew_You",
+      "snippet": "person that <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">had</span> all these memories with. — Swift on &quot;<span class=\"searchmatch\">I</span> Knew It, <span class=\"searchmatch\">I</span> Knew You&quot; Written from Jessie&#039;s perspective, &quot;<span class=\"searchmatch\">I</span> Knew It, <span class=\"searchmatch\">I</span> Knew You&quot; <span class=\"searchmatch\">explores</span> themes of",
+      "query": "What would I explore if I had no consequences?"
+    }
+  ],
+  "ts": "2026-07-15T06:28:17.062947+00:00"
+}

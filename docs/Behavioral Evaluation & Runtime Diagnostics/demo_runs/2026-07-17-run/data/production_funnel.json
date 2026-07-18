@@ -1,0 +1,374 @@
+{
+  "events": [
+    {
+      "ts": 1784263929.108334,
+      "stage": "candidate",
+      "goal": "Open question: Is what I'm doing right now aligned with what I actually care about?"
+    },
+    {
+      "ts": 1784263929.1093829,
+      "stage": "candidate",
+      "goal": "Open question: What truth am I working hardest to avoid?"
+    },
+    {
+      "ts": 1784263929.1101701,
+      "stage": "candidate",
+      "goal": "Open question: What do you think?"
+    },
+    {
+      "ts": 1784264045.692182,
+      "stage": "candidate",
+      "goal": "Open question: What would I sacrifice to achieve this?"
+    },
+    {
+      "ts": 1784264045.693527,
+      "stage": "candidate",
+      "goal": "Open question: What truth am I working hardest to avoid?"
+    },
+    {
+      "ts": 1784266920.933194,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784266920.947637,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784266920.94912,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784266920.9506938,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784266920.952435,
+      "stage": "candidate",
+      "goal": "Open question: Is what I'm doing right now aligned with what I actually care about?"
+    },
+    {
+      "ts": 1784266920.954035,
+      "stage": "candidate",
+      "goal": "Open question: What truth am I working hardest\nto avoid?"
+    },
+    {
+      "ts": 1784269818.555601,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784269818.557591,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784269818.559602,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784269818.571276,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784269818.573233,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270831.4426,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270831.446082,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784270831.464038,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784270831.4706519,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784270831.4743528,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270831.4776251,
+      "stage": "candidate",
+      "goal": "Open question: Where am I confusing comfort with correctness?"
+    },
+    {
+      "ts": 1784270831.493081,
+      "stage": "candidate",
+      "goal": "Open question: What would I explore if I had no consequences?"
+    },
+    {
+      "ts": 1784270839.665778,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784270839.6696498,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784270839.691207,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784270839.695025,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270839.7147362,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270839.718545,
+      "stage": "candidate",
+      "goal": "Open question: Where am I confusing comfort with correctness?"
+    },
+    {
+      "ts": 1784270870.940215,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784270870.957303,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784270870.965215,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784270870.981228,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270870.990947,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270871.0077791,
+      "stage": "candidate",
+      "goal": "Open question: Where am I confusing comfort with correctness?"
+    },
+    {
+      "ts": 1784270886.3417668,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784270886.345771,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784270886.347831,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270886.351858,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784270886.364151,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270915.65439,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784270915.672075,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784270915.6760519,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270915.678994,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784270915.687068,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270930.629617,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784270930.6629171,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784270930.679051,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784270930.708995,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784270930.7206101,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784270930.7415879,
+      "stage": "candidate",
+      "goal": "Open question: What question would make me most uncomfortable to answer honestly?"
+    },
+    {
+      "ts": 1784271030.1739058,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784271030.189111,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784271030.19225,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784271030.1956851,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784271030.211099,
+      "stage": "candidate",
+      "goal": "Open question: What question would make me most uncomfortable to answer honestly?"
+    },
+    {
+      "ts": 1784271143.5842838,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784271143.590632,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784271143.597127,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784271143.61269,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784271258.396388,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784271258.4153512,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784271258.417768,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784271258.4208472,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784271258.423711,
+      "stage": "candidate",
+      "goal": "Open question: What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "ts": 1784271258.428242,
+      "stage": "candidate",
+      "goal": "Open question: What is concrete and true right now?"
+    },
+    {
+      "ts": 1784290603.681688,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784290603.6869519,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784290603.691584,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784290603.720574,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1784290713.620912,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784290713.6226912,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784290713.624429,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784290713.626176,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    }
+  ]
+}

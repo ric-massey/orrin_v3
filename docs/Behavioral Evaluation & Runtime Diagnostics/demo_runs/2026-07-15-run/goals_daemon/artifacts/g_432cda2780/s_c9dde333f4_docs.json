@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_01.txt",
+      "chars": 16369
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_foundations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Observable",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_05.txt",
+      "chars": 13912
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_432cda2780/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-07-15T17:36:38.572391+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_02.txt",
+      "chars": 1768
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Set_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Discrete_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Matrix_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wu-Tang_Clan",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_07.txt",
+      "chars": 6030
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_27458bf5f3/doc_10.txt",
+      "chars": 13156
+    }
+  ],
+  "ts": "2026-07-15T08:04:07.893724+00:00"
+}

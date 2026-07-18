@@ -1,0 +1,45 @@
+{
+  "queries": [
+    "What truth am I working hardest to avoid?"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Reba_McEntire",
+    "https://en.wikipedia.org/wiki/Katie_Hopkins",
+    "https://en.wikipedia.org/wiki/Conspiracy_theory",
+    "https://en.wikipedia.org/wiki/Sherilyn_Fenn",
+    "https://en.wikipedia.org/wiki/Mahatma_Gandhi"
+  ],
+  "results": [
+    {
+      "title": "Reba McEntire",
+      "url": "https://en.wikipedia.org/wiki/Reba_McEntire",
+      "snippet": "All the Women <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">Am</span> (2010) Love Somebody (2015) My Kind of Christmas (2016) Sing It Now: Songs of Faith &amp; Hope (2017) Stronger Than the <span class=\"searchmatch\">Truth</span> (2019) Headlining",
+      "query": "What truth am I working hardest to avoid?"
+    },
+    {
+      "title": "Katie Hopkins",
+      "url": "https://en.wikipedia.org/wiki/Katie_Hopkins",
+      "snippet": "She has described herself as a &quot;conduit for <span class=\"searchmatch\">truth</span>&quot;, declaring &quot;<span class=\"searchmatch\">what</span> other people think but are too scared <span class=\"searchmatch\">to</span> say&quot;&#039;. In 2019, Hopkins presented the documentary",
+      "query": "What truth am I working hardest to avoid?"
+    },
+    {
+      "title": "Conspiracy theory",
+      "url": "https://en.wikipedia.org/wiki/Conspiracy_theory",
+      "snippet": "climate-change denialists and the 9/11 <span class=\"searchmatch\">truth</span> movement: &quot;Maybe <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> taking conspiracy theories too seriously, but <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> worried <span class=\"searchmatch\">to</span> detect, in those mad mixtures",
+      "query": "What truth am I working hardest to avoid?"
+    },
+    {
+      "title": "Sherilyn Fenn",
+      "url": "https://en.wikipedia.org/wiki/Sherilyn_Fenn",
+      "snippet": "alcohol. And <span class=\"searchmatch\">what&#039;s</span> admirable about Billie is that she&#039;s a straight shooter. She doesn&#039;t have a lot of pretense. It&#039;s like, &#039;Take me as <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span>. You like me",
+      "query": "What truth am I working hardest to avoid?"
+    },
+    {
+      "title": "Mahatma Gandhi",
+      "url": "https://en.wikipedia.org/wiki/Mahatma_Gandhi",
+      "snippet": "<span class=\"searchmatch\">I</span> do not quite know <span class=\"searchmatch\">what</span> <span class=\"searchmatch\">to</span> tell you or how <span class=\"searchmatch\">to</span> say it. Our beloved leader, Bapu as we called him, the father of the nation, is no more. Perhaps <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> wrong",
+      "query": "What truth am I working hardest to avoid?"
+    }
+  ],
+  "ts": "2026-07-17T04:52:09.679093+00:00"
+}

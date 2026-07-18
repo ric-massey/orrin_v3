@@ -59,6 +59,113 @@ per-candidate `value` component in the selection reason payload.
 
 ---
 
+## Run 9 re-test gate (2026-07-16 — from `RUN9_DEEP_ANALYSIS_2026-07-15.md`)
+
+The Run 9 build landed 2026-07-16 (clean reset done the same day): **R9-F1**
+in-flight step guard (daemon skips queued/running step ids), **R9-F2** workers
+re-read the step fresh + never run a step of a terminal goal (zombie kill),
+**R9-F3** stage-suffix artifact loading in research.py, **R9-F4** attempts
+capped at max + goal `last_error` taken from the FAILED step, **R9-F5**
+title-scaffold stoplist in `_find_prior_memo`, **R9-F6** `mark_reused` stamps
+real cycle + owning path, plus the two owed items (invoke.py keyword-only
+regression test; **cycle-stall tripwire** keyed on `production_loop` cycle
+stamps, `supervisor/cycle_stall.py`, default 900 s / `ORRIN_CYCLE_STALL_S`).
+Also found+fixed while wiring: `watchdog_setup.build()` kwargs had drifted from
+`start_watchdogs` (vital_*/resource_on_* spellings), so every prior life ran on
+the bare-fallback watchdogs with NO resource providers — the fallback now
+prints a DEGRADED warning instead of swallowing the TypeError.
+
+**G2 is rescored (Finding 5):** F1's refractory is unreachable in any life
+where F2 rotation works (Run 8 max stale 8.8 vs the 250 trip — 28× margin), so
+the release is proven by the **forced-fire harness**
+`tests/brain/test_refractory_harness.py` (280 uncredited pulls → exactly one
+`refractory_events` release at stale=250, block counts down 1/pull, blocked
+holder yields the directional slot, credit resets accrual). G2 = that test
+green, not a life observable. The ablation life is deleted from the plan; F1
+stays as a zero-cost backstop.
+
+**Run 9′ is a verification life. It passes iff:**
+
+- **S4 honest failures:** research goals whose artifacts exist on disk are not
+  marked FAILED; no step's `attempts` exceeds `max_attempts` in the WAL; no
+  DONE→FAILED flapping on a single step; failed goals carry the failing step's
+  real `last_error` (never `None`, never the zombie's).
+- **S7 reuse is topical:** every `reuse` row carries a real `cycle` and
+  `metadata.path`, and cited memos share subject tokens with the citing goal
+  (no cross-topic boilerplate matches). Reuse ≥ 8 stands as the target now that
+  failures can't manufacture/mask it — but do not raise the target past 8
+  before checking topicality (Finding 3's caveat).
+- **Exemplar promotion fires** on this first life with a writable dir (watch
+  for the boot probe; if EACCES recurs, the backup/sync lock re-applied).
+- **HOLDS:** S8 desyncs 0, S10/G1 occupancy < 60 % via F2 rotation, value
+  anti-pump intact, all four aspirations survive, production does not collapse.
+- **Capture `data/goals/` (WAL + state + artifacts)** into the run folder —
+  the Run 8 capture lost it and the diagnosis had to mine the live WAL.
+
+**Out of scope for Run 9′ (Ric's product decisions, Finding 2 + Finding 6):**
+`genuine_contact` stays structurally unscoreable unattended — options are (a)
+scripted-interaction arm, (b) headless outbox with post-life reply credit,
+(c) score S6-contact only on attended lives; recommendation (b)+(c). R9-F8
+(move runtime exemplars out of `tests/fixtures/quality_golden/`) needs sign-off
+because the golden/promoted split must survive the relocation. Finding 7 (the
+difficulty ladder) is the post-gate axis, target Run 11 planning.
+
+---
+
+## Run 9′ result — 2026-07-17 life: **NOT PASSED as written** (S7 count 1 < 8) — but every Run 9 mechanism proven (S4 🟡 · S7 🔴count/🟢quality · exemplars 🟢 first ever · S8 🟡 · G1 🟢 40.5 % best ever)
+
+Ninth acceptance run (build R9-F1..F7, **10,278 cycles**, **two segments**:
+7.3 h to a `HARD:memory_leak_slope` supervisor kill at rss 1,898 MB, then a
+relaunch + 1.6 h to a clean operator stop; cycle counter contiguous across the
+seam, boundary ≈ cycle 8,710). Full analysis:
+`docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-17-run/DEMO_RUN_2026-07-17.md`.
+
+**First life with live resource watchdogs** (kwargs-drift fix) — and the
+memory guard fired for real, completing the first end-to-end supervision arc
+(detect → graceful window → kill → relaunch → rebirth with `final_thoughts`).
+The 726 MB/60 s burst that tripped it is **unattributed** (no RSS series is
+kept; only the last value survives) on top of a real ~2–3 MB/min estate climb
+(segment 2 died at 805 MB @ 1.6 h vs segment 1's 1,898 MB @ 7.3 h).
+
+- **S4** 🟡 — the runner race is dead: 0 steps past `max_attempts`, 0
+  DONE→FAILED flaps, 0 daemon FAILED goals, all failure reasons real cap-outs.
+  Caveats: one goal double-failed 5 min apart (second reason is placeholder
+  junk `['?', '?']`), and a drive-by `fetch_and_read` intake memo (off-topic
+  PLOS scrape) was filed into that failing goal's artifact dir — letter
+  violation of "artifacts ⇒ not FAILED", but not the goal's own work.
+- **S7** 🔴 on count / 🟢 on integrity — exactly **1** reuse row, but it's the
+  first fully honest one: real cycle (8,803), real path, topical
+  (evolutionary-biology goal citing the evolutionary-biology memo), citing
+  goal went DONE (Run 8's reuse↔failure time-lock gone), hash matches a
+  promoted exemplar. Mechanics proven; volume regressed (Run 8: 2).
+- **Exemplar promotion** 🟢 — **fired for the first time in nine lives** (3
+  promoted at 07:56Z). But the segment-1 boot probe DID catch EACCES (launch
+  lock re-applied; writable later; segment-2 probe clean), and one promoted
+  exemplar is ~90 % pasted abstract — the bar can't tell scrape from
+  synthesis.
+- **HOLDS:** G1/S10 🟢 **40.5 %** top occupancy (best ever; all four
+  aspirations drove; max stale 6.5 so F1 stayed untouched, per the G2
+  harness rescoring) · anti-pump 🟢 (`value_ema` 0.5196, max path credit 3×) ·
+  aspirations 🟢 all four survive · production 🟢 37 attempts / 17 successes
+  (Run 8: 37/21) · **S8 🟡 regression in letter** — 2 desyncs, both the same
+  twin-id research goal re-closing in v1 in the first 11 minutes, then 0 for
+  ~9 h. Root cause: the same question was created as **two goal ids in two
+  stores** (daemon DONE in 6 s; brain-side twin failed at the cap) — one seam
+  behind the desyncs, the double-failure, and the S4 ambiguity.
+- **Capture** 🟢 — full `data/goals/` daemon tree in the run folder (Run 8's
+  gap closed). `genuine_contact` 0 at every stage and funnel candidate-only,
+  both out of scope as declared.
+
+**Re-test gate (Run 10)** (detail in the run doc §Run 10 fix list): (a) RSS
+time series into telemetry + attribute the estate growth; (b) one question =
+one goal id (unify creation across stores); (c) intake memos filed by
+provenance, not slot; (d) originality check before exemplar promotion;
+(e) confirm the run-lock script fix at launch; (f) check the daemon's 1.5 h
+silence in segment 2 (R9-F1 over-suppression?); (g) reuse ≥ 8 stands; reset
+should clear stale `data/goals/artifacts/` leftovers.
+
+---
+
 ## Run 8 re-test gate (2026-07-14 — from `RUN8_FIX_PLAN_2026-07-14.md`)
 
 Run 7 (2026-07-12 life, `demo_runs/2026-07-12-run/`) proved the Run-7 anti-pump
@@ -138,18 +245,50 @@ must fire) is unmet and `G5` regressed on reuse (2 < 4). `Pass = G1 ∧ G2 ∧ G
 
 **Two events dominate the engineering read:** (1) a real crash — uncaught
 `TypeError: make_candidate() missing … keyword-only arguments 'kind','direction'`
-at `invoke.py:108`, killed the brain thread at cycle ~4253; the dispatchability
-guard ignored required `KEYWORD_ONLY` params. Fixed mid-life (uncommitted
-`invoke.py`); segment 2 ran clean. (2) the watchdog took 6.5 h to notice the dead
-cognitive loop (pulse-based liveness, not cycle-advance).
+at `invoke.py:108`, killed the brain thread mid-cycle **4418** (the exact cycle
+missing at the `production_loop` seam; the "~4253" in `crash.log` is stale
+block-buffered stdout); the dispatchability guard ignored required
+`KEYWORD_ONLY` params. Fixed mid-life; fix committed in `e70ac98`; segment 2 ran
+clean. (2) the watchdog took 6.5 h to notice the dead cognitive loop
+(pulse-based liveness, not cycle-advance).
+
+**Second-pass audit findings (verdict §4b):** both reuse rows resolve to
+concrete referents via `content_hash` — one is a synthesis citing the prior
+written-language memo by filename — so "referent-less reuse" is retracted; but
+**both reuse events are time-locked ≤ 250 ms before goal failures** (the goals
+doing the reuse are the ones recorded as failed). `genuine_contact`'s hole is at
+goal *generation* (zero scoreboard events at any stage), not completion. Only 3
+of 7 failures are traceable in the capture ("emotional response triggered" is
+the loop's reaction, not a cause; the `goals_daemon/` tree wasn't captured).
+
+> **Superseded in part by the no-run diagnosis pass:**
+> `docs/Behavioral Evaluation & Runtime Diagnostics/RUN9_DEEP_ANALYSIS_2026-07-15.md`
+> root-caused every remaining red without a life — the research-goal failures
+> are a daemon runner race (all three "failed" goals' work succeeded on disk),
+> `genuine_contact` is structurally unscoreable unattended, `_find_prior_memo`
+> matches on title boilerplate, and the F1 ablation life is replaced by a
+> forced-fire harness test (R9-F7). Items (a)–(e) below stand where not
+> contradicted; the R9-F1..F8 fix list in that doc is the Run 9 build. Its
+> Finding 7 also scopes what this gate does and does not prove: passing it
+> twice = the goals system is *stable* (regulatory learning), not *growing* —
+> no difficulty ladder exists yet (quality ratchet has 0 live hours, reuse
+> compounding broken, outcome labels race-noised). The ladder is the post-gate
+> axis (target: Run 11 planning).
 
 **Re-test gate (Run 9):** (a) **`ORRIN_STALE_REFRACTORY=0` ablation** — confirm
-occupancy stays < 60 % with F1 off (proves F2 is the lever; decide F1's fate);
-(b) commit `invoke.py` fix + regression test (required-keyword-only fn is skipped,
-not dispatched); (c) cycle-stall tripwire in the watchdog; (d) clear the
-`uchg`/`0o500` lock on the exemplars dir (the real `write_exemplar` EACCES cause,
-run 3); (e) contribution layer — reuse ≥ concrete referent, `genuine_contact`
-contribution > 0 (both untouched by the commitment-layer fix).
+occupancy stays < 60 % with F1 off (proves F2 is the lever; decide F1's fate —
+note max stale was 8.8 vs the 250 trip, a 28× margin: with F2 on, F1's code path
+is unreachable in life); (b) ~~commit `invoke.py` fix~~ *(done, `e70ac98`)* +
+**regression test** (required-keyword-only fn is skipped, not dispatched);
+(c) cycle-stall tripwire in the watchdog, keyed on `production_loop` cycle
+stamps (the only crash-accurate counter — heartbeat lagged 18 cycles, stdout
+~160); (d) ~~clear the `uchg`/`0o500` lock~~ *(done post-capture 2026-07-15,
+repo-wide)* → **confirm exemplar promotion fires** on its first life with a
+writable dir, and watch for the lock re-applying (backup/sync suspected);
+(e) contribution layer — reuse ≥ 8 *and* understand the reuse↔failure
+time-lock before optimizing either; `genuine_contact` generation > 0 (fix
+belongs in the contact→goal-generation path); capture the `goals_daemon/` tree
+so failures are traceable; stamp real `cycle`/path in `mark_reused` rows.
 
 ---
 

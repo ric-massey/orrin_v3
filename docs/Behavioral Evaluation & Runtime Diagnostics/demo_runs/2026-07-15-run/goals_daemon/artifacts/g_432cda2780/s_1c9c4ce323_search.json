@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "quantum mechanics foundations",
+    "quantum mechanics foundations explained",
+    "what is not obvious about quantum mechanics foundations"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+    "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Quantum_foundations",
+    "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+    "https://en.wikipedia.org/wiki/Observable",
+    "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Quantum_mechanics",
+    "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+  ],
+  "results": [
+    {
+      "title": "Mathematical Foundations of Quantum Mechanics",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "snippet": "Mathematical <span class=\"searchmatch\">Foundations</span> of <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span> (German: Mathematische Grundlagen der Quantenmechanik) is a <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> book written by John von Neumann",
+      "query": "quantum mechanics foundations"
+    },
+    {
+      "title": "Interpretations of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "snippet": "interpretation of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is an attempt to explain how the mathematical theory of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> might correspond to experienced reality. <span class=\"searchmatch\">Quantum</span> mechanics",
+      "query": "quantum mechanics foundations"
+    },
+    {
+      "title": "Quantum foundations",
+      "url": "https://en.wikipedia.org/wiki/Quantum_foundations",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">foundations</span> is a discipline of science and philosophy of physics that seeks to understand the most counter-intuitive aspects of <span class=\"searchmatch\">quantum</span> theory",
+      "query": "quantum mechanics foundations"
+    },
+    {
+      "title": "Many-worlds interpretation",
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "snippet": "The many-worlds interpretation (MWI) is an interpretation of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> that asserts that the universal wave function is objectively real, and",
+      "query": "quantum mechanics foundations"
+    },
+    {
+      "title": "Observable",
+      "url": "https://en.wikipedia.org/wiki/Observable",
+      "snippet": "classical <span class=\"searchmatch\">mechanics</span>, an observable is a real-valued &quot;function&quot; on the set of all possible system states, e.g., position and momentum. In <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>, an",
+      "query": "quantum mechanics foundations"
+    },
+    {
+      "title": "Mathematical Foundations of Quantum Mechanics",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "snippet": "Mathematical <span class=\"searchmatch\">Foundations</span> of <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span> (German: Mathematische Grundlagen der Quantenmechanik) is a <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> book written by John von Neumann",
+      "query": "quantum mechanics foundations explained"
+    },
+    {
+      "title": "Interpretations of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "snippet": "interpretation of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is an attempt to <span class=\"searchmatch\">explain</span> how the mathematical theory of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> might correspond to experienced reality. <span class=\"searchmatch\">Quantum</span> mechanics",
+      "query": "quantum mechanics foundations explained"
+    },
+    {
+      "title": "Introduction to quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">mechanics</span> is the study of matter and matter&#039;s interactions with energy on the scale of atomic and subatomic particles. By contrast, classical",
+      "query": "quantum mechanics foundations explained"
+    },
+    {
+      "title": "Quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "snippet": "including <span class=\"searchmatch\">quantum</span> chemistry, <span class=\"searchmatch\">quantum</span> biology, <span class=\"searchmatch\">quantum</span> field theory, <span class=\"searchmatch\">quantum</span> technology, and <span class=\"searchmatch\">quantum</span> information science. <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">mechanics</span> can describe",
+      "query": "quantum mechanics foundations explained"
+    },
+    {
+      "title": "History of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "snippet": "of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of <span class=\"searchmatch\">quantum</span> ideas",
+      "query": "quantum mechanics foundations explained"
+    }
+  ],
+  "ts": "2026-07-15T17:36:34.065380+00:00"
+}

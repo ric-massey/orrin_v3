@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Synthetic_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Homology_%28biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_07.txt",
+      "chars": 14237
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Symmetry_in_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_and_theoretical_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-17T12:18:33.803588+00:00/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-07-17T12:18:43.543142+00:00"
+}

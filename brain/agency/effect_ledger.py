@@ -348,8 +348,12 @@ def _hydrate() -> None:
                                 _path_hash[np] = h
                                 # F2c: replay credited writes per path so the
                                 # repeat-credit decay survives a restart.
+                                # R9-F6: reuse rows now carry the referent path
+                                # too — they are citations, not writes, and must
+                                # not burn the per-path write-credit budget.
                                 try:
                                     if (not row.get("dedupe")
+                                            and row.get("kind") != "reuse"
                                             and float(row.get("significance") or 0.0) > 0.0):
                                         _path_credit_counts[np] = _path_credit_counts.get(np, 0) + 1
                                 except (TypeError, ValueError):
@@ -754,13 +758,13 @@ def mark_reused_path(path: Any) -> Optional[int]:
         h = hash_for_path(path)
         if not h:
             return None
-        return mark_reused(h)
+        return mark_reused(h, path=_norm_path(path))
     except Exception as exc:
         record_failure("effect_ledger.mark_reused_path", exc)
         return None
 
 
-def mark_reused(content_hash: str) -> int:
+def mark_reused(content_hash: str, *, path: Optional[str] = None) -> int:
     """Tier-3 (deferred, strong) significance: the artifact was referenced again
     later — a tool invoked, a memo cited by a later goal, a message replied to.
     Re-use is the only ungameable significance signal. Returns the new reuse count.
@@ -768,6 +772,10 @@ def mark_reused(content_hash: str) -> int:
     Re-use also lifts the owning goal's recorded significance toward the ceiling,
     so `significance_for_goal` (the headline mean_significance metric) reflects work
     that actually got used, not just work that got written.
+
+    R9-F6: rows stamp the real cycle (was hard-coded 0 — every reuse event in a
+    run capture was time-blind) and carry the reused artifact's owning path in
+    metadata so run analysis can resolve the referent without a hash join.
     """
     if not content_hash:
         return 0
@@ -779,12 +787,14 @@ def mark_reused(content_hash: str) -> int:
         if gid:
             prior = _goal_significance.get(gid, 0.0)
             _goal_significance[gid] = min(1.0, max(prior, 0.6) + 0.1)
+        if not path:
+            path = next((p for p, h in _path_hash.items() if h == content_hash), None)
     try:
         _append_row(EffectRow(
-            ts=now_iso_z(), cycle=0, kind="reuse",
+            ts=now_iso_z(), cycle=_cycle_from(None, None), kind="reuse",
             content_hash=content_hash, novelty=0.0,
             significance=1.0, goal_id=gid, char_len=0, dedupe=False,
-            metadata=None,
+            metadata={"path": str(path)} if path else None,
         ))
     except Exception as exc:
         record_failure("effect_ledger.mark_reused", exc)

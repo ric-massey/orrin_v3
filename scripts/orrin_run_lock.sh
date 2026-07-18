@@ -125,6 +125,8 @@ collect_paths() {
                 -path "$REPO/brain/logs" -o -path "$REPO/brain/logs/*" -o \
                 -path "$REPO/frontend/dist" -o -path "$REPO/frontend/dist/*" -o \
                 -path "$REPO/frontend/node_modules" -o -path "$REPO/frontend/node_modules/*" -o \
+                -path "$REPO/tests/fixtures/quality_golden/exemplars" -o \
+                -path "$REPO/tests/fixtures/quality_golden/exemplars/*" -o \
                 -name "__pycache__" -o \
                 -name "node_modules" -o \
                 -name ".mypy_cache" -o \

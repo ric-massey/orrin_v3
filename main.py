@@ -366,7 +366,13 @@ try:
         ns_summary_interval_s=5.0,
         **_wd_inputs.kwargs,
     )
-except TypeError:
+except TypeError as _wd_err:
+    # Degraded mode: no resource providers, no vital floor, no cycle-stall
+    # tripwire. This fallback silently ate a kwarg-name drift for weeks
+    # (2026-07-16) — if this prints, watchdog_setup.build() and
+    # start_watchdogs have drifted apart and must be re-aligned.
+    print(f"[watchdogs] DEGRADED: provider kwargs rejected ({_wd_err}); "
+          "running bare watchdogs — fix runtime/watchdog_setup.py")
     tup = start_watchdogs(
         pulse,
         per_key_limits={"llm_timeout": (10, 15.0)},
@@ -383,6 +389,7 @@ except TypeError:
     host_guard,
     resource_floor_guard,
     repeat_guard,
+    cycle_stall_guard,
     stop_evt,
 ) = tup
 

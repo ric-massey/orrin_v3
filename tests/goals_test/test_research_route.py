@@ -103,8 +103,13 @@ def test_research_handler_produces_memo_and_credited_effect_llm_free(tmp_path):
                         step_queue=queue.Queue(), workers=0, ctx=ctx)
 
     steps = handler.plan(goal, ctx)
-    for s in steps:  # plan order respects deps for a fresh goal
+    # Persist the WHOLE plan before running any step, as the daemon does
+    # (_plan_new_goals → _add_steps): submitting incrementally let the runner
+    # finalize the goal after step 1 (only step visible, all terminal) and the
+    # rest ran as zombies — the exact behavior R9-F2's terminal-goal guard kills.
+    for s in steps:
         store.upsert_step(s)
+    for s in steps:  # plan order respects deps for a fresh goal
         runner.submit(s)
 
     done = [s for s in store.steps_for(goal.id) if s.status == Status.DONE]

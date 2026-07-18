@@ -108,6 +108,13 @@ class StepRunner:
         self._active_mu = threading.RLock()   # re-entrant to avoid self-deadlock
         self._active_count = 0
         self._reaper_sink = reaper_sink
+        # R9-F1: ids queued or executing right now. The daemon re-collects READY
+        # steps from the store every tick, so a step being worked (still READY on
+        # disk) was enqueued again and ran concurrently on the 3-worker pool —
+        # the Run 8 race that failed goals whose work had succeeded. Cleared on
+        # every exit path from _execute_step (terminal, defer, exception).
+        self._inflight: set[str] = set()
+        self._inflight_mu = threading.Lock()
 
     # ----- lifecycle -----
 
@@ -146,9 +153,16 @@ class StepRunner:
     # Public enqueue for schedulers/daemons
     def submit(self, step: Step) -> None:
         _dbg("submit step:", step.id, "goal:", step.goal_id)
+        # R9-F1: refuse a step that is already queued or running.
+        if not self._inflight_add(step.id):
+            _dbg("skip in-flight step:", step.id)
+            return
         # If the test configured workers=0, run synchronously so tests don't hang.
         if self.workers <= 0:
-            self._execute_step(step)
+            try:
+                self._execute_step(step)
+            finally:
+                self._inflight_remove(step.id)
             return
 
         # If workers were configured but start() wasn't called, auto-start once.
@@ -157,8 +171,27 @@ class StepRunner:
 
         try:
             self.q.put_nowait(step)
-        except Exception:
+        except queue.Full:
             self.q.put(step)
+        except Exception:
+            self._inflight_remove(step.id)
+            raise
+
+    def is_inflight(self, step_id: str) -> bool:
+        """True while `step_id` is queued or executing (R9-F1 scheduler guard)."""
+        with self._inflight_mu:
+            return step_id in self._inflight
+
+    def _inflight_add(self, step_id: str) -> bool:
+        with self._inflight_mu:
+            if step_id in self._inflight:
+                return False
+            self._inflight.add(step_id)
+            return True
+
+    def _inflight_remove(self, step_id: str) -> None:
+        with self._inflight_mu:
+            self._inflight.discard(step_id)
 
 
     # ----- metrics/introspection -----
@@ -223,6 +256,7 @@ class StepRunner:
                 self._emit({"kind": "StepRunnerError", "error": f"{type(e).__name__}: {e}", "ts": UTCNOW().isoformat()})
                 _dbg("execute_step error:", e)
             finally:
+                self._inflight_remove(step.id)
                 self._dec_active()
                 self.q.task_done()
                 self._set_worker_metrics()
@@ -230,6 +264,22 @@ class StepRunner:
     # ----- execution -----
 
     def _execute_step(self, step: Step) -> None:
+        # R9-F2: re-read the step fresh from the store. Workers used to receive a
+        # Step OBJECT and upsert their private copy back — under the re-enqueue
+        # race every racer wrote stale state over the winner's (DONE overwriting
+        # FAILED, attempts climbing past max on private counts). If the store's
+        # copy is no longer READY, someone else already ran it: skip.
+        if hasattr(self.store, "get_step"):
+            try:
+                fresh = self.store.get_step(step.id)
+            except Exception:
+                fresh = None
+            if fresh is not None:
+                if fresh.status != Status.READY:
+                    _dbg("skip raced/stale step:", step.id, "status:", fresh.status.name)
+                    return
+                step = fresh
+
         goal = _get_goal(self.store, step.goal_id)
         if goal is None:
             _dbg("goal missing for step:", step.id)
@@ -238,6 +288,19 @@ class StepRunner:
             step.finished_at = UTCNOW()
             _upsert_step(self.store, step)
             self._emit_step_event("StepFailed", step, goal_kind="unknown", extra={"reason": "goal_missing"})
+            return
+
+        # R9-F2 (zombie guard): never run a step of a goal already in a terminal
+        # state. Run 8's raced fetch copies failed the goal, then synthesize ran
+        # ANYWAY, cited a memo, and finished DONE — reuse and failure in the
+        # same tick. Cancel the step so finalization/pending counts settle.
+        if goal.is_terminal():
+            step.status = Status.CANCELLED
+            step.finished_at = UTCNOW()
+            _upsert_step(self.store, step)
+            self._emit_step_event("StepCancelled", step, goal_kind=goal.kind,
+                                  extra={"reason": "goal_terminal"})
+            _dbg("cancelled zombie step on terminal goal:", step.id)
             return
 
         handler = self._get_handler(goal)
@@ -278,7 +341,10 @@ class StepRunner:
                 _dbg("tick ->", step.status.name, "step:", step.id)
             except Exception as e:
                 step.last_error = f"{type(e).__name__}: {e}"
-                step.attempts = int(step.attempts or 0) + 1
+                # R9-F4: never count past max_attempts (racers each incremented a
+                # private stale count — the WAL shows attempts reaching 9/3).
+                step.attempts = min(int(step.max_attempts or 1),
+                                    int(step.attempts or 0) + 1)
                 _dbg("tick raised:", step.last_error, "attempts:", step.attempts, "/", step.max_attempts)
                 # Machine-readable failure telemetry: the 2026-07-02 run's nine
                 # handler crashes survived only as activity-log prose.
@@ -381,7 +447,8 @@ class StepRunner:
                     step.status = Status.READY
                     step.started_at = None
                     step.last_error = (step.last_error or "") + " | max_run_s exceeded"
-                    step.attempts = int(step.attempts or 0) + 1
+                    step.attempts = min(int(step.max_attempts or 1),
+                                        int(step.attempts or 0) + 1)
                 _upsert_step(self.store, step)
                 self._emit_step_event("StepDeferredMaxRun", step, goal_kind=goal.kind,
                                       extra={"max_run_s": max_run_s})
@@ -479,12 +546,20 @@ class StepRunner:
         else:
             any_pending = any(s.status not in {Status.DONE, Status.CANCELLED, Status.FAILED} for s in steps)
         if any_failed and not any_pending:
-            ng = replace(goal, status=Status.FAILED, updated_at=UTCNOW(), last_error=last_step.last_error)
+            # R9-F4: take last_error from the step that FAILED, not from whatever
+            # step happened to finish last — Run 8's zombie synthesize (DONE,
+            # error None) clobbered the real failure reason on every raced goal.
+            failed_error = next(
+                (s.last_error for s in steps
+                 if s.status == Status.FAILED and s.last_error),
+                None,
+            ) or last_step.last_error or "step_failure"
+            ng = replace(goal, status=Status.FAILED, updated_at=UTCNOW(), last_error=failed_error)
             _upsert_goal(self.store, ng)
             self._emit_goal_event("GoalFailed", ng, extra={"step_id": last_step.id})
             try:
                 from brain.utils.failure_counter import record_goal_failure
-                record_goal_failure(goal.id, goal.title, last_step.last_error or "step_failed")
+                record_goal_failure(goal.id, goal.title, failed_error)
             except Exception:  # intentional: telemetry must never block goal finalization
                 pass
             _dbg("finalized goal FAILED:", goal.id)

@@ -96,6 +96,18 @@ EXEMPT: dict[str, str] = {
     # (frontier/introspective reframe). Generator-per-drive is cohesive; a future
     # split into a package (one module per generator family) brings it under.
     "brain/cognition/intrinsic_generators.py": "619 lines; generator-family split candidate",
+    # 675 lines — was 600 (exactly at the limit) before the R9-F1/F2/F4 race
+    # fixes (in-flight set, fresh step re-read, zombie/terminal-goal guard,
+    # attempts cap, failed-step error attribution). The concurrency guards
+    # belong at the execution seam they protect; the standing decomposition
+    # candidate is splitting finalization (_maybe_finalize_goal + effects
+    # recording) from the worker loop.
+    "goals/runner.py": "675 lines; execution/finalization split candidate (R9-F1..F4)",
+    # 607 lines — was 594 before the R9 watchdog wiring (cycle_stall_guard in
+    # the start_watchdogs unpack + the loud DEGRADED fallback replacing the
+    # silent TypeError that had been eating every resource provider). main.py
+    # decomposition is the ongoing Phase-4 extraction track.
+    "main.py": "607 lines; boot decomposition ongoing (Phase 4)",
 }
 
 

@@ -10,6 +10,7 @@ from supervisor.heartbeatdetector import HeartbeatDetector
 from supervisor.error_checker import ErrorChecker
 from supervisor.liveness_cycle import LivenessByCycles, DEFAULT_MAX_MISSED_CYCLES
 from supervisor.lifespan import LifespanByCycles
+from supervisor.cycle_stall import CycleStallGuard, DEFAULT_MAX_STALL_S, DEFAULT_POLL_INTERVAL_S
 from supervisor.no_goals import NoGoalsGuard
 from supervisor.memory import MemoryHealthGuard
 from supervisor.host_resources import HostResourceGuard
@@ -98,6 +99,11 @@ def start_watchdogs(
     per_key_limits: dict[str, Tuple[int, float]] | None = None,
     # Liveness-by-cycles (section freshness)
     liveness_max_missed_cycles: int = DEFAULT_MAX_MISSED_CYCLES,  # 10_000
+    # Cycle-stall tripwire (Run 8 §0 owed item): keyed on production_loop cycle
+    # stamps — the pulse-based heartbeat missed a dead brain thread for 6.5 h.
+    get_loop_cycle: Optional[Callable[[], int]] = None,
+    cycle_stall_max_s: float = DEFAULT_MAX_STALL_S,
+    cycle_stall_poll_s: float = DEFAULT_POLL_INTERVAL_S,
     # Lifespan (random hard cutoff) — PER-PROCESS uptime, not agent lifespan.
     # The pulse ticks at ~50 Hz (main loop sleeps 0.02s), so these bounds mean
     # roughly 3–10 days of continuous process uptime before a forced restart.
@@ -194,7 +200,7 @@ def start_watchdogs(
     Spin up a daemon thread that continuously checks watchdogs.
     Returns:
       (supervisor, detector, errors, liveness, lifespan, no_goals, mem_guard,
-       host_guard, resource_floor_guard, repeat_guard, stop_evt)
+       host_guard, resource_floor_guard, repeat_guard, cycle_stall_guard, stop_evt)
     """
     supervisor = Supervisor(kill=kill_current_process)
 
@@ -227,6 +233,16 @@ def start_watchdogs(
         min_cycles=lifespan_min_cycles,
         max_cycles=lifespan_max_cycles,
     )
+
+    # Cycle-stall tripwire (optional provider; skipped if None)
+    cycle_stall_guard: Optional[CycleStallGuard] = None
+    if get_loop_cycle is not None:
+        cycle_stall_guard = CycleStallGuard(
+            get_cycle=get_loop_cycle,
+            on_violation=supervisor.trigger,
+            max_stall_s=cycle_stall_max_s,
+            poll_interval_s=cycle_stall_poll_s,
+        )
 
     # No-goals / saturation guard (optional)
     no_goals = None
@@ -356,6 +372,8 @@ def start_watchdogs(
             detector.step()
             liveness.step()
             lifespan.step()
+            if cycle_stall_guard is not None:
+                cycle_stall_guard.step()
             if no_goals is not None:
                 no_goals.step()
             mem_guard.step()
@@ -510,5 +528,6 @@ def start_watchdogs(
         host_guard,
         resource_floor_guard,
         repeat_guard,
+        cycle_stall_guard,
         stop_evt,
     )

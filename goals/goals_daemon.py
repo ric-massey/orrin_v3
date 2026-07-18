@@ -383,6 +383,17 @@ class GoalsDaemon:
         Submit a step to the runner. Prefer a direct submit() method if available;
         otherwise put into the shared queue for runners that poll a queue.
         """
+        # R9-F1: a step being worked is still READY in the store, so every pulse
+        # re-collected and re-enqueued it — with 3 workers the same step ran
+        # concurrently and the racers' stale writebacks failed goals whose work
+        # had succeeded (Run 8, WAL records 118–158). Skip queued/running ids.
+        inflight = _safe_getattr(self._runner, "is_inflight", None)
+        if callable(inflight):
+            try:
+                if inflight(step.id):
+                    return
+            except Exception as _e:
+                _log.warning("silent except: %s", _e)
         submit = _safe_getattr(self._runner, "submit", None)
         if callable(submit):
             try:
@@ -437,8 +448,14 @@ class GoalsDaemon:
                     _upsert_goal(self.store, ng)
                     self._emit_goal_event("GoalFinished", ng, extra={"reason": "all_steps_done"})
             elif any_failed and not (any_ready or any_running or any_waiting):
-                # No more work pending and at least one failed → mark goal failed
-                ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(), last_error="step_failure")
+                # No more work pending and at least one failed → mark goal failed.
+                # R9-F4: carry the failed step's real error, not a generic label.
+                failed_error = next(
+                    (s.last_error for s in steps
+                     if s.status == Status.FAILED and s.last_error),
+                    "step_failure",
+                )
+                ng = replace(g, status=Status.FAILED, updated_at=UTCNOW(), last_error=failed_error)
                 _upsert_goal(self.store, ng)
                 self._emit_goal_event("GoalFailed", ng, extra={"reason": "step_failed"})
 

@@ -69,6 +69,12 @@ _TOPIC_STOP = frozenset({
     "that", "this", "with", "have", "what", "your", "about", "they", "them",
     "from", "would", "could", "there", "their", "thing", "understand",
     "research", "memo", "into", "know", "written", "turn",
+    # R9-F5: goal-title scaffold. Every intrinsic research goal is titled
+    # "Understand X more deeply", so "more"+"deeply" alone satisfied the
+    # 2-shared-token threshold between ANY two goals — the quantum synthesis
+    # cited the history memo. Overlap must come from subject tokens.
+    "more", "deeply", "deeper", "deep", "learn", "learning", "explore",
+    "exploring", "study", "topic", "overview",
 })
 
 
@@ -102,8 +108,13 @@ def _find_prior_memo(art_base: Path, goal: Goal, exclude_dir: Path) -> Optional[
     return best if best_ov >= 2 else None
 
 
-def _load_latest_json(art_dir: Path, startswith: str) -> Optional[Any]:
-    files = sorted([p for p in art_dir.glob(f"{startswith}*.json")], key=lambda p: p.stat().st_mtime, reverse=True)
+def _load_latest_json(art_dir: Path, *, suffix: str) -> Optional[Any]:
+    """Newest artifact of the EXPECTED stage, not "newest JSON in the dir".
+    R9-F3: steps loaded whatever was written last — after a successful fetch
+    wrote `*_docs.json`, any re-tick of fetch loaded the docs manifest (no
+    `urls` key) and converted an already-successful step into "no URLs to
+    fetch". The filenames already carry stage suffixes; match them."""
+    files = sorted([p for p in art_dir.glob(f"*{suffix}.json")], key=lambda p: p.stat().st_mtime, reverse=True)
     if not files:
         return None
     try:
@@ -191,7 +202,7 @@ class ResearchHandler(BaseGoalHandler):
             if op == "search":
                 queries = _ensure_list((goal.spec or {}).get("queries"))
                 if not queries:
-                    qpack = _load_latest_json(art_dir, startswith="")
+                    qpack = _load_latest_json(art_dir, suffix="_queries")
                     if isinstance(qpack, dict) and "queries" in qpack:
                         queries = _ensure_list(qpack["queries"])
                 if not queries:
@@ -225,7 +236,7 @@ class ResearchHandler(BaseGoalHandler):
                 # Assemble candidate URLs from spec or prior search artifact
                 urls = _ensure_list((goal.spec or {}).get("urls"))
                 if not urls:
-                    sres = _load_latest_json(art_dir, startswith="")
+                    sres = _load_latest_json(art_dir, suffix="_search")
                     if isinstance(sres, dict) and "urls" in sres:
                         urls = _ensure_list(sres["urls"])
                 if not urls:
@@ -257,7 +268,7 @@ class ResearchHandler(BaseGoalHandler):
                 style = (goal.spec or {}).get("style", "")
 
                 # Load docs manifest
-                docs_pack = _load_latest_json(art_dir, startswith="")
+                docs_pack = _load_latest_json(art_dir, suffix="_docs")
                 docs: List[Dict[str, Any]] = []
                 if isinstance(docs_pack, dict) and "docs" in docs_pack:
                     docs = _ensure_list(docs_pack["docs"])
@@ -325,7 +336,9 @@ class ResearchHandler(BaseGoalHandler):
 
         except Exception as e:
             step.last_error = f"{type(e).__name__}: {e}"
-            step.attempts += 1
+            # R9-F4: never count past max_attempts (raced re-ticks each pushed a
+            # private stale count — the Run 8 WAL shows 9/3).
+            step.attempts = min(int(step.max_attempts or 1), int(step.attempts or 0) + 1)
             if started_now:
                 step.started_at = None
                 step.status = Status.READY

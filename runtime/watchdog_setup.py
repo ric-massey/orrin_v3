@@ -177,6 +177,28 @@ def build() -> WatchdogInputs:
         print(f"[vital] recover — {msg}")
         _host_flag("ok", msg)
 
+    # ---- Cycle-stall tripwire provider (Run 8 §0 owed item) ----
+    # Reads the tail of production_loop.jsonl — the only cycle counter proven
+    # crash-accurate at the Run 8 seam. Negative return = no stamp yet (fresh
+    # boot / just-reset file); the guard stays unarmed until stamps appear.
+    def get_loop_cycle() -> int:
+        try:
+            import json as _json
+            from brain.paths import DATA_DIR as _DATA_DIR
+            p = _DATA_DIR / "production_loop.jsonl"
+            with p.open("rb") as fh:
+                fh.seek(0, os.SEEK_END)
+                size = fh.tell()
+                fh.seek(max(0, size - 4096))
+                tail = fh.read().decode("utf-8", "replace")
+            for line in reversed(tail.strip().splitlines()):
+                line = line.strip()
+                if line:
+                    return int(_json.loads(line).get("cycle", -1))
+            return -1
+        except Exception:
+            return -1
+
     def resource_shed_action(reason: str) -> None:
         """The autonomic gasp: let go of the heaviest disposable thing, in priority
         order, until Orrin is back above his granted-body floor. Reversible, never
@@ -201,6 +223,10 @@ def build() -> WatchdogInputs:
         except Exception as _e:
             _log.warning("vital shed: gc failed: %s", _e)
 
+    # Keys MUST match start_watchdogs' parameter names exactly: main.py splats
+    # this dict and falls back to a bare start_watchdogs(pulse) on TypeError —
+    # a drifted name silently drops EVERY provider (found 2026-07-16: the
+    # vital_*/resource_on_* spellings had all runs on the bare fallback).
     kwargs = dict(
         get_rss_mb=get_rss_mb,
         get_fd_open=get_fd_open,
@@ -216,18 +242,20 @@ def build() -> WatchdogInputs:
         host_on_resume=host_on_resume,
         get_own_rss_bytes=get_own_rss_bytes,
         get_budget_bytes=get_budget_bytes,
-        resource_on_warn=resource_on_warn,
-        resource_on_shed=resource_on_shed,
-        resource_on_recover=resource_on_recover,
-        vital_shed_fn=resource_shed_action,
-        vital_warn_frac=warn_frac,
-        vital_shed_frac=shed_frac,
-        vital_recover_frac=recover_frac,
-        vital_sustain_s=sustain_s,
-        vital_observe_only=vital_observe_only,
-        vital_calibration_file=calibration_file,
-        vital_calibration_phase=calibration_phase,
-        vital_calibration_sample_s=calibration_sample_s,
+        resource_floor_on_warn=resource_on_warn,
+        resource_floor_on_shed=resource_on_shed,
+        resource_floor_on_recover=resource_on_recover,
+        resource_floor_shed_fn=resource_shed_action,
+        resource_floor_warn_frac=warn_frac,
+        resource_floor_shed_frac=shed_frac,
+        resource_floor_recover_frac=recover_frac,
+        resource_floor_sustain_s=sustain_s,
+        resource_floor_observe_only=vital_observe_only,
+        resource_floor_calibration_file=calibration_file,
+        resource_floor_calibration_phase=calibration_phase,
+        resource_floor_calibration_sample_s=calibration_sample_s,
+        get_loop_cycle=get_loop_cycle,
+        cycle_stall_max_s=env_float("ORRIN_CYCLE_STALL_S", 900.0),
     )
     return WatchdogInputs(
         kwargs=kwargs,

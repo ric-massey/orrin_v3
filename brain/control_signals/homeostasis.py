@@ -27,6 +27,7 @@ import os
 from typing import Any, Dict, List
 
 from brain.control_signals.setpoints import CORE_BASELINES, setpoint
+from brain.utils.failure_counter import record_failure
 
 # Antagonist pairs for sustained cross-inhibition. When a dominant signal is
 # chronically elevated, its antagonists are pulled toward baseline faster than
@@ -275,6 +276,85 @@ def pin_multiplier(state: Dict[str, Any], key: str) -> float:
     streaks = state.get(_PIN_STREAK_KEY)
     n = int(streaks.get(key, 0)) if isinstance(streaks, dict) else 0
     return 1.0 + min(PIN_ACCEL_MAX - 1.0, n / PIN_ACCEL_WINDOW)
+
+
+# ── R10-9: hard-bound saturation tripwire ────────────────────────────────────
+# The pin-streak accelerator above relaxes a signal sitting ABOVE its setpoint.
+# It does not catch the pathology Run 9 hit: a signal welded to a HARD BOUND
+# (drive_mastery == 1.00 all life) whose pump beats even the max accelerator, so
+# the ignition threshold it feeds never discriminated once — and nobody noticed
+# for ≥1 run because ignition stopped being scored after Run 3. Same family as
+# the frozen-distress attractor found earlier: when the normal restoring law has
+# demonstrably failed for hundreds of cycles, break the attractor decisively and
+# say so loudly. This is a safety net, not a second decay law — it only fires
+# after SATURATION_MAX_CYCLES at a bound, which healthy dynamics never reach.
+SATURATION_MAX_CYCLES = int(_env_float("ORRIN_SATURATION_MAX_CYCLES", 500.0))
+_SATURATION_EPS       = _env_float("ORRIN_SATURATION_EPS", 0.005)
+# A bound is only pathological when it is FAR from where the signal should rest.
+# Most negative/threat signals (threat_level, loss_signal, conflict_signal, …)
+# have setpoint 0.0 — sitting at 0.0 is correct rest, not saturation. Only a
+# signal welded at a bound at least this far from its setpoint (e.g. drive_mastery
+# at 1.0, setpoint 0.0) is the frozen-attractor pathology this tripwire targets.
+# Without this guard the tripwire manufactures fake affect: it kicks a correctly-
+# resting loss_signal/rejection_signal off 0.0 every 500 cycles.
+_SATURATION_MARGIN    = _env_float("ORRIN_SATURATION_MARGIN", 0.30)
+_SAT_STREAK_KEY       = "_saturation_streaks"
+
+
+def saturation_tripwire(state: Dict[str, Any], signals: Dict[str, float],
+                        cycle: int = 0) -> List[str]:
+    """Advance per-signal time-at-BOUND counters and, when one crosses
+    SATURATION_MAX_CYCLES, forcibly recalibrate that signal toward its setpoint,
+    reset its streak, and emit a loud [saturation] log + telemetry event.
+    Mutates `signals` in place. Returns the list of signals recalibrated this
+    call (usually empty). Call ONCE per cycle."""
+    streaks = state.get(_SAT_STREAK_KEY)
+    if not isinstance(streaks, dict):
+        streaks = {}
+        state[_SAT_STREAK_KEY] = streaks
+
+    fired: List[str] = []
+    for key, val in list(signals.items()):
+        if not isinstance(val, (int, float)):
+            continue
+        v = float(val)
+        at_bound = (v <= _SATURATION_EPS) or (v >= 1.0 - _SATURATION_EPS)
+        # A bound that IS (near) the signal's healthy setpoint is correct rest,
+        # not a frozen attractor — only a bound far from setpoint is pathological.
+        if at_bound and abs(v - setpoint(key)) <= _SATURATION_MARGIN:
+            at_bound = False
+        if not at_bound:
+            if key in streaks:
+                del streaks[key]
+            continue
+        n = int(streaks.get(key, 0)) + 1
+        streaks[key] = n
+        if n < SATURATION_MAX_CYCLES:
+            continue
+        # Attractor confirmed — break it. Kick decisively off the bound toward
+        # the setpoint (not all the way: enough to re-enter the discriminating
+        # band and let normal dynamics take over), and re-arm the counter.
+        target = setpoint(key)
+        bound = 1.0 if v >= 0.5 else 0.0
+        recal = bound + (target - bound) * 0.5
+        signals[key] = max(0.0, min(1.0, recal))
+        streaks[key] = 0
+        fired.append(key)
+        try:
+            from brain.core.runtime_log import get_logger
+            get_logger(__name__).warning(
+                "[saturation] %s welded at %.3f for %d cycles — forced "
+                "recalibration to %.3f (setpoint %.3f) at cycle %d",
+                key, v, n, signals[key], target, cycle)
+        except Exception as _le:
+            record_failure("homeostasis.saturation_tripwire.log", _le)
+        try:
+            from brain.events import record_event as _rec
+            _rec({"type": "saturation", "signal": key, "stuck_value": round(v, 4),
+                  "cycles": n, "recalibrated_to": round(signals[key], 4), "cycle": cycle})
+        except Exception as _re:
+            record_failure("homeostasis.saturation_tripwire.event", _re)
+    return fired
 
 
 def apply_cross_inhibition(core: Dict[str, float]) -> None:

@@ -40,9 +40,9 @@ try:
 except Exception:
     resource = None  # type: ignore[assignment]
 
-from brain.utils.json_utils import load_json, save_json
+from brain.utils.json_utils import load_json, save_json, append_jsonl, cap_jsonl
 from brain.utils.log import log_private
-from brain.paths import BODY_SENSE_FILE, DATA_DIR
+from brain.paths import BODY_SENSE_FILE, DATA_DIR, RESOURCE_HISTORY_FILE
 from brain.utils.failure_counter import record_failure
 from brain.cognition.host_band import BodyBands
 _log = get_logger(__name__)
@@ -390,6 +390,38 @@ def update_body_sense(context: Dict[str, Any]) -> Dict[str, Any]:
         save_json(BODY_SENSE_FILE, body_sense)
     except Exception as _e:
         record_failure("body_sense.update_body_sense", _e)
+
+    # R10-1: persist the vitals SERIES, not just the latest snapshot. Run 9's
+    # memory-guard kill (726 MB/60 s burst) was unattributable because only the
+    # last value survived the process; one row per cycle with the previous
+    # cycle's chosen function makes any future burst attributable post-mortem.
+    try:
+        from brain.utils.get_cycle_count import get_cycle_count
+        import time as _time
+        append_jsonl(RESOURCE_HISTORY_FILE, {
+            "ts": round(_time.time(), 1),
+            "cycle": get_cycle_count(),
+            "rss_mb": round(vitals.get("rss_mb", 0.0), 1),
+            "cpu_util": round(vitals.get("cpu_util", 0.0), 3),
+            "fd_pct": round(vitals.get("fd_pct", 0.0), 3),
+            "phase": body_sense["phase"],
+            "states": felt,
+            "last_fn": context.get("last_function_chosen"),
+        })
+        # A full life is ~10-13k cycles (~150 B/row) — the cap only exists so a
+        # pathological multi-segment estate can't grow the file unbounded.
+        cap_jsonl(RESOURCE_HISTORY_FILE, max_lines=30_000, max_bytes=8_000_000)
+    except Exception as _e:
+        record_failure("body_sense.resource_history", _e)
+
+    # R10-11: feed the causal learner one EXTERNAL stream so the world model
+    # isn't 100% interoceptive. Reuses the vitals already sampled here; heavily
+    # throttled internally so it banks evidence over a life, not per cycle.
+    try:
+        from brain.symbolic.external_observer import observe_external_causality
+        observe_external_causality(vitals)
+    except Exception as _e:
+        record_failure("body_sense.external_observer", _e)
 
     # Persist the learned bands (cheap; only writes when a band changed).
     try:

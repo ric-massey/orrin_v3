@@ -190,9 +190,32 @@ def match_all(text: str, threshold: float = 0.35) -> List[Tuple[Dict, float]]:
 
 # ─── Apply ────────────────────────────────────────────────────────────────────
 
+# R10-10: knowledge-formation refractory. A rule's `hits` is its evidence count —
+# how many distinct times the world matched it. But apply() fires on every match,
+# and the working-memory churn re-matched the same rule ~6× per cycle, so rule
+# 1bc68d9a16 (goal_avoidance) reached 66,087 hits at conf 0.98 in one life on no
+# new evidence. One reinforcement per rule per cycle restores "hits == evidence":
+# repeat matches within a cycle still return the conclusion, they just don't
+# re-bank it. Keyed by the live cycle; when the cycle is unknown (0 — offline
+# tools / unit tests with no loop) the refractory is disabled so counting still
+# works there.
+_last_hit_cycle: Dict[str, int] = {}
+
+
 def apply(rule: Dict, *, log: bool = True) -> str:
-    """Return the rule's conclusion and bump hit count."""
+    """Return the rule's conclusion and bump hit count (once per cycle)."""
+    try:
+        from brain.utils.get_cycle_count import get_cycle_count
+        _cyc = get_cycle_count()
+    except Exception:
+        _cyc = 0
+    rid = rule.get("id", "")
+    if _cyc > 0 and rid and _last_hit_cycle.get(rid) == _cyc:
+        # Already reinforced this cycle — a repeat match is not new evidence.
+        return rule["conclusion"]
     rule["hits"] = rule.get("hits", 0) + 1
+    if rid:
+        _last_hit_cycle[rid] = _cyc
     if log:
         log_activity(f"[rule_engine] Applied rule '{rule['id']}': {rule['conclusion'][:80]}")
     _flush_hit(rule)

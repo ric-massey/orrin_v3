@@ -262,8 +262,29 @@ def start_watchdogs(
         )
 
     # Memory/FD/CPU guard (optional providers; skipped if None)
+    # R10-1 soft step: on a sustained RSS slope, shed organs (gc + the resource-floor
+    # shed hook if wired) and give a grace window before the hard supervisor trip.
+    def _mem_soft_pressure(details: str) -> None:
+        _log.warning("[mem_guard] soft pressure — shedding before kill: %s", details)
+        try:
+            import gc
+            gc.collect()
+        except Exception as _e:
+            _log.warning("silent except: %s", _e)
+        if resource_floor_shed_fn is not None:
+            try:
+                resource_floor_shed_fn(f"mem_guard soft pressure: {details}")
+            except Exception as _e:
+                _log.warning("silent except: %s", _e)
+        if event_callback is not None:
+            try:
+                event_callback({"type": "mem_soft_pressure", "details": details})
+            except Exception as _e:
+                _log.warning("silent except: %s", _e)
+
     mem_guard = MemoryHealthGuard(
         on_violation=supervisor.trigger,
+        on_soft_pressure=_mem_soft_pressure,
         get_rss_mb=get_rss_mb,
         get_fd_open=get_fd_open, get_fd_limit=get_fd_limit,
         get_sock_open=get_sock_open, get_sock_limit=get_sock_limit,

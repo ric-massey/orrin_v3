@@ -253,12 +253,29 @@ def met_milestone_tokens(goal: Dict[str, Any]) -> set[str]:
     return out
 
 
+def milestone_text(ms: Dict[str, Any]) -> str:
+    """The criterion text of a milestone, whichever key its writer used.
+
+    R10-4: milestones arrive keyed differently by writer — evolution uses
+    `text`, goal_comprehension writes `milestone`, others use label/desc/
+    criterion/description/name. A single-key read (`ms.get("text")`) silently
+    dropped comprehension-built milestones: it rendered failure reasons as
+    ['?', '?'] AND derived empty plans from them. Resolve them all here."""
+    if not isinstance(ms, dict):
+        return ""
+    return str(
+        ms.get("text") or ms.get("milestone") or ms.get("label")
+        or ms.get("desc") or ms.get("criterion") or ms.get("description")
+        or ms.get("name") or ""
+    ).strip()
+
+
 def unmet_milestone_texts(goal: Dict[str, Any]) -> List[str]:
     """Text of milestones that are not yet met."""
     return [
-        str(ms.get("text") or "").strip()
+        milestone_text(ms)
         for ms in (goal.get("milestones") or [])
-        if isinstance(ms, dict) and not ms.get("met") and str(ms.get("text") or "").strip()
+        if isinstance(ms, dict) and not ms.get("met") and milestone_text(ms)
     ]
 
 

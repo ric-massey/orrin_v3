@@ -234,6 +234,14 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
             log_activity(f"[pursue_goal] '{goal_title}': close ({reason}) blocked — "
                          f"objective not met; continuing to pursue.")
             return
+        # R10-12: epistemic close-out — stamp an understanding goal with whether
+        # the artifact actually answered its question (scored before the tree
+        # merge so the fields persist). Non-understanding goals are untouched.
+        try:
+            from brain.cognition.epistemic_closeout import stamp_closeout
+            stamp_closeout(goal)
+        except Exception as _ee:
+            record_failure("pursue_goal.epistemic_closeout", _ee)
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="pursue_goal.completion")
         context["committed_goal"] = None

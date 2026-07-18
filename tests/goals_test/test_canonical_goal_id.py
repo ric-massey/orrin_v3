@@ -139,3 +139,67 @@ def test_sync_dedup_adopts_existing_v2_id():
     goal_io.sync_proposed_goals(api, ctx)
     assert proposal.get("id") == "g_existing"
     assert not api.created, "must not create a duplicate v2 record"
+
+
+# ── R10-2: one question = one goal id, across BOTH stores ───────────────────────
+# Run 9's twin-id seam: the same research question ran as daemon g_f53bff2f52
+# (uuid mint) AND brain-side g_f01f1b91462d (md5 mint). One seam, three
+# symptoms: both S8 desyncs, the double-failure record, the S4 ambiguity.
+
+def test_add_goal_dedups_live_title_twin():
+    """A LIVE v1 node with the same normalized title is the same question —
+    add_goal must return it, not attach a rival node with a second id."""
+    from brain.cognition.planning.goal_store import add_goal, load_goals
+
+    first = add_goal({"title": "What truth am I working hardest to avoid?",
+                      "status": "in_progress"})
+    second = add_goal({"title": "  what TRUTH am I working hardest to avoid?  ",
+                       "status": "pending"})
+    assert second.get("id") == first.get("id")
+
+    def count(nodes):
+        c = 0
+        for n in nodes or []:
+            if "working hardest to avoid" in str(n.get("title") or n.get("name") or "").lower():
+                c += 1
+            c += count(n.get("subgoals"))
+        return c
+    assert count(load_goals()) == 1
+
+
+def test_add_goal_terminal_twin_does_not_block():
+    """A terminal same-title node is history, not a live twin — a fresh node is fine."""
+    from brain.cognition.planning.goal_store import add_goal, load_goals, save_goals
+
+    first = add_goal({"title": "Answer question Q", "status": "in_progress"})
+    tree = load_goals()
+
+    def close(nodes):
+        for n in nodes or []:
+            if n.get("id") == first.get("id"):
+                n["status"] = "completed"
+            close(n.get("subgoals"))
+    close(tree)
+    save_goals(tree)
+
+    second = add_goal({"title": "Answer question Q", "status": "pending"})
+    assert second.get("id") != first.get("id")
+
+
+def test_sync_adopts_v1_tree_id_for_idless_proposal():
+    """An id-less proposal whose title already lives LIVE in the v1 tree must
+    hand v2 the tree node's id — not let v2 mint the Run-9 rival."""
+    import brain.goal_io as goal_io
+    from brain.cognition.planning.goal_store import add_goal
+
+    node = add_goal({"title": "Research the twin seam", "status": "in_progress"})
+    assert node.get("id")
+
+    api = _FakeApi()
+    proposal = {"title": "Research the twin seam", "kind": "research",
+                "milestones": [{"name": "m"}]}
+    ctx = {"proposed_goals": [proposal]}
+    goal_io.sync_proposed_goals(api, ctx)
+    assert api.created and api.created[0]["id"] == node["id"], \
+        "v2 must adopt the v1 tree node's id for the same question"
+    assert proposal.get("id") == node["id"]

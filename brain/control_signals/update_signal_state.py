@@ -570,6 +570,30 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
     except Exception as _e:
         record_failure("update_signal_state.update_signal_state.7", _e)
 
+    # R10-9: hard-bound saturation tripwire. After the restoring pull has run,
+    # any signal STILL welded to 0.0/1.0 for hundreds of cycles is an attractor
+    # the normal law failed to break (Run 9: drive_mastery == 1.00 all life, so
+    # the ignition threshold never discriminated). Break it decisively + log
+    # loudly. Runs over both core and the top-level drive mirror.
+    try:
+        from brain.control_signals.homeostasis import saturation_tripwire as _sat_trip
+        try:
+            from brain.utils.get_cycle_count import get_cycle_count as _gcc
+            _cyc = _gcc()
+        except Exception:
+            _cyc = 0
+        _sat_trip(state, core, _cyc)
+        _top_drives = {k: state[k] for k in (
+            "motivation", "exploration_drive", "confidence", "uncertainty",
+            "connection", "mastery", "drive_mastery", "stagnation_signal")
+            if isinstance(state.get(k), (int, float))}
+        if _top_drives:
+            _fired = _sat_trip(state, _top_drives, _cyc)
+            for _k in _fired:
+                state[_k] = _top_drives[_k]
+    except Exception as _e:
+        record_failure("update_signal_state.saturation_tripwire", _e)
+
     # Sync canonical values back to top-level so readers of state[k] see current values
     for _dk in _dup_keys:
         if _dk in core:

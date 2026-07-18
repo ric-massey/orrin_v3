@@ -224,6 +224,10 @@ MOOD_FILE = DATA_DIR / "smoothed_state.json"
 
 # ===== Body sense =====
 BODY_SENSE_FILE   = DATA_DIR / "resource_self_monitor.json"
+# Per-cycle vitals series (R10-1). BODY_SENSE_FILE keeps only the latest snapshot,
+# which left the Run-9 memory-guard kill unattributable post-mortem; this capped
+# JSONL keeps the whole life's series with cycle + last-function attribution.
+RESOURCE_HISTORY_FILE = DATA_DIR / "resource_history.jsonl"
 
 # ===== Predictions / surprise =====
 PREDICTIONS_FILE  = DATA_DIR / "predictions.json"

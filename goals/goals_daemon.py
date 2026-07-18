@@ -6,6 +6,7 @@ from brain.core.runtime_log import get_logger
 
 import threading
 import queue
+import time
 from dataclasses import replace
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional, Tuple, cast
@@ -170,6 +171,7 @@ class GoalsDaemon:
         # Health
         self._last_pulse_at: Optional[datetime] = None
         self._last_error: Optional[str] = None
+        self._last_stuck_warn_ts: float = 0.0   # R10-6 stuck-inflight warn throttle
 
     # ---------------- Lifecycle ----------------
 
@@ -304,6 +306,30 @@ class GoalsDaemon:
 
         # 5) Finalize goals whose steps reached terminal states
         self._finalize_goals()
+
+        # 6) R10-6: a step stuck inflight far past any sane execution time is a
+        # hung worker silently wedging that goal's dispatch. Surface it loudly
+        # (throttled) instead of letting the daemon go quiet unexplained.
+        stuck_fn = _safe_getattr(self._runner, "stuck_inflight", None)
+        if callable(stuck_fn):
+            try:
+                stuck = stuck_fn(300.0)
+                if stuck:
+                    now = time.monotonic()
+                    if now - self._last_stuck_warn_ts >= 60.0:
+                        self._last_stuck_warn_ts = now
+                        worst = max(stuck, key=lambda p: p[1])
+                        _log.warning(
+                            "[goals_daemon] %d step(s) inflight > 300s — hung worker "
+                            "wedging dispatch; worst %s at %.0fs", len(stuck), worst[0], worst[1])
+                        try:
+                            self._emit_event({"kind": "InflightStuck", "count": len(stuck),
+                                              "worst_step": worst[0], "worst_age_s": round(worst[1], 1),
+                                              "ts": UTCNOW().isoformat()})
+                        except Exception as _e:
+                            _log.warning("silent except: %s", _e)
+            except Exception as _e:
+                _log.warning("silent except: %s", _e)
 
     def _plan_new_goals(self) -> bool:
         """Find NEW goals, call handler.plan(), persist steps, and mark them READY."""

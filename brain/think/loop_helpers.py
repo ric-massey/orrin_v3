@@ -391,7 +391,21 @@ def execute_action_via_registries(
     # Cognitive path (from provided cog_reg)
     fn = cog_reg.get(action_name)
     if callable(fn):
-        res = _call_cognition(fn, action_name, ctx)
+        # R10-8: mark the action being dispatched so a "tool unavailable" denial
+        # inside the call (LLM tool-gate) is attributed to THIS function.
+        try:
+            from brain.control_signals.reward_signals import impossibility as _imp
+            _imp.set_current_action(action_name)
+        except Exception:  # intentional: bookkeeping must never block dispatch
+            _imp = None  # type: ignore[assignment]
+        try:
+            res = _call_cognition(fn, action_name, ctx)
+        finally:
+            if _imp is not None:
+                try:
+                    _imp.clear_current_action()
+                except Exception as _e:
+                    record_failure("loop_helpers.clear_current_action", _e)
         # Tier-3 re-use: a successfully-dispatched cognitive function MAY be one
         # Orrin authored. We only record the name here (no agency import — that
         # would couple think→agency into a cycle); the loop resolves authored
@@ -399,6 +413,10 @@ def execute_action_via_registries(
         try:
             if isinstance(res, dict) and res.get("success"):
                 ctx.setdefault("_dispatched_cog_fns", []).append(action_name)
+                # A genuine success clears any prior impossibility mark: the
+                # capability is back (R10-8 re-probe closure).
+                if _imp is not None:
+                    _imp.note_possible(action_name)
         except Exception as e:
             record_failure("loop_helpers.note_reuse", e)
         return res

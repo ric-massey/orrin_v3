@@ -105,13 +105,26 @@ def _is_dispatchable(name: str) -> bool:
     return ok
 
 
+def _impossible_now() -> frozenset[str]:
+    """R10-8: actions the gate has refused (LLM circuit open / tool absent) that
+    are still inside their believed-impossible window — they leave the selectable
+    set until their periodic re-probe. Fails open (empty) so a bookkeeping error
+    can never starve selection."""
+    try:
+        from brain.control_signals.reward_signals.impossibility import impossible_actions
+        return frozenset(impossible_actions())
+    except Exception as _e:
+        record_failure("candidates._impossible_now", _e)
+        return frozenset()
+
+
 def _load_actions() -> List[str]:
     """Load cognitive function names, excluding behavioral and bookkeeping functions."""
     items: list[Any] = load_json(COGNITIVE_FUNCTIONS_LIST_FILE, default_type=list)
     if not isinstance(items, list) or not items:
         return FALLBACK_ACTIONS
     beh_names = _load_behavioral_names()
-    excluded = beh_names | _ALWAYS_EXCLUDE
+    excluded = beh_names | _ALWAYS_EXCLUDE | _impossible_now()
     names: List[str] = []
     for it in items:
         name = str(it["name"]) if isinstance(it, dict) and "name" in it else (it if isinstance(it, str) else "")
@@ -139,7 +152,7 @@ def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
         return (list(FALLBACK_ACTIONS), {n: n for n in FALLBACK_ACTIONS})
 
     beh_names = _load_behavioral_names()
-    excluded  = beh_names | _ALWAYS_EXCLUDE
+    excluded  = beh_names | _ALWAYS_EXCLUDE | _impossible_now()
 
     names: List[str] = []
     defs: Dict[str, str] = {}

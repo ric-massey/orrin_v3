@@ -438,9 +438,19 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                 # Canonical-ID contract: pass the source node's id (the cognitive
                 # layer minted it at commit) so v2 ADOPTS it rather than minting a
                 # rival id; capture the return and write the id back onto the source
-                # node so v1↔v2 share one identity from this instant on. gd.get("id")
-                # may be None for a never-committed proposal — then v2 mints and we
-                # stamp that single id back here.
+                # node so v1↔v2 share one identity. R10-2: an id-less proposal whose
+                # title already lives in the v1 TREE adopts that node's id rather than
+                # letting v2 mint a rival (the Run-9 twin: daemon uuid vs brain md5).
+                if not gd.get("id"):
+                    try:
+                        tree = _load_v1_tree()
+                        node = _find_v1_node(tree, "", title)
+                        if node is not None and node.get("id") and (
+                                str(node.get("status", "")).lower() not in _V1_TERMINAL):
+                            gd["id"] = node["id"]
+                            src["id"] = node["id"]
+                    except Exception as _e:
+                        record_failure("goal_io.sync_proposed_goals.adopt_v1_id", _e)
                 _credit_spec_artifact_refs(spec)
                 created = api.create_goal(title=title, kind=kind, spec=spec,
                                           priority=gd.get("priority", "NORMAL"),

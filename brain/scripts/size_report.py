@@ -108,6 +108,16 @@ EXEMPT: dict[str, str] = {
     # silent TypeError that had been eating every resource provider). main.py
     # decomposition is the ongoing Phase-4 extraction track.
     "main.py": "607 lines; boot decomposition ongoing (Phase 4)",
+    # 606 lines — was 596 (near the limit) before R10-2 added the v1-tree id
+    # adoption to the two-store sync (one question = one id across both stores).
+    # The sync/reconcile logic is cohesive; the standing decomposition candidate
+    # is splitting the v1↔v2 reconciler from the proposed-goal ingestion helpers.
+    "brain/goal_io.py": "606 lines; sync/ingestion split candidate (R10-2)",
+    # 606 lines — was 581 before R10-3 added provenance-keyed memo filing (intake
+    # vs goal-derived) plus the per-tier origin tags on topic/url selection. Topic
+    # selection + fetch + memo writing are one pipeline; a future split of the memo
+    # writer + provenance from the candidate selectors brings it under.
+    "brain/cognition/web_research.py": "606 lines; memo-writer/selector split candidate (R10-3)",
 }
 
 

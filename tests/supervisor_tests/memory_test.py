@@ -121,6 +121,57 @@ def test_memory_slope_does_not_trip_if_window_too_short():
         clk.step(1.0)
     assert kills.reasons == []
 
+# ---------- SOFT PRESSURE (R10-1 organ-level step before kill) ----------
+
+def _leak(rss, guard, clk, start: float, rate: float, steps: int):
+    for i in range(steps):
+        rss.set(start + rate * i)
+        guard.step(); clk.step(1.0)
+
+def test_soft_pressure_fires_before_trip_and_grants_grace():
+    clk = FakeClock()
+    rss = Box(1600.0)
+    soft_calls = []
+    guard, kills = make_guard(
+        clk,
+        get_rss_mb=lambda: rss.v,
+        mem_slope_mb_per_s=1.0,
+        mem_sustain_s=10.0,
+        on_soft_pressure=soft_calls.append,
+        soft_grace_s=20.0,
+    )
+    # Sustained 20 MB/s leak: first detection must shed, not kill.
+    _leak(rss, guard, clk, 1600.0, 20.0, 11)
+    assert len(soft_calls) == 1
+    assert kills.reasons == []
+    # Slope persists through the grace window → now it's a real leak → trip.
+    _leak(rss, guard, clk, rss.v, 20.0, 25)
+    assert len(soft_calls) == 1, "soft response must fire once per episode"
+    assert any("HARD:memory_leak_slope" in r for r in kills.reasons)
+    msg = [r for r in kills.reasons if "HARD:memory_leak_slope" in r][-1]
+    assert "soft=spent" in msg and "tail=[" in msg
+
+def test_soft_pressure_recovery_rearms_and_avoids_trip():
+    clk = FakeClock()
+    rss = Box(1600.0)
+    soft_calls = []
+    guard, kills = make_guard(
+        clk,
+        get_rss_mb=lambda: rss.v,
+        mem_slope_mb_per_s=1.0,
+        mem_sustain_s=10.0,
+        on_soft_pressure=soft_calls.append,
+        soft_grace_s=20.0,
+    )
+    _leak(rss, guard, clk, 1600.0, 20.0, 11)     # burst detected → shed fires
+    assert len(soft_calls) == 1 and kills.reasons == []
+    _leak(rss, guard, clk, rss.v, 0.0, 30)       # shed worked: RSS flattens
+    assert kills.reasons == [], "a burst the shed reclaims is not a leak"
+    # A NEW burst later re-fires the (re-armed) soft response first.
+    _leak(rss, guard, clk, rss.v, 20.0, 11)
+    assert len(soft_calls) == 2
+    assert kills.reasons == []
+
 # ---------- FD PRESSURE ----------
 
 def test_fd_pressure_trips_when_strictly_over_threshold_and_sustained():

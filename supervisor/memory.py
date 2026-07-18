@@ -67,6 +67,13 @@ class MemoryHealthGuard:
     # New: memory subsystem provider
     get_memory_health: Optional[GetMemoryHealth] = None
 
+    # R10-1: organ-level response BEFORE process kill. When the leak-slope
+    # condition first holds, fire this (gc / cache shed / consolidation) once and
+    # give the body soft_grace_s to recover; only a slope that SURVIVES the shed
+    # trips the supervisor. A burst that gc can reclaim is not a leak.
+    on_soft_pressure: Optional[Callable[[str], None]] = None
+    soft_grace_s: float = 60.0
+
     # ---- thresholds / windows (existing) ----
     mem_slope_mb_per_s: float = 1.0
     mem_sustain_s: float = 30.0
@@ -113,6 +120,7 @@ class MemoryHealthGuard:
     _vector_bytes_samples: Deque[Tuple[float, float]] = field(default_factory=lambda: deque(maxlen=2048))# (t, bytes)
     _wal_fail_samples: Deque[Tuple[float, float]] = field(default_factory=lambda: deque(maxlen=2048))    # (t, failures_total)
     _last_compaction_ts: Optional[float] = None
+    _soft_fired_ts: Optional[float] = None   # when on_soft_pressure last fired (None = armed)
 
     def step(self) -> None:
         """Call this periodically (e.g., in your watchdog thread)."""
@@ -203,6 +211,8 @@ class MemoryHealthGuard:
 
         mem_slope = slope(self._mem_samples)  # MB / sec over the full window
         if mem_slope is None or mem_slope <= self.mem_slope_mb_per_s:
+            # Condition cleared → re-arm the soft response for the next episode.
+            self._soft_fired_ts = None
             return
 
         # Robustness gate (added 2026-06-12): a single allocation STEP inside the
@@ -237,10 +247,29 @@ class MemoryHealthGuard:
         if net_rise < self.mem_min_net_rise_mb:
             return
 
+        # Organ-level step (R10-1): shed/gc once and give the body a grace window
+        # before the hard trip. Only a slope that survives the shed is a leak.
+        if self.on_soft_pressure is not None:
+            if self._soft_fired_ts is None:
+                self._soft_fired_ts = now
+                try:
+                    self.on_soft_pressure(
+                        f"slope={mem_slope:.3f} MB/s rss={last_rss:.0f}MB "
+                        f"net_rise={net_rise:.0f}MB grace={self.soft_grace_s:.0f}s")
+                except Exception as _e:
+                    _log.warning("silent except: %s", _e)
+                return
+            if (now - self._soft_fired_ts) < self.soft_grace_s:
+                return
+
+        # Death record carries the series tail (R10-1): the post-mortem must not
+        # depend on any other file having survived the kill.
+        tail = ",".join(f"{t - now:.0f}s:{v:.0f}MB" for t, v in list(self._mem_samples)[-6:])
         self._trip("HARD:memory_leak_slope",
                    f"slope={mem_slope:.3f} MB/s limit={self.mem_slope_mb_per_s:.3f} "
                    f"sustain={self.mem_sustain_s:.1f}s net_rise={net_rise:.0f}MB "
-                   f"rss={last_rss:.0f}MB")
+                   f"rss={last_rss:.0f}MB soft={'spent' if self._soft_fired_ts else 'none'} "
+                   f"tail=[{tail}]")
 
     def _check_fd_socket(self, now: float) -> None:
         # FDs

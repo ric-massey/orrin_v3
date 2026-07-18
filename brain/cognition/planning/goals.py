@@ -27,6 +27,7 @@ from brain.cognition.planning.goal_plan_ops import (  # noqa: F401
     reprioritize_pending_steps as reprioritize_pending_steps,
     met_milestone_tokens as met_milestone_tokens,
     unmet_milestone_texts as unmet_milestone_texts,
+    milestone_text as milestone_text,
     prune_satisfied_steps as prune_satisfied_steps, _plan_step_tokens as _plan_step_tokens,
     TERMINAL_STEP_STATUSES as TERMINAL_STEP_STATUSES,
     _PLACEHOLDER_STEPS as _PLACEHOLDER_STEPS, _PLAN_STEP_STOPWORDS as _PLAN_STEP_STOPWORDS,

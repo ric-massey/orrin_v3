@@ -212,6 +212,17 @@ def _ok(content: str) -> Dict[str, Any]:
     return {"status": "ok", "content": content, "error": None}
 
 def _err(error: str) -> Dict[str, Any]:
+    # R10-8: a "tool unavailable" denial is a STRUCTURAL block — the action that
+    # depends on this call cannot succeed while the capability is absent. Attribute
+    # it to the function the loop is currently dispatching so reward/selection stop
+    # treating a permanently-blocked action as attractive (decide_to_write_code was
+    # blocked 369/369 yet held the #2 reward EMA). Fail-safe; never raises.
+    if isinstance(error, str) and error.startswith("tool unavailable"):
+        try:
+            from brain.control_signals.reward_signals.impossibility import mark_from_gate
+            mark_from_gate(error)
+        except Exception:  # intentional: impossibility bookkeeping must never break the gate
+            pass
     return {"status": "error", "content": None, "error": error}
 
 

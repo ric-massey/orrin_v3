@@ -47,19 +47,29 @@ _MEMO_MIN_CHARS = 400
 
 
 def _write_research_memo(topic: str, body: str, ctx: Dict[str, Any],
-                         source: str) -> None:
+                         source: str, origin: str | None = None) -> None:
     """Write a memo .md under data/goals/artifacts/<goal>/ and record it on the
     effect ledger (path-indexed, body captured) so later reads can be credited
-    as reuse and later goals can build on it. Fail-safe; dedupe is the ledger's."""
+    as reuse and later goals can build on it. Fail-safe; dedupe is the ledger's.
+
+    R10-3 (provenance filing): only content DERIVED FROM the bound goal
+    (origin == "goal") files under that goal's dir and credits it. Run 9's
+    drive-by fetch_and_read intake (an off-topic PLOS scrape off the RSS tier)
+    landed in whichever goal held the slot — inside a FAILING goal's artifact
+    dir, corrupting the "artifacts ⇒ not FAILED" audit. Slot-blind intake now
+    files under artifacts/intake/ with no goal credit; aspiration credit still
+    routes by content (F3b)."""
     if len(str(body or "").strip()) < _MEMO_MIN_CHARS:
         return
     try:
         from brain.paths import GOALS_DIR
         goal = bound_goal(ctx) or {}
-        gid = str((goal.get("id") if isinstance(goal, dict) else "")
-                  or "conscious-research")
+        gid = str(goal.get("id") if isinstance(goal, dict) else "") or ""
+        if origin != "goal" or not gid:
+            gid = ""
         slug = re.sub(r"[^a-z0-9_-]+", "-", str(topic).lower()).strip("-")[:60] or "memo"
-        memo_dir = GOALS_DIR / "artifacts" / re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64]
+        dir_name = re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64] if gid else "intake"
+        memo_dir = GOALS_DIR / "artifacts" / dir_name
         memo_dir.mkdir(parents=True, exist_ok=True)
         path = memo_dir / f"memo_{slug}.md"
         # F2a (RUN7_FIX_PLAN): no timestamp in the footer — a volatile stamp
@@ -71,8 +81,9 @@ def _write_research_memo(topic: str, body: str, ctx: Dict[str, Any],
         from brain.agency.effect_ledger import record_effect
         row = record_effect(
             "file_write", content,
-            goal_id=(gid if gid != "conscious-research" else None), context=ctx,
-            metadata={"path": str(path), "source": f"{source}_memo", "topic": str(topic)[:80]},
+            goal_id=(gid or None), context=ctx,
+            metadata={"path": str(path), "source": f"{source}_memo",
+                      "topic": str(topic)[:80], "origin": origin or "unknown"},
         )
         if row is None:
             return   # nothing novel — don't stamp a duplicate memo file
@@ -263,9 +274,11 @@ def _topic_from_knowledge_graph() -> str:
 
 
 def _candidate_topics(context: Dict[str, Any]) -> list:
-    """Ordered candidate subjects. Every tier must pass BOTH gates: concrete
-    subject (not a 'research something' directive) AND external-safe (no internal
-    goal titles, dates, wrappers — those produced the Daily Harvest loop)."""
+    """Ordered (subject, origin) candidates. Every tier must pass BOTH gates:
+    concrete subject (not a 'research something' directive) AND external-safe (no
+    internal goal titles, dates, wrappers — those produced the Daily Harvest
+    loop). The origin tag is the R10-3 provenance: only "goal" content may file
+    under (and credit) the bound goal."""
     cands: list = []
 
     # 1. Committed goal title — only when it names a CONCRETE, external subject.
@@ -273,12 +286,12 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
     if isinstance(goal, dict):
         title = _clean_query(goal.get("title") or goal.get("description") or "").strip()
         if title and len(title) > 5 and _is_concrete_topic(title) and _is_external_subject(title):
-            cands.append(title[:100])
+            cands.append((title[:100], "goal"))
 
     # 2. A genuine, under-explored concept Orrin has actually learned about.
     kg_topic = _topic_from_knowledge_graph()
     if kg_topic and _is_concrete_topic(kg_topic) and _is_external_subject(kg_topic):
-        cands.append(kg_topic)
+        cands.append((kg_topic, "knowledge_graph"))
 
     # 3. Active threads (concrete titles only)
     try:
@@ -289,7 +302,7 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
             if isinstance(t, dict) and t.get("status") == "alive":
                 title = (t.get("title") or "").strip()
                 if title and len(title) > 5 and _is_concrete_topic(title) and _is_external_subject(title):
-                    cands.append(title[:100])
+                    cands.append((title[:100], "thread"))
     except Exception as _e:
         record_failure("web_research._pick_topic", _e)
 
@@ -300,18 +313,20 @@ def _candidate_topics(context: Dict[str, Any]) -> list:
         if "?" in content and 10 < len(content) < 300:
             q = re.sub(r"\?.*", "", content).strip()
             if len(q) > 8 and _is_concrete_topic(q) and _is_external_subject(q):
-                cands.append(q[:100])
+                cands.append((q[:100], "working_memory"))
 
     return cands
 
 
 def _pick_topic(context: Dict[str, Any]) -> str:
     """First candidate not recently tried; rotating fallbacks otherwise.
-    Returns '' when everything was tried recently (caller should no-op)."""
+    Returns '' when everything was tried recently (caller should no-op).
+    Stashes the winning candidate's provenance in context["_topic_origin"]."""
     global _fallback_idx
 
-    for cand in _candidate_topics(context):
+    for cand, origin in _candidate_topics(context):
         if not _topic_recently_tried(cand):
+            context["_topic_origin"] = origin
             return cand
 
     # Rotating fallback list of interesting topics
@@ -319,6 +334,7 @@ def _pick_topic(context: Dict[str, Any]) -> str:
         topic = _INTERESTING_FALLBACKS[_fallback_idx % len(_INTERESTING_FALLBACKS)]
         _fallback_idx += 1
         if not _topic_recently_tried(topic):
+            context["_topic_origin"] = "fallback"
             return topic
 
     return ""
@@ -379,7 +395,8 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     update_working_memory(f"[research] {topic}: {result_q[:300]}")
     # F4: a substantial research result also becomes a memo artifact so the
     # reuse machinery has a population to hit.
-    _write_research_memo(topic, result, ctx, source="research_topic")
+    _write_research_memo(topic, result, ctx, source="research_topic",
+                         origin=ctx.pop("_topic_origin", None))
     try:
         from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{topic} {result[:1200]}", source="web_research", context=ctx)
@@ -481,7 +498,8 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     update_working_memory(f"Read article: {title_q} ({len(text)} chars of content)")
     # F4: a substantial read also becomes a memo artifact (reuse population).
     _write_research_memo(title, f"{text}\n\n(read from: {url})", ctx,
-                         source="fetch_and_read")
+                         source="fetch_and_read",
+                         origin=ctx.pop("_url_origin", None))
     try:
         from brain.cognition.knowledge_graph import observe as _kg_observe
         _kg_observe(f"{title} {text[:1600]}", source="fetch_and_read", context=ctx)
@@ -509,6 +527,8 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
     exist because a run with an empty RSS cache left fetch_and_read with NO
     source at all, and it looped 133 consecutive failures on one goal step
     (RUN_ISSUES_2026-06-10 §1)."""
+    # R10-3: each tier stamps its provenance so the memo writer can file by
+    # origin, not by whichever goal holds the slot. Only tier 3 is goal-derived.
     # 1. Working memory might have a URL from a recent RSS read
     wm = context.get("working_memory") or []
     skipped_familiar: Optional[str] = None
@@ -522,6 +542,7 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
                 if skipped_familiar is None:
                     skipped_familiar = u  # keep as last resort
                 continue  # prefer new sources
+            context["_url_origin"] = "working_memory"
             return u
 
     # 2. Pull from RSS cache
@@ -536,6 +557,7 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
             for item in items[:5]:
                 link = (item.get("link") or "").strip()
                 if link and link.startswith("http") and not _url_recently_read(link):
+                    context["_url_origin"] = "rss"
                     return link  # skip already-read items — walk the feed
     except Exception as _e:
         record_failure("web_research._pick_url", _e)
@@ -549,9 +571,12 @@ def _pick_url(context: Dict[str, Any]) -> Optional[str]:
     if topic and _is_concrete_topic(topic) and _is_external_subject(topic):
         url = _wiki_url_for(topic)
         if url:
+            context["_url_origin"] = "goal"
             return url
 
     # 4. A familiar source beats no source at all.
+    if skipped_familiar is not None:
+        context["_url_origin"] = "familiar"
     return skipped_familiar
 
 

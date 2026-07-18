@@ -236,6 +236,19 @@ def _link_commitment_to_goal(intention: str) -> None:
         if title == key and str(g.get("status", "")).lower() not in (
                 "completed", "failed", "abandoned", "cancelled"):
             return  # already covered
+    # R10-2: the v2 store may already hold this question (the Run-9 twin went
+    # DONE daemon-side in 6 s — too fast for the open-goal reconciler to absorb
+    # it, so this path re-minted it in v1 and the title kept resurrecting).
+    # Any same-title v2 goal, open or terminal, means the question has one id
+    # already; don't fork a second one here.
+    try:
+        from brain.goal_io import _api_ref
+        if _api_ref is not None:
+            for vg in _api_ref.list_goals(limit=500):
+                if " ".join(str(vg.title or "").lower().split()) == key:
+                    return
+    except Exception as exc:
+        record_failure("commitment._link_commitment_to_goal.v2_check", exc)
     add_goal({
         "title": bare[:160],
         "name": bare[:160],

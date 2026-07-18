@@ -230,8 +230,44 @@ def save_goals(goals: List[Dict[str, Any]]) -> None:
 
 # Public actions
 
+def _norm_title(g: Dict[str, Any]) -> str:
+    return " ".join(str(g.get("title") or g.get("name") or "").strip().lower().split())
+
+
+def _find_live_title_twin(nodes: Any, key: str) -> Optional[Dict[str, Any]]:
+    for n in nodes or []:
+        if not isinstance(n, dict):
+            continue
+        if (_norm_title(n) == key
+                and str(n.get("status", "")).lower() not in _TERMINAL_STATUSES):
+            return n
+        hit = _find_live_title_twin(n.get("subgoals"), key)
+        if hit is not None:
+            return hit
+    return None
+
+
 def add_goal(goal: Dict[str, Any], parent_name: Optional[str] = None) -> Dict[str, Any]:
     full = load_goals()
+
+    # R10-2 (one question = one goal id): a LIVE node with the same normalized
+    # title is the same question — return it instead of minting a rival id. In
+    # Run 9 the same research question ran as two ids in two stores; every
+    # desync, the double-failure record and the S4 ambiguity traced to that one
+    # seam. If the caller carries a canonical id (e.g. the v2 store's) and the
+    # twin has none, adopt it so both stores share one identity.
+    key = _norm_title(goal)
+    if key:
+        twin = _find_live_title_twin(full, key)
+        if twin is not None:
+            incoming_id = goal.get("id")
+            if incoming_id and not twin.get("id"):
+                twin["id"] = incoming_id
+                save_goals(full)
+            _log.info("[goal_store] add_goal dedup: %r joins live node %s",
+                      key[:80], twin.get("id"))
+            return twin
+
     g = dict(goal)
     try:
         from brain.cognition.planning.goal_comprehension import hydrate_goal_model

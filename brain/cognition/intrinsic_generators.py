@@ -102,6 +102,8 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                 spec={"queries": [name, f"{name} explained",
                                   f"what is not obvious about {name}"],
                       "synth_kind": "memo"},
+                # R10-12: the concrete question this deepening goal must answer.
+                question=f"What is not obvious about {name}?",
             )
             for name in chosen
         ]

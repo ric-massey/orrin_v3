@@ -550,12 +550,14 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
         if _ms and not all(m.get("met") for m in _ms):
             _attempts = int(goal.get("_completion_attempts", 0)) + 1
             goal["_completion_attempts"] = _attempts
-            # F2 (2026-07-05): milestones carry their criterion under several
-            # keys (`text`, `label`, `desc`, …) depending on the writer — the
-            # bare .get("text", "?") rendered every failure reason as ['?', '?'].
+            # F2 (2026-07-05) / R10-4 (2026-07-18): milestones carry their
+            # criterion under several keys depending on the writer — a single-key
+            # read rendered failure reasons as ['?', '?']. milestone_text()
+            # resolves them all (incl. `milestone`, the key goal_comprehension
+            # writes, which the F2 chain still missed).
+            from brain.cognition.planning.goal_plan_ops import milestone_text
             _unmet = [
-                str(m.get("text") or m.get("label") or m.get("desc")
-                    or m.get("criterion") or m.get("description") or "?")[:80]
+                (milestone_text(m) or "?")[:80]
                 for m in _ms if not m.get("met")
             ]
             try:

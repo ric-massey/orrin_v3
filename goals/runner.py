@@ -8,7 +8,7 @@ import threading
 import time
 from dataclasses import replace
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional, cast
+from typing import Any, Dict, Iterable, List, Optional, Tuple, cast
 
 from .model import Goal, Step, Status, artifact_satisfied
 from .handlers.base import GoalHandler, HandlerContext
@@ -114,6 +114,12 @@ class StepRunner:
         # the Run 8 race that failed goals whose work had succeeded. Cleared on
         # every exit path from _execute_step (terminal, defer, exception).
         self._inflight: set[str] = set()
+        # R10-6: id → monotonic ts it went inflight. The guard never reaps (a
+        # live worker still holds the id — reaping would re-open the R9-F1
+        # double-run race), but a step that stays inflight far past any sane
+        # execution time means a hung worker, and that must be OBSERVABLE rather
+        # than a silent dispatch wedge (Run 9 segment-2 daemon silence).
+        self._inflight_since: dict[str, float] = {}
         self._inflight_mu = threading.Lock()
 
     # ----- lifecycle -----
@@ -187,11 +193,26 @@ class StepRunner:
             if step_id in self._inflight:
                 return False
             self._inflight.add(step_id)
+            self._inflight_since[step_id] = time.monotonic()
             return True
 
     def _inflight_remove(self, step_id: str) -> None:
         with self._inflight_mu:
             self._inflight.discard(step_id)
+            self._inflight_since.pop(step_id, None)
+
+    def stuck_inflight(self, older_than_s: float = 300.0) -> List[Tuple[str, float]]:
+        """R10-6: (step_id, age_s) for ids inflight longer than any sane step
+        should take — evidence of a hung worker, which otherwise wedges that
+        goal's dispatch in silence. Reported (logged), never reaped: a live
+        worker still owns the id, and reaping re-opens the R9-F1 race."""
+        now = time.monotonic()
+        with self._inflight_mu:
+            return [
+                (sid, now - since)
+                for sid, since in self._inflight_since.items()
+                if (now - since) >= older_than_s
+            ]
 
 
     # ----- metrics/introspection -----

@@ -125,7 +125,7 @@ def _enrich_goal_zone(goal: Dict[str, Any]) -> Dict[str, Any]:
 def _mk_goal(title: str, description: str, driven_by: str = None,
              priority: int = 3, milestones: List = None,
              requires_artifact: bool = False, deadline_cycles: int = None,
-             kind: str = "generic", spec: Dict = None) -> Dict:
+             kind: str = "generic", spec: Dict = None, question: str = None) -> Dict:
     """Build a well-formed proposed-goal dict from parts.
 
     P5: the default driver is no longer hard-coded to "world_knowledge" — that
@@ -159,6 +159,11 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
     }
     if spec:
         goal["spec"] = dict(spec)
+    # R10-12: an understanding goal carries the concrete QUESTION its gap posed,
+    # so close-out can score whether the artifact actually answered it (epistemic
+    # event) rather than only whether a drive quenched (satiety).
+    if question:
+        goal["question"] = str(question)[:200]
     if requires_artifact:
         goal["requires_artifact"] = True
         if deadline_cycles is None:

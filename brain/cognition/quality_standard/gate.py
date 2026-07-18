@@ -42,6 +42,7 @@ from brain.agency import effect_artifacts
 from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
 from brain.cognition.quality_standard import revisions
+from brain.cognition.quality_standard import originality
 
 _IGNORE = {"README.md", "PLACEHOLDER.md"}
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]+")
@@ -195,6 +196,36 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
         if dup:
             revisions.mark(cid, "rejected", reason=f"near_duplicate_exemplar:{dup}")
             changed.append(revisions.get(cid))
+            continue
+
+        # 2a) ORIGINALITY VETO (mode-independent). A credited, predicate-passing
+        #     artifact that is mostly copied from its sources must not be AUTO-
+        #     canonised as a standard of authored work — the golden set only grows
+        #     and only loosens by human sign-off, so a scrape pinned here would
+        #     permanently define "good" as scrape-quality. This is a veto on the
+        #     auto path, not a quality claim: route to the same human rule-review
+        #     channel a too-strict predicate uses, with the copy report attached.
+        derivative, why, report = originality.check(
+            text, goal_id=(ref.get("goal_id") if isinstance(ref, dict) else None)
+        )
+        if derivative:
+            revisions.mark(
+                cid, "pending",
+                needs_rule_review=True,
+                failing_reason=f"originality:{why}",
+                copy_report={
+                    "quote_ratio": round(report.quote_ratio, 3),
+                    "verbatim_ratio": round(report.verbatim_ratio, 3),
+                    "offline_stitch": report.offline_stitch,
+                    "original_prose_chars": report.original_prose_chars,
+                    "sources_found": report.sources_found,
+                },
+            )
+            changed.append(revisions.get(cid))
+            log_activity(
+                f"[quality_standard] promote {cid} held by originality veto "
+                f"({why}) → routed to human review; NOT auto-canonised."
+            )
             continue
 
         slug = _slug(text, chash)

@@ -31,9 +31,31 @@ else
     exit 1
 fi
 
+# Build provenance: a life's evidence is only reproducible if the code that ran
+# it has a commit hash (Run 9 ran on an uncommitted build and its verdict can
+# never name one). Refuse a dirty tree unless explicitly overridden; either way
+# the SHA (with a -dirty marker) is exported for the run and stamped in the log.
+ORRIN_BUILD_SHA="unknown"
+if git -C "$REPO" rev-parse --git-dir >/dev/null 2>&1; then
+    ORRIN_BUILD_SHA="$(git -C "$REPO" rev-parse --short HEAD 2>/dev/null || echo unknown)"
+    DIRTY_COUNT="$(git -C "$REPO" status --porcelain 2>/dev/null | wc -l | tr -d ' ')"
+    if [ "$DIRTY_COUNT" != "0" ]; then
+        if [ "${ORRIN_ALLOW_DIRTY:-0}" != "1" ]; then
+            echo "[run] ERROR: working tree has $DIRTY_COUNT uncommitted change(s)." >&2
+            echo "[run] A staging life must run on committed code so the verdict can name a build." >&2
+            echo "[run] Commit first, or override with ORRIN_ALLOW_DIRTY=1 ./run_orrin.sh" >&2
+            exit 4
+        fi
+        ORRIN_BUILD_SHA="${ORRIN_BUILD_SHA}-dirty"
+        echo "[run] WARNING: launching on a dirty tree ($DIRTY_COUNT change(s)) — build stamped ${ORRIN_BUILD_SHA}"
+    fi
+fi
+export ORRIN_BUILD_SHA
+
 echo "[run] Starting Orrin — press Ctrl-C to stop"
 echo "[run] Python: $PYTHON"
 echo "[run] Log:    $LOG"
+echo "[run] Build:  $ORRIN_BUILD_SHA"
 echo "[run] Cycle sleep: ${CYCLE_SLEEP}s"
 
 cleanup() {
@@ -73,7 +95,7 @@ CAFF_PID=$!
 
 RESTART_COUNT=0
 while true; do
-    echo "[run] $(date '+%Y-%m-%d %H:%M:%S') — launch #$RESTART_COUNT (wrapper pid $$)" | tee -a "$LOG"
+    echo "[run] $(date '+%Y-%m-%d %H:%M:%S') — launch #$RESTART_COUNT (wrapper pid $$, build $ORRIN_BUILD_SHA)" | tee -a "$LOG"
     EXIT_CODE=0
     # pipefail is set, so the pipeline status is python's exit code (tee exits 0);
     # the `||` capture keeps `set -e` from killing the wrapper on a crash.

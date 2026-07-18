@@ -159,10 +159,31 @@ kept; only the last value survives) on top of a real ~2–3 MB/min estate climb
 **Re-test gate (Run 10)** (detail in the run doc §Run 10 fix list): (a) RSS
 time series into telemetry + attribute the estate growth; (b) one question =
 one goal id (unify creation across stores); (c) intake memos filed by
-provenance, not slot; (d) originality check before exemplar promotion;
-(e) confirm the run-lock script fix at launch; (f) check the daemon's 1.5 h
+provenance, not slot; (d) ~~originality check before exemplar promotion~~
+**BUILT 2026-07-18** (`quality_standard/originality.py` veto + scrape exemplar
+purged; see run doc §item 6); (e) confirm the run-lock script fix at launch;
+(f) check the daemon's 1.5 h
 silence in segment 2 (R9-F1 over-suppression?); (g) reuse ≥ 8 stands; reset
 should clear stale `data/goals/artifacts/` leftovers.
+
+**Added 2026-07-18 from the whole-system skeptic pass** (run doc §items
+10–14, with per-item observables): (h) **reward sees impossibility** — a
+gate-blocked action (this life: `decide_to_write_code`, blocked 369/369,
+EMA #2 at 0.618) writes zero-with-prejudice and leaves the selectable set
+while blocked; (i) **signal-saturation tripwire** — ignition fired
+10,278/10,278 cycles on `drive_mastery` pinned at 1.00; any signal flat at a
+bound ~500+ cycles → forced recalibration; **verdicts must again score every
+historical monopoly layer** (ignition source, generator flavor, commitment,
+value) — the saturation went unseen because ignition stopped being scored
+after Run 3; (j) **knowledge-formation refractory** — one reinforcement per
+rule per cycle (goal_avoidance rule hit 66,087 times ≈ 6×/cycle);
+(k) **first outward causal edge** — the graph is 241/241 interoceptive;
+(l) **epistemic close-out on understanding goals** — close on an answered
+question derived at creation, not on satiety alone (difficulty-ladder rung 1,
+B18 in embryo). Also declared: **LLM mode is a run variable, not an ambient
+accident** — every verdict states `mode: symbolic-only` or `mode: LLM-assisted`
+up front (this run: symbolic-only; the promoted exemplars are offline
+scrape-stitches, hence gate item (d)).
 
 ---
 

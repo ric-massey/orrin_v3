@@ -7,6 +7,7 @@ Usage:
     python3 reset_orrin.py --hard     # also clear bandit/decision learning + self-written code
     python3 reset_orrin.py --dry-run  # print what would be cleared, don't touch files
     python3 reset_orrin.py --no-snapshot   # skip the built-in brain/data/*.json archive
+    python3 reset_orrin.py --verify   # assertions only: is the tree actually newborn-clean?
 
 What this clears (so a fresh run starts as a true newborn):
     • brain/data/*.json runtime state (memory, goals, drives, traces, etc.)
@@ -213,7 +214,7 @@ def snapshot(label: str = "") -> Path:
     return dest
 
 
-def reset(hard: bool = False, dry_run: bool = False) -> None:
+def reset(hard: bool = False, dry_run: bool = False) -> list:
     keep = ALWAYS_KEEP | (set() if hard else SOFT_KEEP)
     tag = "DRY RUN — would clear" if dry_run else "Clearing"
 
@@ -307,6 +308,23 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
                 _empty_file(p, dry_run)
             else:
                 _delete(p, dry_run)
+    # Prune now-empty subdirectories bottom-up: leftover per-goal dirs under
+    # goals/artifacts/ made "artifact exists on disk" checks hit stale prior-life
+    # paths (Run 9 capture: 68 of 73 dirs were empty leftovers).
+    for sub in ("goals", "memory", "media"):
+        base = ROOT_DATA_DIR / sub
+        if not base.exists():
+            continue
+        pruned = 0
+        # Deepest-first so a parent emptied by its child's removal is caught in
+        # the same pass; emptiness is checked at removal time, not collection time.
+        for d in sorted(base.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+            if d.is_dir() and not any(d.iterdir()):
+                pruned += 1
+                if not dry_run:
+                    d.rmdir()
+        if pruned:
+            print(f"    {tag} {pruned} empty leftover dir(s) under data/{sub}/")
     # runtime_state.json is the post-rename name of alive_brain_state.json
     # (brain/data_schema.py); match both so a stale tree still gets cleared.
     for state_name in ("alive_brain_state.json", "runtime_state.json"):
@@ -320,8 +338,13 @@ def reset(hard: bool = False, dry_run: bool = False) -> None:
     # ── 9. unrecognized-file guard ───────────────────────────────────────────
     check_extra_files(hard)
 
+    # ── 10. post-reset assertions — "clean" is checked, not remembered ────────
+    failures: list = []
     if not dry_run:
-        print("\nOrrin is reset and ready for a clean run.\n")
+        failures = verify_reset(hard=hard)
+        if not failures:
+            print("\nOrrin is reset and ready for a clean run.\n")
+    return failures
 
 
 def _is_recognized(path: Path, hard: bool) -> bool:
@@ -399,6 +422,116 @@ def check_extra_files(hard: bool = False) -> list:
     return unknown
 
 
+def verify_reset(hard: bool = False) -> list:
+    """Assert the tree is actually newborn-clean. Returns a list of failure strings.
+
+    Every check here exists because a "clean" reset once wasn't: habituation
+    survived into Run 5, the committed control_signals_model.json seed was
+    emptied before Run 8, and 68 stale artifact dirs sat under data/goals/
+    through Run 9. Run standalone with `python3 reset_orrin.py --verify`
+    before trusting any staging launch.
+    """
+    failures: list = []
+
+    def _fail(msg: str) -> None:
+        failures.append(msg)
+
+    # 1. Committed seeds must match git HEAD — reset must never leave a tracked
+    #    seed file emptied/modified (the control_signals_model.json gotcha,
+    #    caught generically for every current and future committed seed).
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(ROOT), "status", "--porcelain", "--", "brain/data", "data"],
+            capture_output=True, text=True, timeout=30,
+        ).stdout
+        dirty_seeds = [l for l in out.splitlines() if l and not l.startswith("??")]
+        for l in dirty_seeds:
+            _fail(f"committed seed modified by reset: {l.strip()} (restore from git)")
+    except Exception as e:
+        print(f"    (git seed check skipped: {e})")
+
+    # 2. Per-life counters and satiety state at zero.
+    for name, want in (("cycle_count.json", {"count": 0}), ("habituation.json", None)):
+        p = DATA_DIR / name
+        if p.exists():
+            try:
+                got = json.loads(p.read_text() or "null")
+            except Exception:
+                _fail(f"{name}: unreadable json")
+                continue
+            if want is not None and got != want:
+                _fail(f"{name}: expected {want}, got {got!r}")
+            if want is None and got not in ({}, [], None):
+                _fail(f"{name}: not empty ({str(got)[:60]}…)")
+
+    # 3. Every runtime stream truncated (reset step 2 empties all of these).
+    for p in sorted(DATA_DIR.glob("*.jsonl")) + sorted(DATA_DIR.glob("*.txt")):
+        if p.stat().st_size > 0:
+            _fail(f"stream not empty: brain/data/{p.name} ({p.stat().st_size} bytes)")
+
+    # 4. Life-state stores the verdicts read must be empty containers.
+    life_state = ["outcome_metrics.json", "commitment_signals.json", "comp_goals.json",
+                  "goals_mem.json", "production_funnel.json", "aspiration_scoreboard.json",
+                  "action_reward_ema.json"]
+    for name in life_state:
+        p = DATA_DIR / name
+        if not p.exists():
+            continue
+        try:
+            got = json.loads(p.read_text() or "null")
+        except Exception:
+            _fail(f"{name}: unreadable json")
+            continue
+        if isinstance(got, (list, dict)) and len(got) > 0:
+            # a dict of empty containers (e.g. {"goals": {}}) still counts as clean
+            if not (isinstance(got, dict) and all(v in ({}, [], 0, None) for v in got.values())):
+                _fail(f"{name}: not empty ({str(got)[:60]}…)")
+
+    # 5. Transient dirs empty; no corruption salvage left behind.
+    for sub in ("rotated", "sandbox_tmp", "effect_artifacts", "tracked_work"):
+        d = DATA_DIR / sub
+        if d.exists():
+            leftover = [p.name for p in d.glob("*")]
+            if leftover:
+                _fail(f"brain/data/{sub}/ not empty: {len(leftover)} file(s)")
+    for p in DATA_DIR.glob("*.corrupt*"):
+        _fail(f"corruption artifact survived: brain/data/{p.name}")
+
+    # 6. Daemon trees newborn: no WAL history, no artifact leftovers (files OR
+    #    empty per-goal dirs — stale dirs fake "artifact exists on disk").
+    goals = ROOT_DATA_DIR / "goals"
+    if goals.exists():
+        for name in ("state.jsonl", "wal.log"):
+            p = goals / name
+            if p.exists() and p.stat().st_size > 0:
+                _fail(f"data/goals/{name} not empty")
+        for sub in ("artifacts", "snapshots", "wal-rotated"):
+            d = goals / sub
+            if d.exists():
+                entries = list(d.iterdir())
+                if entries:
+                    _fail(f"data/goals/{sub}/ has {len(entries)} leftover entr(ies)")
+    mem_wal = ROOT_DATA_DIR / "memory" / "wal"
+    if mem_wal.exists():
+        for p in mem_wal.glob("*"):
+            if p.is_file() and p.stat().st_size > 0:
+                _fail(f"data/memory/wal/{p.name} not empty")
+
+    # 7. A live instance lock means something is still running against this tree.
+    if (DATA_DIR / ".orrin.instance.lock").exists():
+        print("    ⚠ .orrin.instance.lock present — make sure no Orrin is running.")
+
+    if failures:
+        print(f"\n✗ RESET VERIFICATION FAILED — {len(failures)} problem(s):")
+        for f in failures:
+            print(f"    ✗ {f}")
+        print("  Do NOT launch a staging life on this tree.")
+    else:
+        print("\n✓ Reset verified — tree is newborn-clean.")
+    return failures
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Reset Orrin's runtime state.")
     parser.add_argument("--hard", action="store_true",
@@ -407,7 +540,13 @@ if __name__ == "__main__":
                         help="Show what would be cleared without doing it")
     parser.add_argument("--no-snapshot", action="store_true",
                         help="Skip the built-in brain/data/*.json archive before clearing")
+    parser.add_argument("--verify", action="store_true",
+                        help="Only run the post-reset assertions on the current tree (no clearing)")
     args = parser.parse_args()
+
+    if args.verify:
+        print("=== Orrin Reset — verify only ===")
+        raise SystemExit(2 if verify_reset(hard=args.hard) else 0)
 
     print("=== Orrin Reset ===")
 
@@ -415,4 +554,6 @@ if __name__ == "__main__":
         print("\nSnapshotting current brain/data/*.json first...")
         snapshot("pre_reset")
 
-    reset(hard=args.hard, dry_run=args.dry_run)
+    _failures = reset(hard=args.hard, dry_run=args.dry_run)
+    if _failures:
+        raise SystemExit(2)

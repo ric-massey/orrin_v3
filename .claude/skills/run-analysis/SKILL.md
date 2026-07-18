@@ -82,6 +82,25 @@ even when the run "looks clean."
 - **Same title, two goal ids?** The dual-store seam manufactures desyncs,
   double-failures, and fake honest-failure violations.
 
+## Ground-truth discipline (read before building any fix off an analysis)
+
+- **Test a fix/check against the REAL artifacts, not your description of them.**
+  A claim in a prior verdict — or one you made earlier this session — is a
+  hypothesis, not ground truth. `Read`/`grep` the actual files the check will
+  run on and confirm the pathology is where you think before writing, then run
+  the check against those real files and confirm it fires on the true positive
+  and spares the true negatives. (2026-07-18: the exemplar originality veto was
+  built to the claim "one exemplar is a pasted abstract"; the first version
+  passed all three because the scrape came from a different code path than
+  assumed. Only reading the real files revealed the true signal — the artifact's
+  own `source:` provenance footer.)
+- **Provenance beats heuristics.** Prefer the fact the system already records
+  about itself (a `source:`/stamp/ID footer, a WAL field) over any text
+  heuristic layered on top. The self-declaration is exact; the heuristic guesses.
+- **Confident prose ≠ correct answer.** The bridge between them is running it
+  against reality. When a synthetic-only test passes, it has told you the code
+  runs, not that it catches the real thing.
+
 ## Attribution discipline
 
 - **Prefer a forced-fire harness test over a life observable** whenever the

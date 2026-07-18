@@ -138,6 +138,53 @@ question is exactly a feeling-of-knowing probe.
   "I closed this on satiety but never answered the question" is a reflective
   correction that is currently impossible to represent.
 
+## Design principle: put enforcement where the self-model can't reach it
+
+A structural law behind almost every run failure, stated here because it is not
+written down anywhere and it governs *how* the fixes above should be built:
+
+> **A safeguard that routes through the judgment or state of the thing it
+> safeguards inherits that thing's blind spots. It fails in exactly the cases the
+> monitored system cannot see — which are the cases you built it for.**
+
+The whole run history is this law:
+
+- **The relocating monopoly (Runs 2–8).** Each fix measured the layer where the
+  monopoly *currently was* — ignition source, generator flavor, commit sort, value
+  EMA. It reappeared one layer up every time, on the surface nothing was yet
+  measuring. The monitor moved; the pathology moved with the un-measured surface.
+- **Reward blind to impossibility (Run 9).** `decide_to_write_code` was blocked
+  369/369 times and held the #2 reward EMA, because the thing measuring "effect"
+  could not represent "this was impossible." A self-report of activity graded
+  itself as success.
+- **Ignition saturation (Run 9).** The gate read 100% ignited because the signal
+  feeding its threshold was pinned at 1.00, and the metacognition that would notice
+  "I'm always thinking" could not see that *its own input* was saturated. The
+  monitor shared the monitored system's blind spot by construction.
+
+The rule that follows: **for any invariant whose violation is costly, push
+enforcement OUT of the self-model and into a channel the self-model cannot
+rationalize or route around** — a deterministic gate, a fail-closed test, an
+external check. The self-assessed version is a nudge, not a wall; it is bypassed
+not by disagreement but by the system mis-perceiving that the safeguard applies.
+This is why every *durable* fix in this project is a mechanical guard, not a
+reflection Orrin writes about himself: content-keyed credit (credit can't be
+pumped), the anti-monopoly refractory, the launch/reset guards, and the
+originality veto wired into the promotion gate (§Already built). A principle Orrin
+"holds" about his own quality is worth less than a gate that refuses.
+
+The scope, because it cuts both ways: you **cannot** push everything to
+enforcement — Orrin is meant to be a self-directed agent, not a rule-executor, and
+hard-coding his open-ended cognition would defeat the point. So the rule is
+targeted: **mechanical enforcement for the load-bearing invariants** (corrigibility,
+credit-can't-be-pumped, quality-can't-be-self-graded, no-monopoly, and — the one
+this doc adds — understanding-can't-close-on-satiety-alone); **self-assessment for
+the open-ended cognition** above that floor. The engineering skill is knowing which
+is which, and the failure mode is trusting a self-assessed safeguard for an
+invariant that needed a wall. The grounded floor (#1) is itself an instance: it
+moves the *success test* for understanding goals out of Orrin's own satiety
+judgment and into a question-answered check he cannot satisfy by feeling done.
+
 ## Sequencing
 
 1. **Now → Run 9′ passes.** The acceptance gate proves *stability* (regulatory

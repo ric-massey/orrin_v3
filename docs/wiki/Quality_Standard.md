@@ -76,6 +76,19 @@ guards against (an LLM that paraphrases the same abstract is still not Orrin's a
 subtler contamination, not a cure), so the veto measures copying directly from material already
 captured next to the artifact, in every mode.
 
+## Where this sits in the bigger picture
+
+The golden set is **one of five sources of "good"** Orrin draws on (exemplars,
+alongside grounded consequences, integrated value, social/human ratification, and
+reflective revision). The design doc
+[The Five Sources of "Good"](../Core%20Architecture,%20Embodiment%20%26%20Evolution/QUALITY_GROUNDING_DESIGN_2026-07-18.md)
+maps all five and makes the load-bearing point: until the *grounded* source exists
+(understanding goals that close on an **answered question**, not on quenched drive),
+the quality stack measures itself — exemplars graded by the predicate, value trained
+by event-reward, ratification surfacing what the proposer finds. The originality
+veto is the discipline that whole doc argues for, applied to one source: a
+deterministic check for a deterministic property, used as a veto, never as a judge.
+
 ## Code pointers
 
 - `brain/cognition/quality_standard/` — the component (`originality.py` = the veto,

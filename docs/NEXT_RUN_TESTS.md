@@ -180,7 +180,10 @@ rule per cycle (goal_avoidance rule hit 66,087 times ≈ 6×/cycle);
 (k) **first outward causal edge** — the graph is 241/241 interoceptive;
 (l) **epistemic close-out on understanding goals** — close on an answered
 question derived at creation, not on satiety alone (difficulty-ladder rung 1,
-B18 in embryo). Also declared: **LLM mode is a run variable, not an ambient
+B18 in embryo). This is the **keystone (rung 0)** of the value-grounding design
+`Core Architecture, Embodiment & Evolution/QUALITY_GROUNDING_DESIGN_2026-07-18.md`
+— the one "source of good" Orrin structurally lacks (grounded consequences),
+without which the quality stack only measures itself. Also declared: **LLM mode is a run variable, not an ambient
 accident** — every verdict states `mode: symbolic-only` or `mode: LLM-assisted`
 up front (this run: symbolic-only; the promoted exemplars are offline
 scrape-stitches, hence gate item (d)).

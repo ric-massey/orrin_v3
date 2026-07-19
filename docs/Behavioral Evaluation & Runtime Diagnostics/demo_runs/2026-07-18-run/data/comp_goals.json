@@ -1,0 +1,3924 @@
+[
+  {
+    "id": "ltc_aspiration-self_understa_1",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-19T03:13:07.366775Z",
+    "last_updated": "2026-07-19T03:14:55.097223Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:13:07.366775Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:14:55.097223Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 26,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:13:09.819221Z",
+        "completed_at": "2026-07-19T03:13:09.901025Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:13:09.819221Z",
+        "completed_at": "2026-07-19T03:14:55.088945Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:13:09.819221Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T03:14:55.097223Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "name": "Strengthen COGNITIVE symbolic reasoning",
+    "description": "The COGNITIVE domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T03:19:47.838887+00:00",
+    "last_updated": "2026-07-19T03:20:32.355815Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:19:47.838887+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:20:32.355815Z"
+      }
+    ],
+    "id": "g_e95568f62bab",
+    "plan": [
+      {
+        "step": "Call leave_note to make progress on: Strengthen COGNITIVE symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:19:57.219969Z",
+        "completed_at": "2026-07-19T03:19:57.244863Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen COGNITIVE symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:19:57.219969Z",
+        "completed_at": "2026-07-19T03:20:32.323114Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T03:20:32.355815Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "name": "Strengthen EMOTIONAL symbolic reasoning",
+    "description": "The EMOTIONAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T03:19:47.838887+00:00",
+    "last_updated": "2026-07-19T03:20:32.512716Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:19:47.838887+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:20:32.512716Z"
+      }
+    ],
+    "id": "g_96e1dd42a3ae",
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen EMOTIONAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:19:57.188178Z",
+        "completed_at": "2026-07-19T03:19:57.194598Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen EMOTIONAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:19:57.188178Z",
+        "completed_at": "2026-07-19T03:20:32.502509Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T03:20:32.512716Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "name": "Strengthen COGNITIVE symbolic reasoning",
+    "description": "The COGNITIVE domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T03:36:59.052856+00:00",
+    "last_updated": "2026-07-19T03:37:39.983004Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:36:59.052856+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:37:39.983004Z"
+      }
+    ],
+    "id": "g_ba46baded1b1",
+    "plan": [
+      {
+        "step": "Call leave_note to make progress on: Strengthen COGNITIVE symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:02.804428Z",
+        "completed_at": "2026-07-19T03:37:02.833413Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen COGNITIVE symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:02.804428Z",
+        "completed_at": "2026-07-19T03:37:39.959646Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T03:37:39.983004Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "name": "Strengthen EMOTIONAL symbolic reasoning",
+    "description": "The EMOTIONAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T03:36:59.052856+00:00",
+    "last_updated": "2026-07-19T03:37:40.311060Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:36:59.052856+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:37:40.311060Z"
+      }
+    ],
+    "id": "g_95feafe78988",
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen EMOTIONAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:02.549244Z",
+        "completed_at": "2026-07-19T03:37:02.791581Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen EMOTIONAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:02.549244Z",
+        "completed_at": "2026-07-19T03:37:40.284108Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T03:37:40.311060Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "title": "Trace in my own code what drives 'host machine is busy'",
+    "name": "Trace in my own code what drives 'host machine is busy'",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:40.176627Z",
+        "completed_at": "2026-07-19T03:37:47.943258Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:37:40.176632Z",
+        "completed_at": "2026-07-19T03:38:23.288002Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:37:40.176634Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:37:40.176635Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:37:40.176917Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:37:40.176627Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:37:40.176632Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:37:40.176634Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:37:40.176635Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:37:40.176917Z"
+    },
+    "timestamp": "2026-07-19T03:37:40.176922Z",
+    "last_updated": "2026-07-19T03:38:23.302602Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:37:40.176922Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:38:23.302602Z"
+      }
+    ],
+    "id": "g_c1eb11b18e39",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 21,
+    "completed_timestamp": "2026-07-19T03:38:23.302602Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Trace in my own code what drives 'dream'",
+    "name": "Trace in my own code what drives 'dream'",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:38:23.402505Z",
+        "completed_at": "2026-07-19T03:38:30.563073Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:38:23.402514Z",
+        "completed_at": "2026-07-19T03:39:05.782360Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:38:23.402520Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:38:23.402521Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:38:23.402534Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:38:23.402505Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:38:23.402514Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:38:23.402520Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:38:23.402521Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:38:23.402534Z"
+    },
+    "timestamp": "2026-07-19T03:38:23.402538Z",
+    "last_updated": "2026-07-19T03:39:05.797230Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:38:23.402538Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:39:05.797230Z"
+      }
+    ],
+    "id": "g_2e9a170c0968",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 21,
+    "completed_timestamp": "2026-07-19T03:39:05.797230Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand history more deeply",
+    "name": "Understand history more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:39:05.897361Z",
+        "completed_at": "2026-07-19T03:39:12.987727Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:39:05.897370Z",
+        "completed_at": "2026-07-19T03:40:58.744031Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:39:05.897372Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:39:05.897374Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:39:05.897395Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:39:05.897361Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:39:05.897370Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:39:05.897372Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:39:05.897374Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:39:05.897395Z"
+    },
+    "timestamp": "2026-07-19T03:39:05.897399Z",
+    "last_updated": "2026-07-19T03:40:58.771564Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:39:05.897399Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:40:58.771564Z"
+      }
+    ],
+    "id": "g_582f4e2cd3da",
+    "_step_attempts": {},
+    "_lm_research_baseline": 22,
+    "completed_timestamp": "2026-07-19T03:40:58.771564Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand mathematics more deeply",
+    "name": "Understand mathematics more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:40:58.922856Z",
+        "completed_at": "2026-07-19T03:41:13.044522Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:40:58.922869Z",
+        "completed_at": "2026-07-19T03:41:48.734907Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:40:58.922871Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:40:58.922873Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:40:58.922887Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:40:58.922856Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:40:58.922869Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:40:58.922871Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:40:58.922873Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:40:58.922887Z"
+    },
+    "timestamp": "2026-07-19T03:40:58.922891Z",
+    "last_updated": "2026-07-19T03:41:48.753736Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:40:58.922891Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:41:48.753736Z"
+      }
+    ],
+    "id": "g_46b53af98545",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 23,
+    "completed_timestamp": "2026-07-19T03:41:48.753736Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand biology evolutionary biology more deeply",
+    "name": "Understand biology evolutionary biology more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:41:48.969231Z",
+        "completed_at": "2026-07-19T03:41:56.149308Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:41:48.969242Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:41:48.969245Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:41:48.969246Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:41:48.969274Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:41:48.969231Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:41:48.969242Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:41:48.969245Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:41:48.969246Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:41:48.969274Z"
+    },
+    "timestamp": "2026-07-19T03:41:48.969279Z",
+    "last_updated": "2026-07-19T03:43:23.613645Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:41:48.969279Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:43:23.613645Z"
+      }
+    ],
+    "id": "g_5f4fc757d59d",
+    "_step_attempts": {
+      "Establish relevant evidence": 2
+    },
+    "completed_timestamp": "2026-07-19T03:43:23.613645Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "title": "Trace in my own code what drives 'host machine is quiet'",
+    "name": "Trace in my own code what drives 'host machine is quiet'",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:43:23.728260Z",
+        "completed_at": "2026-07-19T03:43:27.905791Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:43:23.728269Z",
+        "completed_at": "2026-07-19T03:44:03.221819Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:43:23.728271Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:43:23.728272Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:43:23.728306Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:43:23.728260Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:43:23.728269Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:43:23.728271Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:43:23.728272Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:43:23.728306Z"
+    },
+    "timestamp": "2026-07-19T03:43:23.728310Z",
+    "last_updated": "2026-07-19T03:44:03.237405Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:43:23.728310Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:44:03.237405Z"
+      }
+    ],
+    "id": "g_23259f625fab",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 27,
+    "completed_timestamp": "2026-07-19T03:44:03.237405Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand foundations of quantum mechanics more deeply",
+    "name": "Understand foundations of quantum mechanics more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:44:03.363028Z",
+        "completed_at": "2026-07-19T03:44:10.436901Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:44:03.363038Z",
+        "completed_at": "2026-07-19T03:45:56.278130Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:44:03.363040Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:44:03.363041Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:44:03.363064Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:44:03.363028Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:44:03.363038Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:44:03.363040Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:44:03.363041Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:44:03.363064Z"
+    },
+    "timestamp": "2026-07-19T03:44:03.363069Z",
+    "last_updated": "2026-07-19T03:45:56.303449Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:44:03.363069Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:45:56.303449Z"
+      }
+    ],
+    "id": "g_672e233bcb62",
+    "_step_attempts": {},
+    "_lm_research_baseline": 28,
+    "completed_timestamp": "2026-07-19T03:45:56.303449Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand The Daily Stoic more deeply",
+    "name": "Understand The Daily Stoic more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T03:45:56.457715Z",
+        "completed_at": "2026-07-19T03:46:05.958805Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:45:56.457728Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:45:56.457730Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T03:45:56.457732Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T03:45:56.457749Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:45:56.457715Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:45:56.457728Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:45:56.457730Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T03:45:56.457732Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T03:45:56.457749Z"
+    },
+    "timestamp": "2026-07-19T03:45:56.457753Z",
+    "last_updated": "2026-07-19T03:47:36.287143Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T03:45:56.457753Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T03:47:36.287143Z"
+      }
+    ],
+    "id": "g_b424e5df62ce",
+    "_step_attempts": {
+      "Establish relevant evidence": 2
+    },
+    "completed_timestamp": "2026-07-19T03:47:36.287143Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "name": "Strengthen COGNITIVE symbolic reasoning",
+    "description": "The COGNITIVE domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T04:32:10.336341+00:00",
+    "last_updated": "2026-07-19T04:32:46.740000Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:32:10.336341+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:32:46.740000Z"
+      }
+    ],
+    "id": "g_ed3119d7105d",
+    "plan": [
+      {
+        "step": "Call leave_note to make progress on: Strengthen COGNITIVE symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:16.227914Z",
+        "completed_at": "2026-07-19T04:32:18.537774Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen COGNITIVE symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:16.227914Z",
+        "completed_at": "2026-07-19T04:32:46.720142Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T04:32:46.740000Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "name": "Strengthen EMOTIONAL symbolic reasoning",
+    "description": "The EMOTIONAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-07-19T04:32:10.336341+00:00",
+    "last_updated": "2026-07-19T04:32:47.381488Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:32:10.336341+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:32:47.381488Z"
+      }
+    ],
+    "id": "g_90db7f0a3774",
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen EMOTIONAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:16.181251Z",
+        "completed_at": "2026-07-19T04:32:16.196534Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen EMOTIONAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:16.181251Z",
+        "completed_at": "2026-07-19T04:32:47.363699Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-07-19T04:32:47.381488Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "title": "Understand bit software more deeply",
+    "name": "Understand bit software more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:47.127808Z",
+        "completed_at": "2026-07-19T04:33:09.112777Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:32:47.127812Z",
+        "completed_at": "2026-07-19T04:34:54.737070Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:32:47.127814Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:32:47.127816Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T04:32:47.127831Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:32:47.127808Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:32:47.127812Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:32:47.127814Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:32:47.127816Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T04:32:47.127831Z"
+    },
+    "timestamp": "2026-07-19T04:32:47.127836Z",
+    "last_updated": "2026-07-19T04:34:54.775218Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:32:47.127836Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:34:54.775218Z"
+      }
+    ],
+    "id": "g_d0c0a3f24124",
+    "_step_attempts": {},
+    "_lm_research_baseline": 44,
+    "completed_timestamp": "2026-07-19T04:34:54.775218Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand evolutionary biology more deeply",
+    "name": "Understand evolutionary biology more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:34:54.954475Z",
+        "completed_at": "2026-07-19T04:35:30.083904Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:34:54.954494Z",
+        "completed_at": "2026-07-19T04:37:16.182426Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:34:54.954496Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:34:54.954498Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T04:34:54.954510Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:34:54.954475Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:34:54.954494Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:34:54.954496Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:34:54.954498Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T04:34:54.954510Z"
+    },
+    "timestamp": "2026-07-19T04:34:54.954514Z",
+    "last_updated": "2026-07-19T04:37:16.207131Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:34:54.954514Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:37:16.207131Z"
+      }
+    ],
+    "id": "g_eee849d699a1",
+    "_step_attempts": {},
+    "_lm_research_baseline": 44,
+    "completed_timestamp": "2026-07-19T04:37:16.207131Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand emergence in complex systems more deeply",
+    "name": "Understand emergence in complex systems more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:37:16.392491Z",
+        "completed_at": "2026-07-19T04:37:30.479567Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:37:16.392505Z",
+        "completed_at": "2026-07-19T04:39:16.041956Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:37:16.392507Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:37:16.392508Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T04:37:16.392523Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:37:16.392491Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:37:16.392505Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:37:16.392507Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:37:16.392508Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T04:37:16.392523Z"
+    },
+    "timestamp": "2026-07-19T04:37:16.392527Z",
+    "last_updated": "2026-07-19T04:39:16.070876Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:37:16.392527Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:39:16.070876Z"
+      }
+    ],
+    "id": "g_880a35fad6af",
+    "_step_attempts": {},
+    "_lm_research_baseline": 44,
+    "completed_timestamp": "2026-07-19T04:39:16.070876Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand quantum mechanics foundations more deeply",
+    "name": "Understand quantum mechanics foundations more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:39:16.270613Z",
+        "completed_at": "2026-07-19T04:39:24.114704Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:39:16.270621Z",
+        "completed_at": "2026-07-19T04:41:09.690401Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:39:16.270623Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:39:16.270624Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T04:39:16.270647Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:39:16.270613Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:39:16.270621Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:39:16.270623Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:39:16.270624Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T04:39:16.270647Z"
+    },
+    "timestamp": "2026-07-19T04:39:16.270652Z",
+    "last_updated": "2026-07-19T04:41:09.734037Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:39:16.270652Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:41:09.734037Z"
+      }
+    ],
+    "id": "g_474fa9459fab",
+    "_step_attempts": {},
+    "_lm_research_baseline": 45,
+    "completed_timestamp": "2026-07-19T04:41:09.734037Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand moonshine/micro at main · moonshine-ai/moonshine · GitHub more deeply",
+    "name": "Understand moonshine/micro at main · moonshine-ai/moonshine · GitHub more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:41:10.006320Z",
+        "completed_at": "2026-07-19T04:41:38.169378Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T04:41:10.006329Z",
+        "completed_at": "2026-07-19T04:43:23.635162Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:41:10.006331Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T04:41:10.006332Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T04:41:10.006376Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:41:10.006320Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:41:10.006329Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:41:10.006331Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T04:41:10.006332Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T04:41:10.006376Z"
+    },
+    "timestamp": "2026-07-19T04:41:10.006383Z",
+    "last_updated": "2026-07-19T04:43:23.676645Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T04:41:10.006383Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T04:43:23.676645Z"
+      }
+    ],
+    "id": "g_a676afb862cd",
+    "_step_attempts": {},
+    "_lm_research_baseline": 46,
+    "completed_timestamp": "2026-07-19T04:43:23.676645Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "id": "g_0ef3db9954",
+    "title": "Understand Mitochondrial Theory more deeply",
+    "name": "Understand Mitochondrial Theory more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "Mitochondrial Theory",
+        "Mitochondrial Theory explained",
+        "what is not obvious about Mitochondrial Theory"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479708Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479713Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479715Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479717Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479718Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on Mitochondrial Theory was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about Mitochondrial Theory was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T12:47:44.479749Z",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-07-19T12:47:44.479708Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-07-19T12:47:44.479713Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-07-19T12:47:44.479715Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-07-19T12:47:44.479717Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-07-19T12:47:44.479718Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on Mitochondrial Theory was researched.",
+        "met": true,
+        "met_at": 1784465272.256951,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about Mitochondrial Theory was written to long memory.",
+        "met": true,
+        "met_at": 1784465272.256951,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T12:47:44.479749Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-07-19T12:47:45.881688Z",
+    "last_updated": "2026-07-19T12:47:52.257685Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T12:47:45.881688Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T12:47:52.257685Z"
+      }
+    ],
+    "_lm_research_baseline": 64,
+    "_last_progress_cycle": 9113,
+    "completed_timestamp": "2026-07-19T12:47:52.257685Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "ltc_aspiration-self_understa_205",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-07-19T15:21:53.774147Z",
+    "last_updated": "2026-07-19T15:23:59.580898Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:21:53.774147Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:23:59.580898Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 10276,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:22:16.338605Z",
+        "completed_at": "2026-07-19T15:22:25.587776Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:22:16.338605Z",
+        "completed_at": "2026-07-19T15:23:58.952935Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:22:16.338605Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "_step_attempts": {},
+    "_learned_note_attempted": true,
+    "completed_timestamp": "2026-07-19T15:23:59.580898Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": false,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "title": "Trace in my own code what drives 'host machine is moderate'",
+    "name": "Trace in my own code what drives 'host machine is moderate'",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:24:03.429111Z",
+        "completed_at": "2026-07-19T15:24:22.373223Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:24:03.429120Z",
+        "completed_at": "2026-07-19T15:24:51.727886Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:24:03.429123Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:24:03.429125Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:24:03.429306Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:03.429111Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:03.429120Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:03.429123Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:03.429125Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:24:03.429306Z"
+    },
+    "timestamp": "2026-07-19T15:24:03.429316Z",
+    "last_updated": "2026-07-19T15:24:52.026332Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:24:03.429316Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:24:52.026332Z"
+      }
+    ],
+    "id": "g_f72d72cc6d7a",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 78,
+    "completed_timestamp": "2026-07-19T15:24:52.026332Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand The Joy of Why , Kipp more deeply",
+    "name": "Understand The Joy of Why , Kipp more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:24:59.662149Z",
+        "completed_at": "2026-07-19T15:25:21.593200Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:24:59.662166Z",
+        "completed_at": "2026-07-19T15:27:01.067878Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:24:59.662169Z",
+        "completed_at": "2026-07-19T15:28:41.700981Z"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:24:59.662172Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:24:59.662199Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:59.662149Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:59.662166Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:59.662169Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:24:59.662172Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:24:59.662199Z"
+    },
+    "timestamp": "2026-07-19T15:24:59.662207Z",
+    "last_updated": "2026-07-19T15:30:28.255381Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:24:59.662207Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:30:28.255381Z"
+      }
+    ],
+    "id": "g_17e7d50c866a",
+    "_step_attempts": {
+      "Establish observable consequence": 2
+    },
+    "completed_timestamp": "2026-07-19T15:30:28.255381Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "title": "Understand The Daily Stoic more deeply",
+    "name": "Understand The Daily Stoic more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:30:31.089058Z",
+        "completed_at": "2026-07-19T15:30:47.231739Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:30:31.089063Z",
+        "completed_at": "2026-07-19T15:32:27.907273Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:30:31.089065Z",
+        "completed_at": "2026-07-19T15:34:16.173999Z"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:30:31.089067Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:30:31.089095Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:30:31.089058Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:30:31.089063Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:30:31.089065Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:30:31.089067Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:30:31.089095Z"
+    },
+    "timestamp": "2026-07-19T15:30:31.089099Z",
+    "last_updated": "2026-07-19T15:35:05.397132Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:30:31.089099Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:35:05.397132Z"
+      }
+    ],
+    "id": "g_30548166dfb4",
+    "_step_attempts": {
+      "Establish observable consequence": 1
+    },
+    "completed_timestamp": "2026-07-19T15:35:05.397132Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "title": "Understand noise more deeply",
+    "name": "Understand noise more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:35:06.446770Z",
+        "completed_at": "2026-07-19T15:35:19.939871Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:35:06.446783Z",
+        "completed_at": "2026-07-19T15:37:07.902695Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:35:06.446785Z",
+        "completed_at": "2026-07-19T15:38:54.510580Z"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:35:06.446787Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:35:06.446832Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:35:06.446770Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:35:06.446783Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:35:06.446785Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:35:06.446787Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:35:06.446832Z"
+    },
+    "timestamp": "2026-07-19T15:35:06.446840Z",
+    "last_updated": "2026-07-19T15:39:32.315532Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:35:06.446840Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:39:32.315532Z"
+      }
+    ],
+    "id": "g_5f9cef9eecd5",
+    "_step_attempts": {
+      "Establish observable consequence": 1
+    },
+    "completed_timestamp": "2026-07-19T15:39:32.315532Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "title": "Trace in my own code what drives 'dream'",
+    "name": "Trace in my own code what drives 'dream'",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:39:33.546564Z",
+        "completed_at": "2026-07-19T15:39:51.157929Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:39:33.546574Z",
+        "completed_at": "2026-07-19T15:40:20.117532Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:39:33.546576Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:39:33.546578Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:39:33.546592Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:39:33.546564Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:39:33.546574Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:39:33.546576Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:39:33.546578Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:39:33.546592Z"
+    },
+    "timestamp": "2026-07-19T15:39:33.546596Z",
+    "last_updated": "2026-07-19T15:40:20.207401Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:39:33.546596Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:40:20.207401Z"
+      }
+    ],
+    "id": "g_23fe1e724abe",
+    "_step_attempts": {},
+    "_check_passed": true,
+    "_lm_research_baseline": 79,
+    "completed_timestamp": "2026-07-19T15:40:20.207401Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand downloads what more deeply",
+    "name": "Understand downloads what more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:40:21.533183Z",
+        "completed_at": "2026-07-19T15:40:35.857237Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-07-19T15:40:21.533193Z",
+        "completed_at": "2026-07-19T15:42:22.384677Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:40:21.533195Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-07-19T15:40:21.533197Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-07-19T15:40:21.533273Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:40:21.533183Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:40:21.533193Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:40:21.533195Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-07-19T15:40:21.533197Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T15:40:21.533273Z"
+    },
+    "timestamp": "2026-07-19T15:40:21.533280Z",
+    "last_updated": "2026-07-19T15:43:59.679421Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-07-19T15:40:21.533280Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-07-19T15:43:59.679421Z"
+      }
+    ],
+    "id": "g_bb3cbf87f6bf",
+    "_step_attempts": {
+      "Establish reasoned conclusion": 2
+    },
+    "completed_timestamp": "2026-07-19T15:43:59.679421Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  }
+]

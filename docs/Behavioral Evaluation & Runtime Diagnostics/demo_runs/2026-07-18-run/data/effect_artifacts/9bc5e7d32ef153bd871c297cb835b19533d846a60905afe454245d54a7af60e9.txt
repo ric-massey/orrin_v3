@@ -1,0 +1,8 @@
+What I learned about moonshine/micro at main · moonshine-ai/moonshine · GitHub more deeply:
+
+- [Chunk: [metacog/pattern] Goal avoidance: 17 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 15 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [Chunk: [will] I resolve to: pursue: Understand quantum mechanics foundations more deeply — I stand behind this. (strength 0. / [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.
+- I found something in the goal-tracking system outside me, external data, and an external memory store that relates to 'Understand my own mind and how I work more deeply':
+  In the goal-tracking system outside me: "name": "Understand my own mind and how I work more deeply",
+  In external data: "situation": "Goal avoidance: 4 consecutive cycles without taking action on 'Understand my own mind and ho

@@ -1,0 +1,8 @@
+What I learned about downloads what more deeply:
+
+- [Chunk: [metacog/pattern] Goal avoidance: 36 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 34 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [Chunk: [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what. / [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what.]
+- [Chunk: [will] I resolve to: pursue: Understand downloads what more deeply — I stand behind this. (strength 0.62) / [will] I resolve to: pursue: Understand The Joy of Why , Kipp more deeply — I stand behind this. (strength 0.53)]
+- [Incubation] While sitting with: '[will] I resolve to: pursue: Understand The Joy of Why , Kipp more deeply — I stand behind this. (strength 0.53)', I notice a connection to something from memory: '[will] I resolve to: pursue: Understand The Joy of Why , Kipp more deeply — I stand behind this. (strength 0.53)'. These may be related in ways I haven't consciously examined.
+- [Chunk: [will] I resolve to: pursue: Trace in my own code what drives 'host machine is moderate' — I stand behind this. / [will] I resolve to: pursue: Trace in my own code what drives 'dream' — I stand behind this. (strength 0.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.

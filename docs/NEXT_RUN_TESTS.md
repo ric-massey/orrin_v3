@@ -172,6 +172,37 @@ should clear stale `data/goals/artifacts/` leftovers.
 > also skipped run-lock cleanup. Capture in `demo_runs/2026-07-18-run-aborted/`;
 > shutdown prints made pipe-safe; this gate rolls over unchanged to the relaunch.
 
+## Run 10 result — 2026-07-18/19 life: **NOT PASSED** (S7 reuse **0** < 8) — but 9/12 items green and the constraint has MOVED (honesty → daemon-lane starvation)
+
+Tenth acceptance run (**mode: symbolic-only**, build **`4d69ce5`** — first
+reproducible life; **11,565 cycles, single clean segment**, operator SIGTERM,
+zero crashes/gaps; full verdict
+`demo_runs/2026-07-18-run/DEMO_RUN_2026-07-18.md`).
+
+- 🟢 (a) RSS series+attribution (sawtooth, self-reclaiming floor, guard rightly
+  quiet) · (b) 0 twin-ids/0 desyncs/0 flaps · (c) `intake/` provenance filing ·
+  (d) **originality veto fired** (87 %-verbatim held for review; 5 clean
+  promotions) · (e) 0 EACCES · (j) max rule evidence 374 (was 66,087) ·
+  (k) **first 10 outward causal edges** (was 0/241) · G1 40.4 % occupancy,
+  ignition-source monopoly broken (42.3 %) · production 101/50/52 artifacts.
+- 🟡 (h) `decide_to_write_code` EMA 0.566 out of top-6 (harness check owed) ·
+  (i) tripwire wired but wobble-blind (drive_mastery 86 % at 1.00, never 500
+  consecutive) · (l) **close-out fired 10× — every one "question NOT
+  answered", goals closed anyway** (annotation not gate; stamps eaten by
+  ordering, LN-4) · S4 honest except LN-2 double-failures (4 goals × exactly 2).
+- 🔴 (f) **daemon lane starved**: 125 WAL events/14.6 h, one 8-h silence, 5
+  research records → (g) **reuse 0** — the reuse machinery (proven Run 9) was
+  never exercised. Failed fix at the *feed*, not the *loop*.
+
+**Run 11 is governed by `Behavioral Evaluation & Runtime Diagnostics/
+RUN11_BACKLOG_2026-07-19.md`** ("the Growth Run": ~20k cycles, batch-everything,
+de-clamp; Ric's 07-19 directives). The verdict's 10-item fix list is merged into
+its §1 (F-LN1..LN8) and §0b records the verdict deltas — daemon-starvation
+diagnosis is the headline (F-LN6), reuse ≥ 8 stands, **close-out rung 1**
+(`answered=False` blocks satiety-close or spawns a follow-up) is F-LN4b. The
+finalized Run 11 gate with Run 10 baselines is backlog **§10** (feed / growth /
+health / honesty axes).
+
 **Added 2026-07-18 from the whole-system skeptic pass** (run doc §items
 10–14, with per-item observables): (h) **reward sees impossibility** — a
 gate-blocked action (this life: `decide_to_write_code`, blocked 369/369,

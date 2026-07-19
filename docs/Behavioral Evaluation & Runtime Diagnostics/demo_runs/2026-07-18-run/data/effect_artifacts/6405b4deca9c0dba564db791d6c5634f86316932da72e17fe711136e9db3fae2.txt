@@ -1,0 +1,1 @@
+[crystallized skill] query: analyze recent emotional patterns and stability; conditions: analyze, recent, emotional, patterns, stability; rules: [causal] 'reflect_on_conversation_patterns' causes (intervention) 'being stuck grows' (score=0.36, n=1, L2)

@@ -1,0 +1,45 @@
+{
+  "queries": [
+    "What assumption am I making that I haven't questioned yet?"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Pascal%27s_wager",
+    "https://en.wikipedia.org/wiki/Noel_Edmonds",
+    "https://en.wikipedia.org/wiki/Fermi_paradox",
+    "https://en.wikipedia.org/wiki/Meditations_on_First_Philosophy",
+    "https://en.wikipedia.org/wiki/Ludwig_Wittgenstein"
+  ],
+  "results": [
+    {
+      "title": "Pascal's wager",
+      "url": "https://en.wikipedia.org/wiki/Pascal%27s_wager",
+      "snippet": "reasonably enough, <span class=\"searchmatch\">that</span> this by no means makes them a believer. This hypothetical unbeliever complains, &quot;<span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> so made <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">I</span> cannot believe. <span class=\"searchmatch\">What</span> would you have",
+      "query": "What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "title": "Noel Edmonds",
+      "url": "https://en.wikipedia.org/wiki/Noel_Edmonds",
+      "snippet": " He stated: &quot;<span class=\"searchmatch\">I</span> don&#039;t say cancer was caused by the stress, but <span class=\"searchmatch\">that</span> my health deteriorated to such an extent <span class=\"searchmatch\">I</span> got prostate cancer. <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> absolutely sure",
+      "query": "What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "title": "Fermi paradox",
+      "url": "https://en.wikipedia.org/wiki/Fermi_paradox",
+      "snippet": "we&#039;ll detect alien life in 100 years. Here are 13 reasons why we <span class=\"searchmatch\">haven&#039;t</span> made contact <span class=\"searchmatch\">yet</span>&quot;. Insider Inc. Retrieved September 21, 2019. Krauthammer, Charles",
+      "query": "What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "title": "Meditations on First Philosophy",
+      "url": "https://en.wikipedia.org/wiki/Meditations_on_First_Philosophy",
+      "snippet": "proof of existence turned on its head: But <span class=\"searchmatch\">what</span> then <span class=\"searchmatch\">am</span> <span class=\"searchmatch\">I</span>? A thinking thing. And <span class=\"searchmatch\">what</span> is <span class=\"searchmatch\">that</span>? Something <span class=\"searchmatch\">that</span> doubts, understands, affirms, denies, wills",
+      "query": "What assumption am I making that I haven't questioned yet?"
+    },
+    {
+      "title": "Ludwig Wittgenstein",
+      "url": "https://en.wikipedia.org/wiki/Ludwig_Wittgenstein",
+      "snippet": "means to see <span class=\"searchmatch\">that</span> life has a meaning ... When my conscience upsets my equilibrium, then <span class=\"searchmatch\">I</span> <span class=\"searchmatch\">am</span> not in agreement with Something. But <span class=\"searchmatch\">what</span> is this? Is it",
+      "query": "What assumption am I making that I haven't questioned yet?"
+    }
+  ],
+  "ts": "2026-07-19T03:12:43.743661+00:00"
+}

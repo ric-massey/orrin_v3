@@ -1,0 +1,264 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "dormant",
+    "timestamp": "2026-07-19T03:12:36.340252Z",
+    "last_updated": "2026-07-19T15:40:21.533303Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [],
+    "id": "g_a7f75b8e35e4",
+    "motivational_weight": 0.2
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-07-19T03:12:27.609927+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-07-19T03:44:12.142922+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-07-19T04:37:49.425194+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "last_contribution_ts": "2026-07-19T15:23:59.576824+00:00",
+    "_lm_research_baseline": 21,
+    "plan": [
+      {
+        "step": "Work toward milestone: 5 contributions toward this",
+        "status": "pending",
+        "generated_at": "2026-07-19T03:47:04.839385Z",
+        "inserted_reason": "milestone_gap"
+      },
+      {
+        "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+        "status": "pending",
+        "generated_at": "2026-07-19T03:47:04.839353Z",
+        "inserted_reason": "blocker_detected"
+      }
+    ],
+    "last_updated": "2026-07-19T03:47:04.839388Z",
+    "_plan_versions": [
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Work toward milestone: 5 contributions toward this",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839385Z",
+            "inserted_reason": "milestone_gap"
+          },
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839353Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-07-19T11:47:20.761974+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Work toward milestone: 5 contributions toward this",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839385Z",
+            "inserted_reason": "milestone_gap"
+          },
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839353Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-07-19T12:37:22.454788+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Work toward milestone: 5 contributions toward this",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839385Z",
+            "inserted_reason": "milestone_gap"
+          },
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839353Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-07-19T12:55:16.128446+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Work toward milestone: 5 contributions toward this",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839385Z",
+            "inserted_reason": "milestone_gap"
+          },
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839353Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-07-19T14:00:34.776350+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Work toward milestone: 5 contributions toward this",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839385Z",
+            "inserted_reason": "milestone_gap"
+          },
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-07-19T03:47:04.839353Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-07-19T14:17:14.364982+00:00",
+        "reason": "adapt_subgoals"
+      }
+    ]
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-19T03:12:27.609927+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-07-19T15:31:08.538128+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-07-19T15:31:08.538137+00:00"
+      },
+      {
+        "auto": true,
+        "label": "15 contributions toward this",
+        "reached_ts": "2026-07-19T15:31:08.538139+00:00"
+      },
+      {
+        "auto": true,
+        "label": "20 contributions toward this",
+        "reached_ts": "2026-07-19T15:42:19.991601+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 21,
+    "partial_credit": 0.0,
+    "progress": 1.0,
+    "recent_contributions": [
+      "Understand moonshine/micro at main · moonshine-ai/moonshine · GitHub more deeply",
+      "Understand my own mind and how I work more deeply",
+      "Trace in my own code what drives 'host machine is moderate'",
+      "Understand The Joy of Why , Kipp more deeply",
+      "Understand The Daily Stoic more deeply"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 230,
+    "last_contribution_ts": "2026-07-19T15:42:22.844388+00:00",
+    "_lm_research_baseline": 27
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-07-19T03:12:27.609927+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "last_contribution_ts": "2026-07-19T15:37:08.183577+00:00",
+    "contribution_count": 1,
+    "partial_credit": 0.0,
+    "progress": 0.05,
+    "recent_contributions": [
+      "Understand Mitochondrial Theory more deeply"
+    ]
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-07-19T03:12:27.609927+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": []
+  }
+]

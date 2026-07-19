@@ -1,0 +1,173 @@
+{
+  "goal": {
+    "id": "g_0ef3db9954",
+    "title": "Understand Mitochondrial Theory more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Mitochondrial Theory",
+        "Mitochondrial Theory explained",
+        "what is not obvious about Mitochondrial Theory"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479708Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479713Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479715Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479717Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-07-19T12:47:44.479718Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on Mitochondrial Theory was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about Mitochondrial Theory was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-07-19T12:47:44.479749Z",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-07-19 12:47:44.480366+00:00",
+    "updated_at": "2026-07-19 12:47:45.809076+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior memo: memo_martin-picard-s-mitochondrial-theory-of-mind-quanta-magazine.md",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitochondrial_theory_of_ageing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Free-radical_theory_of_aging",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitochondrial_Eve",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitochondrial_DNA",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Denham_Harman",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitochondria",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Symbiogenesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Peopling_of_the_Americas",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Women_in_prehistory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0ef3db9954/doc_10.txt"
+    }
+  ],
+  "ts": "2026-07-19T12:47:51.682420+00:00"
+}

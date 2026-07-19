@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionarily_stable_strategy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_epistemology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Costly_signaling_theory_in_evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Prisoner%27s_dilemma",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T03:47:36.549569+00:00/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-07-19T03:47:44.662573+00:00"
+}

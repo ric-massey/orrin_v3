@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Noise_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_02.txt",
+      "chars": 4927
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/NOiSE",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_03.txt",
+      "chars": 11246
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Noise_music",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/White_Noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_05.txt",
+      "chars": 3159
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Perlin_noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_06.txt",
+      "chars": 14672
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Johnson%E2%80%93Nyquist_noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Shot_noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_08.txt",
+      "chars": 19930
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pink_noise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/White_Noise_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-07-19T15:35:06.326072+00:00/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-07-19T15:35:21.946246+00:00"
+}

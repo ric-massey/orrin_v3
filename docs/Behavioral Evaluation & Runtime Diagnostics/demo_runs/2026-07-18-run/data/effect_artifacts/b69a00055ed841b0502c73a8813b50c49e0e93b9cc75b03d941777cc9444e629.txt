@@ -1,0 +1,8 @@
+What I learned about What am I not saying to myself that I need to hear:
+
+- [metacog/pattern] Goal avoidance: 6 consecutive cycles without taking action on 'Make things — produce work that didn't exist before'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on 'Make things — produce work that didn't… / [metacog/pattern] Goal avoidance: 18 consecutive cycles without taking action on 'Make things — produce work that…]
+- [Incubation] While sitting with: '[will] I resolve to: pursue: Open question: What am I not saying to myself that I need to hear? — I stand behind this. (', I notice a connection to something from memory: '[will] I resolve to: pursue: Open question: What am I not saying to myself that I need to hear? — I stand behind this. ('. These may be related in ways I haven't consciously examined.
+- [will] I resolve to: pursue: Open question: What am I not saying to myself that I need to hear? — I stand behind this. (strength 0.53)
+- [Chunk: [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what. / [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.

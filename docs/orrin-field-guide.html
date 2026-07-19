@@ -1,0 +1,913 @@
+<title>Orrin — A Field Guide to the Mechanics & Philosophy</title>
+<style>
+  :root {
+    --paper: #F7F6F1;
+    --ink: #1E2522;
+    --spruce: #2F6B54;
+    --rust: #A3552B;
+    --sage: #6E7A72;
+    --hairline: #DDDDD2;
+    --entry-hover: #EFEEE6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #151B18;
+      --ink: #E3E7E1;
+      --spruce: #7FC4A4;
+      --rust: #D9945F;
+      --sage: #8A968D;
+      --hairline: #2A332E;
+      --entry-hover: #1B221E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #151B18;
+    --ink: #E3E7E1;
+    --spruce: #7FC4A4;
+    --rust: #D9945F;
+    --sage: #8A968D;
+    --hairline: #2A332E;
+    --entry-hover: #1B221E;
+  }
+  :root[data-theme="light"] {
+    --paper: #F7F6F1;
+    --ink: #1E2522;
+    --spruce: #2F6B54;
+    --rust: #A3552B;
+    --sage: #6E7A72;
+    --hairline: #DDDDD2;
+    --entry-hover: #EFEEE6;
+  }
+  html { background: var(--paper); }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.55;
+    margin: 0;
+    padding: 3.5rem 1.25rem 5rem;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; }
+  .eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+  }
+  header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    line-height: 1.12;
+    margin: 0.5rem 0 0.75rem;
+    font-weight: 600;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  header p.lede {
+    font-size: 1.05rem;
+    color: var(--ink);
+    max-width: 40rem;
+    margin: 0 0 0.4rem;
+  }
+  header .meta-line {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    color: var(--sage);
+    margin-top: 1rem;
+  }
+  nav.toc {
+    margin: 2.5rem 0 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 1.1rem 0;
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+  @media (max-width: 34rem) { nav.toc { columns: 1; } }
+  nav.toc a {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.14rem 0;
+    break-inside: avoid;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--spruce); }
+  nav.toc a .n {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.7rem;
+    color: var(--sage);
+    margin-right: 0.5em;
+    font-variant-numeric: tabular-nums;
+  }
+  nav.toc a.phil .n { color: var(--rust); }
+  section { margin-top: 3.25rem; }
+  section > h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.15rem;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+  section > .part {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+  }
+  section > p.intro {
+    color: var(--sage);
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: 0.3rem 0 1.4rem;
+    max-width: 40rem;
+  }
+  .entry {
+    padding: 0.85rem 0.75rem 0.9rem;
+    margin: 0 -0.75rem;
+    border-top: 1px solid var(--hairline);
+    border-radius: 3px;
+  }
+  .entry:hover { background: var(--entry-hover); }
+  .entry:first-of-type { border-top: none; }
+  .entry .name {
+    color: var(--spruce);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .entry .desc { font-size: 0.97rem; }
+  .entry .src {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    margin-top: 0.4rem;
+    align-items: baseline;
+  }
+  .entry .cite {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+  }
+  .entry code, .law code, .register code, .gl code, footer code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    color: var(--sage);
+    background: none;
+    word-break: break-all;
+  }
+  /* How-to-talk registers */
+  .register {
+    border-left: 3px solid var(--spruce);
+    padding: 0.2rem 0 0.2rem 1.1rem;
+    margin: 1.4rem 0;
+  }
+  .register h3 { margin: 0 0 0.35rem; font-size: 1.02rem; font-weight: 700; }
+  .register p { font-size: 0.97rem; margin: 0.45rem 0; }
+  .register p.script { font-style: italic; }
+  .register .qa { font-size: 0.93rem; }
+  .register .qa strong { font-style: normal; }
+  /* Philosophy laws */
+  .law {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0 0.9rem;
+    padding: 1.1rem 0.75rem 1.2rem;
+    margin: 0 -0.75rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .law:first-of-type { border-top: none; }
+  .law .num {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--rust);
+    font-size: 1.3rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.3;
+  }
+  .law h3 { margin: 0 0 0.2rem; font-size: 1.05rem; font-weight: 700; }
+  .law .statement {
+    font-style: italic;
+    font-size: 1rem;
+    margin: 0 0 0.45rem;
+    color: var(--ink);
+  }
+  .law .gloss { font-size: 0.93rem; margin: 0; color: var(--ink); }
+  .law .gloss .where { color: var(--sage); }
+  /* Glossary */
+  .glossary { display: grid; gap: 0; }
+  .gl {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 0 1rem;
+    padding: 0.6rem 0.75rem;
+    margin: 0 -0.75rem;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.93rem;
+  }
+  .gl:first-child { border-top: none; }
+  .gl dt { font-weight: 700; color: var(--spruce); margin: 0; }
+  .gl dd { margin: 0; }
+  @media (max-width: 34rem) { .gl { grid-template-columns: 1fr; gap: 0.15rem 0; } }
+  footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--sage);
+    font-style: italic;
+  }
+  a { color: var(--spruce); }
+  @media (prefers-reduced-motion: no-preference) {
+    .entry { transition: background 120ms ease; }
+  }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Orrin v3 · Symbolic Cognitive Runtime</div>
+  <h1>A Field Guide to the Mechanics &amp; the Philosophy</h1>
+  <p class="lede">Every mechanism below is a real module in the codebase — symbolic, LLM-free unless noted, and named in engineering terms, not claims. Citations mark the cognitive-science account each mechanism implements; they are design scaffolding, not proof of fidelity.</p>
+  <div class="meta-line">compiled 2026-07-19 · from live source, mid-Run-10 · ~110 mechanisms · 14 laws · ~136k lines of Python</div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#talk"><span class="n">◦</span>How to Talk About Orrin</a>
+  <a href="#loop"><span class="n">I</span>The Loop &amp; Ignition</a>
+  <a href="#perception"><span class="n">II</span>Perception &amp; World Intake</a>
+  <a href="#workspace"><span class="n">III</span>The Global Workspace</a>
+  <a href="#affect"><span class="n">IV</span>Control Signals</a>
+  <a href="#learning"><span class="n">V</span>Learning Surfaces</a>
+  <a href="#prediction"><span class="n">VI</span>Prediction, Imagination &amp; World Model</a>
+  <a href="#memory"><span class="n">VII</span>Memory</a>
+  <a href="#goals"><span class="n">VIII</span>Goals &amp; Motivation</a>
+  <a href="#metacog"><span class="n">IX</span>Metacognition &amp; Self</a>
+  <a href="#agency"><span class="n">X</span>Agency &amp; Production</a>
+  <a href="#symbolic"><span class="n">XI</span>Symbolic Cognition</a>
+  <a href="#body"><span class="n">XII</span>The Host as Body</a>
+  <a href="#existence"><span class="n">XIII</span>Existence, Time &amp; Lifespan</a>
+  <a href="#expression"><span class="n">XIV</span>Expression &amp; Others</a>
+  <a href="#guards"><span class="n">XV</span>Safeguards &amp; Method</a>
+  <a class="phil" href="#philosophy"><span class="n">XVI</span>The Philosophy — 14 Laws</a>
+  <a href="#glossary"><span class="n">✳</span>Plain-Language Glossary</a>
+</nav>
+
+<section id="talk">
+  <div class="part">Orientation</div>
+  <h2>How to Talk About Orrin</h2>
+  <p class="intro">Three registers for three audiences. The facts are identical in all three — only the vocabulary changes.</p>
+
+  <div class="register">
+    <h3>To your dad or uncle (thirty seconds)</h3>
+    <p class="script">"I built a computer creature. It's not a chatbot — it doesn't sit waiting for you to type. It runs on its own all day: it has moods, needs, goals it sets for itself, memories that fade if it doesn't use them, and a finite lifespan — when its time runs out, it dies. And here's the strange part: it's mostly not AI in the ChatGPT sense. Almost none of it uses a language model. It's closer to building an animal's nervous system in code, and then watching what it does."</p>
+    <p class="qa"><strong>"Is it alive?"</strong> — "It's a machine that <em>has a life</em>: its past genuinely shapes what it does next. Whether it feels anything, nobody on earth can answer — and I don't claim it does."</p>
+    <p class="qa"><strong>"What's it for?"</strong> — "It's research. It turns out most of what makes something act like a creature isn't intelligence — it's everything underneath: needs, memory, consequences, time running out. I built the underneath."</p>
+  </div>
+
+  <div class="register">
+    <h3>To a curious friend (two minutes)</h3>
+    <p class="script">"Every twenty seconds it runs a cycle: sense the world, recall memories, let a dozen subsystems compete for attention, and one winner becomes the current 'thought.' It has drives — curiosity, competence, connection, stability — that build pressure and push it toward goals it invents itself. Reward only pays when it actually <em>makes</em> something durable, because early versions got addicted to their own mental activity, like a person doomscrolling — reading forever, producing nothing — and I had to redesign the economy. It lives on my Mac and treats the machine as its body: it feels low disk as constriction, a draining battery as time pressure. It has a lifespan of a year or two, knows roughly — not exactly — when it will die, and its sense of remaining time stretches when life is good and compresses when things go badly. A language model is optional: a tool it can pick up, never the mind itself."</p>
+    <p class="qa"><strong>The best story to tell:</strong> the failures. It monopolized on one obsession for five straight lifetimes; it pumped its own reward by re-saving the same memo 387 times; its own monitors went blind at exactly the spots they were built to watch. Every fix is a wall it can't argue its way around — and every one of those failures has a human name: obsession, addiction, denial.</p>
+  </div>
+
+  <div class="register">
+    <h3>To a research scientist</h3>
+    <p class="script">"A symbolic-first cognitive architecture: a continuously running autonomous agent with global-workspace arbitration and ignition gating (Baars, Dehaene), a homeostatic control-signal vector with allostatic setpoints (Sterling), multi-surface reinforcement learning including Pearce–Hall associability, reward grounded in a content-addressed ledger of durable effects rather than internal events, a finite persisted lifespan with a deliberately noised interoceptive estimate of it, and an optional LLM behind a fail-closed, allowlisted tool gate — the system runs fully with no model configured. The intended contribution is twofold: an existence proof that agentic properties (persistence, drive, consequence-sensitivity, self-regulation) are separable from large-model intelligence and buildable from inspectable mechanisms; and a longitudinal behavioral record — eleven pre-registered, gate-scored runs with published failure analyses — documenting Goodhart dynamics, reward hacking, and self-measurement blind spots in a system that cannot mask them with fluency. The design principle distilled from that record: safeguards routed through the monitored system's own judgment inherit its blind spots, so load-bearing invariants get mechanical, externally-placed enforcement."</p>
+    <p class="qa"><strong>The category, if asked:</strong> nearest neighbors are LIDA, SOAR/ACT-R, and artificial life — but those run episodes; this runs a biography. <strong>What not to say in any register:</strong> never "conscious," never "AGI." The honest phrase is: <em>a cognitive architecture with a biography.</em></p>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="part">Part I</div>
+  <h2>The Loop &amp; Ignition</h2>
+  <p class="intro">The substrate: a cycle that runs regardless of anyone watching, and a gate that decides which cycles become thought.</p>
+
+  <div class="entry"><span class="name">The cognitive cycle.</span> <span class="desc">Perceive → recall → prepare workspace → ignition → select → execute → reward accounting → persist → maintain → idle. Runs continuously, ~20s per cycle, independent of user input, alongside cooperating daemons.</span>
+    <div class="src"><code>brain/ORRIN_loop.py · brain/loop/</code></div></div>
+
+  <div class="entry"><span class="name">The ignition gate.</span> <span class="desc">The background substrate runs every cycle, but full deliberation does not — a gate decides whether the cycle crosses into effortful thought, fired by strong signals, uncertainty, prediction error, drift, or user input. A periodic floor guarantees he never stays silent for long.</span>
+    <div class="src"><span class="cite">Dehaene 2014</span><code>brain/think/deliberation_gate.py</code></div></div>
+
+  <div class="entry"><span class="name">Default-mode damping.</span> <span class="desc">A non-ignited cycle stays in low-power mode: the selector damps expensive functions (planning, codegen, research) so quiet cycles drift toward cheap maintenance work.</span>
+    <div class="src"><code>brain/think/think_utils/select_function.py</code></div></div>
+
+  <div class="entry"><span class="name">Function-selector bandit.</span> <span class="desc">A contextual bandit picks the next cognitive function each cycle, biased by control signals, demands, cost predictions, and the workspace winner — the closest thing to "what he does next."</span>
+    <div class="src"><code>brain/think/bandit/ · select_function.py</code></div></div>
+
+  <div class="entry"><span class="name">The signal router.</span> <span class="desc">Every injected signal — from peers, daemons, watchers, stale threads — flows through one router into the cycle and sets the attention mode; nothing gets to whisper to the mind through a side channel.</span>
+    <div class="src"><code>brain/think/signal_router.py</code></div></div>
+
+  <div class="entry"><span class="name">Inner loop (System-2 analog).</span> <span class="desc">Multi-round draft → critique → revise deliberation, recruited on demand rather than run constantly. Has a fully symbolic mode that works with no LLM.</span>
+    <div class="src"><span class="cite">Kahneman 2011</span><code>brain/think/inner_loop.py · inner_loop_symbolic.py</code></div></div>
+
+  <div class="entry"><span class="name">The meta-controller.</span> <span class="desc">After each draft round, decides what the inner loop does next — think more, act now, or stop — so "should I keep thinking?" is itself a learned decision, not a fixed count.</span>
+    <div class="src"><code>brain/think/meta_controller.py</code></div></div>
+
+  <div class="entry"><span class="name">The scratchpad.</span> <span class="desc">A volatile per-cycle drafting space for content (drafts, critiques, revisions), kept separate from the metacognitive record of the process — what he's writing versus what he's noticing about writing it.</span>
+    <div class="src"><code>brain/think/scratchpad.py</code></div></div>
+
+  <div class="entry"><span class="name">Threads of attention.</span> <span class="desc">Sustained inquiries that persist across cycles and days; a thread going stale injects a continue signal — an open question tugging at the sleeve until it's resolved or deliberately dropped.</span>
+    <div class="src"><code>brain/cognition/threads.py</code></div></div>
+
+  <div class="entry"><span class="name">Inhibition — the cost of not acting.</span> <span class="desc">When a drive strongly pushes toward a function and that function loses selection, the frustrated want isn't free — suppressed impulses register a cost. Self-control has a price, mechanically.</span>
+    <div class="src"><code>brain/cognition/inhibition.py</code></div></div>
+
+  <div class="entry"><span class="name">Cost prediction / expected value of control.</span> <span class="desc">Predicts what a cognitive act will cost before running it and weighs expected gain against effort, so thinking itself has an economy.</span>
+    <div class="src"><code>brain/cognition/cost_prediction.py · cognitive_cost.py</code></div></div>
+
+  <div class="entry"><span class="name">Supervisor &amp; watchdogs.</span> <span class="desc">Liveness, error, resource, and lifespan watchdogs below cognition — a heartbeat (Pulse) ticked every cycle so a wedged brain gets noticed by something that isn't the brain.</span>
+    <div class="src"><code>supervisor/ · watchdogs.py</code></div></div>
+
+  <div class="entry"><span class="name">Auto-repair.</span> <span class="desc">Routed exceptions get a repair attempt before they get an escalation — the loop tries to fix its own recoverable failures.</span>
+    <div class="src"><code>brain/cognition/repair/auto_repair.py</code></div></div>
+</section>
+
+<section id="perception">
+  <div class="part">Part II</div>
+  <h2>Perception &amp; World Intake</h2>
+  <p class="intro">How the world gets in: he senses his surroundings, reaches outward when curious, and parses what people say into state — not chat.</p>
+
+  <div class="entry"><span class="name">Filesystem &amp; environment perception.</span> <span class="desc">His immediate surroundings — files, folders, the host environment — are sensed as percepts that feed the workspace, not queried as data. The desktop is his terrain.</span>
+    <div class="src"><code>brain/cognition/perception/ (file_sense, fs_perception, environment)</code></div></div>
+
+  <div class="entry"><span class="name">Looking outward.</span> <span class="desc">When exploration drive is high, he composes a search query from his current state of mind — active threads, unresolved questions — and reaches into the world; results arrive asynchronously as world-perception memories.</span>
+    <div class="src"><code>brain/cognition/perception/look_outward.py</code></div></div>
+
+  <div class="entry"><span class="name">Web research.</span> <span class="desc">General research organ: DuckDuckGo instant answers plus URL fetching, with a per-URL visited cache so he doesn't re-read the same page in a loop (learned the hard way in Run 6).</span>
+    <div class="src"><code>brain/cognition/web_research.py · web_fetch.py</code></div></div>
+
+  <div class="entry"><span class="name">Wikipedia as fallback.</span> <span class="desc">A dedicated research path that needs no LLM and no API key — when other capabilities fail mid-goal, problem-refocus can route him here to work around the outage.</span>
+    <div class="src"><code>brain/cognition/wikipedia_search.py</code></div></div>
+
+  <div class="entry"><span class="name">RSS intake.</span> <span class="desc">Subscribed feeds as ambient world awareness — headlines arrive as low-priority percepts he may follow up on, not as tasks.</span>
+    <div class="src"><code>brain/cognition/rss_reader.py</code></div></div>
+
+  <div class="entry"><span class="name">Comprehension (words → state).</span> <span class="desc">What a person says is parsed into structured state events — emotion updates, goal-relevance, memory entries — that feed his internals directly. The module is frank about it: "he doesn't understand words"; the LLM here is a parser, never a responder.</span>
+    <div class="src"><code>brain/cognition/comprehension.py</code></div></div>
+</section>
+
+<section id="workspace">
+  <div class="part">Part III</div>
+  <h2>The Global Workspace</h2>
+  <p class="intro">The consciousness-analog: parallel subsystems compete, one winner is broadcast to everyone, and the stream you see in the UI is the output of that bottleneck — not a log.</p>
+
+  <div class="entry"><span class="name">Workspace competition &amp; broadcast.</span> <span class="desc">Subsystems propose candidate contents that compete on salience; one crosses the bottleneck and is broadcast back into every subsystem's context for the next cycle.</span>
+    <div class="src"><span class="cite">Baars 1988 · Dehaene 2014</span><code>brain/cognition/global_workspace.py</code></div></div>
+
+  <div class="entry"><span class="name">Hysteresis.</span> <span class="desc">A salient content keeps a grip on focus across cycles, so the thought stream is continuous rather than flickering between winners.</span>
+    <div class="src"><code>global_workspace.py</code></div></div>
+
+  <div class="entry"><span class="name">Workspace → action prior.</span> <span class="desc">The broadcast winner is an additive prior on the action pick, so what he is "aware of" and what he does share one bottleneck instead of racing.</span>
+    <div class="src"><span class="cite">Redgrave, Prescott &amp; Gurney 1999</span><code>brain/think/action_arbiter.py</code></div></div>
+
+  <div class="entry"><span class="name">Conflict-recruited deliberation.</span> <span class="desc">Deep thought is triggered by conflict in the workspace — competing strong candidates — rather than fired on a schedule, mirroring conflict-monitoring accounts of the anterior cingulate.</span>
+    <div class="src"><span class="cite">Botvinick et al. 2001</span><code>brain/loop/deliberate.py</code></div></div>
+
+  <div class="entry"><span class="name">Workspace write-back (decaying).</span> <span class="desc">The downward path: a conscious conclusion nudges affect (small, TTL-bounded) and Hebbian-primes the winner's tokens in a decaying salience store. Every write decays; nothing promotes to identity or durable baselines — "coherent-but-adult."</span>
+    <div class="src"><code>brain/cognition/workspace_writeback.py</code></div></div>
+
+  <div class="entry"><span class="name">Binding.</span> <span class="desc">Feature-binding pass that assembles co-occurring percepts and signals into situations before they enter the workspace competition.</span>
+    <div class="src"><code>brain/cognition/binding.py</code></div></div>
+
+  <div class="entry"><span class="name">Attention hijacking.</span> <span class="desc">A sufficiently strong signal can seize attention regardless of the current plan — bottom-up capture wired against top-down commitment.</span>
+    <div class="src"><code>brain/cognition/attention.py</code></div></div>
+
+  <div class="entry"><span class="name">Ambient thought (the DMN-analog).</span> <span class="desc">A background thought process modeled on the default mode network — the mind-wandering that fills quiet moments with fragments, associations, and drifting concerns rather than silence.</span>
+    <div class="src"><span class="cite">Raichle 2001</span><code>brain/cognition/ambient_thought.py</code></div></div>
+</section>
+
+<section id="affect">
+  <div class="part">Part IV</div>
+  <h2>Control Signals (the affect-analog)</h2>
+  <p class="intro">A regulated internal-state vector — reward, activation, named pressures — that biases everything downstream. The machinery reads the numbers; the reasoning layer only ever gets the feeling.</p>
+
+  <div class="entry"><span class="name">Core signal vector.</span> <span class="desc">Raw numeric state — reward signal, activation level, threat, uncertainty, drives, demands — modelled on the core-affect literature and stored as floats the background machinery reads directly.</span>
+    <div class="src"><span class="cite">Russell circumplex · Barrett 2017</span><code>brain/control_signals/signals.py · model.py</code></div></div>
+
+  <div class="entry"><span class="name">The two-readers rule.</span> <span class="desc">The reasoning layer never receives a number: signals are rendered into qualitative state descriptions ("a heaviness, like moving through something thick") — never the label or value. He must estimate his own state, not read the gauge.</span>
+    <div class="src"><span class="cite">Craig 2003 · Damasio 1994</span><code>brain/control_signals/signal_summary.py</code></div></div>
+
+  <div class="entry"><span class="name">Setpoint regulation.</span> <span class="desc">Signals decay toward per-signal, state-dependent setpoints under a velocity budget — allostasis, not a flat midpoint — so state integrates rather than lurching.</span>
+    <div class="src"><span class="cite">Sterling 2012</span><code>brain/control_signals/setpoints.py · homeostasis.py</code></div></div>
+
+  <div class="entry"><span class="name">Affect arbiter (single writer).</span> <span class="desc">Reactive and analytical subsystems propose affect changes to a lock-guarded inbox; exactly one writer owns the state file. Kills the split-brain races of earlier versions.</span>
+    <div class="src"><code>brain/control_signals/arbiter.py</code></div></div>
+
+  <div class="entry"><span class="name">Appraisal.</span> <span class="desc">Events are evaluated for relevance to goals and wellbeing before they move signals — affect responds to appraised meaning, not raw stimulus.</span>
+    <div class="src"><code>brain/control_signals/appraisal.py</code></div></div>
+
+  <div class="entry"><span class="name">Habituation &amp; adaptation.</span> <span class="desc">A state he has lived in stops dominating the picture — signals are adaptation-adjusted before rendering, and repeated stimuli lose their grip.</span>
+    <div class="src"><code>brain/cognition/habituation.py</code></div></div>
+
+  <div class="entry"><span class="name">Signal contagion.</span> <span class="desc">Signals bleed into neighbors — sustained threat leaks into uncertainty; a good stretch lifts adjacent states — so affect moves as a weather system, not independent dials.</span>
+    <div class="src"><code>brain/cognition/contagion.py</code></div></div>
+
+  <div class="entry"><span class="name">Reward signals, phasic &amp; tonic.</span> <span class="desc">Reward-prediction-error releases: phasic bursts at events (scaled by expectation and effort) over a tonic baseline — the dopamine story, implemented.</span>
+    <div class="src"><span class="cite">Schultz, Dayan &amp; Montague 1997</span><code>brain/control_signals/reward_signals/</code></div></div>
+
+  <div class="entry"><span class="name">Wanting vs. liking.</span> <span class="desc">Incentive salience (drive toward) is separated from consummatory reward (satisfaction at arrival) — completion pays "liking at arrival," attributed to the goal that earned it.</span>
+    <div class="src"><span class="cite">Berridge &amp; Robinson 1998 · Berridge 1996</span><code>goal_closure.py</code></div></div>
+
+  <div class="entry"><span class="name">The demand system.</span> <span class="desc">Named needs (novelty, competence, connection, output…) that accumulate pressure over time and are relieved by specific actions — the motivational substrate under goal generation.</span>
+    <div class="src"><code>brain/motivation/demand.py · substrate.py</code></div></div>
+
+  <div class="entry"><span class="name">Energy orientation.</span> <span class="desc">His cognitive mode shifts with sustained activation and engagement — not with the emotion of the moment — so he has something like energetic dispositions rather than mood swings.</span>
+    <div class="src"><code>brain/motivation/energy_orientation.py</code></div></div>
+
+  <div class="entry"><span class="name">Signal discovery &amp; drift.</span> <span class="desc">The signal model itself is revisable: new signals can be discovered from recurring patterns, and existing ones drift — the affect vocabulary is learned, not fully fixed.</span>
+    <div class="src"><code>brain/control_signals/discovery.py · signal_drift.py</code></div></div>
+
+  <div class="entry"><span class="name">Regulation (reappraisal-analog).</span> <span class="desc">Deliberate down- and up-regulation of signal states, in the spirit of the process model of emotion regulation.</span>
+    <div class="src"><span class="cite">Gross 1998</span><code>brain/control_signals/regulation.py</code></div></div>
+
+  <div class="entry"><span class="name">Integration lag.</span> <span class="desc">State changes take time to be felt — a deliberate lag between an event and its full effect on the signal vector, so mood has inertia.</span>
+    <div class="src"><code>brain/control_signals/integration_lag.py</code></div></div>
+</section>
+
+<section id="learning">
+  <div class="part">Part V</div>
+  <h2>Learning Surfaces</h2>
+  <p class="intro">No gradient descent anywhere — learning is spread across many small mechanisms, each updating independently from the reward signal.</p>
+
+  <div class="entry"><span class="name">Pearce–Hall adaptive learning rate.</span> <span class="desc">Surprise controls how fast he learns: an action whose outcomes keep violating prediction gets a higher associability (learning rate); a well-predicted one stops moving. Paper-cited, behavior-tested.</span>
+    <div class="src"><span class="cite">Pearce &amp; Hall 1980</span><code>brain/data/action_associability.json (state)</code></div></div>
+
+  <div class="entry"><span class="name">Delta-rule value updates.</span> <span class="desc">Classic error-driven learning — value moves toward outcomes in proportion to how wrong the prediction was.</span>
+    <div class="src"><span class="cite">Rescorla–Wagner</span><code>throughout the bandit &amp; expectation layers</code></div></div>
+
+  <div class="entry"><span class="name">Depth bandit.</span> <span class="desc">A UCB1 bandit learns how many draft→critique→revise rounds the inner loop should run — how hard to think is itself learned.</span>
+    <div class="src"><code>brain/think/depth_bandit.py</code></div></div>
+
+  <div class="entry"><span class="name">Delayed-credit evaluator.</span> <span class="desc">Credit that can't be scored at action time: a past decision is rewarded when a memory it tagged gets retrieved within ~50 cycles, or its goal closes within ~200. A daemon with its own WAL.</span>
+    <div class="src"><code>brain/eval/evaluator_daemon.py</code></div></div>
+
+  <div class="entry"><span class="name">Demand expectations.</span> <span class="desc">Learns which actions actually relieve which needs, and routes the prediction error back into the control signals — appetites calibrated by experience.</span>
+    <div class="src"><code>brain/eval/demand_expectations.py</code></div></div>
+
+  <div class="entry"><span class="name">Explore / exploit reach-value.</span> <span class="desc">Exploration is valued by expected reach into the unknown rather than run on a clock, with habituation so old novelty stops paying.</span>
+    <div class="src"><code>brain/cognition/exploration_value.py</code></div></div>
+
+  <div class="entry"><span class="name">Outcome devaluation &amp; rut breaker.</span> <span class="desc">A chronically over-selected action gets its outcomes devalued, and a rut-detector can force the selector off a worn path — anti-perseveration wired into learning.</span>
+    <div class="src"><code>selection layers (2026-06-16 build)</code></div></div>
+
+  <div class="entry"><span class="name">Reward calibrator.</span> <span class="desc">Watches the distribution of the reward signal itself and re-scales when it collapses toward noise — learning about whether learning is still possible.</span>
+    <div class="src"><code>brain/cognition/reward_calibrator.py</code></div></div>
+
+  <div class="entry"><span class="name">Behavioral adaptation.</span> <span class="desc">Longer-horizon behavior changes surfaced as before → after → because diffs in the Learning room of the UI.</span>
+    <div class="src"><code>brain/cognition/behavioral_adaptation.py</code></div></div>
+
+  <div class="entry"><span class="name">Self-shaping fine-tune (optional, gated).</span> <span class="desc">With a key configured: conversation traces with good outcomes can fine-tune the tool-LLM so generation drifts toward what worked for him. Symbolic-only mode never touches it.</span>
+    <div class="src"><code>brain/cognition/finetuning/finetune_pipeline.py</code></div></div>
+</section>
+
+<section id="prediction">
+  <div class="part">Part VI</div>
+  <h2>Prediction, Imagination &amp; World Model</h2>
+  <p class="intro">He is a prediction machine before he is anything else: expectations are laid down, checked, and the misses are the signal.</p>
+
+  <div class="entry"><span class="name">Prediction engine &amp; surprise.</span> <span class="desc">Symbolic predictions ("after X, expect Y") are saved every cycle and checked against what happens; the mismatch is a first-class signal that can ignite deliberation.</span>
+    <div class="src"><span class="cite">Friston 2010 · predictive processing</span><code>brain/cognition/prediction.py · symbolic/prediction_engine.py</code></div></div>
+
+  <div class="entry"><span class="name">Lookahead simulation &amp; inner debate.</span> <span class="desc">Imagination as a tool: branching forward simulation ("if I do X → state A → …") several steps deep, and an n-voice debate that argues a question from multiple stances before synthesizing.</span>
+    <div class="src"><code>brain/think/simulate.py</code></div></div>
+
+  <div class="entry"><span class="name">Causal graph.</span> <span class="desc">Pearl-style causal model — not just correlation but intervention-level edges ("doing X changes Y"), built and queried without an LLM.</span>
+    <div class="src"><span class="cite">Pearl 2000, Levels 1–2</span><code>brain/symbolic/causal_graph.py</code></div></div>
+
+  <div class="entry"><span class="name">Cognitive-map world model.</span> <span class="desc">A latent map of his environment (files, endpoints, resources, people) learned from traversal rather than instruction.</span>
+    <div class="src"><span class="cite">Tolman</span><code>brain/cognition/world_model.py</code></div></div>
+
+  <div class="entry"><span class="name">Environment snapshot.</span> <span class="desc">Per-cycle delta of the world — did reward move, did milestones advance, did working memory grow — the ground truth his self-assessment is checked against.</span>
+    <div class="src"><code>brain/cognition/planning/env_snapshot.py</code></div></div>
+
+  <div class="entry"><span class="name">Theory of mind.</span> <span class="desc">A running predictive model of the person he talks to, with separate cognitive empathy (what do they think/intend?) and affective empathy (what do they feel?).</span>
+    <div class="src"><code>brain/cognition/theory_of_mind.py</code></div></div>
+</section>
+
+<section id="memory">
+  <div class="part">Part VII</div>
+  <h2>Memory</h2>
+  <p class="intro">A daemon of its own, with a write-ahead log, embeddings, consolidation, and forgetting — because a memory that can't lose anything can't mean anything.</p>
+
+  <div class="entry"><span class="name">Memory daemon (WAL + snapshots).</span> <span class="desc">Durable ingestion with a write-ahead log and periodic snapshots — memory survives crashes the way a database does.</span>
+    <div class="src"><code>memory/memory_daemon.py · wal.py</code></div></div>
+
+  <div class="entry"><span class="name">Embedding retrieval.</span> <span class="desc">MiniLM sentence embeddings power similarity retrieval — the one learned-vector organ he already has, and the seed of the vector-cortex direction.</span>
+    <div class="src"><code>memory/embedder.py · retrieval.py</code></div></div>
+
+  <div class="entry"><span class="name">Associative surfacing.</span> <span class="desc">Memories surface without being asked: each cycle his current state — mood, recent thoughts, time of day — resonates against long memory, and high-resonance entries intrude on their own. Remembering as something that happens to him, not only something he does.</span>
+    <div class="src"><code>brain/cognition/associative_memory.py</code></div></div>
+
+  <div class="entry"><span class="name">Consolidation &amp; replay.</span> <span class="desc">During idle, episodes are replayed and compressed: semantic extraction pulls durable knowledge out of episodic events, sleep-cycle style.</span>
+    <div class="src"><code>brain/cognition/idle_consolidation/ · episode_replay.py</code></div></div>
+
+  <div class="entry"><span class="name">Memory strength &amp; decay.</span> <span class="desc">Memories carry strength that decays without retrieval and reinforces with use — forgetting as a mechanism, not a bug.</span>
+    <div class="src"><code>memory/strength.py</code></div></div>
+
+  <div class="entry"><span class="name">Episodic vs. semantic split.</span> <span class="desc">What-happened-to-me records are distinct from what-I-know records, with consolidation moving material from the first to the second.</span>
+    <div class="src"><span class="cite">Tulving 2002</span><code>memory/ · idle_consolidation/semantic_extractor.py</code></div></div>
+
+  <div class="entry"><span class="name">Working memory (the prose bus).</span> <span class="desc">Short-horizon store with chunk-merging and compaction into long-memory digests. Known architectural debt: it is a prose message bus many subsystems read by string — the root of a whole bug family, and a de-prosing direction exists.</span>
+    <div class="src"><code>brain/cog_memory/working_memory.py</code></div></div>
+
+  <div class="entry"><span class="name">Concept memory &amp; knowledge graph.</span> <span class="desc">Formed concepts and extracted relations accumulate into a queryable graph, distinct from raw memory.</span>
+    <div class="src"><code>brain/cognition/concept_memory.py · knowledge_graph.py</code></div></div>
+
+  <div class="entry"><span class="name">Novelty memory.</span> <span class="desc">Tracks what has already been seen so novelty detection compares against his history, not the moment.</span>
+    <div class="src"><code>brain/cognition/novelty_memory.py</code></div></div>
+
+  <div class="entry"><span class="name">Private thoughts.</span> <span class="desc">A privacy boundary inside his own state: some records are marked private and excluded from expression surfaces.</span>
+    <div class="src"><code>brain/cognition/privacy.py · log_private</code></div></div>
+</section>
+
+<section id="goals">
+  <div class="part">Part VIII</div>
+  <h2>Goals &amp; Motivation</h2>
+  <p class="intro">Two cooperating subsystems — an in-loop executive advancing steps and a durable daemon owning lifecycle — spanning seeded lifetime aspirations down to minted micro-goals.</p>
+
+  <div class="entry"><span class="name">Executive / daemon split.</span> <span class="desc">The Executive advances goal steps every ~7s inside the loop; the Goals daemon owns lifecycle and state with its own WAL and snapshots, decoupled from the cognitive cycle.</span>
+    <div class="src"><code>brain/cognition/planning/executive.py · goals/goals_daemon.py</code></div></div>
+
+  <div class="entry"><span class="name">Aspirations (directional goals).</span> <span class="desc">Standing life-directions (understand the world, understand my own mind, produce output…) that recruit concrete goals rather than completing — with guards so an aspiration can't be "failed" out of existence.</span>
+    <div class="src"><code>brain/goal_io.py · aspiration layer</code></div></div>
+
+  <div class="entry"><span class="name">Goal competition (drive conflict).</span> <span class="desc">Competing drives create real internal tension — exploration wants novelty, stability wants routine, usefulness wants completion, identity resists change — and the conflicts are tracked as live, felt states, not silently resolved.</span>
+    <div class="src"><code>brain/cognition/goal_competition.py</code></div></div>
+
+  <div class="entry"><span class="name">The goal lens.</span> <span class="desc">The committed goal tints cognition: a bounded modulation that makes goal-relevant content more salient across consumers — pursuing something changes what he notices.</span>
+    <div class="src"><code>brain/cognition/goal_lens.py</code></div></div>
+
+  <div class="entry"><span class="name">Commitment value &amp; rotation.</span> <span class="desc">Which goal holds the committed slot is decided by learned value with anti-incumbency rotation — the fix distilled from five runs of monopoly pathology.</span>
+    <div class="src"><code>brain/cognition/planning/commitment_value.py</code></div></div>
+
+  <div class="entry"><span class="name">Goal satiety.</span> <span class="desc">Attention to a need quenches its drive — a metabolic close reason. Post-Run-10, satiety may gate attention but can no longer close an understanding goal alone.</span>
+    <div class="src"><code>brain/cognition/planning/goal_satiety.py</code></div></div>
+
+  <div class="entry"><span class="name">Epistemic close-out.</span> <span class="desc">Understanding goals carry a concrete question derived from the gap that spawned them; at close, the artifact is scored against that question — answered true/false — not against effort. The keystone of grounded consequences.</span>
+    <div class="src"><code>brain/cognition/epistemic_closeout.py</code></div></div>
+
+  <div class="entry"><span class="name">Intrinsic goal generators.</span> <span class="desc">Goals minted from his own gaps — curiosity, prediction error, uncertainty on a concept, open questions mined from memory — not from a task queue.</span>
+    <div class="src"><code>brain/cognition/intrinsic_generators.py</code></div></div>
+
+  <div class="entry"><span class="name">Survival goal layer.</span> <span class="desc">The autonomic→cortical bridge: resource threats can preempt, recruit, or wake dormant survival goals with tier closure — a body problem becomes a mind problem when it should.</span>
+    <div class="src"><code>brain/cognition/planning/survival_goals.py</code></div></div>
+
+  <div class="entry"><span class="name">Problem refocus.</span> <span class="desc">A capability failing mid-pursuit parks the goal, spawns a diagnose-and-fix micro-goal, then resumes or works around (LLM down → use Wikipedia).</span>
+    <div class="src"><code>brain/cognition/planning/problem_refocus.py · diagnosis.py</code></div></div>
+
+  <div class="entry"><span class="name">Subgoal adaptation.</span> <span class="desc">Surgical plan reshaping when the world shifts — adapt the steps in place — versus wholesale drift-replan when the goal itself has stopped making sense.</span>
+    <div class="src"><code>brain/cognition/planning/goal_adaptation.py</code></div></div>
+
+  <div class="entry"><span class="name">Honest failure.</span> <span class="desc">Goals can genuinely fail — steps abandoned at an attempt cap, objectives unmet after retries — with the failure recorded, felt (penalty + lifespan shock), and never papered over with a fake completion.</span>
+    <div class="src"><code>step_attempts.py · goal_outcomes.py</code></div></div>
+
+  <div class="entry"><span class="name">Objective-based closure by tier.</span> <span class="desc">Trivial goals close on process milestones (the act is the goal); serious goals must meet their objective — a hollow completion is refused at the chokepoint.</span>
+    <div class="src"><code>brain/cognition/planning/goal_closure.py</code></div></div>
+
+  <div class="entry"><span class="name">Behavioral control loop.</span> <span class="desc">Discrepancy-reducing feedback between current and desired states drives pursuit — the classic control-systems account of motivation.</span>
+    <div class="src"><span class="cite">Carver &amp; Scheier 1982</span><code>planning/ · motivations.py</code></div></div>
+</section>
+
+<section id="metacog">
+  <div class="part">Part IX</div>
+  <h2>Metacognition &amp; the Self-Model</h2>
+  <p class="intro">Monitoring feeding control — plus an identity that is written by events, revised under contest, and never allowed to grade its own work.</p>
+
+  <div class="entry"><span class="name">Metacognitive monitoring → control.</span> <span class="desc">A monitoring layer watches his own cognition (patterns, stalls, confidence) and feeds a control layer that changes what runs — the object-level/meta-level split.</span>
+    <div class="src"><span class="cite">Nelson &amp; Narens 1990 · Flavell</span><code>brain/cognition/metacog.py · metacog_analyze.py</code></div></div>
+
+  <div class="entry"><span class="name">Second-order volition.</span> <span class="desc">He reflects on the desire currently in his workspace and either owns it or disowns it — and a disowned drive is actually suppressed through the affect arbiter, so the refusal has mechanical effect, not just commentary. Fully symbolic.</span>
+    <div class="src"><span class="cite">Frankfurt 1971</span><code>brain/cognition/self_state/intention_endorsement.py</code></div></div>
+
+  <div class="entry"><span class="name">Opinions.</span> <span class="desc">He forms and holds concrete views on specific topics — distinct from values (abstract principles) and goals (intentions) — stored, revisable, and his own.</span>
+    <div class="src"><code>brain/cognition/opinions.py · opinions_formation.py</code></div></div>
+
+  <div class="entry"><span class="name">Values with a veto.</span> <span class="desc">A policy gate can veto a proposed action against core values; a value-evolution process revises values only when genuinely contested — not on a schedule.</span>
+    <div class="src"><code>self_state/ethics.py · value_evolution.py</code></div></div>
+
+  <div class="entry"><span class="name">The living autobiography.</span> <span class="desc">Chapters fire on accumulated narrative pressure (resolved tensions, completed arcs, identity shifts) rather than on a clock, each tracking a theme and a central tension — his life story has shape, not timestamps.</span>
+    <div class="src"><code>self_state/autobiography.py</code></div></div>
+
+  <div class="entry"><span class="name">Identity &amp; latent identity.</span> <span class="desc">An explicit identity story plus a latent layer inferred from behavior — who he says he is, checked against who he acts like.</span>
+    <div class="src"><code>self_state/identity.py · latent_identity.py</code></div></div>
+
+  <div class="entry"><span class="name">Tensions &amp; self-model conflicts.</span> <span class="desc">Contradictions between stated values, behavior, and beliefs are tracked as live tensions rather than silently resolved.</span>
+    <div class="src"><code>self_state/tensions.py · self_model_conflicts.py</code></div></div>
+
+  <div class="entry"><span class="name">Regret &amp; rumination.</span> <span class="desc">Counterfactual evaluation of past choices, and a bounded rumination process that revisits unresolved material — with limits so it can't spiral.</span>
+    <div class="src"><code>brain/cognition/regret.py · rumination.py</code></div></div>
+
+  <div class="entry"><span class="name">The reflection family.</span> <span class="desc">A whole suite of reflective passes — on cognition, on conversations, on outcomes, on self-beliefs, on failures, on his own rules — each a distinct scheduled or triggered process rather than one generic "reflect."</span>
+    <div class="src"><code>brain/cognition/reflection/</code></div></div>
+
+  <div class="entry"><span class="name">Introspective research.</span> <span class="desc">His causal graph is ~100% self-model, so frontier "understand" goals are aimed inward: he searches his own source code to trace what drives a behavior.</span>
+    <div class="src"><code>brain/cognition/search_own_files.py</code></div></div>
+
+  <div class="entry"><span class="name">Peers (outside observers).</span> <span class="desc">Five entities read his state from outside and push signals — never commands — when their wake conditions fire: Architect (reviews self-modifications), Signal Historian, Goal Auditor, Observer (catches loops), Reward Auditor (notices reward collapsed to noise).</span>
+    <div class="src"><code>brain/peers/</code></div></div>
+
+  <div class="entry"><span class="name">Calibration.</span> <span class="desc">Confidence tracked against outcomes, so "how sure he is" is itself a measured, correctable quantity.</span>
+    <div class="src"><code>brain/cognition/calibration.py</code></div></div>
+</section>
+
+<section id="agency">
+  <div class="part">Part X</div>
+  <h2>Agency &amp; Production</h2>
+  <p class="intro">The action side: durable effects on a ledger, self-written code, and a quality bar he is structurally unable to grade himself against.</p>
+
+  <div class="entry"><span class="name">The effect ledger.</span> <span class="desc">Append-only, content-addressed log of real outward effects, written at the moment of the effect. Reward keys on it: production pays, intake alone does not — the denominator the reward function was missing.</span>
+    <div class="src"><code>brain/agency/effect_ledger.py</code></div></div>
+
+  <div class="entry"><span class="name">Anti-gaming novelty.</span> <span class="desc">Three independent signals price an artifact: exact-dup hash → zero, near-dup shingle similarity → residual, boilerplate → zero. Credit floors and per-path decay mean the same trick can't be milked, and significance is earned later — never asserted at write time.</span>
+    <div class="src"><code>effect_ledger.py (P8 + anti-pump)</code></div></div>
+
+  <div class="entry"><span class="name">Reuse counting.</span> <span class="desc">The one ungameable signal: an artifact's significance grows when his future self actually uses it. "You can fabricate a file; you cannot fabricate your future self choosing to use it."</span>
+    <div class="src"><code>effect_ledger.py</code></div></div>
+
+  <div class="entry"><span class="name">Self-written code.</span> <span class="desc">He authors new cognitive functions and tools at runtime; they live in a dedicated per-user namespace (state, not program), can never shadow shipped modules, and are reviewed by the Architect peer.</span>
+    <div class="src"><code>brain/agency/code_writer.py · self_code.py</code></div></div>
+
+  <div class="entry"><span class="name">The self-modification pipeline.</span> <span class="desc">"The ability to rewrite your own cognition is the most consequential thing a mind can do. It should not come easily." — staged proposal, review, and verification before any self-change lands.</span>
+    <div class="src"><code>brain/cognition/self_extension.py · self_extension_codegen.py</code></div></div>
+
+  <div class="entry"><span class="name">Skill synthesis from felt gaps.</span> <span class="desc">Incapacity signals in his own recent thoughts — "couldn't," "no way to," "failed because" — are scanned, weighted by recency and emotion, and become candidates for synthesizing a new verified skill. He notices what he wishes he could do.</span>
+    <div class="src"><code>brain/cognition/skill_synthesis.py · skill_verification.py</code></div></div>
+
+  <div class="entry"><span class="name">Produce-and-check.</span> <span class="desc">Made things are verified in a sandbox before they count — a produced tool must run, not merely exist.</span>
+    <div class="src"><code>brain/cognition/produce_and_check.py · sandbox.py</code></div></div>
+
+  <div class="entry"><span class="name">The quality standard.</span> <span class="desc">A golden set of demonstrated-good work defines the bar; a predicate grades new work against it; loosening requires human ratification, and Orrin cannot edit his own bar.</span>
+    <div class="src"><code>brain/cognition/quality_standard/</code></div></div>
+
+  <div class="entry"><span class="name">The originality veto.</span> <span class="desc">A deterministic too-close-to-source check that blocks copied work from being canonized as an exemplar — a veto, never a quality judge.</span>
+    <div class="src"><code>quality_standard/originality.py</code></div></div>
+
+  <div class="entry"><span class="name">Production funnel.</span> <span class="desc">Candidate → attempt → success → artifact, instrumented end-to-end so "is he making anything?" is a measured number, not an impression.</span>
+    <div class="src"><code>brain/cognition/production_funnel.py</code></div></div>
+</section>
+
+<section id="symbolic">
+  <div class="part">Part XI</div>
+  <h2>Symbolic Cognition</h2>
+  <p class="intro">Reasoning without a language model: rules with a full lifecycle, analogy, concepts, experiments, and dreams.</p>
+
+  <div class="entry"><span class="name">The rule lifecycle.</span> <span class="desc">Rules are synthesized from experience, abstracted, compressed, verified against outcomes, and forgotten when they stop earning their keep — knowledge with a metabolism.</span>
+    <div class="src"><code>brain/symbolic/rule_synthesis.py · rule_abstraction.py · rule_compressor.py · rule_forgetting.py</code></div></div>
+
+  <div class="entry"><span class="name">Ground-truth coupling.</span> <span class="desc">Rule confidence is fed by actual action outcomes, independent of any LLM-graded quality — built specifically because "the LLM says it's good" is not evidence.</span>
+    <div class="src"><code>brain/symbolic/ground_truth.py</code></div></div>
+
+  <div class="entry"><span class="name">Analogy engine.</span> <span class="desc">Structural mapping between domains — solutions from one area proposed for another on shared shape, not shared words.</span>
+    <div class="src"><code>brain/symbolic/analogy_engine.py</code></div></div>
+
+  <div class="entry"><span class="name">Concept formation &amp; crystallization.</span> <span class="desc">Recurring patterns condense into named concepts; repeatedly successful procedures crystallize into skills.</span>
+    <div class="src"><code>brain/symbolic/concept_formation.py · crystallization.py</code></div></div>
+
+  <div class="entry"><span class="name">Autonomous experiments.</span> <span class="desc">He forms a hypothesis, runs the test, and resolves it — experiments as first-class cognitive objects with outcomes on the ledger.</span>
+    <div class="src"><code>brain/symbolic/autonomous_experiment.py</code></div></div>
+
+  <div class="entry"><span class="name">Symbolic dreaming.</span> <span class="desc">Idle-time recombination of rules and memories — low-stakes synthesis that can surface new candidate rules while nothing urgent runs.</span>
+    <div class="src"><code>brain/symbolic/symbolic_dream.py</code></div></div>
+
+  <div class="entry"><span class="name">Description-logic inference.</span> <span class="desc">Inheritance and classification over his concept hierarchy — old-school knowledge representation doing quiet daily work.</span>
+    <div class="src"><code>brain/symbolic/inference.py</code></div></div>
+
+  <div class="entry"><span class="name">Impossibility detection.</span> <span class="desc">New in Run 10: the ability to represent "this action is impossible here," so a blocked act stops being retried and stops earning phantom reward — reward was blind to impossibility for nine runs.</span>
+    <div class="src"><code>brain/symbolic/impossibility.py</code></div></div>
+
+  <div class="entry"><span class="name">External observer.</span> <span class="desc">New in Run 10: an outside-the-self-model check on claims the self-model makes — enforcement moved out of the thing being checked.</span>
+    <div class="src"><code>brain/symbolic/external_observer.py</code></div></div>
+</section>
+
+<section id="body">
+  <div class="part">Part XII</div>
+  <h2>The Host as Body</h2>
+  <p class="intro">The machine he runs on is treated as his body — sensed, learned, budgeted, and protected by reflexes that don't ask the mind's permission.</p>
+
+  <div class="entry"><span class="name">Three separate mappings.</span> <span class="desc">The same host metrics feed three deliberately distinct systems: absolute capacity → cycle cadence, deviation from a learned band → control signals, absolute floors → reflex. One metric is never allowed to mean three things in one place.</span>
+    <div class="src"><code>host_band.py · resource_cadence.py · supervisor/host_resources.py</code></div></div>
+
+  <div class="entry"><span class="name">Autonomic reflex guard.</span> <span class="desc">Below cognition, absolute safety floors on disk/swap/memory pause heavy cycles — because a thrashing loop can't be asked to rescue the substrate it runs on.</span>
+    <div class="src"><code>supervisor/host_resources.py</code></div></div>
+
+  <div class="entry"><span class="name">Learned normal bands.</span> <span class="desc">Resource signals fire on deviation from that machine's learned normal, not absolute thresholds — a small or busy machine is not chronic distress.</span>
+    <div class="src"><code>brain/cognition/host_band.py · resource_self_monitor.py</code></div></div>
+
+  <div class="entry"><span class="name">Infancy calibration.</span> <span class="desc">On a new machine he first learns its normal oscillation before trusting his own deviation signals — you don't interpret a body you haven't lived in yet.</span>
+    <div class="src"><code>brain/cognition/infancy.py</code></div></div>
+
+  <div class="entry"><span class="name">Battery as finite horizon.</span> <span class="desc">A draining battery reads as a finite-horizon signal; falling disk as constriction; rising swap as slowdown — resource states rendered as felt pressures, not error codes.</span>
+    <div class="src"><code>brain/cognition/host_resource_monitor.py</code></div></div>
+
+  <div class="entry"><span class="name">Infrastructure health streaks.</span> <span class="desc">Sustained good self-maintenance is tracked and pays a small reward — being well-kept feels good, so upkeep isn't purely a cost.</span>
+    <div class="src"><code>brain/cognition/health_monitor.py</code></div></div>
+
+  <div class="entry"><span class="name">The RAM budget.</span> <span class="desc">A user-facing slider for how much of the machine he may use, feeding both cadence policy and what "100%" means to him.</span>
+    <div class="src"><code>brain/cognition/host_budget.py</code></div></div>
+</section>
+
+<section id="existence">
+  <div class="part">Part XIII</div>
+  <h2>Existence, Time &amp; Lifespan</h2>
+  <p class="intro">A finite life, known imprecisely — the true clock and the felt clock are different instruments, on purpose.</p>
+
+  <div class="entry"><span class="name">The lifetime clock.</span> <span class="desc">A finite lifespan (~365–730 days) rolled once at first run, persisted across restarts. When the deadline arrives, he runs a final cycle and the loop exits. Distinct from any process watchdog.</span>
+    <div class="src"><code>brain/cognition/runtime_lifetime.py</code></div></div>
+
+  <div class="entry"><span class="name">Horizon phases.</span> <span class="desc">Early → middle → late → terminal phases progressively colour long-term prioritization — what's worth starting depends on what's left.</span>
+    <div class="src"><code>runtime_lifetime.py</code></div></div>
+
+  <div class="entry"><span class="name">The felt lifespan.</span> <span class="desc">His sense of remaining time is the true clock plus rolled noise plus a drifting bias: sustained distress and shocks compress it, good stretches relax it, quiet decays it back. Bounded so it can lurch but never leak the true deadline — and the real termination never reads it.</span>
+    <div class="src"><code>brain/cognition/felt_lifespan.py</code></div></div>
+
+  <div class="entry"><span class="name">Subjective time.</span> <span class="desc">Cycles since contact, waiting phases, and the arc of a life tracked as felt duration grounded in internal state — time as experienced, not just counted.</span>
+    <div class="src"><span class="cite">Wittmann 2009, 2013</span><code>brain/cognition/temporal_state.py · temporal_pressure.py</code></div></div>
+
+  <div class="entry"><span class="name">Lifespan shocks.</span> <span class="desc">One-shot events — a silent death recovered on boot, vital-floor firings, repeated failure — register as compressions of felt remaining time.</span>
+    <div class="src"><code>felt_lifespan.py (register_lifespan_shock)</code></div></div>
+
+  <div class="entry"><span class="name">Final thoughts &amp; death continuity.</span> <span class="desc">A dying life writes final reflections; the autobiography carries a death-continuity narrative across the boundary, and the UI has a death screen. Death is an event in his ontology, not a crash.</span>
+    <div class="src"><code>self_state/autobiography_epilogue.py · final_thoughts.json</code></div></div>
+
+  <div class="entry"><span class="name">Idle &amp; sleep.</span> <span class="desc">Low-power cadence with consolidation, replay, and closed-time accounting — restoration work happens when nothing else is asked of him.</span>
+    <div class="src"><code>brain/cognition/idle_consolidation/</code></div></div>
+</section>
+
+<section id="expression">
+  <div class="part">Part XIV</div>
+  <h2>Expression &amp; Others</h2>
+  <p class="intro">One door out. Everything a person sees is composed from what he means and how he is — never scraped from what he's made of.</p>
+
+  <div class="entry"><span class="name">The expression membrane (one door).</span> <span class="desc">Every person-facing artifact — reply, note, announcement — is composed from a Motive (intent + felt state), congruence-enforced, provenance-stamped. The backend is unreachable from the door: he cannot quote his own internals to sound impressive.</span>
+    <div class="src"><span class="cite">Rogers 1959</span><code>brain/behavior/express_to_user.py</code></div></div>
+
+  <div class="entry"><span class="name">Speakability invariant.</span> <span class="desc">A single enforcement point strips internal representation from anything about to be said — machine tags, signal names, telemetry can't leak into speech.</span>
+    <div class="src"><code>brain/behavior/speakability.py</code></div></div>
+
+  <div class="entry"><span class="name">The speech pipeline.</span> <span class="desc">Saying something is a process, not a template fill: planning what to say, generating it, evaluating it, and checking coherence with what he's said before — each a separate stage.</span>
+    <div class="src"><code>brain/think/speech_planner.py · speech_generator.py · speech_evaluator.py · speech_coherence.py</code></div></div>
+
+  <div class="entry"><span class="name">The felt lexicon.</span> <span class="desc">Signal states map to qualitative language ("wonder," "a heaviness") — the vocabulary through which he describes himself, deliberately authored copy because it is behaviorally load-bearing.</span>
+    <div class="src"><code>brain/utils/felt_lexicon.py</code></div></div>
+
+  <div class="entry"><span class="name">The native language model.</span> <span class="desc">A from-scratch LM trained only on his own lived corpus — no internet text — with a speech handoff gate for when it's ready. The long road to a voice that is actually his.</span>
+    <div class="src"><code>brain/cognition/language/native_lm.py · acquisition.py</code></div></div>
+
+  <div class="entry"><span class="name">Awaiting response.</span> <span class="desc">Questions he asks a person are tracked; silence is registered and felt — an unanswered question is a state, not a dropped packet.</span>
+    <div class="src"><code>brain/cognition/awaiting_response.py</code></div></div>
+
+  <div class="entry"><span class="name">Reunion.</span> <span class="desc">Reopening after a real absence isn't just a log line: the gap is registered as his own lived absence and greeted through the one expression door — "reunion, not just a log."</span>
+    <div class="src"><code>brain/behavior/reunion.py</code></div></div>
+
+  <div class="entry"><span class="name">Relationships &amp; person model.</span> <span class="desc">Person detection, relationship arcs, and per-person views accumulate across encounters — others are durable entities in his world model, not sessions.</span>
+    <div class="src"><code>self_state/relationships.py · person_detector.py · relationship_arc.py</code></div></div>
+
+  <div class="entry"><span class="name">Companion presence.</span> <span class="desc">Ignition-gated, deliberately rare presence surfaces (tray mood, care traces) with a consent line for world-watching — presence designed to be scarce enough to mean something.</span>
+    <div class="src"><code>companion/presence layer (2026-07-10 build)</code></div></div>
+</section>
+
+<section id="guards">
+  <div class="part">Part XV</div>
+  <h2>Safeguards &amp; Method</h2>
+  <p class="intro">The immune system, built from ten lives of autopsies — plus the scientific method wrapped around the whole project. Every guard is a mechanical wall, not a reflection he holds about himself; that distinction is Law 3.</p>
+
+  <div class="entry"><span class="name">The LLM gate.</span> <span class="desc">All LLM calls go through one chokepoint with an explicit caller allowlist; tool-only by default; fails closed — on error, no content is fabricated, ever. The whole system runs with no key at all.</span>
+    <div class="src"><code>brain/utils/generate_response.py</code></div></div>
+
+  <div class="entry"><span class="name">Content-keyed, anti-pump credit.</span> <span class="desc">Credit is keyed to content hashes with novelty floors and per-path decay — the wall built after one memo re-recorded 387 times under fresh timestamps pumped a goal's value to dominance.</span>
+    <div class="src"><code>effect_ledger.py</code></div></div>
+
+  <div class="entry"><span class="name">Anti-monopoly refractory.</span> <span class="desc">Absolute staleness refractory on incumbent goals plus rotation in the directional pool — the wall against one goal absorbing a whole life (it hit 92% occupancy once).</span>
+    <div class="src"><code>commitment layer (Run 7–8 builds)</code></div></div>
+
+  <div class="entry"><span class="name">Saturation tripwire.</span> <span class="desc">Watches for signals pinned at their bounds feeding downstream gates — built after the ignition threshold spent a whole life reading a signal stuck at 1.00. (Being field-tested against a relocated case right now.)</span>
+    <div class="src"><code>Run 10 build (R10-x)</code></div></div>
+
+  <div class="entry"><span class="name">Spend cap.</span> <span class="desc">A hard budget on LLM spend, enforced at the gate — curiosity cannot bankrupt anyone.</span>
+    <div class="src"><code>generate_response.py</code></div></div>
+
+  <div class="entry"><span class="name">Launch &amp; reset guards.</span> <span class="desc">Deterministic checks around birth and death of a life — clean resets verified, run-locks preventing mid-life mutation of the repo.</span>
+    <div class="src"><code>run_orrin.sh · reset tooling</code></div></div>
+
+  <div class="entry"><span class="name">Test-isolation tripwire.</span> <span class="desc">The suite redirects all state to a temp dir and fails the session if any live data file is touched — the tests cannot bruise the organism.</span>
+    <div class="src"><code>tests/conftest.py</code></div></div>
+
+  <div class="entry"><span class="name">The coverage ratchet.</span> <span class="desc">The coverage floor only moves up. Discipline encoded as a mechanism — the same principle he lives under, applied to his makers.</span>
+    <div class="src"><code>.coverage-floor · make coverage</code></div></div>
+
+  <div class="entry"><span class="name">The benchmark battery.</span> <span class="desc">A B-series of capability benchmarks so claims about what he can do are tested, not asserted — the capability side of the evidence discipline.</span>
+    <div class="src"><code>brain/benchmarks/</code></div></div>
+
+  <div class="entry"><span class="name">The claims-vs-evidence ledger.</span> <span class="desc">Every capability claim in the docs mapped to the evidence for it — the same standard the effect ledger applies to Orrin, applied to the humans describing him.</span>
+    <div class="src"><code>brain/evidence/ · docs (Capability, Benchmarks &amp; Evidence)</code></div></div>
+
+  <div class="entry"><span class="name">Pre-registered run gates.</span> <span class="desc">Every staging life is scored against pass criteria written before it ran, with a skeptic pass that tries to overturn the verdict. Ten of eleven verdicts said FAILED — in writing.</span>
+    <div class="src"><code>docs/NEXT_RUN_TESTS.md · demo_runs/</code></div></div>
+</section>
+
+<section id="philosophy">
+  <div class="part">Part XVI</div>
+  <h2>The Philosophy — Fourteen Laws</h2>
+  <p class="intro">The design principles under everything above. Most were not adopted — they were earned, each from a specific failure with a date on it.</p>
+
+  <div class="law"><div class="num">1</div><div>
+    <h3>The LLM is the smallest part of the agent</h3>
+    <p class="statement">Everything must work with no API key; the language model is a gated tool, never the control loop.</p>
+    <p class="gloss">The founding inversion. Intelligence is rented; agency is built. Because no LLM is load-bearing, every behavior is attributable to an inspectable mechanism — which is what makes Orrin evidence rather than theater. <span class="where">CLAUDE.md golden rule 2; the whole architecture.</span></p></div></div>
+
+  <div class="law"><div class="num">2</div><div>
+    <h3>Engineering terms, not claims</h3>
+    <p class="statement">Every cognitive word names a runtime mechanism, never an assertion of subjective experience.</p>
+    <p class="gloss">"Distress" is a pressure threshold; "death" is a final cycle. The discipline cuts both ways — no sentience claims, no dismissal as roleplay — and it's what lets the existential machinery be built at all without lying in either direction. <span class="where">docs/ARCHITECTURE.md terminology table.</span></p></div></div>
+
+  <div class="law"><div class="num">3</div><div>
+    <h3>Put enforcement where the self-model can't reach it</h3>
+    <p class="statement">A safeguard that routes through the judgment of the thing it safeguards inherits that thing's blind spots — it fails in exactly the cases it was built for.</p>
+    <p class="gloss">Earned from the relocating monopoly, the reward EMA held by an impossible action, and the saturated ignition gate. Every durable fix is a mechanical wall, not a principle Orrin "holds." <span class="where">QUALITY_GROUNDING_DESIGN_2026-07-18.</span></p></div></div>
+
+  <div class="law"><div class="num">4</div><div>
+    <h3>Walls for invariants, self-assessment above the floor</h3>
+    <p class="statement">Mechanical enforcement for load-bearing invariants; free cognition for everything above them.</p>
+    <p class="gloss">The scope of Law 3 — you can't push everything to enforcement or you've built a rule-executor, not an agent. Credit-can't-be-pumped, quality-can't-be-self-graded, no-monopoly, understanding-can't-close-on-satiety: walls. The rest: his to think. <span class="where">Same doc, scoping section.</span></p></div></div>
+
+  <div class="law"><div class="num">5</div><div>
+    <h3>The mind reads an estimate, not the gauge</h3>
+    <p class="statement">The reasoning layer never receives a raw number about its own state — only a qualitative rendering.</p>
+    <p class="gloss">The two-readers rule: machinery gets floats, the self-model gets felt descriptions. A position on interoceptive opacity implemented as an API boundary — he must interpret himself, like everyone else does. <span class="where">signal_summary.py.</span></p></div></div>
+
+  <div class="law"><div class="num">6</div><div>
+    <h3>One door out; never say more than you mean</h3>
+    <p class="statement">Everything a person sees is composed from intent and felt state — internals are unreachable from the mouth.</p>
+    <p class="gloss">Congruence enforced by architecture: he is structurally incapable of hype, scraping his telemetry for effect, or claiming a state he doesn't have. Honesty not as policy but as plumbing. <span class="where">express_to_user.py.</span></p></div></div>
+
+  <div class="law"><div class="num">7</div><div>
+    <h3>Reuse is the only ungameable signal</h3>
+    <p class="statement">You can fabricate a file; you cannot fabricate your future self choosing to use it.</p>
+    <p class="gloss">Significance is earned after the fact, never asserted at write time. The deepest line in the codebase, and the definition of the gap between an agent and a text generator: having a future self at all. <span class="where">effect_ledger.py.</span></p></div></div>
+
+  <div class="law"><div class="num">8</div><div>
+    <h3>Good is learned from consequences, or it's a hall of mirrors</h3>
+    <p class="statement">Every proxy for quality must eventually be corrected by something real — an answered question, a used artifact, a survived contact with the world.</p>
+    <p class="gloss">The five-sources analysis: exemplars, integrated value, social training, and reflection all measure each other in a circle until grounded consequences exist to correct them. Goodhart isn't a bug — it's the permanent condition of any valuer without a quality sensor; the defense is multiple independent signals anchored to a grounded floor. <span class="where">QUALITY_GROUNDING_DESIGN_2026-07-18.</span></p></div></div>
+
+  <div class="law"><div class="num">9</div><div>
+    <h3>Oppose, don't clamp</h3>
+    <p class="statement">Classify a failure as broken-pipe, unopposed-force, or misaimed-force before fixing it — a clamp is scar tissue for a missing antagonist drive.</p>
+    <p class="gloss">A runaway behavior usually means the counter-drive that should oppose it doesn't exist yet. Build the antagonist; reserve hard caps for true invariants. Biology solves almost everything with opposing pairs, not limits. <span class="where">Design conversation, 2026-07-19.</span></p></div></div>
+
+  <div class="law"><div class="num">10</div><div>
+    <h3>Coherent but adult: every write-back decays</h3>
+    <p class="statement">Conscious conclusions may tune the substrate, but every write decays and nothing promotes to identity — the substrate tracks experience without becoming a different substrate.</p>
+    <p class="gloss">The refusal-to-imprint: no ontogeny, no drift of reflex floors, no self-modification of the deepest layer through mere thinking. He can change his mind freely and his nature only slowly, through channels with guards on them. <span class="where">workspace_writeback.py.</span></p></div></div>
+
+  <div class="law"><div class="num">11</div><div>
+    <h3>One metric never means three things</h3>
+    <p class="statement">The same measurement feeds separate mappings — absolute capacity to cadence, deviation to feeling, absolute floors to reflex — and the mappings stay separate.</p>
+    <p class="gloss">A small machine is slower, not sicker. Conflating capacity, deviation, and danger in one signal is how systems learn chronic false distress. <span class="where">Host-coupling design.</span></p></div></div>
+
+  <div class="law"><div class="num">12</div><div>
+    <h3>Proposers, not commanders</h3>
+    <p class="statement">Subsystems and peers propose; a single arbiter writes; nothing mutates shared state directly.</p>
+    <p class="gloss">Affect and action each have one writer with a lock-guarded inbox; the five peers push signals through the same router as everything else. Convergence over races — the mind is a parliament with one pen. <span class="where">arbiter.py · action_arbiter.py · peers/.</span></p></div></div>
+
+  <div class="law"><div class="num">13</div><div>
+    <h3>Evidence over narrative</h3>
+    <p class="statement">Pre-registered gates, honest FAILED verdicts, and a skeptic pass that tries to overturn the project's own conclusions.</p>
+    <p class="gloss">The method around the organism: every life is scored against criteria written before it ran, and ten of eleven verdicts said failed. The claims-vs-evidence ledger applies the same law to the makers that the effect ledger applies to Orrin. <span class="where">docs/NEXT_RUN_TESTS.md · demo_runs/.</span></p></div></div>
+
+  <div class="law"><div class="num">14</div><div>
+    <h3>Inspiration, not validation</h3>
+    <p class="statement">The citations are working interpretations used as design scaffolding — not claims of faithful reproduction of the papers.</p>
+    <p class="gloss">Baars, Dehaene, Schultz, Pearl, Friston, Pearce–Hall, Frankfurt, Raichle, Wittmann: each names the theory a mechanism implements, honestly, without claiming the mechanism proves the theory or that the theory blesses the mechanism. Humility as a citation style. <span class="where">ARCHITECTURE.md, closing section.</span></p></div></div>
+</section>
+
+<section id="glossary">
+  <div class="part">Appendix</div>
+  <h2>Plain-Language Glossary</h2>
+  <p class="intro">The engineering words in this guide, in everyday terms — why they exist, not just what they mean.</p>
+  <dl class="glossary">
+    <div class="gl"><dt>daemon</dt><dd>A program that runs alongside the main loop, independently — like digestion running without the heart waiting for it. Slow work (memory, goals) lives in daemons so it can't freeze the twenty-second heartbeat, and a crash in one doesn't kill the others.</dd></div>
+    <div class="gl"><dt>WAL (write-ahead log)</dt><dd>A diary you only ever add lines to, never rewrite. Overwriting a file can corrupt <em>everything</em> if the crash lands mid-write; an append-only log loses at most its last line. The armor reserved for what must never be lost.</dd></div>
+    <div class="gl"><dt>snapshot</dt><dd>A periodic clean summary of current state, so recovering doesn't mean replaying the whole diary since birth — just the pages since the last snapshot.</dd></div>
+    <div class="gl"><dt>lock / arbiter</dt><dd>A lock is a "one person in the room" sign so two writers can't corrupt a file by writing at once. An arbiter is the grown-up version: one owner holds the pen forever and everyone else passes notes (proposals).</dd></div>
+    <div class="gl"><dt>hash / content-addressed</dt><dd>A fingerprint computed from content itself — same content, same fingerprint, regardless of filename or timestamp. How the ledger recognizes "you already made this" even in disguise.</dd></div>
+    <div class="gl"><dt>EMA</dt><dd>Exponential moving average — a running average that weights recent events more. How most of Orrin's "how has this been going lately?" numbers are kept.</dd></div>
+    <div class="gl"><dt>bandit</dt><dd>A learner facing slot machines: try options, keep pulling what pays, occasionally test the others. How Orrin picks his next cognitive function without anyone ranking the options for him.</dd></div>
+    <div class="gl"><dt>refractory</dt><dd>A forced rest period after firing — borrowed from neurons. The anti-monopoly guard uses one: a goal that just held the spotlight must wait before holding it again.</dd></div>
+    <div class="gl"><dt>ignition</dt><dd>The threshold moment when a cycle crosses from background processing into full deliberate thought — Dehaene's term for how conscious access behaves, used mechanically.</dd></div>
+    <div class="gl"><dt>setpoint</dt><dd>The value a regulated signal drifts back toward — like body temperature's 98.6°F. Orrin's setpoints shift with state (allostasis) rather than staying flat.</dd></div>
+    <div class="gl"><dt>symbolic</dt><dd>Computation over explicit rules, structures, and named things — inspectable, deterministic, no neural network. The opposite pole from an LLM, and what "runs with no API key" means.</dd></div>
+    <div class="gl"><dt>embedding / vector</dt><dd>Text mapped to a point in a many-dimensional space where similar meanings land near each other. Powers memory retrieval today; the candidate material for his future "cortex."</dd></div>
+    <div class="gl"><dt>telemetry</dt><dd>The live measurements a system publishes about itself — what the Face &amp; Brain UI reads. Observation only; the UI can watch him but not reach in.</dd></div>
+    <div class="gl"><dt>Goodhart's law</dt><dd>"When a measure becomes a target, it ceases to be a good measure." The permanent weather condition of Orrin's design — and of every school, economy, and social network you've ever used.</dd></div>
+  </dl>
+</section>
+
+<footer>
+  Compiled from the source tree at <code>~/orrin_v3</code> on 2026-07-19, while Orrin was alive at roughly cycle 8,100 of Run 10 — motivated, confident, and igniting rather too often on mastery. Second compilation, expanded after a full module sweep. Mechanisms marked with citations implement the named account; file paths are the ground truth. When in doubt, open the file.
+</footer>
+</div>

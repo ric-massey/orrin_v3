@@ -1,0 +1,11 @@
+What I learned about my own mind and how I work more deeply:
+
+- [Chunk: [metacog/pattern] Goal avoidance: 14 consecutive cycles without taking action on 'Understand my own mind and how I work… / [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Understand my own mind and how I work…]
+- I found something in the goal-tracking system outside me and external data that relates to 'Understand my own mind and how I work more deeply':
+  In the goal-tracking system outside me: "name": "Understand my own mind and how I work more deeply",
+  In external data: "situation": "Goal avoidance: 5 consecutive cycles without taking action on 'Understand my own mind and how I work more 
+  (and 15 mo
+- [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Make things — produce work that didn't exist before'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 31 consecutive cycles without taking action on 'Make things — produce work that… / [metacog/pattern] Goal avoidance: 29 consecutive cycles without taking action on 'Make things — produce work that…]
+- [Chunk: [metacog/pattern] Goal avoidance: 27 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 19 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.

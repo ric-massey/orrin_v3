@@ -198,10 +198,42 @@ def run_maintenance_tier(context: Context) -> Context:
                     if not _sated:
                         _g.pop("_sated_since_cycle", None)  # drive un-quenched → reset watchdog clock
                         continue
+                    # F-LN4a/4b: the sweep is the SECOND satiety-close site — it
+                    # must stamp the epistemic close-out BEFORE the archive write
+                    # inside mark_goal_completed, and honour the same
+                    # understanding-can't-close-unanswered wall as pursue_goal
+                    # (otherwise the sweep is a back door around the wall).
+                    _answered = None
+                    try:
+                        from brain.cognition.epistemic_closeout import stamp_closeout
+                        _answered = stamp_closeout(_g)
+                    except Exception as _e:
+                        record_failure("maintenance.satiety.closeout", _e)
+                    if _answered is False:
+                        from brain.cognition.planning.goal_closure import _EPISTEMIC_BLOCK_MAX
+                        _blocks = int(_g.get("_epistemic_blocks", 0) or 0)
+                        if _blocks < _EPISTEMIC_BLOCK_MAX:
+                            _g["_epistemic_blocks"] = _blocks + 1
+                            goal_arbiter.apply(
+                                (lambda _gg: (lambda _t: merge_updated_goal_into_tree(_t, _gg)))(_g),
+                                source="maintenance.epistemic_block",
+                            )
+                            log_activity(
+                                f"[epistemic] sweep satiety close of "
+                                f"'{(_g.get('title') or '?')[:50]}' BLOCKED "
+                                f"({_blocks + 1}/{_EPISTEMIC_BLOCK_MAX}) — question unanswered."
+                            )
+                            continue
                     # Route the sweep through the SAME satiety gate as the pursuit path
                     # (satiety_close=True), so P1's effect requirement applies to both
                     # close sites and they can't diverge on what "sated" allows.
                     mark_goal_completed(_g, context=context, satiety_close=True)
+                    if _g.get("status") == "completed" and _answered is False:
+                        try:
+                            from brain.cognition.epistemic_closeout import spawn_followup_goal
+                            spawn_followup_goal(_g)
+                        except Exception as _e:
+                            record_failure("maintenance.satiety.followup", _e)
                     if _g.get("status") == "completed":
                         goal_arbiter.apply(
                             (lambda _gg: (lambda _t: merge_updated_goal_into_tree(_t, _gg)))(_g),

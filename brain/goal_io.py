@@ -256,6 +256,17 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
     copies so the loop's per-cycle edits don't corrupt the tree."""
     tree = _load_v1_tree()
     found: List[Dict[str, Any]] = []
+    # F-LN6: the committable cut is the FIRST gate on the handoff chain — a
+    # research goal skipped here never reaches sync/daemon. Log the decision
+    # (change-dedup'd) for every research-capable node so the starvation cause
+    # is named from evidence, not guessed.
+    from brain.utils.handoff_log import log_handoff
+
+    def _note(n: Dict[str, Any], decision: str, reason: str) -> None:
+        if str(n.get("kind") or "").lower() == "research":
+            log_handoff("committable_from_v1_tree",
+                        str(n.get("title") or n.get("name") or "?"),
+                        "research", decision, reason)
 
     def walk(nodes: Any) -> None:
         for n in nodes or []:
@@ -285,6 +296,11 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
                     and status not in _V1_TERMINAL
                     and committable_tier):
                 found.append(n)
+            elif name and n.get("name") != _BUCKET_NAME:
+                if status not in _COMMITTABLE_STATUSES or status in _V1_TERMINAL:
+                    _note(n, "skipped", f"status {status!r} not committable")
+                elif not committable_tier:
+                    _note(n, "skipped", f"tier {tier!r} non-committable")
             walk(n.get("subgoals"))
 
     walk(tree)
@@ -294,8 +310,18 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
     # tier+priority stable-sort that let one directional goal hold the driver
     # slot 99.9 % of Run 5 with no path to let go.
     from brain.cognition.planning.commitment_value import order_committable
-    return order_committable(found, tier_weight_fn=_tier_weight,
-                             priority_rank_fn=_priority_rank, limit=limit)
+    ordered = order_committable(found, tier_weight_fn=_tier_weight,
+                                priority_rank_fn=_priority_rank, limit=limit)
+    # F-LN6: the ordering cut — a research goal can be committable yet always
+    # ranked out of the limit; that too must be visible in the decision log.
+    def _key(g: Dict[str, Any]) -> str:
+        return str(g.get("id") or g.get("title") or g.get("name") or "")
+
+    chosen = {_key(g) for g in ordered}
+    for g in found:
+        _note(g, "committed" if _key(g) in chosen else "ordered_out",
+              f"limit {limit}, pool {len(found)}")
+    return ordered
 
 
 def _reconcile_open_v2_into_v1(api) -> None:
@@ -376,12 +402,19 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
     if not proposed:
         return
 
+    # F-LN6: every decision on the brain→daemon handoff is written down —
+    # Run 10's daemon lane starved with no record of WHY goals didn't queue.
+    from brain.utils.handoff_log import log_handoff
+
     # Drop entries that exceeded max retry attempts (prevents unbounded growth).
     fresh: List[Dict[str, Any]] = []
     for g in proposed:
         if int(g.get("_sync_attempts") or 0) >= _MAX_SYNC_ATTEMPTS:
             record_failure("goal_io.goal_dropped",
                            ValueError(f"goal {str(g.get('title','?'))[:50]!r} dropped after max sync attempts"))
+            log_handoff("sync_proposed_goals", str(g.get("title") or "?"),
+                        str(g.get("kind") or ""), "dropped",
+                        f"max sync attempts ({_MAX_SYNC_ATTEMPTS})")
         else:
             fresh.append(g)
     if not fresh:
@@ -396,6 +429,9 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
     except Exception as _e:
         # API down — keep proposals for retry rather than risk duplicate submission.
         _log.warning("[goal_io] list_goals failed (%s); deferring sync pass", _e)
+        for g in fresh:
+            log_handoff("sync_proposed_goals", str(g.get("title") or "?"),
+                        str(g.get("kind") or ""), "deferred", f"v2 API down: {_e}")
         context["proposed_goals"] = fresh
         return
 
@@ -415,6 +451,8 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                     # Already in v2 — adopt its id onto the source node so this
                     # proposal joins the one canonical thread instead of forking.
                     gd["id"] = existing[title]
+                    log_handoff("sync_proposed_goals", title, kind,
+                                "adopted_existing", f"v2 already holds {existing[title]}")
                     continue
                 try:
                     from brain.cognition.planning.goal_comprehension import hydrate_goal_model
@@ -459,9 +497,29 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                     src["id"] = created.id   # stamp the live proposal node
                     gd["id"] = created.id
                     existing[title] = created.id
-            # cognitive/internal goals have no v2 handler — left for v1 memory paths
-        except Exception:
+                    log_handoff("sync_proposed_goals", title, kind,
+                                "queued", f"v2 created {created.id}")
+                    # F-LN7: funnel stage 3 — a making goal reached the explicit
+                    # produce handoff (queued to the producing lane).
+                    if gd.get("requires_artifact") or spec.get("requires_artifact"):
+                        try:
+                            from brain.cognition.production_funnel import record_once as _pf_once
+                            _pf_once("handoff", str(created.id))
+                        except Exception:  # intentional: funnel is best-effort
+                            pass
+                else:
+                    log_handoff("sync_proposed_goals", title, kind,
+                                "create_returned_none", "api.create_goal gave no id")
+            else:
+                # cognitive/internal goals have no v2 handler — left for v1 memory
+                # paths. Logged so a research-CAPABLE goal mis-kinded as cognitive
+                # is visible instead of silently never reaching the daemon.
+                log_handoff("sync_proposed_goals", title, kind,
+                            "not_executable", f"kind {kind!r} has no v2 handler")
+        except Exception as _sync_exc:
             gd["_sync_attempts"] = int(gd.get("_sync_attempts") or 0) + 1
+            log_handoff("sync_proposed_goals", title, kind, "sync_error_retry",
+                        f"attempt {gd['_sync_attempts']}/{_MAX_SYNC_ATTEMPTS}: {_sync_exc}")
             if gd["_sync_attempts"] < _MAX_SYNC_ATTEMPTS:
                 remaining.append(gd)
     context["proposed_goals"] = remaining

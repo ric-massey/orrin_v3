@@ -43,9 +43,18 @@ def _is_understanding_goal(goal: Dict[str, Any]) -> bool:
             or bool(goal.get("question")))
 
 
+# A question already written INTO the goal's own prose (description/DoD) — the
+# most content-faithful derivation there is.
+_EMBEDDED_QUESTION_RE = re.compile(
+    r"((?:What|How|Why|When|Where|Who|Which)\b[^.?!]{6,120}\?)"
+)
+
+
 def question_for(goal: Dict[str, Any]) -> str:
     """The concrete question this goal must answer. Prefers the stored question;
-    otherwise derives one from the title/subject."""
+    otherwise derives one from the goal's OWN content (description, DoD,
+    milestones) — F-LN4c: all 10 Run-10 stamps were the same 'What is not
+    obvious about X?' template because this fallback ignored the goal body."""
     q = str(goal.get("question") or "").strip()
     if q:
         return q
@@ -54,9 +63,22 @@ def question_for(goal: Dict[str, Any]) -> str:
         for cand in spec.get("queries", []) or []:
             if "?" in str(cand):
                 return str(cand).strip()
+    # A question sentence the goal itself carries is the real gap.
+    for field in (goal.get("description"),
+                  (spec or {}).get("definition_of_done") if isinstance(spec, dict) else None):
+        m = _EMBEDDED_QUESTION_RE.search(str(field or ""))
+        if m:
+            return m.group(1).strip()
     title = str(goal.get("title") or goal.get("name") or "").strip()
     subj = re.sub(r"(?i)^understand\s+|\s+more deeply\s*$", "", title).strip()
-    return f"What is not obvious about {subj}?" if subj else ""
+    if not subj:
+        return ""
+    # Last resort: interrogate the goal's own success criterion, not a fixed shape.
+    ms = [m for m in (goal.get("milestones") or []) if isinstance(m, dict)]
+    ms_text = str(ms[0].get("text") or "").strip(" .") if ms else ""
+    if ms_text:
+        return f"What did I find about {subj} that makes '{ms_text[:70]}' true?"
+    return f"What do I now know about {subj} that I could not have said before?"
 
 
 def _subject_terms(question: str) -> List[str]:
@@ -110,6 +132,48 @@ def score_answer(question: str, artifact_text: str) -> Tuple[bool, str]:
         if len(s) >= 40 and (not terms or any(t in s.lower() for t in terms)):
             return (True, s[:280])
     return (True, body[:280])
+
+
+def spawn_followup_goal(goal: Dict[str, Any]) -> bool:
+    """F-LN4b: when an understanding goal finally closes with its question NOT
+    answered, the question survives as a NEW goal instead of being eaten by the
+    satiety close. Returns True if a follow-up was actually added (add_goal's
+    live-title-twin dedup may absorb it into an existing node). Never raises."""
+    try:
+        question = str(goal.get("question") or "").strip()
+        if not question:
+            return False
+        from brain.cognition.intrinsic_helpers import _mk_goal
+        from brain.cognition.planning.goal_store import add_goal
+        kind = str(goal.get("kind") or "generic")
+        is_research = kind == "research"
+        followup = _mk_goal(
+            f"Answer: {question[:90]}",
+            f"My goal '{str(goal.get('title') or '?')[:60]}' closed without answering "
+            f"its own question: '{question}'. Answer THAT question specifically — not "
+            f"the topic in general — and write the answer to long memory.",
+            driven_by=str(goal.get("driven_by") or "world_knowledge"),
+            milestones=[f"An answer to '{question[:60]}' was found.",
+                        "The answer was written to long memory."],
+            kind=kind if is_research else "generic",
+            requires_artifact=bool(is_research),
+            spec={"queries": [question], "synth_kind": "memo"} if is_research else None,
+            question=question,
+        )
+        # Lineage for G2's answer-changed-a-decision tracing.
+        if goal.get("id"):
+            followup["parent_question_goal"] = str(goal["id"])
+        added = add_goal(followup)
+        try:
+            from brain.utils.log import log_activity
+            log_activity(f"[epistemic] question survived the close — follow-up goal "
+                         f"'{str(added.get('title') or '?')[:70]}' carries it.")
+        except Exception as _le:
+            record_failure("epistemic_closeout.spawn_followup.log", _le)
+        return True
+    except Exception as exc:
+        record_failure("epistemic_closeout.spawn_followup_goal", exc)
+        return False
 
 
 def stamp_closeout(goal: Dict[str, Any]) -> Optional[bool]:

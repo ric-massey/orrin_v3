@@ -27,6 +27,11 @@ _log = get_logger(__name__)
 # the same goal closing twice across its in-flight dict copies.
 _FINALIZED_IDS: Dict[str, float] = {}
 
+# F-LN4b — how many satiety-close attempts an understanding goal with an
+# UNANSWERED question can block before the close proceeds and the question is
+# handed to a follow-up goal instead (the want persists; the goal doesn't loop).
+_EPISTEMIC_BLOCK_MAX = 2
+
 
 def _tier_closure_enabled() -> bool:
     """Flag gate (house pattern). OFF ⇒ legacy plan-completion gate only.
@@ -212,6 +217,37 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
     try:
         from brain.cognition.planning.goals import mark_goal_completed, merge_updated_goal_into_tree
         from brain.cognition.planning import goal_arbiter
+        # F-LN4a (Run 10): epistemic close-out stamps BEFORE mark_goal_completed —
+        # the comp_goals archive append lives inside it, so stamping afterwards
+        # left every scored record without question/answered (all 10 Run-10
+        # close-out fires stamped an already-archived dict).
+        answered: Optional[bool] = None
+        try:
+            from brain.cognition.epistemic_closeout import stamp_closeout
+            answered = stamp_closeout(goal)
+        except Exception as _ee:
+            record_failure("pursue_goal.epistemic_closeout", _ee)
+        # F-LN4b — the understanding-can't-close-on-satiety wall (rung 1). An
+        # unanswered question blocks the satiety-close so pursuit keeps working
+        # the actual gap; after _EPISTEMIC_BLOCK_MAX blocked attempts the close
+        # proceeds but the question survives as a follow-up goal (spawned below)
+        # — opposed, not clamped: the want persists until answered.
+        if answered is False and reason.startswith("satiety"):
+            _blocks = int(goal.get("_epistemic_blocks", 0) or 0)
+            if _blocks < _EPISTEMIC_BLOCK_MAX:
+                goal["_epistemic_blocks"] = _blocks + 1
+                if _gid:
+                    _FINALIZED_IDS.pop(_gid, None)   # not closed — stay closeable
+                try:
+                    goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                                       source="pursue_goal.epistemic_block")
+                except Exception as _e:
+                    record_failure("pursue_goal.epistemic_block.persist", _e)
+                log_activity(
+                    f"[epistemic] satiety close of '{goal_title[:50]}' BLOCKED "
+                    f"({_blocks + 1}/{_EPISTEMIC_BLOCK_MAX}) — its question is not "
+                    f"answered yet: {str(goal.get('question') or '')[:80]}")
+                return
         # completion_signal fires BEFORE mark_goal_completed so the achievement is
         # attributed to THIS goal, not the next one spawned by the continuity hook
         # inside mark_goal_completed (Berridge 1996 — liking at arrival).
@@ -231,17 +267,22 @@ def _finalize_goal_completion(goal: Dict[str, Any], goal_title: str,
         # mark_goal_completed refuses hollow completion (goals.py:575). Only persist
         # and clear the slot if the close actually took.
         if goal.get("status") != "completed":
+            # A refused close must stay closeable: leaving the id in
+            # _FINALIZED_IDS made every later attempt short-circuit to
+            # "already done" on a copy that was never archived.
+            if _gid:
+                _FINALIZED_IDS.pop(_gid, None)
             log_activity(f"[pursue_goal] '{goal_title}': close ({reason}) blocked — "
                          f"objective not met; continuing to pursue.")
             return
-        # R10-12: epistemic close-out — stamp an understanding goal with whether
-        # the artifact actually answered its question (scored before the tree
-        # merge so the fields persist). Non-understanding goals are untouched.
-        try:
-            from brain.cognition.epistemic_closeout import stamp_closeout
-            stamp_closeout(goal)
-        except Exception as _ee:
-            record_failure("pursue_goal.epistemic_closeout", _ee)
+        # F-LN4b, second arm: the goal is genuinely closed but its question is
+        # not — hand the question to a follow-up goal so the gap survives.
+        if answered is False:
+            try:
+                from brain.cognition.epistemic_closeout import spawn_followup_goal
+                spawn_followup_goal(goal)
+            except Exception as _ee:
+                record_failure("pursue_goal.epistemic_followup", _ee)
         goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
                            source="pursue_goal.completion")
         context["committed_goal"] = None

@@ -78,14 +78,27 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
         cands.sort(key=lambda t: t[1], reverse=True)
         cands = cands[:16]
         scored: List = []
+        gap_by_name: Dict[str, float] = {}
         for name, relevance, conf in cands:
             try:
                 from brain.symbolic.intrinsic_motivation import uncertainty as _uncertainty
                 gap = float(_uncertainty(name))          # 0=fully covered, 1=unknown
             except Exception:
                 gap = max(0.0, 1.0 - 0.8 * conf)         # fallback: low conf = bigger gap
+            gap_by_name[name] = gap
             scored.append((name, relevance * (0.2 + 0.8 * gap)))
         chosen = _weighted_sample(scored, limit)
+
+        # F-LN4c: the question names the concept's own measured gap tier, not one
+        # fixed template — Run 10's ten identical "What is not obvious about X?"
+        # stamps made close-out scoring shape-blind.
+        def _deepening_question(name: str) -> str:
+            gap = gap_by_name.get(name, 0.5)
+            if gap > 0.7:
+                return f"What actually is {name}, beyond the mentions I keep seeing?"
+            if gap > 0.4:
+                return f"What about {name} do I still not understand?"
+            return f"What did I get wrong or oversimplify about {name}?"
         return [
             _mk_goal(
                 f"Understand {name} more deeply",
@@ -103,7 +116,7 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                                   f"what is not obvious about {name}"],
                       "synth_kind": "memo"},
                 # R10-12: the concrete question this deepening goal must answer.
-                question=f"What is not obvious about {name}?",
+                question=_deepening_question(name),
             )
             for name in chosen
         ]
@@ -118,6 +131,21 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
 _QUESTION_RE = re.compile(
     r"\b((?:What|How|Why|When|Where|Who|Which|Is|Are|Do|Does|Can|Could|Should|Would)\b[^.?!]{6,98}\?)"
 )
+
+# F-LN3 (Run 10): a question whose subject is Orrin himself has no web answer —
+# it belongs to the introspection path (own memory / history / felt states),
+# never to a kind="research" goal that plans web queries and fails. This is the
+# subject test the router uses; the Thought Object (T1) supersedes it with real
+# provenance when it lands.
+_SELF_REF_RE = re.compile(
+    r"\b(i|me|my|myself|my own|orrin)\b|"
+    r"\b(you think|do you|would you|could you)\b",   # rhetorical/addressed-to-someone
+    re.IGNORECASE,
+)
+
+
+def _is_self_referential_question(q: str) -> bool:
+    return bool(_SELF_REF_RE.search(q))
 
 
 def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3) -> List[Dict]:
@@ -135,9 +163,15 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
                 str(entry.get("event_type") or "").startswith("user")
                 or str(entry.get("agent") or "").lower() == "user"):
             continue
+        # F-LN1 (Run 10 LN-1): an unanswered_question record is Orrin's OWN
+        # outbound question (his "What do you think?" sign-off) — mining it back
+        # as an open question is a source-monitoring error. Symmetric with the
+        # [input/ skip below: neither side of a conversation is a research gap.
+        if isinstance(entry, dict) and str(entry.get("event_type") or "") == "unanswered_question":
+            continue
         text = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
-        if text.startswith("[input/"):
-            continue   # comprehension's structured record of what the user said
+        if text.startswith("[input/") or text.startswith("[unanswered_question]"):
+            continue   # structured records of the conversation, not open gaps
         if "?" not in text:
             continue
         for m in _QUESTION_RE.finditer(text):
@@ -148,19 +182,38 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
             if _live_user and low in _live_user:
                 continue   # F7: verbatim user speech is not Orrin's open question
             seen.add(low)
-            # Title is noun-phrased ("Open question: …") so it survives the
-            # _acceptable_goal_subject title-filter in _varied_symbolic_goal — a
-            # leading imperative ("Find out: …") is rejected there as a verb-phrase.
-            out.append(_mk_goal(
-                f"Open question: {q}",
-                f"This question surfaced: '{q}'. Investigate it with research/search/fetch "
-                f"and write what I find to long memory.",
-                driven_by="world_knowledge",
-                milestones=[f"Investigated: {q[:50]}", "A finding was written to long memory."],
-                # AR2: a genuine open question is web research — v2 handler kind.
-                kind="research", requires_artifact=True,
-                spec={"queries": [q], "synth_kind": "memo"},
-            ))
+            # F-LN3: ROUTE by subject, don't filter. A self-referential question
+            # is a real gap, but its answer lives in his own memory/history —
+            # build it as an introspective generic goal (the _tension_goals
+            # pattern), never a web-research goal that plans dead queries.
+            if _is_self_referential_question(q):
+                out.append(_mk_goal(
+                    f"Reflect on my open question: {q[:80]}",
+                    f"I keep wondering: '{q}'. The subject is me, so the answer is in "
+                    f"my own memory and history, not on the web — recall what I know, "
+                    f"weigh it, and write the reflection to long memory.",
+                    driven_by="self_exploration",
+                    milestones=[f"Reflected on: {q[:50]}",
+                                "A reflection was written to long memory."],
+                    question=q,
+                ))
+            else:
+                # Title is noun-phrased ("Open question: …") so it survives the
+                # _acceptable_goal_subject title-filter in _varied_symbolic_goal — a
+                # leading imperative ("Find out: …") is rejected there as a verb-phrase.
+                out.append(_mk_goal(
+                    f"Open question: {q}",
+                    f"This question surfaced: '{q}'. Investigate it with research/search/fetch "
+                    f"and write what I find to long memory.",
+                    driven_by="world_knowledge",
+                    milestones=[f"Investigated: {q[:50]}", "A finding was written to long memory."],
+                    # AR2: a genuine open question is web research — v2 handler kind.
+                    kind="research", requires_artifact=True,
+                    spec={"queries": [q], "synth_kind": "memo"},
+                    # F-LN4a: the mined question IS the goal's question — stamp it at
+                    # creation so close-out scores against the real gap, not a template.
+                    question=q,
+                ))
             if len(out) >= limit:
                 return out
     return out
@@ -371,6 +424,10 @@ def _autobiographical_continuity_goals(limit: int = 2) -> List[Dict]:
             driven_by="world_knowledge",
             milestones=[f"The thread on '{title[:50]}' was reopened.",
                         "One new observation advanced it, written to long memory."],
+            # F-LN4a/4c: creation-time question derived from the thread's own
+            # state, so close-out scores a real gap, not a template.
+            question=(f"Where does '{title[:60]}' go next, given: {state[:90]}?"
+                      if state else f"What is the next concrete step on '{title[:60]}'?"),
         ))
         if len(out) >= limit:
             break
@@ -572,6 +629,10 @@ def _goal_from_recent_research(long_mem: list, scan: int = 30) -> Optional[Dict]
                 kind="research", requires_artifact=True,
                 spec={"queries": [topic, f"{topic} deeper analysis"],
                       "synth_kind": "memo"},
+                # F-LN4a/4c: the question carries what was already found, so the
+                # close-out bar is "learned something BEYOND the first finding".
+                question=(f"Given that {snippet[:90]}, what more is true of {topic}?"
+                          if snippet else f"What is worth knowing about {topic} beyond my first look?"),
             )
     except Exception as exc:  # long-memory scan failed — record, no follow-up goal
         record_failure("intrinsic_goals._goal_from_recent_research", exc)

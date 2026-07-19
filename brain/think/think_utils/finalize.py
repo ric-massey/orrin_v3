@@ -50,6 +50,21 @@ INTAKE_REWARD = 0.5
 INTAKE_REWARD_FLOOR = 0.35
 
 
+def realized_reward_with_prejudice(act_key: str, actual_fb: float) -> float:
+    """R10-8 account seam, extracted so it is provable by harness (F-LN8): an
+    action the gate refused this cycle (LLM circuit open, tool absent) produced
+    no effect no matter how cleanly it "ran" — pay it zero-with-prejudice so its
+    EMA decays below the selection default instead of sitting high on the
+    strength of not raising. Fail-safe: on any error the reward passes through."""
+    try:
+        from brain.control_signals.reward_signals.impossibility import is_impossible as _is_imp
+        if _is_imp(act_key):
+            return 0.0
+    except Exception as _ie:
+        record_failure("finalize.finalize_cycle.impossible", _ie)
+    return actual_fb
+
+
 def finalize_cycle(context, user_input, next_function, reason, speaker):
     """
     Final step of each Orrin cognitive cycle: logs feedback, updates histories,
@@ -171,16 +186,9 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     try:
         from brain.control_signals.reward_signals.reward_engine import submit_reward as _submit_reward
         _act_key = str(context.get("last_function_chosen") or "cycle")
-        # R10-8: an action the gate refused this cycle (LLM circuit open, tool
-        # absent) produced no effect no matter how cleanly it "ran" — pay it
-        # zero-with-prejudice so its EMA decays below the selection default
-        # instead of sitting high on the strength of not raising.
-        try:
-            from brain.control_signals.reward_signals.impossibility import is_impossible as _is_imp
-            if _is_imp(_act_key):
-                actual_fb = 0.0
-        except Exception as _ie:
-            record_failure("finalize.finalize_cycle.impossible", _ie)
+        # R10-8 / F-LN8: zero-with-prejudice for gate-refused actions (the seam
+        # lives in realized_reward_with_prejudice so the harness can prove it).
+        actual_fb = realized_reward_with_prejudice(_act_key, actual_fb)
         # Calibration: record the forecast (per-function expected reward) against
         # the realized reward BEFORE submit_reward updates the EMA. Nelson &
         # Narens (1990) monitoring → control; consumed by meta_controller.

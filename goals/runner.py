@@ -337,6 +337,15 @@ class StepRunner:
             self._emit_goal_event("GoalFailed", ng, extra={"reason": "no_handler"})
             return
 
+        # F-LN7: funnel stage 4 — the producer is actually executing for this
+        # goal (once per goal; the funnel counts goals reaching the stage).
+        if goal.kind in ("research", "coding", "code_edit"):
+            try:
+                from brain.cognition.production_funnel import record_once as _pf_once
+                _pf_once("producer_ran", str(goal.id))
+            except Exception as e:  # intentional: funnel is best-effort, never blocks a step
+                _dbg("funnel producer_ran skipped:", e)
+
         started_emitted = False
         t0 = time.perf_counter()
         # ---- anti-stall guards ----

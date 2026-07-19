@@ -298,20 +298,61 @@ _SATURATION_EPS       = _env_float("ORRIN_SATURATION_EPS", 0.005)
 # Without this guard the tripwire manufactures fake affect: it kicks a correctly-
 # resting loss_signal/rejection_signal off 0.0 every 500 cycles.
 _SATURATION_MARGIN    = _env_float("ORRIN_SATURATION_MARGIN", 0.30)
+# F-LN5 (Run 10 verdict delta 3): the consecutive-streak arm is WOBBLE-BLIND —
+# drive_mastery spent ~all of Run 10 welded at 1.00 but its brief dips
+# (0.84–0.96) reset the streak every time, so a 500-consecutive trip never
+# fired. Second arm: a signal at a far-from-setpoint bound for at least this
+# FRACTION of a full SATURATION_MAX_CYCLES window trips regardless of dips.
+_SATURATION_FRACTION  = _env_float("ORRIN_SATURATION_FRACTION", 0.95)
 _SAT_STREAK_KEY       = "_saturation_streaks"
+_SAT_WINDOW_KEY       = "_saturation_windows"
+
+
+def _break_attractor(signals: Dict[str, float], key: str, v: float, n: int,
+                     cycle: int, arm: str) -> None:
+    """Kick a welded signal decisively off its bound toward the setpoint (not all
+    the way: enough to re-enter the discriminating band and let normal dynamics
+    take over), with the loud [saturation] log + telemetry event."""
+    target = setpoint(key)
+    bound = 1.0 if v >= 0.5 else 0.0
+    recal = bound + (target - bound) * 0.5
+    signals[key] = max(0.0, min(1.0, recal))
+    try:
+        from brain.core.runtime_log import get_logger
+        get_logger(__name__).warning(
+            "[saturation] %s welded at %.3f for %d cycles (%s) — forced "
+            "recalibration to %.3f (setpoint %.3f) at cycle %d",
+            key, v, n, arm, signals[key], target, cycle)
+    except Exception as _le:
+        record_failure("homeostasis.saturation_tripwire.log", _le)
+    try:
+        from brain.events import record_event as _rec
+        _rec({"type": "saturation", "signal": key, "stuck_value": round(v, 4),
+              "cycles": n, "arm": arm,
+              "recalibrated_to": round(signals[key], 4), "cycle": cycle})
+    except Exception as _re:
+        record_failure("homeostasis.saturation_tripwire.event", _re)
 
 
 def saturation_tripwire(state: Dict[str, Any], signals: Dict[str, float],
                         cycle: int = 0) -> List[str]:
-    """Advance per-signal time-at-BOUND counters and, when one crosses
-    SATURATION_MAX_CYCLES, forcibly recalibrate that signal toward its setpoint,
-    reset its streak, and emit a loud [saturation] log + telemetry event.
+    """Advance per-signal time-at-BOUND counters and, when one crosses the trip
+    condition, forcibly recalibrate that signal toward its setpoint, reset its
+    counters, and emit a loud [saturation] log + telemetry event. Two arms:
+      • streak — SATURATION_MAX_CYCLES consecutive cycles at a bound (fast path);
+      • fraction (F-LN5) — ≥ _SATURATION_FRACTION of a SATURATION_MAX_CYCLES
+        tumbling window at a bound, which catches the wobble pattern the streak
+        provably misses (Run 10's drive_mastery: welded with periodic dips).
     Mutates `signals` in place. Returns the list of signals recalibrated this
     call (usually empty). Call ONCE per cycle."""
     streaks = state.get(_SAT_STREAK_KEY)
     if not isinstance(streaks, dict):
         streaks = {}
         state[_SAT_STREAK_KEY] = streaks
+    windows = state.get(_SAT_WINDOW_KEY)
+    if not isinstance(windows, dict):
+        windows = {}
+        state[_SAT_WINDOW_KEY] = windows
 
     fired: List[str] = []
     for key, val in list(signals.items()):
@@ -323,37 +364,44 @@ def saturation_tripwire(state: Dict[str, Any], signals: Dict[str, float],
         # not a frozen attractor — only a bound far from setpoint is pathological.
         if at_bound and abs(v - setpoint(key)) <= _SATURATION_MARGIN:
             at_bound = False
+
+        # Fraction arm (F-LN5). Tumbling window: count bound-hits over each full
+        # SATURATION_MAX_CYCLES block; a dip costs one hit instead of resetting
+        # the whole clock. Only near-bound values weld — track the last bound-side
+        # value seen so the kick direction is the bound's, not a dip's.
+        w = windows.get(key)
+        if not isinstance(w, dict):
+            w = {"n": 0, "hits": 0, "last_bound_v": v}
+            windows[key] = w
+        w["n"] = int(w.get("n", 0)) + 1
+        if at_bound:
+            w["hits"] = int(w.get("hits", 0)) + 1
+            w["last_bound_v"] = v
+        window_full = w["n"] >= SATURATION_MAX_CYCLES
+        frac_trip = window_full and (w["hits"] / max(1, w["n"])) >= _SATURATION_FRACTION
+        if window_full and not frac_trip:
+            windows[key] = {"n": 0, "hits": 0, "last_bound_v": v}
+
         if not at_bound:
             if key in streaks:
                 del streaks[key]
+            if frac_trip:
+                _break_attractor(signals, key, float(w.get("last_bound_v", v)),
+                                 int(w["n"]), cycle, arm="fraction")
+                windows[key] = {"n": 0, "hits": 0, "last_bound_v": v}
+                streaks[key] = 0
+                fired.append(key)
             continue
+
         n = int(streaks.get(key, 0)) + 1
         streaks[key] = n
-        if n < SATURATION_MAX_CYCLES:
+        if n < SATURATION_MAX_CYCLES and not frac_trip:
             continue
-        # Attractor confirmed — break it. Kick decisively off the bound toward
-        # the setpoint (not all the way: enough to re-enter the discriminating
-        # band and let normal dynamics take over), and re-arm the counter.
-        target = setpoint(key)
-        bound = 1.0 if v >= 0.5 else 0.0
-        recal = bound + (target - bound) * 0.5
-        signals[key] = max(0.0, min(1.0, recal))
+        _break_attractor(signals, key, v, n if n >= SATURATION_MAX_CYCLES else int(w["n"]),
+                         cycle, arm="streak" if n >= SATURATION_MAX_CYCLES else "fraction")
         streaks[key] = 0
+        windows[key] = {"n": 0, "hits": 0, "last_bound_v": v}
         fired.append(key)
-        try:
-            from brain.core.runtime_log import get_logger
-            get_logger(__name__).warning(
-                "[saturation] %s welded at %.3f for %d cycles — forced "
-                "recalibration to %.3f (setpoint %.3f) at cycle %d",
-                key, v, n, signals[key], target, cycle)
-        except Exception as _le:
-            record_failure("homeostasis.saturation_tripwire.log", _le)
-        try:
-            from brain.events import record_event as _rec
-            _rec({"type": "saturation", "signal": key, "stuck_value": round(v, 4),
-                  "cycles": n, "recalibrated_to": round(signals[key], 4), "cycle": cycle})
-        except Exception as _re:
-            record_failure("homeostasis.saturation_tripwire.event", _re)
     return fired
 
 

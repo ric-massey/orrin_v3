@@ -13,8 +13,12 @@ def _write_memo(gid: str, body: str) -> None:
 
 
 def test_question_derived_from_title_when_absent():
+    # F-LN4c: the fallback interrogates the goal's own content — the fixed
+    # "What is not obvious about X?" template is retired (all 10 Run-10 stamps
+    # were that one shape).
     q = ec.question_for({"title": "Understand black holes more deeply"})
-    assert q == "What is not obvious about black holes?"
+    assert "black holes" in q and q.endswith("?")
+    assert "not obvious" not in q
 
 
 def test_answered_when_artifact_addresses_the_subject():

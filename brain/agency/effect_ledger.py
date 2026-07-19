@@ -570,6 +570,17 @@ def record_effect(
         # F2c: only *credited* writes advance the per-path decay schedule.
         if _credited and _np:
             _path_credit_counts[_np] = _path_credit_counts.get(_np, 0) + 1
+        # F-LN7: funnel stages 5/6 at the one place every durable effect passes —
+        # a goal-attributed content row IS "an artifact was written"; a credited
+        # one is the funnel's mouth. Third run of candidate-only counts ends here.
+        if goal_id and kind not in ("bookkeeping", "tool_run_effect"):
+            try:
+                from brain.cognition.production_funnel import record_once as _pf_once
+                _pf_once("artifact", str(goal_id))
+                if _credited:
+                    _pf_once("credited", str(goal_id))
+            except Exception as exc:
+                record_failure("effect_ledger.funnel", exc)
         # F1c (2026-07-05 findings): expose this effect's VALUE to the caller's
         # lane so learning isn't conscious-lane-only — the executive lane paid a
         # flat per-step reward and compose_section's EMA sat neutral through

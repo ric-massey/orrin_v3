@@ -159,6 +159,18 @@ def handle_unexecuted_step(goal: Dict, goal_title: str, next_step: str,
                    f"{max_attempts}-attempt cap",
             context=context,
         )
+        # F-LN2 (Run 10): persist the failure INTO THE TREE at the failure site —
+        # the same arbiter merge the retry path above makes. Without it the tree
+        # copy stayed "in_progress", the executive re-pulled and re-failed the
+        # goal (4 of Run 10's 5 failed goals double-failed: two failures.jsonl
+        # rows + double penalty + tree↔v2 desync per goal).
+        try:
+            from brain.cognition.planning.goals import merge_updated_goal_into_tree
+            from brain.cognition.planning import goal_arbiter
+            goal_arbiter.apply(lambda _t: merge_updated_goal_into_tree(_t, goal),
+                               source="pursue_goal.step_failure")
+        except Exception as _e:
+            record_failure("step_attempts.failure_persist", _e)
         context["committed_goal"] = None
         context["_last_bootstrap_ts"] = 0.0
         log_activity(f"[pursue_goal] '{goal_title[:60]}': {gave_up} capped step "

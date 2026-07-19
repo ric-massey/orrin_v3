@@ -304,6 +304,17 @@ class GoalsDaemon:
         for step in steps_to_run:
             self._enqueue_step(step)
 
+        # F-LN6: a gathered-but-not-chosen research step is a dispatch decision
+        # too — log it (change-dedup'd upstream) so capacity starvation is
+        # visible, not silent.
+        _chosen_ids = {s.id for s in steps_to_run}
+        for g, s in candidates:
+            if s.id not in _chosen_ids:
+                self._log_handoff(g, "deferred", f"capacity {eff_cap}, "
+                                  f"candidates {len(candidates)}")
+            else:
+                self._log_handoff(g, "dispatched", f"step {s.id}")
+
         # 5) Finalize goals whose steps reached terminal states
         self._finalize_goals()
 
@@ -331,6 +342,19 @@ class GoalsDaemon:
             except Exception as _e:
                 _log.warning("silent except: %s", _e)
 
+    @staticmethod
+    def _log_handoff(goal: "Goal", decision: str, reason: str) -> None:
+        """F-LN6: daemon-side link of the handoff-decision chain, for research-
+        capable goals. Best-effort — instrumentation never breaks the pulse."""
+        try:
+            if str(getattr(goal, "kind", "") or "") != "research":
+                return
+            from brain.utils.handoff_log import log_handoff
+            log_handoff("goals_daemon", str(getattr(goal, "title", "") or goal.id),
+                        "research", decision, reason)
+        except Exception as e:  # intentional: instrumentation never breaks the pulse
+            _log.debug("handoff log skipped: %s", e)
+
     def _plan_new_goals(self) -> bool:
         """Find NEW goals, call handler.plan(), persist steps, and mark them READY."""
         planned_any = False
@@ -343,6 +367,7 @@ class GoalsDaemon:
                 ng = replace(g, status=Status.FAILED, last_error=f"no handler for kind '{g.kind}'", updated_at=UTCNOW())
                 _upsert_goal(self.store, ng)
                 self._emit_goal_event("GoalFailed", ng, extra={"reason": "no_handler"})
+                self._log_handoff(g, "failed", "no handler")
                 continue
 
             try:
@@ -351,6 +376,7 @@ class GoalsDaemon:
                 ng = replace(g, status=Status.FAILED, last_error=f"plan error: {type(e).__name__}: {e}", updated_at=UTCNOW())
                 _upsert_goal(self.store, ng)
                 self._emit_goal_event("GoalFailed", ng, extra={"reason": "plan_error"})
+                self._log_handoff(g, "failed", f"plan error: {type(e).__name__}")
                 continue
 
             try:
@@ -358,11 +384,13 @@ class GoalsDaemon:
                 ng = replace(g, status=Status.READY, updated_at=UTCNOW())
                 _upsert_goal(self.store, ng)
                 self._emit_goal_event("GoalPlanned", ng, extra={"steps": len(steps or [])})
+                self._log_handoff(g, "planned", f"{len(steps or [])} step(s)")
                 planned_any = True
             except Exception as e:
                 ng = replace(g, status=Status.FAILED, last_error=f"persist steps error: {type(e).__name__}: {e}", updated_at=UTCNOW())
                 _upsert_goal(self.store, ng)
                 self._emit_goal_event("GoalFailed", ng, extra={"reason": "persist_steps_error"})
+                self._log_handoff(g, "failed", f"persist steps error: {type(e).__name__}")
                 continue
         return planned_any
 

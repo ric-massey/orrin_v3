@@ -25,6 +25,7 @@ from brain.cognition.planning.goals import (
 )
 from brain.utils.llm_gate import llm_callable_by
 from brain.utils.failure_counter import record_failure
+from brain.cognition.production_funnel import record_committed as _pf_committed
 from brain.cognition.planning.goal_closure import (
     _tier_closure_enabled, _survival_preempt_enabled, _survival_critical,
     _closed_loop_break,
@@ -74,6 +75,8 @@ def pursue_committed_goal(context: Optional[Dict[str, Any]] = None) -> Dict[str,
     goal = bound_goal(context)
     if not isinstance(goal, dict) or not (goal.get("title") or goal.get("name")):
         return {"status": "ok", "skipped": True, "reason": "no_committed_goal"}
+
+    _pf_committed(goal)  # F-LN7 funnel stage 2: making goal pursued (once per goal)
 
     # F16: per-goal refractory — one goal's advance never blocks another's.
     _cool_key = str(goal.get("id") or goal.get("title") or goal.get("name") or "")

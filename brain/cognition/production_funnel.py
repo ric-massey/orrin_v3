@@ -58,6 +58,35 @@ def record(stage: str, goal_id: str = "") -> None:
         record_failure("production_funnel.record", exc)
 
 
+def record_committed(goal: Dict) -> None:
+    """F-LN7 stage 2, callable from the pursuit hot path: a making goal
+    (requires_artifact / output_producing) is being actively pursued. Once per
+    goal; never raises."""
+    try:
+        if not isinstance(goal, dict):
+            return
+        if goal.get("requires_artifact") or str(goal.get("driven_by") or "") == "output_producing":
+            record_once("committed", str(goal.get("id") or goal.get("title") or ""))
+    except Exception as exc:
+        record_failure("production_funnel.record_committed", exc)
+
+
+def record_once(stage: str, goal_id: str) -> None:
+    """F-LN7: append a funnel event only once per (stage, goal) — the deeper
+    stages fire from per-cycle/per-tick code paths, and a funnel counts goals
+    reaching a stage, not repetitions at it."""
+    if stage not in STAGES or not goal_id:
+        return
+    try:
+        gid = str(goal_id)
+        for e in _load().get("events", []):
+            if isinstance(e, dict) and e.get("stage") == stage and e.get("goal") == gid:
+                return
+        record(stage, gid)
+    except Exception as exc:
+        record_failure("production_funnel.record_once", exc)
+
+
 def funnel(window_s: float = _WINDOW_S) -> Dict[str, int]:
     """{stage: count} over the rolling window, in canonical stage order."""
     out: Dict[str, int] = {s: 0 for s in STAGES}

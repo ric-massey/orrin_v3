@@ -113,11 +113,24 @@ def write_file(path: str | Path, content: str) -> Dict[str, Any]:
     return {"success": True, "path": str(p)}
 
 @catch_and_route("tool", return_on_error=lambda e: {"success": False, "error": str(e)})
-def read_file(path: str | Path) -> Dict[str, Any]:
+def read_file(path: str | Path, caller: str | None = None) -> Dict[str, Any]:
     """
     Read a text file (utf-8). Relative paths resolve under DATA_DIR.
+
+    ANATOMY MEMBRANE (M1/M2/M3): a reasoning-layer caller (anyone without an
+    organ `caller`) cannot read blueprints (source), organ state (brain/data)
+    or flight-recorder transcripts — his past reaches him through the memory
+    system; his state through interoception. Diary artifacts stay readable.
     """
     p = _normalize_target(path)
+    from brain.cognition.membrane import caller_is_organ, deny_reason
+    if not caller_is_organ(caller):
+        _why = deny_reason(p)
+        if _why is not None:
+            log_activity(f"[membrane] read of {p.name} denied ({_why})")
+            return {"success": False,
+                    "error": f"membrane: that file is {_why.replace('_', ' ')} — "
+                             f"not readable from the reasoning layer"}
     content = p.read_text(encoding="utf-8")
     log_activity(f"✅ Read file {p}")
     return {"success": True, "content": content}

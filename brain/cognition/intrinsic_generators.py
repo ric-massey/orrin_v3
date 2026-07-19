@@ -297,34 +297,37 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
         return []
     # The causal graph is his SELF-MODEL: every effect in it is one of his own
     # internal states (impasse_signal, affective_regulation, reward_negative…), not
-    # a world topic. So the answer to "what causes this" lives in his own substrate,
+    # a world topic. So the answer to "what causes this" lives in his own HISTORY,
     # not on the web — framing these as research_topic/wikipedia goals made them
     # unplannable (there is no article on an internal signal), and they spun the
     # loop: generate → fail to plan 3× → abandon → regenerate the next variant.
-    # Frame them as self-investigation instead (search_own_files / grep_files over
-    # his own code via the "my own code" intent family), which is both plannable and
-    # the tool that genuinely serves an internal causal gap. Drive is self_exploration
-    # so the gap ladders under "Understand my own mind", not "Understand the world".
+    # M4 (Run 11 §2, anatomy membrane): introspection consumes BEHAVIOR, not
+    # blueprints — "trace in my own history what drives X" via search_own_files,
+    # which now reads memories, learned causal patterns, failure counts and his
+    # own notes (never source; the membrane walls that off). Drive is
+    # self_exploration so the gap ladders under "Understand my own mind".
     # MEMBRANE (invariant #2): the effect name is one of his own raw signal keys
     # (conflict_signal, impasse_signal…). The perceivable TITLE/milestones must read
     # it as a FELT state ("being torn"), never the engineering token — otherwise the
     # key leaks into the workspace ("working toward: …'conflict_signal rises'"). The
-    # DESCRIPTION keeps the raw key, because that is the literal code-search target
-    # (find where 'conflict_signal' is computed); the description is execution spec,
-    # not broadcast content.
+    # DESCRIPTION keeps the raw key, because that is the literal evidence-search
+    # target (which memories/patterns mention it); the description is execution
+    # spec, not broadcast content.
     out: List[Dict] = []
     for name in _weighted_sample(frontiers, limit):
         felt = felt_label(name)
         out.append(_mk_goal(
-            f"Trace in my own code what drives '{felt}'",
+            f"Trace in my own history what drives '{felt}'",
             f"My causal model says I keep feeling '{felt}' but I don't really know "
             f"what brings it about. It's one of my own internal states, so the answer "
-            f"is in my substrate, not on the web: use search_own_files / grep_files to "
-            f"find where '{name}' is computed and what moves it, then write what I "
-            f"learn to long memory.",
+            f"is in my own lived history, not on the web: use search_own_files to "
+            f"recall what tends to precede '{name}' — memories, patterns in my "
+            f"experience, places I keep stumbling — then write what I learn to "
+            f"long memory.",
             driven_by="self_exploration",
-            milestones=[f"Where '{felt}' comes from in my own workings was located.",
+            milestones=[f"What tends to precede '{felt}' in my own history was traced.",
                         f"A finding about what drives '{felt}' was written to long memory."],
+            question=f"What tends to precede '{felt}' in my own experience?",
         ))
     return out
 

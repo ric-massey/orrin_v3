@@ -8,6 +8,7 @@
 from __future__ import annotations
 from brain.cognition.global_workspace import bound_goal
 
+import re
 from typing import Dict, Any, List
 
 from brain.utils.log import log_activity, log_private
@@ -65,106 +66,110 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
     if not query:
         return "⚠️ No query could be derived from current context."
 
+    # M4 (Run 11 §2) — BEHAVIORAL introspection. This function used to grep
+    # Orrin's data + source files; with the anatomy membrane (M1/M2/M3) the
+    # reasoning layer reads behavior, not blueprints: what he REMEMBERS, what
+    # tends to PRECEDE what (learned causal history), what keeps FAILING, and
+    # what he himself WROTE (the diary exception). Same felt output, honest diet.
+    terms = [w for w in re.findall(r"[a-z0-9_]+", query.lower()) if len(w) > 2]
+    findings: List[Dict[str, Any]] = []   # {kind, key, text}
+
+    # 1. Memories — his own past, through the memory system.
+    try:
+        from brain.paths import LONG_MEMORY_FILE
+        from brain.utils.json_utils import load_json
+        for i, entry in enumerate(reversed(load_json(LONG_MEMORY_FILE, default_type=list) or [])):
+            if len([f for f in findings if f["kind"] == "memory"]) >= 6:
+                break
+            text = str(entry.get("content", "") if isinstance(entry, dict) else entry)
+            low = text.lower()
+            if terms and sum(1 for t in terms if t in low) >= max(1, len(terms) // 2):
+                findings.append({"kind": "memory", "key": f"mem:{hash(text) & 0xffffffff:x}",
+                                 "text": text.strip()[:160]})
+    except Exception as _me:
+        log_private(f"[search_own_files] memory read failed: {_me}")
+
+    # 2. Learned causal history — what tends to bring what about, from lived
+    # evidence (the M4 target for "trace what drives X" introspection goals).
+    try:
+        from brain.symbolic.causal_graph import get_all_edges
+        for e in get_all_edges():
+            if len([f for f in findings if f["kind"] == "pattern"]) >= 4:
+                break
+            cause, effect = str(e.get("cause", "")), str(e.get("effect", ""))
+            blob = f"{cause} {effect}".lower()
+            if terms and any(t in blob for t in terms):
+                seen = int(e.get("evidence_count", e.get("count", 1)) or 1)
+                findings.append({
+                    "kind": "pattern", "key": f"edge:{cause[:30]}->{effect[:30]}",
+                    "text": f"in my experience, '{cause[:60]}' tends to lead to "
+                            f"'{effect[:60]}' (seen {seen}×)"})
+    except Exception as _ce:
+        log_private(f"[search_own_files] causal read failed: {_ce}")
+
+    # 3. Failure history — where I keep stumbling (counts, not transcripts).
+    try:
+        from brain.utils.failure_counter import get_summary
+        for site, data in (get_summary() or {}).items():   # already count-desc
+            if len([f for f in findings if f["kind"] == "stumble"]) >= 3:
+                break
+            n = int((data or {}).get("count", 0) or 0) if isinstance(data, dict) else int(data or 0)
+            if terms and any(t in str(site).lower() for t in terms):
+                findings.append({"kind": "stumble", "key": f"fail:{site}",
+                                 "text": f"'{site}' has failed on me {n}×"})
+    except Exception as _fe:
+        log_private(f"[search_own_files] failure read failed: {_fe}")
+
+    # 4. Diary — things I authored (credited effect bodies); membrane-exempt.
     try:
         from brain.agency.skills.grep_files import grep_files
-    except ImportError:
-        return "❌ grep_files skill not available."
-
-    # Default search: data files first (memories, goals, state)
-    result = grep_files({
-        "query": query,
-        "max_results": 20,
-        "context_lines": 1,
-    })
-
-    if not result.get("success"):
-        return f"❌ File search failed: {result.get('error', 'unknown error')}"
-
-    matches: List[Dict[str, Any]] = result.get("matches", [])
-    count = result.get("count", 0)
-
-    if not matches:
-        # Widen to source files if data search found nothing
-        result2 = grep_files({
-            "query": query,
-            "root": ".",
-            "file_pattern": "*.py",
-            "max_results": 15,
-            "context_lines": 1,
-        })
-        if result2.get("success"):
-            matches = result2.get("matches", [])
-            count = result2.get("count", 0)
+        from brain.paths import DATA_DIR
+        _diary = grep_files({"query": re.escape(query[:60]), "max_results": 5,
+                             "root": str(DATA_DIR / "effect_artifacts"),
+                             "file_pattern": "*.txt", "context_lines": 0})
+        for m in (_diary.get("matches") or [])[:3]:
+            findings.append({"kind": "diary", "key": f"diary:{m.get('file', '')}",
+                             "text": str(m.get("text", "")).strip()[:160]})
+    except Exception as _de:
+        log_private(f"[search_own_files] diary read failed: {_de}")
 
     # Fix 4 (explore_loop_fix_plan.md) — record cross-call novelty so a goal that
     # keeps re-running the same search over a finite corpus is seen as making no
-    # NEW progress. Feeds the satiety close (Fix 1) and the stall signature (Fix 3).
-    # Recorded for BOTH outcomes: empty matches ⇒ a barren call (raises the streak).
+    # NEW progress. Novelty unit = the evidence KEY (memory/edge/site), the
+    # behavioral analogue of the old file-level unit.
     _goal_id = str((bound_goal(context) or {}).get("id")
                    or (bound_goal(context) or {}).get("title") or "")
     try:
         from brain.cognition import novelty_memory
-        # Novelty unit = the FILE (area), not file:line. An exploration goal asks
-        # "what's here?" — the answer is which files/areas exist, not line numbers.
-        # File-level is also stable against Orrin's own constantly-growing log/memory
-        # files: re-matching the same content at a NEW line number (because the log
-        # grew) is NOT new exploration — but a new file:line registered as false
-        # novelty and prevented the goal from ever reaching satiety (observed live).
-        _files = sorted({str(m.get("file", "")).strip() for m in matches if m.get("file")})
-        _nov = novelty_memory.observe(_goal_id, "search_own_files", _files)
+        _nov = novelty_memory.observe(_goal_id, "search_own_files",
+                                      sorted({f["key"] for f in findings}))
     except Exception:
         _nov = None
 
-    if not matches:
-        msg = f"No results found for '{query}' in local files."
-        update_working_memory({"content": f"I searched myself for '{query}' and found nothing.", "event_type": "search", "importance": 1, "priority": 1})
+    count = len(findings)
+    if not findings:
+        msg = f"I searched my memory and history for '{query}' and found nothing."
+        update_working_memory({"content": msg, "event_type": "search",
+                               "importance": 1, "priority": 1})
         _record_habituation(msg, context)
         return msg
 
     # A repeat search that surfaced nothing new: say so plainly rather than
-    # re-reporting the same matches as if they were a fresh discovery.
+    # re-reporting the same findings as if they were a fresh discovery.
     if _nov is not None and not _nov.get("novel", True):
         _msg = (f"I searched myself for '{query}' again and found nothing new "
                 f"(this corner of me feels exhausted for now).")
         _record_habituation(_msg, context)
         return _msg
 
-    # Translate file paths to felt spatial locations — Orrin knows WHERE in himself
-    # something lives without knowing the file coordinate.
-    try:
-        from brain.cognition.perception.file_sense import path_to_felt_location, is_self_path, summarise_locations
-        _use_felt = True
-    except Exception:
-        _use_felt = False
-
-    # Build felt summary for working memory
-    if _use_felt:
-        felt_lines = []
-        seen_locations = {}  # location → list of text snippets
-        for m in matches[:8]:
-            fpath = m.get("file", "")
-            self_path = is_self_path(fpath)
-            location = path_to_felt_location(fpath, is_self=self_path)
-            text = (m.get("text") or "").strip()[:120]
-            if location not in seen_locations:
-                seen_locations[location] = []
-            seen_locations[location].append(text)
-
-        all_paths = [m.get("file", "") for m in matches[:8]]
-        where = summarise_locations(all_paths)
-
-        felt_lines.append(f"I found something in {where} that relates to '{query}':")
-        for location, snippets in list(seen_locations.items())[:4]:
-            felt_lines.append(f"  In {location}: {snippets[0]}")
-        if count > 5:
-            felt_lines.append(f"  (and {count - 5} more traces)")
-
-        summary = "\n".join(felt_lines)
-    else:
-        summary_lines = [f"Found {count} result(s) for '{query}':"]
-        for m in matches[:5]:
-            summary_lines.append(f"  {m['file']}:{m['line']} — {m['text'][:120]}")
-        summary = "\n".join(summary_lines)
+    _KIND_FELT = {"memory": "something I remember", "pattern": "a pattern in my own history",
+                  "stumble": "a place I keep stumbling", "diary": "a note I once wrote"}
+    felt_lines = [f"Looking into myself about '{query}':"]
+    for f in findings[:6]:
+        felt_lines.append(f"  {_KIND_FELT.get(f['kind'], 'a trace')}: {f['text']}")
+    if count > 6:
+        felt_lines.append(f"  (and {count - 6} more traces)")
+    summary = "\n".join(felt_lines)
 
     update_working_memory({
         "content": summary,
@@ -173,9 +178,9 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
         "priority": 2,
     })
 
-    # Long memory gets the raw paths (internal audit trail — not shown to Orrin's LLM)
-    long_summary = f"[file_search] Query: '{query}' — {count} match(es). Top: " + "; ".join(
-        f"{m['file']}:{m['line']}" for m in matches[:3]
+    # Long memory gets the evidence keys (internal audit trail).
+    long_summary = f"[self_search] Query: '{query}' — {count} finding(s). Top: " + "; ".join(
+        f["key"] for f in findings[:3]
     )
     update_long_memory(
         long_summary,
@@ -185,7 +190,7 @@ def search_own_files(context: Dict[str, Any] = None, query: str = "", **_) -> st
         context=context,
     )
 
-    log_activity(f"[search_own_files] '{query}' → {count} matches")
-    log_private("[search_own_files] raw: " + "; ".join(f"{m['file']}:{m['line']}" for m in matches[:5]))
+    log_activity(f"[search_own_files] '{query}' → {count} behavioral findings")
+    log_private("[search_own_files] raw: " + "; ".join(f["key"] for f in findings[:5]))
     _record_habituation(summary, context)
     return summary

@@ -35,17 +35,24 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
         return {"success": False, "error": "No query provided."}
 
     _brain_root = Path(__file__).resolve().parent.parent.parent  # brain/
-    root_raw = str(kwargs.get("root") or kwargs.get("directory") or (_brain_root / "data"))
+    # Resolve the default through brain.paths (never hand-built): a hardcoded
+    # brain/data bypasses ORRIN_DATA_DIR and breaks test isolation (golden rule 3).
+    from brain.paths import DATA_DIR as _data_dir
+    root_raw = str(kwargs.get("root") or kwargs.get("directory") or _data_dir)
     root = Path(root_raw).expanduser().resolve()
 
     if not root.exists():
         return {"success": False, "error": f"Path does not exist: {root}"}
 
-    # Respect a safety boundary — only allow searching within the brain directory
+    # Respect a safety boundary — only allow searching within the brain
+    # directory or the (possibly redirected) data tree.
     try:
         root.relative_to(_brain_root)
     except ValueError:
-        return {"success": False, "error": "Search root must be within the brain directory."}
+        try:
+            root.relative_to(_data_dir.resolve())
+        except ValueError:
+            return {"success": False, "error": "Search root must be within the brain directory."}
 
     glob_patterns = str(kwargs.get("file_pattern") or "*.json,*.txt,*.py,*.md").split(",")
     max_results = int(kwargs.get("max_results", 50))
@@ -58,6 +65,14 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
     except re.error as e:
         return {"success": False, "error": f"Invalid regex: {e}"}
 
+    # ANATOMY MEMBRANE (M1/M2/M3): an unidentified caller is reasoning-layer —
+    # blueprints (source), organ state (brain/data) and flight-recorder
+    # transcripts never enter its result set; the diary exception and the
+    # agency organs (caller in membrane.ORGAN_CALLERS) pass. Fail-closed wall.
+    from brain.cognition.membrane import caller_is_organ, deny_reason
+    _organ = caller_is_organ(kwargs.get("caller"))
+    denied = 0
+
     matches: List[Dict[str, Any]] = []
 
     for glob_pat in glob_patterns:
@@ -67,6 +82,9 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
         for file_path in root.rglob(glob_pat):
             if len(matches) >= max_results:
                 break
+            if not _organ and deny_reason(file_path) is not None:
+                denied += 1
+                continue
             # Skip large files and binary-looking files
             try:
                 if file_path.stat().st_size > 500_000:
@@ -82,8 +100,12 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
                     start = max(0, i - ctx_lines)
                     end = min(len(lines), i + ctx_lines + 1)
                     context = lines[start:end]
+                    try:
+                        _rel = str(file_path.relative_to(_brain_root))
+                    except ValueError:   # redirected data tree lives outside brain/
+                        _rel = str(file_path)
                     matches.append({
-                        "file": str(file_path.relative_to(_brain_root)),
+                        "file": _rel,
                         "line": i + 1,
                         "text": line.strip()[:300],
                         "context": [l.strip()[:200] for l in context],
@@ -92,12 +114,18 @@ def grep_files(args=None, **kwargs) -> Dict[str, Any]:
         if len(matches) >= max_results:
             break
 
-    log_activity(f"grep_files '{query}' under {root.relative_to(_brain_root)}: {len(matches)} matches")
+    try:
+        _root_rel = str(root.relative_to(_brain_root))
+    except ValueError:
+        _root_rel = str(root)
+    log_activity(f"grep_files '{query}' under {_root_rel}: "
+                 f"{len(matches)} matches ({denied} behind the membrane)")
     return {
         "success": True,
         "query": query,
-        "root": str(root.relative_to(_brain_root)),
+        "root": _root_rel,
         "matches": matches,
         "count": len(matches),
         "truncated": len(matches) >= max_results,
+        "membrane_denied": denied,
     }

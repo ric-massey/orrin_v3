@@ -1,0 +1,40 @@
+{
+  "weights": {
+    "self_understanding": {
+      "Understand my own mind and how I work": 0.575
+    },
+    "world_knowledge": {
+      "Understand the world more deeply": 0.5
+    },
+    "genuine_contact": {
+      "Be genuinely useful and connected to the people I talk to": 0.5
+    },
+    "output_producing": {
+      "Make things — produce work that didn't exist before": 0.5
+    },
+    "self_exploration": {
+      "Understand my own mind and how I work": 0.5
+    },
+    "simulate_selves": {
+      "Understand my own mind and how I work": 0.5
+    },
+    "curiosity": {
+      "Understand the world more deeply": 0.5
+    },
+    "problem_solving": {
+      "Make things — produce work that didn't exist before": 0.5
+    },
+    "will": {
+      "Make things — produce work that didn't exist before": 0.5,
+      "Understand my own mind and how I work": 0.35
+    }
+  },
+  "credited_ids": [
+    "ltc_aspiration-self_understa_1",
+    "g_4eb1cfaf69d0",
+    "g_dac2588b88c5",
+    "g_b38f5f664da7",
+    "g_774e10d37019",
+    "g_d4f6aed98b58"
+  ]
+}

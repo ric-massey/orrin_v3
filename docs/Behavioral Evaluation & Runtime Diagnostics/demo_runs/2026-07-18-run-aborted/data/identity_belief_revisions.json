@@ -1,0 +1,32 @@
+{
+  "COGNITIVE": {
+    "domain": "COGNITIVE",
+    "confidence": 0.7,
+    "events": [
+      {
+        "timestamp": "2026-07-18T13:40:18.632476Z",
+        "goal": "Strengthen COGNITIVE symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-07-18T13:40:25.937570Z",
+        "goal": "Strengthen EMOTIONAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      }
+    ]
+  },
+  "EMOTIONAL": {
+    "domain": "EMOTIONAL",
+    "confidence": 0.85,
+    "events": [
+      {
+        "timestamp": "2026-07-18T13:40:25.937570Z",
+        "goal": "Strengthen EMOTIONAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "fingerprint": "e4938d49363f",
+  "bands": {
+    "rss_mb": {
+      "name": "rss_mb",
+      "window": 512,
+      "lo_pct": 3.0,
+      "hi_pct": 97.0,
+      "min_samples": 120,
+      "stable_needed": 90,
+      "stable_eps_frac": 0.02,
+      "danger_high": null,
+      "danger_low": null,
+      "n": 5,
+      "center": 954.953125,
+      "lo": 851.96625,
+      "hi": 1011.466875,
+      "_stable_count": 1,
+      "_converged": false,
+      "recent": [
+        963.328125,
+        954.953125,
+        841.734375,
+        1018.03125,
+        927.0
+      ]
+    },
+    "cpu_util": {
+      "name": "cpu_util",
+      "window": 512,
+      "lo_pct": 3.0,
+      "hi_pct": 97.0,
+      "min_samples": 80,
+      "stable_needed": 60,
+      "stable_eps_frac": 0.02,
+      "danger_high": null,
+      "danger_low": null,
+      "n": 5,
+      "center": 2.25,
+      "lo": 2.2089600000000003,
+      "hi": 2.4044,
+      "_stable_count": 0,
+      "_converged": false,
+      "recent": [
+        2.2159999999999997,
+        2.356,
+        2.208,
+        2.25,
+        2.411
+      ]
+    },
+    "fd_pct": {
+      "name": "fd_pct",
+      "window": 512,
+      "lo_pct": 3.0,
+      "hi_pct": 97.0,
+      "min_samples": 80,
+      "stable_needed": 60,
+      "stable_eps_frac": 0.02,
+      "danger_high": null,
+      "danger_low": null,
+      "n": 5,
+      "center": 0.0002613067626953125,
+      "lo": 0.0002613067626953125,
+      "hi": 0.000263214111328125,
+      "_stable_count": 1,
+      "_converged": false,
+      "recent": [
+        0.000263214111328125,
+        0.000263214111328125,
+        0.0002613067626953125,
+        0.0002613067626953125,
+        0.0002613067626953125
+      ]
+    }
+  }
+}

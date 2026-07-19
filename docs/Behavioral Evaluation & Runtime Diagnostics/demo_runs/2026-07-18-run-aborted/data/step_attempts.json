@@ -1,0 +1,19 @@
+{
+  "ltc_aspiration-self_understa_1": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_3c6ede33b6b0": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_92de72f3d5": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  }
+}

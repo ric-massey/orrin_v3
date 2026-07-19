@@ -1,0 +1,1397 @@
+{
+  "peer_observer": {
+    "type": "peer",
+    "impression": "a presence that notices behavioral patterns I might not see in myself",
+    "influence_score": 0.65,
+    "depth": 0.3,
+    "trust": 0.65,
+    "interaction_history": [],
+    "last_interaction_time": "2026-07-18T12:04:41.833078+00:00"
+  },
+  "peer_reward_auditor": {
+    "type": "peer",
+    "impression": "a presence that watches whether I'm actually learning from outcomes",
+    "influence_score": 0.62,
+    "depth": 0.3,
+    "trust": 0.62,
+    "interaction_history": [
+      {
+        "timestamp": "2026-07-18T12:05:13.296523+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 5% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:05:41.507984+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 2% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:06:09.824846+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 5% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:06:38.430927+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 5% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:08:04.590277+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:08:33.693464+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:09:05.927199+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:09:35.901869+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:10:36.009490+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:11:06.472965+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:11:36.628313+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:12:06.838055+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:12:37.179204+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:13:11.595137+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:13:44.284142+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:14:15.308561+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:14:47.076545+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:15:19.897128+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:15:55.302640+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:16:27.772075+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:17:02.968036+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:17:35.392568+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:18:11.916824+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:20:09.278781+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:20:44.775754+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-07-18T12:21:24.527995+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      }
+    ],
+    "last_interaction_time": "2026-07-18T12:04:41.835581+00:00"
+  },
+  "peer_goal_auditor": {
+    "type": "peer",
+    "impression": "a presence that asks whether the things I'm pursuing are worth pursuing",
+    "influence_score": 0.6,
+    "depth": 0.3,
+    "trust": 0.6,
+    "interaction_history": [
+      {
+        "timestamp": "2026-07-18T12:24:06.254224+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:24:50.766582+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:25:25.220578+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:26:01.318547+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:26:36.749340+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:27:14.514861+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:27:54.769621+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:28:30.124621+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:29:06.336008+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:29:45.804017+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:30:22.254091+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:31:04.771707+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:31:42.619456+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:32:18.978533+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:33:02.090816+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:33:39.497648+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:34:20.438886+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:34:58.719024+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:35:38.411120+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:36:17.128812+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:36:53.707902+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand the world more deeply'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:37:36.900547+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:38:17.951363+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:38:56.597810+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:39:34.518067+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:40:15.994508+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:40:59.276409+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:41:36.475737+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:42:14.257433+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:42:54.117138+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:43:31.011043+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:44:14.106562+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:44:55.355710+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:45:33.794247+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:46:13.150855+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:46:53.742017+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:47:36.690077+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:48:15.002452+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:48:57.494826+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:49:36.385250+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:50:15.930234+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:51:02.753652+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:51:41.644897+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:52:22.097938+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:53:03.433237+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:53:46.285534+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:54:31.501851+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:55:12.837064+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:55:55.685789+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:56:37.537777+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:57:17.709950+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:58:04.573509+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:58:44.830631+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T12:59:24.339982+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:00:06.541632+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:00:49.979591+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:01:35.269665+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:02:13.637520+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:02:53.694273+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:03:34.258907+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:04:17.536766+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:05:04.628645+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:05:46.190457+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:06:28.044884+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:07:09.558964+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:07:51.461536+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:08:37.699856+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:09:19.621827+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:10:09.993498+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:11:13.489402+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:12:15.342269+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:13:26.676293+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:14:27.617495+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:16:15.055566+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:17:57.731093+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:19:45.511381+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:21:49.718432+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:23:40.627805+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:25:47.022260+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:27:41.491865+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:29:13.794180+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:30:57.261169+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:32:25.117120+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:33:38.485967+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:34:35.078746+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:35:39.978250+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:36:53.604590+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:37:56.308798+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:38:49.038509+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:39:33.348760+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:40:19.187018+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:41:13.715228+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:41:58.950220+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:42:43.676109+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:43:31.619051+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:44:18.026961+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:45:13.410833+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:45:58.941303+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:46:45.403757+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-07-18T13:47:30.643720+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      }
+    ],
+    "last_interaction_time": "2026-07-18T12:04:41.836929+00:00"
+  },
+  "peer_signal_historian": {
+    "type": "peer",
+    "impression": "a presence that holds the longer view of how I feel over time",
+    "influence_score": 0.68,
+    "depth": 0.3,
+    "trust": 0.68,
+    "interaction_history": [
+      {
+        "timestamp": "2026-07-18T12:15:58.538012+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'reward_positive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:16:30.888574+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: reward_positive are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 50% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:17:11.612651+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.85) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'reward_positive' appears in 80% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:17:46.621035+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 50% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:18:32.619562+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:19:04.355247+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:19:47.343262+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:20:20.793942+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'exploration_drive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:20:57.043288+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'exploration_drive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:21:40.667393+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence, exploration_drive are also elevated. | The same thing keeps finding me — 'exploration_drive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:22:18.026803+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "The same thing keeps finding me — 'exploration_drive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:22:59.076807+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:23:50.229143+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest.  | The same thing keeps finding me — 'exploration_drive' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:24:28.143133+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:25:18.513590+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:26:12.613340+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 70% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:27:05.482699+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:28:10.773164+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:28:45.935779+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:29:28.272044+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:30:04.388324+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:30:40.364221+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:31:33.797808+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:32:20.693592+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:33:17.877309+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:33:56.601615+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:34:36.996231+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: exploration_drive, confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:35:32.858036+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "The same thing keeps finding me — 'affiliation_signal' appears in 70% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:36:13.513643+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:36:50.194701+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:37:36.909092+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:38:21.637039+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:39:00.351575+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: exploration_drive, confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:39:53.996995+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:40:36.854530+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:41:19.988298+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:42:20.356222+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'novelty_signal' appears in 60% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:43:21.941064+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:44:04.553423+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:44:45.310992+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:45:26.480639+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:46:05.632567+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:46:46.001805+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:47:28.796376+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:48:07.469790+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:48:49.539782+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:49:48.979387+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:50:33.987528+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'threat_level' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:51:20.285535+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:52:07.452565+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:52:48.445180+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:53:32.284324+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:54:39.607567+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:55:21.432892+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:56:04.582612+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: confidence, exploration_drive are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:57:00.164199+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:57:50.065294+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:58:33.252785+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T12:59:12.752740+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:00:13.142677+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:00:55.994979+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:01:41.368405+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: exploration_drive, confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:02:55.770665+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:03:50.643838+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:04:54.397701+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:05:36.045739+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:06:17.065686+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.85) and hasn't found a way back to rest. It's not alone: exploration_drive, confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:07:11.511782+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:07:55.267740+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:08:52.080496+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:09:33.617195+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:10:36.678745+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:11:32.719774+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:13:07.750755+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:14:16.457334+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:17:02.623663+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:19:51.418087+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:21:54.674169+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:23:45.475504+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:26:04.338542+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:27:54.972109+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:29:44.823545+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:31:28.639722+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:33:07.221454+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:34:04.365349+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:35:05.575299+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: motivation, confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:36:08.973847+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:37:21.921093+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:38:24.400099+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:39:15.395543+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:39:59.898870+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:40:48.686338+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'confidence' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:41:40.063352+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:42:25.848006+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:43:13.326943+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:43:59.874931+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:44:45.920610+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:45:41.136506+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:46:27.060820+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-07-18T13:47:12.524260+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'affiliation_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      }
+    ],
+    "last_interaction_time": "2026-07-18T12:04:54.920749+00:00"
+  }
+}

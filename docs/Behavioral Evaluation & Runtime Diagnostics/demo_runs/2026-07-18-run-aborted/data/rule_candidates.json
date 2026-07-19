@@ -1,0 +1,172 @@
+{
+  "causal:assess_goal_progress→confidence rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:generate_intrinsic_goals→motivation rises": {
+    "confirms": 51,
+    "fails": 89,
+    "promoted": true
+  },
+  "causal:thread_continue→impasse_signal falls": {
+    "confirms": 29,
+    "fails": 27,
+    "promoted": true
+  },
+  "event_type:self_query": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_around→motivation rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:look_around→stagnation_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:attend_goal→exploration_drive rises": {
+    "confirms": 23,
+    "fails": 27,
+    "promoted": true
+  },
+  "causal:generate_intrinsic_goals→impasse_signal falls": {
+    "confirms": 5,
+    "fails": 5,
+    "promoted": true
+  },
+  "causal:generate_intrinsic_goals→reward_positive rises": {
+    "confirms": 38,
+    "fails": 99,
+    "promoted": true
+  },
+  "event_type:dream": {
+    "confirms": 35,
+    "fails": 6,
+    "promoted": true
+  },
+  "causal:research_topic→motivation rises": {
+    "confirms": 41,
+    "fails": 73,
+    "promoted": true
+  },
+  "causal:seek_novelty→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:seek_novelty→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→impasse_signal falls": {
+    "confirms": 10,
+    "fails": 16,
+    "promoted": true
+  },
+  "event_type:action": {
+    "confirms": 4,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:read_a_book→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_a_book→impasse_signal falls": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:attend_goal→stagnation_signal rises": {
+    "confirms": 9,
+    "fails": 18,
+    "promoted": true
+  },
+  "causal:narrative_update→motivation rises": {
+    "confirms": 17,
+    "fails": 12,
+    "promoted": true
+  },
+  "causal:narrative_update→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 4,
+    "promoted": true
+  },
+  "causal:read_a_book→exploration_drive rises": {
+    "confirms": 6,
+    "fails": 5,
+    "promoted": true
+  },
+  "causal:look_around→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:look_outward→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→stagnation_signal rises": {
+    "confirms": 2,
+    "fails": 4,
+    "promoted": false
+  },
+  "causal:look_around→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_a_book→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:research_topic→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:thread_continue→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  }
+}

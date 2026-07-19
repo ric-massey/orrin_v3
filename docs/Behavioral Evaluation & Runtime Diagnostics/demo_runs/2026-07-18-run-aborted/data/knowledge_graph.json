@@ -1,0 +1,1832 @@
+{
+  "entities": {
+    "1ecc7dba8bb8": {
+      "id": "1ecc7dba8bb8",
+      "name": "Orrin",
+      "type": "AI",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "ai",
+        "self",
+        "agent",
+        "cognitive"
+      ],
+      "properties": {
+        "role": "self",
+        "version": "v3"
+      },
+      "confidence": 1.0,
+      "never_decay": true,
+      "first_seen": "2026-07-18T12:04:49.889794Z",
+      "last_updated": "2026-07-18T12:04:49.889794Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "36b8e8bc1bef": {
+      "id": "36b8e8bc1bef",
+      "name": "Ric Massey",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "ric",
+        "ricmassey",
+        "user",
+        "person",
+        "human",
+        "creator"
+      ],
+      "properties": {
+        "role": "creator",
+        "username": "ricmassey",
+        "home": "/Users/ricmassey"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-18T12:04:49.889794Z",
+      "last_updated": "2026-07-18T12:04:49.889794Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "6187a5188433": {
+      "id": "6187a5188433",
+      "name": "MacBookAir.hsd1.tn.comcast.net",
+      "type": "tool",
+      "aliases": [],
+      "tags": [
+        "computer",
+        "machine",
+        "hardware",
+        "darwin"
+      ],
+      "properties": {
+        "os": "Darwin 24.5.0",
+        "arch": "arm64",
+        "hostname": "MacBookAir.hsd1.tn.comcast.net",
+        "load_1m": "3.29",
+        "process_count": "387",
+        "disk_used_pct": "91",
+        "time_of_day": "morning"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-18T12:04:49.889794Z",
+      "last_updated": "2026-07-18T13:47:35.998425Z",
+      "source": "bootstrap",
+      "mentions": 535
+    },
+    "9220b4725352": {
+      "id": "9220b4725352",
+      "name": "orrin_v3",
+      "type": "project",
+      "aliases": [],
+      "tags": [
+        "orrin",
+        "project",
+        "brain",
+        "v3",
+        "python",
+        "ai",
+        "agent"
+      ],
+      "properties": {
+        "path": "/Users/ricmassey/orrin_v3",
+        "language": "Python"
+      },
+      "confidence": 0.98,
+      "never_decay": true,
+      "first_seen": "2026-07-18T12:04:49.889794Z",
+      "last_updated": "2026-07-18T12:04:49.889794Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "d524605d0f85": {
+      "id": "d524605d0f85",
+      "name": "MacBook Air",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "macbook",
+        "unknown",
+        "air"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:04:49.889866Z",
+      "last_updated": "2026-07-18T12:04:49.889866Z",
+      "source": "bootstrap",
+      "mentions": 1
+    },
+    "bfcd7e1585f5": {
+      "id": "bfcd7e1585f5",
+      "name": "Growth Growth",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "growth",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.7954,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:04:51.046430Z",
+      "last_updated": "2026-07-18T13:46:15.042077Z",
+      "source": "spacy_propn",
+      "mentions": 15
+    },
+    "779f85ae2a81": {
+      "id": "779f85ae2a81",
+      "name": "the world",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "world",
+        "concept",
+        "retired",
+        "org"
+      ],
+      "properties": {
+        "is_a": "totality of entities",
+        "description": ""
+      },
+      "confidence": 0.71,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.905063Z",
+      "last_updated": "2026-07-18T12:11:56.727084Z",
+      "source": "definition",
+      "mentions": 5
+    },
+    "f802aac94b4f": {
+      "id": "f802aac94b4f",
+      "name": "totality of entities",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "totality",
+        "entities",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.905096Z",
+      "last_updated": "2026-07-18T12:08:39.905096Z",
+      "source": "definition",
+      "mentions": 1
+    },
+    "c88db0c953a6": {
+      "id": "c88db0c953a6",
+      "name": "Wikipedia/World",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "world",
+        "wikipedia",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.952989Z",
+      "last_updated": "2026-07-18T12:08:39.952989Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "fe05bcdcdc49": {
+      "id": "fe05bcdcdc49",
+      "name": "one",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "cardinal",
+        "one",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6032,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953025Z",
+      "last_updated": "2026-07-18T12:22:45.112078Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "a5197f10266a": {
+      "id": "a5197f10266a",
+      "name": "nature",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "nature",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5862,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953140Z",
+      "last_updated": "2026-07-18T12:09:42.706352Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "d621a3a01520": {
+      "id": "d621a3a01520",
+      "name": "different fields",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "different",
+        "fields",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953158Z",
+      "last_updated": "2026-07-18T12:09:42.706376Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "05017d661cc9": {
+      "id": "05017d661cc9",
+      "name": "conceptions",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "conceptions",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5862,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953203Z",
+      "last_updated": "2026-07-18T12:09:42.706412Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "7c211433f020": {
+      "id": "7c211433f020",
+      "name": "world",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "world",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6022,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953217Z",
+      "last_updated": "2026-07-18T12:09:42.706422Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "11119f5f9c9f": {
+      "id": "11119f5f9c9f",
+      "name": "others",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "others",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6467,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953258Z",
+      "last_updated": "2026-07-18T12:18:07.192127Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "f18fa14bc407": {
+      "id": "f18fa14bc407",
+      "name": "plurality",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "plurality",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:08:39.953272Z",
+      "last_updated": "2026-07-18T12:08:39.953272Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "45a21e4b5b2a": {
+      "id": "45a21e4b5b2a",
+      "name": "morning",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "time",
+        "morning"
+      ],
+      "properties": {},
+      "confidence": 0.5704,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:09:42.658980Z",
+      "last_updated": "2026-07-18T12:09:42.658980Z",
+      "source": "long_memory_heuristic",
+      "mentions": 1
+    },
+    "44d476274f1e": {
+      "id": "44d476274f1e",
+      "name": "Earth",
+      "type": "place",
+      "aliases": [],
+      "tags": [
+        "place",
+        "earth",
+        "loc"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:11:56.727112Z",
+      "last_updated": "2026-07-18T12:11:56.727112Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "a07ea4a811f1": {
+      "id": "a07ea4a811f1",
+      "name": "Wikipedia/Subjective",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "org",
+        "subjective",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:13:29.306605Z",
+      "last_updated": "2026-07-18T12:13:29.306605Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "e0996a37c13d": {
+      "id": "e0996a37c13d",
+      "name": "first",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "ordinal",
+        "first",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5704,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:13:29.306654Z",
+      "last_updated": "2026-07-18T12:13:29.306654Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "9b38c68d0887": {
+      "id": "9b38c68d0887",
+      "name": "foundations of quantum mechanics",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "foundations",
+        "concept",
+        "quantum",
+        "mechanics"
+      ],
+      "properties": {
+        "is_a": "quantum mechanics book written by john vo"
+      },
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.612181Z",
+      "last_updated": "2026-07-18T12:16:32.786511Z",
+      "source": "definition",
+      "mentions": 2
+    },
+    "56c3e9bf26c9": {
+      "id": "56c3e9bf26c9",
+      "name": "quantum",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "quantum",
+        "org",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.679715Z",
+      "last_updated": "2026-07-18T12:16:32.844111Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "4408ef5b09a0": {
+      "id": "4408ef5b09a0",
+      "name": "Wikipedia/Mathematical Foundations",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "mathematical",
+        "wikipedia",
+        "foundations",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.679759Z",
+      "last_updated": "2026-07-18T12:16:32.844157Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "b0babcf97f05": {
+      "id": "b0babcf97f05",
+      "name": "Quantum Mechanics",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "quantum",
+        "org",
+        "mechanics",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.679782Z",
+      "last_updated": "2026-07-18T12:16:32.846368Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "658d2cea03c1": {
+      "id": "658d2cea03c1",
+      "name": "John von Neumann",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "john",
+        "von",
+        "neumann"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.679816Z",
+      "last_updated": "2026-07-18T12:16:32.846401Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "53b6036e82c6": {
+      "id": "53b6036e82c6",
+      "name": "von Neumann",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "von",
+        "neumann"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.679836Z",
+      "last_updated": "2026-07-18T12:16:32.846588Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "e7e694c58cd5": {
+      "id": "e7e694c58cd5",
+      "name": "book",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "book",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5862,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.680090Z",
+      "last_updated": "2026-07-18T12:16:32.846526Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "cdf7e925f574": {
+      "id": "cdf7e925f574",
+      "name": "results",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "results",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.680105Z",
+      "last_updated": "2026-07-18T12:16:32.846537Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "fbf226ec4827": {
+      "id": "fbf226ec4827",
+      "name": "Mathematical Foundations",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "mathematical",
+        "foundations",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.4339,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:14:59.680590Z",
+      "last_updated": "2026-07-18T12:16:32.846789Z",
+      "source": "spacy_propn",
+      "mentions": 2
+    },
+    "66f79d8a6327": {
+      "id": "66f79d8a6327",
+      "name": "history",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "history"
+      ],
+      "properties": {
+        "is_a": "systematic study of the past"
+      },
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:18:07.126355Z",
+      "last_updated": "2026-07-18T12:18:07.192079Z",
+      "source": "definition",
+      "mentions": 2
+    },
+    "e9a17c25a265": {
+      "id": "e9a17c25a265",
+      "name": "Wikipedia/History: History",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "organization",
+        "org",
+        "history"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:18:07.191522Z",
+      "last_updated": "2026-07-18T12:18:07.191522Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "8c6ffb589f9e": {
+      "id": "8c6ffb589f9e",
+      "name": "theorists",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "theorists",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:18:07.192061Z",
+      "last_updated": "2026-07-18T12:18:07.192061Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "769634389743": {
+      "id": "769634389743",
+      "name": "term history",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "term",
+        "unknown",
+        "history"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:18:07.192180Z",
+      "last_updated": "2026-07-18T12:18:07.192180Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "bb8499b5b0b8": {
+      "id": "bb8499b5b0b8",
+      "name": "Wikipedia/Emergence:",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "organization",
+        "org",
+        "emergence"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.119329Z",
+      "last_updated": "2026-07-18T12:19:46.119329Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "8dd218684b32": {
+      "id": "8dd218684b32",
+      "name": "systems theory",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "theory",
+        "unknown",
+        "systems"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.119866Z",
+      "last_updated": "2026-07-18T12:19:46.119866Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "00b32f658d1b": {
+      "id": "00b32f658d1b",
+      "name": "philosophy",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "philosophy",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.119893Z",
+      "last_updated": "2026-07-18T12:19:46.119893Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "8718fcbd9367": {
+      "id": "8718fcbd9367",
+      "name": "complex entity",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "entity",
+        "complex",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.119951Z",
+      "last_updated": "2026-07-18T12:19:46.119951Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "d0449e860774": {
+      "id": "d0449e860774",
+      "name": "properties",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "properties",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.119968Z",
+      "last_updated": "2026-07-18T12:19:46.119968Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "c212f08ed115": {
+      "id": "c212f08ed115",
+      "name": "components",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "components",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:19:46.120014Z",
+      "last_updated": "2026-07-18T12:19:46.120014Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "335ce16b3fe4": {
+      "id": "335ce16b3fe4",
+      "name": "subject",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "subject",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:22:45.112630Z",
+      "last_updated": "2026-07-18T12:22:45.112630Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "53b0a1b2fadf": {
+      "id": "53b0a1b2fadf",
+      "name": "number",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "number",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:22:45.112661Z",
+      "last_updated": "2026-07-18T12:22:45.112661Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "714eea0f4c98": {
+      "id": "714eea0f4c98",
+      "name": "time",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "time",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.552,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:22:45.112723Z",
+      "last_updated": "2026-07-18T12:22:45.112723Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "d42c0112962b": {
+      "id": "d42c0112962b",
+      "name": "mind",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "mind",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5336,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:22:45.112738Z",
+      "last_updated": "2026-07-18T12:22:45.112738Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "f6c70c9350ca": {
+      "id": "f6c70c9350ca",
+      "name": "Wikipedia",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.4339,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:22:45.113626Z",
+      "last_updated": "2026-07-18T12:25:53.259280Z",
+      "source": "spacy_propn",
+      "mentions": 2
+    },
+    "6716043188ce": {
+      "id": "6716043188ce",
+      "name": "evolutionary biology",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "evolutionary",
+        "biology"
+      ],
+      "properties": {
+        "is_a": "subfield of biology that analyzes the fou"
+      },
+      "confidence": 0.6032,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:17.985576Z",
+      "last_updated": "2026-07-18T12:24:17.985576Z",
+      "source": "definition",
+      "mentions": 1
+    },
+    "126b9b5e8a29": {
+      "id": "126b9b5e8a29",
+      "name": "Wikipedia/Evolutionary",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "evolutionary",
+        "org",
+        "organization"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058343Z",
+      "last_updated": "2026-07-18T12:24:18.058343Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "9f8f7eec5dea": {
+      "id": "9f8f7eec5dea",
+      "name": "four",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "cardinal",
+        "four",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058382Z",
+      "last_updated": "2026-07-18T12:27:25.157426Z",
+      "source": "web_research",
+      "mentions": 3
+    },
+    "9e727e6012dc": {
+      "id": "9e727e6012dc",
+      "name": "Charles Darwin",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "darwin",
+        "charles"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058407Z",
+      "last_updated": "2026-07-18T12:25:53.258105Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "85bca3279115": {
+      "id": "85bca3279115",
+      "name": "Alfred Russel Wallace",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "alfred",
+        "wallace",
+        "russel"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058430Z",
+      "last_updated": "2026-07-18T12:25:53.258126Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "4e40aab8dd63": {
+      "id": "4e40aab8dd63",
+      "name": "Gregor Mendel",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "gregor",
+        "mendel"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058450Z",
+      "last_updated": "2026-07-18T12:25:53.258393Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "f8b698b5f63e": {
+      "id": "f8b698b5f63e",
+      "name": "R. A. Fisher",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "fisher"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058469Z",
+      "last_updated": "2026-07-18T12:25:53.258452Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "34dc8e1804c0": {
+      "id": "34dc8e1804c0",
+      "name": "Darwin",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "darwin"
+      ],
+      "properties": {},
+      "confidence": 0.719,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058484Z",
+      "last_updated": "2026-07-18T12:25:53.258461Z",
+      "source": "web_research",
+      "mentions": 4
+    },
+    "afbe95411b2e": {
+      "id": "afbe95411b2e",
+      "name": "Mendel",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "mendel"
+      ],
+      "properties": {},
+      "confidence": 0.6716,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058498Z",
+      "last_updated": "2026-07-18T12:25:53.258179Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "b6b9cd8ce46a": {
+      "id": "b6b9cd8ce46a",
+      "name": "Natural selection",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "natural",
+        "selection",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5862,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.058983Z",
+      "last_updated": "2026-07-18T12:25:53.258328Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "c64033672f5c": {
+      "id": "c64033672f5c",
+      "name": "engine",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "engine",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.059008Z",
+      "last_updated": "2026-07-18T12:25:53.258339Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "58703ec79fe2": {
+      "id": "58703ec79fe2",
+      "name": "laws",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "laws",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5693,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:24:18.059091Z",
+      "last_updated": "2026-07-18T12:25:53.258403Z",
+      "source": "web_research",
+      "mentions": 2
+    },
+    "72fd8dc930c5": {
+      "id": "72fd8dc930c5",
+      "name": "biology evolutionary biology",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "concept",
+        "evolutionary",
+        "biology"
+      ],
+      "properties": {
+        "is_a": "subfield of biology that analyzes the fou"
+      },
+      "confidence": 0.6032,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:25:53.180654Z",
+      "last_updated": "2026-07-18T12:25:53.180654Z",
+      "source": "definition",
+      "mentions": 1
+    },
+    "f4b90d5e36d9": {
+      "id": "f4b90d5e36d9",
+      "name": "Wikipedia/General",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "general",
+        "wikipedia",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:27:25.157324Z",
+      "last_updated": "2026-07-18T12:27:25.157324Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "1c1b9e266b93": {
+      "id": "1c1b9e266b93",
+      "name": "Einstein",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "einstein"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:27:25.157363Z",
+      "last_updated": "2026-07-18T12:27:25.157363Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "da22c8d70e24": {
+      "id": "da22c8d70e24",
+      "name": "Albert Einstein",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "einstein",
+        "albert"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:27:25.157384Z",
+      "last_updated": "2026-07-18T12:27:25.157384Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "72ec3b448904": {
+      "id": "72ec3b448904",
+      "name": "Isaac Newton's",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "isaac",
+        "newton"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:27:25.157411Z",
+      "last_updated": "2026-07-18T12:27:25.157411Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "653d006f7951": {
+      "id": "653d006f7951",
+      "name": "May 1916",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "1916",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.45,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:27:25.158165Z",
+      "last_updated": "2026-07-18T12:27:25.158165Z",
+      "source": "web_research:cooc",
+      "mentions": 1
+    },
+    "860afcbe89eb": {
+      "id": "860afcbe89eb",
+      "name": "mathematics",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "mathematics",
+        "concept"
+      ],
+      "properties": {
+        "is_a": "field of knowledge concerned with abstrac"
+      },
+      "confidence": 0.6333,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:29:15.039614Z",
+      "last_updated": "2026-07-18T12:29:15.096297Z",
+      "source": "definition",
+      "mentions": 2
+    },
+    "5840ceec4681": {
+      "id": "5840ceec4681",
+      "name": "Wikipedia/Mathematics: Mathematics",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "mathematics",
+        "wikipedia",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:29:15.095458Z",
+      "last_updated": "2026-07-18T12:29:15.095458Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "956534e2abca": {
+      "id": "956534e2abca",
+      "name": "Wikipedia/The Daily Stoic:",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "wikipedia",
+        "stoic",
+        "organization",
+        "daily",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653160Z",
+      "last_updated": "2026-07-18T12:30:46.653160Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "770a01b050e4": {
+      "id": "770a01b050e4",
+      "name": "The Daily Stoic",
+      "type": "concept",
+      "aliases": [],
+      "tags": [
+        "stoic",
+        "daily",
+        "concept",
+        "work_of_art"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653221Z",
+      "last_updated": "2026-07-18T12:30:46.653221Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "bb30fbdd9c81": {
+      "id": "bb30fbdd9c81",
+      "name": "366 Meditations on",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "366",
+        "organization",
+        "org",
+        "meditations"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653249Z",
+      "last_updated": "2026-07-18T12:30:46.653249Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "05be96f972d3": {
+      "id": "05be96f972d3",
+      "name": "the Art of Living",
+      "type": "organization",
+      "aliases": [],
+      "tags": [
+        "art",
+        "living",
+        "organization",
+        "org"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653273Z",
+      "last_updated": "2026-07-18T12:30:46.653273Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "8d0276065100": {
+      "id": "8d0276065100",
+      "name": "Ryan Holiday",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "ryan",
+        "holiday"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653294Z",
+      "last_updated": "2026-07-18T12:30:46.653294Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "65bdb2ec469f": {
+      "id": "65bdb2ec469f",
+      "name": "Stephen Hanselman",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "hanselman",
+        "stephen"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653314Z",
+      "last_updated": "2026-07-18T12:30:46.653314Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "5ad43148c90a": {
+      "id": "5ad43148c90a",
+      "name": "fifth",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "ordinal",
+        "fifth",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.5704,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653329Z",
+      "last_updated": "2026-07-18T12:30:46.653329Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "5bd80ca96f08": {
+      "id": "5bd80ca96f08",
+      "name": "Hanselman",
+      "type": "person",
+      "aliases": [],
+      "tags": [
+        "person",
+        "hanselman"
+      ],
+      "properties": {},
+      "confidence": 0.6448,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653345Z",
+      "last_updated": "2026-07-18T12:30:46.653345Z",
+      "source": "web_research",
+      "mentions": 1
+    },
+    "d788956320b2": {
+      "id": "d788956320b2",
+      "name": "Wisdom",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "wisdom",
+        "unknown"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653895Z",
+      "last_updated": "2026-07-18T12:30:46.653895Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    },
+    "64d703b354fd": {
+      "id": "64d703b354fd",
+      "name": "Perseverance",
+      "type": "unknown",
+      "aliases": [],
+      "tags": [
+        "unknown",
+        "perseverance"
+      ],
+      "properties": {},
+      "confidence": 0.3864,
+      "never_decay": false,
+      "first_seen": "2026-07-18T12:30:46.653925Z",
+      "last_updated": "2026-07-18T12:30:46.653925Z",
+      "source": "spacy_propn",
+      "mentions": 1
+    }
+  },
+  "relations": [
+    {
+      "id": "8a8529c0ceb4",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "is_a",
+      "target_id": "9220b4725352",
+      "target_name": "orrin_v3",
+      "confidence": 0.98,
+      "first_seen": "2026-07-18T12:04:49.889826Z",
+      "last_updated": "2026-07-18T13:47:36.008998Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "3ede940a9ae5",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "knows",
+      "target_id": "36b8e8bc1bef",
+      "target_name": "Ric Massey",
+      "confidence": 0.98,
+      "first_seen": "2026-07-18T12:04:49.889843Z",
+      "last_updated": "2026-07-18T13:47:36.009010Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "6b497533bd4b",
+      "source_id": "36b8e8bc1bef",
+      "source_name": "Ric Massey",
+      "relation": "created",
+      "target_id": "1ecc7dba8bb8",
+      "target_name": "Orrin",
+      "confidence": 0.98,
+      "first_seen": "2026-07-18T12:04:49.889852Z",
+      "last_updated": "2026-07-18T13:47:36.009017Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "8ce804a251dd",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "d524605d0f85",
+      "target_name": "MacBook Air",
+      "confidence": 0.98,
+      "first_seen": "2026-07-18T12:04:49.889879Z",
+      "last_updated": "2026-07-18T13:47:36.009022Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "19529fa4223d",
+      "source_id": "1ecc7dba8bb8",
+      "source_name": "Orrin",
+      "relation": "uses",
+      "target_id": "6187a5188433",
+      "target_name": "MacBookAir.hsd1.tn.comcast.net",
+      "confidence": 0.98,
+      "first_seen": "2026-07-18T12:04:52.368170Z",
+      "last_updated": "2026-07-18T13:47:36.009028Z",
+      "source": "environment"
+    },
+    {
+      "id": "7847e3c9ea20",
+      "source_id": "779f85ae2a81",
+      "source_name": "the world",
+      "relation": "is_a",
+      "target_id": "f802aac94b4f",
+      "target_name": "totality of entities",
+      "confidence": 0.57,
+      "first_seen": "2026-07-18T12:08:39.905112Z",
+      "last_updated": "2026-07-18T12:09:42.685458Z",
+      "source": "definition"
+    },
+    {
+      "id": "ff53c46acd02",
+      "source_id": "a5197f10266a",
+      "source_name": "nature",
+      "relation": "conceptualize_in",
+      "target_id": "d621a3a01520",
+      "target_name": "different fields",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:08:39.953172Z",
+      "last_updated": "2026-07-18T12:09:42.706386Z",
+      "source": "web_research"
+    },
+    {
+      "id": "08926c3e72a7",
+      "source_id": "05017d661cc9",
+      "source_name": "conceptions",
+      "relation": "see",
+      "target_id": "7c211433f020",
+      "target_name": "world",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:08:39.953228Z",
+      "last_updated": "2026-07-18T12:09:42.706429Z",
+      "source": "web_research"
+    },
+    {
+      "id": "e5817c728887",
+      "source_id": "11119f5f9c9f",
+      "source_name": "others",
+      "relation": "talk_of",
+      "target_id": "f18fa14bc407",
+      "target_name": "plurality",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:08:39.953282Z",
+      "last_updated": "2026-07-18T12:08:39.953282Z",
+      "source": "web_research"
+    },
+    {
+      "id": "800d9783c26f",
+      "source_id": "11119f5f9c9f",
+      "source_name": "others",
+      "relation": "analyze",
+      "target_id": "7c211433f020",
+      "target_name": "world",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:08:39.953345Z",
+      "last_updated": "2026-07-18T12:08:39.953345Z",
+      "source": "web_research"
+    },
+    {
+      "id": "51bf656903c2",
+      "source_id": "a07ea4a811f1",
+      "source_name": "Wikipedia/Subjective",
+      "relation": "related_to",
+      "target_id": "e0996a37c13d",
+      "target_name": "first",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:13:29.307502Z",
+      "last_updated": "2026-07-18T12:13:29.307502Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "61a564fcd8a1",
+      "source_id": "e7e694c58cd5",
+      "source_name": "book",
+      "relation": "summarize",
+      "target_id": "cdf7e925f574",
+      "target_name": "results",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:14:59.680116Z",
+      "last_updated": "2026-07-18T12:16:32.846548Z",
+      "source": "web_research"
+    },
+    {
+      "id": "2a9e788b7710",
+      "source_id": "56c3e9bf26c9",
+      "source_name": "quantum",
+      "relation": "related_to",
+      "target_id": "4408ef5b09a0",
+      "target_name": "Wikipedia/Mathematical Foundations",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:14:59.680446Z",
+      "last_updated": "2026-07-18T12:16:32.846639Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "3093166adb9c",
+      "source_id": "4408ef5b09a0",
+      "source_name": "Wikipedia/Mathematical Foundations",
+      "relation": "related_to",
+      "target_id": "b0babcf97f05",
+      "target_name": "Quantum Mechanics",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:14:59.680455Z",
+      "last_updated": "2026-07-18T12:16:32.846647Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "b792b80ec436",
+      "source_id": "b0babcf97f05",
+      "source_name": "Quantum Mechanics",
+      "relation": "related_to",
+      "target_id": "658d2cea03c1",
+      "target_name": "John von Neumann",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:14:59.680462Z",
+      "last_updated": "2026-07-18T12:16:32.846654Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "a749178dbd72",
+      "source_id": "658d2cea03c1",
+      "source_name": "John von Neumann",
+      "relation": "related_to",
+      "target_id": "cb5e83048572",
+      "target_name": "1932",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:14:59.680472Z",
+      "last_updated": "2026-07-18T12:16:32.846663Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "ba6451087170",
+      "source_id": "8c6ffb589f9e",
+      "source_name": "theorists",
+      "relation": "categorize",
+      "target_id": "66f79d8a6327",
+      "target_name": "history",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:18:07.192090Z",
+      "last_updated": "2026-07-18T12:18:07.192090Z",
+      "source": "web_research"
+    },
+    {
+      "id": "075e10fa70cb",
+      "source_id": "8dd218684b32",
+      "source_name": "systems theory",
+      "relation": "occur_in",
+      "target_id": "00b32f658d1b",
+      "target_name": "philosophy",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:19:46.119907Z",
+      "last_updated": "2026-07-18T12:19:46.119907Z",
+      "source": "web_research"
+    },
+    {
+      "id": "30eddc6cf6c3",
+      "source_id": "8718fcbd9367",
+      "source_name": "complex entity",
+      "relation": "have",
+      "target_id": "d0449e860774",
+      "target_name": "properties",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:19:46.119979Z",
+      "last_updated": "2026-07-18T12:19:46.119979Z",
+      "source": "web_research"
+    },
+    {
+      "id": "9f8033e5da13",
+      "source_id": "335ce16b3fe4",
+      "source_name": "subject",
+      "relation": "focus_on",
+      "target_id": "53b0a1b2fadf",
+      "target_name": "number",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:22:45.112677Z",
+      "last_updated": "2026-07-18T12:22:45.112677Z",
+      "source": "web_research"
+    },
+    {
+      "id": "b7e2f2c38bef",
+      "source_id": "714eea0f4c98",
+      "source_name": "time",
+      "relation": "exist_of",
+      "target_id": "d42c0112962b",
+      "target_name": "mind",
+      "confidence": 0.62,
+      "first_seen": "2026-07-18T12:22:45.112753Z",
+      "last_updated": "2026-07-18T12:22:45.112753Z",
+      "source": "web_research"
+    },
+    {
+      "id": "665022b7ff0b",
+      "source_id": "b6b9cd8ce46a",
+      "source_name": "Natural selection",
+      "relation": "discover_as",
+      "target_id": "c64033672f5c",
+      "target_name": "engine",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:24:18.059023Z",
+      "last_updated": "2026-07-18T12:25:53.258349Z",
+      "source": "web_research"
+    },
+    {
+      "id": "573e5fc953a3",
+      "source_id": "4e40aab8dd63",
+      "source_name": "Gregor Mendel",
+      "relation": "discover",
+      "target_id": "58703ec79fe2",
+      "target_name": "laws",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:24:18.059103Z",
+      "last_updated": "2026-07-18T12:25:53.258411Z",
+      "source": "web_research"
+    },
+    {
+      "id": "ea9aaaf12453",
+      "source_id": "f8b698b5f63e",
+      "source_name": "R. A. Fisher",
+      "relation": "unify",
+      "target_id": "34dc8e1804c0",
+      "target_name": "Darwin",
+      "confidence": 0.69,
+      "first_seen": "2026-07-18T12:24:18.059161Z",
+      "last_updated": "2026-07-18T12:25:53.258468Z",
+      "source": "web_research"
+    },
+    {
+      "id": "86b776b318bd",
+      "source_id": "126b9b5e8a29",
+      "source_name": "Wikipedia/Evolutionary",
+      "relation": "related_to",
+      "target_id": "9f8f7eec5dea",
+      "target_name": "four",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:24:18.059431Z",
+      "last_updated": "2026-07-18T12:24:18.059431Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "b7175ad80c7f",
+      "source_id": "9e727e6012dc",
+      "source_name": "Charles Darwin",
+      "relation": "related_to",
+      "target_id": "85bca3279115",
+      "target_name": "Alfred Russel Wallace",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:24:18.059452Z",
+      "last_updated": "2026-07-18T12:25:53.258864Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "feb3dc01b51d",
+      "source_id": "f8b698b5f63e",
+      "source_name": "R. A. Fisher",
+      "relation": "related_to",
+      "target_id": "34dc8e1804c0",
+      "target_name": "Darwin",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:24:18.059478Z",
+      "last_updated": "2026-07-18T12:25:53.258891Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "478f035afd37",
+      "source_id": "34dc8e1804c0",
+      "source_name": "Darwin",
+      "relation": "related_to",
+      "target_id": "afbe95411b2e",
+      "target_name": "Mendel",
+      "confidence": 0.47,
+      "first_seen": "2026-07-18T12:24:18.059485Z",
+      "last_updated": "2026-07-18T12:25:53.258898Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "92796551ca47",
+      "source_id": "f4b90d5e36d9",
+      "source_name": "Wikipedia/General",
+      "relation": "related_to",
+      "target_id": "1c1b9e266b93",
+      "target_name": "Einstein",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:27:25.158139Z",
+      "last_updated": "2026-07-18T12:27:25.158139Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "1f347f890643",
+      "source_id": "1c1b9e266b93",
+      "source_name": "Einstein",
+      "relation": "related_to",
+      "target_id": "da22c8d70e24",
+      "target_name": "Albert Einstein",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:27:25.158155Z",
+      "last_updated": "2026-07-18T12:27:25.158155Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "ba4825bec359",
+      "source_id": "da22c8d70e24",
+      "source_name": "Albert Einstein",
+      "relation": "related_to",
+      "target_id": "653d006f7951",
+      "target_name": "May 1916",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:27:25.158174Z",
+      "last_updated": "2026-07-18T12:27:25.158174Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "afa618dac2e3",
+      "source_id": "72ec3b448904",
+      "source_name": "Isaac Newton's",
+      "relation": "related_to",
+      "target_id": "9f8f7eec5dea",
+      "target_name": "four",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:27:25.158191Z",
+      "last_updated": "2026-07-18T12:27:25.158191Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "845dce3b16f6",
+      "source_id": "956534e2abca",
+      "source_name": "Wikipedia/The Daily Stoic:",
+      "relation": "related_to",
+      "target_id": "770a01b050e4",
+      "target_name": "The Daily Stoic",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653680Z",
+      "last_updated": "2026-07-18T12:30:46.653680Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "cb6ecbe27f4f",
+      "source_id": "770a01b050e4",
+      "source_name": "The Daily Stoic",
+      "relation": "related_to",
+      "target_id": "bb30fbdd9c81",
+      "target_name": "366 Meditations on",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653713Z",
+      "last_updated": "2026-07-18T12:30:46.653713Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "e2cf6e40eb32",
+      "source_id": "bb30fbdd9c81",
+      "source_name": "366 Meditations on",
+      "relation": "related_to",
+      "target_id": "05be96f972d3",
+      "target_name": "the Art of Living",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653722Z",
+      "last_updated": "2026-07-18T12:30:46.653722Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "773399e84308",
+      "source_id": "05be96f972d3",
+      "source_name": "the Art of Living",
+      "relation": "related_to",
+      "target_id": "8d0276065100",
+      "target_name": "Ryan Holiday",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653731Z",
+      "last_updated": "2026-07-18T12:30:46.653731Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "48c1d989bfda",
+      "source_id": "8d0276065100",
+      "source_name": "Ryan Holiday",
+      "relation": "related_to",
+      "target_id": "65bdb2ec469f",
+      "target_name": "Stephen Hanselman",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653739Z",
+      "last_updated": "2026-07-18T12:30:46.653739Z",
+      "source": "web_research:cooc"
+    },
+    {
+      "id": "5e6c74e19b1f",
+      "source_id": "5ad43148c90a",
+      "source_name": "fifth",
+      "relation": "related_to",
+      "target_id": "5bd80ca96f08",
+      "target_name": "Hanselman",
+      "confidence": 0.4,
+      "first_seen": "2026-07-18T12:30:46.653757Z",
+      "last_updated": "2026-07-18T12:30:46.653757Z",
+      "source": "web_research:cooc"
+    }
+  ],
+  "meta": {
+    "version": 1,
+    "last_updated": "2026-07-18T13:47:36.009036Z",
+    "last_consolidation": "2026-07-18T12:09:42.706624Z",
+    "entity_count": 74,
+    "relation_count": 38
+  }
+}

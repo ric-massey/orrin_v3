@@ -1,0 +1,24 @@
+{
+  "_schema_version": 2,
+  "motivation": {
+    "research_topic": 2.748210534717631
+  },
+  "confidence": {
+    "research_topic": 0.195
+  },
+  "exploration_drive": {
+    "thread_continue": 0.1
+  },
+  "uncertainty": {
+    "assess_goal_progress": 0.195
+  },
+  "impasse_signal": {
+    "generate_intrinsic_goals": 0.1
+  },
+  "reward_positive": {
+    "thread_continue": 0.1
+  },
+  "expected_gain": {
+    "research_topic": 0.6888761938888889
+  }
+}

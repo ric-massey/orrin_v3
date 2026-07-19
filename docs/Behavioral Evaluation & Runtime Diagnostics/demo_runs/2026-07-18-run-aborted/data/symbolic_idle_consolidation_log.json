@@ -1,0 +1,35 @@
+[
+  {
+    "timestamp": "2026-07-18T12:09:42.530571+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): [aspiration] An enduring direction I hold: Understand the world more deeply.",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): [aspiration] An enduring direction I hold: Understand the world more deeply.",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  }
+]

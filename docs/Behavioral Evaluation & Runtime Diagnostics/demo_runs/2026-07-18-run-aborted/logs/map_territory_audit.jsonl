@@ -1,0 +1,1 @@
+{"ts": "2026-07-18T13:20:30.282405+00:00", "findings": ["cognition/planning/commitment_value.py:79 — _STALE_REFRACTORY_CYCLES=250 but its comment says 130 cycles: the comment promises behavior the constant doesn't implement"], "new_findings": 1, "duration_s": 2.91}

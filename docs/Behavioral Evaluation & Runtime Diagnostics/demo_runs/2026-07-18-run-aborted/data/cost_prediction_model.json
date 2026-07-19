@@ -1,0 +1,97 @@
+{
+  "attend_goal": {
+    "ema": 10.73,
+    "n": 306,
+    "last": 5.68
+  },
+  "look_outward": {
+    "ema": 24.78,
+    "n": 86,
+    "last": 1.96
+  },
+  "assess_goal_progress": {
+    "ema": 4.42,
+    "n": 284,
+    "last": 2.35
+  },
+  "generate_intrinsic_goals": {
+    "ema": 0.39,
+    "n": 730,
+    "last": 0.33
+  },
+  "thread_continue": {
+    "ema": 1.35,
+    "n": 270,
+    "last": 6.25
+  },
+  "look_around": {
+    "ema": 122.69,
+    "n": 22,
+    "last": 0.07
+  },
+  "search_own_files": {
+    "ema": 97.97,
+    "n": 1,
+    "last": 9.84
+  },
+  "research_topic": {
+    "ema": 0.25,
+    "n": 633,
+    "last": 0.1
+  },
+  "check_user_presence": {
+    "ema": 181.71,
+    "n": 2,
+    "last": 24.63
+  },
+  "seek_novelty": {
+    "ema": 41.42,
+    "n": 7,
+    "last": 5.9
+  },
+  "read_a_book": {
+    "ema": 0.46,
+    "n": 149,
+    "last": 0.8
+  },
+  "narrative_update": {
+    "ema": 3.29,
+    "n": 162,
+    "last": 0.31
+  },
+  "process_regret": {
+    "ema": 209.34,
+    "n": 2,
+    "last": 38.78
+  },
+  "reflect_on_self_beliefs": {
+    "ema": 548.9,
+    "n": 1,
+    "last": 344.48
+  },
+  "leave_note": {
+    "ema": 565.98,
+    "n": 9,
+    "last": 32.24
+  },
+  "wikipedia_search": {
+    "ema": 80.36,
+    "n": 4,
+    "last": 0.06
+  },
+  "make_candidate": {
+    "ema": 200.11,
+    "n": 1,
+    "last": 0.55
+  },
+  "experience_corpus": {
+    "ema": 204.49,
+    "n": 1,
+    "last": 22.46
+  },
+  "reflect_on_internal_agents": {
+    "ema": 481.28,
+    "n": 1,
+    "last": 6.4
+  }
+}

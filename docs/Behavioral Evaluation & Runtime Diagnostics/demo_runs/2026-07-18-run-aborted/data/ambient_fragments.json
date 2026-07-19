@@ -1,0 +1,62 @@
+[
+  {
+    "id": "734a115c",
+    "content": "A question that didn't fully form keeps pulling at attention.",
+    "fragment_type": "emotional_echo",
+    "valence": "neutral",
+    "intensity": 0.37899999999999967,
+    "sticky": true,
+    "source": "exploration_drive",
+    "suppress_count": 0,
+    "last_surfaced": 2653,
+    "born": "2026-07-18T13:45:23.788690Z"
+  },
+  {
+    "id": "9556349f",
+    "content": "The open loop of Make things — produce work that didn't exist before keeps cycling back.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.502,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 2669,
+    "born": "2026-07-18T13:47:20.011145Z"
+  },
+  {
+    "id": "2a568f3e",
+    "content": "Make things — produce work that didn't exist before — still unresolved. Keeps returning without being worked.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.508,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 2670,
+    "born": "2026-07-18T13:47:22.146017Z"
+  },
+  {
+    "id": "b155bddc",
+    "content": "A rhythm without content: the sense of something recurring without a name.",
+    "fragment_type": "associative",
+    "valence": "neutral",
+    "intensity": 0.15500000000000003,
+    "sticky": false,
+    "source": "background",
+    "suppress_count": 0,
+    "last_surfaced": 2666,
+    "born": "2026-07-18T13:47:26.704582Z"
+  },
+  {
+    "id": "c610ed44",
+    "content": "A half-formed image surfaces and dissolves without becoming anything.",
+    "fragment_type": "associative",
+    "valence": "neutral",
+    "intensity": 0.23,
+    "sticky": false,
+    "source": "background",
+    "suppress_count": 0,
+    "last_surfaced": 2669,
+    "born": "2026-07-18T13:47:33.103208Z"
+  }
+]

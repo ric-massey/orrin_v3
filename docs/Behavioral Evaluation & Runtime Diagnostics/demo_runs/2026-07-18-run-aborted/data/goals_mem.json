@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-07-18T12:07:08.144181Z",
+    "last_updated": "2026-07-18T13:41:08.908476Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [],
+    "id": "g_332fa1521f03"
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-07-18T12:04:40.647417+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 1,
+    "partial_credit": 0.0,
+    "progress": 0.05,
+    "recent_contributions": [
+      "Understand my own mind and how I work more deeply"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 52,
+    "last_contribution_ts": "2026-07-18T12:25:53.177950+00:00"
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-07-18T12:04:40.647417+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "last_contribution_ts": "2026-07-18T12:56:26.321656+00:00"
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-07-18T12:04:40.647417+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": []
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-07-18T12:04:40.647417+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 3,
+    "partial_credit": 0.0,
+    "progress": 0.15,
+    "recent_contributions": [
+      "Trace in my own code what drives 'host machine is quiet'",
+      "Trace in my own code what drives 'action'",
+      "Understand mathematics more deeply"
+    ]
+  }
+]

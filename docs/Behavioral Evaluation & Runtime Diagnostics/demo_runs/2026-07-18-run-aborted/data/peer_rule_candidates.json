@@ -1,0 +1,26 @@
+{
+  "trigger:affiliation_signal": {
+    "count": 64,
+    "promoted": true
+  },
+  "trigger:threat_level": {
+    "count": 24,
+    "promoted": true
+  },
+  "trigger:reward_positive": {
+    "count": 5,
+    "promoted": true
+  },
+  "trigger:exploration_drive": {
+    "count": 5,
+    "promoted": true
+  },
+  "trigger:novelty_signal": {
+    "count": 1,
+    "promoted": false
+  },
+  "trigger:confidence": {
+    "count": 6,
+    "promoted": true
+  }
+}

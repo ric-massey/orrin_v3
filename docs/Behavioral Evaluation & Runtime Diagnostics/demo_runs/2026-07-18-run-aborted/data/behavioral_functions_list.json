@@ -1,0 +1,162 @@
+[
+  {
+    "name": "add_tool_to_catalog",
+    "definition": "add_tool_to_catalog(name: 'str', description: 'str', when_to_use: 'str') -> 'None'"
+  },
+  {
+    "name": "ask_llm_tool",
+    "definition": "ask_llm_tool(query: 'str' = '', purpose: 'str' = 'question') -> 'str'\nLLM as a registry tool — same standing as web_search or wikipedia.\n\n    Invoked through the same dispatch path as every other tool; when the LLM\n    is disabled/unreachable it returns a plain \"tool unavailable\" message,\n    exactly like a dead web fetch — a result to route around, not an error."
+  },
+  {
+    "name": "assert_speakable",
+    "definition": "assert_speakable(text: 'str') -> 'str'\nReturn `text` if speakable; raise SpeakabilityError otherwise.\n\n    The door calls this AFTER composition. A failure here means the composer\n    copied backend representation instead of composing from meaning — a bug to\n    fix at the source, not text to sanitize and ship."
+  },
+  {
+    "name": "budget_allows",
+    "definition": "budget_allows(now: 'float | None' = None) -> 'bool'\nTrue when the rarity budget has room right now (does not consume it)."
+  },
+  {
+    "name": "build_motive",
+    "definition": "build_motive(context: 'Dict[str, Any]', *, intent: 'str', recipient: 'str' = 'Ric', seed: 'str' = None) -> \"'Motive'\"\nConstruct a Motive from the committed goal + felt state, with the step's\n    intent threaded in by step_execution when present.\n\n    Provenance flows one of two ways:\n      • `context[\"_expression_motive\"]` — set by execute_step_action when an\n        expressive act is fired from a plan step, carrying the step's intent and\n        the owning goal's purpose (Phase 2 / E6). Its fields override the\n        goal-derived defaults so the act serves the reason it was triggered.\n      • otherwise the goal-derived defaults (Phase-1 local motive).\n    The seed always defaults to the affect meaning kernel — never a raw WM line."
+  },
+  {
+    "name": "build_response",
+    "definition": "build_response(user_input: 'str', context: 'Dict[str, Any]', affect_state: 'Dict[str, Any]') -> 'str'\nBuild a response through the full pipeline. Always returns a non-empty string.\n\n    Comprehension (S1) and memory retrieval (S2) run exactly once here and are\n    passed into the symbolic compose path — speech_generator skips re-running them."
+  },
+  {
+    "name": "build_speech",
+    "definition": "build_speech(user_input: 'str', context: 'Dict[str, Any]', affect_state: 'Dict[str, Any]') -> 'str'\nBuild a response driven by Orrin's inner monologue.\n    Always returns a non-empty string (caller may still get \"\" for social_penalty-silence)."
+  },
+  {
+    "name": "call_generated_function",
+    "definition": "call_generated_function(function_name: 'str') -> 'bool'\nReload the generated module and call a function within it by name.\n    Returns True on success, False on failure."
+  },
+  {
+    "name": "choose_content_kernel",
+    "definition": "choose_content_kernel(context: 'Dict[str, Any]') -> 'Dict[str, Any]'\nPick the typed intent + seed for a self-initiated utterance.\n\n    Referent-bearing intents are tried best-first; `express_state` (raw affect,\n    no referent, seed=None so the composer uses the affect meaning kernel) is\n    reached only when nothing concrete exists to speak about."
+  },
+  {
+    "name": "compose_from_motive",
+    "definition": "compose_from_motive(motive: 'Motive', context: 'Dict[str, Any]') -> 'str'\nCompose person-facing language from the motive + current affect.\n\n    Phase 2D (LM-as-mouth): first try rendering through the native organ\n    (conditioned on the thought object), GATED so it only takes over from the\n    templates when it is fluent and the rendering is faithful (membrane-clean,\n    reconstruction-consistent — conditional_render.render_from_thought). Until\n    then this falls through to the authoring organ below, unchanged — authenticity\n    over fluency.\n\n    The fallback reuses expression.express — affect-driven, vocabulary-based,\n    congruence-checked. It NEVER reads working memory or any symbolic/telemetry\n    field; the only content kernel it sees is the motive's own (sanitized) seed."
+  },
+  {
+    "name": "delay_between_requests",
+    "definition": "delay_between_requests() -> 'None'"
+  },
+  {
+    "name": "deliver_reply",
+    "definition": "deliver_reply(reply_text: 'str', *, ignited: 'bool' = False) -> 'None'\nDeliver a freshly emitted reply back to every Face message awaiting one.\n\n    With nothing pending (spontaneous speech), the words used to die silently\n    here. Now they get somewhere to go (P1): an OS notification — but only when\n    the caller says the source cycle IGNITED (plumbed through the utterance\n    metadata, never re-decided at this bridge) and the presence budget in\n    presence_notify allows it. Ordinary replies to the user are unaffected."
+  },
+  {
+    "name": "drain_face_inputs",
+    "definition": "drain_face_inputs() -> 'None'\nPull any messages typed into the Face and feed them to the brain's input\n    channel (user_input.txt), so the existing perception/comprehension/speech\n    pipeline ingests them exactly as it would a locally-typed line. Remembers\n    the message id(s) so the reply can be delivered back to the right message.\n    Call once per cycle BEFORE the loop reads user input."
+  },
+  {
+    "name": "evaluate_tool_use",
+    "definition": "evaluate_tool_use(memories: 'List[Dict[str, Any]]') -> 'None'\nVery simple keyword-based suggester that appends to TOOL_REQUESTS_FILE."
+  },
+  {
+    "name": "execute_pending_tools",
+    "definition": "execute_pending_tools()"
+  },
+  {
+    "name": "execute_python_code",
+    "definition": "execute_python_code(code_string: 'str', *, timeout: 'float' = 5.0, cwd: 'str | None' = None) -> 'Dict[str, Any]'\nExecute Python code in an *isolated subprocess* (sandbox).\n    Returns:\n      {\n        \"success\": bool,\n        \"output\": \"<stdout>\",\n        \"stderr\": \"<stderr>\",\n        \"returncode\": int\n      }"
+  },
+  {
+    "name": "express",
+    "definition": "express(salience: 'CycleState', context: 'Dict[str, Any]', user_input: 'str' = '') -> 'str'\nTranslate Orrin's current state into natural language using the vocabulary\n    database. Returns empty string if there is nothing worth saying."
+  },
+  {
+    "name": "express_to_user",
+    "definition": "express_to_user(motive: 'Motive', channel: 'str', context: 'Dict[str, Any]' = None, *, credit: 'bool' = True) -> 'Dict[str, Any]'\nCompose from `motive`, enforce speakability, stamp, and route to `channel`.\n\n    credit=False (AR7/G4) delivers the message but records no effect: a note\n    seeded only from felt state is expression, not production — it must never\n    earn artifact credit.\n\n    Returns {\"success\", \"channel\", \"text\", \"motive\"}."
+  },
+  {
+    "name": "filter_memories",
+    "definition": "filter_memories(memories, tag='[MemoryFilter]')"
+  },
+  {
+    "name": "force_reply",
+    "definition": "force_reply(context) -> 'None'\nBackstop guarantee: if a Face message is still awaiting a reply after the\n    cycle's normal cognition ran (the action gate didn't pick a speak action, or\n    something suppressed it), build a reply through the symbolic speech pipeline\n    and deliver it. Ensures every message the user sends gets a real answer\n    rather than silence. No-ops when nothing is pending (deliver_reply clears the\n    queue once the natural path has answered, so this never double-replies)."
+  },
+  {
+    "name": "generate_behavior_from_integration",
+    "definition": "generate_behavior_from_integration(context: 'Dict[str, Any]') -> 'List[Dict[str, Any]]'\nPure proposal generator. NO side-effects here.\n    Returns a list of action dicts for scoring/execution by the action gate.\n    Also caches proposals in context to avoid duplicates in the same cycle/topic."
+  },
+  {
+    "name": "get_all_memories",
+    "definition": "get_all_memories() -> 'list'"
+  },
+  {
+    "name": "has_pending",
+    "definition": "has_pending() -> 'bool'"
+  },
+  {
+    "name": "is_scraping_allowed",
+    "definition": "is_scraping_allowed(url: 'str') -> 'bool'"
+  },
+  {
+    "name": "is_speakable",
+    "definition": "is_speakable(text: 'str') -> 'bool'\nTrue if `text` is composed, person-facing language with no backend\n    representation leaking through (telemetry tags, bracket markers, paths)."
+  },
+  {
+    "name": "load_private_thoughts_as_list",
+    "definition": "load_private_thoughts_as_list(path) -> 'list'"
+  },
+  {
+    "name": "notify_spontaneous",
+    "definition": "notify_spontaneous(text: 'str', *, ignited: 'bool') -> 'bool'\nOffer a spontaneous utterance to the OS. Returns True only when a\n    notification was actually shown (and therefore budget was consumed)."
+  },
+  {
+    "name": "pre_speak_check",
+    "definition": "pre_speak_check(text: 'str', context: 'Dict[str, Any]', urgency: 'float' = 0.5) -> 'Tuple[str, str]'\nGiven a generated text, return (possibly adapted text, disposition).\n\n    disposition: \"as_is\" | \"revised\" | \"silent\"\n\n    Call this after express() generates text, before it enters pending_actions."
+  },
+  {
+    "name": "read_file",
+    "definition": "read_file(path: 'str | Path') -> 'Dict[str, Any]'\nRead a text file (utf-8). Relative paths resolve under DATA_DIR."
+  },
+  {
+    "name": "reflect_on_result",
+    "definition": "reflect_on_result(tool, reason, result)"
+  },
+  {
+    "name": "register_reunion",
+    "definition": "register_reunion(gap_s: 'float') -> 'bool'\nCompose and persist the reunion line for a credited sleep gap. Called at\n    boot right after credit_sleep_since_last_active(); returns True when a line\n    was written. Fail-safe — a broken composition must never break boot."
+  },
+  {
+    "name": "reload_generated_module",
+    "definition": "reload_generated_module() -> 'Optional[ModuleType]'\nEnsure package structure, then import or reload the generated module.\n    Returns the module object on success, or None on failure."
+  },
+  {
+    "name": "revise_think",
+    "definition": "revise_think() -> 'str'\nReflectively rewrite think() using recent thoughts, internal state, and past results.\n    Writes a validated revision into THINK_MODULE with a backup, after sandbox verification."
+  },
+  {
+    "name": "run_python_sandboxed",
+    "definition": "run_python_sandboxed(code: 'str', *, dry_run: 'bool' = False, timeout_s: 'int' = 5) -> 'dict'"
+  },
+  {
+    "name": "run_tool",
+    "definition": "run_tool(tool, reason)"
+  },
+  {
+    "name": "scrape_text",
+    "definition": "scrape_text(url: 'str') -> 'str'\nRespect robots.txt, then fetch and return ~first 2000 chars of visible text."
+  },
+  {
+    "name": "strip_internal",
+    "definition": "strip_internal(text: 'str') -> 'str'\nBest-effort sanitizer for a *content kernel* (a Motive.seed), not for\n    composed output. Removes bracket tags and collapses whitespace so a genuine\n    meaning kernel can flow into composition reworded rather than copied. The\n    door still asserts speakability on the final composed text."
+  },
+  {
+    "name": "tool_thinking",
+    "definition": "tool_thinking() -> 'None'\nAsk the model to propose tool uses based on recent memories.\n    Appends merged suggestions to TOOL_REQUESTS_FILE."
+  },
+  {
+    "name": "web_search",
+    "definition": "web_search(query: 'str') -> 'Dict[str, Any]'\nUses Serper.dev (requires SERPER_API_KEY in env).\n    Correct usage: POST with JSON body, not GET."
+  },
+  {
+    "name": "write_file",
+    "definition": "write_file(path: 'str | Path', content: 'str') -> 'Dict[str, Any]'\nWrite arbitrary text to a file (atomic). Relative paths resolve under DATA_DIR."
+  }
+]

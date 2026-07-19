@@ -1,0 +1,113 @@
+[
+  {
+    "id": "437b930db8",
+    "topic": "something",
+    "view": "Something keeps surfacing — most sharply in \"Something in me urgency vs. routine, and something else won't let that be the whole story.\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.35,
+    "alpha": 1.4,
+    "beta": 2.6,
+    "formed_at": "2026-07-18T12:04:52.369532+00:00",
+    "updated_at": "2026-07-18T12:34:53.111810+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-18T12:04:52.369532+00:00",
+        "kind": "observation",
+        "ref_id": "5909d93f-b590-47e6-b96e-acf04e8766dc",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-18T12:34:53.111810+00:00",
+        "kind": "mention",
+        "ref_id": "aef1a9cb-7647-4f7f-940c-a39f2b015465",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.35,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "5909d93f-b590-47e6-b96e-acf04e8766dc",
+      "3abc8ac0-cbd1-4ce1-96ec-1be86d42fbdb"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  },
+  {
+    "id": "7bf46ad61a",
+    "topic": "symbolic",
+    "view": "Symbolic has mostly landed well across 2 recent moments — most sharply in \"Dream: In a labyrinth at dusk, [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]\n[symboli\". I find myself drawn to it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-18T13:04:55.028793+00:00",
+    "updated_at": "2026-07-18T13:34:57.292182+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "exploration_drive",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-18T13:04:55.028793+00:00",
+        "kind": "observation",
+        "ref_id": "23d7a85e-4181-4f6a-8723-9f1277988181",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-07-18T13:34:57.292135+00:00",
+        "kind": "mention",
+        "ref_id": "e521a759-243f-4322-90a3-2e1438f680ac",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-07-18T13:34:57.292182+00:00",
+        "kind": "mention",
+        "ref_id": "82ec09ab-0382-464b-84de-db4b02e423d6",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.4,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "23d7a85e-4181-4f6a-8723-9f1277988181",
+      "e2a01849-3221-4c80-9c27-30409ad4a218"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  },
+  {
+    "id": "ad921d6048",
+    "topic": "unknown",
+    "view": "Unknown keeps landing badly — most sharply in \"[symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]\n[symbolic] Wikipedia/Subjective (organi\". I've grown wary of it.",
+    "confidence": 0.4,
+    "alpha": 1.6,
+    "beta": 2.4,
+    "formed_at": "2026-07-18T13:34:57.294034+00:00",
+    "updated_at": "2026-07-18T13:34:57.294034+00:00",
+    "evidence_count": 1,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-07-18T13:34:57.294034+00:00",
+        "kind": "observation",
+        "ref_id": "e521a759-243f-4322-90a3-2e1438f680ac",
+        "direction": "for",
+        "weight": 0.25
+      }
+    ],
+    "salience": 0.3,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e521a759-243f-4322-90a3-2e1438f680ac",
+      "82ec09ab-0382-464b-84de-db4b02e423d6"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  }
+]

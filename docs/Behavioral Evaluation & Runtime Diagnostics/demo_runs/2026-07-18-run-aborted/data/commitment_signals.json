@@ -1,0 +1,74 @@
+{
+  "goals": {
+    "aspiration-self_understanding": {
+      "value_ema": 0.5,
+      "stale_cycles": 5.833,
+      "avoid_streak": 3.713,
+      "last_ts": 1784382458.3126929
+    },
+    "ltc_aspiration-self_understa_1": {
+      "value_ema": 0.5735,
+      "stale_cycles": 0.0,
+      "avoid_streak": 3.885,
+      "last_ts": 1784376428.093979,
+      "recent_hashes": [
+        "03d891a185d2175dd6d670d5008907628e122e88e3ff00321c6f4a345f77970d"
+      ]
+    },
+    "aspiration-world_knowledge": {
+      "value_ema": 0.5,
+      "stale_cycles": 3.762,
+      "avoid_streak": 3.751,
+      "last_ts": 1784382455.8599381
+    },
+    "aspiration-genuine_contact": {
+      "value_ema": 0.5,
+      "stale_cycles": 0.005,
+      "avoid_streak": 0.005,
+      "last_ts": 1784382071.8511848
+    },
+    "g_92de72f3d5": {
+      "value_ema": 0.6,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "ed72d61442b51188d120c40f631cdbd0e5201861e1088378f248beae339530ef"
+      ],
+      "last_ts": 1784379386.317941
+    },
+    "g_d4f6aed98b58": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "28a3fd2e5473ce6e65bed5c089d58fa27657ee695ba32b71e2acf3b77fb3aad6"
+      ],
+      "last_ts": 1784382061.460885
+    },
+    "g_774e10d37019": {
+      "value_ema": 0.625,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "bbe0e896fd3d099d2b76b39fd62346f2af2b84e812901348958a709a4e247554"
+      ],
+      "last_ts": 1784382068.6997309
+    },
+    "g_b38f5f664da7": {
+      "value_ema": 0.5992,
+      "stale_cycles": 0.0,
+      "avoid_streak": 0.0,
+      "recent_hashes": [
+        "1ec8a26d30e11b6463ca52722ce1e43d59bd1fe473aa4acdcd2c0bc3516ad00e"
+      ],
+      "last_ts": 1784382111.331867
+    },
+    "aspiration-output_producing": {
+      "value_ema": 0.5,
+      "stale_cycles": 5.964,
+      "avoid_streak": 3.809,
+      "last_ts": 1784382446.7902138
+    }
+  },
+  "driver": "aspiration-self_understanding"
+}

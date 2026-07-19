@@ -1,0 +1,80 @@
+[
+  {
+    "message": "something present but hard to name / something pulling for attention",
+    "timestamp": "2026-07-18T12:14:23.641459+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name / something pulling for attention",
+    "timestamp": "2026-07-18T13:39:50.147767+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:40:18.340761+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:40:25.715545+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:43:02.921047+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:43:05.657334+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:43:21.206181+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:43:23.340076+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:43:25.640713+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:44:57.471655+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:45:00.010875+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:45:07.279540+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  },
+  {
+    "message": "something present but hard to name",
+    "timestamp": "2026-07-18T13:45:10.004596+00:00",
+    "source": "system_presence",
+    "kind": "note"
+  }
+]

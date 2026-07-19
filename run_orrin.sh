@@ -75,6 +75,9 @@ cleanup() {
 trap cleanup EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
+# Terminal close sends HUP; without this the shell dies trap-less and the run
+# lock stays engaged (the 07-18 aborted run left the whole repo r-x).
+trap 'exit 129' HUP
 
 if [ "$RUN_LOCK" != "0" ]; then
     if [ ! -x "$RUN_LOCK_SCRIPT" ]; then

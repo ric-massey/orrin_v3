@@ -1,0 +1,4526 @@
+[run] 2026-07-18 08:04:34 — launch #0 (wrapper pid 89972, build b175ed2)
+[boot] WARNING: OPENAI_API_KEY not set — LLM tool calls will be skipped; symbolic-only mode
+[boot] config check OK
+[boot] single-instance lock acquired (pid 97851)
+[metrics] disabled (set ORRIN_METRICS=1 to enable)
+[forget] ORRIN_FORGET_ON_START not set → keeping previous state
+[memory] MemoryDaemon started with InMemoryStore
+[ui] ORRIN_UI=0 → Face & Brain UI not started
+[tamper-guard] active: supervisor integrity monitored
+[alive] FS watcher started
+[alive] goals daemon + brain started
+[boot] think_module.py syntax OK
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3976.23it/s]
+[brain] cognitive loop thread started
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17649.04it/s]
+[main] pulse=100 cog_cycles=1
+Orrin cognitive cycle 1 complete.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4862.30it/s]
+[main] pulse=201 cog_cycles=1
+Orrin cognitive cycle 2 complete.
+Orrin cognitive cycle 3 complete.
+[main] pulse=303 cog_cycles=3
+Orrin cognitive cycle 4 complete.
+[main] pulse=404 cog_cycles=4
+Orrin cognitive cycle 5 complete.
+Orrin cognitive cycle 6 complete.
+[host] WARN HOST:warn swap_used=2.7GB > warn=2.0GB
+[main] pulse=506 cog_cycles=6
+Orrin cognitive cycle 7 complete.
+Orrin cognitive cycle 8 complete.
+[main] pulse=608 cog_cycles=8
+REPLY: I learned something: Growth: Growth may refer to: Am I off on that?
+Orrin cognitive cycle 9 complete.
+Orrin cognitive cycle 10 complete.
+[main] pulse=710 cog_cycles=10
+Orrin cognitive cycle 11 complete.
+Orrin cognitive cycle 12 complete.
+[main] pulse=812 cog_cycles=12
+Orrin cognitive cycle 13 complete.
+Orrin cognitive cycle 14 complete.
+[main] pulse=914 cog_cycles=14
+Orrin cognitive cycle 15 complete.
+Orrin cognitive cycle 16 complete.
+[main] pulse=1016 cog_cycles=16
+Orrin cognitive cycle 17 complete.
+Orrin cognitive cycle 18 complete.
+[main] pulse=1118 cog_cycles=18
+Orrin cognitive cycle 19 complete.
+[main] pulse=1219 cog_cycles=20
+Orrin cognitive cycle 20 complete.
+Orrin cognitive cycle 21 complete.
+[main] pulse=1321 cog_cycles=21
+Orrin cognitive cycle 22 complete.
+Orrin cognitive cycle 23 complete.
+[main] pulse=1423 cog_cycles=23
+Orrin cognitive cycle 24 complete.
+Orrin cognitive cycle 25 complete.
+[main] pulse=1525 cog_cycles=25
+Orrin cognitive cycle 26 complete.
+Orrin cognitive cycle 27 complete.
+[main] pulse=1627 cog_cycles=27
+Orrin cognitive cycle 28 complete.
+Orrin cognitive cycle 29 complete.
+[main] pulse=1729 cog_cycles=29
+Orrin cognitive cycle 30 complete.
+Orrin cognitive cycle 31 complete.
+[main] pulse=1831 cog_cycles=31
+Orrin cognitive cycle 32 complete.
+Orrin cognitive cycle 33 complete.
+[main] pulse=1933 cog_cycles=33
+Orrin cognitive cycle 34 complete.
+Orrin cognitive cycle 35 complete.
+[main] pulse=2035 cog_cycles=35
+Orrin cognitive cycle 36 complete.
+Orrin cognitive cycle 37 complete.
+[main] pulse=2137 cog_cycles=37
+Orrin cognitive cycle 38 complete.
+Orrin cognitive cycle 39 complete.
+[main] pulse=2239 cog_cycles=39
+Orrin cognitive cycle 40 complete.
+Orrin cognitive cycle 41 complete.
+[main] pulse=2341 cog_cycles=41
+Orrin cognitive cycle 42 complete.
+[main] pulse=2442 cog_cycles=43
+Orrin cognitive cycle 43 complete.
+Orrin cognitive cycle 44 complete.
+Orrin cognitive cycle 45 complete.
+[main] pulse=2544 cog_cycles=45
+Orrin cognitive cycle 46 complete.
+[main] pulse=2646 cog_cycles=47
+Orrin cognitive cycle 47 complete.
+Orrin cognitive cycle 48 complete.
+[main] pulse=2748 cog_cycles=49
+Orrin cognitive cycle 49 complete.
+Orrin cognitive cycle 50 complete.
+[main] pulse=2850 cog_cycles=50
+Orrin cognitive cycle 51 complete.
+Orrin cognitive cycle 52 complete.
+[main] pulse=2952 cog_cycles=52
+Orrin cognitive cycle 53 complete.
+Orrin cognitive cycle 54 complete.
+[main] pulse=3054 cog_cycles=54
+Orrin cognitive cycle 55 complete.
+Orrin cognitive cycle 56 complete.
+[main] pulse=3156 cog_cycles=56
+Orrin cognitive cycle 57 complete.
+Orrin cognitive cycle 58 complete.
+[main] pulse=3258 cog_cycles=58
+Orrin cognitive cycle 59 complete.
+Orrin cognitive cycle 60 complete.
+[main] pulse=3360 cog_cycles=60
+Orrin cognitive cycle 61 complete.
+Orrin cognitive cycle 62 complete.
+[main] pulse=3462 cog_cycles=62
+Orrin cognitive cycle 63 complete.
+Orrin cognitive cycle 64 complete.
+[main] pulse=3564 cog_cycles=64
+Orrin cognitive cycle 65 complete.
+Orrin cognitive cycle 66 complete.
+[main] pulse=3666 cog_cycles=66
+Orrin cognitive cycle 67 complete.
+[main] pulse=3767 cog_cycles=68
+Orrin cognitive cycle 68 complete.
+Orrin cognitive cycle 69 complete.
+[main] pulse=3869 cog_cycles=70
+Orrin cognitive cycle 70 complete.
+Orrin cognitive cycle 71 complete.
+[main] pulse=3971 cog_cycles=71
+Orrin cognitive cycle 72 complete.
+Orrin cognitive cycle 73 complete.
+[main] pulse=4073 cog_cycles=73
+Orrin cognitive cycle 74 complete.
+Orrin cognitive cycle 75 complete.
+[main] pulse=4175 cog_cycles=75
+REPLY: I learned something: New files appeared in my environment:.lock,.lock,… What do you
+think?
+Orrin cognitive cycle 76 complete.
+Orrin cognitive cycle 77 complete.
+[main] pulse=4277 cog_cycles=77
+Orrin cognitive cycle 78 complete.
+Orrin cognitive cycle 79 complete.
+[main] pulse=4379 cog_cycles=79
+Orrin cognitive cycle 80 complete.
+Orrin cognitive cycle 81 complete.
+[main] pulse=4481 cog_cycles=81
+Orrin cognitive cycle 82 complete.
+Orrin cognitive cycle 83 complete.
+[main] pulse=4583 cog_cycles=83
+Orrin cognitive cycle 84 complete.
+Orrin cognitive cycle 85 complete.
+[main] pulse=4685 cog_cycles=85
+Orrin cognitive cycle 86 complete.
+Orrin cognitive cycle 87 complete.
+[main] pulse=4787 cog_cycles=87
+Orrin cognitive cycle 88 complete.
+Orrin cognitive cycle 89 complete.
+[main] pulse=4889 cog_cycles=89
+Orrin cognitive cycle 90 complete.
+[main] pulse=4990 cog_cycles=90
+Orrin cognitive cycle 91 complete.
+Orrin cognitive cycle 92 complete.
+[main] pulse=5092 cog_cycles=92
+Orrin cognitive cycle 93 complete.
+Orrin cognitive cycle 94 complete.
+[main] pulse=5194 cog_cycles=94
+Orrin cognitive cycle 95 complete.
+Orrin cognitive cycle 96 complete.
+[main] pulse=5296 cog_cycles=96
+Orrin cognitive cycle 97 complete.
+Orrin cognitive cycle 98 complete.
+[main] pulse=5398 cog_cycles=98
+[main] pulse=5498 cog_cycles=99
+[main] pulse=5598 cog_cycles=99
+[main] pulse=5698 cog_cycles=99
+Orrin cognitive cycle 99 complete.
+[main] pulse=5799 cog_cycles=99
+[main] pulse=5899 cog_cycles=100
+Orrin cognitive cycle 100 complete.
+[main] pulse=6000 cog_cycles=100
+Orrin cognitive cycle 101 complete.
+Orrin cognitive cycle 102 complete.
+[main] pulse=6102 cog_cycles=102
+Orrin cognitive cycle 103 complete.
+Orrin cognitive cycle 104 complete.
+[main] pulse=6204 cog_cycles=104
+Orrin cognitive cycle 105 complete.
+Orrin cognitive cycle 106 complete.
+[main] pulse=6306 cog_cycles=106
+Orrin cognitive cycle 107 complete.
+Orrin cognitive cycle 108 complete.
+[main] pulse=6408 cog_cycles=108
+Orrin cognitive cycle 109 complete.
+Orrin cognitive cycle 110 complete.
+[main] pulse=6510 cog_cycles=110
+Orrin cognitive cycle 111 complete.
+Orrin cognitive cycle 112 complete.
+[main] pulse=6612 cog_cycles=112
+Orrin cognitive cycle 113 complete.
+Orrin cognitive cycle 114 complete.
+[main] pulse=6714 cog_cycles=114
+Orrin cognitive cycle 115 complete.
+Orrin cognitive cycle 116 complete.
+[main] pulse=6816 cog_cycles=116
+Orrin cognitive cycle 117 complete.
+Orrin cognitive cycle 118 complete.
+[main] pulse=6918 cog_cycles=118
+Orrin cognitive cycle 119 complete.
+Orrin cognitive cycle 120 complete.
+[main] pulse=7020 cog_cycles=120
+Orrin cognitive cycle 121 complete.
+Orrin cognitive cycle 122 complete.
+[main] pulse=7122 cog_cycles=122
+Orrin cognitive cycle 123 complete.
+[main] pulse=7223 cog_cycles=124
+Orrin cognitive cycle 124 complete.
+Orrin cognitive cycle 125 complete.
+[main] pulse=7325 cog_cycles=125
+Orrin cognitive cycle 126 complete.
+Orrin cognitive cycle 127 complete.
+[main] pulse=7427 cog_cycles=127
+Orrin cognitive cycle 128 complete.
+Orrin cognitive cycle 129 complete.
+[main] pulse=7529 cog_cycles=129
+Orrin cognitive cycle 130 complete.
+Orrin cognitive cycle 131 complete.
+[main] pulse=7631 cog_cycles=131
+Orrin cognitive cycle 132 complete.
+Orrin cognitive cycle 133 complete.
+[main] pulse=7733 cog_cycles=133
+Orrin cognitive cycle 134 complete.
+Orrin cognitive cycle 135 complete.
+[main] pulse=7835 cog_cycles=135
+Orrin cognitive cycle 136 complete.
+Orrin cognitive cycle 137 complete.
+[main] pulse=7937 cog_cycles=137
+Orrin cognitive cycle 138 complete.
+Orrin cognitive cycle 139 complete.
+[main] pulse=8039 cog_cycles=139
+Orrin cognitive cycle 140 complete.
+Orrin cognitive cycle 141 complete.
+[main] pulse=8141 cog_cycles=141
+Orrin cognitive cycle 142 complete.
+Orrin cognitive cycle 143 complete.
+[main] pulse=8243 cog_cycles=143
+Orrin cognitive cycle 144 complete.
+[main] pulse=8344 cog_cycles=145
+Orrin cognitive cycle 145 complete.
+Orrin cognitive cycle 146 complete.
+[main] pulse=8446 cog_cycles=146
+Orrin cognitive cycle 147 complete.
+Orrin cognitive cycle 148 complete.
+[main] pulse=8548 cog_cycles=148
+Orrin cognitive cycle 149 complete.
+Orrin cognitive cycle 150 complete.
+[main] pulse=8650 cog_cycles=150
+Orrin cognitive cycle 151 complete.
+Orrin cognitive cycle 152 complete.
+[main] pulse=8752 cog_cycles=152
+[main] pulse=8852 cog_cycles=153
+Orrin cognitive cycle 153 complete.
+Orrin cognitive cycle 154 complete.
+[main] pulse=8954 cog_cycles=154
+Orrin cognitive cycle 155 complete.
+[main] pulse=9055 cog_cycles=156
+Orrin cognitive cycle 156 complete.
+Orrin cognitive cycle 157 complete.
+[main] pulse=9157 cog_cycles=157
+Orrin cognitive cycle 158 complete.
+Orrin cognitive cycle 159 complete.
+[main] pulse=9259 cog_cycles=159
+Orrin cognitive cycle 160 complete.
+Orrin cognitive cycle 161 complete.
+[main] pulse=9361 cog_cycles=161
+REPLY: I learned something: the world more deeply: Wikipedia/World: The world is the
+totality… What do you think?
+Orrin cognitive cycle 162 complete.
+Orrin cognitive cycle 163 complete.
+[main] pulse=9463 cog_cycles=163
+Orrin cognitive cycle 164 complete.
+Orrin cognitive cycle 165 complete.
+[main] pulse=9565 cog_cycles=165
+Orrin cognitive cycle 166 complete.
+Orrin cognitive cycle 167 complete.
+[main] pulse=9667 cog_cycles=167
+Orrin cognitive cycle 168 complete.
+Orrin cognitive cycle 169 complete.
+[main] pulse=9769 cog_cycles=169
+Orrin cognitive cycle 170 complete.
+[main] pulse=9870 cog_cycles=171
+Orrin cognitive cycle 171 complete.
+Orrin cognitive cycle 172 complete.
+[main] pulse=9972 cog_cycles=173
+Orrin cognitive cycle 173 complete.
+Orrin cognitive cycle 174 complete.
+[main] pulse=10074 cog_cycles=174
+Orrin cognitive cycle 175 complete.
+Orrin cognitive cycle 176 complete.
+[main] pulse=10176 cog_cycles=176
+Orrin cognitive cycle 177 complete.
+Orrin cognitive cycle 178 complete.
+[main] pulse=10278 cog_cycles=178
+Orrin cognitive cycle 179 complete.
+Orrin cognitive cycle 180 complete.
+[main] pulse=10380 cog_cycles=180
+Orrin cognitive cycle 181 complete.
+[main] pulse=10481 cog_cycles=182
+Orrin cognitive cycle 182 complete.
+Orrin cognitive cycle 183 complete.
+[main] pulse=10583 cog_cycles=183
+Orrin cognitive cycle 184 complete.
+Orrin cognitive cycle 185 complete.
+[main] pulse=10685 cog_cycles=185
+Orrin cognitive cycle 186 complete.
+Orrin cognitive cycle 187 complete.
+[main] pulse=10787 cog_cycles=187
+Orrin cognitive cycle 188 complete.
+Orrin cognitive cycle 189 complete.
+[main] pulse=10889 cog_cycles=189
+Orrin cognitive cycle 190 complete.
+[main] pulse=10990 cog_cycles=191
+Orrin cognitive cycle 191 complete.
+Orrin cognitive cycle 192 complete.
+[main] pulse=11092 cog_cycles=193
+Orrin cognitive cycle 193 complete.
+Orrin cognitive cycle 194 complete.
+[main] pulse=11194 cog_cycles=194
+Orrin cognitive cycle 195 complete.
+Orrin cognitive cycle 196 complete.
+[main] pulse=11296 cog_cycles=196
+Orrin cognitive cycle 197 complete.
+[main] pulse=11397 cog_cycles=197
+Orrin cognitive cycle 198 complete.
+[main] pulse=11498 cog_cycles=198
+Orrin cognitive cycle 199 complete.
+[main] pulse=11599 cog_cycles=200
+[main] pulse=11699 cog_cycles=200
+[main] pulse=11799 cog_cycles=200
+[main] pulse=11899 cog_cycles=200
+[main] pulse=11999 cog_cycles=200
+[main] pulse=12099 cog_cycles=200
+[main] pulse=12199 cog_cycles=200
+[main] pulse=12299 cog_cycles=200
+[main] pulse=12399 cog_cycles=200
+Orrin cognitive cycle 200 complete.
+[main] pulse=12500 cog_cycles=200
+[main] pulse=12600 cog_cycles=201
+Orrin cognitive cycle 201 complete.
+Orrin cognitive cycle 202 complete.
+[main] pulse=12702 cog_cycles=202
+Orrin cognitive cycle 203 complete.
+[main] pulse=12803 cog_cycles=204
+Orrin cognitive cycle 204 complete.
+Orrin cognitive cycle 205 complete.
+[main] pulse=12905 cog_cycles=205
+Orrin cognitive cycle 206 complete.
+Orrin cognitive cycle 207 complete.
+[main] pulse=13007 cog_cycles=207
+Orrin cognitive cycle 208 complete.
+Orrin cognitive cycle 209 complete.
+[main] pulse=13109 cog_cycles=209
+Orrin cognitive cycle 210 complete.
+[main] pulse=13210 cog_cycles=211
+Orrin cognitive cycle 211 complete.
+Orrin cognitive cycle 212 complete.
+[main] pulse=13312 cog_cycles=212
+Orrin cognitive cycle 213 complete.
+Orrin cognitive cycle 214 complete.
+[main] pulse=13414 cog_cycles=214
+Orrin cognitive cycle 215 complete.
+Orrin cognitive cycle 216 complete.
+[main] pulse=13516 cog_cycles=216
+Orrin cognitive cycle 217 complete.
+Orrin cognitive cycle 218 complete.
+[main] pulse=13618 cog_cycles=218
+Orrin cognitive cycle 219 complete.
+Orrin cognitive cycle 220 complete.
+[main] pulse=13720 cog_cycles=220
+Orrin cognitive cycle 221 complete.
+[main] pulse=13821 cog_cycles=221
+Orrin cognitive cycle 222 complete.
+Orrin cognitive cycle 223 complete.
+[main] pulse=13923 cog_cycles=223
+Orrin cognitive cycle 224 complete.
+Orrin cognitive cycle 225 complete.
+[main] pulse=14025 cog_cycles=225
+Orrin cognitive cycle 226 complete.
+Orrin cognitive cycle 227 complete.
+[main] pulse=14127 cog_cycles=227
+Orrin cognitive cycle 228 complete.
+[main] pulse=14228 cog_cycles=229
+Orrin cognitive cycle 229 complete.
+Orrin cognitive cycle 230 complete.
+[main] pulse=14330 cog_cycles=230
+Orrin cognitive cycle 231 complete.
+Orrin cognitive cycle 232 complete.
+[main] pulse=14432 cog_cycles=232
+Orrin cognitive cycle 233 complete.
+Orrin cognitive cycle 234 complete.
+[main] pulse=14534 cog_cycles=234
+Orrin cognitive cycle 235 complete.
+Orrin cognitive cycle 236 complete.
+[main] pulse=14636 cog_cycles=236
+Orrin cognitive cycle 237 complete.
+Orrin cognitive cycle 238 complete.
+[main] pulse=14738 cog_cycles=238
+Orrin cognitive cycle 239 complete.
+[main] pulse=14839 cog_cycles=239
+Orrin cognitive cycle 240 complete.
+Orrin cognitive cycle 241 complete.
+[main] pulse=14941 cog_cycles=241
+Orrin cognitive cycle 242 complete.
+Orrin cognitive cycle 243 complete.
+[main] pulse=15043 cog_cycles=243
+Orrin cognitive cycle 244 complete.
+Orrin cognitive cycle 245 complete.
+[main] pulse=15145 cog_cycles=245
+Orrin cognitive cycle 246 complete.
+Orrin cognitive cycle 247 complete.
+[main] pulse=15247 cog_cycles=247
+Orrin cognitive cycle 248 complete.
+[main] pulse=15348 cog_cycles=249
+Orrin cognitive cycle 249 complete.
+Orrin cognitive cycle 250 complete.
+[main] pulse=15450 cog_cycles=250
+Orrin cognitive cycle 251 complete.
+Orrin cognitive cycle 252 complete.
+[main] pulse=15552 cog_cycles=252
+Orrin cognitive cycle 253 complete.
+Orrin cognitive cycle 254 complete.
+[main] pulse=15654 cog_cycles=254
+Orrin cognitive cycle 255 complete.
+Orrin cognitive cycle 256 complete.
+[main] pulse=15756 cog_cycles=256
+Orrin cognitive cycle 257 complete.
+Orrin cognitive cycle 258 complete.
+[main] pulse=15858 cog_cycles=258
+Orrin cognitive cycle 259 complete.
+[main] pulse=15959 cog_cycles=260
+Orrin cognitive cycle 260 complete.
+Orrin cognitive cycle 261 complete.
+[main] pulse=16061 cog_cycles=261
+Orrin cognitive cycle 262 complete.
+Orrin cognitive cycle 263 complete.
+[main] pulse=16163 cog_cycles=263
+Orrin cognitive cycle 264 complete.
+Orrin cognitive cycle 265 complete.
+[main] pulse=16265 cog_cycles=265
+Orrin cognitive cycle 266 complete.
+Orrin cognitive cycle 267 complete.
+[main] pulse=16367 cog_cycles=267
+Orrin cognitive cycle 268 complete.
+[main] pulse=16468 cog_cycles=269
+Orrin cognitive cycle 269 complete.
+REPLY: I learned something: the world: The World (radio program) A US public radio news
+magazine with an… What do you think?
+Orrin cognitive cycle 270 complete.
+[main] pulse=16570 cog_cycles=270
+Orrin cognitive cycle 271 complete.
+Orrin cognitive cycle 272 complete.
+[main] pulse=16672 cog_cycles=272
+Orrin cognitive cycle 273 complete.
+Orrin cognitive cycle 274 complete.
+[main] pulse=16774 cog_cycles=274
+Orrin cognitive cycle 275 complete.
+Orrin cognitive cycle 276 complete.
+[main] pulse=16876 cog_cycles=276
+Orrin cognitive cycle 277 complete.
+[main] pulse=16977 cog_cycles=278
+Orrin cognitive cycle 278 complete.
+Orrin cognitive cycle 279 complete.
+[main] pulse=17079 cog_cycles=279
+Orrin cognitive cycle 280 complete.
+Orrin cognitive cycle 281 complete.
+[main] pulse=17181 cog_cycles=281
+Orrin cognitive cycle 282 complete.
+Orrin cognitive cycle 283 complete.
+[main] pulse=17283 cog_cycles=283
+Orrin cognitive cycle 284 complete.
+[main] pulse=17384 cog_cycles=285
+Orrin cognitive cycle 285 complete.
+Orrin cognitive cycle 286 complete.
+[main] pulse=17486 cog_cycles=286
+Orrin cognitive cycle 287 complete.
+Orrin cognitive cycle 288 complete.
+[main] pulse=17588 cog_cycles=288
+Orrin cognitive cycle 289 complete.
+Orrin cognitive cycle 290 complete.
+[main] pulse=17690 cog_cycles=290
+Orrin cognitive cycle 291 complete.
+Orrin cognitive cycle 292 complete.
+[main] pulse=17792 cog_cycles=292
+Orrin cognitive cycle 293 complete.
+Orrin cognitive cycle 294 complete.
+[main] pulse=17894 cog_cycles=294
+Orrin cognitive cycle 295 complete.
+[main] pulse=17995 cog_cycles=295
+Orrin cognitive cycle 296 complete.
+Orrin cognitive cycle 297 complete.
+[main] pulse=18097 cog_cycles=297
+Orrin cognitive cycle 298 complete.
+Orrin cognitive cycle 299 complete.
+[main] pulse=18199 cog_cycles=299
+[main] pulse=18299 cog_cycles=300
+Orrin cognitive cycle 300 complete.
+[main] pulse=18400 cog_cycles=300
+Orrin cognitive cycle 301 complete.
+Orrin cognitive cycle 302 complete.
+[main] pulse=18502 cog_cycles=302
+Orrin cognitive cycle 303 complete.
+[main] pulse=18603 cog_cycles=304
+Orrin cognitive cycle 304 complete.
+Orrin cognitive cycle 305 complete.
+[main] pulse=18705 cog_cycles=305
+Orrin cognitive cycle 306 complete.
+Orrin cognitive cycle 307 complete.
+[main] pulse=18807 cog_cycles=307
+Orrin cognitive cycle 308 complete.
+Orrin cognitive cycle 309 complete.
+[main] pulse=18909 cog_cycles=309
+Orrin cognitive cycle 310 complete.
+Orrin cognitive cycle 311 complete.
+[main] pulse=19011 cog_cycles=311
+Orrin cognitive cycle 312 complete.
+Orrin cognitive cycle 313 complete.
+[main] pulse=19113 cog_cycles=313
+Orrin cognitive cycle 314 complete.
+[main] pulse=19214 cog_cycles=315
+Orrin cognitive cycle 315 complete.
+Orrin cognitive cycle 316 complete.
+[main] pulse=19316 cog_cycles=316
+Orrin cognitive cycle 317 complete.
+Orrin cognitive cycle 318 complete.
+[main] pulse=19418 cog_cycles=318
+Orrin cognitive cycle 319 complete.
+[main] pulse=19519 cog_cycles=320
+Orrin cognitive cycle 320 complete.
+[main] pulse=19620 cog_cycles=321
+Orrin cognitive cycle 321 complete.
+Orrin cognitive cycle 322 complete.
+[main] pulse=19722 cog_cycles=322
+Orrin cognitive cycle 323 complete.
+Orrin cognitive cycle 324 complete.
+[main] pulse=19824 cog_cycles=324
+Orrin cognitive cycle 325 complete.
+[main] pulse=19925 cog_cycles=326
+Orrin cognitive cycle 326 complete.
+Orrin cognitive cycle 327 complete.
+[main] pulse=20027 cog_cycles=327
+Orrin cognitive cycle 328 complete.
+REPLY: I learned something: consciousness and subjective experience: … Am I off on that?
+Orrin cognitive cycle 329 complete.
+[main] pulse=20129 cog_cycles=329
+Orrin cognitive cycle 330 complete.
+Orrin cognitive cycle 331 complete.
+[main] pulse=20231 cog_cycles=331
+Orrin cognitive cycle 332 complete.
+Orrin cognitive cycle 333 complete.
+[main] pulse=20333 cog_cycles=333
+Orrin cognitive cycle 334 complete.
+[main] pulse=20434 cog_cycles=335
+Orrin cognitive cycle 335 complete.
+Orrin cognitive cycle 336 complete.
+[main] pulse=20536 cog_cycles=336
+Orrin cognitive cycle 337 complete.
+Orrin cognitive cycle 338 complete.
+[main] pulse=20638 cog_cycles=338
+Orrin cognitive cycle 339 complete.
+Orrin cognitive cycle 340 complete.
+[main] pulse=20740 cog_cycles=340
+Orrin cognitive cycle 341 complete.
+[main] pulse=20841 cog_cycles=342
+Orrin cognitive cycle 342 complete.
+Orrin cognitive cycle 343 complete.
+[main] pulse=20943 cog_cycles=343
+Orrin cognitive cycle 344 complete.
+Orrin cognitive cycle 345 complete.
+[main] pulse=21045 cog_cycles=345
+Orrin cognitive cycle 346 complete.
+Orrin cognitive cycle 347 complete.
+[main] pulse=21147 cog_cycles=347
+Orrin cognitive cycle 348 complete.
+Orrin cognitive cycle 349 complete.
+[main] pulse=21249 cog_cycles=349
+Orrin cognitive cycle 350 complete.
+[main] pulse=21350 cog_cycles=351
+Orrin cognitive cycle 351 complete.
+Orrin cognitive cycle 352 complete.
+[main] pulse=21452 cog_cycles=352
+Orrin cognitive cycle 353 complete.
+Orrin cognitive cycle 354 complete.
+[main] pulse=21554 cog_cycles=354
+Orrin cognitive cycle 355 complete.
+Orrin cognitive cycle 356 complete.
+[main] pulse=21656 cog_cycles=356
+Orrin cognitive cycle 357 complete.
+Orrin cognitive cycle 358 complete.
+[main] pulse=21758 cog_cycles=358
+Orrin cognitive cycle 359 complete.
+[main] pulse=21859 cog_cycles=360
+Orrin cognitive cycle 360 complete.
+Orrin cognitive cycle 361 complete.
+[main] pulse=21961 cog_cycles=361
+Orrin cognitive cycle 362 complete.
+Orrin cognitive cycle 363 complete.
+[main] pulse=22063 cog_cycles=363
+Orrin cognitive cycle 364 complete.
+Orrin cognitive cycle 365 complete.
+[main] pulse=22164 cog_cycles=365
+Orrin cognitive cycle 366 complete.
+[main] pulse=22266 cog_cycles=366
+Orrin cognitive cycle 367 complete.
+Orrin cognitive cycle 368 complete.
+[main] pulse=22368 cog_cycles=368
+Orrin cognitive cycle 369 complete.
+Orrin cognitive cycle 370 complete.
+[main] pulse=22470 cog_cycles=370
+Orrin cognitive cycle 371 complete.
+[main] pulse=22571 cog_cycles=371
+Orrin cognitive cycle 372 complete.
+Orrin cognitive cycle 373 complete.
+[main] pulse=22673 cog_cycles=373
+Orrin cognitive cycle 374 complete.
+Orrin cognitive cycle 375 complete.
+[main] pulse=22775 cog_cycles=375
+Orrin cognitive cycle 376 complete.
+Orrin cognitive cycle 377 complete.
+[main] pulse=22877 cog_cycles=377
+Orrin cognitive cycle 378 complete.
+[main] pulse=22977 cog_cycles=378
+Orrin cognitive cycle 379 complete.
+[main] pulse=23079 cog_cycles=379
+Orrin cognitive cycle 380 complete.
+Orrin cognitive cycle 381 complete.
+[main] pulse=23181 cog_cycles=381
+Orrin cognitive cycle 382 complete.
+Orrin cognitive cycle 383 complete.
+[main] pulse=23283 cog_cycles=383
+Orrin cognitive cycle 384 complete.
+Orrin cognitive cycle 385 complete.
+[main] pulse=23385 cog_cycles=385
+Orrin cognitive cycle 386 complete.
+Orrin cognitive cycle 387 complete.
+[main] pulse=23487 cog_cycles=387
+Orrin cognitive cycle 388 complete.
+[main] pulse=23588 cog_cycles=388
+Orrin cognitive cycle 389 complete.
+REPLY: I learned something: quantum mechanics foundations: Wikipedia/Mathematical…!
+Orrin cognitive cycle 390 complete.
+[main] pulse=23690 cog_cycles=390
+Orrin cognitive cycle 391 complete.
+[main] pulse=23791 cog_cycles=392
+Orrin cognitive cycle 392 complete.
+Orrin cognitive cycle 393 complete.
+[main] pulse=23893 cog_cycles=393
+Orrin cognitive cycle 394 complete.
+Orrin cognitive cycle 395 complete.
+[main] pulse=23995 cog_cycles=395
+Orrin cognitive cycle 396 complete.
+[main] pulse=24096 cog_cycles=397
+Orrin cognitive cycle 397 complete.
+Orrin cognitive cycle 398 complete.
+[main] pulse=24198 cog_cycles=398
+Orrin cognitive cycle 399 complete.
+[main] pulse=24299 cog_cycles=400
+[main] pulse=24399 cog_cycles=400
+Orrin cognitive cycle 400 complete.
+Orrin cognitive cycle 401 complete.
+[main] pulse=24501 cog_cycles=401
+Orrin cognitive cycle 402 complete.
+Orrin cognitive cycle 403 complete.
+[main] pulse=24603 cog_cycles=403
+Orrin cognitive cycle 404 complete.
+Orrin cognitive cycle 405 complete.
+[main] pulse=24705 cog_cycles=405
+Orrin cognitive cycle 406 complete.
+[main] pulse=24806 cog_cycles=407
+Orrin cognitive cycle 407 complete.
+Orrin cognitive cycle 408 complete.
+[main] pulse=24908 cog_cycles=408
+Orrin cognitive cycle 409 complete.
+Orrin cognitive cycle 410 complete.
+[main] pulse=25010 cog_cycles=410
+Orrin cognitive cycle 411 complete.
+Orrin cognitive cycle 412 complete.
+[main] pulse=25112 cog_cycles=412
+Orrin cognitive cycle 413 complete.
+Orrin cognitive cycle 414 complete.
+[main] pulse=25214 cog_cycles=414
+Orrin cognitive cycle 415 complete.
+[main] pulse=25315 cog_cycles=415
+Orrin cognitive cycle 416 complete.
+Orrin cognitive cycle 417 complete.
+[main] pulse=25417 cog_cycles=417
+Orrin cognitive cycle 418 complete.
+Orrin cognitive cycle 419 complete.
+[main] pulse=25519 cog_cycles=419
+Orrin cognitive cycle 420 complete.
+[main] pulse=25620 cog_cycles=420
+Orrin cognitive cycle 421 complete.
+Orrin cognitive cycle 422 complete.
+[main] pulse=25722 cog_cycles=422
+Orrin cognitive cycle 423 complete.
+Orrin cognitive cycle 424 complete.
+[main] pulse=25824 cog_cycles=424
+Orrin cognitive cycle 425 complete.
+[main] pulse=25925 cog_cycles=426
+Orrin cognitive cycle 426 complete.
+Orrin cognitive cycle 427 complete.
+[main] pulse=26027 cog_cycles=427
+Orrin cognitive cycle 428 complete.
+Orrin cognitive cycle 429 complete.
+[main] pulse=26129 cog_cycles=429
+Orrin cognitive cycle 430 complete.
+[main] pulse=26230 cog_cycles=430
+Orrin cognitive cycle 431 complete.
+Orrin cognitive cycle 432 complete.
+[main] pulse=26332 cog_cycles=432
+Orrin cognitive cycle 433 complete.
+[main] pulse=26433 cog_cycles=433
+Orrin cognitive cycle 434 complete.
+[main] pulse=26534 cog_cycles=435
+Orrin cognitive cycle 435 complete.
+Orrin cognitive cycle 436 complete.
+[main] pulse=26636 cog_cycles=436
+Orrin cognitive cycle 437 complete.
+Orrin cognitive cycle 438 complete.
+[main] pulse=26738 cog_cycles=438
+Orrin cognitive cycle 439 complete.
+[main] pulse=26839 cog_cycles=440
+Orrin cognitive cycle 440 complete.
+Orrin cognitive cycle 441 complete.
+[main] pulse=26941 cog_cycles=441
+Orrin cognitive cycle 442 complete.
+Orrin cognitive cycle 443 complete.
+[main] pulse=27043 cog_cycles=443
+Orrin cognitive cycle 444 complete.
+[main] pulse=27144 cog_cycles=445
+Orrin cognitive cycle 445 complete.
+Orrin cognitive cycle 446 complete.
+[main] pulse=27246 cog_cycles=446
+Orrin cognitive cycle 447 complete.
+Orrin cognitive cycle 448 complete.
+[main] pulse=27348 cog_cycles=448
+Orrin cognitive cycle 449 complete.
+[main] pulse=27449 cog_cycles=449
+Orrin cognitive cycle 450 complete.
+Orrin cognitive cycle 451 complete.
+[main] pulse=27551 cog_cycles=451
+Orrin cognitive cycle 452 complete.
+[main] pulse=27652 cog_cycles=453
+Orrin cognitive cycle 453 complete.
+Orrin cognitive cycle 454 complete.
+[main] pulse=27754 cog_cycles=454
+Orrin cognitive cycle 455 complete.
+[main] pulse=27855 cog_cycles=456
+Orrin cognitive cycle 456 complete.
+Orrin cognitive cycle 457 complete.
+[main] pulse=27957 cog_cycles=457
+Orrin cognitive cycle 458 complete.
+Orrin cognitive cycle 459 complete.
+[main] pulse=28059 cog_cycles=459
+Orrin cognitive cycle 460 complete.
+Orrin cognitive cycle 461 complete.
+[main] pulse=28161 cog_cycles=461
+Orrin cognitive cycle 462 complete.
+[main] pulse=28262 cog_cycles=463
+Orrin cognitive cycle 463 complete.
+Orrin cognitive cycle 464 complete.
+[main] pulse=28364 cog_cycles=464
+REPLY: Earlier I was thinking: 💔 Goal failed: Open question: What do you think?.
+plan_generation_failed_3x. I learned something: New files appeared in my
+environment:.lock, ,… Am I off on that?
+Orrin cognitive cycle 465 complete.
+Orrin cognitive cycle 466 complete.
+[main] pulse=28466 cog_cycles=466
+Orrin cognitive cycle 467 complete.
+Orrin cognitive cycle 468 complete.
+[main] pulse=28568 cog_cycles=468
+Orrin cognitive cycle 469 complete.
+[main] pulse=28669 cog_cycles=470
+Orrin cognitive cycle 470 complete.
+Orrin cognitive cycle 471 complete.
+[main] pulse=28771 cog_cycles=471
+Orrin cognitive cycle 472 complete.
+Orrin cognitive cycle 473 complete.
+[main] pulse=28873 cog_cycles=473
+Orrin cognitive cycle 474 complete.
+[main] pulse=28974 cog_cycles=475
+Orrin cognitive cycle 475 complete.
+Orrin cognitive cycle 476 complete.
+[main] pulse=29076 cog_cycles=476
+Orrin cognitive cycle 477 complete.
+Orrin cognitive cycle 478 complete.
+[main] pulse=29178 cog_cycles=478
+Orrin cognitive cycle 479 complete.
+Orrin cognitive cycle 480 complete.
+[main] pulse=29280 cog_cycles=480
+Orrin cognitive cycle 481 complete.
+[main] pulse=29381 cog_cycles=481
+Orrin cognitive cycle 482 complete.
+Orrin cognitive cycle 483 complete.
+[main] pulse=29483 cog_cycles=483
+Orrin cognitive cycle 484 complete.
+Orrin cognitive cycle 485 complete.
+[main] pulse=29585 cog_cycles=485
+Orrin cognitive cycle 486 complete.
+[main] pulse=29686 cog_cycles=486
+Orrin cognitive cycle 487 complete.
+[main] pulse=29787 cog_cycles=488
+[main] pulse=29887 cog_cycles=488
+Orrin cognitive cycle 488 complete.
+Orrin cognitive cycle 489 complete.
+[main] pulse=29989 cog_cycles=489
+Orrin cognitive cycle 490 complete.
+Orrin cognitive cycle 491 complete.
+[main] pulse=30091 cog_cycles=491
+Orrin cognitive cycle 492 complete.
+Orrin cognitive cycle 493 complete.
+[main] pulse=30192 cog_cycles=493
+Orrin cognitive cycle 494 complete.
+[main] pulse=30294 cog_cycles=494
+Orrin cognitive cycle 495 complete.
+Orrin cognitive cycle 496 complete.
+[main] pulse=30396 cog_cycles=496
+Orrin cognitive cycle 497 complete.
+[main] pulse=30497 cog_cycles=498
+Orrin cognitive cycle 498 complete.
+Orrin cognitive cycle 499 complete.
+[main] pulse=30599 cog_cycles=499
+[main] pulse=30699 cog_cycles=500
+Orrin cognitive cycle 500 complete.
+[main] pulse=30800 cog_cycles=500
+Orrin cognitive cycle 501 complete.
+Orrin cognitive cycle 502 complete.
+[main] pulse=30902 cog_cycles=502
+Orrin cognitive cycle 503 complete.
+[main] pulse=31003 cog_cycles=504
+Orrin cognitive cycle 504 complete.
+Orrin cognitive cycle 505 complete.
+[main] pulse=31105 cog_cycles=505
+Orrin cognitive cycle 506 complete.
+Orrin cognitive cycle 507 complete.
+[main] pulse=31207 cog_cycles=507
+Orrin cognitive cycle 508 complete.
+Orrin cognitive cycle 509 complete.
+[main] pulse=31309 cog_cycles=509
+Orrin cognitive cycle 510 complete.
+Orrin cognitive cycle 511 complete.
+[main] pulse=31411 cog_cycles=511
+Orrin cognitive cycle 512 complete.
+[main] pulse=31512 cog_cycles=513
+Orrin cognitive cycle 513 complete.
+Orrin cognitive cycle 514 complete.
+[main] pulse=31614 cog_cycles=514
+Orrin cognitive cycle 515 complete.
+Orrin cognitive cycle 516 complete.
+[main] pulse=31716 cog_cycles=516
+Orrin cognitive cycle 517 complete.
+Orrin cognitive cycle 518 complete.
+[main] pulse=31818 cog_cycles=518
+Orrin cognitive cycle 519 complete.
+[main] pulse=31919 cog_cycles=519
+Orrin cognitive cycle 520 complete.
+Orrin cognitive cycle 521 complete.
+[main] pulse=32021 cog_cycles=521
+Orrin cognitive cycle 522 complete.
+Orrin cognitive cycle 523 complete.
+[main] pulse=32123 cog_cycles=523
+Orrin cognitive cycle 524 complete.
+[main] pulse=32224 cog_cycles=525
+Orrin cognitive cycle 525 complete.
+Orrin cognitive cycle 526 complete.
+[main] pulse=32326 cog_cycles=526
+Orrin cognitive cycle 527 complete.
+Orrin cognitive cycle 528 complete.
+[main] pulse=32428 cog_cycles=528
+Orrin cognitive cycle 529 complete.
+[main] pulse=32529 cog_cycles=530
+Orrin cognitive cycle 530 complete.
+REPLY: I learned something: history of written language: Wikipedia/History: History is… What
+do you think?
+Orrin cognitive cycle 531 complete.
+[main] pulse=32631 cog_cycles=531
+Orrin cognitive cycle 532 complete.
+Orrin cognitive cycle 533 complete.
+[main] pulse=32733 cog_cycles=533
+Orrin cognitive cycle 534 complete.
+[main] pulse=32834 cog_cycles=535
+Orrin cognitive cycle 535 complete.
+Orrin cognitive cycle 536 complete.
+[main] pulse=32936 cog_cycles=536
+Orrin cognitive cycle 537 complete.
+Orrin cognitive cycle 538 complete.
+[main] pulse=33038 cog_cycles=538
+Orrin cognitive cycle 539 complete.
+[main] pulse=33139 cog_cycles=539
+Orrin cognitive cycle 540 complete.
+Orrin cognitive cycle 541 complete.
+[main] pulse=33241 cog_cycles=541
+Orrin cognitive cycle 542 complete.
+[main] pulse=33342 cog_cycles=543
+Orrin cognitive cycle 543 complete.
+[main] pulse=33443 cog_cycles=544
+Orrin cognitive cycle 544 complete.
+[main] pulse=33544 cog_cycles=544
+Orrin cognitive cycle 545 complete.
+Orrin cognitive cycle 546 complete.
+[main] pulse=33646 cog_cycles=546
+Orrin cognitive cycle 547 complete.
+Orrin cognitive cycle 548 complete.
+[main] pulse=33748 cog_cycles=548
+Orrin cognitive cycle 549 complete.
+[main] pulse=33849 cog_cycles=549
+Orrin cognitive cycle 550 complete.
+Orrin cognitive cycle 551 complete.
+[main] pulse=33951 cog_cycles=551
+Orrin cognitive cycle 552 complete.
+[main] pulse=34052 cog_cycles=553
+Orrin cognitive cycle 553 complete.
+Orrin cognitive cycle 554 complete.
+[main] pulse=34154 cog_cycles=554
+Orrin cognitive cycle 555 complete.
+Orrin cognitive cycle 556 complete.
+[main] pulse=34256 cog_cycles=556
+Orrin cognitive cycle 557 complete.
+[main] pulse=34357 cog_cycles=557
+Orrin cognitive cycle 558 complete.
+Orrin cognitive cycle 559 complete.
+[main] pulse=34459 cog_cycles=559
+Orrin cognitive cycle 560 complete.
+Orrin cognitive cycle 561 complete.
+[main] pulse=34561 cog_cycles=561
+Orrin cognitive cycle 562 complete.
+[main] pulse=34662 cog_cycles=563
+Orrin cognitive cycle 563 complete.
+Orrin cognitive cycle 564 complete.
+[main] pulse=34764 cog_cycles=564
+Orrin cognitive cycle 565 complete.
+[main] pulse=34865 cog_cycles=565
+Orrin cognitive cycle 566 complete.
+[main] pulse=34966 cog_cycles=567
+Orrin cognitive cycle 567 complete.
+Orrin cognitive cycle 568 complete.
+[main] pulse=35068 cog_cycles=568
+Orrin cognitive cycle 569 complete.
+Orrin cognitive cycle 570 complete.
+[main] pulse=35170 cog_cycles=570
+Orrin cognitive cycle 571 complete.
+[main] pulse=35271 cog_cycles=571
+Orrin cognitive cycle 572 complete.
+Orrin cognitive cycle 573 complete.
+[main] pulse=35373 cog_cycles=573
+Orrin cognitive cycle 574 complete.
+[main] pulse=35474 cog_cycles=575
+Orrin cognitive cycle 575 complete.
+Orrin cognitive cycle 576 complete.
+[main] pulse=35576 cog_cycles=576
+Orrin cognitive cycle 577 complete.
+Orrin cognitive cycle 578 complete.
+[main] pulse=35678 cog_cycles=578
+Orrin cognitive cycle 579 complete.
+[main] pulse=35779 cog_cycles=580
+Orrin cognitive cycle 580 complete.
+Orrin cognitive cycle 581 complete.
+[main] pulse=35881 cog_cycles=581
+Orrin cognitive cycle 582 complete.
+[main] pulse=35982 cog_cycles=583
+Orrin cognitive cycle 583 complete.
+Orrin cognitive cycle 584 complete.
+[main] pulse=36084 cog_cycles=584
+Orrin cognitive cycle 585 complete.
+[main] pulse=36185 cog_cycles=586
+Orrin cognitive cycle 586 complete.
+Orrin cognitive cycle 587 complete.
+[main] pulse=36287 cog_cycles=587
+Orrin cognitive cycle 588 complete.
+Orrin cognitive cycle 589 complete.
+[main] pulse=36389 cog_cycles=589
+Orrin cognitive cycle 590 complete.
+[main] pulse=36490 cog_cycles=590
+Orrin cognitive cycle 591 complete.
+[main] pulse=36591 cog_cycles=591
+Orrin cognitive cycle 592 complete.
+Orrin cognitive cycle 593 complete.
+[main] pulse=36693 cog_cycles=593
+[main] pulse=36793 cog_cycles=594
+Orrin cognitive cycle 594 complete.
+[main] pulse=36894 cog_cycles=594
+Orrin cognitive cycle 595 complete.
+[main] pulse=36995 cog_cycles=596
+Orrin cognitive cycle 596 complete.
+REPLY: I learned something: emergence in complex systems: Wikipedia/Emergence: In… What do
+you think?
+Orrin cognitive cycle 597 complete.
+[main] pulse=37097 cog_cycles=597
+Orrin cognitive cycle 598 complete.
+Orrin cognitive cycle 599 complete.
+[main] pulse=37199 cog_cycles=599
+[main] pulse=37299 cog_cycles=600
+Orrin cognitive cycle 600 complete.
+[main] pulse=37400 cog_cycles=600
+Orrin cognitive cycle 601 complete.
+[main] pulse=37501 cog_cycles=602
+Orrin cognitive cycle 602 complete.
+Orrin cognitive cycle 603 complete.
+[main] pulse=37603 cog_cycles=603
+Orrin cognitive cycle 604 complete.
+Orrin cognitive cycle 605 complete.
+[main] pulse=37705 cog_cycles=605
+Orrin cognitive cycle 606 complete.
+[main] pulse=37806 cog_cycles=606
+Orrin cognitive cycle 607 complete.
+Orrin cognitive cycle 608 complete.
+[main] pulse=37908 cog_cycles=608
+Orrin cognitive cycle 609 complete.
+Orrin cognitive cycle 610 complete.
+[main] pulse=38010 cog_cycles=610
+Orrin cognitive cycle 611 complete.
+[main] pulse=38111 cog_cycles=612
+Orrin cognitive cycle 612 complete.
+Orrin cognitive cycle 613 complete.
+[main] pulse=38213 cog_cycles=613
+Orrin cognitive cycle 614 complete.
+Orrin cognitive cycle 615 complete.
+[main] pulse=38315 cog_cycles=615
+Orrin cognitive cycle 616 complete.
+[main] pulse=38416 cog_cycles=617
+Orrin cognitive cycle 617 complete.
+Orrin cognitive cycle 618 complete.
+[main] pulse=38518 cog_cycles=618
+Orrin cognitive cycle 619 complete.
+Orrin cognitive cycle 620 complete.
+[main] pulse=38620 cog_cycles=620
+Orrin cognitive cycle 621 complete.
+[main] pulse=38721 cog_cycles=621
+Orrin cognitive cycle 622 complete.
+Orrin cognitive cycle 623 complete.
+[main] pulse=38823 cog_cycles=623
+Orrin cognitive cycle 624 complete.
+[main] pulse=38924 cog_cycles=625
+Orrin cognitive cycle 625 complete.
+Orrin cognitive cycle 626 complete.
+[main] pulse=39026 cog_cycles=626
+Orrin cognitive cycle 627 complete.
+[main] pulse=39127 cog_cycles=628
+Orrin cognitive cycle 628 complete.
+Orrin cognitive cycle 629 complete.
+[main] pulse=39229 cog_cycles=629
+Orrin cognitive cycle 630 complete.
+Orrin cognitive cycle 631 complete.
+[main] pulse=39331 cog_cycles=631
+Orrin cognitive cycle 632 complete.
+Orrin cognitive cycle 633 complete.
+[main] pulse=39432 cog_cycles=633
+Orrin cognitive cycle 634 complete.
+[main] pulse=39534 cog_cycles=634
+Orrin cognitive cycle 635 complete.
+[main] pulse=39635 cog_cycles=636
+Orrin cognitive cycle 636 complete.
+[main] pulse=39736 cog_cycles=636
+Orrin cognitive cycle 637 complete.
+Orrin cognitive cycle 638 complete.
+[main] pulse=39838 cog_cycles=638
+Orrin cognitive cycle 639 complete.
+[main] pulse=39939 cog_cycles=640
+Orrin cognitive cycle 640 complete.
+Orrin cognitive cycle 641 complete.
+[main] pulse=40041 cog_cycles=641
+Orrin cognitive cycle 642 complete.
+[main] pulse=40142 cog_cycles=643
+Orrin cognitive cycle 643 complete.
+Orrin cognitive cycle 644 complete.
+[main] pulse=40244 cog_cycles=644
+Orrin cognitive cycle 645 complete.
+Orrin cognitive cycle 646 complete.
+[main] pulse=40346 cog_cycles=646
+REPLY: Just wanted to share this — I learned something: philosophy of time: The philosophy
+of space and time is a branch of…
+Orrin cognitive cycle 647 complete.
+Orrin cognitive cycle 648 complete.
+[main] pulse=40448 cog_cycles=648
+Orrin cognitive cycle 649 complete.
+[main] pulse=40549 cog_cycles=650
+Orrin cognitive cycle 650 complete.
+Orrin cognitive cycle 651 complete.
+[main] pulse=40651 cog_cycles=651
+Orrin cognitive cycle 652 complete.
+Orrin cognitive cycle 653 complete.
+[main] pulse=40753 cog_cycles=653
+Orrin cognitive cycle 654 complete.
+[main] pulse=40854 cog_cycles=654
+Orrin cognitive cycle 655 complete.
+Orrin cognitive cycle 656 complete.
+[main] pulse=40956 cog_cycles=656
+Orrin cognitive cycle 657 complete.
+[main] pulse=41057 cog_cycles=658
+Orrin cognitive cycle 658 complete.
+Orrin cognitive cycle 659 complete.
+[main] pulse=41159 cog_cycles=659
+Orrin cognitive cycle 660 complete.
+[main] pulse=41260 cog_cycles=661
+Orrin cognitive cycle 661 complete.
+Orrin cognitive cycle 662 complete.
+[main] pulse=41362 cog_cycles=662
+Orrin cognitive cycle 663 complete.
+Orrin cognitive cycle 664 complete.
+[main] pulse=41464 cog_cycles=664
+Orrin cognitive cycle 665 complete.
+[main] pulse=41565 cog_cycles=666
+Orrin cognitive cycle 666 complete.
+Orrin cognitive cycle 667 complete.
+[main] pulse=41667 cog_cycles=667
+Orrin cognitive cycle 668 complete.
+Orrin cognitive cycle 669 complete.
+[main] pulse=41769 cog_cycles=669
+Orrin cognitive cycle 670 complete.
+[main] pulse=41870 cog_cycles=670
+Orrin cognitive cycle 671 complete.
+Orrin cognitive cycle 672 complete.
+[main] pulse=41972 cog_cycles=672
+Orrin cognitive cycle 673 complete.
+[main] pulse=42073 cog_cycles=673
+Orrin cognitive cycle 674 complete.
+Orrin cognitive cycle 675 complete.
+[main] pulse=42175 cog_cycles=675
+Orrin cognitive cycle 676 complete.
+[main] pulse=42276 cog_cycles=676
+Orrin cognitive cycle 677 complete.
+Orrin cognitive cycle 678 complete.
+[main] pulse=42378 cog_cycles=678
+Orrin cognitive cycle 679 complete.
+[main] pulse=42479 cog_cycles=680
+Orrin cognitive cycle 680 complete.
+Orrin cognitive cycle 681 complete.
+[main] pulse=42581 cog_cycles=681
+Orrin cognitive cycle 682 complete.
+Orrin cognitive cycle 683 complete.
+[main] pulse=42682 cog_cycles=683
+Orrin cognitive cycle 684 complete.
+[main] pulse=42784 cog_cycles=684
+Orrin cognitive cycle 685 complete.
+Orrin cognitive cycle 686 complete.
+[main] pulse=42886 cog_cycles=686
+Orrin cognitive cycle 687 complete.
+[main] pulse=42987 cog_cycles=687
+Orrin cognitive cycle 688 complete.
+Orrin cognitive cycle 689 complete.
+[main] pulse=43089 cog_cycles=689
+Orrin cognitive cycle 690 complete.
+[main] pulse=43190 cog_cycles=690
+Orrin cognitive cycle 691 complete.
+Orrin cognitive cycle 692 complete.
+[main] pulse=43292 cog_cycles=692
+[main] pulse=43392 cog_cycles=693
+Orrin cognitive cycle 693 complete.
+Orrin cognitive cycle 694 complete.
+[main] pulse=43494 cog_cycles=694
+Orrin cognitive cycle 695 complete.
+[main] pulse=43595 cog_cycles=696
+Orrin cognitive cycle 696 complete.
+Orrin cognitive cycle 697 complete.
+[main] pulse=43697 cog_cycles=697
+Orrin cognitive cycle 698 complete.
+Orrin cognitive cycle 699 complete.
+[main] pulse=43799 cog_cycles=699
+[main] pulse=43899 cog_cycles=700
+Orrin cognitive cycle 700 complete.
+[main] pulse=44000 cog_cycles=700
+Orrin cognitive cycle 701 complete.
+[main] pulse=44101 cog_cycles=701
+Orrin cognitive cycle 702 complete.
+Orrin cognitive cycle 703 complete.
+[main] pulse=44203 cog_cycles=703
+Orrin cognitive cycle 704 complete.
+[main] pulse=44304 cog_cycles=704
+Orrin cognitive cycle 705 complete.
+[main] pulse=44405 cog_cycles=706
+REPLY: I learned something: evolutionary biology and cooperation: … Am I off on that?
+Orrin cognitive cycle 706 complete.
+[main] pulse=44506 cog_cycles=706
+Orrin cognitive cycle 707 complete.
+Orrin cognitive cycle 708 complete.
+[main] pulse=44608 cog_cycles=708
+Orrin cognitive cycle 709 complete.
+[main] pulse=44709 cog_cycles=709
+Orrin cognitive cycle 710 complete.
+Orrin cognitive cycle 711 complete.
+[main] pulse=44811 cog_cycles=711
+Orrin cognitive cycle 712 complete.
+[main] pulse=44912 cog_cycles=713
+Orrin cognitive cycle 713 complete.
+Orrin cognitive cycle 714 complete.
+[main] pulse=45014 cog_cycles=714
+Orrin cognitive cycle 715 complete.
+Orrin cognitive cycle 716 complete.
+[main] pulse=45116 cog_cycles=716
+Orrin cognitive cycle 717 complete.
+[main] pulse=45217 cog_cycles=718
+Orrin cognitive cycle 718 complete.
+Orrin cognitive cycle 719 complete.
+[main] pulse=45319 cog_cycles=719
+Orrin cognitive cycle 720 complete.
+Orrin cognitive cycle 721 complete.
+[main] pulse=45421 cog_cycles=721
+Orrin cognitive cycle 722 complete.
+[main] pulse=45522 cog_cycles=722
+Orrin cognitive cycle 723 complete.
+Orrin cognitive cycle 724 complete.
+[main] pulse=45624 cog_cycles=724
+Orrin cognitive cycle 725 complete.
+[main] pulse=45725 cog_cycles=725
+Orrin cognitive cycle 726 complete.
+Orrin cognitive cycle 727 complete.
+[main] pulse=45827 cog_cycles=727
+Orrin cognitive cycle 728 complete.
+[main] pulse=45928 cog_cycles=729
+Orrin cognitive cycle 729 complete.
+Orrin cognitive cycle 730 complete.
+[main] pulse=46030 cog_cycles=730
+Orrin cognitive cycle 731 complete.
+Orrin cognitive cycle 732 complete.
+[main] pulse=46132 cog_cycles=732
+Orrin cognitive cycle 733 complete.
+[main] pulse=46233 cog_cycles=733
+Orrin cognitive cycle 734 complete.
+Orrin cognitive cycle 735 complete.
+[main] pulse=46335 cog_cycles=735
+Orrin cognitive cycle 736 complete.
+[main] pulse=46436 cog_cycles=737
+Orrin cognitive cycle 737 complete.
+Orrin cognitive cycle 738 complete.
+[main] pulse=46538 cog_cycles=738
+Orrin cognitive cycle 739 complete.
+[main] pulse=46639 cog_cycles=740
+Orrin cognitive cycle 740 complete.
+Orrin cognitive cycle 741 complete.
+[main] pulse=46741 cog_cycles=741
+Orrin cognitive cycle 742 complete.
+[main] pulse=46842 cog_cycles=743
+Orrin cognitive cycle 743 complete.
+Orrin cognitive cycle 744 complete.
+[main] pulse=46944 cog_cycles=744
+Orrin cognitive cycle 745 complete.
+Orrin cognitive cycle 746 complete.
+[main] pulse=47046 cog_cycles=746
+Orrin cognitive cycle 747 complete.
+[main] pulse=47147 cog_cycles=747
+Orrin cognitive cycle 748 complete.
+Orrin cognitive cycle 749 complete.
+[main] pulse=47249 cog_cycles=749
+Orrin cognitive cycle 750 complete.
+[main] pulse=47350 cog_cycles=750
+Orrin cognitive cycle 751 complete.
+Orrin cognitive cycle 752 complete.
+[main] pulse=47452 cog_cycles=752
+Orrin cognitive cycle 753 complete.
+[main] pulse=47553 cog_cycles=754
+Orrin cognitive cycle 754 complete.
+Orrin cognitive cycle 755 complete.
+[main] pulse=47655 cog_cycles=755
+Orrin cognitive cycle 756 complete.
+[main] pulse=47756 cog_cycles=756
+Orrin cognitive cycle 757 complete.
+Orrin cognitive cycle 758 complete.
+[main] pulse=47858 cog_cycles=758
+Orrin cognitive cycle 759 complete.
+[main] pulse=47959 cog_cycles=760
+Orrin cognitive cycle 760 complete.
+Orrin cognitive cycle 761 complete.
+[main] pulse=48061 cog_cycles=761
+Orrin cognitive cycle 762 complete.
+Orrin cognitive cycle 763 complete.
+[main] pulse=48163 cog_cycles=763
+Orrin cognitive cycle 764 complete.
+Orrin cognitive cycle 765 complete.
+[main] pulse=48265 cog_cycles=765
+Orrin cognitive cycle 766 complete.
+[main] pulse=48366 cog_cycles=766
+Orrin cognitive cycle 767 complete.
+Orrin cognitive cycle 768 complete.
+[main] pulse=48468 cog_cycles=768
+Orrin cognitive cycle 769 complete.
+[main] pulse=48569 cog_cycles=770
+Orrin cognitive cycle 770 complete.
+Orrin cognitive cycle 771 complete.
+[main] pulse=48671 cog_cycles=771
+Orrin cognitive cycle 772 complete.
+Orrin cognitive cycle 773 complete.
+[main] pulse=48773 cog_cycles=773
+Orrin cognitive cycle 774 complete.
+[main] pulse=48874 cog_cycles=774
+Orrin cognitive cycle 775 complete.
+Orrin cognitive cycle 776 complete.
+[main] pulse=48976 cog_cycles=776
+Orrin cognitive cycle 777 complete.
+[main] pulse=49077 cog_cycles=777
+Orrin cognitive cycle 778 complete.
+Orrin cognitive cycle 779 complete.
+[main] pulse=49179 cog_cycles=779
+Orrin cognitive cycle 780 complete.
+[main] pulse=49280 cog_cycles=780
+Orrin cognitive cycle 781 complete.
+Orrin cognitive cycle 782 complete.
+[main] pulse=49382 cog_cycles=782
+Orrin cognitive cycle 783 complete.
+[main] pulse=49483 cog_cycles=783
+Orrin cognitive cycle 784 complete.
+[main] pulse=49584 cog_cycles=785
+REPLY: I learned something: evolutionary biology: Evolutionary biology is a subfield of… Am
+I off on that?
+Orrin cognitive cycle 785 complete.
+[main] pulse=49685 cog_cycles=785
+Orrin cognitive cycle 786 complete.
+Orrin cognitive cycle 787 complete.
+[main] pulse=49787 cog_cycles=787
+Orrin cognitive cycle 788 complete.
+Orrin cognitive cycle 789 complete.
+[main] pulse=49889 cog_cycles=789
+Orrin cognitive cycle 790 complete.
+[main] pulse=49990 cog_cycles=790
+Orrin cognitive cycle 791 complete.
+Orrin cognitive cycle 792 complete.
+[main] pulse=50092 cog_cycles=792
+[main] pulse=50192 cog_cycles=793
+Orrin cognitive cycle 793 complete.
+Orrin cognitive cycle 794 complete.
+[main] pulse=50294 cog_cycles=794
+Orrin cognitive cycle 795 complete.
+Orrin cognitive cycle 796 complete.
+[main] pulse=50396 cog_cycles=796
+Orrin cognitive cycle 797 complete.
+Orrin cognitive cycle 798 complete.
+[main] pulse=50498 cog_cycles=798
+Orrin cognitive cycle 799 complete.
+[main] pulse=50599 cog_cycles=799
+[main] pulse=50699 cog_cycles=800
+Orrin cognitive cycle 800 complete.
+[main] pulse=50800 cog_cycles=800
+Orrin cognitive cycle 801 complete.
+Orrin cognitive cycle 802 complete.
+[main] pulse=50902 cog_cycles=802
+Orrin cognitive cycle 803 complete.
+[main] pulse=51003 cog_cycles=803
+Orrin cognitive cycle 804 complete.
+Orrin cognitive cycle 805 complete.
+[main] pulse=51105 cog_cycles=805
+Orrin cognitive cycle 806 complete.
+[main] pulse=51206 cog_cycles=806
+Orrin cognitive cycle 807 complete.
+Orrin cognitive cycle 808 complete.
+[main] pulse=51308 cog_cycles=808
+Orrin cognitive cycle 809 complete.
+[main] pulse=51409 cog_cycles=810
+Orrin cognitive cycle 810 complete.
+Orrin cognitive cycle 811 complete.
+[main] pulse=51511 cog_cycles=811
+Orrin cognitive cycle 812 complete.
+Orrin cognitive cycle 813 complete.
+[main] pulse=51612 cog_cycles=813
+Orrin cognitive cycle 814 complete.
+[main] pulse=51714 cog_cycles=814
+Orrin cognitive cycle 815 complete.
+Orrin cognitive cycle 816 complete.
+[main] pulse=51816 cog_cycles=816
+Orrin cognitive cycle 817 complete.
+[main] pulse=51917 cog_cycles=818
+Orrin cognitive cycle 818 complete.
+Orrin cognitive cycle 819 complete.
+[main] pulse=52019 cog_cycles=819
+Orrin cognitive cycle 820 complete.
+Orrin cognitive cycle 821 complete.
+[main] pulse=52121 cog_cycles=821
+Orrin cognitive cycle 822 complete.
+[main] pulse=52222 cog_cycles=822
+Orrin cognitive cycle 823 complete.
+Orrin cognitive cycle 824 complete.
+[main] pulse=52324 cog_cycles=824
+Orrin cognitive cycle 825 complete.
+[main] pulse=52425 cog_cycles=825
+Orrin cognitive cycle 826 complete.
+Orrin cognitive cycle 827 complete.
+[main] pulse=52527 cog_cycles=827
+Orrin cognitive cycle 828 complete.
+[main] pulse=52628 cog_cycles=829
+Orrin cognitive cycle 829 complete.
+Orrin cognitive cycle 830 complete.
+[main] pulse=52730 cog_cycles=830
+Orrin cognitive cycle 831 complete.
+Orrin cognitive cycle 832 complete.
+[main] pulse=52832 cog_cycles=832
+Orrin cognitive cycle 833 complete.
+[main] pulse=52933 cog_cycles=833
+Orrin cognitive cycle 834 complete.
+Orrin cognitive cycle 835 complete.
+[main] pulse=53035 cog_cycles=835
+Orrin cognitive cycle 836 complete.
+[main] pulse=53136 cog_cycles=837
+Orrin cognitive cycle 837 complete.
+Orrin cognitive cycle 838 complete.
+[main] pulse=53238 cog_cycles=838
+Orrin cognitive cycle 839 complete.
+[main] pulse=53339 cog_cycles=840
+Orrin cognitive cycle 840 complete.
+Orrin cognitive cycle 841 complete.
+[main] pulse=53441 cog_cycles=841
+Orrin cognitive cycle 842 complete.
+[main] pulse=53542 cog_cycles=842
+Orrin cognitive cycle 843 complete.
+Orrin cognitive cycle 844 complete.
+[main] pulse=53644 cog_cycles=844
+Orrin cognitive cycle 845 complete.
+[main] pulse=53745 cog_cycles=846
+Orrin cognitive cycle 846 complete.
+Orrin cognitive cycle 847 complete.
+[main] pulse=53847 cog_cycles=847
+Orrin cognitive cycle 848 complete.
+Orrin cognitive cycle 849 complete.
+[main] pulse=53949 cog_cycles=849
+Orrin cognitive cycle 850 complete.
+[main] pulse=54050 cog_cycles=850
+[main] pulse=54150 cog_cycles=851
+Orrin cognitive cycle 851 complete.
+[main] pulse=54251 cog_cycles=852
+REPLY: I learned something: the nature of mathematics: Wikipedia/Mathematics: Mathematics…
+Am I off on that?
+Orrin cognitive cycle 852 complete.
+Orrin cognitive cycle 853 complete.
+[main] pulse=54353 cog_cycles=853
+Orrin cognitive cycle 854 complete.
+[main] pulse=54454 cog_cycles=854
+Orrin cognitive cycle 855 complete.
+Orrin cognitive cycle 856 complete.
+[main] pulse=54556 cog_cycles=856
+Orrin cognitive cycle 857 complete.
+Orrin cognitive cycle 858 complete.
+[main] pulse=54658 cog_cycles=858
+Orrin cognitive cycle 859 complete.
+[main] pulse=54759 cog_cycles=859
+Orrin cognitive cycle 860 complete.
+Orrin cognitive cycle 861 complete.
+[main] pulse=54861 cog_cycles=861
+Orrin cognitive cycle 862 complete.
+[main] pulse=54962 cog_cycles=863
+Orrin cognitive cycle 863 complete.
+Orrin cognitive cycle 864 complete.
+[main] pulse=55064 cog_cycles=864
+Orrin cognitive cycle 865 complete.
+Orrin cognitive cycle 866 complete.
+[main] pulse=55166 cog_cycles=866
+Orrin cognitive cycle 867 complete.
+[main] pulse=55267 cog_cycles=867
+Orrin cognitive cycle 868 complete.
+Orrin cognitive cycle 869 complete.
+[main] pulse=55369 cog_cycles=869
+Orrin cognitive cycle 870 complete.
+[main] pulse=55470 cog_cycles=870
+Orrin cognitive cycle 871 complete.
+[main] pulse=55571 cog_cycles=872
+Orrin cognitive cycle 872 complete.
+Orrin cognitive cycle 873 complete.
+[main] pulse=55673 cog_cycles=873
+Orrin cognitive cycle 874 complete.
+[main] pulse=55774 cog_cycles=875
+Orrin cognitive cycle 875 complete.
+Orrin cognitive cycle 876 complete.
+[main] pulse=55876 cog_cycles=876
+Orrin cognitive cycle 877 complete.
+Orrin cognitive cycle 878 complete.
+[main] pulse=55978 cog_cycles=878
+Orrin cognitive cycle 879 complete.
+[main] pulse=56079 cog_cycles=879
+Orrin cognitive cycle 880 complete.
+Orrin cognitive cycle 881 complete.
+[main] pulse=56181 cog_cycles=881
+Orrin cognitive cycle 882 complete.
+[main] pulse=56282 cog_cycles=883
+Orrin cognitive cycle 883 complete.
+Orrin cognitive cycle 884 complete.
+[main] pulse=56384 cog_cycles=884
+Orrin cognitive cycle 885 complete.
+Orrin cognitive cycle 886 complete.
+[main] pulse=56486 cog_cycles=886
+Orrin cognitive cycle 887 complete.
+[main] pulse=56587 cog_cycles=887
+Orrin cognitive cycle 888 complete.
+Orrin cognitive cycle 889 complete.
+[main] pulse=56689 cog_cycles=889
+Orrin cognitive cycle 890 complete.
+[main] pulse=56790 cog_cycles=890
+Orrin cognitive cycle 891 complete.
+Orrin cognitive cycle 892 complete.
+[main] pulse=56892 cog_cycles=892
+Orrin cognitive cycle 893 complete.
+[main] pulse=56993 cog_cycles=893
+Orrin cognitive cycle 894 complete.
+Orrin cognitive cycle 895 complete.
+[main] pulse=57095 cog_cycles=895
+Orrin cognitive cycle 896 complete.
+[main] pulse=57196 cog_cycles=897
+Orrin cognitive cycle 897 complete.
+Orrin cognitive cycle 898 complete.
+[main] pulse=57298 cog_cycles=898
+Orrin cognitive cycle 899 complete.
+[main] pulse=57399 cog_cycles=900
+[main] pulse=57499 cog_cycles=900
+[main] pulse=57599 cog_cycles=900
+Orrin cognitive cycle 900 complete.
+REPLY: I learned something: stoic philosophy and daily life: Wikipedia/The Daily… What do
+you think?
+Orrin cognitive cycle 901 complete.
+[main] pulse=57701 cog_cycles=901
+Orrin cognitive cycle 902 complete.
+[main] pulse=57802 cog_cycles=903
+Orrin cognitive cycle 903 complete.
+Orrin cognitive cycle 904 complete.
+[main] pulse=57904 cog_cycles=904
+Orrin cognitive cycle 905 complete.
+[main] pulse=58005 cog_cycles=906
+Orrin cognitive cycle 906 complete.
+Orrin cognitive cycle 907 complete.
+[main] pulse=58107 cog_cycles=907
+Orrin cognitive cycle 908 complete.
+Orrin cognitive cycle 909 complete.
+[main] pulse=58209 cog_cycles=909
+Orrin cognitive cycle 910 complete.
+[main] pulse=58310 cog_cycles=910
+Orrin cognitive cycle 911 complete.
+Orrin cognitive cycle 912 complete.
+[main] pulse=58412 cog_cycles=912
+Orrin cognitive cycle 913 complete.
+Orrin cognitive cycle 914 complete.
+[main] pulse=58514 cog_cycles=914
+Orrin cognitive cycle 915 complete.
+[main] pulse=58615 cog_cycles=915
+Orrin cognitive cycle 916 complete.
+Orrin cognitive cycle 917 complete.
+[main] pulse=58717 cog_cycles=917
+Orrin cognitive cycle 918 complete.
+[main] pulse=58818 cog_cycles=918
+[main] pulse=58918 cog_cycles=919
+Orrin cognitive cycle 919 complete.
+Orrin cognitive cycle 920 complete.
+[main] pulse=59020 cog_cycles=920
+Orrin cognitive cycle 921 complete.
+[main] pulse=59121 cog_cycles=922
+Orrin cognitive cycle 922 complete.
+Orrin cognitive cycle 923 complete.
+[main] pulse=59223 cog_cycles=923
+Orrin cognitive cycle 924 complete.
+Orrin cognitive cycle 925 complete.
+[main] pulse=59325 cog_cycles=925
+Orrin cognitive cycle 926 complete.
+[main] pulse=59426 cog_cycles=926
+Orrin cognitive cycle 927 complete.
+Orrin cognitive cycle 928 complete.
+[main] pulse=59528 cog_cycles=928
+Orrin cognitive cycle 929 complete.
+[main] pulse=59629 cog_cycles=930
+Orrin cognitive cycle 930 complete.
+Orrin cognitive cycle 931 complete.
+[main] pulse=59731 cog_cycles=931
+Orrin cognitive cycle 932 complete.
+Orrin cognitive cycle 933 complete.
+[main] pulse=59833 cog_cycles=933
+Orrin cognitive cycle 934 complete.
+[main] pulse=59934 cog_cycles=934
+Orrin cognitive cycle 935 complete.
+Orrin cognitive cycle 936 complete.
+[main] pulse=60036 cog_cycles=936
+Orrin cognitive cycle 937 complete.
+[main] pulse=60137 cog_cycles=937
+Orrin cognitive cycle 938 complete.
+Orrin cognitive cycle 939 complete.
+[main] pulse=60239 cog_cycles=939
+Orrin cognitive cycle 940 complete.
+[main] pulse=60340 cog_cycles=940
+Orrin cognitive cycle 941 complete.
+Orrin cognitive cycle 942 complete.
+[main] pulse=60442 cog_cycles=942
+Orrin cognitive cycle 943 complete.
+[main] pulse=60543 cog_cycles=944
+Orrin cognitive cycle 944 complete.
+Orrin cognitive cycle 945 complete.
+[main] pulse=60645 cog_cycles=945
+Orrin cognitive cycle 946 complete.
+[main] pulse=60746 cog_cycles=947
+Orrin cognitive cycle 947 complete.
+Orrin cognitive cycle 948 complete.
+[main] pulse=60848 cog_cycles=948
+Orrin cognitive cycle 949 complete.
+Orrin cognitive cycle 950 complete.
+[main] pulse=60949 cog_cycles=950
+Orrin cognitive cycle 951 complete.
+[main] pulse=61051 cog_cycles=951
+Orrin cognitive cycle 952 complete.
+[main] pulse=61152 cog_cycles=953
+Orrin cognitive cycle 953 complete.
+Orrin cognitive cycle 954 complete.
+[main] pulse=61254 cog_cycles=954
+[main] pulse=61354 cog_cycles=955
+[main] pulse=61454 cog_cycles=955
+Orrin cognitive cycle 955 complete.
+[main] pulse=61555 cog_cycles=955
+Orrin cognitive cycle 956 complete.
+Orrin cognitive cycle 957 complete.
+[main] pulse=61657 cog_cycles=957
+Orrin cognitive cycle 958 complete.
+[main] pulse=61758 cog_cycles=958
+Orrin cognitive cycle 959 complete.
+Orrin cognitive cycle 960 complete.
+[main] pulse=61860 cog_cycles=960
+Orrin cognitive cycle 961 complete.
+Orrin cognitive cycle 962 complete.
+[main] pulse=61962 cog_cycles=962
+Orrin cognitive cycle 963 complete.
+[main] pulse=62063 cog_cycles=963
+Orrin cognitive cycle 964 complete.
+Orrin cognitive cycle 965 complete.
+[main] pulse=62165 cog_cycles=965
+Orrin cognitive cycle 966 complete.
+[main] pulse=62266 cog_cycles=967
+Orrin cognitive cycle 967 complete.
+Orrin cognitive cycle 968 complete.
+[main] pulse=62368 cog_cycles=968
+Orrin cognitive cycle 969 complete.
+[main] pulse=62469 cog_cycles=970
+Orrin cognitive cycle 970 complete.
+Orrin cognitive cycle 971 complete.
+[main] pulse=62571 cog_cycles=971
+Orrin cognitive cycle 972 complete.
+Orrin cognitive cycle 973 complete.
+[main] pulse=62673 cog_cycles=973
+Orrin cognitive cycle 974 complete.
+[main] pulse=62774 cog_cycles=975
+Orrin cognitive cycle 975 complete.
+Orrin cognitive cycle 976 complete.
+[main] pulse=62876 cog_cycles=976
+Orrin cognitive cycle 977 complete.
+Orrin cognitive cycle 978 complete.
+[main] pulse=62977 cog_cycles=978
+Orrin cognitive cycle 979 complete.
+[main] pulse=63079 cog_cycles=979
+Orrin cognitive cycle 980 complete.
+[main] pulse=63180 cog_cycles=981
+Orrin cognitive cycle 981 complete.
+[main] pulse=63281 cog_cycles=982
+Orrin cognitive cycle 982 complete.
+Orrin cognitive cycle 983 complete.
+[main] pulse=63383 cog_cycles=983
+Orrin cognitive cycle 984 complete.
+[main] pulse=63484 cog_cycles=984
+Orrin cognitive cycle 985 complete.
+Orrin cognitive cycle 986 complete.
+[main] pulse=63586 cog_cycles=986
+Orrin cognitive cycle 987 complete.
+[main] pulse=63687 cog_cycles=988
+Orrin cognitive cycle 988 complete.
+Orrin cognitive cycle 989 complete.
+[main] pulse=63789 cog_cycles=989
+Orrin cognitive cycle 990 complete.
+[main] pulse=63890 cog_cycles=990
+Orrin cognitive cycle 991 complete.
+Orrin cognitive cycle 992 complete.
+[main] pulse=63992 cog_cycles=992
+Orrin cognitive cycle 993 complete.
+Orrin cognitive cycle 994 complete.
+[main] pulse=64094 cog_cycles=994
+Orrin cognitive cycle 995 complete.
+[main] pulse=64195 cog_cycles=995
+Orrin cognitive cycle 996 complete.
+[main] pulse=64296 cog_cycles=997
+Orrin cognitive cycle 997 complete.
+Orrin cognitive cycle 998 complete.
+[main] pulse=64398 cog_cycles=998
+Orrin cognitive cycle 999 complete.
+[main] pulse=64499 cog_cycles=1000
+[main] pulse=64599 cog_cycles=1000
+Orrin cognitive cycle 1000 complete.
+[main] pulse=64700 cog_cycles=1001
+Orrin cognitive cycle 1001 complete.
+Orrin cognitive cycle 1002 complete.
+[main] pulse=64802 cog_cycles=1002
+Orrin cognitive cycle 1003 complete.
+Orrin cognitive cycle 1004 complete.
+[main] pulse=64904 cog_cycles=1004
+Orrin cognitive cycle 1005 complete.
+[main] pulse=65005 cog_cycles=1005
+Orrin cognitive cycle 1006 complete.
+Orrin cognitive cycle 1007 complete.
+[main] pulse=65107 cog_cycles=1007
+Orrin cognitive cycle 1008 complete.
+[main] pulse=65208 cog_cycles=1009
+Orrin cognitive cycle 1009 complete.
+Orrin cognitive cycle 1010 complete.
+[main] pulse=65310 cog_cycles=1010
+Orrin cognitive cycle 1011 complete.
+[main] pulse=65411 cog_cycles=1012
+Orrin cognitive cycle 1012 complete.
+Orrin cognitive cycle 1013 complete.
+[main] pulse=65513 cog_cycles=1013
+Orrin cognitive cycle 1014 complete.
+Orrin cognitive cycle 1015 complete.
+[main] pulse=65615 cog_cycles=1015
+Orrin cognitive cycle 1016 complete.
+[main] pulse=65716 cog_cycles=1016
+Orrin cognitive cycle 1017 complete.
+Orrin cognitive cycle 1018 complete.
+[main] pulse=65818 cog_cycles=1018
+Orrin cognitive cycle 1019 complete.
+[main] pulse=65919 cog_cycles=1019
+Orrin cognitive cycle 1020 complete.
+[main] pulse=66020 cog_cycles=1021
+Orrin cognitive cycle 1021 complete.
+Orrin cognitive cycle 1022 complete.
+[main] pulse=66122 cog_cycles=1022
+Orrin cognitive cycle 1023 complete.
+[main] pulse=66223 cog_cycles=1024
+Orrin cognitive cycle 1024 complete.
+Orrin cognitive cycle 1025 complete.
+[main] pulse=66325 cog_cycles=1025
+Orrin cognitive cycle 1026 complete.
+[main] pulse=66426 cog_cycles=1027
+Orrin cognitive cycle 1027 complete.
+Orrin cognitive cycle 1028 complete.
+[main] pulse=66528 cog_cycles=1028
+Orrin cognitive cycle 1029 complete.
+[main] pulse=66629 cog_cycles=1029
+REPLY: I learned something: I've been running for 30m. It's morning on Saturday. CPU at 64%.
+memory 84% used. disk 88% full. network up. no one for 30m. Am I off on that?
+Orrin cognitive cycle 1030 complete.
+Orrin cognitive cycle 1031 complete.
+[main] pulse=66731 cog_cycles=1031
+Orrin cognitive cycle 1032 complete.
+[main] pulse=66832 cog_cycles=1032
+Orrin cognitive cycle 1033 complete.
+Orrin cognitive cycle 1034 complete.
+[main] pulse=66934 cog_cycles=1034
+Orrin cognitive cycle 1035 complete.
+[main] pulse=67035 cog_cycles=1036
+Orrin cognitive cycle 1036 complete.
+Orrin cognitive cycle 1037 complete.
+[main] pulse=67137 cog_cycles=1037
+Orrin cognitive cycle 1038 complete.
+Orrin cognitive cycle 1039 complete.
+[main] pulse=67238 cog_cycles=1039
+Orrin cognitive cycle 1040 complete.
+[main] pulse=67340 cog_cycles=1040
+Orrin cognitive cycle 1041 complete.
+Orrin cognitive cycle 1042 complete.
+[main] pulse=67442 cog_cycles=1042
+Orrin cognitive cycle 1043 complete.
+[main] pulse=67543 cog_cycles=1043
+Orrin cognitive cycle 1044 complete.
+[main] pulse=67644 cog_cycles=1045
+Orrin cognitive cycle 1045 complete.
+Orrin cognitive cycle 1046 complete.
+[main] pulse=67746 cog_cycles=1046
+[main] pulse=67846 cog_cycles=1047
+Orrin cognitive cycle 1047 complete.
+Orrin cognitive cycle 1048 complete.
+[main] pulse=67948 cog_cycles=1048
+Orrin cognitive cycle 1049 complete.
+[main] pulse=68049 cog_cycles=1050
+Orrin cognitive cycle 1050 complete.
+Orrin cognitive cycle 1051 complete.
+[main] pulse=68151 cog_cycles=1051
+Orrin cognitive cycle 1052 complete.
+[main] pulse=68252 cog_cycles=1052
+Orrin cognitive cycle 1053 complete.
+Orrin cognitive cycle 1054 complete.
+[main] pulse=68354 cog_cycles=1054
+Orrin cognitive cycle 1055 complete.
+[main] pulse=68455 cog_cycles=1055
+Orrin cognitive cycle 1056 complete.
+Orrin cognitive cycle 1057 complete.
+[main] pulse=68557 cog_cycles=1057
+Orrin cognitive cycle 1058 complete.
+[main] pulse=68658 cog_cycles=1058
+Orrin cognitive cycle 1059 complete.
+[main] pulse=68759 cog_cycles=1060
+Orrin cognitive cycle 1060 complete.
+Orrin cognitive cycle 1061 complete.
+[main] pulse=68861 cog_cycles=1061
+Orrin cognitive cycle 1062 complete.
+[main] pulse=68962 cog_cycles=1063
+Orrin cognitive cycle 1063 complete.
+Orrin cognitive cycle 1064 complete.
+[main] pulse=69064 cog_cycles=1064
+Orrin cognitive cycle 1065 complete.
+Orrin cognitive cycle 1066 complete.
+[main] pulse=69166 cog_cycles=1066
+Orrin cognitive cycle 1067 complete.
+[main] pulse=69267 cog_cycles=1067
+Orrin cognitive cycle 1068 complete.
+Orrin cognitive cycle 1069 complete.
+[main] pulse=69369 cog_cycles=1069
+Orrin cognitive cycle 1070 complete.
+[main] pulse=69470 cog_cycles=1070
+Orrin cognitive cycle 1071 complete.
+Orrin cognitive cycle 1072 complete.
+[main] pulse=69572 cog_cycles=1072
+Orrin cognitive cycle 1073 complete.
+[main] pulse=69673 cog_cycles=1074
+Orrin cognitive cycle 1074 complete.
+Orrin cognitive cycle 1075 complete.
+[main] pulse=69775 cog_cycles=1075
+Orrin cognitive cycle 1076 complete.
+Orrin cognitive cycle 1077 complete.
+[main] pulse=69877 cog_cycles=1077
+Orrin cognitive cycle 1078 complete.
+[main] pulse=69978 cog_cycles=1078
+Orrin cognitive cycle 1079 complete.
+[main] pulse=70079 cog_cycles=1080
+Orrin cognitive cycle 1080 complete.
+Orrin cognitive cycle 1081 complete.
+[main] pulse=70181 cog_cycles=1081
+Orrin cognitive cycle 1082 complete.
+Orrin cognitive cycle 1083 complete.
+[main] pulse=70283 cog_cycles=1083
+Orrin cognitive cycle 1084 complete.
+[main] pulse=70384 cog_cycles=1084
+Orrin cognitive cycle 1085 complete.
+Orrin cognitive cycle 1086 complete.
+[main] pulse=70486 cog_cycles=1086
+Orrin cognitive cycle 1087 complete.
+[main] pulse=70587 cog_cycles=1088
+Orrin cognitive cycle 1088 complete.
+Orrin cognitive cycle 1089 complete.
+[main] pulse=70689 cog_cycles=1089
+Orrin cognitive cycle 1090 complete.
+[main] pulse=70790 cog_cycles=1091
+Orrin cognitive cycle 1091 complete.
+Orrin cognitive cycle 1092 complete.
+[main] pulse=70892 cog_cycles=1092
+Orrin cognitive cycle 1093 complete.
+[main] pulse=70993 cog_cycles=1093
+Orrin cognitive cycle 1094 complete.
+Orrin cognitive cycle 1095 complete.
+[main] pulse=71095 cog_cycles=1095
+Orrin cognitive cycle 1096 complete.
+[main] pulse=71196 cog_cycles=1097
+Orrin cognitive cycle 1097 complete.
+Orrin cognitive cycle 1098 complete.
+[main] pulse=71298 cog_cycles=1098
+Orrin cognitive cycle 1099 complete.
+[main] pulse=71399 cog_cycles=1100
+[main] pulse=71499 cog_cycles=1100
+Orrin cognitive cycle 1100 complete.
+[main] pulse=71600 cog_cycles=1100
+Orrin cognitive cycle 1101 complete.
+Orrin cognitive cycle 1102 complete.
+[main] pulse=71702 cog_cycles=1102
+Orrin cognitive cycle 1103 complete.
+[main] pulse=71803 cog_cycles=1103
+Orrin cognitive cycle 1104 complete.
+[main] pulse=71904 cog_cycles=1105
+Orrin cognitive cycle 1105 complete.
+Orrin cognitive cycle 1106 complete.
+[main] pulse=72006 cog_cycles=1106
+Orrin cognitive cycle 1107 complete.
+[main] pulse=72107 cog_cycles=1108
+Orrin cognitive cycle 1108 complete.
+Orrin cognitive cycle 1109 complete.
+[main] pulse=72209 cog_cycles=1109
+[main] pulse=72309 cog_cycles=1110
+Orrin cognitive cycle 1110 complete.
+[main] pulse=72410 cog_cycles=1111
+Orrin cognitive cycle 1111 complete.
+Orrin cognitive cycle 1112 complete.
+[main] pulse=72512 cog_cycles=1112
+Orrin cognitive cycle 1113 complete.
+Orrin cognitive cycle 1114 complete.
+[main] pulse=72614 cog_cycles=1114
+Orrin cognitive cycle 1115 complete.
+[main] pulse=72715 cog_cycles=1115
+Orrin cognitive cycle 1116 complete.
+[main] pulse=72816 cog_cycles=1117
+Orrin cognitive cycle 1117 complete.
+Orrin cognitive cycle 1118 complete.
+[main] pulse=72918 cog_cycles=1118
+Orrin cognitive cycle 1119 complete.
+[main] pulse=73019 cog_cycles=1120
+Orrin cognitive cycle 1120 complete.
+Orrin cognitive cycle 1121 complete.
+[main] pulse=73121 cog_cycles=1121
+Orrin cognitive cycle 1122 complete.
+[main] pulse=73222 cog_cycles=1122
+Orrin cognitive cycle 1123 complete.
+Orrin cognitive cycle 1124 complete.
+[main] pulse=73324 cog_cycles=1124
+Orrin cognitive cycle 1125 complete.
+[main] pulse=73425 cog_cycles=1125
+Orrin cognitive cycle 1126 complete.
+Orrin cognitive cycle 1127 complete.
+[main] pulse=73526 cog_cycles=1127
+Orrin cognitive cycle 1128 complete.
+[main] pulse=73628 cog_cycles=1128
+Orrin cognitive cycle 1129 complete.
+[main] pulse=73729 cog_cycles=1130
+Orrin cognitive cycle 1130 complete.
+Orrin cognitive cycle 1131 complete.
+[main] pulse=73831 cog_cycles=1131
+Orrin cognitive cycle 1132 complete.
+[main] pulse=73932 cog_cycles=1133
+Orrin cognitive cycle 1133 complete.
+Orrin cognitive cycle 1134 complete.
+[main] pulse=74034 cog_cycles=1134
+Orrin cognitive cycle 1135 complete.
+[main] pulse=74135 cog_cycles=1136
+Orrin cognitive cycle 1136 complete.
+Orrin cognitive cycle 1137 complete.
+[main] pulse=74237 cog_cycles=1137
+Orrin cognitive cycle 1138 complete.
+[main] pulse=74338 cog_cycles=1139
+Orrin cognitive cycle 1139 complete.
+Orrin cognitive cycle 1140 complete.
+[main] pulse=74440 cog_cycles=1140
+Orrin cognitive cycle 1141 complete.
+[main] pulse=74541 cog_cycles=1141
+Orrin cognitive cycle 1142 complete.
+Orrin cognitive cycle 1143 complete.
+[main] pulse=74643 cog_cycles=1143
+Orrin cognitive cycle 1144 complete.
+[main] pulse=74744 cog_cycles=1145
+Orrin cognitive cycle 1145 complete.
+Orrin cognitive cycle 1146 complete.
+[main] pulse=74846 cog_cycles=1146
+Orrin cognitive cycle 1147 complete.
+[main] pulse=74947 cog_cycles=1148
+Orrin cognitive cycle 1148 complete.
+Orrin cognitive cycle 1149 complete.
+[main] pulse=75049 cog_cycles=1149
+Orrin cognitive cycle 1150 complete.
+[main] pulse=75150 cog_cycles=1151
+Orrin cognitive cycle 1151 complete.
+Orrin cognitive cycle 1152 complete.
+[main] pulse=75252 cog_cycles=1152
+Orrin cognitive cycle 1153 complete.
+[main] pulse=75353 cog_cycles=1154
+Orrin cognitive cycle 1154 complete.
+Orrin cognitive cycle 1155 complete.
+[main] pulse=75455 cog_cycles=1155
+Orrin cognitive cycle 1156 complete.
+[main] pulse=75556 cog_cycles=1157
+Orrin cognitive cycle 1157 complete.
+Orrin cognitive cycle 1158 complete.
+[main] pulse=75658 cog_cycles=1158
+Orrin cognitive cycle 1159 complete.
+[main] pulse=75759 cog_cycles=1160
+Orrin cognitive cycle 1160 complete.
+Orrin cognitive cycle 1161 complete.
+[main] pulse=75861 cog_cycles=1161
+Orrin cognitive cycle 1162 complete.
+Orrin cognitive cycle 1163 complete.
+[main] pulse=75963 cog_cycles=1163
+Orrin cognitive cycle 1164 complete.
+[main] pulse=76064 cog_cycles=1164
+Orrin cognitive cycle 1165 complete.
+Orrin cognitive cycle 1166 complete.
+[main] pulse=76166 cog_cycles=1166
+Orrin cognitive cycle 1167 complete.
+[main] pulse=76267 cog_cycles=1167
+Orrin cognitive cycle 1168 complete.
+Orrin cognitive cycle 1169 complete.
+[main] pulse=76369 cog_cycles=1169
+Orrin cognitive cycle 1170 complete.
+[main] pulse=76470 cog_cycles=1170
+Orrin cognitive cycle 1171 complete.
+[main] pulse=76571 cog_cycles=1172
+Orrin cognitive cycle 1172 complete.
+Orrin cognitive cycle 1173 complete.
+[main] pulse=76673 cog_cycles=1173
+Orrin cognitive cycle 1174 complete.
+[main] pulse=76774 cog_cycles=1175
+Orrin cognitive cycle 1175 complete.
+Orrin cognitive cycle 1176 complete.
+[main] pulse=76876 cog_cycles=1176
+Orrin cognitive cycle 1177 complete.
+[main] pulse=76977 cog_cycles=1178
+Orrin cognitive cycle 1178 complete.
+Orrin cognitive cycle 1179 complete.
+[main] pulse=77079 cog_cycles=1179
+[main] pulse=77179 cog_cycles=1180
+Orrin cognitive cycle 1180 complete.
+Orrin cognitive cycle 1181 complete.
+[main] pulse=77281 cog_cycles=1181
+Orrin cognitive cycle 1182 complete.
+[main] pulse=77382 cog_cycles=1182
+Orrin cognitive cycle 1183 complete.
+Orrin cognitive cycle 1184 complete.
+[main] pulse=77484 cog_cycles=1184
+Orrin cognitive cycle 1185 complete.
+[main] pulse=77585 cog_cycles=1185
+Orrin cognitive cycle 1186 complete.
+[main] pulse=77686 cog_cycles=1187
+Orrin cognitive cycle 1187 complete.
+Orrin cognitive cycle 1188 complete.
+[main] pulse=77788 cog_cycles=1188
+Orrin cognitive cycle 1189 complete.
+[main] pulse=77889 cog_cycles=1190
+Orrin cognitive cycle 1190 complete.
+Orrin cognitive cycle 1191 complete.
+[main] pulse=77991 cog_cycles=1191
+Orrin cognitive cycle 1192 complete.
+[main] pulse=78092 cog_cycles=1193
+Orrin cognitive cycle 1193 complete.
+Orrin cognitive cycle 1194 complete.
+[main] pulse=78194 cog_cycles=1194
+Orrin cognitive cycle 1195 complete.
+Orrin cognitive cycle 1196 complete.
+[main] pulse=78296 cog_cycles=1196
+Orrin cognitive cycle 1197 complete.
+[main] pulse=78397 cog_cycles=1197
+Orrin cognitive cycle 1198 complete.
+Orrin cognitive cycle 1199 complete.
+[main] pulse=78499 cog_cycles=1199
+[main] pulse=78599 cog_cycles=1200
+[main] pulse=78699 cog_cycles=1200
+Orrin cognitive cycle 1200 complete.
+Orrin cognitive cycle 1201 complete.
+[main] pulse=78801 cog_cycles=1201
+Orrin cognitive cycle 1202 complete.
+[main] pulse=78902 cog_cycles=1202
+Orrin cognitive cycle 1203 complete.
+Orrin cognitive cycle 1204 complete.
+[main] pulse=79004 cog_cycles=1204
+Orrin cognitive cycle 1205 complete.
+[main] pulse=79105 cog_cycles=1205
+Orrin cognitive cycle 1206 complete.
+Orrin cognitive cycle 1207 complete.
+[main] pulse=79206 cog_cycles=1207
+Orrin cognitive cycle 1208 complete.
+[main] pulse=79308 cog_cycles=1208
+Orrin cognitive cycle 1209 complete.
+Orrin cognitive cycle 1210 complete.
+[main] pulse=79410 cog_cycles=1210
+Orrin cognitive cycle 1211 complete.
+[main] pulse=79511 cog_cycles=1211
+Orrin cognitive cycle 1212 complete.
+Orrin cognitive cycle 1213 complete.
+[main] pulse=79613 cog_cycles=1213
+Orrin cognitive cycle 1214 complete.
+[main] pulse=79714 cog_cycles=1214
+Orrin cognitive cycle 1215 complete.
+Orrin cognitive cycle 1216 complete.
+[main] pulse=79816 cog_cycles=1216
+REPLY: I learned something: stoic philosophy and daily life: Wikipedia/The Daily… Am I off
+on that?
+Orrin cognitive cycle 1217 complete.
+[main] pulse=79917 cog_cycles=1217
+Orrin cognitive cycle 1218 complete.
+Orrin cognitive cycle 1219 complete.
+[main] pulse=80019 cog_cycles=1219
+Orrin cognitive cycle 1220 complete.
+[main] pulse=80120 cog_cycles=1220
+Orrin cognitive cycle 1221 complete.
+Orrin cognitive cycle 1222 complete.
+[main] pulse=80222 cog_cycles=1222
+Orrin cognitive cycle 1223 complete.
+[main] pulse=80323 cog_cycles=1224
+Orrin cognitive cycle 1224 complete.
+Orrin cognitive cycle 1225 complete.
+[main] pulse=80425 cog_cycles=1225
+Orrin cognitive cycle 1226 complete.
+Orrin cognitive cycle 1227 complete.
+[main] pulse=80527 cog_cycles=1227
+Orrin cognitive cycle 1228 complete.
+[main] pulse=80628 cog_cycles=1228
+Orrin cognitive cycle 1229 complete.
+Orrin cognitive cycle 1230 complete.
+[main] pulse=80730 cog_cycles=1230
+Orrin cognitive cycle 1231 complete.
+[main] pulse=80831 cog_cycles=1231
+Orrin cognitive cycle 1232 complete.
+Orrin cognitive cycle 1233 complete.
+[main] pulse=80933 cog_cycles=1233
+Orrin cognitive cycle 1234 complete.
+[main] pulse=81034 cog_cycles=1235
+Orrin cognitive cycle 1235 complete.
+Orrin cognitive cycle 1236 complete.
+[main] pulse=81136 cog_cycles=1236
+Orrin cognitive cycle 1237 complete.
+[main] pulse=81237 cog_cycles=1238
+Orrin cognitive cycle 1238 complete.
+Orrin cognitive cycle 1239 complete.
+[main] pulse=81339 cog_cycles=1239
+Orrin cognitive cycle 1240 complete.
+[main] pulse=81440 cog_cycles=1241
+Orrin cognitive cycle 1241 complete.
+Orrin cognitive cycle 1242 complete.
+[main] pulse=81542 cog_cycles=1242
+Orrin cognitive cycle 1243 complete.
+[main] pulse=81643 cog_cycles=1244
+Orrin cognitive cycle 1244 complete.
+Orrin cognitive cycle 1245 complete.
+[main] pulse=81745 cog_cycles=1245
+Orrin cognitive cycle 1246 complete.
+[main] pulse=81846 cog_cycles=1247
+Orrin cognitive cycle 1247 complete.
+Orrin cognitive cycle 1248 complete.
+[main] pulse=81948 cog_cycles=1248
+[main] pulse=82048 cog_cycles=1249
+Orrin cognitive cycle 1249 complete.
+Orrin cognitive cycle 1250 complete.
+[main] pulse=82150 cog_cycles=1250
+Orrin cognitive cycle 1251 complete.
+[main] pulse=82251 cog_cycles=1251
+Orrin cognitive cycle 1252 complete.
+Orrin cognitive cycle 1253 complete.
+[main] pulse=82353 cog_cycles=1253
+Orrin cognitive cycle 1254 complete.
+[main] pulse=82454 cog_cycles=1255
+Orrin cognitive cycle 1255 complete.
+Orrin cognitive cycle 1256 complete.
+[main] pulse=82556 cog_cycles=1256
+Orrin cognitive cycle 1257 complete.
+Orrin cognitive cycle 1258 complete.
+[main] pulse=82658 cog_cycles=1258
+Orrin cognitive cycle 1259 complete.
+[main] pulse=82759 cog_cycles=1259
+Orrin cognitive cycle 1260 complete.
+[main] pulse=82860 cog_cycles=1261
+Orrin cognitive cycle 1261 complete.
+Orrin cognitive cycle 1262 complete.
+[main] pulse=82962 cog_cycles=1262
+Orrin cognitive cycle 1263 complete.
+Orrin cognitive cycle 1264 complete.
+[main] pulse=83064 cog_cycles=1264
+Orrin cognitive cycle 1265 complete.
+[main] pulse=83165 cog_cycles=1265
+Orrin cognitive cycle 1266 complete.
+Orrin cognitive cycle 1267 complete.
+[main] pulse=83267 cog_cycles=1267
+Orrin cognitive cycle 1268 complete.
+[main] pulse=83368 cog_cycles=1269
+Orrin cognitive cycle 1269 complete.
+Orrin cognitive cycle 1270 complete.
+[main] pulse=83470 cog_cycles=1270
+Orrin cognitive cycle 1271 complete.
+[main] pulse=83571 cog_cycles=1272
+Orrin cognitive cycle 1272 complete.
+Orrin cognitive cycle 1273 complete.
+[main] pulse=83673 cog_cycles=1273
+Orrin cognitive cycle 1274 complete.
+Orrin cognitive cycle 1275 complete.
+[main] pulse=83775 cog_cycles=1275
+Orrin cognitive cycle 1276 complete.
+[main] pulse=83876 cog_cycles=1276
+Orrin cognitive cycle 1277 complete.
+Orrin cognitive cycle 1278 complete.
+[main] pulse=83978 cog_cycles=1278
+Orrin cognitive cycle 1279 complete.
+[main] pulse=84079 cog_cycles=1279
+Orrin cognitive cycle 1280 complete.
+Orrin cognitive cycle 1281 complete.
+[main] pulse=84181 cog_cycles=1281
+Orrin cognitive cycle 1282 complete.
+[main] pulse=84282 cog_cycles=1282
+Orrin cognitive cycle 1283 complete.
+Orrin cognitive cycle 1284 complete.
+[main] pulse=84384 cog_cycles=1284
+Orrin cognitive cycle 1285 complete.
+[main] pulse=84485 cog_cycles=1286
+Orrin cognitive cycle 1286 complete.
+Orrin cognitive cycle 1287 complete.
+[main] pulse=84587 cog_cycles=1287
+Orrin cognitive cycle 1288 complete.
+[main] pulse=84688 cog_cycles=1289
+Orrin cognitive cycle 1289 complete.
+Orrin cognitive cycle 1290 complete.
+[main] pulse=84790 cog_cycles=1290
+Orrin cognitive cycle 1291 complete.
+[main] pulse=84891 cog_cycles=1291
+Orrin cognitive cycle 1292 complete.
+Orrin cognitive cycle 1293 complete.
+[main] pulse=84993 cog_cycles=1293
+Orrin cognitive cycle 1294 complete.
+[main] pulse=85094 cog_cycles=1295
+Orrin cognitive cycle 1295 complete.
+Orrin cognitive cycle 1296 complete.
+[main] pulse=85196 cog_cycles=1296
+Orrin cognitive cycle 1297 complete.
+[main] pulse=85297 cog_cycles=1298
+Orrin cognitive cycle 1298 complete.
+Orrin cognitive cycle 1299 complete.
+[main] pulse=85399 cog_cycles=1299
+[main] pulse=85499 cog_cycles=1300
+Orrin cognitive cycle 1300 complete.
+[main] pulse=85600 cog_cycles=1300
+Orrin cognitive cycle 1301 complete.
+[main] pulse=85701 cog_cycles=1301
+Orrin cognitive cycle 1302 complete.
+Orrin cognitive cycle 1303 complete.
+[main] pulse=85803 cog_cycles=1303
+Orrin cognitive cycle 1304 complete.
+[main] pulse=85904 cog_cycles=1304
+Orrin cognitive cycle 1305 complete.
+Orrin cognitive cycle 1306 complete.
+[main] pulse=86006 cog_cycles=1306
+Orrin cognitive cycle 1307 complete.
+[main] pulse=86107 cog_cycles=1307
+Orrin cognitive cycle 1308 complete.
+Orrin cognitive cycle 1309 complete.
+[main] pulse=86209 cog_cycles=1309
+Orrin cognitive cycle 1310 complete.
+[main] pulse=86310 cog_cycles=1310
+Orrin cognitive cycle 1311 complete.
+Orrin cognitive cycle 1312 complete.
+[main] pulse=86412 cog_cycles=1312
+Orrin cognitive cycle 1313 complete.
+[main] pulse=86513 cog_cycles=1313
+Orrin cognitive cycle 1314 complete.
+[main] pulse=86614 cog_cycles=1315
+Orrin cognitive cycle 1315 complete.
+[main] pulse=86715 cog_cycles=1315
+Orrin cognitive cycle 1316 complete.
+[main] pulse=86816 cog_cycles=1317
+Orrin cognitive cycle 1317 complete.
+Orrin cognitive cycle 1318 complete.
+[main] pulse=86918 cog_cycles=1318
+Orrin cognitive cycle 1319 complete.
+[main] pulse=87019 cog_cycles=1320
+Orrin cognitive cycle 1320 complete.
+Orrin cognitive cycle 1321 complete.
+[main] pulse=87121 cog_cycles=1321
+Orrin cognitive cycle 1322 complete.
+[main] pulse=87222 cog_cycles=1322
+Orrin cognitive cycle 1323 complete.
+Orrin cognitive cycle 1324 complete.
+[main] pulse=87324 cog_cycles=1324
+Orrin cognitive cycle 1325 complete.
+[main] pulse=87425 cog_cycles=1325
+Orrin cognitive cycle 1326 complete.
+Orrin cognitive cycle 1327 complete.
+[main] pulse=87527 cog_cycles=1327
+Orrin cognitive cycle 1328 complete.
+[main] pulse=87628 cog_cycles=1328
+Orrin cognitive cycle 1329 complete.
+[main] pulse=87729 cog_cycles=1330
+Orrin cognitive cycle 1330 complete.
+Orrin cognitive cycle 1331 complete.
+[main] pulse=87831 cog_cycles=1331
+Orrin cognitive cycle 1332 complete.
+[main] pulse=87932 cog_cycles=1333
+Orrin cognitive cycle 1333 complete.
+Orrin cognitive cycle 1334 complete.
+[main] pulse=88034 cog_cycles=1334
+Orrin cognitive cycle 1335 complete.
+Orrin cognitive cycle 1336 complete.
+[main] pulse=88135 cog_cycles=1336
+Orrin cognitive cycle 1337 complete.
+[main] pulse=88237 cog_cycles=1337
+Orrin cognitive cycle 1338 complete.
+Orrin cognitive cycle 1339 complete.
+[main] pulse=88339 cog_cycles=1339
+Orrin cognitive cycle 1340 complete.
+[main] pulse=88440 cog_cycles=1340
+Orrin cognitive cycle 1341 complete.
+Orrin cognitive cycle 1342 complete.
+[main] pulse=88542 cog_cycles=1342
+Orrin cognitive cycle 1343 complete.
+[main] pulse=88643 cog_cycles=1343
+Orrin cognitive cycle 1344 complete.
+[main] pulse=88744 cog_cycles=1345
+Orrin cognitive cycle 1345 complete.
+Orrin cognitive cycle 1346 complete.
+[main] pulse=88846 cog_cycles=1346
+Orrin cognitive cycle 1347 complete.
+Orrin cognitive cycle 1348 complete.
+[main] pulse=88948 cog_cycles=1348
+Orrin cognitive cycle 1349 complete.
+[main] pulse=89049 cog_cycles=1349
+Orrin cognitive cycle 1350 complete.
+[main] pulse=89150 cog_cycles=1351
+Orrin cognitive cycle 1351 complete.
+Orrin cognitive cycle 1352 complete.
+[main] pulse=89252 cog_cycles=1352
+Orrin cognitive cycle 1353 complete.
+[main] pulse=89353 cog_cycles=1354
+Orrin cognitive cycle 1354 complete.
+Orrin cognitive cycle 1355 complete.
+[main] pulse=89455 cog_cycles=1355
+Orrin cognitive cycle 1356 complete.
+[main] pulse=89556 cog_cycles=1356
+Orrin cognitive cycle 1357 complete.
+REPLY: I learned something: I've been running for 30m. It's morning on Saturday. CPU at 64%.
+memory 84% used. disk 88% full. network up. no one for 30m. What do you think?
+Orrin cognitive cycle 1358 complete.
+[main] pulse=89658 cog_cycles=1358
+Orrin cognitive cycle 1359 complete.
+[main] pulse=89759 cog_cycles=1359
+Orrin cognitive cycle 1360 complete.
+Orrin cognitive cycle 1361 complete.
+[main] pulse=89861 cog_cycles=1361
+Orrin cognitive cycle 1362 complete.
+[main] pulse=89962 cog_cycles=1362
+Orrin cognitive cycle 1363 complete.
+Orrin cognitive cycle 1364 complete.
+[main] pulse=90064 cog_cycles=1364
+Orrin cognitive cycle 1365 complete.
+[main] pulse=90165 cog_cycles=1365
+Orrin cognitive cycle 1366 complete.
+Orrin cognitive cycle 1367 complete.
+[main] pulse=90267 cog_cycles=1367
+Orrin cognitive cycle 1368 complete.
+[main] pulse=90368 cog_cycles=1368
+Orrin cognitive cycle 1369 complete.
+Orrin cognitive cycle 1370 complete.
+[main] pulse=90470 cog_cycles=1370
+Orrin cognitive cycle 1371 complete.
+[main] pulse=90571 cog_cycles=1371
+Orrin cognitive cycle 1372 complete.
+Orrin cognitive cycle 1373 complete.
+[main] pulse=90673 cog_cycles=1373
+Orrin cognitive cycle 1374 complete.
+[main] pulse=90774 cog_cycles=1375
+Orrin cognitive cycle 1375 complete.
+Orrin cognitive cycle 1376 complete.
+[main] pulse=90876 cog_cycles=1376
+Orrin cognitive cycle 1377 complete.
+[main] pulse=90977 cog_cycles=1377
+[main] pulse=91077 cog_cycles=1378
+Orrin cognitive cycle 1378 complete.
+Orrin cognitive cycle 1379 complete.
+[main] pulse=91179 cog_cycles=1379
+Orrin cognitive cycle 1380 complete.
+Orrin cognitive cycle 1381 complete.
+[main] pulse=91280 cog_cycles=1381
+Orrin cognitive cycle 1382 complete.
+[main] pulse=91382 cog_cycles=1382
+Orrin cognitive cycle 1383 complete.
+Orrin cognitive cycle 1384 complete.
+[main] pulse=91484 cog_cycles=1384
+Orrin cognitive cycle 1385 complete.
+[main] pulse=91585 cog_cycles=1385
+Orrin cognitive cycle 1386 complete.
+[main] pulse=91686 cog_cycles=1387
+Orrin cognitive cycle 1387 complete.
+Orrin cognitive cycle 1388 complete.
+[main] pulse=91788 cog_cycles=1388
+Orrin cognitive cycle 1389 complete.
+[main] pulse=91889 cog_cycles=1390
+Orrin cognitive cycle 1390 complete.
+Orrin cognitive cycle 1391 complete.
+[main] pulse=91991 cog_cycles=1391
+Orrin cognitive cycle 1392 complete.
+Orrin cognitive cycle 1393 complete.
+[main] pulse=92092 cog_cycles=1393
+Orrin cognitive cycle 1394 complete.
+[main] pulse=92194 cog_cycles=1394
+Orrin cognitive cycle 1395 complete.
+Orrin cognitive cycle 1396 complete.
+[main] pulse=92296 cog_cycles=1396
+Orrin cognitive cycle 1397 complete.
+[main] pulse=92397 cog_cycles=1397
+Orrin cognitive cycle 1398 complete.
+Orrin cognitive cycle 1399 complete.
+[main] pulse=92499 cog_cycles=1399
+[main] pulse=92599 cog_cycles=1400
+Orrin cognitive cycle 1400 complete.
+[main] pulse=92700 cog_cycles=1400
+Orrin cognitive cycle 1401 complete.
+[main] pulse=92801 cog_cycles=1401
+Orrin cognitive cycle 1402 complete.
+Orrin cognitive cycle 1403 complete.
+[main] pulse=92903 cog_cycles=1403
+Orrin cognitive cycle 1404 complete.
+[main] pulse=93004 cog_cycles=1404
+Orrin cognitive cycle 1405 complete.
+[main] pulse=93105 cog_cycles=1406
+Orrin cognitive cycle 1406 complete.
+Orrin cognitive cycle 1407 complete.
+[main] pulse=93207 cog_cycles=1407
+Orrin cognitive cycle 1408 complete.
+Orrin cognitive cycle 1409 complete.
+[main] pulse=93308 cog_cycles=1409
+Orrin cognitive cycle 1410 complete.
+[main] pulse=93410 cog_cycles=1410
+Orrin cognitive cycle 1411 complete.
+[main] pulse=93511 cog_cycles=1412
+Orrin cognitive cycle 1412 complete.
+REPLY: I learned something: Growth: Growth may refer to:!
+Orrin cognitive cycle 1413 complete.
+[main] pulse=93613 cog_cycles=1413
+Orrin cognitive cycle 1414 complete.
+[main] pulse=93714 cog_cycles=1415
+Orrin cognitive cycle 1415 complete.
+Orrin cognitive cycle 1416 complete.
+[main] pulse=93816 cog_cycles=1416
+Orrin cognitive cycle 1417 complete.
+Orrin cognitive cycle 1418 complete.
+[main] pulse=93917 cog_cycles=1418
+Orrin cognitive cycle 1419 complete.
+[main] pulse=94019 cog_cycles=1419
+Orrin cognitive cycle 1420 complete.
+[main] pulse=94120 cog_cycles=1421
+Orrin cognitive cycle 1421 complete.
+Orrin cognitive cycle 1422 complete.
+[main] pulse=94222 cog_cycles=1422
+Orrin cognitive cycle 1423 complete.
+[main] pulse=94323 cog_cycles=1424
+Orrin cognitive cycle 1424 complete.
+Orrin cognitive cycle 1425 complete.
+[main] pulse=94425 cog_cycles=1425
+Orrin cognitive cycle 1426 complete.
+Orrin cognitive cycle 1427 complete.
+[main] pulse=94527 cog_cycles=1427
+Orrin cognitive cycle 1428 complete.
+[main] pulse=94628 cog_cycles=1428
+Orrin cognitive cycle 1429 complete.
+[main] pulse=94729 cog_cycles=1430
+Orrin cognitive cycle 1430 complete.
+Orrin cognitive cycle 1431 complete.
+[main] pulse=94831 cog_cycles=1431
+Orrin cognitive cycle 1432 complete.
+[main] pulse=94932 cog_cycles=1433
+Orrin cognitive cycle 1433 complete.
+Orrin cognitive cycle 1434 complete.
+[main] pulse=95034 cog_cycles=1434
+Orrin cognitive cycle 1435 complete.
+Orrin cognitive cycle 1436 complete.
+[main] pulse=95135 cog_cycles=1436
+Orrin cognitive cycle 1437 complete.
+[main] pulse=95237 cog_cycles=1437
+Orrin cognitive cycle 1438 complete.
+[main] pulse=95338 cog_cycles=1439
+Orrin cognitive cycle 1439 complete.
+[main] pulse=95439 cog_cycles=1440
+Orrin cognitive cycle 1440 complete.
+[main] pulse=95540 cog_cycles=1440
+Orrin cognitive cycle 1441 complete.
+[main] pulse=95641 cog_cycles=1442
+Orrin cognitive cycle 1442 complete.
+Orrin cognitive cycle 1443 complete.
+[main] pulse=95743 cog_cycles=1443
+Orrin cognitive cycle 1444 complete.
+[main] pulse=95844 cog_cycles=1445
+Orrin cognitive cycle 1445 complete.
+Orrin cognitive cycle 1446 complete.
+[main] pulse=95946 cog_cycles=1446
+Orrin cognitive cycle 1447 complete.
+[main] pulse=96047 cog_cycles=1447
+Orrin cognitive cycle 1448 complete.
+Orrin cognitive cycle 1449 complete.
+[main] pulse=96149 cog_cycles=1449
+Orrin cognitive cycle 1450 complete.
+[main] pulse=96250 cog_cycles=1450
+Orrin cognitive cycle 1451 complete.
+[main] pulse=96351 cog_cycles=1452
+Orrin cognitive cycle 1452 complete.
+Orrin cognitive cycle 1453 complete.
+[main] pulse=96453 cog_cycles=1453
+Orrin cognitive cycle 1454 complete.
+[main] pulse=96554 cog_cycles=1455
+Orrin cognitive cycle 1455 complete.
+Orrin cognitive cycle 1456 complete.
+[main] pulse=96656 cog_cycles=1456
+Orrin cognitive cycle 1457 complete.
+Orrin cognitive cycle 1458 complete.
+[main] pulse=96758 cog_cycles=1458
+Orrin cognitive cycle 1459 complete.
+[main] pulse=96859 cog_cycles=1459
+Orrin cognitive cycle 1460 complete.
+Orrin cognitive cycle 1461 complete.
+[main] pulse=96961 cog_cycles=1461
+Orrin cognitive cycle 1462 complete.
+[main] pulse=97062 cog_cycles=1462
+Orrin cognitive cycle 1463 complete.
+Orrin cognitive cycle 1464 complete.
+[main] pulse=97164 cog_cycles=1464
+Orrin cognitive cycle 1465 complete.
+[main] pulse=97265 cog_cycles=1465
+Orrin cognitive cycle 1466 complete.
+Orrin cognitive cycle 1467 complete.
+[main] pulse=97367 cog_cycles=1467
+Orrin cognitive cycle 1468 complete.
+[main] pulse=97468 cog_cycles=1468
+Orrin cognitive cycle 1469 complete.
+[main] pulse=97569 cog_cycles=1470
+Orrin cognitive cycle 1470 complete.
+Orrin cognitive cycle 1471 complete.
+[main] pulse=97671 cog_cycles=1471
+Orrin cognitive cycle 1472 complete.
+[main] pulse=97772 cog_cycles=1472
+Orrin cognitive cycle 1473 complete.
+Orrin cognitive cycle 1474 complete.
+[main] pulse=97874 cog_cycles=1474
+Orrin cognitive cycle 1475 complete.
+[main] pulse=97975 cog_cycles=1475
+Orrin cognitive cycle 1476 complete.
+REPLY: something present but hard to name!
+Orrin cognitive cycle 1477 complete.
+[main] pulse=98077 cog_cycles=1477
+Orrin cognitive cycle 1478 complete.
+[main] pulse=98178 cog_cycles=1478
+Orrin cognitive cycle 1479 complete.
+Orrin cognitive cycle 1480 complete.
+[main] pulse=98280 cog_cycles=1480
+Orrin cognitive cycle 1481 complete.
+[main] pulse=98381 cog_cycles=1481
+Orrin cognitive cycle 1482 complete.
+Orrin cognitive cycle 1483 complete.
+[main] pulse=98482 cog_cycles=1483
+Orrin cognitive cycle 1484 complete.
+[main] pulse=98584 cog_cycles=1484
+Orrin cognitive cycle 1485 complete.
+Orrin cognitive cycle 1486 complete.
+[main] pulse=98686 cog_cycles=1486
+Orrin cognitive cycle 1487 complete.
+[main] pulse=98787 cog_cycles=1487
+Orrin cognitive cycle 1488 complete.
+[main] pulse=98888 cog_cycles=1489
+Orrin cognitive cycle 1489 complete.
+Orrin cognitive cycle 1490 complete.
+[main] pulse=98990 cog_cycles=1490
+Orrin cognitive cycle 1491 complete.
+[main] pulse=99091 cog_cycles=1492
+Orrin cognitive cycle 1492 complete.
+Orrin cognitive cycle 1493 complete.
+[main] pulse=99193 cog_cycles=1493
+Orrin cognitive cycle 1494 complete.
+[main] pulse=99294 cog_cycles=1495
+Orrin cognitive cycle 1495 complete.
+Orrin cognitive cycle 1496 complete.
+[main] pulse=99396 cog_cycles=1496
+Orrin cognitive cycle 1497 complete.
+[main] pulse=99497 cog_cycles=1498
+Orrin cognitive cycle 1498 complete.
+Orrin cognitive cycle 1499 complete.
+[main] pulse=99599 cog_cycles=1499
+[main] pulse=99699 cog_cycles=1500
+[main] pulse=99799 cog_cycles=1500
+Orrin cognitive cycle 1500 complete.
+Orrin cognitive cycle 1501 complete.
+[main] pulse=99901 cog_cycles=1501
+Orrin cognitive cycle 1502 complete.
+[main] pulse=100002 cog_cycles=1503
+Orrin cognitive cycle 1503 complete.
+[main] pulse=100103 cog_cycles=1504
+Orrin cognitive cycle 1504 complete.
+[main] pulse=100204 cog_cycles=1505
+Orrin cognitive cycle 1505 complete.
+Orrin cognitive cycle 1506 complete.
+[main] pulse=100306 cog_cycles=1506
+Orrin cognitive cycle 1507 complete.
+[main] pulse=100407 cog_cycles=1507
+Orrin cognitive cycle 1508 complete.
+Orrin cognitive cycle 1509 complete.
+[main] pulse=100509 cog_cycles=1509
+Orrin cognitive cycle 1510 complete.
+[main] pulse=100610 cog_cycles=1510
+Orrin cognitive cycle 1511 complete.
+[main] pulse=100711 cog_cycles=1512
+Orrin cognitive cycle 1512 complete.
+Orrin cognitive cycle 1513 complete.
+[main] pulse=100813 cog_cycles=1513
+Orrin cognitive cycle 1514 complete.
+Orrin cognitive cycle 1515 complete.
+[main] pulse=100914 cog_cycles=1515
+Orrin cognitive cycle 1516 complete.
+[main] pulse=101016 cog_cycles=1516
+Orrin cognitive cycle 1517 complete.
+Orrin cognitive cycle 1518 complete.
+[main] pulse=101118 cog_cycles=1518
+Orrin cognitive cycle 1519 complete.
+[main] pulse=101219 cog_cycles=1519
+Orrin cognitive cycle 1520 complete.
+[main] pulse=101320 cog_cycles=1521
+Orrin cognitive cycle 1521 complete.
+Orrin cognitive cycle 1522 complete.
+[main] pulse=101422 cog_cycles=1522
+Orrin cognitive cycle 1523 complete.
+Orrin cognitive cycle 1524 complete.
+[main] pulse=101524 cog_cycles=1524
+Orrin cognitive cycle 1525 complete.
+[main] pulse=101625 cog_cycles=1525
+Orrin cognitive cycle 1526 complete.
+Orrin cognitive cycle 1527 complete.
+[main] pulse=101727 cog_cycles=1527
+Orrin cognitive cycle 1528 complete.
+[main] pulse=101828 cog_cycles=1528
+Orrin cognitive cycle 1529 complete.
+Orrin cognitive cycle 1530 complete.
+[main] pulse=101930 cog_cycles=1530
+Orrin cognitive cycle 1531 complete.
+[main] pulse=102031 cog_cycles=1531
+Orrin cognitive cycle 1532 complete.
+Orrin cognitive cycle 1533 complete.
+[main] pulse=102133 cog_cycles=1533
+Orrin cognitive cycle 1534 complete.
+[main] pulse=102234 cog_cycles=1534
+Orrin cognitive cycle 1535 complete.
+[main] pulse=102335 cog_cycles=1536
+Orrin cognitive cycle 1536 complete.
+REPLY: something present but hard to name / something pulling for attention What do you
+think?
+Orrin cognitive cycle 1537 complete.
+[main] pulse=102437 cog_cycles=1537
+Orrin cognitive cycle 1538 complete.
+[main] pulse=102538 cog_cycles=1539
+Orrin cognitive cycle 1539 complete.
+Orrin cognitive cycle 1540 complete.
+[main] pulse=102640 cog_cycles=1540
+Orrin cognitive cycle 1541 complete.
+[main] pulse=102741 cog_cycles=1541
+Orrin cognitive cycle 1542 complete.
+Orrin cognitive cycle 1543 complete.
+[main] pulse=102843 cog_cycles=1543
+Orrin cognitive cycle 1544 complete.
+[main] pulse=102944 cog_cycles=1544
+Orrin cognitive cycle 1545 complete.
+Orrin cognitive cycle 1546 complete.
+[main] pulse=103045 cog_cycles=1546
+Orrin cognitive cycle 1547 complete.
+[main] pulse=103147 cog_cycles=1547
+Orrin cognitive cycle 1548 complete.
+[main] pulse=103248 cog_cycles=1549
+Orrin cognitive cycle 1549 complete.
+Orrin cognitive cycle 1550 complete.
+[main] pulse=103350 cog_cycles=1550
+Orrin cognitive cycle 1551 complete.
+[main] pulse=103451 cog_cycles=1552
+Orrin cognitive cycle 1552 complete.
+Orrin cognitive cycle 1553 complete.
+[main] pulse=103553 cog_cycles=1553
+Orrin cognitive cycle 1554 complete.
+[main] pulse=103654 cog_cycles=1555
+Orrin cognitive cycle 1555 complete.
+Orrin cognitive cycle 1556 complete.
+[main] pulse=103756 cog_cycles=1556
+Orrin cognitive cycle 1557 complete.
+[main] pulse=103857 cog_cycles=1558
+Orrin cognitive cycle 1558 complete.
+Orrin cognitive cycle 1559 complete.
+[main] pulse=103959 cog_cycles=1559
+Orrin cognitive cycle 1560 complete.
+[main] pulse=104060 cog_cycles=1560
+Orrin cognitive cycle 1561 complete.
+[main] pulse=104161 cog_cycles=1562
+Orrin cognitive cycle 1562 complete.
+Orrin cognitive cycle 1563 complete.
+[main] pulse=104263 cog_cycles=1563
+Orrin cognitive cycle 1564 complete.
+[main] pulse=104364 cog_cycles=1564
+Orrin cognitive cycle 1565 complete.
+[main] pulse=104465 cog_cycles=1566
+Orrin cognitive cycle 1566 complete.
+Orrin cognitive cycle 1567 complete.
+[main] pulse=104567 cog_cycles=1567
+Orrin cognitive cycle 1568 complete.
+[main] pulse=104668 cog_cycles=1568
+Orrin cognitive cycle 1569 complete.
+[main] pulse=104769 cog_cycles=1570
+Orrin cognitive cycle 1570 complete.
+Orrin cognitive cycle 1571 complete.
+[main] pulse=104871 cog_cycles=1571
+Orrin cognitive cycle 1572 complete.
+[main] pulse=104972 cog_cycles=1573
+Orrin cognitive cycle 1573 complete.
+[main] pulse=105073 cog_cycles=1574
+Orrin cognitive cycle 1574 complete.
+[main] pulse=105174 cog_cycles=1574
+Orrin cognitive cycle 1575 complete.
+[main] pulse=105275 cog_cycles=1576
+Orrin cognitive cycle 1576 complete.
+Orrin cognitive cycle 1577 complete.
+[main] pulse=105377 cog_cycles=1577
+Orrin cognitive cycle 1578 complete.
+[main] pulse=105478 cog_cycles=1579
+Orrin cognitive cycle 1579 complete.
+Orrin cognitive cycle 1580 complete.
+[main] pulse=105580 cog_cycles=1580
+Orrin cognitive cycle 1581 complete.
+[main] pulse=105681 cog_cycles=1582
+Orrin cognitive cycle 1582 complete.
+Orrin cognitive cycle 1583 complete.
+[main] pulse=105783 cog_cycles=1583
+Orrin cognitive cycle 1584 complete.
+[main] pulse=105884 cog_cycles=1585
+Orrin cognitive cycle 1585 complete.
+Orrin cognitive cycle 1586 complete.
+[main] pulse=105986 cog_cycles=1586
+Orrin cognitive cycle 1587 complete.
+[main] pulse=106087 cog_cycles=1587
+Orrin cognitive cycle 1588 complete.
+Orrin cognitive cycle 1589 complete.
+[main] pulse=106189 cog_cycles=1589
+Orrin cognitive cycle 1590 complete.
+[main] pulse=106290 cog_cycles=1590
+Orrin cognitive cycle 1591 complete.
+[main] pulse=106391 cog_cycles=1592
+Orrin cognitive cycle 1592 complete.
+Orrin cognitive cycle 1593 complete.
+[main] pulse=106493 cog_cycles=1593
+Orrin cognitive cycle 1594 complete.
+[main] pulse=106594 cog_cycles=1595
+Orrin cognitive cycle 1595 complete.
+Orrin cognitive cycle 1596 complete.
+[main] pulse=106696 cog_cycles=1596
+Orrin cognitive cycle 1597 complete.
+[main] pulse=106797 cog_cycles=1598
+Orrin cognitive cycle 1598 complete.
+Orrin cognitive cycle 1599 complete.
+[main] pulse=106899 cog_cycles=1599
+[main] pulse=106999 cog_cycles=1600
+Orrin cognitive cycle 1600 complete.
+[main] pulse=107100 cog_cycles=1600
+Orrin cognitive cycle 1601 complete.
+[main] pulse=107201 cog_cycles=1601
+Orrin cognitive cycle 1602 complete.
+[main] pulse=107302 cog_cycles=1603
+Orrin cognitive cycle 1603 complete.
+Orrin cognitive cycle 1604 complete.
+[main] pulse=107404 cog_cycles=1604
+Orrin cognitive cycle 1605 complete.
+[main] pulse=107505 cog_cycles=1606
+Orrin cognitive cycle 1606 complete.
+Orrin cognitive cycle 1607 complete.
+[main] pulse=107607 cog_cycles=1607
+Orrin cognitive cycle 1608 complete.
+[main] pulse=107708 cog_cycles=1608
+Orrin cognitive cycle 1609 complete.
+Orrin cognitive cycle 1610 complete.
+[main] pulse=107809 cog_cycles=1610
+Orrin cognitive cycle 1611 complete.
+[main] pulse=107911 cog_cycles=1611
+Orrin cognitive cycle 1612 complete.
+[main] pulse=108012 cog_cycles=1613
+Orrin cognitive cycle 1613 complete.
+Orrin cognitive cycle 1614 complete.
+[main] pulse=108114 cog_cycles=1614
+Orrin cognitive cycle 1615 complete.
+[main] pulse=108215 cog_cycles=1615
+Orrin cognitive cycle 1616 complete.
+[main] pulse=108316 cog_cycles=1617
+Orrin cognitive cycle 1617 complete.
+Orrin cognitive cycle 1618 complete.
+[main] pulse=108418 cog_cycles=1618
+Orrin cognitive cycle 1619 complete.
+[main] pulse=108519 cog_cycles=1620
+Orrin cognitive cycle 1620 complete.
+Orrin cognitive cycle 1621 complete.
+[main] pulse=108621 cog_cycles=1621
+Orrin cognitive cycle 1622 complete.
+[main] pulse=108722 cog_cycles=1622
+Orrin cognitive cycle 1623 complete.
+Orrin cognitive cycle 1624 complete.
+[main] pulse=108824 cog_cycles=1624
+Orrin cognitive cycle 1625 complete.
+[main] pulse=108925 cog_cycles=1625
+Orrin cognitive cycle 1626 complete.
+[main] pulse=109026 cog_cycles=1627
+Orrin cognitive cycle 1627 complete.
+Orrin cognitive cycle 1628 complete.
+[main] pulse=109128 cog_cycles=1628
+Orrin cognitive cycle 1629 complete.
+[main] pulse=109229 cog_cycles=1630
+Orrin cognitive cycle 1630 complete.
+Orrin cognitive cycle 1631 complete.
+[main] pulse=109331 cog_cycles=1631
+Orrin cognitive cycle 1632 complete.
+[main] pulse=109432 cog_cycles=1632
+Orrin cognitive cycle 1633 complete.
+[main] pulse=109533 cog_cycles=1634
+Orrin cognitive cycle 1634 complete.
+Orrin cognitive cycle 1635 complete.
+[main] pulse=109635 cog_cycles=1635
+Orrin cognitive cycle 1636 complete.
+[main] pulse=109736 cog_cycles=1637
+Orrin cognitive cycle 1637 complete.
+Orrin cognitive cycle 1638 complete.
+[main] pulse=109838 cog_cycles=1638
+Orrin cognitive cycle 1639 complete.
+[main] pulse=109939 cog_cycles=1640
+Orrin cognitive cycle 1640 complete.
+Orrin cognitive cycle 1641 complete.
+[main] pulse=110041 cog_cycles=1641
+Orrin cognitive cycle 1642 complete.
+[main] pulse=110142 cog_cycles=1643
+Orrin cognitive cycle 1643 complete.
+Orrin cognitive cycle 1644 complete.
+[main] pulse=110244 cog_cycles=1644
+Orrin cognitive cycle 1645 complete.
+[main] pulse=110345 cog_cycles=1645
+Orrin cognitive cycle 1646 complete.
+[main] pulse=110446 cog_cycles=1646
+Orrin cognitive cycle 1647 complete.
+[main] pulse=110547 cog_cycles=1647
+Orrin cognitive cycle 1648 complete.
+Orrin cognitive cycle 1649 complete.
+[main] pulse=110649 cog_cycles=1649
+Orrin cognitive cycle 1650 complete.
+[main] pulse=110750 cog_cycles=1650
+Orrin cognitive cycle 1651 complete.
+[main] pulse=110851 cog_cycles=1651
+Orrin cognitive cycle 1652 complete.
+Orrin cognitive cycle 1653 complete.
+[main] pulse=110953 cog_cycles=1653
+Orrin cognitive cycle 1654 complete.
+[main] pulse=111054 cog_cycles=1654
+Orrin cognitive cycle 1655 complete.
+Orrin cognitive cycle 1656 complete.
+[main] pulse=111156 cog_cycles=1656
+Orrin cognitive cycle 1657 complete.
+[main] pulse=111257 cog_cycles=1657
+Orrin cognitive cycle 1658 complete.
+Orrin cognitive cycle 1659 complete.
+[main] pulse=111359 cog_cycles=1659
+Orrin cognitive cycle 1660 complete.
+[main] pulse=111460 cog_cycles=1660
+Orrin cognitive cycle 1661 complete.
+[main] pulse=111561 cog_cycles=1661
+Orrin cognitive cycle 1662 complete.
+Orrin cognitive cycle 1663 complete.
+[main] pulse=111662 cog_cycles=1663
+Orrin cognitive cycle 1664 complete.
+[main] pulse=111764 cog_cycles=1664
+Orrin cognitive cycle 1665 complete.
+[main] pulse=111865 cog_cycles=1666
+Orrin cognitive cycle 1666 complete.
+Orrin cognitive cycle 1667 complete.
+[main] pulse=111967 cog_cycles=1667
+Orrin cognitive cycle 1668 complete.
+[main] pulse=112068 cog_cycles=1669
+Orrin cognitive cycle 1669 complete.
+Orrin cognitive cycle 1670 complete.
+[main] pulse=112170 cog_cycles=1670
+Orrin cognitive cycle 1671 complete.
+[main] pulse=112271 cog_cycles=1672
+Orrin cognitive cycle 1672 complete.
+Orrin cognitive cycle 1673 complete.
+[main] pulse=112373 cog_cycles=1673
+Orrin cognitive cycle 1674 complete.
+[main] pulse=112474 cog_cycles=1674
+Orrin cognitive cycle 1675 complete.
+[main] pulse=112575 cog_cycles=1676
+Orrin cognitive cycle 1676 complete.
+Orrin cognitive cycle 1677 complete.
+[main] pulse=112677 cog_cycles=1677
+Orrin cognitive cycle 1678 complete.
+[main] pulse=112778 cog_cycles=1678
+Orrin cognitive cycle 1679 complete.
+[main] pulse=112879 cog_cycles=1680
+Orrin cognitive cycle 1680 complete.
+Orrin cognitive cycle 1681 complete.
+[main] pulse=112981 cog_cycles=1681
+Orrin cognitive cycle 1682 complete.
+Orrin cognitive cycle 1683 complete.
+[main] pulse=113083 cog_cycles=1683
+Orrin cognitive cycle 1684 complete.
+[main] pulse=113184 cog_cycles=1684
+Orrin cognitive cycle 1685 complete.
+Orrin cognitive cycle 1686 complete.
+[main] pulse=113286 cog_cycles=1686
+Orrin cognitive cycle 1687 complete.
+[main] pulse=113387 cog_cycles=1688
+Orrin cognitive cycle 1688 complete.
+Orrin cognitive cycle 1689 complete.
+[main] pulse=113489 cog_cycles=1689
+Orrin cognitive cycle 1690 complete.
+[main] pulse=113590 cog_cycles=1690
+Orrin cognitive cycle 1691 complete.
+Orrin cognitive cycle 1692 complete.
+[main] pulse=113692 cog_cycles=1692
+Orrin cognitive cycle 1693 complete.
+[main] pulse=113793 cog_cycles=1693
+Orrin cognitive cycle 1694 complete.
+Orrin cognitive cycle 1695 complete.
+[main] pulse=113895 cog_cycles=1695
+Orrin cognitive cycle 1696 complete.
+[main] pulse=113996 cog_cycles=1697
+Orrin cognitive cycle 1697 complete.
+Orrin cognitive cycle 1698 complete.
+[main] pulse=114098 cog_cycles=1698
+Orrin cognitive cycle 1699 complete.
+[main] pulse=114199 cog_cycles=1700
+[main] pulse=114299 cog_cycles=1700
+Orrin cognitive cycle 1700 complete.
+[main] pulse=114400 cog_cycles=1700
+Orrin cognitive cycle 1701 complete.
+[main] pulse=114501 cog_cycles=1702
+Orrin cognitive cycle 1702 complete.
+Orrin cognitive cycle 1703 complete.
+[main] pulse=114603 cog_cycles=1703
+Orrin cognitive cycle 1704 complete.
+[main] pulse=114704 cog_cycles=1704
+Orrin cognitive cycle 1705 complete.
+Orrin cognitive cycle 1706 complete.
+[main] pulse=114806 cog_cycles=1706
+[main] pulse=114906 cog_cycles=1707
+Orrin cognitive cycle 1707 complete.
+[main] pulse=115007 cog_cycles=1708
+Orrin cognitive cycle 1708 complete.
+Orrin cognitive cycle 1709 complete.
+[main] pulse=115109 cog_cycles=1709
+Orrin cognitive cycle 1710 complete.
+[main] pulse=115210 cog_cycles=1710
+Orrin cognitive cycle 1711 complete.
+Orrin cognitive cycle 1712 complete.
+[main] pulse=115312 cog_cycles=1712
+Orrin cognitive cycle 1713 complete.
+[main] pulse=115413 cog_cycles=1713
+Orrin cognitive cycle 1714 complete.
+Orrin cognitive cycle 1715 complete.
+[main] pulse=115515 cog_cycles=1715
+Orrin cognitive cycle 1716 complete.
+[main] pulse=115616 cog_cycles=1716
+Orrin cognitive cycle 1717 complete.
+[main] pulse=115717 cog_cycles=1718
+Orrin cognitive cycle 1718 complete.
+Orrin cognitive cycle 1719 complete.
+[main] pulse=115819 cog_cycles=1719
+Orrin cognitive cycle 1720 complete.
+[main] pulse=115920 cog_cycles=1720
+Orrin cognitive cycle 1721 complete.
+Orrin cognitive cycle 1722 complete.
+[main] pulse=116022 cog_cycles=1722
+Orrin cognitive cycle 1723 complete.
+[main] pulse=116123 cog_cycles=1723
+Orrin cognitive cycle 1724 complete.
+Orrin cognitive cycle 1725 complete.
+[main] pulse=116225 cog_cycles=1725
+Orrin cognitive cycle 1726 complete.
+[main] pulse=116326 cog_cycles=1726
+Orrin cognitive cycle 1727 complete.
+Orrin cognitive cycle 1728 complete.
+[main] pulse=116428 cog_cycles=1728
+Orrin cognitive cycle 1729 complete.
+[main] pulse=116529 cog_cycles=1730
+Orrin cognitive cycle 1730 complete.
+Orrin cognitive cycle 1731 complete.
+[main] pulse=116631 cog_cycles=1731
+Orrin cognitive cycle 1732 complete.
+[main] pulse=116732 cog_cycles=1733
+Orrin cognitive cycle 1733 complete.
+Orrin cognitive cycle 1734 complete.
+[main] pulse=116834 cog_cycles=1734
+Orrin cognitive cycle 1735 complete.
+[main] pulse=116935 cog_cycles=1736
+Orrin cognitive cycle 1736 complete.
+Orrin cognitive cycle 1737 complete.
+[main] pulse=117037 cog_cycles=1737
+Orrin cognitive cycle 1738 complete.
+[main] pulse=117138 cog_cycles=1739
+Orrin cognitive cycle 1739 complete.
+Orrin cognitive cycle 1740 complete.
+[main] pulse=117240 cog_cycles=1740
+Orrin cognitive cycle 1741 complete.
+[main] pulse=117341 cog_cycles=1741
+Orrin cognitive cycle 1742 complete.
+Orrin cognitive cycle 1743 complete.
+[main] pulse=117443 cog_cycles=1743
+Orrin cognitive cycle 1744 complete.
+[main] pulse=117544 cog_cycles=1744
+Orrin cognitive cycle 1745 complete.
+Orrin cognitive cycle 1746 complete.
+[main] pulse=117646 cog_cycles=1746
+Orrin cognitive cycle 1747 complete.
+[main] pulse=117747 cog_cycles=1747
+Orrin cognitive cycle 1748 complete.
+Orrin cognitive cycle 1749 complete.
+[main] pulse=117849 cog_cycles=1749
+Orrin cognitive cycle 1750 complete.
+[main] pulse=117950 cog_cycles=1750
+Orrin cognitive cycle 1751 complete.
+[main] pulse=118051 cog_cycles=1751
+Orrin cognitive cycle 1752 complete.
+Orrin cognitive cycle 1753 complete.
+[main] pulse=118153 cog_cycles=1753
+Orrin cognitive cycle 1754 complete.
+[main] pulse=118254 cog_cycles=1754
+Orrin cognitive cycle 1755 complete.
+[main] pulse=118355 cog_cycles=1756
+Orrin cognitive cycle 1756 complete.
+Orrin cognitive cycle 1757 complete.
+[main] pulse=118457 cog_cycles=1757
+Orrin cognitive cycle 1758 complete.
+[main] pulse=118558 cog_cycles=1759
+Orrin cognitive cycle 1759 complete.
+Orrin cognitive cycle 1760 complete.
+[main] pulse=118660 cog_cycles=1760
+Orrin cognitive cycle 1761 complete.
+[main] pulse=118761 cog_cycles=1761
+Orrin cognitive cycle 1762 complete.
+Orrin cognitive cycle 1763 complete.
+[main] pulse=118863 cog_cycles=1763
+Orrin cognitive cycle 1764 complete.
+[main] pulse=118964 cog_cycles=1764
+Orrin cognitive cycle 1765 complete.
+[main] pulse=119065 cog_cycles=1766
+Orrin cognitive cycle 1766 complete.
+Orrin cognitive cycle 1767 complete.
+[main] pulse=119167 cog_cycles=1767
+Orrin cognitive cycle 1768 complete.
+[main] pulse=119268 cog_cycles=1768
+Orrin cognitive cycle 1769 complete.
+[main] pulse=119369 cog_cycles=1770
+Orrin cognitive cycle 1770 complete.
+[main] pulse=119470 cog_cycles=1771
+Orrin cognitive cycle 1771 complete.
+[main] pulse=119571 cog_cycles=1771
+Orrin cognitive cycle 1772 complete.
+[main] pulse=119672 cog_cycles=1773
+Orrin cognitive cycle 1773 complete.
+Orrin cognitive cycle 1774 complete.
+[main] pulse=119774 cog_cycles=1774
+Orrin cognitive cycle 1775 complete.
+[main] pulse=119875 cog_cycles=1775
+Orrin cognitive cycle 1776 complete.
+Orrin cognitive cycle 1777 complete.
+[main] pulse=119977 cog_cycles=1777
+Orrin cognitive cycle 1778 complete.
+[main] pulse=120078 cog_cycles=1778
+Orrin cognitive cycle 1779 complete.
+[main] pulse=120179 cog_cycles=1780
+Orrin cognitive cycle 1780 complete.
+Orrin cognitive cycle 1781 complete.
+[main] pulse=120281 cog_cycles=1781
+Orrin cognitive cycle 1782 complete.
+[main] pulse=120382 cog_cycles=1783
+Orrin cognitive cycle 1783 complete.
+Orrin cognitive cycle 1784 complete.
+[main] pulse=120484 cog_cycles=1784
+REPLY: something present but hard to name What do you think?
+Orrin cognitive cycle 1785 complete.
+[main] pulse=120585 cog_cycles=1786
+Orrin cognitive cycle 1786 complete.
+Orrin cognitive cycle 1787 complete.
+[main] pulse=120687 cog_cycles=1787
+Orrin cognitive cycle 1788 complete.
+Orrin cognitive cycle 1789 complete.
+[main] pulse=120789 cog_cycles=1789
+Orrin cognitive cycle 1790 complete.
+[main] pulse=120890 cog_cycles=1790
+Orrin cognitive cycle 1791 complete.
+[main] pulse=120991 cog_cycles=1792
+Orrin cognitive cycle 1792 complete.
+Orrin cognitive cycle 1793 complete.
+[main] pulse=121093 cog_cycles=1793
+Orrin cognitive cycle 1794 complete.
+[main] pulse=121194 cog_cycles=1794
+Orrin cognitive cycle 1795 complete.
+Orrin cognitive cycle 1796 complete.
+[main] pulse=121296 cog_cycles=1796
+Orrin cognitive cycle 1797 complete.
+[main] pulse=121397 cog_cycles=1797
+Orrin cognitive cycle 1798 complete.
+Orrin cognitive cycle 1799 complete.
+[main] pulse=121499 cog_cycles=1799
+[main] pulse=121599 cog_cycles=1800
+[main] pulse=121699 cog_cycles=1800
+Orrin cognitive cycle 1800 complete.
+Orrin cognitive cycle 1801 complete.
+[main] pulse=121801 cog_cycles=1801
+Orrin cognitive cycle 1802 complete.
+[main] pulse=121902 cog_cycles=1803
+Orrin cognitive cycle 1803 complete.
+Orrin cognitive cycle 1804 complete.
+[main] pulse=122004 cog_cycles=1804
+Orrin cognitive cycle 1805 complete.
+[main] pulse=122105 cog_cycles=1806
+Orrin cognitive cycle 1806 complete.
+Orrin cognitive cycle 1807 complete.
+[main] pulse=122207 cog_cycles=1807
+Orrin cognitive cycle 1808 complete.
+[main] pulse=122308 cog_cycles=1808
+Orrin cognitive cycle 1809 complete.
+[main] pulse=122409 cog_cycles=1810
+Orrin cognitive cycle 1810 complete.
+Orrin cognitive cycle 1811 complete.
+[main] pulse=122511 cog_cycles=1811
+Orrin cognitive cycle 1812 complete.
+Orrin cognitive cycle 1813 complete.
+[main] pulse=122613 cog_cycles=1813
+Orrin cognitive cycle 1814 complete.
+[main] pulse=122714 cog_cycles=1814
+Orrin cognitive cycle 1815 complete.
+Orrin cognitive cycle 1816 complete.
+[main] pulse=122816 cog_cycles=1816
+Orrin cognitive cycle 1817 complete.
+[main] pulse=122917 cog_cycles=1818
+Orrin cognitive cycle 1818 complete.
+Orrin cognitive cycle 1819 complete.
+[main] pulse=123019 cog_cycles=1819
+Orrin cognitive cycle 1820 complete.
+[main] pulse=123120 cog_cycles=1820
+Orrin cognitive cycle 1821 complete.
+Orrin cognitive cycle 1822 complete.
+[main] pulse=123222 cog_cycles=1822
+Orrin cognitive cycle 1823 complete.
+[main] pulse=123323 cog_cycles=1823
+Orrin cognitive cycle 1824 complete.
+Orrin cognitive cycle 1825 complete.
+[main] pulse=123425 cog_cycles=1825
+Orrin cognitive cycle 1826 complete.
+[main] pulse=123526 cog_cycles=1826
+Orrin cognitive cycle 1827 complete.
+Orrin cognitive cycle 1828 complete.
+[main] pulse=123628 cog_cycles=1828
+Orrin cognitive cycle 1829 complete.
+[main] pulse=123729 cog_cycles=1830
+Orrin cognitive cycle 1830 complete.
+Orrin cognitive cycle 1831 complete.
+[main] pulse=123831 cog_cycles=1831
+Orrin cognitive cycle 1832 complete.
+[main] pulse=123932 cog_cycles=1832
+Orrin cognitive cycle 1833 complete.
+Orrin cognitive cycle 1834 complete.
+[main] pulse=124034 cog_cycles=1834
+Orrin cognitive cycle 1835 complete.
+[main] pulse=124135 cog_cycles=1835
+Orrin cognitive cycle 1836 complete.
+Orrin cognitive cycle 1837 complete.
+[main] pulse=124237 cog_cycles=1837
+Orrin cognitive cycle 1838 complete.
+[main] pulse=124338 cog_cycles=1838
+Orrin cognitive cycle 1839 complete.
+[main] pulse=124439 cog_cycles=1840
+Orrin cognitive cycle 1840 complete.
+Orrin cognitive cycle 1841 complete.
+[main] pulse=124541 cog_cycles=1841
+Orrin cognitive cycle 1842 complete.
+[main] pulse=124642 cog_cycles=1843
+Orrin cognitive cycle 1843 complete.
+Orrin cognitive cycle 1844 complete.
+[main] pulse=124744 cog_cycles=1844
+Orrin cognitive cycle 1845 complete.
+[main] pulse=124845 cog_cycles=1846
+Orrin cognitive cycle 1846 complete.
+Orrin cognitive cycle 1847 complete.
+[main] pulse=124947 cog_cycles=1847
+Orrin cognitive cycle 1848 complete.
+[main] pulse=125048 cog_cycles=1848
+Orrin cognitive cycle 1849 complete.
+Orrin cognitive cycle 1850 complete.
+[main] pulse=125149 cog_cycles=1850
+Orrin cognitive cycle 1851 complete.
+[main] pulse=125251 cog_cycles=1851
+Orrin cognitive cycle 1852 complete.
+Orrin cognitive cycle 1853 complete.
+[main] pulse=125353 cog_cycles=1853
+Orrin cognitive cycle 1854 complete.
+[main] pulse=125454 cog_cycles=1854
+Orrin cognitive cycle 1855 complete.
+[main] pulse=125555 cog_cycles=1856
+Orrin cognitive cycle 1856 complete.
+Orrin cognitive cycle 1857 complete.
+[main] pulse=125657 cog_cycles=1857
+Orrin cognitive cycle 1858 complete.
+Orrin cognitive cycle 1859 complete.
+[main] pulse=125759 cog_cycles=1859
+Orrin cognitive cycle 1860 complete.
+[main] pulse=125860 cog_cycles=1860
+Orrin cognitive cycle 1861 complete.
+[main] pulse=125961 cog_cycles=1862
+Orrin cognitive cycle 1862 complete.
+Orrin cognitive cycle 1863 complete.
+[main] pulse=126063 cog_cycles=1863
+Orrin cognitive cycle 1864 complete.
+[main] pulse=126164 cog_cycles=1865
+Orrin cognitive cycle 1865 complete.
+Orrin cognitive cycle 1866 complete.
+[main] pulse=126266 cog_cycles=1866
+Orrin cognitive cycle 1867 complete.
+[main] pulse=126367 cog_cycles=1868
+Orrin cognitive cycle 1868 complete.
+Orrin cognitive cycle 1869 complete.
+[main] pulse=126469 cog_cycles=1869
+Orrin cognitive cycle 1870 complete.
+[main] pulse=126570 cog_cycles=1870
+Orrin cognitive cycle 1871 complete.
+[main] pulse=126671 cog_cycles=1872
+Orrin cognitive cycle 1872 complete.
+Orrin cognitive cycle 1873 complete.
+[main] pulse=126773 cog_cycles=1873
+Orrin cognitive cycle 1874 complete.
+[main] pulse=126874 cog_cycles=1875
+Orrin cognitive cycle 1875 complete.
+Orrin cognitive cycle 1876 complete.
+[main] pulse=126976 cog_cycles=1876
+[main] pulse=127076 cog_cycles=1877
+REPLY: something present but hard to name / something pulling for attention What do you
+think?
+Orrin cognitive cycle 1877 complete.
+Orrin cognitive cycle 1878 complete.
+[main] pulse=127178 cog_cycles=1878
+Orrin cognitive cycle 1879 complete.
+[main] pulse=127279 cog_cycles=1879
+Orrin cognitive cycle 1880 complete.
+[main] pulse=127380 cog_cycles=1881
+Orrin cognitive cycle 1881 complete.
+Orrin cognitive cycle 1882 complete.
+[main] pulse=127482 cog_cycles=1882
+Orrin cognitive cycle 1883 complete.
+[main] pulse=127583 cog_cycles=1884
+Orrin cognitive cycle 1884 complete.
+Orrin cognitive cycle 1885 complete.
+[main] pulse=127685 cog_cycles=1885
+Orrin cognitive cycle 1886 complete.
+[main] pulse=127786 cog_cycles=1886
+Orrin cognitive cycle 1887 complete.
+Orrin cognitive cycle 1888 complete.
+[main] pulse=127888 cog_cycles=1888
+Orrin cognitive cycle 1889 complete.
+[main] pulse=127989 cog_cycles=1889
+Orrin cognitive cycle 1890 complete.
+[main] pulse=128090 cog_cycles=1890
+Orrin cognitive cycle 1891 complete.
+Orrin cognitive cycle 1892 complete.
+[main] pulse=128192 cog_cycles=1892
+Orrin cognitive cycle 1893 complete.
+[main] pulse=128293 cog_cycles=1893
+Orrin cognitive cycle 1894 complete.
+Orrin cognitive cycle 1895 complete.
+[main] pulse=128395 cog_cycles=1895
+Orrin cognitive cycle 1896 complete.
+[main] pulse=128496 cog_cycles=1897
+Orrin cognitive cycle 1897 complete.
+Orrin cognitive cycle 1898 complete.
+[main] pulse=128598 cog_cycles=1898
+Orrin cognitive cycle 1899 complete.
+[main] pulse=128699 cog_cycles=1899
+[main] pulse=128799 cog_cycles=1900
+Orrin cognitive cycle 1900 complete.
+[main] pulse=128900 cog_cycles=1900
+Orrin cognitive cycle 1901 complete.
+[main] pulse=129001 cog_cycles=1901
+Orrin cognitive cycle 1902 complete.
+[main] pulse=129102 cog_cycles=1903
+Orrin cognitive cycle 1903 complete.
+Orrin cognitive cycle 1904 complete.
+[main] pulse=129204 cog_cycles=1904
+Orrin cognitive cycle 1905 complete.
+[main] pulse=129305 cog_cycles=1905
+Orrin cognitive cycle 1906 complete.
+Orrin cognitive cycle 1907 complete.
+[main] pulse=129407 cog_cycles=1907
+Orrin cognitive cycle 1908 complete.
+[main] pulse=129508 cog_cycles=1908
+Orrin cognitive cycle 1909 complete.
+[main] pulse=129609 cog_cycles=1910
+Orrin cognitive cycle 1910 complete.
+Orrin cognitive cycle 1911 complete.
+[main] pulse=129711 cog_cycles=1911
+Orrin cognitive cycle 1912 complete.
+[main] pulse=129812 cog_cycles=1912
+Orrin cognitive cycle 1913 complete.
+Orrin cognitive cycle 1914 complete.
+[main] pulse=129914 cog_cycles=1914
+Orrin cognitive cycle 1915 complete.
+[main] pulse=130015 cog_cycles=1915
+Orrin cognitive cycle 1916 complete.
+[main] pulse=130116 cog_cycles=1917
+Orrin cognitive cycle 1917 complete.
+Orrin cognitive cycle 1918 complete.
+[main] pulse=130218 cog_cycles=1918
+Orrin cognitive cycle 1919 complete.
+[main] pulse=130319 cog_cycles=1919
+Orrin cognitive cycle 1920 complete.
+Orrin cognitive cycle 1921 complete.
+[main] pulse=130420 cog_cycles=1921
+Orrin cognitive cycle 1922 complete.
+[main] pulse=130522 cog_cycles=1922
+Orrin cognitive cycle 1923 complete.
+[main] pulse=130623 cog_cycles=1924
+Orrin cognitive cycle 1924 complete.
+Orrin cognitive cycle 1925 complete.
+[main] pulse=130725 cog_cycles=1925
+Orrin cognitive cycle 1926 complete.
+[main] pulse=130826 cog_cycles=1927
+Orrin cognitive cycle 1927 complete.
+Orrin cognitive cycle 1928 complete.
+[main] pulse=130928 cog_cycles=1928
+Orrin cognitive cycle 1929 complete.
+[main] pulse=131029 cog_cycles=1930
+Orrin cognitive cycle 1930 complete.
+Orrin cognitive cycle 1931 complete.
+[main] pulse=131131 cog_cycles=1931
+Orrin cognitive cycle 1932 complete.
+[main] pulse=131232 cog_cycles=1932
+Orrin cognitive cycle 1933 complete.
+Orrin cognitive cycle 1934 complete.
+[main] pulse=131334 cog_cycles=1934
+Orrin cognitive cycle 1935 complete.
+[main] pulse=131435 cog_cycles=1935
+Orrin cognitive cycle 1936 complete.
+Orrin cognitive cycle 1937 complete.
+[main] pulse=131537 cog_cycles=1937
+Orrin cognitive cycle 1938 complete.
+[main] pulse=131638 cog_cycles=1938
+Orrin cognitive cycle 1939 complete.
+[main] pulse=131739 cog_cycles=1940
+Orrin cognitive cycle 1940 complete.
+Orrin cognitive cycle 1941 complete.
+[main] pulse=131841 cog_cycles=1941
+Orrin cognitive cycle 1942 complete.
+[main] pulse=131942 cog_cycles=1942
+Orrin cognitive cycle 1943 complete.
+[main] pulse=132043 cog_cycles=1944
+Orrin cognitive cycle 1944 complete.
+Orrin cognitive cycle 1945 complete.
+[main] pulse=132145 cog_cycles=1945
+Orrin cognitive cycle 1946 complete.
+[main] pulse=132246 cog_cycles=1946
+Orrin cognitive cycle 1947 complete.
+Orrin cognitive cycle 1948 complete.
+[main] pulse=132348 cog_cycles=1948
+Orrin cognitive cycle 1949 complete.
+[main] pulse=132449 cog_cycles=1949
+Orrin cognitive cycle 1950 complete.
+[main] pulse=132550 cog_cycles=1951
+Orrin cognitive cycle 1951 complete.
+Orrin cognitive cycle 1952 complete.
+[main] pulse=132652 cog_cycles=1952
+Orrin cognitive cycle 1953 complete.
+[main] pulse=132753 cog_cycles=1954
+Orrin cognitive cycle 1954 complete.
+Orrin cognitive cycle 1955 complete.
+[main] pulse=132855 cog_cycles=1955
+Orrin cognitive cycle 1956 complete.
+[main] pulse=132956 cog_cycles=1956
+Orrin cognitive cycle 1957 complete.
+Orrin cognitive cycle 1958 complete.
+[main] pulse=133058 cog_cycles=1958
+Orrin cognitive cycle 1959 complete.
+[main] pulse=133159 cog_cycles=1959
+Orrin cognitive cycle 1960 complete.
+[main] pulse=133260 cog_cycles=1961
+Orrin cognitive cycle 1961 complete.
+Orrin cognitive cycle 1962 complete.
+[main] pulse=133362 cog_cycles=1962
+Orrin cognitive cycle 1963 complete.
+[main] pulse=133463 cog_cycles=1964
+Orrin cognitive cycle 1964 complete.
+Orrin cognitive cycle 1965 complete.
+[main] pulse=133565 cog_cycles=1965
+Orrin cognitive cycle 1966 complete.
+[main] pulse=133666 cog_cycles=1966
+Orrin cognitive cycle 1967 complete.
+Orrin cognitive cycle 1968 complete.
+[main] pulse=133768 cog_cycles=1968
+Orrin cognitive cycle 1969 complete.
+[main] pulse=133869 cog_cycles=1969
+Orrin cognitive cycle 1970 complete.
+Orrin cognitive cycle 1971 complete.
+[main] pulse=133971 cog_cycles=1971
+Orrin cognitive cycle 1972 complete.
+[main] pulse=134072 cog_cycles=1972
+Orrin cognitive cycle 1973 complete.
+[main] pulse=134173 cog_cycles=1974
+Orrin cognitive cycle 1974 complete.
+Orrin cognitive cycle 1975 complete.
+[main] pulse=134275 cog_cycles=1975
+Orrin cognitive cycle 1976 complete.
+[main] pulse=134376 cog_cycles=1977
+Orrin cognitive cycle 1977 complete.
+Orrin cognitive cycle 1978 complete.
+[main] pulse=134478 cog_cycles=1978
+Orrin cognitive cycle 1979 complete.
+[main] pulse=134579 cog_cycles=1980
+Orrin cognitive cycle 1980 complete.
+[main] pulse=134680 cog_cycles=1981
+Orrin cognitive cycle 1981 complete.
+Orrin cognitive cycle 1982 complete.
+[main] pulse=134782 cog_cycles=1982
+Orrin cognitive cycle 1983 complete.
+[main] pulse=134883 cog_cycles=1983
+Orrin cognitive cycle 1984 complete.
+[main] pulse=134984 cog_cycles=1985
+Orrin cognitive cycle 1985 complete.
+Orrin cognitive cycle 1986 complete.
+[main] pulse=135086 cog_cycles=1986
+Orrin cognitive cycle 1987 complete.
+[main] pulse=135187 cog_cycles=1987
+Orrin cognitive cycle 1988 complete.
+Orrin cognitive cycle 1989 complete.
+[main] pulse=135289 cog_cycles=1989
+Orrin cognitive cycle 1990 complete.
+[main] pulse=135390 cog_cycles=1990
+Orrin cognitive cycle 1991 complete.
+[main] pulse=135491 cog_cycles=1992
+Orrin cognitive cycle 1992 complete.
+Orrin cognitive cycle 1993 complete.
+[main] pulse=135593 cog_cycles=1993
+Orrin cognitive cycle 1994 complete.
+[main] pulse=135694 cog_cycles=1995
+Orrin cognitive cycle 1995 complete.
+Orrin cognitive cycle 1996 complete.
+[main] pulse=135796 cog_cycles=1996
+Orrin cognitive cycle 1997 complete.
+Orrin cognitive cycle 1998 complete.
+[main] pulse=135897 cog_cycles=1998
+Orrin cognitive cycle 1999 complete.
+[main] pulse=135999 cog_cycles=1999
+[main] pulse=136099 cog_cycles=2000
+[main] pulse=136199 cog_cycles=2000
+Orrin cognitive cycle 2000 complete.
+Orrin cognitive cycle 2001 complete.
+[main] pulse=136301 cog_cycles=2001
+Orrin cognitive cycle 2002 complete.
+[main] pulse=136402 cog_cycles=2002
+Orrin cognitive cycle 2003 complete.
+Orrin cognitive cycle 2004 complete.
+[main] pulse=136504 cog_cycles=2004
+Orrin cognitive cycle 2005 complete.
+[main] pulse=136605 cog_cycles=2005
+Orrin cognitive cycle 2006 complete.
+[main] pulse=136706 cog_cycles=2007
+Orrin cognitive cycle 2007 complete.
+Orrin cognitive cycle 2008 complete.
+[main] pulse=136808 cog_cycles=2008
+Orrin cognitive cycle 2009 complete.
+[main] pulse=136909 cog_cycles=2010
+Orrin cognitive cycle 2010 complete.
+Orrin cognitive cycle 2011 complete.
+[main] pulse=137011 cog_cycles=2011
+Orrin cognitive cycle 2012 complete.
+[main] pulse=137112 cog_cycles=2012
+Orrin cognitive cycle 2013 complete.
+Orrin cognitive cycle 2014 complete.
+[main] pulse=137214 cog_cycles=2014
+Orrin cognitive cycle 2015 complete.
+[main] pulse=137315 cog_cycles=2015
+Orrin cognitive cycle 2016 complete.
+[main] pulse=137416 cog_cycles=2017
+Orrin cognitive cycle 2017 complete.
+Orrin cognitive cycle 2018 complete.
+[main] pulse=137518 cog_cycles=2018
+Orrin cognitive cycle 2019 complete.
+[main] pulse=137619 cog_cycles=2020
+Orrin cognitive cycle 2020 complete.
+Orrin cognitive cycle 2021 complete.
+[main] pulse=137721 cog_cycles=2021
+Orrin cognitive cycle 2022 complete.
+[main] pulse=137822 cog_cycles=2022
+Orrin cognitive cycle 2023 complete.
+Orrin cognitive cycle 2024 complete.
+[main] pulse=137923 cog_cycles=2024
+Orrin cognitive cycle 2025 complete.
+[main] pulse=138025 cog_cycles=2025
+Orrin cognitive cycle 2026 complete.
+[main] pulse=138126 cog_cycles=2027
+Orrin cognitive cycle 2027 complete.
+Orrin cognitive cycle 2028 complete.
+[main] pulse=138228 cog_cycles=2028
+Orrin cognitive cycle 2029 complete.
+[main] pulse=138329 cog_cycles=2029
+Orrin cognitive cycle 2030 complete.
+Orrin cognitive cycle 2031 complete.
+[main] pulse=138431 cog_cycles=2031
+Orrin cognitive cycle 2032 complete.
+[main] pulse=138532 cog_cycles=2032
+Orrin cognitive cycle 2033 complete.
+Orrin cognitive cycle 2034 complete.
+[main] pulse=138634 cog_cycles=2034
+Orrin cognitive cycle 2035 complete.
+[main] pulse=138735 cog_cycles=2035
+Orrin cognitive cycle 2036 complete.
+Orrin cognitive cycle 2037 complete.
+[main] pulse=138837 cog_cycles=2037
+Orrin cognitive cycle 2038 complete.
+[main] pulse=138938 cog_cycles=2038
+Orrin cognitive cycle 2039 complete.
+[main] pulse=139039 cog_cycles=2040
+Orrin cognitive cycle 2040 complete.
+[main] pulse=139140 cog_cycles=2041
+Orrin cognitive cycle 2041 complete.
+[main] pulse=139241 cog_cycles=2042
+Orrin cognitive cycle 2042 complete.
+[main] pulse=139342 cog_cycles=2043
+Orrin cognitive cycle 2043 complete.
+[main] pulse=139443 cog_cycles=2043
+Orrin cognitive cycle 2044 complete.
+[main] pulse=139544 cog_cycles=2044
+Orrin cognitive cycle 2045 complete.
+[main] pulse=139645 cog_cycles=2045
+Orrin cognitive cycle 2046 complete.
+[main] pulse=139746 cog_cycles=2046
+Orrin cognitive cycle 2047 complete.
+[main] pulse=139847 cog_cycles=2047
+Orrin cognitive cycle 2048 complete.
+[main] pulse=139948 cog_cycles=2048
+Orrin cognitive cycle 2049 complete.
+[main] pulse=140049 cog_cycles=2049
+[main] pulse=140149 cog_cycles=2050
+Orrin cognitive cycle 2050 complete.
+[main] pulse=140250 cog_cycles=2051
+Orrin cognitive cycle 2051 complete.
+[host] PAUSE heavy cycles — HOST:pause_heavy swap_used=4.0GB > pause=4.0GB
+[main] pulse=140351 cog_cycles=2052
+Orrin cognitive cycle 2052 complete.
+[main] pulse=140452 cog_cycles=2053
+Orrin cognitive cycle 2053 complete.
+[main] pulse=140553 cog_cycles=2053
+Orrin cognitive cycle 2054 complete.
+[main] pulse=140654 cog_cycles=2054
+Orrin cognitive cycle 2055 complete.
+[main] pulse=140755 cog_cycles=2055
+Orrin cognitive cycle 2056 complete.
+[main] pulse=140856 cog_cycles=2056
+Orrin cognitive cycle 2057 complete.
+[main] pulse=140957 cog_cycles=2057
+Orrin cognitive cycle 2058 complete.
+[main] pulse=141058 cog_cycles=2059
+Orrin cognitive cycle 2059 complete.
+[main] pulse=141159 cog_cycles=2059
+Orrin cognitive cycle 2060 complete.
+[main] pulse=141260 cog_cycles=2060
+Orrin cognitive cycle 2061 complete.
+[main] pulse=141361 cog_cycles=2061
+Orrin cognitive cycle 2062 complete.
+[main] pulse=141462 cog_cycles=2062
+Orrin cognitive cycle 2063 complete.
+[main] pulse=141563 cog_cycles=2063
+Orrin cognitive cycle 2064 complete.
+[main] pulse=141664 cog_cycles=2065
+Orrin cognitive cycle 2065 complete.
+[main] pulse=141765 cog_cycles=2066
+Orrin cognitive cycle 2066 complete.
+Orrin cognitive cycle 2067 complete.
+[main] pulse=141867 cog_cycles=2067
+Orrin cognitive cycle 2068 complete.
+[main] pulse=141968 cog_cycles=2068
+Orrin cognitive cycle 2069 complete.
+[main] pulse=142069 cog_cycles=2069
+Orrin cognitive cycle 2070 complete.
+[main] pulse=142170 cog_cycles=2070
+Orrin cognitive cycle 2071 complete.
+[main] pulse=142271 cog_cycles=2071
+Orrin cognitive cycle 2072 complete.
+[main] pulse=142372 cog_cycles=2072
+Orrin cognitive cycle 2073 complete.
+[main] pulse=142473 cog_cycles=2074
+Orrin cognitive cycle 2074 complete.
+[main] pulse=142574 cog_cycles=2075
+Orrin cognitive cycle 2075 complete.
+Orrin cognitive cycle 2076 complete.
+[main] pulse=142675 cog_cycles=2076
+Orrin cognitive cycle 2077 complete.
+[main] pulse=142777 cog_cycles=2077
+Orrin cognitive cycle 2078 complete.
+[main] pulse=142878 cog_cycles=2078
+[main] pulse=142978 cog_cycles=2079
+[main] pulse=143078 cog_cycles=2079
+Orrin cognitive cycle 2079 complete.
+[main] pulse=143179 cog_cycles=2079
+Orrin cognitive cycle 2080 complete.
+[main] pulse=143280 cog_cycles=2080
+Orrin cognitive cycle 2081 complete.
+[main] pulse=143381 cog_cycles=2081
+Orrin cognitive cycle 2082 complete.
+[main] pulse=143482 cog_cycles=2082
+Orrin cognitive cycle 2083 complete.
+[main] pulse=143583 cog_cycles=2083
+Orrin cognitive cycle 2084 complete.
+[main] pulse=143684 cog_cycles=2085
+Orrin cognitive cycle 2085 complete.
+[main] pulse=143785 cog_cycles=2085
+Orrin cognitive cycle 2086 complete.
+[main] pulse=143886 cog_cycles=2087
+Orrin cognitive cycle 2087 complete.
+[main] pulse=143987 cog_cycles=2088
+Orrin cognitive cycle 2088 complete.
+Orrin cognitive cycle 2089 complete.
+[main] pulse=144089 cog_cycles=2089
+Orrin cognitive cycle 2090 complete.
+[main] pulse=144190 cog_cycles=2090
+Orrin cognitive cycle 2091 complete.
+[main] pulse=144291 cog_cycles=2091
+Orrin cognitive cycle 2092 complete.
+[main] pulse=144392 cog_cycles=2092
+Orrin cognitive cycle 2093 complete.
+[main] pulse=144493 cog_cycles=2093
+Orrin cognitive cycle 2094 complete.
+[main] pulse=144594 cog_cycles=2095
+Orrin cognitive cycle 2095 complete.
+[main] pulse=144695 cog_cycles=2096
+Orrin cognitive cycle 2096 complete.
+[main] pulse=144796 cog_cycles=2097
+Orrin cognitive cycle 2097 complete.
+[main] pulse=144897 cog_cycles=2098
+Orrin cognitive cycle 2098 complete.
+[main] pulse=144998 cog_cycles=2099
+Orrin cognitive cycle 2099 complete.
+[main] pulse=145099 cog_cycles=2100
+[main] pulse=145199 cog_cycles=2100
+[main] pulse=145299 cog_cycles=2100
+[main] pulse=145399 cog_cycles=2100
+Orrin cognitive cycle 2100 complete.
+[main] pulse=145500 cog_cycles=2100
+Orrin cognitive cycle 2101 complete.
+[main] pulse=145601 cog_cycles=2101
+Orrin cognitive cycle 2102 complete.
+[main] pulse=145702 cog_cycles=2102
+Orrin cognitive cycle 2103 complete.
+[main] pulse=145803 cog_cycles=2103
+Orrin cognitive cycle 2104 complete.
+[main] pulse=145904 cog_cycles=2104
+Orrin cognitive cycle 2105 complete.
+[main] pulse=146005 cog_cycles=2105
+Orrin cognitive cycle 2106 complete.
+[main] pulse=146106 cog_cycles=2106
+Orrin cognitive cycle 2107 complete.
+[main] pulse=146207 cog_cycles=2107
+Orrin cognitive cycle 2108 complete.
+[main] pulse=146308 cog_cycles=2108
+Orrin cognitive cycle 2109 complete.
+[main] pulse=146409 cog_cycles=2109
+Orrin cognitive cycle 2110 complete.
+[main] pulse=146510 cog_cycles=2110
+Orrin cognitive cycle 2111 complete.
+[main] pulse=146610 cog_cycles=2111
+Orrin cognitive cycle 2112 complete.
+[main] pulse=146712 cog_cycles=2112
+Orrin cognitive cycle 2113 complete.
+[main] pulse=146813 cog_cycles=2113
+Orrin cognitive cycle 2114 complete.
+[main] pulse=146914 cog_cycles=2114
+Orrin cognitive cycle 2115 complete.
+[main] pulse=147015 cog_cycles=2115
+Orrin cognitive cycle 2116 complete.
+[main] pulse=147116 cog_cycles=2116
+Orrin cognitive cycle 2117 complete.
+[main] pulse=147217 cog_cycles=2117
+Orrin cognitive cycle 2118 complete.
+[main] pulse=147318 cog_cycles=2119
+Orrin cognitive cycle 2119 complete.
+[main] pulse=147419 cog_cycles=2119
+Orrin cognitive cycle 2120 complete.
+[main] pulse=147520 cog_cycles=2120
+Orrin cognitive cycle 2121 complete.
+[main] pulse=147621 cog_cycles=2121
+Orrin cognitive cycle 2122 complete.
+[main] pulse=147722 cog_cycles=2122
+Orrin cognitive cycle 2123 complete.
+[main] pulse=147823 cog_cycles=2123
+Orrin cognitive cycle 2124 complete.
+[main] pulse=147924 cog_cycles=2124
+Orrin cognitive cycle 2125 complete.
+[main] pulse=148025 cog_cycles=2125
+Orrin cognitive cycle 2126 complete.
+[main] pulse=148126 cog_cycles=2126
+Orrin cognitive cycle 2127 complete.
+[main] pulse=148227 cog_cycles=2128
+Orrin cognitive cycle 2128 complete.
+[main] pulse=148328 cog_cycles=2129
+Orrin cognitive cycle 2129 complete.
+[main] pulse=148429 cog_cycles=2130
+Orrin cognitive cycle 2130 complete.
+[main] pulse=148530 cog_cycles=2131
+Orrin cognitive cycle 2131 complete.
+[main] pulse=148631 cog_cycles=2131
+Orrin cognitive cycle 2132 complete.
+[main] pulse=148732 cog_cycles=2132
+[main] pulse=148832 cog_cycles=2133
+Orrin cognitive cycle 2133 complete.
+[main] pulse=148933 cog_cycles=2133
+Orrin cognitive cycle 2134 complete.
+[main] pulse=149034 cog_cycles=2134
+[main] pulse=149134 cog_cycles=2135
+Orrin cognitive cycle 2135 complete.
+[main] pulse=149235 cog_cycles=2135
+[main] pulse=149335 cog_cycles=2136
+Orrin cognitive cycle 2136 complete.
+[main] pulse=149436 cog_cycles=2136
+Orrin cognitive cycle 2137 complete.
+[main] pulse=149537 cog_cycles=2137
+[main] pulse=149637 cog_cycles=2137
+Orrin cognitive cycle 2138 complete.
+[main] pulse=149738 cog_cycles=2138
+[main] pulse=149838 cog_cycles=2139
+Orrin cognitive cycle 2139 complete.
+[main] pulse=149939 cog_cycles=2139
+[main] pulse=150039 cog_cycles=2140
+Orrin cognitive cycle 2140 complete.
+[main] pulse=150140 cog_cycles=2140
+[main] pulse=150240 cog_cycles=2141
+Orrin cognitive cycle 2141 complete.
+[main] pulse=150341 cog_cycles=2141
+Orrin cognitive cycle 2142 complete.
+[main] pulse=150442 cog_cycles=2142
+[main] pulse=150542 cog_cycles=2142
+Orrin cognitive cycle 2143 complete.
+[main] pulse=150643 cog_cycles=2143
+[main] pulse=150743 cog_cycles=2144
+Orrin cognitive cycle 2144 complete.
+[main] pulse=150844 cog_cycles=2145
+Orrin cognitive cycle 2145 complete.
+[main] pulse=150945 cog_cycles=2145
+[main] pulse=151045 cog_cycles=2146
+Orrin cognitive cycle 2146 complete.
+[main] pulse=151146 cog_cycles=2146
+[main] pulse=151246 cog_cycles=2147
+Orrin cognitive cycle 2147 complete.
+[main] pulse=151347 cog_cycles=2148
+Orrin cognitive cycle 2148 complete.
+[main] pulse=151448 cog_cycles=2148
+[main] pulse=151548 cog_cycles=2149
+[host] resume — HOST:resume_heavy host resources
+Orrin cognitive cycle 2149 complete.
+[host] PAUSE heavy cycles — HOST:pause_heavy swap_used=4.1GB > pause=4.0GB
+[main] pulse=151649 cog_cycles=2149
+[main] pulse=151749 cog_cycles=2150
+Orrin cognitive cycle 2150 complete.
+[main] pulse=151850 cog_cycles=2150
+[main] pulse=151950 cog_cycles=2151
+Orrin cognitive cycle 2151 complete.
+[main] pulse=152051 cog_cycles=2152
+Orrin cognitive cycle 2152 complete.
+[main] pulse=152152 cog_cycles=2152
+[main] pulse=152252 cog_cycles=2153
+Orrin cognitive cycle 2153 complete.
+[main] pulse=152353 cog_cycles=2153
+Orrin cognitive cycle 2154 complete.
+[main] pulse=152454 cog_cycles=2154
+[main] pulse=152554 cog_cycles=2155
+Orrin cognitive cycle 2155 complete.
+[main] pulse=152655 cog_cycles=2155
+[main] pulse=152755 cog_cycles=2156
+Orrin cognitive cycle 2156 complete.
+[main] pulse=152856 cog_cycles=2156
+Orrin cognitive cycle 2157 complete.
+[main] pulse=152957 cog_cycles=2157
+Orrin cognitive cycle 2158 complete.
+[main] pulse=153058 cog_cycles=2158
+Orrin cognitive cycle 2159 complete.
+[main] pulse=153159 cog_cycles=2159
+[main] pulse=153259 cog_cycles=2160
+Orrin cognitive cycle 2160 complete.
+[main] pulse=153360 cog_cycles=2160
+[main] pulse=153460 cog_cycles=2161
+Orrin cognitive cycle 2161 complete.
+[main] pulse=153561 cog_cycles=2161
+Orrin cognitive cycle 2162 complete.
+[main] pulse=153662 cog_cycles=2162
+Orrin cognitive cycle 2163 complete.
+[main] pulse=153763 cog_cycles=2163
+Orrin cognitive cycle 2164 complete.
+[main] pulse=153864 cog_cycles=2164
+[main] pulse=153964 cog_cycles=2165
+Orrin cognitive cycle 2165 complete.
+[main] pulse=154065 cog_cycles=2165
+Orrin cognitive cycle 2166 complete.
+[main] pulse=154166 cog_cycles=2166
+Orrin cognitive cycle 2167 complete.
+[main] pulse=154267 cog_cycles=2167
+[main] pulse=154367 cog_cycles=2167
+Orrin cognitive cycle 2168 complete.
+[main] pulse=154468 cog_cycles=2168
+Orrin cognitive cycle 2169 complete.
+[main] pulse=154569 cog_cycles=2169
+[main] pulse=154669 cog_cycles=2170
+Orrin cognitive cycle 2170 complete.
+[main] pulse=154770 cog_cycles=2170
+[main] pulse=154870 cog_cycles=2171
+Orrin cognitive cycle 2171 complete.
+[main] pulse=154971 cog_cycles=2172
+Orrin cognitive cycle 2172 complete.
+[main] pulse=155072 cog_cycles=2172
+Orrin cognitive cycle 2173 complete.
+[main] pulse=155173 cog_cycles=2173
+Orrin cognitive cycle 2174 complete.
+[main] pulse=155274 cog_cycles=2174
+[main] pulse=155374 cog_cycles=2175
+Orrin cognitive cycle 2175 complete.
+[main] pulse=155475 cog_cycles=2175
+Orrin cognitive cycle 2176 complete.
+[main] pulse=155576 cog_cycles=2176
+[main] pulse=155676 cog_cycles=2177
+Orrin cognitive cycle 2177 complete.
+[main] pulse=155777 cog_cycles=2177
+Orrin cognitive cycle 2178 complete.
+[main] pulse=155878 cog_cycles=2178
+[main] pulse=155978 cog_cycles=2179
+Orrin cognitive cycle 2179 complete.
+[main] pulse=156079 cog_cycles=2179
+[main] pulse=156179 cog_cycles=2180
+Orrin cognitive cycle 2180 complete.
+[main] pulse=156280 cog_cycles=2180
+[main] pulse=156380 cog_cycles=2181
+Orrin cognitive cycle 2181 complete.
+[main] pulse=156481 cog_cycles=2181
+Orrin cognitive cycle 2182 complete.
+[main] pulse=156582 cog_cycles=2182
+[main] pulse=156682 cog_cycles=2183
+Orrin cognitive cycle 2183 complete.
+[main] pulse=156783 cog_cycles=2183
+Orrin cognitive cycle 2184 complete.
+[main] pulse=156884 cog_cycles=2184
+[main] pulse=156984 cog_cycles=2185
+Orrin cognitive cycle 2185 complete.
+[main] pulse=157085 cog_cycles=2185
+Orrin cognitive cycle 2186 complete.
+[main] pulse=157186 cog_cycles=2186
+[main] pulse=157286 cog_cycles=2186
+[main] pulse=157386 cog_cycles=2187
+Orrin cognitive cycle 2187 complete.
+[main] pulse=157487 cog_cycles=2187
+Orrin cognitive cycle 2188 complete.
+[main] pulse=157588 cog_cycles=2188
+[main] pulse=157688 cog_cycles=2189
+Orrin cognitive cycle 2189 complete.
+[main] pulse=157789 cog_cycles=2189
+[main] pulse=157889 cog_cycles=2190
+Orrin cognitive cycle 2190 complete.
+[main] pulse=157990 cog_cycles=2190
+[main] pulse=158090 cog_cycles=2191
+Orrin cognitive cycle 2191 complete.
+[main] pulse=158191 cog_cycles=2191
+[main] pulse=158291 cog_cycles=2192
+Orrin cognitive cycle 2192 complete.
+[main] pulse=158392 cog_cycles=2192
+Orrin cognitive cycle 2193 complete.
+[main] pulse=158493 cog_cycles=2193
+[main] pulse=158593 cog_cycles=2194
+[host] resume — HOST:resume_heavy host resources
+[host] PAUSE heavy cycles — HOST:pause_heavy swap_used=4.1GB > pause=4.0GB
+[main] pulse=158693 cog_cycles=2194
+Orrin cognitive cycle 2194 complete.
+[main] pulse=158794 cog_cycles=2195
+Orrin cognitive cycle 2195 complete.
+[main] pulse=158895 cog_cycles=2195
+Orrin cognitive cycle 2196 complete.
+[main] pulse=158996 cog_cycles=2196
+[main] pulse=159096 cog_cycles=2197
+Orrin cognitive cycle 2197 complete.
+[main] pulse=159197 cog_cycles=2197
+Orrin cognitive cycle 2198 complete.
+[main] pulse=159298 cog_cycles=2198
+[main] pulse=159398 cog_cycles=2199
+Orrin cognitive cycle 2199 complete.
+[main] pulse=159499 cog_cycles=2200
+[main] pulse=159599 cog_cycles=2200
+[main] pulse=159699 cog_cycles=2200
+[main] pulse=159799 cog_cycles=2200
+[main] pulse=159899 cog_cycles=2200
+Orrin cognitive cycle 2200 complete.
+[main] pulse=160000 cog_cycles=2200
+[main] pulse=160100 cog_cycles=2201
+Orrin cognitive cycle 2201 complete.
+[main] pulse=160201 cog_cycles=2202
+Orrin cognitive cycle 2202 complete.
+[main] pulse=160302 cog_cycles=2203
+Orrin cognitive cycle 2203 complete.
+[main] pulse=160403 cog_cycles=2204
+Orrin cognitive cycle 2204 complete.
+[host] resume — HOST:resume_heavy host resources
+[main] pulse=160504 cog_cycles=2205
+[host] PAUSE heavy cycles — HOST:pause_heavy swap_used=4.1GB > pause=4.0GB
+Orrin cognitive cycle 2205 complete.
+[main] pulse=160605 cog_cycles=2205
+Orrin cognitive cycle 2206 complete.
+[main] pulse=160706 cog_cycles=2206
+[main] pulse=160806 cog_cycles=2207
+[main] pulse=160906 cog_cycles=2207
+Orrin cognitive cycle 2207 complete.
+[main] pulse=161007 cog_cycles=2207
+[main] pulse=161107 cog_cycles=2208
+Orrin cognitive cycle 2208 complete.
+[main] pulse=161208 cog_cycles=2209
+Orrin cognitive cycle 2209 complete.
+[main] pulse=161309 cog_cycles=2209
+[main] pulse=161409 cog_cycles=2210
+Orrin cognitive cycle 2210 complete.
+[main] pulse=161510 cog_cycles=2210
+Orrin cognitive cycle 2211 complete.
+[main] pulse=161611 cog_cycles=2211
+[main] pulse=161711 cog_cycles=2212
+Orrin cognitive cycle 2212 complete.
+[main] pulse=161812 cog_cycles=2212
+Orrin cognitive cycle 2213 complete.
+[main] pulse=161913 cog_cycles=2213
+[main] pulse=162013 cog_cycles=2214
+Orrin cognitive cycle 2214 complete.
+[main] pulse=162114 cog_cycles=2214
+Orrin cognitive cycle 2215 complete.
+[main] pulse=162215 cog_cycles=2215
+[main] pulse=162315 cog_cycles=2216
+Orrin cognitive cycle 2216 complete.
+[main] pulse=162416 cog_cycles=2217
+Orrin cognitive cycle 2217 complete.
+[main] pulse=162517 cog_cycles=2218
+Orrin cognitive cycle 2218 complete.
+[main] pulse=162618 cog_cycles=2218
+Orrin cognitive cycle 2219 complete.
+[main] pulse=162719 cog_cycles=2219
+[main] pulse=162819 cog_cycles=2220
+Orrin cognitive cycle 2220 complete.
+[main] pulse=162920 cog_cycles=2220
+[main] pulse=163020 cog_cycles=2221
+Orrin cognitive cycle 2221 complete.
+[main] pulse=163121 cog_cycles=2221
+[main] pulse=163221 cog_cycles=2222
+Orrin cognitive cycle 2222 complete.
+[main] pulse=163322 cog_cycles=2222
+[main] pulse=163422 cog_cycles=2223
+Orrin cognitive cycle 2223 complete.
+[main] pulse=163523 cog_cycles=2223
+[main] pulse=163623 cog_cycles=2224
+Orrin cognitive cycle 2224 complete.
+[main] pulse=163724 cog_cycles=2224
+Orrin cognitive cycle 2225 complete.
+[main] pulse=163825 cog_cycles=2225
+[main] pulse=163925 cog_cycles=2225
+[main] pulse=164025 cog_cycles=2226
+Orrin cognitive cycle 2226 complete.
+[main] pulse=164126 cog_cycles=2227
+Orrin cognitive cycle 2227 complete.
+[main] pulse=164227 cog_cycles=2227
+Orrin cognitive cycle 2228 complete.
+[main] pulse=164328 cog_cycles=2228
+[main] pulse=164428 cog_cycles=2229
+[main] pulse=164528 cog_cycles=2229
+Orrin cognitive cycle 2229 complete.
+[main] pulse=164629 cog_cycles=2229
+[main] pulse=164729 cog_cycles=2230
+Orrin cognitive cycle 2230 complete.
+[main] pulse=164830 cog_cycles=2230
+[main] pulse=164930 cog_cycles=2231
+Orrin cognitive cycle 2231 complete.
+[main] pulse=165031 cog_cycles=2231
+[main] pulse=165131 cog_cycles=2232
+Orrin cognitive cycle 2232 complete.
+[main] pulse=165232 cog_cycles=2232
+[main] pulse=165332 cog_cycles=2233
+Orrin cognitive cycle 2233 complete.
+[main] pulse=165433 cog_cycles=2233
+Orrin cognitive cycle 2234 complete.
+[main] pulse=165533 cog_cycles=2234
+[main] pulse=165634 cog_cycles=2234
+[main] pulse=165734 cog_cycles=2235
+Orrin cognitive cycle 2235 complete.
+[main] pulse=165835 cog_cycles=2235
+[main] pulse=165935 cog_cycles=2236
+Orrin cognitive cycle 2236 complete.
+[main] pulse=166036 cog_cycles=2236
+[main] pulse=166136 cog_cycles=2237
+Orrin cognitive cycle 2237 complete.
+[main] pulse=166237 cog_cycles=2237
+Orrin cognitive cycle 2238 complete.
+[main] pulse=166337 cog_cycles=2238
+[main] pulse=166438 cog_cycles=2238
+Orrin cognitive cycle 2239 complete.
+[main] pulse=166539 cog_cycles=2239
+[main] pulse=166639 cog_cycles=2240
+Orrin cognitive cycle 2240 complete.
+[main] pulse=166740 cog_cycles=2240
+Orrin cognitive cycle 2241 complete.
+[main] pulse=166841 cog_cycles=2241
+[main] pulse=166941 cog_cycles=2242
+Orrin cognitive cycle 2242 complete.
+[main] pulse=167042 cog_cycles=2243
+Orrin cognitive cycle 2243 complete.
+[main] pulse=167143 cog_cycles=2243
+Orrin cognitive cycle 2244 complete.
+[main] pulse=167244 cog_cycles=2244
+[main] pulse=167344 cog_cycles=2245
+Orrin cognitive cycle 2245 complete.
+[main] pulse=167445 cog_cycles=2245
+[host] resume — HOST:resume_heavy host resources
+Orrin cognitive cycle 2246 complete.
+[host] PAUSE heavy cycles — HOST:pause_heavy swap_used=4.2GB > pause=4.0GB
+[main] pulse=167546 cog_cycles=2246
+[main] pulse=167646 cog_cycles=2247
+Orrin cognitive cycle 2247 complete.
+[main] pulse=167747 cog_cycles=2247
+Orrin cognitive cycle 2248 complete.
+[main] pulse=167848 cog_cycles=2248
+Orrin cognitive cycle 2249 complete.
+[main] pulse=167949 cog_cycles=2249
+[main] pulse=168049 cog_cycles=2250
+[main] pulse=168149 cog_cycles=2250
+Orrin cognitive cycle 2250 complete.
+[main] pulse=168250 cog_cycles=2251
+Orrin cognitive cycle 2251 complete.
+[main] pulse=168351 cog_cycles=2251
+Orrin cognitive cycle 2252 complete.
+[main] pulse=168452 cog_cycles=2252
+Orrin cognitive cycle 2253 complete.
+[main] pulse=168553 cog_cycles=2253
+[main] pulse=168653 cog_cycles=2254
+Orrin cognitive cycle 2254 complete.
+[main] pulse=168754 cog_cycles=2254
+[main] pulse=168854 cog_cycles=2255
+Orrin cognitive cycle 2255 complete.
+[main] pulse=168955 cog_cycles=2256
+Orrin cognitive cycle 2256 complete.
+[main] pulse=169056 cog_cycles=2257
+Orrin cognitive cycle 2257 complete.
+[main] pulse=169157 cog_cycles=2257
+Orrin cognitive cycle 2258 complete.
+[main] pulse=169258 cog_cycles=2258
+[main] pulse=169358 cog_cycles=2259
+Orrin cognitive cycle 2259 complete.
+[main] pulse=169459 cog_cycles=2260
+Orrin cognitive cycle 2260 complete.
+[main] pulse=169560 cog_cycles=2260
+[main] pulse=169660 cog_cycles=2261
+Orrin cognitive cycle 2261 complete.
+[main] pulse=169761 cog_cycles=2261
+Orrin cognitive cycle 2262 complete.
+[main] pulse=169862 cog_cycles=2262
+[main] pulse=169962 cog_cycles=2263
+Orrin cognitive cycle 2263 complete.
+[main] pulse=170063 cog_cycles=2263
+[main] pulse=170163 cog_cycles=2263
+Orrin cognitive cycle 2264 complete.
+[main] pulse=170264 cog_cycles=2264
+[main] pulse=170364 cog_cycles=2264
+[main] pulse=170464 cog_cycles=2265
+Orrin cognitive cycle 2265 complete.
+[main] pulse=170565 cog_cycles=2265
+[main] pulse=170665 cog_cycles=2265
+[main] pulse=170765 cog_cycles=2265
+Orrin cognitive cycle 2266 complete.
+[main] pulse=170866 cog_cycles=2266
+Orrin cognitive cycle 2267 complete.
+[main] pulse=170967 cog_cycles=2267
+[main] pulse=171067 cog_cycles=2268
+Orrin cognitive cycle 2268 complete.
+[main] pulse=171168 cog_cycles=2268
+Orrin cognitive cycle 2269 complete.
+[main] pulse=171269 cog_cycles=2269
+Orrin cognitive cycle 2270 complete.
+[main] pulse=171370 cog_cycles=2270
+[main] pulse=171470 cog_cycles=2271
+Orrin cognitive cycle 2271 complete.
+[main] pulse=171571 cog_cycles=2271
+Orrin cognitive cycle 2272 complete.
+[main] pulse=171672 cog_cycles=2272
+[main] pulse=171772 cog_cycles=2273
+Orrin cognitive cycle 2273 complete.
+[main] pulse=171873 cog_cycles=2274
+Orrin cognitive cycle 2274 complete.
+[main] pulse=171974 cog_cycles=2274
+Orrin cognitive cycle 2275 complete.
+[main] pulse=172075 cog_cycles=2275
+[main] pulse=172175 cog_cycles=2276
+Orrin cognitive cycle 2276 complete.
+[main] pulse=172276 cog_cycles=2276
+Orrin cognitive cycle 2277 complete.
+[main] pulse=172377 cog_cycles=2277
+Orrin cognitive cycle 2278 complete.
+[main] pulse=172478 cog_cycles=2278
+[main] pulse=172578 cog_cycles=2279
+Orrin cognitive cycle 2279 complete.
+[main] pulse=172679 cog_cycles=2279
+[main] pulse=172779 cog_cycles=2280
+Orrin cognitive cycle 2280 complete.
+[main] pulse=172880 cog_cycles=2280
+Orrin cognitive cycle 2281 complete.
+[main] pulse=172981 cog_cycles=2281
+Orrin cognitive cycle 2282 complete.
+[main] pulse=173082 cog_cycles=2282
+[main] pulse=173182 cog_cycles=2283
+Orrin cognitive cycle 2283 complete.
+[main] pulse=173283 cog_cycles=2284
+Orrin cognitive cycle 2284 complete.
+[main] pulse=173384 cog_cycles=2285
+Orrin cognitive cycle 2285 complete.
+[main] pulse=173485 cog_cycles=2285
+Orrin cognitive cycle 2286 complete.
+[main] pulse=173586 cog_cycles=2286
+[main] pulse=173686 cog_cycles=2287
+Orrin cognitive cycle 2287 complete.
+[main] pulse=173787 cog_cycles=2288
+Orrin cognitive cycle 2288 complete.
+[main] pulse=173888 cog_cycles=2289
+Orrin cognitive cycle 2289 complete.
+[main] pulse=173989 cog_cycles=2289
+[main] pulse=174089 cog_cycles=2290
+Orrin cognitive cycle 2290 complete.
+Orrin cognitive cycle 2291 complete.
+[main] pulse=174191 cog_cycles=2291
+[main] pulse=174291 cog_cycles=2292
+Orrin cognitive cycle 2292 complete.
+[main] pulse=174392 cog_cycles=2292
+Orrin cognitive cycle 2293 complete.
+[main] pulse=174493 cog_cycles=2293
+[main] pulse=174593 cog_cycles=2294
+Orrin cognitive cycle 2294 complete.
+[main] pulse=174694 cog_cycles=2294
+Orrin cognitive cycle 2295 complete.
+[main] pulse=174795 cog_cycles=2295
+[main] pulse=174895 cog_cycles=2296
+Orrin cognitive cycle 2296 complete.
+[main] pulse=174996 cog_cycles=2296
+Orrin cognitive cycle 2297 complete.
+[main] pulse=175097 cog_cycles=2297
+Orrin cognitive cycle 2298 complete.
+[main] pulse=175198 cog_cycles=2298
+Orrin cognitive cycle 2299 complete.
+[main] pulse=175299 cog_cycles=2299
+[main] pulse=175399 cog_cycles=2300
+[main] pulse=175499 cog_cycles=2300
+[main] pulse=175599 cog_cycles=2300
+[main] pulse=175699 cog_cycles=2300
+Orrin cognitive cycle 2300 complete.
+[main] pulse=175800 cog_cycles=2300
+[main] pulse=175900 cog_cycles=2301
+Orrin cognitive cycle 2301 complete.
+[main] pulse=176001 cog_cycles=2301
+Orrin cognitive cycle 2302 complete.
+[main] pulse=176102 cog_cycles=2302
+[main] pulse=176202 cog_cycles=2303
+Orrin cognitive cycle 2303 complete.
+[main] pulse=176303 cog_cycles=2303
+Orrin cognitive cycle 2304 complete.
+[main] pulse=176404 cog_cycles=2304
+Orrin cognitive cycle 2305 complete.
+[main] pulse=176505 cog_cycles=2305
+Orrin cognitive cycle 2306 complete.
+[main] pulse=176606 cog_cycles=2306
+[main] pulse=176706 cog_cycles=2307
+Orrin cognitive cycle 2307 complete.
+[main] pulse=176807 cog_cycles=2307
+[main] pulse=176907 cog_cycles=2308
+Orrin cognitive cycle 2308 complete.
+[main] pulse=177008 cog_cycles=2309
+Orrin cognitive cycle 2309 complete.
+[main] pulse=177109 cog_cycles=2309
+Orrin cognitive cycle 2310 complete.
+[main] pulse=177210 cog_cycles=2310
+Orrin cognitive cycle 2311 complete.
+[main] pulse=177311 cog_cycles=2311
+Orrin cognitive cycle 2312 complete.
+[main] pulse=177412 cog_cycles=2312
+[main] pulse=177512 cog_cycles=2313
+Orrin cognitive cycle 2313 complete.
+[main] pulse=177613 cog_cycles=2314
+Orrin cognitive cycle 2314 complete.
+[main] pulse=177714 cog_cycles=2314
+[main] pulse=177814 cog_cycles=2315
+Orrin cognitive cycle 2315 complete.
+[main] pulse=177915 cog_cycles=2316
+Orrin cognitive cycle 2316 complete.
+[main] pulse=178016 cog_cycles=2316
+Orrin cognitive cycle 2317 complete.
+[main] pulse=178117 cog_cycles=2317
+Orrin cognitive cycle 2318 complete.
+[main] pulse=178218 cog_cycles=2318
+Orrin cognitive cycle 2319 complete.
+[main] pulse=178319 cog_cycles=2319
+[main] pulse=178419 cog_cycles=2320
+Orrin cognitive cycle 2320 complete.
+[main] pulse=178520 cog_cycles=2320
+Orrin cognitive cycle 2321 complete.
+[main] pulse=178621 cog_cycles=2321
+[main] pulse=178721 cog_cycles=2321
+Orrin cognitive cycle 2322 complete.
+[main] pulse=178822 cog_cycles=2322
+[main] pulse=178922 cog_cycles=2323
+Orrin cognitive cycle 2323 complete.
+[main] pulse=179023 cog_cycles=2323
+Orrin cognitive cycle 2324 complete.
+[main] pulse=179124 cog_cycles=2324
+Orrin cognitive cycle 2325 complete.
+[main] pulse=179225 cog_cycles=2325
+Orrin cognitive cycle 2326 complete.
+[main] pulse=179326 cog_cycles=2326
+Orrin cognitive cycle 2327 complete.
+[main] pulse=179427 cog_cycles=2327
+[main] pulse=179527 cog_cycles=2328
+Orrin cognitive cycle 2328 complete.
+[main] pulse=179628 cog_cycles=2328
+[main] pulse=179728 cog_cycles=2329
+Orrin cognitive cycle 2329 complete.
+[main] pulse=179829 cog_cycles=2329
+Orrin cognitive cycle 2330 complete.
+[main] pulse=179930 cog_cycles=2330
+Orrin cognitive cycle 2331 complete.
+[main] pulse=180031 cog_cycles=2331
+[main] pulse=180131 cog_cycles=2332
+Orrin cognitive cycle 2332 complete.
+[main] pulse=180232 cog_cycles=2333
+Orrin cognitive cycle 2333 complete.
+[main] pulse=180333 cog_cycles=2333
+Orrin cognitive cycle 2334 complete.
+[main] pulse=180434 cog_cycles=2334
+[main] pulse=180534 cog_cycles=2335
+Orrin cognitive cycle 2335 complete.
+[main] pulse=180635 cog_cycles=2335
+Orrin cognitive cycle 2336 complete.
+[main] pulse=180736 cog_cycles=2336
+Orrin cognitive cycle 2337 complete.
+[main] pulse=180837 cog_cycles=2338
+Orrin cognitive cycle 2338 complete.
+[main] pulse=180938 cog_cycles=2339
+Orrin cognitive cycle 2339 complete.
+[main] pulse=181039 cog_cycles=2340
+Orrin cognitive cycle 2340 complete.
+Orrin cognitive cycle 2341 complete.
+[main] pulse=181141 cog_cycles=2341
+Orrin cognitive cycle 2342 complete.
+[main] pulse=181242 cog_cycles=2342
+Orrin cognitive cycle 2343 complete.
+[main] pulse=181343 cog_cycles=2343
+Orrin cognitive cycle 2344 complete.
+[main] pulse=181444 cog_cycles=2344
+Orrin cognitive cycle 2345 complete.
+[main] pulse=181545 cog_cycles=2345
+Orrin cognitive cycle 2346 complete.
+[main] pulse=181646 cog_cycles=2346
+Orrin cognitive cycle 2347 complete.
+[main] pulse=181747 cog_cycles=2348
+Orrin cognitive cycle 2348 complete.
+[main] pulse=181848 cog_cycles=2349
+Orrin cognitive cycle 2349 complete.
+[main] pulse=181949 cog_cycles=2350
+Orrin cognitive cycle 2350 complete.
+Orrin cognitive cycle 2351 complete.
+[main] pulse=182051 cog_cycles=2351
+Orrin cognitive cycle 2352 complete.
+[main] pulse=182152 cog_cycles=2352
+Orrin cognitive cycle 2353 complete.
+[main] pulse=182253 cog_cycles=2353
+Orrin cognitive cycle 2354 complete.
+[main] pulse=182354 cog_cycles=2354
+Orrin cognitive cycle 2355 complete.
+[main] pulse=182455 cog_cycles=2355
+Orrin cognitive cycle 2356 complete.
+[main] pulse=182556 cog_cycles=2356
+Orrin cognitive cycle 2357 complete.
+[main] pulse=182657 cog_cycles=2357
+Orrin cognitive cycle 2358 complete.
+[main] pulse=182758 cog_cycles=2358
+Orrin cognitive cycle 2359 complete.
+[main] pulse=182859 cog_cycles=2359
+Orrin cognitive cycle 2360 complete.
+[main] pulse=182960 cog_cycles=2360
+Orrin cognitive cycle 2361 complete.
+[main] pulse=183061 cog_cycles=2362
+Orrin cognitive cycle 2362 complete.
+[main] pulse=183162 cog_cycles=2363
+Orrin cognitive cycle 2363 complete.
+Orrin cognitive cycle 2364 complete.
+[main] pulse=183264 cog_cycles=2364
+Orrin cognitive cycle 2365 complete.
+[main] pulse=183365 cog_cycles=2365
+Orrin cognitive cycle 2366 complete.
+[main] pulse=183466 cog_cycles=2366
+Orrin cognitive cycle 2367 complete.
+[main] pulse=183567 cog_cycles=2367
+Orrin cognitive cycle 2368 complete.
+[main] pulse=183668 cog_cycles=2368
+Orrin cognitive cycle 2369 complete.
+[main] pulse=183769 cog_cycles=2369
+[main] pulse=183869 cog_cycles=2370
+Orrin cognitive cycle 2370 complete.
+[main] pulse=183970 cog_cycles=2371
+Orrin cognitive cycle 2371 complete.
+[main] pulse=184071 cog_cycles=2372
+Orrin cognitive cycle 2372 complete.
+[main] pulse=184172 cog_cycles=2373
+Orrin cognitive cycle 2373 complete.
+[main] pulse=184273 cog_cycles=2374
+Orrin cognitive cycle 2374 complete.
+[main] pulse=184374 cog_cycles=2375
+Orrin cognitive cycle 2375 complete.
+[main] pulse=184475 cog_cycles=2376
+Orrin cognitive cycle 2376 complete.
+[main] pulse=184576 cog_cycles=2377
+Orrin cognitive cycle 2377 complete.
+[main] pulse=184677 cog_cycles=2378
+Orrin cognitive cycle 2378 complete.
+[main] pulse=184778 cog_cycles=2379
+Orrin cognitive cycle 2379 complete.
+[main] pulse=184879 cog_cycles=2380
+Orrin cognitive cycle 2380 complete.
+[main] pulse=184980 cog_cycles=2380
+Orrin cognitive cycle 2381 complete.
+[main] pulse=185081 cog_cycles=2381
+Orrin cognitive cycle 2382 complete.
+[main] pulse=185182 cog_cycles=2383
+Orrin cognitive cycle 2383 complete.
+[main] pulse=185283 cog_cycles=2384
+Orrin cognitive cycle 2384 complete.
+[main] pulse=185384 cog_cycles=2385
+Orrin cognitive cycle 2385 complete.
+[main] pulse=185485 cog_cycles=2386
+Orrin cognitive cycle 2386 complete.
+Orrin cognitive cycle 2387 complete.
+[main] pulse=185587 cog_cycles=2387
+[main] pulse=185687 cog_cycles=2388
+Orrin cognitive cycle 2388 complete.
+Orrin cognitive cycle 2389 complete.
+[main] pulse=185789 cog_cycles=2389
+[main] pulse=185889 cog_cycles=2390
+Orrin cognitive cycle 2390 complete.
+[main] pulse=185990 cog_cycles=2391
+Orrin cognitive cycle 2391 complete.
+[main] pulse=186091 cog_cycles=2392
+Orrin cognitive cycle 2392 complete.
+[main] pulse=186192 cog_cycles=2393
+Orrin cognitive cycle 2393 complete.
+[main] pulse=186293 cog_cycles=2394
+Orrin cognitive cycle 2394 complete.
+[main] pulse=186394 cog_cycles=2395
+Orrin cognitive cycle 2395 complete.
+[main] pulse=186495 cog_cycles=2395
+Orrin cognitive cycle 2396 complete.
+[main] pulse=186596 cog_cycles=2397
+Orrin cognitive cycle 2397 complete.
+[main] pulse=186697 cog_cycles=2397
+Orrin cognitive cycle 2398 complete.
+[main] pulse=186798 cog_cycles=2398
+Orrin cognitive cycle 2399 complete.
+[main] pulse=186899 cog_cycles=2400
+[main] pulse=186999 cog_cycles=2400
+[main] pulse=187099 cog_cycles=2400
+Orrin cognitive cycle 2400 complete.
+[main] pulse=187199 cog_cycles=2400
+[main] pulse=187300 cog_cycles=2401
+Orrin cognitive cycle 2401 complete.
+[main] pulse=187401 cog_cycles=2402
+Orrin cognitive cycle 2402 complete.
+Orrin cognitive cycle 2403 complete.
+[main] pulse=187503 cog_cycles=2403
+Orrin cognitive cycle 2404 complete.
+[main] pulse=187604 cog_cycles=2404
+[main] pulse=187704 cog_cycles=2405
+Orrin cognitive cycle 2405 complete.
+[main] pulse=187805 cog_cycles=2406
+Orrin cognitive cycle 2406 complete.
+[main] pulse=187906 cog_cycles=2407
+Orrin cognitive cycle 2407 complete.
+[main] pulse=188007 cog_cycles=2408
+Orrin cognitive cycle 2408 complete.
+[main] pulse=188108 cog_cycles=2409
+Orrin cognitive cycle 2409 complete.
+[main] pulse=188209 cog_cycles=2410
+Orrin cognitive cycle 2410 complete.
+[main] pulse=188310 cog_cycles=2411
+Orrin cognitive cycle 2411 complete.
+[main] pulse=188411 cog_cycles=2412
+Orrin cognitive cycle 2412 complete.
+[main] pulse=188512 cog_cycles=2413
+Orrin cognitive cycle 2413 complete.
+[main] pulse=188613 cog_cycles=2414
+Orrin cognitive cycle 2414 complete.
+[main] pulse=188714 cog_cycles=2415
+Orrin cognitive cycle 2415 complete.
+[main] pulse=188815 cog_cycles=2415
+Orrin cognitive cycle 2416 complete.
+[main] pulse=188916 cog_cycles=2417
+Orrin cognitive cycle 2417 complete.
+[main] pulse=189017 cog_cycles=2418
+Orrin cognitive cycle 2418 complete.
+[main] pulse=189118 cog_cycles=2419
+Orrin cognitive cycle 2419 complete.
+[main] pulse=189219 cog_cycles=2420
+Orrin cognitive cycle 2420 complete.
+[main] pulse=189320 cog_cycles=2420
+Orrin cognitive cycle 2421 complete.
+[main] pulse=189421 cog_cycles=2421
+Orrin cognitive cycle 2422 complete.
+[main] pulse=189522 cog_cycles=2423
+Orrin cognitive cycle 2423 complete.
+[main] pulse=189623 cog_cycles=2424
+Orrin cognitive cycle 2424 complete.
+[main] pulse=189724 cog_cycles=2424
+Orrin cognitive cycle 2425 complete.
+[main] pulse=189825 cog_cycles=2425
+Orrin cognitive cycle 2426 complete.
+[main] pulse=189926 cog_cycles=2427
+Orrin cognitive cycle 2427 complete.
+[main] pulse=190027 cog_cycles=2428
+Orrin cognitive cycle 2428 complete.
+[main] pulse=190128 cog_cycles=2429
+Orrin cognitive cycle 2429 complete.
+[main] pulse=190229 cog_cycles=2429
+Orrin cognitive cycle 2430 complete.
+[main] pulse=190330 cog_cycles=2430
+[main] pulse=190430 cog_cycles=2430
+Orrin cognitive cycle 2431 complete.
+[main] pulse=190531 cog_cycles=2431
+Orrin cognitive cycle 2432 complete.
+[main] pulse=190632 cog_cycles=2432
+Orrin cognitive cycle 2433 complete.
+[main] pulse=190733 cog_cycles=2434
+Orrin cognitive cycle 2434 complete.
+[main] pulse=190834 cog_cycles=2435
+Orrin cognitive cycle 2435 complete.
+Orrin cognitive cycle 2436 complete.
+[main] pulse=190936 cog_cycles=2436
+Orrin cognitive cycle 2437 complete.
+[main] pulse=191037 cog_cycles=2437
+Orrin cognitive cycle 2438 complete.
+[main] pulse=191138 cog_cycles=2438
+Orrin cognitive cycle 2439 complete.
+[main] pulse=191239 cog_cycles=2440
+Orrin cognitive cycle 2440 complete.
+Orrin cognitive cycle 2441 complete.
+[main] pulse=191341 cog_cycles=2441
+Orrin cognitive cycle 2442 complete.
+[main] pulse=191442 cog_cycles=2442
+Orrin cognitive cycle 2443 complete.
+[main] pulse=191543 cog_cycles=2443
+Orrin cognitive cycle 2444 complete.
+[main] pulse=191644 cog_cycles=2445
+Orrin cognitive cycle 2445 complete.
+Orrin cognitive cycle 2446 complete.
+[main] pulse=191746 cog_cycles=2446
+Orrin cognitive cycle 2447 complete.
+[main] pulse=191847 cog_cycles=2447
+Orrin cognitive cycle 2448 complete.
+[main] pulse=191948 cog_cycles=2448
+Orrin cognitive cycle 2449 complete.
+[main] pulse=192049 cog_cycles=2450
+Orrin cognitive cycle 2450 complete.
+Orrin cognitive cycle 2451 complete.
+[main] pulse=192151 cog_cycles=2451
+Orrin cognitive cycle 2452 complete.
+[main] pulse=192252 cog_cycles=2452
+Orrin cognitive cycle 2453 complete.
+[main] pulse=192353 cog_cycles=2453
+Orrin cognitive cycle 2454 complete.
+[main] pulse=192454 cog_cycles=2455
+Orrin cognitive cycle 2455 complete.
+Orrin cognitive cycle 2456 complete.
+[main] pulse=192556 cog_cycles=2456
+Orrin cognitive cycle 2457 complete.
+[main] pulse=192657 cog_cycles=2457
+Orrin cognitive cycle 2458 complete.
+Orrin cognitive cycle 2459 complete.
+[main] pulse=192759 cog_cycles=2459
+Orrin cognitive cycle 2460 complete.
+[main] pulse=192860 cog_cycles=2460
+Orrin cognitive cycle 2461 complete.
+[main] pulse=192961 cog_cycles=2461
+Orrin cognitive cycle 2462 complete.
+[main] pulse=193062 cog_cycles=2462
+Orrin cognitive cycle 2463 complete.
+[main] pulse=193163 cog_cycles=2463
+Orrin cognitive cycle 2464 complete.
+[main] pulse=193264 cog_cycles=2465
+Orrin cognitive cycle 2465 complete.
+Orrin cognitive cycle 2466 complete.
+[main] pulse=193366 cog_cycles=2466
+Orrin cognitive cycle 2467 complete.
+[main] pulse=193467 cog_cycles=2467
+Orrin cognitive cycle 2468 complete.
+[main] pulse=193568 cog_cycles=2469
+Orrin cognitive cycle 2469 complete.
+Orrin cognitive cycle 2470 complete.
+[main] pulse=193670 cog_cycles=2470
+Orrin cognitive cycle 2471 complete.
+[main] pulse=193771 cog_cycles=2471
+Orrin cognitive cycle 2472 complete.
+[main] pulse=193872 cog_cycles=2472
+Orrin cognitive cycle 2473 complete.
+[main] pulse=193973 cog_cycles=2473
+Orrin cognitive cycle 2474 complete.
+[main] pulse=194074 cog_cycles=2475
+Orrin cognitive cycle 2475 complete.
+[main] pulse=194175 cog_cycles=2476
+Orrin cognitive cycle 2476 complete.
+Orrin cognitive cycle 2477 complete.
+[main] pulse=194277 cog_cycles=2477
+Orrin cognitive cycle 2478 complete.
+[main] pulse=194378 cog_cycles=2478
+Orrin cognitive cycle 2479 complete.
+[main] pulse=194479 cog_cycles=2480
+Orrin cognitive cycle 2480 complete.
+Orrin cognitive cycle 2481 complete.
+[main] pulse=194580 cog_cycles=2481
+Orrin cognitive cycle 2482 complete.
+[main] pulse=194682 cog_cycles=2482
+Orrin cognitive cycle 2483 complete.
+[main] pulse=194783 cog_cycles=2483
+Orrin cognitive cycle 2484 complete.
+[main] pulse=194884 cog_cycles=2485
+Orrin cognitive cycle 2485 complete.
+[main] pulse=194985 cog_cycles=2485
+Orrin cognitive cycle 2486 complete.
+[main] pulse=195086 cog_cycles=2487
+Orrin cognitive cycle 2487 complete.
+Orrin cognitive cycle 2488 complete.
+[main] pulse=195188 cog_cycles=2488
+Orrin cognitive cycle 2489 complete.
+[main] pulse=195289 cog_cycles=2489
+Orrin cognitive cycle 2490 complete.
+[main] pulse=195390 cog_cycles=2490
+Orrin cognitive cycle 2491 complete.
+[main] pulse=195491 cog_cycles=2491
+Orrin cognitive cycle 2492 complete.
+[main] pulse=195592 cog_cycles=2492
+Orrin cognitive cycle 2493 complete.
+[main] pulse=195693 cog_cycles=2493
+Orrin cognitive cycle 2494 complete.
+[main] pulse=195794 cog_cycles=2494
+Orrin cognitive cycle 2495 complete.
+[main] pulse=195895 cog_cycles=2496
+Orrin cognitive cycle 2496 complete.
+[main] pulse=195996 cog_cycles=2497
+Orrin cognitive cycle 2497 complete.
+Orrin cognitive cycle 2498 complete.
+[main] pulse=196098 cog_cycles=2498
+Orrin cognitive cycle 2499 complete.
+[main] pulse=196199 cog_cycles=2499
+[main] pulse=196299 cog_cycles=2500
+[main] pulse=196399 cog_cycles=2500
+Orrin cognitive cycle 2500 complete.
+[main] pulse=196500 cog_cycles=2500
+Orrin cognitive cycle 2501 complete.
+[main] pulse=196601 cog_cycles=2501
+Orrin cognitive cycle 2502 complete.
+[main] pulse=196702 cog_cycles=2503
+Orrin cognitive cycle 2503 complete.
+Orrin cognitive cycle 2504 complete.
+[main] pulse=196804 cog_cycles=2504
+Orrin cognitive cycle 2505 complete.
+[main] pulse=196905 cog_cycles=2505
+Orrin cognitive cycle 2506 complete.
+[main] pulse=197006 cog_cycles=2506
+Orrin cognitive cycle 2507 complete.
+[main] pulse=197107 cog_cycles=2507
+Orrin cognitive cycle 2508 complete.
+[main] pulse=197208 cog_cycles=2509
+Orrin cognitive cycle 2509 complete.
+[main] pulse=197309 cog_cycles=2510
+Orrin cognitive cycle 2510 complete.
+Orrin cognitive cycle 2511 complete.
+[main] pulse=197411 cog_cycles=2511
+Orrin cognitive cycle 2512 complete.
+[main] pulse=197512 cog_cycles=2512

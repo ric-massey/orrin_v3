@@ -1,0 +1,81 @@
+{
+  "built_at": "2026-07-18T13:47:38.469145+00:00",
+  "knowledge_domains": {
+    "EMOTIONAL": {
+      "rule_count": 5,
+      "mean_confidence": 0.576,
+      "mean_hits": 0.4,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.01,
+      "quality": 0.161
+    },
+    "PLANNING": {
+      "rule_count": 3,
+      "mean_confidence": 0.728,
+      "mean_hits": 22939.33,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.546
+    },
+    "GENERAL": {
+      "rule_count": 22,
+      "mean_confidence": 0.641,
+      "mean_hits": 0.09,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.11,
+      "quality": 0.278
+    },
+    "TECHNICAL": {
+      "rule_count": 18,
+      "mean_confidence": 0.692,
+      "mean_hits": 36.11,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.519
+    },
+    "COGNITIVE": {
+      "rule_count": 2,
+      "mean_confidence": 0.6,
+      "mean_hits": 0.0,
+      "prediction_error": 0.3945,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.04,
+      "quality": 0.167
+    }
+  },
+  "weak_areas": [
+    "EMOTIONAL",
+    "COGNITIVE",
+    "GENERAL"
+  ],
+  "strong_areas": [],
+  "rule_health": {
+    "total_rules": 67,
+    "active_rules": 50,
+    "tombstoned_rules": 17,
+    "mean_confidence": 0.656,
+    "pending_revisions": 0,
+    "grounding": {
+      "total_tracked": 0,
+      "mean_grounding": 0.5,
+      "well_grounded": 0,
+      "poorly_grounded": 0
+    }
+  },
+  "concept_coverage": [],
+  "causal_edges_total": 150,
+  "causal_by_domain": {
+    "GENERAL": 96,
+    "PLANNING": 49,
+    "COGNITIVE": 3,
+    "TECHNICAL": 1,
+    "SOCIAL": 1
+  },
+  "domain_error_rates": {
+    "COGNITIVE": 0.3945
+  }
+}

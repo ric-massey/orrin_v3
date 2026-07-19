@@ -29,6 +29,22 @@ from runtime.context import RuntimeContext
 _log = get_logger(__name__)
 
 
+def say(msg: str, *, err: bool = False) -> None:
+    """Print that cannot raise. During shutdown stdout may be a dead tee pipe
+    (run_orrin.sh's tee exits with the terminal), and a BrokenPipeError from the
+    first print in graceful_shutdown aborted the whole teardown once — subsystems
+    died unstopped and the run-lock was left engaged. The message still lands in
+    the runtime log either way."""
+    try:
+        print(msg, file=sys.stderr if err else sys.stdout, flush=True)
+    except Exception:
+        pass
+    try:
+        _log.info(msg)
+    except Exception:
+        pass
+
+
 def pulse_loop(ctx: RuntimeContext, stop: threading.Event) -> None:
     """The ~10 Hz heartbeat: tick the Pulse, publish cycle gauges, and sample
     fast metrics. Runs on the main thread in dev mode and in a daemon thread when
@@ -71,7 +87,10 @@ def pulse_loop(ctx: RuntimeContext, stop: threading.Event) -> None:
             try:
                 print(f"[main] pulse={n} cog_cycles={get_cycle_count()}")
             except Exception:
-                print(f"[main] pulse={n}")
+                try:
+                    print(f"[main] pulse={n}")
+                except Exception:
+                    pass  # dead stdout pipe must not kill the heartbeat
             last_log = 0
 
 
@@ -86,7 +105,7 @@ def stop_cognition(ctx: RuntimeContext) -> None:
     if ctx.cognition_stopped:
         return
     ctx.cognition_stopped = True
-    print("[main] stopping cognition (UI stays up)…")
+    say("[main] stopping cognition (UI stays up)…")
     try:
         ctx.stop_evt.set()
     except Exception as _e:
@@ -116,7 +135,7 @@ def stop_cognition(ctx: RuntimeContext) -> None:
         _get_tb().log("warn", "control", "Orrin stopped — cognition halted; the view stays up")
     except Exception as _e:
         _log.warning("silent except: %s", _e)
-    print("[main] cognition stopped; UI still running.")
+    say("[main] cognition stopped; UI still running.")
 
 
 def graceful_shutdown(ctx: RuntimeContext) -> None:
@@ -129,11 +148,11 @@ def graceful_shutdown(ctx: RuntimeContext) -> None:
     # Runs on the MAIN thread (the signal handler only sets a flag), so I/O here is
     # safe. This is the line whose absence in the run log proved a stop had skipped
     # graceful shutdown entirely.
-    print("[main] graceful shutdown — stopping subsystems…", flush=True)
+    say("[main] graceful shutdown — stopping subsystems…")
     # Watchdog: if teardown stalls (e.g. a daemon thread won't honor stop), force a
     # clean exit so the window never lingers and run_orrin.sh sees a 0 (no restart).
     _timeout = float(os.environ.get("ORRIN_SHUTDOWN_TIMEOUT_S", "12"))
-    _wd = threading.Timer(_timeout, lambda: (print(f"[main] shutdown exceeded {_timeout}s — forcing exit"), os._exit(0)))
+    _wd = threading.Timer(_timeout, lambda: (say(f"[main] shutdown exceeded {_timeout}s — forcing exit"), os._exit(0)))
     _wd.daemon = True
     _wd.start()
 
@@ -203,7 +222,7 @@ def graceful_shutdown(ctx: RuntimeContext) -> None:
             _log.warning("silent except")
 
     _wd.cancel()
-    print("[main] shutdown complete.")
+    say("[main] shutdown complete.")
 
 
 def wipe_to_newborn(ctx: RuntimeContext) -> None:
@@ -230,14 +249,14 @@ def wipe_to_newborn(ctx: RuntimeContext) -> None:
             try:
                 shutil.rmtree(p, ignore_errors=True) if p.is_dir() else p.unlink(missing_ok=True)
             except Exception as e:
-                print(f"[reset] could not remove {p}: {e}")
+                say(f"[reset] could not remove {p}: {e}")
     # SELF_CODE_DIR lives under DATA_DIR (already covered), but list it explicitly for
     # the relocated case; the rest are separate trees.
     for d in (SELF_CODE_DIR, STATE_DIR, LOGS_DIR, THINK_DIR, repo_root / "tmp"):
         try:
             shutil.rmtree(d, ignore_errors=True)
         except Exception as e:
-            print(f"[reset] could not remove {d}: {e}")
+            say(f"[reset] could not remove {d}: {e}")
     # Recreate the seed baseline where the data dir was relocated (no-op in-repo).
     _newborn.seed_if_newborn()
 
@@ -246,7 +265,7 @@ def reexec() -> None:
     """Replace this process image with a fresh launch — the only reliable way to get
     a true newborn, since the live brain holds his whole mind in RAM and would just
     re-persist it otherwise."""
-    print("[reset] re-launching as a newborn…", flush=True)
+    say("[reset] re-launching as a newborn…")
     try:
         # Frozen (PyInstaller): sys.argv[0] is already the app binary, so re-pass only
         # the extra args. From source: sys.argv[0] is the script and must be handed to
@@ -258,14 +277,14 @@ def reexec() -> None:
         os.execv(sys.executable, argv)
     except Exception as e:
         # If exec fails, exit non-zero so a supervisor (run_orrin.sh) restarts us.
-        print(f"[reset] re-exec failed ({e}); exiting for supervisor restart", file=sys.stderr)
+        say(f"[reset] re-exec failed ({e}); exiting for supervisor restart", err=True)
         os._exit(42)
 
 
 def reset_to_newborn(ctx: RuntimeContext) -> None:
     """The Reset Orrin action: stop thinking, flush + wipe his state to a newborn,
     then re-launch. Runs on a backend timer thread (off the HTTP response)."""
-    print("[reset] resetting Orrin to a newborn…", flush=True)
+    say("[reset] resetting Orrin to a newborn…")
     stop_cognition(ctx)  # idempotent: winds down the loop + goals/alive/fs daemons
     try:
         ctx.memory_daemon.stop(join=True)
@@ -283,7 +302,7 @@ def reset_to_newborn(ctx: RuntimeContext) -> None:
 def restart_process(ctx: RuntimeContext) -> None:
     """Restart WITHOUT wiping — used after a Mind Restore swaps his state on disk, so
     the new mind loads from a clean process. Same machinery as reset, minus the wipe."""
-    print("[restart] restarting Orrin (state preserved)…", flush=True)
+    say("[restart] restarting Orrin (state preserved)…")
     stop_cognition(ctx)
     try:
         ctx.memory_daemon.stop(join=True)

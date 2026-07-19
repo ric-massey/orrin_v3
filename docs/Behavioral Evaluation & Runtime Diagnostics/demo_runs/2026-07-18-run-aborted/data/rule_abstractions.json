@@ -1,0 +1,104 @@
+[
+  {
+    "timestamp": "2026-07-18T12:10:14.047265+00:00",
+    "parent_id": "b0de96c0d4",
+    "parent_name": "When event_recent:dream, event_recent:symbolic_dream_insight",
+    "child_ids": [
+      "b0de96c0d4",
+      "25afd9edb9",
+      "837b3530f4",
+      "56a9109318",
+      "86c6431c09",
+      "f7e8cd4868",
+      "068e910a5b"
+    ],
+    "conditions": [
+      "event_recent:dream",
+      "event_recent:symbolic_dream_insight"
+    ],
+    "conclusion": "'dream' events tend to recur in clusters."
+  },
+  {
+    "timestamp": "2026-07-18T12:10:14.050256+00:00",
+    "parent_id": "0ad7857627",
+    "parent_name": "When function:look_around",
+    "child_ids": [
+      "0ad7857627",
+      "1f33e98943",
+      "2e443d3ce7"
+    ],
+    "conditions": [
+      "function:look_around"
+    ],
+    "conclusion": "uncertainty falls"
+  },
+  {
+    "timestamp": "2026-07-18T12:10:14.052859+00:00",
+    "parent_id": "3be0aafb61",
+    "parent_name": "When function:assess_goal_progress",
+    "child_ids": [
+      "be01138cce",
+      "3be0aafb61",
+      "33469c9374",
+      "ab0f06fc18"
+    ],
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "conclusion": "impasse_signal rises"
+  },
+  {
+    "timestamp": "2026-07-18T12:10:14.056055+00:00",
+    "parent_id": "2b05b1b8c0",
+    "parent_name": "When affect_chronic:affiliation_signal, affect_chronic:satisfaction_signal",
+    "child_ids": [
+      "2b05b1b8c0",
+      "37e7b48255",
+      "18f1e77fab",
+      "9ae5757831",
+      "988461de50",
+      "0317f7efb1",
+      "345a13ceeb",
+      "b61daca123",
+      "0a76e8b070",
+      "15694b3345"
+    ],
+    "conditions": [
+      "affect_chronic:affiliation_signal",
+      "affect_chronic:satisfaction_signal"
+    ],
+    "conclusion": "When 'satisfaction_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning."
+  },
+  {
+    "timestamp": "2026-07-18T12:10:14.058886+00:00",
+    "parent_id": "8b4453820b",
+    "parent_name": "When function:generate_intrinsic_goals",
+    "child_ids": [
+      "e1fb6d1924",
+      "8b4453820b",
+      "25f5a7c3d3",
+      "ead11d214c"
+    ],
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "conclusion": "novelty_signal rises"
+  },
+  {
+    "timestamp": "2026-07-18T12:10:14.065408+00:00",
+    "parent_id": "c370f91e8c",
+    "parent_name": "When dream, processing",
+    "child_ids": [
+      "c370f91e8c",
+      "63b53bb9e7",
+      "770a9f7eaa",
+      "meta_536432bad0",
+      "60e793c32e"
+    ],
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "conclusion": "emotional reflection: [symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[symbolic] The"
+  }
+]

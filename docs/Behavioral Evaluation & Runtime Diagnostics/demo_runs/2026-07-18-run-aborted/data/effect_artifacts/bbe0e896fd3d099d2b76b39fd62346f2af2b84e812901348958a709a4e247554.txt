@@ -1,0 +1,25 @@
+[produce_and_check goal=g_774e10d37019 :code: Trace in my own code what drives 'action']
+import math
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+a, b = 11, 11
+# our gcd agrees with math.gcd, and gcd*lcm == a*b
+assert gcd(a, b) == math.gcd(a, b)
+g = gcd(a, b)
+assert g * (a * b // g) == a * b
+# a hand-written sort agrees with sorted()
+xs = [((i * 13 + 29) % 100) for i in range(11)]
+def isort(seq):
+    s = list(seq)
+    for i in range(1, len(s)):
+        k, j = s[i], i - 1
+        while j >= 0 and s[j] > k:
+            s[j + 1] = s[j]; j -= 1
+        s[j + 1] = k
+    return s
+assert isort(xs) == sorted(xs)
+print("CHECK_PASS gcd/lcm + insertion-sort match references")
+--- output ---
+CHECK_PASS gcd/lcm + insertion-sort match references

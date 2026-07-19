@@ -222,9 +222,9 @@ def run(ctx: RuntimeContext) -> None:
                 lifecycle.notify_still_thinking()
                 ctx.main_stop.wait()  # daemon brain threads keep advancing while we block
             else:
-                print("\n[main] window closed; shutting down…")
+                lifecycle.say("\n[main] window closed; shutting down…")
         except KeyboardInterrupt:
-            print("\n[main] Ctrl+C received; shutting down…")
+            lifecycle.say("\n[main] Ctrl+C received; shutting down…")
         finally:
             ctx.main_stop.set()
             _pulse_thread.join(timeout=5)
@@ -236,7 +236,7 @@ def run(ctx: RuntimeContext) -> None:
     try:
         lifecycle.pulse_loop(ctx, ctx.main_stop)
     except KeyboardInterrupt:
-        print("\n[main] Ctrl+C received; shutting down…")
+        lifecycle.say("\n[main] Ctrl+C received; shutting down…")
     finally:
         ctx.main_stop.set()
         lifecycle.graceful_shutdown(ctx)

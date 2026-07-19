@@ -1,0 +1,105 @@
+[
+  {
+    "id": "mr_prefer_hits",
+    "name": "Prefer rules with more past hits",
+    "condition": "ambiguous",
+    "action": "prefer_hits",
+    "priority": 3,
+    "reward": 0.0,
+    "applications": 14407,
+    "source": "builtin",
+    "rationale": "Rules that have been applied more often have proven themselves in practice."
+  },
+  {
+    "id": "a7b7e007dd",
+    "name": "Trust symbolic for TECHNICAL queries",
+    "condition": "ambiguous",
+    "action": "prefer_specific",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "symbolic_self_model",
+    "rationale": "TECHNICAL domain has quality=0.67 — symbolic resolution preferred",
+    "created_at": "2026-06-18T19:22:47.638395+00:00"
+  },
+  {
+    "id": "f329c074f5",
+    "name": "Defer LLM for weak EMOTIONAL queries",
+    "condition": "low_conf",
+    "action": "defer_llm",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "symbolic_self_model",
+    "rationale": "EMOTIONAL domain has quality=0.30 — LLM preferred",
+    "created_at": "2026-06-14T18:31:43.576672+00:00"
+  },
+  {
+    "id": "0e7f6905f5",
+    "name": "Defer LLM for weak GENERAL queries",
+    "condition": "low_conf",
+    "action": "defer_llm",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "symbolic_self_model",
+    "rationale": "GENERAL domain has quality=0.17 — LLM preferred",
+    "created_at": "2026-06-13T18:20:26.189235+00:00"
+  },
+  {
+    "id": "mr_flag_contradiction",
+    "name": "Flag conflict when top-2 rules contradict",
+    "condition": "conflict",
+    "action": "flag_conflict",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "builtin",
+    "rationale": "Contradicting rules signal a knowledge gap — surface it rather than picking arbitrarily."
+  },
+  {
+    "id": "1ea22f3ea8",
+    "name": "Defer LLM for weak TECHNICAL queries",
+    "condition": "low_conf",
+    "action": "defer_llm",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "symbolic_self_model",
+    "rationale": "TECHNICAL domain has quality=0.18 — LLM preferred",
+    "created_at": "2026-06-12T06:07:03.940549+00:00"
+  },
+  {
+    "id": "mr_defer_low_conf",
+    "name": "Defer to LLM when best rule confidence < 0.4",
+    "condition": "low_conf",
+    "action": "defer_llm",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "builtin",
+    "rationale": "Heavily penalized rules should not drive responses — open the LLM gate."
+  },
+  {
+    "id": "mr_prefer_high_conf",
+    "name": "Prefer higher-confidence rule when confidence gap > 0.3",
+    "condition": "ambiguous",
+    "action": "prefer_conf",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 0,
+    "source": "builtin",
+    "rationale": "Confidence tracks past penalization; low-conf rules have been wrong before."
+  },
+  {
+    "id": "mr_prefer_specific",
+    "name": "More-specific rule beats general on same topic",
+    "condition": "ambiguous",
+    "action": "prefer_specific",
+    "priority": 40,
+    "reward": 0.0,
+    "applications": 8,
+    "source": "builtin",
+    "rationale": "More conditions = more tightly scoped = less likely to over-generalize."
+  }
+]

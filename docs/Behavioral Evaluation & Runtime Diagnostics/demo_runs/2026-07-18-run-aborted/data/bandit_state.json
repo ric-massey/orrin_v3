@@ -1,0 +1,764 @@
+{
+  "buckets": {
+    "exploration_drive": {
+      "look_outward": {
+        "n": 449,
+        "q": 0.43214865722168805
+      },
+      "generate_concepts_from_memories": {
+        "n": 1,
+        "q": 0.038368000000000006
+      },
+      "search_own_files": {
+        "n": 28,
+        "q": 0.38162874766259935
+      },
+      "survey_environment": {
+        "n": 2,
+        "q": 0.10968993131600002
+      },
+      "look_around": {
+        "n": 84,
+        "q": 0.38482490047590867
+      },
+      "maybe_surface_association": {
+        "n": 1,
+        "q": 0.040064
+      },
+      "generate_intrinsic_goals": {
+        "n": 950,
+        "q": 0.4463073510015529
+      },
+      "research_topic": {
+        "n": 2306,
+        "q": 0.6272559945785451
+      },
+      "thread_continue": {
+        "n": 586,
+        "q": 0.49577472444708887
+      },
+      "compose_consolidation": {
+        "n": 3,
+        "q": 0.18258462337877335
+      },
+      "read_a_book": {
+        "n": 247,
+        "q": 0.5352505211469886
+      },
+      "simulate_conflicting_beliefs": {
+        "n": 3,
+        "q": 0.21109671465209598
+      },
+      "read_text": {
+        "n": 4,
+        "q": 0.3075218011805867
+      },
+      "reflect_on_cognition_patterns": {
+        "n": 1,
+        "q": 0.039165
+      },
+      "read_rss": {
+        "n": 1,
+        "q": 0.0742816
+      },
+      "seek_novelty": {
+        "n": 16,
+        "q": 0.29057394104328227
+      },
+      "fetch_wikipedia": {
+        "n": 4,
+        "q": 0.2293433737291492
+      },
+      "detect_tensions": {
+        "n": 2,
+        "q": 0.15326633307333332
+      },
+      "assess_goal_progress": {
+        "n": 257,
+        "q": 0.35076390829627047
+      },
+      "attend_goal": {
+        "n": 364,
+        "q": 0.5529976809313597
+      },
+      "pick_book": {
+        "n": 1,
+        "q": 0.0730124
+      },
+      "wikipedia_search": {
+        "n": 154,
+        "q": 0.5300905398863092
+      },
+      "leave_note": {
+        "n": 107,
+        "q": 0.5097115511861592
+      },
+      "reflect_on_missed_goals": {
+        "n": 2,
+        "q": 0.164567469888
+      },
+      "periodic_self_review": {
+        "n": 2,
+        "q": 0.0735123795
+      },
+      "idle_consolidation_cycle": {
+        "n": 2,
+        "q": 0.3300938
+      },
+      "introspective_planning": {
+        "n": 5,
+        "q": 0.48209896160906224
+      },
+      "fetch_and_read": {
+        "n": 75,
+        "q": 0.6156351648486219
+      },
+      "consolidate_language": {
+        "n": 1,
+        "q": 0.07183104
+      },
+      "produce_and_check": {
+        "n": 4,
+        "q": 0.27637842887047903
+      },
+      "extract_semantic_facts": {
+        "n": 2,
+        "q": 0.088113812668544
+      },
+      "imagine_opposite_self": {
+        "n": 2,
+        "q": 0.12402768023072223
+      },
+      "synthesize_from_gap": {
+        "n": 2,
+        "q": 0.13355795810468535
+      },
+      "mark_private": {
+        "n": 1,
+        "q": 0.06963962625
+      },
+      "reflect_on_conversation_patterns": {
+        "n": 1,
+        "q": 0.07435254208888889
+      },
+      "evaluate_recent_cognition": {
+        "n": 3,
+        "q": 0.1524582395135442
+      },
+      "reflect_on_emotion_sensitivity": {
+        "n": 2,
+        "q": 0.14830817528759754
+      },
+      "reflect_on_effectiveness": {
+        "n": 1,
+        "q": 0.03899
+      },
+      "reflect_as_agents": {
+        "n": 2,
+        "q": 0.145706239480656
+      },
+      "maybe_surface_regret": {
+        "n": 2,
+        "q": 0.12116036223555557
+      },
+      "consolidate_from_long_memory": {
+        "n": 1,
+        "q": 0.07132111754444444
+      },
+      "learn_from_reading": {
+        "n": 1,
+        "q": 0.07702230211666666
+      },
+      "reflect_on_internal_voices": {
+        "n": 2,
+        "q": 0.07450920750000001
+      },
+      "detect_memory_contradictions": {
+        "n": 1,
+        "q": 0.040494999999999996
+      },
+      "audit_reflective_claims": {
+        "n": 2,
+        "q": 0.07304535000000001
+      },
+      "grep_files": {
+        "n": 14,
+        "q": 0.44308622050529234
+      },
+      "reflect_on_think": {
+        "n": 4,
+        "q": 0.22797660167349157
+      },
+      "reflect_on_outcomes": {
+        "n": 2,
+        "q": 0.07326368
+      },
+      "reflect_on_opinions": {
+        "n": 1,
+        "q": 0.04172
+      },
+      "narrative_update": {
+        "n": 219,
+        "q": 0.7452364915213958
+      },
+      "read_vitals": {
+        "n": 1,
+        "q": 0.03829
+      },
+      "reflect_on_desire": {
+        "n": 3,
+        "q": 0.23406423493251116
+      },
+      "decide_to_write_code": {
+        "n": 38,
+        "q": 0.6482856460401542
+      },
+      "write_desktop_note": {
+        "n": 4,
+        "q": 0.17737103833000695
+      },
+      "run_embodied_observation": {
+        "n": 5,
+        "q": 0.20103312634605106
+      },
+      "narrate_experience": {
+        "n": 4,
+        "q": 0.2017966679171806
+      },
+      "search_files": {
+        "n": 4,
+        "q": 0.2219369692412007
+      },
+      "writability_probe": {
+        "n": 1,
+        "q": 0.06653280000000002
+      },
+      "compose_section": {
+        "n": 9,
+        "q": 0.42636092583832863
+      },
+      "exploration_drive_loop": {
+        "n": 2,
+        "q": 0.15510304264
+      },
+      "fail_overdue_artifact_goals": {
+        "n": 1,
+        "q": 0.05680672000000001
+      },
+      "announce_to_dashboard": {
+        "n": 1,
+        "q": 0.06779910400000001
+      },
+      "lifespan_rolled": {
+        "n": 1,
+        "q": 0.08503039999999999
+      },
+      "reflect_on_self_beliefs": {
+        "n": 1,
+        "q": 0.03913
+      },
+      "reflect_on_internal_agents": {
+        "n": 1,
+        "q": 0.037415
+      }
+    },
+    "impasse_signal": {
+      "assess_goal_progress": {
+        "n": 2,
+        "q": 0.07967455999999999
+      },
+      "search_own_files": {
+        "n": 3,
+        "q": 0.10077501068669999
+      },
+      "look_outward": {
+        "n": 3,
+        "q": 0.1060735473744
+      },
+      "thread_continue": {
+        "n": 2,
+        "q": 0.07554611359999999
+      },
+      "attend_goal": {
+        "n": 2,
+        "q": 0.17031118832
+      },
+      "generate_intrinsic_goals": {
+        "n": 5,
+        "q": 0.2125924801942203
+      },
+      "attempt_regulation": {
+        "n": 1,
+        "q": 0.10962728000000001
+      },
+      "research_topic": {
+        "n": 1,
+        "q": 0.025106371199999998
+      }
+    },
+    "social_deficit": {},
+    "stable": {
+      "leave_note": {
+        "n": 1612,
+        "q": 0.4621466078399856
+      },
+      "look_outward": {
+        "n": 902,
+        "q": 0.15732361220893445
+      },
+      "look_around": {
+        "n": 240,
+        "q": 0.4104148929276541
+      },
+      "generate_intrinsic_goals": {
+        "n": 8337,
+        "q": 0.5070379722515354
+      },
+      "assess_goal_progress": {
+        "n": 6204,
+        "q": 0.3475375309209792
+      },
+      "search_own_files": {
+        "n": 49,
+        "q": 0.3782605796531542
+      },
+      "evaluate_recent_cognition": {
+        "n": 7,
+        "q": 0.437717175876595
+      },
+      "attend_goal": {
+        "n": 6225,
+        "q": 0.48267320362268873
+      },
+      "decide_to_write_code": {
+        "n": 438,
+        "q": 0.6597858915905046
+      },
+      "consolidate_language": {
+        "n": 21,
+        "q": 0.53786233360429
+      },
+      "reflect_on_growth_history": {
+        "n": 9,
+        "q": 0.3474525095335562
+      },
+      "pick_book": {
+        "n": 14,
+        "q": 0.4903485901046068
+      },
+      "setpoint_regulation_reward": {
+        "n": 1189,
+        "q": 0.1690075693860387
+      },
+      "simulate_conflicting_beliefs": {
+        "n": 18,
+        "q": 0.5293852305632247
+      },
+      "reflect_on_emotion_sensitivity": {
+        "n": 9,
+        "q": 0.5019967169772981
+      },
+      "thread_continue": {
+        "n": 7049,
+        "q": 0.44914218874995865
+      },
+      "process_regret": {
+        "n": 18,
+        "q": 0.40990424024305194
+      },
+      "read_rss": {
+        "n": 28,
+        "q": 0.38188566234976873
+      },
+      "seek_novelty": {
+        "n": 15,
+        "q": 0.11087042020819929
+      },
+      "reflect_on_internal_agents": {
+        "n": 8,
+        "q": 0.2062090654800508
+      },
+      "notify_user": {
+        "n": 15,
+        "q": 0.443428075960149
+      },
+      "read_vitals": {
+        "n": 10,
+        "q": 0.24126188760099854
+      },
+      "extract_semantic_facts": {
+        "n": 14,
+        "q": 0.42144619673078587
+      },
+      "summarize_relationships": {
+        "n": 12,
+        "q": 0.25525178409322674
+      },
+      "survey_environment": {
+        "n": 6,
+        "q": 0.2929987002139598
+      },
+      "grep_files": {
+        "n": 9,
+        "q": 0.2199838265915708
+      },
+      "compose_consolidation": {
+        "n": 24,
+        "q": 0.4512334959312081
+      },
+      "research_topic": {
+        "n": 9559,
+        "q": 0.6129432806529334
+      },
+      "produce_and_check": {
+        "n": 38,
+        "q": 0.49609616300762704
+      },
+      "read_a_book": {
+        "n": 1038,
+        "q": 0.51869323498727
+      },
+      "detect_memory_contradictions": {
+        "n": 9,
+        "q": 0.30437096433847766
+      },
+      "fetch_and_read": {
+        "n": 1215,
+        "q": 0.5539837788137386
+      },
+      "maybe_surface_association": {
+        "n": 12,
+        "q": 0.42353972757135
+      },
+      "learn_from_reading": {
+        "n": 26,
+        "q": 0.5724943966085123
+      },
+      "current_awareness": {
+        "n": 8,
+        "q": 0.32988997240189355
+      },
+      "consolidate_from_long_memory": {
+        "n": 13,
+        "q": 0.37547169117361706
+      },
+      "wikipedia_search": {
+        "n": 206,
+        "q": 0.5361683432243902
+      },
+      "mark_private": {
+        "n": 13,
+        "q": 0.4023248168011033
+      },
+      "narrative_update": {
+        "n": 3183,
+        "q": 0.69004215886557
+      },
+      "reflect_on_conversation_patterns": {
+        "n": 10,
+        "q": 0.4169543648497238
+      },
+      "reflect_on_internal_voices": {
+        "n": 8,
+        "q": 0.19768950985773173
+      },
+      "associative_recall": {
+        "n": 11,
+        "q": 0.40447922577304124
+      },
+      "detect_tensions": {
+        "n": 20,
+        "q": 0.5017054310204315
+      },
+      "reflect_on_missed_goals": {
+        "n": 22,
+        "q": 0.5195093822656133
+      },
+      "periodic_self_review": {
+        "n": 10,
+        "q": 0.21979688413262638
+      },
+      "idle_consolidation_cycle": {
+        "n": 9,
+        "q": 0.3385848733048639
+      },
+      "read_book": {
+        "n": 9,
+        "q": 0.3849958487571201
+      },
+      "reflect_on_self_beliefs": {
+        "n": 16,
+        "q": 0.32051913027780976
+      },
+      "maybe_surface_regret": {
+        "n": 9,
+        "q": 0.32092072896123686
+      },
+      "imagine_opposite_self": {
+        "n": 10,
+        "q": 0.4064987511501493
+      },
+      "synthesize_from_gap": {
+        "n": 14,
+        "q": 0.383028783546178
+      },
+      "audit_reflective_claims": {
+        "n": 8,
+        "q": 0.21127805108239237
+      },
+      "introspective_planning": {
+        "n": 6,
+        "q": 0.27076698582119946
+      },
+      "list_books": {
+        "n": 8,
+        "q": 0.33472242632453225
+      },
+      "reflect_as_agents": {
+        "n": 8,
+        "q": 0.3370119329617985
+      },
+      "generate_concepts_from_memories": {
+        "n": 7,
+        "q": 0.30101473061639034
+      },
+      "reflect_on_outcomes": {
+        "n": 9,
+        "q": 0.22546353015106155
+      },
+      "read_text": {
+        "n": 5,
+        "q": 0.23981346499074793
+      },
+      "reflect_on_think": {
+        "n": 82,
+        "q": 0.5849636737692355
+      },
+      "write_desktop_note": {
+        "n": 40,
+        "q": 0.6217552486505573
+      },
+      "run_symbolic_experiments": {
+        "n": 10,
+        "q": 0.32646164054836163
+      },
+      "fetch_wikipedia": {
+        "n": 4,
+        "q": 0.20458821968712929
+      },
+      "reflect_on_effectiveness": {
+        "n": 9,
+        "q": 0.21162347702798975
+      },
+      "reflect_on_cognition_patterns": {
+        "n": 8,
+        "q": 0.2037651686391519
+      },
+      "reflect_on_desire": {
+        "n": 21,
+        "q": 0.5153616716223732
+      },
+      "adapt_subgoals": {
+        "n": 58,
+        "q": 0.4950665790016
+      },
+      "reflect_on_opinions": {
+        "n": 7,
+        "q": 0.18568280536582743
+      },
+      "run_embodied_observation": {
+        "n": 99,
+        "q": 0.5315707483836698
+      },
+      "narrate_experience": {
+        "n": 95,
+        "q": 0.49119762029275665
+      },
+      "announce_to_dashboard": {
+        "n": 14,
+        "q": 0.5406440771873929
+      },
+      "record_active_now": {
+        "n": 4,
+        "q": 0.4229642735104
+      },
+      "search_files": {
+        "n": 4,
+        "q": 0.15468195762707235
+      },
+      "simulate_new_cognitive_abilities": {
+        "n": 2,
+        "q": 0.04505186816
+      },
+      "weave_threads": {
+        "n": 4,
+        "q": 0.394213639712
+      },
+      "exploration_drive_loop": {
+        "n": 12,
+        "q": 0.45397204770299293
+      },
+      "writability_probe": {
+        "n": 3,
+        "q": 0.15860925509952004
+      },
+      "drop_edge": {
+        "n": 1,
+        "q": 0.056592960000000005
+      },
+      "review_failures_internal": {
+        "n": 24,
+        "q": 0.47204088921278886
+      },
+      "reconcile_identity": {
+        "n": 20,
+        "q": 0.47203864507176246
+      },
+      "resolve_conflicts": {
+        "n": 5,
+        "q": 0.2521141630495658
+      },
+      "compose_section": {
+        "n": 78,
+        "q": 0.49816651294041026
+      },
+      "run_embodied_cycle": {
+        "n": 8,
+        "q": 0.3210123067797311
+      },
+      "evolve_core_value": {
+        "n": 2,
+        "q": 0.09591754156888
+      },
+      "make_candidate": {
+        "n": 2,
+        "q": 0.03680939090945743
+      },
+      "credit_objectives": {
+        "n": 5,
+        "q": 0.21000951363296957
+      },
+      "fail_overdue_artifact_goals": {
+        "n": 2,
+        "q": 0.10355420969600002
+      },
+      "lifespan_rolled": {
+        "n": 3,
+        "q": 0.22145812075119997
+      },
+      "inject_local_search_signal": {
+        "n": 1,
+        "q": 0.09125127999999999
+      },
+      "grounded_experience": {
+        "n": 4,
+        "q": 0.38876216480000003
+      },
+      "check_user_presence": {
+        "n": 2,
+        "q": 0.0652393875
+      },
+      "experience_corpus": {
+        "n": 1,
+        "q": 0.05894424280888889
+      }
+    }
+  },
+  "counts": {
+    "leave_note": 1719,
+    "look_outward": 1354,
+    "look_around": 324,
+    "generate_concepts_from_memories": 8,
+    "search_own_files": 80,
+    "survey_environment": 8,
+    "maybe_surface_association": 13,
+    "generate_intrinsic_goals": 9292,
+    "assess_goal_progress": 6463,
+    "evaluate_recent_cognition": 10,
+    "attend_goal": 6591,
+    "decide_to_write_code": 476,
+    "consolidate_language": 22,
+    "reflect_on_growth_history": 9,
+    "pick_book": 15,
+    "setpoint_regulation_reward": 1189,
+    "research_topic": 11866,
+    "simulate_conflicting_beliefs": 21,
+    "reflect_on_emotion_sensitivity": 11,
+    "thread_continue": 7637,
+    "process_regret": 18,
+    "read_rss": 29,
+    "compose_consolidation": 27,
+    "read_a_book": 1285,
+    "seek_novelty": 31,
+    "reflect_on_internal_agents": 9,
+    "notify_user": 15,
+    "read_vitals": 11,
+    "extract_semantic_facts": 16,
+    "summarize_relationships": 12,
+    "read_text": 9,
+    "reflect_on_cognition_patterns": 9,
+    "grep_files": 23,
+    "produce_and_check": 42,
+    "fetch_wikipedia": 8,
+    "detect_tensions": 22,
+    "detect_memory_contradictions": 10,
+    "fetch_and_read": 1290,
+    "learn_from_reading": 27,
+    "current_awareness": 8,
+    "consolidate_from_long_memory": 14,
+    "wikipedia_search": 360,
+    "mark_private": 14,
+    "narrative_update": 3402,
+    "reflect_on_missed_goals": 24,
+    "reflect_on_conversation_patterns": 11,
+    "reflect_on_internal_voices": 10,
+    "associative_recall": 11,
+    "periodic_self_review": 12,
+    "idle_consolidation_cycle": 11,
+    "read_book": 9,
+    "reflect_on_self_beliefs": 17,
+    "maybe_surface_regret": 11,
+    "imagine_opposite_self": 12,
+    "introspective_planning": 11,
+    "synthesize_from_gap": 16,
+    "audit_reflective_claims": 10,
+    "list_books": 8,
+    "reflect_as_agents": 10,
+    "reflect_on_outcomes": 11,
+    "reflect_on_think": 86,
+    "write_desktop_note": 44,
+    "run_symbolic_experiments": 10,
+    "reflect_on_effectiveness": 10,
+    "reflect_on_desire": 24,
+    "adapt_subgoals": 58,
+    "reflect_on_opinions": 8,
+    "run_embodied_observation": 104,
+    "narrate_experience": 99,
+    "announce_to_dashboard": 15,
+    "record_active_now": 4,
+    "search_files": 8,
+    "simulate_new_cognitive_abilities": 2,
+    "weave_threads": 4,
+    "exploration_drive_loop": 14,
+    "writability_probe": 4,
+    "drop_edge": 1,
+    "review_failures_internal": 24,
+    "reconcile_identity": 20,
+    "resolve_conflicts": 5,
+    "compose_section": 87,
+    "run_embodied_cycle": 8,
+    "evolve_core_value": 2,
+    "make_candidate": 2,
+    "credit_objectives": 5,
+    "fail_overdue_artifact_goals": 3,
+    "lifespan_rolled": 4,
+    "attempt_regulation": 1,
+    "inject_local_search_signal": 1,
+    "grounded_experience": 4,
+    "check_user_presence": 2,
+    "experience_corpus": 1
+  },
+  "suppressed": {
+    "narrative_update": 2
+  }
+}

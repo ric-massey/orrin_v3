@@ -1,0 +1,22 @@
+{
+  "cycle": 0.5,
+  "attend_goal": 0.0701,
+  "look_outward": 0.22,
+  "assess_goal_progress": 0.0037,
+  "generate_intrinsic_goals": 0.0333,
+  "thread_continue": 0.0188,
+  "look_around": 0.1412,
+  "search_own_files": 0.5,
+  "research_topic": 0.02,
+  "check_user_presence": 0.25,
+  "seek_novelty": 0.3977,
+  "read_a_book": 0.0216,
+  "narrative_update": 0.1361,
+  "process_regret": 0.25,
+  "reflect_on_self_beliefs": 0.5,
+  "leave_note": 0.2322,
+  "wikipedia_search": 0.1271,
+  "make_candidate": 0.5,
+  "experience_corpus": 0.5,
+  "reflect_on_internal_agents": 0.5
+}

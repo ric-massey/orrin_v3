@@ -1,0 +1,7 @@
+{
+  "llm_enabled": false,
+  "thinking": "gpt-4.1",
+  "human_facing": "gpt-4.1",
+  "fast": "gpt-4o-mini",
+  "deep": "gpt-4.1"
+}

@@ -1,0 +1,2 @@
+
+[2026-07-18T13:47:02.379251Z] [invoke_cognition] make_candidate needs ['kind', 'direction'] — not directly dispatchable; skipping

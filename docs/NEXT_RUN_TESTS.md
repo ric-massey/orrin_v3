@@ -166,6 +166,12 @@ purged; see run doc §item 6); (e) confirm the run-lock script fix at launch;
 silence in segment 2 (R9-F1 over-suppression?); (g) reuse ≥ 8 stands; reset
 should clear stale `data/goals/artifacts/` leftovers.
 
+> **Run 10 attempt 1 (2026-07-18): ABORTED, gate untested.** 2,671 cycles
+> (~1.7 h) on `b175ed2`, killed externally — terminal close tripped
+> `BrokenPipeError` in `graceful_shutdown` (`runtime/lifecycle.py:132`) which
+> also skipped run-lock cleanup. Capture in `demo_runs/2026-07-18-run-aborted/`;
+> shutdown prints made pipe-safe; this gate rolls over unchanged to the relaunch.
+
 **Added 2026-07-18 from the whole-system skeptic pass** (run doc §items
 10–14, with per-item observables): (h) **reward sees impossibility** — a
 gate-blocked action (this life: `decide_to_write_code`, blocked 369/369,

@@ -1,0 +1,103 @@
+{
+  "history": [
+    {
+      "ts": "2026-07-18T12:04:57.920642+00:00",
+      "cycle": 9,
+      "emotion": "uncertainty",
+      "intensity": 0.704,
+      "strategy": "grounding",
+      "prob": 0.906,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.109
+    },
+    {
+      "ts": "2026-07-18T12:05:17.836168+00:00",
+      "cycle": 23,
+      "emotion": "impasse_signal",
+      "intensity": 0.649,
+      "strategy": "reappraisal",
+      "prob": 0.869,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.294
+    },
+    {
+      "ts": "2026-07-18T12:08:42.833689+00:00",
+      "cycle": 155,
+      "emotion": "uncertainty",
+      "intensity": 0.555,
+      "strategy": "grounding",
+      "prob": 0.869,
+      "outcome": "succeeded",
+      "measured": "ineffective",
+      "measured_delta": 0.004
+    },
+    {
+      "ts": "2026-07-18T12:13:49.078929+00:00",
+      "cycle": 334,
+      "emotion": "impasse_signal",
+      "intensity": 0.573,
+      "strategy": "reappraisal",
+      "prob": 0.856,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.305
+    },
+    {
+      "ts": "2026-07-18T13:14:01.153031+00:00",
+      "cycle": 2119,
+      "emotion": "uncertainty",
+      "intensity": 0.563,
+      "strategy": "grounding",
+      "prob": 0.898,
+      "outcome": "failed",
+      "measured": "ineffective",
+      "measured_delta": -0.091
+    },
+    {
+      "ts": "2026-07-18T13:30:59.983526+00:00",
+      "cycle": 2308,
+      "emotion": "uncertainty",
+      "intensity": 0.599,
+      "strategy": "grounding",
+      "prob": 0.869,
+      "outcome": "failed",
+      "measured": "ineffective",
+      "measured_delta": -0.009
+    },
+    {
+      "ts": "2026-07-18T13:37:10.620761+00:00",
+      "cycle": 2413,
+      "emotion": "uncertainty",
+      "intensity": 0.553,
+      "strategy": "grounding",
+      "prob": 0.856,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.179
+    },
+    {
+      "ts": "2026-07-18T13:42:26.742019+00:00",
+      "cycle": 2540,
+      "emotion": "uncertainty",
+      "intensity": 0.564,
+      "strategy": "grounding",
+      "prob": 0.844,
+      "outcome": "failed",
+      "measured": "ineffective",
+      "measured_delta": 0.014
+    }
+  ],
+  "last_cycle": 2540,
+  "consec_ineffective": {
+    "uncertainty": 1
+  },
+  "emotion_stop_counts": {},
+  "strategy_cooldowns": {
+    "grounding": 2575
+  },
+  "emotion_stops": {
+    "uncertainty": 2413
+  }
+}

@@ -1,0 +1,47 @@
+[
+ {
+  "id": "87e442a2-85b9-4933-8e84-2e3d539c21fb",
+  "intention": "pursue: Open question: What do you\nthink?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "6ad5a9dc-f81c-441b-a6e9-66263727bbaa",
+  "formed_ts": 1784376428.139905
+ },
+ {
+  "id": "f8ce086e-a775-4ad9-b22d-1c1c3c516d92",
+  "intention": "pursue: Understand mathematics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "83f75403-33f3-412d-b7db-61d05f95416e",
+  "formed_ts": 1784382018.615884
+ },
+ {
+  "id": "6fcf7f29-5f5c-4609-810f-8d9ab9a04102",
+  "intention": "pursue: Trace in my own code what drives 'action'",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "dd258164-a246-4e23-8da0-a586a882a889",
+  "formed_ts": 1784382025.908364
+ },
+ {
+  "id": "18a8b907-5f37-4fcc-990b-1f2079f4dc7a",
+  "intention": "pursue: Trace in my own code what drives 'host machine is quiet'",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "412f362a-e90d-4194-b12a-1c4f13302c0d",
+  "formed_ts": 1784382068.8961558
+ },
+ {
+  "id": "46a74544-a344-4072-8146-b41b5b3732aa",
+  "intention": "pursue: Understand history more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ed3d2380-126b-4571-94f9-180f0c7ff670",
+  "formed_ts": 1784382111.4868119
+ }
+]

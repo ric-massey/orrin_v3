@@ -76,10 +76,27 @@ _RECOMMIT_BLOCK_PULLS = 300     # pulls of driver-slot ineligibility
 # stale_cycles 120 → 10,291. A driver that holds the slot this many cycles with
 # ZERO credited effect (credit zeroes stale_cycles, so this can only trip on
 # genuine non-production) arms its OWN F4 block and yields — no rival required.
+# C2 (Run 11 §6.1) DEMOTES this to a dead-man backstop: neglect pressure below
+# is the healthy displacement mechanism; the refractory only exists for the
+# life where that economy somehow fails (it never fired in Runs 8–10).
 _STALE_REFRACTORY_CYCLES = 250   # ~130 cycles past the −15 stale saturation:
                                  # the relative machinery gets first refusal,
                                  # then the absolute lever forces the yield.
 _STALE_REFRACTORY_ENABLED = os.environ.get("ORRIN_STALE_REFRACTORY", "1") != "0"
+
+# C2 (Run 11 §6.1) — ASPIRATION NEGLECT PRESSURE, the antagonist the timer
+# clamps stood in for. Every candidate offered but NOT chosen accrues neglect;
+# being served (holding the slot, or a credited effect) drains it. Neglect adds
+# POSITIVE pull to commit_score, so an unserved direction grows until it
+# displaces the incumbent — monopoly becomes economically impossible instead of
+# administratively forbidden. Sized to beat the maximum value gap (±5 each side
+# = 10) plus incumbency (+2) at saturation, so displacement is GUARANTEED by
+# ~_NEGLECT_FULL_PULLS even against a perfect incumbent — but a well-earning
+# incumbent holds proportionally longer (economics, not a timer).
+_NEGLECT_PRESSURE_ENABLED = os.environ.get("ORRIN_NEGLECT_PRESSURE", "1") != "0"
+_W_NEGLECT = 13.0
+_NEGLECT_FULL_PULLS = 200.0    # pulls-not-chosen at which neglect saturates
+_NEGLECT_SERVE_DECAY = 0.25    # being chosen drains fast (×0.25/pull held)
 
 # F3a: real work on the goal is counter-evidence to avoidance only when the
 # work actually relates to the goal; unrelated output is not.
@@ -172,9 +189,24 @@ def note_driver_selected(chosen_id: str, candidate_ids: Iterable[str]) -> None:
                     "stale_cycles": float(row.get("stale_cycles", 0.0)),
                     "avoid_streak": float(row.get("avoid_streak", 0.0)),
                 }])[-200:]
+            # C2: the holder is being SERVED — its neglect drains fast.
+            if _NEGLECT_PRESSURE_ENABLED:
+                row["neglect_pulls"] = round(
+                    float(row.get("neglect_pulls", 0.0) or 0.0) * _NEGLECT_SERVE_DECAY, 3)
             for cid in candidate_ids:
                 cid = str(cid or "")
-                if not cid or cid == chosen or cid not in goals:
+                if not cid or cid == chosen:
+                    continue
+                # C2: an offered-but-unchosen candidate accrues neglect even on
+                # its first appearance (create the row); the pull grows until
+                # displacement, then serving drains it — the restoring force in
+                # BOTH directions (§6.0's homeostat, not a one-way slide).
+                if _NEGLECT_PRESSURE_ENABLED:
+                    r = _row(goals, cid)
+                    r["neglect_pulls"] = min(
+                        _NEGLECT_FULL_PULLS,
+                        float(r.get("neglect_pulls", 0.0) or 0.0) + 1.0)
+                elif cid not in goals:
                     continue
                 r = goals[cid]
                 r["stale_cycles"] = round(float(r.get("stale_cycles", 0.0)) * _RELEASE_DECAY, 3)
@@ -241,6 +273,9 @@ def note_goal_credit(goal_id: str, significance: float, *,
             old = float(row.get("value_ema", 0.5))
             row["value_ema"] = round((1.0 - _VALUE_ALPHA) * old + _VALUE_ALPHA * sample, 4)
             row["stale_cycles"] = 0.0
+            # C2: a credited effect IS service — the neglect pull is satisfied.
+            if _NEGLECT_PRESSURE_ENABLED:
+                row["neglect_pulls"] = 0.0
             if alignment is None or align >= _AVOID_RELIEF_MIN_ALIGNMENT:
                 row["avoid_streak"] = round(float(row.get("avoid_streak", 0.0)) * 0.5, 3)
             row["last_ts"] = time.time()
@@ -289,6 +324,11 @@ def commit_score(goal: Dict[str, Any], *, tier_weight: int, priority_rank: int) 
         adjust = (_W_VALUE * (value - 0.5)
                   - _W_STALE * stale_norm
                   - _W_AVOID * avoid_norm)
+        # C2: unserved pull. At saturation (+13) it beats the widest possible
+        # value gap (10) plus incumbency (2) — displacement by economics.
+        if _NEGLECT_PRESSURE_ENABLED:
+            neglect = float((row or {}).get("neglect_pulls", 0.0) or 0.0)
+            adjust += _W_NEGLECT * min(1.0, neglect / _NEGLECT_FULL_PULLS)
         # F4: no incumbency for a blocked goal — the block is temporal and
         # unconditional, hysteresis be damned.
         if gid == str(d.get("driver") or "") and float(

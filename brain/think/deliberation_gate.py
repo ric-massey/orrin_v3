@@ -21,6 +21,7 @@ genuine idle time between dispatches.
 from __future__ import annotations
 from brain.cognition.global_workspace import bound_goal
 from collections import deque
+import os
 from typing import Tuple
 
 from brain.utils.get_cycle_count import get_cycle_count
@@ -33,12 +34,52 @@ from brain.utils.log import log_activity
 # hard backstop — no matter what, he thinks at least once every N cycles.
 
 _UNCERTAINTY_THRESHOLD   = 0.55   # core.uncertainty > this → think
-_SIGNAL_STRENGTH_TRIGGER = 0.60   # any raw signal ≥ this → think
+_SIGNAL_STRENGTH_TRIGGER = 0.60   # trigger-3 constant (cold-start / flag-off value)
 _EMOTION_SPIKE_DELTA     = 0.10   # affect spike > this in one cycle → think
 _STAGNATION_SIGNAL_THRESHOLD       = 0.55   # stagnation_signal > this → think (needs stimulation)
 _WONDER_THRESHOLD        = 0.50   # wonder > this → think (something interesting)
 _ACTION_DEBT_TRIGGER     = 2      # cycles inactive on a committed goal → think
 MAX_SILENT_CYCLES        = 3      # hard floor: think at least every N cycles
+                                  # (liveness insurance — NOT behavior shaping;
+                                  # stays under the Run 11 de-clamp audit §6.3)
+
+# ── C1 (Run 11 §6.1): ignition threshold → adaptive statistic ─────────────────
+# Run 10 ignited on 98.8 % of cycles: with a CONSTANT 0.60 line, a signal
+# economy that mostly runs hot ignites almost always — the constant does a
+# distribution's job. The trigger-3 line becomes a rolling PERCENTILE of the
+# actual effective-strength distribution (post-habituation, per-cycle max), so
+# "strong" means strong RELATIVE TO RECENT LIFE. A pinned signal cannot
+# saturate a percentile gate: its own value IS the percentile, and the adaptive
+# comparison is strictly-greater. B1 sameness-habituation stays as the
+# antagonist; MAX_SILENT_CYCLES stays as the liveness floor. Flag exists for
+# post-hoc bisection, ON for Run 11.
+_ADAPTIVE_IGNITION   = os.environ.get("ORRIN_ADAPTIVE_IGNITION", "1") != "0"
+_IGNITION_PCTL       = float(os.environ.get("ORRIN_IGNITION_PCTL", "80.0"))
+_EFF_HISTORY_WINDOW  = 200   # rolling window of per-cycle max effective strengths
+_PCTL_MIN_SAMPLES    = 30    # constant line until the distribution is warm
+_THR_FLOOR, _THR_CEIL = 0.30, 0.95   # sanity band on the adaptive line
+
+
+def _eff_history(context: dict) -> "deque":
+    hist = context.get("_ignition_eff_history")
+    if not isinstance(hist, deque):
+        hist = deque(maxlen=_EFF_HISTORY_WINDOW)
+        context["_ignition_eff_history"] = hist
+    return hist
+
+
+def signal_trigger_threshold(context: dict) -> float:
+    """The trigger-3 line this cycle: the rolling percentile of observed
+    effective strengths (C1), or the legacy constant when the flag is off or
+    the distribution is cold."""
+    if not _ADAPTIVE_IGNITION:
+        return _SIGNAL_STRENGTH_TRIGGER
+    hist = _eff_history(context)
+    if len(hist) < _PCTL_MIN_SAMPLES:
+        return _SIGNAL_STRENGTH_TRIGGER
+    vals = sorted(hist)
+    idx = min(len(vals) - 1, max(0, int(round((_IGNITION_PCTL / 100.0) * (len(vals) - 1)))))
+    return max(_THR_FLOOR, min(_THR_CEIL, float(vals[idx])))
 
 # ── B1 ignition habituation (RUN4_FIX_PLAN §B1 — the jammed-horn law) ──────────
 # Trigger 3 fires on any raw signal ≥ 0.60 and short-circuits every lower trigger,
@@ -97,7 +138,9 @@ def should_think(context: dict) -> Tuple[bool, str]:
     # demotes below the 0.60 line and the gate FALLS THROUGH to triggers 4–14,
     # restoring the emotion / prediction-check / consolidation diet.
     win = _ignition_window(context)
+    thr = signal_trigger_threshold(context)   # C1: distribution-derived line
     strong = []
+    max_eff = 0.0
     for s in signals:
         if not isinstance(s, dict):
             continue
@@ -107,8 +150,18 @@ def should_think(context: dict) -> Tuple[bool, str]:
         key = _sig_key(s.get("source"), raw)
         n_identical = sum(1 for k in win if k == key)
         eff = raw / (1.0 + _HABITUATION_K * n_identical)
-        if eff >= _SIGNAL_STRENGTH_TRIGGER:
+        max_eff = max(max_eff, eff)
+        # Once the percentile is live, compare STRICTLY greater: a pinned
+        # signal equals its own percentile and can never win on pinnedness
+        # alone. Cold-start / flag-off keeps the legacy ≥ against the constant.
+        _adaptive_live = (_ADAPTIVE_IGNITION
+                          and len(_eff_history(context)) >= _PCTL_MIN_SAMPLES)
+        passed = (eff > thr) if _adaptive_live else (eff >= thr)
+        if passed:
             strong.append((s, raw, eff, key))
+    # C1: the distribution learns from every cycle (quiet ones included) so the
+    # line tracks what "strong" means in THIS stretch of life.
+    _eff_history(context).append(round(max_eff, 4))
     if strong:
         s, raw, eff, key = max(strong, key=lambda t: t[2])
         win.append(key)   # append only on a genuine trigger-3 win (plan §B1)
@@ -122,7 +175,7 @@ def should_think(context: dict) -> Tuple[bool, str]:
     # diet). Recovery is by value change, not window aging: a changed value is a
     # new key with a zero streak, so full strength returns immediately.
     _habituated = [s for s in signals if isinstance(s, dict)
-                   and float(s.get("signal_strength", 0) or 0) >= _SIGNAL_STRENGTH_TRIGGER]
+                   and float(s.get("signal_strength", 0) or 0) >= thr]
     if _habituated:
         _top = max(_habituated, key=lambda s: s.get("signal_strength", 0))
         log_activity(f"[deliberation_gate] strong_signal_habituated "

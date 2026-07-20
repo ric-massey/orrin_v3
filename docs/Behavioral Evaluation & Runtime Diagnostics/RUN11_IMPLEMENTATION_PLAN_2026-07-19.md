@@ -177,6 +177,40 @@ in pieces", line 251)
    drill: sleep/wake + network outage against `run_orrin.sh` (pipe-safe +
    HUP fixes are in at `4d69ce5`; verify, don't assume).
 
+### Slice 3 triage result (2026-07-20, build pass)
+
+Ground-truthed each item against the tree before building (standing rule):
+
+- **E3 DONE** — `run_orrin.sh` now echoes the lifespan band in the launch
+  stamp and documents the staging values: `ORRIN_LIFESPAN_MIN_DAYS=1.1
+  MAX=1.3` for a ~20k-cycle natural death (Run 10's rolled span was 505 days —
+  no prior life ever died naturally; this run should).
+- **E2 DONE (audit)** — every top grower from Run 10's own data is bounded:
+  production_loop.jsonl (cap 20k lines), resource_history (30k/8 MB),
+  events/trace (3k), habituation.json (5k keys), long_memory (pruner),
+  activity/private logs (2 MB rotate → `rotated/`). The 43 MB/life `rotated/`
+  archive is the flight recorder, intended. No uncovered append path found.
+- **L1 MOSTLY ALREADY BUILT** — plan tasks 1–2 exist and are tested
+  (`test_homeostasis.py::test_every_signal_has_an_explicit_setpoint`,
+  `…restoring_force_acts_on_every_signal`, the allostasis standing-pressure
+  test; 18/18 signals declare baselines). Only task 3 (retire the 5 secondary
+  decay authorities) remains — **deferred post-run**: an affect-core sweep
+  days before a 20k life is exactly the destabilization the run discipline
+  forbids, and the by-construction tests pin the invariant meanwhile.
+- **L2 DEFERRED post-run** — Phase 3's experiment harness exists and is green
+  (`test_grounding_transfer.py`: real subprocess outcomes, transfer above
+  baseline), so the 4A branch is live in principle; but Phase 4A/5 is a
+  multi-week program (grounded skill discovery, hierarchy, predictive
+  pruning) and belongs after the growth run, likely folded into the §11
+  predictive core.
+- **L3 Life Ambition** — sequenced per its own ordering: build **after** the
+  2k smoke life confirms C2 neglect-pressure behaves, before launch.
+- **L4 benchmarks B8–B18 DEFERRED** — offline claims-vs-evidence battery, no
+  runtime coupling; can be built during the run without touching the life.
+- **L5** — `gate_report` wired into the dream cycle (flush-then-report, the
+  backend's empty-session hazard doesn't apply there). B1 timeline undercount
+  + cleanup Phases 3–7 deferred with L4; wiki sync stays LAST (post-capture).
+
 ---
 
 ## Launch checklist (§9 step 4, expanded)

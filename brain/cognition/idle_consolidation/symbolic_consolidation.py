@@ -55,6 +55,18 @@ def run_symbolic_maintenance(context, dream_entry, this_count, dream_completed):
     except Exception as _pte:
         log_activity(f"[dream] progress flush skipped: {_pte}")
 
+    # L5 (Run 11 §7): gate_report was a dead API — flushed above, so calling it
+    # here is safe (empty-session-flush hazard only exists in the backend
+    # process). The weekly roll-up lands in the activity stream as behavioral
+    # introspection (M4): a growth trend he can actually read about himself.
+    try:
+        from brain.symbolic.llm_gate import gate_report as _gr
+        _grr = _gr(days=7)
+        if _grr.get("days"):
+            log_activity(f"[dream] Intelligence growth (7d): {_grr.get('summary', '')[:200]}")
+    except Exception as _gre:
+        log_activity(f"[dream] gate report skipped: {_gre}")
+
     # Closure/lifecycle outcome flush (Phase E) — persist today's goal closure
     # metrics alongside the symbolic progress report.
     try:

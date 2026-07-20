@@ -57,6 +57,16 @@ echo "[run] Python: $PYTHON"
 echo "[run] Log:    $LOG"
 echo "[run] Build:  $ORRIN_BUILD_SHA"
 echo "[run] Cycle sleep: ${CYCLE_SLEEP}s"
+# E3 (Run 11 §8): the lifespan band is consumed only when a FRESH life rolls
+# (first boot after reset), so it must be set at launch time or the default
+# 1-2yr band silently wins and natural death never lands inside the run.
+# Staging value for a ~20k-cycle life at the measured ~4.5 s/cycle: 1.1-1.3.
+if [ -n "${ORRIN_LIFESPAN_MIN_DAYS:-}" ] || [ -n "${ORRIN_LIFESPAN_MAX_DAYS:-}" ]; then
+    export ORRIN_LIFESPAN_MIN_DAYS ORRIN_LIFESPAN_MAX_DAYS
+    echo "[run] Lifespan band: ${ORRIN_LIFESPAN_MIN_DAYS:-default}-${ORRIN_LIFESPAN_MAX_DAYS:-default} days (staged)"
+else
+    echo "[run] Lifespan band: defaults (1-2yr) — set ORRIN_LIFESPAN_MIN/MAX_DAYS for a staged life"
+fi
 
 cleanup() {
     local exit_code=$?

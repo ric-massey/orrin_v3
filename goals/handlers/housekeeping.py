@@ -6,6 +6,7 @@ from brain.core.runtime_log import get_logger
 
 import gzip
 import json
+import os
 import shutil
 import subprocess
 from datetime import datetime, timezone
@@ -14,6 +15,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from ..model import Goal, Step, Status
 from .base import (
+    default_artifacts_dir,
     BaseGoalHandler,
     HandlerContext,
     new_step as _new_step,
@@ -29,7 +31,7 @@ def UTCNOW() -> datetime:
 # ---------- small helpers ----------
 
 def _artifacts_dir(ctx: HandlerContext, goal: Goal) -> Path:
-    base = Path(ctx.get("artifacts_dir") or "data/goals/artifacts").resolve()
+    base = Path(default_artifacts_dir(ctx)).resolve()
     d = base / goal.id
     d.mkdir(parents=True, exist_ok=True)
     return d
@@ -51,6 +53,12 @@ def _ctx_path(ctx: HandlerContext, key: str, default: str) -> Path:
         return Path(mapping[key]).resolve()
     if key in ctx:
         return Path(ctx[key]).resolve()
+    # Golden rule 3 (2026-07-20 smoke finding): the "data/..." defaults are
+    # cwd-relative and wrote snapshots into the LIVE repo tree under isolation.
+    # Resolve them against ORRIN_STATE_DIR when set, mirroring brain/paths.py.
+    state_dir = os.environ.get("ORRIN_STATE_DIR")
+    if state_dir and default.startswith("data/"):
+        return (Path(state_dir) / default[len("data/"):]).resolve()
     return Path(default).resolve()
 
 

@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import replace
 from ..model import Goal, Step, Status
-from .base import BaseGoalHandler, HandlerContext
+from .base import BaseGoalHandler, HandlerContext, default_artifacts_dir
 _log = get_logger(__name__)
 
 
@@ -68,7 +68,7 @@ def _syn_tokens(text: str) -> set[str]:
 
 
 def _artifacts_base(ctx: HandlerContext) -> Path:
-    return Path(ctx.get("artifacts_dir") or "data/goals/artifacts")
+    return Path(default_artifacts_dir(ctx))
 
 
 def _gather_prior_memos(topic: str, ctx: HandlerContext,

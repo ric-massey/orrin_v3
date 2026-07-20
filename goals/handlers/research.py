@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from ..model import Goal, Step, Status
-from .base import BaseGoalHandler, HandlerContext, new_step as _new_step
+from .base import BaseGoalHandler, HandlerContext, default_artifacts_dir, new_step as _new_step
 _log = get_logger(__name__)
 
 def UTCNOW() -> datetime:
@@ -22,7 +22,7 @@ def UTCNOW() -> datetime:
 # ---------- tiny utilities ----------
 
 def _artifacts_dir(ctx: HandlerContext, goal: Goal) -> Path:
-    base = Path(ctx.get("artifacts_dir") or "data/goals/artifacts").resolve()
+    base = Path(default_artifacts_dir(ctx)).resolve()
     d = base / goal.id
     d.mkdir(parents=True, exist_ok=True)
     return d

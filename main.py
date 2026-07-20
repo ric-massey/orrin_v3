@@ -469,6 +469,11 @@ if _HAVE_GOALS_DAEMON:
             tick_seconds=0.5,
             ctx={
                 "repo_root": str(REPO_ROOT),
+                # Handlers write artifacts HERE — provisioned from the resolved
+                # goals dir so isolation (ORRIN_STATE_DIR) holds; the handlers'
+                # cwd-relative fallback leaked smoke artifacts into the live
+                # tree on 2026-07-20.
+                "artifacts_dir": str(GOALS_DATA_DIR / "artifacts"),
                 "get_memory_health": get_memory_health,
                 "api": _goals_api,
                 "get_emotional_state": _get_emotional_state,

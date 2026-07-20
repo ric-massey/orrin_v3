@@ -16,6 +16,26 @@ _log = get_logger(__name__)
 # Public type alias for anything we pass around to handlers (services, paths, config, clients, etc.)
 HandlerContext = Dict[str, Any]
 
+
+def default_artifacts_dir(ctx: HandlerContext) -> Any:
+    """The artifacts base for handler outputs. Prefer the daemon-provisioned
+    ctx["artifacts_dir"]; the fallback resolves through the SAME env vars as
+    brain/paths.py (ORRIN_GOALS_DIR → ORRIN_STATE_DIR/goals → repo data/goals)
+    instead of a cwd-relative literal — the 2026-07-20 smoke life leaked
+    artifacts into the live repo tree through that literal (golden rule 3)."""
+    import os
+    from pathlib import Path
+    explicit = ctx.get("artifacts_dir")
+    if explicit:
+        return Path(explicit)
+    goals_dir = os.environ.get("ORRIN_GOALS_DIR")
+    if goals_dir:
+        return Path(goals_dir).resolve() / "artifacts"
+    state_dir = os.environ.get("ORRIN_STATE_DIR")
+    if state_dir:
+        return Path(state_dir).resolve() / "goals" / "artifacts"
+    return Path("data/goals/artifacts").resolve()
+
 # NEW: standard result type a handler may return from its internal ops (plan/tick helpers, etc.)
 HandlerResult = Union[bool, Tuple[bool, Dict[str, Any]]]
 

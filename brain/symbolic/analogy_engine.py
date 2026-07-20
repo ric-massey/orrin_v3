@@ -261,3 +261,76 @@ def best_analogue_answer(query: str) -> Optional[str]:
     rels = ", ".join(a.get("structural_relations", [])[:3])
     header = f"[analogy/{intent}]" + (f" [{rels}]" if rels else "")
     return f"{header} Similar situation (score={a['score']}): {solution}"
+
+
+# ─── D2 (Run 11 §5, CREATIVITY_NOVELTY Issue A): the distant-connection mode ──
+# The scorer above rewards NEARNESS on every axis — right for "use memory to
+# solve problems," structurally incapable of "connect what wouldn't normally be
+# connected." This mode inverts the surface axis: candidates must share an
+# abstract relation with the query (the bridge) while being surface-DISTANT
+# (the surprise). Rare co-activation is proxied by the surface ceiling: pairs
+# under it fall below the memory graph's 0.18 linking threshold, so they have
+# never been associated. The similarity engine stays untouched alongside.
+
+_DISTANT_SURFACE_CEIL = 0.15   # above this, the pair is a neighbor, not a leap
+_CROSS_INTENT_BONUS = 0.15     # different intent bucket = a cross-domain jump
+
+
+def find_distant_connections(
+    query: str,
+    *,
+    top_n: int = 3,
+    min_score: float = 0.30,
+) -> List[Dict]:
+    """Return long-memory entries that share an abstract relation with `query`
+    but are far from it in surface vocabulary — candidate unexpected links.
+    Each result: content, score, shared_relations, surface, event_type."""
+    q_toks = _tokenize(query)
+    q_relations = _extract_relations(query)
+    if not q_toks or not q_relations:
+        return []
+    q_intent = _intent_type(query)
+
+    try:
+        from brain.utils.text_sanity import is_corrupt_text as _ict
+    except Exception:  # intentional: quarantine helper optional
+        _ict = None
+
+    scored: List[Tuple[float, Set[str], float, Dict]] = []
+    for mem in _load_memories():
+        content = str(mem.get("content", ""))
+        if _ict is not None and _ict(content):
+            continue
+        m_toks = _tokenize(content)
+        if len(m_toks) < 6:   # too little content to ground a real link
+            continue
+        m_relations = _extract_relations(content)
+        shared = q_relations & m_relations
+        if not shared:
+            continue
+        surface = _jaccard(q_toks, m_toks)
+        if surface > _DISTANT_SURFACE_CEIL:
+            continue
+        relation = len(shared) / len(q_relations | m_relations)
+        score = 0.55 * relation + 0.45 * (1.0 - surface)
+        if _intent_type(content) != q_intent:
+            score += _CROSS_INTENT_BONUS
+        if score >= min_score:
+            scored.append((min(score, 1.0), shared, surface, mem))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    results = []
+    for score, shared, surface, mem in scored[:top_n]:
+        results.append({
+            "content": mem.get("content", ""),
+            "score": round(score, 3),
+            "shared_relations": sorted(shared),
+            "surface": round(surface, 3),
+            "event_type": mem.get("event_type", ""),
+        })
+    if results:
+        log_activity(
+            f"[analogy/distant] {len(results)} unexpected-link candidates "
+            f"(relations={results[0]['shared_relations']}, top={results[0]['score']})"
+        )
+    return results

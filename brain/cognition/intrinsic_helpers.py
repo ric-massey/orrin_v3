@@ -175,6 +175,13 @@ def _mk_goal(title: str, description: str, driven_by: str = None,
                 _pdc = 200
             deadline_cycles = _pdc
         goal["deadline_cycles"] = int(deadline_cycles)
+        # G1 (Run 11 §3): the difficulty ladder hardens every making goal to the
+        # current rung — build-on-prior and beyond at rung ≥ 1, nothing at rung 0.
+        try:
+            from brain.cognition.growth_ladder import harden_goal
+            harden_goal(goal)
+        except Exception as _lg:
+            record_failure("intrinsic_helpers._mk_goal.ladder", _lg)
     # (T0.3 Change 5) Record the FIRST funnel stage — a goal serving some
     # aspiration was generated — so we can later see whether each aspiration died
     # at generation or downstream, instead of only the end-state count.

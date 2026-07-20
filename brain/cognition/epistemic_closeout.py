@@ -191,6 +191,14 @@ def stamp_closeout(goal: Dict[str, Any]) -> Optional[bool]:
         goal["answered"] = bool(answered)
         if answer:
             goal["answer"] = answer
+        if answered:
+            # G2: file the answer so a later decision can consume and cite it —
+            # the grounded-consequence loop close-out only STARTS here.
+            from brain.cognition.answer_citation import note_answered
+            note_answered(question, answer, goal.get("id"))
+            # G1: an ANSWERED question is a verified success — ladder fuel.
+            from brain.cognition.growth_ladder import note_verified_success
+            note_verified_success("answered_question", question)
         if not answered:
             try:
                 from brain.utils.log import log_activity

@@ -12,6 +12,7 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
+import os
 import random
 import threading
 import time
@@ -21,6 +22,18 @@ _log = get_logger(__name__)
 
 # ── Config ────────────────────────────────────────────────────────────────────
 ENABLE_MOTIVATIONAL_SUBSTRATE: bool = True
+
+# D3 (Run 11 §5, CREATIVITY_NOVELTY Issue C): the novelty drive was tuned to
+# extinguish itself — satisfaction drained LINEARLY (one fed action could zero
+# it) while recovery crawled at rise_rate, a ~36× asymmetry, so novelty
+# flatlined near zero every life. Flag ON: novelty relief is PROPORTIONAL to
+# the excess above a floor (geometric approach — no single action can zero it,
+# repetition has diminishing drain) and the rise rate is brought onto a usable
+# timescale. Honest interim tune: oscillation, not extinction; the root-cause
+# fix arrives with the predictive core post-run. Flag OFF restores legacy.
+_NOVELTY_REBOUND = os.environ.get("ORRIN_NOVELTY_REBOUND", "1") != "0"
+_NOVELTY_DRIVE = "novelty_exploration_drive"
+_NOVELTY_FLOOR = 0.12      # relief can approach but never cross this
 
 _TICK_MIN: float = 3.0          # seconds between ticks (lower)
 _TICK_MAX: float = 8.0          # seconds between ticks (upper)
@@ -36,7 +49,8 @@ _DRIVE_DEFAULTS: Dict[str, tuple] = {
     "connection":          (0.30, 0.00020, 0.0080, "reach out — share something, ask something genuine"),
     "world_mastery":       (0.25, 0.00015, 0.0060, "investigate something you don't fully understand"),
     "competence":          (0.20, 0.00012, 0.0070, "do something and do it with care and skill"),
-    "novelty_exploration_drive":   (0.35, 0.00018, 0.0065, "explore something unfamiliar or unexpected"),
+    # D3: rise 0.00018 → 0.0005 when rebound is ON (drain/recover ~13×, was 36×).
+    "novelty_exploration_drive":   (0.35, 0.0005 if _NOVELTY_REBOUND else 0.00018, 0.0065, "explore something unfamiliar or unexpected"),
     "autonomy":            (0.25, 0.00010, 0.0050, "choose your next action without being prompted"),
     "signal_stability": (0.40, 0.00008, 0.0090, "settle, reflect, find equilibrium before acting"),
     "restlessness":        (0.20, 0.00025, 0.0100, "move, act — break inertia with any purposeful step"),
@@ -73,6 +87,7 @@ _FN_SATISFIES: Dict[str, List[tuple]] = {
     "plan":               [("competence", 0.20), ("autonomy", 0.20)],
     "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("signal_stability", 0.20)],
     "wonder":             [("novelty_exploration_drive", 0.35), ("world_mastery", 0.15)],
+    "find_unexpected_link": [("novelty_exploration_drive", 0.20), ("competence", 0.10)],   # D2: creative connection is a novelty act
     "generate_intrinsic_goals": [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
     "self_review":        [("competence", 0.15), ("signal_stability", 0.15)],
     "metacognition":      [("autonomy", 0.20), ("world_mastery", 0.10)],
@@ -230,11 +245,22 @@ class _MotivationEngine:
                 for name in drives:
                     drives[name] = max(0.0, drives[name] * _scale)
 
+    @staticmethod
+    def _relieved(drive: str, current: float, amount: float) -> float:
+        """D3: novelty relief is proportional to the excess above the floor —
+        geometric approach, so a single fed action cannot zero the drive and a
+        feeding streak has diminishing drain. Other drives keep linear relief
+        (their symmetry is D4's item, explicitly out of this tune)."""
+        if _NOVELTY_REBOUND and drive == _NOVELTY_DRIVE:
+            excess = max(0.0, current - _NOVELTY_FLOOR)
+            return _NOVELTY_FLOOR + excess * (1.0 - min(1.0, float(amount)))
+        return max(0.0, current - float(amount))
+
     def satisfy(self, drive: str, amount: float) -> None:
         """Apply satisfaction (negative push) to a single drive."""
         with self._lock:
             if drive in self._drives:
-                self._drives[drive] = max(0.0, self._drives[drive] - float(amount))
+                self._drives[drive] = self._relieved(drive, self._drives[drive], amount)
 
     def reward_satisfy(self, fn_name: str, reward: float) -> None:
         """Satisfy drives mapped to fn_name, scaled by reward."""
@@ -252,8 +278,8 @@ class _MotivationEngine:
         with self._lock:
             for demand_name, base_amount in mappings:
                 if demand_name in self._drives:
-                    self._drives[demand_name] = max(
-                        0.0, self._drives[demand_name] - base_amount * scale
+                    self._drives[demand_name] = self._relieved(
+                        demand_name, self._drives[demand_name], base_amount * scale
                     )
 
     # ── Urge sampling ──────────────────────────────────────────────────────

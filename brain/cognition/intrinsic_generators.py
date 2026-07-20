@@ -290,6 +290,14 @@ def _causal_frontier_goals(limit: int = 2) -> List[Dict]:
     ]
     if not frontiers:
         return []
+    # G3 (Run 11 §3): frontier sampling consumes MASTERY — gaps adjacent to
+    # answered questions / promoted exemplars weigh more than flat unknowns
+    # (the zone next to demonstrated competence, not a uniform map).
+    try:
+        from brain.cognition.growth_ladder import mastery_weight
+        frontiers = [(name, w * mastery_weight(name)) for name, w in frontiers]
+    except Exception as exc:
+        record_failure("intrinsic_goals._causal_frontier_goals.mastery", exc)
     # The causal graph is his SELF-MODEL: every effect in it is one of his own
     # internal states (impasse_signal, affective_regulation, reward_negative…), not
     # a world topic. So the answer to "what causes this" lives in his own HISTORY,
@@ -850,8 +858,18 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
                 if floor_cands:
                     chosen = random.choice(floor_cands)
             if chosen is None:
+                # G3: within fairness weighting, a candidate adjacent to
+                # demonstrated mastery (answered questions, exemplars) edges out
+                # a flat unknown — build near competence. The coverage floor
+                # above stays authoritative; mastery never overrides starvation.
+                try:
+                    from brain.cognition.growth_ladder import mastery_weight as _mw
+                except Exception:
+                    _mw = None
                 scored = [
-                    (g, 1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
+                    (g, (1.0 + 2.0 * float(pressure.get(_serves_aspiration(str(g.get("driven_by", ""))), 0.0)))
+                        * (_mw(str(g.get("title", "")) + " " + str(g.get("description", ""))[:200])
+                           if _mw else 1.0))
                     for g in pool
                 ]
                 picked = _weighted_sample(scored, 1)

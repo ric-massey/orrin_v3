@@ -330,6 +330,15 @@ def select_function(
         ],
     }
 
+    # G2 (Run 11 §3): a decision whose driving context carries an answered
+    # question's subject CITES it in this payload — the readable event that
+    # proves an answer changed a later decision.
+    try:
+        from brain.cognition.answer_citation import annotate_reason
+        annotate_reason(reason, context, chosen)
+    except Exception as _e:
+        record_failure("select_function.answer_citation", _e)
+
     # TD(λ): stamp eligibility trace for the chosen function at decision time.
     # bandit.update() in bandit_learn() will apply reward backward through these traces.
     if chosen:

@@ -422,6 +422,14 @@ def mark_goal_failed(goal: Dict[str, Any], reason: str = "", context: Optional[D
     except ImportError:
         pass
     goal["status"] = "failed"
+    # G1 (Run 11 §3): a failed MAKING attempt resets the ladder streak (the
+    # rung stands — one setback is not evidence the competence was fake).
+    if goal.get("requires_artifact"):
+        try:
+            from brain.cognition.growth_ladder import note_failed_attempt
+            note_failed_attempt(str(goal.get("id") or ""))
+        except Exception as _lg:
+            record_failure("goal_outcomes.mark_goal_failed.ladder", _lg)
     now = now_iso_z()
     goal["failed_timestamp"] = now
     goal["last_updated"] = now

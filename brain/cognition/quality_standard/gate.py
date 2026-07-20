@@ -261,5 +261,14 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
         revisions.mark(cid, "applied", exemplar_path=str(dest))
         changed.append(revisions.get(cid))
         log_activity(f"[quality_standard] exemplar promoted: {dest.name} (candidate {cid}).")
+        # G1 (Run 11 §3): a promotion is a verified success and the new exemplar
+        # carries the rung it was earned at — the ratchet's memory.
+        try:
+            from brain.cognition.growth_ladder import (
+                note_verified_success, record_exemplar_difficulty)
+            note_verified_success("exemplar", dest.name)
+            record_exemplar_difficulty(dest.name)
+        except Exception as _lg:
+            record_failure("quality_standard.gate.ladder", _lg)
 
     return changed

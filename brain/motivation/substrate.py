@@ -77,6 +77,7 @@ _CROSS_EFFECTS: List[tuple] = [
 # the reward signal (amount = base * ((reward + 1) / 2)).
 _FN_SATISFIES: Dict[str, List[tuple]] = {
     # (drive, base_amount)
+    # Abstract role names (substring-matched as fallback)
     "speak":              [("connection", 0.35), ("signal_stability", 0.10)],
     "respond":            [("connection", 0.30), ("competence", 0.10)],
     "introspect":         [("signal_stability", 0.25), ("autonomy", 0.15)],
@@ -85,13 +86,31 @@ _FN_SATISFIES: Dict[str, List[tuple]] = {
     "web_search":         [("world_mastery", 0.25), ("novelty_exploration_drive", 0.25)],
     "pursue_goal":        [("competence", 0.30), ("autonomy", 0.25)],
     "plan":               [("competence", 0.20), ("autonomy", 0.20)],
-    "idle_consolidation_cycle":        [("novelty_exploration_drive", 0.30), ("signal_stability", 0.20)],
     "wonder":             [("novelty_exploration_drive", 0.35), ("world_mastery", 0.15)],
-    "find_unexpected_link": [("novelty_exploration_drive", 0.20), ("competence", 0.10)],   # D2: creative connection is a novelty act
-    "generate_intrinsic_goals": [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
     "self_review":        [("competence", 0.15), ("signal_stability", 0.15)],
     "metacognition":      [("autonomy", 0.20), ("world_mastery", 0.10)],
     "memory_consolidate": [("signal_stability", 0.15), ("world_mastery", 0.10)],
+    # Concrete function names (exact-matched; smoke-life audit 2026-07-20 found
+    # these accounted for >90% of picks but had no satisfaction mapping)
+    "idle_consolidation_cycle":      [("novelty_exploration_drive", 0.30), ("signal_stability", 0.20)],
+    "find_unexpected_link":          [("novelty_exploration_drive", 0.20), ("competence", 0.10)],
+    "generate_intrinsic_goals":      [("autonomy", 0.30), ("novelty_exploration_drive", 0.15)],
+    "research_topic":                [("world_mastery", 0.25), ("competence", 0.20)],
+    "fetch_and_read":                [("world_mastery", 0.20), ("novelty_exploration_drive", 0.15)],
+    "learn_from_reading":            [("competence", 0.15), ("world_mastery", 0.15)],
+    "decide_to_write_code":          [("competence", 0.25), ("autonomy", 0.20)],
+    "assess_goal_progress":          [("competence", 0.15), ("signal_stability", 0.10)],
+    "narrative_update":              [("signal_stability", 0.20), ("autonomy", 0.10)],
+    "leave_note":                    [("signal_stability", 0.15), ("connection", 0.10)],
+    "wikipedia_search":              [("world_mastery", 0.25), ("novelty_exploration_drive", 0.20)],
+    "current_awareness":             [("world_mastery", 0.20), ("signal_stability", 0.10)],
+    "generate_concepts_from_memories": [("world_mastery", 0.20), ("novelty_exploration_drive", 0.15)],
+    "compose_consolidation":         [("signal_stability", 0.15), ("competence", 0.10)],
+    "detect_memory_contradictions":  [("signal_stability", 0.20), ("competence", 0.10)],
+    "write_desktop_note":            [("competence", 0.10), ("connection", 0.10)],
+    "read_text":                     [("world_mastery", 0.15), ("novelty_exploration_drive", 0.10)],
+    "adapt_subgoals":                [("autonomy", 0.20), ("competence", 0.15)],
+    "simulate_conflicting_beliefs":  [("signal_stability", 0.15), ("world_mastery", 0.10)],
 }
 
 

@@ -129,10 +129,14 @@ def _propose(context: Dict[str, Any]) -> str:
     import json as _json
 
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+    # T1: capability gaps are read from his own thoughts, not from telemetry
+    # lines or conversation records (the prose-bus source-monitoring family).
+    from brain.cognition.thought import is_minable_as_own_gap
     recent_text = "\n".join(
         f"- {str(e.get('content', ''))[:100]}"
         for e in (wm[-20:] if isinstance(wm, list) else [])
         if isinstance(e, dict) and str(e.get("content", "")).strip()
+        and is_minable_as_own_gap(e)
     )
 
     impulses = context.get("_suppressed_impulses") or []
@@ -422,10 +426,12 @@ def _emergency(context: Dict[str, Any]) -> str:
         return "emergency_self_modification: already modified during this crisis"
 
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+    from brain.cognition.thought import is_minable_as_own_gap   # T1 provenance
     recent_text = "\n".join(
         f"- {str(e.get('content', ''))[:100]}"
         for e in (wm[-15:] if isinstance(wm, list) else [])
         if isinstance(e, dict) and str(e.get("content", "")).strip()
+        and is_minable_as_own_gap(e)
     )
 
     dominant_neg = max(

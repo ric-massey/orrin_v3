@@ -333,6 +333,14 @@ def _seed_from_context(
         # being down is a fact to note, not an unresolved inner conflict.
         if _ict is not None and _ict(raw):
             continue
+        # T1: telemetry lines are not inner conflicts. (User content stays —
+        # social rumination is the Nolen-Hoeksema interpersonal domain.)
+        try:
+            from brain.cognition.thought import provenance_of
+            if provenance_of(entry) == "instrumentation":
+                continue
+        except Exception:  # intentional: provenance shim optional here
+            pass
         if any(m in content for m in ("tool unavailable", "llm_tool_blocked",
                                       "language model", "[llm")):
             continue

@@ -257,6 +257,12 @@ def update_long_memory(
         save_json(LONG_MEMORY_FILE, [entry])
 
     # Side effects stay outside the lock so file contention stays low.
+    # C9: growth is accounted globally (buffered — no per-write disk churn).
+    try:
+        from brain.cognition.entropy_budget import note as _budget_note
+        _budget_note("grew", "long_memory")
+    except Exception as _bn:
+        record_failure("long_memory.entropy_budget.grew", _bn)
     # Memory graph: link semantically similar entries by word overlap (Jaccard ≥ 0.18)
     try:
         from brain.utils.memory_graph import add_edges
@@ -532,6 +538,14 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
         return
 
     if removed:
+        # C9: forgetting is accounted globally (the grew/compressed/forgotten
+        # ledger) — a prune with a survivors' summary is compression + loss.
+        try:
+            from brain.cognition.entropy_budget import note as _budget_note
+            _budget_note("forgotten", "long_memory", len(removed))
+            _budget_note("compressed", "long_memory", 1)   # the prune summary
+        except Exception as _bn:
+            record_failure("long_memory.entropy_budget", _bn)
         from brain.cognition.self_state.ethics import update_values_with_lessons  # deferred (keeps cog_memory L2 at load)
         # Pass the in-memory list so value-learning doesn't re-read the largest
         # state file from disk on the brain thread during a prune. Runs outside

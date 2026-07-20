@@ -49,20 +49,11 @@ from brain.think.think_utils.satisfaction import _state_satisfaction
 INTAKE_REWARD = 0.5
 INTAKE_REWARD_FLOOR = 0.35
 
-
-def realized_reward_with_prejudice(act_key: str, actual_fb: float) -> float:
-    """R10-8 account seam, extracted so it is provable by harness (F-LN8): an
-    action the gate refused this cycle (LLM circuit open, tool absent) produced
-    no effect no matter how cleanly it "ran" — pay it zero-with-prejudice so its
-    EMA decays below the selection default instead of sitting high on the
-    strength of not raising. Fail-safe: on any error the reward passes through."""
-    try:
-        from brain.control_signals.reward_signals.impossibility import is_impossible as _is_imp
-        if _is_imp(act_key):
-            return 0.0
-    except Exception as _ie:
-        record_failure("finalize.finalize_cycle.impossible", _ie)
-    return actual_fb
+# R10-8 seam moved to its natural home next to is_impossible; re-exported here
+# because the F-LN8 harness proves it via this module's name.
+from brain.control_signals.reward_signals.impossibility import (  # noqa: E402
+    realized_reward_with_prejudice,
+)
 
 
 def finalize_cycle(context, user_input, next_function, reason, speaker):
@@ -189,6 +180,15 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         # R10-8 / F-LN8: zero-with-prejudice for gate-refused actions (the seam
         # lives in realized_reward_with_prejudice so the harness can prove it).
         actual_fb = realized_reward_with_prejudice(_act_key, actual_fb)
+        # C8: action picks are the fourth load-bearing distribution; also the
+        # once-per-cycle spot where collapsed channels route felt pressure.
+        try:
+            from brain.cognition.entropy_monitor import (
+                observe as _entropy_observe, route_collapse_pressure as _entropy_route)
+            _entropy_observe("action_pick", _act_key)
+            _entropy_route(context)
+        except Exception as _ent_e:
+            record_failure("finalize.entropy_monitor", _ent_e)
         # Calibration: record the forecast (per-function expected reward) against
         # the realized reward BEFORE submit_reward updates the EMA. Nelson &
         # Narens (1990) monitoring → control; consumed by meta_controller.

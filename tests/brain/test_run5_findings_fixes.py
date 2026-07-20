@@ -220,7 +220,10 @@ def test_satiety_close_needs_two_steps_or_a_milestone(monkeypatch):
 
 
 def test_title_completion_cap_and_escalating_cooldown(monkeypatch, tmp_path):
+    # This pins the LEGACY clamp (flag-OFF path). C3 (Run 11) replaces it with
+    # topic satiety by default — see test_declamp_c3_c6.py for the ON path.
     from brain.cognition import intrinsic_helpers as ih
+    monkeypatch.setattr(ih, "_TOPIC_SATIETY", False)
     monkeypatch.setattr(ih, "_TITLE_COUNTS_FILE", tmp_path / "counts.json")
     monkeypatch.setattr(ih, "_TITLE_COUNTS", {})
     monkeypatch.setattr(ih, "_RECENTLY_COMPLETED", {})

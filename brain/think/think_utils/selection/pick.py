@@ -24,6 +24,14 @@ from brain.think.think_utils.selection.tag_sets import (
 # How many of the last N picks being deliberation (with zero execution) trips the
 # meta-rut breaker.
 _META_RUT_WINDOW = 5
+# C5 (Run 11 §6.1): with the boredom drive ON (score_actions s_boredom), the
+# forced think-vs-act switch is DEMOTED to a dead-man backstop — boredom
+# economics gets first refusal, and only a freeze that survives it (a full
+# extended window of deliberation-only picks) is broken by force. Flag OFF
+# restores the original 5-cycle forced switch.
+import os as _os
+_BOREDOM_DRIVE = _os.environ.get("ORRIN_BOREDOM_DRIVE", "1") != "0"
+_META_RUT_BACKSTOP_WINDOW = 12
 
 
 def apply_exploration_and_reflex(
@@ -280,8 +288,9 @@ def apply_antirepeat_and_metarut(
     # detector, so a forming rut is broken before it entrenches.
     try:
         if chosen in _DELIBERATION_FNS:
-            _rut_window = recent[-_META_RUT_WINDOW:]
-            if len(_rut_window) >= _META_RUT_WINDOW:
+            _rut_n = _META_RUT_BACKSTOP_WINDOW if _BOREDOM_DRIVE else _META_RUT_WINDOW
+            _rut_window = recent[-_rut_n:]
+            if len(_rut_window) >= _rut_n:
                 _acted = any(p in _EXECUTION_FNS for p in _rut_window)
                 _all_think = all(p in _DELIBERATION_FNS for p in _rut_window)
                 if _all_think and not _acted:

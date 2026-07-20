@@ -206,11 +206,13 @@ def synthesize_skill(candidate: Dict[str, Any], context: Dict[str, Any]) -> Dict
     except Exception as _e:
         record_failure("skill_synthesis.synthesize_skill", _e)
 
-    # Recent WM context
+    # Recent WM context (T1: his own thoughts only — no telemetry/conversation echo)
+    from brain.cognition.thought import is_minable_as_own_gap
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
     wm_recent = "\n".join(
         f"- {str(e.get('content', ''))[:80]}" for e in (wm[-6:] if isinstance(wm, list) else [])
         if isinstance(e, dict) and str(e.get("content", "")).strip()
+        and is_minable_as_own_gap(e)
     )
 
     prompt = _build_synthesis_prompt(fn_name, description, gap_text, kg_context, wm_recent)

@@ -84,7 +84,11 @@ def test_short_symbolic_content_earns_nothing():
     assert record_symbolic_effect("causal_edge", "curiosity -> exploration") is None
 
 
-def test_rate_cap_stops_a_synthesis_storm():
+def test_rate_cap_stops_a_synthesis_storm(monkeypatch):
+    # Pins the LEGACY cliff (flag-OFF path). C4 (Run 11) replaces it with
+    # marginal-novelty pricing by default — see test_declamp_c3_c6.py.
+    monkeypatch.setattr(el, "_NOVELTY_PRICING", False)
+    el._symbolic_credit_times.clear()
     credited = 0
     for i in range(el._SYMBOLIC_CAP + 4):
         text = (

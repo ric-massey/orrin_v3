@@ -33,6 +33,7 @@ from __future__ import annotations
 from brain.core.runtime_log import get_logger
 import hashlib
 import json
+import os
 import re
 import threading
 import time
@@ -87,7 +88,14 @@ _BOOKKEEPING_SUB_KINDS = frozenset({"causal_edge"})
 # producers (dream cycle, crystallization) often run without a cycle context.
 _SYMBOLIC_CAP = 6
 _SYMBOLIC_CAP_WINDOW_S = 600.0
-_symbolic_credit_times: Deque[float] = deque(maxlen=_SYMBOLIC_CAP)
+# C4 (Run 11 §6.1): the hard window cap becomes MARGINAL-NOVELTY PRICING — the
+# k-th credited symbolic effect in the window pays 1/(1+(k/2)²): the 2nd is
+# worth ~0.5, the 6th ~0.1, the 40th ~nothing. A synthesis storm extinguishes
+# itself economically instead of hitting a cliff at 6; a paced synthesizer is
+# barely touched. The novelty/hash pricing CORE above is a wall and stays.
+# Flag OFF restores the legacy cliff for bisection.
+_NOVELTY_PRICING = os.environ.get("ORRIN_NOVELTY_PRICING", "1") != "0"
+_symbolic_credit_times: Deque[float] = deque(maxlen=64)
 
 # How many recent same-kind effects to compare against for near-dup detection.
 _NOVELTY_WINDOW = 64
@@ -493,12 +501,22 @@ def record_effect(
         sig = 0.0 if (nov <= 0.0 or _floored) else _structural_significance(kind, raw, normalized, metadata)
         if sig > 0.0 and nov < _NOVELTY_RAMP_CEIL:
             sig *= nov / _NOVELTY_RAMP_CEIL
-        # AR1 rate cap — symbolic credit beyond the rolling window earns nothing.
+        # AR1 → C4: symbolic credit is priced at the margin against the recent
+        # window (flag ON), or hard-capped at _SYMBOLIC_CAP (legacy, flag OFF).
         if kind == "symbolic_artifact" and sig > 0.0:
             now_m = time.monotonic()
             while _symbolic_credit_times and (now_m - _symbolic_credit_times[0]) > _SYMBOLIC_CAP_WINDOW_S:
                 _symbolic_credit_times.popleft()
-            if len(_symbolic_credit_times) >= _SYMBOLIC_CAP:
+            k = len(_symbolic_credit_times)
+            if _NOVELTY_PRICING:
+                price = 1.0 / (1.0 + (k / 2.0) ** 2)
+                sig *= price
+                if price < 0.999:
+                    metadata = dict(metadata or {})
+                    metadata["marginal_price"] = round(price, 4)
+                if sig > 0.0:
+                    _symbolic_credit_times.append(now_m)
+            elif k >= _SYMBOLIC_CAP:
                 sig = 0.0
                 metadata = dict(metadata or {})
                 metadata["rate_capped"] = True
@@ -570,6 +588,14 @@ def record_effect(
         # F2c: only *credited* writes advance the per-path decay schedule.
         if _credited and _np:
             _path_credit_counts[_np] = _path_credit_counts.get(_np, 0) + 1
+        # C8: what KINDS of content earn credit is a load-bearing distribution
+        # (the memo pump was its collapse).
+        if _credited:
+            try:
+                from brain.cognition.entropy_monitor import observe as _eo
+                _eo("credited_kind", kind)
+            except Exception as _ee:
+                record_failure("effect_ledger.entropy_observe", _ee)
         # F-LN7: funnel stages 5/6 at the one place every durable effect passes —
         # a goal-attributed content row IS "an artifact was written"; a credited
         # one is the funnel's mouth. Third run of candidate-only counts ends here.

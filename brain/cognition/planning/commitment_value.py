@@ -148,6 +148,11 @@ def note_driver_selected(chosen_id: str, candidate_ids: Iterable[str]) -> None:
     chosen = str(chosen_id or "")
     if not chosen:
         return
+    try:  # C8: commitment occupancy is a load-bearing distribution — observe it
+        from brain.cognition.entropy_monitor import observe as _entropy_observe
+        _entropy_observe("commitment_driver", chosen)
+    except Exception as _eo:
+        record_failure("commitment_value.entropy_observe", _eo)
     try:
         with modify_json(_SIGNALS_FILE, dict) as d:
             goals = d.setdefault("goals", {})

@@ -88,10 +88,14 @@ def _generate_hypothesis(context: Dict[str, Any]) -> Optional[Dict]:
     Returns a hypothesis dict or None.
     """
     wm = load_json(WORKING_MEMORY_FILE, default_type=list) or []
+    # T1: hypotheses grow from his OWN material — user speech, his outbound
+    # speech, and telemetry lines are records, not observations to test.
+    from brain.cognition.thought import is_minable_as_own_gap
     wm_text = "\n".join(
         f"- {str(e.get('content', ''))[:100]}"
         for e in (wm[-15:] if isinstance(wm, list) else [])
         if isinstance(e, dict) and str(e.get("content", "")).strip()
+        and is_minable_as_own_gap(e)
     )
 
     cog_log = load_json(COGNITION_HISTORY_FILE, default_type=list) or []

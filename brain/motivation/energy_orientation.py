@@ -51,9 +51,16 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict
 
+import os
+
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
 from brain.paths import ENERGY_MODE_FILE
+
+# C6 (Run 11 §6.1): energy economics — see energy_boost_scores.
+_ENERGY_ECONOMICS = os.environ.get("ORRIN_ENERGY_ECONOMICS", "1") != "0"
+_MAX_EFFORT_PRICE = 0.50   # full-effort fn at ZERO activation pays this
+_W_VIGOR = 0.60            # surplus activation above 0.6 presses toward action
 
 
 # ── Smoothing constants ───────────────────────────────────────────────────────
@@ -385,8 +392,42 @@ def energy_boost_scores(
     select_function.py calls this with context["energy_state"],
     context["action_vs_reflect_bias"], context["_rest_mode"] — all set by
     inject_into_context() which must run before select_function() each cycle.
+
+    C6 (Run 11 §6.1, ORRIN_ENERGY_ECONOMICS — default ON): the DMN/TPN mode
+    branches below were flag-damping — a categorical ±0.24 painted on by which
+    mode label was active. The honest mechanism is ECONOMIC: effortful
+    functions COST activation, so at low activation they are priced out
+    naturally (reflection wins because it is cheap, not because a flag boosted
+    it); surplus activation is itself a pressure to act (vigor). Continuous in
+    activation — no mode boundaries to oscillate across. The REACTIVE branch
+    is kept in both paths: threat-narrowed scope is a protection response, not
+    an energy mode. Flag OFF restores the categorical branches for bisection.
     """
     boosts: Dict[str, float] = {}
+
+    if _ENERGY_ECONOMICS:
+        base = {"low": 0.25, "high": 0.80}.get(str(energy_state), 0.5)
+        a = 0.5 * base + 0.5 * max(0.0, min(1.0, float(action_bias)))
+        if rest_mode:
+            a = min(a, 0.30)
+        if not rest_mode and energy_state not in ("low", "high") and action_bias <= 0.45:
+            for fn in actions:
+                if fn in _REACTIVE_SUPPRESS:
+                    boosts[fn] = -0.18
+                elif fn in _REACTIVE_ALLOW:
+                    boosts[fn] = 0.12
+            return boosts
+        for fn in actions:
+            effort = (1.0 if fn in ACTION_FUNCTIONS
+                      else 0.15 if fn in REFLECT_FUNCTIONS else 0.40)
+            # Pricing engages BELOW neutral activation (a=0.5 pays nothing —
+            # the old neutral dead zone is preserved); at a=0 a full-effort fn
+            # pays the whole price. Vigor engages above 0.6.
+            price = -_MAX_EFFORT_PRICE * effort * max(0.0, 0.5 - a) * 2.0
+            vigor = _W_VIGOR * max(0.0, a - 0.6) if fn in ACTION_FUNCTIONS else 0.0
+            if price + vigor:
+                boosts[fn] = round(price + vigor, 4)
+        return boosts
 
     if rest_mode or energy_state == "low" or action_bias < 0.35:
         for fn in actions:

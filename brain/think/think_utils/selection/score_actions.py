@@ -22,7 +22,7 @@ from brain.utils.failure_counter import record_failure
 from brain.think.think_utils.selection.text import _kw_overlap_score
 from brain.think.think_utils.selection.scoring import _novelty_score, _devalue_prior
 from brain.think.think_utils.selection.tag_sets import (
-    _BLIND_EXPLORE_FNS, _GOAL_DELIBERATION_FNS,
+    _BLIND_EXPLORE_FNS, _GOAL_DELIBERATION_FNS, _DELIBERATION_FNS,
 )
 
 # Directed (uncertainty-seeking) exploration weight. Gershman (2018), "Deconstructing
@@ -47,6 +47,18 @@ _W_EXPLOIT = 0.25
 # satiety. Outward fns are exempt here — reach_value already folds their satiety in,
 # so applying it again would double-count.
 _W_SATIETY = 0.30
+
+# C5 (Run 11 §6.1): BOREDOM AS A DRIVE. The rut breaker's forced switch was a
+# clamp — repetition should stop because it stops being wanted. When the felt
+# stagnation signal is up, an action is devalued in proportion to its share of
+# recent picks (per-fn boredom), and the deliberation CATEGORY is devalued when
+# it has crowded action out of the window (category boredom, the graded form of
+# the old think-vs-act forced switch). The meta-rut breaker in pick.py is
+# demoted to a dead-man backstop (fires only on a sustained freeze).
+import os as _os
+_BOREDOM_DRIVE = _os.environ.get("ORRIN_BOREDOM_DRIVE", "1") != "0"
+_W_BOREDOM = 0.45        # per-fn: full stagnation × full share ⇒ −0.45
+_W_BOREDOM_CAT = 0.50    # category: all-think window ⇒ up to −0.20 on think fns
 
 # Fix 1 (RUN6_FIX_PLAN_2026-07-08 §3): learned value as a FIRST-CLASS additive
 # term. A4's multiplicative scaler alone spans ×0.65–×1.25 — a ±25 % nudge on a
@@ -284,7 +296,23 @@ def score_candidates(
                 s_explore *= _sc
                 s_curio *= _sc
 
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp + s_value
+        # C5: boredom devalues the repeated. Per-fn — this action's share of
+        # recent picks, scaled by the FELT stagnation level; category — think
+        # fns are damped in proportion to how far deliberation has crowded
+        # action out of the window (the graded form of the meta-rut switch).
+        s_boredom = 0.0
+        if _BOREDOM_DRIVE and recent:
+            _win = recent[-10:]
+            _share = _win.count(name) / max(1, len(_win))
+            s_boredom = -_W_BOREDOM * float(si.stagnation_signal or 0.0) * _share
+            if name in _DELIBERATION_FNS:
+                _w5 = recent[-5:]
+                _think_share = sum(
+                    1 for p in _w5 if p in _DELIBERATION_FNS) / max(1, len(_w5))
+                if _think_share > 0.6:
+                    s_boredom -= _W_BOREDOM_CAT * (_think_share - 0.6)
+
+        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp + s_value + s_boredom
 
         # A4 (RUN4_FIX_PLAN §1.3, S9): the multiplicative scaler is KEPT as the
         # secondary nudge behind Fix 1's additive term. For a MATURE action, the

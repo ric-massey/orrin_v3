@@ -239,6 +239,16 @@ class MemoryDaemon:
             # Update timestamp each time compaction runs
             self.mark_compaction_now()
             note_compaction(stats, when_ts=self._last_compact_ts)
+            # C9/E1: compression is MEASURED, not assumed — the §10 gate reads
+            # this ledger for "≥1 consolidation-compression event".
+            try:
+                from brain.cognition.entropy_budget import note as _budget_note
+                _n = int(getattr(stats, "summary_items_created", 0) or 0) + int(
+                    getattr(stats, "near_duplicates_dropped", 0) or 0)
+                if _n:
+                    _budget_note("compressed", "memory_store", _n)
+            except Exception:  # intentional: ledger is best-effort telemetry
+                pass
 
     # ----------------- Helpers -----------------
 

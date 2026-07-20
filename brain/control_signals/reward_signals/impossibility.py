@@ -136,3 +136,17 @@ def impossible_actions(now: Optional[float] = None) -> Set[str]:
     """The set of actions currently outside the selectable set."""
     now = time.time() if now is None else now
     return {a for a in _load().keys() if is_impossible(a, now)}
+
+
+def realized_reward_with_prejudice(act_key: str, actual_fb: float) -> float:
+    """R10-8 account seam, extracted so it is provable by harness (F-LN8): an
+    action the gate refused this cycle (LLM circuit open, tool absent) produced
+    no effect no matter how cleanly it "ran" — pay it zero-with-prejudice so its
+    EMA decays below the selection default instead of sitting high on the
+    strength of not raising. Fail-safe: on any error the reward passes through."""
+    try:
+        if is_impossible(act_key):
+            return 0.0
+    except Exception as _ie:
+        record_failure("finalize.finalize_cycle.impossible", _ie)
+    return actual_fb

@@ -9,6 +9,8 @@
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
+import math
+import os
 import re
 import random
 import time
@@ -472,12 +474,53 @@ def title_completion_count(title: str) -> int:
     return int(_TITLE_COUNTS.get(str(title or "").strip().lower(), 0) or 0)
 
 
+# ── C3 (Run 11 §6.1): title cooldowns → TOPIC SATIETY ─────────────────────────
+# The escalating cooldown + per-life cap were clamps: timers standing in for a
+# missing appetite. The conversion models the WANT itself — completing a topic
+# quenches the demand for it (deeper each repeat), and the demand recovers with
+# time (slower each repeat). Respawn stops because the appetite is gone, not
+# because a rule forbids the title; a topic completed five times is a long,
+# finite quench, not a lifetime ban. Generators can also WEIGHT candidate
+# sampling by appetite, so a barely-recovered topic competes at a discount
+# instead of binary-gating.
+_TOPIC_SATIETY = os.environ.get("ORRIN_TOPIC_SATIETY", "1") != "0"
+_APPETITE_TAU_S = 48 * 3600.0     # base recovery time-constant (scales with n)
+_APPETITE_SPAWN_FLOOR = 0.30      # below this, the want is too quenched to spawn
+
+
+def topic_appetite(title: str, now: float | None = None) -> float:
+    """[0,1] how much Orrin currently WANTS this topic. 1.0 = never completed.
+    Each completion quenches deeper ((n+0.5)/(n+1)) and recovers slower
+    (tau × n): n=1 re-arms in hours, n=5 in days — diminishing returns per
+    topic, the habituation-of-demand curve."""
+    t = str(title or "").strip().lower()
+    if not t:
+        return 1.0
+    n = title_completion_count(t)
+    if n <= 0:
+        return 1.0
+    ts = _RECENTLY_COMPLETED.get(t)
+    if not isinstance(ts, (int, float)):
+        # Completed in a prior window but the stamp aged out — mostly recovered,
+        # still discounted by the lifetime count.
+        return max(0.0, min(1.0, 1.0 - 0.5 / (n + 1)))
+    since = max(0.0, (now if now is not None else time.time()) - float(ts))
+    quench = (n + 0.5) / (n + 1.0)
+    tau = _APPETITE_TAU_S * n
+    return max(0.0, min(1.0, 1.0 - quench * math.exp(-since / tau)))
+
+
 def title_respawn_blocked(title: str, now: float | None = None) -> bool:
-    """True when `title` must not be spawned again: past the per-life cap, or
-    inside its escalating cooldown (base cooldown × 2^(completions−1))."""
+    """True when `title` must not be spawned again right now.
+
+    C3 (flag ON, Run 11 default): the want is too quenched — appetite below
+    the spawn floor. No cap, no timer: demand economics.
+    Flag OFF (legacy): per-life cap + escalating cooldown."""
     t = str(title or "").strip().lower()
     if not t:
         return False
+    if _TOPIC_SATIETY:
+        return topic_appetite(t, now) < _APPETITE_SPAWN_FLOOR
     n = title_completion_count(t)
     if n >= TITLE_COMPLETION_CAP:
         return True

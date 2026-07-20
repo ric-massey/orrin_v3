@@ -166,6 +166,11 @@ def should_think(context: dict) -> Tuple[bool, str]:
         s, raw, eff, key = max(strong, key=lambda t: t[2])
         win.append(key)   # append only on a genuine trigger-3 win (plan §B1)
         src = s.get("source", "?")
+        try:  # C8: which source wins ignition is a load-bearing distribution
+            from brain.cognition.entropy_monitor import observe as _eo
+            _eo("ignition_source", src)
+        except Exception:  # intentional: instrument is best-effort
+            pass
         if eff < raw - 1e-6:
             log_activity(f"[deliberation_gate] strong_signal_habituated "
                          f"({src}@{raw:.2f}→eff {eff:.2f}) still fired")

@@ -86,7 +86,14 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
             except Exception:
                 gap = max(0.0, 1.0 - 0.8 * conf)         # fallback: low conf = bigger gap
             gap_by_name[name] = gap
-            scored.append((name, relevance * (0.2 + 0.8 * gap)))
+            # C3: demand weighting — a recently-completed topic competes at its
+            # current appetite, not at full strength (habituation of demand).
+            try:
+                from brain.cognition.intrinsic_helpers import topic_appetite
+                appetite = topic_appetite(f"understand {name} more deeply")
+            except Exception:
+                appetite = 1.0
+            scored.append((name, relevance * (0.2 + 0.8 * gap) * appetite))
         chosen = _weighted_sample(scored, limit)
 
         # F-LN4c: the question names the concept's own measured gap tier, not one
@@ -134,18 +141,12 @@ _QUESTION_RE = re.compile(
 
 # F-LN3 (Run 10): a question whose subject is Orrin himself has no web answer —
 # it belongs to the introspection path (own memory / history / felt states),
-# never to a kind="research" goal that plans web queries and fails. This is the
-# subject test the router uses; the Thought Object (T1) supersedes it with real
-# provenance when it lands.
-_SELF_REF_RE = re.compile(
-    r"\b(i|me|my|myself|my own|orrin)\b|"
-    r"\b(you think|do you|would you|could you)\b",   # rhetorical/addressed-to-someone
-    re.IGNORECASE,
-)
-
-
+# never to a kind="research" goal that plans web queries and fails. T1 landed:
+# the subject test is thought.researchability_of_text — one classifier, not a
+# second copy of the regex.
 def _is_self_referential_question(q: str) -> bool:
-    return bool(_SELF_REF_RE.search(q))
+    from brain.cognition.thought import researchability_of_text
+    return researchability_of_text(q) == "self"
 
 
 def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3) -> List[Dict]:
@@ -159,19 +160,13 @@ def _open_question_goals(context: Dict[str, Any], long_mem: list, limit: int = 3
     # the latest live user input as its own open question.
     _live_user = str(context.get("latest_user_input") or "").strip().lower()
     for entry in reversed(sources):
-        if isinstance(entry, dict) and (
-                str(entry.get("event_type") or "").startswith("user")
-                or str(entry.get("agent") or "").lower() == "user"):
-            continue
-        # F-LN1 (Run 10 LN-1): an unanswered_question record is Orrin's OWN
-        # outbound question (his "What do you think?" sign-off) — mining it back
-        # as an open question is a source-monitoring error. Symmetric with the
-        # [input/ skip below: neither side of a conversation is a research gap.
-        if isinstance(entry, dict) and str(entry.get("event_type") or "") == "unanswered_question":
+        # T1: ONE provenance predicate replaces the per-miner prefix lists.
+        # F-LN1 (own outbound questions), F7 (user speech), and telemetry
+        # lines are all the same rule: not his own thought ⇒ not his gap.
+        from brain.cognition.thought import is_minable_as_own_gap
+        if not is_minable_as_own_gap(entry):
             continue
         text = str(entry.get("content", entry) if isinstance(entry, dict) else entry)
-        if text.startswith("[input/") or text.startswith("[unanswered_question]"):
-            continue   # structured records of the conversation, not open gaps
         if "?" not in text:
             continue
         for m in _QUESTION_RE.finditer(text):

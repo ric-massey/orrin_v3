@@ -48,10 +48,13 @@ _SKIP_PREFIXES = ("🧠", "✅", "⚠️", "⏳", "[deadline]", "[memory]", "[en
 
 def _extract_topics(wm_entries: List[Dict]) -> Dict[str, int]:
     """Return word/bigram frequency from meaningful WM entries."""
+    from brain.cognition.thought import is_minable_as_own_gap   # T1 provenance
     counts: Dict[str, int] = {}
     for entry in wm_entries:
         if not isinstance(entry, dict):
             continue
+        if not is_minable_as_own_gap(entry):
+            continue   # opinions form on HIS material, not telemetry/conversation
         text = str(entry.get("content") or "").strip()
         if not text or text.startswith(_SKIP_PREFIXES):
             continue

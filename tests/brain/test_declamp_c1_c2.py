@@ -12,11 +12,39 @@ import brain.cognition.planning.commitment_value as cv
 from brain.think import deliberation_gate as dg
 
 
+@pytest.fixture(autouse=True)
+def _fresh_gate_state():
+    # Gate state is module-level (the loop rebuilds context every cycle — the
+    # 2026-07-20 smoke finding); isolate it per test.
+    dg._eff_history_state.clear()
+    dg._ignition_recent_state.clear()
+    yield
+    dg._eff_history_state.clear()
+    dg._ignition_recent_state.clear()
+
+
 # ── C1: adaptive ignition ────────────────────────────────────────────────────
 
 def test_threshold_is_constant_until_distribution_is_warm():
     ctx: dict = {}
     assert dg.signal_trigger_threshold(ctx) == dg._SIGNAL_STRENGTH_TRIGGER
+
+
+def test_habituation_survives_the_per_cycle_context_rebuild():
+    """The 2k smoke (07-20) found B1/C1 inert in the LIVE loop: state kept in
+    the context dict dies with it every cycle (sense_and_refresh builds a fresh
+    one), so a pinned social_presence@0.85 won 419 ignitions with zero
+    habituation. Gate state is module-level now; a FRESH context per call must
+    still habituate the jammed horn."""
+    fired = 0
+    for cycle in range(40):
+        ctx = {"affect_state": {}, "_emo_pre_cycle": {},
+               "raw_signals": [{"source": "social_presence", "signal_strength": 0.85}],
+               "_last_think_cycle": 10**9}
+        fire, reason = dg.should_think(ctx)
+        if fire and reason.startswith("strong_signal"):
+            fired += 1
+    assert fired <= 5, f"jammed horn still winning through fresh contexts: {fired}/40"
 
 
 def test_threshold_tracks_the_lived_distribution():

@@ -60,12 +60,18 @@ _PCTL_MIN_SAMPLES    = 30    # constant line until the distribution is warm
 _THR_FLOOR, _THR_CEIL = 0.30, 0.95   # sanity band on the adaptive line
 
 
+# SMOKE FINDING (2026-07-20, pre-Run-11 2k life): the loop REBUILDS context
+# every cycle (sense_and_refresh takes no previous context), so state stashed
+# in the context dict dies at cycle end — B1's habituation window and C1's
+# eff-history reset every cycle, leaving B1 structurally inert (419 identical
+# social_presence@0.85 wins, zero habituation) and C1 forever cold. The state
+# lives at MODULE level (process lifetime, same pattern as the effect ledger's
+# credit window); the functions keep their context arg for API stability.
+_eff_history_state: deque = deque(maxlen=_EFF_HISTORY_WINDOW)
+
+
 def _eff_history(context: dict) -> "deque":
-    hist = context.get("_ignition_eff_history")
-    if not isinstance(hist, deque):
-        hist = deque(maxlen=_EFF_HISTORY_WINDOW)
-        context["_ignition_eff_history"] = hist
-    return hist
+    return _eff_history_state
 
 
 def signal_trigger_threshold(context: dict) -> float:
@@ -92,14 +98,12 @@ def signal_trigger_threshold(context: dict) -> float:
 # fourth per-drive patch.
 _IGNITION_WINDOW      = 50    # M: how many recent trigger-3 wins to remember
 _HABITUATION_K        = 0.25  # a key that won 12 of the last 50 → ×0.25
+_ignition_recent_state: deque = deque(maxlen=_IGNITION_WINDOW)
 
 
 def _ignition_window(context: dict) -> "deque":
-    win = context.get("_ignition_recent")
-    if not isinstance(win, deque):
-        win = deque(maxlen=_IGNITION_WINDOW)
-        context["_ignition_recent"] = win
-    return win
+    # Module-level for the same reason as _eff_history: context is per-cycle.
+    return _ignition_recent_state
 
 
 def _sig_key(source, strength) -> tuple:

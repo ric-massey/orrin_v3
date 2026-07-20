@@ -211,6 +211,39 @@ Ground-truthed each item against the tree before building (standing rule):
   backend's empty-session hazard doesn't apply there). B1 timeline undercount
   + cleanup Phases 3–7 deferred with L4; wiki sync stays LAST (post-capture).
 
+### 2k smoke life result (2026-07-20, isolated tree, 2,038 cycles / 29 min, clean SIGINT death)
+
+Newborn life in a scratch `ORRIN_DATA_DIR/STATE_DIR` (committed seeds copied
+in), headless, `ORRIN_CYCLE_SLEEP=0` (~1.2 s/cycle), all Run 11 flags ON.
+
+**Green:**
+- Boot, 2,038 cycles, graceful shutdown, exit 0. **1 recorded failure all
+  life** — an honest goal failure (3-attempt step cap), not a code class.
+- **C8 proven in-life**: all four channels observed; `commitment_driver`
+  collapsed early (young life, one driver), routed felt pressure, then
+  **recovered to H≈0.88 with 4 rotating drivers** — C2's antagonist working.
+- Pick diversity healthy: 36 distinct fns, top share 22.6 % (research_topic),
+  H≈0.79. C9 budget counting (`grew: long_memory 53`). C4 marginal pricing
+  fired 2×. **D3**: novelty ended at 0.25 — oscillating above the 0.12 floor,
+  not flatlined (pre-D3 lives pinned ~0).
+- `find_unexpected_link` registered (636-fn list); close-out stamped 2
+  questions (0 answered — the §10 axis the 20k run is for). Ladder correctly
+  never armed (no verified success in 29 min).
+
+**Smoke finding (FIXED same day):** ignition ran at 54 % duty with
+`ignition_source` collapsing to a `social_presence@0.85` monoculture and
+**zero habituation lines in 419 identical wins**. Root cause: the loop
+REBUILDS context every cycle (`sense_and_refresh` takes no previous context),
+so B1's habituation window and C1's eff-history — both stored in the context
+dict as deques — died every cycle. **B1 has been structurally inert in every
+live run**, and C1 never warmed past its cold-start constant. Fix: gate state
+moved to module level (process lifetime);
+`test_habituation_survives_the_per_cycle_context_rebuild` pins the live-loop
+shape (fresh dict per call). Audited the tree for the same class: every other
+rolling window is already module-level.
+
+**Verdict:** build is launch-viable. L3 unblocked (C2 smoke-checked green).
+
 ---
 
 ## Launch checklist (§9 step 4, expanded)

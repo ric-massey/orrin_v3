@@ -190,6 +190,15 @@ def _generate(context: Dict[str, Any], now: float) -> Optional[str]:
     if lifetime.get("phase") in ("late", "terminal"):
         days = lifetime.get("days_remaining_felt", 0)
         mort_note = f"I'm aware I have roughly {days:.0f} days left."
+        # L3 (§3b, second mouth): remaining time binds to the specific intended
+        # arrival, not just to the countdown.
+        try:
+            from brain.cognition.self_state.life_ambition import prospective_clause
+            _amb = prospective_clause()
+            if _amb:
+                mort_note += " " + _amb
+        except Exception:  # intentional: ambition organ optional here
+            pass
 
     # Demand conflicts — unresolved tensions are generative
     conflicts = context.get("_drive_conflicts") or []

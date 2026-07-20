@@ -339,6 +339,14 @@ def commit_score(goal: Dict[str, Any], *, tier_weight: int, priority_rank: int) 
         if gid == str(d.get("driver") or "") and float(
                 (row or {}).get("recommit_block_pulls", 0.0) or 0.0) <= 0.0:
             adjust += _W_INCUMBENT
+        # L3: a small pull toward the believed destination (≤ +0.1 additive,
+        # proposal §4) — it biases the ordering, never dictates it; C2's
+        # neglect pressure (+13 at saturation) always out-muscles it.
+        try:
+            from brain.cognition.self_state.life_ambition import ambition_bias
+            adjust += ambition_bias(goal)
+        except Exception as _abe:
+            record_failure("commitment_value.ambition_bias", _abe)
         return base + adjust
     except Exception as exc:
         record_failure("commitment_value.commit_score", exc)

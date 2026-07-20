@@ -174,6 +174,13 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     goal["completed_timestamp"] = now
     goal["last_updated"] = now
     goal.setdefault("history", []).append({"event": "completed", "timestamp": now})
+    # L3: a real completion feeds the ambition belief (will-homing, alpha,
+    # arrival check) — the single chokepoint every honest completion passes.
+    try:
+        from brain.cognition.self_state.life_ambition import note_completion
+        note_completion(goal)
+    except Exception as _lan:
+        record_failure("goal_outcomes.life_ambition", _lan)
     # Close out any still-pending plan steps so a completed goal never carries
     # live steps (audit found completed goals with steps 2/3 still "pending",
     # which the executive then tried to advance — the re-plan/stall loop).

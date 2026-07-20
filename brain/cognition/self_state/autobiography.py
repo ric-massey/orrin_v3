@@ -462,6 +462,15 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
 
     ts            = now_iso_z()
     narrative     = (result.get("narrative") or "").strip()
+    # L3: the story gains its PROSPECTIVE clause — the held ambition is part of
+    # the narrative, not just the past (proposal §3b: first of the two mouths).
+    try:
+        from brain.cognition.self_state.life_ambition import prospective_clause
+        _clause = prospective_clause()
+        if _clause:
+            narrative = (narrative + " " + _clause).strip()
+    except Exception as _lae:
+        record_failure("autobiography.life_ambition_clause", _lae)
     new_chapter   = bool(result.get("new_chapter", False))
     chapter_title = result.get("chapter_title") or ""
     theme_summary = (result.get("theme_summary") or "").strip()
@@ -503,6 +512,15 @@ def narrative_update(context: Optional[Dict[str, Any]] = None) -> str:
     auto["last_updated"] = ts
     save_autobiography(auto)
     _reset_pressure()   # clear running total now that the autobiography has fired
+
+    # L3: the maturity gate is "after the first narrative update" — an ambition
+    # needs a story to grow out of. Authoring is idempotent (once per life while
+    # one is held) and reads the story just written.
+    try:
+        from brain.cognition.self_state.life_ambition import maybe_author
+        maybe_author(context)
+    except Exception as _lam:
+        record_failure("autobiography.life_ambition_author", _lam)
 
     update_long_memory(
         f"[autobiography] {narrative}",

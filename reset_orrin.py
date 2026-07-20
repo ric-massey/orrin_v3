@@ -60,6 +60,7 @@ ARCHIVE_DIR = DATA_DIR / "_archive"
 
 # Always kept — config and knowledge that takes effort to rebuild (boot-critical).
 ALWAYS_KEEP = {
+    "life_lineage.json",   # L3 §3d: the previous life's QUESTION survives (never the ambition)
     "knowledge_base.json",
     "model_config.json",
     "emotion_model.json",      # may also be present as affect_model.json after rename

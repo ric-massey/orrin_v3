@@ -52,6 +52,14 @@ def _boot_context() -> Context:
     for path in [RELATIONSHIPS_FILE, MODEL_CONFIG_FILE]:
         path.parent.mkdir(parents=True, exist_ok=True)
 
+    # L3 (§3d): a new life may inherit the previous life's QUESTION — one seed
+    # memory, once — never the ambition itself.
+    try:
+        from brain.cognition.self_state.life_ambition import ingest_lineage_seed
+        ingest_lineage_seed()
+    except Exception as _lse:
+        log_error(f"lineage seed ingest failed: {_lse}")
+
 
     try:
         refresh_cog()

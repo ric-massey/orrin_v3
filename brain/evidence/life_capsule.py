@@ -336,6 +336,32 @@ def build_life_capsule(
     for name, payload in (metrics or {}).items():
         (cap / "metrics" / f"{name}.json").write_text(json.dumps(payload, indent=2), "utf-8")
 
+    # 3b. L3 death rite: the ambition verdict (arrived / died trying /
+    # abandoned) is sealed into the capsule, and ONLY the question survives as
+    # a lineage seed for the next life — the ambition itself is not inherited.
+    # Pure data read of life_ambition.json (layering: evidence must not import
+    # cognition); the verdict is a trivial status projection.
+    def _seal_ambition():
+        d = _read_json(data_dir / "life_ambition.json", {}) or {}
+        if not (isinstance(d, dict) and d.get("statement")):
+            v: Dict[str, Any] = {"verdict": "never_formed"}
+        else:
+            status = str(d.get("status", ""))
+            verdict = ("arrived" if status == "arrived"
+                       else "died_trying" if status == "held" else "abandoned")
+            v = {"verdict": verdict, "statement": d.get("statement"),
+                 "revisions": d.get("revisions", []),
+                 "seed_question": (f"The previous life aimed at: {d.get('statement')} "
+                                   f"— and {verdict.replace('_', ' ')}.")}
+        (cap / "metrics" / "life_ambition.json").write_text(
+            json.dumps(v, indent=2), "utf-8")
+        if v.get("seed_question"):
+            (data_dir / "life_lineage.json").write_text(json.dumps(
+                {"seed_question": v["seed_question"], "sealed_at": _now_iso(),
+                 "ingested": False}, indent=2), "utf-8")
+        return v
+    _guard("life_ambition", _seal_ambition, {})
+
     # 4. Claims.
     claims = _guard("claims", lambda: _build_claims(metrics, tables), []) if metrics else []
     (cap / "claims" / "claims_ledger.json").write_text(json.dumps(claims, indent=2), "utf-8")

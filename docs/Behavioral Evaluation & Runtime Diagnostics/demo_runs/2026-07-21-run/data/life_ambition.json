@@ -1,0 +1,21 @@
+{
+  "statement": "Before this life ends: bring 3 pieces of work all the way to completion in service of \"Be genuinely useful and connected to the people I talk to\", growing out of what keeps recurring in my life so far (summary, working, cycles).",
+  "serves": "Be genuinely useful and connected to the people I talk to",
+  "theme_terms": [
+    "summary",
+    "working",
+    "cycles",
+    "work"
+  ],
+  "done_criteria": {
+    "kind": "aspiration_completions",
+    "serves": "Be genuinely useful and connected to the people I talk to",
+    "n": 3
+  },
+  "confidence": 0.5,
+  "alpha": 1.0,
+  "beta": 1.0,
+  "formed_at": 1784567998.4,
+  "status": "held",
+  "revisions": []
+}

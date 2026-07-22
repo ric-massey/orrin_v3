@@ -1,0 +1,714 @@
+{
+  "events": [
+    {
+      "ts": 1784566953.780319,
+      "stage": "artifact",
+      "goal": "g_fbeae92f2a"
+    },
+    {
+      "ts": 1784566973.683821,
+      "stage": "handoff",
+      "goal": "g_864b9f6251"
+    },
+    {
+      "ts": 1784567140.746033,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1784567147.857323,
+      "stage": "committed",
+      "goal": "g_432087c98828"
+    },
+    {
+      "ts": 1784567161.9621692,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1784567202.222162,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1784567202.2499478,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T17:06:42.232664+00:00"
+    },
+    {
+      "ts": 1784567202.251945,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-07-20T17:06:42.232664+00:00"
+    },
+    {
+      "ts": 1784567204.2540119,
+      "stage": "candidate",
+      "goal": "Open question: Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "ts": 1784567206.807771,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-07-20T17:06:42.232664+00:00"
+    },
+    {
+      "ts": 1784567206.808785,
+      "stage": "credited",
+      "goal": "intrinsic-2026-07-20T17:06:42.232664+00:00"
+    },
+    {
+      "ts": 1784567422.1303198,
+      "stage": "artifact",
+      "goal": "g_18a791a437a2"
+    },
+    {
+      "ts": 1784567422.132019,
+      "stage": "credited",
+      "goal": "g_18a791a437a2"
+    },
+    {
+      "ts": 1784568274.360047,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784568274.365759,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784568274.375953,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784568274.830451,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784568274.842238,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784568274.848864,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784568493.4859421,
+      "stage": "artifact",
+      "goal": "g_cd2945c62711"
+    },
+    {
+      "ts": 1784568493.486878,
+      "stage": "credited",
+      "goal": "g_cd2945c62711"
+    },
+    {
+      "ts": 1784568520.151603,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784568520.153454,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784568520.155041,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784568521.9030242,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T17:28:40.191787+00:00"
+    },
+    {
+      "ts": 1784568521.904866,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-07-20T17:28:40.191787+00:00"
+    },
+    {
+      "ts": 1784568528.672864,
+      "stage": "committed",
+      "goal": "g_8d5ca1eab8bb"
+    },
+    {
+      "ts": 1784568530.035094,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-07-20T17:28:40.191787+00:00"
+    },
+    {
+      "ts": 1784568530.0359309,
+      "stage": "credited",
+      "goal": "intrinsic-2026-07-20T17:28:40.191787+00:00"
+    },
+    {
+      "ts": 1784568635.22461,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784568635.226419,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784568635.230144,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784568635.468998,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T17:30:35.272876+00:00"
+    },
+    {
+      "ts": 1784568747.299753,
+      "stage": "artifact",
+      "goal": "g_e4b5482f689c"
+    },
+    {
+      "ts": 1784568747.300388,
+      "stage": "credited",
+      "goal": "g_e4b5482f689c"
+    },
+    {
+      "ts": 1784568852.80259,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784568852.8045409,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784568852.806426,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784568852.811855,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784570901.8754618,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1784570901.879253,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1784570901.884299,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784570901.895104,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784570902.2331111,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784570902.236684,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784570902.238624,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784570902.2407181,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784571049.721813,
+      "stage": "artifact",
+      "goal": "g_2d9df0e69400"
+    },
+    {
+      "ts": 1784571049.722862,
+      "stage": "credited",
+      "goal": "g_2d9df0e69400"
+    },
+    {
+      "ts": 1784571121.096504,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784571121.100533,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1784571121.1037061,
+      "stage": "candidate",
+      "goal": "Understand Hacker wipes Romania&#x27;s entire land registry database more deeply"
+    },
+    {
+      "ts": 1784571121.115106,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784571135.345564,
+      "stage": "committed",
+      "goal": "g_cfb8cca7f8f7"
+    },
+    {
+      "ts": 1784571179.7966158,
+      "stage": "artifact",
+      "goal": "g_cfb8cca7f8f7"
+    },
+    {
+      "ts": 1784571179.797649,
+      "stage": "credited",
+      "goal": "g_cfb8cca7f8f7"
+    },
+    {
+      "ts": 1784571179.89949,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1784571179.906924,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784571179.909445,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1784571179.91271,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784571180.0263638,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T18:12:59.978905+00:00"
+    },
+    {
+      "ts": 1784571289.97019,
+      "stage": "artifact",
+      "goal": "g_5cfae02e87c6"
+    },
+    {
+      "ts": 1784571289.971006,
+      "stage": "credited",
+      "goal": "g_5cfae02e87c6"
+    },
+    {
+      "ts": 1784571291.4423099,
+      "stage": "artifact",
+      "goal": "g_a80065e71ad3"
+    },
+    {
+      "ts": 1784571291.4433439,
+      "stage": "credited",
+      "goal": "g_a80065e71ad3"
+    },
+    {
+      "ts": 1784571347.9928901,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784571347.995313,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784571347.9990861,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784571348.010203,
+      "stage": "candidate",
+      "goal": "Understand English more deeply"
+    },
+    {
+      "ts": 1784571349.916373,
+      "stage": "artifact",
+      "goal": "g_b95a0b9b5169"
+    },
+    {
+      "ts": 1784571349.917452,
+      "stage": "credited",
+      "goal": "g_b95a0b9b5169"
+    },
+    {
+      "ts": 1784571350.0349948,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1784571350.03758,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1784571350.0402508,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784571350.0428329,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784571350.1103628,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T18:15:50.063011+00:00"
+    },
+    {
+      "ts": 1784571398.0801978,
+      "stage": "candidate",
+      "goal": "Understand English more deeply"
+    },
+    {
+      "ts": 1784571398.0888672,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784571398.093581,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1784571398.096732,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784571461.9467578,
+      "stage": "artifact",
+      "goal": "g_d29c7d5c0850"
+    },
+    {
+      "ts": 1784571461.949389,
+      "stage": "credited",
+      "goal": "g_d29c7d5c0850"
+    },
+    {
+      "ts": 1784571503.836452,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1784571503.840655,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1784571503.843207,
+      "stage": "candidate",
+      "goal": "Understand English more deeply"
+    },
+    {
+      "ts": 1784571503.845823,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784571511.516468,
+      "stage": "committed",
+      "goal": "g_3a1c397bc6ef"
+    },
+    {
+      "ts": 1784571512.9087129,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1784571512.912438,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784571512.914964,
+      "stage": "candidate",
+      "goal": "Understand English more deeply"
+    },
+    {
+      "ts": 1784571512.9177,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1784571513.03041,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-20T18:18:32.978751+00:00"
+    },
+    {
+      "ts": 1784571513.034378,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-07-20T18:18:32.978751+00:00"
+    },
+    {
+      "ts": 1784571519.683323,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-07-20T18:18:32.978751+00:00"
+    },
+    {
+      "ts": 1784571519.686781,
+      "stage": "credited",
+      "goal": "intrinsic-2026-07-20T18:18:32.978751+00:00"
+    },
+    {
+      "ts": 1784571568.157732,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784571568.1607108,
+      "stage": "candidate",
+      "goal": "Understand English more deeply"
+    },
+    {
+      "ts": 1784571568.1687171,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1784571568.171731,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1784606400.3993359,
+      "stage": "artifact",
+      "goal": "g_e591640589"
+    },
+    {
+      "ts": 1784627563.8389409,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784627563.8431659,
+      "stage": "candidate",
+      "goal": "Understand the band more deeply"
+    },
+    {
+      "ts": 1784627563.846684,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784627563.870549,
+      "stage": "candidate",
+      "goal": "Understand science more deeply"
+    },
+    {
+      "ts": 1784627579.356857,
+      "stage": "committed",
+      "goal": "g_b034d879baf7"
+    },
+    {
+      "ts": 1784627609.255641,
+      "stage": "artifact",
+      "goal": "g_b034d879baf7"
+    },
+    {
+      "ts": 1784627609.279676,
+      "stage": "credited",
+      "goal": "g_b034d879baf7"
+    },
+    {
+      "ts": 1784627609.665886,
+      "stage": "candidate",
+      "goal": "Understand Mitochondrial Theory more deeply"
+    },
+    {
+      "ts": 1784627609.6688828,
+      "stage": "candidate",
+      "goal": "Understand science more deeply"
+    },
+    {
+      "ts": 1784627609.6716669,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784627609.6746309,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1784627610.540607,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-21T09:53:30.182763+00:00"
+    },
+    {
+      "ts": 1784627724.579434,
+      "stage": "artifact",
+      "goal": "g_2db9891dad38"
+    },
+    {
+      "ts": 1784627724.580811,
+      "stage": "credited",
+      "goal": "g_2db9891dad38"
+    },
+    {
+      "ts": 1784627788.8816051,
+      "stage": "artifact",
+      "goal": "g_789d24095e8e"
+    },
+    {
+      "ts": 1784627788.885576,
+      "stage": "credited",
+      "goal": "g_789d24095e8e"
+    },
+    {
+      "ts": 1784627832.130038,
+      "stage": "candidate",
+      "goal": "Understand Mitochondrial Theory more deeply"
+    },
+    {
+      "ts": 1784627832.1345248,
+      "stage": "candidate",
+      "goal": "Understand noise more deeply"
+    },
+    {
+      "ts": 1784627832.1390662,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784627832.1660879,
+      "stage": "candidate",
+      "goal": "Understand The Science of Us more deeply"
+    },
+    {
+      "ts": 1784627836.299584,
+      "stage": "candidate",
+      "goal": "Understand Mitochondrial Theory more deeply"
+    },
+    {
+      "ts": 1784627836.30289,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784627836.306067,
+      "stage": "candidate",
+      "goal": "Understand the band more deeply"
+    },
+    {
+      "ts": 1784627836.3090382,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1784627857.715771,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-21T09:57:16.800672+00:00"
+    },
+    {
+      "ts": 1784627857.720077,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-07-21T09:57:16.800672+00:00"
+    },
+    {
+      "ts": 1784627864.93281,
+      "stage": "committed",
+      "goal": "g_45ae87eca519"
+    },
+    {
+      "ts": 1784627958.359206,
+      "stage": "artifact",
+      "goal": "g_45ae87eca519"
+    },
+    {
+      "ts": 1784627958.361218,
+      "stage": "credited",
+      "goal": "g_45ae87eca519"
+    },
+    {
+      "ts": 1784627958.805207,
+      "stage": "candidate",
+      "goal": "Understand The Science of Us more deeply"
+    },
+    {
+      "ts": 1784627958.845085,
+      "stage": "candidate",
+      "goal": "Understand Mitochondrial Theory more deeply"
+    },
+    {
+      "ts": 1784627958.848307,
+      "stage": "candidate",
+      "goal": "Understand Publish /jelly-button /jelly-theme more deeply"
+    },
+    {
+      "ts": 1784627958.8522398,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1784627959.530435,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-07-21T09:59:19.337533+00:00"
+    },
+    {
+      "ts": 1784628077.406208,
+      "stage": "artifact",
+      "goal": "g_acc40121f84a"
+    },
+    {
+      "ts": 1784628077.4105868,
+      "stage": "credited",
+      "goal": "g_acc40121f84a"
+    },
+    {
+      "ts": 1784628083.529792,
+      "stage": "artifact",
+      "goal": "g_38f81cd801b1"
+    },
+    {
+      "ts": 1784628083.5314162,
+      "stage": "credited",
+      "goal": "g_38f81cd801b1"
+    },
+    {
+      "ts": 1784628184.968868,
+      "stage": "candidate",
+      "goal": "Understand The Science of Us more deeply"
+    },
+    {
+      "ts": 1784628184.975196,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1784628185.002998,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1784628185.01018,
+      "stage": "candidate",
+      "goal": "Understand doom doom more deeply"
+    }
+  ]
+}

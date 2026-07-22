@@ -203,6 +203,60 @@ diagnosis is the headline (F-LN6), reuse ≥ 8 stands, **close-out rung 1**
 finalized Run 11 gate with Run 10 baselines is backlog **§10** (feed / growth /
 health / honesty axes).
 
+## Run 11 result — 2026-07-20/21 life: **NOT PASSED** — Health ✅✅ · Honesty ✅ · **Feed 🔴🔴🔴 · Growth 🔴🔴🔴🔴** (same constraint as Run 10 + a new shutdown-hang bug)
+
+Eleventh acceptance run ("The Growth Run", **mode: symbolic-only**, build
+**`423e201`** committed 2 min pre-launch; **18,327 cycles, single productive
+segment, natural lifespan death at cycle 18,327 ≈ 22:19Z**, ~29.3 h — **longest
+life yet**). Full verdict `demo_runs/2026-07-21-run/DEMO_RUN_2026-07-21.md`.
+
+- **HEALTH ✅ (best structural health ever)** — committed occupancy **43.3 %**
+  with **all four aspirations driving** (43/21/20/14 %); `genuine_contact`
+  committed **2,623 cycles (14.3 %)**, first substantial contact commitment.
+  RSS floor ~970 MB < 2.2 GB projection (4,029 consolidation events, guard never
+  fired; peaks 3.67 GB caveat). 🔴 within-axis: ignition duty **98.2 %** (< 90 %
+  target missed; C1 gate didn't move it), `drive_mastery` pinned @1.00 all life.
+  🟡 credited-effect diversity: contributions **19/0/0/0** (all self_understanding).
+- **HONESTY ✅** — **miner-junk failures 0** (F-LN1/LN3 fixed; Run 10: 4); 7
+  honest failure rows (real offline URLErrors + cap-outs); 🟡 1 repeated
+  goal_id (Run 10: 4), 🟡 1 store desync (Run 10: 0); mode + SHA stated, commit
+  before launch.
+- **FEED 🔴🔴🔴** — daemon goal-creation lane went **terminally silent at
+  09:59Z** (9.7 h + 5.9 h gaps then ~12.3 h of no new daemon goal while the
+  conscious lane kept researching); research-kind state records **4** (≥ 20);
+  **reuse 0** (≥ 8; 3rd straight fail). Failed at the *feed*, not the loop —
+  identical to Run 10, now worse.
+- **GROWTH 🔴🔴🔴🔴** — **answered-question rate 0** (F-LN4b rung-1 fires: 17
+  satiety closes blocked + 19 follow-ups, but 29 annotation closes still slip and
+  nothing is ever answered); **0 exemplars canonised** (21 held by originality
+  veto — symbolic scrape-stitches lack original prose) so no ladder ratchet; no
+  answer changed a decision; reuse chains 0. The growth *organs* (Life Ambition
+  L3 — set a 0/3 end-goal; epistemic close-out; veto; ladder) are **alive but
+  starved** — the substrate needs an LLM or a live daemon feed, both absent.
+- **NEW BUG** — `graceful_shutdown` **hung after writing death artifacts** at
+  natural lifespan death (cycle 18,327); the R9 cycle-stall tripwire (proven in a
+  real life for the first time) killed it 4× (22:34/22:50/23:06/23:22), each
+  relaunch **born already dead** (lifespan elapsed) re-entering the death path and
+  re-hanging with 0 cycles advanced, until clean exit 23:28.
+- **Skeptic reds persist** — `decide_to_write_code` blocked 1,967× yet EMA 0.576
+  / rank 18 / 22 causal edges (reward pays a structurally-impossible gesture,
+  3rd run); ignition saturation unrecalibrated.
+
+**Re-test gate (Run 12)** (full build order in
+`Behavioral Evaluation & Runtime Diagnostics/RUN12_IMPLEMENTATION_PLAN_2026-07-21.md`,
+which merges the dataflow audit + this list): (1) fix the shutdown-hang +
+lifespan-elapsed rebirth (P0, new); (2) un-starve the daemon feed (P0, 2nd run);
+(3) **DECIDED 2026-07-21 — growth's currency is structured symbolic knowledge, not
+prose**; the acceptance life runs **symbolic-only** and the close-out/reuse
+keystone is re-keyed to structured `claims.json` products (entities/relations/
+tested prediction), so **Growth is scored on structured currency**, not on prose
+memos or an LLM — score `answered` off a prediction resolved against telemetry, and
+reuse off a claim extending/testing/merging a prior claim by id; (4) classify
+blocked actions as impossibility (skeptic h, 3rd run); (5) make ignition breathe /
+recalibrate `drive_mastery` (skeptic i, 3rd run); (6) spread effect-credit past
+`self_understanding`; (7) close the annotation-path leak in epistemic close-out;
+(8) kill the last store-desync seam.
+
 **Added 2026-07-18 from the whole-system skeptic pass** (run doc §items
 10–14, with per-item observables): (h) **reward sees impossibility** — a
 gate-blocked action (this life: `decide_to_write_code`, blocked 369/369,

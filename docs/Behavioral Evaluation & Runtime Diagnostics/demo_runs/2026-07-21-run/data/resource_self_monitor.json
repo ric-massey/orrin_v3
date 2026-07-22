@@ -1,0 +1,15 @@
+{
+  "body_states": [
+    "clear"
+  ],
+  "vitals": {
+    "rss_mb": 1299.28125,
+    "cpu_util": 1.012,
+    "fd_pct": 0.00026416778564453125
+  },
+  "dominant": "clear",
+  "_stress_streak": 0,
+  "phase": "wake",
+  "somatic_infancy": true,
+  "body_converged": 0.75
+}

@@ -1,0 +1,60 @@
+{
+  "weights": {
+    "self_understanding": {
+      "Understand my own mind and how I work": 0.705
+    },
+    "world_knowledge": {
+      "Understand the world more deeply": 0.5
+    },
+    "genuine_contact": {
+      "Be genuinely useful and connected to the people I talk to": 0.5
+    },
+    "output_producing": {
+      "Make things — produce work that didn't exist before": 0.5
+    },
+    "self_exploration": {
+      "Understand my own mind and how I work": 0.5
+    },
+    "simulate_selves": {
+      "Understand my own mind and how I work": 0.5
+    },
+    "curiosity": {
+      "Understand the world more deeply": 0.5
+    },
+    "problem_solving": {
+      "Make things — produce work that didn't exist before": 0.5
+    },
+    "will": {
+      "Make things — produce work that didn't exist before": 0.5,
+      "Understand my own mind and how I work": 0.74,
+      "Understand the world more deeply": 0.4625
+    }
+  },
+  "credited_ids": [
+    "g_e766d810c0e9",
+    "ltc_aspiration-self_understa_1",
+    "g_fa805608ae5b",
+    "g_432087c98828",
+    "g_caf28798bcdf",
+    "g_ac9efcac5c27",
+    "g_cd2945c62711",
+    "g_8d5ca1eab8bb",
+    "g_e4b5482f689c",
+    "g_c3d2b46cf2ef",
+    "g_1bfb18b9c146",
+    "g_cfb8cca7f8f7",
+    "g_2d9df0e69400",
+    "g_b95a0b9b5169",
+    "g_5cfae02e87c6",
+    "g_a80065e71ad3",
+    "g_d29c7d5c0850",
+    "g_3a1c397bc6ef",
+    "g_5c4dace4e3e2",
+    "g_b034d879baf7",
+    "ltc_aspiration-self_understa_254",
+    "g_2db9891dad38",
+    "g_45ae87eca519",
+    "g_789d24095e8e",
+    "g_acc40121f84a"
+  ]
+}

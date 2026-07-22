@@ -1,0 +1,45 @@
+{
+  "queries": [
+    "Are these genuinely useful, or selected by inertia?"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes",
+    "https://en.wikipedia.org/wiki/List_of_My_Hero_Academia_characters",
+    "https://en.wikipedia.org/wiki/Nicolaus_Copernicus",
+    "https://en.wikipedia.org/wiki/Sampler_%28musical_instrument%29",
+    "https://en.wikipedia.org/wiki/Puranas"
+  ],
+  "results": [
+    {
+      "title": "René Descartes",
+      "url": "https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes",
+      "snippet": "argued that <span class=\"searchmatch\">these</span> motions in the pineal gland <span class=\"searchmatch\">are</span> based on God&#039;s will and that humans <span class=\"searchmatch\">are</span> supposed to want and like things that <span class=\"searchmatch\">are</span> <span class=\"searchmatch\">useful</span> to them. But",
+      "query": "Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "title": "List of My Hero Academia characters",
+      "url": "https://en.wikipedia.org/wiki/List_of_My_Hero_Academia_characters",
+      "snippet": "accelerates through space, while ignoring the laws of <span class=\"searchmatch\">inertia</span>. Bruce Lee (ブルース・リー, Burūsu Rī) Voiced <span class=\"searchmatch\">by</span>: Ryōta Suzuki (Japanese); Nazeeh Tarsha (English)",
+      "query": "Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "title": "Nicolaus Copernicus",
+      "url": "https://en.wikipedia.org/wiki/Nicolaus_Copernicus",
+      "snippet": "appeared, starting &quot;from the time when Galileo formulated the principle of <span class=\"searchmatch\">inertia</span> ... [which] helped to explain why everything would not fall off the earth",
+      "query": "Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "title": "Sampler (musical instrument)",
+      "url": "https://en.wikipedia.org/wiki/Sampler_%28musical_instrument%29",
+      "snippet": "the price down to under $10,000 but it was not until the mid-1980s that <span class=\"searchmatch\">genuinely</span> affordable keyboard samplers began to hit the market with the Ensoniq",
+      "query": "Are these genuinely useful, or selected by inertia?"
+    },
+    {
+      "title": "Puranas",
+      "url": "https://en.wikipedia.org/wiki/Puranas",
+      "snippet": "qualities (guna) which <span class=\"searchmatch\">are</span> inherent in existence, namely the quality of light <span class=\"searchmatch\">or</span> purity (sattva), passion (rajas), and darkness <span class=\"searchmatch\">or</span> <span class=\"searchmatch\">inertia</span> (tamas), with each",
+      "query": "Are these genuinely useful, or selected by inertia?"
+    }
+  ],
+  "ts": "2026-07-20T17:06:42.672585+00:00"
+}

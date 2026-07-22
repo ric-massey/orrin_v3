@@ -1,0 +1,51 @@
+{
+  "q0": {
+    "grew": {
+      "long_memory": 2578
+    },
+    "compressed": {
+      "memory_store": 4810,
+      "long_memory": 1
+    },
+    "forgotten": {
+      "long_memory": 900
+    }
+  },
+  "updated": 1784676203.3,
+  "q1": {
+    "grew": {
+      "long_memory": 6548
+    },
+    "compressed": {
+      "memory_store": 3595,
+      "long_memory": 5054
+    },
+    "forgotten": {
+      "long_memory": 11319
+    }
+  },
+  "q2": {
+    "grew": {
+      "long_memory": 11270
+    },
+    "compressed": {
+      "long_memory": 11270,
+      "memory_store": 3539
+    },
+    "forgotten": {
+      "long_memory": 22540
+    }
+  },
+  "q3": {
+    "grew": {
+      "long_memory": 6955
+    },
+    "compressed": {
+      "long_memory": 6953,
+      "memory_store": 3260
+    },
+    "forgotten": {
+      "long_memory": 13906
+    }
+  }
+}

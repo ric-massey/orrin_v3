@@ -1,0 +1,115 @@
+{
+  "queries": [
+    "English",
+    "English explained",
+    "what is not obvious about English"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/English",
+    "https://en.wikipedia.org/wiki/English_language",
+    "https://en.wikipedia.org/wiki/English_Wikipedia",
+    "https://en.wikipedia.org/wiki/American_English",
+    "https://en.wikipedia.org/wiki/English_alphabet",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+    "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+    "https://en.wikipedia.org/wiki/Consciousness_Explained",
+    "https://en.wikipedia.org/wiki/Obvious_Child",
+    "https://en.wikipedia.org/wiki/What_We_Talk_About_When_We_Talk_About_Love",
+    "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem",
+    "https://en.wikipedia.org/wiki/Oxford_English_Dictionary"
+  ],
+  "results": [
+    {
+      "title": "English",
+      "url": "https://en.wikipedia.org/wiki/English",
+      "snippet": "<span class=\"searchmatch\">English</span> or <span class=\"searchmatch\">english</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">English</span> usually refers to: <span class=\"searchmatch\">English</span> language <span class=\"searchmatch\">English</span> people <span class=\"searchmatch\">English</span> may also refer to: <span class=\"searchmatch\">English</span>,",
+      "query": "English"
+    },
+    {
+      "title": "English language",
+      "url": "https://en.wikipedia.org/wiki/English_language",
+      "snippet": "<span class=\"searchmatch\">English</span> is a West Germanic language of the Indo-European language family that emerged in early medieval England and has since become a global lingua franca",
+      "query": "English"
+    },
+    {
+      "title": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/English_Wikipedia",
+      "snippet": "The <span class=\"searchmatch\">English</span> Wikipedia is the primary <span class=\"searchmatch\">English</span>-language edition of Wikipedia, an online encyclopedia. It was created by Jimmy Wales and Larry Sanger on 15 January",
+      "query": "English"
+    },
+    {
+      "title": "American English",
+      "url": "https://en.wikipedia.org/wiki/American_English",
+      "snippet": "<span class=\"searchmatch\">English</span>, sometimes called United States <span class=\"searchmatch\">English</span> or U.S. <span class=\"searchmatch\">English</span>, is the set of varieties of the <span class=\"searchmatch\">English</span> language native to the United States. <span class=\"searchmatch\">English</span>",
+      "query": "English"
+    },
+    {
+      "title": "English alphabet",
+      "url": "https://en.wikipedia.org/wiki/English_alphabet",
+      "snippet": "Modern <span class=\"searchmatch\">English</span> is written with a Latin-script alphabet consisting of 26 letters, with each having both uppercase and lowercase forms. The word alphabet",
+      "query": "English"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "English explained"
+    },
+    {
+      "title": "The Mind, Explained",
+      "url": "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+      "snippet": "anxiety, mindfulness, and psychedelics. The Mind, <span class=\"searchmatch\">Explained</span> is a spin-off of Vox&#039;s Netflix show <span class=\"searchmatch\">Explained</span>. The series makes use of interviews, cartoons,",
+      "query": "English explained"
+    },
+    {
+      "title": "English language",
+      "url": "https://en.wikipedia.org/wiki/English_language",
+      "snippet": "<span class=\"searchmatch\">English</span> is a West Germanic language of the Indo-European language family that emerged in early medieval England and has since become a global lingua franca",
+      "query": "English explained"
+    },
+    {
+      "title": "Sex, Explained",
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "snippet": "Sex, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span>, is a spin-off of the television",
+      "query": "English explained"
+    },
+    {
+      "title": "Consciousness Explained",
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "snippet": "a theory that <span class=\"searchmatch\">explained</span> conscious events in terms of unconscious events could <span class=\"searchmatch\">explain</span> consciousness at all: &quot;To <span class=\"searchmatch\">explain</span> is to <span class=\"searchmatch\">explain</span> away&quot;.[page needed]",
+      "query": "English explained"
+    },
+    {
+      "title": "Obvious Child",
+      "url": "https://en.wikipedia.org/wiki/Obvious_Child",
+      "snippet": "<span class=\"searchmatch\">Obvious</span> Child <span class=\"searchmatch\">is</span> a 2014 American romantic comedy-drama film written and directed by Gillian Robespierre (in her directorial debut) and stars Jenny Slate",
+      "query": "what is not obvious about English"
+    },
+    {
+      "title": "English language",
+      "url": "https://en.wikipedia.org/wiki/English_language",
+      "snippet": "<span class=\"searchmatch\">English</span> <span class=\"searchmatch\">is</span> a West Germanic language of the Indo-European language family that emerged in early medieval England and has since become a global lingua franca",
+      "query": "what is not obvious about English"
+    },
+    {
+      "title": "What We Talk About When We Talk About Love",
+      "url": "https://en.wikipedia.org/wiki/What_We_Talk_About_When_We_Talk_About_Love",
+      "snippet": "<span class=\"searchmatch\">What</span> We Talk <span class=\"searchmatch\">About</span> When We Talk <span class=\"searchmatch\">About</span> Love <span class=\"searchmatch\">is</span> a 1981 collection of short stories by American writer Raymond Carver, as well as the title of one of the",
+      "query": "what is not obvious about English"
+    },
+    {
+      "title": "Is–ought problem",
+      "url": "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem",
+      "snippet": "descriptive statements (<span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> <span class=\"searchmatch\">is</span>) and prescriptive statements (<span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> ought to be). He argued that it <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> <span class=\"searchmatch\">obvious</span> how one can coherently transition",
+      "query": "what is not obvious about English"
+    },
+    {
+      "title": "Oxford English Dictionary",
+      "url": "https://en.wikipedia.org/wiki/Oxford_English_Dictionary",
+      "snippet": "The Oxford <span class=\"searchmatch\">English</span> Dictionary (OED) <span class=\"searchmatch\">is</span> the principal historical dictionary of the <span class=\"searchmatch\">English</span> language, published by Oxford University Press (OUP), a University",
+      "query": "what is not obvious about English"
+    }
+  ],
+  "ts": "2026-07-20T18:18:34.727980+00:00"
+}

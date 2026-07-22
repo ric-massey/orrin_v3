@@ -1,0 +1,11 @@
+What I learned about The Science of Us more deeply:
+
+- [symbolic] Cognitive Sciences Architecture Political Science Mechanical Engineering Centers (organization) [centers, architecture, mechanical, engineering, cognitive]
+[symbolic] Massachusetts Institute of Technology Search (organization) [search, institute, massachusetts, technology, organization]
+[symbolic] Brain (AI) [ai, brain]
+[symbolic] Next-Gen Desktop AI (organization) [next, desktop, gen, 
+- [Chunk: [metacog/pattern] Goal avoidance: 19 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 17 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [will] I resolve to: pursue: Understand the band more deeply — I stand behind this. (strength 0.53)
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.06 better than I predicted. I can trust my judgement a bit more and act sooner.
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.
+- [Chunk: [will] I resolve to: pursue: Understand the nature of mathematics more deeply — I stand behind this. (strength 0. / [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.]

@@ -1,0 +1,8 @@
+What I learned about the band more deeply:
+
+- 🧠 Chose: fetch_and_read — {"via": "multi-factor", "weights": {"dir": 0.22, "goal": 0.29700000000000004, "emo": 0.312, "novel": 0.11021122856980284, "band": 0.25, "drive": 0.15}, "features_on": {"resource_deficit": 0.158, "emo_motivation": 1.0, "__bias__": 1.0, "ne_high": 0.325, "stability_signal": 0.288, "action_debt": 1.0, "identity_investment": 0.38729833462074165, "threat_detector_response": 0.
+- [metacog/pattern] Goal avoidance: 32 consecutive cycles without taking action on 'Understand the world more deeply'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 31 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 19 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [will] I resolve to: pursue: Understand the band more deeply — I stand behind this. (strength 0.53)
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.06 better than I predicted. I can trust my judgement a bit more and act sooner.
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.

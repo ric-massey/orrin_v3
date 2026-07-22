@@ -1,0 +1,7 @@
+{"ts": "2026-07-20T17:12:07.450039+00:00", "site": "goal_failure", "goal_id": "g_18a791a437a2", "title": "Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-21T09:57:39.826979+00:00", "site": "goal_failure", "goal_id": "intrinsic-2026-07-21T09:57:16.800672+00:00", "title": "Understand Mitochondrial Theory more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-21T09:57:45.658560+00:00", "site": "goal_failure", "goal_id": "intrinsic-2026-07-21T09:57:16.800672+00:00", "title": "Understand Mitochondrial Theory more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-07-21T10:03:03.970947+00:00", "site": "goal_failure", "goal_id": "g_38f81cd801b1", "title": "Understand The Science of Us more deeply", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-07-21T18:18:51.525767+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-07-21T18:33:30.457870+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-07-21T18:36:24.369421+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}

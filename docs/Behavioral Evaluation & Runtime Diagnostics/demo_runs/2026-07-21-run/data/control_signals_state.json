@@ -1,0 +1,951 @@
+{
+  "stagnation_signal": 0.0,
+  "core_signals": {
+    "exploration_drive": 0.6820553266808063,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.1041073114170915,
+    "reward_positive": 0.5324339812037762,
+    "expected_gain": 0.7498580043017894,
+    "low_affect_signal": 0.0001622991782713533,
+    "social_comparison_signal": 3.508530839680836e-06,
+    "conflict_signal": 1.900050179911932e-06,
+    "threat_level": 0.07162490372475656,
+    "reward_negative": 0.013086079143990303,
+    "social_penalty": 1.7792673269734215e-09,
+    "loss_signal": 0.2480841099408418,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 3.508530839680836e-06,
+    "stagnation_signal": 0.08046496082886766,
+    "novelty_signal": 0.3911229218398303,
+    "motivation": 0.75,
+    "confidence": 0.75,
+    "impasse_signal": 0.32713042285369387,
+    "uncertainty": 0.36181963277108237,
+    "social_deficit": 0.013667542884283259,
+    "satisfaction_signal": 0.012263239180387213,
+    "risk_estimate": 0.005677198506063972
+  },
+  "_schema_version": 2,
+  "resource_deficit": 0.0342,
+  "signal_stability": 0.8812,
+  "_emotion_queue": [
+    {
+      "emotion": "uncertainty",
+      "per_cycle": 0.0145,
+      "cycles_left": 1,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "motivation",
+      "per_cycle": -0.015,
+      "cycles_left": 1,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "stagnation_signal",
+      "per_cycle": -0.005,
+      "cycles_left": 1,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "exploration_drive",
+      "per_cycle": 0.0021,
+      "cycles_left": 1,
+      "source": "novelty"
+    },
+    {
+      "emotion": "exploration_drive",
+      "per_cycle": 0.0018,
+      "cycles_left": 3,
+      "source": "novelty"
+    },
+    {
+      "emotion": "motivation",
+      "per_cycle": 0.0029,
+      "cycles_left": 3,
+      "source": "reward_signal"
+    },
+    {
+      "emotion": "motivation",
+      "per_cycle": -0.015,
+      "cycles_left": 3,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "impasse_signal",
+      "per_cycle": -0.005,
+      "cycles_left": 3,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "uncertainty",
+      "per_cycle": 0.0292,
+      "cycles_left": 2,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "stagnation_signal",
+      "per_cycle": 0.02,
+      "cycles_left": 3,
+      "source": "arbiter"
+    }
+  ],
+  "_prev_core": {
+    "exploration_drive": 0.654271151280204,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.10419113486390878,
+    "reward_positive": 0.5292569516755815,
+    "expected_gain": 0.7273535258614611,
+    "low_affect_signal": 0.00016645342648057408,
+    "social_comparison_signal": 3.5966689356896562e-06,
+    "conflict_signal": 1.9867156926755974e-06,
+    "threat_level": 0.06550870652852422,
+    "reward_negative": 0.011643105773701617,
+    "social_penalty": 8.604725204622299e-08,
+    "loss_signal": 0.2156017916615085,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 3.5966689356896562e-06,
+    "stagnation_signal": 0.08252816495268478,
+    "novelty_signal": 0.3866917981952991,
+    "motivation": 0.761956180769715,
+    "confidence": 0.7991286838955933,
+    "impasse_signal": 0.28208376510930255,
+    "uncertainty": 0.3299686716804908,
+    "social_deficit": 0.012992354047149093,
+    "satisfaction_signal": 0.012513511651319737,
+    "risk_estimate": 0.00594160077665117
+  },
+  "habituation": {},
+  "social_deficit": 0.0,
+  "_stability_signal_proxy": 0.315,
+  "_ne_proxy": 0.308,
+  "emotion_history": [
+    {
+      "exploration_drive": 0.5062884062209391,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1052345806818129,
+      "reward_positive": 0.5467608857842144,
+      "expected_gain": 0.7791276491795681,
+      "low_affect_signal": 0.00021592065194548678,
+      "social_comparison_signal": 3.750461513144548e-06,
+      "conflict_signal": 2.1372270909964503e-06,
+      "threat_level": 0.07583129591416084,
+      "reward_negative": 0.012862240097899866,
+      "social_penalty": 9.592552881798611e-08,
+      "loss_signal": 0.27747838697690735,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.750461513144548e-06,
+      "stagnation_signal": 0.060646036259903134,
+      "novelty_signal": 0.4157672796182281,
+      "motivation": 0.8790791344571204,
+      "confidence": 0.8336206873826228,
+      "impasse_signal": 0.3781612093453806,
+      "uncertainty": 0.24518741017654444,
+      "social_deficit": 0.013667214909234662,
+      "satisfaction_signal": 0.01562893786017399,
+      "risk_estimate": 0.016492270425185997
+    },
+    {
+      "exploration_drive": 0.5133989213779652,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1051298546122331,
+      "reward_positive": 0.5431781216088969,
+      "expected_gain": 0.763771035756577,
+      "low_affect_signal": 0.0002107898897662719,
+      "social_comparison_signal": 3.72384244872989e-06,
+      "conflict_signal": 2.109273803512675e-06,
+      "threat_level": 0.06955478301375466,
+      "reward_negative": 0.012194394125487791,
+      "social_penalty": 6.71670343832531e-08,
+      "loss_signal": 0.25683920682112915,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.72384244872989e-06,
+      "stagnation_signal": 0.05979822815324898,
+      "novelty_signal": 0.4097049315009077,
+      "motivation": 0.8042215623833578,
+      "confidence": 0.8161450821576487,
+      "impasse_signal": 0.34839779966578494,
+      "uncertainty": 0.25538366383693356,
+      "social_deficit": 0.013325445032840158,
+      "satisfaction_signal": 0.015316256227528661,
+      "risk_estimate": 0.015758258547004928
+    },
+    {
+      "exploration_drive": 0.5007803468827687,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10502725698400982,
+      "reward_positive": 0.5376486641185114,
+      "expected_gain": 0.7491316719329304,
+      "low_affect_signal": 0.00020552438519130225,
+      "social_comparison_signal": 3.6318121455757584e-06,
+      "conflict_signal": 2.0164770495386636e-06,
+      "threat_level": 0.0641466211064534,
+      "reward_negative": 0.011607003136172982,
+      "social_penalty": 1.066145154382525e-09,
+      "loss_signal": 0.23757624098046595,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.6318121455757584e-06,
+      "stagnation_signal": 0.05944499642601032,
+      "novelty_signal": 0.4037060982562355,
+      "motivation": 0.767716744529031,
+      "confidence": 0.802416971084502,
+      "impasse_signal": 0.32036727632122414,
+      "uncertainty": 0.2523183773513255,
+      "social_deficit": 0.012992307521850434,
+      "satisfaction_signal": 0.015009929502701557,
+      "risk_estimate": 0.01505701443636674
+    },
+    {
+      "exploration_drive": 0.5002657183113982,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1049266641550738,
+      "reward_positive": 0.5439579169550791,
+      "expected_gain": 0.7719023547777613,
+      "low_affect_signal": 0.0002007715252007196,
+      "social_comparison_signal": 3.6377798970555018e-06,
+      "conflict_signal": 2.02352250168536e-06,
+      "threat_level": 0.06898050033573308,
+      "reward_negative": 0.01284984940830567,
+      "social_penalty": 9.679733121714662e-08,
+      "loss_signal": 0.26960692800794567,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.6377798970555018e-06,
+      "stagnation_signal": 0.057172350581963426,
+      "novelty_signal": 0.40657989122453225,
+      "motivation": 0.8834807257938726,
+      "confidence": 0.833620662002408,
+      "impasse_signal": 0.3609930336230055,
+      "uncertainty": 0.2821307220298175,
+      "social_deficit": 0.013667367536053342,
+      "satisfaction_signal": 0.014709588526378,
+      "risk_estimate": 0.014386838031847786
+    },
+    {
+      "exploration_drive": 0.5091790162692374,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10482808959958537,
+      "reward_positive": 0.538154039142966,
+      "expected_gain": 0.7565340884564054,
+      "low_affect_signal": 0.00019609249634708803,
+      "social_comparison_signal": 3.6322882372377032e-06,
+      "conflict_signal": 2.0189423794765826e-06,
+      "threat_level": 0.06332567348240137,
+      "reward_negative": 0.012177778359843872,
+      "social_penalty": 8.548315707734844e-08,
+      "loss_signal": 0.24904727079444394,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.6322882372377032e-06,
+      "stagnation_signal": 0.05802868357826843,
+      "novelty_signal": 0.4004581804206669,
+      "motivation": 0.8100008389614428,
+      "confidence": 0.8155740748171663,
+      "impasse_signal": 0.3316956272745028,
+      "uncertainty": 0.28879723576526267,
+      "social_deficit": 0.013325569435503733,
+      "satisfaction_signal": 0.01441527352848792,
+      "risk_estimate": 0.01374650622895092
+    },
+    {
+      "exploration_drive": 0.4959669813483274,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10473152688310197,
+      "reward_positive": 0.5386110701511561,
+      "expected_gain": 0.7419115160836877,
+      "low_affect_signal": 0.00019119796216890227,
+      "social_comparison_signal": 3.543434236107861e-06,
+      "conflict_signal": 1.9310529634336925e-06,
+      "threat_level": 0.05846070391578277,
+      "reward_negative": 0.011588989171343086,
+      "social_penalty": 1.953896769935071e-09,
+      "loss_signal": 0.22990171693169006,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.543434236107861e-06,
+      "stagnation_signal": 0.05779494470908621,
+      "novelty_signal": 0.3944160375646738,
+      "motivation": 0.7716405041334455,
+      "confidence": 0.8013196204466728,
+      "impasse_signal": 0.304093023704986,
+      "uncertainty": 0.28290403035392675,
+      "social_deficit": 0.012992427661029399,
+      "satisfaction_signal": 0.014126965297654436,
+      "risk_estimate": 0.01189263437806416
+    },
+    {
+      "exploration_drive": 0.4926750384962406,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10463678605436988,
+      "reward_positive": 0.5486773498480223,
+      "expected_gain": 0.7645460767360217,
+      "low_affect_signal": 0.00018736500054606522,
+      "social_comparison_signal": 3.692621575768929e-06,
+      "conflict_signal": 2.082932590352444e-06,
+      "threat_level": 0.0722184598892218,
+      "reward_negative": 0.012830904655815899,
+      "social_penalty": 2.3785537098808262e-07,
+      "loss_signal": 0.2620781000528378,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.692621575768929e-06,
+      "stagnation_signal": 0.053978504574532925,
+      "novelty_signal": 0.3988318148291595,
+      "motivation": 0.885330998950666,
+      "confidence": 0.8336091756472033,
+      "impasse_signal": 0.34503839987969437,
+      "uncertainty": 0.30950270394570306,
+      "social_deficit": 0.013667291877893185,
+      "satisfaction_signal": 0.013844096694593308,
+      "risk_estimate": 0.010121021408583992
+    },
+    {
+      "exploration_drive": 0.5559284829209253,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10454400465920569,
+      "reward_positive": 0.540217895101664,
+      "expected_gain": 0.7491956778629196,
+      "low_affect_signal": 0.00018308109541516023,
+      "social_comparison_signal": 3.7007838686692574e-06,
+      "conflict_signal": 2.090736105776349e-06,
+      "threat_level": 0.06629007413623152,
+      "reward_negative": 0.012172698762659941,
+      "social_penalty": 1.0051402041799663e-07,
+      "loss_signal": 0.24160082003482472,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.7007838686692574e-06,
+      "stagnation_signal": 0.062202655547197956,
+      "novelty_signal": 0.3945221136147443,
+      "motivation": 0.7964729220486332,
+      "confidence": 0.814994937718248,
+      "impasse_signal": 0.3160883678031156,
+      "uncertainty": 0.3269891142285264,
+      "social_deficit": 0.013325475639886506,
+      "satisfaction_signal": 0.013567078391171295,
+      "risk_estimate": 0.008428401237801059
+    },
+    {
+      "exploration_drive": 0.5622441024456818,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10445312380053029,
+      "reward_positive": 0.5355992028412223,
+      "expected_gain": 0.7346176181792733,
+      "low_affect_signal": 0.0001785109133374829,
+      "social_comparison_signal": 3.609982649821969e-06,
+      "conflict_signal": 1.999417003794726e-06,
+      "threat_level": 0.06120193962049163,
+      "reward_negative": 0.01159273338567095,
+      "social_penalty": 1.718998129396354e-09,
+      "loss_signal": 0.22257471719652344,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.609982649821969e-06,
+      "stagnation_signal": 0.06904065403954596,
+      "novelty_signal": 0.39030602503177236,
+      "motivation": 0.7586751800698899,
+      "confidence": 0.800216102702021,
+      "impasse_signal": 0.28893000595300156,
+      "uncertainty": 0.3312156634290763,
+      "social_deficit": 0.012992336515508743,
+      "satisfaction_signal": 0.013295734537813195,
+      "risk_estimate": 0.006811186211877074
+    },
+    {
+      "exploration_drive": 0.6139914628215524,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10436398568565783,
+      "reward_positive": 0.5427757164749534,
+      "expected_gain": 0.7571730933503599,
+      "low_affect_signal": 0.0001747384125801568,
+      "social_comparison_signal": 3.6929942578978937e-06,
+      "conflict_signal": 2.0837320140146604e-06,
+      "threat_level": 0.07469299595773239,
+      "reward_negative": 0.012849693708031181,
+      "social_penalty": 1.7332217910226434e-07,
+      "loss_signal": 0.25490343090066314,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.6929942578978937e-06,
+      "stagnation_signal": 0.06974063261611016,
+      "novelty_signal": 0.39472553736328414,
+      "motivation": 0.8759003636229408,
+      "confidence": 0.8336184341844057,
+      "impasse_signal": 0.3318533730730757,
+      "uncertainty": 0.34112760105424006,
+      "social_deficit": 0.013667291214045656,
+      "satisfaction_signal": 0.013029594011380012,
+      "risk_estimate": 0.006507975625841776
+    },
+    {
+      "exploration_drive": 0.6421260860107978,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10427666822847835,
+      "reward_positive": 0.5378184146012256,
+      "expected_gain": 0.7418654530441076,
+      "low_affect_signal": 0.00017072146305699906,
+      "social_comparison_signal": 3.688891216091955e-06,
+      "conflict_signal": 2.079241959890735e-06,
+      "threat_level": 0.0685596091350332,
+      "reward_negative": 0.012185354027945178,
+      "social_penalty": 8.825359184227998e-08,
+      "loss_signal": 0.2345090867834219,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.688891216091955e-06,
+      "stagnation_signal": 0.06888346100553712,
+      "novelty_signal": 0.3905018348931623,
+      "motivation": 0.801529633280379,
+      "confidence": 0.814431735604965,
+      "impasse_signal": 0.3031895474834975,
+      "uncertainty": 0.3286578430388067,
+      "social_deficit": 0.013325491330409327,
+      "satisfaction_signal": 0.01276888944012218,
+      "risk_estimate": 0.006218315831136755
+    },
+    {
+      "exploration_drive": 0.6542710775051834,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10419113409907295,
+      "reward_positive": 0.5292568733409283,
+      "expected_gain": 0.7273534077265916,
+      "low_affect_signal": 0.00016646069566292646,
+      "social_comparison_signal": 3.5984931689034213e-06,
+      "conflict_signal": 1.9885402196880504e-06,
+      "threat_level": 0.06330769620592001,
+      "reward_negative": 0.011602385289367141,
+      "social_penalty": 1.8248895661265862e-09,
+      "loss_signal": 0.2156017523165625,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 3.5984931689034213e-06,
+      "stagnation_signal": 0.06846025929308223,
+      "novelty_signal": 0.38636943223040277,
+      "motivation": 0.7619561329656049,
+      "confidence": 0.7991286201834641,
+      "impasse_signal": 0.27641052823936957,
+      "uncertainty": 0.318867459367826,
+      "social_deficit": 0.012992351676187959,
+      "satisfaction_signal": 0.012513509367742053,
+      "risk_estimate": 0.005941599692374643
+    }
+  ],
+  "emotion_velocity": {
+    "exploration_drive": 0.0218,
+    "reflective": 0.0,
+    "analytical": 0.0,
+    "affiliation_signal": -0.0001,
+    "reward_positive": -0.0086,
+    "expected_gain": -0.0145,
+    "low_affect_signal": -0.0,
+    "social_comparison_signal": -0.0,
+    "conflict_signal": -0.0,
+    "threat_level": -0.0081,
+    "reward_negative": -0.0007,
+    "social_penalty": -0.0,
+    "loss_signal": -0.0189,
+    "prediction_error_signal": 0.0,
+    "rejection_signal": -0.0,
+    "stagnation_signal": -0.0212,
+    "novelty_signal": -0.0045,
+    "motivation": -0.0546,
+    "confidence": -0.0153,
+    "impasse_signal": -0.0325,
+    "uncertainty": -0.0087,
+    "social_deficit": -0.0003,
+    "satisfaction_signal": -0.0003,
+    "risk_estimate": -0.0003
+  },
+  "_pin_streaks": {
+    "loss_signal": 90,
+    "expected_gain": 81,
+    "motivation": 66,
+    "confidence": 45,
+    "impasse_signal": 42,
+    "reward_positive": 33,
+    "uncertainty": 12,
+    "exploration_drive": 5
+  },
+  "_saturation_streaks": {},
+  "_saturation_windows": {
+    "exploration_drive": {
+      "n": 461,
+      "hits": 0,
+      "last_bound_v": 0.6869028307686204
+    },
+    "reflective": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.35
+    },
+    "analytical": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.2
+    },
+    "affiliation_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.10000000000029431
+    },
+    "reward_positive": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.5549564716062002
+    },
+    "expected_gain": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.7468468003655541
+    },
+    "low_affect_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.00016803079941754746
+    },
+    "social_comparison_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 4.958335087617813e-06
+    },
+    "conflict_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 2.862943143246306e-06
+    },
+    "threat_level": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.06765003692709984
+    },
+    "reward_negative": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.011627647612562762
+    },
+    "social_penalty": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 6.826696670608756e-08
+    },
+    "loss_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.258245179835719
+    },
+    "prediction_error_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.02
+    },
+    "rejection_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 4.958335087617813e-06
+    },
+    "stagnation_signal": {
+      "n": 462,
+      "hits": 0,
+      "last_bound_v": 0.07017586182171763
+    },
+    "novelty_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.42174487192138593
+    },
+    "motivation": {
+      "n": 461,
+      "hits": 0,
+      "last_bound_v": 0.84103464538568
+    },
+    "confidence": {
+      "n": 461,
+      "hits": 0,
+      "last_bound_v": 0.8337222205053648
+    },
+    "impasse_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.32046410974026956
+    },
+    "uncertainty": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.31755174888064086
+    },
+    "social_deficit": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.012990496777304135
+    },
+    "satisfaction_signal": {
+      "n": 481,
+      "hits": 0,
+      "last_bound_v": 0.02884003522838777
+    },
+    "risk_estimate": {
+      "n": 109,
+      "hits": 0,
+      "last_bound_v": 0.0
+    }
+  },
+  "motivation": 0.7272469868177278,
+  "confidence": 0.75,
+  "exploration_drive": 0.6434977043955169,
+  "_allostatic_load": 0.0,
+  "_resource_setpoint": 0.15,
+  "hedonic_baselines": {
+    "exploration_drive": 0.5995,
+    "reflective": 0.345,
+    "analytical": 0.1951,
+    "affiliation_signal": 0.1099,
+    "reward_positive": 0.5238,
+    "expected_gain": 0.7623,
+    "low_affect_signal": 0.04,
+    "social_comparison_signal": 0.005,
+    "conflict_signal": 0.01,
+    "threat_level": 0.01,
+    "reward_negative": 0.0133,
+    "social_penalty": 0.0033,
+    "loss_signal": 0.2881,
+    "prediction_error_signal": 0.0249,
+    "rejection_signal": 0.005,
+    "stagnation_signal": 0.0365,
+    "novelty_signal": 0.4101,
+    "motivation": 0.7732,
+    "confidence": 0.7369,
+    "impasse_signal": 0.2593,
+    "uncertainty": 0.3192,
+    "social_deficit": 0.0,
+    "satisfaction_signal": 0.0588,
+    "risk_estimate": 0.0033
+  },
+  "smoothed_state": 0.3291,
+  "reward_signal": 0.33,
+  "activation_level": 0.345,
+  "affect_quadrant": "active_positive",
+  "_affect_velocity_l1": 0.2749,
+  "recent_triggers": [
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.048,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.032,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.022,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.015,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-07-21T22:06:48.069126+00:00"
+    }
+  ],
+  "recent_emotion_causes": [
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-07-21T20:21:50.918794+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-07-21T20:24:02.543334+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.084,
+      "cause": "[appraisal] [Emotional residue] I notice unprocessed rejection_signal connected to: '[Chunk:",
+      "ts": "2026-07-21T20:27:01.874809+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-07-21T20:27:19.296765+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: assess_goal_progress — {\"via\": \"mu",
+      "ts": "2026-07-21T20:34:34.003871+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.157,
+      "cause": "[appraisal] [Emotional residue] I notice unprocessed rejection_signal connected to: '[Chunk:",
+      "ts": "2026-07-21T20:42:21.496005+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: decide_to_write_code — {\"via\": \"mu",
+      "ts": "2026-07-21T20:49:47.492229+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.085,
+      "cause": "[appraisal] [Emotional residue] I notice unprocessed rejection_signal connected to: '[Chunk:",
+      "ts": "2026-07-21T20:57:04.281312+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: narrative_update — {\"via\": \"multi-",
+      "ts": "2026-07-21T21:05:09.234714+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.084,
+      "cause": "[appraisal] [Emotional residue] I notice unprocessed rejection_signal connected to: '[Chunk:",
+      "ts": "2026-07-21T21:12:19.422400+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [Chunk: 🧠 Chose: narrative_update — {\"via\": \"multi-factor\", \"weights\": {\"dir\": 0",
+      "ts": "2026-07-21T21:20:41.008776+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.157,
+      "cause": "[appraisal] [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on ",
+      "ts": "2026-07-21T21:28:58.291998+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - [Chunk: [memory] 📝 Working memory summary: ",
+      "ts": "2026-07-21T21:37:26.338027+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.157,
+      "cause": "[appraisal] [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on ",
+      "ts": "2026-07-21T21:38:25.090853+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.157,
+      "cause": "[appraisal] [metacog/pattern] Goal avoidance: 19 consecutive cycles without taking action on",
+      "ts": "2026-07-21T21:50:49.473580+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: narrative_update — {\"via\": \"multi-",
+      "ts": "2026-07-21T21:51:08.157024+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.084,
+      "cause": "[appraisal] [Emotional residue] I notice unprocessed rejection_signal connected to: '[Chunk:",
+      "ts": "2026-07-21T21:57:17.980681+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: narrative_update — {\"via\": \"multi-",
+      "ts": "2026-07-21T22:06:45.561179+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [Chunk: 🧠 Chose: narrative_update — {\"via\": \"multi-factor\", \"weights\": {\"dir\": 0",
+      "ts": "2026-07-21T22:07:04.487127+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.157,
+      "cause": "[appraisal] [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on ",
+      "ts": "2026-07-21T22:16:06.091007+00:00"
+    }
+  ],
+  "setpoint_proximity": 0.8519,
+  "last_updated": "2026-07-21T22:19:22.110969+00:00",
+  "confidence_by_domain": {},
+  "_appraisal_habituation": {
+    "[chunk: [metacog/pattern] goal avoidance: # consecutive cycles without taking ac": {
+      "ts": 1784672362.1125498,
+      "count": 4122
+    },
+    "[metacog/pattern] goal avoidance: # consecutive cycles without taking action on ": {
+      "ts": 1784672362.1125498,
+      "count": 29
+    },
+    "dream: in a labyrinth at dusk, [symbolic] see more results suggestions (concept)": {
+      "ts": 1784672362.1125498,
+      "count": 5
+    }
+  },
+  "_flatline_streak": 0,
+  "emotion_osc_counts": {
+    "exploration_drive": 0,
+    "reflective": 0,
+    "analytical": 0,
+    "affiliation_signal": 0,
+    "reward_positive": 0,
+    "expected_gain": 0,
+    "low_affect_signal": 0,
+    "social_comparison_signal": 0,
+    "conflict_signal": 0,
+    "threat_level": 0,
+    "reward_negative": 0,
+    "social_penalty": 0,
+    "loss_signal": 0,
+    "prediction_error_signal": 0,
+    "rejection_signal": 0,
+    "stagnation_signal": 0,
+    "novelty_signal": 0,
+    "motivation": 0,
+    "confidence": 0,
+    "impasse_signal": 0,
+    "uncertainty": 0,
+    "social_deficit": 0,
+    "satisfaction_signal": 0,
+    "risk_estimate": 0
+  }
+}

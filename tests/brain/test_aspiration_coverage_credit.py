@@ -15,12 +15,17 @@ _WORLD = "Understand the world more deeply"
 
 # ── Change 3: credit by intent ────────────────────────────────────────────────
 
-def test_generic_making_goal_credited_by_intent(monkeypatch):
-    """A making goal whose title trips no outcome keyword is still credited to its
-    aspiration via its driven_by intent (not defaulted to world-knowledge)."""
+def test_generic_goal_with_zero_evidence_yields_no_learning_signal(monkeypatch):
+    """1D.3 (Run 12) re-contract: a goal with ZERO keyword evidence no longer
+    "evidences" its own intent prior — that circular signal EMA-taught the
+    will→self_understanding link to 0.74 in Run 11 and captured every
+    commitment-minted completion. Zero evidence → None (no learning). The
+    CREDIT for such a goal still lands on its aspiration via the drive-link
+    fallback in credit_objectives; only the learned-link update requires
+    real content evidence now."""
     monkeypatch.setattr(io, "_serves_aspiration", lambda d: _MAKE if d == "output_producing" else "")
     goal = {"title": "ship the daily thing", "driven_by": "output_producing"}
-    assert io._evidenced_aspiration(goal) == _MAKE
+    assert io._evidenced_aspiration(goal) is None
 
 
 def test_strong_keyword_evidence_still_overrides_intent(monkeypatch):

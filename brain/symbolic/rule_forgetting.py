@@ -25,6 +25,22 @@
 #   beings." In J. Metcalfe & A. Shimamura (Eds.), Metacognition. MIT Press.
 #   Desirable difficulties: infrequently-fired rules lose confidence, but can
 #   recover if re-encountered — mirroring spaced-repetition consolidation.
+#
+# Inference tax: beliefs derived from beliefs decay faster than beliefs derived
+# from experience. Adapted from the Athena-Class Cognitive Architecture
+# (Vesper & Hypatia, Project Anamnesis, v1.0, 2026-06-07); reference
+# implementation: ac-prometheus/athena-class-agent, internal/memory/belief.go
+# (BFS over derived_from -> nearest experiential source; decay x 0.90 per hop;
+# stale threshold 0.20; re-verification resets decay).
+#   Orrin adaptation: distance is stamped at rule birth (rule_engine.py —
+#   0 = born from a resolved prediction, uncited defaults to 1, derived rules
+#   sit one hop past their nearest cited rule) and the idle-decay rate below is
+#   multiplied by (1/0.90)^distance, so a rule born from metacognition thins
+#   faster than one born from a confirmed prediction. Re-firing already resets
+#   idle time (their re-verification analog). The memo/memory-strength half
+#   waits on the §2.0 origin field (RUN12 plan A.1.1 sequencing).
+#   Ablation flag: `inference_tax` (run_config); telemetry: `inference_taxed`
+#   count per forgetting-log entry.
 from __future__ import annotations
 from brain.core.runtime_log import get_logger
 
@@ -42,11 +58,16 @@ _log = get_logger(__name__)
 
 _IDLE_DAYS_THRESH    = 21          # no firing in this many days → start decay
 _DECAY_RATE_PER_WEEK = 0.012       # confidence reduction per idle week
+_INFERENCE_DECAY_BASE = 0.90       # per-hop tax base (Athena-Class constant, header above)
+_MAX_INFERENCE_HOPS  = 6           # cap the exponent — a pathological chain can't zero a rule in one pass
 _MAX_CONDITIONS      = 5           # over-specific threshold
 _MIN_HITS_PRUNE      = 3           # only prune if hits below this
 _TOMBSTONE_THRESH    = 0.20        # mirrors rule_verifier
 _WAL_FILE            = DATA_DIR / "rule_firings.jsonl"
 _FORGETTING_LOG      = DATA_DIR / "forgetting_log.json"
+
+# Telemetry: rules whose decay the inference tax amplified in the last pass.
+_last_taxed_count    = 0
 
 
 # ─── Entry point ──────────────────────────────────────────────────────────────
@@ -66,13 +87,24 @@ def run_forgetting_cycle(context: Optional[Dict] = None) -> Dict:
     except Exception as _e:
         record_failure("rule_forgetting.run_forgetting_cycle", _e)
 
+    # Convergence-spiral telemetry (A.1.2) rides the same dream-pass cadence.
+    try:
+        from brain.cognition.convergence_metric import record_convergence_spiral
+        record_convergence_spiral()
+    except Exception as _e:
+        record_failure("rule_forgetting.convergence_spiral", _e)
+
     total = decayed + pruned + retired
     if total:
         log_activity(
             f"[forgetting] Cycle complete: {decayed} decayed, "
-            f"{pruned} pruned, {retired} retired."
+            f"{pruned} pruned, {retired} retired "
+            f"({_last_taxed_count} inference-taxed)."
         )
-    _append_forgetting_log({"decayed": decayed, "pruned": pruned, "retired": retired})
+    _append_forgetting_log({
+        "decayed": decayed, "pruned": pruned, "retired": retired,
+        "inference_taxed": _last_taxed_count,
+    })
     return {"decayed": decayed, "pruned": pruned, "retired": retired, "total_changes": total}
 
 
@@ -103,15 +135,28 @@ def _last_firing_times() -> Dict[str, float]:
 
 def decay_idle_rules(days_threshold: int = _IDLE_DAYS_THRESH) -> int:
     try:
-        from brain.symbolic.rule_engine import get_all_rules, SYMBOLIC_RULES_FILE
+        from brain.symbolic.rule_engine import (
+            get_all_rules, SYMBOLIC_RULES_FILE, rule_inference_distance,
+        )
     except ImportError:  # intentional: rule engine optional — nothing to forget
         return 0
+
+    # Inference-tax ablation flag (A.1.4 practice: every imported organ is
+    # individually ablatable). Flag-read errors leave the tax ON, same idiom
+    # as every other subsystem entry point.
+    try:
+        from brain.run_config import subsystem_enabled as _sub_on
+        tax_on = _sub_on("inference_tax")
+    except Exception:  # intentional: ablation-gate fail-safe
+        tax_on = True
 
     rules = get_all_rules()
     now   = time.time()
     idle_cutoff_s = days_threshold * 86400
     firing_times  = _last_firing_times()
     decay_count   = 0
+    taxed_count   = 0
+    by_id = {r.get("id"): r for r in rules}
 
     for rule in rules:
         if rule.get("source") == "tombstoned":
@@ -133,6 +178,15 @@ def decay_idle_rules(days_threshold: int = _IDLE_DAYS_THRESH) -> int:
 
         idle_weeks = idle_secs / (7 * 86400)
         decay      = round(_DECAY_RATE_PER_WEEK * idle_weeks, 4)
+        # Inference tax (header above): each hop from experience multiplies the
+        # decay rate by 1/0.90, so derived-from-derived knowledge thins faster.
+        if tax_on:
+            dist = rule_inference_distance(rule, by_id)
+            if dist > 0:
+                decay = round(
+                    decay * (1.0 / _INFERENCE_DECAY_BASE) ** min(dist, _MAX_INFERENCE_HOPS), 4
+                )
+                taxed_count += 1
         old_conf   = float(rule.get("confidence", 0.75))
         new_conf   = round(max(_TOMBSTONE_THRESH + 0.01, old_conf - decay), 4)
         if new_conf == old_conf:
@@ -153,6 +207,8 @@ def decay_idle_rules(days_threshold: int = _IDLE_DAYS_THRESH) -> int:
         save_json(SYMBOLIC_RULES_FILE, rules)
         _invalidate_rule_cache()
 
+    global _last_taxed_count
+    _last_taxed_count = taxed_count
     return decay_count
 
 

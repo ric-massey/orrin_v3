@@ -177,6 +177,12 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
     try:
         from brain.runtime_coupling import demand_engine as _drive_mod
         _drive_mod.evaluate_cycle(_cycle_fn, context, reward)
+        # 1D.2 (Run 12): run the saturation tripwire over the live drive
+        # pressures once per cycle. Owns its own streak state; homeostasis
+        # supplies the tripwire (runtime_coupling → control_signals, the
+        # allowed direction). This is where `drive_mastery` — welded @1.00 for
+        # all of Run 11 — finally gets a recalibration event.
+        _drive_mod.saturation_check(get_cycle_count())
     except Exception as _dse:
         record_failure("ORRIN_loop.drive_satisfy", _dse)
     try:

@@ -112,6 +112,57 @@ def _gather_artifact_text(goal: Dict[str, Any]) -> str:
         return ""
 
 
+def _gather_claims(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """Slice 1C.2: load the structured research product (claims.json) the daemon
+    wrote beside the memo, from the goal's own artifacts dir. None if absent."""
+    gid = str(goal.get("id") or "")
+    if not gid:
+        return None
+    try:
+        import json as _json
+        from brain.paths import GOALS_DIR
+        dir_name = re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64]
+        p = GOALS_DIR / "artifacts" / dir_name / "claims.json"
+        if not p.exists():
+            return None
+        data = _json.loads(p.read_text(encoding="utf-8", errors="replace"))
+        return data if isinstance(data, dict) else None
+    except Exception as exc:
+        record_failure("epistemic_closeout._gather_claims", exc)
+        return None
+
+
+def score_answer_structured(question: str, claims: Dict[str, Any]) -> Tuple[bool, str]:
+    """Slice 1C.2 — the STRUCTURED answer scorer (growth's currency is structured
+    knowledge, not prose). Answered iff the produced claims name the question's
+    subject via a real relation, AND — when the goal carries a telemetry-checkable
+    prediction — that prediction was resolved against ground truth (correct).
+
+    Prose length is no longer the criterion: a 0-prose structured finding can answer;
+    a stitch-only memo with no claim cannot. Returns (answered, answer_excerpt)."""
+    if not isinstance(claims, dict):
+        return (False, "")
+    terms = _subject_terms(question)
+    relations = [r for r in (claims.get("relations") or []) if isinstance(r, dict)]
+
+    # A telemetry-checkable prediction, if present, must have RESOLVED correctly.
+    pred = claims.get("prediction")
+    if isinstance(pred, dict) and pred.get("checkable_against"):
+        if not (pred.get("resolved") and pred.get("correct")):
+            return (False, "")
+        # A resolved-correct prediction that names the subject is the strongest answer.
+        claim_txt = str(pred.get("claim") or "")
+        if not terms or any(t in claim_txt.lower() for t in terms):
+            return (True, f"prediction confirmed: {claim_txt[:240]}")
+
+    # Otherwise: a relation whose subject/object names the question's gap.
+    for r in relations:
+        blob = f"{r.get('subject','')} {r.get('predicate','')} {r.get('object','')}"
+        if not terms or any(t in blob.lower() for t in terms):
+            return (True, blob.strip()[:280])
+    return (False, "")
+
+
 def score_answer(question: str, artifact_text: str) -> Tuple[bool, str]:
     """Symbolic score of whether `artifact_text` answers `question`.
 
@@ -186,7 +237,14 @@ def stamp_closeout(goal: Dict[str, Any]) -> Optional[bool]:
         question = question_for(goal)
         if not question:
             return None
-        answered, answer = score_answer(question, _gather_artifact_text(goal))
+        # Slice 1C.2: score the STRUCTURED product first (growth's currency). The
+        # memo-prose scorer is now only the rendering-layer fallback for goals that
+        # produced no claims.json (e.g. a non-research understanding goal).
+        claims = _gather_claims(goal)
+        if claims is not None:
+            answered, answer = score_answer_structured(question, claims)
+        else:
+            answered, answer = score_answer(question, _gather_artifact_text(goal))
         goal["question"] = question
         goal["answered"] = bool(answered)
         if answer:

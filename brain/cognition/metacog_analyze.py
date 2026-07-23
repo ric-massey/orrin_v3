@@ -15,6 +15,8 @@ import random
 from collections import Counter
 from typing import Any, Dict, List, Optional
 
+from brain.paths import DATA_DIR
+from brain.utils.json_utils import load_json, save_json
 from brain.utils.log import log_private
 from brain.utils.failure_counter import record_failure
 
@@ -35,6 +37,39 @@ _VAGUE_IMPRESSIONS = [
     "There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
     "I notice something shifting in how I've been responding lately, though I'm not certain what.",
 ]
+
+# ── 1D.4 (Run 12): avoidance-breaker telemetry + realigned entry conditions ───
+# The breaker was built and wired but had fired ZERO times ever — the audit
+# watched debt climb 33→72 live while it stayed silent. Diagnosis: the severe
+# branch demanded ONE substitute function with ≥3 of the last 8 picks, a shape
+# from the monopoly era. Post-Run-8 rotation keeps picks DIVERSE, so no single
+# substitute ever reaches 3 — the avoidance is spread across the whole pick
+# window, and the threshold could never be met again. Realign to the real
+# streak dynamics: at severe debt ≥2/8 suffices, and at deep debt (2× severe)
+# the most recent substitute is suppressed regardless of count. The per-life
+# max-debt streak and firing count are persisted so the run analysis can score
+# the observable ("both reported; breaker fires ≥1") instead of inferring.
+_AVOIDANCE_STATS_FILE = DATA_DIR / "avoidance_breaker.json"
+_DEEP_DEBT_FACTOR = 2   # debt ≥ 2× the severe line → break diversity too
+
+
+def _avoidance_stats_update(debt: int, fired: bool, suppressed: Optional[str],
+                            cycle: int) -> None:
+    """Best-effort per-life telemetry: max debt streak seen + breaker firings."""
+    try:
+        stats: Dict[str, Any] = load_json(_AVOIDANCE_STATS_FILE, default_type=dict) or {}
+        if not isinstance(stats, dict):
+            stats = {}
+        stats["max_debt_streak"] = max(int(stats.get("max_debt_streak", 0) or 0), int(debt))
+        if fired:
+            stats["breaker_fires"] = int(stats.get("breaker_fires", 0) or 0) + 1
+            stats["last_fire_cycle"] = int(cycle)
+            if suppressed:
+                by_fn: Dict[str, int] = stats.setdefault("suppressed", {})
+                by_fn[suppressed] = int(by_fn.get(suppressed, 0) or 0) + 1
+        save_json(_AVOIDANCE_STATS_FILE, stats)
+    except Exception as _e:
+        record_failure("metacog_analyze._avoidance_stats_update", _e)
 
 
 def _dominant_signal(context: Dict[str, Any]) -> Optional[str]:
@@ -154,6 +189,8 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
         # When debt becomes severe (~3x the warning threshold), suppress the
         # functions that have been substituting for goal action. Otherwise
         # observation alone can fail to break a 60+ cycle avoidance loop.
+        _fired = False
+        _suppressed: Optional[str] = None
         if debt >= _GOAL_DEBT_WARN * 3 and picks:
             # Suppress the most-frequent non-goal-pursuit function from recent picks.
             _PURSUE = {"pursue_committed_goal", "pursue_goal", "advance_goal_plan"}
@@ -161,8 +198,25 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
             substitute_counts = Counter(p for p in recent_for_susp if p not in _PURSUE)
             if substitute_counts:
                 top_sub, n = substitute_counts.most_common(1)[0]
-                if n >= 3:  # need real substitution pressure, not noise
+                # 1D.4: ≥2/8 at severe debt (the old ≥3 was calibrated to the
+                # monopoly era and became unreachable under rotation); at DEEP
+                # debt even fully-diverse substitution gets broken — the most
+                # recent substitute is muted so the next cycle must land
+                # somewhere new, ideally on the goal itself.
+                if n >= 2:
+                    _fired, _suppressed = True, top_sub
                     _try_suppress(top_sub, 8, f"goal-avoidance ({debt} debt, {n}/{_RUT_WINDOW} subs)", context)
+                elif debt >= _GOAL_DEBT_WARN * 3 * _DEEP_DEBT_FACTOR:
+                    _last_sub = next((p for p in reversed(recent_for_susp) if p not in _PURSUE), None)
+                    if _last_sub:
+                        _fired, _suppressed = True, _last_sub
+                        _try_suppress(_last_sub, 8,
+                                      f"goal-avoidance ({debt} debt, diverse substitution)", context)
+        try:
+            _cyc_now = int((context.get("cycle_count") or {}).get("count", 0) or 0)
+        except (ValueError, TypeError, AttributeError):
+            _cyc_now = 0
+        _avoidance_stats_update(debt, _fired, _suppressed, _cyc_now)
 
     # ── 4. Affective stagnation ───────────────────────────────────────────────
     # If the dominant affect hasn't changed across recent cycles, flag it.

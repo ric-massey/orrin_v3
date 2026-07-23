@@ -157,6 +157,18 @@ except Exception as _e:
         raise SystemExit(1)
     _log.warning("silent except: %s", _e)
 
+# Rebirth-if-elapsed (Run-12 Slice 1A.2): if this boot inherits a life whose real
+# lifespan has ALREADY fully elapsed (a relaunch of an instance that already died),
+# roll a fresh lifespan clock now — before the cognitive loop starts — so the boot
+# does not re-enter the death path and hang (Run 11: 4 born-dead relaunches). Runs
+# once, at boot only; a mid-life instance is untouched.
+try:
+    from brain.cognition.runtime_lifetime import rebirth_if_elapsed as _rebirth_if_elapsed
+    if _rebirth_if_elapsed():
+        print("[lifetime] lifespan already elapsed at boot → rebirth (fresh life clock)")
+except Exception as _e:
+    _log.warning("silent except: %s", _e)
+
 # Flag a fresh mind so the UI can show First Wake (§9.2). A newborn has no
 # autobiography / long-term memory yet (seeds are config only, not lived experience).
 try:

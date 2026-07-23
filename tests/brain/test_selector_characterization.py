@@ -31,10 +31,19 @@ def _fresh_learned_stats(tmp_path, monkeypatch):
     catalog now resolves decision_stats.json through brain.paths (Run 7 fix —
     the old __file__ anchor leaked LIVE run state into these goldens), which
     means other tests' reach/decision writes land in the shared session data
-    dir — so pin the stats source to an empty per-test path."""
+    dir — so pin the stats source to an empty per-test path. Same story for
+    outward satiety: any test that runs a real outward fn (e.g. the content-
+    quarantine tests call research_topic) records a reach outcome into the
+    session data dir, and the resulting satiety penalty flips the goal_research
+    golden from research_topic to wikipedia_search."""
     from brain.think.think_utils.selection import catalog
+    import brain.cognition.exploration_value as ev
     monkeypatch.setattr(catalog, "_STATS_PATH", tmp_path / "decision_stats.json")
     monkeypatch.setattr(catalog, "_STATS_CACHE", {"t": 0.0, "data": {}})
+    monkeypatch.setattr(ev, "_SATIETY_PATH", tmp_path / "outward_satiety.json")
+    monkeypatch.setattr(ev, "_SAT_CACHE", {"t": 0.0, "data": {}})
+    monkeypatch.setattr(ev, "_STATS_PATH", tmp_path / "ev_decision_stats.json")
+    monkeypatch.setattr(ev, "_STATS_CACHE", {"t": 0.0, "data": {}})
 
 
 def test_missing_learned_stats_file_is_newborn_empty(tmp_path, monkeypatch):

@@ -56,10 +56,23 @@ def set_current_action(name: Optional[str]) -> None:
     """The loop calls this around each cognitive-function dispatch so a gate
     denial inside the call can be attributed to the right action."""
     _local.action = str(name) if name else None
+    _local.blocked = False
 
 
 def clear_current_action() -> None:
     _local.action = None
+
+
+def blocked_this_dispatch() -> bool:
+    """True if the action most recently dispatched was gate-blocked DURING that
+    dispatch (set by mark_from_gate, reset by the next set_current_action).
+
+    1D.1 (Run 12): a blocked function that swallows the denial and returns
+    cleanly reads as success:True to the loop, which then called note_possible
+    and erased the mark the same cycle it was made — so decide_to_write_code
+    stayed selectable through 1,967 blocks. The loop consults this flag and
+    skips the clear when the "success" was hollow."""
+    return bool(getattr(_local, "blocked", False))
 
 
 def _current_action() -> Optional[str]:
@@ -101,6 +114,7 @@ def mark_from_gate(reason: str) -> None:
     function the loop is currently dispatching, if any."""
     action = _current_action()
     if action:
+        _local.blocked = True
         mark_impossible(action, reason)
 
 

@@ -84,6 +84,49 @@ def satisfy(demand_name: str, amount: float = 0.3) -> None:
     _engine.satisfy(demand_name, amount)
 
 
+def set_pressure(demand_name: str, value: float) -> None:
+    """Force a drive's pressure to `value` (clamped). Used by the saturation
+    tripwire's recalibration writeback — normal discharge goes through satisfy."""
+    with _engine_lock:
+        if _engine is None:
+            return
+    if demand_name in _engine.drives:
+        _engine.drives[demand_name].set_pressure(value)
+
+
+# 1D.2 (Run 12): per-life saturation-streak counters for the drive tripwire.
+# Held here (not on the affect-state dict) so the tripwire can be driven from the
+# loop layer without control_signals importing runtime_coupling. Drive pressure
+# already resets to 0.0 on restart, so in-memory streaks match a drive's own
+# lifetime — a weld can't legitimately span a restart the way an affect signal can.
+_drive_sat_state: Dict[str, Any] = {}
+
+
+def saturation_check(cycle: int = 0) -> List[str]:
+    """1D.2 (Run 12): run the R10-9 hard-bound saturation tripwire over the LIVE
+    drive pressures. The update_signal_state tripwire only ever saw affect-state
+    keys, but the drives live here in the engine — so `drive_mastery` sat welded
+    at 1.00 for all 18k cycles of Run 11 with no recalibration event, uncovered
+    by any tripwire. Keys are exposed as `drive_<name>` (the same identity the
+    ignition signals carry); a trip is written back onto the live Demand, and
+    the tripwire's own [saturation] log + telemetry event fire as usual. Called
+    once per cycle from the loop layer (finalize.py). Returns recalibrated keys."""
+    with _engine_lock:
+        engine = _engine
+    if engine is None:
+        return []
+    try:
+        from brain.control_signals.homeostasis import saturation_tripwire
+        pressures = {f"drive_{name}": d.get_pressure() for name, d in engine.drives.items()}
+        fired = saturation_tripwire(_drive_sat_state, pressures, cycle)
+        for key in fired:
+            engine.drives[key[len("drive_"):]].set_pressure(pressures[key])
+        return fired
+    except Exception as _e:
+        record_failure("demand_engine.saturation_check", _e)
+        return []
+
+
 def evaluate_cycle(fn_name: str, context: Dict[str, Any], reward: float) -> None:
     with _engine_lock:
         if _engine is None:
@@ -166,9 +209,17 @@ class DemandEngine:
         #   integrity:    only builds from explicit dissonance events (no tick)
         #   coherence:    driven by stability reading each cycle (no fixed tick)
         self.drives: Dict[str, Demand] = {
+            # 1D.2 (Run 12): every tick-based drive gets a proportional leak.
+            # Run 11's third jammed horn was `drive_mastery` welded at 1.00 all
+            # life — the SAME leak-less pathology rest (07-02, ~74% of ignitions)
+            # and social (07-03, 84%) already exhibited and were given leaks for.
+            # Equilibrium buildup/leak ≈ 0.67 across the board: high enough to
+            # keep signalling (>0.35), below the urgent line (0.70), and pinning
+            # at 1.0 is impossible. This is the missing antagonist, not a clamp.
             "exploration": Demand(
                 "exploration",
                 buildup_per_tick=0.010,
+                leak_per_tick=0.015,
                 label="Exploration drive",
                 description="I've been doing the same things. I need something genuinely different.",
                 tags=["novelty", "seek", "exploration"],
@@ -188,6 +239,7 @@ class DemandEngine:
             "meaning": Demand(
                 "meaning",
                 buildup_per_tick=0.005,
+                leak_per_tick=0.0075,
                 label="Meaning drive",
                 description="My recent actions feel disconnected. I need to work toward something that matters.",
                 tags=["meaning", "purpose", "goal"],
@@ -221,6 +273,9 @@ class DemandEngine:
             "mastery": Demand(
                 "mastery",
                 buildup_per_tick=0.008,  # reaches signal threshold (~0.35) in ~44 ticks ≈ 7 min without exploring
+                # Equilibrium 0.008/0.012 ≈ 0.67 — Run 11 saw this exact drive
+                # (surfacing as `drive_mastery`) pinned at 1.00 for 18k cycles.
+                leak_per_tick=0.012,
                 label="Mastery drive",
                 description="I want to understand my own systems — how I actually work, what's in my memory, what my tools do.",
                 tags=["mastery", "self_understanding", "exploration", "exploration_drive"],
@@ -228,6 +283,7 @@ class DemandEngine:
             "world_mastery": Demand(
                 "world_mastery",
                 buildup_per_tick=0.006,
+                leak_per_tick=0.009,
                 label="World mastery drive",
                 description="I want to understand something outside my own machinery.",
                 tags=["mastery", "world_knowledge", "exploration"],

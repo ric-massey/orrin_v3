@@ -43,6 +43,10 @@
 #     "abstraction_level": int,        # 1=specific event, 2=pattern, 3=principle, 4=meta-principle
 #     "evidence_ids":      [str],      # IDs of child rules / observations this was synthesised from
 #     "parent_id":         str|None,   # ID of a higher-level rule that subsumes this one
+#     "inference_distance": int,       # hops to the nearest experiential source (0 = born
+#                                      #   from a resolved prediction / verified effect;
+#                                      #   uncited defaults to 1) — see rule_forgetting.py
+#                                      #   for the decay tax this feeds (Athena-Class import)
 #   }
 #
 # The match() function returns the best-matching rule or None.
@@ -121,6 +125,7 @@ def _make_rule(
     abstraction_level: int = 1,
     evidence_ids: Optional[List[str]] = None,
     parent_id: Optional[str] = None,
+    inference_distance: Optional[int] = None,
 ) -> Dict:
     return {
         "id":                 rid,
@@ -139,7 +144,58 @@ def _make_rule(
         "abstraction_level":  abstraction_level,
         "evidence_ids":       evidence_ids or [],
         "parent_id":          parent_id,
+        "inference_distance": inference_distance if inference_distance is not None
+                              else _distance_for(source, evidence_ids),
     }
+
+
+# ─── Inference distance (provenance depth) ────────────────────────────────────
+# Hops to the nearest experiential source, stamped at rule birth. Feeds the
+# inference tax in rule_forgetting.py (Athena-Class import — attribution there).
+# Distance 0 = born directly from a resolved prediction or verified effect;
+# a rule derived from other rules sits one hop past its nearest-to-experience
+# cited rule; everything uncited defaults to 1 (their orphan rule).
+
+_EXPERIENCE_SOURCES = frozenset({
+    "confirmed_prediction",   # distilled from a prediction resolved against ground truth
+})
+
+
+def _distance_for(source: str, evidence_ids: Optional[List[str]]) -> int:
+    if source in _EXPERIENCE_SOURCES:
+        return 0
+    if evidence_ids:
+        try:
+            by_id = {r.get("id"): r for r in _load_rules()}
+            parents = [by_id[e] for e in evidence_ids if e in by_id]
+            if parents:
+                return 1 + min(rule_inference_distance(p, by_id) for p in parents)
+        except Exception as e:  # unresolvable citations → the orphan default below
+            from brain.utils.failure_counter import record_failure
+            record_failure("rule_engine._distance_for", e)
+    return 1
+
+
+def rule_inference_distance(rule: Dict, by_id: Optional[Dict[str, Dict]] = None,
+                            _seen: Optional[set] = None) -> int:
+    """Distance for any rule, including pre-existing ones that were born before
+    the field existed — derived from source / cited rules, cycle-safe."""
+    d = rule.get("inference_distance")
+    if isinstance(d, int) and d >= 0:
+        return d
+    if rule.get("source") in _EXPERIENCE_SOURCES:
+        return 0
+    ev = rule.get("evidence_ids") or []
+    if ev and by_id:
+        seen = _seen or set()
+        rid = rule.get("id")
+        if rid in seen:
+            return 1
+        seen.add(rid)
+        parents = [by_id[e] for e in ev if e in by_id]
+        if parents:
+            return 1 + min(rule_inference_distance(p, by_id, seen) for p in parents)
+    return 1
 
 
 # ─── Matching ─────────────────────────────────────────────────────────────────
@@ -247,6 +303,7 @@ def add_rule(
     abstraction_level: int = 1,
     evidence_ids: Optional[List[str]] = None,
     parent_id: Optional[str] = None,
+    inference_distance: Optional[int] = None,
 ) -> Dict:
     rid = hashlib.md5(conclusion.encode()).hexdigest()[:10]
     rules = _load_rules(force=True)
@@ -274,6 +331,7 @@ def add_rule(
         recommended_action=recommended_action,
         abstraction_level=abstraction_level,
         evidence_ids=evidence_ids, parent_id=parent_id,
+        inference_distance=inference_distance,
     )
     rules.append(rule)
     save_json(SYMBOLIC_RULES_FILE, rules)

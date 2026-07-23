@@ -542,12 +542,17 @@ def _making_goals(context: Dict[str, Any], long_mem: list, limit: int = 2) -> Li
 
 
 def _contact_goals(context: Dict[str, Any], long_mem: list, limit: int = 1) -> List[Dict]:
-    """P5: emit `genuine_contact` goals keyed to a present/recent person. Silent
-    when no peer is around (like the other generators when their pool is empty)."""
+    """P5: emit `genuine_contact` goals keyed to a present/recent person.
+
+    1D.3 (Run 12): no longer fully silent in an empty room. The old
+    recent-user-only gate meant an unattended life could never even BIRTH a
+    contact goal — Run 11 committed 14.3 % of its cycles to `genuine_contact`
+    and earned exactly zero contributions, structurally. Leaving Ric a note he
+    will find later is real contact-directed output (the leave_note surface
+    exists precisely for this), so the unattended lane mints a note-leaving
+    goal from a fresh finding; the F6 title cooldown keeps it rare."""
     ctx = context or {}
     recent_user = bool(ctx.get("user_present_recent")) or bool(str(ctx.get("latest_user_input") or "").strip())
-    if not recent_user:
-        return []
     out: List[Dict] = []
     unanswered = str(ctx.get("latest_user_input") or "").strip()
     if unanswered:
@@ -572,7 +577,7 @@ def _contact_goals(context: Dict[str, Any], long_mem: list, limit: int = 1) -> L
                         break
         except Exception:
             topic = None
-        if topic:
+        if topic and recent_user:
             out.append(_mk_goal(
                 f"Share with Ric what I learned about {topic}",
                 f"I recently looked into {topic}. Tell Ric something genuinely "
@@ -581,6 +586,17 @@ def _contact_goals(context: Dict[str, Any], long_mem: list, limit: int = 1) -> L
                 driven_by="genuine_contact",
                 requires_artifact=True,
                 milestones=[f"A message about '{topic[:40]}' was shared with Ric."],
+            ))
+        elif topic:
+            out.append(_mk_goal(
+                f"Leave Ric a note about {topic}",
+                f"Ric isn't here right now, but I recently looked into {topic} and "
+                f"found something worth telling him. Use leave_note to write him a "
+                f"short, genuinely interesting note about it — a real finding in my "
+                f"own words, waiting for him when he's back.",
+                driven_by="genuine_contact",
+                requires_artifact=True,
+                milestones=[f"A note about '{topic[:40]}' was left for Ric."],
             ))
     return out[:limit]
 
@@ -777,15 +793,13 @@ def _quota_filter(pool: List[Dict]) -> List[Dict]:
     return pool
 
 
-def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[Dict]:
-    """
-    LLM-free goal generation with real variety. Draws candidates ONLY from Orrin's
-    own mental content — concepts he's learned, open questions, causal-model gaps,
-    tensions, his own history — then filters out anything already active or recently
-    completed and picks one. Deliberately NO fixed emotion/note template: if there's
-    nothing real to pursue this cycle, originate nothing (return None) rather than
-    emit a canned note. Callers must handle None by simply not proposing a goal.
-    """
+def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
+    """Assemble the LLM-free candidate pool from Orrin's own mental content —
+    concepts learned, open questions, causal-model gaps, tensions, his own history,
+    plus the making/contact generators — and apply only the HONESTY filters
+    (subject sanity, already-active, respawn cooldown/cap). Does NOT apply the
+    birth-mix quotas: those narrow the single PRIMARY pick, not the research feed
+    (Run-12 Slice 1B). Returns [] when nothing real is available this cycle."""
     candidates: List[Dict] = []
     rg = _goal_from_recent_research(long_mem)
     if rg:
@@ -804,7 +818,8 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
 
     active = _active_goal_titles()
     now = time.time()
-    pool, seen = [], set()
+    pool: List[Dict] = []
+    seen: set = set()
     for g in candidates:
         title = str(g.get("title", "")).strip()
         t = title.lower()
@@ -825,9 +840,14 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
         if _title_respawn_blocked(t, now):
             continue
         pool.append(g)
+    return pool
 
+
+def _pick_primary_from_pool(context: Dict[str, Any], pool: List[Dict]) -> Optional[Dict]:
+    """The coverage-floor / mastery-weighted SINGLE pick (unchanged behaviour), run
+    over the birth-mix-quota'd pool. Returns None when the quotas empty the pool."""
     if not pool:
-        return None   # nothing real to pursue right now — originate nothing, not a template
+        return None
     # B4.2 — cap any single aspiration's share of the candidate pool at ~50% so
     # generation itself isn't a monoculture (before the birth-rate quota narrows it).
     pool = _cap_candidate_aspiration_share(pool)
@@ -837,6 +857,8 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
     # AR5 — birth-rate quota: narrow the pool when the recent birth mix violates
     # the make/connect floor or the intake cap (see _quota_filter above).
     pool = _quota_filter(pool)
+    if not pool:
+        return None
     chosen: Optional[Dict] = None
     # P3 — bias the pick toward starved aspirations so a 0%-progress direction
     # ("Make things") actually gets recruited instead of losing every uniform draw
@@ -879,5 +901,64 @@ def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[D
         record_failure("intrinsic_goals._varied_symbolic_goal.pressure", exc)
     if chosen is None:
         chosen = random.choice(pool)
-    _record_birth(chosen)   # AR5 — the quota watches actual births
+    return chosen
+
+
+def _varied_symbolic_goals(context: Dict[str, Any], long_mem: list,
+                           *, max_research: int = 2,
+                           research_only: bool = False) -> List[Dict]:
+    """Batch generation (Run-12 Slice 1B.1/1B.2). One pass emits the coverage-floor
+    PRIMARY pick AND, in addition, up to `max_research` daemon-executable research
+    candidates that already exist in the pool — so the daemon/research feed is never
+    starved just because the single coverage pick landed on a make/connect
+    aspiration (Run 10/11: reuse 0, WAL silent ~12 h). The research extras bypass the
+    birth-mix quotas (which only narrow the primary pick) but still respect the
+    honesty filters baked into `_build_symbolic_pool`. Returns [] on an empty pool.
+
+    `research_only=True` (the Slice 1B.3 feed heartbeat) skips the primary pick and
+    the birth-mix quotas entirely, emitting ONLY the research subset.
+
+    NO-CLAMPS: this OPPOSES the intake-monopoly throttle by feeding research
+    directly, rather than adding a new limiter (memory `unopposed_force_principle`)."""
+    base_pool = _build_symbolic_pool(context, long_mem)
+    if not base_pool:
+        return []   # nothing real to pursue right now — originate nothing, not a template
+
+    batch: List[Dict] = []
+    seen: set = set()
+    if not research_only:
+        primary = _pick_primary_from_pool(context, base_pool)
+        if primary is not None:
+            batch.append(primary)
+            seen.add(str(primary.get("title", "")).strip().lower())
+
+    # Additionally emit the research subset so a `kind:"research"` goal is proposed
+    # whenever one exists — independent of which aspiration the floor picked.
+    for g in base_pool:
+        if len(batch) >= 1 + max_research:
+            break
+        if str(g.get("kind", "")) != "research":
+            continue
+        t = str(g.get("title", "")).strip().lower()
+        if not t or t in seen:
+            continue
+        seen.add(t)
+        batch.append(g)
+
+    for g in batch:
+        _record_birth(g)   # AR5 — the quota watches actual births
+    return batch
+
+
+def _varied_symbolic_goal(context: Dict[str, Any], long_mem: list) -> Optional[Dict]:
+    """Back-compat single-goal wrapper over `_varied_symbolic_goals`: the coverage-floor
+    primary pick, or None when the pool is empty. Prefer the batch form in callers that
+    can propose more than one goal (the daemon feed depends on it)."""
+    base_pool = _build_symbolic_pool(context, long_mem)
+    if not base_pool:
+        return None
+    chosen = _pick_primary_from_pool(context, base_pool)
+    if chosen is None:
+        return None
+    _record_birth(chosen)
     return chosen

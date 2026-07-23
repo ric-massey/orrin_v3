@@ -109,6 +109,16 @@ def ask_llm(
             f"LLM tool unavailable (disabled in config). "
             f"Query logged: '{query[:80]}'"
         )
+        # 1D.1 (Run 12): this early return is the SYMBOLIC-MODE block path — it
+        # never reaches generate_response, so the R10-8 impossibility marking in
+        # that gate never fired and a structurally-blocked caller (Run 11:
+        # decide_to_write_code, 1,967/1,967 blocks, EMA 0.576) stayed in the
+        # selectable set all life. Mark it here too: same signal, same seam.
+        try:
+            from brain.control_signals.reward_signals.impossibility import mark_from_gate
+            mark_from_gate("tool unavailable: llm (disabled in config)")
+        except Exception:  # intentional: impossibility bookkeeping must never break the block path
+            pass
         update_working_memory({
             "content": f"[llm_tool_blocked] {msg}",
             "event_type": "llm_tool_blocked",

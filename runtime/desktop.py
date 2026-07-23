@@ -23,6 +23,51 @@ from runtime.context import RuntimeContext
 _log = get_logger(__name__)
 
 
+def _brain_exit_watch_loop(ctx: RuntimeContext) -> None:
+    """Poll the cognitive-loop thread; when it ends for any reason that is NOT a
+    deliberate Stop or an already-started shutdown, trip main_stop so run() falls
+    into graceful_shutdown and the process exits 0 (Run-12 Slice 1A.1). ORRIN_ONCE
+    folds in as a bounded early-exit condition. Module-level (not a closure) so the
+    natural-death→exit contract is unit-testable."""
+    once = os.getenv("ORRIN_ONCE") == "1"
+    if once:
+        print("[brain] ORRIN_ONCE: will stop the process after one cognitive cycle")
+    start_cycles = get_cycle_count()
+    deadline = time.time() + 120.0
+    while True:
+        if ctx.cog_thread is None or not ctx.cog_thread.is_alive():
+            break
+        # A deliberate Stop / any already-started shutdown owns the teardown; the
+        # watcher must not steal it (Stop keeps the UI up).
+        if ctx.cognition_stopped or ctx.shutting_down or ctx.main_stop.is_set():
+            return
+        if once and (time.time() >= deadline or get_cycle_count() > start_cycles):
+            break
+        time.sleep(0.2)
+    # The loop thread ended (or ORRIN_ONCE fired). If a deliberate Stop or a
+    # shutdown already in flight owns it, leave it alone.
+    if ctx.cognition_stopped or ctx.shutting_down or ctx.main_stop.is_set():
+        return
+    # Print on the single exit path, not inside the loop: under ORRIN_ONCE the
+    # loop thread can die between polls (its one tick is done), and the
+    # thread-ended break must still emit the single-cycle marker the boot
+    # characterization test orders on — not the natural-death line.
+    if once:
+        print("[brain] ORRIN_ONCE: single cycle complete → stopping")
+    else:
+        print("[brain] cognitive loop ended (natural death / exit) → stopping process")
+    ctx.main_stop.set()
+
+
+def _start_brain_exit_watcher(ctx: RuntimeContext) -> threading.Thread:
+    t = threading.Thread(
+        target=_brain_exit_watch_loop, args=(ctx,),
+        name="orrin-brain-exit-watcher", daemon=True,
+    )
+    t.start()
+    return t
+
+
 def run(ctx: RuntimeContext) -> None:
     # ---------- Cognitive loop (v1 brain) ----------
     ctx.cog_thread = None
@@ -73,32 +118,23 @@ def run(ctx: RuntimeContext) -> None:
     # thread (the UI is a browser tab) and wait on Ctrl+C.
     ctx.main_stop.clear()
 
-    # ORRIN_ONCE: the cognitive loop breaks after a single tick, but the process
-    # otherwise lives on (pulse heartbeat + daemons), so a "single-cycle" run never
-    # returns on its own. Watch the loop and, once that one cycle is done, trip
-    # main_stop so both the bridge and headless paths fall into the normal graceful
-    # shutdown (whose own watchdog forces exit if teardown stalls). Armed AFTER
-    # main_stop.clear() above so the clear can't race the watcher. Only active when
-    # ORRIN_ONCE=1, so steady-state is untouched. The watcher stops on whichever
-    # comes first — the loop thread ending, the cognitive cycle counter advancing, or
-    # a hard deadline — so a slow/blocking loop teardown can't strand the run.
-    if os.getenv("ORRIN_ONCE") == "1" and ctx.cog_thread is not None:
-        print("[brain] ORRIN_ONCE: will stop the process after one cognitive cycle")
-        _once_start_cycles = get_cycle_count()
-        _once_deadline = time.time() + 120.0
-
-        def _once_watcher() -> None:
-            while time.time() < _once_deadline:
-                if not ctx.cog_thread.is_alive():
-                    break
-                if get_cycle_count() > _once_start_cycles:
-                    break
-                time.sleep(0.2)
-            print("[brain] ORRIN_ONCE: single cycle complete → stopping")
-            ctx.main_stop.set()
-        threading.Thread(
-            target=_once_watcher, name="orrin-once-watcher", daemon=True
-        ).start()
+    # Brain-exit watcher (Run-12 Slice 1A.1): the cognitive loop runs on a daemon
+    # thread, so when it ENDS ON ITS OWN — a natural lifespan death breaks the loop
+    # on `_runtime_ending` — nothing else winds the process down. Before this, the
+    # main thread stayed in pulse_loop forever, the cognitive cycle counter froze,
+    # and the supervisor's cycle-stall watchdog eventually kill+relaunched into a
+    # born-dead loop (Run 11 shutdown-hang: 4 born-dead relaunches, 0 cycles).
+    #
+    # So watch the loop thread and, when it ends for any reason that is NOT a
+    # deliberate Stop (the Stop button sets cognition_stopped and keeps the UI up)
+    # or an already-initiated shutdown, trip main_stop. Both the bridge and the
+    # headless paths then fall into the normal graceful_shutdown (whose own watchdog
+    # forces exit if teardown stalls) → the process exits 0 → run_orrin.sh sees a
+    # clean exit and does not restart. Armed AFTER main_stop.clear() so the clear
+    # can't race the watcher. ORRIN_ONCE (single-cycle run) folds in as a bounded
+    # early-exit condition on the same watcher.
+    if ctx.cog_thread is not None:
+        _start_brain_exit_watcher(ctx)
 
     if ctx.bridge_mode and ctx.bridge_window_file:
         import webview  # available — bridge mode was only chosen if importable

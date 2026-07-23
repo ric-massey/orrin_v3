@@ -60,6 +60,15 @@ def prepare_workspace(context: Context) -> Context:
         _mon(context, _exec_summary if "_exec_summary" in dir() else None)
     except Exception as _mone:
         record_failure("ORRIN_loop.metacog_monitor", _mone)
+    # Stochastic contradiction surfacing (Athena-Class import, RUN12 A.1.3):
+    # a low-probability offer of a held rule that conflicts with the current
+    # conscious position. It enters the same pre-think competition as the
+    # monitor's offers — bias, never preempt.
+    try:
+        from brain.cognition.contradiction_surfacing import maybe_surface_contradiction as _msc
+        _msc(context)
+    except Exception as _cse:
+        record_failure("ORRIN_loop.contradiction_surfacing", _cse)
     try:
         from brain.cognition.global_workspace import update_workspace as _uw_pre
         _pre_moment = _uw_pre(context)

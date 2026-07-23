@@ -108,6 +108,40 @@ def _find_prior_memo(art_base: Path, goal: Goal, exclude_dir: Path) -> Optional[
     return best if best_ov >= 2 else None
 
 
+def _find_prior_claims(art_base: Path, goal: Goal, exclude_dir: Path) -> Optional[Tuple[Path, Dict[str, Any]]]:
+    """Slice 1C.4 / 1B.4 — STRUCTURED reuse: the prior goal's claims.json that this
+    goal extends. A goal reuses when it builds on a prior goal's structured knowledge
+    on the same subject — an entity/subject overlap between claims — not when two
+    memos share content words (the old prose `_find_prior_memo`, kept as a weak
+    fallback). Returns (claims_path, prior_claims_dict) or None.
+
+    This is the trace a genuine line of inquiry leaves: a later claim extending an
+    earlier one, cited by the prior goal's structured artifact (its dir == goal id),
+    not by word overlap."""
+    subject = set(_claim_subject_terms((goal.spec or {}).get("question") or goal.title or ""))
+    if not subject or not art_base.is_dir():
+        return None
+    try:
+        files = sorted((p for p in art_base.glob("*/claims.json") if p.parent != exclude_dir),
+                       key=lambda p: p.stat().st_mtime, reverse=True)[:40]
+    except OSError:
+        return None
+    for p in files:
+        try:
+            data = json.loads(p.read_text(encoding="utf-8", errors="ignore"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(data, dict):
+            continue
+        prior_terms = {str(t).lower() for t in (data.get("subject_terms") or [])}
+        ent_blob = " ".join(str(e) for e in (data.get("entities") or [])).lower()
+        # Extends the prior line of inquiry: shares a subject term or names a prior entity.
+        if (subject & prior_terms) or any(t in ent_blob for t in subject):
+            if data.get("relations") or data.get("prediction"):
+                return (p, data)
+    return None
+
+
 def _load_latest_json(art_dir: Path, *, suffix: str) -> Optional[Any]:
     """Newest artifact of the EXPECTED stage, not "newest JSON in the dir".
     R9-F3: steps loaded whatever was written last — after a successful fetch
@@ -290,22 +324,43 @@ class ResearchHandler(BaseGoalHandler):
                     except (OSError, KeyError):  # intentional: skip unreadable doc
                         continue
 
-                # A2.2 (RUN4_FIX_PLAN): build on a prior same-topic memo when one
-                # exists — read it into the synthesis sources, cite it, and credit
-                # tier-3 re-use through the ledger's path→hash index.
-                prior_memo = _find_prior_memo(art_dir.parent, goal, art_dir)
-                if prior_memo is not None:
-                    try:
-                        prior_txt = prior_memo.read_text(encoding="utf-8", errors="ignore")
-                        snippets.insert(0, (f"my prior memo: {prior_memo.name}", prior_txt[:4000]))
-                    except OSError:
-                        prior_memo = None
-                if prior_memo is not None:
+                # Slice 1C.4 / 1B.4 — STRUCTURED reuse first: build on a prior goal's
+                # claims.json (extends its line of inquiry on the same subject), read
+                # it into the sources, cite it, and credit reuse by the prior goal's
+                # structured artifact (its dir == goal id) — not by prose word overlap.
+                # The prose _find_prior_memo stays as a weak fallback.
+                prior_memo: Optional[Path] = None
+                prior_claims = _find_prior_claims(art_dir.parent, goal, art_dir)
+                if prior_claims is not None:
+                    claims_path_prior, prior_data = prior_claims
+                    prior_goal_id = claims_path_prior.parent.name
+                    rels = "; ".join(
+                        f"{r.get('subject','')} {r.get('predicate','')} {r.get('object','')}"
+                        for r in (prior_data.get("relations") or [])[:8] if isinstance(r, dict)
+                    )
+                    snippets.insert(0, (f"my prior claims [{prior_goal_id}]", rels[:4000]))
                     try:
                         from brain.agency.effect_ledger import mark_reused_path
-                        mark_reused_path(prior_memo)
+                        mark_reused_path(claims_path_prior)
                     except Exception as _e:
-                        _log.warning("prior-memo reuse credit failed: %s", _e)
+                        _log.warning("prior-claims reuse credit failed: %s", _e)
+                    prior_memo = claims_path_prior   # for the "Builds on" footer + meta
+                else:
+                    # A2.2 (RUN4_FIX_PLAN): prose fallback — the most topic-overlapping
+                    # prior memo, credited through the ledger's path→hash index.
+                    prior_memo = _find_prior_memo(art_dir.parent, goal, art_dir)
+                    if prior_memo is not None:
+                        try:
+                            prior_txt = prior_memo.read_text(encoding="utf-8", errors="ignore")
+                            snippets.insert(0, (f"my prior memo: {prior_memo.name}", prior_txt[:4000]))
+                        except OSError:
+                            prior_memo = None
+                    if prior_memo is not None:
+                        try:
+                            from brain.agency.effect_ledger import mark_reused_path
+                            mark_reused_path(prior_memo)
+                        except Exception as _e:
+                            _log.warning("prior-memo reuse credit failed: %s", _e)
 
                 if callable(llm):
                     prompt = _make_synthesis_prompt(goal, synth_kind, include_citations, style, snippets)
@@ -321,6 +376,16 @@ class ResearchHandler(BaseGoalHandler):
                 # source material, not production) — register it on the step so
                 # artifact_satisfied and the runner's effect chokepoint see it.
                 step.artifacts.append(out_path)
+                # Slice 1C.0: the STRUCTURED research product growth is scored on —
+                # extracted symbolically from the same sources; the memo above is now
+                # just its human-readable rendering. Stable name so the brain-side
+                # close-out (Slice 1C.2) finds it beside the memo.
+                try:
+                    claims = _extract_claims(goal, snippets)
+                    claims_path = _write_json(art_dir, "claims.json", claims)
+                    step.artifacts.append(claims_path)
+                except Exception as _ce:
+                    _log.warning("claims.json extraction failed: %s", _ce)
                 meta = {
                     "goal": asdict(goal),
                     "output": out_path,
@@ -442,6 +507,24 @@ def _offline_fallback_memo(
         for i, (src, _txt) in enumerate(snippets, start=1):
             lines.append(f"[{i}] {src}")
     return "\n".join(lines)
+
+
+# ---------- Slice 1C.0: the structured research product (claims.json) ----------
+#
+# Growth's currency is STRUCTURED symbolic knowledge, not memo prose (RUN12 plan,
+# governing decision 2026-07-21). Every completed research goal writes a claims.json
+# beside the memo: extracted propositions (entities / relations / an optional
+# telemetry-checkable prediction / sources), pulled symbolically from the SAME
+# fetched documents — no sentence generation. The memo .md becomes a rendering layer
+# on top of this; close-out and reuse (Slice 1C.2 / 1C.4) score the claims, not prose.
+
+# The extraction itself lives in research_claims.py (module-size decomposition);
+# re-imported so existing `from goals.handlers.research import _extract_claims`
+# paths (tests, close-out) keep resolving.
+from .research_claims import (  # noqa: E402
+    _claim_subject_terms as _claim_subject_terms,
+    _extract_claims as _extract_claims,
+)
 
 
 __all__ = ["ResearchHandler"]

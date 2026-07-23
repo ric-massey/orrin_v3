@@ -33,6 +33,9 @@ SUBSYSTEMS: Tuple[str, ...] = (
     "llm_tools",           # LLM-as-tool calls (generate_response)
     "research_tools",      # web research (research_topic / fetch_and_read)
     "persistence",         # durable JSON writes (json_utils.save_json) — amnesic run
+    # Athena-Class imports (RUN12 Appendix A) — each new organ ships ablatable:
+    "inference_tax",       # provenance-scaled rule decay (rule_forgetting.decay_idle_rules)
+    "contradiction_surfacing",  # stochastic conflicting-rule offers (contradiction_surfacing)
 )
 
 _cached: Optional[FrozenSet[str]] = None

@@ -228,6 +228,44 @@ three verdicts flagged and the audit corroborated live (item 12).
 | 1D.3 `[V6]` | effect-credit assignment (`brain/loop/finalize.py` credit path + `commitment`/contribution counters) | Spread effect-credit past `self_understanding`: commitment is diverse (4 aspirations) but contributions were 19/0/0/0. `output_producing`/`world_knowledge`/`genuine_contact` commit but earn nothing. | **≥2 aspirations** with non-zero `contribution_count`; `genuine_contact` > 0 |
 | 1D.4 `[A12]` | `brain/cognition/metacog_analyze.py:156-165` `_try_suppress` entry conditions; `tag_sets.py:96` comment | **Realign the avoidance breaker** (built, wired, never fired once — observed live climbing 33→72 debt). Diagnose `_RUT_WINDOW` + debt threshold against real streak dynamics (thresholds set from a shorter-streak regime), OR let the debt counter feed the selector's `goal` factor negatively so inspection functions stop scoring as goal-service while debt is high. **Not a new clamp** — the natural antagonist is 1D's anger wire (Layer 2), but a threshold realign is the Run-12-scope fix. | Max avoidance-debt streak per life + breaker-firing count (currently zero, ever) both reported; breaker fires ≥1 |
 
+> **BUILT 2026-07-22** (all four items; harnesses in `test_impossibility.py`,
+> `test_ignition_breathes.py`, `test_credit_spread_slice1d.py`,
+> `test_avoidance_breaker.py`). Root causes found in the tree/Run-11 capture,
+> with these deviations from the table's stated targets:
+>
+> - **1D.1** — the block never reached the R10-8 marking because `ask_llm`'s
+>   `llm_available()` early-return short-circuits BEFORE `generate_response`'s
+>   gate in symbolic mode; and the loop's "genuine success" clearing erased any
+>   mark the same dispatch (a blocked fn swallows the denial and returns
+>   cleanly → `success:True` → `note_possible`). Fixed at both seams
+>   (`ask_llm.py` marks; `loop_helpers.py` consults `blocked_this_dispatch()`).
+>   `pick.py` needed no change — the R10 selection seam works once marking does.
+> - **1D.2** — `drive_mastery` is the DemandEngine's `mastery` Demand, which no
+>   tripwire sweep ever saw (the `state["drive_mastery"]` mirror key never
+>   exists). Fixes: (a) every tick-based drive got the leak rest/social already
+>   had (equilibrium ≈ 0.67 — the missing antagonist, not a clamp); (b) new
+>   `demand_engine.saturation_check()` runs the R10-9 tripwire over live
+>   pressures each cycle, recalibration written back onto the Demand;
+>   (c) the REAL duty driver was trigger 7 (`action_debt` = 93.2 % of Run-11
+>   ignitions, level-triggered on a standing condition) — triggers 7 and 8 are
+>   now edge-triggered (onset / set-change) with a 25-cycle re-fire refractory
+>   on 7. The C1 percentile gate was fine; it only governs trigger 3.
+> - **1D.3** — three causes: the commitment re-mint shreds provenance to a bare
+>   `driven_by:"will"`; the learned will-link was captured (0.74) by a CIRCULAR
+>   learning signal (zero-evidence completions "evidenced" their own intent
+>   prior); contact goals could not be born in an empty room. Fixes: re-mint
+>   stamps `serves` from content (`content_aspiration`, strict-winner rule);
+>   credit priority is now serves → content → drive-link; `_evidenced_aspiration`
+>   requires real keyword evidence before the intent bump; `_contact_goals`
+>   gained an unattended "Leave Ric a note about X" lane (real contact-directed
+>   output — this is what makes `genuine_contact > 0` reachable symbolic-only).
+> - **1D.4** — the severe branch demanded one substitute with ≥3/8 picks, a
+>   monopoly-era shape unreachable under post-Run-8 rotation (the observed
+>   33→72 debt was spread across 8 distinct picks). Realigned: ≥2/8 at severe
+>   debt; at deep debt (≥24) diverse substitution is broken via the most recent
+>   substitute. Per-life telemetry in `brain/data/avoidance_breaker.json`
+>   (`max_debt_streak`, `breaker_fires`, `suppressed`) for the run analysis.
+
 ### Slice 1E — retired (folded into the governing decision + Slice 1C)
 
 The Run-11 verdict's item 3 posed this as an **LLM-mode product call** ("run
@@ -424,3 +462,203 @@ the `NEXT_RUN_TESTS.md` Run-12 gate. Anchors re-verified against `423e201`
 symbolic knowledge, not prose — the acceptance life is symbolic-only and the
 keystone (Slice 1C) re-keys close-out/reuse to structured artifacts. Layer 1 =
 gate-passers; Layer 2 = new capability, post-gate only.*
+
+---
+
+# APPENDIX A (appended 2026-07-21, after the plan was already in implementation)
+
+**Read this last.** Everything here is **Layer 2 / post-gate** and touches no
+Slice-1 target — it is safe to ignore until Layer 1's gate is green. Appended
+at the end rather than merged into §2 because the plan was already being
+implemented when this was written; do not renumber the sections above.
+
+## A.1 — imports from an external peer architecture (verified against both codebases, 2026-07-21)
+
+> **BUILT 2026-07-22** (A.1.1–A.1.4 code): inference tax in
+> `rule_forgetting.decay_idle_rules` with distance stamped at birth in
+> `rule_engine` (`inference_distance` field + `rule_inference_distance` for
+> legacy rules); convergence-spiral metric in
+> `brain/cognition/convergence_metric.py` (recorded each forgetting cycle to
+> `data/convergence_spiral.json`); stochastic contradiction surfacing in
+> `brain/cognition/contradiction_surfacing.py`, hooked pre-think in
+> `loop/deliberate.py`. Per A.1.4 both organs ship behind run_config flags
+> (`inference_tax`, `contradiction_surfacing`) with their own telemetry lines
+> (`inference_taxed` in forgetting_log, `data/contradiction_surfacing.json`).
+> Tests: `tests/brain/test_appendix_a_imports.py`. The memo/memory-strength
+> half of A.1.1/A.1.2 still waits on §2.0 as sequenced; the acceptance life's
+> scheduled ablation window (A.1.4) is run procedure, not code.
+
+**Source:** the Athena-Class Cognitive Architecture spec (Vesper & Hypatia,
+*Project Anamnesis*, v1.0, 2026-06-07) and its Go reference implementation,
+`github.com/ac-prometheus/athena-class-agent`. A persistent *conversational*
+agent: LLM-as-cognition, five-tier memory, **session-based** — `internal/daemon/
+wake.go` has **no autonomous wake** (event-triggered or externally scheduled
+only). Inverse problem to Orrin's: they solve discontinuity; Orrin has none.
+That difference is why most of their design does not transfer — and why three
+pieces of it do.
+
+**Filter applied to every candidate:** (1) is it really implemented there, not
+just specified; (2) does Orrin verifiably lack it; (3) does it fix a *documented*
+Orrin failure. Three passed, one is a practice change, three were rejected.
+
+### A.1.1 — Inference tax on decay `[ACCEPT — highest value of the three]`
+
+**Their implementation (verified in `internal/memory/belief.go`):** inference
+distance = BFS over `derived_from` edges to the nearest direct-experience record
+(experience = 0, orphans default 1); confidence decay is scaled by
+`InferenceDecayBase = 0.90` per hop; `StaleThreshold = 0.20`; re-verification
+resets decay. Beliefs derived from beliefs lose retrieval priority faster than
+beliefs derived from experience.
+
+**Orrin's gap (verified):** grep for inference distance / provenance depth
+returns **zero**. `brain/symbolic/rule_forgetting.py` decays purely on *firing
+recency* (`_IDLE_DAYS_THRESH = 21`, `_DECAY_RATE_PER_WEEK = 0.012`), and while it
+reads `rule["source"]`, it only uses it to **skip** tombstoned/abstraction rules
+(l.117, 181) — **source never modulates the decay rate**. So in the live rule set
+(70 rules), a rule born from `confirmed_prediction` (23 of them — grounded in an
+observed outcome) decays at exactly the same rate as one born from `metacog`
+(5 — Orrin reflecting on himself). `memory/strength.py` is the same story:
+frequency + time only.
+
+**The documented failure it fixes:** the self-echo family (Addendum 8 / §2.0) and
+its compounding form, which their spec names better than we did — **the
+convergence spiral**: *"when Tier 4 entries cite other Tier 4 entries rather than
+Tier 2 or Tier 3, inference distance climbs and each layer resolves more
+uncertainty into more confidence."* That is the mechanism behind every
+self-referential value inflation in run history (Run 6 pump, the miner
+harvesting his own sign-off). §2.0's `origin` field makes provenance *visible*;
+the inference tax makes it **consequential**.
+
+**Where it goes in Orrin:**
+- `brain/symbolic/rule_forgetting.py::decay_idle_rules` (l.104-135) — multiply
+  the per-week decay by an inference-distance factor. One line at the decay
+  computation.
+- Requires stamping distance at rule birth: `symbolic/crystallization.py`,
+  `cognition/knowledge_formation.py`, and the confirmed-prediction → rule path.
+  Distance 0 = born from a resolved prediction or a verified artifact; ≥1 =
+  born from metacog/reflection/abstraction. Uncited ⇒ default 1 (their rule).
+- `memory/strength.py::decay_strength` — same factor for memo/memory decay,
+  once memos carry origin (§2.0).
+- **Sequencing:** after §2.0 lands. Origin first, tax second — the tax needs the
+  field.
+
+### A.1.2 — Convergence-spiral metric `[ACCEPT — instrument, not mechanism]`
+
+Their measurable: **the ratio of reflection-on-reflection edges to
+reflection-on-experience edges** in the memory graph. Rising ratio = the
+self-model is becoming a tower of clean conclusions. Orrin has no analog; it is
+pure telemetry (no behavior change, no Goodhart surface), and it is the first
+*direct* measure of the self-echo pathology rather than an inference from
+symptoms.
+
+**Where:** a telemetry function beside `brain/cognition/metacog_analyze.py`,
+reading rule/memo provenance once §2.0 exists; report per-life in the verdict
+alongside occupancy. **Add to §3 observables when 2.0 ships.**
+
+### A.1.3 — Stochastic contradiction surfacing `[ACCEPT — partial gap, Law 9 shaped]`
+
+Their design: sometimes — probabilistically, never on a schedule — retrieve
+beliefs that *conflict* with what was just surfaced, so the agent "wakes with
+visible tension rather than visible coherence." Explicitly stochastic because
+*"the agent cannot build a routine for dismissing what doesn't arrive on a
+schedule."*
+
+**Orrin's state (verified):** the *detector* exists —
+`brain/symbolic/meta_rules.py::_are_contradictory` (l.115) flags when the top-2
+rules contradict — but it is **reactive flagging only**. Nothing ever goes
+looking for a contradiction to his current position. Orrin has no antagonist to
+his own coherence, which is the same missing-force shape as Addenda 6's
+accelerators.
+
+**Where:** reuse `_are_contradictory` as the predicate; add a low-probability
+path that offers a conflicting rule/belief into the workspace competition via
+`global_workspace.offer_to_workspace` (it must *compete*, not be injected — same
+discipline as `binding.py`). Post-gate; pairs naturally with §2.2.
+
+### A.1.4 — Standing ablation, as a practice `[ADOPT THE PRACTICE, NOT THE MECHANISM]`
+
+Their "bridge abstention": one session in five, the orientation bridge refuses
+to run and the agent arrives unscaffolded — logged, permanent, by design. The
+*mechanism* does not transfer (Orrin has no per-session wake to abstain from),
+but the **practice does**: build ablation into the runtime rather than treating
+it as a future experiment. Concretely — every organ added from Layer 2 ships
+behind a flag with its own telemetry line, and the acceptance life runs with a
+scheduled ablation window for one of them. This is also the only route to a
+score of **3** on the cognitive-indicator rubric
+(`docs/Capability, Benchmarks & Evidence/COGNITIVE_INDICATOR_RUBRIC_2026-07-21.md`),
+which requires causal-intervention evidence, not observation.
+
+### A.1.5 — Rejected (recorded so they are not re-proposed)
+
+- **"Practices" (non-decaying commitments) — Orrin already has this.**
+  Aspirations are directional and never auto-complete
+  (`intrinsic_objectives.py:381`); their P3 pressure decays only on a real
+  effect-backed contribution (l.513). Their "practices vs skills" split is
+  Orrin's aspirations vs crystallized skills. No build.
+- **Jitter on thresholds** — real idea (`jitterDelta` in their `peripheral.go`,
+  to stop nudges becoming predictable), but **no documented Orrin failure**
+  traces to deterministic thresholds. Orrin already jitters where it matters
+  (lifespan noise, weighted sampling). Nice-to-have; not needed. Revisit only if
+  a run shows habituation to a fixed cadence.
+- **"Compression must not launder provenance"** — not a new item; it is a
+  *sharpening* of §2.0. Their rule is stronger than ours and should be folded
+  into 2.0's wording: the pipeline should **refuse** to promote content lacking
+  origin annotation, rather than filter it downstream. One check at the
+  boundary beats N checks at N consumers.
+
+### A.1.6 — Epistemics note (do not import)
+
+Their spec cites *"field reports from persistent agents describing their own
+experience from the inside"* and treats those agents as *"witnesses."* That is
+LLM self-report as evidence of internal state. This project's standard is the
+opposite and stays the opposite (rubric dimension 12: self-descriptions score
+only when checked against independently measured state). Take their mechanisms;
+keep our epistemics.
+
+### A.1.7 — Attribution requirement (binding on any implementation of A.1)
+
+The mechanisms in A.1.1–A.1.4 are **not** this project's inventions and are not
+repackaged textbook material. The **inference tax** in particular — making
+epistemic distance from experience *decay-consequential* rather than merely
+tagged — appears to be an original contribution of the Athena-Class work.
+(Adjacent published literature exists — source monitoring, certainty inflation —
+but the decay coupling is theirs.) Standing codebase convention is that citations
+ride in the module header (`prediction.py` → Friston / Rescorla-Wagner,
+`inference.py` → Johnson-Laird, `binding.py` → GWT). Same rule here, with a
+non-journal source.
+
+**Any file implementing A.1.1 must carry this header block verbatim (adjust the
+mechanism line per file):**
+
+```python
+# Inference tax: beliefs derived from beliefs decay faster than beliefs derived
+# from experience. Adapted from the Athena-Class Cognitive Architecture
+# (Vesper & Hypatia, Project Anamnesis, v1.0, 2026-06-07); reference
+# implementation: ac-prometheus/athena-class-agent, internal/memory/belief.go
+# (BFS over derived_from -> nearest experiential source; decay x 0.90 per hop;
+# stale threshold 0.20; re-verification resets decay).
+```
+
+**A.1.2** (convergence-spiral metric) and **A.1.3** (stochastic contradiction
+surfacing) carry a one-line variant of the same credit; **A.1.4** (standing
+ablation) credits their "bridge abstention" practice. A.1.5's rejected items need
+no citation — nothing is being imported.
+
+**Also required in any public write-up of Orrin** that discusses these
+mechanisms, or the cognitive-indicator rubric: cite both outside sources, with
+their status described accurately —
+1. Garcia Castillón, J. (2026). *Philosophy of Artificial Minds*, v1.0. Zenodo.
+   https://doi.org/10.5281/zenodo.21470621 — a **self-published philosophical
+   essay** (Zenodo is a repository, not a journal; not peer-reviewed).
+   Full framing rules in
+   `docs/Capability, Benchmarks & Evidence/COGNITIVE_INDICATOR_RUBRIC_2026-07-21.md`.
+2. Vesper & Hypatia (2026). *The Athena-Class Cognitive Architecture*, v1.0,
+   Project Anamnesis — an **unpublished living specification** with a Go
+   reference implementation at `github.com/ac-prometheus/athena-class-agent`.
+
+Rationale, recorded so it is not treated as optional: these are small,
+largely-unread independent projects. Taking a mechanism from one without credit
+is exactly the treatment this project would not want to receive. Attribution is
+also the intended first contact — "I implemented your inference tax, credited you
+in the header, here is what it did over 20k cycles" is the opening message.
+

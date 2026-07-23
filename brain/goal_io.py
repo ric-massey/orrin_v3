@@ -184,9 +184,16 @@ def _load_v1_tree() -> List[Dict[str, Any]]:
         return []
 
 
-def _find_v1_node(tree: List[Dict[str, Any]], gid: str, name: str):
+def _find_v1_node(tree: List[Dict[str, Any]], gid: str, name: str,
+                  *, idless_title_only: bool = False):
     """Find a goal node in the v1 tree by id (preferred) or name/title, recursing
-    into subgoals. Two passes so a name collision can't shadow the id match."""
+    into subgoals. Two passes so a name collision can't shadow the id match.
+
+    Slice 1C.6: `idless_title_only` restricts the title fallback to id-LESS nodes.
+    A titled node that already carries a DIFFERENT real id is a distinct goal that
+    merely shares a title — merging the two is the store-desync (Run 11: 1 residual
+    orphan-RUNNING repair). With this flag the caller absorbs the v2 goal as its own
+    fresh v1 node instead of clobbering another goal's identity."""
     def walk(nodes, pred):
         for n in nodes or []:
             if isinstance(n, dict):
@@ -199,7 +206,11 @@ def _find_v1_node(tree: List[Dict[str, Any]], gid: str, name: str):
 
     node = walk(tree, lambda n: n.get("id") == gid) if gid else None
     if node is None and name:
-        node = walk(tree, lambda n: n.get("name") == name or n.get("title") == name)
+        if idless_title_only:
+            node = walk(tree, lambda n: (not n.get("id"))
+                        and (n.get("name") == name or n.get("title") == name))
+        else:
+            node = walk(tree, lambda n: n.get("name") == name or n.get("title") == name)
     return node
 
 
@@ -344,17 +355,21 @@ def _reconcile_open_v2_into_v1(api) -> None:
         for g in open_goals:
             d = _goal_to_v1(g)   # carries tier/origin restored from spec (D2 read)
             vid = d.get("id")
-            node = _find_v1_node(tree, vid, d.get("name"))
+            # Slice 1C.6: id-first, and the title fallback only adopts id-LESS
+            # orphans — never merges a v2 goal onto a v1 node with a different real
+            # id (that fork-merge was the residual store-desync). A genuine
+            # title collision → absorb the v2 goal as its own node below.
+            node = _find_v1_node(tree, vid, d.get("name"), idless_title_only=True)
             if node is None:
                 d.setdefault("status", "in_progress")
                 to_add.append(d)
             elif str(node.get("status", "")).lower() in _V1_TERMINAL:
                 to_close.append((vid, node.get("status")))
-            elif vid and node.get("id") != vid:
-                # A name-matched node carrying no id (or a divergent one): adopt the
-                # canonical v2 id so completion/failure events reconcile by id, not
-                # title. Without this, an id-less v1 node stays title-matched forever
-                # — the exact fragmentation that broke coherent goal history.
+            elif vid and not node.get("id"):
+                # An id-less title-matched node: adopt the canonical v2 id so
+                # completion/failure events reconcile by id, not title. (A node with
+                # a different real id was excluded above, so this can only id-stamp
+                # a genuine orphan — never clobber a distinct goal's identity.)
                 node["id"] = vid
                 dirty = True
         # Persist id-stamps BEFORE any add_goal (which reloads+saves the tree and
@@ -464,6 +479,11 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                     "definition_of_done", "grounded_parts", "plan", "milestones",
                     "requires_artifact", "tracked_work", "comprehension_source",
                     "comprehended_at",
+                    # Slice 1C: the epistemic question must survive the v2 round-trip,
+                    # or a daemon-completed understanding goal has no gap to score its
+                    # claims.json against (Run 11: dropped, close-out derived a weak
+                    # title question). `prediction` carries the checkable claim too.
+                    "question", "prediction",
                 ):
                     if key in gd:
                         spec.setdefault(key, gd[key])
@@ -561,6 +581,67 @@ def record_goal_progress(context: Dict[str, Any]) -> None:
 _V2_EVENT_TERMINAL = {"done", "failed", "cancelled"}
 
 
+_DAEMON_STAMPED: "deque[str]" = deque(maxlen=1000)
+
+
+def _stamp_daemon_completion(event: Dict[str, Any]) -> None:
+    """Slice 1C.1/1C.3 (keystone pinch 5a): epistemic close-out for goals that
+    complete on the DAEMON lane. `stamp_closeout` has zero call sites in goals/;
+    the runner is in goals/ and must not import brain cognition, so we stamp HERE,
+    on the brain side, off the daemon-forwarded GoalFinished event.
+
+    For a DONE understanding goal: score its claims.json (Slice 1C.2), stamp
+    question + answered, archive it into comp_goals.json, and — when the question is
+    NOT answered — spawn a follow-up carrying it (never annotate-and-close; the
+    Slice 1C.3 leak was daemon completions bypassing rung-1 entirely)."""
+    gid = str(event.get("goal_id") or "")
+    if not gid or gid in _DAEMON_STAMPED or _api_ref is None:
+        return
+    try:
+        g = _api_ref.get_goal(gid)
+        if g is None:
+            return
+        spec = dict(getattr(g, "spec", None) or {})
+        goal = {
+            "id": g.id,
+            "title": g.title,
+            "name": g.title,
+            "kind": getattr(g, "kind", "") or event.get("goal_kind") or "",
+            "driven_by": spec.get("driven_by") or "",
+            "question": spec.get("question") or "",
+            "spec": spec,
+        }
+        from brain.cognition.epistemic_closeout import (
+            _is_understanding_goal, stamp_closeout, spawn_followup_goal,
+        )
+        if not _is_understanding_goal(goal):
+            return
+        _DAEMON_STAMPED.append(gid)
+        answered = stamp_closeout(goal)
+        if answered is None:
+            return
+        # Archive the stamped record so comp_goals.json carries question + answered
+        # for daemon-completed understanding goals (the 1C.1 observable).
+        try:
+            from brain.paths import COMPLETED_GOALS_FILE
+            from brain.utils.json_utils import load_json, save_json
+            arch = load_json(COMPLETED_GOALS_FILE, default_type=list)
+            if not isinstance(arch, list):
+                arch = []
+            rec = dict(goal)
+            rec["status"] = "completed"
+            arch.append(rec)
+            save_json(COMPLETED_GOALS_FILE, arch[-500:])
+        except Exception as _ae:
+            record_failure("goal_io._stamp_daemon_completion.archive", _ae)
+        # 1C.3: an unanswered question survives as a follow-up rather than being
+        # silently annotated-and-closed on the daemon lane.
+        if answered is False:
+            spawn_followup_goal(goal)
+    except Exception as _e:
+        record_failure("goal_io._stamp_daemon_completion", _e)
+
+
 def _on_event(event: Dict[str, Any]) -> None:
     """GoalsAPI event-bus / daemon-sink subscriber: react to TERMINAL goal
     transitions (Run 4 fix A1). Previously only `failed` was handled, so a v2
@@ -585,6 +666,11 @@ def _on_event(event: Dict[str, Any]) -> None:
                     "name": event.get("title"),
                     "kind": event.get("goal_kind"),
                 })
+        elif status == "done":
+            # Slice 1C.1: a DONE understanding goal gets its epistemic close-out here,
+            # on the brain side of the daemon completion — the keystone the runner (in
+            # goals/) can't stamp itself. (cancelled is terminal but not a completion.)
+            _stamp_daemon_completion(event)
         try:
             from brain.cognition.planning.goal_reconcile import close_v1_mirror
             close_v1_mirror(str(event.get("goal_id") or ""),

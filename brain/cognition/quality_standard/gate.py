@@ -205,21 +205,32 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
         #     permanently define "good" as scrape-quality. This is a veto on the
         #     auto path, not a quality claim: route to the same human rule-review
         #     channel a too-strict predicate uses, with the copy report attached.
-        derivative, why, report = originality.check(
-            text, goal_id=(ref.get("goal_id") if isinstance(ref, dict) else None)
-        )
+        _gid = ref.get("goal_id") if isinstance(ref, dict) else None
+        # Slice 1C.5: a STRUCTURED product (claims.json) is authored extraction, not a
+        # prose stitch — the copy-fraction veto doesn't apply. Score it structurally
+        # and canonise the claim RENDERING (not the possibly-scraped memo). The prose
+        # veto still governs ordinary (non-structured) memos.
+        _claims = originality.structured_product_for(_gid)
+        report = None
+        if _claims is not None:
+            derivative, why = originality.is_derivative_structured(_claims)
+            if not derivative:
+                text = originality.render_claims(_claims)
+        else:
+            derivative, why, report = originality.check(text, goal_id=_gid)
         if derivative:
+            _copy_report = None if report is None else {
+                "quote_ratio": round(report.quote_ratio, 3),
+                "verbatim_ratio": round(report.verbatim_ratio, 3),
+                "offline_stitch": report.offline_stitch,
+                "original_prose_chars": report.original_prose_chars,
+                "sources_found": report.sources_found,
+            }
             revisions.mark(
                 cid, "pending",
                 needs_rule_review=True,
                 failing_reason=f"originality:{why}",
-                copy_report={
-                    "quote_ratio": round(report.quote_ratio, 3),
-                    "verbatim_ratio": round(report.verbatim_ratio, 3),
-                    "offline_stitch": report.offline_stitch,
-                    "original_prose_chars": report.original_prose_chars,
-                    "sources_found": report.sources_found,
-                },
+                copy_report=_copy_report,
             )
             changed.append(revisions.get(cid))
             log_activity(

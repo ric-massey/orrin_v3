@@ -7,11 +7,17 @@
 
 import brain.agency.effect_ledger as el
 import brain.cognition.planning.goal_outcomes as go
+import brain.cognition.planning.satiety_note as sn
 
 
 def _fresh_ledger(monkeypatch, tmp_path):
     monkeypatch.setattr(el, "EFFECT_LEDGER_FILE", tmp_path / "effect_ledger.jsonl",
                         raising=False)
+    # The note writer falls back to LONG_MEMORY_FILE when context WM is thin —
+    # point it at an empty per-test path so other tests' session memories can't
+    # supply "learned" content (the topic token "something" matches almost
+    # anything a prior test left behind).
+    monkeypatch.setattr(sn, "LONG_MEMORY_FILE", tmp_path / "long_memory.json")
     el.reset_for_tests()
 
 

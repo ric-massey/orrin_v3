@@ -280,6 +280,17 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
             except Exception as _gie:
                 log_error(f"intrinsic goal bootstrap failed: {_gie}")
 
+    # Run-12 Slice 1B.3: research-feed heartbeat. The bootstrap above only fires when
+    # IDLE; under incumbency (a conscious goal holds the slot all life) the daemon
+    # research feed otherwise goes silent for hours (Run 11: ~12 h). This keeps the
+    # daemon fed on a ≤ 20-min cadence regardless of the committed slot. Self-rate-
+    # limited (no-ops until the feed cadence elapses), so it's safe every cycle.
+    try:
+        from brain.cognition.intrinsic_goals import research_feed_heartbeat as _rfh
+        _rfh(context)
+    except Exception as _rfh_e:
+        record_failure("ORRIN_loop.research_feed_heartbeat", _rfh_e)
+
     context = _apply_transient_signal_decay(context)
     affect_state = context.get("affect_state", {})
 

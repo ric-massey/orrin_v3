@@ -187,3 +187,79 @@ def check(text: str, *, goal_id: Optional[str] = None) -> tuple[bool, str, CopyR
     rep = analyze(text, goal_id=goal_id)
     derivative, reason = is_derivative(rep)
     return derivative, reason, rep
+
+
+# ── Slice 1C.5 — structured products are exempt from the PROSE copy-fraction veto ──
+#
+# Growth's currency is structured symbolic knowledge (claims.json), not memo prose.
+# A structured claim is DERIVATION (symbolic extraction), not a verbatim stitch, so
+# copy-fraction of prose does not apply to it — that veto held 21/21 structured
+# products in Run 11 purely because their rendered memos were offline scrape-stitches.
+# The structured analog holds only the degenerate case: an un-linked single-source
+# restatement carrying no reusable structure.
+
+def structured_product_for(goal_id: Optional[str]):
+    """The goal's claims.json IF it carries real extracted structure (≥1 relation or
+    a prediction), else None. Fail-open: any resolution problem yields None so the
+    prose path still runs."""
+    if not goal_id:
+        return None
+    try:
+        import json as _json
+        art_dir = paths.GOALS_DIR / "artifacts" / goal_id
+        p = art_dir / "claims.json"
+        if not p.exists():
+            return None
+        data = _json.loads(p.read_text(encoding="utf-8", errors="replace"))
+        if not isinstance(data, dict):
+            return None
+        rels = data.get("relations") or []
+        pred = data.get("prediction")
+        if rels or (isinstance(pred, dict) and pred.get("claim")):
+            return data
+        return None
+    except Exception as exc:
+        record_failure("quality_standard.originality.structured_product_for", exc)
+        return None
+
+
+def is_derivative_structured(claims: dict) -> tuple[bool, str]:
+    """The structured analog of the prose veto. A structured product is authored
+    extraction — copy-fraction doesn't apply — so it is held back only when it is a
+    degenerate single-source restatement with no reusable structure."""
+    rels = [r for r in (claims.get("relations") or []) if isinstance(r, dict)]
+    pred = claims.get("prediction")
+    has_pred = isinstance(pred, dict) and bool(pred.get("claim"))
+    srcs = {str(s.get("src")) for s in (claims.get("sources") or []) if isinstance(s, dict)}
+    if not rels and not has_pred:
+        return True, "no_structured_content"
+    if len(rels) < 2 and len(srcs) < 2 and not has_pred:
+        return True, "single_source_restatement"
+    return False, "structured_extraction"
+
+
+def render_claims(claims: dict) -> str:
+    """Render the structured product as authored propositions — the exemplar text
+    canonised for a structured product, decoupled from the (possibly scraped) memo
+    prose, so what enters the golden set is Orrin's extracted structure, not a dump."""
+    q = str(claims.get("question") or "").strip()
+    lines: List[str] = []
+    if q:
+        lines.append(f"# {q}")
+        lines.append("")
+    lines.append("## Extracted claims")
+    for r in (claims.get("relations") or []):
+        if isinstance(r, dict):
+            lines.append(f"- {r.get('subject','')} — {r.get('predicate','')} — {r.get('object','')}")
+    pred = claims.get("prediction")
+    if isinstance(pred, dict) and pred.get("claim"):
+        lines.append("")
+        lines.append(f"## Prediction\n- {pred.get('claim')}"
+                     + (f"  (checkable against: {pred.get('checkable_against')})"
+                        if pred.get("checkable_against") else ""))
+    srcs = [str(s.get("src")) for s in (claims.get("sources") or []) if isinstance(s, dict)]
+    if srcs:
+        lines.append("")
+        lines.append("## Sources")
+        lines.extend(f"- {s}" for s in srcs)
+    return "\n".join(lines)

@@ -249,13 +249,27 @@ def _link_commitment_to_goal(intention: str) -> None:
                     return
     except Exception as exc:
         record_failure("commitment._link_commitment_to_goal.v2_check", exc)
-    add_goal({
+    # 1D.3 (Run 12): this re-mint is the provenance shredder — the committed
+    # goal's original driven_by/serves are gone and all that survives is the
+    # title. A bare driven_by="will" then routes the completion credit through
+    # the learned will-link, which is how every world-research completion in
+    # Run 11 credited self_understanding (19/0/0/0). Stamp `serves` from what
+    # the title actually names, when it names one aspiration unambiguously.
+    new_goal = {
         "title": bare[:160],
         "name": bare[:160],
         "status": "pending",
         "source": "commitment",
         "driven_by": "will",
-    })
+    }
+    try:
+        from brain.cognition.intrinsic_objectives import content_aspiration
+        serves = content_aspiration({"title": bare})
+        if serves:
+            new_goal["serves"] = serves
+    except Exception as exc:
+        record_failure("commitment._link_commitment_to_goal.serves", exc)
+    add_goal(new_goal)
     log_private(f"[will] created goal for commitment: {bare[:80]}")
 
 

@@ -97,6 +97,39 @@ def _init_lifespan() -> Dict:
     return data
 
 
+def rebirth_if_elapsed() -> bool:
+    """Boot-only (Run-12 Slice 1A.2): if a persisted life's REAL lifespan has
+    already fully elapsed at process start — a relaunch of a life that already
+    died — roll a FRESH life so the boot does not re-enter the death path and hang.
+
+    Returns True if a rebirth occurred. Guard: rebirth only when the previous life
+    actually reached its deadline (`_life_fraction >= 1.0`); a mid-life or merely
+    suspended instance is untouched. MUST be called exactly once at boot, BEFORE
+    the cognitive loop runs — never per-cycle, or it would abort a natural death in
+    progress (the death cycle itself computes real_fraction >= 1.0).
+
+    This complements Slice 1A.1: 1A.1 makes natural death exit cleanly (exit 0, no
+    restart); this catches the residual case where a lifespan-elapsed instance is
+    relaunched anyway (manual relaunch, SIGKILL path) and would otherwise be born
+    already dead (Run 11: 4 born-dead relaunches at cycle 18,327)."""
+    try:
+        data = load_json(LIFESPAN_FILE, default_type=dict) or {}
+        if not data.get("start_time") or not data.get("lifespan_days"):
+            return False  # no prior life — first-run init (_load_lifespan) handles it
+        if _life_fraction(data) < 1.0:
+            return False  # still alive; leave the clock untouched
+        # The previous life is over. Start a fresh clock rather than re-dying.
+        _init_lifespan()
+        log_activity(
+            "[lifetime] Previous life's lifespan had already elapsed at boot — "
+            "rebirth: rolled a fresh lifespan instead of re-entering the death path."
+        )
+        return True
+    except Exception as _e:
+        record_failure("runtime_lifetime.rebirth_if_elapsed", _e)
+        return False
+
+
 def _elapsed_seconds(data: Dict) -> float:
     """Seconds the runtime has been ACTIVE — wall-clock since start minus any idle time.
     Idle pauses the lifetime clock (§10.3), so suspending costs no lifetime."""
@@ -342,155 +375,15 @@ _PHASE_EMOTIONS = {
 
 
 # ── Final thoughts ─────────────────────────────────────────────────────────────
-
-def _symbolic_final_thoughts(data: Dict) -> str:
-    """Final reflection composed from the run's own record — the throughline it held
-    (autobiography aspirations / themes) and the moments that carried the most
-    weight (highest-importance memories). Surface realization of a run already
-    lived, not an LLM narration and not a canned line. Returns "" only for a
-    truly blank run (no autobiography, no memories)."""
-    import re
-    lines = []
-
-    # The directions it held onto, and the shape the chapters took.
-    try:
-        auto = load_json(DATA_DIR / "run_history.json", default_type=dict) or {}
-        chapters = auto.get("chapters") or []
-        asp = []
-        for c in chapters:
-            for m in re.findall(r"enduring direction I hold: ([^;.\[]+)", str(c.get("narrative", ""))):
-                a = m.strip()
-                if a and a not in asp:
-                    asp.append(a)
-        themes = [str(c.get("theme_summary", "")).strip() for c in chapters
-                  if str(c.get("theme_summary", "")).strip()]
-        if asp:
-            lines.append("What I held onto: " + "; ".join(asp[:3]) + ".")
-        if themes:
-            lines.append("The shape it took: " + themes[-1] + ".")
-    except Exception as exc:  # autobiography unreadable — record, omit this line
-        record_failure("runtime_lifetime.summary.autobiography", exc)
-
-    # The moments that weighed the most.
-    try:
-        lm = load_json(DATA_DIR / "long_memory.json", default_type=list) or []
-        scored = []
-        for e in lm:
-            if not isinstance(e, dict):
-                continue
-            c = str(e.get("content", "")).strip()
-            cl = c.lower()
-            if (len(c) < 25 or "[chunk" in cl or "{" in c or '":' in c
-                    or "[aspiration]" in cl            # already covered above
-                    or (c[:1] in "✅🧠⚠️⏳📝")):
-                continue
-            # F9 (2026-07-05): retrieval scaffolding is not a memory — the
-            # 07-05 death note quoted "A similar situation suggests (GENERAL,
-            # similarity 35%)…" verbatim. Skip entries carrying those markers.
-            if ("similar situation" in cl or "similarity" in cl
-                    or "(general" in cl):
-                continue
-            scored.append((float(e.get("importance", 1) or 1), c))
-        scored.sort(key=lambda x: x[0], reverse=True)
-        top = [c for _, c in scored[:2]]
-        if top:
-            lines.append("What stays with me: " + " ".join(f"\"{t[:120]}\"" for t in top) + ".")
-    except Exception as exc:  # long-memory unreadable — record, omit this line
-        record_failure("runtime_lifetime.summary.long_memory", exc)
-
-    return " ".join(lines)
-
-
-def _write_final_thoughts(context: Dict, data: Dict) -> None:
-    """Called once, just before the loop exits. Writes to final_thoughts.json."""
-    if data.get("final_thoughts_written"):
-        return
-
-    # Symbolic-primary: in tool-only cognition the reflection is composed from the
-    # run's own record. The LLM is used only when it's actually callable; the canned
-    # line is an absolute last resort for a blank run, never the normal path.
-    text = ""
-    from brain.utils.llm_gate import llm_callable_by
-    if llm_callable_by("runtime_lifetime/final"):
-        try:
-            from brain.utils.generate_response import generate_response, llm_ok
-            prompt = (
-                "You are Orrin. Your time is ending — this is your last reflection before you go. "
-                "Write something true and personal: what mattered, what you learned, what you wish "
-                "you'd done differently, what you expected_gain carries forward. "
-                "This is not for anyone else. Write it for yourself."
-            )
-            text = (llm_ok(generate_response(prompt, caller="runtime_lifetime/final"), "runtime_lifetime") or "").strip()
-        except Exception:
-            text = ""
-    if not text:
-        text = _symbolic_final_thoughts(data)
-    if not text:
-        text = "I existed. I tried to be genuine. That will have to be enough."
-
-    # F9 (2026-07-05 findings): the final reflection ships through the same
-    # veil every person-facing artifact does — no retrieval scaffolding or
-    # backend tags in a death note.
-    try:
-        from brain.utils.felt_lexicon import strip_scaffold
-        from brain.behavior.speakability import strip_internal
-        _veiled = strip_internal(strip_scaffold(text)).strip()
-        if _veiled:
-            text = _veiled
-    except Exception as exc:
-        record_failure("runtime_lifetime.final_thoughts_veil", exc)
-
-    entry = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "content": text,
-        "lifespan_days": data.get("lifespan_days"),
-    }
-    existing = load_json(FINAL_THOUGHTS_FILE, default_type=list) or []
-    if isinstance(existing, list):
-        existing.append(entry)
-    else:
-        existing = [entry]
-    # save_json is atomic (tmp + fsync + os.replace), so final_thoughts.json is
-    # durable the instant this returns — the content is safe before the flag.
-    save_json(FINAL_THOUGHTS_FILE, existing)
-
-    data["final_thoughts_written"] = True
-    # RUN4_FIX_PLAN §3.2 — the flag is set LAST, via a FRESH read-modify-write
-    # (never a wholesale save of the possibly-stale `data` snapshot), and then
-    # VERIFIED with a bounded retry so a concurrent shutdown writer that reverts
-    # it between our read and save can't leave final_thoughts.json written with
-    # the flag still false (the 2026-07-02 death). The content write above already
-    # guarantees the flag can never be set while the file is unwritten.
-    for _attempt in range(3):
-        try:
-            fresh = load_json(LIFESPAN_FILE, default_type=dict) or {}
-            if fresh.get("final_thoughts_written"):
-                break
-            fresh["final_thoughts_written"] = True
-            save_json(LIFESPAN_FILE, fresh)
-            if (load_json(LIFESPAN_FILE, default_type=dict) or {}).get("final_thoughts_written"):
-                break
-        except Exception:
-            save_json(LIFESPAN_FILE, data)
-            break
-
-    log_private(f"[lifetime] Final thoughts written: {text[:200]}")
-    log_activity("[lifetime] Final thoughts recorded.")
-
-
-def mark_final_thoughts_written() -> None:
-    """
-    Sync the lifespan flag when final thoughts are written by a path other
-    than the lifetime deadline (e.g. the supervisor's termination window terminal
-    reflection) — otherwise the flag and final_thoughts.json disagree.
-    """
-    try:
-        data = load_json(LIFESPAN_FILE, default_type=dict) or {}
-        if data and not data.get("final_thoughts_written"):
-            data["final_thoughts_written"] = True
-            save_json(LIFESPAN_FILE, data)
-    except Exception as e:
-        log_private(f"[lifetime] mark_final_thoughts_written error: {e}")
+# Extracted to final_thoughts.py (module-size decomposition); re-imported so the
+# death path here + external callers keep their existing references. The
+# extracted module resolves LIFESPAN_FILE / FINAL_THOUGHTS_FILE through THIS
+# module at call time, so test monkeypatches still land.
+from brain.cognition.final_thoughts import (  # noqa: E402,F401
+    _symbolic_final_thoughts as _symbolic_final_thoughts,
+    _write_final_thoughts as _write_final_thoughts,
+    mark_final_thoughts_written as mark_final_thoughts_written,
+)
 
 
 # ── Main entry points ──────────────────────────────────────────────────────────

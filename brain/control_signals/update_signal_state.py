@@ -591,6 +591,11 @@ def update_signal_state(context: Any = None, trigger: Any = None) -> Any:
             _fired = _sat_trip(state, _top_drives, _cyc)
             for _k in _fired:
                 state[_k] = _top_drives[_k]
+        # 1D.2 (Run 12): the DemandEngine's live pressures (`drive_mastery` et al.)
+        # are ALSO covered by the tripwire, but that sweep runs from the loop layer
+        # (finalize.py) — control_signals must not import runtime_coupling (it would
+        # make the package coupling bidirectional; the demand engine already imports
+        # homeostasis for the tripwire itself). See demand_engine.saturation_check.
     except Exception as _e:
         record_failure("update_signal_state.saturation_tripwire", _e)
 

@@ -82,20 +82,36 @@ _INTENT_PRIOR_WEIGHT  = 1        # T2.3 — intent (driven_by→serves) blended 
 # Keyword signatures used to classify which aspiration a completed goal's outcome
 # advanced. Coarse on purpose — a clear keyword winner is the evidence; ties /
 # no-hits yield no learning signal (the prior stands).
+# 1D.3 (Run 12): "understand"/"know" added to the world set so the run's actual
+# goal shapes ("Understand foundations of quantum mechanics more deeply",
+# "Answer: What do I now know about X…") carry ANY content evidence at all —
+# in Run 11 they scored 0 everywhere, so the intent prior alone decided (and
+# then taught the EMA its own guess; see _evidenced_aspiration). Self-goals use
+# the same verbs but out-score world via their own markers ("my own", "mind").
 _ASPIRATION_KEYWORDS = {
     "Understand my own mind and how I work":
         {"self", "mind", "cognition", "cognitive", "introspect", "memory", "architecture",
          "internal", "source code", "trace", "audit", "machinery", "my own", "self-"},
     "Understand the world more deeply":
         {"world", "research", "learn", "knowledge", "fact", "history", "science",
-         "topic", "concept", "wikipedia", "article", "investigate", "cause", "causes of"},
+         "topic", "concept", "wikipedia", "article", "investigate", "cause", "causes of",
+         "understand", "know"},
     "Be genuinely useful and connected to the people I talk to":
         {"note", "ric", "user", "message", "connect", "share", "reach", "tell",
          "conversation", "reply", "contact", "useful", "help"},
     "Make things — produce work that didn't exist before":
-        {"write", "build", "create", "tool", "function", "produce", "artifact",
-         "make", "html", "implement", "script", "code"},
+        # "written"/"synthesis": the making generator's own title shape is
+        # "Turn what I know about X into a written synthesis" — "write" never
+        # substring-matches "written" (double t), so make-goals scored 0 make
+        # evidence and the world verbs in the same title stole the credit.
+        {"write", "written", "build", "create", "tool", "function", "produce",
+         "artifact", "make", "html", "implement", "script", "code", "synthesis"},
 }
+# "my own" is an unambiguous self-referential marker; the generic verbs above are
+# weak evidence. Double-weighting it keeps "Trace in my own history what drives X"
+# on the introspective side even when a world word ("history") also appears.
+_SELF_MARKER = "my own"
+_SELF_TITLE = "Understand my own mind and how I work"
 
 
 def _learned_aspiration_enabled() -> bool:
@@ -126,18 +142,11 @@ _OUTPUT_PRODUCING_TITLE = next((t for t, d in _ASPIRATIONS
                                 if d == "output_producing"), "")
 
 
-def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
-    """Which aspiration did this completed goal's OUTCOME actually advance?
-
-    Derived from the goal's own content + the causal effects of its action — NOT
-    from its driven_by tag — so the learned link can legitimately diverge from the
-    prior. Returns None when there's no clear signal (the prior then stands).
-    """
-    valid = {t for t, _ in _ASPIRATIONS}
-    explicit = str(goal.get("advanced_aspiration") or "").strip()
-    if explicit in valid:
-        return explicit
-
+def _keyword_scores(goal: Dict[str, Any]) -> Dict[str, int]:
+    """Per-aspiration CONTENT-evidence scores for a goal: keyword hits over its
+    title/description/recent contributions + the causal effects of its action.
+    The B4.1 make-shape guard is applied (a research memo writes a file but
+    isn't "making"). Pure evidence — no intent prior blended in."""
     spec = goal.get("spec") or {}
     parts = [
         str(goal.get("title") or goal.get("name") or ""),
@@ -155,19 +164,68 @@ def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
 
     text = " ".join(parts).lower()
     scores = {asp: sum(1 for kw in kws if kw in text) for asp, kws in _ASPIRATION_KEYWORDS.items()}
-    # T2.3 Change 3 — credit by INTENT, not just biased text. The goal's own
-    # driven_by/serves tag is blended in as a prior so a "make things" / "be useful"
-    # goal is credited to its aspiration even when its title reads generic and trips
-    # no outcome keyword (the run's making goals scored 0 and the credit defaulted to
-    # whatever keyword the intake-heavy text happened to hit). Weighted at one
-    # keyword-hit so it DECIDES ambiguous/generic cases but real keyword evidence
-    # (≥2 hits elsewhere) can still legitimately diverge from the prior — preserving
-    # the learned-link's whole point.
-    intent = _serves_aspiration(str(goal.get("driven_by") or spec.get("driven_by") or ""))
-    if intent in scores:
-        scores[intent] += _INTENT_PRIOR_WEIGHT
+    # "my own" counts double: an unambiguously self-referential goal must not be
+    # out-voted by an incidental world verb (see the keyword-table note above).
+    if _SELF_MARKER in text and scores.get(_SELF_TITLE, 0):
+        scores[_SELF_TITLE] += 1
     # B4.1: making credit requires a make-shaped goal — a research/intake memo
     # writes a file but isn't "making", so strip the making aspiration from it.
+    if _OUTPUT_PRODUCING_TITLE in scores and not _goal_is_make_shaped(goal):
+        scores[_OUTPUT_PRODUCING_TITLE] = 0
+    return scores
+
+
+def content_aspiration(goal: Dict[str, Any]) -> Optional[str]:
+    """1D.3 (Run 12): the aspiration a goal's CONTENT names, or None.
+
+    Strict-winner rule: only a unique top score counts — a tie is ambiguity, not
+    evidence. Used (a) to route completion credit by outcome rather than by the
+    drive tag (Run 11 credited 'Understand foundations of quantum mechanics' to
+    self_understanding because its driven_by was `will` and the learned will-link
+    had been captured), and (b) by the commitment re-mint to stamp `serves` on
+    goals whose only surviving provenance is their title."""
+    valid = {t for t, _ in _ASPIRATIONS}
+    explicit = str(goal.get("advanced_aspiration") or "").strip()
+    if explicit in valid:
+        return explicit
+    scores = _keyword_scores(goal)
+    if not any(scores.values()):
+        return None
+    best = max(scores.values())
+    winners = [asp for asp, s in scores.items() if s == best]
+    return winners[0] if len(winners) == 1 else None
+
+
+def _evidenced_aspiration(goal: Dict[str, Any]) -> Optional[str]:
+    """Which aspiration did this completed goal's OUTCOME actually advance?
+
+    Derived from the goal's own content + the causal effects of its action — NOT
+    from its driven_by tag — so the learned link can legitimately diverge from the
+    prior. Returns None when there's no clear signal (the prior then stands).
+
+    1D.3 (Run 12): REAL content evidence is required before the intent prior is
+    blended in. The old order bumped intent first and then checked `any(scores)`,
+    so a goal with ZERO keyword evidence still "evidenced" its own prior — and
+    that circular signal EMA-taught the will→self_understanding link to 0.74,
+    past the 0.5 seed the capture guard was built around. Intent now only breaks
+    ties among real evidence; it can no longer manufacture evidence.
+    """
+    valid = {t for t, _ in _ASPIRATIONS}
+    explicit = str(goal.get("advanced_aspiration") or "").strip()
+    if explicit in valid:
+        return explicit
+    scores = _keyword_scores(goal)
+    if not any(scores.values()):
+        return None
+    # T2.3 Change 3 — intent (driven_by → serves) decides generic/ambiguous cases
+    # among goals that DO carry evidence; real keyword evidence (≥2 hits) still
+    # legitimately diverges from the prior — preserving the learned-link's point.
+    spec = goal.get("spec") or {}
+    intent = _serves_aspiration(str(goal.get("driven_by") or spec.get("driven_by") or ""))
+    if intent in scores and scores.get(intent, 0) > 0:
+        scores[intent] += _INTENT_PRIOR_WEIGHT
+    # Re-apply the make-shape guard: the intent bump must not resurrect making
+    # credit on a goal that isn't make-shaped.
     if _OUTPUT_PRODUCING_TITLE in scores and not _goal_is_make_shaped(goal):
         scores[_OUTPUT_PRODUCING_TITLE] = 0
     if not any(scores.values()):
@@ -425,7 +483,9 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
                 units = _partial_progress_units(g)
                 if units > 0.0:
                     partial_seen.add(gid)
-                    serves = str(g.get("serves")
+                    # 1D.3: content evidence outranks the drive-link fallback —
+                    # same priority order as the completion credit below.
+                    serves = str(g.get("serves") or content_aspiration(g)
                                  or _serves_aspiration(g.get("driven_by", "")) or "").strip()
                     if serves:
                         partials[serves.lower()] = round(partials.get(serves.lower(), 0.0) + units, 3)
@@ -443,8 +503,14 @@ def credit_objectives(context: Dict[str, Any] = None) -> str:
                 credited_ids.add(gid)
                 credit["credited_ids"].append(gid)
                 credit_changed = True
-            # serves: the goal's own tag, else the (now-learned) link for its drive.
-            title = str(g.get("serves") or _serves_aspiration(g.get("driven_by", "")) or "").strip()
+            # serves: the goal's own tag, else what its CONTENT names, else the
+            # (learned) link for its drive. 1D.3: content before drive-link — the
+            # commitment path re-mints goals with a bare driven_by="will", which
+            # routed every world-research completion through whatever aspiration
+            # had captured the will-link (Run 11: contributions 19/0/0/0 while
+            # commitment was diverse across all four).
+            title = str(g.get("serves") or content_aspiration(g)
+                        or _serves_aspiration(g.get("driven_by", "")) or "").strip()
             if title:
                 contributions.setdefault(title.lower(), []).append(
                     str(g.get("title") or g.get("name") or "")[:80])

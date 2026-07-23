@@ -10,7 +10,7 @@ from brain.core.runtime_log import get_logger
 import json
 import time
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 
 from brain.utils.generate_response import generate_response, llm_ok
 from brain.utils.log import log_activity, log_private
@@ -52,7 +52,7 @@ from brain.cognition.intrinsic_generators import (  # noqa: F401
     _tension_goals, _autobiographical_continuity_goals,
     note_intake_completed as note_intake_completed,
     _drain_making_backlog, _making_goals, _contact_goals,
-    _goal_from_recent_research, _varied_symbolic_goal,
+    _goal_from_recent_research, _varied_symbolic_goal, _varied_symbolic_goals,
 )
 _log = get_logger(__name__)
 
@@ -100,6 +100,14 @@ _LAST_INTRINSIC_TS: float = 0.0
 _MIN_INTERVAL_S: float = 45 * 60   # normal cadence: every 45 minutes
 _BOOTSTRAP_INTERVAL_S: float = 60  # bootstrap cadence: 60s when no committed goal
 
+# Run-12 Slice 1B.3: the daemon RESEARCH FEED must not be starved by the conscious
+# cadence (45 min, stretched further by the incumbency backoff below). This heartbeat
+# lets a research-only pass run on a ≤ 20-min cadence while a conscious goal holds the
+# slot — an OPPOSING feed, not a weakening of the displacement backoff (NO-CLAMPS,
+# memory `unopposed_force_principle`). Sized under the 30-min WAL-silence gate.
+_RESEARCH_FEED_INTERVAL_S: float = 20 * 60
+_LAST_RESEARCH_FEED_TS: float = 0.0
+
 # The symbolic goal generators now live in intrinsic_generators.py (imported
 # above). LLM-free origination draws ONLY from real mental content via
 # _varied_symbolic_goal() (KG concepts + open questions + recent research); the
@@ -112,119 +120,62 @@ _BOOTSTRAP_INTERVAL_S: float = 60  # bootstrap cadence: 60s when no committed go
 
 
 
-# ── P7: commitment competition (close the self-commit bypass) ──────────────────
-# generate_intrinsic_goals used to commit the FIRST goal it produced directly into
-# context["committed_goal"], so the competition/arbiter layer was moot and P1's
-# gradient + P3's pressure were evaluated AFTER the choice was already locked.
-# These helpers let the committed goal be CHOSEN among the live proposals, weighted
-# by aspiration pressure + the (rewired) usefulness drive, so an artifact-gated
-# production goal can actually win commitment over a cheap intake goal.
+# P7 commitment competition extracted to commitment_competition.py (module-size
+# decomposition); re-imported so internal callers + external import paths
+# (tests, goal_io) keep resolving through intrinsic_goals.
+from brain.cognition.commitment_competition import (  # noqa: F401,E402
+    _proposal_commit_score as _proposal_commit_score,
+    _select_commit_proposal as _select_commit_proposal,
+    _build_committed_goal as _build_committed_goal,
+    _evict_spent_committed_goal as _evict_spent_committed_goal,
+)
 
-def _proposal_commit_score(g: Dict, pressure: Dict[str, float], strengths: Dict[str, float]) -> float:
-    drive = str(g.get("driven_by") or "")
-    serves = _serves_aspiration(drive)
-    score = 1.0 + 2.0 * float(pressure.get(serves, 0.0))
+
+def research_feed_heartbeat(context: Dict[str, Any] = None) -> List[Dict]:
+    """Run-12 Slice 1B.3: keep the daemon RESEARCH FEED alive on a ≤ 20-min cadence,
+    independent of whether a conscious goal holds the committed slot. Under incumbency
+    the conscious cadence (45 min + displacement backoff) and the idle-only bootstrap
+    both stop feeding new research, so the daemon goes silent for hours (Run 11:
+    ~12 h). This heartbeat proposes daemon-executable research candidates ONLY — no
+    conscious primary, no LLM — so `sync_proposed_goals` keeps handing the daemon work.
+
+    OPPOSES the starvation with a steady feed rather than weakening the displacement
+    backoff (NO-CLAMPS, memory `unopposed_force_principle`). Returns the emitted batch
+    (may be empty). Cheap to call every cycle: it no-ops until the cadence elapses."""
+    global _LAST_RESEARCH_FEED_TS
+    context = context or {}
+    now = time.time()
+    if (now - _LAST_RESEARCH_FEED_TS) < _RESEARCH_FEED_INTERVAL_S:
+        return []
+    # Respect genuine system load — don't manufacture research while resource-starved.
+    loaded, _why = _under_load(context)
+    if loaded:
+        return []
+    _LAST_RESEARCH_FEED_TS = now
     try:
-        score += 0.1 * (float(g.get("priority", 3) or 3) / 3.0)
-    except (TypeError, ValueError):  # intentional: non-numeric priority → no bonus
-        pass
-    if drive in ("output_producing", "genuine_contact"):
-        score += float(strengths.get("usefulness", 0.0)) * 0.5
-    return max(0.0, score)
-
-
-def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> Optional[Dict]:
-    cands = [g for g in (proposals or []) if isinstance(g, dict) and g.get("title")]
-    if not cands:
-        return None
-    try:
-        pressure = objective_pressure(context)
-    except Exception:
-        pressure = {}
-    strengths = {}
-    try:
-        from brain.cognition.goal_competition import compute_drive_strengths
-        strengths = compute_drive_strengths(context) or {}
-    except Exception:
-        strengths = {}
-    scored = [(g, _proposal_commit_score(g, pressure, strengths)) for g in cands]
-    picked = _weighted_sample(scored, 1)
-    return picked[0] if picked else cands[0]
-
-
-def _build_committed_goal(g: Dict, gid: str) -> Dict:
-    """Build the context committed_goal dict from a proposal — crucially carrying
-    requires_artifact / deadline_cycles so P2's artifact gate + deadline survive
-    the v1 commit path (the old inline blocks dropped them).
-
-    Canonical-ID contract: mint the goal's id ONCE here and stamp it back onto the
-    source proposal `g` immediately, so the committed goal (which the effect ledger
-    keys on), the proposal that later syncs to v2, and the v2 record all share one
-    identity. Reuse an id already on `g` so a re-commit doesn't fork a new thread."""
-    gid = g.get("id") or gid
-    g["id"] = gid            # stamp the source proposal in place (live reference)
-    drive = g.get("driven_by", "")
-    cg = {
-        "id": gid, "title": g["title"], "name": g["title"], "kind": "generic",
-        "tier": g.get("tier") or _classify_tier(g["title"], drive, g.get("description", "")),
-        "priority": "NORMAL",
-        "tags": ["intrinsic", g.get("driven_by", "exploration_drive"), *_zone_tags(g.get("zone", "self"))],
-        "zone": g.get("zone", "self"), "orientation": g.get("orientation", "selfward"),
-        "spec": {"description": g.get("description", ""), "driven_by": drive,
-                 "zone": g.get("zone", "self"), "orientation": g.get("orientation", "selfward")},
-        "next_action": None, "status": "in_progress",
-        "milestones": g.get("milestones", []),
-        "serves": _serves_aspiration(drive),
-    }
-    if g.get("requires_artifact"):
-        cg["requires_artifact"] = True
-        cg["deadline_cycles"] = g.get("deadline_cycles")
-    # T2.3 — record the `attempted` funnel stage: a goal serving this drive's
-    # aspiration was committed for pursuit (not merely generated). This is what
-    # makes the scoreboard's per-aspiration `attempted` non-zero, so coverage can be
-    # read as generated → attempted → progressed → completed per aspiration.
-    try:
-        from brain.cognition.objective_scoreboard import record_by_drive
-        record_by_drive(drive, "attempted")
-    except Exception:  # intentional: scoreboard is best-effort, never block a commit
-        pass
-    try:
-        from brain.cognition.planning.goal_comprehension import hydrate_goal_model
-        return hydrate_goal_model(cg)
-    except Exception as exc:
-        record_failure("intrinsic_goals._build_committed_goal.hydrate", exc)
-        return cg
-
-
-def _evict_spent_committed_goal(context: Dict[str, Any]) -> bool:
-    """Clear a spent/orphaned goal from the committed slot. Returns True if it cleared
-    one.
-
-    A goal that has already failed/completed/abandoned can never be advanced by the
-    executive (its queue drops terminal goals) nor closed-from-the-slot (the
-    completion-finalize path only runs while it is actively pursued), yet while it
-    lingers it (a) blocks origination via the action_debt gate and (b) prevents the
-    commit-to-slot in generate_intrinsic_goals (`if not committed_goal`). That wedged
-    the loop on 2026-06-24: a FAILED problem_refocus diagnosis goal sat in the slot for
-    hours, starving origination and execution alike.
-
-    Trigger on terminal STATUS only — never on a missing id. A freshly committed
-    intrinsic goal is legitimately id-less until the v2 projection assigns one, so
-    evicting on `id is None` would thrash a healthy pending goal out of the slot every
-    cycle."""
-    cg = bound_goal(context)
-    if not isinstance(cg, dict):
-        return False
-    status = str(cg.get("status") or "").lower()
-    if status in ("failed", "completed", "abandoned"):
+        _ensure_aspirations()
+        long_mem = load_json(LONG_MEMORY_FILE, default_type=list) or []
+        batch = _varied_symbolic_goals(context, long_mem, research_only=True)
+        if not batch:
+            return []
+        batch = [_enrich_goal_zone(g) for g in batch]
+        proposed = context.setdefault("proposed_goals", [])
+        proposed.extend(batch)
+        if len(proposed) > 50:
+            context["proposed_goals"] = proposed[-50:]
+        for g in batch:
+            update_long_memory(
+                f"[intrinsic_goal] '{g['title']}' (driven by {g['driven_by']}): {g['description'][:150]}",
+                emotion="motivation", event_type="intrinsic_goal", importance=3, context=context,
+            )
         log_activity(
-            "[intrinsic_goals] Clearing spent committed goal "
-            f"'{str(cg.get('title') or cg.get('name') or '?')[:50]}' "
-            f"(status={cg.get('status')!r}, id={cg.get('id')!r}) from the slot."
+            f"[intrinsic_goals] Research-feed heartbeat ({len(batch)}): "
+            + ", ".join(f"'{g['title']}'" for g in batch)
         )
-        context["committed_goal"] = None
-        return True
-    return False
+        return batch
+    except Exception as _e:
+        record_failure("intrinsic_goals.research_feed_heartbeat", _e)
+        return []
 
 
 def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
@@ -235,7 +186,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     Bypasses the normal cooldown if Orrin has no committed goal so he bootstraps
     a goal quickly on first run rather than waiting 45 minutes.
     """
-    global _LAST_INTRINSIC_TS
+    global _LAST_INTRINSIC_TS, _LAST_RESEARCH_FEED_TS
     context = context or {}
 
     # Evict a spent/orphaned goal from the committed slot BEFORE the gates below, so a
@@ -357,27 +308,36 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         # LLM-free goal generation with genuine variety: draws from concepts he's
         # learned, open questions, and recent research — not one fixed template —
         # so goals (and the topics they drive) stop repeating without any LLM.
-        _tgoal = _varied_symbolic_goal(context, long_mem)
-        if not _tgoal:
+        # Run-12 Slice 1B: emit the BATCH (coverage-floor primary pick + any
+        # daemon-executable research candidates), not a single goal — so the
+        # research/daemon feed is proposed whenever a candidate exists instead of
+        # being starved out by the single pick landing on a make/connect aspiration.
+        _batch = _varied_symbolic_goals(context, long_mem)
+        if not _batch:
             # Nothing real to originate this cycle — and no canned template to fall
             # back on by design. Stay quiet rather than manufacture a note goal.
             log_activity("[intrinsic_goals] No symbolic goal this cycle (empty pool, no template).")
             return []
-        _tgoal = _enrich_goal_zone(_tgoal)
-        log_activity(f"[intrinsic_goals] Symbolic goal (LLM-free): '{_tgoal['title']}'")
+        _batch = [_enrich_goal_zone(_g) for _g in _batch]
+        _tgoal = _batch[0]
         _LAST_INTRINSIC_TS = now
+        _LAST_RESEARCH_FEED_TS = now  # a full pass also emits research → reset the feed heartbeat
         proposed = context.setdefault("proposed_goals", [])
-        proposed.append(_tgoal)
+        proposed.extend(_batch)
         if len(proposed) > 50:
             context["proposed_goals"] = proposed[-50:]
-        update_long_memory(
-            f"[intrinsic_goal] '{_tgoal['title']}' (driven by {_tgoal['driven_by']}): {_tgoal['description'][:150]}",
-            emotion="motivation",
-            event_type="intrinsic_goal",
-            importance=3,
-            context=context,
+        for _g in _batch:
+            update_long_memory(
+                f"[intrinsic_goal] '{_g['title']}' (driven by {_g['driven_by']}): {_g['description'][:150]}",
+                emotion="motivation",
+                event_type="intrinsic_goal",
+                importance=3,
+                context=context,
+            )
+        log_activity(
+            f"[intrinsic_goals] Symbolic goals proposed ({len(_batch)}): "
+            + ", ".join(f"'{_g['title']}'" for _g in _batch)
         )
-        log_activity(f"[intrinsic_goals] Symbolic goal proposed: '{_tgoal['title']}'")
         if not bound_goal(context):
             ts = datetime.now(timezone.utc).isoformat()
             # P7 — choose the committed goal by competition among live proposals
@@ -397,7 +357,7 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
                 _form_commitment(context, f"pursue: {_winner['title']}")
             except Exception as _wce:
                 record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)
-        return [_tgoal]
+        return _batch
 
     prompt = (
         f"You are Orrin — {identity}.\n\n"
@@ -467,16 +427,22 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     # poorer seed table. (Fix A: the LLM-empty fallback should be no worse than
     # the LLM-off fallback.)
     if not goals_raw:
-        _vg = _varied_symbolic_goal(context, long_mem)
+        # Run-12 Slice 1B: batch fallback so the research feed is not starved even on
+        # the LLM-empty path (same rationale as the LLM-off branch above).
+        _vg = _varied_symbolic_goals(context, long_mem)
         if not _vg:
             # No real candidate and no template by design — originate nothing.
             log_activity("[intrinsic_goals] No symbolic fallback goal (empty pool, no template).")
             return []
-        log_activity(f"[intrinsic_goals] Symbolic fallback goal (LLM empty): '{_vg['title']}'")
-        goals_raw = [_vg]
+        log_activity(
+            f"[intrinsic_goals] Symbolic fallback goals (LLM empty, {len(_vg)}): "
+            + ", ".join(f"'{_g['title']}'" for _g in _vg)
+        )
+        goals_raw = _vg
 
     # LLM succeeded — consume the rate-limit slot now
     _LAST_INTRINSIC_TS = now
+    _LAST_RESEARCH_FEED_TS = now  # this pass emits goals → reset the feed heartbeat
     ts = datetime.now(timezone.utc).isoformat()
 
     # ── Dedup: collect titles already in_progress/committed so we don't spawn
@@ -535,7 +501,11 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             "name":        str(g.get("title",""))[:120],  # v1 compat
             "description": str(g.get("description",""))[:300],
             "priority":    min(5, max(1, int(float(g.get("priority") or 3)))),
-            "kind":        "generic",  # routes intrinsic goals to GoalsAPI via sync_proposed_goals
+            # Preserve the symbolic generators' routing kind ("research" → v2
+            # ResearchHandler via _EXECUTABLE_KINDS); only default to "generic" for
+            # LLM-shaped goals that carry no kind (Run-12 Slice 1B: don't flatten a
+            # research candidate to generic and strip it from the daemon feed).
+            "kind":        str(g.get("kind") or "generic"),
             "source":      "intrinsic",
             "tier":        _classify_tier(str(g.get("title","")), str(g.get("driven_by","")), str(g.get("description",""))),
             "driven_by":   str(g.get("driven_by","exploration_drive")),
@@ -543,6 +513,10 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             "status":      "proposed",
             "milestones":  milestones,
         }
+        # Carry through the research routing payload the ResearchHandler needs.
+        for _k in ("spec", "question", "requires_artifact"):
+            if g.get(_k) is not None:
+                goal[_k] = g[_k]
         _enrich_goal_zone(goal)
         goals.append(goal)
 

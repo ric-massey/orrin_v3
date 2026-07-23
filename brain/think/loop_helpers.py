@@ -414,8 +414,13 @@ def execute_action_via_registries(
             if isinstance(res, dict) and res.get("success"):
                 ctx.setdefault("_dispatched_cog_fns", []).append(action_name)
                 # A genuine success clears any prior impossibility mark: the
-                # capability is back (R10-8 re-probe closure).
-                if _imp is not None:
+                # capability is back (R10-8 re-probe closure). 1D.1: NOT when the
+                # gate refused the tool during this very dispatch — a blocked
+                # function that swallows the denial and returns cleanly is a
+                # hollow success, and clearing here erased the mark the same
+                # cycle it was made (how decide_to_write_code stayed selectable
+                # through 1,967 blocks in Run 11).
+                if _imp is not None and not _imp.blocked_this_dispatch():
                     _imp.note_possible(action_name)
         except Exception as e:
             record_failure("loop_helpers.note_reuse", e)

@@ -100,6 +100,28 @@ _IGNITION_WINDOW      = 50    # M: how many recent trigger-3 wins to remember
 _HABITUATION_K        = 0.25  # a key that won 12 of the last 50 → ×0.25
 _ignition_recent_state: deque = deque(maxlen=_IGNITION_WINDOW)
 
+# ── 1D.2 (Run 12): standing conditions must not be per-cycle horns ────────────
+# Run 11 ignited on 98.2 % of cycles and `action_debt` alone was 93.2 % of the
+# wins — trigger 7 is LEVEL-triggered on a condition (debt ≥ 2 with a committed
+# goal) that, once true, stays true for hundreds of consecutive cycles while
+# debt climbs monotonically. Same shape as trigger 8: with the C2 de-clamp
+# admitting all four aspirations, "≥ 2 active goals" is the permanent normal.
+# A standing state is worth deliberating about at its ONSET and periodically —
+# not every cycle forever. Both triggers become edge-triggered with a refractory
+# re-fire; this is interrupt design (edge vs level), not a new clamp: the
+# information still arrives, it just stops arriving 18,000 times.
+# MAX_SILENT_CYCLES below stays the liveness floor, and metacog / the avoidance
+# breaker still see the debt every think cycle.
+_DEBT_REFIRE_CYCLES = 25   # re-deliberate a still-stalled goal this often
+_debt_gate_state: dict = {"last_debt": 0, "last_fire_cycle": -10**9}
+_multi_goal_state: dict = {"last_sig": None}
+
+
+def _reset_standing_trigger_state() -> None:
+    """Test hook: standing-condition trigger state is process-level."""
+    _debt_gate_state.update({"last_debt": 0, "last_fire_cycle": -10**9})
+    _multi_goal_state["last_sig"] = None
+
 
 def _ignition_window(context: dict) -> "deque":
     # Module-level for the same reason as _eff_history: context is per-cycle.
@@ -206,15 +228,34 @@ def should_think(context: dict) -> Tuple[bool, str]:
     if goal.get("_drift_detected") or goal.get("_stalled"):
         return True, "goal_drift_or_stall"
 
-    # 7. Action debt — any committed goal stalled for too long
+    # 7. Action debt — a committed goal stalled: fire on the CROSSING into debt,
+    # then re-fire every _DEBT_REFIRE_CYCLES while it stays stalled (1D.2 — this
+    # was level-triggered and alone drove 93.2 % of Run 11's ignitions).
     active_goals = context.get("committed_goals") or ([goal] if goal else [])
     debt = int(context.get("action_debt", 0) or 0)
     if active_goals and debt >= _ACTION_DEBT_TRIGGER:
-        return True, f"action_debt({debt})"
+        _cyc_now = get_cycle_count()
+        _crossed = _debt_gate_state["last_debt"] < _ACTION_DEBT_TRIGGER
+        _overdue = (_cyc_now - _debt_gate_state["last_fire_cycle"]) >= _DEBT_REFIRE_CYCLES
+        _debt_gate_state["last_debt"] = debt
+        if _crossed or _overdue:
+            _debt_gate_state["last_fire_cycle"] = _cyc_now
+            return True, f"action_debt({debt})"
+    else:
+        _debt_gate_state["last_debt"] = debt
 
-    # 8. Multiple active goals — juggling commitments warrants deliberate attention
+    # 8. Multiple active goals — juggling commitments warrants deliberate
+    # attention WHEN THE SET CHANGES (1D.2): with all four aspirations admitted,
+    # "≥ 2 active" is the permanent normal, not a per-cycle event.
     if len(active_goals) >= 2:
-        return True, f"multi_goal({len(active_goals)}_active)"
+        _sig = tuple(sorted(
+            str((g or {}).get("id") or (g or {}).get("title") or "?")
+            for g in active_goals if isinstance(g, dict)))
+        if _sig != _multi_goal_state["last_sig"]:
+            _multi_goal_state["last_sig"] = _sig
+            return True, f"multi_goal({len(active_goals)}_active)"
+    else:
+        _multi_goal_state["last_sig"] = None
 
     # 9. stagnation_signal — seeking stimulation, nothing to do in passive mode
     stagnation_signal = float(core.get("stagnation_signal", 0) or 0)

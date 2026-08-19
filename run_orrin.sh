@@ -102,8 +102,15 @@ else
     echo "[run] Run lock: disabled"
 fi
 
-# Prevent macOS from sleeping while Orrin runs
-caffeinate -i &
+# Prevent macOS from sleeping while Orrin runs. A staging life runs unattended
+# for hours-to-days; if the process is suspended during an idle/power-nap window
+# the cognitive loop freezes mid-cycle (no logging) and the run's cadence + WAL
+# telemetry read as a fake stall. `-i` alone (idle) is not enough — an unattended
+# overnight run also needs display (-d), disk (-m), system (-s, AC only), and
+# user-inactive (-u) assertions. Keep the machine on AC for a full-length life;
+# on battery -s cannot hold system sleep off. Tied to this wrapper's lifetime and
+# killed in cleanup().
+caffeinate -dimsu &
 CAFF_PID=$!
 
 RESTART_COUNT=0

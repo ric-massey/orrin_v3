@@ -84,6 +84,7 @@ export const LEX = {
 
   // ── Named rooms (navigation) ──────────────────────────────────────────────
   nav_watch: "Watch",
+  nav_voice: "Voice",
   nav_face: "Face",
   nav_cognition: "Cognition",
   nav_life: "Resource Manager",

@@ -15,6 +15,15 @@ telemetry in; the UI reads it over REST and a WebSocket stream.
 - `backend/server/lifecycle.py` / `launcher.py` / `tray.py` — startup/shutdown wiring and the
   desktop tray.
 
+## Append rings vs latest-wins
+
+Most frame fields are latest-wins blobs the hub overwrites (`schema.LATEST_WINS_KEYS`). Four are
+*append rings*, where arrival order is the point and the delta carries only what is new: `logs`,
+`memory`, `metrics` (as chart points), and `voice` — the transcript of Orrin's own utterances that
+the UI's [Voice room](Face_and_Brain_UI) renders. The hub seeds its `voice` ring from the durable
+`voice_transcript.jsonl`, so opening the room shows what he already said this life rather than
+waiting on the next line.
+
 ## Routers
 
 `backend/server/routers/` splits the API by surface: `telemetry` (read state), `control`

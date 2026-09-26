@@ -74,6 +74,11 @@ LOG_FILE = DATA_DIR / "log.txt"
 ERROR_FILE = DATA_DIR / "error_log.txt"
 ACTION_FILE = DATA_DIR / "action.json"
 PRIVATE_THOUGHTS_FILE = DATA_DIR / "private_thoughts.txt"
+# The voice transcript (brain/cognition/voice.py): ONLY Orrin's own utterances,
+# one JSON object per line. private_thoughts.txt mixes his lines with the
+# narrator's bookkeeping; this file is the separated stream the UI's Voice room
+# and any post-mortem read.
+VOICE_FILE = DATA_DIR / "voice_transcript.jsonl"
 ACTIVITY_LOG = DATA_DIR / "activity_log.txt"
 MODEL_FAILURE = DATA_DIR / "model_failures.txt"
 LAST_ACTIVE_FILE = DATA_DIR / "last_active.json"

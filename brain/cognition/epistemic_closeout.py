@@ -249,6 +249,16 @@ def stamp_closeout(goal: Dict[str, Any]) -> Optional[bool]:
         goal["answered"] = bool(answered)
         if answer:
             goal["answer"] = answer
+        # The transcript (voice.py): closing a question — answered or honestly not —
+        # is him reporting on his own work, in the question's and the scorer's own
+        # words. No phrasing is invented here beyond the verdict word.
+        try:
+            from brain.cognition.voice import utter as _utter
+            _utter("closeout",
+                   f"{'Answered' if answered else 'Not answered'}: {question}"
+                   + (f" — {answer}" if answer else ""))
+        except Exception as _ve:
+            record_failure("epistemic_closeout.voice", _ve)
         if answered:
             # G2: file the answer so a later decision can consume and cite it —
             # the grounded-consequence loop close-out only STARTS here.

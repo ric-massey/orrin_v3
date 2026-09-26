@@ -274,6 +274,14 @@ def _fire_introspection_miss(pred: Dict, context: Dict[str, Any]) -> None:
     except Exception as _e:
         record_failure("prediction._fire_introspection_miss.2", _e)
     log_private(f"[prediction] introspection miss: {text}")
+    # The transcript (voice.py): "I thought that would happen, it felt true,
+    # and I was wrong" is the report channel catching itself coming apart from
+    # the causal one — first-person by construction, so it is his voice.
+    try:
+        from brain.cognition.voice import utter as _utter
+        _utter("prediction", text, cycle=context.get("_cycle_index") if isinstance(context, dict) else None)
+    except Exception as _ve:
+        record_failure("prediction._fire_introspection_miss.voice", _ve)
 
 
 def _fire_surprise(prediction_text: str, mismatch: float, context: Dict[str, Any]) -> None:

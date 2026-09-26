@@ -363,6 +363,17 @@ def update_workspace(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             context["_conscious_stream"] = stream[-30:]
             _append_stream(moment)
             log_private(f"[aware] ({winner['source']}) {winner['content'][:120]}")
+            # The transcript (voice.py): a FELT winner is Orrin speaking. Gated on
+            # the structured `focus_signal` (set above from the affect candidate's
+            # focus_signal / the bound situation's emotion), never on the prose —
+            # so the felt content that WON the workspace reaches the Voice room and
+            # structural winners (goals, monitor offers, retrieved text) don't.
+            if moment.get("focus_signal"):
+                try:
+                    from brain.cognition.voice import utter as _utter
+                    _utter("felt", moment.get("content", ""), cycle=context.get("_cycle_index"))
+                except Exception as _ve:
+                    record_failure("global_workspace.voice", _ve)
         return moment
     except Exception as e:
         log_private(f"[global_workspace] error: {e}")

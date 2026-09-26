@@ -17,6 +17,7 @@ LOOP_NODES = ("perceive", "reflect", "plan", "act")
 # Capacity limits (bounded buffers — keep server memory flat under load).
 MEMORY_CAP = 500     # rolling memory-record ring
 LOG_CAP = 500        # rolling log-line ring
+VOICE_CAP = 300      # rolling utterance ring (the Voice room's transcript)
 METRIC_CAP = 240     # rolling chart-series points
 HISTORY_CAP = 240    # affect/metric history (persisted across restarts → continuous chart)
 INPUT_CAP = 1000     # pending Face inputs awaiting the core loop

@@ -341,4 +341,12 @@ def express_to_user(motive: Motive, channel: str, context: Dict[str, Any] = None
                 record_failure("express_to_user.record_effect", _e)
 
     log_activity(f"[express_to_user] {channel} ({motive.intent or 'express'}) → {text[:80]}")
+    # The transcript (voice.py): anything composed through THIS door and
+    # actually delivered is, definitionally, Orrin addressing a person.
+    if ok:
+        try:
+            from brain.cognition.voice import utter as _utter
+            _utter("speech", text)
+        except Exception as _ve:
+            record_failure("express_to_user.voice", _ve)
     return {"success": ok, "channel": channel, "text": text, "motive": artifact["motive"]}

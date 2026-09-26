@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Watch from "./pages/Watch";
+import Voice from "./pages/Voice";
 import Face from "./pages/Face";
 import Orrin from "./pages/Orrin";
 import ModeRedirect from "./components/ModeRedirect";
@@ -31,6 +32,7 @@ const routes = [
       { index: true, element: <ModeRedirect /> },
       { path: "orrin", element: <Orrin /> },
       { path: "watch", element: <Watch /> },
+      { path: "voice", element: <Voice /> },
       { path: "face", element: <Face /> },
       { path: "cognition", element: <Cognition /> },
       { path: "life", element: <Life /> },

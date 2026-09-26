@@ -150,6 +150,13 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
             break
 
     log_private(f"[lifetime] Final thoughts written: {text[:200]}")
+    # The transcript (voice.py): his last words close the stream the Voice
+    # room shows — already veiled above, so this only records them.
+    try:
+        from brain.cognition.voice import utter as _utter
+        _utter("final", text)
+    except Exception as _ve:
+        record_failure("runtime_lifetime.final_thoughts_voice", _ve)
     log_activity("[lifetime] Final thoughts recorded.")
 
 

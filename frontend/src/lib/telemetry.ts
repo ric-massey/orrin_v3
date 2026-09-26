@@ -27,6 +27,7 @@ function checkFrame(frame: unknown, kind: "snapshot" | "delta"): void {
 
 const MEM_CAP = 500;
 const LOG_CAP = 500; // cap the console ring to prevent browser memory bloat
+const VOICE_CAP = 300; // the transcript ring (matches the hub's VOICE_CAP)
 const SERIES_CAP = 240;
 
 export const initialState: TelemetryState = {
@@ -36,6 +37,7 @@ export const initialState: TelemetryState = {
   affect: { valence: 0.5, arousal: 0.3, homeostasis: 0.8, extra: {} },
   memory: [],
   logs: [],
+  voice: [],
   metrics: {},
   metricSeries: [],
   goals: [],
@@ -86,6 +88,9 @@ function applyDelta(s: TelemetryState, f: any): TelemetryState {
   }
   if (Array.isArray(f.logs) && f.logs.length) {
     next.logs = [...s.logs, ...f.logs].slice(-LOG_CAP);
+  }
+  if (Array.isArray(f.voice) && f.voice.length) {
+    next.voice = [...s.voice, ...f.voice].slice(-VOICE_CAP);
   }
   if (Array.isArray(f.goals)) next.goals = f.goals;
   if (f.active_fn != null) next.activeFn = f.active_fn;
@@ -140,6 +145,7 @@ function reducer(s: TelemetryState, a: Action): TelemetryState {
           : s.affect,
         memory: Array.isArray(st.memory) ? st.memory.slice(-MEM_CAP) : s.memory,
         logs: Array.isArray(st.logs) ? st.logs.slice(-LOG_CAP) : s.logs,
+        voice: Array.isArray(st.voice) ? st.voice.slice(-VOICE_CAP) : s.voice,
         metrics: st.metrics ?? s.metrics,
         metricSeries: series,
         goals: Array.isArray(st.goals) ? st.goals : s.goals,

@@ -27,7 +27,7 @@ BRAIN = REPO / "brain"
 # Keys hub.merge() handles with bespoke semantics (append rings, merged dicts,
 # derived node status) rather than the latest-wins loop.
 BESPOKE_KEYS = {
-    "goals", "extra", "logs", "memory", "affect", "metrics",
+    "goals", "extra", "logs", "memory", "voice", "affect", "metrics",
     "node_status", "active_node", "narrative", "cycle",
 }
 HANDLED = set(LATEST_WINS_KEYS) | BESPOKE_KEYS
@@ -103,4 +103,25 @@ def test_client_mapper_references_every_latest_wins_key():
     assert not missing, (
         f"frontend/src/lib/telemetry.ts never maps these forwarded keys "
         f"(they'd be dead on arrival in the browser): {missing}"
+    )
+
+
+def test_hub_appends_utterances_and_broadcasts_only_the_new_ones():
+    """The transcript is arrival-ordered, like logs — a second utterance must not
+    overwrite the first, and a delta carries only what was just said."""
+    from backend.server.hub import Hub
+    hub = Hub()
+    hub.state["voice"] = []       # ignore any durable transcript on this machine
+    hub.merge({"voice": [{"kind": "felt", "text": "a strong sense of being stuck"}]})
+    delta = hub.merge({"voice": [{"kind": "speech", "text": "I finished the memo."}]})
+    assert [u["text"] for u in delta["voice"]] == ["I finished the memo."]
+    assert len(hub.state["voice"]) == 2
+    assert all(u.get("ts") for u in hub.state["voice"]), "utterances must be timestamped"
+
+
+def test_client_mapper_consumes_the_transcript():
+    ts = (REPO / "frontend" / "src" / "lib" / "telemetry.ts").read_text("utf-8")
+    assert "f.voice" in ts and "st.voice" in ts, (
+        "frontend/src/lib/telemetry.ts must append the `voice` frame field "
+        "(delta) and hydrate it from the snapshot, or the Voice room stays empty"
     )

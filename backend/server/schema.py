@@ -84,6 +84,19 @@ class LogLine(BaseModel):
     ts: Optional[float] = None
 
 
+class Utterance(BaseModel):
+    """One line Orrin actually said (brain/cognition/voice.py).
+
+    Appended to a rolling ring by the hub, exactly like LogLine — the Voice room
+    is a transcript, so ordering and arrival matter, not latest-wins state.
+    """
+    model_config = _WIRE_CONFIG
+    kind: str = ""        # felt | prediction | intent | closeout | speech | final
+    text: str = ""        # his words, verbatim (veiled at the producer, never re-worded)
+    cycle: Optional[int] = None
+    ts: Optional[float] = None            # epoch seconds
+
+
 class Goal(BaseModel):
     """One goal row the Goals panel renders (the loop's current goal set)."""
     model_config = _WIRE_CONFIG
@@ -149,6 +162,7 @@ class TelemetryFrame(BaseModel):
     affect: Optional[AffectFrame] = None
     memory: List[MemoryRecord] = Field(default_factory=list)   # appended to a rolling buffer
     logs: List[LogLine] = Field(default_factory=list)          # appended to a rolling buffer
+    voice: List[Utterance] = Field(default_factory=list)       # appended to a rolling buffer
     metrics: Dict[str, float] = Field(default_factory=dict)    # arbitrary recharts series points
     cycle: Optional[int] = None
     extra: Dict[str, Any] = Field(default_factory=dict)
@@ -169,7 +183,7 @@ class TelemetryFrame(BaseModel):
 
 # Every wire model, in dependency order — the single list the codegen walks and
 # the validator references. (TelemetryFrame last; it references the rest.)
-WIRE_MODELS = (AffectFrame, MemoryRecord, LogLine, Goal, FnEvent, LlmCost, TelemetryFrame)
+WIRE_MODELS = (AffectFrame, MemoryRecord, LogLine, Utterance, Goal, FnEvent, LlmCost, TelemetryFrame)
 
 
 def validate_frame(frame: Dict[str, Any]) -> List[str]:
@@ -195,7 +209,7 @@ def validate_frame(frame: Dict[str, Any]) -> List[str]:
 # the delta). Single source of truth shared by hub.merge(), the hub's seed
 # state, and the contract test. Keys with bespoke merge semantics (goals,
 # affect, metrics, memory, logs, extra, node_status, active_node) are handled
-# explicitly in hub.merge and are NOT in this tuple.
+# explicitly in hub.merge and are NOT in this tuple (voice appends like logs).
 LATEST_WINS_KEYS = (
     "narrative", "cycle", "active_fn", "active_lane", "fn_recent", "catalog",
     "executive", "monitor", "workspace", "interoception", "llm_cost", "lived",

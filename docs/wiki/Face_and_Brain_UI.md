@@ -19,17 +19,41 @@ pywebview window over an in-process bridge with no open port.
 | **Life** | The existence view: runtime-lifetime phase, restoration, and run history |
 | **Timeline** | The event timeline across the run |
 | **Watch** | A passive observation screen built around the live thought line |
+| **Voice** | The transcript: only Orrin's own utterances, verbatim, newest first (see below) |
 | **Settings** | Provider/API-key management (keys go to the OS keychain), RAM budget, runtime options |
 
-## The thought line is the workspace, not a log
+## Two different lines: the status label and the transcript
 
-The live "what it's thinking" line is the output of the global-workspace bottleneck — the winning
-content each cycle — not a printout of internal logs (see
-[Workspace and Ignition](Workspace_and_Ignition)). Hysteresis keeps it continuous rather than
-flickering.
+These are easy to confuse and are not the same thing.
 
-It is also **bilingual**: `frontend/src/lib/thoughts.ts` (sibling to `lexicon.ts`) renders the
-status line in either Orrin's own developing vocabulary or plain English, toggleable in the UI.
+The Watch/Face **thought line** is a *UI-authored status label*. `frontend/src/lib/thoughts.ts`
+(sibling to `lexicon.ts`) maps the reported `active_fn` to a phrase a developer wrote —
+`generate_intrinsic_goals` → "surfacing self-set goals from drives", and a companion-register
+rewrite of the same act that only `/orrin` renders. Nothing in the runtime ever said it. It follows
+the same hard rule as `lexicon.ts`: **translate the chrome, never the mind.**
+
+The **Voice room** (`/voice`) is the other half of that rule — the mind, untranslated. It renders
+the `voice` telemetry field, fed by `brain/cognition/voice.py`, which only accepts utterances from
+call sites that already hold first-person content:
+
+| Kind | Source |
+|------|--------|
+| `felt` | the global-workspace winner when it is a felt state ("a strong sense of being stuck") |
+| `prediction` | an introspection miss — felt yes, behaved no |
+| `intent` | the goal he just committed to, in its own words |
+| `closeout` | a question closed by epistemic close-out (`brain/cognition/epistemic_closeout.py`), answered or not |
+| `speech` | anything composed and delivered through the [expression membrane](Expression_Membrane) |
+| `final` | last words, written once at the end of a life |
+
+`voice.py` **never composes** — it veils (the [felt lexicon](Expression_Membrane) membrane, so a
+raw signal identifier never reaches the transcript), drops anything still carrying backend markers
+rather than cleaning it up, suppresses consecutive repeats, and records. The stitched narrative
+composer is deliberately **not** a source: its prose is working-memory strings read back as content
+(the self-echo family), so it would broadcast that bug as speech.
+
+The transcript keeps its own append-only file (`voice_transcript.jsonl`), so `private_thoughts.txt`
+— which interleaves his lines with the runtime's third-person narration at roughly one to fifty —
+is no longer the only place his own words exist.
 
 ## Panels
 

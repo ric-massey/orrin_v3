@@ -30,6 +30,14 @@ export const LogLineSchema = z.looseObject({
 });
 export type LogLine = z.infer<typeof LogLineSchema>;
 
+export const UtteranceSchema = z.looseObject({
+  "kind": z.string().optional(),
+  "text": z.string().optional(),
+  "cycle": z.number().nullable().optional(),
+  "ts": z.number().nullable().optional(),
+});
+export type Utterance = z.infer<typeof UtteranceSchema>;
+
 export const GoalSchema = z.looseObject({
   "id": z.string().nullable().optional(),
   "title": z.string().optional(),
@@ -73,6 +81,7 @@ export const TelemetryFrameSchema = z.looseObject({
   "affect": AffectFrameSchema.nullable().optional(),
   "memory": z.array(MemoryRecordSchema).optional(),
   "logs": z.array(LogLineSchema).optional(),
+  "voice": z.array(UtteranceSchema).optional(),
   "metrics": z.record(z.string(), z.number()).optional(),
   "cycle": z.number().nullable().optional(),
   "extra": z.record(z.string(), z.unknown()).optional(),

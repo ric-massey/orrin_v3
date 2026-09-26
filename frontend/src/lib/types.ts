@@ -40,6 +40,16 @@ export interface LogLine {
   ts?: number;
 }
 
+/** One line Orrin actually said (brain/cognition/voice.py) — the Voice room's
+ *  transcript. `text` is his, verbatim: the UI never rewords or glosses it.
+ *  kind ∈ felt | prediction | intent | closeout | speech | final. */
+export interface Utterance {
+  kind: string;
+  text: string;
+  cycle?: number | null;
+  ts?: number | null;
+}
+
 export interface MetricPoint {
   t: number;
   [k: string]: number;
@@ -163,6 +173,8 @@ export interface TelemetryState {
   affect: Affect;
   memory: MemoryRecord[];
   logs: LogLine[];
+  /** The transcript: only his own utterances, in arrival order. */
+  voice: Utterance[];
   metrics: Record<string, number>;
   metricSeries: MetricPoint[];
   goals: Goal[];

@@ -1,6 +1,8 @@
+import { useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Activity,
+  AudioLines,
   Brain as BrainIcon,
   Circle,
   Clock,
@@ -32,6 +34,7 @@ interface HeaderProps {
 // research grid.
 const ROOMS: { path: string; lex: LexId; icon: typeof Activity }[] = [
   { path: "/watch", lex: "nav_watch", icon: Eye },
+  { path: "/voice", lex: "nav_voice", icon: AudioLines },
   { path: "/face", lex: "nav_face", icon: MessageCircle },
   { path: "/cognition", lex: "nav_cognition", icon: BrainIcon },
   { path: "/life", lex: "nav_life", icon: Activity },
@@ -63,6 +66,17 @@ export default function Header({ telemetry }: HeaderProps) {
   // both ways).
   const companionChrome = mode === "companion" && isCompanionRoom(location.pathname);
   const rooms = companionChrome ? COMPANION_NAV : ROOMS;
+
+  // The room strip is wider than the header on a laptop, so it scrolls — and a
+  // centred overflow clips BOTH ends. Keep the room you're standing in visible:
+  // without this, navigating to a clipped room (the first or last chip) leaves
+  // the nav looking like nothing is selected.
+  const navRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    navRef.current
+      ?.querySelector('[aria-current="page"]')
+      ?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }, [location.pathname, companionChrome]);
 
   // M1: one liveness verdict — a connected-but-frozen stream reads "Stalled".
   const stale = useStreamStale(telemetry);
@@ -103,7 +117,7 @@ export default function Header({ telemetry }: HeaderProps) {
         </div>
 
         {/* Named-room nav */}
-        <nav className="flex min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto sm:gap-1">
+        <nav ref={navRef} className="flex min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto sm:gap-1">
           {rooms.map((r) => (
             <NavLink
               key={r.path}

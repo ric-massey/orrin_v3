@@ -22,7 +22,7 @@ import logging
 
 from brain.utils.failure_counter import record_failure
 
-from .config import HISTORY_CAP, INPUT_CAP, LOG_CAP, LOOP_NODES, MEMORY_CAP, METRIC_CAP
+from .config import HISTORY_CAP, INPUT_CAP, LOG_CAP, LOOP_NODES, MEMORY_CAP, METRIC_CAP, VOICE_CAP
 from .schema import LATEST_WINS_KEYS, validate_frame
 
 _log = logging.getLogger(__name__)
@@ -82,6 +82,18 @@ def _archive_points(points: List[Dict[str, Any]]) -> None:
         record_failure("hub._archive_points", exc)
 
 
+def _load_voice() -> List[Dict[str, Any]]:
+    """Seed the transcript ring from the durable voice file (brain/cognition/
+    voice.py), so opening the Voice room shows what he already said this life
+    instead of an empty page waiting on the next utterance."""
+    try:
+        from brain.cognition.voice import recent
+        return recent(VOICE_CAP)
+    except Exception as exc:  # transcript unavailable → start empty, never fail the hub
+        record_failure("hub._load_voice", exc)
+        return []
+
+
 def clamp01(v: Any) -> float:
     try:
         return max(0.0, min(1.0, float(v)))
@@ -120,6 +132,7 @@ class Hub:
             "affect": {"valence": 0.5, "arousal": 0.3, "homeostasis": 0.8, "extra": {}},
             "memory": [],          # rolling list of MemoryRecord dicts
             "logs": [],            # rolling list of LogLine dicts
+            "voice": _load_voice(),  # rolling list of Utterance dicts (the transcript)
             "metrics": {},         # latest scalar values
             "metric_series": [],   # rolling [{t, <metric>: v, ...}] for charts
             "goals": [],           # latest goal set (committed + list) from the loop
@@ -294,6 +307,14 @@ class Hub:
             new = [stamp(l) for l in logs if isinstance(l, dict)]
             s["logs"] = (s.get("logs", []) + new)[-LOG_CAP:]
             delta["logs"] = new
+
+        # Utterances (append to ring; broadcast only the new ones) — the transcript
+        # is ordered arrival, like logs, not latest-wins state.
+        voice = frame.get("voice") or []
+        if voice:
+            new_voice = [stamp(v) for v in voice if isinstance(v, dict)]
+            s["voice"] = (s.get("voice", []) + new_voice)[-VOICE_CAP:]
+            delta["voice"] = new_voice
 
         if isinstance(frame.get("extra"), dict) and frame["extra"]:
             s["extra"] = {**s.get("extra", {}), **frame["extra"]}

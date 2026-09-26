@@ -295,6 +295,38 @@ def _emit_lived(context: "Context") -> None:
         return
 
 
+_LAST_VOICED_GOAL = ""
+
+
+def _emit_voice(context: "Context") -> None:
+    """Ship the transcript — Orrin's own utterances (brain/cognition/voice.py) —
+    to the UI in the `voice` frame field, appended by the hub like log lines.
+
+    Also the single place a newly committed goal becomes an utterance: goals are
+    committed at a dozen call sites, so the CHANGE is detected here off the one
+    authoritative bound goal rather than instrumented in all of them. Fail-safe
+    like every emitter here; an undrained ring is bounded, so a missing backend
+    costs nothing.
+    """
+    tb = _bridge()
+    if tb is None:
+        return
+    try:
+        from brain.cognition.voice import drain as _drain, utter as _utter
+        global _LAST_VOICED_GOAL
+        goal = bound_goal(context) if isinstance(context, dict) else None
+        title = str((goal or {}).get("title") or "").strip()
+        if title and title != _LAST_VOICED_GOAL:
+            _LAST_VOICED_GOAL = title
+            _utter("intent", title, cycle=context.get("_cycle_index"))
+        said = _drain()
+        if said:
+            tb.update(voice=said)
+    except Exception as exc:  # telemetry must never crash the loop — record, no-op
+        record_failure("loop_telemetry._emit_voice", exc)
+        return
+
+
 def _emit_decision(context: "Context") -> None:
     """R4 (Companion & Presence plan): ship the selection MOMENT — what was
     considered, what won, and which factor tipped it — from the reason payload

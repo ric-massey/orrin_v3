@@ -131,6 +131,7 @@ class TelemetryBridge:
         self._pending_extra: Dict[str, Any] = {}
         self._logs: "collections.deque[Dict[str, Any]]" = collections.deque(maxlen=log_cap)
         self._memory: "collections.deque[Dict[str, Any]]" = collections.deque(maxlen=mem_cap)
+        self._voice: "collections.deque[Dict[str, Any]]" = collections.deque(maxlen=log_cap)
         self._dropped_logs = 0
 
         # In-process delivery (the pywebview bridge, no HTTP/port). When set via
@@ -192,6 +193,10 @@ class TelemetryBridge:
                 elif k == "memory":
                     items = v if isinstance(v, list) else [v]
                     self._memory.extend(items)
+                elif k == "voice":
+                    # The transcript accumulates like logs: two utterances inside one
+                    # flush window are two lines, never latest-wins.
+                    self._voice.extend(v if isinstance(v, list) else [v])
                 elif k == "affect" and isinstance(v, dict):
                     extra = v.get("extra")
                     for kk, vv in v.items():
@@ -337,6 +342,9 @@ class TelemetryBridge:
             if self._memory:
                 frame["memory"] = list(self._memory)
                 self._memory.clear()
+            if self._voice:
+                frame["voice"] = list(self._voice)
+                self._voice.clear()
             if self._dropped_logs:
                 # Surface backpressure once as a single warn line, not a flood.
                 frame.setdefault("logs", []).append({

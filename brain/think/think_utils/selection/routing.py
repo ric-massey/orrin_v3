@@ -20,6 +20,11 @@ def _workspace_routes_for(moment: Dict[str, Any]) -> Dict[str, float]:
         "thought": {"reflection": 0.8, "narrative_update": 0.6},
         "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
         "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
+        # Default-mode content (brain/cognition/default_mode.py): mind-wandering
+        # drifts to cheap inward work; a returning brood routes to reflective
+        # pondering, the resolution path (Treynor et al. 2003).
+        "ambient":    {"reflection": 0.6, "narrative_update": 0.5},
+        "rumination": {"reflect_on_self_beliefs": 0.8, "reflection": 0.6},
     }
     if source != "binding":
         return atomic.get(source, {})

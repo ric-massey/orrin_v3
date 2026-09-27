@@ -60,6 +60,14 @@ def prepare_workspace(context: Context) -> Context:
         _mon(context, _exec_summary if "_exec_summary" in dir() else None)
     except Exception as _mone:
         record_failure("ORRIN_loop.metacog_monitor", _mone)
+    # Default mode (ambient thought + rumination): runs here, before the
+    # pre-think competition, so what surfaced is offered to the workspace and
+    # can win awareness on a quiet cycle. Bias, never preempt; fail-safe inside.
+    try:
+        from brain.cognition.default_mode import run_default_mode as _rdm
+        _rdm(context)
+    except Exception as _dme:
+        record_failure("ORRIN_loop.default_mode", _dme)
     # Stochastic contradiction surfacing (Athena-Class import, RUN12 A.1.3):
     # a low-probability offer of a held rule that conflicts with the current
     # conscious position. It enters the same pre-think competition as the

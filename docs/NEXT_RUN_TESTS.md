@@ -281,6 +281,40 @@ scrape-stitches, hence gate item (d)).
 
 ---
 
+## Run 12.5 add-on check — default-mode (DMN) wiring (2026-09-27)
+
+**What changed.** `ambient_thought.py` (mind-wandering) and `rumination.py` ran
+every cycle but wrote `ambient_texture` / `_ambient_surface_text` /
+`ruminative_loop` / `_rumination_text` onto context keys **nothing read** — the
+DMN generated content that never reached awareness or the action pick (only the
+rumination side-channels touched anything: high-charge WM breakthrough + stuck
+brood → tension). New stage `brain/cognition/default_mode.py` now runs
+**pre-think** in `prepare_workspace` (before the pre-think `update_workspace`)
+and **offers** the strongest surfaced fragment (`source: ambient`, salience
+0.15 + 0.35·intensity, ≤ 0.50) and the surfaced loop (`source: rumination`,
+0.25 + 0.45·charge, ≤ 0.565) to the Global Workspace. When one wins, the
+workspace prior routes it to inward work (`ambient` → reflection /
+narrative_update; `rumination` → reflect_on_self_beliefs / reflection). The same
+lines also reach the LLM draft prompt (LLM-assisted mode only). Kill switch:
+`ORRIN_DMN_WORKSPACE=0` (generation still runs, no offers). Unit tests:
+`tests/brain/test_default_mode.py`.
+
+**Score these in the next life** (symbolic-only is fine — the workspace path is
+LLM-free):
+
+| # | Observable | Where | Pass | Fail means |
+|---|---|---|---|---|
+| D1 | Offers happen | `grep -c "\[dmn\] offered" activity_log.txt` (+ `rotated/`), split ambient vs rumination | both > 0, rate rises in quiet stretches | stage not running / surfacing suppressed |
+| D2 | DMN wins awareness sometimes, not always | `grep "\[aware\] (ambient)\|\[aware\] (rumination)" brain/data/private_thoughts.txt`; `workspace_broadcast.json` source `uniq -c` | ambient+rumination share of conscious moments **> 0 % and ≤ 25 %** | 0 % = still decoupled; > 25 % = new monopoly layer (score it like the others) |
+| D3 | Anti-correlated with demand | awareness winners during user-input cycles | DMN **never** wins a cycle with a present user; wins cluster on non-ignited / low-load cycles | salience mis-set vs user/goal |
+| D4 | Rumination resolves, doesn't pin | `rumination_loops.json` over the life; `mark_resolved` / brooding→reflective transitions | no single loop wins awareness > ~50 cycles running; brooding loops reach reflective and decay | the new route feeds the brood instead of resolving it |
+| D5 | Action coupling is real but bounded | `reflect_on_self_beliefs` / `reflection` / `narrative_update` share vs Run 12 | modest rise, **not** a new selection monopoly; committed-goal occupancy not lower than Run 12 by > 5 pts | DMN pulling Orrin off his goals |
+| D6 | No template leakage into voice | speech transcript / voice log | ambient template phrases ("A low hum of unease…") are not spoken verbatim | awareness→speech path needs a filter |
+
+Bisect any regression with `ORRIN_DMN_WORKSPACE=0`.
+
+---
+
 ## Run 8 re-test gate (2026-07-14 — from `RUN8_FIX_PLAN_2026-07-14.md`)
 
 Run 7 (2026-07-12 life, `demo_runs/2026-07-12-run/`) proved the Run-7 anti-pump

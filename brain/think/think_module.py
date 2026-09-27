@@ -138,42 +138,12 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         except Exception as _e:
             record_failure("think_module.think", _e)
 
-        # === 2c) Ambient thought (DMN equivalent) ===
-        # Background fragments generated from emotional state, unresolved goals,
-        # tensions. Suppressed during high cognitive load; surfaces during wandering.
-        try:
-            from brain.cognition.ambient_thought import update_ambient as _ua, surface_text as _st
-            _ambient_result = _ua(context)
-            context["ambient_texture"]  = _ambient_result.get("surfaced", [])
-            context["_ambient_surface_text"] = _st(_ambient_result.get("surfaced", []))
-        except Exception:
-            context["ambient_texture"]        = []
-            context["_ambient_surface_text"]  = ""
-
-        # === 2d) Rumination — specific, charged, uninvited return ===
-        # Unlike ambient thought: one specific topic, partially intrudes even during
-        # alert mode, amplified by suppression (Wegner rebound), never self-extinguishes.
-        try:
-            from brain.cognition.rumination import update_rumination as _ur, surface_text as _rst, mark_resolved as _mr
-            _rum_result = _ur(context)
-            _surfaced_loop = _rum_result.get("surfaced")
-            context["ruminative_loop"] = _surfaced_loop
-            context["_rumination_text"] = _rst(_surfaced_loop)
-            # Resolution path: a brooding loop that has returned many times without
-            # resolution is automatically shifted toward reflective mode so it can decay.
-            # Treynor et al. (2003): brooding that cannot find an outlet must be actively
-            # redirected rather than left to cycle. mark_resolved() reduces charge by 75%
-            # and shifts the loop to reflective mode — it does not erase the concern,
-            # it opens a resolution pathway. Trigger: brooding mode + 8+ returns.
-            if (
-                _surfaced_loop
-                and _surfaced_loop.get("mode") == "brooding"
-                and int(_surfaced_loop.get("return_count", 0)) >= 8
-            ):
-                _mr(_surfaced_loop["id"])
-        except Exception:
-            context["ruminative_loop"]  = None
-            context["_rumination_text"] = ""
+        # === 2c/2d) Default mode: ambient thought + rumination ===
+        # Normally already ran pre-think in prepare_workspace (so its surfaced
+        # content could compete in the workspace); this is a per-cycle no-op then,
+        # and the fallback when think() is driven without the loop's prep stage.
+        from brain.cognition.default_mode import run_default_mode as _rdm
+        _rdm(context)
 
         # === 2e) Theory of Mind — active real-time simulation of the other person ===
         # Infers what the person is currently thinking/wanting/expecting THIS moment.

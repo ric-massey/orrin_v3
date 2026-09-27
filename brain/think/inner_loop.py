@@ -131,7 +131,12 @@ def _draft_prompt(
             f"{u.get('type')} ({u.get('strength', 0):.2f})" for u in urges[:2]
         ) + "\n"
 
-    blocks = [f"{goal_line}{tension_line}{pattern_line}{felt_line}{urge_lines}"
+    # Default-mode surface lines (default_mode.py) — background texture, not a task.
+    dmn_lines = "".join(
+        f"{t}\n" for t in (context.get("_ambient_surface_text"), context.get("_rumination_text")) if t
+    )
+
+    blocks = [f"{goal_line}{tension_line}{pattern_line}{felt_line}{urge_lines}{dmn_lines}"
               f"Topic: {topic}\n\nContext:\n{context_text}"]
     if prior_critique:
         blocks.append(f"Previous critique:\n{prior_critique}")

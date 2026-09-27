@@ -5,6 +5,8 @@
 # surfaced content is offered to the Global Workspace, can win it on a quiet
 # cycle, loses to a present user, routes the action prior to inward work, and
 # reaches the LLM draft prompt. Run 12.5 checks the same chain on a live life.
+import re
+from pathlib import Path
 from typing import Any, Dict
 
 import pytest
@@ -98,9 +100,47 @@ def test_dmn_sources_have_routes():
     assert _workspace_routes_for({"source": "rumination"})
 
 
+def test_prompt_surface_keys_are_the_ones_think_writes():
+    # The tuple counts as the reader for the guard below, so it must name real keys.
+    from brain.think.prompt_surface import SURFACE_TEXT_KEYS
+    src = "".join(p.read_text(encoding="utf-8") for p in _BRAIN.rglob("*.py"))
+    assert set(SURFACE_TEXT_KEYS) <= set(_WRITE.findall(src))
+
+
 def test_surface_lines_reach_llm_draft_prompt():
     from brain.think.inner_loop import _draft_prompt
-    ctx = {"_ambient_surface_text": "Background: a quiet hum",
-           "_rumination_text": "Recurring: the refusal"}
-    prompt = _draft_prompt("topic", "", ctx, 1)
-    assert "Background: a quiet hum" in prompt and "Recurring: the refusal" in prompt
+    lines = {
+        "_tom_text": "Misalignment: they don't feel understood.",
+        "_energy_mode_text": "Energy mode: rest — consolidating.",
+        "_ftime_text": "The afternoon feels thin.",
+        "_ambient_surface_text": "Background: a quiet hum",
+        "_rumination_text": "Recurring: the refusal",
+    }
+    prompt = _draft_prompt("topic", "", dict(lines), 1)
+    for text in lines.values():
+        assert text in prompt
+
+
+def test_empty_surface_lines_change_nothing():
+    from brain.think.inner_loop import _draft_prompt
+    empty = {"_tom_text": "", "_energy_mode_text": None, "_ftime_text": "  "}
+    assert _draft_prompt("topic", "", empty, 1) == _draft_prompt("topic", "", {}, 1)
+
+
+# ── guard: every per-cycle surface line written to context has a reader ─────────
+
+_BRAIN = Path(__file__).resolve().parents[2] / "brain"
+_WRITE = re.compile(r'context\["(_[a-z_]+_text)"\]\s*=(?!=)')
+
+
+def test_every_context_surface_text_has_a_reader():
+    sources = {p: p.read_text(encoding="utf-8") for p in _BRAIN.rglob("*.py")}
+    written = {k for src in sources.values() for k in _WRITE.findall(src)}
+    assert {"_tom_text", "_ftime_text", "_energy_mode_text"} <= written
+    from brain.think.prompt_surface import SURFACE_TEXT_KEYS
+    orphans = []
+    for key in sorted(written - set(SURFACE_TEXT_KEYS)):
+        read = re.compile(rf'\.get\(\s*"{key}"|\["{key}"\](?!\s*=[^=])')
+        if not any(read.search(src) for src in sources.values()):
+            orphans.append(key)
+    assert not orphans, f"context keys written but never read: {orphans}"

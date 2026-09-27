@@ -313,6 +313,24 @@ LLM-free):
 
 Bisect any regression with `ORRIN_DMN_WORKSPACE=0`.
 
+**Same bug, three more surface lines (wired in the same pass).** Theory of Mind
+(`_tom_text`), felt time (`_ftime_text`) and energy mode (`_energy_mode_text`)
+were also written every cycle and never read. Their **structured** outputs were
+already live (`theory_of_mind` → speech pipeline/evaluator, `temporal_state` →
+`runtime_lifetime`, `energy_mode`/`_rest_mode` → selection, cost prediction,
+intrinsic goals); only the prose lines — built for the inner-loop prompt — were
+orphaned. They now reach `inner_loop._draft_prompt` alongside the DMN lines. They
+are **not** workspace candidates: ToM only fires with a user present (the user
+already wins at 0.95), and energy/felt time already steer through their fields.
+A guard test (`test_every_context_surface_text_has_a_reader`) now fails CI if
+any `context["_*_text"]` is written without a reader.
+
+| # | Observable | Where | Pass | Fail means |
+|---|---|---|---|---|
+| D7 | Surface lines reach deliberation | **LLM-assisted mode only** — in a symbolic-only life the draft prompt never runs, so score D7 **N/A** and say so in the verdict. In an LLM-assisted smoke (≥ 1 recruited inner loop with a user present), log/inspect one `inner_loop/draft` prompt | prompt carries the ToM line when a user is present, the energy line whenever mode ≠ neutral, the felt-time line when non-empty | wiring regressed (the guard test should have caught it) |
+| D8 | ToM misalignment changes the reply | same smoke: deliberately correct Orrin 2–3× in a row | after "Misalignment (repeated/persistent)" appears in the prompt, the next reply changes approach rather than restating | line is read but not acted on — a prompt-weight problem, not wiring |
+| D9 | Structured paths unchanged (regression check, symbolic-only OK) | `energy_mode` distribution, `_rest_mode` share, ToM fields in speech logs vs Run 12 | within noise of Run 12 | this pass touched something it shouldn't have |
+
 ---
 
 ## Run 8 re-test gate (2026-07-14 — from `RUN8_FIX_PLAN_2026-07-14.md`)

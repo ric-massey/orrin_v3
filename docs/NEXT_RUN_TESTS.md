@@ -294,13 +294,12 @@ and **offers** the strongest surfaced fragment (`source: ambient`, salience
 0.15 + 0.35·intensity, ≤ 0.50) and the surfaced loop (`source: rumination`,
 0.25 + 0.45·charge, ≤ 0.565) to the Global Workspace. When one wins, the
 workspace prior routes it to inward work (`ambient` → reflection /
-narrative_update; `rumination` → reflect_on_self_beliefs / reflection). The same
-lines also reach the LLM draft prompt (LLM-assisted mode only). Kill switch:
+narrative_update; `rumination` → reflect_on_self_beliefs / reflection). No LLM
+anywhere in the chain — it is fully symbolic. Kill switch:
 `ORRIN_DMN_WORKSPACE=0` (generation still runs, no offers). Unit tests:
 `tests/brain/test_default_mode.py`.
 
-**Score these in the next life** (symbolic-only is fine — the workspace path is
-LLM-free):
+**Score these in the next life** (symbolic-only — the whole path is LLM-free):
 
 | # | Observable | Where | Pass | Fail means |
 |---|---|---|---|---|
@@ -313,23 +312,24 @@ LLM-free):
 
 Bisect any regression with `ORRIN_DMN_WORKSPACE=0`.
 
-**Same bug, three more surface lines (wired in the same pass).** Theory of Mind
-(`_tom_text`), felt time (`_ftime_text`) and energy mode (`_energy_mode_text`)
-were also written every cycle and never read. Their **structured** outputs were
-already live (`theory_of_mind` → speech pipeline/evaluator, `temporal_state` →
-`runtime_lifetime`, `energy_mode`/`_rest_mode` → selection, cost prediction,
-intrinsic goals); only the prose lines — built for the inner-loop prompt — were
-orphaned. They now reach `inner_loop._draft_prompt` alongside the DMN lines. They
-are **not** workspace candidates: ToM only fires with a user present (the user
-already wins at 0.95), and energy/felt time already steer through their fields.
-A guard test (`test_every_context_surface_text_has_a_reader`) now fails CI if
-any `context["_*_text"]` is written without a reader.
+**Same symptom, three more prose lines — deliberately NOT wired to the LLM.**
+Theory of Mind (`_tom_text`), felt time (`_ftime_text`) and energy mode
+(`_energy_mode_text`) are also written every cycle and never read. Their
+**structured** outputs are already live and symbolic (`theory_of_mind` → speech
+pipeline/evaluator, `temporal_state` → `runtime_lifetime`, `energy_mode` /
+`_rest_mode` → selection, cost prediction, intrinsic goals). The prose lines
+were built for `inner_loop._draft_prompt` — the LLM deliberation path, which is
+**not** on `_LLM_TOOL_CALLERS` and so never runs in a tool-only deployment. Wiring
+them there would have made the LLM a reader of Orrin's inner state, against the
+tool-only rule; a commit that briefly did so was reverted. A guard test
+(`test_every_context_surface_text_has_a_reader`) fails CI on any *new* unread
+`context["_*_text"]`; these three are on an explicit known-unread list pending a
+decision (symbolic reader, UI telemetry, or delete).
 
 | # | Observable | Where | Pass | Fail means |
 |---|---|---|---|---|
-| D7 | Surface lines reach deliberation | **LLM-assisted mode only** — in a symbolic-only life the draft prompt never runs, so score D7 **N/A** and say so in the verdict. In an LLM-assisted smoke (≥ 1 recruited inner loop with a user present), log/inspect one `inner_loop/draft` prompt | prompt carries the ToM line when a user is present, the energy line whenever mode ≠ neutral, the felt-time line when non-empty | wiring regressed (the guard test should have caught it) |
-| D8 | ToM misalignment changes the reply | same smoke: deliberately correct Orrin 2–3× in a row | after "Misalignment (repeated/persistent)" appears in the prompt, the next reply changes approach rather than restating | line is read but not acted on — a prompt-weight problem, not wiring |
-| D9 | Structured paths unchanged (regression check, symbolic-only OK) | `energy_mode` distribution, `_rest_mode` share, ToM fields in speech logs vs Run 12 | within noise of Run 12 | this pass touched something it shouldn't have |
+| D7 | Structured ToM / felt-time / energy paths unchanged (regression check) | `energy_mode` distribution, `_rest_mode` share, ToM fields in speech logs vs Run 12 | within noise of Run 12 | this pass touched something it shouldn't have |
+| D8 | No LLM on the thought path | `activity_log.txt` (+ `rotated/`): `grep -c "\[inner_loop\] r=.* draft"` (LLM draft) vs `grep -c "\[inner_loop_sym\] r="` (symbolic) | LLM draft count **0**; symbolic count > 0 whenever deliberation was recruited | something re-routed deliberation through the LLM |
 
 ---
 

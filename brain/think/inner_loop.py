@@ -39,7 +39,6 @@ import threading
 import time
 from typing import Any, Dict, List, Optional
 
-from brain.think.prompt_surface import surface_lines
 from brain.utils.llm_router import routed_response, get_deep_model
 from brain.utils.llm_gate import llm_callable_by
 from brain.utils.log import log_activity, log_error
@@ -132,7 +131,7 @@ def _draft_prompt(
             f"{u.get('type')} ({u.get('strength', 0):.2f})" for u in urges[:2]
         ) + "\n"
 
-    blocks = [f"{goal_line}{tension_line}{pattern_line}{felt_line}{urge_lines}{surface_lines(context)}"
+    blocks = [f"{goal_line}{tension_line}{pattern_line}{felt_line}{urge_lines}"
               f"Topic: {topic}\n\nContext:\n{context_text}"]
     if prior_critique:
         blocks.append(f"Previous critique:\n{prior_critique}")

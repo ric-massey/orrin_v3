@@ -3,8 +3,8 @@
 # Ambient thought and rumination used to write context keys nothing read, so the
 # DMN never reached awareness or the action pick. These tests pin the wiring:
 # surfaced content is offered to the Global Workspace, can win it on a quiet
-# cycle, loses to a present user, routes the action prior to inward work, and
-# reaches the LLM draft prompt. Run 12.5 checks the same chain on a live life.
+# cycle, loses to a present user, and routes the action prior to inward work —
+# all symbolic, with no LLM in the chain. Run 12.5 checks the same on a live life.
 import re
 from pathlib import Path
 from typing import Any, Dict
@@ -39,8 +39,8 @@ def stub_dmn(monkeypatch):
 def test_sets_surface_keys_and_offers_both(stub_dmn):
     ctx: Dict[str, Any] = {"_cycle_index": 7}
     dm.run_default_mode(ctx)
-    assert ctx["_ambient_surface_text"].startswith("Background: ")
-    assert ctx["_rumination_text"].startswith("Recurring: ")
+    assert ctx["ambient_texture"] == [_FRAG]
+    assert ctx["ruminative_loop"] == _LOOP
     offers = {o["source"]: o for o in ctx["_workspace_offers"]}
     assert offers["ambient"]["salience"] == pytest.approx(0.15 + 0.35 * 0.9)
     assert offers["rumination"]["salience"] == pytest.approx(0.25 + 0.45 * 0.6)
@@ -61,7 +61,7 @@ def test_flag_off_generates_but_does_not_offer(stub_dmn, monkeypatch):
     monkeypatch.setenv("ORRIN_DMN_WORKSPACE", "0")
     ctx: Dict[str, Any] = {"_cycle_index": 1}
     dm.run_default_mode(ctx)
-    assert ctx["_ambient_surface_text"]
+    assert ctx["ambient_texture"]
     assert not ctx.get("_workspace_offers")
 
 
@@ -100,31 +100,22 @@ def test_dmn_sources_have_routes():
     assert _workspace_routes_for({"source": "rumination"})
 
 
-def test_prompt_surface_keys_are_the_ones_think_writes():
-    # The tuple counts as the reader for the guard below, so it must name real keys.
-    from brain.think.prompt_surface import SURFACE_TEXT_KEYS
-    src = "".join(p.read_text(encoding="utf-8") for p in _BRAIN.rglob("*.py"))
-    assert set(SURFACE_TEXT_KEYS) <= set(_WRITE.findall(src))
+def test_dmn_chain_needs_no_llm(stub_dmn, monkeypatch):
+    # Default deployment: the LLM is a tool, never a reader of Orrin's state.
+    import brain.utils.llm_gate as gate
+    monkeypatch.setattr(gate, "llm_available", lambda: False)
+    ctx: Dict[str, Any] = {"_cycle_index": 1}
+    dm.run_default_mode(ctx)
+    assert gw.update_workspace(ctx)["source"] in ("ambient", "rumination")
+    assert compute_workspace_prior(ctx, ["reflection", "reflect_on_self_beliefs"])
 
 
-def test_surface_lines_reach_llm_draft_prompt():
-    from brain.think.inner_loop import _draft_prompt
-    lines = {
-        "_tom_text": "Misalignment: they don't feel understood.",
-        "_energy_mode_text": "Energy mode: rest — consolidating.",
-        "_ftime_text": "The afternoon feels thin.",
-        "_ambient_surface_text": "Background: a quiet hum",
-        "_rumination_text": "Recurring: the refusal",
-    }
-    prompt = _draft_prompt("topic", "", dict(lines), 1)
-    for text in lines.values():
-        assert text in prompt
-
-
-def test_empty_surface_lines_change_nothing():
-    from brain.think.inner_loop import _draft_prompt
-    empty = {"_tom_text": "", "_energy_mode_text": None, "_ftime_text": "  "}
-    assert _draft_prompt("topic", "", empty, 1) == _draft_prompt("topic", "", {}, 1)
+def test_inner_loop_llm_path_is_not_a_default_caller(monkeypatch):
+    # inner_loop's LLM draft prompt only runs if tool-only mode is switched off;
+    # cognition must never depend on it.
+    monkeypatch.delenv("ORRIN_LLM_TOOL_ONLY", raising=False)
+    from brain.utils.generate_response import _LLM_TOOL_CALLERS
+    assert "inner_loop" not in _LLM_TOOL_CALLERS
 
 
 # ── guard: every per-cycle surface line written to context has a reader ─────────
@@ -132,14 +123,18 @@ def test_empty_surface_lines_change_nothing():
 _BRAIN = Path(__file__).resolve().parents[2] / "brain"
 _WRITE = re.compile(r'context\["(_[a-z_]+_text)"\]\s*=(?!=)')
 
+# Prose lines built for the (tool-gated, default-off) LLM inner-loop prompt. Their
+# structured siblings (theory_of_mind, temporal_state, energy_mode) already drive
+# speech/selection symbolically. Known and deliberate until decided; do not add
+# to this set — wire a new line to a symbolic reader instead.
+_KNOWN_UNREAD = {"_tom_text", "_ftime_text", "_energy_mode_text"}
+
 
 def test_every_context_surface_text_has_a_reader():
     sources = {p: p.read_text(encoding="utf-8") for p in _BRAIN.rglob("*.py")}
     written = {k for src in sources.values() for k in _WRITE.findall(src)}
-    assert {"_tom_text", "_ftime_text", "_energy_mode_text"} <= written
-    from brain.think.prompt_surface import SURFACE_TEXT_KEYS
     orphans = []
-    for key in sorted(written - set(SURFACE_TEXT_KEYS)):
+    for key in sorted(written - _KNOWN_UNREAD):
         read = re.compile(rf'\.get\(\s*"{key}"|\["{key}"\](?!\s*=[^=])')
         if not any(read.search(src) for src in sources.values()):
             orphans.append(key)

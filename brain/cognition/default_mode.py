@@ -9,8 +9,7 @@
 # competes in the pre-think workspace like any other candidate (I7: bias, never
 # preempt). When it wins, the workspace prior routes it to cheap inward work
 # (selection/routing.py: "ambient", "rumination"); when it loses, habituation and
-# attention load keep it in the background. The same surface lines also reach
-# the LLM inner-loop draft prompt (inner_loop._draft_prompt).
+# attention load keep it in the background. No LLM is involved at any step.
 #
 # Salience ceilings sit below a present user (0.95) and near a pursued goal
 # (0.55), so default-mode content wins on quiet cycles and loses under demand.
@@ -48,23 +47,16 @@ def run_default_mode(context: Dict[str, Any]) -> Dict[str, Any]:
     context["_dmn_cycle"] = context.get("_cycle_index")
 
     try:
-        from brain.cognition.ambient_thought import update_ambient, surface_text
-        ambient = update_ambient(context)
-        surfaced = ambient.get("surfaced", []) or []
-        context["ambient_texture"] = surfaced
-        context["_ambient_surface_text"] = surface_text(surfaced)
+        from brain.cognition.ambient_thought import update_ambient
+        context["ambient_texture"] = update_ambient(context).get("surfaced", []) or []
     except Exception as e:
         record_failure("default_mode.ambient", e)
         context["ambient_texture"] = []
-        context["_ambient_surface_text"] = ""
 
     try:
-        from brain.cognition.rumination import (
-            update_rumination, surface_text as rum_text, mark_resolved,
-        )
+        from brain.cognition.rumination import update_rumination, mark_resolved
         loop = update_rumination(context).get("surfaced")
         context["ruminative_loop"] = loop
-        context["_rumination_text"] = rum_text(loop)
         # Treynor et al. (2003): a brood that keeps returning without resolution is
         # shifted toward reflective mode so it can decay (charge ×0.25).
         if (loop and loop.get("mode") == "brooding"
@@ -73,7 +65,6 @@ def run_default_mode(context: Dict[str, Any]) -> Dict[str, Any]:
     except Exception as e:
         record_failure("default_mode.rumination", e)
         context["ruminative_loop"] = None
-        context["_rumination_text"] = ""
 
     if _offers_enabled():
         _offer(context)

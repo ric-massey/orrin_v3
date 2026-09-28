@@ -183,6 +183,11 @@ def update_temporal_state(context: Dict[str, Any]) -> Dict[str, Any]:
         texture = "thin"
     else:
         texture = "normal"
+    if (texture != state.get("time_texture") and texture.startswith("waiting_")
+            and texture != "waiting_fresh"):
+        state["pending_phase"] = {"phase": texture, "cycles_since_contact": cycles_since_contact}
+    elif not texture.startswith("waiting_"):
+        state.pop("pending_phase", None)   # contact resumed: the absence is over
     state["time_texture"] = texture
 
     landmark = _compute_landmark(context, session_cycles)
@@ -483,6 +488,16 @@ def _apply_waiting_effects(context: Dict[str, Any], cycles_since_contact: int, t
         record_failure("temporal_state._apply_waiting_effects", _e)
 
 
+
+
+def consume_pending_phase() -> Optional[Dict[str, Any]]:
+    """Pop the waiting phase entered since the last call (None when unchanged).
+    Only phases past waiting_fresh are recorded — the ones absence makes felt."""
+    state = _load()
+    pending = state.pop("pending_phase", None)
+    if pending is not None:
+        _save(state)
+    return pending if isinstance(pending, dict) else None
 
 
 # ── Persistence ────────────────────────────────────────────────────────────────

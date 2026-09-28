@@ -138,6 +138,20 @@ def _collect_items(context: Dict[str, Any]) -> List[Dict[str, Any]]:
             known_entities=known, role_hint="interlocutor", dedupe_text=user_input.lower(),
         ))
 
+    # Persistent misalignment (theory of mind): the read of the SAME person who
+    # just spoke — binds to the user item via _interlocutor_link.
+    try:
+        from brain.cognition.state_awareness import tom_binding_item
+        read = tom_binding_item(context)
+    except Exception as exc:
+        record_failure("binding.tom_item", exc)
+        read = None
+    if read:
+        add(_item(
+            "tom", read["content"], read["salience"], known_entities=known,
+            role_hint="interlocutor_read", consecutive=read["consecutive"],
+        ))
+
     dominant = _dominant_signal(context)
     if dominant:
         emotion, intensity, cause = dominant
@@ -249,6 +263,10 @@ def _hijack_link(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
     )
 
 
+def _interlocutor_link(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
+    return {a["source"], b["source"]} == {"user", "tom"}
+
+
 def _link(a: Dict[str, Any], b: Dict[str, Any]) -> Set[str]:
     reasons: Set[str] = set()
     for entity in sorted(a["entities"] & b["entities"]):
@@ -261,6 +279,8 @@ def _link(a: Dict[str, Any], b: Dict[str, Any]) -> Set[str]:
         reasons.add("affect_hijack")
     if _goal_link(a, b):
         reasons.add("goal_relevance")
+    if _interlocutor_link(a, b):
+        reasons.add("interlocutor_read")
     return reasons
 
 
@@ -342,6 +362,8 @@ def _assign_roles(cluster: List[Dict[str, Any]]) -> Dict[str, Any]:
             facets["memory"] = item["content"][:120]
         elif role == "interlocutor" and "interlocutor" not in facets:
             facets["interlocutor"] = item["content"][:120]
+        elif role == "interlocutor_read" and "read" not in facets:
+            facets["read"] = item["content"][:120]
         else:
             motion = _motion_text(item["content"])
             if motion and "motion" not in facets:
@@ -372,6 +394,8 @@ def _render(facets: Dict[str, Any], cluster: List[Dict[str, Any]]) -> str:
         parts.append(f"toward {_text(facets['goal'])}")
     if facets.get("interlocutor"):
         parts.append(_text(facets["interlocutor"]))
+    if facets.get("read"):
+        parts.append(_text(facets["read"]))
 
     if not parts:
         parts = [item["content"] for item in cluster[:2]]

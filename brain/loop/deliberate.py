@@ -68,6 +68,12 @@ def prepare_workspace(context: Context) -> Context:
         _rdm(context)
     except Exception as _dme:
         record_failure("ORRIN_loop.default_mode", _dme)
+    # Salient state shifts (energy mode, felt-time waiting phase) → workspace offers.
+    try:
+        from brain.cognition.state_awareness import offer_state_awareness as _osa
+        _osa(context)
+    except Exception as _sae:
+        record_failure("ORRIN_loop.state_awareness", _sae)
     # Stochastic contradiction surfacing (Athena-Class import, RUN12 A.1.3):
     # a low-probability offer of a held rule that conflicts with the current
     # conscious position. It enters the same pre-think competition as the

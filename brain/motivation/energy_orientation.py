@@ -49,7 +49,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import os
 
@@ -253,6 +253,27 @@ def _save(state: Dict[str, Any]) -> None:
     save_json(ENERGY_MODE_FILE, state)
 
 
+def _record_shift(state: Dict[str, Any], old: str, new: str) -> None:
+    """Keep one pending shift until state_awareness consumes it. Two shifts before
+    consumption collapse to first-from → last-to; a round trip cancels out."""
+    pending = state.get("pending_shift")
+    frm = pending.get("from", old) if isinstance(pending, dict) else old
+    if frm == new:
+        state.pop("pending_shift", None)
+    else:
+        state["pending_shift"] = {"from": frm, "to": new,
+                                  "ts": datetime.now(timezone.utc).isoformat()}
+
+
+def consume_pending_shift() -> Optional[Dict[str, Any]]:
+    """Pop the mode change recorded since the last call (None when steady)."""
+    state = _load()
+    pending = state.pop("pending_shift", None)
+    if pending is not None:
+        _save(state)
+    return pending if isinstance(pending, dict) else None
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def get_orientation(affect_state: Dict[str, Any]) -> EnergyOrientation:
@@ -328,6 +349,8 @@ def get_smoothed_orientation(context: Dict[str, Any]) -> EnergyOrientation:
         "raw":         raw,
         "updated_ts":  datetime.now(timezone.utc).isoformat(),
     })
+    if mode != current:
+        _record_shift(state, current, mode)
     _save(state)
 
     log_private(

@@ -268,6 +268,7 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
             "symbolic_dream_log", "self_improvement_log", "dream_log",
             "metacog_log", "chat_log", "memory_graph", "events", "trace",
             "telemetry_history",
+            "_tom_ran_this_cycle",   # per-cycle marker (state_awareness)
         )
         _ctx_to_save = {k: v for k, v in context.items() if k not in _CTX_STRIP}
         # Cap working_memory in context.json to last 25 entries

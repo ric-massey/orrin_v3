@@ -21,11 +21,20 @@ def _workspace_routes_for(moment: Dict[str, Any]) -> Dict[str, float]:
         "signal":  {"look_outward": 0.9, "search_own_files": 0.6},
         "user":    {"attend_goal": 0.7, "narrative_update": 0.6},
         # Default-mode content (brain/cognition/default_mode.py): mind-wandering
-        # drifts to cheap inward work; a returning brood routes to reflective
-        # pondering, the resolution path (Treynor et al. 2003).
-        "ambient":    {"reflection": 0.6, "narrative_update": 0.5},
-        "rumination": {"reflect_on_self_beliefs": 0.8, "reflection": 0.6},
+        # drifts to self-narrative; a returning brood routes to belief review and
+        # the missed goals it is usually about (reflective pondering, Treynor 2003).
+        "ambient":    {"narrative_update": 0.6, "reflect_on_think": 0.4},
+        "rumination": {"reflect_on_self_beliefs": 0.8, "reflect_on_missed_goals": 0.5},
+        # Felt absence (state_awareness.py): think back over the last contact.
+        "felt_time":  {"reflect_on_conversation_patterns": 0.5, "narrative_update": 0.4},
     }
+    if source == "energy":
+        # A noticed energy shift (state_awareness.py), routed by the mode entered.
+        return {
+            "rest":     {"idle_consolidation_cycle": 0.6, "narrative_update": 0.5},
+            "active":   {"attend_goal": 0.8, "assess_goal_progress": 0.5},
+            "reactive": {"detect_tensions": 0.6, "reflect_on_self_beliefs": 0.5},
+        }.get(str(moment.get("kind", "")), {})
     if source != "binding":
         return atomic.get(source, {})
 
@@ -48,4 +57,7 @@ def _workspace_routes_for(moment: Dict[str, Any]) -> Dict[str, float]:
         merge(atomic["signal"])
     if facets.get("interlocutor"):
         merge(atomic["user"])
+    if facets.get("read"):
+        # They don't feel understood: review how the conversation is going.
+        merge({"reflect_on_conversation_patterns": 0.8})
     return routes

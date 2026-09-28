@@ -293,8 +293,10 @@ brood → tension). New stage `brain/cognition/default_mode.py` now runs
 and **offers** the strongest surfaced fragment (`source: ambient`, salience
 0.15 + 0.35·intensity, ≤ 0.50) and the surfaced loop (`source: rumination`,
 0.25 + 0.45·charge, ≤ 0.565) to the Global Workspace. When one wins, the
-workspace prior routes it to inward work (`ambient` → reflection /
-narrative_update; `rumination` → reflect_on_self_beliefs / reflection). No LLM
+workspace prior routes it to inward work (`ambient` → narrative_update /
+reflect_on_think; `rumination` → reflect_on_self_beliefs /
+reflect_on_missed_goals — `reflection` was dropped: it is not a registered
+function, so a route to it did nothing). No LLM
 anywhere in the chain — it is fully symbolic. Kill switch:
 `ORRIN_DMN_WORKSPACE=0` (generation still runs, no offers). Unit tests:
 `tests/brain/test_default_mode.py`.
@@ -312,24 +314,50 @@ anywhere in the chain — it is fully symbolic. Kill switch:
 
 Bisect any regression with `ORRIN_DMN_WORKSPACE=0`.
 
-**Same symptom, three more prose lines — deliberately NOT wired to the LLM.**
-Theory of Mind (`_tom_text`), felt time (`_ftime_text`) and energy mode
-(`_energy_mode_text`) are also written every cycle and never read. Their
-**structured** outputs are already live and symbolic (`theory_of_mind` → speech
-pipeline/evaluator, `temporal_state` → `runtime_lifetime`, `energy_mode` /
-`_rest_mode` → selection, cost prediction, intrinsic goals). The prose lines
-were built for `inner_loop._draft_prompt` — the LLM deliberation path, which is
-**not** on `_LLM_TOOL_CALLERS` and so never runs in a tool-only deployment. Wiring
-them there would have made the LLM a reader of Orrin's inner state, against the
-tool-only rule; a commit that briefly did so was reverted. A guard test
-(`test_every_context_surface_text_has_a_reader`) fails CI on any *new* unread
-`context["_*_text"]`; these three are on an explicit known-unread list pending a
-decision (symbolic reader, UI telemetry, or delete).
+**Energy mode, felt time, theory of mind → awareness when salient (2026-09-28).**
+Their structured outputs already steer speech/selection every cycle (the human
+default: adapting without words). New `brain/cognition/state_awareness.py` adds
+the other half — noticing a state when it *shifts or persists*, and acting on
+it — through the same symbolic workspace path as the DMN. No LLM anywhere; the
+prose `_tom_text`/`_ftime_text`/`_energy_mode_text` lines stay unread (the
+LLM-prompt wiring was reverted — the LLM never reads Orrin's inner state).
+
+- **Energy shift** — `energy_orientation` records a pending shift when the
+  smoothed mode changes; the pre-think stage offers a shift *into*
+  rest / active (0.50) or reactive (0.55); steady modes and returns to neutral
+  are silent. Routes: rest → idle_consolidation_cycle / narrative_update;
+  active → attend_goal / assess_goal_progress; reactive → detect_tensions /
+  reflect_on_self_beliefs.
+- **Felt time** — `temporal_state` records entry into each waiting phase past
+  `waiting_fresh` (wondering 0.40 → settling 0.45 → extended 0.50 →
+  long_absence 0.55); contact clears it. Route: reflect_on_conversation_patterns
+  / narrative_update. (`notify_user` deliberately **not** routed — reaching out
+  to a human stays a deliberate act, not a loneliness reflex.)
+- **Theory of mind** — now runs in `sense` right after the input is parsed
+  (once per cycle; `think` keeps a no-op fallback). A persistent misalignment
+  (ToM's own ≥ 2 rule; 0.60, or 0.70 at ≥ 3) is a **binding** item linked to the
+  user's message, so the situation "Ric said X — they don't feel understood"
+  (≈ 1.0) outranks the bare message (0.95). Route adds
+  reflect_on_conversation_patterns. **Side fix:** the fast Face reply in `sense`
+  used to read the *previous* turn's ToM (this turn's was computed later in
+  `think`); it now reads this turn's.
+- Kill switch `ORRIN_STATE_AWARENESS=0` (shifts are still consumed, so none
+  fires stale later). Tests: `tests/brain/test_state_awareness.py` (every route
+  target is asserted registered and LLM-free).
+- **Found, not fixed:** energy EMA is stepped **twice per cycle** (`sense.py`
+  and `think` both call `inject_into_context`), so its "~8-cycle half-life" is
+  effectively ~4. Fixing it changes energy dynamics — decide separately. Older
+  workspace routes also target unregistered `reflection` / `plan_next_step`
+  (`affect`, `thought`, `goal` sources) — dead weight, left for a separate pass.
 
 | # | Observable | Where | Pass | Fail means |
 |---|---|---|---|---|
-| D7 | Structured ToM / felt-time / energy paths unchanged (regression check) | `energy_mode` distribution, `_rest_mode` share, ToM fields in speech logs vs Run 12 | within noise of Run 12 | this pass touched something it shouldn't have |
+| D7 | Structured ToM / felt-time / energy paths unchanged (regression check) | `energy_mode` distribution, `_rest_mode` share vs Run 12 | within noise of Run 12 | this pass touched something it shouldn't have |
 | D8 | No LLM on the thought path | `activity_log.txt` (+ `rotated/`): `grep -c "\[inner_loop\] r=.* draft"` (LLM draft) vs `grep -c "\[inner_loop_sym\] r="` (symbolic) | LLM draft count **0**; symbolic count > 0 whenever deliberation was recruited | something re-routed deliberation through the LLM |
+| D9 | Energy shifts are noticed, steady states are not | `grep "\[awareness\] offered energy shift"` vs mode changes in `energy_mode.json` history / `[energy] mode=` lines | one offer per real shift into rest/active/reactive; **zero** while a mode holds | shift recording or consumption broken |
+| D10 | Felt absence is noticed in phases | `grep "\[awareness\] offered felt-time phase"` during long no-contact stretches | phases appear in order (wondering → settling → extended → long_absence), each at most once per absence | phase tracking broken or spamming |
+| D11 | Misunderstanding reaches awareness | a live conversation: correct Orrin 2–3× in a row; `workspace_broadcast.json` / `[aware] (binding)` lines | the conscious moment on those turns reads "… — they don't feel understood"; `reflect_on_conversation_patterns` executes within a few cycles | binding link or ToM timing broken |
+| D12 | State awareness doesn't take over | share of conscious moments with source `energy` / `felt_time` / ToM-bound | together **≤ 10 %**; `notify_user` count not up vs Run 12 | salience too high → a new monopoly layer |
 
 ---
 

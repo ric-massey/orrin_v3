@@ -1,0 +1,70 @@
+{
+  "streak": 0,
+  "history": [
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about history?",
+      "ts": 1787181965.4
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What is concrete and true right now?",
+      "ts": 1787181965.9
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about biology evolutionary biology?",
+      "ts": 1787183281.0
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about The Daily Stoic?",
+      "ts": 1787183281.1
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about mathematics?",
+      "ts": 1787184496.6
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about evolutionary biology?",
+      "ts": 1787186896.9
+    },
+    {
+      "kind": "exemplar",
+      "ref": "what-i-learned-about-foundations-of-quantum-mech-955a3384.md",
+      "ts": 1787193120.7
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about quantum mechanics foundations?",
+      "ts": 1787196385.0
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about emergence in complex systems?",
+      "ts": 1787198570.0
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about foundations of quantum mechanics?",
+      "ts": 1787199773.7
+    },
+    {
+      "kind": "answered_question",
+      "ref": "What did I get wrong or oversimplify about the nature of mathematics?",
+      "ts": 1787199779.6
+    },
+    {
+      "kind": "exemplar",
+      "ref": "what-did-i-get-wrong-or-oversimplify-about-quant-6e081aff.md",
+      "ts": 1787203922.5
+    }
+  ],
+  "rung": 4,
+  "exemplar_difficulty": {
+    "what-i-learned-about-foundations-of-quantum-mech-955a3384.md": 2,
+    "what-did-i-get-wrong-or-oversimplify-about-quant-6e081aff.md": 4
+  }
+}

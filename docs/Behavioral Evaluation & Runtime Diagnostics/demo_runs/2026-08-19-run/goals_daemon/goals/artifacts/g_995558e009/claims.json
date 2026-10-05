@@ -1,0 +1,139 @@
+{
+  "question": "What did I get wrong or oversimplify about history?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "history"
+  ],
+  "entities": [
+    "Modern Future History portal Category v t e History",
+    "systematic study of the past",
+    "History",
+    "broad discipline encompassing many branches",
+    "related to many fields",
+    "history",
+    "study of the past with the main focus on the human past",
+    "the past events themselves",
+    "what happened rather than the academic field studying what happened",
+    "representation of the past in the form of a history text",
+    "History texts",
+    "cultural products involving active interpretation and reconstruction",
+    "Historians debate whether history",
+    "social science or forms part of the humanities",
+    "Period between prehistory and the medieval era This article",
+    "about history from the beginning of writing"
+  ],
+  "relations": [
+    {
+      "subject": "Modern Future History portal Category v t e History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History",
+      "predicate": "is a",
+      "object": "broad discipline encompassing many branches",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History",
+      "predicate": "is",
+      "object": "related to many fields",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is the",
+      "object": "study of the past with the main focus on the human past",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "refers to",
+      "object": "the past events themselves",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is",
+      "object": "what happened rather than the academic field studying what happened",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is a",
+      "object": "representation of the past in the form of a history text",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History texts",
+      "predicate": "are",
+      "object": "cultural products involving active interpretation and reconstruction",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "Historians debate whether history",
+      "predicate": "is a",
+      "object": "social science or forms part of the humanities",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "Period between prehistory and the medieval era This article",
+      "predicate": "is",
+      "object": "about history from the beginning of writing",
+      "source": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "study of the past",
+      "source": "https://en.wikipedia.org/wiki/History_%28disambiguation%29"
+    },
+    {
+      "subject": "A657 S4 1992 The Secret History",
+      "predicate": "is the",
+      "object": "first novel by the American author Donna Tartt",
+      "source": "https://en.wikipedia.org/wiki/The_Secret_History"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [intrinsic-2026-08-19T23:25:56.054572+00:00]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/HIStory%3A_Past%2C_Present_and_Future%2C_Book_I"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Arsenal_F.C."
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Secret_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Playwright"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explaining_Hitler"
+    }
+  ],
+  "ts": "2026-08-19T23:26:05.324812+00:00"
+}

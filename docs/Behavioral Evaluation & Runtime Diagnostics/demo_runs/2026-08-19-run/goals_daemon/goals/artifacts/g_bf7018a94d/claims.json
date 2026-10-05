@@ -1,0 +1,141 @@
+{
+  "question": "What did I get wrong or oversimplify about foundations of quantum mechanics?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "foundations",
+    "quantum",
+    "mechanics"
+  ],
+  "entities": [
+    "The sequence begins with a quantum system whose observable",
+    "to be measured",
+    "this idea after the formalism of quantum decoherence",
+    "developed",
+    "on such fundamental questions as whether quantum mechanics",
+    "deterministic or stochastic",
+    "the mathematical structure of quantum mechanics",
+    "abstract and does not result in a single",
+    "At the heart of the description",
+    "ideas of quantum state and quantum observables",
+    "Probability theory",
+    "used in statistical mechanics",
+    "to think of quantum theory within the confines of what",
+    "now called classical physics",
+    "This interaction",
+    "called an observation and is the essence of a measurement in quantum mechanics"
+  ],
+  "relations": [
+    {
+      "subject": "The sequence begins with a quantum system whose observable",
+      "predicate": "is",
+      "object": "to be measured",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "this idea after the formalism of quantum decoherence",
+      "predicate": "was",
+      "object": "developed",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "on such fundamental questions as whether quantum mechanics",
+      "predicate": "is",
+      "object": "deterministic or stochastic",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "the mathematical structure of quantum mechanics",
+      "predicate": "is",
+      "object": "abstract and does not result in a single",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "At the heart of the description",
+      "predicate": "are",
+      "object": "ideas of quantum state and quantum observables",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "Probability theory",
+      "predicate": "was",
+      "object": "used in statistical mechanics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "to think of quantum theory within the confines of what",
+      "predicate": "is",
+      "object": "now called classical physics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "This interaction",
+      "predicate": "is",
+      "object": "called an observation and is the essence of a measurement in quantum mechanics",
+      "source": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "subject": "Collapse",
+      "predicate": "is",
+      "object": "one of the two processes by which quantum systems evolve in time",
+      "source": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "subject": "each measurable physical quantity of a quantum system",
+      "predicate": "is",
+      "object": "called an observable which",
+      "source": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "subject": "The wave function",
+      "predicate": "is a",
+      "object": "specific representation of a quantum state",
+      "source": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "subject": "the other curves",
+      "predicate": "are",
+      "object": "correctly predicted by quantum theories",
+      "source": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_a9b6da7133]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Matrix_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_key_distribution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Path-integral_formulation"
+    }
+  ],
+  "ts": "2026-08-20T04:22:53.522222+00:00"
+}

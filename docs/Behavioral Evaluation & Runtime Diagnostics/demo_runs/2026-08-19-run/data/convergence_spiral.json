@@ -1,0 +1,92 @@
+[
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5577,
+    "distance_histogram": {
+      "1": 29,
+      "0": 23
+    },
+    "rule_count": 52,
+    "timestamp": "2026-08-19T23:20:52.280622+00:00",
+    "ts": 1787181652.280629
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5472,
+    "distance_histogram": {
+      "1": 29,
+      "0": 24
+    },
+    "rule_count": 53,
+    "timestamp": "2026-08-20T03:52:28.453905+00:00",
+    "ts": 1787197948.453913
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5472,
+    "distance_histogram": {
+      "1": 29,
+      "0": 24
+    },
+    "rule_count": 53,
+    "timestamp": "2026-08-20T05:33:06.674846+00:00",
+    "ts": 1787203986.674849
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5472,
+    "distance_histogram": {
+      "1": 29,
+      "0": 24
+    },
+    "rule_count": 53,
+    "timestamp": "2026-08-20T08:33:24.571828+00:00",
+    "ts": 1787214804.5718322
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5472,
+    "distance_histogram": {
+      "1": 29,
+      "0": 24
+    },
+    "rule_count": 53,
+    "timestamp": "2026-08-20T11:34:29.704148+00:00",
+    "ts": 1787225669.704153
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 29,
+    "mean_inference_distance": 0.5472,
+    "distance_histogram": {
+      "1": 29,
+      "0": 24
+    },
+    "rule_count": 53,
+    "timestamp": "2026-08-20T14:33:58.790835+00:00",
+    "ts": 1787236438.790838
+  }
+]

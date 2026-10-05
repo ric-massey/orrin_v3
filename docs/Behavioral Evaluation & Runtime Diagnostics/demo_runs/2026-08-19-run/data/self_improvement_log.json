@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "2026-08-19T23:20:52.322929+00:00",
+    "changes": [
+      {
+        "type": "decay_unfired",
+        "rule_id": "6b556d8c48",
+        "old_conf": 0.72,
+        "new_conf": 0.71,
+        "reason": "high confidence but 0 hits — likely never matches"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-08-20T03:52:28.741075+00:00",
+    "changes": [],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-08-20T08:33:25.289174+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.16). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T14:33:59.921484+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.16). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  }
+]

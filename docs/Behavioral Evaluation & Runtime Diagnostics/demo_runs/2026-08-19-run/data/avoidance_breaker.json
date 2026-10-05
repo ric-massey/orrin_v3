@@ -1,0 +1,27 @@
+{
+  "max_debt_streak": 219,
+  "breaker_fires": 7269,
+  "last_fire_cycle": 10972,
+  "suppressed": {
+    "leave_note": 275,
+    "attend_goal": 754,
+    "generate_intrinsic_goals": 8,
+    "research_topic": 2102,
+    "fetch_and_read": 703,
+    "read_a_book": 247,
+    "assess_goal_progress": 451,
+    "narrative_update": 1486,
+    "evolve_core_value": 2,
+    "wikipedia_search": 55,
+    "look_around": 27,
+    "thread_continue": 259,
+    "exploration_drive_loop": 1,
+    "reflect_on_self_beliefs": 1,
+    "experience_corpus": 5,
+    "fail_overdue_artifact_goals": 2,
+    "mark_final_thoughts_written": 2,
+    "drop_edge": 2,
+    "tick_commitment": 4,
+    "repair_contradictions": 883
+  }
+}

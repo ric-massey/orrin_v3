@@ -1,0 +1,74 @@
+{
+  "ltc_aspiration-self_understa_1": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_88603e45e3ff": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_955e7dd631e6": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_75f5660a3aa2": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_1008c1fd6cb4": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_6571390a3d56": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_c7a4e8421d": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_e00776fe40": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_40fe7f09e0": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_b15f5c2b37": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_d0dd312536c9": {
+    "steps": {
+      "Establish implementation": 1
+    },
+    "give_ups": 1,
+    "serial": 5
+  },
+  "g_bf7018a94d": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  }
+}

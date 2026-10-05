@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2026-08-19T23:20:52.203560+00:00",
+    "caller": "idle_consolidation_cycle/processing",
+    "query": "dream processing",
+    "response_snippet": "emotional reflection: Emotion-related domains: EMOTIONAL. Weak areas: EMOTIONAL, COGNITIVE, SOCIAL. ",
+    "rules_added": [
+      "6b556d8c48"
+    ],
+    "rules_rejected_compression": 1
+  }
+]

@@ -1,0 +1,1025 @@
+[
+  {
+    "timestamp": "2026-08-19T23:20:18.078446+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.258): [aspiration] An enduring direction I hold: Understand the world more deeply.",
+        "score": 0.258,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.294): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.294,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.262): [aspiration] An enduring direction I hold: Make things — produce work that didn't exist before.",
+        "score": 0.262,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): The previous life aimed at: Before this life ends: bring 20 pieces of work all the way to completion in service of \"Understand the world more deeply\", growing o",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.25): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.25,
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T00:30:30.286628+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 36%): [intrinsic_goal] 'Turn what I know about Answer: What did I get wrong or oversimplify about conscious",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 36%): [intrinsic_goal] 'Turn what I know about Answer: What did I get wrong or oversimplify about conscious",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 38%): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Be → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.561): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Before this life ends: bring 20 pieces of work all the way to → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.561,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=72)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T02:32:00.026790+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 38%): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Be → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.561): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Before this life ends: bring 20 pieces of work all the way to → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.561,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=96)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=94)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T02:31:59.400831+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 38%): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Be → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.561): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Before this life ends: bring 20 pieces of work all the way to → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.561,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=95)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=93)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T03:59:44.295260+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 36%): [intrinsic_goal] 'Turn what I know about Answer: What did I get wrong or oversimplify about conscious",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 36%): [intrinsic_goal] 'Turn what I know about Answer: What did I get wrong or oversimplify about conscious",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation insight] By analogy (GENERAL, similarity 38%): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Be → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.561): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.25): The previous life aimed at: Before this life ends: bring 20 pieces of work all the way to → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.561,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=97)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=95)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is night' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "8e528c99f040",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T05:14:44.601469+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.341): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.341,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=1.0): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.507): Failed goal: Understand history of written language more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.507,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): Failed goal: Understand philosophy of time more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=164)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=166)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T05:32:00.878944+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=1.0): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.507): Failed goal: Understand history of written language more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.507,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): Failed goal: Understand philosophy of time more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.45): [metacog/pattern] Goal avoidance: 6 consecutive cycles without taking action on 'Answer: What did I get wrong or oversimplify about consciousness and subjective → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.441): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What did I get wrong or oversimplify about stoic philosophy and daily l → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.441,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=181)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=183)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T06:29:44.839457+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand evolutionary biology and cooperation more deeply. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): Failed goal: Understand philosophy of time more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.407): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 0.407,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.308): [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may be over-processing instead of → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.308,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.341): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.341,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=233)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=225)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T07:44:45.270327+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What did I get wrong or oversimplify about stoic philosophy and daily l → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] Goal avoidance: 14 consecutive cycles without taking action on 'Answer: What did I get wrong or oversimplify about stoic philosophy and daily  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.407): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 0.407,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.308): [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may be over-processing instead of → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.308,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.341): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.09 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.341,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=284)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=297)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T08:32:02.489419+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.292): Summary of faded memories:\n- [intrinsic_goal] 'Understand emergence in complex systems more deeply' (driven by world_knowledge): I know a little about emergence",
+        "score": 0.292,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.29): [metacog/pattern] Goal avoidance: 71 consecutive cycles without taking action on 'Understand the world more deeply'. I'm thinking but not doing. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.29,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.314): [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.295): Summary of faded memories:\n- 📝 Working memory summary: - emotional reflection: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: Emotion",
+        "score": 0.295,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.4): 📝 Working memory summary: - 🌓 Shadow question: What am I not saying to myself that I need to hear? (felt neutral) {self_query}\nReferenced 1 times during reasoni",
+        "score": 0.4,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=334)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=321)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T09:39:36.607848+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagnation: 'motivation' has been my dominant affect for 10 consecutive cycles. This pattern may warrant",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.292): 📝 Working memory summary: - [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things. (felt neutral) {me",
+        "score": 0.292,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.274): Summary of faded memories:\n- 📝 Working memory summary: - I've been running hot and flat — drive, self-assurance, curiosity all pinned high with almost no moveme",
+        "score": 0.274,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.4): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.4): 📝 Working memory summary: - 🌓 Shadow question: What am I not saying to myself that I need  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.4,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=378)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=362)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is morning' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92de6c61f366",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T10:54:39.523645+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagnation: 'motivation' has been my dominant affect for 10 consecutive cycles. This pattern may warrant",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.4): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.4): 📝 Working memory summary: - 🌓 Shadow question: What am I not saying to myself that I need  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.4,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=426)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=410)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T11:32:07.050739+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagnation: 'motivation' has been my dominant affect for 10 consecutive cycles. This pattern may warrant",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.4): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.4): 📝 Working memory summary: - 🌓 Shadow question: What am I not saying to myself that I need  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.4,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=447)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=431)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T12:09:40.585432+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagnation: 'motivation' has been my dominant affect for 10 consecutive cycles. This pattern may warrant",
+        "score": 0.286,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.408): rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL. (felt neutral) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.408,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=462)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=446)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T13:24:43.883806+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.278): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagn → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.278,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.408): rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL. (felt neutral) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.408,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=502)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=486)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T14:32:10.160871+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.278): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagn → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.278,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.408): rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL. (felt neutral) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.408,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=539)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=522)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-08-20T14:39:46.119823+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.281): Summary of related items:\n• [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.281,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.278): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.286): 📝 Working memory summary: - [metacog/pattern] Affective stagn → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.278,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.408): rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL. (felt neutral) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.408,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I sacrifice to achieve this? (felt neutral) {self_query} Referenced 1 time",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.373): [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I  → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.373,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.361): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Sh → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.361,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=544)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  }
+]

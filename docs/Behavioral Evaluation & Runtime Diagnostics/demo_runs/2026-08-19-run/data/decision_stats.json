@@ -1,0 +1,442 @@
+{
+  "assess_goal_progress": {
+    "count": 2125,
+    "total_reward": 739.1326802320277,
+    "avg_reward": 0.3478271436386013
+  },
+  "reflect_on_conversation_patterns": {
+    "count": 36,
+    "total_reward": 21.880154402888888,
+    "avg_reward": 0.6077820667469136
+  },
+  "look_outward": {
+    "count": 534,
+    "total_reward": 169.09675251777844,
+    "avg_reward": 0.3166605852392855
+  },
+  "search_own_files": {
+    "count": 27,
+    "total_reward": 9.907199999999994,
+    "avg_reward": 0.3669333333333331
+  },
+  "research_topic": {
+    "count": 6559,
+    "total_reward": 3983.7043131435175,
+    "avg_reward": 0.6073645850195941
+  },
+  "generate_intrinsic_goals": {
+    "count": 1242,
+    "total_reward": 674.3485448886663,
+    "avg_reward": 0.5429537398459471
+  },
+  "detect_memory_contradictions": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "leave_note": {
+    "count": 1994,
+    "total_reward": 1056.3660190930757,
+    "avg_reward": 0.5297723265261162
+  },
+  "detect_tensions": {
+    "count": 46,
+    "total_reward": 28.500829554888895,
+    "avg_reward": 0.6195832511932369
+  },
+  "current_awareness": {
+    "count": 8,
+    "total_reward": 4.5508351777777785,
+    "avg_reward": 0.5688543972222223
+  },
+  "maybe_surface_association": {
+    "count": 8,
+    "total_reward": 4.7183861333333335,
+    "avg_reward": 0.5897982666666667
+  },
+  "list_books": {
+    "count": 8,
+    "total_reward": 4.803985344444445,
+    "avg_reward": 0.6004981680555557
+  },
+  "attend_goal": {
+    "count": 4885,
+    "total_reward": 2466.5282219145242,
+    "avg_reward": 0.5049187762363407
+  },
+  "consolidate_language": {
+    "count": 8,
+    "total_reward": 5.005054611111111,
+    "avg_reward": 0.6256318263888889
+  },
+  "look_around": {
+    "count": 230,
+    "total_reward": 95.47671020666684,
+    "avg_reward": 0.4151161313333341
+  },
+  "read_a_book": {
+    "count": 1173,
+    "total_reward": 615.0190726784485,
+    "avg_reward": 0.5243129349347387
+  },
+  "wikipedia_search": {
+    "count": 922,
+    "total_reward": 499.055252925559,
+    "avg_reward": 0.541274677793448
+  },
+  "survey_environment": {
+    "count": 12,
+    "total_reward": 6.233928863555556,
+    "avg_reward": 0.5194940719629629
+  },
+  "summarize_relationships": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "compose_consolidation": {
+    "count": 14,
+    "total_reward": 7.62808928888889,
+    "avg_reward": 0.5448635206349207
+  },
+  "periodic_self_review": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "extract_semantic_facts": {
+    "count": 8,
+    "total_reward": 4.582578677777778,
+    "avg_reward": 0.5728223347222222
+  },
+  "decide_to_write_code": {
+    "count": 1967,
+    "total_reward": 1161.5897031555692,
+    "avg_reward": 0.5905387408010011
+  },
+  "reflect_on_effectiveness": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "reflect_on_internal_agents": {
+    "count": 9,
+    "total_reward": 3.1500000000000004,
+    "avg_reward": 0.35000000000000003
+  },
+  "read_vitals": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "fetch_and_read": {
+    "count": 2745,
+    "total_reward": 1728.4207540965926,
+    "avg_reward": 0.6296614769022195
+  },
+  "reflect_on_cognition_patterns": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "maybe_surface_regret": {
+    "count": 8,
+    "total_reward": 4.715660144444445,
+    "avg_reward": 0.5894575180555556
+  },
+  "reflect_on_self_beliefs": {
+    "count": 12,
+    "total_reward": 4.2,
+    "avg_reward": 0.35000000000000003
+  },
+  "reflect_on_think": {
+    "count": 150,
+    "total_reward": 91.78789716888882,
+    "avg_reward": 0.6119193144592588
+  },
+  "learn_from_reading": {
+    "count": 92,
+    "total_reward": 56.887999653999955,
+    "avg_reward": 0.6183478223260864
+  },
+  "read_book": {
+    "count": 26,
+    "total_reward": 13.799641788888884,
+    "avg_reward": 0.5307554534188033
+  },
+  "simulate_conflicting_beliefs": {
+    "count": 8,
+    "total_reward": 4.763943977777777,
+    "avg_reward": 0.5954929972222222
+  },
+  "reflect_on_outcomes": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "generate_concepts_from_memories": {
+    "count": 27,
+    "total_reward": 14.80586766933333,
+    "avg_reward": 0.5483654692345677
+  },
+  "seek_novelty": {
+    "count": 25,
+    "total_reward": 8.395230164444445,
+    "avg_reward": 0.3358092065777778
+  },
+  "reflect_on_internal_voices": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "read_rss": {
+    "count": 29,
+    "total_reward": 13.36027912577778,
+    "avg_reward": 0.4606992801992338
+  },
+  "process_regret": {
+    "count": 12,
+    "total_reward": 4.2,
+    "avg_reward": 0.35000000000000003
+  },
+  "adapt_subgoals": {
+    "count": 49,
+    "total_reward": 25.341920564444454,
+    "avg_reward": 0.5171820523356011
+  },
+  "thread_continue": {
+    "count": 568,
+    "total_reward": 284.7885121606681,
+    "avg_reward": 0.5013882256349791
+  },
+  "notify_user": {
+    "count": 16,
+    "total_reward": 7.939957089333333,
+    "avg_reward": 0.49624731808333333
+  },
+  "evaluate_recent_cognition": {
+    "count": 15,
+    "total_reward": 8.227217288888887,
+    "avg_reward": 0.5484811525925924
+  },
+  "reflect_as_agents": {
+    "count": 40,
+    "total_reward": 24.90749788711111,
+    "avg_reward": 0.6226874471777777
+  },
+  "read_text": {
+    "count": 8,
+    "total_reward": 5.199159288888889,
+    "avg_reward": 0.6498949111111111
+  },
+  "reflect_on_desire": {
+    "count": 37,
+    "total_reward": 22.188583933333334,
+    "avg_reward": 0.5996914576576576
+  },
+  "pick_book": {
+    "count": 8,
+    "total_reward": 4.853627988888889,
+    "avg_reward": 0.6067034986111112
+  },
+  "introspective_planning": {
+    "count": 10,
+    "total_reward": 5.622750977777777,
+    "avg_reward": 0.5622750977777777
+  },
+  "audit_reflective_claims": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "reflect_on_growth_history": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "imagine_opposite_self": {
+    "count": 11,
+    "total_reward": 6.041473041111111,
+    "avg_reward": 0.5492248219191919
+  },
+  "associative_recall": {
+    "count": 14,
+    "total_reward": 7.889462613333333,
+    "avg_reward": 0.5635330438095238
+  },
+  "produce_and_check": {
+    "count": 16,
+    "total_reward": 10.008445209920637,
+    "avg_reward": 0.6255278256200398
+  },
+  "fetch_wikipedia": {
+    "count": 8,
+    "total_reward": 4.879677688888889,
+    "avg_reward": 0.6099597111111111
+  },
+  "narrative_update": {
+    "count": 5069,
+    "total_reward": 3588.8412423198333,
+    "avg_reward": 0.7079978777510029
+  },
+  "reflect_on_emotion_sensitivity": {
+    "count": 11,
+    "total_reward": 7.020685122222223,
+    "avg_reward": 0.6382441020202021
+  },
+  "reflect_on_missed_goals": {
+    "count": 28,
+    "total_reward": 17.006690044444444,
+    "avg_reward": 0.6073817873015873
+  },
+  "synthesize_from_gap": {
+    "count": 13,
+    "total_reward": 7.007464699999999,
+    "avg_reward": 0.5390357461538461
+  },
+  "reflect_on_opinions": {
+    "count": 8,
+    "total_reward": 2.8000000000000003,
+    "avg_reward": 0.35000000000000003
+  },
+  "idle_consolidation_cycle": {
+    "count": 8,
+    "total_reward": 4.7389522444444445,
+    "avg_reward": 0.5923690305555556
+  },
+  "consolidate_from_long_memory": {
+    "count": 8,
+    "total_reward": 4.247618077777777,
+    "avg_reward": 0.5309522597222222
+  },
+  "mark_private": {
+    "count": 8,
+    "total_reward": 4.583870166666666,
+    "avg_reward": 0.5729837708333333
+  },
+  "write_desktop_note": {
+    "count": 23,
+    "total_reward": 14.050912,
+    "avg_reward": 0.6109092173913043
+  },
+  "run_embodied_observation": {
+    "count": 182,
+    "total_reward": 101.54977844355567,
+    "avg_reward": 0.5579658156239322
+  },
+  "grep_files": {
+    "count": 6,
+    "total_reward": 3.3504000000000005,
+    "avg_reward": 0.5584000000000001
+  },
+  "narrate_experience": {
+    "count": 16,
+    "total_reward": 7.637120000000001,
+    "avg_reward": 0.4773200000000001
+  },
+  "announce_to_dashboard": {
+    "count": 24,
+    "total_reward": 15.288719999999998,
+    "avg_reward": 0.6370299999999999
+  },
+  "compose_section": {
+    "count": 14,
+    "total_reward": 8.383632,
+    "avg_reward": 0.5988308571428572
+  },
+  "simulate_new_cognitive_abilities": {
+    "count": 4,
+    "total_reward": 2.4184,
+    "avg_reward": 0.6046
+  },
+  "review_failures_internal": {
+    "count": 14,
+    "total_reward": 7.327281688888888,
+    "avg_reward": 0.5233772634920635
+  },
+  "reconcile_identity": {
+    "count": 36,
+    "total_reward": 19.744832000000006,
+    "avg_reward": 0.5484675555555557
+  },
+  "exploration_drive_loop": {
+    "count": 12,
+    "total_reward": 6.147380588888889,
+    "avg_reward": 0.5122817157407408
+  },
+  "find_unexpected_link": {
+    "count": 6,
+    "total_reward": 3.088832000000001,
+    "avg_reward": 0.5148053333333334
+  },
+  "make_candidate": {
+    "count": 2,
+    "total_reward": 0.3673599999999999,
+    "avg_reward": 0.18367999999999995
+  },
+  "resolve_conflicts": {
+    "count": 8,
+    "total_reward": 4.2272,
+    "avg_reward": 0.5284
+  },
+  "evolve_core_value": {
+    "count": 11,
+    "total_reward": 5.416347000000001,
+    "avg_reward": 0.4923951818181819
+  },
+  "credit_objectives": {
+    "count": 7,
+    "total_reward": 3.9317481102222227,
+    "avg_reward": 0.5616783014603175
+  },
+  "run_embodied_cycle": {
+    "count": 6,
+    "total_reward": 3.4712000000000005,
+    "avg_reward": 0.5785333333333335
+  },
+  "grounded_experience": {
+    "count": 5,
+    "total_reward": 2.9800000000000004,
+    "avg_reward": 0.5960000000000001
+  },
+  "check_user_presence": {
+    "count": 2,
+    "total_reward": 0.7,
+    "avg_reward": 0.35
+  },
+  "fail_overdue_artifact_goals": {
+    "count": 7,
+    "total_reward": 3.849577715555556,
+    "avg_reward": 0.5499396736507938
+  },
+  "search_files": {
+    "count": 3,
+    "total_reward": 1.7995022222222223,
+    "avg_reward": 0.5998340740740741
+  },
+  "tick_commitment": {
+    "count": 9,
+    "total_reward": 4.5696,
+    "avg_reward": 0.5077333333333334
+  },
+  "experience_corpus": {
+    "count": 11,
+    "total_reward": 5.808832000000001,
+    "avg_reward": 0.5280756363636364
+  },
+  "mark_final_thoughts_written": {
+    "count": 5,
+    "total_reward": 2.5064320000000007,
+    "avg_reward": 0.5012864000000001
+  },
+  "drop_edge": {
+    "count": 6,
+    "total_reward": 2.8968320000000007,
+    "avg_reward": 0.4828053333333335
+  },
+  "repair_contradictions": {
+    "count": 904,
+    "total_reward": 705.2736640000028,
+    "avg_reward": 0.7801699823008881
+  }
+}

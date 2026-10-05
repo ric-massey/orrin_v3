@@ -1,0 +1,905 @@
+{
+  "stagnation_signal": 0.07690383819551694,
+  "core_signals": {
+    "exploration_drive": 0.48872763508897177,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.10001035598647798,
+    "reward_positive": 0.4943516742546211,
+    "expected_gain": 0.730722589223183,
+    "low_affect_signal": 9.26607574816745e-06,
+    "social_comparison_signal": 2.3164803389750465e-06,
+    "conflict_signal": 1.2019605445987008e-06,
+    "threat_level": 0.009555,
+    "reward_negative": 0.01212255788514917,
+    "social_penalty": 1.9922068661415437e-10,
+    "loss_signal": 0.12669156926451708,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 2.3164803389750465e-06,
+    "stagnation_signal": 0.07690383819551694,
+    "novelty_signal": 0.4334463621392697,
+    "motivation": 0.6597397969677088,
+    "confidence": 0.7427372593541857,
+    "impasse_signal": 0.27491532364435484,
+    "uncertainty": 0.25380146456744085,
+    "social_deficit": 0.012669156926451684,
+    "satisfaction_signal": 0.01681628875295077,
+    "risk_estimate": 0.09095487757477075
+  },
+  "_schema_version": 2,
+  "resource_deficit": 0.0952,
+  "signal_stability": 0.951,
+  "_emotion_queue": [
+    {
+      "emotion": "stagnation_signal",
+      "per_cycle": 0.012,
+      "cycles_left": 2,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "reward_positive",
+      "per_cycle": 0.0032,
+      "cycles_left": 1,
+      "source": "stability_signal"
+    }
+  ],
+  "_prev_core": {
+    "exploration_drive": 0.5355415160858855,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.10001056733335671,
+    "reward_positive": 0.49511804302709894,
+    "expected_gain": 0.7368815218646816,
+    "low_affect_signal": 9.50285031255121e-06,
+    "social_comparison_signal": 2.3756729903761568e-06,
+    "conflict_signal": 1.2577345189757812e-06,
+    "threat_level": 0.009555,
+    "reward_negative": 0.012687135465841761,
+    "social_penalty": 9.335691550299563e-08,
+    "loss_signal": 0.1299400736955817,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 2.3756729903761568e-06,
+    "stagnation_signal": 0.07887573148258148,
+    "novelty_signal": 0.43894159354119583,
+    "motivation": 0.6681471547028514,
+    "confidence": 0.7552526166362729,
+    "impasse_signal": 0.29461109457897094,
+    "uncertainty": 0.28115294134169955,
+    "social_deficit": 0.012994007369558145,
+    "satisfaction_signal": 0.017159478669955278,
+    "risk_estimate": 0.0951908732948633
+  },
+  "habituation": {},
+  "social_deficit": 0.0,
+  "_stability_signal_proxy": 0.259,
+  "_ne_proxy": 0.315,
+  "emotion_history": [
+    {
+      "exploration_drive": 0.5033503707751608,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001319783199658,
+      "reward_positive": 0.5329495022205798,
+      "expected_gain": 0.7183484258261287,
+      "low_affect_signal": 9.971705517679783e-06,
+      "social_comparison_signal": 2.492874075505306e-06,
+      "conflict_signal": 1.3416709696882673e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.01333159215726604,
+      "social_penalty": 8.7017941795553e-08,
+      "loss_signal": 0.13668915242230487,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.492874075505306e-06,
+      "stagnation_signal": 0.06665658787056788,
+      "novelty_signal": 0.3982831728629379,
+      "motivation": 0.7565554286098382,
+      "confidence": 0.8331781505565505,
+      "impasse_signal": 0.28026937464516655,
+      "uncertainty": 0.2755590888093189,
+      "social_deficit": 0.013668915242230463,
+      "satisfaction_signal": 0.02143094279233696,
+      "risk_estimate": 0.08829188363935213
+    },
+    {
+      "exploration_drive": 0.513390261521624,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001293381197862,
+      "reward_positive": 0.5246832683465958,
+      "expected_gain": 0.7138691770225692,
+      "low_affect_signal": 9.918371544802863e-06,
+      "social_comparison_signal": 2.479541890133832e-06,
+      "conflict_signal": 1.3309619063038838e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012724636739022348,
+      "social_penalty": 4.9001576605256506e-08,
+      "loss_signal": 0.13327127055830984,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.479541890133832e-06,
+      "stagnation_signal": 0.06626680820889229,
+      "novelty_signal": 0.39398692755087694,
+      "motivation": 0.7124950101992736,
+      "confidence": 0.8163959492521294,
+      "impasse_signal": 0.25081724928218124,
+      "uncertainty": 0.2566171800920072,
+      "social_deficit": 0.013327127055830959,
+      "satisfaction_signal": 0.021002221021791695,
+      "risk_estimate": 0.0939174346049092
+    },
+    {
+      "exploration_drive": 0.49942394615194274,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001267513552758,
+      "reward_positive": 0.5168645143162158,
+      "expected_gain": 0.7093779138048325,
+      "low_affect_signal": 9.671079437142891e-06,
+      "social_comparison_signal": 2.4177201381213406e-06,
+      "conflict_signal": 1.2719009158305566e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012158390368126222,
+      "social_penalty": 1.6683557424457263e-10,
+      "loss_signal": 0.12993948662649918,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.4177201381213406e-06,
+      "stagnation_signal": 0.06509999891390042,
+      "novelty_signal": 0.389782040419319,
+      "motivation": 0.6925745434259032,
+      "confidence": 0.80320741995837,
+      "impasse_signal": 0.23448140103432855,
+      "uncertainty": 0.2413884186435118,
+      "social_deficit": 0.012993948662649892,
+      "satisfaction_signal": 0.020582176257971936,
+      "risk_estimate": 0.09929310710842845
+    },
+    {
+      "exploration_drive": 0.5147604483153604,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001242155374086,
+      "reward_positive": 0.5201942524475073,
+      "expected_gain": 0.7301847996551485,
+      "low_affect_signal": 9.683882618080014e-06,
+      "social_comparison_signal": 2.420922176693343e-06,
+      "conflict_signal": 1.2789536369246708e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013494736222580244,
+      "social_penalty": 6.366004846269924e-08,
+      "loss_signal": 0.1366901292852717,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.420922176693343e-06,
+      "stagnation_signal": 0.05941552606364173,
+      "novelty_signal": 0.3939231220536697,
+      "motivation": 0.7847193371716877,
+      "confidence": 0.8331714495723636,
+      "impasse_signal": 0.23259580163598334,
+      "uncertainty": 0.260978243286803,
+      "social_deficit": 0.013669012928527145,
+      "satisfaction_signal": 0.020170404327103368,
+      "risk_estimate": 0.0863060144140997
+    },
+    {
+      "exploration_drive": 0.5474686178383569,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001217301371021,
+      "reward_positive": 0.5123512260424091,
+      "expected_gain": 0.7251149598942268,
+      "low_affect_signal": 9.799721997211695e-06,
+      "social_comparison_signal": 2.449883233844984e-06,
+      "conflict_signal": 1.3115345005591667e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012841788766304044,
+      "social_penalty": 8.950523837758517e-08,
+      "loss_signal": 0.13327168319108584,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.449883233844984e-06,
+      "stagnation_signal": 0.058913040072438534,
+      "novelty_signal": 0.3897160814569873,
+      "motivation": 0.7452680258446778,
+      "confidence": 0.8158198051454465,
+      "impasse_signal": 0.2167686518239662,
+      "uncertainty": 0.26063794021301784,
+      "social_deficit": 0.013327168319108561,
+      "satisfaction_signal": 0.01976681931559025,
+      "risk_estimate": 0.08724211590304502
+    },
+    {
+      "exploration_drive": 0.5274965437544493,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1000119295518585,
+      "reward_positive": 0.5083885400283782,
+      "expected_gain": 0.720049788659936,
+      "low_affect_signal": 9.56001706355531e-06,
+      "social_comparison_signal": 2.38995818207343e-06,
+      "conflict_signal": 1.254493394506485e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012240911303287492,
+      "social_penalty": 1.3223449346622119e-09,
+      "loss_signal": 0.12993987392877301,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.38995818207343e-06,
+      "stagnation_signal": 0.05784068862236326,
+      "novelty_signal": 0.38560005518425416,
+      "motivation": 0.7323935038012614,
+      "confidence": 0.8021046674137395,
+      "impasse_signal": 0.20160256481952488,
+      "uncertainty": 0.24875853187637179,
+      "social_deficit": 0.012993987392877278,
+      "satisfaction_signal": 0.01937148036770021,
+      "risk_estimate": 0.08813733009056278
+    },
+    {
+      "exploration_drive": 0.5205468230856936,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001169080626682,
+      "reward_positive": 0.5129676789781294,
+      "expected_gain": 0.7405091682173006,
+      "low_affect_signal": 9.84969347548128e-06,
+      "social_comparison_signal": 2.462378437744305e-06,
+      "conflict_signal": 1.330852607644653e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013647160530367816,
+      "social_penalty": 1.3220001559233197e-07,
+      "loss_signal": 0.13668957002033558,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.462378437744305e-06,
+      "stagnation_signal": 0.058513381495198115,
+      "novelty_signal": 0.3897378343011142,
+      "motivation": 0.7331300568120088,
+      "confidence": 0.8245319854850092,
+      "impasse_signal": 0.2978481079971921,
+      "uncertainty": 0.2734811655107772,
+      "social_deficit": 0.01366895700203353,
+      "satisfaction_signal": 0.018983799791165552,
+      "risk_estimate": 0.08042365568662346
+    },
+    {
+      "exploration_drive": 0.5221274919470379,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001145692413949,
+      "reward_positive": 0.5064688726070241,
+      "expected_gain": 0.7348534302301586,
+      "low_affect_signal": 9.833829809603795e-06,
+      "social_comparison_signal": 2.4584136448054546e-06,
+      "conflict_signal": 1.329230839699321e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013030352091009254,
+      "social_penalty": 5.7608498762462546e-08,
+      "loss_signal": 0.13327156300793697,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.4584136448054546e-06,
+      "stagnation_signal": 0.06220479006041942,
+      "novelty_signal": 0.38561918468639766,
+      "motivation": 0.7078065538885826,
+      "confidence": 0.8090210597545345,
+      "impasse_signal": 0.26633186574515494,
+      "uncertainty": 0.2596896906154906,
+      "social_deficit": 0.01332715630079367,
+      "satisfaction_signal": 0.018604016619777976,
+      "risk_estimate": 0.09117677774981396
+    },
+    {
+      "exploration_drive": 0.5060240347392875,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001122778540923,
+      "reward_positive": 0.5008423578869424,
+      "expected_gain": 0.72921693359528,
+      "low_affect_signal": 9.588865490820473e-06,
+      "social_comparison_signal": 2.397173660300453e-06,
+      "conflict_signal": 1.2703004487851867e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012450501368947976,
+      "social_penalty": 2.204094462499029e-10,
+      "loss_signal": 0.12993977106874316,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.397173660300453e-06,
+      "stagnation_signal": 0.06509999856513451,
+      "novelty_signal": 0.3815884852701045,
+      "motivation": 0.6961185607193225,
+      "confidence": 0.7950212184350013,
+      "impasse_signal": 0.2380358448324678,
+      "uncertainty": 0.2489569110219365,
+      "social_deficit": 0.012993977106874291,
+      "satisfaction_signal": 0.018231935885533318,
+      "risk_estimate": 0.09667440900915189
+    },
+    {
+      "exploration_drive": 0.6133136187278496,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001100315966328,
+      "reward_positive": 0.5059977231455768,
+      "expected_gain": 0.7493193975191504,
+      "low_affect_signal": 9.60369237735307e-06,
+      "social_comparison_signal": 2.400881450008795e-06,
+      "conflict_signal": 1.2774163611565274e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013896429256317207,
+      "social_penalty": 6.365200824531847e-08,
+      "loss_signal": 0.13669040672459684,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.400881450008795e-06,
+      "stagnation_signal": 0.0688995614376632,
+      "novelty_signal": 0.4736589572633977,
+      "motivation": 0.6618404668551573,
+      "confidence": 0.7423521590862615,
+      "impasse_signal": 0.36446765220381155,
+      "uncertainty": 0.28069338477303724,
+      "social_deficit": 0.01366904067245966,
+      "satisfaction_signal": 0.017867183438887987,
+      "risk_estimate": 0.08379906440697556
+    },
+    {
+      "exploration_drive": 0.5818235589855271,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001078299322114,
+      "reward_positive": 0.49590004390520304,
+      "expected_gain": 0.7430800634835111,
+      "low_affect_signal": 9.746513141078165e-06,
+      "social_comparison_signal": 2.436587682437084e-06,
+      "conflict_signal": 1.3163103285984106e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013278006766972016,
+      "social_penalty": 9.5750682567175e-08,
+      "loss_signal": 0.13327187045700686,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.436587682437084e-06,
+      "stagnation_signal": 0.06729935559790633,
+      "novelty_signal": 0.45508300055280476,
+      "motivation": 0.6769953101919662,
+      "confidence": 0.7681341259214518,
+      "impasse_signal": 0.3251254366914491,
+      "uncertainty": 0.2775808133781051,
+      "social_deficit": 0.013327187045700661,
+      "satisfaction_signal": 0.017509672112199264,
+      "risk_estimate": 0.08962414787531481
+    },
+    {
+      "exploration_drive": 0.5355415102514468,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10001056733314079,
+      "reward_positive": 0.49511803495369505,
+      "expected_gain": 0.7368815084426931,
+      "low_affect_signal": 9.503667434017898e-06,
+      "social_comparison_signal": 2.3758772707436377e-06,
+      "conflict_signal": 1.2579388221859767e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012687135410935815,
+      "social_penalty": 2.0432890934785064e-10,
+      "loss_signal": 0.12994007104053035,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 2.3758772707436377e-06,
+      "stagnation_signal": 0.06579999865551578,
+      "novelty_signal": 0.43857574056133847,
+      "motivation": 0.6681471512671189,
+      "confidence": 0.7552526103990794,
+      "impasse_signal": 0.2899491890991456,
+      "uncertainty": 0.27604421535874096,
+      "social_deficit": 0.01299400710405301,
+      "satisfaction_signal": 0.01715947831933752,
+      "risk_estimate": 0.09519087134983856
+    }
+  ],
+  "emotion_velocity": {
+    "exploration_drive": -0.0463,
+    "reflective": 0.0,
+    "analytical": 0.0,
+    "affiliation_signal": -0.0,
+    "reward_positive": 0.0024,
+    "expected_gain": -0.0062,
+    "low_affect_signal": 0.0,
+    "social_comparison_signal": 0.0,
+    "conflict_signal": 0.0,
+    "threat_level": 0.0004,
+    "reward_negative": -0.0006,
+    "social_penalty": -0.0,
+    "loss_signal": -0.0033,
+    "prediction_error_signal": 0.0,
+    "rejection_signal": 0.0,
+    "stagnation_signal": -0.0031,
+    "novelty_signal": -0.0169,
+    "motivation": -0.0238,
+    "confidence": -0.0129,
+    "impasse_signal": -0.0399,
+    "uncertainty": -0.0079,
+    "social_deficit": -0.0003,
+    "satisfaction_signal": -0.0004,
+    "risk_estimate": 0.0056
+  },
+  "_pin_streaks": {
+    "uncertainty": 20382,
+    "exploration_drive": 119,
+    "confidence": 42,
+    "expected_gain": 12,
+    "impasse_signal": 12,
+    "novelty_signal": 3
+  },
+  "_saturation_streaks": {},
+  "_saturation_windows": {
+    "exploration_drive": {
+      "n": 331,
+      "hits": 0,
+      "last_bound_v": 0.5250772468037127
+    },
+    "reflective": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.35
+    },
+    "analytical": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.2
+    },
+    "affiliation_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.14636754536878663
+    },
+    "reward_positive": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.5044169490087167
+    },
+    "expected_gain": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.7412893067845735
+    },
+    "low_affect_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 1.4016288761838679e-05
+    },
+    "social_comparison_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 2.0529113784153755e-06
+    },
+    "conflict_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 1.1320628239880079e-06
+    },
+    "threat_level": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.00975
+    },
+    "reward_negative": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.012617147197664417
+    },
+    "social_penalty": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 7.172558070470126e-08
+    },
+    "loss_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.13327705455947017
+    },
+    "prediction_error_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.02
+    },
+    "rejection_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 2.0529113784153755e-06
+    },
+    "stagnation_signal": {
+      "n": 332,
+      "hits": 0,
+      "last_bound_v": 0.058585714263359505
+    },
+    "novelty_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.40523874637402596
+    },
+    "motivation": {
+      "n": 331,
+      "hits": 0,
+      "last_bound_v": 0.7685016188699711
+    },
+    "confidence": {
+      "n": 331,
+      "hits": 0,
+      "last_bound_v": 0.7691625318620071
+    },
+    "impasse_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.27148293613185875
+    },
+    "uncertainty": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.3711823866083999
+    },
+    "social_deficit": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.013327705455946996
+    },
+    "satisfaction_signal": {
+      "n": 416,
+      "hits": 0,
+      "last_bound_v": 0.008356237668116268
+    },
+    "risk_estimate": {
+      "n": 38,
+      "hits": 0,
+      "last_bound_v": 0.0850703862624512
+    }
+  },
+  "motivation": 0.6597397969677088,
+  "exploration_drive": 0.48872763508897177,
+  "confidence": 0.7427372593541857,
+  "_allostatic_load": 0.0,
+  "_resource_setpoint": 0.15,
+  "hedonic_baselines": {
+    "exploration_drive": 0.5986,
+    "reflective": 0.345,
+    "analytical": 0.1951,
+    "affiliation_signal": 0.1033,
+    "reward_positive": 0.517,
+    "expected_gain": 0.7327,
+    "low_affect_signal": 0.04,
+    "social_comparison_signal": 0.005,
+    "conflict_signal": 0.01,
+    "threat_level": 0.01,
+    "reward_negative": 0.0133,
+    "social_penalty": 0.0033,
+    "loss_signal": 0.0967,
+    "prediction_error_signal": 0.0249,
+    "rejection_signal": 0.005,
+    "stagnation_signal": 0.105,
+    "novelty_signal": 0.4207,
+    "motivation": 0.7473,
+    "confidence": 0.7524,
+    "impasse_signal": 0.1913,
+    "uncertainty": 0.3152,
+    "social_deficit": 0.0,
+    "satisfaction_signal": 0.0721,
+    "risk_estimate": 0.0884
+  },
+  "smoothed_state": 0.3337,
+  "reward_signal": 0.334,
+  "activation_level": 0.339,
+  "affect_quadrant": "active_positive",
+  "_affect_velocity_l1": 0.2632,
+  "recent_triggers": [
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Something in me exploring vs. settling, and something else won't let that be the",
+      "emotion": "exploration_drive",
+      "intensity": 0.02,
+      "timestamp": "2026-08-20T14:25:55.089163+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.07,
+      "timestamp": "2026-08-20T14:29:42.155487+00:00"
+    },
+    {
+      "event": "Orrin reflects to break gentle drift in exploratory mode.",
+      "emotion": "affiliation_signal",
+      "intensity": 0.048,
+      "timestamp": "2026-08-20T14:29:42.155487+00:00"
+    },
+    {
+      "event": "[memory] Summary of faded memories:\n- 📝 Working memory summary: - I've been runn",
+      "emotion": "exploration_drive",
+      "intensity": 0.11,
+      "timestamp": "2026-08-20T14:34:06.998165+00:00"
+    },
+    {
+      "event": "[memory] Summary of faded memories:\n- 📝 Working memory summary: - I've been runn",
+      "emotion": "exploration_drive",
+      "intensity": 0.075,
+      "timestamp": "2026-08-20T14:34:06.998165+00:00"
+    },
+    {
+      "event": "[memory] Summary of faded memories:\n- 📝 Working memory summary: - I've been runn",
+      "emotion": "exploration_drive",
+      "intensity": 0.051,
+      "timestamp": "2026-08-20T14:34:06.998165+00:00"
+    },
+    {
+      "event": "[memory] Summary of faded memories:\n- 📝 Working memory summary: - I've been runn",
+      "emotion": "exploration_drive",
+      "intensity": 0.035,
+      "timestamp": "2026-08-20T14:34:06.998165+00:00"
+    }
+  ],
+  "recent_emotion_causes": [
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: repair_contradictions — {\"via\": \"m",
+      "ts": "2026-08-20T12:18:21.179662+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T12:21:14.982594+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T12:25:00.076175+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] [Chunk: [memory] 📝 Working memory summary: - emotional reflection: Drawing from ",
+      "ts": "2026-08-20T12:33:35.395590+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T12:33:54.237664+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T12:46:56.388912+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T12:53:33.786986+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: narrative_update — {\"via\": \"multi-",
+      "ts": "2026-08-20T13:03:34.617205+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:15:25.471113+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:17:45.671086+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:32:26.930197+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:35:46.801404+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:41:45.311170+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] [memory] 📝 Working memory summary: - 🧠 Chose: fetch_and_read — {\"via\": \"multi-fa",
+      "ts": "2026-08-20T13:49:10.673609+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T13:55:38.855624+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T14:01:31.278518+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T14:13:29.880604+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T14:17:24.686240+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-08-20T14:19:49.374194+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.121,
+      "cause": "[appraisal] [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.278): 📝 Working",
+      "ts": "2026-08-20T14:33:02.643415+00:00"
+    }
+  ],
+  "setpoint_proximity": 0.8643,
+  "last_updated": "2026-08-20T14:45:32.670149+00:00",
+  "confidence_by_domain": {},
+  "_appraisal_habituation": {
+    "[chunk: [metacog/pattern] goal avoidance: # consecutive cycles without taking ac": {
+      "ts": 1787237132.6706429,
+      "count": 31769
+    },
+    "[metacog/pattern] goal avoidance: # consecutive cycles without taking action on ": {
+      "ts": 1787237100.9019039,
+      "count": 13112
+    },
+    "🌓 shadow question: what truth am i working hardest to avoid?": {
+      "ts": 1787237088.673516,
+      "count": 1
+    },
+    "dream: in a labyrinth at dusk, a similar situation suggests (design, similarity ": {
+      "ts": 1787237132.6706429,
+      "count": 8
+    }
+  },
+  "_flatline_streak": 0,
+  "emotion_osc_counts": {
+    "exploration_drive": 0,
+    "reflective": 0,
+    "analytical": 0,
+    "affiliation_signal": 0,
+    "reward_positive": 0,
+    "expected_gain": 0,
+    "low_affect_signal": 0,
+    "social_comparison_signal": 0,
+    "conflict_signal": 0,
+    "threat_level": 0,
+    "reward_negative": 0,
+    "social_penalty": 0,
+    "loss_signal": 0,
+    "prediction_error_signal": 0,
+    "rejection_signal": 0,
+    "stagnation_signal": 0,
+    "novelty_signal": 0,
+    "motivation": 0,
+    "confidence": 0,
+    "impasse_signal": 0,
+    "uncertainty": 0,
+    "social_deficit": 0,
+    "satisfaction_signal": 0,
+    "risk_estimate": 0
+  }
+}

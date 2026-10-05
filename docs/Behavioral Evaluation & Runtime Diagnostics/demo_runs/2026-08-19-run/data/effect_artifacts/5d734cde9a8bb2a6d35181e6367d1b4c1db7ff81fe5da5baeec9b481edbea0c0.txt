@@ -1,0 +1,141 @@
+{
+  "question": "What did I get wrong or oversimplify about biology evolutionary biology?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "biology",
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "biology portal Category v t e Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Applications in other disciplines Evolution",
+    "central unifying concept in biology",
+    "science and applied sciences gave birth to new fields that",
+    "extensions of evolutionary biology",
+    "technology Pharming Biology portal Category v t e Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection",
+    "zoologists did not know how embryonic development",
+    "controlled at the molecular level",
+    "The field",
+    "composed of multiple core evolutionary concepts"
+  ],
+  "relations": [
+    {
+      "subject": "biology portal Category v t e Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "Applications in other disciplines Evolution",
+      "predicate": "is the",
+      "object": "central unifying concept in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "science and applied sciences gave birth to new fields that",
+      "predicate": "are",
+      "object": "extensions of evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "technology Pharming Biology portal Category v t e Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "zoologists did not know how embryonic development",
+      "predicate": "was",
+      "object": "controlled at the molecular level",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "The field",
+      "predicate": "is",
+      "object": "composed of multiple core evolutionary concepts",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "theory",
+      "predicate": "was",
+      "object": "wrong",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "Fritz Müller described the evolutionary benefits of what",
+      "predicate": "is",
+      "object": "now called Müllerian mimicry in 1879",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_and_theoretical_biology"
+    },
+    {
+      "subject": "symmetry Symmetry in biology",
+      "predicate": "refers to",
+      "object": "the symmetry observed in organisms",
+      "source": "https://en.wikipedia.org/wiki/Symmetry_in_biology"
+    },
+    {
+      "subject": "symmetry in biology",
+      "predicate": "is",
+      "object": "always approximate",
+      "source": "https://en.wikipedia.org/wiki/Symmetry_in_biology"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_995558e009]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hybrid_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Homology_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_and_theoretical_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Symmetry_in_biology"
+    }
+  ],
+  "ts": "2026-08-19T23:48:00.728717+00:00"
+}

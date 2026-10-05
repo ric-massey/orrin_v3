@@ -1,0 +1,200 @@
+{"ts": 1787181327.979, "site": "sync_proposed_goals", "goal": "Investigate: A strong feeling of drive. — drive", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}
+{"ts": 1787181333.236, "site": "sync_proposed_goals", "goal": "Trace in my own history what drives 'drive grows'", "kind": "generic", "decision": "queued", "reason": "v2 created g_fe1bdc7fb4"}
+{"ts": 1787181388.051, "site": "sync_proposed_goals", "goal": "Investigate: a strong sense of curiosity", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}
+{"ts": 1787181434.286, "site": "sync_proposed_goals", "goal": "Investigate: A strong feeling of drive.", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}
+{"ts": 1787181519.04, "site": "sync_proposed_goals", "goal": "Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b", "kind": "generic", "decision": "queued", "reason": "v2 created intrinsic-2026-08-19T23:18:39.012423+00:00"}
+{"ts": 1787181959.144, "site": "sync_proposed_goals", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "queued", "reason": "v2 created intrinsic-2026-08-19T23:25:56.054572+00:00"}
+{"ts": 1787181959.15, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787181959.152, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_8312147137"}
+{"ts": 1787181959.155, "site": "sync_proposed_goals", "goal": "Understand history more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_995558e009"}
+{"ts": 1787181959.167, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787181959.168, "site": "sync_proposed_goals", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "queued", "reason": "v2 created g_dd89aa2324"}
+{"ts": 1787181959.169, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787181959.169, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_549bf5c476"}
+{"ts": 1787181959.176, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787181959.177, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181959.182, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181959.183, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_7cf7d85103"}
+{"ts": 1787181959.688, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_8312147137"}
+{"ts": 1787181959.689, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181960.192, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181960.192, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_549bf5c476"}
+{"ts": 1787181960.699, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181960.699, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_7cf7d85103"}
+{"ts": 1787181961.205, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_da7f73f250"}
+{"ts": 1787181961.206, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_9a4131f7c3"}
+{"ts": 1787181961.207, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "deferred", "reason": "capacity 2, candidates 3"}
+{"ts": 1787181961.715, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181961.717, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181961.718, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_b548181276"}
+{"ts": 1787181962.231, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_9a4131f7c3"}
+{"ts": 1787181962.249, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181962.762, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_da7f73f250"}
+{"ts": 1787181962.764, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181963.267, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181963.268, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_b548181276"}
+{"ts": 1787181963.77, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_9a4131f7c3"}
+{"ts": 1787181963.771, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181964.214, "site": "committable_from_v1_tree", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "committed", "reason": "limit 3, pool 7"}
+{"ts": 1787181964.278, "site": "goals_daemon", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_c3ba873a56"}
+{"ts": 1787181964.286, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787181964.791, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787181964.791, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_b548181276"}
+{"ts": 1787181965.297, "site": "goals_daemon", "goal": "Understand history more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a3e9b40e7f"}
+{"ts": 1787181965.298, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787181965.804, "site": "goals_daemon", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "dispatched", "reason": "step s_dd86efa34e"}
+{"ts": 1787181967.59, "site": "committable_from_v1_tree", "goal": "Open question: What is concrete and true right now?", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787181967.606, "site": "committable_from_v1_tree", "goal": "Answer: What did I get wrong or oversimplify about consciousness and subjective experience?", "kind": "research", "decision": "committed", "reason": "limit 3, pool 6"}
+{"ts": 1787182071.698, "site": "sync_proposed_goals", "goal": "Turn what I know about Answer: What did I get wrong or oversimplify about consciousness and subjective experience into a", "kind": "generic", "decision": "queued", "reason": "v2 created g_409fe7ea96"}
+{"ts": 1787182071.703, "site": "sync_proposed_goals", "goal": "Understand consciousness and subjective experience more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds intrinsic-2026-08-19T23:25:56.054572+00:00"}
+{"ts": 1787182071.704, "site": "sync_proposed_goals", "goal": "Understand history more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_995558e009"}
+{"ts": 1787182072.932, "site": "committable_from_v1_tree", "goal": "Answer: What did I get wrong or oversimplify about consciousness and subjective experience?", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787182073.789, "site": "sync_proposed_goals", "goal": "Reflect on my open question: What did I get wrong or oversimplify about consciousness and subjective experien", "kind": "generic", "decision": "queued", "reason": "v2 created g_5b301857ca"}
+{"ts": 1787183276.097, "site": "sync_proposed_goals", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_e00776fe40"}
+{"ts": 1787183276.103, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787183276.104, "site": "sync_proposed_goals", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_c7a4e8421d"}
+{"ts": 1787183276.104, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0a1ef3d185"}
+{"ts": 1787183276.108, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787183276.109, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183276.109, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_cc305b99b2"}
+{"ts": 1787183276.613, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0a1ef3d185"}
+{"ts": 1787183276.613, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183277.118, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183277.119, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_cc305b99b2"}
+{"ts": 1787183277.281, "site": "committable_from_v1_tree", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 6"}
+{"ts": 1787183277.281, "site": "committable_from_v1_tree", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 6"}
+{"ts": 1787183277.639, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0cf01e07ee"}
+{"ts": 1787183277.64, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_7c9abb96ec"}
+{"ts": 1787183278.147, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183278.653, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0cf01e07ee"}
+{"ts": 1787183278.653, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183279.161, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183279.161, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_7c9abb96ec"}
+{"ts": 1787183279.67, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0cf01e07ee"}
+{"ts": 1787183279.671, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183280.175, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787183280.175, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_7c9abb96ec"}
+{"ts": 1787183280.681, "site": "goals_daemon", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a157cb7b15"}
+{"ts": 1787183280.686, "site": "goals_daemon", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a493bd3b1"}
+{"ts": 1787183282.954, "site": "sync_proposed_goals", "goal": "Turn what I know about biology evolutionary biology into a written synthesis", "kind": "generic", "decision": "queued", "reason": "v2 created intrinsic-2026-08-19T23:48:02.321814+00:00"}
+{"ts": 1787183285.137, "site": "committable_from_v1_tree", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787183285.137, "site": "committable_from_v1_tree", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787184491.232, "site": "sync_proposed_goals", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_24136ed3db"}
+{"ts": 1787184491.235, "site": "goals_daemon", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787184491.235, "site": "goals_daemon", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_8828d731dc"}
+{"ts": 1787184492.754, "site": "goals_daemon", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_09142be8b0"}
+{"ts": 1787184492.903, "site": "committable_from_v1_tree", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787184496.53, "site": "goals_daemon", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_cddd47397f"}
+{"ts": 1787184496.841, "site": "committable_from_v1_tree", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787185690.967, "site": "sync_proposed_goals", "goal": "Understand mathematics more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_24136ed3db"}
+{"ts": 1787185690.967, "site": "sync_proposed_goals", "goal": "Understand The Daily Stoic more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_e00776fe40"}
+{"ts": 1787186891.555, "site": "sync_proposed_goals", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_40fe7f09e0"}
+{"ts": 1787186891.573, "site": "goals_daemon", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787186891.573, "site": "goals_daemon", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_de7d369e41"}
+{"ts": 1787186892.883, "site": "committable_from_v1_tree", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787186893.093, "site": "goals_daemon", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_64d7326b56"}
+{"ts": 1787186896.262, "site": "goals_daemon", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_8bef5f806a"}
+{"ts": 1787186900.098, "site": "sync_proposed_goals", "goal": "Turn what I know about evolutionary biology into a written synthesis", "kind": "generic", "decision": "queued", "reason": "v2 created g_d27ec28a9c"}
+{"ts": 1787186901.797, "site": "committable_from_v1_tree", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787194188.315, "site": "sync_proposed_goals", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_b15f5c2b37"}
+{"ts": 1787194188.321, "site": "goals_daemon", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787194188.322, "site": "goals_daemon", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_6e2aea5d9c"}
+{"ts": 1787194280.458, "site": "goals_daemon", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_bf160d9e68"}
+{"ts": 1787194284.689, "site": "committable_from_v1_tree", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787196384.611, "site": "goals_daemon", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a2a9ce941c"}
+{"ts": 1787196389.232, "site": "sync_proposed_goals", "goal": "Turn what I know about quantum mechanics foundations into a written synthesis", "kind": "generic", "decision": "queued", "reason": "v2 created g_d1af863fc5"}
+{"ts": 1787196389.242, "site": "sync_proposed_goals", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "queued", "reason": "v2 created intrinsic-2026-08-20T03:26:28.761568+00:00"}
+{"ts": 1787196389.381, "site": "goals_daemon", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787196389.382, "site": "goals_daemon", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_777e0dcbb5"}
+{"ts": 1787196390.941, "site": "goals_daemon", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a7a488b112"}
+{"ts": 1787196398.095, "site": "committable_from_v1_tree", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787196400.129, "site": "goals_daemon", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_9861bb903f"}
+{"ts": 1787197944.758, "site": "committable_from_v1_tree", "goal": "Answer: What did I get wrong or oversimplify about stoic philosophy and daily life?", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787198383.992, "site": "sync_proposed_goals", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_6e9c74642e"}
+{"ts": 1787198383.996, "site": "goals_daemon", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787198383.997, "site": "sync_proposed_goals", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_b23cbc4839"}
+{"ts": 1787198383.997, "site": "goals_daemon", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a6c0d8c754"}
+{"ts": 1787198384.002, "site": "goals_daemon", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787198384.002, "site": "goals_daemon", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787198384.002, "site": "goals_daemon", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_0385f58297"}
+{"ts": 1787198384.515, "site": "goals_daemon", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a6c0d8c754"}
+{"ts": 1787198384.516, "site": "goals_daemon", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787198385.022, "site": "goals_daemon", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_e0640ac8a7"}
+{"ts": 1787198385.022, "site": "goals_daemon", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_ae385b2549"}
+{"ts": 1787198562.219, "site": "sync_proposed_goals", "goal": "Turn what I know about Answer: What did I get wrong or oversimplify about stoic philosophy and daily life into a written", "kind": "generic", "decision": "queued", "reason": "v2 created g_83ca7d555a"}
+{"ts": 1787198562.224, "site": "sync_proposed_goals", "goal": "Understand philosophy of time more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_6e9c74642e"}
+{"ts": 1787198562.226, "site": "sync_proposed_goals", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_a9b6da7133"}
+{"ts": 1787198562.237, "site": "goals_daemon", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787198562.238, "site": "goals_daemon", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_5d149841cf"}
+{"ts": 1787198563.916, "site": "committable_from_v1_tree", "goal": "Answer: What did I get wrong or oversimplify about stoic philosophy and daily life?", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787198564.269, "site": "goals_daemon", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_9697600868"}
+{"ts": 1787198566.223, "site": "committable_from_v1_tree", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787198569.831, "site": "goals_daemon", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_a55ac46d9a"}
+{"ts": 1787198570.885, "site": "committable_from_v1_tree", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787199764.807, "site": "sync_proposed_goals", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_1265f806a8"}
+{"ts": 1787199764.812, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787199764.813, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_e8ec99c523"}
+{"ts": 1787199764.813, "site": "sync_proposed_goals", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "queued", "reason": "v2 created g_bf7018a94d"}
+{"ts": 1787199764.819, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787199764.819, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199764.819, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_6d444a8f0f"}
+{"ts": 1787199765.329, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_e8ec99c523"}
+{"ts": 1787199765.329, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199765.836, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199765.836, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_6d444a8f0f"}
+{"ts": 1787199766.342, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_e8ec99c523"}
+{"ts": 1787199766.343, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199766.851, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199766.851, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199767.363, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199767.874, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199767.874, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199768.383, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199768.383, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199768.822, "site": "committable_from_v1_tree", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 6"}
+{"ts": 1787199768.822, "site": "committable_from_v1_tree", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 6"}
+{"ts": 1787199768.89, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199768.891, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199769.403, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199769.404, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199769.912, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199769.912, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199770.418, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199770.418, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199770.937, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199770.938, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199771.457, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199771.457, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199771.964, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199771.965, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199772.477, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199772.477, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_2a79ba9057"}
+{"ts": 1787199772.989, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199772.99, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199773.508, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199773.508, "site": "goals_daemon", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_1776ebeadb"}
+{"ts": 1787199774.016, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_478a2948a7"}
+{"ts": 1787199777.005, "site": "committable_from_v1_tree", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787199777.01, "site": "committable_from_v1_tree", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "committed", "reason": "limit 3, pool 5"}
+{"ts": 1787199778.878, "site": "sync_proposed_goals", "goal": "Turn what I know about the nature of mathematics into a written synthesis", "kind": "generic", "decision": "queued", "reason": "v2 created g_e8b3c83d5e"}
+{"ts": 1787199778.889, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199778.891, "site": "sync_proposed_goals", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "queued", "reason": "v2 created intrinsic-2026-08-20T04:22:58.804703+00:00"}
+{"ts": 1787199778.896, "site": "goals_daemon", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "planned", "reason": "3 step(s)"}
+{"ts": 1787199778.899, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 3"}
+{"ts": 1787199778.899, "site": "goals_daemon", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_1fa4171d33"}
+{"ts": 1787199779.408, "site": "goals_daemon", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_4915513111"}
+{"ts": 1787199779.408, "site": "goals_daemon", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "deferred", "reason": "capacity 1, candidates 2"}
+{"ts": 1787199779.91, "site": "goals_daemon", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "dispatched", "reason": "step s_b0368b1295"}
+{"ts": 1787199780.317, "site": "committable_from_v1_tree", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "skipped", "reason": "status 'completed' not committable"}
+{"ts": 1787200982.89, "site": "sync_proposed_goals", "goal": "Understand emergence in complex systems more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_a9b6da7133"}
+{"ts": 1787202183.42, "site": "sync_proposed_goals", "goal": "Understand biology evolutionary biology more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_c7a4e8421d"}
+{"ts": 1787202183.421, "site": "sync_proposed_goals", "goal": "Understand evolutionary biology and cooperation more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds intrinsic-2026-08-20T04:22:58.804703+00:00"}
+{"ts": 1787203500.595, "site": "sync_proposed_goals", "goal": "Understand evolutionary biology more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_40fe7f09e0"}
+{"ts": 1787209510.33, "site": "sync_proposed_goals", "goal": "Understand stoic philosophy and daily life more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds intrinsic-2026-08-20T03:26:28.761568+00:00"}
+{"ts": 1787209999.622, "site": "sync_proposed_goals", "goal": "Investigate: I've been carrying an elevated confidence — it's been runnin", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}
+{"ts": 1787210712.532, "site": "sync_proposed_goals", "goal": "Understand quantum mechanics foundations more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_b15f5c2b37"}
+{"ts": 1787214319.465, "site": "sync_proposed_goals", "goal": "Understand foundations of quantum mechanics more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_bf7018a94d"}
+{"ts": 1787215523.886, "site": "sync_proposed_goals", "goal": "Understand history of written language more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_b23cbc4839"}
+{"ts": 1787217926.906, "site": "sync_proposed_goals", "goal": "Understand the nature of mathematics more deeply", "kind": "research", "decision": "adopted_existing", "reason": "v2 already holds g_1265f806a8"}
+{"ts": 1787222279.83, "site": "sync_proposed_goals", "goal": "Investigate: I've been carrying an elevated exploration_drive — it's been", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}
+{"ts": 1787233296.09, "site": "sync_proposed_goals", "goal": "Investigate: I've been carrying an elevated motivation — it's been runnin", "kind": "cognitive", "decision": "not_executable", "reason": "kind 'cognitive' has no v2 handler"}

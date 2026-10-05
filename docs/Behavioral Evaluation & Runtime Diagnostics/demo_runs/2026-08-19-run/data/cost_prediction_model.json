@@ -1,0 +1,177 @@
+{
+  "attend_goal": {
+    "ema": 15.96,
+    "n": 1325,
+    "last": 6.54
+  },
+  "look_outward": {
+    "ema": 30.75,
+    "n": 303,
+    "last": 25.83
+  },
+  "assess_goal_progress": {
+    "ema": 14.35,
+    "n": 811,
+    "last": 10.49
+  },
+  "generate_intrinsic_goals": {
+    "ema": 8.92,
+    "n": 145,
+    "last": 22.21
+  },
+  "research_topic": {
+    "ema": 0.98,
+    "n": 2330,
+    "last": 0.08
+  },
+  "leave_note": {
+    "ema": 1981.38,
+    "n": 617,
+    "last": 364.52
+  },
+  "grounded_experience": {
+    "ema": 200.06,
+    "n": 1,
+    "last": 0.32
+  },
+  "look_around": {
+    "ema": 416.13,
+    "n": 130,
+    "last": 0.07
+  },
+  "run_embodied_cycle": {
+    "ema": 173.2,
+    "n": 3,
+    "last": 204.12
+  },
+  "process_regret": {
+    "ema": 170.55,
+    "n": 2,
+    "last": 21.25
+  },
+  "fetch_and_read": {
+    "ema": 6.46,
+    "n": 1279,
+    "last": 2.73
+  },
+  "wikipedia_search": {
+    "ema": 8.26,
+    "n": 219,
+    "last": 4.24
+  },
+  "credit_objectives": {
+    "ema": 93.74,
+    "n": 5,
+    "last": 33.08
+  },
+  "read_a_book": {
+    "ema": 0.94,
+    "n": 713,
+    "last": 0.3
+  },
+  "check_user_presence": {
+    "ema": 185.7,
+    "n": 2,
+    "last": 95.75
+  },
+  "exploration_drive_loop": {
+    "ema": 42.42,
+    "n": 8,
+    "last": 0.24
+  },
+  "fail_overdue_artifact_goals": {
+    "ema": 53.21,
+    "n": 7,
+    "last": 0.73
+  },
+  "search_files": {
+    "ema": 62.47,
+    "n": 3,
+    "last": 2.54
+  },
+  "narrative_update": {
+    "ema": 5.27,
+    "n": 1658,
+    "last": 0.73
+  },
+  "evolve_core_value": {
+    "ema": 74.95,
+    "n": 6,
+    "last": 9.77
+  },
+  "reflect_on_internal_agents": {
+    "ema": 488.32,
+    "n": 1,
+    "last": 41.59
+  },
+  "search_own_files": {
+    "ema": 124.86,
+    "n": 1,
+    "last": 144.28
+  },
+  "thread_continue": {
+    "ema": 0.4,
+    "n": 446,
+    "last": 0.42
+  },
+  "tick_commitment": {
+    "ema": 33.6,
+    "n": 9,
+    "last": 0.05
+  },
+  "seek_novelty": {
+    "ema": 50.33,
+    "n": 7,
+    "last": 7.27
+  },
+  "make_candidate": {
+    "ema": 200.22,
+    "n": 1,
+    "last": 1.09
+  },
+  "adapt_subgoals": {
+    "ema": 69.49,
+    "n": 7,
+    "last": 28.3
+  },
+  "reflect_on_self_beliefs": {
+    "ema": 459.62,
+    "n": 2,
+    "last": 0.75
+  },
+  "experience_corpus": {
+    "ema": 78.3,
+    "n": 11,
+    "last": 67.94
+  },
+  "mark_final_thoughts_written": {
+    "ema": 83.43,
+    "n": 5,
+    "last": 0.21
+  },
+  "resolve_conflicts": {
+    "ema": 128.85,
+    "n": 3,
+    "last": 0.59
+  },
+  "drop_edge": {
+    "ema": 67.45,
+    "n": 6,
+    "last": 0.38
+  },
+  "repair_contradictions": {
+    "ema": 432.14,
+    "n": 904,
+    "last": 515.26
+  },
+  "grep_files": {
+    "ema": 96.02,
+    "n": 1,
+    "last": 0.09
+  },
+  "simulate_new_cognitive_abilities": {
+    "ema": 200.12,
+    "n": 1,
+    "last": 0.61
+  }
+}

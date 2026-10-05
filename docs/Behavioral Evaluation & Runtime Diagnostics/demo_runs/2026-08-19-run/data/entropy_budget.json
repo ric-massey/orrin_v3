@@ -1,0 +1,39 @@
+{
+  "q0": {
+    "grew": {
+      "long_memory": 3371
+    },
+    "compressed": {
+      "memory_store": 6456,
+      "long_memory": 2
+    },
+    "forgotten": {
+      "long_memory": 1537
+    }
+  },
+  "updated": 1787281688.4,
+  "q1": {
+    "grew": {
+      "long_memory": 7939
+    },
+    "compressed": {
+      "memory_store": 4882,
+      "long_memory": 7003
+    },
+    "forgotten": {
+      "long_memory": 14791
+    }
+  },
+  "q2": {
+    "grew": {
+      "long_memory": 2083
+    },
+    "compressed": {
+      "long_memory": 2082,
+      "memory_store": 950
+    },
+    "forgotten": {
+      "long_memory": 4164
+    }
+  }
+}

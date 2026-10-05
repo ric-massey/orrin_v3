@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Compressive_strength",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd89aa2324/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/I_Know_What_You_Did_Last_Summer_%282025_film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd89aa2324/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_presentism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd89aa2324/doc_03.txt",
+      "chars": 18465
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/David_Lewis_%28philosopher%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd89aa2324/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boolean_algebra",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd89aa2324/doc_05.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-08-19T23:26:05.287720+00:00"
+}

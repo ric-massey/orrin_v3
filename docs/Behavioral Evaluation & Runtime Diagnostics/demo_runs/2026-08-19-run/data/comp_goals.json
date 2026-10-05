@@ -1,0 +1,2894 @@
+[
+  {
+    "id": "ltc_aspiration-self_understa_1",
+    "name": "Understand my own mind and how I work more deeply",
+    "title": "Understand my own mind and how I work more deeply",
+    "description": "Work the frontier of “aspiration-self_understanding”: my own mind and how I work.",
+    "tier": "core",
+    "status": "completed",
+    "timestamp": "2026-08-19T23:16:01.025696Z",
+    "last_updated": "2026-08-19T23:18:25.530380Z",
+    "emotional_intensity": 0.6,
+    "parent": "aspiration-self_understanding",
+    "serves": "Understand my own mind and how I work",
+    "driven_by": "self_understanding",
+    "_frontier_child": true,
+    "frontier_target": "my own mind and how I work",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:16:01.025696Z",
+        "frontier": "my own mind and how I work"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:18:25.530380Z"
+      }
+    ],
+    "subgoals": [],
+    "_last_progress_cycle": 27,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:16:05.146962Z",
+        "completed_at": "2026-08-19T23:16:05.211513Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:16:05.146962Z",
+        "completed_at": "2026-08-19T23:17:50.405386Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:16:05.146962Z",
+        "completed_at": "2026-08-19T23:18:25.492651Z"
+      }
+    ],
+    "_step_attempts": {},
+    "question": "What do I now know about my own mind and how I work that I could not have said before?",
+    "answered": false,
+    "_epistemic_blocks": 1,
+    "completed_timestamp": "2026-08-19T23:18:25.530380Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.187
+    }
+  },
+  {
+    "title": "Answer: What do I now know about my own mind and how I work that I could not have said before?",
+    "name": "Answer: What do I now know about my own mind and how I work that I could not have said before?",
+    "description": "My goal 'Understand my own mind and how I work more deeply' closed without answering its own question: 'What do I now know about my own mind and how I work that I could not have said before?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "generic",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "self_understanding",
+    "created_ts": "2026-08-19T23:18:25.598145+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What do I now know about my own mind and how I work that I c' was found.",
+        "met": true,
+        "met_at": 1787181511.2893069,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1787181518.9748778,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "question": "What do I now know about my own mind and how I work that I could not have said before?",
+    "zone": "self",
+    "orientation": "selfward",
+    "tags": [
+      "selfward"
+    ],
+    "parent_question_goal": "ltc_aspiration-self_understa_1",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:25.599316Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:25.599326Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:25.599328Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:25.599330Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:25.599332Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:18:25.599354Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:25.599316Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:25.599326Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:25.599328Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:25.599330Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:25.599332Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What do I now know about my own mind and how I work that I c' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:18:25.599354Z"
+    },
+    "timestamp": "2026-08-19T23:18:25.599360Z",
+    "last_updated": "2026-08-19T23:18:38.975069Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:18:25.599360Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:18:38.975069Z"
+      }
+    ],
+    "id": "g_88603e45e3ff",
+    "_lm_research_baseline": 3,
+    "_last_progress_cycle": 130,
+    "_step_attempts": {
+      "Establish intended outcome": 1
+    },
+    "completed_timestamp": "2026-08-19T23:18:38.975069Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.283
+    }
+  },
+  {
+    "title": "Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b",
+    "name": "Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "serves": "Understand my own mind and how I work",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:18:39.022408Z",
+        "completed_at": "2026-08-19T23:18:46.874683Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:18:39.022412Z",
+        "completed_at": "2026-08-19T23:20:32.637177Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:18:39.022414Z",
+        "completed_at": "2026-08-19T23:22:18.384388Z"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:18:39.022415Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:18:39.022430Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:39.022408Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:39.022412Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:39.022414Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:18:39.022415Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:18:39.022430Z"
+    },
+    "timestamp": "2026-08-19T23:18:39.022434Z",
+    "last_updated": "2026-08-19T23:22:18.397784Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:18:39.022434Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:22:18.397784Z"
+      }
+    ],
+    "id": "g_955e7dd631e6",
+    "_step_attempts": {},
+    "_lm_research_baseline": 7,
+    "completed_timestamp": "2026-08-19T23:22:18.397784Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.242
+    }
+  },
+  {
+    "title": "Understand foundations of quantum mechanics more deeply",
+    "name": "Understand foundations of quantum mechanics more deeply",
+    "status": "completed",
+    "source": "commitment",
+    "driven_by": "will",
+    "serves": "Understand the world more deeply",
+    "definition_of_done": [
+      {
+        "criterion": "Relevant evidence or observations have been recorded.",
+        "kind": "evidence",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "A reasoned conclusion directly answers the goal.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "At least one observable consequence or next decision is identified.",
+        "kind": "outcome",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "question or desired change",
+      "relevant evidence",
+      "reasoned conclusion",
+      "observable consequence"
+    ],
+    "plan": [
+      {
+        "step": "Establish question or desired change",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:22:18.542863Z",
+        "completed_at": "2026-08-19T23:22:25.807150Z"
+      },
+      {
+        "step": "Establish relevant evidence",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:22:18.542869Z",
+        "completed_at": "2026-08-19T23:24:11.346213Z"
+      },
+      {
+        "step": "Establish reasoned conclusion",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:22:18.542871Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish observable consequence",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:22:18.542873Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "milestone": "Relevant evidence or observations have been recorded.",
+        "criterion_kind": "evidence",
+        "met": false
+      },
+      {
+        "milestone": "A reasoned conclusion directly answers the goal.",
+        "criterion_kind": "quality",
+        "met": false
+      },
+      {
+        "milestone": "At least one observable consequence or next decision is identified.",
+        "criterion_kind": "outcome",
+        "met": false
+      }
+    ],
+    "requires_artifact": false,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:22:18.542886Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "Relevant evidence or observations have been recorded.",
+          "kind": "evidence",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "A reasoned conclusion directly answers the goal.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "At least one observable consequence or next decision is identified.",
+          "kind": "outcome",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "question or desired change",
+        "relevant evidence",
+        "reasoned conclusion",
+        "observable consequence"
+      ],
+      "plan": [
+        {
+          "step": "Establish question or desired change",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:22:18.542863Z"
+        },
+        {
+          "step": "Establish relevant evidence",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:22:18.542869Z"
+        },
+        {
+          "step": "Establish reasoned conclusion",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:22:18.542871Z"
+        },
+        {
+          "step": "Establish observable consequence",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:22:18.542873Z"
+        }
+      ],
+      "milestones": [
+        {
+          "milestone": "Relevant evidence or observations have been recorded.",
+          "criterion_kind": "evidence",
+          "met": false
+        },
+        {
+          "milestone": "A reasoned conclusion directly answers the goal.",
+          "criterion_kind": "quality",
+          "met": false
+        },
+        {
+          "milestone": "At least one observable consequence or next decision is identified.",
+          "criterion_kind": "outcome",
+          "met": false
+        }
+      ],
+      "requires_artifact": false,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:22:18.542886Z"
+    },
+    "timestamp": "2026-08-19T23:22:18.542890Z",
+    "last_updated": "2026-08-19T23:25:55.848736Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:22:18.542890Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:25:55.848736Z"
+      }
+    ],
+    "id": "g_75f5660a3aa2",
+    "_step_attempts": {
+      "Establish reasoned conclusion": 2
+    },
+    "question": "What do I now know about foundations of quantum mechanics that I could not have said before?",
+    "answered": false,
+    "_epistemic_blocks": 2,
+    "_lm_research_baseline": 9,
+    "completed_timestamp": "2026-08-19T23:25:55.848736Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 3,
+      "verified_artifact": false,
+      "significance": 1.3
+    }
+  },
+  {
+    "id": "intrinsic-2026-08-19T23:25:56.054572+00:00",
+    "title": "Understand consciousness and subjective experience more deeply",
+    "name": "Understand consciousness and subjective experience more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about consciousness and subjective experience?",
+    "spec": {
+      "queries": [
+        "consciousness and subjective experience",
+        "consciousness and subjective experience explained",
+        "what is not obvious about consciousness and subjective experience"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.141733Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.141745Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.141749Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.141752Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.141754Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on consciousness and subjective experience was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about consciousness and subjective experience was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:25:59.141785Z",
+      "question": "What did I get wrong or oversimplify about consciousness and subjective experience?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": false,
+    "status": "completed"
+  },
+  {
+    "id": "g_995558e009",
+    "title": "Understand history more deeply",
+    "name": "Understand history more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about history?",
+    "spec": {
+      "queries": [
+        "history",
+        "history explained",
+        "what is not obvious about history"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.149555Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.149562Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.149565Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.149567Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.149570Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on history was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about history was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:25:59.149714Z",
+      "question": "What did I get wrong or oversimplify about history?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "Modern Future History portal Category v t e History is the systematic study of the past",
+    "status": "completed"
+  },
+  {
+    "id": "g_dd89aa2324",
+    "title": "Open question: What is concrete and true right now?",
+    "name": "Open question: What is concrete and true right now?",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What is concrete and true right now?",
+    "spec": {
+      "queries": [
+        "What is concrete and true right now?"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.163973Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.163981Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.163985Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.163988Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:59.163991Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Investigated: What is concrete and true right now?",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A finding was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:25:59.164016Z",
+      "question": "What is concrete and true right now?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "This linear region terminates at what is known as the yield point",
+    "status": "completed"
+  },
+  {
+    "title": "Answer: What did I get wrong or oversimplify about consciousness and subjective experience?",
+    "name": "Answer: What did I get wrong or oversimplify about consciousness and subjective experience?",
+    "description": "My goal 'Understand consciousness and subjective experience more deep' closed without answering its own question: 'What did I get wrong or oversimplify about consciousness and subjective experience?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "research",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-08-19T23:26:04.472399+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What did I get wrong or oversimplify about consciousness and' was found.",
+        "met": true,
+        "met_at": 1787181999.352449,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1787182071.52217,
+        "evidence_source": "research_lm_growth"
+      }
+    ],
+    "spec": {
+      "queries": [
+        "What did I get wrong or oversimplify about consciousness and subjective experience?"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:26:04.482550Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:26:04.482567Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:26:04.482571Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:26:04.482574Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:26:04.482577Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What did I get wrong or oversimplify about consciousness and' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:26:04.482624Z"
+    },
+    "question": "What did I get wrong or oversimplify about consciousness and subjective experience?",
+    "requires_artifact": true,
+    "deadline_cycles": 200,
+    "zone": "world",
+    "orientation": "worldward",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "parent_question_goal": "intrinsic-2026-08-19T23:25:56.054572+00:00",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:26:04.482550Z",
+        "completed_at": "2026-08-19T23:27:21.922631Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:26:04.482567Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:26:04.482571Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:26:04.482574Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:26:04.482577Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:26:04.482624Z",
+    "timestamp": "2026-08-19T23:26:04.482634Z",
+    "last_updated": "2026-08-19T23:27:51.522457Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:26:04.482634Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:27:51.522457Z"
+      }
+    ],
+    "id": "g_6571390a3d56",
+    "_step_attempts": {},
+    "_lm_research_baseline": 10,
+    "_last_progress_cycle": 407,
+    "answered": false,
+    "_epistemic_blocks": 1,
+    "_artifact_first_seen_cycle": 400,
+    "completed_timestamp": "2026-08-19T23:27:51.522457Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "title": "Answer: What do I now know about foundations of quantum mechanics that I could not have said befor",
+    "name": "Answer: What do I now know about foundations of quantum mechanics that I could not have said befor",
+    "description": "My goal 'Understand foundations of quantum mechanics more deeply' closed without answering its own question: 'What do I now know about foundations of quantum mechanics that I could not have said before?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "generic",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "will",
+    "created_ts": "2026-08-19T23:25:56.080034+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What do I now know about foundations of quantum mechanics th' was found.",
+        "met": true,
+        "met_at": 1787181962.4839392,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1787182070.5816681,
+        "evidence_source": "research_lm_growth"
+      }
+    ],
+    "question": "What do I now know about foundations of quantum mechanics that I could not have said before?",
+    "zone": "self",
+    "orientation": "selfward",
+    "tags": [
+      "selfward"
+    ],
+    "parent_question_goal": "g_75f5660a3aa2",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:25:56.082085Z",
+        "completed_at": "2026-08-19T23:27:14.790633Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "completed",
+        "generated_at": "2026-08-19T23:25:56.082094Z",
+        "completed_at": "2026-08-19T23:27:50.564608Z"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:25:56.082097Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:25:56.082100Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:25:56.082102Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:25:56.082133Z",
+    "spec": {
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:56.082085Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:56.082094Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:56.082097Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:56.082100Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:25:56.082102Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What do I now know about foundations of quantum mechanics th' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:25:56.082133Z"
+    },
+    "timestamp": "2026-08-19T23:25:56.082140Z",
+    "last_updated": "2026-08-19T23:27:53.619884Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:25:56.082140Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:27:53.619884Z"
+      }
+    ],
+    "id": "g_1008c1fd6cb4",
+    "_lm_research_baseline": 10,
+    "_last_progress_cycle": 362,
+    "_step_attempts": {},
+    "answered": false,
+    "_epistemic_blocks": 2,
+    "_artifact_first_seen_cycle": 400,
+    "completed_timestamp": "2026-08-19T23:27:53.619884Z",
+    "satisfied_need": "stagnation_signal",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_e00776fe40",
+    "title": "Understand The Daily Stoic more deeply",
+    "name": "Understand The Daily Stoic more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about The Daily Stoic?",
+    "spec": {
+      "queries": [
+        "The Daily Stoic",
+        "The Daily Stoic explained",
+        "what is not obvious about The Daily Stoic"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.093807Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.093817Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.093819Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.093820Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.093822Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on The Daily Stoic was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about The Daily Stoic was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:47:56.093845Z",
+      "question": "What did I get wrong or oversimplify about The Daily Stoic?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "H65 2016 Preceded by Ego is the Enemy Website dailystoic",
+    "status": "completed"
+  },
+  {
+    "id": "g_c7a4e8421d",
+    "title": "Understand biology evolutionary biology more deeply",
+    "name": "Understand biology evolutionary biology more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "biology evolutionary biology",
+        "biology evolutionary biology explained",
+        "what is not obvious about biology evolutionary biology"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.101959Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.101963Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.101965Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.101967Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-19T23:47:56.101969Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on biology evolutionary biology was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about biology evolutionary biology was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-19T23:47:56.102014Z",
+      "question": "What did I get wrong or oversimplify about biology evolutionary biology?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "A durable artifact exists for this goal.",
+        "kind": "artifact",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+        "kind": "quality",
+        "target": true,
+        "met": false
+      },
+      {
+        "criterion": "The result has been checked against the stated outcome.",
+        "kind": "validation",
+        "target": true,
+        "met": false
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:47:56.101959Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:47:56.101963Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:47:56.101965Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:47:56.101967Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-19T23:47:56.101969Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on biology evolutionary biology was researched.",
+        "met": true,
+        "met_at": 1787183282.007663,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about biology evolutionary biology was written to long memory.",
+        "met": true,
+        "met_at": 1787183282.007663,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-19T23:47:56.102014Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-08-19T23:47:57.265488Z",
+    "last_updated": "2026-08-19T23:48:02.021597Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-19T23:47:57.265488Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-19T23:48:02.021597Z"
+      }
+    ],
+    "_lm_research_baseline": 23,
+    "_last_progress_cycle": 873,
+    "completed_timestamp": "2026-08-19T23:48:02.021597Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_24136ed3db",
+    "title": "Understand mathematics more deeply",
+    "name": "Understand mathematics more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about mathematics?",
+    "spec": {
+      "queries": [
+        "mathematics",
+        "mathematics explained",
+        "what is not obvious about mathematics"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:08:11.224995Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:08:11.225009Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:08:11.225012Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:08:11.225014Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:08:11.225016Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T00:08:11.229015Z",
+      "question": "What did I get wrong or oversimplify about mathematics?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "Mathematics is a field of knowledge concerned with abstract concepts such as numbers",
+    "status": "completed"
+  },
+  {
+    "id": "g_40fe7f09e0",
+    "title": "Understand evolutionary biology more deeply",
+    "name": "Understand evolutionary biology more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "evolutionary biology",
+        "evolutionary biology explained",
+        "what is not obvious about evolutionary biology"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551546Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551570Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551578Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551580Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551582Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on evolutionary biology was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about evolutionary biology was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T00:48:11.551626Z",
+      "question": "What did I get wrong or oversimplify about evolutionary biology?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 1
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-08-20T00:48:11.551546Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-20T00:48:11.551570Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T00:48:11.551578Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T00:48:11.551580Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-20T00:48:11.551582Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on evolutionary biology was researched.",
+        "met": true,
+        "met_at": 1787186899.481745,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about evolutionary biology was written to long memory.",
+        "met": true,
+        "met_at": 1787186899.481745,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-20T00:48:11.551626Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-08-20T00:48:12.873677Z",
+    "last_updated": "2026-08-20T00:48:19.490431Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T00:48:12.873677Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T00:48:19.490431Z"
+      }
+    ],
+    "_lm_research_baseline": 33,
+    "_last_progress_cycle": 2138,
+    "completed_timestamp": "2026-08-20T00:48:19.490431Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_b15f5c2b37",
+    "title": "Understand quantum mechanics foundations more deeply",
+    "name": "Understand quantum mechanics foundations more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "quantum mechanics foundations",
+        "quantum mechanics foundations explained",
+        "what is not obvious about quantum mechanics foundations"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T02:49:48.311516Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T02:49:48.311529Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T02:49:48.311531Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T02:49:48.311533Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T02:49:48.311535Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on quantum mechanics foundations was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about quantum mechanics foundations was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T02:49:48.311555Z",
+      "question": "What did I get wrong or oversimplify about quantum mechanics foundations?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 2
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 2
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-08-20T02:49:48.311516Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-20T02:49:48.311529Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T02:49:48.311531Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T02:49:48.311533Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-20T02:49:48.311535Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on quantum mechanics foundations was researched.",
+        "met": true,
+        "met_at": 1787196386.728363,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about quantum mechanics foundations was written to long memory.",
+        "met": true,
+        "met_at": 1787196386.728363,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-20T02:49:48.311555Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-08-20T02:51:24.648810Z",
+    "last_updated": "2026-08-20T03:26:26.733505Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T02:51:24.648810Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T03:26:26.733505Z"
+      }
+    ],
+    "_lm_research_baseline": 35,
+    "_last_progress_cycle": 2208,
+    "_step_attempts": {
+      "Establish intended outcome": 1
+    },
+    "completed_timestamp": "2026-08-20T03:26:26.733505Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.283
+    }
+  },
+  {
+    "id": "intrinsic-2026-08-20T03:26:28.761568+00:00",
+    "title": "Understand stoic philosophy and daily life more deeply",
+    "name": "Understand stoic philosophy and daily life more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about stoic philosophy and daily life?",
+    "spec": {
+      "queries": [
+        "stoic philosophy and daily life",
+        "stoic philosophy and daily life explained",
+        "what is not obvious about stoic philosophy and daily life"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:29.237612Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:29.237636Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:29.237643Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:29.237649Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:29.237654Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on stoic philosophy and daily life was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about stoic philosophy and daily life was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T03:26:29.237711Z",
+      "question": "What did I get wrong or oversimplify about stoic philosophy and daily life?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": false,
+    "status": "completed"
+  },
+  {
+    "title": "Answer: What did I get wrong or oversimplify about stoic philosophy and daily life?",
+    "name": "Answer: What did I get wrong or oversimplify about stoic philosophy and daily life?",
+    "description": "My goal 'Understand stoic philosophy and daily life more deeply' closed without answering its own question: 'What did I get wrong or oversimplify about stoic philosophy and daily life?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "research",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-08-20T03:26:40.348236+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What did I get wrong or oversimplify about stoic philosophy ' was found.",
+        "met": true,
+        "met_at": 1787198423.4399722,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1787198561.852097,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "spec": {
+      "queries": [
+        "What did I get wrong or oversimplify about stoic philosophy and daily life?"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:40.371983Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:40.371995Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:40.371997Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:40.371999Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T03:26:40.372000Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What did I get wrong or oversimplify about stoic philosophy ' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T03:26:40.372048Z"
+    },
+    "question": "What did I get wrong or oversimplify about stoic philosophy and daily life?",
+    "requires_artifact": true,
+    "deadline_cycles": 200,
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 2
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 2
+      }
+    ],
+    "ladder_rung": 2,
+    "zone": "world",
+    "orientation": "worldward",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "parent_question_goal": "intrinsic-2026-08-20T03:26:28.761568+00:00",
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-08-20T03:26:40.371983Z",
+        "completed_at": "2026-08-20T04:01:01.391448Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "completed",
+        "generated_at": "2026-08-20T03:26:40.371995Z",
+        "completed_at": "2026-08-20T04:01:36.647316Z"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T03:26:40.371997Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T03:26:40.371999Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-20T03:26:40.372000Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-20T03:26:40.372048Z",
+    "timestamp": "2026-08-20T03:26:40.372071Z",
+    "last_updated": "2026-08-20T04:02:41.863149Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T03:26:40.372071Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T04:02:41.863149Z"
+      }
+    ],
+    "id": "g_d0dd312536c9",
+    "_lm_research_baseline": 38,
+    "_last_progress_cycle": 2270,
+    "_step_attempts": {
+      "Establish implementation": 1
+    },
+    "answered": false,
+    "_epistemic_blocks": 2,
+    "completed_timestamp": "2026-08-20T04:02:41.863149Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.283
+    }
+  },
+  {
+    "id": "g_a9b6da7133",
+    "title": "Understand emergence in complex systems more deeply",
+    "name": "Understand emergence in complex systems more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about emergence in complex systems?",
+    "spec": {
+      "queries": [
+        "emergence in complex systems",
+        "emergence in complex systems explained",
+        "what is not obvious about emergence in complex systems"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223727Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223732Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223734Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223736Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223737Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on emergence in complex systems was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about emergence in complex systems was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T04:02:42.223804Z",
+      "question": "What did I get wrong or oversimplify about emergence in complex systems?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "rationality Evolutionary game theory v t e A complex system is a system composed of many components that interact with one another",
+    "status": "completed"
+  },
+  {
+    "id": "g_bf7018a94d",
+    "title": "Understand foundations of quantum mechanics more deeply",
+    "name": "Understand foundations of quantum mechanics more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about foundations of quantum mechanics?",
+    "spec": {
+      "queries": [
+        "foundations of quantum mechanics",
+        "foundations of quantum mechanics explained",
+        "what is not obvious about foundations of quantum mechanics"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.810856Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.810860Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.810862Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.810863Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.810865Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on foundations of quantum mechanics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about foundations of quantum mechanics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T04:22:44.810949Z",
+      "question": "What did I get wrong or oversimplify about foundations of quantum mechanics?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "The sequence begins with a quantum system whose observable is to be measured",
+    "status": "completed"
+  },
+  {
+    "id": "g_1265f806a8",
+    "title": "Understand the nature of mathematics more deeply",
+    "name": "Understand the nature of mathematics more deeply",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "the nature of mathematics",
+        "the nature of mathematics explained",
+        "what is not obvious about the nature of mathematics"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805383Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805391Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805394Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805395Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805397Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the nature of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the nature of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T04:22:44.805411Z",
+      "question": "What did I get wrong or oversimplify about the nature of mathematics?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 3
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 3
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-08-20T04:22:44.805383Z",
+        "completed_at": "2026-08-20T04:22:54.572489Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-08-20T04:22:44.805391Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T04:22:44.805394Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-08-20T04:22:44.805395Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-08-20T04:22:44.805397Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on the nature of mathematics was researched.",
+        "met": true,
+        "met_at": 1787199774.7063968,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about the nature of mathematics was written to long memory.",
+        "met": true,
+        "met_at": 1787199774.7063968,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-08-20T04:22:44.805411Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-08-20T04:22:48.800846Z",
+    "last_updated": "2026-08-20T04:22:58.328024Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T04:22:48.800846Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T04:22:58.328024Z"
+      }
+    ],
+    "_lm_research_baseline": 40,
+    "_last_progress_cycle": 2569,
+    "_check_passed": true,
+    "_step_attempts": {},
+    "question": "What did I find about the nature of mathematics that makes 'A new angle on the nature of mathematics was researched' true?",
+    "answered": false,
+    "_epistemic_blocks": 1,
+    "completed_timestamp": "2026-08-20T04:22:58.328024Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_1265f806a8",
+    "title": "Understand the nature of mathematics more deeply",
+    "name": "Understand the nature of mathematics more deeply",
+    "kind": "research",
+    "driven_by": "world_knowledge",
+    "question": "What did I get wrong or oversimplify about the nature of mathematics?",
+    "spec": {
+      "queries": [
+        "the nature of mathematics",
+        "the nature of mathematics explained",
+        "what is not obvious about the nature of mathematics"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 3
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805383Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805391Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805394Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805395Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:22:44.805397Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the nature of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the nature of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T04:22:44.805411Z",
+      "question": "What did I get wrong or oversimplify about the nature of mathematics?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "answered": true,
+    "answer": "Mathematics is a field of knowledge concerned with abstract concepts such as numbers",
+    "status": "completed"
+  },
+  {
+    "name": "Strengthen EMOTIONAL symbolic reasoning",
+    "description": "The EMOTIONAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-08-20T05:04:15.987077+00:00",
+    "last_updated": "2026-08-20T05:04:55.635444Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T05:04:15.987077+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T05:04:55.635444Z"
+      }
+    ],
+    "id": "g_1f143ff2aaa8",
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen EMOTIONAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-08-20T05:04:20.384365Z",
+        "completed_at": "2026-08-20T05:04:20.389278Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen EMOTIONAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-08-20T05:04:20.384365Z",
+        "completed_at": "2026-08-20T05:04:55.516410Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-08-20T05:04:55.635444Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  },
+  {
+    "name": "Strengthen SOCIAL symbolic reasoning",
+    "description": "The SOCIAL domain has low rule confidence. Accumulate grounded evidence through experiments and reflection.",
+    "tier": "short_term",
+    "status": "completed",
+    "timestamp": "2026-08-20T05:04:15.987077+00:00",
+    "last_updated": "2026-08-20T05:04:56.190051Z",
+    "emotional_intensity": 0.5,
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-08-20T05:04:15.987077+00:00"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-08-20T05:04:56.190051Z"
+      }
+    ],
+    "id": "g_87047f905eb8",
+    "plan": [
+      {
+        "step": "Call look_outward to make progress on: Strengthen SOCIAL symbolic reasoning",
+        "status": "completed",
+        "generated_at": "2026-08-20T05:04:20.341145Z",
+        "completed_at": "2026-08-20T05:04:20.356269Z"
+      },
+      {
+        "step": "Write one concrete thing learned about Strengthen SOCIAL symbolic reasoning to working memory",
+        "status": "completed",
+        "generated_at": "2026-08-20T05:04:20.341145Z",
+        "completed_at": "2026-08-20T05:04:56.158469Z"
+      }
+    ],
+    "_step_attempts": {},
+    "completed_timestamp": "2026-08-20T05:04:56.190051Z",
+    "satisfied_need": null,
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 0,
+      "milestones_total": 0,
+      "verified_artifact": false,
+      "significance": 1.04
+    }
+  }
+]

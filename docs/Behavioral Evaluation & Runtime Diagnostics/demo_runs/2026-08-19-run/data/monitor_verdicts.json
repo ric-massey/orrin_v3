@@ -1,0 +1,212 @@
+[
+  {
+    "ts": "2026-08-19T23:17:18.310182+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.93
+  },
+  {
+    "ts": "2026-08-19T23:17:19.677763+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.86
+  },
+  {
+    "ts": "2026-08-19T23:17:24.600662+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.79
+  },
+  {
+    "ts": "2026-08-19T23:17:27.377432+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.72
+  },
+  {
+    "ts": "2026-08-19T23:17:30.136104+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.65
+  },
+  {
+    "ts": "2026-08-19T23:17:31.507037+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.58
+  },
+  {
+    "ts": "2026-08-19T23:17:32.885908+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.51
+  },
+  {
+    "ts": "2026-08-19T23:17:36.999821+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.44
+  },
+  {
+    "ts": "2026-08-19T23:17:38.545982+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:17:39.982374+00:00",
+    "kind": "stuck_step",
+    "honored": true,
+    "bias": 0.45
+  },
+  {
+    "ts": "2026-08-19T23:17:44.261947+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:17:45.676009+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:17:47.070518+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:17:51.252422+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:26:51.172373+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:26:53.238660+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:26:55.222689+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:26:59.076942+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:00.772882+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:03.027030+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:06.802462+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:09.063439+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:11.008460+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:16.131900+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:20.085751+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-19T23:27:24.208529+00:00",
+    "kind": "stuck_step",
+    "honored": true,
+    "bias": 0.45
+  },
+  {
+    "ts": "2026-08-20T04:00:32.637074+00:00",
+    "kind": "stuck_step",
+    "honored": true,
+    "bias": 0.5
+  },
+  {
+    "ts": "2026-08-20T04:00:35.098940+00:00",
+    "kind": "stuck_step",
+    "honored": true,
+    "bias": 0.55
+  },
+  {
+    "ts": "2026-08-20T04:00:37.812987+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.48
+  },
+  {
+    "ts": "2026-08-20T04:00:43.651513+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.41
+  },
+  {
+    "ts": "2026-08-20T04:00:46.574702+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-20T04:00:48.954389+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-20T04:00:54.451392+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-20T04:00:57.365890+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  },
+  {
+    "ts": "2026-08-20T04:01:02.004510+00:00",
+    "kind": "stuck_step",
+    "honored": false,
+    "bias": 0.4
+  }
+]

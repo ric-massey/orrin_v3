@@ -108,7 +108,8 @@ time Orrin would experience suspension.
 
 ## Protocol
 
-1. **When:** at each run capture, alongside the `NEXT_RUN_TESTS.md` gate scoring.
+1. **When:** at each run capture, alongside the `NEXT_RUN_TESTS.md` gate scoring
+   and the Butlin-14 profile (`BUTLIN14_EXPERIMENTAL_MATRIX_2026-09-27.md`).
    The two scores are reported side by side and never merged — the internal gate
    measures whether the build worked; this rubric measures architectural
    completeness against an outside standard.

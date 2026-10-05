@@ -1,0 +1,78 @@
+[
+  {
+    "question": "What did I get wrong or oversimplify about history?",
+    "answer": "Modern Future History portal Category v t e History is the systematic study of the past",
+    "goal_id": "g_995558e009",
+    "ts": 1787181965.4,
+    "cited": 44,
+    "last_cited_ts": 1787198558.9,
+    "last_cited_fn": "leave_note"
+  },
+  {
+    "question": "What is concrete and true right now?",
+    "answer": "This linear region terminates at what is known as the yield point",
+    "goal_id": "g_dd89aa2324",
+    "ts": 1787181965.9,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about biology evolutionary biology?",
+    "answer": "biology portal Category v t e Evolutionary biology is a subfield of biology that analyzes the four mechanisms of evolution",
+    "goal_id": "g_c7a4e8421d",
+    "ts": 1787183281.0,
+    "cited": 4,
+    "last_cited_ts": 1787199792.4,
+    "last_cited_fn": "attend_goal"
+  },
+  {
+    "question": "What did I get wrong or oversimplify about The Daily Stoic?",
+    "answer": "H65 2016 Preceded by Ego is the Enemy Website dailystoic",
+    "goal_id": "g_e00776fe40",
+    "ts": 1787183281.1,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about mathematics?",
+    "answer": "Mathematics is a field of knowledge concerned with abstract concepts such as numbers",
+    "goal_id": "g_24136ed3db",
+    "ts": 1787184496.6,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about evolutionary biology?",
+    "answer": "biology portal Category v t e Evolutionary biology is a subfield of biology that analyzes the four mechanisms of evolution",
+    "goal_id": "g_40fe7f09e0",
+    "ts": 1787186896.8,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about quantum mechanics foundations?",
+    "answer": "The sequence begins with a quantum system whose observable is to be measured",
+    "goal_id": "g_b15f5c2b37",
+    "ts": 1787196385.0,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about emergence in complex systems?",
+    "answer": "rationality Evolutionary game theory v t e A complex system is a system composed of many components that interact with one another",
+    "goal_id": "g_a9b6da7133",
+    "ts": 1787198570.0,
+    "cited": 38,
+    "last_cited_ts": 1787236104.4,
+    "last_cited_fn": "fetch_and_read"
+  },
+  {
+    "question": "What did I get wrong or oversimplify about foundations of quantum mechanics?",
+    "answer": "The sequence begins with a quantum system whose observable is to be measured",
+    "goal_id": "g_bf7018a94d",
+    "ts": 1787199773.7,
+    "cited": 0
+  },
+  {
+    "question": "What did I get wrong or oversimplify about the nature of mathematics?",
+    "answer": "Mathematics is a field of knowledge concerned with abstract concepts such as numbers",
+    "goal_id": "g_1265f806a8",
+    "ts": 1787199779.6,
+    "cited": 0
+  }
+]

@@ -1,0 +1,2445 @@
+[
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.745,
+    "ts": 1787236417.6593401,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.611,
+    "ts": 1787236426.033671
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity — toward Make things — produce work that didn't exist before",
+    "source": "binding",
+    "salience": 1.166,
+    "ts": 1787236434.0160651,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.816
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Make things — produce work that didn't exist before",
+      "goal_id": "aspiration-output_producing"
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.828,
+    "ts": 1787236436.3522298,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity — toward Make things — produce work that didn't exist before",
+    "source": "binding",
+    "salience": 0.983,
+    "ts": 1787236440.742751,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.858
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Make things — produce work that didn't exist before",
+      "goal_id": "aspiration-output_producing"
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.867,
+    "ts": 1787236442.886082,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive — toward Make things — produce work that didn't exist before",
+    "source": "binding",
+    "salience": 1.175,
+    "ts": 1787236445.6426098,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.838
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Make things — produce work that didn't exist before",
+      "goal_id": "aspiration-output_producing"
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.765,
+    "ts": 1787236448.2235498
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive — toward Make things — produce work that didn't exist before",
+    "source": "binding",
+    "salience": 1.18,
+    "ts": 1787236450.732762,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.85
+      },
+      "event": "A strong feeling of curiosity.",
+      "goal": "Make things — produce work that didn't exist before",
+      "goal_id": "aspiration-output_producing"
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.661,
+    "ts": 1787236452.093427,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.037,
+    "ts": 1787236454.631371,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.842
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236456.197881,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.835,
+    "ts": 1787236461.530996,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.837
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1787236462.920657,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.036,
+    "ts": 1787236466.867257,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.841
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.839,
+    "ts": 1787236468.479851
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.835,
+    "ts": 1787236470.94901,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.837
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.761,
+    "ts": 1787236472.589941,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.662,
+    "ts": 1787236476.563988,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.604,
+    "ts": 1787236483.434221
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.831,
+    "ts": 1787236488.044986,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.828
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.604,
+    "ts": 1787236489.644904
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.828,
+    "ts": 1787236492.5066419,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.819
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236495.740714,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236499.901823,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1787236501.94095,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.573,
+    "ts": 1787236506.187556
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.01,
+    "ts": 1787236508.587211,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "expected_gain": 0.754
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.824,
+    "ts": 1787236511.446219,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.799,
+    "ts": 1787236518.0582788,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.748
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236519.118626,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.619,
+    "ts": 1787236522.61847,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.805,
+    "ts": 1787236524.924911
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.992,
+    "ts": 1787236529.0904891,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.729
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.613,
+    "ts": 1787236530.163202,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.789,
+    "ts": 1787236533.034858,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.722
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1787236536.562942,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236546.692075,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.024,
+    "ts": 1787236549.842912,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.811
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.723,
+    "ts": 1787236551.1071758
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.818,
+    "ts": 1787236553.836264,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.795
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1787236555.055966,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 1.01,
+    "ts": 1787236558.003273,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.774
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1787236560.3488169,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236564.0913222,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.662,
+    "ts": 1787236567.083117,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.828,
+    "ts": 1787236572.349921,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.82
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.741,
+    "ts": 1787236574.412687
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.829,
+    "ts": 1787236577.45215,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.823
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1787236578.630002,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.029,
+    "ts": 1787236581.236804,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.821
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.855,
+    "ts": 1787236582.4475808,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.818,
+    "ts": 1787236584.996555
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 1.009,
+    "ts": 1787236590.587103,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "expected_gain": 0.771
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236594.6130729,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 0.809,
+    "ts": 1787236600.727526,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "expected_gain": 0.771
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.832,
+    "ts": 1787236602.0800698,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.805,
+    "ts": 1787236604.964458
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.627,
+    "ts": 1787236609.536525,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.494,
+    "ts": 1787236610.890017,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.81,
+    "ts": 1787236613.70658
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236618.2905622,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.824,
+    "ts": 1787236621.037861,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 1.002,
+    "ts": 1787236626.5319428,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.755
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.824,
+    "ts": 1787236627.8700328,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.812,
+    "ts": 1787236633.6517959,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.786,
+    "ts": 1787236636.506434,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236637.765666,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.822,
+    "ts": 1787236640.580432,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.75,
+    "ts": 1787236642.553847
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236645.229098,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1787236648.604688,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.039,
+    "ts": 1787236667.014497,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.847
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.8,
+    "ts": 1787236668.623633
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.835,
+    "ts": 1787236670.922178,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.837
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.892,
+    "ts": 1787236673.732401,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of curiosity. — curiosity",
+    "source": "binding",
+    "salience": 1.048,
+    "ts": 1787236676.220149,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.869
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236679.47309,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.035,
+    "ts": 1787236682.023446,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.838
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.867,
+    "ts": 1787236683.425506,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.034,
+    "ts": 1787236685.7748039,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.834
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.809,
+    "ts": 1787236687.77598
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.832,
+    "ts": 1787236692.5741591,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.829
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1787236696.4450681,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.024,
+    "ts": 1787236700.069494,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.811
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1787236701.177588,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.829,
+    "ts": 1787236703.874431,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.823
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236705.580538,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1787236708.450134,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.01,
+    "ts": 1787236712.643436,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.775
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.832,
+    "ts": 1787236715.731174,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.009,
+    "ts": 1787236720.57569,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.772
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236721.811027,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.809,
+    "ts": 1787236724.437547,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.772
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.632,
+    "ts": 1787236725.744622,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.777,
+    "ts": 1787236728.877509
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236734.3241868,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.837,
+    "ts": 1787236736.002378,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.806,
+    "ts": 1787236738.9936361,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.765
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.644,
+    "ts": 1787236742.4043589,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 1.015,
+    "ts": 1787236748.246055,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.787
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236749.911514,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.823,
+    "ts": 1787236752.404285,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.807
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.746,
+    "ts": 1787236753.747007
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1787236758.3207018,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.031,
+    "ts": 1787236761.492239,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.827
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1787236763.2043872,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1787236767.468652,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.814,
+    "ts": 1787236773.610877
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.83,
+    "ts": 1787236779.527313,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.826
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236781.0167239,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1787236788.953196,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.816,
+    "ts": 1787236791.5915039,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.791
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1787236792.928527,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.834,
+    "ts": 1787236795.948425
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1787236799.101248,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.015,
+    "ts": 1787236802.727777,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.786
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1787236805.652394,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.816,
+    "ts": 1787236811.823185,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.791
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236813.6322958,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.839,
+    "ts": 1787236816.812186,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.818,
+    "ts": 1787236819.0554938
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1787236823.139798,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.817,
+    "ts": 1787236826.163628,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.793
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236827.849254,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.81,
+    "ts": 1787236830.962236,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.775
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1787236836.895424,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.84,
+    "ts": 1787236845.500906,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 1.009,
+    "ts": 1787236850.319571,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.773
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.799,
+    "ts": 1787236851.8953989
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 0.809,
+    "ts": 1787236854.663697,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.773
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.832,
+    "ts": 1787236856.9896939,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236864.7309031,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236867.874249,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 0.807,
+    "ts": 1787236877.35878,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.766
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.806,
+    "ts": 1787236880.2118819
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.912,
+    "ts": 1787236882.9274418,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.84,
+    "ts": 1787236885.230933,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — curiosity",
+    "source": "binding",
+    "salience": 0.816,
+    "ts": 1787236888.737555,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.79
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.732,
+    "ts": 1787236892.1545541
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236895.065067,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.839,
+    "ts": 1787236897.995828,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.814,
+    "ts": 1787236901.137755,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.784
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1787236907.1353521,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.877,
+    "ts": 1787236922.880785,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — curiosity",
+    "source": "binding",
+    "salience": 0.841,
+    "ts": 1787236926.4481542,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.852
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.77,
+    "ts": 1787236931.0285141
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.975,
+    "ts": 1787236934.531266,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.839
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.863,
+    "ts": 1787236935.9946392,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.833,
+    "ts": 1787236938.7737548,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.834
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.812,
+    "ts": 1787236943.229522
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236949.961327,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787236957.917066,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.855,
+    "ts": 1787236961.378992,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.819,
+    "ts": 1787236964.047712,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.792
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1787236968.354165,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.821,
+    "ts": 1787236971.721416,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.803
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.839,
+    "ts": 1787236974.178784
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.816,
+    "ts": 1787236978.4030159
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787236984.3895779,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1787236990.469002,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.823,
+    "ts": 1787237003.044859,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.8,
+    "ts": 1787237004.60263,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.013,
+    "ts": 1787237008.3831098,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.783
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.628,
+    "ts": 1787237010.695864,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.948,
+    "ts": 1787237013.905388,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.826,
+    "ts": 1787237016.335223,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.801,
+    "ts": 1787237019.1677718
+  },
+  {
+    "content": "A strong feeling of curiosity. — something worth doing",
+    "source": "binding",
+    "salience": 0.944,
+    "ts": 1787237024.405926,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.76
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787237025.9814,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of curiosity. — something worth doing",
+    "source": "binding",
+    "salience": 0.744,
+    "ts": 1787237033.096818,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.761
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "I've been carrying an elevated confidence — it's been running high (0.78) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevat",
+    "source": "signal",
+    "salience": 0.65,
+    "ts": 1787237037.706963
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.824,
+    "ts": 1787237041.86598,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 1.004,
+    "ts": 1787237046.619678,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.759
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.726,
+    "ts": 1787237048.51751
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.803,
+    "ts": 1787237051.858903,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.757
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787237054.100397,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.83,
+    "ts": 1787237061.4058821,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.6,
+    "ts": 1787237071.45035
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1787237075.259446,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.83,
+    "ts": 1787237080.8589802,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.826
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.467,
+    "ts": 1787237083.172549,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.029,
+    "ts": 1787237086.1219,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.823
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.667,
+    "ts": 1787237087.5444748,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.853,
+    "ts": 1787237090.7788842,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.802,
+    "ts": 1787237092.4551601
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.829,
+    "ts": 1787237097.52787,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.823
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787237099.800064,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1787237102.928554,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1787237104.769072,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.811,
+    "ts": 1787237109.0717728,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.767
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.655,
+    "ts": 1787237111.7286289,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.011,
+    "ts": 1787237114.525555,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "expected_gain": 0.714
+      }
+    },
+    "members": [
+      "signal",
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.831,
+    "ts": 1787237115.792168
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.009,
+    "ts": 1787237118.531872,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.745
+      }
+    },
+    "members": [
+      "signal",
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1787237121.5238662,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — something worth doing",
+    "source": "binding",
+    "salience": 1.009,
+    "ts": 1787237126.824118,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "expected_gain": 0.735
+      }
+    },
+    "members": [
+      "signal",
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.82,
+    "ts": 1787237128.099777,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.889,
+    "ts": 1787237132.504574,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.92,
+    "ts": 1787281702.9803252,
+    "focus_signal": "exploration_drive"
+  }
+]

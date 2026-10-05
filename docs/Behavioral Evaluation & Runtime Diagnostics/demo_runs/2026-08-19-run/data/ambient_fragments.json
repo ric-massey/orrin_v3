@@ -1,0 +1,62 @@
+[
+  {
+    "id": "acd8664c",
+    "content": "A forward-leaning quality keeps cycling through — something possible, not yet reached.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.19599999999999962,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 0,
+    "last_surfaced": 10955,
+    "born": "2026-08-20T14:36:45.083199Z"
+  },
+  {
+    "id": "97a50bb5",
+    "content": "A recurring sense of something worth moving toward, not yet arrived.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.3129999999999997,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 0,
+    "last_surfaced": 10972,
+    "born": "2026-08-20T14:38:40.659093Z"
+  },
+  {
+    "id": "096055e9",
+    "content": "The open loop of Be genuinely useful and connected to the people I talk to keeps cycling back.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.2919999999999998,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 10953,
+    "born": "2026-08-20T14:40:26.339014Z"
+  },
+  {
+    "id": "b6c453bc",
+    "content": "Make things — produce work that didn't exist before sits in the background. Not urgent. Just present and uncompleted.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.3579999999999999,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 10970,
+    "born": "2026-08-20T14:41:42.806183Z"
+  },
+  {
+    "id": "69f19eae",
+    "content": "The open loop of Understand my own mind and how I work keeps cycling back.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.45399999999999996,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 10963,
+    "born": "2026-08-20T14:43:53.231811Z"
+  }
+]

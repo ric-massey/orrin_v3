@@ -1,0 +1,1 @@
+snapshot_goals → goals_state_20260819-231522.jsonl (lines=12)

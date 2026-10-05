@@ -1,0 +1,189 @@
+{
+  "history": [
+    {
+      "ts": "2026-08-19T23:15:36.317144+00:00",
+      "cycle": 10,
+      "emotion": "uncertainty",
+      "intensity": 0.704,
+      "strategy": "grounding",
+      "prob": 0.92,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.163
+    },
+    {
+      "ts": "2026-08-19T23:15:45.884914+00:00",
+      "cycle": 17,
+      "emotion": "impasse_signal",
+      "intensity": 0.727,
+      "strategy": "reappraisal",
+      "prob": 0.92,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.299
+    },
+    {
+      "ts": "2026-08-19T23:16:03.858249+00:00",
+      "cycle": 27,
+      "emotion": "uncertainty",
+      "intensity": 0.56,
+      "strategy": "grounding",
+      "prob": 0.879,
+      "outcome": "failed",
+      "measured": "effective",
+      "measured_delta": 0.111
+    },
+    {
+      "ts": "2026-08-19T23:16:40.702888+00:00",
+      "cycle": 53,
+      "emotion": "impasse_signal",
+      "intensity": 0.616,
+      "strategy": "reappraisal",
+      "prob": 0.859,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.29
+    },
+    {
+      "ts": "2026-08-19T23:18:24.945117+00:00",
+      "cycle": 121,
+      "emotion": "uncertainty",
+      "intensity": 0.559,
+      "strategy": "grounding",
+      "prob": 0.847,
+      "outcome": "failed",
+      "measured": "ineffective",
+      "measured_delta": 0.008
+    },
+    {
+      "ts": "2026-08-19T23:19:26.471947+00:00",
+      "cycle": 160,
+      "emotion": "impasse_signal",
+      "intensity": 0.628,
+      "strategy": "reappraisal",
+      "prob": 0.826,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.299
+    },
+    {
+      "ts": "2026-08-19T23:19:43.238448+00:00",
+      "cycle": 171,
+      "emotion": "impasse_signal",
+      "intensity": 0.766,
+      "strategy": "reappraisal",
+      "prob": 0.918,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.475
+    },
+    {
+      "ts": "2026-08-19T23:21:36.139486+00:00",
+      "cycle": 225,
+      "emotion": "impasse_signal",
+      "intensity": 0.586,
+      "strategy": "reappraisal",
+      "prob": 0.816,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.35
+    },
+    {
+      "ts": "2026-08-19T23:23:01.809987+00:00",
+      "cycle": 273,
+      "emotion": "impasse_signal",
+      "intensity": 0.576,
+      "strategy": "reappraisal",
+      "prob": 0.821,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.16
+    },
+    {
+      "ts": "2026-08-19T23:23:43.892385+00:00",
+      "cycle": 296,
+      "emotion": "impasse_signal",
+      "intensity": 0.604,
+      "strategy": "reappraisal",
+      "prob": 0.835,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.154
+    },
+    {
+      "ts": "2026-08-19T23:24:07.587365+00:00",
+      "cycle": 306,
+      "emotion": "impasse_signal",
+      "intensity": 0.583,
+      "strategy": "reappraisal",
+      "prob": 0.819,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.09
+    },
+    {
+      "ts": "2026-08-19T23:24:41.846114+00:00",
+      "cycle": 323,
+      "emotion": "impasse_signal",
+      "intensity": 0.57,
+      "strategy": "reappraisal",
+      "prob": 0.804,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.12
+    },
+    {
+      "ts": "2026-08-20T01:30:32.166098+00:00",
+      "cycle": 2198,
+      "emotion": "impasse_signal",
+      "intensity": 0.607,
+      "strategy": "reappraisal",
+      "prob": 0.846,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.207
+    },
+    {
+      "ts": "2026-08-20T02:49:46.766233+00:00",
+      "cycle": 2204,
+      "emotion": "impasse_signal",
+      "intensity": 0.733,
+      "strategy": "reappraisal",
+      "prob": 0.892,
+      "outcome": "succeeded",
+      "measured": "ineffective",
+      "measured_delta": -0.01
+    },
+    {
+      "ts": "2026-08-20T03:52:30.203651+00:00",
+      "cycle": 2210,
+      "emotion": "impasse_signal",
+      "intensity": 0.733,
+      "strategy": "distancing",
+      "prob": 0.867,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.28
+    },
+    {
+      "ts": "2026-08-20T05:48:32.092786+00:00",
+      "cycle": 4189,
+      "emotion": "uncertainty",
+      "intensity": 0.564,
+      "strategy": "grounding",
+      "prob": 0.84,
+      "outcome": "succeeded",
+      "measured": "ineffective",
+      "measured_delta": 0.017
+    }
+  ],
+  "last_cycle": 4189,
+  "consec_ineffective": {
+    "uncertainty": 2
+  },
+  "emotion_stop_counts": {},
+  "strategy_cooldowns": {
+    "grounding": 4224,
+    "reappraisal": 2239
+  }
+}

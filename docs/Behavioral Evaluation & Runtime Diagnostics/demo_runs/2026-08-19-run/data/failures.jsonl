@@ -1,0 +1,30 @@
+{"ts": "2026-08-19T23:23:50.202463+00:00", "site": "goal_failure", "goal_id": "g_5f34e9aff35d", "title": "Reflect on my open question: Is this goal really mine, or have I inherited it?", "reason": "steps_unreachable: 3 steps abandoned at the 3-attempt cap"}
+{"ts": "2026-08-20T03:59:46.067266+00:00", "site": "goal_failure", "goal_id": "g_6e9c74642e", "title": "Understand philosophy of time more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T03:59:46.082496+00:00", "site": "goal_failure", "goal_id": "g_b23cbc4839", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T03:59:47.543283+00:00", "site": "goal_failure", "goal_id": "g_6e9c74642e", "title": "Understand philosophy of time more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T03:59:48.085458+00:00", "site": "goal_failure", "goal_id": "g_b23cbc4839", "title": "Understand history of written language more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T04:23:00.941863+00:00", "site": "goal_failure", "goal_id": "intrinsic-2026-08-20T04:22:58.804703+00:00", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T04:23:02.958534+00:00", "site": "goal_failure", "goal_id": "intrinsic-2026-08-20T04:22:58.804703+00:00", "title": "Understand evolutionary biology and cooperation more deeply", "reason": "ValueError: no URLs to fetch"}
+{"ts": "2026-08-20T12:30:31.846282+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:31:36.693574+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:34:38.220856+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:38:06.192497+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:41:10.221872+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:47:46.449817+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T12:50:52.499679+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:03:28.553221+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:13:19.780192+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:19:41.460967+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:26:26.464236+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:29:32.109412+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:43:28.552999+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:47:45.711908+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:51:02.236915+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:52:28.292321+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T13:56:40.919243+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:02:08.326145+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:03:50.382037+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:05:45.536720+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:12:10.508013+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:26:19.452713+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}
+{"ts": "2026-08-20T14:31:39.192729+00:00", "site": "wikipedia_search._wiki_opensearch", "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"}

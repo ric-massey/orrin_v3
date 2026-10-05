@@ -1,0 +1,45 @@
+{
+  "queries": [
+    "What is concrete and true right now?"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Compressive_strength",
+    "https://en.wikipedia.org/wiki/I_Know_What_You_Did_Last_Summer_%282025_film%29",
+    "https://en.wikipedia.org/wiki/Philosophical_presentism",
+    "https://en.wikipedia.org/wiki/David_Lewis_%28philosopher%29",
+    "https://en.wikipedia.org/wiki/Boolean_algebra"
+  ],
+  "results": [
+    {
+      "title": "Compressive strength",
+      "url": "https://en.wikipedia.org/wiki/Compressive_strength",
+      "snippet": "such as quality control in <span class=\"searchmatch\">concrete</span> production. However, determining the <span class=\"searchmatch\">true</span> stress in materials under compressive loads <span class=\"searchmatch\">is</span> important for research focused",
+      "query": "What is concrete and true right now?"
+    },
+    {
+      "title": "I Know What You Did Last Summer (2025 film)",
+      "url": "https://en.wikipedia.org/wiki/I_Know_What_You_Did_Last_Summer_%282025_film%29",
+      "snippet": "Know <span class=\"searchmatch\">What</span> You Did Last Summer <span class=\"searchmatch\">is</span> a 2025 American slasher film that <span class=\"searchmatch\">is</span> the fourth installment in the I Know <span class=\"searchmatch\">What</span> You Did Last Summer franchise <span class=\"searchmatch\">and</span> a sequel",
+      "query": "What is concrete and true right now?"
+    },
+    {
+      "title": "Philosophical presentism",
+      "url": "https://en.wikipedia.org/wiki/Philosophical_presentism",
+      "snippet": "&quot;Churchill existed&quot; are made <span class=\"searchmatch\">true</span> by a theoretical time which <span class=\"searchmatch\">is</span> a representation of how things were (i.e., ersatz rather than <span class=\"searchmatch\">concrete</span>). Ersatz times are, in",
+      "query": "What is concrete and true right now?"
+    },
+    {
+      "title": "David Lewis (philosopher)",
+      "url": "https://en.wikipedia.org/wiki/David_Lewis_%28philosopher%29",
+      "snippet": "analysis between context <span class=\"searchmatch\">and</span> similarity to give more accurate <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">concrete</span> predictions for counterfactual truth conditions. <span class=\"searchmatch\">What</span> made Lewis&#039;s views about",
+      "query": "What is concrete and true right now?"
+    },
+    {
+      "title": "Boolean algebra",
+      "url": "https://en.wikipedia.org/wiki/Boolean_algebra",
+      "snippet": "logic <span class=\"searchmatch\">and</span> probabilistic logic. In these interpretations, a value <span class=\"searchmatch\">is</span> interpreted as the &quot;degree&quot; of truth – to <span class=\"searchmatch\">what</span> extent a proposition <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">true</span>, or the",
+      "query": "What is concrete and true right now?"
+    }
+  ],
+  "ts": "2026-08-19T23:26:00.842677+00:00"
+}

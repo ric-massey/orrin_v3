@@ -1,0 +1,44 @@
+{
+  "EMOTIONAL": {
+    "domain": "EMOTIONAL",
+    "confidence": 0.85,
+    "events": [
+      {
+        "timestamp": "2026-08-20T05:04:55.987378Z",
+        "goal": "Strengthen EMOTIONAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      }
+    ]
+  },
+  "COGNITIVE": {
+    "domain": "COGNITIVE",
+    "confidence": 0.7,
+    "events": [
+      {
+        "timestamp": "2026-08-20T05:04:55.987378Z",
+        "goal": "Strengthen EMOTIONAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-08-20T05:04:56.718278Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      }
+    ]
+  },
+  "SOCIAL": {
+    "domain": "SOCIAL",
+    "confidence": 0.85,
+    "events": [
+      {
+        "timestamp": "2026-08-20T05:04:56.718278Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      }
+    ]
+  }
+}

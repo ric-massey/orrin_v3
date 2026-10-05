@@ -1,0 +1,3582 @@
+[
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:26:38.521331+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:30.823579+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.8407259357269423,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:26:38.521340+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:30.823579+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.8407259357269423,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:27:06.366890+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:57.213612+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:27:06.366903+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:57.213612+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:27:06.367622+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:57.213612+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.777575667495601,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:27:06.367629+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:31:57.213612+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.777575667495601,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:27:33.125482+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:32:25.314500+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:27:33.126221+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:32:25.314500+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.6220254787164121,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:27:33.126228+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:32:25.314500+00:00",
+    "outcome": "mismatch=0.11",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.8662104774473854,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.109,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 9/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:28:10.339080+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:04.329025+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 9
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:28:10.339094+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:04.329025+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:28:10.339915+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:04.329025+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.2139727419872144,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:28:10.339924+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:04.329025+00:00",
+    "outcome": "mismatch=0.10",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.04655752786413979
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.1,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:28:38.006476+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:29.154339+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:28:38.006491+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:29.154339+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:28:38.007321+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:29.154339+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.13421792339956756,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:28:38.007330+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:29.154339+00:00",
+    "outcome": "mismatch=1.00",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5105198848739224,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 1.0,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:29:03.756636+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:56.277489+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:29:03.756650+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:56.277489+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:29:03.758176+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:56.277489+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.6511930647397055,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:29:03.758186+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:33:56.277489+00:00",
+    "outcome": "mismatch=0.88",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.6511930647397055,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.884,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:29:35.442549+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:28.427673+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:29:35.442562+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:28.427673+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:29:35.443358+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:28.427673+00:00",
+    "outcome": "mismatch=0.26",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.18661425865635686,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.259,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:29:35.443366+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:28.427673+00:00",
+    "outcome": "mismatch=0.08",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.018752633093353274
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.081,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:30:04.964813+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:55.644340+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:30:04.964826+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:55.644340+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:05.007426+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:55.644340+00:00",
+    "outcome": "mismatch=0.35",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7878723026763543,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.351,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:05.007442+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:34:55.644340+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.8668821628638049,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:30:32.495669+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:22.515463+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:30:32.495683+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:22.515463+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:32.496418+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:22.515463+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7240073017781128,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:32.496427+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:22.515463+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.8676358,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:30:57.869186+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:46.621012+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:30:57.869196+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:46.621012+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:57.869967+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:46.621012+00:00",
+    "outcome": "mismatch=0.04",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.6045465287771167,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.043,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:30:57.869976+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:35:46.621012+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.6045465287771167,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:31:24.150501+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:14.344850+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:31:24.150514+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:14.344850+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'attend_goal': expect 'exploration_drive rises'",
+    "pred_id": "causal:attend_goal→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:31:24.151248+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:14.344850+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "attend_goal",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5155337351226937,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'attend_goal': expect 'confidence rises'",
+    "pred_id": "causal:attend_goal→confidence rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:31:24.151256+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:14.344850+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "attend_goal",
+      "effect": "confidence rises",
+      "signal": "confidence",
+      "direction": "up",
+      "baseline": 0.6755710334760374,
+      "receipt": {
+        "kind": "deliberation_down",
+        "expected": "action outweighs deliberation",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:31:50.053256+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:41.991016+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:31:50.053270+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:41.991016+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:31:50.054217+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:41.991016+00:00",
+    "outcome": "mismatch=0.43",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5387374620792716,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.427,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:31:50.054225+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:36:41.991016+00:00",
+    "outcome": "mismatch=0.66",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.85,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.657,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:32:16.621723+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:07.780399+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:32:16.621740+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:07.780399+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'symbolic_dream_insight' will occur (appeared 3/15 recent cycles)",
+    "pred_id": "event_type:symbolic_dream_insight",
+    "horizon": "short",
+    "confidence": 0.64,
+    "created_ts": "2026-08-20T14:32:16.621746+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:07.780399+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "symbolic_dream_insight",
+      "count": 3
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:32:16.622612+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:07.780399+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5180997238371318,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:32:16.622621+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:07.780399+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.8499717830219488,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:32:25.238681+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:13.564538+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:32:25.238696+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:13.564538+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:32:25.258504+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:13.564538+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.47497516550825547,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:32:25.258515+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:13.564538+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.8645060747063562,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:33:04.289462+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:53.634848+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:33:04.289485+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:53.634848+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:33:04.290416+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:53.634848+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5618572387969989,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:33:04.290427+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:37:53.634848+00:00",
+    "outcome": "mismatch=1.00",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5618572387969989,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 1.0,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:33:45.905414+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:38:35.611336+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:33:45.905428+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:38:35.611336+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:33:45.906310+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:38:35.611336+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.2902900187752265,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:33:45.906320+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:38:35.611336+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.8083015554930965,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:34:16.152936+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:09.801804+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:34:16.152952+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:09.801804+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:34:16.153778+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:09.801804+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.23641165388074553,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:34:16.153785+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:09.801804+00:00",
+    "outcome": "mismatch=0.08",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.02539022205900098
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.077,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:34:43.333472+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:33.563030+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 3/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.64,
+    "created_ts": "2026-08-20T14:34:43.333487+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:33.563030+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 3
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:34:43.392648+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:33.563030+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.2471859170922855,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:34:43.392660+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:39:33.563030+00:00",
+    "outcome": "mismatch=0.08",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.01875100383378812
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.076,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:35:11.403287+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:05.521720+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:35:11.403300+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:05.521720+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:35:11.404069+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:05.521720+00:00",
+    "outcome": "mismatch=0.19",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.1711340296107137,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.186,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:35:11.404077+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:05.521720+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.6258769067409399,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:35:36.501520+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:27.773230+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:35:36.501535+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:27.773230+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:35:36.502299+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:27.773230+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5944631517143296,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:35:36.502306+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:27.773230+00:00",
+    "outcome": "mismatch=0.16",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.8167131133994143,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.164,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:36:07.014282+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:56.879149+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:36:07.014297+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:56.879149+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:36:07.015109+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:56.879149+00:00",
+    "outcome": "mismatch=0.36",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5918548322284725,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.364,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:36:07.015117+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:40:56.879149+00:00",
+    "outcome": "mismatch=0.73",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.8550963499573236,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.731,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:36:34.543788+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:41:25.154555+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:36:34.543804+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:41:25.154555+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'impasse_signal falls'",
+    "pred_id": "causal:read_a_book→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:36:34.544663+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:41:25.154555+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.23498028728503748,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'exploration_drive falls'",
+    "pred_id": "causal:read_a_book→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:36:34.544676+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:41:25.154555+00:00",
+    "outcome": "mismatch=1.00",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.4847207014746534,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 1.0,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:37:00.992718+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:00.017833+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:37:00.992732+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:00.017833+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'impasse_signal falls'",
+    "pred_id": "causal:read_a_book→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:37:00.993563+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:00.017833+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.2645240980820906,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'exploration_drive falls'",
+    "pred_id": "causal:read_a_book→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:37:00.993571+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:00.017833+00:00",
+    "outcome": "mismatch=1.00",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5900256573691238,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 1.0,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:37:28.562658+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:23.159259+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 5/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.8,
+    "created_ts": "2026-08-20T14:37:28.562676+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:23.159259+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 5
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:37:28.563539+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:23.159259+00:00",
+    "outcome": "mismatch=0.04",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7677844267827374,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.038,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:37:28.563549+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:42:23.159259+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.8679316,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:38:07.675777+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:01.340086+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:38:07.675791+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:01.340086+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:38:07.676551+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:01.340086+00:00",
+    "outcome": "mismatch=0.17",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7992555188609252,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.167,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:38:07.676558+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:01.340086+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.7992555188609252,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:38:35.553424+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:24.526424+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 3/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.64,
+    "created_ts": "2026-08-20T14:38:35.553437+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:24.526424+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 3
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:38:35.554286+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:24.526424+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.6791817417347977,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:38:35.554295+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:24.526424+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.7749680549305471,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:39:02.340128+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:57.592540+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 3/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.64,
+    "created_ts": "2026-08-20T14:39:02.340144+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:57.592540+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 3
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:39:02.341006+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:57.592540+00:00",
+    "outcome": "mismatch=0.36",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.1777840367036477,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.363,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:39:02.341015+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:43:57.592540+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5573329987751583,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:39:33.522953+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:31.354027+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:39:33.522970+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:31.354027+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'impasse_signal falls'",
+    "pred_id": "causal:read_a_book→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:39:33.523783+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:31.354027+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.16537754123043752,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'read_a_book': expect 'exploration_drive falls'",
+    "pred_id": "causal:read_a_book→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:39:33.523791+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:31.354027+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "read_a_book",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5493125788522051,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:40:05.494558+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:59.670247+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:40:05.494574+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:59.670247+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:40:05.495361+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:59.670247+00:00",
+    "outcome": "mismatch=0.43",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5752379551457557,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.431,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:40:05.495369+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:44:59.670247+00:00",
+    "outcome": "mismatch=0.01",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.85,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.009,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:40:36.848794+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:45:27.993550+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:40:36.848808+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:45:27.993550+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'exploration_drive rises'",
+    "pred_id": "causal:repair_contradictions→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:40:36.849678+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:45:27.993550+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5261756377283519,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "After 'repair_contradictions': expect 'motivation rises'",
+    "pred_id": "causal:repair_contradictions→motivation rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:40:36.849686+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-20T14:45:27.993550+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "repair_contradictions",
+      "effect": "motivation rises",
+      "signal": "motivation",
+      "direction": "up",
+      "baseline": 0.8384711976739838,
+      "receipt": {
+        "kind": "pursue_pick",
+        "expected": "a goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:41:09.841461+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:41:09.841476+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:41:09.842459+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.15594333455345774,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:41:09.842470+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.6669374556121108,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:41:47.069509+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:41:47.069523+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:41:47.070335+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=1.00",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7673748858254763,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 1.0,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:41:47.070343+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.8681356,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:42:29.915098+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:42:29.915120+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:42:29.916053+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.27445189419149907,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:42:29.916063+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.04",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.005178643196228784
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.042,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:43:10.400765+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:43:10.400778+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'look_around': expect 'exploration_drive rises'",
+    "pred_id": "causal:look_around→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:43:10.401862+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "look_around",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.7919062200917943,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": false,
+    "behaved_true": false
+  },
+  {
+    "prediction": "After 'look_around': expect 'impasse_signal rises'",
+    "pred_id": "causal:look_around→impasse_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:43:10.401873+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "look_around",
+      "effect": "impasse_signal rises",
+      "signal": "impasse_signal",
+      "direction": "up",
+      "baseline": 0.2351362640464794,
+      "receipt": {
+        "kind": "switch_rate_up",
+        "expected": "function switching rate rises",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:43:45.893645+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 6/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:43:45.893660+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 6
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'research_topic': expect 'impasse_signal falls'",
+    "pred_id": "causal:research_topic→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:43:45.894537+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.2153813159655154,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'research_topic': expect 'exploration_drive falls'",
+    "pred_id": "causal:research_topic→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:43:45.894546+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "research_topic",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5787425723026992,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:44:21.319560+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 7/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:44:21.319574+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 7
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'exploration_drive rises'",
+    "pred_id": "causal:fetch_and_read→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:44:21.320471+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5035371615283699,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "After 'fetch_and_read': expect 'motivation falls'",
+    "pred_id": "causal:fetch_and_read→motivation falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:44:21.320481+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "fetch_and_read",
+      "effect": "motivation falls",
+      "signal": "motivation",
+      "direction": "down",
+      "baseline": 0.7759626086470259,
+      "receipt": {
+        "kind": "no_pursue_pick",
+        "expected": "no goal-pursuit action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0,
+    "felt_true": true,
+    "behaved_true": true
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:44:52.409096+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:44:52.409113+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'impasse_signal falls'",
+    "pred_id": "causal:assess_goal_progress→impasse_signal falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:44:52.409978+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "impasse_signal falls",
+      "signal": "impasse_signal",
+      "direction": "down",
+      "baseline": 0.19782022871057672,
+      "receipt": {
+        "kind": "switch_rate_down",
+        "expected": "function switching rate stays normal",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  },
+  {
+    "prediction": "After 'assess_goal_progress': expect 'satisfaction_signal rises'",
+    "pred_id": "causal:assess_goal_progress→satisfaction_signal rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:44:52.409995+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.14",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "assess_goal_progress",
+      "effect": "satisfaction_signal rises",
+      "signal": "satisfaction_signal",
+      "direction": "up",
+      "baseline": 0.025705922323376457
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.144,
+    "felt_true": false,
+    "behaved_true": null
+  },
+  {
+    "prediction": "Event type 'chunk' will occur (appeared 8/15 recent cycles)",
+    "pred_id": "event_type:chunk",
+    "horizon": "short",
+    "confidence": 0.85,
+    "created_ts": "2026-08-20T14:45:21.476450+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "chunk",
+      "count": 8
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "Event type 'metacog_pattern' will occur (appeared 4/15 recent cycles)",
+    "pred_id": "event_type:metacog_pattern",
+    "horizon": "short",
+    "confidence": 0.72,
+    "created_ts": "2026-08-20T14:45:21.476465+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "correct",
+    "domain": "COGNITIVE",
+    "basis": "frequency",
+    "source_data": {
+      "event_type": "metacog_pattern",
+      "count": 4
+    },
+    "resolved": true,
+    "correct": true,
+    "mismatch_score": 0.0
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive rises'",
+    "pred_id": "causal:narrative_update→exploration_drive rises",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:45:21.477317+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.60",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive rises",
+      "signal": "exploration_drive",
+      "direction": "up",
+      "baseline": 0.5005503997624002,
+      "receipt": {
+        "kind": "explore_pick",
+        "expected": "an exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.6,
+    "felt_true": true,
+    "behaved_true": false
+  },
+  {
+    "prediction": "After 'narrative_update': expect 'exploration_drive falls'",
+    "pred_id": "causal:narrative_update→exploration_drive falls",
+    "horizon": "short",
+    "confidence": 0.782,
+    "created_ts": "2026-08-20T14:45:21.477325+00:00",
+    "status": "evaluated",
+    "checked_ts": "2026-08-21T03:08:19.786164+00:00",
+    "outcome": "mismatch=0.50",
+    "domain": "COGNITIVE",
+    "basis": "causal",
+    "source_data": {
+      "cause": "narrative_update",
+      "effect": "exploration_drive falls",
+      "signal": "exploration_drive",
+      "direction": "down",
+      "baseline": 0.5005503997624002,
+      "receipt": {
+        "kind": "no_explore_pick",
+        "expected": "no exploration action is selected",
+        "window": 8
+      }
+    },
+    "resolved": true,
+    "correct": false,
+    "mismatch_score": 0.5,
+    "felt_true": false,
+    "behaved_true": true
+  }
+]

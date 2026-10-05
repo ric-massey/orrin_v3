@@ -1,0 +1,8 @@
+
+[2026-08-20T03:59:48.192744Z] Goal failed: Understand philosophy of time more deeply — emotional response triggered.
+
+[2026-08-20T03:59:48.192889Z] Goal failed: Understand history of written language more deeply — emotional response triggered.
+
+[2026-08-20T04:23:03.058978Z] Goal failed: Understand evolutionary biology and cooperation more deeply — emotional response triggered.
+
+[2026-08-20T04:34:14.492103Z] [invoke_cognition] make_candidate needs ['kind', 'direction'] — not directly dispatchable; skipping

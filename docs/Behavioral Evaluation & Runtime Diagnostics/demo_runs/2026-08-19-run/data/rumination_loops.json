@@ -1,0 +1,24 @@
+[
+  {
+    "id": "6d2ea1a9",
+    "content": "The irritation is real. The object of it isn't clear.",
+    "mode": "brooding",
+    "charge": 0.2945999999999998,
+    "seed": "",
+    "return_count": 1,
+    "suppressed_count": 0,
+    "last_returned": "2026-08-20T14:44:46.281150Z",
+    "born": "2026-08-20T14:44:29.666485Z"
+  },
+  {
+    "id": "0278bfde",
+    "content": "Friction with no clear source. I keep reaching for what's blocking and finding nothing.",
+    "mode": "brooding",
+    "charge": 0.343,
+    "seed": "",
+    "return_count": 0,
+    "suppressed_count": 0,
+    "last_returned": null,
+    "born": "2026-08-20T14:45:32.703802Z"
+  }
+]

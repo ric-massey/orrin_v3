@@ -1,0 +1,83 @@
+[
+ {
+  "id": "ca6d50df-b153-44ce-bd7f-7756cc4a1eaa",
+  "intention": "pursue: Reflect on my open question: Is this goal really mine, or have I inherited it?",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "0f5bc7cd-97ca-42be-a4e7-e92dc7420ba4",
+  "formed_ts": 1787181505.588765
+ },
+ {
+  "id": "ee34969d-aa5d-4b5a-8550-22be64982e0b",
+  "intention": "pursue: Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "839bc8fb-cde1-47d8-a03b-765b8ebbb038",
+  "formed_ts": 1787181519.015059
+ },
+ {
+  "id": "f206ea5c-2119-48d3-b23f-ecfdff32ff55",
+  "intention": "pursue: Understand foundations of quantum mechanics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "e926eee4-9bdb-4495-8081-4cd87264bee9",
+  "formed_ts": 1787181738.535249
+ },
+ {
+  "id": "a02edc28-dcb2-4999-a660-653d07469c3d",
+  "intention": "pursue: Understand consciousness and subjective experience more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "693e1355-af6c-4b93-b9d1-6b5977e1d047",
+  "formed_ts": 1787181956.063144
+ },
+ {
+  "id": "2d6a6fb2-d7f9-4244-bf6a-f55c7dd68aa6",
+  "intention": "pursue: Understand history more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "2d47b312-3788-4224-86e8-8e6a89fdb519",
+  "formed_ts": 1787182071.661236
+ },
+ {
+  "id": "fea01a2c-6b8d-4ac3-9ae7-9417fa043e77",
+  "intention": "pursue: Turn what I know about biology evolutionary biology into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "76b6156b-5bd8-4328-9865-fea2bd3178b4",
+  "formed_ts": 1787183282.344491
+ },
+ {
+  "id": "17aea2f8-3436-4b06-bd0a-6636b0b745e0",
+  "intention": "pursue: Understand stoic philosophy and daily life more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3e5928e1-576b-4b10-95a5-670e5009b8e8",
+  "formed_ts": 1787196388.875691
+ },
+ {
+  "id": "7c06a147-4acd-434f-8505-09707ce8842d",
+  "intention": "pursue: Understand philosophy of time more deeply",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "a6105f82-087f-4209-8115-87a0dd86bff6",
+  "formed_ts": 1787198562.175055
+ },
+ {
+  "id": "0ec51545-38f7-4b85-b3be-a4e412faf8d2",
+  "intention": "pursue: Understand evolutionary biology and cooperation more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "c616efc1-a1a4-43e2-a3da-2a91d03828b5",
+  "formed_ts": 1787199778.829269
+ }
+]

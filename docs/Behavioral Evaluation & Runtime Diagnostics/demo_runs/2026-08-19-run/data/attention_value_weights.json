@@ -1,0 +1,15 @@
+{
+  "peer_goal_auditor": 0.01,
+  "internal": 0.01,
+  "long_memory": 0.01,
+  "sensory_stream": 0.01,
+  "world_model": 0.01,
+  "emotion": 0.6718743202425583,
+  "attention/hijack": 0.01,
+  "peer_signal_historian": 0.21510434014201668,
+  "fs_perception": 0.01,
+  "peer_reward_auditor": 0.01,
+  "prediction_check": 0.01,
+  "social_presence": 0.01,
+  "drive_mastery": 0.31960550834142304
+}

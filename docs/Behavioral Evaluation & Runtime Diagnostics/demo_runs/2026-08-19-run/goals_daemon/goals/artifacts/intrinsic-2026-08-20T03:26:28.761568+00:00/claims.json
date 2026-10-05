@@ -1,0 +1,142 @@
+{
+  "question": "What did I get wrong or oversimplify about stoic philosophy and daily life?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "stoic",
+    "philosophy",
+    "daily",
+    "life"
+  ],
+  "entities": [
+    "H65 2016 Preceded by Ego",
+    "Enemy Website dailystoic",
+    "The audiobook version of The Daily Stoic",
+    "published by Tim Ferriss",
+    "considered the founder of Stoicism Stoicism",
+    "philosophical movement and practical guide to living",
+    "Stoic philosophy",
+    "traditionally divided into three interconnected disciplines",
+    "Philosophical discourse",
+    "paramount in Stoicism",
+    "Central to Stoic ethics",
+    "the idea of living in accordance with nature",
+    "Stoicism",
+    "founded in the ancient Agora of Athens by Zeno of Citium around 300 BCE",
+    "Stoicism emerged from the Cynic tradition and",
+    "popularized through public teaching at the Stoa Poikile"
+  ],
+  "relations": [
+    {
+      "subject": "H65 2016 Preceded by Ego",
+      "predicate": "is the",
+      "object": "Enemy Website dailystoic",
+      "source": "https://en.wikipedia.org/wiki/The_Daily_Stoic"
+    },
+    {
+      "subject": "The audiobook version of The Daily Stoic",
+      "predicate": "was",
+      "object": "published by Tim Ferriss",
+      "source": "https://en.wikipedia.org/wiki/The_Daily_Stoic"
+    },
+    {
+      "subject": "considered the founder of Stoicism Stoicism",
+      "predicate": "is a",
+      "object": "philosophical movement and practical guide to living",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Stoic philosophy",
+      "predicate": "is",
+      "object": "traditionally divided into three interconnected disciplines",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Philosophical discourse",
+      "predicate": "is",
+      "object": "paramount in Stoicism",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Central to Stoic ethics",
+      "predicate": "was",
+      "object": "the idea of living in accordance with nature",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Stoicism",
+      "predicate": "was",
+      "object": "founded in the ancient Agora of Athens by Zeno of Citium around 300 BCE",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Stoicism emerged from the Cynic tradition and",
+      "predicate": "was",
+      "object": "popularized through public teaching at the Stoa Poikile",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "the system of propositional logic developed by the Stoics",
+      "predicate": "was",
+      "object": "one of the two great systems of logic in the classical world",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Stoicism",
+      "predicate": "was",
+      "object": "originally known as Zenonism",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "The Stoics held that an understanding of ethics",
+      "predicate": "was",
+      "object": "impossible without logic",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Ancient Greek philosophical concept This article",
+      "predicate": "is",
+      "object": "about euthymia in philosophy",
+      "source": "https://en.wikipedia.org/wiki/Euthymia_%28philosophy%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_b15f5c2b37]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Daily_Stoic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Euthymia_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Go_Gentle_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Donald_J._Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Massimo_Pigliucci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pythagoreanism"
+    }
+  ],
+  "ts": "2026-08-20T03:26:40.178059+00:00"
+}

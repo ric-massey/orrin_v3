@@ -1,0 +1,176 @@
+{
+  "look_outward": {
+    "look_outward": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "research_topic": {
+    "research_topic": {
+      "count": 20,
+      "bonus": 0.3
+    },
+    "generate_intrinsic_goals": {
+      "count": 9,
+      "bonus": 0.3
+    },
+    "look_around": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "attend_goal": {
+      "count": 10,
+      "bonus": 0.3
+    },
+    "leave_note": {
+      "count": 5,
+      "bonus": 0.25
+    },
+    "read_a_book": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "fetch_and_read": {
+      "count": 11,
+      "bonus": 0.3
+    }
+  },
+  "generate_intrinsic_goals": {
+    "generate_intrinsic_goals": {
+      "count": 8,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 5,
+      "bonus": 0.25
+    }
+  },
+  "look_around": {
+    "research_topic": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "leave_note": {
+    "leave_note": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "generate_intrinsic_goals": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "attend_goal": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "attend_goal": {
+    "research_topic": {
+      "count": 5,
+      "bonus": 0.25
+    },
+    "attend_goal": {
+      "count": 6,
+      "bonus": 0.3
+    }
+  },
+  "read_a_book": {
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "read_a_book": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "narrative_update": {
+    "narrative_update": {
+      "count": 22,
+      "bonus": 0.3
+    },
+    "attend_goal": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "thread_continue": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "look_around": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "research_topic": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "repair_contradictions": {
+      "count": 19,
+      "bonus": 0.3
+    },
+    "look_outward": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "thread_continue": {
+    "fetch_and_read": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "thread_continue": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "fetch_and_read": {
+    "fetch_and_read": {
+      "count": 21,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 10,
+      "bonus": 0.3
+    },
+    "repair_contradictions": {
+      "count": 26,
+      "bonus": 0.3
+    }
+  },
+  "repair_contradictions": {
+    "repair_contradictions": {
+      "count": 61,
+      "bonus": 0.3
+    },
+    "narrative_update": {
+      "count": 34,
+      "bonus": 0.3
+    },
+    "assess_goal_progress": {
+      "count": 8,
+      "bonus": 0.3
+    },
+    "read_a_book": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "thread_continue": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "fetch_and_read": {
+      "count": 16,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 5,
+      "bonus": 0.25
+    }
+  }
+}

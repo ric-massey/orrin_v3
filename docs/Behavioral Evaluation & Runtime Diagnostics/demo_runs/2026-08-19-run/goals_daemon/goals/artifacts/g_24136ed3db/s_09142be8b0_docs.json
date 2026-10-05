@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Set_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Field_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Function_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Matrix_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_06.txt",
+      "chars": 6030
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Recreational_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_08.txt",
+      "chars": 16557
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_24136ed3db/doc_10.txt",
+      "chars": 13156
+    }
+  ],
+  "ts": "2026-08-20T00:08:16.090099+00:00"
+}

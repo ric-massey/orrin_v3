@@ -1,0 +1,134 @@
+[
+  {
+    "id": "4ff2f2773612af6a",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_88603e45e3ff",
+      "content_hash": "616b69c1d41d10f68254856cd5a39a984eca6a7022e052c4a8af361baf34d871",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_88603e45e3ff"
+      ],
+      "effect_rows": [
+        "616b69c1d41d10f68254856cd5a39a984eca6a7022e052c4a8af361baf34d871"
+      ],
+      "significance": 0.3052,
+      "reuse_count": 0,
+      "memory_refs": [
+        "7c9d3442-336e-4501-9b0c-2f62b3a2cc55"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited note_novel artifact for goal g_88603e45e3ff",
+    "ts": "2026-08-19T23:20:18.201825Z",
+    "needs_rule_review": true,
+    "failing_reason": "originality:insufficient_original_prose_113c",
+    "copy_report": {
+      "quote_ratio": 0.0,
+      "verbatim_ratio": 0.0,
+      "offline_stitch": false,
+      "original_prose_chars": 113,
+      "sources_found": 0
+    },
+    "updated_ts": "2026-08-20T14:32:16.594401Z"
+  },
+  {
+    "id": "f338c38cda47337d",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_75f5660a3aa2",
+      "content_hash": "955a3384a51e0f5da24a402f5faaa4efb7ce7f66c4b7f68cd9da3e844698de29",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_75f5660a3aa2"
+      ],
+      "effect_rows": [
+        "955a3384a51e0f5da24a402f5faaa4efb7ce7f66c4b7f68cd9da3e844698de29"
+      ],
+      "significance": 0.4,
+      "reuse_count": 0,
+      "memory_refs": [
+        "d593741e-5c1b-408d-b4ef-6e82d452d96e"
+      ],
+      "signal_prior": null
+    },
+    "status": "applied",
+    "note": "downstream-credited note_novel artifact for goal g_75f5660a3aa2",
+    "ts": "2026-08-20T02:32:00.417792Z",
+    "exemplar_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/what-i-learned-about-foundations-of-quantum-mech-955a3384.md",
+    "updated_ts": "2026-08-20T02:32:00.701911Z"
+  },
+  {
+    "id": "15faf05834031321",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_b15f5c2b37",
+      "content_hash": "6e081affd628024d004fdee4bd1b66b6293f982a655a251cee303211eb34aada",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_b15f5c2b37"
+      ],
+      "effect_rows": [
+        "6e081affd628024d004fdee4bd1b66b6293f982a655a251cee303211eb34aada"
+      ],
+      "significance": 0.9999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "79d06a5d-d4d2-4081-aa1d-b0a5e4a76b75"
+      ],
+      "signal_prior": null
+    },
+    "status": "applied",
+    "note": "downstream-credited file_write artifact for goal g_b15f5c2b37",
+    "ts": "2026-08-20T05:32:02.228171Z",
+    "exemplar_path": "/Users/ricmassey/orrin_v3/tests/fixtures/quality_golden/exemplars/what-did-i-get-wrong-or-oversimplify-about-quant-6e081aff.md",
+    "updated_ts": "2026-08-20T05:32:02.456093Z"
+  },
+  {
+    "id": "88618c59adb15123",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_d0dd312536c9",
+      "content_hash": "aad2f6af40f6e7294e407823e4bd0d68612b16677bd0294e0d4f53a6a4d8b4e3",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_d0dd312536c9"
+      ],
+      "effect_rows": [
+        "aad2f6af40f6e7294e407823e4bd0d68612b16677bd0294e0d4f53a6a4d8b4e3"
+      ],
+      "significance": 0.3882,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2efb4d40-41da-4c0b-af61-b96c1d70e377"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited note_novel artifact for goal g_d0dd312536c9",
+    "ts": "2026-08-20T05:32:02.304684Z",
+    "needs_rule_review": true,
+    "failing_reason": "originality:insufficient_original_prose_121c",
+    "copy_report": {
+      "quote_ratio": 0.0,
+      "verbatim_ratio": 0.0,
+      "offline_stitch": false,
+      "original_prose_chars": 121,
+      "sources_found": 0
+    },
+    "updated_ts": "2026-08-20T14:32:16.598049Z"
+  }
+]

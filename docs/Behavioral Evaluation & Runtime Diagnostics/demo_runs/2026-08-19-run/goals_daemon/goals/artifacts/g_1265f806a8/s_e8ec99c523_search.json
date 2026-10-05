@@ -1,0 +1,115 @@
+{
+  "queries": [
+    "the nature of mathematics",
+    "the nature of mathematics explained",
+    "what is not obvious about the nature of mathematics"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/Future_of_mathematics",
+    "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+    "https://en.wikipedia.org/wiki/Mathematical_problem",
+    "https://en.wikipedia.org/wiki/Patterns_in_nature",
+    "https://en.wikipedia.org/wiki/Pattern",
+    "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences",
+    "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+    "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Space_%28mathematics%29",
+    "https://en.wikipedia.org/wiki/Glossary_of_mathematical_jargon"
+  ],
+  "results": [
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "foundation for all <span class=\"searchmatch\">mathematics</span>). <span class=\"searchmatch\">Mathematics</span> involves <span class=\"searchmatch\">the</span> description and manipulation <span class=\"searchmatch\">of</span> abstract objects that are either abstractions from <span class=\"searchmatch\">nature</span> or purely abstract",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "Philosophy <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> is <span class=\"searchmatch\">the</span> branch <span class=\"searchmatch\">of</span> philosophy that deals with <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> and its relationship to other areas <span class=\"searchmatch\">of</span> philosophy, particularly",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Future of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Future_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">The</span> progression <span class=\"searchmatch\">of</span> both <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> and individual <span class=\"searchmatch\">mathematical</span> problems into <span class=\"searchmatch\">the</span> future is a widely debated topic; many past predictions",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Foundations of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "snippet": "Foundations <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> are <span class=\"searchmatch\">the</span> logical and <span class=\"searchmatch\">mathematical</span> frameworks that allow <span class=\"searchmatch\">the</span> development <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> without generating self-contradictory",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Mathematical problem",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_problem",
+      "snippet": "be a problem referring to <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> itself, such as Russell&#039;s Paradox. Informal &quot;real-world&quot; <span class=\"searchmatch\">mathematical</span> problems are questions related",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Patterns in nature",
+      "url": "https://en.wikipedia.org/wiki/Patterns_in_nature",
+      "snippet": "showed how <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">of</span> fractals could create plant growth patterns. <span class=\"searchmatch\">Mathematics</span>, physics and chemistry can <span class=\"searchmatch\">explain</span> patterns in <span class=\"searchmatch\">nature</span> at different",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Pattern",
+      "url": "https://en.wikipedia.org/wiki/Pattern",
+      "snippet": "countless kinds <span class=\"searchmatch\">of</span> unclassified patterns, present in everyday <span class=\"searchmatch\">nature</span>, fashion, many artistic areas, as well as a connection with <span class=\"searchmatch\">mathematics</span>. A geometric",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "foundation for all <span class=\"searchmatch\">mathematics</span>). <span class=\"searchmatch\">Mathematics</span> involves <span class=\"searchmatch\">the</span> description and manipulation <span class=\"searchmatch\">of</span> abstract objects that are either abstractions from <span class=\"searchmatch\">nature</span> or purely abstract",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "The Unreasonable Effectiveness of Mathematics in the Natural Sciences",
+      "url": "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences",
+      "snippet": "describing <span class=\"searchmatch\">nature</span>. Albert Einstein and <span class=\"searchmatch\">the</span> philosopher Alfred North Whitehead had previously thought that <span class=\"searchmatch\">the</span> success <span class=\"searchmatch\">of</span> abstract <span class=\"searchmatch\">mathematics</span> in physical",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Relationship between mathematics and physics",
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "snippet": "Galilei: &quot;<span class=\"searchmatch\">The</span> book <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">nature</span> is written in <span class=\"searchmatch\">the</span> language <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>&quot;. Before giving a <span class=\"searchmatch\">mathematical</span> proof for <span class=\"searchmatch\">the</span> formula for <span class=\"searchmatch\">the</span> volume <span class=\"searchmatch\">of</span> a sphere",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Definitions of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "snippet": "were abandoned in <span class=\"searchmatch\">the</span> 19th century as new branches <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> were developed, which bore no <span class=\"searchmatch\">obvious</span> relation to measurement or <span class=\"searchmatch\">the</span> physical world, such",
+      "query": "what is not obvious about the nature of mathematics"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "<span class=\"searchmatch\">what</span> causes it. c. &quot;Dandruff&quot;. NHS. October 18, 2017. Retrieved July 2, 2022. Dandruff <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> caused by poor hygiene, although it may be more <span class=\"searchmatch\">obvious</span>",
+      "query": "what is not obvious about the nature of mathematics"
+    },
+    {
+      "title": "The Unreasonable Effectiveness of Mathematics in the Natural Sciences",
+      "url": "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences",
+      "snippet": "describing <span class=\"searchmatch\">nature</span>. Albert Einstein and <span class=\"searchmatch\">the</span> philosopher Alfred North Whitehead had previously thought that <span class=\"searchmatch\">the</span> success <span class=\"searchmatch\">of</span> abstract <span class=\"searchmatch\">mathematics</span> in physical",
+      "query": "what is not obvious about the nature of mathematics"
+    },
+    {
+      "title": "Space (mathematics)",
+      "url": "https://en.wikipedia.org/wiki/Space_%28mathematics%29",
+      "snippet": "imitate <span class=\"searchmatch\">the</span> non-Euclidean relations. It shows that relations between objects are essential in <span class=\"searchmatch\">mathematics</span>, while <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> objects <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span>. <span class=\"searchmatch\">The</span> word",
+      "query": "what is not obvious about the nature of mathematics"
+    },
+    {
+      "title": "Glossary of mathematical jargon",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_mathematical_jargon",
+      "snippet": "or precise ideas. Much <span class=\"searchmatch\">of</span> this uses common English words, but with a specific non-<span class=\"searchmatch\">obvious</span> meaning when used in a <span class=\"searchmatch\">mathematical</span> sense. Some phrases, like",
+      "query": "what is not obvious about the nature of mathematics"
+    }
+  ],
+  "ts": "2026-08-20T04:22:46.374235+00:00"
+}

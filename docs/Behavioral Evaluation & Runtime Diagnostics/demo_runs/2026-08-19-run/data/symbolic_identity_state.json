@@ -1,0 +1,155 @@
+{
+  "built_at": "2026-08-21T03:08:14.497102+00:00",
+  "knowledge_domains": {
+    "EMOTIONAL": {
+      "rule_count": 6,
+      "mean_confidence": 0.293,
+      "mean_hits": 0.33,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.01,
+      "quality": 0.087
+    },
+    "PLANNING": {
+      "rule_count": 3,
+      "mean_confidence": 0.467,
+      "mean_hits": 33530.33,
+      "prediction_error": 0.6667,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.156
+    },
+    "GENERAL": {
+      "rule_count": 22,
+      "mean_confidence": 0.21,
+      "mean_hits": 0.09,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.15,
+      "quality": 0.205
+    },
+    "TECHNICAL": {
+      "rule_count": 19,
+      "mean_confidence": 0.259,
+      "mean_hits": 45.89,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.194
+    },
+    "COGNITIVE": {
+      "rule_count": 2,
+      "mean_confidence": 0.21,
+      "mean_hits": 0.0,
+      "prediction_error": 0.3716,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.07,
+      "quality": 0.116
+    },
+    "SOCIAL": {
+      "rule_count": 1,
+      "mean_confidence": 0.21,
+      "mean_hits": 0.0,
+      "prediction_error": 0.5,
+      "abstraction_count": 0,
+      "action_credit_bonus": 0.0,
+      "quality": 0.055
+    }
+  },
+  "weak_areas": [
+    "SOCIAL",
+    "EMOTIONAL",
+    "COGNITIVE",
+    "PLANNING",
+    "TECHNICAL",
+    "GENERAL"
+  ],
+  "strong_areas": [],
+  "rule_health": {
+    "total_rules": 72,
+    "active_rules": 53,
+    "tombstoned_rules": 19,
+    "mean_confidence": 0.252,
+    "pending_revisions": 0,
+    "grounding": {
+      "total_tracked": 0,
+      "mean_grounding": 0.5,
+      "well_grounded": 0,
+      "poorly_grounded": 0
+    }
+  },
+  "concept_coverage": [
+    {
+      "name": "event_recent_dream",
+      "type": "PRINCIPLE",
+      "member_count": 8,
+      "dominant": [
+        "event",
+        "recent",
+        "dream"
+      ]
+    },
+    {
+      "name": "function_look_around",
+      "type": "PRINCIPLE",
+      "member_count": 3,
+      "dominant": [
+        "function",
+        "look",
+        "around"
+      ]
+    },
+    {
+      "name": "function_goal_assess",
+      "type": "PRINCIPLE",
+      "member_count": 5,
+      "dominant": [
+        "function",
+        "goal",
+        "assess"
+      ]
+    },
+    {
+      "name": "affect_chronic_signal",
+      "type": "PRINCIPLE",
+      "member_count": 10,
+      "dominant": [
+        "affect",
+        "chronic",
+        "signal"
+      ]
+    },
+    {
+      "name": "function_generate_intrinsic",
+      "type": "PRINCIPLE",
+      "member_count": 4,
+      "dominant": [
+        "function",
+        "generate",
+        "intrinsic"
+      ]
+    },
+    {
+      "name": "dream_processing",
+      "type": "PRINCIPLE",
+      "member_count": 7,
+      "dominant": [
+        "dream",
+        "processing"
+      ]
+    }
+  ],
+  "causal_edges_total": 258,
+  "causal_by_domain": {
+    "GENERAL": 196,
+    "PLANNING": 54,
+    "COGNITIVE": 2,
+    "TECHNICAL": 1,
+    "SOCIAL": 2,
+    "EMOTIONAL": 3
+  },
+  "domain_error_rates": {
+    "COGNITIVE": 0.3716,
+    "PLANNING": 0.6667
+  }
+}

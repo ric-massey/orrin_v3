@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Daily_Stoic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_01.txt",
+      "chars": 4495
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoicism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Euthymia_%28philosophy%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_03.txt",
+      "chars": 4308
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Go_Gentle_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_04.txt",
+      "chars": 7568
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Donald_J._Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_05.txt",
+      "chars": 11394
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Aesthetics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Massimo_Pigliucci",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pythagoreanism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-08-20T03:26:28.761568+00:00/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-08-20T03:26:39.760391+00:00"
+}

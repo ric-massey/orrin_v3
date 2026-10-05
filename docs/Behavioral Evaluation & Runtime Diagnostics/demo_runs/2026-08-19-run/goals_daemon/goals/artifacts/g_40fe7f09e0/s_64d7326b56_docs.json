@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_04.txt",
+      "chars": 11123
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Homology_%28biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sociobiology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_epistemology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-08-20T00:48:15.876572+00:00"
+}

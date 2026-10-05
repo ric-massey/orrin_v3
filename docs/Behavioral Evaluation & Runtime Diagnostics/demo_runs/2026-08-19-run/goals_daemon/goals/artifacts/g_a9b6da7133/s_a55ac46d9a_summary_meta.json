@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_a9b6da7133",
+    "title": "Understand emergence in complex systems more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "emergence in complex systems",
+        "emergence in complex systems explained",
+        "what is not obvious about emergence in complex systems"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223727Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223732Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223734Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223736Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T04:02:42.223737Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on emergence in complex systems was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about emergence in complex systems was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T04:02:42.223804Z",
+      "question": "What did I get wrong or oversimplify about emergence in complex systems?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-08-20 04:02:42.224409+00:00",
+    "updated_at": "2026-08-20 04:02:43.948809+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 2
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [intrinsic-2026-08-20T03:26:28.761568+00:00]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Emergence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Systems_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system_approach_to_peace_and_armed_conflict",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_adaptive_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Autopoiesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fallacy_of_composition",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Intersectionality",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a9b6da7133/doc_10.txt"
+    }
+  ],
+  "ts": "2026-08-20T04:02:49.839715+00:00"
+}

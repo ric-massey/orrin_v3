@@ -1,0 +1,1230 @@
+[
+  {
+    "action": "research_topic",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 74,
+    "confidence": 0.741,
+    "first_seen": "2026-08-19T23:15:58.267610Z",
+    "last_seen": "2026-08-20T14:30:38.327019Z"
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 68,
+    "confidence": 0.779,
+    "first_seen": "2026-08-19T23:16:16.438320Z",
+    "last_seen": "2026-08-20T14:32:01.236890Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 49,
+    "confidence": 0.574,
+    "first_seen": "2026-08-19T23:15:54.070713Z",
+    "last_seen": "2026-08-20T14:28:37.262751Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 41,
+    "confidence": 0.638,
+    "first_seen": "2026-08-20T00:44:16.209685Z",
+    "last_seen": "2026-08-20T14:27:49.686638Z"
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 41,
+    "confidence": 0.802,
+    "first_seen": "2026-08-20T00:44:01.605855Z",
+    "last_seen": "2026-08-20T14:30:24.351146Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 37,
+    "confidence": 0.544,
+    "first_seen": "2026-08-20T00:42:59.299371Z",
+    "last_seen": "2026-08-20T14:30:56.945217Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 36,
+    "confidence": 0.558,
+    "first_seen": "2026-08-19T23:15:40.320272Z",
+    "last_seen": "2026-08-20T14:28:49.884689Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 35,
+    "confidence": 0.542,
+    "first_seen": "2026-08-19T23:15:34.931172Z",
+    "last_seen": "2026-08-20T14:16:33.916712Z"
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 35,
+    "confidence": 0.734,
+    "first_seen": "2026-08-20T08:18:36.844525Z",
+    "last_seen": "2026-08-20T14:32:13.127017Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 32,
+    "confidence": 0.407,
+    "first_seen": "2026-08-19T23:15:45.891616Z",
+    "last_seen": "2026-08-20T14:23:21.614521Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 31,
+    "confidence": 0.489,
+    "first_seen": "2026-08-19T23:16:06.777145Z",
+    "last_seen": "2026-08-20T14:16:39.065080Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 31,
+    "confidence": 0.48,
+    "first_seen": "2026-08-20T00:41:58.143240Z",
+    "last_seen": "2026-08-20T14:29:03.051648Z"
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 28,
+    "confidence": 0.664,
+    "first_seen": "2026-08-20T00:41:51.880786Z",
+    "last_seen": "2026-08-20T14:22:27.757091Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 26,
+    "confidence": 0.446,
+    "first_seen": "2026-08-19T23:16:44.980022Z",
+    "last_seen": "2026-08-20T14:28:45.555330Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 26,
+    "confidence": 0.365,
+    "first_seen": "2026-08-19T23:16:29.372803Z",
+    "last_seen": "2026-08-20T14:28:09.616444Z"
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 25,
+    "confidence": 0.796,
+    "first_seen": "2026-08-20T08:18:56.053116Z",
+    "last_seen": "2026-08-20T14:31:48.934223Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 24,
+    "confidence": 0.643,
+    "first_seen": "2026-08-19T23:16:22.263925Z",
+    "last_seen": "2026-08-20T14:29:53.994383Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 23,
+    "confidence": 0.409,
+    "first_seen": "2026-08-20T00:44:13.153153Z",
+    "last_seen": "2026-08-20T14:21:02.514963Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 20,
+    "confidence": 0.654,
+    "first_seen": "2026-08-19T23:16:05.263527Z",
+    "last_seen": "2026-08-20T14:14:54.007404Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 18,
+    "confidence": 0.584,
+    "first_seen": "2026-08-19T23:17:28.849679Z",
+    "last_seen": "2026-08-20T11:18:23.297357Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 17,
+    "confidence": 0.688,
+    "first_seen": "2026-08-20T00:42:21.614690Z",
+    "last_seen": "2026-08-20T14:18:53.416117Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 16,
+    "confidence": 0.788,
+    "first_seen": "2026-08-20T00:43:23.321458Z",
+    "last_seen": "2026-08-20T14:29:20.852466Z"
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 16,
+    "confidence": 0.272,
+    "first_seen": "2026-08-19T23:16:53.837974Z",
+    "last_seen": "2026-08-20T14:31:56.448587Z"
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 15,
+    "confidence": 0.485,
+    "first_seen": "2026-08-19T23:15:51.231633Z",
+    "last_seen": "2026-08-19T23:20:01.075314Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 15,
+    "confidence": 0.485,
+    "first_seen": "2026-08-20T00:43:12.337690Z",
+    "last_seen": "2026-08-20T11:20:55.128465Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 15,
+    "confidence": 0.752,
+    "first_seen": "2026-08-20T00:46:19.387449Z",
+    "last_seen": "2026-08-20T14:23:32.407630Z"
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 15,
+    "confidence": 0.792,
+    "first_seen": "2026-08-20T08:18:59.390762Z",
+    "last_seen": "2026-08-20T14:29:43.431910Z"
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 13,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:16:03.859037Z",
+    "last_seen": "2026-08-20T11:28:09.074366Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 12,
+    "confidence": 0.488,
+    "first_seen": "2026-08-19T23:16:10.952150Z",
+    "last_seen": "2026-08-20T11:18:27.174138Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 12,
+    "confidence": 0.612,
+    "first_seen": "2026-08-20T00:42:10.508010Z",
+    "last_seen": "2026-08-20T14:31:23.341413Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 12,
+    "confidence": 0.5,
+    "first_seen": "2026-08-20T05:23:11.594775Z",
+    "last_seen": "2026-08-20T14:31:12.065055Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 12,
+    "confidence": 0.511,
+    "first_seen": "2026-08-20T05:23:07.905656Z",
+    "last_seen": "2026-08-20T14:25:08.512251Z"
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 11,
+    "confidence": 0.582,
+    "first_seen": "2026-08-20T00:43:29.172359Z",
+    "last_seen": "2026-08-20T14:19:52.677707Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 11,
+    "confidence": 0.514,
+    "first_seen": "2026-08-20T00:42:24.251244Z",
+    "last_seen": "2026-08-20T14:30:42.638425Z"
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 11,
+    "confidence": 0.421,
+    "first_seen": "2026-08-20T05:21:18.170350Z",
+    "last_seen": "2026-08-20T14:27:05.567223Z"
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 11,
+    "confidence": 0.285,
+    "first_seen": "2026-08-20T08:18:32.772372Z",
+    "last_seen": "2026-08-20T14:16:58.793607Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 11,
+    "confidence": 0.753,
+    "first_seen": "2026-08-20T00:45:30.310933Z",
+    "last_seen": "2026-08-20T14:27:00.656379Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 11,
+    "confidence": 0.752,
+    "first_seen": "2026-08-20T08:26:04.890434Z",
+    "last_seen": "2026-08-20T14:22:08.700248Z"
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 8,
+    "confidence": 0.492,
+    "first_seen": "2026-08-19T23:15:42.993289Z",
+    "last_seen": "2026-08-20T00:49:03.734510Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 8,
+    "confidence": 0.494,
+    "first_seen": "2026-08-20T00:43:31.841077Z",
+    "last_seen": "2026-08-20T14:19:47.467376Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 8,
+    "confidence": 0.631,
+    "first_seen": "2026-08-20T01:30:35.317162Z",
+    "last_seen": "2026-08-20T14:25:59.549894Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 7,
+    "confidence": 0.452,
+    "first_seen": "2026-08-20T08:21:49.730459Z",
+    "last_seen": "2026-08-20T14:32:06.271710Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 7,
+    "confidence": 0.379,
+    "first_seen": "2026-08-20T00:49:20.896251Z",
+    "last_seen": "2026-08-20T14:24:14.323490Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 7,
+    "confidence": 0.777,
+    "first_seen": "2026-08-20T05:23:17.373032Z",
+    "last_seen": "2026-08-20T14:30:04.182531Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 7,
+    "confidence": 0.689,
+    "first_seen": "2026-08-20T00:42:03.856346Z",
+    "last_seen": "2026-08-20T14:24:01.239698Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 6,
+    "confidence": 0.494,
+    "first_seen": "2026-08-19T23:15:39.007044Z",
+    "last_seen": "2026-08-19T23:20:08.358954Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "produce_and_check",
+    "context": "emo_neutral",
+    "outcome": "failure",
+    "count": 6,
+    "confidence": 0.705,
+    "first_seen": "2026-08-19T23:18:32.711134Z",
+    "last_seen": "2026-08-20T00:48:17.037833Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 6,
+    "confidence": 0.613,
+    "first_seen": "2026-08-19T23:16:20.635283Z",
+    "last_seen": "2026-08-20T08:32:00.375612Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 6,
+    "confidence": 0.584,
+    "first_seen": "2026-08-20T00:47:54.066829Z",
+    "last_seen": "2026-08-20T14:25:48.607364Z"
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 6,
+    "confidence": 0.583,
+    "first_seen": "2026-08-20T05:22:24.888392Z",
+    "last_seen": "2026-08-20T14:21:16.921047Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 6,
+    "confidence": 0.406,
+    "first_seen": "2026-08-20T08:27:55.779192Z",
+    "last_seen": "2026-08-20T14:31:16.005384Z"
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 5,
+    "confidence": 0.495,
+    "first_seen": "2026-08-20T00:45:32.792431Z",
+    "last_seen": "2026-08-20T05:31:01.646556Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 5,
+    "confidence": 0.589,
+    "first_seen": "2026-08-20T05:26:56.592755Z",
+    "last_seen": "2026-08-20T14:15:06.376980Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 5,
+    "confidence": 0.6,
+    "first_seen": "2026-08-20T11:16:05.205326Z",
+    "last_seen": "2026-08-20T14:31:43.425550Z"
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 5,
+    "confidence": 0.723,
+    "first_seen": "2026-08-20T00:42:29.333673Z",
+    "last_seen": "2026-08-20T14:29:25.413091Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "bored",
+    "outcome": "success",
+    "count": 5,
+    "confidence": 0.78,
+    "first_seen": "2026-08-20T11:21:31.095877Z",
+    "last_seen": "2026-08-20T14:23:07.238455Z"
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.496,
+    "first_seen": "2026-08-19T23:15:37.667059Z",
+    "last_seen": "2026-08-19T23:19:35.660613Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 4,
+    "confidence": 0.496,
+    "first_seen": "2026-08-19T23:16:47.904290Z",
+    "last_seen": "2026-08-19T23:19:06.577637Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 4,
+    "confidence": 0.496,
+    "first_seen": "2026-08-19T23:15:52.637087Z",
+    "last_seen": "2026-08-20T00:48:01.741694Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "research_topic",
+    "context": "bored",
+    "outcome": "success",
+    "count": 4,
+    "confidence": 0.654,
+    "first_seen": "2026-08-19T23:18:11.945651Z",
+    "last_seen": "2026-08-20T05:31:18.719701Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.675,
+    "first_seen": "2026-08-20T00:49:11.456664Z",
+    "last_seen": "2026-08-20T08:19:13.812095Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.594,
+    "first_seen": "2026-08-20T00:44:24.824516Z",
+    "last_seen": "2026-08-20T11:21:58.494292Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 4,
+    "confidence": 0.498,
+    "first_seen": "2026-08-20T05:21:12.881184Z",
+    "last_seen": "2026-08-20T14:15:56.136709Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.603,
+    "first_seen": "2026-08-20T05:23:02.745918Z",
+    "last_seen": "2026-08-20T14:25:00.317566Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.611,
+    "first_seen": "2026-08-20T05:27:05.110705Z",
+    "last_seen": "2026-08-20T14:26:19.266878Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 4,
+    "confidence": 0.72,
+    "first_seen": "2026-08-20T05:28:26.276126Z",
+    "last_seen": "2026-08-20T14:31:34.117734Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "narrative_update",
+    "context": "bored",
+    "outcome": "success",
+    "count": 4,
+    "confidence": 0.541,
+    "first_seen": "2026-08-20T05:31:15.536885Z",
+    "last_seen": "2026-08-20T14:22:48.059781Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 4,
+    "confidence": 0.5,
+    "first_seen": "2026-08-20T08:27:28.338875Z",
+    "last_seen": "2026-08-20T14:20:25.507312Z"
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-19T23:16:50.653854Z",
+    "last_seen": "2026-08-20T05:23:48.381460Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-19T23:16:52.308468Z",
+    "last_seen": "2026-08-20T05:31:24.584548Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-19T23:19:05.105159Z",
+    "last_seen": "2026-08-20T05:23:45.920918Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-20T00:44:28.646054Z",
+    "last_seen": "2026-08-20T08:24:09.202223Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-20T00:49:33.915698Z",
+    "last_seen": "2026-08-20T08:21:15.845176Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.506,
+    "first_seen": "2026-08-20T00:45:27.924861Z",
+    "last_seen": "2026-08-20T08:31:48.006291Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-20T00:43:47.831715Z",
+    "last_seen": "2026-08-20T11:23:23.667181Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-20T05:25:46.499524Z",
+    "last_seen": "2026-08-20T11:18:32.887032Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 3,
+    "confidence": 0.497,
+    "first_seen": "2026-08-20T05:25:49.419377Z",
+    "last_seen": "2026-08-20T11:18:37.651379Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.554,
+    "first_seen": "2026-08-19T23:16:19.202499Z",
+    "last_seen": "2026-08-20T14:30:48.147457Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 3,
+    "confidence": 0.526,
+    "first_seen": "2026-08-20T00:42:00.743246Z",
+    "last_seen": "2026-08-20T14:31:04.086773Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.419,
+    "first_seen": "2026-08-20T05:28:32.931981Z",
+    "last_seen": "2026-08-20T14:18:31.002585Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "narrative_update",
+    "context": "bored",
+    "outcome": "neutral",
+    "count": 3,
+    "confidence": 0.5,
+    "first_seen": "2026-08-20T05:31:12.327029Z",
+    "last_seen": "2026-08-20T14:23:13.282734Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_motivation",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:15:55.523520Z",
+    "last_seen": "2026-08-19T23:18:23.518995Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "grep_files",
+    "context": "emo_neutral",
+    "outcome": "failure",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:16:40.302632Z",
+    "last_seen": "2026-08-19T23:17:15.351270Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:17:06.791438Z",
+    "last_seen": "2026-08-19T23:18:06.188170Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:17:14.263298Z",
+    "last_seen": "2026-08-19T23:17:15.630467Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "run_embodied_cycle",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.6,
+    "first_seen": "2026-08-19T23:18:03.390792Z",
+    "last_seen": "2026-08-19T23:18:04.783182Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "bored",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.6,
+    "first_seen": "2026-08-19T23:18:17.724738Z",
+    "last_seen": "2026-08-19T23:18:19.120256Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_neutral",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.6,
+    "first_seen": "2026-08-19T23:18:32.822982Z",
+    "last_seen": "2026-08-19T23:18:46.931424Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:18:07.568364Z",
+    "last_seen": "2026-08-20T00:45:38.108359Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "thread_continue",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-20T00:42:07.237966Z",
+    "last_seen": "2026-08-20T01:03:38.339411Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "read_a_book",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-20T00:43:18.752013Z",
+    "last_seen": "2026-08-20T00:43:21.139373Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:15:30.578064Z",
+    "last_seen": "2026-08-20T05:28:42.844610Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "bored",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.498,
+    "first_seen": "2026-08-19T23:18:22.006625Z",
+    "last_seen": "2026-08-20T05:31:08.647467Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "attend_goal",
+    "context": "bored",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.66,
+    "first_seen": "2026-08-20T05:27:30.240048Z",
+    "last_seen": "2026-08-20T05:27:33.643493Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "evolve_core_value",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.66,
+    "first_seen": "2026-08-20T05:30:11.574870Z",
+    "last_seen": "2026-08-20T05:30:15.956872Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "adapt_subgoals",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.622,
+    "first_seen": "2026-08-20T05:23:21.028441Z",
+    "last_seen": "2026-08-20T11:16:47.608336Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.622,
+    "first_seen": "2026-08-20T00:44:21.374006Z",
+    "last_seen": "2026-08-20T14:24:05.697015Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "repair_contradictions",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 2,
+    "confidence": 0.231,
+    "first_seen": "2026-08-20T14:15:10.768576Z",
+    "last_seen": "2026-08-20T14:29:32.938628Z"
+  },
+  {
+    "action": "narrative_update",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 2,
+    "confidence": 0.176,
+    "first_seen": "2026-08-20T14:26:30.206296Z",
+    "last_seen": "2026-08-20T14:30:51.911562Z"
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_exploration_drive",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:15:31.876258Z",
+    "last_seen": "2026-08-19T23:15:31.876258Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "generate_intrinsic_goals",
+    "context": "emo_exploration_drive",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.517,
+    "first_seen": "2026-08-19T23:15:33.190896Z",
+    "last_seen": "2026-08-19T23:15:33.190896Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "grounded_experience",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.517,
+    "first_seen": "2026-08-19T23:16:15.074053Z",
+    "last_seen": "2026-08-19T23:16:15.074053Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_exploration_drive",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:16:26.665544Z",
+    "last_seen": "2026-08-19T23:16:26.665544Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "research_topic",
+    "context": "emo_exploration_drive",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:16:28.024572Z",
+    "last_seen": "2026-08-19T23:16:28.024572Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "grep_files",
+    "context": "emo_neutral",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:17:50.416946Z",
+    "last_seen": "2026-08-19T23:17:50.416946Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_motivation",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:18:09.024390Z",
+    "last_seen": "2026-08-19T23:18:09.024390Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "bored",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.517,
+    "first_seen": "2026-08-19T23:18:13.368222Z",
+    "last_seen": "2026-08-19T23:18:13.368222Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "bored",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.517,
+    "first_seen": "2026-08-19T23:18:20.535510Z",
+    "last_seen": "2026-08-19T23:18:20.535510Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "attend_goal",
+    "context": "emo_motivation",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-19T23:18:24.947012Z",
+    "last_seen": "2026-08-19T23:18:24.947012Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_neutral",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.517,
+    "first_seen": "2026-08-19T23:18:25.612233Z",
+    "last_seen": "2026-08-19T23:18:25.612233Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T00:47:56.576028Z",
+    "last_seen": "2026-08-20T00:47:56.576028Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "emo_motivation",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.547,
+    "first_seen": "2026-08-20T00:47:59.079172Z",
+    "last_seen": "2026-08-20T00:47:59.079172Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_around",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.547,
+    "first_seen": "2026-08-20T00:49:16.407150Z",
+    "last_seen": "2026-08-20T00:49:16.407150Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "exploration_drive_loop",
+    "context": "emo_novelty_signal",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.547,
+    "first_seen": "2026-08-20T01:02:50.945969Z",
+    "last_seen": "2026-08-20T01:02:50.945969Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "exploration_drive_loop",
+    "context": "emo_motivation",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.547,
+    "first_seen": "2026-08-20T01:03:22.709537Z",
+    "last_seen": "2026-08-20T01:03:22.709537Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.547,
+    "first_seen": "2026-08-20T01:03:43.907014Z",
+    "last_seen": "2026-08-20T01:03:43.907014Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "bored",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T05:27:36.626120Z",
+    "last_seen": "2026-08-20T05:27:36.626120Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "fetch_and_read",
+    "context": "bored",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T05:27:40.535164Z",
+    "last_seen": "2026-08-20T05:27:40.535164Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "leave_note",
+    "context": "emo_expected_gain",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.577,
+    "first_seen": "2026-08-20T05:28:23.169259Z",
+    "last_seen": "2026-08-20T05:28:23.169259Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_exploration_drive",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T05:28:58.124452Z",
+    "last_seen": "2026-08-20T05:28:58.124452Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "look_outward",
+    "context": "bored",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T05:31:21.816182Z",
+    "last_seen": "2026-08-20T05:31:21.816182Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "experience_corpus",
+    "context": "emo_confidence",
+    "outcome": "failure",
+    "count": 1,
+    "confidence": 0.577,
+    "first_seen": "2026-08-20T05:31:27.689383Z",
+    "last_seen": "2026-08-20T05:31:27.689383Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "assess_goal_progress",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.499,
+    "first_seen": "2026-08-20T11:15:57.350732Z",
+    "last_seen": "2026-08-20T11:15:57.350732Z",
+    "stale_decayed": true
+  },
+  {
+    "action": "seek_novelty",
+    "context": "emo_exploration_drive",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.667,
+    "first_seen": "2026-08-20T14:26:24.377343Z",
+    "last_seen": "2026-08-20T14:26:24.377343Z"
+  },
+  {
+    "action": "look_around",
+    "context": "emo_confidence",
+    "outcome": "success",
+    "count": 1,
+    "confidence": 0.5,
+    "first_seen": "2026-08-20T14:29:10.369883Z",
+    "last_seen": "2026-08-20T14:29:10.369883Z"
+  },
+  {
+    "action": "look_around",
+    "context": "emo_confidence",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.5,
+    "first_seen": "2026-08-20T14:29:15.229461Z",
+    "last_seen": "2026-08-20T14:29:15.229461Z"
+  },
+  {
+    "action": "wikipedia_search",
+    "context": "emo_expected_gain",
+    "outcome": "neutral",
+    "count": 1,
+    "confidence": 0.667,
+    "first_seen": "2026-08-20T14:31:38.894697Z",
+    "last_seen": "2026-08-20T14:31:38.894697Z"
+  }
+]

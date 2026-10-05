@@ -1,0 +1,28 @@
+{
+  "ltc_aspiration-self_understa_1::search_own_files": {
+    "hashes": [
+      "65939d737625d50d",
+      "dfe2a6273078a9fe",
+      "56a3ed605da44900"
+    ],
+    "count": 3,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1787181365.158296
+  },
+  "aspiration-output_producing::search_own_files": {
+    "hashes": [
+      "43f954ae0dc1d1b9",
+      "84d2c8778a7ca9fd",
+      "2defb19f893b3ed1",
+      "137302bd13227ea3",
+      "e87ffc58fcadf2bf",
+      "294aefe50cb6e049",
+      "a37ff81e69418aaa"
+    ],
+    "count": 7,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1787186057.5490391
+  }
+}

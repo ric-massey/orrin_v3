@@ -1,0 +1,151 @@
+{
+  "goal": {
+    "id": "g_40fe7f09e0",
+    "title": "Understand evolutionary biology more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "evolutionary biology",
+        "evolutionary biology explained",
+        "what is not obvious about evolutionary biology"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551546Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551570Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551578Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551580Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-08-20T00:48:11.551582Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on evolutionary biology was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about evolutionary biology was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-08-20T00:48:11.551626Z",
+      "question": "What did I get wrong or oversimplify about evolutionary biology?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-08-20 00:48:11.552237+00:00",
+    "updated_at": "2026-08-20 00:48:12.781093+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_24136ed3db]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Homology_%28biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sociobiology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_40fe7f09e0/doc_10.txt"
+    }
+  ],
+  "ts": "2026-08-20T00:48:16.329144+00:00"
+}

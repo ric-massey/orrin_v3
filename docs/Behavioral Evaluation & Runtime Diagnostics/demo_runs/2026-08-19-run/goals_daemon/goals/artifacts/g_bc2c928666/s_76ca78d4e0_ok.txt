@@ -1,0 +1,1 @@
+goals WAL within limit (lines=16 ≤ keep=5000); no change

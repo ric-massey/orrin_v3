@@ -281,6 +281,41 @@ scrape-stitches, hence gate item (d)).
 
 ---
 
+## Run 12 result — 2026-08-19/21 life: **NOT PASSED** — Lifecycle ✅ · Health ✅ · Close-out ✅ · Skeptic ✅ · Honesty 🟡 · **Feed 🔴 · Growth 🔴 (hollow)**
+
+Twelfth acceptance run (**mode: symbolic-only**, build **`90a01c4`** = Layer 1A–1D,
+committed 1 min pre-launch; **10,972 cycles, single segment**, born 08-19 23:15Z,
+lifespan death 08-21 03:08Z, clean exit). **Captured 2026-10-04**: it sat uncaptured
+for six weeks. Full verdict `demo_runs/2026-08-19-run/DEMO_RUN_2026-08-19.md`.
+
+- **LIFECYCLE ✅:** 1 clean exit, 0 stall kills, 0 born-dead relaunches.
+- **HEALTH ✅:** occupancy 44.2 %, ignition duty **67.1 %** (Run 11: 98.2 %),
+  contributions 16/3/0/0, RSS median 1.1 GB. 🔴 `genuine_contact` contribution 0
+  (617 contentless `leave_note`s).
+- **SKEPTIC ✅:** blocked `decide_to_write_code` left the EMA table; avoidance breaker
+  fires (first ever) but **overshoots: 7,269 fires = 66 % of cycles**, muting
+  research 2,102×.
+- **FEED 🔴:** daemon WAL silent from 04:23Z (10.4 h of active cognition). Cause:
+  the generator re-proposes **completed** topics → `adopted_existing` a DONE goal →
+  nothing new. Research records 15 (< 20; Run 11: 4).
+- **GROWTH 🔴 (hollow):** `answered=True` ×7, ladder rung 4, 34 reuse rows. All come
+  from subject terms that keep question-template words (`did/get/wrong`) and match
+  them as substrings. Mathematics claims "answer" a medieval-cooking question;
+  **0/10 structured reuses on topic**; **0 predictions minted**, so the gate's
+  prediction-scored criterion was never exercised.
+- **NEW:** 12.4-h whole-process freeze (likely host sleep, unconfirmed;
+  `slept_seconds` 0) consumed 45 % of lifespan. A junk metacog exemplar was
+  promoted into `tests/fixtures/quality_golden/exemplars/`.
+
+**Re-test gate (Run 13):** (1) template-free, whole-token subject terms in close-out +
+`_find_prior_claims`; (2) answered = revision/contradiction of a prior claim, or a
+resolved prediction; (3) mint characterization goals with predictions;
+(4) completion-aware generation (no `adopted_existing` on DONE); (5) wall-clock
+suspension detection + lifespan credit; (6) breaker doesn't count goal-service as
+avoidance; plus items 7–12 in the run doc. Items 1–4 are the gate-passers.
+
+---
+
 ## Run 8 re-test gate (2026-07-14 — from `RUN8_FIX_PLAN_2026-07-14.md`)
 
 Run 7 (2026-07-12 life, `demo_runs/2026-07-12-run/`) proved the Run-7 anti-pump

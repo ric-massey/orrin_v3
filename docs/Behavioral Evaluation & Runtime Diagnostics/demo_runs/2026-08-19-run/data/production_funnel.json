@@ -1,0 +1,1544 @@
+{
+  "events": [
+    {
+      "ts": 1787181322.4753332,
+      "stage": "artifact",
+      "goal": "g_bc2c928666"
+    },
+    {
+      "ts": 1787181333.2376819,
+      "stage": "handoff",
+      "goal": "g_fe1bdc7fb4"
+    },
+    {
+      "ts": 1787181511.277526,
+      "stage": "artifact",
+      "goal": "g_88603e45e3ff"
+    },
+    {
+      "ts": 1787181512.6933188,
+      "stage": "committed",
+      "goal": "g_88603e45e3ff"
+    },
+    {
+      "ts": 1787181518.960479,
+      "stage": "credited",
+      "goal": "g_88603e45e3ff"
+    },
+    {
+      "ts": 1787181519.041176,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-08-19T23:18:39.012423+00:00"
+    },
+    {
+      "ts": 1787181632.906967,
+      "stage": "artifact",
+      "goal": "g_955e7dd631e6"
+    },
+    {
+      "ts": 1787181632.908276,
+      "stage": "credited",
+      "goal": "g_955e7dd631e6"
+    },
+    {
+      "ts": 1787181738.4565492,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787181738.459701,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787181876.533099,
+      "stage": "artifact",
+      "goal": "g_75f5660a3aa2"
+    },
+    {
+      "ts": 1787181876.5367649,
+      "stage": "credited",
+      "goal": "g_75f5660a3aa2"
+    },
+    {
+      "ts": 1787181955.926788,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787181955.932357,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787181955.934758,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787181955.937151,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787181955.948367,
+      "stage": "candidate",
+      "goal": "Open question: What is concrete and true right now?"
+    },
+    {
+      "ts": 1787181959.147669,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-08-19T23:25:56.054572+00:00"
+    },
+    {
+      "ts": 1787181959.1540349,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-08-19T23:25:56.054572+00:00"
+    },
+    {
+      "ts": 1787181959.157536,
+      "stage": "handoff",
+      "goal": "g_995558e009"
+    },
+    {
+      "ts": 1787181959.169832,
+      "stage": "producer_ran",
+      "goal": "g_995558e009"
+    },
+    {
+      "ts": 1787181960.4381912,
+      "stage": "producer_ran",
+      "goal": "g_dd89aa2324"
+    },
+    {
+      "ts": 1787181964.033331,
+      "stage": "committed",
+      "goal": "g_1008c1fd6cb4"
+    },
+    {
+      "ts": 1787181964.376128,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-08-19T23:25:56.054572+00:00"
+    },
+    {
+      "ts": 1787181964.381089,
+      "stage": "credited",
+      "goal": "intrinsic-2026-08-19T23:25:56.054572+00:00"
+    },
+    {
+      "ts": 1787181964.4757051,
+      "stage": "candidate",
+      "goal": "Answer: What did I get wrong or oversimplify about consciousness and subjective experience?"
+    },
+    {
+      "ts": 1787181965.350719,
+      "stage": "artifact",
+      "goal": "g_995558e009"
+    },
+    {
+      "ts": 1787181965.352792,
+      "stage": "credited",
+      "goal": "g_995558e009"
+    },
+    {
+      "ts": 1787181965.857426,
+      "stage": "artifact",
+      "goal": "g_dd89aa2324"
+    },
+    {
+      "ts": 1787181965.859591,
+      "stage": "credited",
+      "goal": "g_dd89aa2324"
+    },
+    {
+      "ts": 1787181971.354584,
+      "stage": "committed",
+      "goal": "g_6571390a3d56"
+    },
+    {
+      "ts": 1787182071.5578601,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787182071.565249,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787182071.5675242,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787182071.5701709,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787182071.577101,
+      "stage": "candidate",
+      "goal": "Open question: What is concrete and true right now?"
+    },
+    {
+      "ts": 1787182071.6013849,
+      "stage": "candidate",
+      "goal": "Turn what I know about Answer: What did I get wrong or oversimplify about consciousness and subjective experience into a written synthesis"
+    },
+    {
+      "ts": 1787182071.702014,
+      "stage": "handoff",
+      "goal": "g_409fe7ea96"
+    },
+    {
+      "ts": 1787182071.759561,
+      "stage": "artifact",
+      "goal": "g_409fe7ea96"
+    },
+    {
+      "ts": 1787182071.763087,
+      "stage": "credited",
+      "goal": "g_409fe7ea96"
+    },
+    {
+      "ts": 1787182073.657501,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787182073.6606562,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787182073.6638741,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787182073.6705961,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787182073.678006,
+      "stage": "candidate",
+      "goal": "Open question: What is concrete and true right now?"
+    },
+    {
+      "ts": 1787182073.7931762,
+      "stage": "handoff",
+      "goal": "g_5b301857ca"
+    },
+    {
+      "ts": 1787183274.657696,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787183274.662988,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787183274.668262,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787183274.674214,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787183276.100619,
+      "stage": "handoff",
+      "goal": "g_e00776fe40"
+    },
+    {
+      "ts": 1787183276.105044,
+      "stage": "handoff",
+      "goal": "g_c7a4e8421d"
+    },
+    {
+      "ts": 1787183276.110641,
+      "stage": "producer_ran",
+      "goal": "g_c7a4e8421d"
+    },
+    {
+      "ts": 1787183277.6408231,
+      "stage": "producer_ran",
+      "goal": "g_e00776fe40"
+    },
+    {
+      "ts": 1787183280.785737,
+      "stage": "artifact",
+      "goal": "g_c7a4e8421d"
+    },
+    {
+      "ts": 1787183280.8290381,
+      "stage": "credited",
+      "goal": "g_c7a4e8421d"
+    },
+    {
+      "ts": 1787183280.901896,
+      "stage": "artifact",
+      "goal": "g_e00776fe40"
+    },
+    {
+      "ts": 1787183280.9045608,
+      "stage": "credited",
+      "goal": "g_e00776fe40"
+    },
+    {
+      "ts": 1787183282.1005282,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787183282.113343,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787183282.1179252,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787183282.129889,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787183282.159967,
+      "stage": "candidate",
+      "goal": "Turn what I know about biology evolutionary biology into a written synthesis"
+    },
+    {
+      "ts": 1787183282.9572349,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-08-19T23:48:02.321814+00:00"
+    },
+    {
+      "ts": 1787183283.1193779,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-08-19T23:48:02.321814+00:00"
+    },
+    {
+      "ts": 1787183283.134887,
+      "stage": "credited",
+      "goal": "intrinsic-2026-08-19T23:48:02.321814+00:00"
+    },
+    {
+      "ts": 1787183283.687757,
+      "stage": "committed",
+      "goal": "g_c7a4e8421d"
+    },
+    {
+      "ts": 1787183284.0047412,
+      "stage": "committed",
+      "goal": "g_e00776fe40"
+    },
+    {
+      "ts": 1787184489.107672,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787184489.1108632,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787184489.1198971,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787184489.124392,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787184491.233403,
+      "stage": "handoff",
+      "goal": "g_24136ed3db"
+    },
+    {
+      "ts": 1787184491.235911,
+      "stage": "producer_ran",
+      "goal": "g_24136ed3db"
+    },
+    {
+      "ts": 1787184496.575846,
+      "stage": "artifact",
+      "goal": "g_24136ed3db"
+    },
+    {
+      "ts": 1787184496.5776892,
+      "stage": "credited",
+      "goal": "g_24136ed3db"
+    },
+    {
+      "ts": 1787184497.28911,
+      "stage": "committed",
+      "goal": "g_24136ed3db"
+    },
+    {
+      "ts": 1787185689.5779579,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787185689.588526,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787185689.591449,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787185689.5943491,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787186889.656269,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787186889.660207,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787186889.663121,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787186889.673302,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787186891.5562,
+      "stage": "handoff",
+      "goal": "g_40fe7f09e0"
+    },
+    {
+      "ts": 1787186891.578845,
+      "stage": "producer_ran",
+      "goal": "g_40fe7f09e0"
+    },
+    {
+      "ts": 1787186896.5166452,
+      "stage": "artifact",
+      "goal": "g_40fe7f09e0"
+    },
+    {
+      "ts": 1787186896.574717,
+      "stage": "credited",
+      "goal": "g_40fe7f09e0"
+    },
+    {
+      "ts": 1787186896.6922529,
+      "stage": "committed",
+      "goal": "g_40fe7f09e0"
+    },
+    {
+      "ts": 1787186899.588948,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787186899.5957131,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787186899.608682,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787186899.61309,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787186899.659044,
+      "stage": "candidate",
+      "goal": "Turn what I know about evolutionary biology into a written synthesis"
+    },
+    {
+      "ts": 1787186900.101868,
+      "stage": "handoff",
+      "goal": "g_d27ec28a9c"
+    },
+    {
+      "ts": 1787186900.265159,
+      "stage": "artifact",
+      "goal": "g_d27ec28a9c"
+    },
+    {
+      "ts": 1787186900.278673,
+      "stage": "credited",
+      "goal": "g_d27ec28a9c"
+    },
+    {
+      "ts": 1787188211.1536481,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787188211.156685,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787188211.15954,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787188211.168522,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787189434.154351,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787189434.157067,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787189434.166647,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787189434.169488,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787191121.617901,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787191121.62819,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787191121.63152,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787191121.6365209,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787193123.479223,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787193123.4975739,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787193123.5026932,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787193123.515489,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787194188.317878,
+      "stage": "handoff",
+      "goal": "g_b15f5c2b37"
+    },
+    {
+      "ts": 1787194188.342975,
+      "stage": "producer_ran",
+      "goal": "g_b15f5c2b37"
+    },
+    {
+      "ts": 1787194291.1864,
+      "stage": "committed",
+      "goal": "g_b15f5c2b37"
+    },
+    {
+      "ts": 1787196384.821784,
+      "stage": "artifact",
+      "goal": "g_b15f5c2b37"
+    },
+    {
+      "ts": 1787196384.826284,
+      "stage": "credited",
+      "goal": "g_b15f5c2b37"
+    },
+    {
+      "ts": 1787196387.509639,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787196387.5216892,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787196387.5746508,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787196387.600867,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787196387.706238,
+      "stage": "candidate",
+      "goal": "Turn what I know about quantum mechanics foundations into a written synthesis"
+    },
+    {
+      "ts": 1787196389.233115,
+      "stage": "handoff",
+      "goal": "g_d1af863fc5"
+    },
+    {
+      "ts": 1787196389.2432902,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-08-20T03:26:28.761568+00:00"
+    },
+    {
+      "ts": 1787196389.386772,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-08-20T03:26:28.761568+00:00"
+    },
+    {
+      "ts": 1787196389.675516,
+      "stage": "artifact",
+      "goal": "g_d1af863fc5"
+    },
+    {
+      "ts": 1787196389.717837,
+      "stage": "credited",
+      "goal": "g_d1af863fc5"
+    },
+    {
+      "ts": 1787196400.238257,
+      "stage": "artifact",
+      "goal": "intrinsic-2026-08-20T03:26:28.761568+00:00"
+    },
+    {
+      "ts": 1787196400.2434251,
+      "stage": "credited",
+      "goal": "intrinsic-2026-08-20T03:26:28.761568+00:00"
+    },
+    {
+      "ts": 1787196400.367578,
+      "stage": "candidate",
+      "goal": "Answer: What did I get wrong or oversimplify about stoic philosophy and daily life?"
+    },
+    {
+      "ts": 1787197945.0196722,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787197945.0282428,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787197945.048683,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787197945.066796,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787198383.993641,
+      "stage": "handoff",
+      "goal": "g_6e9c74642e"
+    },
+    {
+      "ts": 1787198383.99783,
+      "stage": "producer_ran",
+      "goal": "g_6e9c74642e"
+    },
+    {
+      "ts": 1787198384.011544,
+      "stage": "producer_ran",
+      "goal": "g_b23cbc4839"
+    },
+    {
+      "ts": 1787198390.7950752,
+      "stage": "committed",
+      "goal": "g_d0dd312536c9"
+    },
+    {
+      "ts": 1787198409.5787132,
+      "stage": "artifact",
+      "goal": "g_f66a1ab05c"
+    },
+    {
+      "ts": 1787198561.824867,
+      "stage": "artifact",
+      "goal": "g_d0dd312536c9"
+    },
+    {
+      "ts": 1787198561.826515,
+      "stage": "credited",
+      "goal": "g_d0dd312536c9"
+    },
+    {
+      "ts": 1787198561.943281,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787198561.947737,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787198561.957122,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1787198561.9602602,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787198561.982612,
+      "stage": "candidate",
+      "goal": "Turn what I know about Answer: What did I get wrong or oversimplify about stoic philosophy and daily life into a written synthesis"
+    },
+    {
+      "ts": 1787198562.220439,
+      "stage": "handoff",
+      "goal": "g_83ca7d555a"
+    },
+    {
+      "ts": 1787198562.2275882,
+      "stage": "handoff",
+      "goal": "g_a9b6da7133"
+    },
+    {
+      "ts": 1787198562.239611,
+      "stage": "producer_ran",
+      "goal": "g_a9b6da7133"
+    },
+    {
+      "ts": 1787198562.351424,
+      "stage": "artifact",
+      "goal": "g_83ca7d555a"
+    },
+    {
+      "ts": 1787198562.361472,
+      "stage": "credited",
+      "goal": "g_83ca7d555a"
+    },
+    {
+      "ts": 1787198569.888321,
+      "stage": "artifact",
+      "goal": "g_a9b6da7133"
+    },
+    {
+      "ts": 1787198569.891062,
+      "stage": "credited",
+      "goal": "g_a9b6da7133"
+    },
+    {
+      "ts": 1787199763.744998,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787199763.757705,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1787199763.76262,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787199763.766206,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787199764.808505,
+      "stage": "handoff",
+      "goal": "g_1265f806a8"
+    },
+    {
+      "ts": 1787199764.8132522,
+      "stage": "producer_ran",
+      "goal": "g_1265f806a8"
+    },
+    {
+      "ts": 1787199764.816252,
+      "stage": "handoff",
+      "goal": "g_bf7018a94d"
+    },
+    {
+      "ts": 1787199764.8198981,
+      "stage": "producer_ran",
+      "goal": "g_bf7018a94d"
+    },
+    {
+      "ts": 1787199773.584713,
+      "stage": "artifact",
+      "goal": "g_bf7018a94d"
+    },
+    {
+      "ts": 1787199773.5873752,
+      "stage": "credited",
+      "goal": "g_bf7018a94d"
+    },
+    {
+      "ts": 1787199774.461963,
+      "stage": "committed",
+      "goal": "g_1265f806a8"
+    },
+    {
+      "ts": 1787199774.932951,
+      "stage": "committed",
+      "goal": "g_bf7018a94d"
+    },
+    {
+      "ts": 1787199778.4494982,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787199778.461931,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787199778.466121,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787199778.4850361,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787199778.509467,
+      "stage": "candidate",
+      "goal": "Turn what I know about the nature of mathematics into a written synthesis"
+    },
+    {
+      "ts": 1787199778.886881,
+      "stage": "handoff",
+      "goal": "g_e8b3c83d5e"
+    },
+    {
+      "ts": 1787199778.892236,
+      "stage": "handoff",
+      "goal": "intrinsic-2026-08-20T04:22:58.804703+00:00"
+    },
+    {
+      "ts": 1787199779.0012102,
+      "stage": "producer_ran",
+      "goal": "intrinsic-2026-08-20T04:22:58.804703+00:00"
+    },
+    {
+      "ts": 1787199779.008536,
+      "stage": "credited",
+      "goal": "g_e8b3c83d5e"
+    },
+    {
+      "ts": 1787199779.491146,
+      "stage": "artifact",
+      "goal": "g_1265f806a8"
+    },
+    {
+      "ts": 1787199779.4932969,
+      "stage": "credited",
+      "goal": "g_1265f806a8"
+    },
+    {
+      "ts": 1787200980.628711,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787200980.6329842,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787200980.645043,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787200980.6495638,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787202181.5843022,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787202181.5883038,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787202181.592297,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787202181.604914,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787202295.728956,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787202295.738421,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787202295.756686,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787202295.7617311,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787202296.297823,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787202296.3116632,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787202296.318784,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787202296.323491,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787203497.63675,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787203497.641435,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787203497.647958,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787203497.669965,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787204698.425633,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787204698.4304278,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787204698.4356039,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787204698.452488,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787205900.46617,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787205900.472283,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787205900.488897,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787205900.4936802,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787207102.6899269,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787207102.705458,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787207102.71155,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787207102.7158551,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787208304.268169,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787208304.284534,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787208304.290485,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787208304.294744,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787209507.844876,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787209507.8645608,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787209507.8922591,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787209507.8974001,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787210710.44397,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787210710.4493,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787210710.4544299,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787210710.4763362,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787211910.918328,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787211910.923105,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787211910.940671,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787211910.9449658,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787213115.145826,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787213115.1501791,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787213115.176513,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787213115.181123,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787213367.3664908,
+      "stage": "artifact",
+      "goal": "aspiration-self_understanding"
+    },
+    {
+      "ts": 1787213413.6929731,
+      "stage": "artifact",
+      "goal": "aspiration-output_producing"
+    },
+    {
+      "ts": 1787214316.6825018,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787214316.687513,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787214316.691811,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787214316.6964931,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787215520.659325,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787215520.67821,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787215520.682525,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787215520.688132,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787216721.76859,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787216721.774538,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787216721.793629,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787216721.798329,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787217923.397503,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787217923.401977,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1787217923.422013,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787217923.427524,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787219126.695897,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787219126.70063,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787219126.73039,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787219126.7350981,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787220337.936275,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787220337.973299,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787220337.977857,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787220337.9837298,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787221539.5033011,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787221539.526376,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787221539.5323288,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787221539.568306,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787222742.50208,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1787222742.523252,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787222742.527839,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787222742.5342422,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787223944.152388,
+      "stage": "candidate",
+      "goal": "Understand the nature of mathematics more deeply"
+    },
+    {
+      "ts": 1787223944.159161,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787223944.164636,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787223944.202178,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787225144.765087,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787225144.770231,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787225144.775307,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787225144.80095,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787226357.993643,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787226358.00328,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787226358.0353332,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787226358.043242,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787227564.0033112,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787227564.0124521,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787227564.038093,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787227564.043402,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787228769.8441532,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787228769.849737,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787228769.8548748,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787228769.8818848,
+      "stage": "candidate",
+      "goal": "Understand consciousness and subjective experience more deeply"
+    },
+    {
+      "ts": 1787229971.8768902,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787229971.902168,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787229971.9073348,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787229971.930642,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787231173.638359,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787231173.644023,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787231173.668003,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787231173.673812,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787232377.776599,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787232377.783505,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    },
+    {
+      "ts": 1787232377.788971,
+      "stage": "candidate",
+      "goal": "Understand mathematics more deeply"
+    },
+    {
+      "ts": 1787232377.827008,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787233583.382435,
+      "stage": "candidate",
+      "goal": "Understand foundations of quantum mechanics more deeply"
+    },
+    {
+      "ts": 1787233583.387848,
+      "stage": "candidate",
+      "goal": "Understand biology evolutionary biology more deeply"
+    },
+    {
+      "ts": 1787233583.42594,
+      "stage": "candidate",
+      "goal": "Understand quantum mechanics foundations more deeply"
+    },
+    {
+      "ts": 1787233583.431444,
+      "stage": "candidate",
+      "goal": "Understand stoic philosophy and daily life more deeply"
+    },
+    {
+      "ts": 1787234787.467802,
+      "stage": "candidate",
+      "goal": "Understand history of written language more deeply"
+    },
+    {
+      "ts": 1787234787.493672,
+      "stage": "candidate",
+      "goal": "Understand philosophy of time more deeply"
+    },
+    {
+      "ts": 1787234787.5008051,
+      "stage": "candidate",
+      "goal": "Understand evolutionary biology and cooperation more deeply"
+    },
+    {
+      "ts": 1787234787.544924,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787235992.204423,
+      "stage": "candidate",
+      "goal": "Understand emergence in complex systems more deeply"
+    },
+    {
+      "ts": 1787235992.211602,
+      "stage": "candidate",
+      "goal": "Understand the world more deeply"
+    },
+    {
+      "ts": 1787235992.237338,
+      "stage": "candidate",
+      "goal": "Understand The Daily Stoic more deeply"
+    },
+    {
+      "ts": 1787235992.242836,
+      "stage": "candidate",
+      "goal": "Understand history more deeply"
+    }
+  ]
+}

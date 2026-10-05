@@ -1,0 +1,141 @@
+{
+  "question": "What did I get wrong or oversimplify about emergence in complex systems?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "emergence",
+    "complex",
+    "systems"
+  ],
+  "entities": [
+    "rationality Evolutionary game theory v t e A complex system",
+    "system composed of many components that interact with one another",
+    "The behavior of a complex system",
+    "intrinsically difficult to model due to the dependencies",
+    "The term complex systems often",
+    "the study of complex systems",
+    "Disorganised systems",
+    "linked to self-organisation processes",
+    "Hierarchical systems which",
+    "analyzable into successive sets of subsystems",
+    "adaptive systems are special cases of complex systems that",
+    "adaptive in that they have the capacity to change and learn from experience",
+    "the interactions between subsystems",
+    "weak but not negligible",
+    "General systems theory",
+    "about developing broadly applicable concepts and principles"
+  ],
+  "relations": [
+    {
+      "subject": "rationality Evolutionary game theory v t e A complex system",
+      "predicate": "is a",
+      "object": "system composed of many components that interact with one another",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "The behavior of a complex system",
+      "predicate": "is",
+      "object": "intrinsically difficult to model due to the dependencies",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "The term complex systems often",
+      "predicate": "refers to",
+      "object": "the study of complex systems",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "Disorganised systems",
+      "predicate": "are",
+      "object": "linked to self-organisation processes",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "Hierarchical systems which",
+      "predicate": "are",
+      "object": "analyzable into successive sets of subsystems",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "adaptive systems are special cases of complex systems that",
+      "predicate": "are",
+      "object": "adaptive in that they have the capacity to change and learn from experience",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "the interactions between subsystems",
+      "predicate": "are",
+      "object": "weak but not negligible",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "General systems theory",
+      "predicate": "is",
+      "object": "about developing broadly applicable concepts and principles",
+      "source": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "subject": "Passive systems",
+      "predicate": "are",
+      "object": "structures and components that are being processed",
+      "source": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "subject": "The field",
+      "predicate": "is",
+      "object": "related to systems thinking",
+      "source": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "subject": "Systems theory",
+      "predicate": "is",
+      "object": "manifest in the work of practitioners in many disciplines",
+      "source": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "subject": "Intractable long-term conflict",
+      "predicate": "is",
+      "object": "seen as a clear example of the relevance of the complex systems model",
+      "source": "https://en.wikipedia.org/wiki/Complex_system_approach_to_peace_and_armed_conflict"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [intrinsic-2026-08-20T03:26:28.761568+00:00]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Emergence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Complex_system_approach_to_peace_and_armed_conflict"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Autopoiesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fallacy_of_composition"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Intersectionality"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Robert_Rosen_%28biologist%29"
+    }
+  ],
+  "ts": "2026-08-20T04:02:49.839351+00:00"
+}

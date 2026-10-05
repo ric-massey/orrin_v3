@@ -1,0 +1,17 @@
+{
+  "status": "nominal",
+  "cycle": 10970,
+  "streak": 2194,
+  "sick_streak": 0,
+  "last_check_ts": 1787237121.578701,
+  "milestones_fired": [
+    10,
+    25,
+    50,
+    100
+  ],
+  "total_healthy_cycles": 2194,
+  "fault_counts": {
+    "wikipedia_search._wiki_opensearch": 45
+  }
+}

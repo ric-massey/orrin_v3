@@ -1,0 +1,44 @@
+[
+  {
+    "decayed": 16,
+    "pruned": 0,
+    "retired": 2,
+    "inference_taxed": 28,
+    "timestamp": "2026-08-19T23:20:52.281719+00:00"
+  },
+  {
+    "decayed": 6,
+    "pruned": 0,
+    "retired": 14,
+    "inference_taxed": 28,
+    "timestamp": "2026-08-20T03:52:28.458311+00:00"
+  },
+  {
+    "decayed": 5,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-08-20T05:33:06.685700+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 27,
+    "timestamp": "2026-08-20T08:33:24.574937+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 27,
+    "timestamp": "2026-08-20T11:34:29.709129+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 27,
+    "timestamp": "2026-08-20T14:33:58.833654+00:00"
+  }
+]

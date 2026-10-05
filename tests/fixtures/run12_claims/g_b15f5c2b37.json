@@ -1,0 +1,141 @@
+{
+  "question": "What did I get wrong or oversimplify about quantum mechanics foundations?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "quantum",
+    "mechanics",
+    "foundations"
+  ],
+  "entities": [
+    "The sequence begins with a quantum system whose observable",
+    "to be measured",
+    "this idea after the formalism of quantum decoherence",
+    "developed",
+    "on such fundamental questions as whether quantum mechanics",
+    "deterministic or stochastic",
+    "the mathematical structure of quantum mechanics",
+    "abstract and does not result in a single",
+    "the defining axioms of quantum theory",
+    "quite ad hoc",
+    "Research in quantum foundations",
+    "structured along these roads",
+    "quantum states",
+    "still regarded as epistemic",
+    "small set of physically motivated axioms",
+    "enough to single out the GPT representation of quantum theory"
+  ],
+  "relations": [
+    {
+      "subject": "The sequence begins with a quantum system whose observable",
+      "predicate": "is",
+      "object": "to be measured",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "this idea after the formalism of quantum decoherence",
+      "predicate": "was",
+      "object": "developed",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "on such fundamental questions as whether quantum mechanics",
+      "predicate": "is",
+      "object": "deterministic or stochastic",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "the mathematical structure of quantum mechanics",
+      "predicate": "is",
+      "object": "abstract and does not result in a single",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "the defining axioms of quantum theory",
+      "predicate": "are",
+      "object": "quite ad hoc",
+      "source": "https://en.wikipedia.org/wiki/Quantum_foundations"
+    },
+    {
+      "subject": "Research in quantum foundations",
+      "predicate": "is",
+      "object": "structured along these roads",
+      "source": "https://en.wikipedia.org/wiki/Quantum_foundations"
+    },
+    {
+      "subject": "quantum states",
+      "predicate": "are",
+      "object": "still regarded as epistemic",
+      "source": "https://en.wikipedia.org/wiki/Quantum_foundations"
+    },
+    {
+      "subject": "small set of physically motivated axioms",
+      "predicate": "is",
+      "object": "enough to single out the GPT representation of quantum theory",
+      "source": "https://en.wikipedia.org/wiki/Quantum_foundations"
+    },
+    {
+      "subject": "Such a state",
+      "predicate": "is",
+      "object": "named quantum equilibrium",
+      "source": "https://en.wikipedia.org/wiki/De_Broglie%E2%80%93Bohm_theory"
+    },
+    {
+      "subject": "the other curves",
+      "predicate": "are",
+      "object": "correctly predicted by quantum theories",
+      "source": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "subject": "be derived from quantum mechanics as an approximation that",
+      "predicate": "is",
+      "object": "valid at ordinary scales",
+      "source": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+    },
+    {
+      "subject": "Quantum systems have bound states that",
+      "predicate": "are",
+      "object": "quantized to discrete values of energy",
+      "source": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_40fe7f09e0]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_foundations"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/De_Broglie%E2%80%93Bohm_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Matrix_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_key_distribution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Symmetry_in_quantum_mechanics"
+    }
+  ],
+  "ts": "2026-08-20T03:26:24.686927+00:00"
+}

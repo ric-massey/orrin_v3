@@ -90,6 +90,12 @@ def build_default_registry() -> GoalRegistry:
     except Exception as _e:
         _log.warning("silent except: %s", _e)
 
+    try:
+        from .handlers.characterize import CharacterizeHandler
+        handlers.append(CharacterizeHandler())
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+
     # NEW: generic investigator (read-only reports: deps/lint/mypy/todos, etc.)
     try:
         from .handlers.generic import GenericHandler

@@ -13,6 +13,7 @@ from __future__ import annotations
 from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
 
+import re
 import threading
 from collections import deque
 from typing import Any, Dict, List
@@ -22,7 +23,8 @@ _log = get_logger(__name__)
 
 # Goal kinds with registered v2 handlers (executable by GoalsDaemon). Cognitive
 # goals have no handler and must not be submitted (they'd fail immediately).
-_EXECUTABLE_KINDS = {"coding", "research", "housekeeping", "generic", "code_edit"}
+_EXECUTABLE_KINDS = {"coding", "research", "housekeeping", "generic", "code_edit",
+                     "characterize"}
 _MAX_SYNC_ATTEMPTS = 5
 
 # Event-driven failed-goal queue: filled by the API event-bus subscriber (which
@@ -411,6 +413,51 @@ def _credit_spec_artifact_refs(spec: Dict[str, Any]) -> None:
         record_failure("goal_io._credit_spec_artifact_refs", _e)
 
 
+_TERMINAL_V2 = {"DONE", "FAILED", "CANCELLED"}
+_ROUND_RE = re.compile(r"\s+—\s+round\s+\d+$")
+
+# Fresh search angles per follow-on round: the same queries re-fetch the same
+# pages, which the prior-claims novelty check (epistemic_closeout) scores as
+# nothing new. Each round looks somewhere the last one didn't.
+_FOLLOWON_ANGLES = (
+    ("open problems", "criticism and debate"),
+    ("history and development", "applications and examples"),
+    ("recent research", "common misconceptions"),
+    ("relationship to other fields", "key figures and works"),
+)
+
+
+def _is_terminal_v2(g: Any) -> bool:
+    st = getattr(g, "status", "")
+    return str(getattr(st, "value", st)).upper() in _TERMINAL_V2
+
+
+def _round_base(title: str) -> str:
+    return _ROUND_RE.sub("", str(title or "")).strip()
+
+
+def _make_followon(gd: Dict[str, Any], src: Dict[str, Any], title: str,
+                   prior_ids: List[str]) -> str:
+    """Turn a proposal whose title already finished into round k+1: a distinct title
+    (no twin-title seam with the finished goal), lineage to the prior round, and for
+    research a fresh set of query angles. Mutates gd/src; returns the new title."""
+    base = _round_base(title)
+    k = len(prior_ids) + 1
+    new_title = f"{base} — round {k}"
+    gd["title"] = src["title"] = new_title
+    spec = dict(gd.get("spec") or {})
+    spec["followon_of"] = prior_ids[-1]
+    if str(gd.get("kind")) == "research":
+        topic = re.sub(r"(?i)^(understand|open question:|answer:)\s+|\s+more deeply$", "", base).strip()
+        a, b = _FOLLOWON_ANGLES[(k - 2) % len(_FOLLOWON_ANGLES)]
+        spec["queries"] = [f"{topic} {a}", f"{topic} {b}"]
+        spec["build_on_prior"] = True
+    gd["spec"] = spec
+    gd.pop("id", None)
+    src.pop("id", None)
+    return new_title
+
+
 def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
     """Create executable goals from context['proposed_goals'] via GoalsAPI.create_goal."""
     proposed: List[Dict[str, Any]] = context.get("proposed_goals") or []
@@ -440,7 +487,17 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
         # title → id so a dedup-skip can still hand the proposal the canonical id of
         # the v2 goal it matches (otherwise the source node would stay id-less and
         # later events would only ever title-match it).
-        existing = {g.title: g.id for g in api.list_goals(limit=500)}
+        _all_v2 = list(api.list_goals(limit=500))
+        # Run 12 Feed (DEMO_RUN_2026-08-19 §4.1): a TERMINAL v2 goal is never adopted
+        # by a new proposal. Adopting a DONE goal made the proposal a no-op, and once
+        # the topic pool had cycled through, every proposal landed on one — the daemon
+        # sat silent from 04:23Z to death. Only live goals are adoptable; a proposal
+        # that matches a finished title becomes a round-k follow-on (below).
+        existing = {g.title: g.id for g in _all_v2 if not _is_terminal_v2(g)}
+        finished: Dict[str, List[str]] = {}
+        for g in _all_v2:
+            if _is_terminal_v2(g):
+                finished.setdefault(_round_base(g.title), []).append(g.id)
     except Exception as _e:
         # API down — keep proposals for retry rather than risk duplicate submission.
         _log.warning("[goal_io] list_goals failed (%s); deferring sync pass", _e)
@@ -462,6 +519,10 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
             record_failure("goal_io.no_milestones", ValueError(f"goal {title[:60]!r} has no milestones"))
         try:
             if kind in _EXECUTABLE_KINDS:
+                if title not in existing and _round_base(title) in finished:
+                    title = _make_followon(gd, src, title, finished[_round_base(title)])
+                    log_handoff("sync_proposed_goals", title, kind, "followon",
+                                f"prior round(s) finished: {','.join(finished[_round_base(title)][-3:])}")
                 if title in existing:
                     # Already in v2 — adopt its id onto the source node so this
                     # proposal joins the one canonical thread instead of forking.

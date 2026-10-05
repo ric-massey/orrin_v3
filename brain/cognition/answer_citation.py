@@ -88,13 +88,14 @@ def annotate_reason(reason: Dict[str, Any], context: Dict[str, Any], chosen: str
         if len(deciding) < 8:
             return
         from brain.cognition.epistemic_closeout import _subject_terms
+        from brain.utils.subject_terms import matched_terms
         rows = _rows()
         hit = None
         for r in rows:
             terms = _subject_terms(str(r.get("question", "")))
             if not terms:
                 continue
-            overlap = sum(1 for t in terms if t.lower() in deciding)
+            overlap = len(matched_terms(terms, deciding))
             if overlap >= min(_MIN_TERM_OVERLAP, len(terms)):
                 hit = (r, overlap)
                 break

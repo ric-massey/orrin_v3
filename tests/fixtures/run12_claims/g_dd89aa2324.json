@@ -1,0 +1,80 @@
+{
+  "question": "What is concrete and true right now?",
+  "subject_terms": [
+    "concrete",
+    "true",
+    "right",
+    "now"
+  ],
+  "entities": [
+    "This linear region terminates at what",
+    "known as the yield point",
+    "There",
+    "difference between the engineering stress and the true stress",
+    "This",
+    "known as the engineering stress",
+    "most presentists accept that it",
+    "true that Marie Curie discovered polonium",
+    "can as well reject that propositions about the past",
+    "made true by truth-makers",
+    "the values of the variables",
+    "the truth values true and false"
+  ],
+  "relations": [
+    {
+      "subject": "This linear region terminates at what",
+      "predicate": "is",
+      "object": "known as the yield point",
+      "source": "https://en.wikipedia.org/wiki/Compressive_strength"
+    },
+    {
+      "subject": "There",
+      "predicate": "is a",
+      "object": "difference between the engineering stress and the true stress",
+      "source": "https://en.wikipedia.org/wiki/Compressive_strength"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "known as the engineering stress",
+      "source": "https://en.wikipedia.org/wiki/Compressive_strength"
+    },
+    {
+      "subject": "most presentists accept that it",
+      "predicate": "is",
+      "object": "true that Marie Curie discovered polonium",
+      "source": "https://en.wikipedia.org/wiki/Philosophical_presentism"
+    },
+    {
+      "subject": "can as well reject that propositions about the past",
+      "predicate": "are",
+      "object": "made true by truth-makers",
+      "source": "https://en.wikipedia.org/wiki/Philosophical_presentism"
+    },
+    {
+      "subject": "the values of the variables",
+      "predicate": "are",
+      "object": "the truth values true and false",
+      "source": "https://en.wikipedia.org/wiki/Boolean_algebra"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Compressive_strength"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/I_Know_What_You_Did_Last_Summer_%282025_film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophical_presentism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/David_Lewis_%28philosopher%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boolean_algebra"
+    }
+  ],
+  "ts": "2026-08-19T23:26:05.825700+00:00"
+}

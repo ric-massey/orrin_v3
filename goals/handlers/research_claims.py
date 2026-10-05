@@ -14,6 +14,8 @@ import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Tuple
 
+from brain.utils.subject_terms import mentions, subject_terms
+
 from ..model import Goal
 
 _CLAIM_STOP = {
@@ -37,8 +39,9 @@ _REL_RE = re.compile(
 
 
 def _claim_subject_terms(text: str) -> List[str]:
-    words = re.findall(r"[a-z0-9]+", (text or "").lower())
-    return [w for w in words if len(w) > 2 and w not in _CLAIM_STOP]
+    # Run 12 §3: the shared, scaffold-stopped definition (a question template's
+    # "did/get/wrong" are not its subject).
+    return [w for w in subject_terms(text) if w not in _CLAIM_STOP]
 
 
 def _extract_claims(goal: Goal, snippets: List[Tuple[str, str]]) -> Dict[str, Any]:
@@ -66,7 +69,7 @@ def _extract_claims(goal: Goal, snippets: List[Tuple[str, str]]) -> Dict[str, An
             o = " ".join(m.group(3).split())
             sl, ol = s.lower(), o.lower()
             # Only claims that touch the question's subject count as answering it.
-            if subject and not any(t in sl or t in ol for t in subject):
+            if subject and not mentions(subject, f"{s} {o}"):
                 continue
             key = (sl[:40], p, ol[:40])
             if key in seen_rel:

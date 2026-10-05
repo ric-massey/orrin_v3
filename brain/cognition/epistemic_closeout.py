@@ -22,6 +22,7 @@ import re
 from typing import Any, Dict, List, Optional, Tuple
 
 from brain.utils.failure_counter import record_failure
+from brain.utils.subject_terms import matched_terms, mentions, subject_terms, tokens
 
 _STOP = {
     "what", "is", "are", "the", "a", "an", "of", "about", "not", "obvious",
@@ -82,8 +83,9 @@ def question_for(goal: Dict[str, Any]) -> str:
 
 
 def _subject_terms(question: str) -> List[str]:
-    words = re.findall(r"[a-z0-9]+", question.lower())
-    return [w for w in words if w not in _STOP and len(w) > 2]
+    # Run 12 §3: the shared definition (scaffold-stopped, matched on whole tokens);
+    # _STOP adds this module's legacy extras on top.
+    return [w for w in subject_terms(question) if w not in _STOP]
 
 
 def _gather_artifact_text(goal: Dict[str, Any]) -> str:
@@ -132,34 +134,136 @@ def _gather_claims(goal: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         return None
 
 
-def score_answer_structured(question: str, claims: Dict[str, Any]) -> Tuple[bool, str]:
-    """Slice 1C.2 — the STRUCTURED answer scorer (growth's currency is structured
-    knowledge, not prose). Answered iff the produced claims name the question's
-    subject via a real relation, AND — when the goal carries a telemetry-checkable
-    prediction — that prediction was resolved against ground truth (correct).
+def _gather_prior_claims(goal: Dict[str, Any], question: str) -> List[Dict[str, Any]]:
+    """Orrin's EARLIER claims on the same subject: every other goal's claims.json
+    older than this goal's, whose own question shares a whole-token subject term.
+    The baseline a new answer must improve on. Best-effort; [] on any error."""
+    terms = _subject_terms(question)
+    gid = str(goal.get("id") or "")
+    if not terms or not gid:
+        return []
+    try:
+        import json as _json
+        from brain.paths import GOALS_DIR
+        base = GOALS_DIR / "artifacts"
+        own = base / re.sub(r"[^A-Za-z0-9_-]+", "-", gid)[:64] / "claims.json"
+        cutoff = own.stat().st_mtime if own.exists() else float("inf")
+        out: List[Dict[str, Any]] = []
+        for p in base.glob("*/claims.json"):
+            if p == own:
+                continue
+            try:
+                if p.stat().st_mtime >= cutoff:
+                    continue
+                data = _json.loads(p.read_text(encoding="utf-8", errors="replace"))
+            except (OSError, ValueError):
+                continue
+            if isinstance(data, dict) and mentions(terms, str(data.get("question") or "")):
+                out.append(data)
+        return out
+    except Exception as exc:
+        record_failure("epistemic_closeout._gather_prior_claims", exc)
+        return []
 
-    Prose length is no longer the criterion: a 0-prose structured finding can answer;
-    a stitch-only memo with no claim cannot. Returns (answered, answer_excerpt)."""
+
+# Questions that ask what Orrin got WRONG can only be answered by a claim that
+# contradicts something he previously claimed — a definition sentence fetched
+# about the topic does not answer them (Run 12: every stamp was a definition).
+_REVISION_RE = re.compile(r"\b(wrong|oversimplif\w*|mistaken|misunderst\w*|mis-?read)\b", re.I)
+
+_PRED_NORM = {"is a": "is", "is an": "is", "is the": "is", "are": "is", "was": "is",
+              "were": "is", "is defined as": "is", "refers to": "is", "means": "is",
+              "is called": "is", "is a type of": "is"}
+
+
+def _rel_key(r: Dict[str, Any]) -> Tuple[str, str, str]:
+    pred = " ".join(str(r.get("predicate") or "").lower().split())
+    return (" ".join(tokens(str(r.get("subject") or ""))),
+            _PRED_NORM.get(pred, pred),
+            " ".join(tokens(str(r.get("object") or ""))))
+
+
+_NEG = frozenset({"not", "no", "never", "neither", "nor", "cannot", "isn", "aren",
+                  "wasn", "weren", "doesn", "don", "didn", "without"})
+# A claim that announces its own correction of a common belief.
+_MISCONCEPTION_RE = re.compile(
+    r"\b(misconception|myth|contrary to|commonly (?:believed|thought|assumed)|"
+    r"mistakenly|incorrectly|not actually|oversimplif\w*)\b", re.I)
+
+
+def _names_subject(terms: List[str], text: str) -> bool:
+    """A multi-word subject must be named as a whole: at least two of its terms
+    (one when the subject is a single word) — 'nature' alone does not name 'the
+    nature of mathematics'."""
+    return len(matched_terms(terms, text)) >= min(2, len(terms))
+
+
+def _differs(new: Tuple[str, str, str], old: Tuple[str, str, str], terms: List[str]) -> bool:
+    """`new` CONTRADICTS `old`: both subjects name the question's subject, the
+    predicate matches, the objects make the same claim (token overlap >= 0.5 once
+    negations are set aside) and exactly one of them is negated. Two different
+    true facts about X are not a correction."""
+    if new[1] != old[1] or new == old:
+        return False
+    if not (_names_subject(terms, new[0]) and _names_subject(terms, old[0])):
+        return False
+    a, b = set(new[2].split()), set(old[2].split())
+    if bool(a & _NEG) == bool(b & _NEG):
+        return False
+    a, b = a - _NEG, b - _NEG
+    if not a or not b:
+        return False
+    return len(a & b) / len(a | b) >= 0.5
+
+
+def score_answer_structured(question: str, claims: Dict[str, Any],
+                            prior: Optional[List[Dict[str, Any]]] = None) -> Tuple[bool, str]:
+    """Slice 1C.2 — the STRUCTURED answer scorer (growth's currency is structured
+    knowledge, not prose). Returns (answered, answer_excerpt).
+
+    - A telemetry-checkable prediction, if present, must have RESOLVED correctly.
+    - Otherwise the question needs a subject (a question with no subject terms
+      cannot be answered by claims) and a relation that names it as a whole token.
+    - That relation must be NEW relative to `prior` (Orrin's earlier claims on the
+      same subject): re-fetching what he already held answers nothing.
+    - A revision-shaped question ("what did I get wrong…") additionally needs the
+      new relation to CONTRADICT a prior claim (or announce a misconception) — you
+      cannot have gotten wrong something you never claimed (Run 12 §5 item 2)."""
     if not isinstance(claims, dict):
         return (False, "")
     terms = _subject_terms(question)
     relations = [r for r in (claims.get("relations") or []) if isinstance(r, dict)]
 
-    # A telemetry-checkable prediction, if present, must have RESOLVED correctly.
     pred = claims.get("prediction")
     if isinstance(pred, dict) and pred.get("checkable_against"):
         if not (pred.get("resolved") and pred.get("correct")):
             return (False, "")
-        # A resolved-correct prediction that names the subject is the strongest answer.
         claim_txt = str(pred.get("claim") or "")
-        if not terms or any(t in claim_txt.lower() for t in terms):
+        if not terms or mentions(terms, claim_txt):
             return (True, f"prediction confirmed: {claim_txt[:240]}")
 
-    # Otherwise: a relation whose subject/object names the question's gap.
+    if not terms:
+        return (False, "")
+    prior_rels = [r for c in (prior or []) if isinstance(c, dict)
+                  for r in (c.get("relations") or []) if isinstance(r, dict)]
+    prior_keys = {_rel_key(r) for r in prior_rels}
+    revision = bool(_REVISION_RE.search(question))
+
     for r in relations:
-        blob = f"{r.get('subject','')} {r.get('predicate','')} {r.get('object','')}"
-        if not terms or any(t in blob.lower() for t in terms):
-            return (True, blob.strip()[:280])
+        blob = f"{r.get('subject','')} {r.get('predicate','')} {r.get('object','')}".strip()
+        if not _names_subject(terms, blob):
+            continue
+        key = _rel_key(r)
+        if key in prior_keys:
+            continue
+        if not revision:
+            return (True, blob[:280])
+        if _MISCONCEPTION_RE.search(blob):
+            return (True, f"corrects a common belief: {blob[:250]}")
+        for old in prior_rels:
+            if _differs(key, _rel_key(old), terms):
+                old_blob = f"{old.get('subject','')} {old.get('predicate','')} {old.get('object','')}".strip()
+                return (True, f"revised: '{old_blob[:120]}' -> '{blob[:140]}'")
     return (False, "")
 
 
@@ -174,13 +278,12 @@ def score_answer(question: str, artifact_text: str) -> Tuple[bool, str]:
     if len(body) < _MIN_ANSWER_CHARS:
         return (False, "")
     terms = _subject_terms(question)
-    low = body.lower()
-    if terms and not any(t in low for t in terms):
+    if not terms or not mentions(terms, body):
         return (False, "")
     # First substantive sentence mentioning a subject term is the answer excerpt.
     for sent in re.split(r"(?<=[.!?])\s+", body):
         s = sent.strip()
-        if len(s) >= 40 and (not terms or any(t in s.lower() for t in terms)):
+        if len(s) >= 40 and mentions(terms, s):
             return (True, s[:280])
     return (True, body[:280])
 
@@ -242,7 +345,8 @@ def stamp_closeout(goal: Dict[str, Any]) -> Optional[bool]:
         # produced no claims.json (e.g. a non-research understanding goal).
         claims = _gather_claims(goal)
         if claims is not None:
-            answered, answer = score_answer_structured(question, claims)
+            answered, answer = score_answer_structured(
+                question, claims, prior=_gather_prior_claims(goal, question))
         else:
             answered, answer = score_answer(question, _gather_artifact_text(goal))
         goal["question"] = question

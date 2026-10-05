@@ -1,0 +1,140 @@
+{
+  "question": "What did I get wrong or oversimplify about evolutionary biology?",
+  "subject_terms": [
+    "did",
+    "get",
+    "wrong",
+    "oversimplify",
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "biology portal Category v t e Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Applications in other disciplines Evolution",
+    "central unifying concept in biology",
+    "science and applied sciences gave birth to new fields that",
+    "extensions of evolutionary biology",
+    "zoologists did not know how embryonic development",
+    "controlled at the molecular level",
+    "The field",
+    "composed of multiple core evolutionary concepts",
+    "theory",
+    "wrong",
+    "technology Pharming Biology portal Category v t e Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes"
+  ],
+  "relations": [
+    {
+      "subject": "biology portal Category v t e Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "Applications in other disciplines Evolution",
+      "predicate": "is the",
+      "object": "central unifying concept in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "science and applied sciences gave birth to new fields that",
+      "predicate": "are",
+      "object": "extensions of evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "zoologists did not know how embryonic development",
+      "predicate": "was",
+      "object": "controlled at the molecular level",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "The field",
+      "predicate": "is",
+      "object": "composed of multiple core evolutionary concepts",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "theory",
+      "predicate": "was",
+      "object": "wrong",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "technology Pharming Biology portal Category v t e Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Ecology and evolutionary biology",
+      "predicate": "is a",
+      "object": "broad field of study that covers various ranges of ages and scales",
+      "source": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "probably due to differences in the propagation of sound through vegetation",
+      "source": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology"
+    },
+    {
+      "subject": "the free encyclopedia This article",
+      "predicate": "is",
+      "object": "about the history of evolutionary thought in biology",
+      "source": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_24136ed3db]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Homology_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sociobiology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_epistemology"
+    }
+  ],
+  "ts": "2026-08-20T00:48:16.314501+00:00"
+}

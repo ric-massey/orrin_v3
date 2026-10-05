@@ -105,7 +105,10 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                 return f"What actually is {name}, beyond the mentions I keep seeing?"
             if gap > 0.4:
                 return f"What about {name} do I still not understand?"
-            return f"What did I get wrong or oversimplify about {name}?"
+            # Run 12 §5 item 2: a well-covered topic asks what my notes MISS — scoreable
+            # against prior claims. "What did I get wrong" was unanswerable symbolically
+            # (a fetched definition can't correct a belief), so every stamp was hollow.
+            return f"What is there about {name} that my earlier notes on it are missing?"
         return [
             _mk_goal(
                 f"Understand {name} more deeply",
@@ -440,6 +443,46 @@ def _autobiographical_continuity_goals(limit: int = 2) -> List[Dict]:
     return out
 
 
+
+
+# ── Characterization (Run 13 gate-passer 3) ───────────────────────────────────
+# Questions about his OWN behaviour that his telemetry can answer out of sample —
+# the grounded close-out the Run 12 plan specified but nothing minted (12/12 claims
+# files had prediction=null). The daemon's CharacterizeHandler forms a hypothesis
+# from the resource history, then tests it on samples recorded afterwards.
+_CHARACTERIZE_METRICS = (("rss_mb", "memory use (RSS)"), ("cpu_util", "CPU load"))
+_CHARACTERIZE_MIN_BYTES = 60_000   # ≈ 300+ resource_history rows
+
+
+def _characterization_goals(limit: int = 1) -> List[Dict]:
+    from brain.paths import RESOURCE_HISTORY_FILE
+    from brain.cognition.intrinsic_helpers import topic_appetite
+    try:
+        if RESOURCE_HISTORY_FILE.stat().st_size < _CHARACTERIZE_MIN_BYTES:
+            return []
+    except OSError:
+        return []
+    cands = []
+    for metric, label in _CHARACTERIZE_METRICS:
+        title = f"Characterize what makes my {label} climb"
+        cands.append((topic_appetite(title), metric, label, title))
+    cands.sort(key=lambda c: -c[0])
+    out: List[Dict] = []
+    for _appetite, metric, label, title in cands[:limit]:
+        question = f"What makes my {label} climb?"
+        out.append(_mk_goal(
+            title,
+            f"Form a hypothesis from my own telemetry about which of my activities is "
+            f"followed by a rise in {label}, then test it on samples recorded AFTER the "
+            f"hypothesis. The answer is whether the prediction holds.",
+            driven_by="self_exploration",
+            milestones=[f"A hypothesis about {label} was written as a prediction.",
+                        "The prediction was tested on fresh telemetry."],
+            kind="characterize",
+            spec={"metric": metric, "question": question},
+            question=question,
+        ))
+    return out
 
 
 # ── Intake → output laddering (P5 / G2) ────────────────────────────────────────
@@ -810,6 +853,7 @@ def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
     candidates += _causal_frontier_goals()
     candidates += _tension_goals(context)
     candidates += _autobiographical_continuity_goals()
+    candidates += _characterization_goals()
     # P5 — polyculture: making + contact generators so the pool can finally serve
     # ALL FOUR aspirations, not just intake/introspection. These emit artifact-gated
     # output_producing / genuine_contact goals (fail-able via P2).
@@ -904,6 +948,10 @@ def _pick_primary_from_pool(context: Dict[str, Any], pool: List[Dict]) -> Option
     return chosen
 
 
+# Daemon-executable kinds the feed proposes alongside the primary pick.
+_DAEMON_FEED_KINDS = ("research", "characterize")
+
+
 def _varied_symbolic_goals(context: Dict[str, Any], long_mem: list,
                            *, max_research: int = 2,
                            research_only: bool = False) -> List[Dict]:
@@ -937,7 +985,7 @@ def _varied_symbolic_goals(context: Dict[str, Any], long_mem: list,
     for g in base_pool:
         if len(batch) >= 1 + max_research:
             break
-        if str(g.get("kind", "")) != "research":
+        if str(g.get("kind", "")) not in _DAEMON_FEED_KINDS:
             continue
         t = str(g.get("title", "")).strip().lower()
         if not t or t in seen:

@@ -133,10 +133,12 @@ def _find_prior_claims(art_base: Path, goal: Goal, exclude_dir: Path) -> Optiona
             continue
         if not isinstance(data, dict):
             continue
-        prior_terms = {str(t).lower() for t in (data.get("subject_terms") or [])}
-        ent_blob = " ".join(str(e) for e in (data.get("entities") or [])).lower()
-        # Extends the prior line of inquiry: shares a subject term or names a prior entity.
-        if (subject & prior_terms) or any(t in ent_blob for t in subject):
+        # Re-derive the prior's subject from its question: claims files written
+        # before Run 13 stored scaffold words (did/get/wrong) as subject_terms, which
+        # made every file "share a subject" with every goal (Run 12 §3).
+        prior_terms = set(_claim_subject_terms(str(data.get("question") or "")))
+        # Extends the prior line of inquiry: shares a subject term (whole token).
+        if subject & prior_terms:
             if data.get("relations") or data.get("prediction"):
                 return (p, data)
     return None

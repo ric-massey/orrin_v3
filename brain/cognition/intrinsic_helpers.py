@@ -441,6 +441,15 @@ def _persist_recently_completed() -> None:
 # simply not spawnable again, and the cooldown doubles per prior completion so
 # repeat #2 and #3 already slow down.
 _TITLE_COUNTS_FILE = DATA_DIR / "completed_title_counts.json"
+_ROUND_SUFFIX_RE = re.compile(r"\s+—\s+round\s+\d+$")
+
+
+def _title_key(title: str) -> str:
+    """Satiety/count key: a follow-on round ("X — round 3", goal_io._make_followon)
+    quenches the SAME topic appetite as X — rounds deepen one topic, with the
+    diminishing returns topic_appetite models, rather than each round being a
+    fresh never-completed title."""
+    return _ROUND_SUFFIX_RE.sub("", str(title or "").strip().lower()).strip()
 TITLE_COMPLETION_CAP = 5
 
 
@@ -460,7 +469,7 @@ def note_title_completion(title: str) -> int:
     """Record a completion of `title` in both the cooldown dict and the per-life
     count. Returns the new count. Call from every completion chokepoint that
     stamps _RECENTLY_COMPLETED."""
-    t = str(title or "").strip().lower()
+    t = _title_key(title)
     if not t:
         return 0
     _RECENTLY_COMPLETED[t] = time.time()
@@ -478,7 +487,7 @@ def note_title_completion(title: str) -> int:
 
 
 def title_completion_count(title: str) -> int:
-    return int(_TITLE_COUNTS.get(str(title or "").strip().lower(), 0) or 0)
+    return int(_TITLE_COUNTS.get(_title_key(title), 0) or 0)
 
 
 # ── C3 (Run 11 §6.1): title cooldowns → TOPIC SATIETY ─────────────────────────
@@ -500,7 +509,7 @@ def topic_appetite(title: str, now: float | None = None) -> float:
     Each completion quenches deeper ((n+0.5)/(n+1)) and recovers slower
     (tau × n): n=1 re-arms in hours, n=5 in days — diminishing returns per
     topic, the habituation-of-demand curve."""
-    t = str(title or "").strip().lower()
+    t = _title_key(title)
     if not t:
         return 1.0
     n = title_completion_count(t)
@@ -523,7 +532,7 @@ def title_respawn_blocked(title: str, now: float | None = None) -> bool:
     C3 (flag ON, Run 11 default): the want is too quenched — appetite below
     the spawn floor. No cap, no timer: demand economics.
     Flag OFF (legacy): per-life cap + escalating cooldown."""
-    t = str(title or "").strip().lower()
+    t = _title_key(title)
     if not t:
         return False
     if _TOPIC_SATIETY:

@@ -312,7 +312,7 @@ for six weeks. Full verdict `demo_runs/2026-08-19-run/DEMO_RUN_2026-08-19.md`.
 resolved prediction; (3) mint characterization goals with predictions;
 (4) completion-aware generation (no `adopted_existing` on DONE); (5) wall-clock
 suspension detection + lifespan credit; (6) breaker doesn't count goal-service as
-avoidance; plus items 7–12 in the run doc. Items 1–4 are the gate-passers.
+avoidance; plus items 7–12 in the run doc. Items 1–4 are the gate-passers. **Items 1–4 BUILT 2026-10-04** (see run doc §5); items 5–12 open.
 
 ---
 

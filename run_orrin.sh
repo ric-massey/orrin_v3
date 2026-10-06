@@ -110,11 +110,37 @@ fi
 # user-inactive (-u) assertions. Keep the machine on AC for a full-length life;
 # on battery -s cannot hold system sleep off. Tied to this wrapper's lifetime and
 # killed in cleanup().
-caffeinate -dimsu &
-CAFF_PID=$!
+#
+# Run 12 (DEMO_RUN_2026-08-19 §4.2): the host still slept 12 times (15.3 h of a
+# 27.9 h life) under this assertion. `-w $$` ties caffeinate to the wrapper, the
+# launch now proves the assertion is actually held, warns when on battery (where
+# -s is ignored) or with the lid shut (a closed lid sleeps regardless of any
+# assertion), and every relaunch re-checks it. In-life, Orrin credits any sleep
+# that still happens (runtime_lifetime.detect_suspension) instead of living it.
+start_caffeinate() {
+    caffeinate -dimsu -w $$ &
+    CAFF_PID=$!
+    sleep 1
+    if kill -0 "$CAFF_PID" 2>/dev/null && pmset -g assertions 2>/dev/null | grep -q "caffeinate"; then
+        echo "[run] caffeinate pid $CAFF_PID holding sleep off (-dimsu)" | tee -a "$LOG"
+    else
+        echo "[run] WARNING: caffeinate is NOT holding sleep off — the Mac may sleep mid-life" | tee -a "$LOG"
+    fi
+}
+start_caffeinate
+if ! pmset -g batt 2>/dev/null | head -1 | grep -q "AC Power"; then
+    echo "[run] WARNING: on battery — caffeinate cannot hold system sleep off (-s needs AC). Plug in for a full life." | tee -a "$LOG"
+fi
+if ioreg -r -k AppleClamshellState 2>/dev/null | grep -q '"AppleClamshellState" = Yes'; then
+    echo "[run] WARNING: the lid is closed — macOS sleeps a closed laptop regardless of caffeinate (unless on an external display + power)." | tee -a "$LOG"
+fi
 
 RESTART_COUNT=0
 while true; do
+    if ! kill -0 "$CAFF_PID" 2>/dev/null; then
+        echo "[run] caffeinate (pid $CAFF_PID) died — restarting it" | tee -a "$LOG"
+        start_caffeinate
+    fi
     echo "[run] $(date '+%Y-%m-%d %H:%M:%S') — launch #$RESTART_COUNT (wrapper pid $$, build $ORRIN_BUILD_SHA)" | tee -a "$LOG"
     EXIT_CODE=0
     # pipefail is set, so the pipeline status is python's exit code (tee exits 0);

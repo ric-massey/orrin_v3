@@ -343,7 +343,7 @@ class ResearchHandler(BaseGoalHandler):
                     snippets.insert(0, (f"my prior claims [{prior_goal_id}]", rels[:4000]))
                     try:
                         from brain.agency.effect_ledger import mark_reused_path
-                        mark_reused_path(claims_path_prior)
+                        mark_reused_path(claims_path_prior, citing_goal_id=goal.id)
                     except Exception as _e:
                         _log.warning("prior-claims reuse credit failed: %s", _e)
                     prior_memo = claims_path_prior   # for the "Builds on" footer + meta
@@ -360,7 +360,7 @@ class ResearchHandler(BaseGoalHandler):
                     if prior_memo is not None:
                         try:
                             from brain.agency.effect_ledger import mark_reused_path
-                            mark_reused_path(prior_memo)
+                            mark_reused_path(prior_memo, citing_goal_id=goal.id)
                         except Exception as _e:
                             _log.warning("prior-memo reuse credit failed: %s", _e)
 

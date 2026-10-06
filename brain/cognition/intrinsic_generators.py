@@ -620,6 +620,12 @@ def _contact_goals(context: Dict[str, Any], long_mem: list, limit: int = 1) -> L
                         break
         except Exception:
             topic = None
+        if not topic:
+            # Run 13 item 7: the daemon's structured findings are real material too.
+            from brain.cognition.leave_note import recent_claims_finding
+            hit = recent_claims_finding()
+            if hit and _acceptable_goal_subject(hit[0]):
+                topic = hit[0]
         if topic and recent_user:
             out.append(_mk_goal(
                 f"Share with Ric what I learned about {topic}",

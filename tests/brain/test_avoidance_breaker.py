@@ -94,3 +94,25 @@ def test_max_debt_streak_ratchets_up_only():
     ma.metacog_analyze(_ctx(picks, debt=40))
     ma.metacog_analyze(_ctx(picks, debt=6))
     assert _stats().get("max_debt_streak", 0) >= 40
+
+
+def test_goal_service_functions_are_never_muted_as_substitutes():
+    # Run 13 item 6: Run 12 muted research_topic 2,102x as "avoidance" while it was
+    # the committed research goal's own work. Goal instruments that loop without
+    # producing are a stalled goal (Fix 7's stall path), not a substitute.
+    _reset_stats()
+    picks = ["research_topic", "fetch_and_read", "research_topic", "wikipedia_search",
+             "research_topic", "fetch_and_read", "assess_goal_progress", "research_topic"]
+    ctx = _ctx(picks, debt=40)
+    ma.metacog_analyze(ctx)
+    muted = set(ctx.get("_fn_suppression") or {})
+    assert not (muted & ma._GOAL_DRIVEN_FNS), f"goal instruments muted: {muted}"
+
+
+def test_real_substitute_still_muted_beside_goal_work():
+    _reset_stats()
+    picks = ["research_topic", "narrative_update", "fetch_and_read", "narrative_update",
+             "research_topic", "narrative_update", "research_topic", "fetch_and_read"]
+    ctx = _ctx(picks, debt=20)
+    ma.metacog_analyze(ctx)
+    assert "narrative_update" in (ctx.get("_fn_suppression") or {})

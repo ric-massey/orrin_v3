@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 import random
+import threading
 import time
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
@@ -277,6 +278,42 @@ def credit_sleep(seconds: float) -> Dict:
     return data
 
 
+# ── In-run host suspension (Run 12 §4.2) ─────────────────────────────────────
+# Run 12 lost 15.3 h of a 27.9 h life to host sleep, unnoticed: credit_sleep only
+# ever ran at boot (window-closed mode), and the 12.4 h freeze ended in a lifespan
+# death 17 s after waking. The monotonic clock does not advance while the host is
+# suspended (macOS and Linux) but the wall clock does; the difference between two
+# readings is time the process was not running, and that time is not lived.
+_SUSPEND_MIN_S = 60.0
+_clock_lock = threading.Lock()
+_clock_ref: Optional[tuple[float, float]] = None
+
+
+def detect_suspension(*, wall: Optional[float] = None, mono: Optional[float] = None) -> float:
+    """Compare wall vs monotonic time since the previous call; a gap of
+    _SUSPEND_MIN_S or more is a host suspension, credited to the lifespan ledger
+    as sleep. Returns the seconds credited (0.0 when none). Never raises."""
+    global _clock_ref
+    w = time.time() if wall is None else float(wall)
+    m = time.monotonic() if mono is None else float(mono)
+    with _clock_lock:
+        prev, _clock_ref = _clock_ref, (w, m)
+    if prev is None:
+        return 0.0
+    gap = (w - prev[0]) - (m - prev[1])
+    if gap < _SUSPEND_MIN_S:
+        return 0.0
+    try:
+        log_activity(f"[host] suspended {gap:.0f}s — the host slept; that time is credited, not lived.")
+        data = credit_sleep(gap)
+        if data.get("start_time"):
+            data["suspension_count"] = int(data.get("suspension_count") or 0) + 1
+            save_json(LIFESPAN_FILE, data)
+    except Exception as exc:
+        record_failure("runtime_lifetime.detect_suspension", exc)
+    return gap
+
+
 def lifespan_rolled() -> bool:
     """True once a lifespan has been rolled (the runtime is live) — so the Settings
     lifespan band becomes read-only ('it has the lifetime it was given')."""
@@ -398,6 +435,8 @@ def apply_lifetime_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
     - Returns {"terminate": True} when real deadline has passed
     """
     global _last_awareness_log_ts
+    # Before the deadline is judged: a just-ended suspension must not count as lived.
+    detect_suspension()
     try:
         data = _load_lifespan()
         # F22: let experience nudge the felt lifespan BEFORE reading it — the

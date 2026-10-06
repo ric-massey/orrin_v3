@@ -787,7 +787,7 @@ def hash_for_path(path: Any) -> Optional[str]:
         return _path_hash.get(np)
 
 
-def mark_reused_path(path: Any) -> Optional[int]:
+def mark_reused_path(path: Any, *, citing_goal_id: Optional[str] = None) -> Optional[int]:
     """Convenience for read paths (A2.2): if `path` resolves to a produced
     artifact, credit tier-3 re-use and return the new reuse count; else None.
     Never raises — reading must not break because crediting did."""
@@ -795,13 +795,14 @@ def mark_reused_path(path: Any) -> Optional[int]:
         h = hash_for_path(path)
         if not h:
             return None
-        return mark_reused(h, path=_norm_path(path))
+        return mark_reused(h, path=_norm_path(path), citing_goal_id=citing_goal_id)
     except Exception as exc:
         record_failure("effect_ledger.mark_reused_path", exc)
         return None
 
 
-def mark_reused(content_hash: str, *, path: Optional[str] = None) -> int:
+def mark_reused(content_hash: str, *, path: Optional[str] = None,
+                citing_goal_id: Optional[str] = None) -> int:
     """Tier-3 (deferred, strong) significance: the artifact was referenced again
     later — a tool invoked, a memo cited by a later goal, a message replied to.
     Re-use is the only ungameable significance signal. Returns the new reuse count.
@@ -813,6 +814,10 @@ def mark_reused(content_hash: str, *, path: Optional[str] = None) -> int:
     R9-F6: rows stamp the real cycle (was hard-coded 0 — every reuse event in a
     run capture was time-blind) and carry the reused artifact's owning path in
     metadata so run analysis can resolve the referent without a hash join.
+
+    Run 13 item 9: the row's goal_id is the artifact's OWNER; `citing_goal_id`
+    (metadata) is the goal that reused it. Run 12's 34 reuse rows could only be
+    attributed by reading memo footers.
     """
     if not content_hash:
         return 0
@@ -831,7 +836,8 @@ def mark_reused(content_hash: str, *, path: Optional[str] = None) -> int:
             ts=now_iso_z(), cycle=_cycle_from(None, None), kind="reuse",
             content_hash=content_hash, novelty=0.0,
             significance=1.0, goal_id=gid, char_len=0, dedupe=False,
-            metadata={"path": str(path)} if path else None,
+            metadata=({k: v for k, v in (("path", str(path) if path else None),
+                                          ("citing_goal_id", citing_goal_id)) if v} or None),
         ))
     except Exception as exc:
         record_failure("effect_ledger.mark_reused", exc)

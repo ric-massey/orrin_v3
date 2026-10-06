@@ -251,3 +251,20 @@ def test_quality_standard_not_imported_by_selection():
         if "quality_standard" in p.read_text(encoding="utf-8", errors="replace"):
             offenders.append(str(p))
     assert not offenders, f"quality_standard reachable from selection: {offenders}"
+
+
+def test_self_talk_is_never_an_exemplar():
+    # Run 13 item 8: Run 12 auto-canonised Orrin's own internal log lines as an
+    # exemplar (it passed the copy veto because nothing in it was copied), and five
+    # more such files had sat in the committed golden set since 07-19.
+    from pathlib import Path
+    from brain.cognition.quality_standard.originality import is_self_talk
+    junk = ("What I learned about X:\n\n"
+            "- [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action.\n"
+            "- [will] I resolve to: pursue: Understand X more deeply (strength 0.53)\n"
+            "- [Incubation] While sitting with: '[will] I resolve to…'\n")
+    assert is_self_talk(junk)[0] is True
+    assert is_self_talk("# Memo\n\nEntropy is a measure of disorder. It rises in isolated systems.")[0] is False
+    golden = Path(__file__).resolve().parents[1] / "fixtures" / "quality_golden" / "exemplars"
+    for f in golden.glob("*.md"):
+        assert not is_self_talk(f.read_text(encoding="utf-8"))[0], f"self-talk in golden set: {f.name}"

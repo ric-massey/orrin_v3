@@ -198,6 +198,15 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
             changed.append(revisions.get(cid))
             continue
 
+        # 2a0) SELF-TALK (Run 13 item 8): internal log lines are not authored work
+        #      about anything; rejected outright, not routed to review.
+        _talk, _talk_why = originality.is_self_talk(text)
+        if _talk:
+            revisions.mark(cid, "rejected", reason=_talk_why)
+            changed.append(revisions.get(cid))
+            log_activity(f"[quality_standard] promote {cid} rejected: {_talk_why}")
+            continue
+
         # 2a) ORIGINALITY VETO (mode-independent). A credited, predicate-passing
         #     artifact that is mostly copied from its sources must not be AUTO-
         #     canonised as a standard of authored work — the golden set only grows

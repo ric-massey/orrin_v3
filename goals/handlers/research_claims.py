@@ -38,6 +38,21 @@ _REL_RE = re.compile(
 )
 
 
+# Run 13 item 12: Wikipedia navigation/infobox chrome survived into Run 12's
+# relations ("biology portal Category v t e Evolutionary biology is a subfield…",
+# "H65 2016 Preceded by Ego is the Enemy Website dailystoic"). Navboxes end in
+# "v t e" and portal/category links; the sentence that matters follows the last one.
+_CHROME_SPLIT_RE = re.compile(r"\bv\s+t\s+e\b|\bCategory\b|\bportal\b", re.IGNORECASE)
+_INFOBOX_RE = re.compile(r"\b(?:Preceded by|Followed by|Website|ISBN|Retrieved|Archived|"
+                         r"Jump to navigation|edit source)\b", re.IGNORECASE)
+
+
+def _strip_chrome(sentence: str) -> str:
+    """The prose after the last navigation marker; '' for infobox residue."""
+    s = _CHROME_SPLIT_RE.split(str(sentence or ""))[-1].strip(" .,;:-")
+    return "" if _INFOBOX_RE.search(s) else s
+
+
 def _claim_subject_terms(text: str) -> List[str]:
     # Run 12 §3: the shared, scaffold-stopped definition (a question template's
     # "did/get/wrong" are not its subject).
@@ -61,6 +76,11 @@ def _extract_claims(goal: Goal, snippets: List[Tuple[str, str]]) -> Dict[str, An
         if len(relations) >= 12:
             break
         for sent in re.split(r"(?<=[.!?])\s+", str(txt or "")):
+            sent = _strip_chrome(sent)
+            if not sent:
+                continue
+            if not sent.endswith((".", "!", "?")):
+                sent += "."
             m = _REL_RE.search(sent)
             if not m:
                 continue

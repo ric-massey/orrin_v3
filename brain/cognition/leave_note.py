@@ -8,7 +8,7 @@ from __future__ import annotations
 from brain.cognition.global_workspace import bound_goal
 
 import re
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
@@ -139,6 +139,50 @@ def _seed_from_recent_finding() -> Optional[str]:
     return None
 
 
+_ABOUT_RE = re.compile(r"\babout\s+(.+?)(?:\s+that\b|\s+do\b|,|\?|$)", re.IGNORECASE)
+_CHROME_RE = re.compile(r"\bv t e\b|\bCategory\b|\bportal\b|\bRetrieved\b|\[edit\]", re.IGNORECASE)
+
+
+def recent_claims_finding(scan: int = 12) -> Optional[Tuple[str, str]]:
+    """Run 13 item 7: (topic, finding) from the newest research claims.json with a
+    relation that names its own subject — the structured findings the daemon writes
+    (Run 12 produced 12; notes used none of them and 610 of 617 went out empty).
+    None when there is nothing real to say. Never raises."""
+    try:
+        import json as _json
+        from brain.paths import GOALS_DIR
+        from brain.utils.subject_terms import matched_terms, subject_terms
+        files = sorted((GOALS_DIR / "artifacts").glob("*/claims.json"),
+                       key=lambda p: p.stat().st_mtime, reverse=True)[:scan]
+        for f in files:
+            try:
+                data = _json.loads(f.read_text(encoding="utf-8", errors="replace"))
+            except (OSError, ValueError):
+                continue
+            q = str(data.get("question") or "")
+            m = _ABOUT_RE.search(q)
+            topic = (m.group(1).strip() if m else " ".join(subject_terms(q))).strip(" .")
+            terms = subject_terms(topic)
+            if not topic or not terms:
+                continue
+            for r in data.get("relations") or []:
+                if not isinstance(r, dict):
+                    continue
+                text = " ".join(f"{r.get('subject', '')} {r.get('predicate', '')} {r.get('object', '')}".split())
+                if _CHROME_RE.search(text) or len(matched_terms(terms, text)) < min(2, len(terms)):
+                    continue
+                if _qualifies_as_seed(f"{topic}: {text}"):
+                    return topic[:60], text[:200]
+    except Exception as exc:
+        record_failure("leave_note.recent_claims_finding", exc)
+    return None
+
+
+def _seed_from_recent_claims() -> Optional[str]:
+    hit = recent_claims_finding()
+    return f"something I found out about {hit[0]}: {hit[1]}" if hit else None
+
+
 def leave_note(context: Dict[str, Any] = None) -> str:
     """Compose and deliver a note to the user via the expression door."""
     context = context or {}
@@ -156,12 +200,14 @@ def leave_note(context: Dict[str, Any] = None) -> str:
     # kernel — the expression door rewords/sanitises it, so the membrane stays intact.
     seed = (_seed_from_goal_finding(goal)
             or _seed_from_recent_finding()
+            or _seed_from_recent_claims()
             or _seed_from_goal(goal))
 
-    # F5 #5: a note whose goal demands a real artifact must carry real content —
-    # never fall back to the affect kernel and emit another boilerplate note.
-    # (A tracked-work step resolves to compose_section, not here — F2.)
-    if seed is None and goal.get("requires_artifact"):
+    # Run 13 item 7: no content, no note. The felt-state fallback ("something
+    # present but hard to name") went out 610 times in Run 12 — a note Ric would
+    # find carries a finding, or it is not written. (Supersedes the F5 #5 rule
+    # that only applied this to requires_artifact goals.)
+    if seed is None:
         return "Nothing worth noting right now — no grounded content to write."
 
     # The owning goal ID rides through build_motive (it stamps motive.goal_id),

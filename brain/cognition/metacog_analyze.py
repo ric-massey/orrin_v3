@@ -84,6 +84,18 @@ def _dominant_signal(context: Dict[str, Any]) -> Optional[str]:
     return max(numeric, key=numeric.get)
 
 
+# The committed goal's own instruments. When one of these loops without producing,
+# that is a stalled GOAL (Fix 7 bumps its monitor stall → the hard-disengage
+# backstop), not avoidance: the goal-avoidance breaker must not mute them. Run 12
+# muted research_topic 2,102× and fetch_and_read 703× as "substitutes" while they
+# were the committed research goal's work (DEMO_RUN_2026-08-19 §4.3).
+_GOAL_DRIVEN_FNS = frozenset({
+    "search_own_files", "research_topic", "fetch_and_read", "wikipedia_search",
+    "grep_files", "look_outward", "look_around", "seek_novelty",
+    "pursue_committed_goal", "assess_goal_progress",
+})
+
+
 def _try_suppress(action: str, n_cycles: int, reason: str,
                   context: Optional[Dict[str, Any]] = None) -> None:
     """
@@ -138,11 +150,6 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
             # bypasses bandit suppression (E6). Feed the rut into Fix 2's hard escalator
             # by bumping THIS goal's monitor stall, so a persistent goal-driven rut
             # reaches the hard-disengage backstop instead of being only an inert mute.
-            _GOAL_DRIVEN_FNS = {
-                "search_own_files", "research_topic", "fetch_and_read", "wikipedia_search",
-                "grep_files", "look_outward", "look_around", "seek_novelty",
-                "pursue_committed_goal", "assess_goal_progress",
-            }
             _gd = bound_goal(context)
             if isinstance(_gd, dict) and (_gd.get("title") or _gd.get("id")) and top_fn in _GOAL_DRIVEN_FNS:
                 _gid = str(_gd.get("id") or _gd.get("title") or "goal")
@@ -193,7 +200,7 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
         _suppressed: Optional[str] = None
         if debt >= _GOAL_DEBT_WARN * 3 and picks:
             # Suppress the most-frequent non-goal-pursuit function from recent picks.
-            _PURSUE = {"pursue_committed_goal", "pursue_goal", "advance_goal_plan"}
+            _PURSUE = {"pursue_committed_goal", "pursue_goal", "advance_goal_plan"} | _GOAL_DRIVEN_FNS
             recent_for_susp = picks[-_RUT_WINDOW:]
             substitute_counts = Counter(p for p in recent_for_susp if p not in _PURSUE)
             if substitute_counts:

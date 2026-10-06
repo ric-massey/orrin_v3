@@ -352,6 +352,45 @@ def _serves_aspiration(driven_by: str) -> str:
     return prior
 
 
+def aspiration_id_for_goal_id(goal_id: str) -> Optional[str]:
+    """The commitment id ("aspiration-<drive>") of the aspiration a concrete goal
+    serves: its `serves` tag, else what its content names, else its drive's
+    aspiration. None for an aspiration itself or an unknown goal. Run 13 item 11:
+    credit landed on concrete goals and never reached the aspiration that held the
+    commitment slot, so every aspiration's value_ema sat at its 0.5 prior all life."""
+    gid = str(goal_id or "")
+    if not gid or gid.startswith("aspiration-"):
+        return None
+
+    def _walk(nodes):
+        for n in nodes or []:
+            if isinstance(n, dict):
+                if str(n.get("id") or "") == gid:
+                    return n
+                hit = _walk(n.get("subgoals"))
+                if hit is not None:
+                    return hit
+        return None
+
+    try:
+        goal = None
+        for f in (GOALS_FILE, COMPLETED_GOALS_FILE):
+            data = load_json(f, default_type=list)
+            goal = _walk(data if isinstance(data, list) else (data or {}).get("goals"))
+            if goal is not None:
+                break
+        if goal is None:
+            return None
+        title = str(goal.get("serves") or content_aspiration(goal)
+                    or _serves_aspiration(goal.get("driven_by", "")) or "").strip().lower()
+        for asp_title, driven in _ASPIRATIONS:
+            if title in (asp_title.lower(), driven):
+                return f"aspiration-{driven}"
+    except Exception as exc:
+        record_failure("intrinsic_objectives.aspiration_id_for_goal_id", exc)
+    return None
+
+
 _ASPIRATION_TARGET = 20          # contributions for "full" directional progress
 _ASPIRATION_MILESTONE_EVERY = 5  # a visible milestone every N contributions
 

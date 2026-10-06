@@ -62,3 +62,17 @@ def test_path_index_survives_hydrate(tmp_path, monkeypatch):
     el._path_hash.clear()
     el._seen_hashes.clear()
     assert el.hash_for_path(str(p)) == row.content_hash
+
+
+def test_reuse_row_records_owner_and_citer(tmp_path, monkeypatch):
+    # Run 13 item 9: goal_id is the artifact's OWNER; the goal that reused it is
+    # metadata.citing_goal_id. Run 12's rows could only be attributed via memo footers.
+    import json
+    _isolate(monkeypatch, tmp_path)
+    p = tmp_path / "claims.json"
+    el.record_effect("file_write", _MEMO, goal_id="g_owner", metadata={"path": str(p)})
+    el.mark_reused_path(str(p), citing_goal_id="g_citer")
+    rows = [json.loads(line) for line in (tmp_path / "effect_ledger.jsonl").read_text().splitlines()]
+    reuse = [r for r in rows if r["kind"] == "reuse"]
+    assert reuse and reuse[-1]["goal_id"] == "g_owner"
+    assert reuse[-1]["metadata"]["citing_goal_id"] == "g_citer"

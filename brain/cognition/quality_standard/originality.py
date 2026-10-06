@@ -182,6 +182,32 @@ def is_derivative(report: CopyReport) -> tuple[bool, str]:
     return False, "authored"
 
 
+# ── Run 13 item 8: self-talk is not authored work ───────────────────────────────
+# Run 12 auto-canonised an "exemplar" made of Orrin's own internal log lines
+# ("[metacog/pattern] Goal avoidance: 4 consecutive cycles…", "[will] I resolve
+# to…", "[Incubation] While sitting with…"). It passed the copy veto because none
+# of it was copied — it is internal telemetry, which reads as "original prose".
+_INTERNAL_TAG_RE = re.compile(
+    r"\[(?:chunk:|metacog|will\]|incubation|sym_dream|dream|autobiography|world_model|"
+    r"working_memory|announced|reflection|symbolic|epistemic|behavioral_adapt|"
+    r"knowledge_formation|consciousness|affect)", re.IGNORECASE)
+_SELF_TALK_MIN_LINES = 2
+_SELF_TALK_SHARE = 0.3
+
+
+def is_self_talk(text: str) -> tuple[bool, str]:
+    """True when the artifact's content lines are mostly Orrin's internal tags
+    (metacog / will / incubation / dream / chunk …) rather than work about a subject."""
+    lines = [ln.strip().lstrip("-*• ").strip() for ln in str(text or "").splitlines()]
+    content = [ln for ln in lines if ln and not ln.startswith("#")]
+    if not content:
+        return False, ""
+    tagged = sum(1 for ln in content if _INTERNAL_TAG_RE.search(ln))
+    if tagged >= _SELF_TALK_MIN_LINES and tagged / len(content) >= _SELF_TALK_SHARE:
+        return True, f"self_talk_{tagged}_of_{len(content)}_lines"
+    return False, ""
+
+
 def check(text: str, *, goal_id: Optional[str] = None) -> tuple[bool, str, CopyReport]:
     """Convenience: analyze + decide in one call. Returns (derivative, reason, report)."""
     rep = analyze(text, goal_id=goal_id)

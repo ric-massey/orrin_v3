@@ -253,6 +253,20 @@ def note_goal_credit(goal_id: str, significance: float, *,
     gid = str(goal_id or "")
     if not gid:
         return
+    # Run 13 item 11: the aspiration this goal serves learns from it too — the
+    # aspirations hold the commitment slot, and their value_ema never left 0.5.
+    try:
+        from brain.cognition.intrinsic_objectives import aspiration_id_for_goal_id
+        parent = aspiration_id_for_goal_id(gid)
+    except Exception as exc:
+        record_failure("commitment_value.note_goal_credit.parent", exc)
+        parent = None
+    for target in ([gid, parent] if parent else [gid]):
+        _fold_credit(target, significance, alignment, content_hash)
+
+
+def _fold_credit(gid: str, significance: float, alignment: Optional[float],
+                 content_hash: Optional[str]) -> None:
     try:
         sig = max(0.0, min(1.0, float(significance or 0.0)))
     except (TypeError, ValueError):

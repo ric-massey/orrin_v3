@@ -106,6 +106,9 @@ def test_leave_note_composes_and_does_not_leak_working_memory(monkeypatch):
 
     monkeypatch.setitem(door._ROUTES, "note", fake_route)
     import brain.cognition.leave_note as ln
+    # Run 13 item 7: a note is only written when it carries a finding.
+    monkeypatch.setattr(ln, "_seed_from_recent_claims", lambda: (
+        "something I found out about fetching: the fetch step fails when search returns no URLs"))
 
     ctx = {
         "affect_state": {"core_signals": {"impasse_signal": 0.8, "reward_negative": 0.5}},
@@ -121,6 +124,20 @@ def test_leave_note_composes_and_does_not_leak_working_memory(monkeypatch):
     mot = captured["artifact"]["motive"]
     assert mot["intent"] == "leave_note"
     assert mot["why"]  # non-empty, references the goal
+
+
+def test_leave_note_without_a_finding_is_not_sent(monkeypatch):
+    # Run 12: 610 of 617 notes were the felt-state fallback ("something present
+    # but hard to name"). No grounded content → no note.
+    sent = []
+    monkeypatch.setitem(door._ROUTES, "note", lambda text, artifact, ctx: sent.append(text) or True)
+    import brain.cognition.leave_note as ln
+    for name in ("_seed_from_goal_finding", "_seed_from_goal"):
+        monkeypatch.setattr(ln, name, lambda goal: None)
+    monkeypatch.setattr(ln, "_seed_from_recent_finding", lambda: None)
+    monkeypatch.setattr(ln, "_seed_from_recent_claims", lambda: None)
+    ret = ln.leave_note({"affect_state": {"core_signals": {"impasse_signal": 0.8}}})
+    assert ret.startswith("Nothing worth noting") and sent == []
 
 
 # ── E6: the goal's motive is threaded across the execution boundary ──────────

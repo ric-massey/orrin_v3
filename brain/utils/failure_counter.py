@@ -169,6 +169,33 @@ def record_failure(site: str, exc: Exception) -> None:
         raise exc
 
 
+_GOAL_FAILURES_SEEN: set = set()
+_GOAL_FAILURE_TAIL_BYTES = 65536
+
+
+def _goal_failure_already_logged(path: Path, gid: str) -> bool:
+    """A goal fails once (terminal), but two lanes report it: the daemon runner and
+    the brain's outcome handler for the daemon's GoalFailed event. Run 12 logged
+    all three failed goals twice, 1-2 s apart (DEMO_RUN_2026-08-19 §4.7)."""
+    if not gid:
+        return False
+    if gid in _GOAL_FAILURES_SEEN:
+        return True
+    try:
+        if path.exists():
+            with open(path, "rb") as fh:
+                fh.seek(max(0, path.stat().st_size - _GOAL_FAILURE_TAIL_BYTES))
+                tail = fh.read().decode("utf-8", errors="replace")
+            needle = json.dumps(gid, ensure_ascii=False)
+            for line in tail.splitlines():
+                if '"goal_failure"' in line and f'"goal_id": {needle}' in line:
+                    _GOAL_FAILURES_SEEN.add(gid)
+                    return True
+    except Exception as _e:
+        _log.warning("silent except: %s", _e)
+    return False
+
+
 def record_goal_failure(goal_id: str, title: str, reason: str) -> None:
     """Machine-readable goal-failure telemetry, same file/rotation as exception
     failures (distinguished by site="goal_failure" + the goal fields). The
@@ -178,6 +205,11 @@ def record_goal_failure(goal_id: str, title: str, reason: str) -> None:
     try:
         path = _data_dir() / "failures.jsonl"
         path.parent.mkdir(parents=True, exist_ok=True)
+        gid = str(goal_id or "")[:80]
+        if _goal_failure_already_logged(path, gid):
+            return
+        if gid:
+            _GOAL_FAILURES_SEEN.add(gid)
         try:
             if path.exists() and path.stat().st_size > _JSONL_MAX_BYTES:
                 path.replace(path.with_suffix(".jsonl.1"))
@@ -187,7 +219,7 @@ def record_goal_failure(goal_id: str, title: str, reason: str) -> None:
             {
                 "ts": datetime.now(timezone.utc).isoformat(),
                 "site": "goal_failure",
-                "goal_id": str(goal_id or "")[:80],
+                "goal_id": gid,
                 "title": str(title or "")[:160],
                 "reason": str(reason or "")[:200],
             },

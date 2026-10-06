@@ -121,17 +121,23 @@ start_caffeinate() {
     caffeinate -dimsu -w $$ &
     CAFF_PID=$!
     sleep 1
-    if kill -0 "$CAFF_PID" 2>/dev/null && pmset -g assertions 2>/dev/null | grep -q "caffeinate"; then
+    # Captured first: under `set -o pipefail`, `pmset | grep -q` reports failure
+    # whenever grep exits early (pmset dies of SIGPIPE → 141), i.e. on every match.
+    local assertions
+    assertions="$(pmset -g assertions 2>/dev/null || true)"
+    if kill -0 "$CAFF_PID" 2>/dev/null && grep -q "caffeinate" <<<"$assertions"; then
         echo "[run] caffeinate pid $CAFF_PID holding sleep off (-dimsu)" | tee -a "$LOG"
     else
         echo "[run] WARNING: caffeinate is NOT holding sleep off — the Mac may sleep mid-life" | tee -a "$LOG"
     fi
 }
 start_caffeinate
-if ! pmset -g batt 2>/dev/null | head -1 | grep -q "AC Power"; then
+POWER_SRC="$(pmset -g batt 2>/dev/null || true)"
+if ! grep -q "AC Power" <<<"${POWER_SRC%%$'\n'*}"; then
     echo "[run] WARNING: on battery — caffeinate cannot hold system sleep off (-s needs AC). Plug in for a full life." | tee -a "$LOG"
 fi
-if ioreg -r -k AppleClamshellState 2>/dev/null | grep -q '"AppleClamshellState" = Yes'; then
+CLAMSHELL="$(ioreg -r -k AppleClamshellState 2>/dev/null || true)"
+if grep -q '"AppleClamshellState" = Yes' <<<"$CLAMSHELL"; then
     echo "[run] WARNING: the lid is closed — macOS sleeps a closed laptop regardless of caffeinate (unless on an external display + power)." | tee -a "$LOG"
 fi
 

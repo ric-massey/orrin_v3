@@ -122,3 +122,7 @@ even when the run "looks clean."
   observables** (what number moves, read from which store).
 - Update memory (`project_staging_runN_capture`) and the `MEMORY.md` index
   line when the verdict lands.
+- Post the verdict to the Orrin page: `scripts/site_update.py --kind "run result"
+  --publish`, in plain English for friends and family (what passed, what didn't,
+  what's next), `--href` to the verdict on GitHub. Push the repo first so the link
+  resolves.

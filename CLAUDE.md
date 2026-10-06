@@ -67,3 +67,8 @@ ORRIN_UI=0 python main.py      # headless
 - Match the surrounding code's style; comments state constraints, not narration.
 - Long-running components are `*_daemon.py` — resilient and idempotent.
 - Commit/push only when asked. Keep changes small and testable.
+- **Progress notes go to ricmassey.com/orrin.html.** After a run verdict lands or a
+  build is committed, post one plain-English note (what was tried, what happened,
+  what's next; mechanisms, not feelings):
+  `python scripts/site_update.py --kind "run result"|build|design|note --title … --body … --href <github link> --publish`.
+  It publishes only that note (site checkout at `~/RicsWebsite`, or `ORRIN_SITE_DIR`).

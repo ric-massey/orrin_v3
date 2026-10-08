@@ -612,6 +612,16 @@ def record_effect(
         # flat per-step reward and compose_section's EMA sat neutral through
         # ~160 zero-value repetitions. The executive pops this after each step
         # and posts novelty×significance into the same EMA think() learns from.
+        # B2 (F1): credited work is a structured "help" event of his own making.
+        if _credited:
+            try:
+                from brain.utils.appraisal_events import queue_appraisal_event
+                queue_appraisal_event({"kind": "ledger_credit", "outcome": "help",
+                                       "agency": "self", "goal": str(goal_id or ""),
+                                       "about": f"{kind}:{str(_np or '')[-60:]}",
+                                       "novelty": float(row.novelty or 0.0) * 0.5})
+            except Exception as exc:
+                record_failure("effect_ledger.appraisal", exc)
         if isinstance(context, dict):
             context["_last_effect_outcome"] = {
                 "kind": kind,

@@ -100,8 +100,6 @@ def _effective_working_cap() -> int:
         _wm_cap_logged = cap
     return cap
 
-_last_digest_time: float = 0.0
-_DIGEST_RATE_LIMIT_S: float = 60.0
 
 
 
@@ -352,32 +350,11 @@ def update_working_memory(
             summarize_and_promote_working_memory(salient)
             log_private(f"[working_memory] Promoted {len(salient)} salient entries to long-term memory.")
 
-        # Compact non-salient entries into a single summary line rather than silently dropping.
-        # This preserves the arc of experience even for routine thoughts.
-        # Rate-limited: at most one digest per minute to prevent overflow flooding long memory.
+        # B1 (F0, Run 13): evicted routine entries are dropped with a trace line.
+        # The old "[wm_overflow] N routine thoughts: choice, system" digest put a
+        # record of his own bookkeeping into long memory once a minute.
         if non_salient:
-            global _last_digest_time
-            _now = _time.monotonic()
-            if _now - _last_digest_time >= _DIGEST_RATE_LIMIT_S:
-                _last_digest_time = _now
-                try:
-                    from brain.cog_memory.long_memory import update_long_memory as _ulm
-                    _topics = list(dict.fromkeys(
-                        str(m.get("event_type") or m.get("content", "")[:30])
-                        for m in non_salient
-                        if m.get("event_type") or m.get("content")
-                    ))[:6]
-                    if _topics:
-                        _ulm(
-                            f"[wm_overflow] {len(non_salient)} routine thoughts: {', '.join(_topics)}",
-                            emotion="neutral",
-                            event_type="wm_overflow_digest",
-                            importance=1,
-                            priority=1,
-                        )
-                except Exception as _e:
-                    record_failure("working_memory.update_working_memory.2", _e)
-            log_private(f"[working_memory] Compacted {len(non_salient)} routine entries into long-memory digest.")
+            log_private(f"[working_memory] Dropped {len(non_salient)} routine entries on overflow.")
 
 
 # ── Emotionally-weighted retrieval ────────────────────────────────────────────

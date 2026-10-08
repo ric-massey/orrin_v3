@@ -15,7 +15,6 @@ from typing import Dict, Any, List
 from brain.utils.generate_response import generate_response, llm_ok
 from brain.utils.log import log_activity, log_private
 from brain.utils.json_utils import load_json
-from brain.cog_memory.long_memory import update_long_memory
 from brain.paths import (
     THREADS_FILE, LONG_MEMORY_FILE, VALUE_REVISIONS,
     ENERGY_MODE_FILE, BODY_SENSE_FILE, DATA_DIR,
@@ -164,10 +163,7 @@ def research_feed_heartbeat(context: Dict[str, Any] = None) -> List[Dict]:
         if len(proposed) > 50:
             context["proposed_goals"] = proposed[-50:]
         for g in batch:
-            update_long_memory(
-                f"[intrinsic_goal] '{g['title']}' (driven by {g['driven_by']}): {g['description'][:150]}",
-                emotion="motivation", event_type="intrinsic_goal", importance=3, context=context,
-            )
+            log_private(f"[intrinsic_goal] {g['title']!r} ({g['driven_by']})")
         log_activity(
             f"[intrinsic_goals] Research-feed heartbeat ({len(batch)}): "
             + ", ".join(f"'{g['title']}'" for g in batch)
@@ -328,14 +324,10 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         proposed.extend(_batch)
         if len(proposed) > 50:
             context["proposed_goals"] = proposed[-50:]
+        # B1: a goal proposal is a record of his own bookkeeping, not something he
+        # learned — trace only (the goals store and handoff log hold the record).
         for _g in _batch:
-            update_long_memory(
-                f"[intrinsic_goal] '{_g['title']}' (driven by {_g['driven_by']}): {_g['description'][:150]}",
-                emotion="motivation",
-                event_type="intrinsic_goal",
-                importance=3,
-                context=context,
-            )
+            log_private(f"[intrinsic_goal] {_g['title']!r} ({_g['driven_by']})")
         log_activity(
             f"[intrinsic_goals] Symbolic goals proposed ({len(_batch)}): "
             + ", ".join(f"'{_g['title']}'" for _g in _batch)
@@ -522,13 +514,6 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         _enrich_goal_zone(goal)
         goals.append(goal)
 
-        update_long_memory(
-            f"[intrinsic_goal] '{goal['title']}' (driven by {goal['driven_by']}): {goal['description'][:150]}",
-            emotion="motivation",
-            event_type="intrinsic_goal",
-            importance=3,
-            context=context,
-        )
         log_private(f"[intrinsic_goal] {goal['title']!r} ({goal['driven_by']})")
 
     if goals:

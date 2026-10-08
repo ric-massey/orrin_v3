@@ -1,9 +1,7 @@
 from brain.cognition.global_workspace import bound_goal
 from brain.core.runtime_log import get_logger
-import json
 
 from brain.utils.json_utils import load_json, save_json
-from brain.utils.timing import get_time_since_last_active
 from brain.utils.log import log_private, log_model_issue
 from brain.utils.events import emit_event, DECISION
 from brain.behavior.tools.toolkit import evaluate_tool_use
@@ -19,15 +17,6 @@ from brain.paths import (
 )
 from brain.utils.timeutils import now_iso_z
 _log = get_logger(__name__)
-
-# NEW: ensure we can display and score 'reason' whether it's a dict or a string
-def _reason_text(reason) -> str:
-    if isinstance(reason, dict):
-        try:
-            return json.dumps(reason, ensure_ascii=False)
-        except (TypeError, ValueError):  # intentional: unserializable reason → str()
-            return str(reason)
-    return str(reason)
 
 # Delegate to the canonical reward emitter (affect.reward_signals.release_reward)
 # so the wrapper logic lives in exactly one place.
@@ -61,8 +50,6 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     Final step of each Orrin cognitive cycle: logs feedback, updates histories,
     handles social_deficit/self-questioning, and saves the chosen action.
     """
-    reason_text = _reason_text(reason)  # NEW
-
     # R1 — feed this cycle's executed function to the signal→action follow-through
     # audit (records its action class + resolves any corrective whose K-cycle window
     # has elapsed). Best-effort: telemetry must never break the cycle's finalize.
@@ -72,24 +59,14 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     except Exception as _sae:
         record_failure("finalize_cycle.signal_action_audit", _sae)
 
-    # Log which function was chosen
-    update_working_memory({
-        "content": f"🧠 Chose: {next_function} — {reason_text}",  # NEW: use readable text
-        "event_type": "choice",
-        "importance": 2,
-        "priority": 2,
-        "referenced": 1
-    })
+    # B1 (F0, Run 13): the selection log, last-active stamp and reward notes are
+    # telemetry, not thought. Written to working memory they were promoted into
+    # 1,445 of 2,001 long-memory rows ("📝 Working memory summary: 🧠 Chose: …").
+    # The decision is recorded in cognition_history (record_decision below).
     evaluate_tool_use([{
         "content": user_input or "No input this cycle.",
         "timestamp": now_iso_z()
     }])
-    update_working_memory({
-        "content": f"⏳ Last active: {get_time_since_last_active()}",
-        "event_type": "system",
-        "importance": 1,
-        "priority": 1
-    })
 
     # --- Agentic-vs-Cognition Reward System ---
     # `next_function` is the COGNITIVE pick, and select_function structurally
@@ -119,29 +96,11 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     if _production:
         is_agentic = True  # production is the strongest form of agentic engagement
         _reward(context, signal="reward_signal", actual=1.0, expected=0.6, effort=0.7, mode="phasic", source="production_effect")
-        update_working_memory({
-            "content": f"✅ Rewarded production (durable effect): {next_function}",
-            "event_type": "reward",
-            "importance": 2,
-            "priority": 2
-        })
     elif is_agentic:
         _intake = max(INTAKE_REWARD_FLOOR, INTAKE_REWARD)
         _reward(context, signal="reward_signal", actual=_intake, expected=0.5, effort=0.5, mode="phasic", source="intake")
-        update_working_memory({
-            "content": f"↔ Intake / consequential cognition (below production): {next_function}",
-            "event_type": "reward",
-            "importance": 1,
-            "priority": 1
-        })
     else:
         _reward(context, signal="reward_signal", actual=0.2, expected=0.4, effort=0.2, mode="tonic", source="cognition_only")
-        update_working_memory({
-            "content": f"⚠️ Cognition action only (not agentic): {next_function}",
-            "event_type": "reward_penalty",
-            "importance": 1,
-            "priority": 1
-        })
 
     # --- Environment-delta reward (replaces LLM self-feedback grading) ---
     # Reward comes from what changed in the system this step, not from asking

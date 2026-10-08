@@ -516,26 +516,17 @@ def metacog_flush(context: Dict[str, Any]) -> str:
     observations: List[str] = []
 
     try:
-        from brain.cog_memory.working_memory import update_working_memory
 
-        # Write the per-cycle trace (low importance — it's plumbing)
+        # B1 (F0, Run 13): the per-cycle trace and the pattern alarms are
+        # telemetry. In working memory they were appraised as his own felt state
+        # (appraisal read "Something feels slightly off…" as a block) and
+        # promoted into long memory. They go to the trace; the observations
+        # still drive behavioral adaptation and knowledge formation below.
         if introspection:
-            update_working_memory({
-                "content": f"[metacog] {introspection}",
-                "event_type": "metacog_trace",
-                "importance": 1,
-                "priority": 1,
-            })
+            log_private(f"[metacog] {introspection[:300]}")
 
-        # Run pattern analysis and write any observations (higher importance)
         observations = metacog_analyze(context)
         for obs in observations:
-            update_working_memory({
-                "content": f"[metacog/pattern] {obs}",
-                "event_type": "metacog_pattern",
-                "importance": 3,
-                "priority": 3,
-            })
             log_private(f"[metacog/pattern] {obs[:200]}")
 
         # Close the observation→behavior loop: translate patterns into concrete

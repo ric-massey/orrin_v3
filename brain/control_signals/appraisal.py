@@ -3,8 +3,10 @@ brain/control_signals/appraisal.py
 
 Appraisal-theory affect generation. No LLM, no keyword lists.
 
-Events from working memory are evaluated against active goals and current
-coping capacity using five appraisal dimensions.
+Structured outcome events (goal outcomes, effect-ledger credit — B2 / F1) and a
+person's words in working memory are evaluated against active goals and current
+coping capacity using five appraisal dimensions. His own alarms and logs are not
+appraised.
 
   relevance   — does this event matter to an active goal?
   congruence  — does it help (+) or block (-) the goal?
@@ -175,28 +177,36 @@ def appraise_event(
     mood: float = 0.0,
 ) -> List[Dict[str, Any]]:
     """
-    Evaluate one event and return emotion adjustments.
-    Each item: {emotion: str, delta: float, cause: str}
-    Deltas are small nudges (0.02 – 0.25), not snaps.
+    Evaluate one TEXTUAL event (a message from a person) and return emotion
+    adjustments. Each item: {emotion: str, delta: float, cause: str}
+    Deltas are small nudges (0.02 – 0.25), not snaps. Structured events (goal
+    outcomes, ledger credit) go through appraise_structured instead.
     """
     if not event_text or len(event_text.strip()) < 12:
         return []
 
     text  = event_text.lower()
-    rel   = _goal_relevance(text, goal_titles, mood=mood)
-    cong  = _goal_congruence(text, mood=mood)
-    who   = _agency(text)
-    cert  = _certainty(text)
-    nov   = _novelty(text)
-    cope  = _coping(affect_state)
-
-    cause = event_text[:80]
-    out: List[Dict[str, Any]] = []
-
     # Did the congruence come from a REAL help-signal in the text, or only from a
     # mood bias on an ambiguous event? (raw==0 in _goal_congruence → mood inferred.)
-    genuine_help = _hits(text, _HELP_WORDS) > _hits(text, _BLOCK_WORDS)
+    return _deltas_from_dims(
+        rel=_goal_relevance(text, goal_titles, mood=mood),
+        cong=_goal_congruence(text, mood=mood),
+        genuine_help=_hits(text, _HELP_WORDS) > _hits(text, _BLOCK_WORDS),
+        who=_agency(text),
+        cert=_certainty(text),
+        nov=_novelty(text),
+        cope=_coping(affect_state),
+        repeated=_hits(text, _REPEATED_FAILURE_WORDS) > 0,
+        cause=event_text[:80],
+        mood=mood,
+    )
 
+
+def _deltas_from_dims(*, rel: float, cong: float, genuine_help: bool, who: str,
+                      cert: float, nov: float, cope: float, repeated: bool,
+                      cause: str, mood: float, about: str = "") -> List[Dict[str, Any]]:
+    """The appraisal → emotion mapping, shared by the text and structured paths."""
+    out: List[Dict[str, Any]] = []
     # Goal-relevant events
     if rel >= 0.15:
         if cong > 0 and genuine_help:
@@ -238,7 +248,6 @@ def appraise_event(
 
             else:
                 # Circumstantial: risk_estimate (low coping) or challenge response (high coping)
-                repeated = _hits(text, _REPEATED_FAILURE_WORDS) > 0
                 if cope < 0.45:
                     out.append({"emotion": "risk_estimate",      "delta": round(intensity * 0.15, 3), "cause": cause})
                     if cert < 0.40:
@@ -275,8 +284,56 @@ def appraise_event(
             elif d < 0:
                 r["delta"] = min(-0.02, round(d * (1.0 - mood * 0.25), 3))
 
+    if about:
+        for r in out:
+            r["about"] = about
     # Filter near-zero deltas
     return [r for r in out if abs(r.get("delta", 0)) >= 0.02]
+
+
+# Working-memory event types that carry a person's words (the text path's input).
+TEXTUAL_INPUT_TYPES = frozenset({"user_input", "conversation", "chat", "user_message"})
+
+
+# ── Structured events (B2 / F1) ───────────────────────────────────────────────
+# Producers queue outcome events in brain/utils/appraisal_events.py (a leaf module,
+# so goal_io and the effect ledger need no control_signals import); the signal
+# update drains and appraises them here.
+from brain.utils.appraisal_events import (  # noqa: E402,F401 (re-exported)
+    drain_appraisal_events, failure_agency, queue_appraisal_event)
+
+
+def appraise_structured(
+    events: List[Dict[str, Any]],
+    goal_titles: List[str],
+    affect_state: Dict[str, Any],
+    mood: float = 0.0,
+) -> List[Dict[str, Any]]:
+    """Appraise structured outcome events. Relevance is 0.8 when the event's goal
+    is a committed goal, 0.4 otherwise (any goal outcome matters some)."""
+    committed = {str(t).strip().lower() for t in goal_titles if t}
+    cope = _coping(affect_state)
+    out: List[Dict[str, Any]] = []
+    for ev in events or []:
+        if not isinstance(ev, dict) or ev.get("outcome") not in ("help", "block"):
+            continue
+        help_ = ev["outcome"] == "help"
+        goal = str(ev.get("goal") or "")
+        who = str(ev.get("agency") or "self")
+        out.extend(_deltas_from_dims(
+            rel=0.8 if goal.strip().lower() in committed else 0.4,
+            cong=1.0 if help_ else -1.0,
+            genuine_help=help_,
+            who=who if who in ("self", "other", "circumstance") else "self",
+            cert=float(ev.get("certainty", 0.9) or 0.9),
+            nov=float(ev.get("novelty", 0.0) or 0.0),
+            cope=cope,
+            repeated=bool(ev.get("repeated")),
+            cause=f"[{ev.get('kind', 'event')}] {goal or ev.get('about', '')}"[:80],
+            mood=mood,
+            about=str(ev.get("about") or goal)[:120],
+        ))
+    return out
 
 
 # Habituation window: a recurring event re-appraised within this many seconds is
@@ -309,15 +366,16 @@ def appraise_working_memory(
     repeat (down to 1/16), so the FIRST few appraisals land but a standing condition
     stops pumping. Re-sensitizes after `_HABITUATION_WINDOW_S` of absence.
     """
-    _skip_types = frozenset({
-        "affect_analysis", "unexplained_affect_reflection",
-        "affect_cause", "oscillation_detected",
-    })
+    # B2 (F1, Run 13): only genuinely textual input — what a person said — is
+    # appraised from its words. His own alarms, logs and notes in working memory
+    # ("[metacog/pattern] Something feels slightly off…") were read as blocks on
+    # his goals and moved his affect; outcomes now arrive as structured events
+    # (appraise_structured).
     out: List[Dict[str, Any]] = []
     recent = [
         e for e in (working_memory or [])[-lookback:]
         if isinstance(e, dict)
-        and e.get("event_type") not in _skip_types
+        and e.get("event_type") in TEXTUAL_INPUT_TYPES
         and e.get("content")
     ]
 

@@ -208,6 +208,11 @@ def apply_wm_triggers_and_appraisal(
         _cgs  = (context or {}).get("committed_goals") or ([_cg] if _cg else [])
         _gtitles = [g.get("title", "") for g in _cgs if isinstance(g, dict) and g.get("title")]
         _current_mood = float(state.get("smoothed_state", 0.0) or 0.0)  # was "mood" key
+        # B2: structured outcome events (goal steps, ledger credit) are appraised
+        # every cycle; the word-set path only sees a person's words in WM.
+        from brain.control_signals.appraisal import (
+            appraise_structured as _appraise_struct, drain_appraisal_events as _drain_ev)
+        _appraisal_deltas = _appraise_struct(_drain_ev(), _gtitles, state, mood=_current_mood)
         if _gtitles:
             # Persist the habituation recency map on affect_state so a recurring
             # thought stops pumping its emotion every cycle (RUN diag 2026-06-29).
@@ -215,24 +220,24 @@ def apply_wm_triggers_and_appraisal(
             if not isinstance(_hab_map, dict):
                 _hab_map = {}
                 state["_appraisal_habituation"] = _hab_map
-            _appraisal_deltas = _appraise(working, _gtitles, state, mood=_current_mood,
-                                          habituation=_hab_map)
-            for _adj in _appraisal_deltas:
-                _emo = _adj.get("emotion", "")
-                _d   = float(_adj.get("delta") or 0)
-                if _emo in core and abs(_d) >= 0.02:
-                    if _d > 0:
-                        core[_emo] = min(1.0, float(core[_emo]) + _d)
-                    else:
-                        core[_emo] = max(baseline.get(_emo, 0.0), float(core[_emo]) + _d)
-                    # Record meaningful positive shifts as causal attributions
-                    if _d >= 0.08:
-                        recent_causes.append({
-                            "emotion": _emo,
-                            "delta":   round(_d, 3),
-                            "cause":   f"[appraisal] {_adj.get('cause', '')[:80]}",
-                            "ts":      now.isoformat(),
-                        })
+            _appraisal_deltas += _appraise(working, _gtitles, state, mood=_current_mood,
+                                           habituation=_hab_map)
+        for _adj in _appraisal_deltas:
+            _emo = _adj.get("emotion", "")
+            _d   = float(_adj.get("delta") or 0)
+            if _emo in core and abs(_d) >= 0.02:
+                if _d > 0:
+                    core[_emo] = min(1.0, float(core[_emo]) + _d)
+                else:
+                    core[_emo] = max(baseline.get(_emo, 0.0), float(core[_emo]) + _d)
+                # Record meaningful positive shifts as causal attributions
+                if _d >= 0.08:
+                    recent_causes.append({
+                        "emotion": _emo,
+                        "delta":   round(_d, 3),
+                        "cause":   f"[appraisal] {_adj.get('cause', '')[:80]}",
+                        "ts":      now.isoformat(),
+                    })
     except Exception as _e:
         record_failure("update_signal_state.update_signal_state.3", _e)
 

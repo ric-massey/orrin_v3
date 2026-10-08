@@ -102,7 +102,6 @@ def test_generation_runs_with_open_action_debt(monkeypatch):
     monkeypatch.setattr(ig, "_ensure_aspirations", lambda: None)
     monkeypatch.setattr(ig, "_varied_symbolic_goals", lambda ctx, lm: [dict(goal)])
     monkeypatch.setattr(ig, "_enrich_goal_zone", lambda g: g)
-    monkeypatch.setattr(ig, "update_long_memory", lambda *a, **k: None)
     ctx = {"action_debt": 40,
            "committed_goal": {"title": "Something else", "id": "g1", "status": "in_progress"}}
     out = ig.generate_intrinsic_goals(ctx)

@@ -49,6 +49,28 @@ _INSTRUMENTATION_EVENT_TYPES = frozenset({
 })
 _INSTRUMENTATION_MAX_SHARE = 0.40
 
+# B3 (Run 13, Ric's principle: most memories should be about his world): at death
+# long memory was 1,445/2,001 self-log summaries and 2.8 % world findings. Self-log
+# summaries (digests of his own working memory / prune output) get a bounded share;
+# world findings (what he read, perceived outside himself, was told, or answered)
+# get a survival bonus large enough to outrank ordinary self-observation.
+_SELF_LOG_EVENT_TYPES = frozenset({
+    "summary", "v2_summary", "memory_prune_summary", "wm_overflow_digest",
+})
+_SELF_LOG_MAX_SHARE = 0.10
+_WORLD_EVENT_TYPES = frozenset({
+    "world_perception", "question_answered", "llm_tool_research", "environment",
+    "conversation", "chat_summary", "clipboard_observation",
+})
+_WORLD_PREFIXES = ("[research]", "[wikipedia]", "[rss", "[read]", "[EXTERNAL/UNTRUSTED")
+_WORLD_SCORE_BONUS = 8
+
+
+def is_world_finding(mem: dict) -> bool:
+    if mem.get("event_type") in _WORLD_EVENT_TYPES:
+        return True
+    return str(mem.get("content", "")).lstrip().startswith(_WORLD_PREFIXES)
+
 # AR6: digits are noise for periodic-event identity — normalize them out of the
 # dedup key so a recurring entry can't slip the window by carrying a fresh number.
 _DEDUP_NUM_RE = re.compile(r"\d+(?:\.\d+)?")
@@ -436,6 +458,8 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
 
             score += int(mem.get("importance") or 1)
             score += int(mem.get("priority") or 1)
+            if is_world_finding(mem):
+                score += _WORLD_SCORE_BONUS
         except Exception as exc:
             log_error(f"prune_long_memory: scoring failed: {exc}")
             score = 0
@@ -489,19 +513,22 @@ def prune_long_memory(max_total: int = MAX_LONG_MEMORY) -> None:
             survivors = non_pins[: max(0, keep_count)]
             overflow = non_pins[max(0, keep_count):]
 
-            # F17: instrumentation-ratio guard — telemetry may not exceed
-            # _INSTRUMENTATION_MAX_SHARE of the surviving estate. Lowest-scored
-            # instrumentation entries (the list is already score-ordered) are
-            # composted first; real findings backfill from the overflow.
-            _instr = [m for m in survivors
-                      if m.get("event_type") in _INSTRUMENTATION_EVENT_TYPES]
-            _instr_cap = int(max_total * _INSTRUMENTATION_MAX_SHARE)
-            if len(_instr) > _instr_cap:
-                _drop_ids = {id(m) for m in _instr[_instr_cap:]}
+            # F17 / B3: share guards — telemetry may not exceed
+            # _INSTRUMENTATION_MAX_SHARE of the surviving estate, self-log
+            # summaries _SELF_LOG_MAX_SHARE. Lowest-scored entries of a capped
+            # class (the list is already score-ordered) are composted first;
+            # entries of other classes backfill from the overflow.
+            for _types, _share in ((_INSTRUMENTATION_EVENT_TYPES, _INSTRUMENTATION_MAX_SHARE),
+                                   (_SELF_LOG_EVENT_TYPES, _SELF_LOG_MAX_SHARE)):
+                _cls = [m for m in survivors if m.get("event_type") in _types]
+                _cap = int(max_total * _share)
+                if len(_cls) <= _cap:
+                    continue
+                _drop_ids = {id(m) for m in _cls[_cap:]}
                 survivors = [m for m in survivors if id(m) not in _drop_ids]
-                removed.extend(_instr[_instr_cap:])
-                backfill = [m for m in overflow
-                            if m.get("event_type") not in _INSTRUMENTATION_EVENT_TYPES]
+                removed.extend(_cls[_cap:])
+                backfill = [m for m in overflow if m.get("event_type") not in
+                            (_INSTRUMENTATION_EVENT_TYPES | _SELF_LOG_EVENT_TYPES)]
                 n_backfill = max(0, keep_count - len(survivors))
                 survivors += backfill[:n_backfill]
                 _kept_ids = {id(m) for m in survivors}

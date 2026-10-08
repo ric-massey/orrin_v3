@@ -42,7 +42,8 @@ def look_around(context: Dict[str, Any] = None) -> str:
     recent_mods  = _recent_modifications(world_root, window_s=3600, limit=15)
     own_files    = _orrin_owned_files(context)
 
-    new_files = [p for p, _ in recent_mods if p not in own_files]
+    new_files = [p for p, _ in recent_mods
+                 if p not in own_files and not _is_own_state(world_root, p)]
     own_touched = [p for p, t in recent_mods if p in own_files]
 
     # Include world model narrative — the interpreted environment state
@@ -184,6 +185,29 @@ def _recent_modifications(root: Path, window_s: float, limit: int) -> List[Tuple
         record_failure("look_around._recent_modifications", _e)
     results.sort(key=lambda x: x[1])
     return results[:limit]
+
+
+_STATE_SUFFIXES = (".lock", ".pyc", ".tmp", ".jsonl", ".log")
+
+
+def _is_own_state(world_root: Path, rel: str) -> bool:
+    """B3 (Run 13): his own runtime state is not the environment. 32 of 124
+    long-memory "world perceptions" were his data files changing
+    ("New files appeared in my environment: brain/data/cycle_count.json.lock")."""
+    from brain.paths import DATA_DIR, LOGS_DIR, STATE_DIR
+    if str(rel).endswith(_STATE_SUFFIXES) or "__pycache__" in str(rel):
+        return True
+    try:
+        full = (world_root / rel).resolve()
+    except OSError:
+        return False
+    for root in (DATA_DIR, LOGS_DIR, STATE_DIR):
+        try:
+            full.relative_to(root.resolve())
+            return True
+        except (ValueError, OSError):
+            continue
+    return False
 
 
 def _orrin_owned_files(context: Dict[str, Any]) -> set:

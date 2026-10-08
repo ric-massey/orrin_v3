@@ -77,7 +77,6 @@ def _stub_heartbeat_deps(monkeypatch, batch):
     monkeypatch.setattr(igoals, "_varied_symbolic_goals",
                         lambda ctx, lm, **kw: [dict(g) for g in batch])
     monkeypatch.setattr(igoals, "_enrich_goal_zone", lambda g: g)
-    monkeypatch.setattr(igoals, "update_long_memory", lambda *a, **k: None)
     monkeypatch.setattr(igoals, "_under_load", lambda ctx: (False, ""))
 
 

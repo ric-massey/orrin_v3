@@ -800,6 +800,7 @@ def _on_event(event: Dict[str, Any]) -> None:
         status = str(event.get("status", "")).lower()
         if status not in _V2_EVENT_TERMINAL:
             return
+        _queue_outcome_appraisal(event, status)
         if status == "failed":
             with _q_lock:
                 _failed_q.append({
@@ -822,6 +823,30 @@ def _on_event(event: Dict[str, Any]) -> None:
             record_failure("goal_io._on_event.close_mirror", _e)
     except Exception as _e:
         record_failure("goal_io._on_event", _e)
+
+
+def _queue_outcome_appraisal(event: Dict[str, Any], status: str) -> None:
+    """B2 (F1): a daemon goal outcome is a structured appraisal event. Agency on
+    failure comes from the goal's last_error ("no URLs to fetch" is the world,
+    not his act), not from the pronouns in a failure notice."""
+    if status not in ("done", "failed"):
+        return
+    try:
+        from brain.utils.appraisal_events import failure_agency, queue_appraisal_event
+        title = str(event.get("title") or "")
+        g = event.get("goal")
+        last_error = str(getattr(g, "last_error", None)
+                         or (event.get("extra") or {}).get("reason") or "")
+        queue_appraisal_event({
+            "kind": f"goal_{status}",
+            "outcome": "help" if status == "done" else "block",
+            "agency": "self" if status == "done" else failure_agency(last_error),
+            "goal": title,
+            "about": title,
+            "repeated": bool(_ROUND_RE.search(title)),
+        })
+    except Exception as _e:
+        record_failure("goal_io._queue_outcome_appraisal", _e)
 
 
 def on_goal_event(event: Dict[str, Any]) -> None:

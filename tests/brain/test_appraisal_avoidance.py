@@ -73,7 +73,7 @@ def test_recurring_event_habituates_and_stops_pumping():
     goals = ["The causes of affective_regulation"]
 
     def _impasse_of(n):
-        wm = [{"event_type": "metacog", "content":
+        wm = [{"event_type": "user_input", "content":
                f"[metacog/pattern] Goal avoidance: {n} consecutive cycles without "
                f"taking action on 'The causes of affective_regulation'. I'm thinking but not doing."}]
         rows = appraise_working_memory(wm, goals, _HIGH_COPING, mood=0.6, habituation=hab)
@@ -90,8 +90,8 @@ def test_habituation_does_not_blunt_a_genuinely_new_event():
     # Habituation must be per-event: a brand-new, distinct event still lands full.
     hab: dict = {}
     g = ["fix the parser"]
-    wm_a = [{"event_type": "note", "content": "I finally solved the parser bug — it builds and works now."}]
-    wm_b = [{"event_type": "note", "content": "I completed the migration and the database upgrade succeeded."}]
+    wm_a = [{"event_type": "user_input", "content": "I finally solved the parser bug — it builds and works now."}]
+    wm_b = [{"event_type": "user_input", "content": "I completed the migration and the database upgrade succeeded."}]
     a = appraise_working_memory(wm_a, g, _HIGH_COPING, mood=0.2, habituation=hab)
     b = appraise_working_memory(wm_b, ["finish the migration"], _HIGH_COPING, mood=0.2, habituation=hab)
     assert any(r["emotion"] == "reward_positive" and r["delta"] > 0 for r in a), a

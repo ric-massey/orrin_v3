@@ -200,6 +200,10 @@
     "definition": "aspiration_credit_value(driven_by: 'str') -> 'Optional[float]'\nFix 4 (RUN6_FIX_PLAN §3) — the credited-contribution signal for the\n    aspiration a drive serves, in [0,1], for goal_io's commitment score.\n\n    Commitment used to be chosen by tier+priority while credit was attributed by\n    driven_by — the two halves never talked, so Run 5 committed an aspiration\n    that earned 1 contribution while a barely-committed one earned 6. This feeds\n    the credit side back into commitment: share of contributions vs the\n    best-credited peer, blended with recency of the last real contribution.\n    Returns None when there is no evidence yet anywhere (cold start — the\n    commitment score then falls back to the goal's own effect EMA)."
   },
   {
+    "name": "aspiration_id_for_goal_id",
+    "definition": "aspiration_id_for_goal_id(goal_id: 'str') -> 'Optional[str]'\nThe commitment id (\"aspiration-<drive>\") of the aspiration a concrete goal\n    serves: its `serves` tag, else what its content names, else its drive's\n    aspiration. None for an aspiration itself or an unknown goal. Run 13 item 11:\n    credit landed on concrete goals and never reached the aspiration that held the\n    commitment slot, so every aspiration's value_ema sat at its 0.5 prior all life."
+  },
+  {
     "name": "assess_artifact_file",
     "definition": "assess_artifact_file(path: 'str', *, goal: 'Optional[Dict[str, Any]]' = None) -> 'QualityVerdict'\nRead a produced artifact file and judge its CONTENT (used by\n    artifact_satisfied to close the file-existence loophole). A missing/unreadable\n    file is not real work."
   },
@@ -577,7 +581,7 @@
   },
   {
     "name": "decide_to_write_code",
-    "definition": "decide_to_write_code(context: 'Dict[str, Any]' = None, **_) -> 'None'\nWrite a new cognitive function for the current goal — but ONLY when the\n    code-writing tool can supply a genuine function body. Writing code is a\n    generative act that needs the LLM tool; in tool-only mode (the default) this\n    background caller is not on the LLM allow-list, so it gets nothing. That is the\n    honest outcome: NO do-nothing stub is written and NO milestone is faked. The\n    goal's production milestone then stays unmet, so the goal honestly degrades or\n    disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win."
+    "definition": "decide_to_write_code(context: 'Dict[str, Any]' = None, **_) -> 'Optional[Dict[str, Any]]'\nWrite a new cognitive function for the current goal — but ONLY when the\n    code-writing tool can supply a genuine function body. Writing code is a\n    generative act that needs the LLM tool; in tool-only mode (the default) this\n    background caller is not on the LLM allow-list, so it gets nothing. That is the\n    honest outcome: NO do-nothing stub is written and NO milestone is faked. The\n    goal's production milestone then stays unmet, so the goal honestly degrades or\n    disengages (pursue_goal._DELIBERATE_MAX_ROUNDS) instead of logging a hollow win."
   },
   {
     "name": "decode",
@@ -628,6 +632,10 @@
     "definition": "detect_self_model_conflicts(context: 'Dict[str, Any]' = None) -> 'str'\nCognition function: scan for identity contradictions and register new ones.\n    Rate-limited. Safe to call from the cognitive loop.\n\n    One of three distinct contradiction checkers (honest names, F6): this one\n    checks the self-model; `repair.detect_memory_contradictions` reads long\n    memory; `symbolic_cognition.detect_rule_contradictions` scans symbolic rules."
   },
   {
+    "name": "detect_suspension",
+    "definition": "detect_suspension(*, wall: 'Optional[float]' = None, mono: 'Optional[float]' = None) -> 'float'\nCompare wall vs monotonic time since the previous call; a gap of\n    _SUSPEND_MIN_S or more is a host suspension, credited to the lifespan ledger\n    as sleep. Returns the seconds credited (0.0 when none). Never raises."
+  },
+  {
     "name": "detect_tensions",
     "definition": "detect_tensions(context: 'Dict[str, Any]' = None) -> 'List[str]'\nScan live data for new formative tensions. Called from dream cycle.\n    Returns titles of newly detected tensions."
   },
@@ -638,6 +646,10 @@
   {
     "name": "diversity_cap_lines",
     "definition": "diversity_cap_lines(lines, cap: 'int' = 4)\nCap repeats of essentially-identical lines, preferring the most recent\n    occurrences (scan from the end), preserving original order of the kept."
+  },
+  {
+    "name": "drain",
+    "definition": "drain() -> 'List[Dict[str, Any]]'\nTake everything said since the last drain (the telemetry emitter's read)."
   },
   {
     "name": "drive_long_term",
@@ -806,6 +818,10 @@
   {
     "name": "flush",
     "definition": "flush() -> 'None'\nForce the buffered counts to disk (tests / shutdown)."
+  },
+  {
+    "name": "followup_query",
+    "definition": "followup_query(goal: 'Dict[str, Any]', question: 'str') -> 'str'\nThe search topic for a follow-up: the subject the question template wraps,\n    else the parent's own first query, else the question's subject terms. Run 13\n    searched the whole question sentence."
   },
   {
     "name": "form_commitment",
@@ -1128,12 +1144,20 @@
     "definition": "is_self_path(path: 'str') -> 'bool'\nTrue if this path lives inside Orrin's own brain/agency dirs."
   },
   {
+    "name": "is_self_talk",
+    "definition": "is_self_talk(text: 'str') -> 'tuple[bool, str]'\nTrue when the artifact's content is Orrin's internal tags / status lines\n    (metacog / will / world_model / intrinsic_goal …) rather than work about a\n    subject. Shared detector: brain.utils.text_sanity.INTERNAL_TAG_RE."
+  },
+  {
     "name": "is_stagnating",
     "definition": "is_stagnating(context: 'Dict[str, Any]') -> 'bool'\nWhether internal-only progress should stop discharging action debt."
   },
   {
     "name": "is_valid_entity_name",
     "definition": "is_valid_entity_name(name: 'str') -> 'bool'\nReject number-only / unit-only candidates at the ingestion chokepoint."
+  },
+  {
+    "name": "is_verbatim_research_memo",
+    "definition": "is_verbatim_research_memo(text: 'str') -> 'bool'\nB15: a `source: research_topic` memo is the fetched page text written down\n    (web_research._write_research_memo) — verbatim by construction."
   },
   {
     "name": "is_verifiable_goal",
@@ -1416,6 +1440,10 @@
     "definition": "new_audit_id() -> 'str'"
   },
   {
+    "name": "noop_fns",
+    "definition": "noop_fns(context: 'Dict[str, Any]') -> 'set'\nFunctions whose last _NOOP_STREAK_NOT_SERVICE+ dispatches were explicit\n    no-ops (streak kept by loop/execute.py)."
+  },
+  {
     "name": "normalize_entity_name",
     "definition": "normalize_entity_name(name: 'str') -> 'str'\nReduce a name to its bare topic, idempotently: strip goal scaffolding\n    ('Understand …', 'Find out: …', trailing ' more deeply' — repeated). A clean\n    name passes through unchanged. Shared with intrinsic_goals so there is one\n    definition of 'bare topic' across production and consumption."
   },
@@ -1641,7 +1669,7 @@
   },
   {
     "name": "read_book",
-    "definition": "read_book(selector: 'Path | str | None' = None, max_chars: 'int' = 50000, topics: 'List[str] | None' = None) -> 'tuple[str, str]'\nSettle in with a particular book and return (title, text). Marks it read,\n    so novelty later steers him toward books he hasn't opened. `selector` may be a\n    Path, a filename, or None (let one draw him via `pick_book`)."
+    "definition": "read_book(selector: 'Path | str | None' = None, max_chars: 'int' = 50000, topics: 'List[str] | None' = None, citing: 'str' = 'fn:language_acquisition') -> 'tuple[str, str]'\nSettle in with a particular book and return (title, text). Marks it read,\n    so novelty later steers him toward books he hasn't opened. `selector` may be a\n    Path, a filename, or None (let one draw him via `pick_book`)."
   },
   {
     "name": "read_clipboard",
@@ -1678,6 +1706,14 @@
   {
     "name": "recalibrate_felt_lifespan",
     "definition": "recalibrate_felt_lifespan(context: 'Dict[str, Any]', data: 'Dict') -> 'float'\nOne per-cycle nudge of the felt-lifespan bias from lived experience.\n\n    Compression (felt remaining shrinks): sustained high distress (threat /\n    reward_negative / impasse / loss), or a one-shot shock registered via\n    register_lifespan_shock (silent death recovered on boot, vital-floor\n    firings, repeated goal failure). Inflation (felt remaining relaxes): a good\n    stretch — low distress with positive reward. Quiet cycles decay the bias\n    toward the rolled baseline. Bounded to ±_FELT_BIAS_MAX_DAYS; the TRUE\n    lifespan and real-clock termination are never touched. Returns the bias."
+  },
+  {
+    "name": "recent",
+    "definition": "recent(limit: 'int' = 200) -> 'List[Dict[str, Any]]'\nThe tail of the durable transcript — scrollback across restarts."
+  },
+  {
+    "name": "recent_claims_finding",
+    "definition": "recent_claims_finding(scan: 'int' = 12) -> 'Optional[Tuple[str, str]]'\nRun 13 item 7: (topic, finding) from the newest research claims.json with a\n    relation that names its own subject — the structured findings the daemon writes\n    (Run 12 produced 12; notes used none of them and 610 of 617 went out empty).\n    None when there is nothing real to say. Never raises."
   },
   {
     "name": "recognise_step_action",
@@ -2104,6 +2140,10 @@
     "definition": "run_symbolic_prediction_cycle(context: 'Optional[Dict]' = None) -> 'Dict'\nFull cycle:\n      1. Check recently fired rules and generate symbolic predictions.\n      2. Resolve any pending symbolic predictions that are now evaluable.\n      3. Chain from verified predictions.\n    Returns summary."
   },
   {
+    "name": "run_theory_of_mind",
+    "definition": "run_theory_of_mind(context: 'Dict[str, Any]') -> 'Optional[Dict[str, Any]]'\nB19 (cherry-picked from claude/orrin-dmn-equivalence-zzlw5q d85aa53): run\n    ToM once per cycle, called in sense right after the input is parsed so binding\n    and the fast Face reply read THIS turn's read — the fast reply used to read the\n    previous turn's ToM. think() calls it again as a no-op fallback. Keyed on the\n    cycle number, so a context that outlives a cycle still re-runs next cycle."
+  },
+  {
     "name": "rung",
     "definition": "rung() -> 'int'"
   },
@@ -2169,7 +2209,7 @@
   },
   {
     "name": "score_answer_structured",
-    "definition": "score_answer_structured(question: 'str', claims: 'Dict[str, Any]') -> 'Tuple[bool, str]'\nSlice 1C.2 — the STRUCTURED answer scorer (growth's currency is structured\n    knowledge, not prose). Answered iff the produced claims name the question's\n    subject via a real relation, AND — when the goal carries a telemetry-checkable\n    prediction — that prediction was resolved against ground truth (correct).\n\n    Prose length is no longer the criterion: a 0-prose structured finding can answer;\n    a stitch-only memo with no claim cannot. Returns (answered, answer_excerpt)."
+    "definition": "score_answer_structured(question: 'str', claims: 'Dict[str, Any]', prior: 'Optional[List[Dict[str, Any]]]' = None) -> 'Tuple[bool, str]'\nSlice 1C.2 — the STRUCTURED answer scorer (growth's currency is structured\n    knowledge, not prose). Returns (answered, answer_excerpt).\n\n    - A telemetry-checkable prediction, if present, must have RESOLVED correctly.\n    - Otherwise the question needs a subject (a question with no subject terms\n      cannot be answered by claims) and a relation that names it as a whole token.\n    - That relation must be NEW relative to `prior` (Orrin's earlier claims on the\n      same subject): re-fetching what he already held answers nothing.\n    - A revision-shaped question (\"what did I get wrong…\") additionally needs the\n      new relation to CONTRADICT a prior claim (or announce a misconception) — you\n      cannot have gotten wrong something you never claimed (Run 12 §5 item 2)."
   },
   {
     "name": "scoreboard",
@@ -2301,7 +2341,7 @@
   },
   {
     "name": "spawn_followup_goal",
-    "definition": "spawn_followup_goal(goal: 'Dict[str, Any]') -> 'bool'\nF-LN4b: when an understanding goal finally closes with its question NOT\n    answered, the question survives as a NEW goal instead of being eaten by the\n    satiety close. Returns True if a follow-up was actually added (add_goal's\n    live-title-twin dedup may absorb it into an existing node). Never raises."
+    "definition": "spawn_followup_goal(goal: 'Dict[str, Any]') -> 'bool'\nF-LN4b: when an understanding goal finally closes with its question NOT\n    answered, the question survives as a NEW goal instead of being eaten by the\n    satiety close. Returns True if a follow-up was queued. Never raises.\n\n    B20 (Run 13 verdict §4b C): the follow-up is a research goal handed to the\n    daemon through the proposed-goals path (goal_io.queue_proposal →\n    sync_proposed_goals). Added straight to the v1 tree it never reached the\n    daemon; the brain cannot execute research steps, so 51 \"Answer:\" goals failed\n    at the 3-attempt cap. A non-research parent's question (an aspiration's\n    \"what do I now know…\") has no executor, so it spawns nothing."
   },
   {
     "name": "spawn_frontier_subtask",
@@ -2538,6 +2578,10 @@
   {
     "name": "update_your_world",
     "definition": "update_your_world(user_id: str) -> None\nBuild a model of the world the user lives in — places, projects, people\n    they've mentioned, things they're working on. Stored under your_world.\n    Tentative inferences go in tentative_observations until confirmed.\n\n    Reads happen unlocked and the LLM call runs without holding the\n    relationships.json lock; the result is written back inside a short\n    modify_json session (see update_person_model for the same pattern)."
+  },
+  {
+    "name": "utter",
+    "definition": "utter(kind: 'str', text: 'str', *, cycle: 'Optional[int]' = None) -> 'Optional[Dict[str, Any]]'\nRecord one utterance. Returns the record, or None if it was refused.\n\n    Refused when: the kind isn't one of KINDS, the text is empty, it repeats the\n    last utterance of the same kind, or it still fails the speakability\n    invariant after veiling (a bracket tag, a filesystem path, a telemetry\n    marker). Fail-closed by design — the transcript is the one surface that is\n    only ever him, so a doubtful line is dropped, never patched into shape.\n    Never raises: a transcript failure must not touch the loop."
   },
   {
     "name": "validate_claim",

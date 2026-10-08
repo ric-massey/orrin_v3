@@ -359,7 +359,11 @@ def research_topic(context: Dict[str, Any] = None, **_) -> str:
     now = time.time()
     if now - _last_research < _RESEARCH_INTERVAL:
         secs = int(_RESEARCH_INTERVAL - (now - _last_research))
-        return {"changed": False, "reason": f"research throttled — {secs}s remaining"}
+        # Not a no-op: the action is resting, not useless (smoke 2026-10-08 —
+        # zeroing throttles collapsed research_topic's EMA to 0.09 in a newborn
+        # life and starved the topic pool). execute.py leaves it unscored.
+        return {"changed": False, "throttled": True,
+                "reason": f"research throttled — {secs}s remaining"}
 
     ctx = context or {}
     topic = _pick_topic(ctx)
@@ -436,12 +440,13 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     now = time.time()
     if now - _last_fetch < _FETCH_INTERVAL:
         secs = int(_FETCH_INTERVAL - (now - _last_fetch))
-        return {"changed": False, "reason": f"fetch throttled — {secs}s remaining"}
+        return {"changed": False, "throttled": True,
+                "reason": f"fetch throttled — {secs}s remaining"}
 
     ctx = context or {}
     url = _pick_url(ctx)
     if not url:
-        return "No URL found to read right now."
+        return {"changed": False, "reason": "No URL found to read right now."}
 
     # Mark before fetching: whatever the outcome, the same URL must not be
     # re-served next cycle. This is what breaks the single-source re-read loop

@@ -168,3 +168,37 @@ def test_round_angles_never_repeat():
         gio._make_followon(gd, dict(gd), gd["title"], [f"p{i}" for i in range(k - 1)])
         seen.append(tuple(gd["spec"]["queries"]))
     assert len(seen) == len(set(seen))
+
+
+# ── Smoke life 2026-10-08 follow-ups ─────────────────────────────────────────
+
+def test_direct_commit_never_picks_a_daemon_only_goal():
+    from brain.cognition.commitment_competition import _select_commit_proposal
+    char = {"title": "Characterize what makes my CPU load climb", "kind": "characterize",
+            "driven_by": "self_exploration"}
+    assert _select_commit_proposal([char], {}) is None
+    other = {"title": "Understand tides more deeply", "kind": "research",
+             "driven_by": "world_knowledge"}
+    assert _select_commit_proposal([char, other], {}) is other
+
+
+def test_newborn_pool_still_offers_research(monkeypatch, tmp_path):
+    """The smoke life's KG held 2 concepts and no claims: the pool offered no
+    research and the daemon lane was silent all life."""
+    from brain.cognition import intrinsic_generators as ig
+    monkeypatch.setattr("brain.paths.GOALS_DIR", tmp_path)
+    monkeypatch.setattr("brain.cognition.knowledge_graph._load_graph",
+                        lambda: {"entities": {}, "relations": []})
+    pool = ig._build_symbolic_pool({}, [])
+    research = [g for g in pool if g.get("kind") == "research"]
+    assert research
+    from brain.cognition.web_research import _INTERESTING_FALLBACKS
+    assert any(g["spec"]["queries"][0] in _INTERESTING_FALLBACKS for g in research)
+
+
+def test_throttle_is_flagged_not_a_noop(monkeypatch):
+    import time
+    from brain.cognition import web_research as wr
+    monkeypatch.setattr(wr, "_last_research", time.time())
+    out = wr.research_topic({})
+    assert out.get("throttled") is True and out.get("changed") is False

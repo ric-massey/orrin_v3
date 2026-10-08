@@ -34,7 +34,12 @@ def _proposal_commit_score(g: Dict, pressure: Dict[str, float], strengths: Dict[
 
 
 def _select_commit_proposal(proposals: List[Dict], context: Dict[str, Any]) -> Optional[Dict]:
-    cands = [g for g in (proposals or []) if isinstance(g, dict) and g.get("title")]
+    # B11 (smoke life 2026-10-08): a daemon-only goal (characterize) is never the
+    # brain's commitment — this direct-commit path bypassed committed_goals_v1's
+    # guard and the brain satiety-closed a characterization again.
+    from brain.goal_io import is_daemon_only
+    cands = [g for g in (proposals or []) if isinstance(g, dict) and g.get("title")
+             and not is_daemon_only(g)]
     if not cands:
         return None
     try:

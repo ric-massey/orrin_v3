@@ -565,6 +565,32 @@ def _neighbour_topic_goals(limit: int = 2) -> List[Dict]:
     return out
 
 
+def _seed_topic_goals(limit: int = 2) -> List[Dict]:
+    """B6 bootstrap (smoke life 2026-10-08): a newborn life has no claims and an
+    almost empty knowledge graph, so neighbour/concept generators offer nothing
+    and the daemon lane sat silent for the whole 2,000-cycle smoke life. When the
+    pool holds no research candidate, propose research on the curated starter
+    topics (web_research's fallback list) directly, appetite-weighted — the
+    daemon gets work without waiting for research_topic to be picked."""
+    from brain.cognition.intrinsic_helpers import topic_appetite
+    from brain.cognition.web_research import _INTERESTING_FALLBACKS
+    scored = [(t, topic_appetite(f"Understand {t} more deeply")) for t in _INTERESTING_FALLBACKS]
+    out: List[Dict] = []
+    for topic in _weighted_sample(scored, limit):
+        out.append(_mk_goal(
+            f"Understand {topic} more deeply",
+            f"A starting topic: find out what is actually known about {topic} and "
+            f"write the sourced finding to long memory.",
+            driven_by="world_knowledge",
+            milestones=[f"{topic} was researched from outside sources.",
+                        f"A sourced finding about {topic} was written to long memory."],
+            kind="research", requires_artifact=True,
+            spec={"queries": [topic, f"{topic} explained"], "synth_kind": "memo"},
+            question=f"What actually is {topic}, beyond the mentions I keep seeing?",
+        ))
+    return out
+
+
 # ── Intake → output laddering (P5 / G2) ────────────────────────────────────────
 # Completing an "Understand X" intake goal should ladder INTO making something
 # with X, not loop back into re-understanding X. note_intake_completed queues the
@@ -922,6 +948,36 @@ def _quota_filter(pool: List[Dict]) -> List[Dict]:
     return pool
 
 
+def _filter_pool(candidates: List[Dict], active: set, now: float) -> List[Dict]:
+    """The honesty filters every pool candidate passes (subject sanity,
+    already-active, respawn appetite, B5 round brake), deduped by title."""
+    pool: List[Dict] = []
+    seen: set = set()
+    for g in candidates:
+        title = str(g.get("title", "")).strip()
+        t = title.lower()
+        if not t or t in seen:
+            continue
+        seen.add(t)
+        # Reject goals whose subject is chunk/digest noise or the meta
+        # "research something" phrasing — that's what produced garbage goals
+        # like "Find out: hunk: [Chunk: [Chunk:" and "Understand a real topic…".
+        if not _acceptable_goal_subject(title):
+            continue
+        if t in active:
+            continue
+        # F6 (2026-07-05 findings): escalating cooldown + per-life cap. The flat
+        # 6 h cooldown let three titles complete 14× each; a repeat completion
+        # now doubles the cooldown each time and a title capped at
+        # TITLE_COMPLETION_CAP completions is not spawnable again this life.
+        if _title_respawn_blocked(t, now):
+            continue
+        if str(g.get("kind", "")) == "research" and _rounds_exhausted(title):
+            continue   # B5: base round + one per angle already finished this life
+        pool.append(g)
+    return pool
+
+
 def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
     """Assemble the LLM-free candidate pool from Orrin's own mental content —
     concepts learned, open questions, causal-model gaps, tensions, his own history,
@@ -947,32 +1003,9 @@ def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
     candidates += _making_goals(context, long_mem)
     candidates += _contact_goals(context, long_mem)
 
-    active = _active_goal_titles()
-    now = time.time()
-    pool: List[Dict] = []
-    seen: set = set()
-    for g in candidates:
-        title = str(g.get("title", "")).strip()
-        t = title.lower()
-        if not t or t in seen:
-            continue
-        seen.add(t)
-        # Reject goals whose subject is chunk/digest noise or the meta
-        # "research something" phrasing — that's what produced garbage goals
-        # like "Find out: hunk: [Chunk: [Chunk:" and "Understand a real topic…".
-        if not _acceptable_goal_subject(title):
-            continue
-        if t in active:
-            continue
-        # F6 (2026-07-05 findings): escalating cooldown + per-life cap. The flat
-        # 6 h cooldown let three titles complete 14× each; a repeat completion
-        # now doubles the cooldown each time and a title capped at
-        # TITLE_COMPLETION_CAP completions is not spawnable again this life.
-        if _title_respawn_blocked(t, now):
-            continue
-        if str(g.get("kind", "")) == "research" and _rounds_exhausted(title):
-            continue   # B5: base round + one per angle already finished this life
-        pool.append(g)
+    pool = _filter_pool(candidates, _active_goal_titles(), time.time())
+    if not any(str(g.get("kind", "")) == "research" for g in pool):
+        pool += _filter_pool(_seed_topic_goals(), _active_goal_titles(), time.time())
     return pool
 
 

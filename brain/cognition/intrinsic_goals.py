@@ -317,7 +317,6 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             log_activity("[intrinsic_goals] No symbolic goal this cycle (empty pool, no template).")
             return []
         _batch = [_enrich_goal_zone(_g) for _g in _batch]
-        _tgoal = _batch[0]
         _LAST_INTRINSIC_TS = now
         _LAST_RESEARCH_FEED_TS = now  # a full pass also emits research → reset the feed heartbeat
         proposed = context.setdefault("proposed_goals", [])
@@ -336,21 +335,22 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
             ts = datetime.now(timezone.utc).isoformat()
             # P7 — choose the committed goal by competition among live proposals
             # (pressure + usefulness drive), not "first generated wins".
-            _winner = _select_commit_proposal(context.get("proposed_goals"), context) or _tgoal
-            context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
-            log_activity(
-                f"[intrinsic_goals] Committed goal: '{_winner['title']}'"
-                + (f" (serves: {_serves_aspiration(_winner.get('driven_by',''))})"
-                   if _serves_aspiration(_winner.get('driven_by','')) else "")
-            )
-            # Form an act of will around the new goal — resolve to see it through,
-            # so follow-through is shielded from momentary impulse (the positive
-            # half of free will, complementing inhibition).
-            try:
-                from brain.cognition.commitment import form_commitment as _form_commitment
-                _form_commitment(context, f"pursue: {_winner['title']}")
-            except Exception as _wce:
-                record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)
+            _winner = _select_commit_proposal(context.get("proposed_goals"), context)
+            if _winner is not None:
+                context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
+                log_activity(
+                    f"[intrinsic_goals] Committed goal: '{_winner['title']}'"
+                    + (f" (serves: {_serves_aspiration(_winner.get('driven_by',''))})"
+                       if _serves_aspiration(_winner.get('driven_by','')) else "")
+                )
+                # Form an act of will around the new goal — resolve to see it
+                # through, so follow-through is shielded from momentary impulse
+                # (the positive half of free will, complementing inhibition).
+                try:
+                    from brain.cognition.commitment import form_commitment as _form_commitment
+                    _form_commitment(context, f"pursue: {_winner['title']}")
+                except Exception as _wce:
+                    record_failure("intrinsic_goals.generate_intrinsic_goals", _wce)
         return _batch
 
     prompt = (
@@ -529,9 +529,9 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
         # cycle rather than waiting for sync_proposed_goals → GoalsAPI → get_committed_goal.
         if not bound_goal(context):
             # P7 — competition among live proposals, not highest-priority-first.
-            _winner = _select_commit_proposal(context.get("proposed_goals"), context) \
-                or max(goals, key=lambda g: g.get("priority", 3))
-            context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
-            log_activity(f"[intrinsic_goals] Committed goal: '{_winner['title']}'")
+            _winner = _select_commit_proposal(context.get("proposed_goals"), context)
+            if _winner is not None:
+                context["committed_goal"] = _build_committed_goal(_winner, f"intrinsic-{ts}")
+                log_activity(f"[intrinsic_goals] Committed goal: '{_winner['title']}'")
 
     return goals

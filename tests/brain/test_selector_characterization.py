@@ -44,6 +44,11 @@ def _fresh_learned_stats(tmp_path, monkeypatch):
     monkeypatch.setattr(ev, "_SAT_CACHE", {"t": 0.0, "data": {}})
     monkeypatch.setattr(ev, "_STATS_PATH", tmp_path / "ev_decision_stats.json")
     monkeypatch.setattr(ev, "_STATS_CACHE", {"t": 0.0, "data": {}})
+    # Phase B: generation's pool-depth demotion reads the session-shared objective
+    # scoreboard (any earlier generator test grows it), and B6's research-lane
+    # pull reads the installed goal store — pin both to the newborn state.
+    monkeypatch.setattr("brain.cognition.objective_scoreboard.scoreboard", lambda: {})
+    monkeypatch.setattr("brain.goal_io._api_ref", None)
 
 
 def test_missing_learned_stats_file_is_newborn_empty(tmp_path, monkeypatch):

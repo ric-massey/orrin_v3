@@ -437,6 +437,10 @@ def apply_lifetime_pressure(context: Dict[str, Any]) -> Dict[str, Any]:
     global _last_awareness_log_ts
     # Before the deadline is judged: a just-ended suspension must not count as lived.
     detect_suspension()
+    # B12 (CT-A): advance the cycle clock beside it — time-denominated state
+    # (affect drains, staleness) moves by the seconds that passed.
+    from brain.utils.clock import tick as _clock_tick
+    _clock_tick(context)
     try:
         data = _load_lifespan()
         # F22: let experience nudge the felt lifespan BEFORE reading it — the

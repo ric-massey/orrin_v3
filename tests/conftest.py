@@ -95,6 +95,17 @@ def _guard_live_brain_data():
 
 
 @pytest.fixture(autouse=True)
+def _reset_cycle_clock():
+    """B12: the cycle clock is process-global; a test that ticks it (anything
+    through apply_lifetime_pressure) must not leave a near-zero dt that slows
+    time-denominated state in the next test."""
+    from brain.utils import clock
+    clock.reset()
+    yield
+    clock.reset()
+
+
+@pytest.fixture(autouse=True)
 def _isolate_llm_failure_counts(monkeypatch, tmp_path):
     """
     Keep tests out of the live brain/data state (BEHAVIOR_FIX_PLAN Phase 5):

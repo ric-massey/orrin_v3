@@ -173,7 +173,9 @@ def note_driver_selected(chosen_id: str, candidate_ids: Iterable[str]) -> None:
                         and float(pr.get("avoid_streak", 0.0)) >= _RECOMMIT_AVOID_TRIGGER):
                     pr["recommit_block_pulls"] = float(_RECOMMIT_BLOCK_PULLS)
             row = _row(goals, chosen)
-            row["stale_cycles"] = float(row.get("stale_cycles", 0.0)) + 1.0
+            # B12 (CT-A): staleness is time held without credit, in mean-cycle
+            # equivalents of elapsed seconds (1.0 per pull at the 4 s mean cycle).
+            row["stale_cycles"] = float(row.get("stale_cycles", 0.0)) + _stale_step()
             row["last_ts"] = now
             # F1 (Run 8): absolute refractory release. The holder has occupied the
             # driver slot for _STALE_REFRACTORY_CYCLES with no credited effect
@@ -263,6 +265,11 @@ def note_goal_credit(goal_id: str, significance: float, *,
         parent = None
     for target in ([gid, parent] if parent else [gid]):
         _fold_credit(target, significance, alignment, content_hash)
+
+
+def _stale_step() -> float:
+    from brain.utils.clock import cycle_equivalents
+    return cycle_equivalents()
 
 
 def _headroom(old: float, sample: float) -> float:

@@ -47,6 +47,8 @@ _LEAD_FRAGMENT = frozenset({
     "which", "who", "whom", "whose", "what", "where",
     "round", "around", "about", "of", "to", "in", "on", "at", "by", "for",
     "from", "with", "into", "onto", "over", "under", "as", "like",
+    "within", "without", "among", "between", "through", "during", "after",
+    "before", "since", "across", "along", "inside", "upon", "toward", "towards",
 })
 
 # Strict mode (topics lifted from running prose): a determiner-led phrase is a

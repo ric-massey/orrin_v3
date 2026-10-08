@@ -202,3 +202,41 @@ def test_throttle_is_flagged_not_a_noop(monkeypatch):
     monkeypatch.setattr(wr, "_last_research", time.time())
     out = wr.research_topic({})
     assert out.get("throttled") is True and out.get("changed") is False
+
+
+def test_noop_rule_spares_throttles():
+    """B7 as fixed after smoke life 1: {"changed": False} is a no-op; a throttle
+    is the action resting; anything else is a real result."""
+    from brain.cognition.action_accounting import is_noop_result
+    assert is_noop_result({"changed": False, "reason": "no fresh topic — everything tried recently"})
+    assert is_noop_result({"changed": False, "reason": "No URL found to read right now."})
+    assert not is_noop_result({"changed": False, "throttled": True, "reason": "research throttled"})
+    assert not is_noop_result({"changed": True})
+    assert not is_noop_result("Researched 'tides': …")
+    assert not is_noop_result([])
+
+
+
+def test_continuity_batch_without_context_reaches_the_handoff(monkeypatch):
+    """Smoke life 2: closes with no live context generated into a throwaway dict
+    and the batch was lost while the cooldown still started."""
+    import brain.goal_io as gio
+    import brain.cognition.intrinsic_goals as ig
+    from brain.cognition.planning.goal_outcomes import mark_goal_completed
+    gio._drain_pending_proposals({})
+    seed = {"title": "Understand Robertson more deeply", "kind": "research",
+            "driven_by": "world_knowledge", "description": "d"}
+    monkeypatch.setattr(ig, "generate_intrinsic_goals", lambda ctx: [dict(seed)])
+    goal = {"title": "Strengthen EMOTIONAL symbolic reasoning", "name": "Strengthen EMOTIONAL symbolic reasoning",
+            "id": "g_sym", "status": "in_progress", "tier": "short_term",
+            "milestones": [{"text": "done", "met": True}]}
+    mark_goal_completed(goal)          # no context — the sweep path
+    queued: dict = {}
+    gio._drain_pending_proposals(queued)
+    assert [g["title"] for g in queued.get("proposed_goals", [])] == [seed["title"]]
+
+
+def test_preposition_led_fragment_is_not_a_topic():
+    from brain.utils.topic_clean import clean_topic
+    assert clean_topic("Within each papilla", strict=True) is None
+    assert clean_topic("Taste", strict=True) == "Taste"

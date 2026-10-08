@@ -377,11 +377,20 @@ def mark_goal_completed(goal: Dict[str, Any], context: Optional[Dict[str, Any]] 
     # from context, reset the intrinsic-goals rate-limiter, then call
     # generate_intrinsic_goals — it will auto-commit the top candidate.
     try:
-        _ctx = context or {}
+        _ctx = context if context is not None else {}
         _ctx["committed_goal"] = None  # slot is now open
         import brain.cognition.intrinsic_goals as _ig
         _ig._LAST_INTRINSIC_TS = 0.0   # bypass rate limiter for this one call
         _new_goals = _ig.generate_intrinsic_goals(_ctx)
+        # Smoke life 2 (2026-10-08): a close with no live context generated into a
+        # throwaway dict — the batch (research included) was discarded, yet the
+        # call still started the generator's cooldown and blocked the live
+        # generator: the daemon sat silent 49 min with three batches thrown away.
+        # Without a live context the batch takes the queued handoff path.
+        if context is None and _new_goals:
+            from brain.goal_io import queue_proposal
+            for _g in _new_goals:
+                queue_proposal(_g)
         if _new_goals:
             log_activity(
                 f"[goals] Goal-continuity: spawned '{_new_goals[0].get('title','?')[:60]}' "

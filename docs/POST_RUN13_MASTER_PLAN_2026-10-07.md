@@ -48,14 +48,17 @@ Small, mostly independent fixes from the Run 13 live deep read
 | B8 | `decide_to_write_code` marked impossible at its `code_writer` bail-out (4th run red) | broken pipe | 0 picks while no LLM body (207) |
 | B9 | Inhibition cost habituates for a repeatedly-unchosen want | unopposed | frustration pumps per hour ↓ (≈170/h overnight) |
 | B10 | Breaker duty | — | fires < 10 % of cycles (~50 %) |
-| B11 | Characterization re-asks over a life; a goal waiting on data yields focus | unopposed | ≥ 4 predictions/life (2); no waiting goal > 40 % focus |
+| B11 | **Daemon-owned waiting goals are not brain goals** (verdict §4b A): a characterize goal waiting on telemetry is never brain-committed, brain-researched, satiety-closed or step-failed; the deferring check step doesn't write a WAL row per tick; characterization re-asks over a life | broken pipe | 0 orphan-RUNNING repairs on characterize (18); characterize WAL rows < 5 % (96 %); no waiting goal > 10 % focus (78 %); ≥ 4 predictions/life (3) |
 | B12 | **CT-A** clock time instead of cycle time (subsumes Run 13 item 5's detector) | — | cadence-invariance test |
-| B13 | **Desync root cause** (round-k follow-on minting vs the v1 tree) | broken pipe | 0 store-desync repairs (18) |
+| B13 | **Remove the one-cycle debt gate on goal generation** (`intrinsic_goals.py:199`, `action_debt > 0` blocks origination; verdict §4b B). Clamp → oppose with the feed's own antagonist, not a threshold | unopposed (clamp) | generation skips < 10 % of calls (~90 %); no WAL silence > 30 min (247) |
 | B14 | `citing_goal_id` on every `mark_reused_path` caller (web_research, library, goal_io spec refs) | broken pipe | citer coverage 100 % (14 %) |
 | B15 | Exemplar gate: self-talk on any internal tag and single-paragraph artifacts; copy veto on `source: research_topic` memos; corrupted-text check | broken pipe | 0 junk promotions (3 of 5) |
-| B16 | Character stripper in the `compose_section` path ("hat is there", "ednesday") | broken pipe | 0 dropped-letter artifacts |
-| B17 | Parent-value saturation guard on aspiration credit (item 11 propagation) | unopposed | no aspiration value ≥ 0.99 (self 0.9999) |
+| B16 | **Native-LM drafts are not production** until the organ passes its fluency gate and its corpus excludes his logs (verdict §4b D: 75 credited babble sections; the "dropped letters" are the LM) | misaimed | 0 credited tracked-work sections failing the fluency/self-talk checks (75) |
+| B17 | Value headroom guard on commitment EMAs (direct aspiration credit + item-11 propagation; verdict §4b F) | unopposed | no aspiration value ≥ 0.99 (self 0.9999) |
 | B18 | Death-reason label: natural lifespan death recorded as such, not "operator_stop" | broken pipe | final-words reason = lifespan |
+| B20 | **Follow-up "Answer:" goals route through the daemon** (`spawn_followup_goal` → proposed goals → `sync_proposed_goals`; verdict §4b C) | broken pipe | 0 "Answer:" goals failed as steps-unreachable (51) |
+| B21 | **Impossible actions earn no cycle reward** (verdict §4b E: per-cycle reward pays `decide_to_write_code` 0.54 mean) — pairs with B8 | broken pipe | its EMA → floor |
+| B22 | Instruments: private-thoughts log retained for a whole life; capture includes `brain/data/tracked_work/` (run-analysis skill) | instrument | private log covers birth→death |
 | B19 | Cherry-pick the ToM timing fix from `claude/orrin-dmn-equivalence-zzlw5q` (fast reply read the previous turn's ToM) | broken pipe | ToM computed before the reply that uses it |
 
 **Gate:** Run 14, symbolic-only, observables above, scored per run-analysis.

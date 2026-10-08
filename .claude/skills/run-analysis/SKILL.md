@@ -36,6 +36,10 @@ even when the run "looks clean."
   `aspiration_scoreboard.json`, `failures.jsonl`, `habituation.json`
 - `activity_log.txt` **plus all of `rotated/`** (the life usually spans 6–9
   rotated files)
+- `brain/data/tracked_work/` (the manuscripts `compose_section` writes; Run 13's
+  75 credited babble sections were found only on the second pass)
+- Check **private-log retention** before scoring anything from it: Run 13's rotation
+  kept only the last ~10 h of `private_thoughts` (breaker/inhibition lines live there).
 - The **full `data/goals/` daemon tree** (WAL + state + snapshots +
   artifacts) — verify the copy with `diff -rq`. Run 8 lost this and the
   diagnosis had to mine the live WAL.

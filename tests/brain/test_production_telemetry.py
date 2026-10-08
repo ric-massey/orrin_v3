@@ -43,7 +43,7 @@ def test_emit_writes_durable_record_with_named_fields(tmp_path, monkeypatch):
         "goal_lens": {"terms": ["synthesis"]},
         "_goal_lens_telemetry": {"top_signal_relevance": 0.8, "retrieval_mean_relevance": 0.4},
         "_production_effect_this_cycle": True,
-        "_effect_rows_this_cycle": [{"significance": 0.6, "novelty": 0.7}],
+        "_effect_rows_this_cycle": [{"kind": "tracked_work", "significance": 0.6, "novelty": 0.7}],
     }
     fin.emit_production_telemetry(ctx)
 
@@ -79,7 +79,7 @@ def test_rejected_effect_is_recorded_and_counts_accumulate(tmp_path, monkeypatch
 
     # a duplicate effect: attempt yes, success no, reason duplicate
     fin.emit_production_telemetry({
-        "_effect_rows_this_cycle": [{"significance": 0.0, "dedupe": True}],
+        "_effect_rows_this_cycle": [{"kind": "file_write", "significance": 0.0, "dedupe": True}],
     })
     # an empty cycle: no attempt
     fin.emit_production_telemetry({})
@@ -92,3 +92,28 @@ def test_rejected_effect_is_recorded_and_counts_accumulate(tmp_path, monkeypatch
     # counts are cumulative across cycles
     assert rows[1]["production_attempt_count"] == 1
     assert rows[1]["production_success_count"] == 0
+
+
+def test_notes_and_reuse_are_not_making_attempts(tmp_path, monkeypatch):
+    """B28 (Run 13): 1,275 "attempts" vs 164 producer runs — notes and reuse rows
+    counted as production attempts. They get their own counts now."""
+    log = tmp_path / "production_loop.jsonl"
+    monkeypatch.setattr(fin, "PRODUCTION_LOOP_LOG", log)
+    monkeypatch.setattr(fin, "get_cycle_count", lambda: 1)
+    for name in ("_attempt_total", "_success_total", "_note_total", "_reuse_total"):
+        monkeypatch.setattr(fin, name, 0, raising=False)
+    monkeypatch.setattr(fin, "_attempt_goals", set(), raising=False)
+    monkeypatch.setattr("brain.agency.effect_ledger.drain_recent_rows", lambda: [])
+    fin.emit_production_telemetry({"_effect_rows_this_cycle": [
+        {"kind": "note_novel", "significance": 0.4, "goal_id": "g1", "content_hash": "a"},
+        {"kind": "reuse", "significance": 0.5, "goal_id": "g1", "content_hash": "b"}]})
+    for h in ("c", "d"):
+        fin.emit_production_telemetry({"_effect_rows_this_cycle": [
+            {"kind": "file_write", "significance": 0.5, "goal_id": "g2", "content_hash": h}]})
+    rows = _read_lines(log)
+    assert rows[0]["production_attempt"] is False and rows[0]["production_success"] is False
+    last = rows[-1]
+    assert last["production_attempt_count"] == 2
+    assert last["production_attempt_goal_count"] == 1
+    assert last["note_cycle_count"] == 1 and last["reuse_cycle_count"] == 1
+

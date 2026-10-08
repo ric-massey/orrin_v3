@@ -911,7 +911,7 @@ def note_artifact_use(name: str) -> Optional[int]:
         h = _artifact_names.get(str(name))
     if not h:
         return None
-    n = mark_reused(h)
+    n = mark_reused(h, citing_goal_id=f"fn:{name}")   # B14: the invocation is the reader
     with _lock:
         gid = _hash_goal.get(h)
         _pending_reuse.append({"name": str(name), "hash": h, "goal_id": gid, "count": n})

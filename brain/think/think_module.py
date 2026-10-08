@@ -179,14 +179,10 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         # Infers what the person is currently thinking/wanting/expecting THIS moment.
         # Distinct from person_model (static trait prior): ToM is per-turn live inference.
         # Only runs when there is user input; returns None on autonomous cycles.
-        try:
-            from brain.cognition.theory_of_mind import simulate as _tom_sim
-            _tom_result = _tom_sim(context)
-            context["theory_of_mind"]     = _tom_result
-            context["_tom_text"]          = (_tom_result or {}).get("surface_text", "")
-        except Exception:
-            context["theory_of_mind"] = None
-            context["_tom_text"]      = ""
+        # B19: normally already ran in sense right after input parsing; this is
+        # then a no-op, and the fallback when think() runs standalone.
+        from brain.cognition.theory_of_mind import run_theory_of_mind as _rtom
+        _rtom(context)
 
         # === 2f) Felt time — subjective temporal texture ===
         # Time as experienced density and weight, not just a timestamp.

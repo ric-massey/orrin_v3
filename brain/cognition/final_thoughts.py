@@ -115,8 +115,12 @@ def _write_final_thoughts(context: Dict, data: Dict) -> None:
     except Exception as exc:
         record_failure("runtime_lifetime.final_thoughts_veil", exc)
 
+    # B18: stamp the reason and the key boot's continuity reader takes
+    # ("reflection"); "content" stays for older readers.
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "death_reason": "lifespan",
+        "reflection": text,
         "content": text,
         "lifespan_days": data.get("lifespan_days"),
     }

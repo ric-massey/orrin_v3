@@ -415,7 +415,7 @@ def committed_goals_v1(api, context: Dict[str, Any] | None = None,
     return _committable_from_v1_tree(limit)
 
 
-def _credit_spec_artifact_refs(spec: Dict[str, Any]) -> None:
+def _credit_spec_artifact_refs(spec: Dict[str, Any], citing_goal_id: str) -> None:
     """A2.2 (RUN4_FIX_PLAN): a new goal whose spec references a prior goal's
     artifact is *building on produced work* — credit tier-3 re-use at bind time.
     Scans the spec's string values for paths under the artifacts tree."""
@@ -425,7 +425,7 @@ def _credit_spec_artifact_refs(spec: Dict[str, Any]) -> None:
         from brain.agency.effect_ledger import mark_reused_path
         blob = _json.dumps(spec, default=str)
         for m in set(_re.findall(r"[\w./~-]*goals/artifacts/[\w./-]+", blob)):
-            mark_reused_path(m)
+            mark_reused_path(m, citing_goal_id=citing_goal_id)
     except Exception as _e:
         record_failure("goal_io._credit_spec_artifact_refs", _e)
 
@@ -651,13 +651,15 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
                             src["id"] = node["id"]
                     except Exception as _e:
                         record_failure("goal_io.sync_proposed_goals.adopt_v1_id", _e)
-                _credit_spec_artifact_refs(spec)
                 created = api.create_goal(title=title, kind=kind, spec=spec,
                                           priority=gd.get("priority", "NORMAL"),
                                           tags=gd.get("tags") or [], id=gd.get("id"))
                 if created is not None and getattr(created, "id", None):
                     src["id"] = created.id   # stamp the live proposal node
                     gd["id"] = created.id
+                    # B14: credited once the citing goal has its id (Run 13:
+                    # 114 of 833 reuse rows named a citer).
+                    _credit_spec_artifact_refs(spec, str(created.id))
                     existing[title] = created.id
                     log_handoff("sync_proposed_goals", title, kind,
                                 "queued", f"v2 created {created.id}")

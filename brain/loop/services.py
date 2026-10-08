@@ -93,6 +93,14 @@ def start_background_services(stop_event: Any) -> Tuple[Any, Any, Any]:
     return _tool_runner, _ToolRunner_cls, _evaluator
 
 
+def natural_death_recorded() -> bool:
+    """True once this life's natural-deadline final thoughts were written."""
+    from brain.cognition import runtime_lifetime as _rl
+    from brain.utils.json_utils import load_json
+    data: Any = load_json(_rl.LIFESPAN_FILE, default_type=dict)
+    return isinstance(data, dict) and bool(data.get("final_thoughts_written"))
+
+
 def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     """Loop teardown after the while-loop exits: stop the ToolRunner, write the
     session epilogue (a short reflection + session_close autobiography entry, so a
@@ -130,9 +138,17 @@ def shutdown_loop(context: Dict[str, Any], _tool_runner: Any) -> None:
     # final_thoughts.json untouched, so the next boot had no handoff to read.
     # final_reflection writes the handoff WITHOUT setting the death flag, so this
     # is continuity ("read the unfinished list first"), not a death.
+    # B18 (Run 13): at a natural lifespan death the end-of-life note is already
+    # in final_thoughts.json (runtime_lifetime._write_final_thoughts sets
+    # final_thoughts_written). This handoff overwrote it with an "operator_stop"
+    # record, so the death was mislabelled and the real last reflection lost.
     try:
-        from brain.cognition.terminal import final_reflection
-        final_reflection(context, reason="operator_stop")
+        if natural_death_recorded():
+            log_activity("[shutdown] natural lifespan death — final thoughts already "
+                         "written; no operator-stop handoff.")
+        else:
+            from brain.cognition.terminal import final_reflection
+            final_reflection(context, reason="operator_stop")
     except Exception as e:
         record_failure("ORRIN_loop.operator_stop_final_reflection", e)
 

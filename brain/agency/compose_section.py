@@ -154,7 +154,7 @@ def compose_section(context: Dict[str, Any] | None = None, **kwargs: Any) -> Dic
         if _hash:
             try:
                 from brain.agency.effect_ledger import mark_reused
-                mark_reused(_hash)
+                mark_reused(_hash, citing_goal_id=gid)
             except Exception as exc:
                 record_failure("compose_section.mark_reused", exc)
     goal["tracked_work_path"] = str(path)

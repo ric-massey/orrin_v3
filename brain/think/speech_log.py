@@ -80,6 +80,16 @@ def _construction_key(response_type: str, tone: str) -> str:
 
 # ── Write a reply to the log ──────────────────────────────────────────────────
 
+def typed_intent(plan: Dict[str, Any], comprehension: Dict[str, Any]) -> str:
+    """B27 (Run 13): every row carries a typed intent so speech grounding can be
+    scored. A reply takes the intent comprehension read in the person's words;
+    self-initiated speech has no input to comprehend, so it takes its motive's
+    intent, else the plan's response type. All 26 Run-13 rows were blank."""
+    motive = plan.get("motive") if isinstance(plan.get("motive"), dict) else {}
+    return str(comprehension.get("intent") or motive.get("intent")
+               or plan.get("response_type") or "unknown")
+
+
 def log_reply(
     user_input:    str,
     reply:         str,
@@ -102,7 +112,7 @@ def log_reply(
         "tone":          plan.get("tone", ""),
         "source":        plan.get("source", ""),
         "length":        plan.get("length", ""),
-        "intent":        comprehension.get("intent", ""),
+        "intent":        typed_intent(plan, comprehension),
         "topics":        comprehension.get("topics", [])[:6],
         "quality_score":     None,
         "user_reply_words":  None,

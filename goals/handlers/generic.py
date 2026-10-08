@@ -170,7 +170,7 @@ class GenericHandler(BaseGoalHandler):
             for p, _txt in priors:
                 try:
                     from brain.agency.effect_ledger import mark_reused_path
-                    mark_reused_path(p)
+                    mark_reused_path(p, citing_goal_id=goal.id)
                 except Exception as _e:
                     _log.warning("synthesis reuse credit failed: %s", _e)
             prior_block = "\n\n".join(

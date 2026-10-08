@@ -453,7 +453,9 @@ def fetch_and_read(context: Dict[str, Any] = None, **_) -> str:
     # re-use. A web URL simply doesn't resolve — no-op.
     try:
         from brain.agency.effect_ledger import mark_reused_path
-        mark_reused_path(url[7:] if url.startswith("file://") else url)
+        # B14: the reader is the bound goal, or this function when none is bound.
+        _citer = str((bound_goal(ctx) or {}).get("id") or "fn:fetch_and_read")
+        mark_reused_path(url[7:] if url.startswith("file://") else url, citing_goal_id=_citer)
     except Exception as _e:
         record_failure("web_research.fetch_and_read.reuse", _e)
 

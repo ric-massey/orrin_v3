@@ -545,6 +545,8 @@ def sense_and_refresh(_goals_api: Any, timestamp: float) -> Tuple[Context, Any]:
     top_signals, attention_mode = process_inputs(context)
     context["top_signals"] = top_signals
     context["attention_mode"] = attention_mode
+    from brain.cognition.theory_of_mind import run_theory_of_mind  # B19: THIS turn's ToM
+    run_theory_of_mind(context)  # before binding and the fast Face reply (fail-safe)
 
     # Pre-workspace feature binding: cluster this cycle's signals,
     # feeling, memory, and goal into unified situation candidates. The

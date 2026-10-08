@@ -558,3 +558,30 @@ def simulate(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     }
 
 
+TOM_CYCLE_KEY = "_tom_cycle"
+
+
+def run_theory_of_mind(context: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """B19 (cherry-picked from claude/orrin-dmn-equivalence-zzlw5q d85aa53): run
+    ToM once per cycle, called in sense right after the input is parsed so binding
+    and the fast Face reply read THIS turn's read — the fast reply used to read the
+    previous turn's ToM. think() calls it again as a no-op fallback. Keyed on the
+    cycle number, so a context that outlives a cycle still re-runs next cycle."""
+    try:
+        from brain.utils.get_cycle_count import get_cycle_count
+        cycle = int(get_cycle_count() or 0)
+    except Exception:
+        cycle = 0
+    if cycle and context.get(TOM_CYCLE_KEY) == cycle:
+        return context.get("theory_of_mind")
+    context[TOM_CYCLE_KEY] = cycle
+    try:
+        result = simulate(context)
+        context["theory_of_mind"] = result
+        context["_tom_text"] = (result or {}).get("surface_text", "")
+        return result
+    except Exception as e:
+        record_failure("theory_of_mind.run_theory_of_mind", e)
+        context["theory_of_mind"] = None
+        context["_tom_text"] = ""
+        return None

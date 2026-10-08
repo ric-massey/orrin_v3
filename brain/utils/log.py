@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import gzip
 import os
 from pathlib import Path
 from typing import List, Union, Dict, Any
@@ -23,6 +24,7 @@ utc_now = now_iso_z  # public alias — import this instead of defining _utc_now
 
 _LOG_MAX_BYTES   = 2_000_000   # 2 MB — rotate when a log file exceeds this
 _LOG_KEEP_BYTES  = 500_000     # keep the most recent 500 KB after rotation
+_ARCHIVE_MAX_BYTES = 100_000_000  # compressed rotated segments per log (~1 GB of text)
 
 def _maybe_rotate(p: Path) -> None:
     """If the log file exceeds _LOG_MAX_BYTES, trim it to the last _LOG_KEEP_BYTES.
@@ -46,10 +48,18 @@ def _maybe_rotate(p: Path) -> None:
             archive_dir = p.parent / "rotated"
             archive_dir.mkdir(parents=True, exist_ok=True)
             stamp = now_iso_z().replace(":", "-")
-            (archive_dir / f"{p.stem}.{stamp}{p.suffix}").write_bytes(head)
-            # Keep the archive itself bounded: oldest segments go first.
-            segments = sorted(archive_dir.glob(f"{p.stem}.*{p.suffix}"))
-            for old in segments[:-20]:
+            # B22 (Run 13): segments are gzipped and the archive is bounded by
+            # SIZE, not count. Twenty plain segments kept only the last ~10 h of
+            # private_thoughts (breaker and inhibition lines live there), so most
+            # of a life could not be scored.
+            with gzip.open(archive_dir / f"{p.stem}.{stamp}{p.suffix}.gz", "wb") as fh:
+                fh.write(head)
+            segments = sorted(archive_dir.glob(f"{p.stem}.*{p.suffix}*"))
+            total = sum(seg.stat().st_size for seg in segments)
+            for old in segments:
+                if total <= _ARCHIVE_MAX_BYTES:
+                    break
+                total -= old.stat().st_size
                 old.unlink(missing_ok=True)
         except OSError:
             pass  # archiving is best-effort; rotation must still happen

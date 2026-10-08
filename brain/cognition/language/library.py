@@ -393,7 +393,8 @@ def pick_book(topics: List[str] | None = None, prefer_novel: bool = True) -> Pat
 
 
 def read_book(selector: Path | str | None = None, max_chars: int = 50000,
-              topics: List[str] | None = None) -> tuple[str, str]:
+              topics: List[str] | None = None,
+              citing: str = "fn:language_acquisition") -> tuple[str, str]:
     """Settle in with a particular book and return (title, text). Marks it read,
     so novelty later steers him toward books he hasn't opened. `selector` may be a
     Path, a filename, or None (let one draw him via `pick_book`)."""
@@ -421,7 +422,7 @@ def read_book(selector: Path | str | None = None, max_chars: int = 50000,
     # public-domain stock.
     try:
         from brain.agency.effect_ledger import mark_reused_path
-        mark_reused_path(path)
+        mark_reused_path(path, citing_goal_id=citing)   # B14: every reuse names its reader
     except Exception as exc:
         record_failure("library.read_book.reuse", exc)
     title = _title_of(path)

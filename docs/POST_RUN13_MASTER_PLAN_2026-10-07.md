@@ -59,6 +59,12 @@ Small, mostly independent fixes from the Run 13 live deep read
 | B20 | **Follow-up "Answer:" goals route through the daemon** (`spawn_followup_goal` → proposed goals → `sync_proposed_goals`; verdict §4b C) | broken pipe | 0 "Answer:" goals failed as steps-unreachable (51) |
 | B21 | **Impossible actions earn no cycle reward** (verdict §4b E: per-cycle reward pays `decide_to_write_code` 0.54 mean) — pairs with B8 | broken pipe | its EMA → floor |
 | B22 | Instruments: private-thoughts log retained for a whole life; capture includes `brain/data/tracked_work/` (run-analysis skill) | instrument | private log covers birth→death |
+| B23 | Growth counts dedupe by question: ladder and close-out credit one rung/stamp per distinct question; citations count once per question per decision window (verdict §4c) | instrument | rung climbs = distinct answered questions; citation counts ≤ decisions |
+| B24 | Rule-hit refractory covers the **hit counter**, not only reinforcement (110,813 hits ≈ 7.2/cycle) | unopposed | top rule hits ≤ ~1/cycle |
+| B25 | Binding write-back pressure: 66 % of cycles, 36 % pushing `motivation` +0.06; give the write-back an antagonist (decay/habituation per situation) | unopposed | write-back < 20 % of cycles; motivation share < 15 % |
+| B26 | Affect dynamic range: `valence` 0.58–0.71 all life, `stability` ≥ 0.95 62 %; `allostatic_load` dead (0.000 all life) — wire or delete | broken pipe + instrument | valence range ≥ 0.3; no gauge flat all life |
+| B27 | Stamp typed `intent` in `speech_log` (speech-grounding check is dead) | instrument | 0 speech rows with intent None |
+| B28 | Cooldown truth: production attempts vs producer runs (1,275 vs 164) reconciled; executive `compose_section` 3,765 recognitions mostly cooldown-skipped | instrument | attempts ≈ producer runs |
 | B19 | Cherry-pick the ToM timing fix from `claude/orrin-dmn-equivalence-zzlw5q` (fast reply read the previous turn's ToM) | broken pipe | ToM computed before the reply that uses it |
 
 **Gate:** Run 14, symbolic-only, observables above, scored per run-analysis.

@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Problems_of_Philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_01.txt",
+      "chars": 5583
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/An_Introduction_to_the_Philosophy_of_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Plato",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Truth",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Subjectivity_and_objectivity_%28philosophy%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T16:54:00.253654+00:00"
+}

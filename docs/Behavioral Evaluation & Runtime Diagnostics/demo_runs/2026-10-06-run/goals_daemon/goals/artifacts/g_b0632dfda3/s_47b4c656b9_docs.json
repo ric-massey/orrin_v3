@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI_Five",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_winter",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_slop",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/ARC_Raiders",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T04:16:27.776621+00:00"
+}

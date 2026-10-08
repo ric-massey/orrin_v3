@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ancient_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Human_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_film",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternate_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_06.txt",
+      "chars": 15164
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_07.txt",
+      "chars": 15778
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_08.txt",
+      "chars": 15427
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_Mozilla_Application_Suite",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/MacOS_version_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b45de1a791/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T05:25:45.835801+00:00"
+}

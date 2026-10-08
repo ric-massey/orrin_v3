@@ -1,0 +1,133 @@
+{
+  "question": "What is there about round the sun that my earlier notes on it are missing?",
+  "subject_terms": [
+    "round",
+    "sun"
+  ],
+  "entities": [
+    "Round the Sun",
+    "third album by American guitarist Leo Kottke",
+    "The sun dog is a member of the family of halos",
+    "the refraction of sunlight by ice crystals in the atmosphere",
+    "Sun dogs",
+    "best seen and most conspicuous when the Sun is near the horizon",
+    "and thus",
+    "taller sun dogs",
+    "red-colored at the side nearest the Sun",
+    "The same plate-shaped ice crystals that",
+    "sun dogs are also responsible for the colorful circumzenithal arc",
+    "and other substances that can",
+    "halos with four or more sun dogs",
+    "sun-dogs",
+    "defined",
+    "In Norfolk a sun-dog"
+  ],
+  "relations": [
+    {
+      "subject": "Round the Sun",
+      "predicate": "is the",
+      "object": "third album by American guitarist Leo Kottke",
+      "source": "https://en.wikipedia.org/wiki/Circle_Round_the_Sun"
+    },
+    {
+      "subject": "The sun dog is a member of the family of halos",
+      "predicate": "caused by",
+      "object": "the refraction of sunlight by ice crystals in the atmosphere",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "Sun dogs",
+      "predicate": "are",
+      "object": "best seen and most conspicuous when the Sun is near the horizon",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "and thus",
+      "predicate": "produce",
+      "object": "taller sun dogs",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "Sun dogs",
+      "predicate": "are",
+      "object": "red-colored at the side nearest the Sun",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "The same plate-shaped ice crystals that",
+      "predicate": "cause",
+      "object": "sun dogs are also responsible for the colorful circumzenithal arc",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "and other substances that can",
+      "predicate": "produce",
+      "object": "halos with four or more sun dogs",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "sun-dogs",
+      "predicate": "are",
+      "object": "defined",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "In Norfolk a sun-dog",
+      "predicate": "is a",
+      "object": "light spot near the sun",
+      "source": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "subject": "comes from its affiliation with Mohegan Sun and its logo",
+      "predicate": "is",
+      "object": "reflective of a modern interpretation of an ancient Mohegan symbol",
+      "source": "https://en.wikipedia.org/wiki/Connecticut_Sun"
+    },
+    {
+      "subject": "which",
+      "predicate": "were",
+      "object": "first in the sun",
+      "source": "https://en.wikipedia.org/wiki/1561_celestial_phenomenon_over_Nuremberg"
+    },
+    {
+      "subject": "And when the conflict in and again out of the sun",
+      "predicate": "was",
+      "object": "most intense",
+      "source": "https://en.wikipedia.org/wiki/1561_celestial_phenomenon_over_Nuremberg"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Once_More_%27Round_the_Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Circle_Round_the_Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sun_dog"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mastodon_%28band%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Once_Around_the_Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Connecticut_Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/1561_celestial_phenomenon_over_Nuremberg"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Miracle_of_the_Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Empirical_evidence_for_the_spherical_shape_of_Earth"
+    }
+  ],
+  "ts": "2026-10-07T06:55:49.920011+00:00"
+}

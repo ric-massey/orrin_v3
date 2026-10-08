@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_42f12c0495/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_42f12c0495/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_42f12c0495/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_epistemology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_42f12c0495/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_debunking",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_42f12c0495/doc_05.txt",
+      "chars": 7752
+    }
+  ],
+  "ts": "2026-10-06T23:13:51.570484+00:00"
+}

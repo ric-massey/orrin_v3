@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Once More Round history and development",
+    "Once More Round applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Panzerfaust_3",
+    "https://en.wikipedia.org/wiki/Software_bug",
+    "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/Round_Oak_Steelworks",
+    "https://en.wikipedia.org/wiki/Semicircular_arch",
+    "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel",
+    "https://en.wikipedia.org/wiki/Distributed_computing",
+    "https://en.wikipedia.org/wiki/Segment_display",
+    "https://en.wikipedia.org/wiki/JSON",
+    "https://en.wikipedia.org/wiki/Microsoft_Excel"
+  ],
+  "results": [
+    {
+      "title": "Panzerfaust 3",
+      "url": "https://en.wikipedia.org/wiki/Panzerfaust_3",
+      "snippet": "sighting <span class=\"searchmatch\">and</span> targeting mechanism. As of 2005, there were two <span class=\"searchmatch\">more</span> models in the <span class=\"searchmatch\">development</span> or testing stage, both relying on smaller, <span class=\"searchmatch\">and</span> therefore",
+      "query": "Once More Round history and development"
+    },
+    {
+      "title": "Software bug",
+      "url": "https://en.wikipedia.org/wiki/Software_bug",
+      "snippet": "likely bugs remaining. This becomes <span class=\"searchmatch\">more</span> reliable the longer a product is tested <span class=\"searchmatch\">and</span> developed. Agile software <span class=\"searchmatch\">development</span> may involve frequent software releases",
+      "query": "Once More Round history and development"
+    },
+    {
+      "title": "Once Upon a Time (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29",
+      "snippet": "Henry (Andrew J. West), <span class=\"searchmatch\">and</span> his wife <span class=\"searchmatch\">and</span> daughter. <span class=\"searchmatch\">Once</span> Upon a Time was created by Lost <span class=\"searchmatch\">and</span> Tron: Legacy writers Edward Kitsis <span class=\"searchmatch\">and</span> Adam Horowitz. Horowitz",
+      "query": "Once More Round history and development"
+    },
+    {
+      "title": "Round Oak Steelworks",
+      "url": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks",
+      "snippet": "of <span class=\"searchmatch\">more</span> than 1,200 jobs. Brierley Hill had already been hit hard by the economic downturn of the late 1970s <span class=\"searchmatch\">and</span> early 1980s, but the closure of <span class=\"searchmatch\">Round</span> Oak",
+      "query": "Once More Round history and development"
+    },
+    {
+      "title": "Semicircular arch",
+      "url": "https://en.wikipedia.org/wiki/Semicircular_arch",
+      "snippet": "semicircular arch is also known as a <span class=\"searchmatch\">round</span> arch. The rise (height) of a <span class=\"searchmatch\">round</span> arch is limited to 1⁄2 of its span, so it looks <span class=\"searchmatch\">more</span> &quot;grounded&quot; than a parabolic",
+      "query": "Once More Round history and development"
+    },
+    {
+      "title": "Numeric precision in Microsoft Excel",
+      "url": "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel",
+      "snippet": "stored in the sum, <span class=\"searchmatch\">and</span> the top two <span class=\"searchmatch\">examples</span> of the figure indicate recovery of x without error. In the third <span class=\"searchmatch\">example</span>, x is a <span class=\"searchmatch\">more</span> complicated binary number",
+      "query": "Once More Round applications and examples"
+    },
+    {
+      "title": "Distributed computing",
+      "url": "https://en.wikipedia.org/wiki/Distributed_computing",
+      "snippet": "This simplifies <span class=\"searchmatch\">application</span> deployment. Most web <span class=\"searchmatch\">applications</span> are three-tier. n-tier: architectures that refer typically to web <span class=\"searchmatch\">applications</span> which further",
+      "query": "Once More Round applications and examples"
+    },
+    {
+      "title": "Segment display",
+      "url": "https://en.wikipedia.org/wiki/Segment_display",
+      "snippet": "be produced. One <span class=\"searchmatch\">application</span> was in the Sharp EL-8, an early electronic calculator. The eight-segment display produces <span class=\"searchmatch\">more</span> <span class=\"searchmatch\">rounded</span> digits than a seven-segment",
+      "query": "Once More Round applications and examples"
+    },
+    {
+      "title": "JSON",
+      "url": "https://en.wikipedia.org/wiki/JSON",
+      "snippet": "interoperability, <span class=\"searchmatch\">applications</span> should transmit messages containing no such byte sequences. The specification does not constrain how <span class=\"searchmatch\">applications</span> go about comparing",
+      "query": "Once More Round applications and examples"
+    },
+    {
+      "title": "Microsoft Excel",
+      "url": "https://en.wikipedia.org/wiki/Microsoft_Excel",
+      "snippet": "called Visual Basic for <span class=\"searchmatch\">Applications</span> (VBA). Excel forms part of the Microsoft 365 <span class=\"searchmatch\">and</span> Microsoft Office suites of software <span class=\"searchmatch\">and</span> has been developed since",
+      "query": "Once More Round applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T15:47:42.951729+00:00"
+}

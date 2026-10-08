@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "quantum mechanics foundations recent research",
+    "quantum mechanics foundations common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Quantum_gravity",
+    "https://en.wikipedia.org/wiki/Quantum_logic",
+    "https://en.wikipedia.org/wiki/Quantum_superposition",
+    "https://en.wikipedia.org/wiki/Quantum_computing",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Quantum_indeterminacy",
+    "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+    "https://en.wikipedia.org/wiki/Quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Observer_%28quantum_physics%29"
+  ],
+  "results": [
+    {
+      "title": "History of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "snippet": "of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of <span class=\"searchmatch\">quantum</span> ideas",
+      "query": "quantum mechanics foundations recent research"
+    },
+    {
+      "title": "Quantum gravity",
+      "url": "https://en.wikipedia.org/wiki/Quantum_gravity",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> gravity (QG) is a field of theoretical physics that seeks unification of the theory of gravity with the principles of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>. It deals",
+      "query": "quantum mechanics foundations recent research"
+    },
+    {
+      "title": "Quantum logic",
+      "url": "https://en.wikipedia.org/wiki/Quantum_logic",
+      "snippet": "analysis of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">foundations</span>, <span class=\"searchmatch\">quantum</span> logic is a set of rules for manip­ulation of propositions inspired by the structure of <span class=\"searchmatch\">quantum</span> theory. The formal",
+      "query": "quantum mechanics foundations recent research"
+    },
+    {
+      "title": "Quantum superposition",
+      "url": "https://en.wikipedia.org/wiki/Quantum_superposition",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> superposition is a fundamental principle of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> that states that linear combinations of solutions to the Schrödinger equation are",
+      "query": "quantum mechanics foundations recent research"
+    },
+    {
+      "title": "Quantum computing",
+      "url": "https://en.wikipedia.org/wiki/Quantum_computing",
+      "snippet": "A <span class=\"searchmatch\">quantum</span> computer is a computer that represents and processes information using <span class=\"searchmatch\">quantum</span> states. <span class=\"searchmatch\">Quantum</span> computations exploit phenomena such as superposition",
+      "query": "quantum mechanics foundations recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "quantum mechanics foundations common misconceptions"
+    },
+    {
+      "title": "Quantum indeterminacy",
+      "url": "https://en.wikipedia.org/wiki/Quantum_indeterminacy",
+      "snippet": "Understanding <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span>, Princeton University Press, 1999. <span class=\"searchmatch\">Common</span> <span class=\"searchmatch\">Misconceptions</span> Regarding <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span> See especially part III &quot;<span class=\"searchmatch\">Misconceptions</span> regarding",
+      "query": "quantum mechanics foundations common misconceptions"
+    },
+    {
+      "title": "Many-worlds interpretation",
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "snippet": "The many-worlds interpretation (MWI) is an interpretation of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> that asserts that the universal wave function is objectively real, and",
+      "query": "quantum mechanics foundations common misconceptions"
+    },
+    {
+      "title": "Quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">mechanics</span>, also known as <span class=\"searchmatch\">quantum</span> physics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors",
+      "query": "quantum mechanics foundations common misconceptions"
+    },
+    {
+      "title": "Observer (quantum physics)",
+      "url": "https://en.wikipedia.org/wiki/Observer_%28quantum_physics%29",
+      "snippet": "Some interpretations of <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> posit a central role for an observer of a <span class=\"searchmatch\">quantum</span> phenomenon. The <span class=\"searchmatch\">quantum</span> mechanical observer is tied to the",
+      "query": "quantum mechanics foundations common misconceptions"
+    }
+  ],
+  "ts": "2026-10-06T21:55:12.261169+00:00"
+}

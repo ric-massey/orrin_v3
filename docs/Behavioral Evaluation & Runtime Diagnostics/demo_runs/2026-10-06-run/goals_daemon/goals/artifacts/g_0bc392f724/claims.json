@@ -1,0 +1,135 @@
+{
+  "question": "What is there about world a world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "located in the Eastern Hemisphere",
+    "included in modern definitions of the Western world",
+    "division of the BBC For the BBC television network that",
+    "previously known as BBC World News",
+    "The director of the BBC World Service",
+    "Jonathan Munro",
+    "The controller of the BBC World Service in English",
+    "Jon Zilkha",
+    "This address",
+    "read out five times as the BBC broadcast it live to different parts of the world",
+    "Bush House in London",
+    "home to the World Service between 1941 and 2012",
+    "These exhibitions vary in character and",
+    "held in different parts of the world at a specific site for a period of time",
+    "world expositions",
+    "largely focused on trade and displayed technological advances and inventions"
+  ],
+  "relations": [
+    {
+      "subject": "located in the Eastern Hemisphere",
+      "predicate": "are",
+      "object": "included in modern definitions of the Western world",
+      "source": "my prior claims [g_44a997d3b1]"
+    },
+    {
+      "subject": "division of the BBC For the BBC television network that",
+      "predicate": "was",
+      "object": "previously known as BBC World News",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "The director of the BBC World Service",
+      "predicate": "is",
+      "object": "Jonathan Munro",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "The controller of the BBC World Service in English",
+      "predicate": "is",
+      "object": "Jon Zilkha",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "This address",
+      "predicate": "was",
+      "object": "read out five times as the BBC broadcast it live to different parts of the world",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "Bush House in London",
+      "predicate": "was",
+      "object": "home to the World Service between 1941 and 2012",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "These exhibitions vary in character and",
+      "predicate": "are",
+      "object": "held in different parts of the world at a specific site for a period of time",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "world expositions",
+      "predicate": "were",
+      "object": "largely focused on trade and displayed technological advances and inventions",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "World expositions",
+      "predicate": "were",
+      "object": "platforms for state-of-the-art science and technology from around the world",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "The World Cup",
+      "predicate": "is",
+      "object": "globally regarded as the most prestigious association football competition",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "subject": "The viewership of the 2018 World Cup",
+      "predicate": "was",
+      "object": "estimated to be 3",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "subject": "The other World Cup winners",
+      "predicate": "are",
+      "object": "Germany and Italy",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_44a997d3b1]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS"
+    }
+  ],
+  "ts": "2026-10-06T21:12:48.100534+00:00"
+}

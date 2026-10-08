@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_03.txt",
+      "chars": 14236
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Applications_of_evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8b9f7d20ba/doc_08.txt",
+      "chars": 8864
+    }
+  ],
+  "ts": "2026-10-07T05:04:06.956648+00:00"
+}

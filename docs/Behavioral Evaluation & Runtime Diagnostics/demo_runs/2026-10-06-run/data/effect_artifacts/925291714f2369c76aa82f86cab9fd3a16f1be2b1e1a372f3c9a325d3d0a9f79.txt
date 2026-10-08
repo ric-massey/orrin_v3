@@ -1,0 +1,112 @@
+{
+  "question": "What is there about the nature of mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "nature",
+    "mathematics"
+  ],
+  "entities": [
+    "Mathematics",
+    "field of knowledge concerned with abstract concepts such as numbers",
+    "This level contends that the Universe",
+    "not just well described by mathematics",
+    "subject survey of mathematics itself however",
+    "now problematic",
+    "this",
+    "quite a bit of uncertainty in the future of mathematics",
+    "the mathematics community and mathematical research activity",
+    "growing and states that this will mean changes in the way things are done",
+    "Although research into mathematics education",
+    "primarily concerned with the tools",
+    "This type of mathematics education",
+    "implemented in various parts of Canada beginning in 2005",
+    "Approaches to teaching quantum mechanics Quantum mechanics",
+    "difficult subject to teach due to its counterintuitive nature"
+  ],
+  "relations": [
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "my prior claims [g_0aac0e41a9]"
+    },
+    {
+      "subject": "This level contends that the Universe",
+      "predicate": "is",
+      "object": "not just well described by mathematics",
+      "source": "https://en.wikipedia.org/wiki/Our_Mathematical_Universe"
+    },
+    {
+      "subject": "subject survey of mathematics itself however",
+      "predicate": "is",
+      "object": "now problematic",
+      "source": "https://en.wikipedia.org/wiki/Future_of_mathematics"
+    },
+    {
+      "subject": "this",
+      "predicate": "leads to",
+      "object": "quite a bit of uncertainty in the future of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Future_of_mathematics"
+    },
+    {
+      "subject": "the mathematics community and mathematical research activity",
+      "predicate": "is",
+      "object": "growing and states that this will mean changes in the way things are done",
+      "source": "https://en.wikipedia.org/wiki/Future_of_mathematics"
+    },
+    {
+      "subject": "Although research into mathematics education",
+      "predicate": "is",
+      "object": "primarily concerned with the tools",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "subject": "This type of mathematics education",
+      "predicate": "was",
+      "object": "implemented in various parts of Canada beginning in 2005",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "subject": "Approaches to teaching quantum mechanics Quantum mechanics",
+      "predicate": "is a",
+      "object": "difficult subject to teach due to its counterintuitive nature",
+      "source": "https://en.wikipedia.org/wiki/Teaching_quantum_mechanics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0aac0e41a9]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Our_Mathematical_Universe"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Future_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Robyn_Arianrhod"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexander_R._A._Anderson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Teaching_quantum_mechanics"
+    }
+  ],
+  "ts": "2026-10-06T22:25:05.470145+00:00"
+}

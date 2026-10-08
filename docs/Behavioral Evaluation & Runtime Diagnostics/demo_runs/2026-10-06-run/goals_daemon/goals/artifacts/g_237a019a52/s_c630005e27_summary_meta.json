@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_237a019a52",
+    "title": "Understand philosophy of mathematics more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "philosophy of mathematics open problems",
+        "philosophy of mathematics criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_7779f23993",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T16:53:55.831940Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T16:53:55.831950Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T16:53:55.831953Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T16:53:55.831954Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T16:53:55.831956Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on philosophy of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about philosophy of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T16:53:55.831974Z",
+      "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 16:53:55.833002+00:00",
+    "updated_at": "2026-10-07 16:53:57.074006+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_7779f23993]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Problems_of_Philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/An_Introduction_to_the_Philosophy_of_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Plato",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Truth",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_237a019a52/doc_09.txt"
+    }
+  ],
+  "ts": "2026-10-07T16:54:00.780511+00:00"
+}

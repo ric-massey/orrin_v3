@@ -1,0 +1,130 @@
+{
+  "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection",
+    "Ecology and evolutionary biology",
+    "broad field of study that covers various ranges of ages and scales",
+    "behaviors or traits that occur universally in all cultures",
+    "good candidates for evolutionary adaptations",
+    "Evolutionary psychology",
+    "long-forestalled scientific attempt to assemble out of the disjointed",
+    "the free encyclopedia Subfield of biology This article",
+    "orphan"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_950fa121cf]"
+    },
+    {
+      "subject": "Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Ecology and evolutionary biology",
+      "predicate": "is a",
+      "object": "broad field of study that covers various ranges of ages and scales",
+      "source": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "the free encyclopedia Subfield of biology This article",
+      "predicate": "is an",
+      "object": "orphan",
+      "source": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology"
+    },
+    {
+      "subject": "New discoveries in evolutionary developmental biology",
+      "predicate": "are",
+      "object": "providing explanations for these phenomena on a molecular level",
+      "source": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "subject": "phylogeny",
+      "predicate": "is the",
+      "object": "evolutionary history of a species",
+      "source": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "subject": "The Besseyan cactus or commagram",
+      "predicate": "is the",
+      "object": "best evolutionary tree for show",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_taxonomy"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_950fa121cf]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology_of_human_bonding"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Modern_synthesis_%2820th_century%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_taxonomy"
+    }
+  ],
+  "ts": "2026-10-06T23:07:47.675592+00:00"
+}

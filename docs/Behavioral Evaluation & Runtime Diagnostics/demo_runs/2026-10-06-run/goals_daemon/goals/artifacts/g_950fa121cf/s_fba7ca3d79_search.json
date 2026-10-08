@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "evolutionary biology recent research",
+    "evolutionary biology common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+    "https://en.wikipedia.org/wiki/Evolutionary_pressure",
+    "https://en.wikipedia.org/wiki/Evolutionary_biology",
+    "https://en.wikipedia.org/wiki/Philosophy_of_evolution",
+    "https://en.wikipedia.org/wiki/Biology_of_romantic_love",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Vikings",
+    "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+  ],
+  "results": [
+    {
+      "title": "Glossary of genetics and evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "snippet": "genetics and <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> is a list of definitions of terms and concepts used in the study of genetics and <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, as well as sub-disciplines",
+      "query": "evolutionary biology recent research"
+    },
+    {
+      "title": "Evolutionary pressure",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_pressure",
+      "snippet": "in processes investigated by <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, but the formal concept is often extended to other areas of <span class=\"searchmatch\">research</span>. In population genetics, selective",
+      "query": "evolutionary biology recent research"
+    },
+    {
+      "title": "Evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">biology</span> is a subfield of <span class=\"searchmatch\">biology</span> that analyzes the four mechanisms of evolution: natural selection, mutation, genetic drift, and gene flow",
+      "query": "evolutionary biology recent research"
+    },
+    {
+      "title": "Philosophy of evolution",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_evolution",
+      "snippet": "the philosophy of <span class=\"searchmatch\">biology</span> that examines the philosophical implications of evolution and the intersections of <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> with other fields such",
+      "query": "evolutionary biology recent research"
+    },
+    {
+      "title": "Biology of romantic love",
+      "url": "https://en.wikipedia.org/wiki/Biology_of_romantic_love",
+      "snippet": "The <span class=\"searchmatch\">biology</span> of romantic love has been explored by such biological sciences as <span class=\"searchmatch\">evolutionary</span> psychology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, anthropology, and neuroscience",
+      "query": "evolutionary biology recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "evolutionary biology common misconceptions"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "the most controversial aspect of <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> is the implication of human evolution that humans share <span class=\"searchmatch\">common</span> ancestry with apes and that the mental",
+      "query": "evolutionary biology common misconceptions"
+    },
+    {
+      "title": "Vikings",
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "snippet": "2017). &quot;Male-biased operational sex ratios and the Viking phenomenon: an <span class=\"searchmatch\">evolutionary</span> anthropological perspective on Late Iron Age Scandinavian raiding&quot;. Evolution",
+      "query": "evolutionary biology common misconceptions"
+    },
+    {
+      "title": "Biology of romantic love",
+      "url": "https://en.wikipedia.org/wiki/Biology_of_romantic_love",
+      "snippet": "The <span class=\"searchmatch\">biology</span> of romantic love has been explored by such biological sciences as <span class=\"searchmatch\">evolutionary</span> psychology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, anthropology, and neuroscience",
+      "query": "evolutionary biology common misconceptions"
+    },
+    {
+      "title": "Evolutionary psychology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "snippet": "mechanisms, such as the heart, lungs, and the liver, is <span class=\"searchmatch\">common</span> in <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>. <span class=\"searchmatch\">Evolutionary</span> psychologists apply the same line of thinking in psychology",
+      "query": "evolutionary biology common misconceptions"
+    }
+  ],
+  "ts": "2026-10-06T22:25:05.348849+00:00"
+}

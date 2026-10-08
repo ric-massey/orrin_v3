@@ -1,0 +1,39 @@
+{
+  "question": "What makes my CPU load climb?",
+  "subject_terms": [],
+  "entities": [
+    "CPU load",
+    "generate_intrinsic_goals"
+  ],
+  "relations": [
+    {
+      "subject": "CPU load",
+      "predicate": "rises after",
+      "object": "generate_intrinsic_goals runs",
+      "source": "resource_history"
+    }
+  ],
+  "prediction": {
+    "claim": "My CPU load rises after generate_intrinsic_goals runs",
+    "checkable_against": "resource_history:cpu_util:last_fn",
+    "confidence": 0.6,
+    "resolved": true,
+    "correct": false,
+    "driver": "generate_intrinsic_goals",
+    "made_at_ts": 1791325509.6,
+    "hypothesized_at": 1791325512.653754,
+    "train": {
+      "driver": "generate_intrinsic_goals",
+      "n": 144,
+      "mean": 0.0382,
+      "base": 0.0003
+    },
+    "outcome": "inconclusive: generate_intrinsic_goals did not recur >= 10x in 4554 fresh samples"
+  },
+  "sources": [
+    {
+      "src": "resource_history.jsonl"
+    }
+  ],
+  "ts": "2026-10-06T22:25:12.653756+00:00"
+}

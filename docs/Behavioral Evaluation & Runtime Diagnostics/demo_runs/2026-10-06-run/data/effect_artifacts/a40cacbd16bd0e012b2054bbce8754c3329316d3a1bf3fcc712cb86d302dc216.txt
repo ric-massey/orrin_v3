@@ -1,0 +1,97 @@
+{
+  "question": "What is there about the west that my earlier notes on it are missing?",
+  "subject_terms": [
+    "west"
+  ],
+  "entities": [
+    "status as regards the applicability of international rules",
+    "in most respects identical to that of the West Bank and Gaza",
+    "showing what",
+    "considered politically as West Africa",
+    "Colonial boundaries",
+    "reflected in the modern boundaries between contemporary West African states",
+    "the population of West Africa",
+    "estimated at 419 million",
+    "The West Bank",
+    "part of the state of Palestine",
+    "and civilians living or traveling through the West Bank",
+    "subject to Israeli law",
+    "are applicable to Israeli citizens living in the West Bank",
+    "often administrative in nature"
+  ],
+  "relations": [
+    {
+      "subject": "status as regards the applicability of international rules",
+      "predicate": "is",
+      "object": "in most respects identical to that of the West Bank and Gaza",
+      "source": "https://en.wikipedia.org/wiki/West_Bank"
+    },
+    {
+      "subject": "showing what",
+      "predicate": "is",
+      "object": "considered politically as West Africa",
+      "source": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "subject": "Colonial boundaries",
+      "predicate": "are",
+      "object": "reflected in the modern boundaries between contemporary West African states",
+      "source": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "subject": "the population of West Africa",
+      "predicate": "is",
+      "object": "estimated at 419 million",
+      "source": "https://en.wikipedia.org/wiki/West_Africa"
+    },
+    {
+      "subject": "The West Bank",
+      "predicate": "is",
+      "object": "part of the state of Palestine",
+      "source": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    },
+    {
+      "subject": "and civilians living or traveling through the West Bank",
+      "predicate": "are",
+      "object": "subject to Israeli law",
+      "source": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    },
+    {
+      "subject": "are applicable to Israeli citizens living in the West Bank",
+      "predicate": "are",
+      "object": "often administrative in nature",
+      "source": "https://en.wikipedia.org/wiki/Israeli_law_in_the_West_Bank_settlements"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/West_Bank"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Key_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/American_frontier"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/West_Africa"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/API"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Israeli_law_in_the_West_Bank_settlements"
+    }
+  ],
+  "ts": "2026-10-06T21:35:08.873609+00:00"
+}

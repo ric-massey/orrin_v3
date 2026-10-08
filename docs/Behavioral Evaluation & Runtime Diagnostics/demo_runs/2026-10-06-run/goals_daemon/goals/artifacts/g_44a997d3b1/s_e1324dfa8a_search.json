@@ -1,0 +1,82 @@
+{
+  "queries": [
+    "world a world",
+    "world a world explained",
+    "what is not obvious about world a world"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Western_world",
+    "https://en.wikipedia.org/wiki/Arab_world",
+    "https://en.wikipedia.org/wiki/World_population",
+    "https://en.wikipedia.org/wiki/A_Different_World",
+    "https://en.wikipedia.org/wiki/World_Heritage_Site",
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/FIFA_World_Cup",
+    "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+    "https://en.wikipedia.org/wiki/List_of_A_Different_World_episodes"
+  ],
+  "results": [
+    {
+      "title": "Western world",
+      "url": "https://en.wikipedia.org/wiki/Western_world",
+      "snippet": "Western <span class=\"searchmatch\">world</span> involve <span class=\"searchmatch\">a</span> partial replacement of established Christianity by unchurched spirituality, characterized by <span class=\"searchmatch\">á</span> la carte religion and <span class=\"searchmatch\">a</span> focus on",
+      "query": "world a world"
+    },
+    {
+      "title": "Arab world",
+      "url": "https://en.wikipedia.org/wiki/Arab_world",
+      "snippet": "The Arab <span class=\"searchmatch\">world</span> comprises <span class=\"searchmatch\">a</span> large group of countries, mainly located in West Asia and North Africa. While the majority of people in the Arab <span class=\"searchmatch\">world</span> are ethnically",
+      "query": "world a world"
+    },
+    {
+      "title": "World population",
+      "url": "https://en.wikipedia.org/wiki/World_population",
+      "snippet": "for the human population to reach <span class=\"searchmatch\">a</span> billion and only 218 more years from there to reach 8 billion. As of 2026, the <span class=\"searchmatch\">world</span> population is approximately 8.3",
+      "query": "world a world"
+    },
+    {
+      "title": "A Different World",
+      "url": "https://en.wikipedia.org/wiki/A_Different_World",
+      "snippet": "<span class=\"searchmatch\">A</span> Different <span class=\"searchmatch\">World</span> is an American sitcom television series and <span class=\"searchmatch\">a</span> spin-off of The Cosby Show. It aired for six seasons on NBC from September 24, 1987 to",
+      "query": "world a world"
+    },
+    {
+      "title": "World Heritage Site",
+      "url": "https://en.wikipedia.org/wiki/World_Heritage_Site",
+      "snippet": "&quot;cultural and natural heritage around the <span class=\"searchmatch\">world</span> considered to be of outstanding value to humanity&quot;. To be selected, <span class=\"searchmatch\">a</span> <span class=\"searchmatch\">World</span> Heritage Site is nominated by its",
+      "query": "world a world"
+    },
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "<span class=\"searchmatch\">A</span> <span class=\"searchmatch\">world</span> is <span class=\"searchmatch\">a</span> totality of entities. In philosophy, the <span class=\"searchmatch\">world</span> is customarily viewed as all of existence or the whole of reality. Some conceptions see the",
+      "query": "world a world explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is <span class=\"searchmatch\">a</span> 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "world a world explained"
+    },
+    {
+      "title": "FIFA World Cup",
+      "url": "https://en.wikipedia.org/wiki/FIFA_World_Cup",
+      "snippet": "The FIFA <span class=\"searchmatch\">World</span> Cup is an international association football competition among the senior men&#039;s national teams of the members of the Fédération Internationale",
+      "query": "world a world explained"
+    },
+    {
+      "title": "2026 FIFA World Cup",
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+      "snippet": "The 2026 FIFA <span class=\"searchmatch\">World</span> Cup was the 23rd FIFA <span class=\"searchmatch\">World</span> Cup, the quadrennial international men&#039;s soccer championship contested by the national teams of the member",
+      "query": "world a world explained"
+    },
+    {
+      "title": "List of A Different World episodes",
+      "url": "https://en.wikipedia.org/wiki/List_of_A_Different_World_episodes",
+      "snippet": "<span class=\"searchmatch\">A</span> Different <span class=\"searchmatch\">World</span> is <span class=\"searchmatch\">a</span> television spin-off of The Cosby Show set at Hillman College, the alma mater of Clair and Dr. Heathcliff Huxtable. It ran for six",
+      "query": "world a world explained"
+    }
+  ],
+  "ts": "2026-10-06T20:01:18.028844+00:00"
+}

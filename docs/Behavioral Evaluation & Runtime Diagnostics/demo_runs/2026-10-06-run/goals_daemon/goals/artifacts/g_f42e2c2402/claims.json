@@ -1,0 +1,136 @@
+{
+  "question": "What is there about the nature of mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "nature",
+    "mathematics"
+  ],
+  "entities": [
+    "Mathematics",
+    "field of knowledge concerned with abstract concepts such as numbers",
+    "and thought that there",
+    "more meaningful ways to invest in public appreciation of mathematics",
+    "Some mathematical physics problems",
+    "included in notable lists of unsolved problems in mathematics",
+    "widely used to model and solve problems in science",
+    "There",
+    "many areas of mathematics",
+    "abstractions from nature or purely abstract entities that",
+    "stipulated to have certain properties",
+    "essential in science and engineering",
+    "Although mathematics",
+    "widely used to model empirical phenomena",
+    "developed in close correlation with their applications and",
+    "often grouped under applied mathematics"
+  ],
+  "relations": [
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "my prior claims [g_88555e96ba]"
+    },
+    {
+      "subject": "and thought that there",
+      "predicate": "are",
+      "object": "more meaningful ways to invest in public appreciation of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems"
+    },
+    {
+      "subject": "Some mathematical physics problems",
+      "predicate": "are",
+      "object": "included in notable lists of unsolved problems in mathematics",
+      "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "widely used to model and solve problems in science",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many areas of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "abstractions from nature or purely abstract entities that",
+      "predicate": "are",
+      "object": "stipulated to have certain properties",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "essential in science and engineering",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Although mathematics",
+      "predicate": "is",
+      "object": "widely used to model empirical phenomena",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "developed in close correlation with their applications and",
+      "predicate": "are",
+      "object": "often grouped under applied mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "was",
+      "object": "primarily divided into geometry and arithmetic until the 16th and 17th centuries",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "mathematics",
+      "predicate": "was",
+      "object": "divided into two main areas",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "which",
+      "predicate": "is",
+      "object": "commonly accepted as a foundation of modern mathematics",
+      "source": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_88555e96ba]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_scientific_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Foundations_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Marxism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socialist_calculation_debate"
+    }
+  ],
+  "ts": "2026-10-06T21:34:55.041721+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_74c5e36c34",
+    "title": "Understand history more deeply — round 9",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "history relationship to other fields",
+        "history key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_2a464a2685",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T22:50:41.713017Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T22:50:41.713033Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T22:50:41.713035Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T22:50:41.713037Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T22:50:41.713039Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on history was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about history was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T22:50:41.720637Z",
+      "question": "What is there about history that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 22:50:41.725817+00:00",
+    "updated_at": "2026-10-07 22:50:42.937375+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_1d48a13384]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/W._C._Fields",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boston_marriage",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Queerplatonic_relationship",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Interpersonal_relationship",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Harlow_Robinson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Germ_theory%27s_key_19th_century_figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T22:50:48.432064+00:00"
+}

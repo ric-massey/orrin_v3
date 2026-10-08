@@ -1,0 +1,136 @@
+{
+  "question": "What is there about High Road that my earlier notes on it are missing?",
+  "subject_terms": [
+    "high",
+    "road"
+  ],
+  "entities": [
+    "the title Take the High Road",
+    "suggested by the folk song about the area",
+    "Switzerland transitioning to a gravel track An unpaved road",
+    "type of road whose surface has not been sealed with a pavement treatment",
+    "Forest road A forest road",
+    "type of rudimentary access road",
+    "These roads",
+    "built mainly for the purposes of forest management",
+    "high-clearance four-wheel drive vehicle",
+    "required to travel effectively on a forest road",
+    "Switchbacks",
+    "employed to make the road passable through steep terrain",
+    "Uganda A primitive road",
+    "minor road system",
+    "There",
+    "no universal definition of primitive road"
+  ],
+  "relations": [
+    {
+      "subject": "the title Take the High Road",
+      "predicate": "was",
+      "object": "suggested by the folk song about the area",
+      "source": "my prior claims [g_4741f381af]"
+    },
+    {
+      "subject": "Switzerland transitioning to a gravel track An unpaved road",
+      "predicate": "is a",
+      "object": "type of road whose surface has not been sealed with a pavement treatment",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "Forest road A forest road",
+      "predicate": "is a",
+      "object": "type of rudimentary access road",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "These roads",
+      "predicate": "are",
+      "object": "built mainly for the purposes of forest management",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "high-clearance four-wheel drive vehicle",
+      "predicate": "is",
+      "object": "required to travel effectively on a forest road",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "Switchbacks",
+      "predicate": "are",
+      "object": "employed to make the road passable through steep terrain",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "Uganda A primitive road",
+      "predicate": "is a",
+      "object": "minor road system",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "There",
+      "predicate": "is",
+      "object": "no universal definition of primitive road",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "an unpaved road",
+      "predicate": "is a",
+      "object": "primitive road if",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "Road maintenance on primitive roads",
+      "predicate": "is",
+      "object": "optional for the county in Washington",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "While most gravel roads",
+      "predicate": "are",
+      "object": "all-weather roads and can be used by ordinary cars",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "subject": "often",
+      "predicate": "cause",
+      "object": "vehicles with a high centre of gravity",
+      "source": "https://en.wikipedia.org/wiki/Unpaved_road"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_4741f381af]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Unpaved_road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Long_and_Winding_Road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Silicon_Valley"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Silk_Road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/High_Speed_2"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vikings"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Overpass_myth"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Searches_for_Noah%27s_Ark"
+    }
+  ],
+  "ts": "2026-10-07T09:57:45.499979+00:00"
+}

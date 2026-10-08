@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "world a world history and development",
+    "world a world applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/New_World_Development",
+    "https://en.wikipedia.org/wiki/World_Development_Report",
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/World_history_%28field%29",
+    "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+    "https://en.wikipedia.org/wiki/Hello%2C_world",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/Foundation_model",
+    "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+    "https://en.wikipedia.org/wiki/World_War_II"
+  ],
+  "results": [
+    {
+      "title": "New World Development",
+      "url": "https://en.wikipedia.org/wiki/New_World_Development",
+      "snippet": "New <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Development</span> Company Limited (NWD) is <span class=\"searchmatch\">a</span> Hong Kong–based company focused on property, hotels, infrastructure <span class=\"searchmatch\">and</span> services <span class=\"searchmatch\">and</span> department stores",
+      "query": "world a world history and development"
+    },
+    {
+      "title": "World Development Report",
+      "url": "https://en.wikipedia.org/wiki/World_Development_Report",
+      "snippet": "The <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Development</span> Report (WDR) is an annual report published since 1978 by the <span class=\"searchmatch\">World</span> Bank. Each WDR provides in-depth analysis of <span class=\"searchmatch\">a</span> specific aspect",
+      "query": "world a world history and development"
+    },
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "as <span class=\"searchmatch\">a</span> whole, or with an international or intercontinental scope. In this sense, <span class=\"searchmatch\">world</span> <span class=\"searchmatch\">history</span> refers to the <span class=\"searchmatch\">history</span> of humanity as <span class=\"searchmatch\">a</span> whole, <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">world</span> politics",
+      "query": "world a world history and development"
+    },
+    {
+      "title": "World history (field)",
+      "url": "https://en.wikipedia.org/wiki/World_history_%28field%29",
+      "snippet": "<span class=\"searchmatch\">World</span> <span class=\"searchmatch\">history</span> or global <span class=\"searchmatch\">history</span> as <span class=\"searchmatch\">a</span> field of historical study examines <span class=\"searchmatch\">history</span> from <span class=\"searchmatch\">a</span> global perspective. It emerged centuries ago; some leading practitioners",
+      "query": "world a world history and development"
+    },
+    {
+      "title": "History of the World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+      "snippet": "the Internet <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">history</span> of hypertext date back significantly further than that of the <span class=\"searchmatch\">World</span> Wide Web. Tim Berners-Lee invented the <span class=\"searchmatch\">World</span> Wide Web while",
+      "query": "world a world history and development"
+    },
+    {
+      "title": "Hello, world",
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "snippet": "with likely earlier use in BCPL. The <span class=\"searchmatch\">example</span> program from the book prints &quot;hello, <span class=\"searchmatch\">world</span>&quot;, <span class=\"searchmatch\">and</span> was inherited from <span class=\"searchmatch\">a</span> 1974 Bell Laboratories internal memorandum",
+      "query": "world a world applications and examples"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "REST has been used to create stateless, reliable, web-based <span class=\"searchmatch\">applications</span>. An <span class=\"searchmatch\">application</span> that adheres to the REST architectural constraints may be informally",
+      "query": "world a world applications and examples"
+    },
+    {
+      "title": "Foundation model",
+      "url": "https://en.wikipedia.org/wiki/Foundation_model",
+      "snippet": "can be applied across <span class=\"searchmatch\">a</span> wide range of use cases. Generative AI <span class=\"searchmatch\">applications</span> like large language models (LLMs) are common <span class=\"searchmatch\">examples</span> of foundation models",
+      "query": "world a world applications and examples"
+    },
+    {
+      "title": "2026 FIFA World Cup",
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+      "snippet": "following <span class=\"searchmatch\">a</span> red card, the <span class=\"searchmatch\">application</span> of the new rules <span class=\"searchmatch\">and</span> technology, <span class=\"searchmatch\">and</span> various other issues. 2025 FIFA Club <span class=\"searchmatch\">World</span> Cup 2026 FIFA U-17 <span class=\"searchmatch\">World</span> Cup 2026",
+      "query": "world a world applications and examples"
+    },
+    {
+      "title": "World War II",
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "snippet": "<span class=\"searchmatch\">World</span> War II, or the Second <span class=\"searchmatch\">World</span> War (1 September 1939 – 2 September 1945), was <span class=\"searchmatch\">a</span> global conflict between two coalitions: the Allies <span class=\"searchmatch\">and</span> the Axis powers",
+      "query": "world a world applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T22:09:34.308148+00:00"
+}

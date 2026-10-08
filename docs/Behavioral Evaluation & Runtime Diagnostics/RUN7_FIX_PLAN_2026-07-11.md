@@ -1,6 +1,6 @@
 # Run 7 Fix Plan — make credit un-pumpable (2026-07-11)
 
-**Status:** PROPOSED. Written after the Run 6 (2026-07-10/11) life analysis in
+**Status:** BUILT (a63b160 + bb3685a, 2026-07-12; run as Run 7). *(Header corrected 2026-10-07; was "PROPOSED".)* Originally PROPOSED. Written after the Run 6 (2026-07-10/11) life analysis in
 `demo_runs/2026-07-11-run/`, grounded in a fresh code read of the ledger, memo,
 commitment, quality-gate, refocus, and speech paths. Every diagnosis below was
 re-verified against the source before a fix was accepted (§2).

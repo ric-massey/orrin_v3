@@ -1,0 +1,18 @@
+{
+  "COGNITIVE": {
+    "accuracy": 0.8945,
+    "total": 11190.0,
+    "correct": 7576.0,
+    "symbolic_total": 0,
+    "reliability": 0.677,
+    "last_updated": "2026-10-08T00:22:15.884286+00:00"
+  },
+  "PLANNING": {
+    "accuracy": 0.7782,
+    "total": 6.0,
+    "correct": 5.0,
+    "symbolic_total": 0,
+    "reliability": 0.75,
+    "last_updated": "2026-10-07T23:29:47.087731+00:00"
+  }
+}

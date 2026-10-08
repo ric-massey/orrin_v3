@@ -1,0 +1,132 @@
+{
+  "question": "What is there about mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "mathematics"
+  ],
+  "entities": [
+    "Mathematics",
+    "field of knowledge concerned with abstract concepts such as numbers",
+    "widely used to model and solve problems in science",
+    "There",
+    "many areas of mathematics",
+    "essential in science and engineering",
+    "Although mathematics",
+    "widely used to model empirical phenomena",
+    "developed in close correlation with their applications and",
+    "often grouped under applied mathematics",
+    "primarily divided into geometry and arithmetic until the 16th and 17th centuries",
+    "mathematics",
+    "divided into two main areas",
+    "developed by the Ancient Civilizations for intellectual challenge and pleasure",
+    "During this period there",
+    "little distinction between physics and mathematics"
+  ],
+  "relations": [
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "my prior claims [g_8dfc024f13]"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "widely used to model and solve problems in science",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many areas of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "essential in science and engineering",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Although mathematics",
+      "predicate": "is",
+      "object": "widely used to model empirical phenomena",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "developed in close correlation with their applications and",
+      "predicate": "are",
+      "object": "often grouped under applied mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "was",
+      "object": "primarily divided into geometry and arithmetic until the 16th and 17th centuries",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "mathematics",
+      "predicate": "was",
+      "object": "divided into two main areas",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "was",
+      "object": "developed by the Ancient Civilizations for intellectual challenge and pleasure",
+      "source": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics"
+    },
+    {
+      "subject": "During this period there",
+      "predicate": "was",
+      "object": "little distinction between physics and mathematics",
+      "source": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics"
+    },
+    {
+      "subject": "for a while because mathematics and physics communities",
+      "predicate": "were",
+      "object": "distant at the time",
+      "source": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics"
+    },
+    {
+      "subject": "Major themes that",
+      "predicate": "are",
+      "object": "dealt with in philosophy of mathematics include",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8dfc024f13]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fields_Medal"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_sciences"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hidden_Figures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics_and_art"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophical_Library"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    }
+  ],
+  "ts": "2026-10-06T22:33:03.176031+00:00"
+}

@@ -281,6 +281,32 @@ scrape-stitches, hence gate item (d)).
 
 ---
 
+## Run 13 result — 2026-10-06/08 life: **NOT PASSED** — Lifecycle ✅ · Health ✅ · **Growth ✅ (first time)** · Feed 🔴 · Honesty 🔴 · Skeptic 🔴
+
+Thirteenth acceptance run (**mode: symbolic-only**, build **`a6045bc`**, committed and
+pushed pre-launch; **15,392 cycles, single segment**, born 10-06 19:35Z, natural death
+10-08 00:23Z, 28.8 h, **0 host suspensions**). Full verdict
+`demo_runs/2026-10-06-run/DEMO_RUN_2026-10-06.md`.
+
+- **GROWTH ✅ first time:** 26 answered by new knowledge (24 new relations, **2 by a
+  prediction confirmed out of sample** on his own telemetry); rung 5; 12 answers cited
+  in later decisions; 110 attributable reuse rows, all topical (Run 12: 0/10).
+- **LIFECYCLE ✅ / HEALTH ✅:** clean natural death; occupancy top 31.9 %; ignition duty
+  69.4 %; contributions 181/14/11/0; contact 14; RSS floor 746 MB.
+- **FEED 🔴:** 7 daemon silences > 30 min (max 247); research volume fine (164 records).
+- **HONESTY 🔴:** 18 store desyncs repaired; 0 repeated failure ids ✅.
+- **SKEPTIC 🔴:** `decide_to_write_code` 273 picks, EMA rank 9 (code_writer bail-out never
+  marked impossible, 4th run); breaker 48 % of cycles; self_understanding value 0.9999.
+- **Qualitative:** world root = his own repo; 25 junk KG concepts; research no-ops; rounds to
+  21; **74 % of LTM self-log summaries**; 3 of 5 promoted exemplars junk; dropped-letter
+  corruption in a `compose_section` artifact.
+
+**Re-test gate (Run 14):** Phase B of `POST_RUN13_MASTER_PLAN_2026-10-07.md`
+(B1–B19, each with its Run 13 baseline). Governing principle (Ric): most of his memories
+about his world, not himself.
+
+---
+
 ## Run 12 result — 2026-08-19/21 life: **NOT PASSED** — Lifecycle ✅ · Health ✅ · Close-out ✅ · Skeptic ✅ · Honesty 🟡 · **Feed 🔴 · Growth 🔴 (hollow)**
 
 Twelfth acceptance run (**mode: symbolic-only**, build **`90a01c4`** = Layer 1A–1D,

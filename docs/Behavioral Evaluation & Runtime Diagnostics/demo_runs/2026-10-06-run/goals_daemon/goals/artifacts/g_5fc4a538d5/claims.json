@@ -1,0 +1,135 @@
+{
+  "question": "What is there about world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "The championship",
+    "contested over twenty-three Grands Prix held around the world",
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "the world",
+    "customarily viewed as all of existence or the whole of reality",
+    "challenging the idea that the world",
+    "all-inclusive whole",
+    "contrasted with the mind as that which is represented by the mind",
+    "Cosmogony",
+    "field that studies the origin or creation of the world",
+    "world history",
+    "the history of humanity as a whole",
+    "many substances as their parts while others hold that worlds",
+    "simple in the sense that there is only one substance",
+    "Most of them agree that worlds"
+  ],
+  "relations": [
+    {
+      "subject": "The championship",
+      "predicate": "is",
+      "object": "contested over twenty-three Grands Prix held around the world",
+      "source": "my prior claims [g_f2c8cc1b55]"
+    },
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "the world",
+      "predicate": "is",
+      "object": "customarily viewed as all of existence or the whole of reality",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "challenging the idea that the world",
+      "predicate": "is an",
+      "object": "all-inclusive whole",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "the world",
+      "predicate": "is",
+      "object": "contrasted with the mind as that which is represented by the mind",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "Cosmogony",
+      "predicate": "is the",
+      "object": "field that studies the origin or creation of the world",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "world history",
+      "predicate": "refers to",
+      "object": "the history of humanity as a whole",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "many substances as their parts while others hold that worlds",
+      "predicate": "are",
+      "object": "simple in the sense that there is only one substance",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "Most of them agree that worlds",
+      "predicate": "are",
+      "object": "unified totalities",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "Existence monism states that the world",
+      "predicate": "is the",
+      "object": "only concrete object there is",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "they",
+      "predicate": "are",
+      "object": "just dependent aspects of the world-object",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "Such a world-object",
+      "predicate": "is",
+      "object": "simple in the sense that it does not have any genuine parts",
+      "source": "https://en.wikipedia.org/wiki/World"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_f2c8cc1b55]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_War_II"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hello%2C_world"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_War_I"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    }
+  ],
+  "ts": "2026-10-07T14:45:06.489579+00:00"
+}

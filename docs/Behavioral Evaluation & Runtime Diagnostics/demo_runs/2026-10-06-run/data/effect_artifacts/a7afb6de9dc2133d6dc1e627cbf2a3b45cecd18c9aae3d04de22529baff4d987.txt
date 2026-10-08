@@ -1,0 +1,114 @@
+{
+  "question": "What is there about the west that my earlier notes on it are missing?",
+  "subject_terms": [
+    "west"
+  ],
+  "entities": [
+    "West and Censori",
+    "married in a private ceremony in December 2022",
+    "status as regards the applicability of international rules",
+    "in most respects identical to that of the West Bank and Gaza",
+    "showing what",
+    "considered politically as West Africa",
+    "Colonial boundaries",
+    "reflected in the modern boundaries between contemporary West African states",
+    "the population of West Africa",
+    "estimated at 419 million",
+    "Key West",
+    "the wealthiest city in the United States per capita",
+    "Key West and the Lower Keys",
+    "categorized geologically by their particular coralloid composition",
+    "The West Bank",
+    "part of the state of Palestine"
+  ],
+  "relations": [
+    {
+      "subject": "West and Censori",
+      "predicate": "were",
+      "object": "married in a private ceremony in December 2022",
+      "source": "my prior claims [g_5532e9aee6]"
+    },
+    {
+      "subject": "status as regards the applicability of international rules",
+      "predicate": "is",
+      "object": "in most respects identical to that of the West Bank and Gaza",
+      "source": "https://en.wikipedia.org/wiki/West_Bank"
+    },
+    {
+      "subject": "showing what",
+      "predicate": "is",
+      "object": "considered politically as West Africa",
+      "source": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "subject": "Colonial boundaries",
+      "predicate": "are",
+      "object": "reflected in the modern boundaries between contemporary West African states",
+      "source": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "subject": "the population of West Africa",
+      "predicate": "is",
+      "object": "estimated at 419 million",
+      "source": "https://en.wikipedia.org/wiki/West_Africa"
+    },
+    {
+      "subject": "Key West",
+      "predicate": "was",
+      "object": "the wealthiest city in the United States per capita",
+      "source": "https://en.wikipedia.org/wiki/History_of_Key_West"
+    },
+    {
+      "subject": "Key West and the Lower Keys",
+      "predicate": "are",
+      "object": "categorized geologically by their particular coralloid composition",
+      "source": "https://en.wikipedia.org/wiki/History_of_Key_West"
+    },
+    {
+      "subject": "The West Bank",
+      "predicate": "is",
+      "object": "part of the state of Palestine",
+      "source": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    },
+    {
+      "subject": "and civilians living or traveling through the West Bank",
+      "predicate": "are",
+      "object": "subject to Israeli law",
+      "source": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_5532e9aee6]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/West_Bank"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_West_Africa"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Key_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/West_Africa"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_Key_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/API"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gray_goo"
+    }
+  ],
+  "ts": "2026-10-07T21:42:02.511668+00:00"
+}

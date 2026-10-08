@@ -1,0 +1,932 @@
+{
+  "stagnation_signal": 0.08837950085145484,
+  "core_signals": {
+    "exploration_drive": 0.6673922206008616,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.16286319138242603,
+    "reward_positive": 0.5609240592732365,
+    "expected_gain": 0.7174136561510536,
+    "low_affect_signal": 0.0006268034810069872,
+    "social_comparison_signal": 4.401233633395959e-06,
+    "conflict_signal": 2.2015902376325463e-06,
+    "threat_level": 0.0565139978182494,
+    "reward_negative": 0.010919814688740922,
+    "social_penalty": 2.174578578872932e-10,
+    "loss_signal": 0.1915999019120634,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 4.4032511142536535e-06,
+    "stagnation_signal": 0.08837950085145484,
+    "novelty_signal": 0.37410952342056053,
+    "motivation": 0.7538383095666371,
+    "confidence": 0.7835027227850789,
+    "impasse_signal": 0.32042773006579106,
+    "uncertainty": 0.2727334175463577,
+    "social_deficit": 0.012666324764789611,
+    "satisfaction_signal": 0.07844653274069736,
+    "risk_estimate": 0.00851691253693784
+  },
+  "_schema_version": 2,
+  "resource_deficit": 0.0705,
+  "signal_stability": 0.9439,
+  "_emotion_queue": [
+    {
+      "emotion": "stagnation_signal",
+      "per_cycle": 0.015,
+      "cycles_left": 1,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "exploration_drive",
+      "per_cycle": 0.0025,
+      "cycles_left": 1,
+      "source": "novelty"
+    },
+    {
+      "emotion": "reward_positive",
+      "per_cycle": 0.0014,
+      "cycles_left": 2,
+      "source": "stability_signal"
+    },
+    {
+      "emotion": "exploration_drive",
+      "per_cycle": 0.0033,
+      "cycles_left": 1,
+      "source": "novelty"
+    }
+  ],
+  "_prev_core": {
+    "exploration_drive": 0.6832427975360316,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.16414611508621132,
+    "reward_positive": 0.5698308413241714,
+    "expected_gain": 0.7306776337707163,
+    "low_affect_signal": 0.0006428744873388375,
+    "social_comparison_signal": 4.513862844815965e-06,
+    "conflict_signal": 2.303900761936103e-06,
+    "threat_level": 0.06115763050630389,
+    "reward_negative": 0.01147849835651283,
+    "social_penalty": 1.0873866738694838e-07,
+    "loss_signal": 0.20897058615993128,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 4.515932055998212e-06,
+    "stagnation_signal": 0.08885752800490894,
+    "novelty_signal": 0.3779778200536284,
+    "motivation": 0.7847495725679621,
+    "confidence": 0.7983057157024324,
+    "impasse_signal": 0.35101678196838293,
+    "uncertainty": 0.2865438374087486,
+    "social_deficit": 0.012991102612606508,
+    "satisfaction_signal": 0.08004748417379536,
+    "risk_estimate": 0.008913566433169748
+  },
+  "habituation": {
+    "affiliation_signal:dream: in a labyrinth at": {
+      "count": 10,
+      "last_ts": "2026-10-08T00:22:51.924844+00:00"
+    }
+  },
+  "social_deficit": 0.0,
+  "_stability_signal_proxy": 0.338,
+  "_ne_proxy": 0.318,
+  "emotion_history": [
+    {
+      "exploration_drive": 0.5299201109253033,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.15251700801670712,
+      "reward_positive": 0.6055486437765576,
+      "expected_gain": 0.7793537354673314,
+      "low_affect_signal": 0.0008445016924138608,
+      "social_comparison_signal": 4.734931651700482e-06,
+      "conflict_signal": 2.417269749376874e-06,
+      "threat_level": 0.06949251483637978,
+      "reward_negative": 0.012768463637668882,
+      "social_penalty": 0.034699524440207755,
+      "loss_signal": 0.2695990055466748,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.737665662594795e-06,
+      "stagnation_signal": 0.08210084658568793,
+      "novelty_signal": 0.39974749324849995,
+      "motivation": 0.8924770808813747,
+      "confidence": 0.8156461965882104,
+      "impasse_signal": 0.5575623399026399,
+      "uncertainty": 0.2835513422915741,
+      "social_deficit": 0.013665868560594461,
+      "satisfaction_signal": 0.09997860001148337,
+      "risk_estimate": 0.025065344612412437
+    },
+    {
+      "exploration_drive": 0.5252923656057968,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.15146597181552188,
+      "reward_positive": 0.5992880603361034,
+      "expected_gain": 0.7648180795430868,
+      "low_affect_signal": 0.0008239189788780373,
+      "social_comparison_signal": 4.751737020452407e-06,
+      "conflict_signal": 2.4449111037622363e-06,
+      "threat_level": 0.0640957037507984,
+      "reward_negative": 0.012102246168246539,
+      "social_penalty": 0.0187998809878365,
+      "loss_signal": 0.24903871330136512,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.754402645023676e-06,
+      "stagnation_signal": 0.08360191705702,
+      "novelty_signal": 0.3954173483407082,
+      "motivation": 0.8113414938916899,
+      "confidence": 0.8021125252417001,
+      "impasse_signal": 0.4660532280255364,
+      "uncertainty": 0.26450548489750203,
+      "social_deficit": 0.013324041648344496,
+      "satisfaction_signal": 0.0979777029321513,
+      "risk_estimate": 0.021943090012394757
+    },
+    {
+      "exploration_drive": 0.5022338879673454,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.15043665147593438,
+      "reward_positive": 0.5954069454726995,
+      "expected_gain": 0.7509151183515618,
+      "low_affect_signal": 0.000803321706384896,
+      "social_comparison_signal": 4.63312260336855e-06,
+      "conflict_signal": 2.3362916092065383e-06,
+      "threat_level": 0.059420963079835756,
+      "reward_negative": 0.01151669037664245,
+      "social_penalty": 0.003300000119991238,
+      "loss_signal": 0.22989385809912133,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.6357215872789915e-06,
+      "stagnation_signal": 0.08292980827212552,
+      "novelty_signal": 0.3911826839240165,
+      "motivation": 0.7751517614816643,
+      "confidence": 0.7889128829705164,
+      "impasse_signal": 0.3789686344381557,
+      "uncertainty": 0.24912815659694434,
+      "social_deficit": 0.012990940374479312,
+      "satisfaction_signal": 0.09601814715390582,
+      "risk_estimate": 0.020966622131349012
+    },
+    {
+      "exploration_drive": 0.46954720651640985,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.14942711616799598,
+      "reward_positive": 0.599687071158535,
+      "expected_gain": 0.7728971040880935,
+      "low_affect_signal": 0.0007838752019874663,
+      "social_comparison_signal": 4.679534024012279e-06,
+      "conflict_signal": 2.3946032062803047e-06,
+      "threat_level": 0.07323656847920834,
+      "reward_negative": 0.012761324414188018,
+      "social_penalty": 1.6231280720369056e-07,
+      "loss_signal": 0.26207283024971706,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.6820679921947434e-06,
+      "stagnation_signal": 0.08345930781246554,
+      "novelty_signal": 0.394841708011556,
+      "motivation": 0.8890557030718452,
+      "confidence": 0.8293741187408863,
+      "impasse_signal": 0.36730184017759254,
+      "uncertainty": 0.25842767366849173,
+      "social_deficit": 0.01366594504572657,
+      "satisfaction_signal": 0.09409625688327701,
+      "risk_estimate": 0.020033282275397676
+    },
+    {
+      "exploration_drive": 0.5077167143065007,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16103798520545692,
+      "reward_positive": 0.5918101340513786,
+      "expected_gain": 0.7582888661620508,
+      "low_affect_signal": 0.0007647551254678532,
+      "social_comparison_signal": 4.684013041897178e-06,
+      "conflict_signal": 2.40953837247811e-06,
+      "threat_level": 0.06727760371721216,
+      "reward_negative": 0.012082637951403179,
+      "social_penalty": 1.2152281382404874e-07,
+      "loss_signal": 0.2415954544148364,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.686483630851423e-06,
+      "stagnation_signal": 0.055924169216098184,
+      "novelty_signal": 0.39061428667733805,
+      "motivation": 0.8262650683216521,
+      "confidence": 0.8125105059938132,
+      "impasse_signal": 0.3417749285859129,
+      "uncertainty": 0.25460069386489337,
+      "social_deficit": 0.013324134498984092,
+      "satisfaction_signal": 0.0922132111311046,
+      "risk_estimate": 0.01914156859758796
+    },
+    {
+      "exploration_drive": 0.5286459394945805,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.17241721622676157,
+      "reward_positive": 0.5874390588497762,
+      "expected_gain": 0.7443411643840152,
+      "low_affect_signal": 0.0007456423336712915,
+      "social_comparison_signal": 4.568462495281776e-06,
+      "conflict_signal": 2.3038640454580813e-06,
+      "threat_level": 0.06214763813080276,
+      "reward_negative": 0.011491123582109753,
+      "social_penalty": 1.5504875261473927e-09,
+      "loss_signal": 0.22256977787049625,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.57087131913868e-06,
+      "stagnation_signal": 0.055110241429827775,
+      "novelty_signal": 0.38647955371335413,
+      "motivation": 0.7871167047294866,
+      "confidence": 0.7983767758179248,
+      "impasse_signal": 0.31742252647119656,
+      "uncertainty": 0.2399409944466006,
+      "social_deficit": 0.012991029122266316,
+      "satisfaction_signal": 0.09036893289689002,
+      "risk_estimate": 0.01828976595918946
+    },
+    {
+      "exploration_drive": 0.580934074385908,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1709667731296873,
+      "reward_positive": 0.5924566417698377,
+      "expected_gain": 0.7661539462414705,
+      "low_affect_signal": 0.000728162701304585,
+      "social_comparison_signal": 4.74985062849244e-06,
+      "conflict_signal": 2.4970084166212716e-06,
+      "threat_level": 0.07559104579072487,
+      "reward_negative": 0.012719317276838034,
+      "social_penalty": 2.957314217888474e-07,
+      "loss_signal": 0.25489576346044107,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.752199162297343e-06,
+      "stagnation_signal": 0.07483266250771442,
+      "novelty_signal": 0.3901338119298804,
+      "motivation": 0.9013366857439611,
+      "confidence": 0.8323972065751496,
+      "impasse_signal": 0.40264418579082323,
+      "uncertainty": 0.29242393462334676,
+      "social_deficit": 0.013665849240154978,
+      "satisfaction_signal": 0.08855893519551712,
+      "risk_estimate": 0.017475354557576685
+    },
+    {
+      "exploration_drive": 0.6130224246360109,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16954687380674358,
+      "reward_positive": 0.5854462451682617,
+      "expected_gain": 0.7515100348430008,
+      "low_affect_signal": 0.0007102771803240698,
+      "social_comparison_signal": 4.712142462714647e-06,
+      "conflict_signal": 2.4669478452243327e-06,
+      "threat_level": 0.06938613794383429,
+      "reward_negative": 0.012037575641529963,
+      "social_penalty": 8.107564691273162e-08,
+      "loss_signal": 0.23450220112642534,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.71443226460956e-06,
+      "stagnation_signal": 0.07588955802119787,
+      "novelty_signal": 0.3860060112413315,
+      "motivation": 0.8343462186506424,
+      "confidence": 0.8141230365590983,
+      "impasse_signal": 0.36411479278036446,
+      "uncertainty": 0.27510855775626114,
+      "social_deficit": 0.013324094982313246,
+      "satisfaction_signal": 0.08678705285425661,
+      "risk_estimate": 0.0166975659020712
+    },
+    {
+      "exploration_drive": 0.6228936836971293,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16815593494445524,
+      "reward_positive": 0.5817253705448875,
+      "expected_gain": 0.7375512145359564,
+      "low_affect_signal": 0.0006925210502503546,
+      "social_comparison_signal": 4.5945421874181e-06,
+      "conflict_signal": 2.357371997882672e-06,
+      "threat_level": 0.0640605027727504,
+      "reward_negative": 0.011446048759236748,
+      "social_penalty": 2.0337971085027108e-10,
+      "loss_signal": 0.21559545677583303,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.596774744220234e-06,
+      "stagnation_signal": 0.0758694818239379,
+      "novelty_signal": 0.3819672599764544,
+      "motivation": 0.7929732434337161,
+      "confidence": 0.7993788790847187,
+      "impasse_signal": 0.3379429403923215,
+      "uncertainty": 0.25778980498829934,
+      "social_deficit": 0.012990992343544984,
+      "satisfaction_signal": 0.08505131006740037,
+      "risk_estimate": 0.014616823922152482
+    },
+    {
+      "exploration_drive": 0.6443589526385447,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16679178518901586,
+      "reward_positive": 0.5896667422777511,
+      "expected_gain": 0.7592776311834434,
+      "low_affect_signal": 0.0006758150665869185,
+      "social_comparison_signal": 4.633975865282467e-06,
+      "conflict_signal": 2.4068005571572574e-06,
+      "threat_level": 0.06967734523371764,
+      "reward_negative": 0.012684737872262252,
+      "social_penalty": 1.5436638372889888e-07,
+      "loss_signal": 0.24807449641739135,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.636152574562954e-06,
+      "stagnation_signal": 0.07469033773551635,
+      "novelty_signal": 0.38564551561769006,
+      "motivation": 0.8983440011999353,
+      "confidence": 0.8324234444875447,
+      "impasse_signal": 0.421204445897467,
+      "uncertainty": 0.3077938145582508,
+      "social_deficit": 0.013666006574498346,
+      "satisfaction_signal": 0.08334899721786204,
+      "risk_estimate": 0.012628480313323616
+    },
+    {
+      "exploration_drive": 0.6750153227474439,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16545521947572583,
+      "reward_positive": 0.5789437312458924,
+      "expected_gain": 0.7446210326306641,
+      "low_affect_signal": 0.0006593584485526538,
+      "social_comparison_signal": 4.629602917759964e-06,
+      "conflict_signal": 2.411199122905393e-06,
+      "threat_level": 0.06400589273291878,
+      "reward_negative": 0.012013080435910864,
+      "social_penalty": 1.1152683834558808e-07,
+      "loss_signal": 0.22776085685006134,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.6317251856391925e-06,
+      "stagnation_signal": 0.07595573202175217,
+      "novelty_signal": 0.3816100204628861,
+      "motivation": 0.8263569018292346,
+      "confidence": 0.8135718488088803,
+      "impasse_signal": 0.377135469884318,
+      "uncertainty": 0.29256006811085694,
+      "social_deficit": 0.013324207807801547,
+      "satisfaction_signal": 0.08168110629979118,
+      "risk_estimate": 0.01072869328432208
+    },
+    {
+      "exploration_drive": 0.6832427878732571,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.16414611365553677,
+      "reward_positive": 0.5698308308453602,
+      "expected_gain": 0.7306776192584122,
+      "low_affect_signal": 0.0006428753651353715,
+      "social_comparison_signal": 4.514085777842009e-06,
+      "conflict_signal": 2.304123744251749e-06,
+      "threat_level": 0.05914599457692245,
+      "reward_negative": 0.011428377486908342,
+      "social_penalty": 2.230337003972238e-10,
+      "loss_signal": 0.20897058149918296,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 4.516154988978106e-06,
+      "stagnation_signal": 0.07564564189892804,
+      "novelty_signal": 0.377662779000572,
+      "motivation": 0.784749566217087,
+      "confidence": 0.7983057079340411,
+      "impasse_signal": 0.34492677998253946,
+      "uncertainty": 0.2772423885829167,
+      "social_deficit": 0.01299110232286114,
+      "satisfaction_signal": 0.08004748238846669,
+      "risk_estimate": 0.008913566234367178
+    }
+  ],
+  "emotion_velocity": {
+    "exploration_drive": 0.0158,
+    "reflective": 0.0,
+    "analytical": 0.0,
+    "affiliation_signal": -0.0013,
+    "reward_positive": -0.0077,
+    "expected_gain": -0.014,
+    "low_affect_signal": -0.0,
+    "social_comparison_signal": -0.0,
+    "conflict_signal": 0.0,
+    "threat_level": -0.0074,
+    "reward_negative": -0.0007,
+    "social_penalty": -0.0,
+    "loss_signal": -0.0188,
+    "prediction_error_signal": 0.0,
+    "rejection_signal": -0.0,
+    "stagnation_signal": -0.0005,
+    "novelty_signal": -0.0043,
+    "motivation": -0.035,
+    "confidence": -0.0153,
+    "impasse_signal": -0.0434,
+    "uncertainty": -0.0071,
+    "social_deficit": -0.0003,
+    "satisfaction_signal": -0.0016,
+    "risk_estimate": -0.0018
+  },
+  "_pin_streaks": {
+    "uncertainty": 132,
+    "loss_signal": 93,
+    "expected_gain": 75,
+    "motivation": 63,
+    "confidence": 45,
+    "reward_positive": 36,
+    "impasse_signal": 21,
+    "exploration_drive": 8
+  },
+  "_saturation_streaks": {},
+  "_saturation_windows": {
+    "exploration_drive": {
+      "n": 351,
+      "hits": 0,
+      "last_bound_v": 0.6052104664498889
+    },
+    "reflective": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.35
+    },
+    "analytical": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.2
+    },
+    "affiliation_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.14187532523224466
+    },
+    "reward_positive": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.5121663877113247
+    },
+    "expected_gain": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.7296078013753443
+    },
+    "low_affect_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.052630735828417305
+    },
+    "social_comparison_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 8.280726806412789e-06
+    },
+    "conflict_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 5.15783100337898e-06
+    },
+    "threat_level": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.08363218072481782
+    },
+    "reward_negative": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.012284069184728106
+    },
+    "social_penalty": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 2.2770190640783452e-07
+    },
+    "loss_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.3480403633086241
+    },
+    "prediction_error_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.02
+    },
+    "rejection_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 8.454914151151906e-06
+    },
+    "stagnation_signal": {
+      "n": 352,
+      "hits": 0,
+      "last_bound_v": 0.07567263608937061
+    },
+    "novelty_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.4271676279153497
+    },
+    "motivation": {
+      "n": 351,
+      "hits": 0,
+      "last_bound_v": 0.8486780590886746
+    },
+    "confidence": {
+      "n": 351,
+      "hits": 0,
+      "last_bound_v": 0.7036552465462039
+    },
+    "impasse_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.2771715015406675
+    },
+    "uncertainty": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.46364201773817915
+    },
+    "social_deficit": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.013319221746768748
+    },
+    "satisfaction_signal": {
+      "n": 176,
+      "hits": 0,
+      "last_bound_v": 0.011295586435607942
+    },
+    "risk_estimate": {
+      "n": 328,
+      "hits": 0,
+      "last_bound_v": 0.023174050478997423
+    }
+  },
+  "confidence": 0.7835027227850789,
+  "exploration_drive": 0.6673922206008616,
+  "motivation": 0.7538383095666371,
+  "_allostatic_load": 0.0,
+  "_resource_setpoint": 0.15,
+  "hedonic_baselines": {
+    "exploration_drive": 0.5974,
+    "reflective": 0.345,
+    "analytical": 0.1951,
+    "affiliation_signal": 0.1091,
+    "reward_positive": 0.5261,
+    "expected_gain": 0.7603,
+    "low_affect_signal": 0.04,
+    "social_comparison_signal": 0.005,
+    "conflict_signal": 0.0133,
+    "threat_level": 0.0133,
+    "reward_negative": 0.0133,
+    "social_penalty": 0.0033,
+    "loss_signal": 0.2856,
+    "prediction_error_signal": 0.0249,
+    "rejection_signal": 0.005,
+    "stagnation_signal": 0.0779,
+    "novelty_signal": 0.3797,
+    "motivation": 0.7792,
+    "confidence": 0.7342,
+    "impasse_signal": 0.3107,
+    "uncertainty": 0.4138,
+    "social_deficit": 0.0,
+    "satisfaction_signal": 0.1011,
+    "risk_estimate": 0.0059
+  },
+  "smoothed_state": 0.302,
+  "reward_signal": 0.33,
+  "activation_level": 0.347,
+  "affect_quadrant": "active_positive",
+  "_affect_velocity_l1": 0.3038,
+  "recent_triggers": [
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-07T23:59:15.973485+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-07T23:59:15.973485+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:02:24.128953+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:02:24.128953+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:03:27.986271+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:03:27.986271+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:09:28.511972+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:09:28.511972+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:11:20.836754+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:11:20.836754+00:00"
+    },
+    {
+      "event": "[goal_blocked] 'Understand The Daily Stoic more deeply — round 20': step did not",
+      "emotion": "impasse_signal",
+      "intensity": 0.12,
+      "timestamp": "2026-10-08T00:15:05.467989+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:15:10.570371+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:15:10.570371+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:16:06.728608+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:16:06.728608+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:17:12.779351+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:17:12.779351+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:19:04.841601+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:19:04.841601+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:19:56.273363+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:19:56.273363+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:21:00.103033+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:21:00.103033+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:22:50.876295+00:00"
+    },
+    {
+      "event": "Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "emotion": "affiliation_signal",
+      "intensity": 0.013,
+      "timestamp": "2026-10-08T00:22:50.876295+00:00"
+    }
+  ],
+  "recent_emotion_causes": [
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-10-07T23:52:42.374791+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] 💔 Goal failed: Turn what I know about Answer: What is there about emergence in c",
+      "ts": "2026-10-07T23:57:39.308975+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-07T23:59:17.039656+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] [Chunk: 💔 Goal failed: Answer: What is there about this game-playing ai that my ",
+      "ts": "2026-10-08T00:00:32.050284+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-08T00:02:25.238915+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] 💔 Goal failed: Turn what I know about Answer: What is there about emergence in c",
+      "ts": "2026-10-08T00:03:02.859480+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.139,
+      "cause": "[appraisal] [Chunk: [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking ac",
+      "ts": "2026-10-08T00:08:17.031304+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] 💔 Goal failed: Turn what I know about Answer: What is there about emergence in c",
+      "ts": "2026-10-08T00:08:17.031304+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] [metacog/pattern] Goal avoidance: 7 consecutive cycles without taking action on ",
+      "ts": "2026-10-08T00:08:17.031304+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-08T00:09:29.211204+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.12,
+      "cause": "[appraisal] 🌓 Shadow question: What truth am I working hardest to avoid?",
+      "ts": "2026-10-08T00:11:18.079872+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-08T00:11:20.933170+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] [goal_disengaged] 'Turn what I know about Answer: What is there about emergence ",
+      "ts": "2026-10-08T00:11:52.118833+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.12,
+      "cause": "[goal_blocked] 'Understand The Daily Stoic more deeply — round 20': step did not take hold (attempt 1/3) — Establish int",
+      "ts": "2026-10-08T00:15:05.467989+00:00"
+    },
+    {
+      "emotion": "motivation",
+      "delta": 0.087,
+      "cause": "[appraisal] [goal_blocked] 'Understand The Daily Stoic more deeply — round 20': step did not",
+      "ts": "2026-10-08T00:15:06.023970+00:00"
+    },
+    {
+      "emotion": "motivation",
+      "delta": 0.087,
+      "cause": "[appraisal] [Chunk: [emotion/cause] A sense of being stuck grew because: [goal_blocked] 'Und",
+      "ts": "2026-10-08T00:15:11.330155+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-08T00:15:11.330155+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.155,
+      "cause": "[appraisal] Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity ",
+      "ts": "2026-10-08T00:19:06.656872+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.155,
+      "cause": "[appraisal] [goal_disengaged] 'Turn what I know about Answer: What is there about emergence ",
+      "ts": "2026-10-08T00:20:42.193333+00:00"
+    },
+    {
+      "emotion": "impasse_signal",
+      "delta": 0.156,
+      "cause": "[appraisal] [goal_disengaged] 'Turn what I know about Answer: What is there about emergence ",
+      "ts": "2026-10-08T00:22:26.314312+00:00"
+    }
+  ],
+  "setpoint_proximity": 0.8377,
+  "last_updated": "2026-10-08T00:23:14.961682+00:00",
+  "confidence_by_domain": {},
+  "_appraisal_habituation": {
+    "[chunk: [metacog/pattern] goal avoidance: # consecutive cycles without taking ac": {
+      "ts": 1791418994.962594,
+      "count": 255
+    },
+    "💔 goal failed: turn what i know about answer: what is there about emergence in c": {
+      "ts": 1791418994.962594,
+      "count": 176
+    },
+    "[metacog/pattern] goal avoidance: # consecutive cycles without taking action on ": {
+      "ts": 1791418994.962594,
+      "count": 126
+    },
+    "dream: in a labyrinth at dusk, a similar situation suggests (design, similarity ": {
+      "ts": 1791418971.9258418,
+      "count": 19
+    },
+    "🌓 shadow question: what truth am i working hardest to avoid?": {
+      "ts": 1791418946.317537,
+      "count": 1
+    },
+    "[goal_disengaged] 'turn what i know about answer: what is there about emergence ": {
+      "ts": 1791418949.955869,
+      "count": 3
+    }
+  },
+  "_flatline_streak": 0,
+  "emotion_osc_counts": {
+    "exploration_drive": 0,
+    "reflective": 0,
+    "analytical": 0,
+    "affiliation_signal": 0,
+    "reward_positive": 0,
+    "expected_gain": 0,
+    "low_affect_signal": 0,
+    "social_comparison_signal": 0,
+    "conflict_signal": 0,
+    "threat_level": 0,
+    "reward_negative": 0,
+    "social_penalty": 0,
+    "loss_signal": 0,
+    "prediction_error_signal": 0,
+    "rejection_signal": 0,
+    "stagnation_signal": 0,
+    "novelty_signal": 0,
+    "motivation": 0,
+    "confidence": 0,
+    "impasse_signal": 0,
+    "uncertainty": 0,
+    "social_deficit": 0,
+    "satisfaction_signal": 0,
+    "risk_estimate": 0
+  }
+}

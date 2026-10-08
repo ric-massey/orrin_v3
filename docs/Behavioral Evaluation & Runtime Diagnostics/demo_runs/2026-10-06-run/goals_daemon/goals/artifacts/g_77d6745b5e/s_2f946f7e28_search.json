@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "this game-playing ai recent research",
+    "this game-playing ai common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/AI_alignment",
+    "https://en.wikipedia.org/wiki/15.ai",
+    "https://en.wikipedia.org/wiki/Generative_AI",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Meta_AI",
+    "https://en.wikipedia.org/wiki/Boys%27_love",
+    "https://en.wikipedia.org/wiki/Machine_learning",
+    "https://en.wikipedia.org/wiki/Roko%27s_basilisk",
+    "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence"
+  ],
+  "results": [
+    {
+      "title": "AI alignment",
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "snippet": "deleting their opponent. Some alignment <span class=\"searchmatch\">researchers</span> aim to help humans detect specification <span class=\"searchmatch\">gaming</span> and steer <span class=\"searchmatch\">AI</span> systems toward carefully specified objectives",
+      "query": "this game-playing ai recent research"
+    },
+    {
+      "title": "15.ai",
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "snippet": "15.<span class=\"searchmatch\">ai</span> was a free non-commercial web application and <span class=\"searchmatch\">research</span> project that used artificial intelligence to generate text-to-speech voices of fictional",
+      "query": "this game-playing ai recent research"
+    },
+    {
+      "title": "Generative AI",
+      "url": "https://en.wikipedia.org/wiki/Generative_AI",
+      "snippet": "Generative artificial intelligence (Gen<span class=\"searchmatch\">AI</span>) is a subfield of artificial intelligence (<span class=\"searchmatch\">AI</span>) that uses generative models to generate text, images, videos,",
+      "query": "this game-playing ai recent research"
+    },
+    {
+      "title": "Artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "snippet": "billions of websites. Modern <span class=\"searchmatch\">AI</span> can also learn about a domain by running experiments (as when AlphaZero learns <span class=\"searchmatch\">game</span> strategy by <span class=\"searchmatch\">playing</span> against itself). Machine",
+      "query": "this game-playing ai recent research"
+    },
+    {
+      "title": "Meta AI",
+      "url": "https://en.wikipedia.org/wiki/Meta_AI",
+      "snippet": "Meta <span class=\"searchmatch\">AI</span> is a <span class=\"searchmatch\">research</span> division of Meta (formerly Facebook) that develops artificial intelligence and augmented reality technologies. It has workspaces",
+      "query": "this game-playing ai recent research"
+    },
+    {
+      "title": "AI alignment",
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "snippet": "because Internet text includes such things as <span class=\"searchmatch\">misconceptions</span>, incorrect medical advice, and conspiracy theories. <span class=\"searchmatch\">AI</span> systems trained on such data therefore learn",
+      "query": "this game-playing ai common misconceptions"
+    },
+    {
+      "title": "Boys' love",
+      "url": "https://en.wikipedia.org/wiki/Boys%27_love",
+      "snippet": "critic Akiko Mizoguchi saw shōnen-<span class=\"searchmatch\">ai</span> as <span class=\"searchmatch\">playing</span> a role in how she herself had become a lesbian. Dru Pagliassotti sees <span class=\"searchmatch\">this</span> and the yaoi ronsō as indicating",
+      "query": "this game-playing ai common misconceptions"
+    },
+    {
+      "title": "Machine learning",
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "snippet": "decision. By refining the mental models of users of <span class=\"searchmatch\">AI</span>-powered systems and dismantling their <span class=\"searchmatch\">misconceptions</span>, XAI promises to help users perform more effectively",
+      "query": "this game-playing ai common misconceptions"
+    },
+    {
+      "title": "Roko's basilisk",
+      "url": "https://en.wikipedia.org/wiki/Roko%27s_basilisk",
+      "snippet": "such an <span class=\"searchmatch\">AI</span>. Roko used a number of concepts that Yudkowsky himself championed, such as timeless decision theory, along with ideas rooted in <span class=\"searchmatch\">game</span> theory",
+      "query": "this game-playing ai common misconceptions"
+    },
+    {
+      "title": "Existential risk from artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence",
+      "snippet": "recursive cycle of <span class=\"searchmatch\">AI</span> self-improvement could boost <span class=\"searchmatch\">AI</span> capabilities too quickly for safety measures to be implemented, especially if <span class=\"searchmatch\">AI</span> companies are racing",
+      "query": "this game-playing ai common misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T05:01:27.016582+00:00"
+}

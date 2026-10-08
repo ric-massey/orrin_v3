@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "mathematics relationship to other fields",
+    "mathematics key figures and works"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Fields_Medal",
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+    "https://en.wikipedia.org/wiki/Mathematical_sciences",
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/Hidden_Figures",
+    "https://en.wikipedia.org/wiki/Mathematics_and_art",
+    "https://en.wikipedia.org/wiki/Philosophical_Library",
+    "https://en.wikipedia.org/wiki/History_of_mathematics"
+  ],
+  "results": [
+    {
+      "title": "Fields Medal",
+      "url": "https://en.wikipedia.org/wiki/Fields_Medal",
+      "snippet": "Charles <span class=\"searchmatch\">Fields</span>. Its purpose is <span class=\"searchmatch\">to</span> give recognition and support <span class=\"searchmatch\">to</span> younger <span class=\"searchmatch\">mathematical</span> researchers who have made major contributions <span class=\"searchmatch\">to</span> the <span class=\"searchmatch\">field</span> of mathematics",
+      "query": "mathematics relationship to other fields"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a <span class=\"searchmatch\">field</span> of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, and probabilities. It uses logical",
+      "query": "mathematics relationship to other fields"
+    },
+    {
+      "title": "Relationship between mathematics and physics",
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "snippet": "The <span class=\"searchmatch\">relationship</span> between <span class=\"searchmatch\">mathematics</span> and physics has been a subject of study of philosophers, mathematicians and physicists since antiquity, and more recently",
+      "query": "mathematics relationship to other fields"
+    },
+    {
+      "title": "Mathematical sciences",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_sciences",
+      "snippet": "structures described by formal systems <span class=\"searchmatch\">Relationship</span> between <span class=\"searchmatch\">mathematics</span> and physics – <span class=\"searchmatch\">Relationship</span> between <span class=\"searchmatch\">fields</span> of study Stigler, Stephen M. (1986). The",
+      "query": "mathematics relationship to other fields"
+    },
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "Philosophy of <span class=\"searchmatch\">mathematics</span> is the branch of philosophy that deals with the nature of <span class=\"searchmatch\">mathematics</span> and its <span class=\"searchmatch\">relationship</span> <span class=\"searchmatch\">to</span> <span class=\"searchmatch\">other</span> areas of philosophy, particularly",
+      "query": "mathematics relationship to other fields"
+    },
+    {
+      "title": "Hidden Figures",
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "snippet": "Hidden <span class=\"searchmatch\">Figures</span> is a 2016 American biographical drama film co-produced <span class=\"searchmatch\">and</span> directed by Theodore Melfi, who co-wrote the screenplay with Allison Schroeder",
+      "query": "mathematics key figures and works"
+    },
+    {
+      "title": "Mathematics and art",
+      "url": "https://en.wikipedia.org/wiki/Mathematics_and_art",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> <span class=\"searchmatch\">and</span> art are related in a variety of ways. <span class=\"searchmatch\">Mathematics</span> has itself been described as an art motivated by beauty. <span class=\"searchmatch\">Mathematics</span> can be discerned",
+      "query": "mathematics key figures and works"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a field of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, <span class=\"searchmatch\">and</span> probabilities. It uses logical",
+      "query": "mathematics key figures and works"
+    },
+    {
+      "title": "Philosophical Library",
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Library",
+      "snippet": "in 1941. Philosophical Library has published <span class=\"searchmatch\">works</span> for twenty-two Nobel Prize winners <span class=\"searchmatch\">and</span> other <span class=\"searchmatch\">key</span> <span class=\"searchmatch\">figures</span>, including Einstein, Jean-Paul Sartre, Simone",
+      "query": "mathematics key figures and works"
+    },
+    {
+      "title": "History of mathematics",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "snippet": "of <span class=\"searchmatch\">mathematics</span> deals with the origin of discoveries in <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">mathematical</span> methods <span class=\"searchmatch\">and</span> notation of the past. Before the modern age <span class=\"searchmatch\">and</span> worldwide",
+      "query": "mathematics key figures and works"
+    }
+  ],
+  "ts": "2026-10-06T22:32:58.259796+00:00"
+}

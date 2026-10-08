@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Origin_of_water_on_Earth",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Institute_for_Recent_History_of_Serbia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_03.txt",
+      "chars": 4989
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_Chad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_06.txt",
+      "chars": 3397
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T00:52:47.556836+00:00"
+}

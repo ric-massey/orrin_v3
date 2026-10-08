@@ -1,0 +1,8 @@
+What I learned about Leave Ric a note about foundations of quantum mechanics:
+
+- [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.
+- [Chunk: 💔 Goal failed: Understand foundations of quantum mechanics more deeply — round 2. ValueError: no URLs to fetch / 💔 Goal failed: Understand world a world more deeply — round 3.]
+- [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on it are missing?'. I'm thinking but not doing.
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.
+- [Chunk: [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0. / [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.]

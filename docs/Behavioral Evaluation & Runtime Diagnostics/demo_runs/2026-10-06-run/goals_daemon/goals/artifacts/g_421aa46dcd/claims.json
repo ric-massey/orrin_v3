@@ -1,0 +1,137 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "encyclopedia Structured system of communication This article",
+    "about human language in general",
+    "tactile writing system Language",
+    "structured system of communication that consists of grammar and vocabulary",
+    "Human language",
+    "characterized by its cultural and historical diversity",
+    "The use of human language relies on social convention and",
+    "acquired through learning",
+    "languages remaining",
+    "around 7",
+    "Natural languages",
+    "spoken",
+    "human language",
+    "modality -independent",
+    "The scientific study of language",
+    "called linguistics"
+  ],
+  "relations": [
+    {
+      "subject": "encyclopedia Structured system of communication This article",
+      "predicate": "is",
+      "object": "about human language in general",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "tactile writing system Language",
+      "predicate": "is a",
+      "object": "structured system of communication that consists of grammar and vocabulary",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "Human language",
+      "predicate": "is",
+      "object": "characterized by its cultural and historical diversity",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "The use of human language relies on social convention and",
+      "predicate": "is",
+      "object": "acquired through learning",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "languages remaining",
+      "predicate": "was",
+      "object": "around 7",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "Natural languages",
+      "predicate": "are",
+      "object": "spoken",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "human language",
+      "predicate": "is",
+      "object": "modality -independent",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "The scientific study of language",
+      "predicate": "is",
+      "object": "called linguistics",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "argued that philosophy",
+      "predicate": "is",
+      "object": "really the study of language itself",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "Language",
+      "predicate": "is",
+      "object": "processed in many different locations in the human brain",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "Language and culture",
+      "predicate": "are",
+      "object": "codependent",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "subject": "group of languages that descend from a common ancestor",
+      "predicate": "is",
+      "object": "known as a language family",
+      "source": "https://en.wikipedia.org/wiki/Language"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Language_Problems_and_Language_Planning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Anatomy_of_Criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Antipositivism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_Peloponnesian_War"
+    }
+  ],
+  "ts": "2026-10-07T00:17:32.834063+00:00"
+}

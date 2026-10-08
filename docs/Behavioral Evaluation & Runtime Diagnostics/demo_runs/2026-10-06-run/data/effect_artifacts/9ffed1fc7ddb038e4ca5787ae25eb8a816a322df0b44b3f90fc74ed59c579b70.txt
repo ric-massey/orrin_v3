@@ -1,0 +1,83 @@
+{
+  "question": "What is there about the west that my earlier notes on it are missing?",
+  "subject_terms": [
+    "west"
+  ],
+  "entities": [
+    "West and Censori",
+    "married in a private ceremony in December 2022",
+    "Rose West",
+    "currently an inmate at New Hall Prison in Flockton",
+    "born Rosemary Pauline Letts",
+    "West",
+    "born in Atlanta and raised in Chicago",
+    "West cultural debate",
+    "debate on the similarities and differences"
+  ],
+  "relations": [
+    {
+      "subject": "West and Censori",
+      "predicate": "were",
+      "object": "married in a private ceremony in December 2022",
+      "source": "my prior claims [g_de06f5c544]"
+    },
+    {
+      "subject": "Rose West",
+      "predicate": "is",
+      "object": "currently an inmate at New Hall Prison in Flockton",
+      "source": "https://en.wikipedia.org/wiki/Rose_West"
+    },
+    {
+      "subject": "Rose West",
+      "predicate": "was",
+      "object": "born Rosemary Pauline Letts",
+      "source": "https://en.wikipedia.org/wiki/Rose_West"
+    },
+    {
+      "subject": "West",
+      "predicate": "was",
+      "object": "born in Atlanta and raised in Chicago",
+      "source": "https://en.wikipedia.org/wiki/Kanye_West"
+    },
+    {
+      "subject": "West cultural debate",
+      "predicate": "is a",
+      "object": "debate on the similarities and differences",
+      "source": "https://en.wikipedia.org/wiki/East%E2%80%93West_cultural_debate"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_de06f5c544]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Modern_Problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wicked_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Rose_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kanye_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Levent_Alp%C3%B6ge"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/East%E2%80%93West_cultural_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate"
+    }
+  ],
+  "ts": "2026-10-07T04:16:17.955270+00:00"
+}

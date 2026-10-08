@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "world a world recent research",
+    "world a world common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/BBC_World_Service",
+    "https://en.wikipedia.org/wiki/World%27s_fair",
+    "https://en.wikipedia.org/wiki/FIFA_World_Cup",
+    "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+    "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+    "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS"
+  ],
+  "results": [
+    {
+      "title": "BBC World Service",
+      "url": "https://en.wikipedia.org/wiki/BBC_World_Service",
+      "snippet": "The BBC <span class=\"searchmatch\">World</span> Service is <span class=\"searchmatch\">a</span> British public service broadcaster owned and operated by the BBC. It is the <span class=\"searchmatch\">world&#039;s</span> largest external broadcaster in terms of",
+      "query": "world a world recent research"
+    },
+    {
+      "title": "World's fair",
+      "url": "https://en.wikipedia.org/wiki/World%27s_fair",
+      "snippet": "the most <span class=\"searchmatch\">recent</span> <span class=\"searchmatch\">World</span> Expo in 2025, while Astana, Kazakhstan held the most <span class=\"searchmatch\">recent</span> Specialised Expo in 2017, and Doha, Qatar held the most <span class=\"searchmatch\">recent</span> Horticultural",
+      "query": "world a world recent research"
+    },
+    {
+      "title": "FIFA World Cup",
+      "url": "https://en.wikipedia.org/wiki/FIFA_World_Cup",
+      "snippet": "the other seeded teams selected using <span class=\"searchmatch\">a</span> formula based on the FIFA <span class=\"searchmatch\">World</span> Rankings or performances in <span class=\"searchmatch\">recent</span> <span class=\"searchmatch\">World</span> Cups, and drawn to separate groups. The",
+      "query": "world a world recent research"
+    },
+    {
+      "title": "Wonders of the World",
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "snippet": "Underwater <span class=\"searchmatch\">World</span>&quot; was drawn up by CEDAM International, an American-based non-profit group for divers that is dedicated to ocean preservation and <span class=\"searchmatch\">research</span>. In",
+      "query": "world a world recent research"
+    },
+    {
+      "title": "2026 FIFA World Cup",
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+      "snippet": "microgravity. According to NASA, the <span class=\"searchmatch\">research</span> contributed to the development and evaluation of technologies used in the 2026 FIFA <span class=\"searchmatch\">World</span> Cup official match ball. The",
+      "query": "world a world recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as <span class=\"searchmatch\">a</span> correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world a world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about history",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as <span class=\"searchmatch\">a</span> correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world a world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as <span class=\"searchmatch\">a</span> correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world a world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about the Middle Ages",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "snippet": "increasingly focus on writing literature addressing some of the primary <span class=\"searchmatch\">misconceptions</span> about medieval history; and other historians take the alternative approach",
+      "query": "world a world common misconceptions"
+    },
+    {
+      "title": "Misconceptions about HIV/AIDS",
+      "url": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS",
+      "snippet": "deny <span class=\"searchmatch\">a</span> causative relationship between HIV infection and the development of AIDS. Below is <span class=\"searchmatch\">a</span> list and explanations of some <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> and their",
+      "query": "world a world common misconceptions"
+    }
+  ],
+  "ts": "2026-10-06T21:12:43.081222+00:00"
+}

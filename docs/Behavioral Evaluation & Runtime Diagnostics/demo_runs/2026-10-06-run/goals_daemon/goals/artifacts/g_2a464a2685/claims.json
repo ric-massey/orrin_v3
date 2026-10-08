@@ -1,0 +1,132 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "broad discipline encompassing many branches",
+    "related to many fields",
+    "history",
+    "study of the past with the main focus on the human past",
+    "the past events themselves",
+    "what happened rather than the academic field studying what happened",
+    "representation of the past in the form of a history text",
+    "History texts",
+    "cultural products involving active interpretation and reconstruction",
+    "Historians debate whether history",
+    "social science or forms part of the humanities",
+    "and",
+    "considered key images in the history of photography",
+    "Period between prehistory and the medieval era This article"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History",
+      "predicate": "is a",
+      "object": "broad discipline encompassing many branches",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History",
+      "predicate": "is",
+      "object": "related to many fields",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is the",
+      "object": "study of the past with the main focus on the human past",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "refers to",
+      "object": "the past events themselves",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is",
+      "object": "what happened rather than the academic field studying what happened",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "history",
+      "predicate": "is a",
+      "object": "representation of the past in the form of a history text",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "History texts",
+      "predicate": "are",
+      "object": "cultural products involving active interpretation and reconstruction",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "Historians debate whether history",
+      "predicate": "is a",
+      "object": "social science or forms part of the humanities",
+      "source": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "subject": "and",
+      "predicate": "are",
+      "object": "considered key images in the history of photography",
+      "source": "https://en.wikipedia.org/wiki/List_of_photographs_considered_the_most_important"
+    },
+    {
+      "subject": "Period between prehistory and the medieval era This article",
+      "predicate": "is",
+      "object": "about history from the beginning of writing",
+      "source": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "subject": "The span of recorded history",
+      "predicate": "is",
+      "object": "roughly 5",
+      "source": "https://en.wikipedia.org/wiki/Ancient_history"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/HIStory%3A_Past%2C_Present_and_Future%2C_Book_I"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Arsenal_F.C."
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_photographs_considered_the_most_important"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Secret_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Rosalind_Eleazar"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Playwright"
+    }
+  ],
+  "ts": "2026-10-06T20:01:21.605945+00:00"
+}

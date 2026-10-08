@@ -1,0 +1,10 @@
+What I learned about Reflect on my open question: What is there about evolutionary biology that my earlier notes on it are missing:
+
+- [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what.
+- [metacog/pattern] Goal avoidance: 50 consecutive cycles without taking action on 'Make things — produce work that didn't exist before'. I'm thinking but not doing.
+- [Chunk: [will] I resolve to: pursue: Reflect on my open question: What is there about evolutionary biology that my earlier… / [will] I resolve to: pursue: Turn what I know about Answer: What is there about evolutionary biology that my earlier…]
+- [Chunk: [metacog/pattern] Goal avoidance: 45 consecutive cycles without taking action on 'Characterize what makes my CPU load… / [metacog/pattern] Goal avoidance: 42 consecutive cycles without taking action on 'Characterize what makes my CPU load…]
+- [Incubation] While sitting with: '[will] I resolve to: pursue: Turn what I know about Answer: What is there about evolutionary biology that my earlier not', I notice a connection to something from memory: 'Summary of faded memories:
+- Summary of faded memories:
+- [intrinsic_goal] 'Turn what I know about Answer: What is there'. These may be related in ways I haven't consciously examined.
+- [Chunk: 💔 Goal failed: Characterize what makes my memory use (RSS) climb. / [emotion/cause] A sense of rejection grew because: [Chunk: 💔 Goal failed: Characterize what makes my CPU load climb.]

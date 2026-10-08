@@ -1,0 +1,42 @@
+{
+  "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alternate_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Counterfactual_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If..._Captain_Carter_Were_the_First_Avenger%3F"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Application_software"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/REST"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/API"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mobile_app"
+    }
+  ],
+  "ts": "2026-10-07T07:16:12.887380+00:00"
+}

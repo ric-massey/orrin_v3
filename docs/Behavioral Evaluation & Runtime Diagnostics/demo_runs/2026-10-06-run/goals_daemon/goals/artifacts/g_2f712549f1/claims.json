@@ -1,0 +1,134 @@
+{
+  "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology",
+    "cooperation"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "behaviors or traits that occur universally in all cultures",
+    "good candidates for evolutionary adaptations",
+    "Evolutionary psychology",
+    "long-forestalled scientific attempt to assemble out of the disjointed",
+    "Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection",
+    "Academic literature regarding forms of cooperation that",
+    "not easily explained in traditional game theory",
+    "As cooperation became general the non-provocable strategies",
+    "exploited and eventually eliminated"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_c7640cf627]"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Academic literature regarding forms of cooperation that",
+      "predicate": "are",
+      "object": "not easily explained in traditional game theory",
+      "source": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "subject": "As cooperation became general the non-provocable strategies",
+      "predicate": "were",
+      "object": "exploited and eventually eliminated",
+      "source": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "subject": "The diversity of taxa that exhibits cooperation",
+      "predicate": "is",
+      "object": "quite large",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "assert that cooperation",
+      "predicate": "is a",
+      "object": "more complex process",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "One specific form of cooperation in animals",
+      "predicate": "is",
+      "object": "kin selection",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "Change in the heritable traits of populations This article",
+      "predicate": "is",
+      "object": "about evolution in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_c7640cf627]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Outline_of_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sociobiology"
+    }
+  ],
+  "ts": "2026-10-07T22:30:12.803894+00:00"
+}

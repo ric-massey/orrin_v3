@@ -1,0 +1,88 @@
+{
+  "question": "What is there about round the sun that my earlier notes on it are missing?",
+  "subject_terms": [
+    "round",
+    "sun"
+  ],
+  "entities": [
+    "Round the Sun",
+    "third album by American guitarist Leo Kottke",
+    "total of 11 rounds",
+    "to be played",
+    "teams",
+    "permitted one reserve player who could be substituted between rounds",
+    "The scores from each game",
+    "then summed together to determine which team would win the round",
+    "Winning a round",
+    "worth two match points"
+  ],
+  "relations": [
+    {
+      "subject": "Round the Sun",
+      "predicate": "is the",
+      "object": "third album by American guitarist Leo Kottke",
+      "source": "my prior claims [g_6843383ebe]"
+    },
+    {
+      "subject": "total of 11 rounds",
+      "predicate": "were",
+      "object": "to be played",
+      "source": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad"
+    },
+    {
+      "subject": "teams",
+      "predicate": "were",
+      "object": "permitted one reserve player who could be substituted between rounds",
+      "source": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad"
+    },
+    {
+      "subject": "The scores from each game",
+      "predicate": "were",
+      "object": "then summed together to determine which team would win the round",
+      "source": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad"
+    },
+    {
+      "subject": "Winning a round",
+      "predicate": "was",
+      "object": "worth two match points",
+      "source": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_6843383ebe]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sun"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexandra_Eala"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Chiropractic_controversy_and_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Isaac_Heeney"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stephen_Hunter"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2010_United_Kingdom_general_election_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jesse_Hogan"
+    }
+  ],
+  "ts": "2026-10-07T10:38:02.542354+00:00"
+}

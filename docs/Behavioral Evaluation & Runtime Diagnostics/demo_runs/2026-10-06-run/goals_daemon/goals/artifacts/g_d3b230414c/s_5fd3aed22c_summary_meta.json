@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_d3b230414c",
+    "title": "Understand Once More Round more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Once More Round open problems",
+        "Once More Round criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_6843383ebe",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T14:45:00.725024Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T14:45:00.725029Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T14:45:00.725031Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T14:45:00.725032Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T14:45:00.725033Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on Once More Round was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about Once More Round was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T14:45:00.725065Z",
+      "question": "What is there about Once More Round that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 14:45:00.727851+00:00",
+    "updated_at": "2026-10-07 14:45:02.031843+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_9d3ddcd035]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Medvedev%E2%80%93Tsitsipas_rivalry",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Open_bolt",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kremer_K8_Spyder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Numberjacks",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lincoln%E2%80%93Douglas_debate_format",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Policy_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_policy_debate_terms",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d3b230414c/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T14:45:08.137204+00:00"
+}

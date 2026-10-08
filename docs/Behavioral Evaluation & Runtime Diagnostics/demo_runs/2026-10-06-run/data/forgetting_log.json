@@ -1,0 +1,121 @@
+[
+  {
+    "decayed": 3,
+    "pruned": 0,
+    "retired": 1,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T19:41:16.308128+00:00"
+  },
+  {
+    "decayed": 3,
+    "pruned": 0,
+    "retired": 17,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T20:28:55.890272+00:00"
+  },
+  {
+    "decayed": 3,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T20:43:22.456314+00:00"
+  },
+  {
+    "decayed": 3,
+    "pruned": 0,
+    "retired": 2,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:01:18.375547+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 1,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:04:26.244508+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:10:34.058440+00:00"
+  },
+  {
+    "decayed": 0,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:20:16.091363+00:00"
+  },
+  {
+    "decayed": 0,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:32:31.944728+00:00"
+  },
+  {
+    "decayed": 0,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-06T21:46:13.975914+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T00:46:33.233472+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T03:47:19.060900+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 3,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T06:47:40.684657+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 1,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T09:49:01.093171+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T12:50:24.919354+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 1,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T15:50:46.626048+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T18:51:48.920517+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 28,
+    "timestamp": "2026-10-07T21:53:16.269993+00:00"
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "queries": [
+    "evolutionary biology history and development",
+    "evolutionary biology applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Evolutionary_biology",
+    "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+    "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29",
+    "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+    "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+    "https://en.wikipedia.org/wiki/Biology",
+    "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+  ],
+  "results": [
+    {
+      "title": "Evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">biology</span> is a subfield of <span class=\"searchmatch\">biology</span> that analyzes the four mechanisms of evolution: natural selection, mutation, genetic drift, <span class=\"searchmatch\">and</span> gene flow",
+      "query": "evolutionary biology history and development"
+    },
+    {
+      "title": "Evolutionary developmental biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> developmental <span class=\"searchmatch\">biology</span>, informally known as evo-devo, is a field of biological research that compares the developmental processes of different",
+      "query": "evolutionary biology history and development"
+    },
+    {
+      "title": "Contingency (evolutionary biology)",
+      "url": "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29",
+      "snippet": "In <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, contingency describes how the outcome of evolution may be affected by the <span class=\"searchmatch\">history</span> of a particular lineage. Evolution is a historical",
+      "query": "evolutionary biology history and development"
+    },
+    {
+      "title": "Glossary of genetics and evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "snippet": "of genetics <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> is a list of definitions of terms <span class=\"searchmatch\">and</span> concepts used in the study of genetics <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, as well as",
+      "query": "evolutionary biology history and development"
+    },
+    {
+      "title": "History of evolutionary thought",
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "snippet": "hardware <span class=\"searchmatch\">and</span> software allow the testing <span class=\"searchmatch\">and</span> extrapolation of increasingly advanced <span class=\"searchmatch\">evolutionary</span> models <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">development</span> of the field of systems <span class=\"searchmatch\">biology</span>. One",
+      "query": "evolutionary biology history and development"
+    },
+    {
+      "title": "Evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">biology</span> is a subfield of <span class=\"searchmatch\">biology</span> that analyzes the four mechanisms of evolution: natural selection, mutation, genetic drift, <span class=\"searchmatch\">and</span> gene flow",
+      "query": "evolutionary biology applications and examples"
+    },
+    {
+      "title": "Glossary of genetics and evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "snippet": "of genetics <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> is a list of definitions of terms <span class=\"searchmatch\">and</span> concepts used in the study of genetics <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, as well as",
+      "query": "evolutionary biology applications and examples"
+    },
+    {
+      "title": "Biology",
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "snippet": "population, <span class=\"searchmatch\">and</span> ecosystems. Subdisciplines include molecular <span class=\"searchmatch\">biology</span>, physiology, ecology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, developmental <span class=\"searchmatch\">biology</span>, <span class=\"searchmatch\">and</span> systematics",
+      "query": "evolutionary biology applications and examples"
+    },
+    {
+      "title": "Extended evolutionary synthesis",
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "snippet": "the earlier modern synthesis of <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> that took place between 1918 <span class=\"searchmatch\">and</span> 1942. The extended <span class=\"searchmatch\">evolutionary</span> synthesis was called for in the",
+      "query": "evolutionary biology applications and examples"
+    },
+    {
+      "title": "History of evolutionary thought",
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "snippet": "that encompassed much of <span class=\"searchmatch\">biology</span>—the modern synthesis. Following the establishment of <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, studies of mutation <span class=\"searchmatch\">and</span> genetic diversity in natural",
+      "query": "evolutionary biology applications and examples"
+    }
+  ],
+  "ts": "2026-10-06T23:15:48.744730+00:00"
+}

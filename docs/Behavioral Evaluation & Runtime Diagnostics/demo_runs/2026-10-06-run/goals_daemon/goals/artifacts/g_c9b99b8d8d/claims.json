@@ -1,0 +1,42 @@
+{
+  "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Norway_Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Varieties_of_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_socialism"
+    }
+  ],
+  "ts": "2026-10-07T06:55:49.221575+00:00"
+}

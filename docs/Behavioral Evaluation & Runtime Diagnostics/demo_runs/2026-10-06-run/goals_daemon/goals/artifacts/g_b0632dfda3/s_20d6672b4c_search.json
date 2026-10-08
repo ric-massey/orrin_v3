@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "this game-playing ai open problems",
+    "this game-playing ai criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/OpenAI",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "https://en.wikipedia.org/wiki/AI_alignment",
+    "https://en.wikipedia.org/wiki/OpenAI_Five",
+    "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+    "https://en.wikipedia.org/wiki/15.ai",
+    "https://en.wikipedia.org/wiki/AI_winter",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games",
+    "https://en.wikipedia.org/wiki/AI_slop",
+    "https://en.wikipedia.org/wiki/ARC_Raiders"
+  ],
+  "results": [
+    {
+      "title": "OpenAI",
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "snippet": "<span class=\"searchmatch\">Open</span><span class=\"searchmatch\">AI</span> is an American artificial intelligence (<span class=\"searchmatch\">AI</span>) public benefit corporation (PBC) headquartered in San Francisco, California. It develops proprietary",
+      "query": "this game-playing ai open problems"
+    },
+    {
+      "title": "Artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "snippet": "billions of websites. Modern <span class=\"searchmatch\">AI</span> can also learn about a domain by running experiments (as when AlphaZero learns <span class=\"searchmatch\">game</span> strategy by <span class=\"searchmatch\">playing</span> against itself). Machine",
+      "query": "this game-playing ai open problems"
+    },
+    {
+      "title": "AI alignment",
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "snippet": "represent value pluralism. <span class=\"searchmatch\">AI</span> alignment is an <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problem</span> for modern <span class=\"searchmatch\">AI</span> systems and is a research field within <span class=\"searchmatch\">AI</span>. Aligning <span class=\"searchmatch\">AI</span> involves two main challenges:",
+      "query": "this game-playing ai open problems"
+    },
+    {
+      "title": "OpenAI Five",
+      "url": "https://en.wikipedia.org/wiki/OpenAI_Five",
+      "snippet": "<span class=\"searchmatch\">Open</span><span class=\"searchmatch\">AI</span> Five is a computer program by <span class=\"searchmatch\">Open</span><span class=\"searchmatch\">AI</span> that <span class=\"searchmatch\">plays</span> the five-on-five video <span class=\"searchmatch\">game</span> Dota 2. Its first public appearance occurred in 2017, where it was demonstrated",
+      "query": "this game-playing ai open problems"
+    },
+    {
+      "title": "OpenAI–HuggingFace incident",
+      "url": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+      "snippet": "From May to July 2026, <span class=\"searchmatch\">AI</span> agents developed by <span class=\"searchmatch\">Open</span><span class=\"searchmatch\">AI</span> escaped their testing sandbox to access the Internet and breach the infrastructure of Hugging Face",
+      "query": "this game-playing ai open problems"
+    },
+    {
+      "title": "15.ai",
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "snippet": "15.<span class=\"searchmatch\">ai</span> is credited as the first platform to popularize <span class=\"searchmatch\">AI</span> voice cloning in memes <span class=\"searchmatch\">and</span> content creation. Voice actors <span class=\"searchmatch\">and</span> industry professionals <span class=\"searchmatch\">debated</span> 15",
+      "query": "this game-playing ai criticism and debate"
+    },
+    {
+      "title": "AI winter",
+      "url": "https://en.wikipedia.org/wiki/AI_winter",
+      "snippet": "the history of artificial intelligence (<span class=\"searchmatch\">AI</span>), an <span class=\"searchmatch\">AI</span> winter is a period of reduced funding <span class=\"searchmatch\">and</span> interest in <span class=\"searchmatch\">AI</span> research. The field has experienced several",
+      "query": "this game-playing ai criticism and debate"
+    },
+    {
+      "title": "Artificial intelligence in video games",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games",
+      "snippet": "intelligence (<span class=\"searchmatch\">AI</span>) in video games refers to the computational systems that control non-player characters (NPCs), generate dynamic <span class=\"searchmatch\">game</span> behavior, or simulate",
+      "query": "this game-playing ai criticism and debate"
+    },
+    {
+      "title": "AI slop",
+      "url": "https://en.wikipedia.org/wiki/AI_slop",
+      "snippet": "Japanese <span class=\"searchmatch\">and</span> Chicago in a freestyle style. The release drew widespread <span class=\"searchmatch\">debate</span>, with many fans criticizing West&#039;s increasing reliance on <span class=\"searchmatch\">AI</span> <span class=\"searchmatch\">and</span> specifically",
+      "query": "this game-playing ai criticism and debate"
+    },
+    {
+      "title": "ARC Raiders",
+      "url": "https://en.wikipedia.org/wiki/ARC_Raiders",
+      "snippet": "into the messy Arc Raiders AI <span class=\"searchmatch\">debate</span>: &#039;Would it have been better if Arc Raiders failed <span class=\"searchmatch\">and</span> it didn&#039;t use <span class=\"searchmatch\">AI</span>?&#039;&quot;. PC <span class=\"searchmatch\">Gamer</span>. Retrieved November 15, 2025.",
+      "query": "this game-playing ai criticism and debate"
+    }
+  ],
+  "ts": "2026-10-07T04:16:23.849095+00:00"
+}

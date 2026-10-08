@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_02.txt",
+      "chars": 5676
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_04.txt",
+      "chars": 14974
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_07.txt",
+      "chars": 16851
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5fc4a538d5/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T14:45:06.111700+00:00"
+}

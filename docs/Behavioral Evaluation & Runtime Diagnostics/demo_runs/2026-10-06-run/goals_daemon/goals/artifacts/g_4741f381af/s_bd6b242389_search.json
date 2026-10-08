@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "High Road history and development",
+    "High Road applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_road_transport",
+    "https://en.wikipedia.org/wiki/High-quality_development",
+    "https://en.wikipedia.org/wiki/Glenelg%2C_South_Australia",
+    "https://en.wikipedia.org/wiki/Transport_in_China",
+    "https://en.wikipedia.org/wiki/Car-free_movement",
+    "https://en.wikipedia.org/wiki/Haul_truck",
+    "https://en.wikipedia.org/wiki/Road_traffic_control_device",
+    "https://en.wikipedia.org/wiki/Nanotechnology",
+    "https://en.wikipedia.org/wiki/Reticular_materials",
+    "https://en.wikipedia.org/wiki/Map_matching"
+  ],
+  "results": [
+    {
+      "title": "History of road transport",
+      "url": "https://en.wikipedia.org/wiki/History_of_road_transport",
+      "snippet": "The <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">road</span> transport started with the <span class=\"searchmatch\">development</span> of tracks by humans <span class=\"searchmatch\">and</span> their beasts of burden. The first forms of <span class=\"searchmatch\">road</span> transport were pack",
+      "query": "High Road history and development"
+    },
+    {
+      "title": "High-quality development",
+      "url": "https://en.wikipedia.org/wiki/High-quality_development",
+      "snippet": "<span class=\"searchmatch\">High</span>-quality <span class=\"searchmatch\">development</span> (Chinese: 高质量发展; pinyin: Gāo zhìliàng fāzhǎn) is a political slogan promoted by the Chinese Communist Party (CCP). It was coined",
+      "query": "High Road history and development"
+    },
+    {
+      "title": "Glenelg, South Australia",
+      "url": "https://en.wikipedia.org/wiki/Glenelg%2C_South_Australia",
+      "snippet": "revolving restaurant on its top floor, <span class=\"searchmatch\">and</span> was part of a larger <span class=\"searchmatch\">development</span> plan that never eventuated. Many other <span class=\"searchmatch\">high</span>-rise buildings exist in Glenelg, including",
+      "query": "High Road history and development"
+    },
+    {
+      "title": "Transport in China",
+      "url": "https://en.wikipedia.org/wiki/Transport_in_China",
+      "snippet": "called the &quot;New Silk <span class=\"searchmatch\">Road</span>&quot; or &quot;Eurasian Continental Bridge&quot; project. The project involved the modernization <span class=\"searchmatch\">and</span> infrastructure <span class=\"searchmatch\">development</span> of a 4,131 km (2",
+      "query": "High Road history and development"
+    },
+    {
+      "title": "Car-free movement",
+      "url": "https://en.wikipedia.org/wiki/Car-free_movement",
+      "snippet": "surrounding <span class=\"searchmatch\">roads</span> <span class=\"searchmatch\">high</span> rates of walking <span class=\"searchmatch\">and</span> cycling more independent movement <span class=\"searchmatch\">and</span> active play amongst children less land taken for parking <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">roads</span> – more",
+      "query": "High Road history and development"
+    },
+    {
+      "title": "Haul truck",
+      "url": "https://en.wikipedia.org/wiki/Haul_truck",
+      "snippet": "or a giant hauler, is an off-<span class=\"searchmatch\">road</span>, heavy-duty dump truck specifically engineered for use in <span class=\"searchmatch\">high</span>-production mining <span class=\"searchmatch\">and</span> exceptionally demanding construction",
+      "query": "High Road applications and examples"
+    },
+    {
+      "title": "Road traffic control device",
+      "url": "https://en.wikipedia.org/wiki/Road_traffic_control_device",
+      "snippet": "redirect traffic on <span class=\"searchmatch\">high</span>-speed <span class=\"searchmatch\">roads</span> <span class=\"searchmatch\">and</span> expressways. There are different types of barricades depending on its size, design <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">applications</span>. Barricades may",
+      "query": "High Road applications and examples"
+    },
+    {
+      "title": "Nanotechnology",
+      "url": "https://en.wikipedia.org/wiki/Nanotechnology",
+      "snippet": "products were limited to bulk <span class=\"searchmatch\">applications</span> of nanomaterials <span class=\"searchmatch\">and</span> did not involve atomic control of matter. Some <span class=\"searchmatch\">examples</span> include the Silver Nano platform",
+      "query": "High Road applications and examples"
+    },
+    {
+      "title": "Reticular materials",
+      "url": "https://en.wikipedia.org/wiki/Reticular_materials",
+      "snippet": "potential <span class=\"searchmatch\">applications</span> for reticular materials, although only very few <span class=\"searchmatch\">applications</span> have reached a commercial level to date. The initial <span class=\"searchmatch\">application</span> of reticular",
+      "query": "High Road applications and examples"
+    },
+    {
+      "title": "Map matching",
+      "url": "https://en.wikipedia.org/wiki/Map_matching",
+      "snippet": "algorithms are used after the data is recorded <span class=\"searchmatch\">and</span> are then matched to the <span class=\"searchmatch\">road</span> network. Real-time <span class=\"searchmatch\">applications</span> can only calculate based upon the points prior",
+      "query": "High Road applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T05:35:24.482313+00:00"
+}

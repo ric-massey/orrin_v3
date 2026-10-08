@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "but what if there history and development",
+    "but what if there applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/What/If",
+    "https://en.wikipedia.org/wiki/Alternate_history",
+    "https://en.wikipedia.org/wiki/Counterfactual_history",
+    "https://en.wikipedia.org/wiki/History",
+    "https://en.wikipedia.org/wiki/What_If..._Captain_Carter_Were_the_First_Avenger%3F",
+    "https://en.wikipedia.org/wiki/Application_software",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+    "https://en.wikipedia.org/wiki/API",
+    "https://en.wikipedia.org/wiki/Mobile_app"
+  ],
+  "results": [
+    {
+      "title": "What/If",
+      "url": "https://en.wikipedia.org/wiki/What/If",
+      "snippet": " <span class=\"searchmatch\">and</span> Renée Zellweger. <span class=\"searchmatch\">What</span>/<span class=\"searchmatch\">If</span> is a neo-noir thriller that, according to Deadline Hollywood&#039;s Nellie Andreeva, explores &quot;the ripple effects of <span class=\"searchmatch\">what</span> happens",
+      "query": "but what if there history and development"
+    },
+    {
+      "title": "Alternate history",
+      "url": "https://en.wikipedia.org/wiki/Alternate_history",
+      "snippet": "grounded in historical fact, alternate <span class=\"searchmatch\">history</span> stories explore &quot;<span class=\"searchmatch\">what</span> <span class=\"searchmatch\">if</span>?&quot; scenarios about pivotal events in human <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">and</span> depict outcomes diverge significantly",
+      "query": "but what if there history and development"
+    },
+    {
+      "title": "Counterfactual history",
+      "url": "https://en.wikipedia.org/wiki/Counterfactual_history",
+      "snippet": "Counterfactual <span class=\"searchmatch\">history</span> (also virtual <span class=\"searchmatch\">history</span>) is a form of historiography that attempts to answer the <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">if</span>? questions that arise from counterfactual",
+      "query": "but what if there history and development"
+    },
+    {
+      "title": "History",
+      "url": "https://en.wikipedia.org/wiki/History",
+      "snippet": "evidence to construct narratives about <span class=\"searchmatch\">what</span> happened <span class=\"searchmatch\">and</span> explain why it happened. Some theorists categorize <span class=\"searchmatch\">history</span> as a social science, while others see",
+      "query": "but what if there history and development"
+    },
+    {
+      "title": "What If... Captain Carter Were the First Avenger?",
+      "url": "https://en.wikipedia.org/wiki/What_If..._Captain_Carter_Were_the_First_Avenger%3F",
+      "snippet": "&quot;<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">If</span>... Captain Carter Were the First Avenger?&quot; is the first episode of the first season of the American animated television series <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">If</span>...?, based",
+      "query": "but what if there history and development"
+    },
+    {
+      "title": "Application software",
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "snippet": "browsers, media players, <span class=\"searchmatch\">and</span> mobile <span class=\"searchmatch\">applications</span> used in daily tasks. An <span class=\"searchmatch\">application</span> (app, <span class=\"searchmatch\">application</span> program, software <span class=\"searchmatch\">application</span>) is any program that",
+      "query": "but what if there applications and examples"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "architectural style is designed for network-based <span class=\"searchmatch\">applications</span>, specifically client-server <span class=\"searchmatch\">applications</span>. <span class=\"searchmatch\">But</span> more than that, it is designed for Internet-scale",
+      "query": "but what if there applications and examples"
+    },
+    {
+      "title": "The purpose of a system is what it does",
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "snippet": "other institution. In Heart of Enterprise, Beer gives <span class=\"searchmatch\">examples</span> from his own life as <span class=\"searchmatch\">applications</span> of the heuristic: Beer deals with a car company that has",
+      "query": "but what if there applications and examples"
+    },
+    {
+      "title": "API",
+      "url": "https://en.wikipedia.org/wiki/API",
+      "snippet": "for the development <span class=\"searchmatch\">and</span> maintenance of <span class=\"searchmatch\">applications</span> using the API. API documentation is traditionally found in documentation files <span class=\"searchmatch\">but</span> can also be found",
+      "query": "but what if there applications and examples"
+    },
+    {
+      "title": "Mobile app",
+      "url": "https://en.wikipedia.org/wiki/Mobile_app",
+      "snippet": "smartwatch. Mobile <span class=\"searchmatch\">applications</span> often stand in contrast to desktop <span class=\"searchmatch\">applications</span> which are designed to run on desktop computers, <span class=\"searchmatch\">and</span> web <span class=\"searchmatch\">applications</span> which run",
+      "query": "but what if there applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T07:16:09.412341+00:00"
+}

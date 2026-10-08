@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fields_Medal",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_sciences",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_04.txt",
+      "chars": 2544
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_and_art",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Library",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_08.txt",
+      "chars": 3144
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1870fcda48/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-06T22:33:02.167283+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_b45de1a791]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_b45de1a791]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Origin_of_water_on_Earth"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Institute_for_Recent_History_of_Serbia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Holocene"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_South_Africa"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages"
+    }
+  ],
+  "ts": "2026-10-07T22:30:12.818343+00:00"
+}

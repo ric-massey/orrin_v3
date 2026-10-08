@@ -1,0 +1,106 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "learned bot project using the video game Dota 2 OpenAI Five",
+    "computer program by OpenAI that plays the five-on-five video game Dota 2",
+    "computers",
+    "programmed to play these games using a specially designed algorithm",
+    "These games",
+    "described in terms of a start state",
+    "first commercial usage of general game playing technology",
+    "Zillions of Games in 1998",
+    "game playing algorithm",
+    "theoretically capable of playing chess-like games",
+    "This",
+    "the first program to automatically generate chess-like game rules",
+    "like games without any human interaction once the games",
+    "generated",
+    "the commercial system Zillions of Games",
+    "developed by Jeff Mallett and Mark Lefler"
+  ],
+  "relations": [
+    {
+      "subject": "learned bot project using the video game Dota 2 OpenAI Five",
+      "predicate": "is a",
+      "object": "computer program by OpenAI that plays the five-on-five video game Dota 2",
+      "source": "my prior claims [g_3999488d71]"
+    },
+    {
+      "subject": "computers",
+      "predicate": "are",
+      "object": "programmed to play these games using a specially designed algorithm",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "These games",
+      "predicate": "are",
+      "object": "described in terms of a start state",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "first commercial usage of general game playing technology",
+      "predicate": "was",
+      "object": "Zillions of Games in 1998",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "game playing algorithm",
+      "predicate": "was",
+      "object": "theoretically capable of playing chess-like games",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "This",
+      "predicate": "was",
+      "object": "the first program to automatically generate chess-like game rules",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "like games without any human interaction once the games",
+      "predicate": "were",
+      "object": "generated",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "the commercial system Zillions of Games",
+      "predicate": "was",
+      "object": "developed by Jeff Mallett and Mark Lefler",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_3999488d71]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI-assisted_software_development"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Generative_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Claude_%28AI%29"
+    }
+  ],
+  "ts": "2026-10-07T01:55:39.976883+00:00"
+}

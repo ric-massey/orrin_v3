@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_de06f5c544",
+    "title": "Understand the west more deeply — round 5",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "the west relationship to other fields",
+        "the west key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3413033054",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T03:05:55.183609Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T03:05:55.183615Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T03:05:55.183617Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T03:05:55.183619Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T03:05:55.183620Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the west was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the west was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T03:05:55.184306Z",
+      "question": "What is there about the west that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 03:05:55.185111+00:00",
+    "updated_at": "2026-10-07 03:05:57.151467+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/W._C._Fields",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_education",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sara_Nasserzadeh",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lawrence_High_School_%28New_Jersey%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/St_Martin-in-the-Fields",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kanye_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Studios_of_Key_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/James_Mastin",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_de06f5c544/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T03:06:02.457767+00:00"
+}

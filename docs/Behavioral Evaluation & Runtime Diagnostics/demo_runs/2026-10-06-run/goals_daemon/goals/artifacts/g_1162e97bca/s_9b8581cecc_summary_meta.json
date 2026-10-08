@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_1162e97bca",
+    "title": "Understand the nature of mathematics more deeply — round 6",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "the nature of mathematics open problems",
+        "the nature of mathematics criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3dae344508",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:13:40.178322Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:13:40.178327Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:13:40.178329Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:13:40.178330Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:13:40.178332Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the nature of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the nature of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T23:13:40.178355Z",
+      "question": "What is there about the nature of mathematics that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 23:13:40.179283+00:00",
+    "updated_at": "2026-10-06 23:13:41.368770+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_10ae876529]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_scientific_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Marxism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1162e97bca/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-06T23:13:46.001718+00:00"
+}

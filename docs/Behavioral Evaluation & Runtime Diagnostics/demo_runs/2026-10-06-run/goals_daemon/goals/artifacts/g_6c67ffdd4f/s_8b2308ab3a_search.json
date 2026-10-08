@@ -1,0 +1,47 @@
+{
+  "queries": [
+    "foundations of quantum mechanics",
+    "foundations of quantum mechanics explained",
+    "what is not obvious about foundations of quantum mechanics"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+    "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Wave_function_collapse",
+    "https://en.wikipedia.org/wiki/The_Principles_of_Quantum_Mechanics"
+  ],
+  "results": [
+    {
+      "title": "Mathematical Foundations of Quantum Mechanics",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "snippet": "Mathematical <span class=\"searchmatch\">Foundations</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span> (German: Mathematische Grundlagen der Quantenmechanik) is a <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> book written by John von Neumann",
+      "query": "foundations of quantum mechanics"
+    },
+    {
+      "title": "Interpretations of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "snippet": "interpretation <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is an attempt to explain how the mathematical theory <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> might correspond to experienced reality. <span class=\"searchmatch\">Quantum</span> mechanics",
+      "query": "foundations of quantum mechanics"
+    },
+    {
+      "title": "Mathematical formulation of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics",
+      "snippet": "mathematical formulations <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> are those mathematical formalisms that permit a rigorous description <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>. This mathematical formalism",
+      "query": "foundations of quantum mechanics"
+    },
+    {
+      "title": "Wave function collapse",
+      "url": "https://en.wikipedia.org/wiki/Wave_function_collapse",
+      "snippet": "<span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>, wave function collapse, also called reduction <span class=\"searchmatch\">of</span> the state vector, occurs when a wave function—initially in a superposition <span class=\"searchmatch\">of</span> several",
+      "query": "foundations of quantum mechanics"
+    },
+    {
+      "title": "The Principles of Quantum Mechanics",
+      "url": "https://en.wikipedia.org/wiki/The_Principles_of_Quantum_Mechanics",
+      "snippet": "bibliography, or a list <span class=\"searchmatch\">of</span> suggestions for further reading. The first half <span class=\"searchmatch\">of</span> the book lays down the <span class=\"searchmatch\">foundations</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> while the second half",
+      "query": "foundations of quantum mechanics"
+    }
+  ],
+  "ts": "2026-10-06T20:25:19.623359+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "question": "What is there about High Road that my earlier notes on it are missing?",
+  "subject_terms": [
+    "high",
+    "road"
+  ],
+  "entities": [
+    "the title Take the High Road",
+    "suggested by the folk song about the area",
+    "Take the High Road",
+    "the only soap f",
+    "The High Road",
+    "second studio album by American singer JoJo",
+    "High Road",
+    "fourth studio album by American singer and songwriter Kesha",
+    "primarily a pop",
+    "Critical reception to High Road",
+    "mostly positive upon its release",
+    "Kesha",
+    "set to embark on the High Road Tour to promote the album",
+    "of the road and the width of the lanes indicate that they",
+    "high-speed routes",
+    "When roads display visual characteristics that"
+  ],
+  "relations": [
+    {
+      "subject": "the title Take the High Road",
+      "predicate": "was",
+      "object": "suggested by the folk song about the area",
+      "source": "https://en.wikipedia.org/wiki/Take_the_High_Road"
+    },
+    {
+      "subject": "Take the High Road",
+      "predicate": "was",
+      "object": "the only soap f",
+      "source": "https://en.wikipedia.org/wiki/Take_the_High_Road"
+    },
+    {
+      "subject": "The High Road",
+      "predicate": "is the",
+      "object": "second studio album by American singer JoJo",
+      "source": "https://en.wikipedia.org/wiki/The_High_Road_%28JoJo_album%29"
+    },
+    {
+      "subject": "High Road",
+      "predicate": "is the",
+      "object": "fourth studio album by American singer and songwriter Kesha",
+      "source": "https://en.wikipedia.org/wiki/High_Road_%28Kesha_album%29"
+    },
+    {
+      "subject": "High Road",
+      "predicate": "is",
+      "object": "primarily a pop",
+      "source": "https://en.wikipedia.org/wiki/High_Road_%28Kesha_album%29"
+    },
+    {
+      "subject": "Critical reception to High Road",
+      "predicate": "was",
+      "object": "mostly positive upon its release",
+      "source": "https://en.wikipedia.org/wiki/High_Road_%28Kesha_album%29"
+    },
+    {
+      "subject": "Kesha",
+      "predicate": "was",
+      "object": "set to embark on the High Road Tour to promote the album",
+      "source": "https://en.wikipedia.org/wiki/High_Road_%28Kesha_album%29"
+    },
+    {
+      "subject": "of the road and the width of the lanes indicate that they",
+      "predicate": "are",
+      "object": "high-speed routes",
+      "source": "https://en.wikipedia.org/wiki/Self-explaining_road"
+    },
+    {
+      "subject": "When roads display visual characteristics that",
+      "predicate": "are",
+      "object": "consistent and differentiated according to their function",
+      "source": "https://en.wikipedia.org/wiki/Self-explaining_road"
+    },
+    {
+      "subject": "Sometimes it",
+      "predicate": "is",
+      "object": "also possible to achieve a high-accuracy result with white-box ML algorithms",
+      "source": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "subject": "While she",
+      "predicate": "was",
+      "object": "in high school",
+      "source": "https://en.wikipedia.org/wiki/Jordon_Hudson"
+    },
+    {
+      "subject": "present Down Cemetery Road",
+      "predicate": "is a",
+      "object": "British television series based on the 2003 novel by Mick Herron",
+      "source": "https://en.wikipedia.org/wiki/Down_Cemetery_Road"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/High_Road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Take_the_High_Road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_High_Road_%28JoJo_album%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/High_Road_%28Kesha_album%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kilburn%2C_London"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-explaining_road"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Columbine_High_School_massacre"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jordon_Hudson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Down_Cemetery_Road"
+    }
+  ],
+  "ts": "2026-10-07T05:29:20.004979+00:00"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "4f037b35",
+    "content": "A recurring sense of something worth moving toward, not yet arrived.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.4309999999999997,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 0,
+    "last_surfaced": 15385,
+    "born": "2026-10-08T00:11:52.217806Z"
+  },
+  {
+    "id": "9ad978fe",
+    "content": "A forward-leaning quality keeps cycling through — something possible, not yet reached.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.44899999999999973,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 0,
+    "last_surfaced": 15386,
+    "born": "2026-10-08T00:14:24.476263Z"
+  },
+  {
+    "id": "ed7d8f18",
+    "content": "Answer: What actually is but what if there, beyond the mentions I keep seeing? — still unresolved. Keeps returning without being worked.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.33999999999999986,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 0,
+    "last_surfaced": 15386,
+    "born": "2026-10-08T00:15:39.445426Z"
+  },
+  {
+    "id": "679c5603",
+    "content": "A recurring sense of something worth moving toward, not yet arrived.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.6399999999999999,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 0,
+    "last_surfaced": 15387,
+    "born": "2026-10-08T00:21:37.649502Z"
+  },
+  {
+    "id": "e508988a",
+    "content": "Something from earlier is still turning over: [metacog/pattern] Goal avoidance: 18 consecutive cycles.",
+    "fragment_type": "emotional_echo",
+    "valence": "neutral",
+    "intensity": 0.4,
+    "sticky": false,
+    "source": "working_memory",
+    "suppress_count": 0,
+    "last_surfaced": 0,
+    "born": "2026-10-08T00:23:14.966484Z"
+  }
+]

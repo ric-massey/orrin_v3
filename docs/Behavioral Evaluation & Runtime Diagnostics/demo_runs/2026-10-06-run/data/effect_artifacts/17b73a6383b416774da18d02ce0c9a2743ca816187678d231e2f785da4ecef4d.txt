@@ -1,0 +1,137 @@
+{
+  "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "foundations",
+    "quantum",
+    "mechanics"
+  ],
+  "entities": [
+    "The sequence begins with a quantum system whose observable",
+    "to be measured",
+    "Richard Feynman The history of quantum mechanics",
+    "fundamental part of the history of modern physics",
+    "Mechanics",
+    "branch of science that deals with the action of forces on objects",
+    "The earliest hints of problems in classical mechanics",
+    "raised in relation to the temperature dependence of the properties of gases",
+    "thermodynamics and statistical mechanics theories and",
+    "backed up by mathematical arguments",
+    "quantum logic",
+    "formulated by weakening the distributive law for a Boolean algebra",
+    "notable difference between quantum logic and classical logic",
+    "failure of the propositional distributive law",
+    "Principles for manipulating these quantum propositions",
+    "then called quantum logic by von Neumann and Birkhoff in a 1936 paper"
+  ],
+  "relations": [
+    {
+      "subject": "The sequence begins with a quantum system whose observable",
+      "predicate": "is",
+      "object": "to be measured",
+      "source": "my prior claims [g_6c0314edb4]"
+    },
+    {
+      "subject": "Richard Feynman The history of quantum mechanics",
+      "predicate": "is a",
+      "object": "fundamental part of the history of modern physics",
+      "source": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "subject": "Mechanics",
+      "predicate": "is the",
+      "object": "branch of science that deals with the action of forces on objects",
+      "source": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "subject": "The earliest hints of problems in classical mechanics",
+      "predicate": "were",
+      "object": "raised in relation to the temperature dependence of the properties of gases",
+      "source": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "subject": "thermodynamics and statistical mechanics theories and",
+      "predicate": "was",
+      "object": "backed up by mathematical arguments",
+      "source": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "subject": "quantum logic",
+      "predicate": "is",
+      "object": "formulated by weakening the distributive law for a Boolean algebra",
+      "source": "https://en.wikipedia.org/wiki/Quantum_logic"
+    },
+    {
+      "subject": "notable difference between quantum logic and classical logic",
+      "predicate": "is the",
+      "object": "failure of the propositional distributive law",
+      "source": "https://en.wikipedia.org/wiki/Quantum_logic"
+    },
+    {
+      "subject": "Principles for manipulating these quantum propositions",
+      "predicate": "were",
+      "object": "then called quantum logic by von Neumann and Birkhoff in a 1936 paper",
+      "source": "https://en.wikipedia.org/wiki/Quantum_logic"
+    },
+    {
+      "subject": "Quantum decoherence",
+      "predicate": "is the",
+      "object": "loss of quantum coherence",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "Quantum computing relies on quantum coherence and",
+      "predicate": "is",
+      "object": "one of the primary practical applications of the concept",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "physical system",
+      "predicate": "is",
+      "object": "described by a mathematical representation called a quantum state",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "Probabilities for the outcomes of experiments upon a system",
+      "predicate": "are",
+      "object": "calculated by applying the Born rule to the quantum state describing that system",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_6c0314edb4]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_gravity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_superposition"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_indeterminacy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_eraser_experiment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Observer_%28quantum_physics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    }
+  ],
+  "ts": "2026-10-07T01:55:41.350098+00:00"
+}

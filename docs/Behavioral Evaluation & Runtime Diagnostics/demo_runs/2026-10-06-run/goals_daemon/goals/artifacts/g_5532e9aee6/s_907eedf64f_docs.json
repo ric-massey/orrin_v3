@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Modern_Problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_01.txt",
+      "chars": 8312
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wicked_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Rose_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kanye_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Levent_Alp%C3%B6ge",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_05.txt",
+      "chars": 15760
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/East%E2%80%93West_cultural_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5532e9aee6/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T04:16:17.183043+00:00"
+}

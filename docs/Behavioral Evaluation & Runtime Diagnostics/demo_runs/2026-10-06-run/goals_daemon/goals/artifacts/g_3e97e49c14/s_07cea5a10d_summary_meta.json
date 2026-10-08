@@ -1,0 +1,155 @@
+{
+  "goal": {
+    "id": "g_3e97e49c14",
+    "title": "Understand philosophy of mathematics more deeply — round 5",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "philosophy of mathematics relationship to other fields",
+        "philosophy of mathematics key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_7779f23993",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T21:42:09.799896Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T21:42:09.799902Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T21:42:09.799904Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T21:42:09.799905Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T21:42:09.799906Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on philosophy of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about philosophy of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T21:42:09.799922Z",
+      "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 21:42:09.804277+00:00",
+    "updated_at": "2026-10-07 21:42:10.915638+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_8cab3015f5]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Science_Without_Numbers",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Analytic_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3e97e49c14/doc_08.txt"
+    }
+  ],
+  "ts": "2026-10-07T21:42:14.572232+00:00"
+}

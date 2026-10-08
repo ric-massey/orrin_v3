@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "High Road recent research",
+    "High Road common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Unpaved_road",
+    "https://en.wikipedia.org/wiki/The_Long_and_Winding_Road",
+    "https://en.wikipedia.org/wiki/Silicon_Valley",
+    "https://en.wikipedia.org/wiki/Silk_Road",
+    "https://en.wikipedia.org/wiki/High_Speed_2",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+    "https://en.wikipedia.org/wiki/Vikings",
+    "https://en.wikipedia.org/wiki/Overpass_myth",
+    "https://en.wikipedia.org/wiki/Searches_for_Noah%27s_Ark"
+  ],
+  "results": [
+    {
+      "title": "Unpaved road",
+      "url": "https://en.wikipedia.org/wiki/Unpaved_road",
+      "snippet": "<span class=\"searchmatch\">roads</span> in Sweden – <span class=\"searchmatch\">research</span> project overview Byway (<span class=\"searchmatch\">road</span>) Country lane Dirt <span class=\"searchmatch\">road</span> Forest Highway Forest railway Forest <span class=\"searchmatch\">road</span> Gravel <span class=\"searchmatch\">road</span> Logging <span class=\"searchmatch\">Roads</span> Road",
+      "query": "High Road recent research"
+    },
+    {
+      "title": "The Long and Winding Road",
+      "url": "https://en.wikipedia.org/wiki/The_Long_and_Winding_Road",
+      "snippet": "in the English <span class=\"searchmatch\">High</span> Court for the dissolution of the Beatles&#039; legal partnership, he cited the treatment of &quot;The Long and Winding <span class=\"searchmatch\">Road</span>&quot; as one of six reasons",
+      "query": "High Road recent research"
+    },
+    {
+      "title": "Silicon Valley",
+      "url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+      "snippet": "definition referring to <span class=\"searchmatch\">high</span>-tech businesses in the entire Bay Area. The name also became a global synonym for leading <span class=\"searchmatch\">high</span>-tech <span class=\"searchmatch\">research</span> and enterprises, and",
+      "query": "High Road recent research"
+    },
+    {
+      "title": "Silk Road",
+      "url": "https://en.wikipedia.org/wiki/Silk_Road",
+      "snippet": "Ancient Glass <span class=\"searchmatch\">Research</span> Along the Silk <span class=\"searchmatch\">Road</span>. Shanghai Institute of Optics and Fine Mechanics, Chinese Academy of Sciences (Ancient Glass <span class=\"searchmatch\">Research</span> along the",
+      "query": "High Road recent research"
+    },
+    {
+      "title": "High Speed 2",
+      "url": "https://en.wikipedia.org/wiki/High_Speed_2",
+      "snippet": "and freight traffic from <span class=\"searchmatch\">road</span> to rail&quot;. The paper noted that railway passenger numbers had been growing significantly in <span class=\"searchmatch\">recent</span> years—doubling from 1995",
+      "query": "High Road recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "High Road common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about history",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "High Road common misconceptions"
+    },
+    {
+      "title": "Vikings",
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "snippet": "compared to wool, for example. The quality of food for <span class=\"searchmatch\">common</span> people was not always particularly <span class=\"searchmatch\">high</span>. The research at Coppergate shows that the Vikings in",
+      "query": "High Road common misconceptions"
+    },
+    {
+      "title": "Overpass myth",
+      "url": "https://en.wikipedia.org/wiki/Overpass_myth",
+      "snippet": "List of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> Tornado myths &quot;Myth or <span class=\"searchmatch\">Misconception</span> #5 .... Highway overpasses are a safe place to shelter if you are on the <span class=\"searchmatch\">road</span> when you",
+      "query": "High Road common misconceptions"
+    },
+    {
+      "title": "Searches for Noah's Ark",
+      "url": "https://en.wikipedia.org/wiki/Searches_for_Noah%27s_Ark",
+      "snippet": "Heifetz, Justin (4 July 2016). &quot;Hong Kong&#039;s Bizarre Noah&#039;s Ark Theme Park&quot;. <span class=\"searchmatch\">Roads</span> &amp; Kingdoms. Archived from the original on 8 November 2020. Retrieved 13",
+      "query": "High Road common misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T09:57:41.034631+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_road_transport",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/High-quality_development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_02.txt",
+      "chars": 11643
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glenelg%2C_South_Australia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Transport_in_China",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Car-free_movement",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Haul_truck",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_06.txt",
+      "chars": 6109
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Road_traffic_control_device",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_07.txt",
+      "chars": 10055
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nanotechnology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Reticular_materials",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Map_matching",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4741f381af/doc_10.txt",
+      "chars": 6864
+    }
+  ],
+  "ts": "2026-10-07T05:35:28.767745+00:00"
+}

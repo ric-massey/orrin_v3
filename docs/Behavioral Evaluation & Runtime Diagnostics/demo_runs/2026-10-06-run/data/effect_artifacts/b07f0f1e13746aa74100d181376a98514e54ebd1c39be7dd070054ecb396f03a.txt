@@ -1,0 +1,8 @@
+What I learned about Reflect on my open question: Where am I confusing comfort with correctness:
+
+- emotional reflection: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description=
+- [Chunk: [metacog/pattern] Goal avoidance: 8 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 9 consecutive cycles without taking action on 'Understand this game-playing ai more…]
+- [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on 'Answer: What is there about evolutionary biology that my earlier notes on it are missing?'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 20 consecutive cycles without taking action on 'Answer: What is there about… / [metacog/pattern] Goal avoidance: 17 consecutive cycles without taking action on 'Answer: What is there about…]
+- [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 11 consecutive cycles without taking action on 'Characterize what makes my CPU load… / [metacog/pattern] Goal avoidance: 8 consecutive cycles without taking action on 'Characterize what makes my CPU load…]

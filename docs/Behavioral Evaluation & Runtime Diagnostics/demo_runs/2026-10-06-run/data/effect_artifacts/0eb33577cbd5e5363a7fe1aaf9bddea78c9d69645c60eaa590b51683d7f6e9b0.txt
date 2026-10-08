@@ -1,0 +1,79 @@
+{
+  "question": "What is there about mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "mathematics"
+  ],
+  "entities": [
+    "Mathematics",
+    "field of knowledge concerned with abstract concepts such as numbers",
+    "open mathematics problem solved in the early 21st century",
+    "the Poincaré conjecture",
+    "and thought that there",
+    "more meaningful ways to invest in public appreciation of mathematics",
+    "the free encyclopedia This",
+    "list of notable scientific debates in the history of science and mathematics"
+  ],
+  "relations": [
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "my prior claims [g_1162e97bca]"
+    },
+    {
+      "subject": "open mathematics problem solved in the early 21st century",
+      "predicate": "was",
+      "object": "the Poincaré conjecture",
+      "source": "https://en.wikipedia.org/wiki/Open_problem"
+    },
+    {
+      "subject": "and thought that there",
+      "predicate": "are",
+      "object": "more meaningful ways to invest in public appreciation of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems"
+    },
+    {
+      "subject": "the free encyclopedia This",
+      "predicate": "is a",
+      "object": "list of notable scientific debates in the history of science and mathematics",
+      "source": "https://en.wikipedia.org/wiki/List_of_scientific_debates"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1162e97bca]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_Problems_in_Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lists_of_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_scientific_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socialist_calculation_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thomas_Kuhn"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pavel_Yushkevich"
+    }
+  ],
+  "ts": "2026-10-06T23:15:52.907875+00:00"
+}

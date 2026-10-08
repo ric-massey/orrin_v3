@@ -1,6 +1,6 @@
 # The Five Sources of "Good" — Quality Grounding Design (2026-07-18)
 
-Status: **Direction + build plan. Not started.** One piece (the originality veto)
+Status: **Rung 0 (epistemic close-out, R10-12 → Run 12 1C → Run 13 items 1–3) and the difficulty ladder (Run 11 G1) BUILT; Run 13 produced the first prediction-confirmed answers. Soundness passes on sources #2–5 open** (`POST_RUN13_MASTER_PLAN` F8). *(Header corrected 2026-10-07; was "Not started".)* One piece (the originality veto)
 landed 2026-07-18 as a byproduct of the Run 9 exemplar-scrape finding; the rest is
 open. Sequenced *after* the Run 9′ acceptance gate and dovetails with
 `RUN9_DEEP_ANALYSIS_2026-07-15.md` Finding 7 (the difficulty ladder). This is the

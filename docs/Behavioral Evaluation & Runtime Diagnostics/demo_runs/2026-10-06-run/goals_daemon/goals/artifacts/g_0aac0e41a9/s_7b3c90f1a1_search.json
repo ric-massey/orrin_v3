@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "mathematics recent research",
+    "mathematics common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematics_education",
+    "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics",
+    "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy",
+    "https://en.wikipedia.org/wiki/Pacific_Institute_for_the_Mathematical_Sciences",
+    "https://en.wikipedia.org/wiki/Centrum_Wiskunde_%26_Informatica"
+  ],
+  "results": [
+    {
+      "title": "Mathematics education",
+      "url": "https://en.wikipedia.org/wiki/Mathematics_education",
+      "snippet": "learning, and carrying out scholarly <span class=\"searchmatch\">research</span> into the transfer of <span class=\"searchmatch\">mathematical</span> knowledge. Although <span class=\"searchmatch\">research</span> into <span class=\"searchmatch\">mathematics</span> education is primarily concerned",
+      "query": "mathematics recent research"
+    },
+    {
+      "title": "Association for Women in Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics",
+      "snippet": "in <span class=\"searchmatch\">Mathematics</span> (AWM) is a professional society whose mission is to encourage women and girls to study and to have active careers in the <span class=\"searchmatch\">mathematical</span> sciences",
+      "query": "mathematics recent research"
+    },
+    {
+      "title": "Navier–Stokes priority controversy",
+      "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy",
+      "snippet": "Buckmaster and Alpöge used during their <span class=\"searchmatch\">research</span>, either directly or as anonymised training data. The Clay <span class=\"searchmatch\">Mathematics</span> Institute listed solving one of four",
+      "query": "mathematics recent research"
+    },
+    {
+      "title": "Pacific Institute for the Mathematical Sciences",
+      "url": "https://en.wikipedia.org/wiki/Pacific_Institute_for_the_Mathematical_Sciences",
+      "snippet": "and the Northwestern United States to promote <span class=\"searchmatch\">research</span> and excellence in all areas of the <span class=\"searchmatch\">mathematical</span> sciences. It provides training and support for",
+      "query": "mathematics recent research"
+    },
+    {
+      "title": "Centrum Wiskunde & Informatica",
+      "url": "https://en.wikipedia.org/wiki/Centrum_Wiskunde_%26_Informatica",
+      "snippet": "CWI; English: &quot;National <span class=\"searchmatch\">Research</span> Institute for <span class=\"searchmatch\">Mathematics</span> and Computer Science&quot;) is a <span class=\"searchmatch\">research</span> centre in the field of <span class=\"searchmatch\">mathematics</span> and theoretical computer",
+      "query": "mathematics recent research"
+    }
+  ],
+  "ts": "2026-10-06T21:55:12.182497+00:00"
+}

@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_04.txt",
+      "chars": 13568
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vorlesungen_%C3%BCber_die_Entwicklung_der_Mathematik_im_19._Jahrhundert",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_mathematical_examples",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_06.txt",
+      "chars": 3866
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_linguistics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_07.txt",
+      "chars": 16341
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Applied_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Exercise_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_bdad6ac4b0/doc_09.txt",
+      "chars": 16157
+    }
+  ],
+  "ts": "2026-10-06T21:34:54.926198+00:00"
+}

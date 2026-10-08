@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "history of written language history and development",
+    "history of written language applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_programming_languages",
+    "https://en.wikipedia.org/wiki/Evolution_of_languages",
+    "https://en.wikipedia.org/wiki/History_of_English",
+    "https://en.wikipedia.org/wiki/History_of_French",
+    "https://en.wikipedia.org/wiki/History_of_the_Finnish_language"
+  ],
+  "results": [
+    {
+      "title": "History of programming languages",
+      "url": "https://en.wikipedia.org/wiki/History_of_programming_languages",
+      "snippet": "The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> programming <span class=\"searchmatch\">languages</span> spans from documentation <span class=\"searchmatch\">of</span> early mechanical computers to modern tools for software <span class=\"searchmatch\">development</span>. Early programming",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "Evolution of languages",
+      "url": "https://en.wikipedia.org/wiki/Evolution_of_languages",
+      "snippet": "The evolution <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">languages</span> or <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">language</span> includes the evolution, divergence <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">development</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">languages</span> throughout time, as reconstructed based",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of English",
+      "url": "https://en.wikipedia.org/wiki/History_of_English",
+      "snippet": "<span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Development</span> <span class=\"searchmatch\">of</span> the English <span class=\"searchmatch\">Language</span>. Boston, MA: Wadsworth. pp. 140–141. Algeo, John. 2010. The Origins <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Development</span> <span class=\"searchmatch\">of</span> the English <span class=\"searchmatch\">Language</span>.",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of French",
+      "url": "https://en.wikipedia.org/wiki/History_of_French",
+      "snippet": "discussion <span class=\"searchmatch\">of</span> the <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> a <span class=\"searchmatch\">language</span> is typically divided into &quot;external <span class=\"searchmatch\">history</span>&quot;, describing the ethnic, political, social, technological, <span class=\"searchmatch\">and</span> other changes",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of the Finnish language",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Finnish_language",
+      "snippet": "<span class=\"searchmatch\">language</span> as well as less-spoken <span class=\"searchmatch\">languages</span>, such as Karelian <span class=\"searchmatch\">and</span> Veps, <span class=\"searchmatch\">and</span> is also distantly related to Hungarian. The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> the Finnish <span class=\"searchmatch\">language</span>",
+      "query": "history of written language history and development"
+    }
+  ],
+  "ts": "2026-10-07T00:17:43.752702+00:00"
+}

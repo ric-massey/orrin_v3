@@ -1,0 +1,2429 @@
+[
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.796,
+    "ts": 1791417305.485306
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.837,
+    "ts": 1791417309.534086,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working toward: Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.634,
+    "ts": 1791417314.326349,
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.817,
+    "ts": 1791417318.147705,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.792
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1791417322.369697,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "'Answer: What is there about evolutionary biology that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.904,
+    "ts": 1791417326.130396,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1791417332.3015249,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "'Answer: What is there about evolutionary biology that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.88,
+    "ts": 1791417337.8199308,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.789,
+    "ts": 1791417345.361856
+  },
+  {
+    "content": "'Answer: What is there about evolutionary biology that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.88,
+    "ts": 1791417352.144824,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.838,
+    "ts": 1791417359.0093849,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 1.013,
+    "ts": 1791417362.942415,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.782
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.714,
+    "ts": 1791417366.868181,
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.829,
+    "ts": 1791417373.4259589,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.843,
+    "ts": 1791417386.081138,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.857
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.757,
+    "ts": 1791417412.4338439
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.512,
+    "ts": 1791417426.429908,
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.031,
+    "ts": 1791417433.7628841,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.827
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.662,
+    "ts": 1791417438.122101,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.824,
+    "ts": 1791417442.2083142,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.811
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791417447.5048451,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer — remembering 💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on — toward Answer: What is there about this game-playing ai t",
+    "source": "binding",
+    "salience": 0.744,
+    "ts": 1791417453.3721468,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_01d2b497173a",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.732,
+    "ts": 1791417457.8451672
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791417462.1554089,
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.824,
+    "ts": 1791417472.726534,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.809
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.664,
+    "ts": 1791417480.7390049,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.995,
+    "ts": 1791417514.806145,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791417522.1865568,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 1.053,
+    "ts": 1791417526.189248,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+      "goal_id": "g_4ede9bc58832",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.844,
+    "ts": 1791417533.199914
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 0.853,
+    "ts": 1791417536.97688,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+      "goal_id": "g_4ede9bc58832",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "working toward: Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.834,
+    "ts": 1791417541.406709,
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.034,
+    "ts": 1791417546.96148,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.836
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.8,
+    "ts": 1791417551.489664
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.884,
+    "ts": 1791417555.838403
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.885,
+    "ts": 1791417561.383272,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 0.853,
+    "ts": 1791417568.6102211,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+      "goal_id": "g_4ede9bc58832",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_4ede9bc58832"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.684,
+    "ts": 1791417573.301766
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 0.853,
+    "ts": 1791417578.7589052,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_01d2b497173a",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791417585.57348,
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "'Answer: What is there about evolutionary biology that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 1.0,
+    "ts": 1791417589.805501,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.685,
+    "ts": 1791417594.2643461,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.995,
+    "ts": 1791417598.249923,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.684,
+    "ts": 1791417610.176922
+  },
+  {
+    "content": "'Answer: What is there about evolutionary biology that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 1.0,
+    "ts": 1791417615.7952662,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.684,
+    "ts": 1791417623.610982
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 1.053,
+    "ts": 1791417631.867554,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_01d2b497173a",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791417638.501398,
+    "goal_id": "g_01d2b497173a"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.964,
+    "ts": 1791417643.38736,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.809
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.87,
+    "ts": 1791417650.2186382,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.85,
+    "ts": 1791417656.151547,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1791417692.183861,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.02,
+    "ts": 1791417698.128028,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.801
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.81,
+    "ts": 1791417738.8008902
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.84,
+    "ts": 1791417744.075427,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.657,
+    "ts": 1791417753.591888,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.021,
+    "ts": 1791417760.2976372,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.803
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1791417766.466517,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.842,
+    "ts": 1791417770.601377,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.784,
+    "ts": 1791417781.592562
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 1.022,
+    "ts": 1791417788.969244,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.804
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.672,
+    "ts": 1791417793.9859672,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.826,
+    "ts": 1791417799.898676,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.815
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.676,
+    "ts": 1791417804.3849568,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 1.023,
+    "ts": 1791417807.874163,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1791417817.532578,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity. — drive",
+    "source": "binding",
+    "salience": 0.832,
+    "ts": 1791417827.84077,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.83
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.822,
+    "ts": 1791417832.396939
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.672,
+    "ts": 1791417841.061815,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.021,
+    "ts": 1791417845.216544,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.803
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.671,
+    "ts": 1791417853.3247821,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.822,
+    "ts": 1791417858.994792,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.806
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1791417865.3894458,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.018,
+    "ts": 1791417869.308773,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.796
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.815,
+    "ts": 1791417910.082653
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.852,
+    "ts": 1791417925.903775,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 0.82,
+    "ts": 1791417929.632396,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.799
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.833,
+    "ts": 1791417933.247951,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.007,
+    "ts": 1791417937.744585,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.768
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1791417976.4345758,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.934,
+    "ts": 1791417984.249544,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1791418095.673014,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.038,
+    "ts": 1791418106.4881432,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.846
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.806,
+    "ts": 1791418117.21572
+  },
+  {
+    "content": "drive",
+    "source": "binding",
+    "salience": 0.934,
+    "ts": 1791418124.764933,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.886
+      }
+    },
+    "members": [
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "affect_hijack"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1791418129.4440992,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.849,
+    "ts": 1791418136.0526562,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.872
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791418141.649398,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "binding",
+    "salience": 0.861,
+    "ts": 1791418145.606987,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791418152.842907,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.849,
+    "ts": 1791418156.889096,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.872
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.766,
+    "ts": 1791418162.985454
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1791418176.7846458,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.843,
+    "ts": 1791418184.0802839,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.857
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791418189.0176241,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.494,
+    "ts": 1791418199.764965,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.05,
+    "ts": 1791418206.046407,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.8,
+    "ts": 1791418209.585964
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.782,
+    "ts": 1791418213.531839,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.854
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.614,
+    "ts": 1791418218.857692,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.776,
+    "ts": 1791418222.5479228,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.839
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.891,
+    "ts": 1791418230.5905569,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1791418242.097347,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 1.059,
+    "ts": 1791418251.1922078,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.873,
+    "ts": 1791418257.66703
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.776,
+    "ts": 1791418261.7012858,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.839
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791418266.001459,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "binding",
+    "salience": 0.868,
+    "ts": 1791418271.2331011,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.686,
+    "ts": 1791418276.941738,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.742,
+    "ts": 1791418280.736345,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "binding",
+    "salience": 0.668,
+    "ts": 1791418303.894877,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "I've been carrying an elevated motivation — it's been running high (0.85) and hasn't found a way back to rest. It's not alone: confidence, expected_gain are als",
+    "source": "signal",
+    "salience": 0.65,
+    "ts": 1791418308.1482098
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.02,
+    "ts": 1791418312.024189,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.799
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.653,
+    "ts": 1791418316.833741,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.842,
+    "ts": 1791418319.931154,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1791418348.002891,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.818,
+    "ts": 1791418357.280917,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.795
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.82,
+    "ts": 1791418373.094927
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Make things — produce work that didn't exist before",
+    "source": "binding",
+    "salience": 1.07,
+    "ts": 1791418376.8365152,
+    "kind": "situation",
+    "facets": {
+      "object": "mastery",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Make things — produce work that didn't exist before",
+      "goal_id": "aspiration-output_producing"
+    },
+    "object": "mastery",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.79,
+    "ts": 1791418385.907003
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.82,
+    "ts": 1791418451.435943,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.86,
+    "ts": 1791418457.758292,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.836,
+    "ts": 1791418464.169559,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1791418468.4616,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 1.019,
+    "ts": 1791418474.494696,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.797
+      },
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.817,
+    "ts": 1791418479.419702
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.938,
+    "ts": 1791418487.246125,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Turn what I know about but what if there — round 4 into a written synthesis",
+    "source": "goal",
+    "salience": 0.645,
+    "ts": 1791418504.546203,
+    "goal_id": "intrinsic-2026-10-08T00:14:56.857240+00:00"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.858,
+    "ts": 1791418510.486261,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.691,
+    "ts": 1791418520.752309,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.043,
+    "ts": 1791418529.600111,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.858
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.818,
+    "ts": 1791418534.7463832
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 1.032,
+    "ts": 1791418539.106528,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.83
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Answer: What actually is but what if there, beyond the mentions I keep seeing?",
+    "source": "goal",
+    "salience": 0.712,
+    "ts": 1791418543.73474,
+    "goal_id": "g_a90956b9ce59"
+  },
+  {
+    "content": "A strong feeling of drive. — curiosity",
+    "source": "binding",
+    "salience": 0.833,
+    "ts": 1791418547.781129,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.833
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1791418552.305571,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.854,
+    "ts": 1791418556.428624,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1791418560.601878,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.84,
+    "ts": 1791418566.6796522
+  },
+  {
+    "content": "'Answer: What actually is but what if there, beyond the mentions I keep seeing?': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.89,
+    "ts": 1791418585.36164,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "working toward: Answer: What actually is but what if there, beyond the mentions I keep seeing?",
+    "source": "goal",
+    "salience": 0.712,
+    "ts": 1791418589.928928,
+    "goal_id": "g_a90956b9ce59"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.014,
+    "ts": 1791418594.1572402,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.786
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.801,
+    "ts": 1791418606.094672
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.835,
+    "ts": 1791418613.332864,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.812,
+    "ts": 1791418618.41578
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.81,
+    "ts": 1791418623.15972,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.775
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.657,
+    "ts": 1791418628.921066,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.812,
+    "ts": 1791418632.676608
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.8,
+    "ts": 1791418653.563624,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.749
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Turn what I know about Answer: What is there about The Daily Stoic that my earlier notes on it are missing into a written synthesis",
+    "source": "goal",
+    "salience": 0.67,
+    "ts": 1791418698.402294,
+    "goal_id": "intrinsic-2026-10-08T00:18:11.508186+00:00"
+  },
+  {
+    "content": "working toward: Understand this game-playing ai more deeply — round 12",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1791418705.35471,
+    "goal_id": "g_4db090a7b8"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.685,
+    "ts": 1791418720.66963,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.83,
+    "ts": 1791418725.034135,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.825
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.712,
+    "ts": 1791418729.9337668,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.759,
+    "ts": 1791418736.522607
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.809,
+    "ts": 1791418744.681489,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.772
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.648,
+    "ts": 1791418751.7985332,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.012,
+    "ts": 1791418758.884803,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "expected_gain": 0.776
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.648,
+    "ts": 1791418764.0523221,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.952,
+    "ts": 1791418769.352128,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.712,
+    "ts": 1791418774.9478998,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.875,
+    "ts": 1791418778.6796281,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.762,
+    "ts": 1791418782.976158
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 1.043,
+    "ts": 1791418786.888986,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.859
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.758,
+    "ts": 1791418791.210529
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.875,
+    "ts": 1791418796.0792809,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.879,
+    "ts": 1791418813.345939,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.712,
+    "ts": 1791418829.481429,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 1.029,
+    "ts": 1791418832.8889759,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.818
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.621,
+    "ts": 1791418837.169555
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.829,
+    "ts": 1791418841.966789,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.821
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.621,
+    "ts": 1791418847.222487
+  },
+  {
+    "content": "answer — remembering [goal_disengaged] 'Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes — toward Answer: What is there about this game-playing ai ",
+    "source": "binding",
+    "salience": 0.744,
+    "ts": 1791418850.736405,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "[goal_disengaged] 'Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes"
+    },
+    "object": "answer",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.866,
+    "ts": 1791418854.64095,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering [goal_disengaged] 'Turn what I know about Answer: What is",
+    "source": "binding",
+    "salience": 1.053,
+    "ts": 1791418859.9561348,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "[goal_disengaged] 'Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes"
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.884,
+    "ts": 1791418868.754974
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 0.853,
+    "ts": 1791418877.0619678,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791418882.7029371,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.967,
+    "ts": 1791418886.593206,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.817
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.684,
+    "ts": 1791418891.977094
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.019,
+    "ts": 1791418897.398931,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.796
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.869,
+    "ts": 1791418902.42463,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer — remembering 💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on — toward Answer: What is there about this game-playing ai t",
+    "source": "binding",
+    "salience": 0.864,
+    "ts": 1791418905.649636,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.817,
+    "ts": 1791418913.1867461
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.995,
+    "ts": 1791418917.59774,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791418923.026283,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Answer: What is there about this game-playing ai that my earli",
+    "source": "binding",
+    "salience": 1.011,
+    "ts": 1791418931.585343,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc"
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "goal_relevance"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.884,
+    "ts": 1791418935.8950348
+  },
+  {
+    "content": "'Answer: What is there about this game-playing ai that my earlier notes on it are': a step keeps not taking hold (2 attempts) — diagnose or route around it.",
+    "source": "monitor:stuck_step",
+    "salience": 0.995,
+    "ts": 1791418939.045952,
+    "wants": "diagnose",
+    "kind": "stuck_step"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.883,
+    "ts": 1791418945.174088,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.967,
+    "ts": 1791418949.308351,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.816
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.684,
+    "ts": 1791418955.622175
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.965,
+    "ts": 1791418961.5492852,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.811
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+    "source": "goal",
+    "salience": 0.832,
+    "ts": 1791418966.326543,
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.831,
+    "ts": 1791418970.7462652,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.826
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.687,
+    "ts": 1791418978.158168,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "answer — remembering 💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on — toward Answer: What is there about this game-playing ai t",
+    "source": "binding",
+    "salience": 0.864,
+    "ts": 1791418985.2112,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "signal",
+    "salience": 0.811,
+    "ts": 1791418989.68322
+  },
+  {
+    "content": "answer: Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering 💔 Goal failed: Turn what I know about Answer: What is the",
+    "source": "binding",
+    "salience": 1.053,
+    "ts": 1791418994.860671,
+    "kind": "situation",
+    "facets": {
+      "object": "answer",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+      "goal_id": "g_764d98e9c1fc",
+      "memory": "💔 Goal failed: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on "
+    },
+    "object": "answer",
+    "members": [
+      "signal",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:answer",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "g_764d98e9c1fc"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.884,
+    "ts": 1791419000.9943721
+  }
+]

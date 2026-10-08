@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "evolutionary biology and cooperation relationship to other fields",
+    "evolutionary biology and cooperation key figures and works"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Biology",
+    "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology",
+    "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+    "https://en.wikipedia.org/wiki/Recapitulation_theory",
+    "https://en.wikipedia.org/wiki/Adaptation",
+    "https://en.wikipedia.org/wiki/Isaak_Prezent",
+    "https://en.wikipedia.org/wiki/Evolutionary_psychiatry"
+  ],
+  "results": [
+    {
+      "title": "Biology",
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "snippet": "<span class=\"searchmatch\">Biology</span> is the scientific study of life <span class=\"searchmatch\">and</span> living organisms. It is a broad natural science that encompasses a wide range of <span class=\"searchmatch\">fields</span> <span class=\"searchmatch\">and</span> unifying principles",
+      "query": "evolutionary biology and cooperation relationship to other fields"
+    },
+    {
+      "title": "Ecological evolutionary developmental biology",
+      "url": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology",
+      "snippet": "Ecological <span class=\"searchmatch\">evolutionary</span> developmental <span class=\"searchmatch\">biology</span> (eco-evo-devo) is a <span class=\"searchmatch\">field</span> of <span class=\"searchmatch\">biology</span> combining ecology, developmental <span class=\"searchmatch\">biology</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> <span class=\"searchmatch\">to</span> examine",
+      "query": "evolutionary biology and cooperation relationship to other fields"
+    },
+    {
+      "title": "Taxonomy (biology)",
+      "url": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29",
+      "snippet": "intended <span class=\"searchmatch\">to</span> reflect the <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">relationships</span> among organisms, both living <span class=\"searchmatch\">and</span> extinct. The exact definition of taxonomy varies from source <span class=\"searchmatch\">to</span> source",
+      "query": "evolutionary biology and cooperation relationship to other fields"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "2014. Sachs, Joel L. (September 2006). &quot;<span class=\"searchmatch\">Cooperation</span> within <span class=\"searchmatch\">and</span> among species&quot;. Journal of <span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">Biology</span>. 19 (5): 1415–1418, discussion 1426–1436",
+      "query": "evolutionary biology and cooperation relationship to other fields"
+    },
+    {
+      "title": "Evolutionary psychology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "snippet": "framework that integrates the entire <span class=\"searchmatch\">field</span> of psychology, much as <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> has done for <span class=\"searchmatch\">biology</span>. <span class=\"searchmatch\">Evolutionary</span> psychologists hold that behaviors",
+      "query": "evolutionary biology and cooperation relationship to other fields"
+    },
+    {
+      "title": "Taxonomy (biology)",
+      "url": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29",
+      "snippet": "for the organisms, <span class=\"searchmatch\">keys</span> for their identification, <span class=\"searchmatch\">and</span> data on their distributions, (e) investigates their <span class=\"searchmatch\">evolutionary</span> histories, <span class=\"searchmatch\">and</span> (f) considers their",
+      "query": "evolutionary biology and cooperation key figures and works"
+    },
+    {
+      "title": "Recapitulation theory",
+      "url": "https://en.wikipedia.org/wiki/Recapitulation_theory",
+      "snippet": "century, <span class=\"searchmatch\">and</span> it had been relegated to &quot;biological mythology&quot; by the mid-20th century. New discoveries in <span class=\"searchmatch\">evolutionary</span> developmental <span class=\"searchmatch\">biology</span> are providing",
+      "query": "evolutionary biology and cooperation key figures and works"
+    },
+    {
+      "title": "Adaptation",
+      "url": "https://en.wikipedia.org/wiki/Adaptation",
+      "snippet": "In <span class=\"searchmatch\">biology</span>, adaptation has three related meanings. Firstly, it is the dynamic <span class=\"searchmatch\">evolutionary</span> process of natural selection that fits organisms to their environment",
+      "query": "evolutionary biology and cooperation key figures and works"
+    },
+    {
+      "title": "Isaak Prezent",
+      "url": "https://en.wikipedia.org/wiki/Isaak_Prezent",
+      "snippet": "was a Soviet philosopher of <span class=\"searchmatch\">biology</span>, best known for his work on Marxist methodology of science <span class=\"searchmatch\">and</span> as one of the <span class=\"searchmatch\">key</span> <span class=\"searchmatch\">figures</span> of Lysenkoism. Prezent was",
+      "query": "evolutionary biology and cooperation key figures and works"
+    },
+    {
+      "title": "Evolutionary psychiatry",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychiatry",
+      "snippet": " behaviourism, biological psychiatry <span class=\"searchmatch\">and</span> psychoanalysis into a holistic account related to <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>. In this sense, its aims meet the criteria",
+      "query": "evolutionary biology and cooperation key figures and works"
+    }
+  ],
+  "ts": "2026-10-07T05:34:36.978523+00:00"
+}

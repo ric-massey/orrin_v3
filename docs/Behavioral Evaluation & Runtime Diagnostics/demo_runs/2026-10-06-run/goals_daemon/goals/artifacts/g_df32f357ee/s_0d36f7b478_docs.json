@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Shortest_path_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/High_Road_%28film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_03.txt",
+      "chars": 6376
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexandra_Road_Estate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_05.txt",
+      "chars": 14918
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Republican_Party_presidential_debates_and_forums",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Scientology_analysis_and_criticism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Belt_and_Road_Initiative",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ernst_Mach",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T05:34:24.931401+00:00"
+}

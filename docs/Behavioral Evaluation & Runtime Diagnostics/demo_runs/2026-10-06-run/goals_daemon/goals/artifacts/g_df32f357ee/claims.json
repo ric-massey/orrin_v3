@@ -1,0 +1,72 @@
+{
+  "question": "What is there about High Road that my earlier notes on it are missing?",
+  "subject_terms": [
+    "high",
+    "road"
+  ],
+  "entities": [
+    "the title Take the High Road",
+    "suggested by the folk song about the area",
+    "The main venue",
+    "the Silk Road International Exhibition Centre",
+    "and the delays",
+    "those at a time of very high inflation"
+  ],
+  "relations": [
+    {
+      "subject": "the title Take the High Road",
+      "predicate": "was",
+      "object": "suggested by the folk song about the area",
+      "source": "my prior claims [intrinsic-2026-10-07T05:29:09.486277+00:00]"
+    },
+    {
+      "subject": "The main venue",
+      "predicate": "was",
+      "object": "the Silk Road International Exhibition Centre",
+      "source": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad"
+    },
+    {
+      "subject": "and the delays",
+      "predicate": "caused by",
+      "object": "those at a time of very high inflation",
+      "source": "https://en.wikipedia.org/wiki/Alexandra_Road_Estate"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [intrinsic-2026-10-07T05:29:09.486277+00:00]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Shortest_path_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/High_Road_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexandra_Road_Estate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Republican_Party_presidential_debates_and_forums"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Scientology_analysis_and_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Belt_and_Road_Initiative"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ernst_Mach"
+    }
+  ],
+  "ts": "2026-10-07T05:34:25.668857+00:00"
+}

@@ -1,0 +1,374 @@
+{
+  "research_topic": {
+    "generate_intrinsic_goals": {
+      "count": 10,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 55,
+      "bonus": 0.3
+    },
+    "narrative_update": {
+      "count": 7,
+      "bonus": 0.3
+    },
+    "fetch_and_read": {
+      "count": 17,
+      "bonus": 0.3
+    },
+    "wikipedia_search": {
+      "count": 13,
+      "bonus": 0.3
+    },
+    "attend_goal": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "read_vitals": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "leave_note": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "look_around": {
+      "count": 5,
+      "bonus": 0.25
+    },
+    "read_a_book": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "compose_consolidation": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "assess_goal_progress": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "reflect_as_agents": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "survey_environment": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "read_text": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "look_around": {
+    "leave_note": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "seek_novelty": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "research_topic": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "survey_environment": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "leave_note": {
+    "leave_note": {
+      "count": 9,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 7,
+      "bonus": 0.3
+    },
+    "fetch_and_read": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "decide_to_write_code": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "generate_intrinsic_goals": {
+    "research_topic": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "generate_concepts_from_memories": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "seek_novelty": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "fetch_and_read": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "fetch_and_read": {
+    "narrative_update": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "fetch_and_read": {
+      "count": 28,
+      "bonus": 0.3
+    },
+    "wikipedia_search": {
+      "count": 6,
+      "bonus": 0.3
+    },
+    "attend_goal": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "leave_note": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "research_topic": {
+      "count": 14,
+      "bonus": 0.3
+    },
+    "read_a_book": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "read_text": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "simulate_conflicting_beliefs": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "narrative_update": {
+    "narrative_update": {
+      "count": 19,
+      "bonus": 0.3
+    },
+    "read_a_book": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "fetch_and_read": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "attend_goal": {
+      "count": 7,
+      "bonus": 0.3
+    },
+    "leave_note": {
+      "count": 7,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 9,
+      "bonus": 0.3
+    },
+    "detect_tensions": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "introspective_planning": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "decide_to_write_code": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "simulate_conflicting_beliefs": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "consolidate_language": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "read_a_book": {
+    "read_a_book": {
+      "count": 8,
+      "bonus": 0.3
+    },
+    "fetch_and_read": {
+      "count": 4,
+      "bonus": 0.2
+    },
+    "decide_to_write_code": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "wikipedia_search": {
+    "wikipedia_search": {
+      "count": 12,
+      "bonus": 0.3
+    },
+    "research_topic": {
+      "count": 9,
+      "bonus": 0.3
+    },
+    "current_awareness": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "evaluate_recent_cognition": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "maybe_surface_regret": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "pick_book": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "attend_goal": {
+    "attend_goal": {
+      "count": 8,
+      "bonus": 0.3
+    },
+    "compose_consolidation": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "decide_to_write_code": {
+    "learn_from_reading": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "look_around": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "learn_from_reading": {
+    "research_topic": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "maybe_surface_regret": {
+    "research_topic": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "read_a_book": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "current_awareness": {
+    "read_text": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "detect_tensions": {
+    "narrative_update": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "introspective_planning": {
+    "narrative_update": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "seek_novelty": {
+    "wikipedia_search": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "evaluate_recent_cognition": {
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "compose_consolidation": {
+    "research_topic": {
+      "count": 4,
+      "bonus": 0.2
+    }
+  },
+  "read_text": {
+    "research_topic": {
+      "count": 4,
+      "bonus": 0.2
+    }
+  },
+  "reflect_as_agents": {
+    "narrative_update": {
+      "count": 2,
+      "bonus": 0.1
+    },
+    "produce_and_check": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "survey_environment": {
+    "attend_goal": {
+      "count": 4,
+      "bonus": 0.2
+    }
+  },
+  "simulate_conflicting_beliefs": {
+    "fetch_and_read": {
+      "count": 4,
+      "bonus": 0.2
+    }
+  },
+  "look_outward": {
+    "attend_goal": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "consolidate_language": {
+    "survey_environment": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "write_desktop_note": {
+    "write_desktop_note": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  },
+  "produce_and_check": {
+    "research_topic": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  }
+}

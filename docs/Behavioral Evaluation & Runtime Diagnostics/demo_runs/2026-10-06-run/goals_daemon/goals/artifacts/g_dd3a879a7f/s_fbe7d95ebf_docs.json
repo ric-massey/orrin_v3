@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_pressure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_03.txt",
+      "chars": 19653
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tragedy_of_the_commons",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Reciprocal_causation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_08.txt",
+      "chars": 10025
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Theistic_evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T05:34:24.738398+00:00"
+}

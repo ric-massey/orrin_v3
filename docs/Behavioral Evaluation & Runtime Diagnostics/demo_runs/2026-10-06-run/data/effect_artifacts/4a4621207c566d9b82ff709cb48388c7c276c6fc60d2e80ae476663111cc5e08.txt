@@ -1,0 +1,128 @@
+{
+  "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+  "subject_terms": [
+    "consciousness",
+    "subjective",
+    "experience"
+  ],
+  "entities": [
+    "talk",
+    "published in The Journal of Consciousness Studies",
+    "Consciousness",
+    "ambiguous term",
+    "Subjective experience",
+    "commonly described as encompassing sensory experiences and mental events",
+    "it cannot fully capture what it",
+    "like for that organism to have its own experiences",
+    "The term subjective character of experience",
+    "coined by Thomas Nagel",
+    "it is impossible for humans to truly comprehend what it",
+    "like to experience echolocation firsthand",
+    "subjective experience concerns how those processes",
+    "lived and experienced by the individual",
+    "Experience unfolds continuously over time and",
+    "influenced by attention"
+  ],
+  "relations": [
+    {
+      "subject": "talk",
+      "predicate": "were",
+      "object": "published in The Journal of Consciousness Studies",
+      "source": "my prior claims [g_e1a1d9729f]"
+    },
+    {
+      "subject": "Consciousness",
+      "predicate": "is an",
+      "object": "ambiguous term",
+      "source": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "commonly described as encompassing sensory experiences and mental events",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "it cannot fully capture what it",
+      "predicate": "is",
+      "object": "like for that organism to have its own experiences",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "The term subjective character of experience",
+      "predicate": "was",
+      "object": "coined by Thomas Nagel",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "it is impossible for humans to truly comprehend what it",
+      "predicate": "is",
+      "object": "like to experience echolocation firsthand",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "subjective experience concerns how those processes",
+      "predicate": "are",
+      "object": "lived and experienced by the individual",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "Experience unfolds continuously over time and",
+      "predicate": "is",
+      "object": "influenced by attention",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "subjective experience",
+      "predicate": "is",
+      "object": "often understood as an ongoing stream or flow in which perception",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "closely related to",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "widely regarded as a defining feature of conscious awareness",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "subject": "experience refers specifically to the way conscious states",
+      "predicate": "are",
+      "object": "experienced from the first-person point of view",
+      "source": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_e1a1d9729f]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Binding_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjectivity_and_objectivity_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Qualia"
+    }
+  ],
+  "ts": "2026-10-07T03:05:50.948527+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_23068cf240",
+    "title": "Understand The Daily Stoic more deeply — round 9",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "The Daily Stoic relationship to other fields",
+        "The Daily Stoic key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3954229c1a",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T22:39:12.262650Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T22:39:12.262658Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T22:39:12.262659Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T22:39:12.262661Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T22:39:12.262662Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on The Daily Stoic was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about The Daily Stoic was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T22:39:12.262677Z",
+      "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 22:39:12.263696+00:00",
+    "updated_at": "2026-10-06 22:39:13.199954+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_940f655e70]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoicism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mike_Wazowski",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Henry_Cavill",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Massimo_Pigliucci",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Oscar_Wilde",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ryan_Holiday",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Journal_of_a_Voyage_to_Lisbon",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Robert_Greene_%28American_author%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_23068cf240/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-06T22:39:16.946920+00:00"
+}

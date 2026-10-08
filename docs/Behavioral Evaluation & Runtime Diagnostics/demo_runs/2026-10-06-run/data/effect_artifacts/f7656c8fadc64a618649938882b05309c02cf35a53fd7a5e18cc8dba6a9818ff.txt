@@ -1,0 +1,134 @@
+{
+  "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "foundations",
+    "quantum",
+    "mechanics"
+  ],
+  "entities": [
+    "The sequence begins with a quantum system whose observable",
+    "to be measured",
+    "every quantum event",
+    "branch point",
+    "mechanics that asserts that the universal wave function",
+    "objectively real",
+    "the subjective appearance of wave function collapse",
+    "explained by the mechanism of quantum decoherence",
+    "MWI",
+    "considered a mainstream interpretation of quantum mechanics",
+    "using the Copenhagen interpretation the universe",
+    "divided into a quantum and a classical domain",
+    "there",
+    "no division between classical and quantum",
+    "Quantum decoherence",
+    "loss of quantum coherence"
+  ],
+  "relations": [
+    {
+      "subject": "The sequence begins with a quantum system whose observable",
+      "predicate": "is",
+      "object": "to be measured",
+      "source": "my prior claims [g_11feeb8897]"
+    },
+    {
+      "subject": "every quantum event",
+      "predicate": "is a",
+      "object": "branch point",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "mechanics that asserts that the universal wave function",
+      "predicate": "is",
+      "object": "objectively real",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "the subjective appearance of wave function collapse",
+      "predicate": "is",
+      "object": "explained by the mechanism of quantum decoherence",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "MWI",
+      "predicate": "is",
+      "object": "considered a mainstream interpretation of quantum mechanics",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "using the Copenhagen interpretation the universe",
+      "predicate": "is",
+      "object": "divided into a quantum and a classical domain",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "there",
+      "predicate": "is",
+      "object": "no division between classical and quantum",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "Quantum decoherence",
+      "predicate": "is the",
+      "object": "loss of quantum coherence",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "Quantum computing relies on quantum coherence and",
+      "predicate": "is",
+      "object": "one of the primary practical applications of the concept",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "physical system",
+      "predicate": "is",
+      "object": "described by a mathematical representation called a quantum state",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "Probabilities for the outcomes of experiments upon a system",
+      "predicate": "are",
+      "object": "calculated by applying the Born rule to the quantum state describing that system",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "subject": "Quantum states",
+      "predicate": "are",
+      "object": "either pure or mixed",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_11feeb8897]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Measurement_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/De_Broglie%E2%80%93Bohm_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_scientific_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Einstein%E2%80%93Podolsky%E2%80%93Rosen_paradox"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Bohr%E2%80%93Einstein_debates"
+    }
+  ],
+  "ts": "2026-10-07T03:05:59.605423+00:00"
+}

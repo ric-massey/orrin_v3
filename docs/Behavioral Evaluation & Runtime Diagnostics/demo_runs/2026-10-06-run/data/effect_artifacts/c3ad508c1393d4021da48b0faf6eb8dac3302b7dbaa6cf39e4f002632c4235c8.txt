@@ -1,0 +1,8 @@
+What I learned about Trace in my own history what drives 'no net progress on either goal':
+
+- [Chunk: 🧠 Chose: assess_goal_progress — {"via": "multi-factor", "weights": {"dir": 0.22, "goal": 0.29700000000000004, "emo": 0. / 🧠 Chose: attend_goal — {"via": "multi-factor", "weights": {"dir": 0.22, "goal": 0.29700000000000004, "emo": 0.]
+- [metacog/pattern] Goal avoidance: 13 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 12 consecutive cycles without taking action on 'Characterize what makes my CPU load… / [metacog/pattern] Goal avoidance: 10 consecutive cycles without taking action on 'Characterize what makes my CPU load…]
+- Dream: In a labyrinth at dusk, A similar situation suggests (DESIGN, similarity 31%): Failure pattern: 2 similar goal failures — recurring theme: deeply, fetch, history, more, round, understand. Most recent: 💔 Goal failed: Understand history more deeply — round 2. ValueError: no URLs to fetch. This is the kind of thing I keep getting wrong. wanders through shifting rooms.
+- [will] I resolve to: pursue: Trace in my own history what drives 'no net progress on either goal' — I stand behind this. (strength 0.62)
+- [Chunk: 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap / 💔… / [emotion/cause] A sense of rejection grew because: [Chunk: 💔 Goal failed: Characterize what makes my CPU load climb.]

@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_41d041f210",
+    "title": "Understand the west more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "the west history and development",
+        "the west applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3413033054",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:35:01.550536Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:35:01.550550Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:35:01.550552Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:35:01.550553Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:35:01.550555Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the west was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the west was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T21:35:01.550588Z",
+      "question": "What is there about the west that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 21:35:01.551368+00:00",
+    "updated_at": "2026-10-06 21:35:02.641848+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/West_Bank",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_West_Africa",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Key_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/American_frontier",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/West_Africa",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/API",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Israeli_law_in_the_West_Bank_settlements",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_09.txt"
+    }
+  ],
+  "ts": "2026-10-06T21:35:08.880372+00:00"
+}

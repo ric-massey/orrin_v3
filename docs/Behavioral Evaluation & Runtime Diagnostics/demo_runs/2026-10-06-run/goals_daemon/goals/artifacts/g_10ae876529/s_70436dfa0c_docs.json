@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fields_Medal",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_sciences",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_05.txt",
+      "chars": 2544
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_and_art",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Grothendieck%27s_relative_point_of_view",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_10ae876529/doc_08.txt",
+      "chars": 6715
+    }
+  ],
+  "ts": "2026-10-06T23:07:46.042320+00:00"
+}

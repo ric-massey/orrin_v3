@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_3521e92972",
+    "title": "Understand but what if there more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "but what if there history and development",
+        "but what if there applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_8763455e59",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T07:16:08.057349Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T07:16:08.057358Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T07:16:08.057360Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T07:16:08.057361Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T07:16:08.057363Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on but what if there was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about but what if there was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T07:16:08.057391Z",
+      "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 07:16:08.085941+00:00",
+    "updated_at": "2026-10-07 07:16:09.437496+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/What/If",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternate_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Counterfactual_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/What_If..._Captain_Carter_Were_the_First_Avenger%3F",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/API",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mobile_app",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T07:16:12.896907+00:00"
+}

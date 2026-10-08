@@ -1,0 +1,132 @@
+{
+  "question": "What is there about mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "mathematics"
+  ],
+  "entities": [
+    "Mathematics",
+    "field of knowledge concerned with abstract concepts such as numbers",
+    "Contemporaneous with but independent of these traditions",
+    "the mathematics developed by the Maya civilization of Mexico and Central America",
+    "Many Greek and Arabic texts on mathematics",
+    "translated into Latin from the 12th century",
+    "Subsequent studies of mathematics by the Greeks",
+    "largely indebted to these previous investigations",
+    "Babylonian advances in mathematics",
+    "facilitated by the fact that 60 has many divisors",
+    "widely used to model and solve problems in science",
+    "There",
+    "many areas of mathematics",
+    "essential in science and engineering",
+    "Although mathematics",
+    "widely used to model empirical phenomena"
+  ],
+  "relations": [
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "my prior claims [g_f42e2c2402]"
+    },
+    {
+      "subject": "Contemporaneous with but independent of these traditions",
+      "predicate": "were",
+      "object": "the mathematics developed by the Maya civilization of Mexico and Central America",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "subject": "Many Greek and Arabic texts on mathematics",
+      "predicate": "were",
+      "object": "translated into Latin from the 12th century",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "subject": "Subsequent studies of mathematics by the Greeks",
+      "predicate": "were",
+      "object": "largely indebted to these previous investigations",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematical_notation"
+    },
+    {
+      "subject": "Babylonian advances in mathematics",
+      "predicate": "were",
+      "object": "facilitated by the fact that 60 has many divisors",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematical_notation"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "widely used to model and solve problems in science",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many areas of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "essential in science and engineering",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Although mathematics",
+      "predicate": "is",
+      "object": "widely used to model empirical phenomena",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "developed in close correlation with their applications and",
+      "predicate": "are",
+      "object": "often grouped under applied mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "was",
+      "object": "primarily divided into geometry and arithmetic until the 16th and 17th centuries",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "mathematics",
+      "predicate": "was",
+      "object": "divided into two main areas",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_f42e2c2402]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_mathematical_notation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vorlesungen_%C3%BCber_die_Entwicklung_der_Mathematik_im_19._Jahrhundert"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_mathematical_examples"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_linguistics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Applied_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Exercise_%28mathematics%29"
+    }
+  ],
+  "ts": "2026-10-06T21:34:55.436802+00:00"
+}

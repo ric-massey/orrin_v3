@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_dd3a879a7f",
+    "title": "Understand evolutionary biology and cooperation more deeply — round 8",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "evolutionary biology and cooperation recent research",
+        "evolutionary biology and cooperation common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_ed48061c06",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.334937Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.334947Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.334949Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.334951Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.334953Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on evolutionary biology and cooperation was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about evolutionary biology and cooperation was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T05:34:19.334972Z",
+      "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 05:34:19.338980+00:00",
+    "updated_at": "2026-10-07 05:34:21.025471+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_66094d60d2]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_pressure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tragedy_of_the_commons",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Reciprocal_causation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_dd3a879a7f/doc_09.txt"
+    }
+  ],
+  "ts": "2026-10-07T05:34:25.680883+00:00"
+}

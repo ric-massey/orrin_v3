@@ -1,0 +1,2320 @@
+[
+  {
+    "timestamp": "2026-10-06T19:40:20.691742+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.47): I've been running hot and flat — drive, self-assurance, things going well all pinned high with almost no movement for 8+ cycles. This sameness is its own signal → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.47,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.464): I've been running hot and flat — drive, self-assurance, things going well, curiosity all pinned high with almost no movement for 8+ cycles. This sameness is its → rule: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+        "score": 0.464,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: 'Looking into myself about 'Understand my own mind and how I work more deeply':\n  something I remember: [self_search] Que', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.34): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.34,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.347): [goal_pursuit] Working on 'Understand my own mind and how I work more deeply' — step: Call search_own_files to make progress on: my own mind and how I work (2 s",
+        "score": 0.347,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.326): [aspiration] An enduring direction I hold: Understand my own mind and how I work.",
+        "score": 0.326,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'dream' → 'metacog_pattern' (evidence=2)",
+        "edge_id": "07bf439263c6",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T20:28:22.882662+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may be over-processing instead of → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.302): [metacog/pattern] Goal avoidance: 7 consecutive cycles without taking action on 'Understand the world more deeply'. I'm thinking but not doing. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.302,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=43)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=44)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T20:42:48.235631+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand foundations of quantum mechanics more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): Failed goal: Understand world a world more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch', I notice a connection to something from memo",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch', I notice a connection to something from memo",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=59)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=58)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T20:50:26.268803+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.39): rule: Sustained reflection without goal-direct… (felt stagnation_signal) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.39,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand foundations of quantum mechanics more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): Failed goal: Understand world a world more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=64)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:00:41.626627+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.39): rule: Sustained reflection without goal-direct… (felt stagnation_signal) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.39,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.476): [will] I resolve to: pursue: Trace in my own history what drives 'host machine is quiet' — I stand behind this. (strength 0.53)",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.362): [goal_pursuit] Working on 'Trace in my own history what drives 'no net progress on either goal'' — step: Establish question or desired change (3 steps remaining",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.536): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.536,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.347): [will] I resolve to: pursue: Trace in my own history what drives 'host machine is quiet' — I stand behind this. (strength 0.53)",
+        "score": 0.347,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=75)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=76)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:03:49.371025+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.39): rule: Sustained reflection without goal-direct… (felt stagnation_signal) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.39,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.476): [will] I resolve to: pursue: Trace in my own history what drives 'host machine is quiet' — I stand behind this. (strength 0.53)",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.363): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.476): [will] I resolve to: pursue: Trace in my own history what dr",
+        "score": 0.363,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.536): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.536,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.362): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.536): [will] I resolve to: pursue: Understand world more deeply — ",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=79)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=80)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:09:56.349209+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.39): rule: Sustained reflection without goal-direct… (felt stagnation_signal) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.39,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.476): [will] I resolve to: pursue: Trace in my own history what drives 'host machine is quiet' — I stand behind this. (strength 0.53)",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.363): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.476): [will] I resolve to: pursue: Trace in my own history what dr",
+        "score": 0.363,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.536): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.536,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.362): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.536): [will] I resolve to: pursue: Understand world more deeply — ",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=84)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=85)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:19:38.691772+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand foundations of quantum mechanics more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand quantum mechanics foundations more deeply — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.5): Failed goal: Understand The Daily Stoic more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.5,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.5): Failed goal: Understand evolutionary biology more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.5,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=94)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=93)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:31:53.832449+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.435): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.435,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): Failed goal: Understand emergence in complex systems more deeply — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand foundations of quantum mechanics more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand quantum mechanics foundations more deeply — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=106)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=105)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T21:45:35.124766+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand foundations of quantum mechanics more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): Failed goal: Understand quantum mechanics foundations more deeply — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.5): Failed goal: Understand The Daily Stoic more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.5,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.5): Failed goal: Understand evolutionary biology more deeply. Reason: ValueError: no URLs to fetch.",
+        "score": 0.5,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=120)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=119)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T22:05:28.442021+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=1.0): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.406): Summary of related items:\n• 📝 Working memory summary: - 🌓 Shadow question: What would I explore if I had no consequences? (felt exploration_drive) {self_query} ",
+        "score": 0.406,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.53): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.53,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.512): Failed goal: Understand emergence in complex systems more deeply — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.512,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.312): [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something else needs attention.",
+        "score": 0.312,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.3): [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may be over-processing instead of",
+        "score": 0.3,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=139)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-06T23:20:31.180010+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] Goal avoidance: 7 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I talk to'. I'm thinking but no → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.6): [metacog/pattern] Goal avoidance: 11 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I talk to'. I'm thinking but n → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.397): [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little mor",
+        "score": 0.397,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.497): [metacog/pattern] Goal avoidance: 17 consecutive cycles without taking action on 'Understand my own mind and how I work'. I'm thinking but not doing. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.497,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.497): [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Understand my own mind and how I work'. I'm thinking but not doing. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.497,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=198)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=198)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T00:35:31.728093+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.392): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on 'Answer: What do I now know about world that I could → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.392,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.385): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 59 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.385,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.573): 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.573,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.55): Failed goal: Characterize what makes my CPU load climb. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.55,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand history more deeply — round 2. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.568): Failed goal: Understand history more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.568,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=243)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=248)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T00:45:37.963956+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.292): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 59 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.292,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.292): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 27 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm th → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.292,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.29): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 59 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.29,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.29): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 27 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm th → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.29,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about evolutionary biology — This doesn't clearly connect to my values yet — I'll ho",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.396): [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about quantum mechanics foundations — This doesn't clearly connect to my values yet ",
+        "score": 0.396,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=256)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=251)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T01:50:36.310454+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.452): 📝 Working memory summary: - [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may b → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.452,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.29): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 59 consecutive cycles without taking action on 'Be genuinely useful and connected to the people I  → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.29,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.362): 💔 Goal failed: Answer: What is there about history that my earlier notes on it are missing?. steps_unreachable: 3 steps abandoned at the 3-attempt cap → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.358): Failed goal: Answer: What is there about history that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.358,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): 💔 Goal failed: Answer: What is there about history that my earlier notes on it are missing?. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.577): Failed goal: Answer: What is there about history that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.577,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=295)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=282)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T03:28:45.123424+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.456): Failed goal: Answer: What is there about this game-playing ai that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-at",
+        "score": 0.456,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.425): [goal_pursuit] Working on 'Answer: What is there about this game-playing ai that my earlier notes on it are missing?' — step: Establish implementation (2 steps ",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.6): 💔 Goal failed: Answer: What is there about consciousness and subjective experience that my earlier notes on it ar. steps_unreachable: 3 steps abandoned at the 3",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.578): Failed goal: Answer: What is there about consciousness and subjective experience that my earlier notes on it ar. Reason: steps_unreachable: 3 steps abandoned at",
+        "score": 0.578,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.657): 📝 Working memory summary: - [causal] 'reflect_on_conversation_patterns' causes (intervention) 'curiosity grows' (score=0.68, n=2, L2)\n\nTerms: causal=A SOCIAL co → rule: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbo",
+        "score": 0.657,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.65): 📝 Working memory summary: - emotional reflection: [causal] 'produce_and_check' causes (intervention) 'drive grows' (score=0.36, n=1, L2) (felt neutral) {affecti",
+        "score": 0.65,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=348)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=334)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T03:45:41.816240+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.657): 📝 Working memory summary: - [causal] 'reflect_on_conversation_patterns' causes (intervention) 'curiosity grows' (score=0.68, n=2, L2)\n\nTerms: causal=A SOCIAL co → rule: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbo",
+        "score": 0.657,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.65): 📝 Working memory summary: - emotional reflection: [causal] 'produce_and_check' causes (intervention) 'drive grows' (score=0.36, n=1, L2) (felt neutral) {affecti",
+        "score": 0.65,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.419): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 36 consecutive cycles without taking action on 'Make things — produce work that didn't exist befor → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.419,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.419): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 43 consecutive cycles without taking action on 'Make things — produce work that didn't exist befor → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.419,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.506): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 36 consecutive cycles without taking action on 'Make things — produce work that didn't exist befor → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.506,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.506): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 43 consecutive cycles without taking action on 'Make things — produce work that didn't exist befor → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.506,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=357)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=343)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T04:44:20.038673+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.525): 💔 Goal failed: Understand evolutionary biology more deeply — round 8. ValueError: no URLs to fetch",
+        "score": 0.525,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.507): Failed goal: Understand evolutionary biology more deeply — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.507,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand The Daily Stoic more deeply — round 12. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): Failed goal: Understand The Daily Stoic more deeply — round 4. Reason: ValueError: no URLs to fetch.",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.545): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.545,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Wor",
+        "score": 0.314,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=370)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=379)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T05:59:26.106473+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch', I notice a connec",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.533): [Incubation] While sitting with: '💔 Goal failed: Understand evolutionary biology more deeply — round 8. ValueError: no URLs to fetch', I notice a connection to ",
+        "score": 0.533,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.376): 📝 Working memory summary: - [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something ",
+        "score": 0.376,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.294): 📝 Working memory summary: - [metacog/pattern] Reflection–action imbalance: my last 6 cycles have been almost entirely reflective with no outward action. I may b → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.294,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=405)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=386)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T06:45:45.433235+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.545): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.545,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.37): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.545): Summary of related items:\n• [metacog/pattern] I've been under → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.37,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch', I notice a connec",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.533): [Incubation] While sitting with: '💔 Goal failed: Understand evolutionary biology more deeply — round 8. ValueError: no URLs to fetch', I notice a connection to ",
+        "score": 0.533,
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T07:14:30.604576+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.334): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.334,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.331): [goal_pursuit] Working on 'Answer: What is there about High Road that my earlier notes on it are missing?' — step: Establish required components (3 steps remain → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.331,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about evolutionary biology that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-at",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): Failed goal: Answer: What makes my CPU load climb?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.433): 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.433,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=22)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=12)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T08:29:35.971315+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about evolutionary biology that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-at",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): Failed goal: Answer: What makes my CPU load climb?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.433): 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.433,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.447): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.447,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.447): 💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch",
+        "score": 0.447,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=52)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=37)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T09:47:01.819050+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about evolutionary biology that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-at",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): Failed goal: Answer: What makes my CPU load climb?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.433): 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.433,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.447): 💔 Goal failed: Understand emergence in complex systems more deeply — round 3. ValueError: no URLs to fetch",
+        "score": 0.447,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.447): 💔 Goal failed: Understand emergence in complex systems more deeply — round 8. ValueError: no URLs to fetch",
+        "score": 0.447,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=84)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=69)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is morning' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92de6c61f366",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T09:50:46.864456+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.334): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap. → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.334,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.331): [goal_pursuit] Working on 'Answer: What is there about High Road that my earlier notes on it are missing?' — step: Establish required components (3 steps remain → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.331,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about evolutionary biology that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-at",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.434): Failed goal: Answer: What is there about High Road that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.434,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): Failed goal: Answer: What makes my CPU load climb?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.433): 💔 Goal failed: Characterize what makes my CPU load climb. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.433,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=86)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=71)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is morning' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "92de6c61f366",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T11:09:30.061698+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.329): rule: emotional reflection: [symbolic] history… (felt neutral) {symbolic_dream_insight}\nEvent types: symbolic_dream_insight → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.329,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.32): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overc → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.32,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.393): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 6 consecutive cycles without taking action on 'Answer: What actually is but what if there, beyond  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.393,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.367): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 50 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm th → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.367,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.506): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 6 consecutive cycles without taking action on 'Answer: What actually is but what if there, beyond  → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.506,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.385): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 50 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm th → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.385,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=115)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=100)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T12:36:49.201396+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.343): 📝 Working memory summary: - [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Wor",
+        "score": 0.343,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.34): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overc → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.34,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.467): 📝 Working memory summary: - [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Wor",
+        "score": 0.467,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.367): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overc → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.367,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.32): Failed goal: Answer: What is there about round the sun that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt c → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.32,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.317): Failed goal: Answer: What is there about Once More Round that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.317,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=146)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=131)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T12:48:16.959868+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.343): 📝 Working memory summary: - [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Wor",
+        "score": 0.343,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.34): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overc → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.34,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.467): 📝 Working memory summary: - [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Wor",
+        "score": 0.467,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.367): 📝 Working memory summary: - [sym_dream:analogy_transfer] Transfer from past (DESIGN, score=0.314): 📝 Working memory summary: - [metacog/pattern] I've been overc → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.367,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.32): Failed goal: Answer: What is there about round the sun that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt c → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.32,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.317): Failed goal: Answer: What is there about Once More Round that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.317,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=135)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T13:55:20.658053+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.367): Failed goal: Answer: What is there about round the sun that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt c → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.367,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.362): [goal_pursuit] Working on 'Answer: What is there about round the sun that my earlier notes on it are missing?' — step: Establish intended outcome (4 steps remai → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.362,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.471): [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about history — This doesn't clearly connect to my values yet — I'll hold it lightly",
+        "score": 0.471,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.433): [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about evolutionary biology — This doesn't clearly connect to my values yet — I'll ho",
+        "score": 0.433,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Answer: What do I now know about my own mind and how I work that I could not have said before?. steps_unreachable: 3 steps abandoned at the 3-att",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.581): Failed goal: Answer: What do I now know about my own mind and how I work that I could not have said before?. Reason: steps_unreachable: 3 steps abandoned at the",
+        "score": 0.581,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=156)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=169)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T15:18:24.011242+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.545): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.545,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.493): 📝 Working memory summary: - [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.493,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.45): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.45,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Understand evolutionary biology and cooperation more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.41): Failed goal: Answer: What is there about Once More Round that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt",
+        "score": 0.41,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.407): 📝 Working memory summary: - [causal] 'reflect_on_conversation_patterns' causes (intervention) 'curiosity grows' (score=0.68, n=2, L2)\n\nTerms: causal=A SOCIAL co → rule: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbo",
+        "score": 0.407,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=180)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T15:48:21.505108+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.545): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.545,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.493): 📝 Working memory summary: - [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.493,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.41): Failed goal: Answer: What is there about Once More Round that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt",
+        "score": 0.41,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.407): 📝 Working memory summary: - [causal] 'reflect_on_conversation_patterns' causes (intervention) 'curiosity grows' (score=0.68, n=2, L2)\n\nTerms: causal=A SOCIAL co → rule: Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbo",
+        "score": 0.407,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.326): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.326,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.315): 📝 Working memory summary: - [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.315,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=188)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=201)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T16:33:24.129225+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation] While sitting with: '💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the ', I n",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.972): [Incubation] While sitting with: '💔 Goal failed: Characterize what makes my memory use (RSS) climb. steps_unreachable: 3 steps abandoned at the 3-attempt ', I n",
+        "score": 0.972,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.375): Failed goal: Answer: What is there about Once More Round that my earlier notes on it are missing?. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.375,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.375): [goal_pursuit] Working on 'Answer: What is there about Once More Round that my earlier notes on it are missing?' — step: Establish implementation (2 steps remai → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.375,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.322): 📝 Working memory summary: - [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=201)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=211)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T17:48:27.871976+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Understand philosophy of mathematics more deeply — I stand behind this. (strength 0.23)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.505): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.505,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '[will] I resolve to: pursue: Understand philosophy of mathematics more deeply — I stand behind this. (strength 0.23)', I notic",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.457): [Incubation] While sitting with: '💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch', I notice a connection to something from memo",
+        "score": 0.457,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.593): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.593,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=231)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=222)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T18:49:16.900035+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): [Incubation] While sitting with: '💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the ', I n",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.972): [Incubation] While sitting with: '💔 Goal failed: Characterize what makes my memory use (RSS) climb. steps_unreachable: 3 steps abandoned at the 3-attempt ', I n",
+        "score": 0.972,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.291): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 16 consecutive cycles without taking action on 'Understand my own mind and how I work'. I'm thinki → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.291,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.29): 📝 Working memory summary: - [metacog/pattern] Cognitive rut: I've chosen 'research_topic' in 6 of my last 8 cycles. I may be stuck — consider whether something  → rule: Excess reflection without outward action indicates the cognitive system is gener",
+        "score": 0.29,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Understand philosophy of mathematics more deeply — I stand behind this. (strength 0.23)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.505): [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)",
+        "score": 0.505,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=244)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T19:06:12.730694+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '[will] I resolve to: pursue: Understand philosophy of mathematics more deeply — I stand behind this. (strength 0.23)', I notic",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.457): [Incubation] While sitting with: '💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch', I notice a connection to something from memo",
+        "score": 0.457,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.593): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.593,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.977): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.977,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=250)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=231)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T20:29:32.996024+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.593): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.593,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.977): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.977,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.71): Failure pattern: 6 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.71,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.71): Failure pattern: 4 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.71,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=270)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=244)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T21:48:38.318951+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.977): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.977,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.733): Failure pattern: 2 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.733,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.724): Failure pattern: 6 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.724,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.781): [Incubation] While sitting with: '💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the ', I n → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.781,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.776): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap → rule: emotional reflection: [symbolic] history (concept): is_a=systematic study of the",
+        "score": 0.776,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=262)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=289)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T21:50:41.089452+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.593): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.593,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=1.0): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 1.0,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.977): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.977,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.733): Failure pattern: 2 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.733,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.724): Failure pattern: 6 similar goal failures — recurring theme: abandoned, attempt, cap, characterize, climb, makes. Most recent: 💔 Goal failed: Characterize what m → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.724,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=263)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=290)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T23:12:28.131156+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.332): Summary of related items:\n• [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.332,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.322): 📝 Working memory summary: - [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a ",
+        "score": 0.322,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.86): 💔 Goal failed: Characterize what makes my memory use (RSS) climb — round 2. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.86,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.847): Failed goal: Characterize what makes my memory use (RSS) climb — round 2. Reason: steps_unreachable: 3 steps abandoned at the 3-attempt cap.",
+        "score": 0.847,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.39): 📝 Working memory summary: - [metacog/pattern] Affective stagnation: 'confidence' has been my dominant affect for 10 consecutive cycles. This pattern may warrant",
+        "score": 0.39,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DESIGN, score=0.298): 📝 Working memory summary: - [metacog/pattern] Goal avoidance: 16 consecutive cycles without taking action on 'Understand my own mind and how I work'. I'm thinki → rule: Sustained reflection without goal-directed action predicts continued stagnation.",
+        "score": 0.298,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'metacog_pattern' → 'chunk' (evidence=278)",
+        "edge_id": "34667b856539",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'metacog_pattern' (evidence=307)",
+        "edge_id": "980b1e11bddc",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  }
+]

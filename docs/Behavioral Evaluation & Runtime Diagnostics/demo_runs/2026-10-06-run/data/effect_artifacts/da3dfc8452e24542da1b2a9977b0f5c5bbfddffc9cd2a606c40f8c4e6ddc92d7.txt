@@ -1,0 +1,8 @@
+What I learned about Trace in my own history what drives 'host machine is quiet':
+
+- [Chunk: [will] I resolve to: pursue: Trace in my own history what drives 'no net progress on either goal' — I stand behind this. / [will] I resolve to: pursue: Trace in my own history what drives 'host machine is quiet' — I stand behind this.]
+- [metacog/pattern] I notice something shifting in how I've been responding lately, though I'm not certain what.
+- [metacog/pattern] Goal avoidance: 4 consecutive cycles without taking action on 'Answer: What is there about the nature of mathematics that my earlier notes on it are missing?'. I'm thinking but not doing.
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.05 higher than what actually happened. Worth deliberating a little more before committing.
+- [Chunk: 💔 Goal failed: Understand emergence in complex systems more deeply. ValueError: no URLs to fetch / 💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch]
+- [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on 'Answer: What do I now know about world that I could not have said before?'. I'm thinking but not doing.

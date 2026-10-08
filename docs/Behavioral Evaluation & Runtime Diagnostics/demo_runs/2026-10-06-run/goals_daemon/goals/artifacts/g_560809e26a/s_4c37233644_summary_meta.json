@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_560809e26a",
+    "title": "Understand history more deeply — round 4",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "history recent research",
+        "history common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_2a464a2685",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.873332Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.873337Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.873339Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.873341Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.873343Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on history was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about history was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T00:52:42.874133Z",
+      "question": "What is there about history that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 00:52:42.875631+00:00",
+    "updated_at": "2026-10-07 00:52:43.769983+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_35280a6d82]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Origin_of_water_on_Earth",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Institute_for_Recent_History_of_Serbia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_Chad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_560809e26a/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T00:52:48.078303+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Panzerfaust_3",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Software_bug",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_04.txt",
+      "chars": 14297
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Semicircular_arch",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_05.txt",
+      "chars": 5996
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Distributed_computing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Segment_display",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/JSON",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Microsoft_Excel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T15:47:46.340836+00:00"
+}

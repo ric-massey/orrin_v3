@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-10-07T00:32:50.994728+00:00",
+    "rule_id": "47496202c2",
+    "rule_conclusion": "[causal] 'produce_and_check' causes (intervention) 'drive grows' (score=0.36, n=1, L2)",
+    "confidence": 0.43,
+    "outcome": 0.19801599999999997,
+    "query": "analyze recent emotional patterns and stability",
+    "status": "retired"
+  },
+  {
+    "timestamp": "2026-10-07T16:11:10.367020+00:00",
+    "rule_id": "d959527cfb",
+    "rule_conclusion": "Drawing from a past case (GENERAL, similarity 32%): emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description=",
+    "confidence": 0.34,
+    "outcome": 0.08000000000000002,
+    "query": "analyze recent emotional patterns and stability",
+    "status": "retired"
+  }
+]

@@ -1,0 +1,151 @@
+{
+  "goal": {
+    "id": "g_3dae344508",
+    "title": "Understand the nature of mathematics more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "the nature of mathematics",
+        "the nature of mathematics explained",
+        "what is not obvious about the nature of mathematics"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T20:25:09.824766Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T20:25:09.824776Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T20:25:09.824778Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T20:25:09.824780Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T20:25:09.824781Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on the nature of mathematics was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about the nature of mathematics was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T20:25:09.824806Z",
+      "question": "What is there about the nature of mathematics that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 20:25:09.825125+00:00",
+    "updated_at": "2026-10-06 20:25:11.321906+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Future_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Patterns_in_nature",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pattern",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Our_Mathematical_Universe",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-06T20:25:16.375410+00:00"
+}

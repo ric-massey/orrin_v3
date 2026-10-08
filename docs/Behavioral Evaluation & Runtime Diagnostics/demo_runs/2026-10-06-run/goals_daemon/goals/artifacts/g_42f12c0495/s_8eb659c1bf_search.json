@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "evolutionary biology open problems",
+    "evolutionary biology criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+    "https://en.wikipedia.org/wiki/Biology",
+    "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+    "https://en.wikipedia.org/wiki/Evolutionary_epistemology",
+    "https://en.wikipedia.org/wiki/Evolutionary_debunking"
+  ],
+  "results": [
+    {
+      "title": "Glossary of genetics and evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "snippet": "genetics and <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> is a list of definitions of terms and concepts used in the study of genetics and <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, as well as sub-disciplines",
+      "query": "evolutionary biology open problems"
+    },
+    {
+      "title": "Biology",
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "snippet": "ecosystems. Subdisciplines include molecular <span class=\"searchmatch\">biology</span>, physiology, ecology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, developmental <span class=\"searchmatch\">biology</span>, and systematics, among others. Each of",
+      "query": "evolutionary biology open problems"
+    },
+    {
+      "title": "Evolutionary psychology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "snippet": "integrates the entire field of psychology, much as <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> has done for <span class=\"searchmatch\">biology</span>. <span class=\"searchmatch\">Evolutionary</span> psychologists hold that behaviors or traits that",
+      "query": "evolutionary biology open problems"
+    },
+    {
+      "title": "Evolutionary epistemology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_epistemology",
+      "snippet": "inquiry in epistemology, <span class=\"searchmatch\">evolutionary</span> epistemology lies at the crossroads of philosophy and <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>. <span class=\"searchmatch\">Evolutionary</span> epistemology can refer to",
+      "query": "evolutionary biology open problems"
+    },
+    {
+      "title": "Evolutionary debunking",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_debunking",
+      "snippet": "An <span class=\"searchmatch\">evolutionary</span> debunking, sometimes referred to as an <span class=\"searchmatch\">evolutionary</span> debunking argument or <span class=\"searchmatch\">evolutionary</span> debunking thesis, is a philosophical argument which",
+      "query": "evolutionary biology open problems"
+    }
+  ],
+  "ts": "2026-10-06T23:13:49.390190+00:00"
+}

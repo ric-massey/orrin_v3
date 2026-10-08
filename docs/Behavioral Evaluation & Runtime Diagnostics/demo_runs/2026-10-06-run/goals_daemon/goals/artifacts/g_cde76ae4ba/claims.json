@@ -1,0 +1,134 @@
+{
+  "question": "What is there about emergence in complex systems that my earlier notes on it are missing?",
+  "subject_terms": [
+    "emergence",
+    "complex",
+    "systems"
+  ],
+  "entities": [
+    "is one that",
+    "not a property of any component of that system",
+    "complex system",
+    "system composed of many components that interact with one another",
+    "The behavior of a complex system",
+    "intrinsically difficult to model due to the dependencies",
+    "The term complex systems often",
+    "the study of complex systems",
+    "Disorganised systems",
+    "linked to self-organisation processes",
+    "Hierarchical systems which",
+    "analyzable into successive sets of subsystems",
+    "adaptive systems are special cases of complex systems that",
+    "adaptive in that they have the capacity to change and learn from experience",
+    "is a system that",
+    "complex in that it is a dynamic network of interactions"
+  ],
+  "relations": [
+    {
+      "subject": "is one that",
+      "predicate": "is",
+      "object": "not a property of any component of that system",
+      "source": "https://en.wikipedia.org/wiki/Emergence"
+    },
+    {
+      "subject": "complex system",
+      "predicate": "is a",
+      "object": "system composed of many components that interact with one another",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "The behavior of a complex system",
+      "predicate": "is",
+      "object": "intrinsically difficult to model due to the dependencies",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "The term complex systems often",
+      "predicate": "refers to",
+      "object": "the study of complex systems",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "Disorganised systems",
+      "predicate": "are",
+      "object": "linked to self-organisation processes",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "Hierarchical systems which",
+      "predicate": "are",
+      "object": "analyzable into successive sets of subsystems",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "adaptive systems are special cases of complex systems that",
+      "predicate": "are",
+      "object": "adaptive in that they have the capacity to change and learn from experience",
+      "source": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "subject": "is a system that",
+      "predicate": "is",
+      "object": "complex in that it is a dynamic network of interactions",
+      "source": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "subject": "and a class of softer theory",
+      "predicate": "is",
+      "object": "Viable System Theory",
+      "source": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "subject": "The term complex adaptive system",
+      "predicate": "was",
+      "object": "coined in 1968 by sociologist Walter F",
+      "source": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "subject": "complex adaptive system",
+      "predicate": "is",
+      "object": "sometimes linked to memetics",
+      "source": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "subject": "the agents as well as the system",
+      "predicate": "are",
+      "object": "adaptive and the system is self-similar",
+      "source": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: research_memo.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Emergence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Complex_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Complex_adaptive_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Systems_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Great_Debates_%28international_relations%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Technology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socialism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Reductionism"
+    }
+  ],
+  "ts": "2026-10-07T02:58:24.339074+00:00"
+}

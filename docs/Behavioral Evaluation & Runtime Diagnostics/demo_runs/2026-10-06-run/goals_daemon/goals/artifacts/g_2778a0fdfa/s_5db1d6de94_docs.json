@@ -1,0 +1,35 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Emergence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_adaptive_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gears_of_War%3A_E-Day",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Systems_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2778a0fdfa/doc_06.txt",
+      "chars": 5571
+    }
+  ],
+  "ts": "2026-10-07T04:16:14.500741+00:00"
+}

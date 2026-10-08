@@ -1,6 +1,6 @@
 # Life Ambition — an end-goal *belief*, not an end goal (2026-07-09)
 
-> **STATUS: PROPOSED — PARKED behind Run 8.** Do **not** write code against this
+> **STATUS: BUILT** as Run 11 L3 (15b372e, P1–P3). *(Header corrected 2026-10-07.)* Originally: PROPOSED — PARKED behind Run 8. Do **not** write code against this
 > until Run 8's gate **G1 (no committed goal > 60% of life cycles)** is green.
 > This feature adds a commitment bias (§4, §3c) into the exact layer that has
 > failed the monopoly gate for six consecutive runs (Run 7: 90.9%). Landing it

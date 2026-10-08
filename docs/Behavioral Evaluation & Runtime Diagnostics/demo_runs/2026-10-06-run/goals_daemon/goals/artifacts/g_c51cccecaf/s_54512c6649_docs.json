@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_decoherence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Measurement_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_05.txt",
+      "chars": 18617
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/De_Broglie%E2%80%93Bohm_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Einstein%E2%80%93Podolsky%E2%80%93Rosen_paradox",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bohr%E2%80%93Einstein_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Copenhagen_interpretation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c51cccecaf/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-06T21:12:47.991946+00:00"
+}

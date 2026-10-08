@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_09c26e9bd0",
+    "title": "Understand quantum mechanics foundations more deeply — round 4",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "quantum mechanics foundations recent research",
+        "quantum mechanics foundations common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_1bb4f6fb09",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:55:11.463834Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:55:11.463839Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:55:11.463841Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:55:11.463843Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T21:55:11.463845Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on quantum mechanics foundations was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about quantum mechanics foundations was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T21:55:11.463935Z",
+      "question": "What is there about quantum mechanics foundations that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 21:55:11.465062+00:00",
+    "updated_at": "2026-10-06 21:55:12.261786+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_c51cccecaf]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_gravity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_superposition",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_computing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_indeterminacy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_09c26e9bd0/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-06T21:55:16.835070+00:00"
+}

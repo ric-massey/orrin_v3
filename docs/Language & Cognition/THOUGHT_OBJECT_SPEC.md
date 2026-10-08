@@ -1,6 +1,6 @@
 # The Thought Object — Specification (Grounded Cognition Plan, Phase 2A)
 
-Status: **spec.** This is the first and hardest deliverable of Phase 2 (LM-as-mouth).
+Status: **spec.** *(2026-10-07: extended inward by [`FEELING_AND_NAMING_DESIGN_2026-10-07.md`](FEELING_AND_NAMING_DESIGN_2026-10-07.md) — working memory holds semantic-register records; that doc §7 lists the amendments this spec needs, notably §5: perceivable records must not carry raw signal keys.)* This is the first and hardest deliverable of Phase 2 (LM-as-mouth).
 Until it exists, "the native LM is the mouth, not the mind" is a slogan. This document
 defines the structured internal object the symbolic mind builds and the native LM
 *renders* — and, critically, draws the line between what the thought object **fixes**

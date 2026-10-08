@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "history recent research",
+    "history common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Origin_of_water_on_Earth",
+    "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Institute_for_Recent_History_of_Serbia",
+    "https://en.wikipedia.org/wiki/Holocene",
+    "https://en.wikipedia.org/wiki/History_of_Chad",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages"
+  ],
+  "results": [
+    {
+      "title": "Origin of water on Earth",
+      "url": "https://en.wikipedia.org/wiki/Origin_of_water_on_Earth",
+      "snippet": "been delivered to Earth from the outer Solar System later in its <span class=\"searchmatch\">history</span>. <span class=\"searchmatch\">Recent</span> <span class=\"searchmatch\">research</span>, however, indicates that hydrogen inside the Earth played a role",
+      "query": "history recent research"
+    },
+    {
+      "title": "History of artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+      "snippet": "earliest <span class=\"searchmatch\">research</span> into thinking machines was inspired by a confluence of ideas that became prevalent in the late 1930s, 1940s, and early 1950s. <span class=\"searchmatch\">Recent</span> research",
+      "query": "history recent research"
+    },
+    {
+      "title": "Institute for Recent History of Serbia",
+      "url": "https://en.wikipedia.org/wiki/Institute_for_Recent_History_of_Serbia",
+      "snippet": "Institute for <span class=\"searchmatch\">Recent</span> <span class=\"searchmatch\">History</span> of Serbia (Serbo-Croatian: Институт за новију историју Србије, Institut za noviju istoriju Srbije) is a <span class=\"searchmatch\">research</span> institute based",
+      "query": "history recent research"
+    },
+    {
+      "title": "Holocene",
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "snippet": "December 2007). &quot;Global climate change, war, and population decline in <span class=\"searchmatch\">recent</span> human <span class=\"searchmatch\">history</span>&quot;. Proceedings of the National Academy of Sciences of the United States",
+      "query": "history recent research"
+    },
+    {
+      "title": "History of Chad",
+      "url": "https://en.wikipedia.org/wiki/History_of_Chad",
+      "snippet": "stateless societies along their peripheries dominated Chad&#039;s political <span class=\"searchmatch\">history</span>. <span class=\"searchmatch\">Recent</span> <span class=\"searchmatch\">research</span> suggests that indigenous Africans founded these states, not migrating",
+      "query": "history recent research"
+    },
+    {
+      "title": "List of common misconceptions",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions",
+      "snippet": "Each entry on these lists of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is phrased as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied instead of being explicitly stated",
+      "query": "history common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about history",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "history common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "history common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "history common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about the Middle Ages",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "snippet": "focus on writing literature addressing some of the primary <span class=\"searchmatch\">misconceptions</span> about medieval <span class=\"searchmatch\">history</span>; and other historians take the alternative approach of highlighting",
+      "query": "history common misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T00:52:43.767500+00:00"
+}

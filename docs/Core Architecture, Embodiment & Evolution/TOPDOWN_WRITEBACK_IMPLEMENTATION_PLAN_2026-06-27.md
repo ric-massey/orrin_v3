@@ -1,6 +1,6 @@
 # Top-Down Write-Back — Implementation Plan (2026-06-27)
 
-**Status:** proposed → to build on the main code path (no feature flag).
+**Status:** BUILT — `brain/cognition/workspace_writeback.py` (`write_back`, salience priors), wired in `brain/loop/deliberate.py`. *(Header corrected 2026-10-07; was "proposed".)*
 **Unblocks when:** built on the main path, or explicitly dropped.
 **Closes:** the "broadcast→substrate write-back is still missing" limitation
 (`docs/ARCHITECTURE.md` §Global workspace; `README.md` §Known limitations).

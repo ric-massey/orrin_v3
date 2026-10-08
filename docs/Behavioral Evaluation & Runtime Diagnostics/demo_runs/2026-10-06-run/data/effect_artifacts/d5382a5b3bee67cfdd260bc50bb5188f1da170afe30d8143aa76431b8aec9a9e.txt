@@ -1,0 +1,136 @@
+{
+  "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "mathematics"
+  ],
+  "entities": [
+    "Major themes that",
+    "dealt with in philosophy of mathematics include",
+    "Because the language of mathematics",
+    "so precise",
+    "Logic",
+    "not specific to mathematics",
+    "belonged to philosophy and",
+    "not specifically studied by mathematicians",
+    "which",
+    "presently used commonly in mathematics",
+    "mathematical object",
+    "abstract entity arising in mathematics",
+    "one could argue that mathematics",
+    "indispensable to these theories",
+    "view that existence proofs must be constructive This article",
+    "about the view in the philosophy of mathematics"
+  ],
+  "relations": [
+    {
+      "subject": "Major themes that",
+      "predicate": "are",
+      "object": "dealt with in philosophy of mathematics include",
+      "source": "my prior memo: memo_philosophy-of-mathematics.md"
+    },
+    {
+      "subject": "Because the language of mathematics",
+      "predicate": "is",
+      "object": "so precise",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "Logic",
+      "predicate": "is",
+      "object": "not specific to mathematics",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "belonged to philosophy and",
+      "predicate": "was",
+      "object": "not specifically studied by mathematicians",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "which",
+      "predicate": "are",
+      "object": "presently used commonly in mathematics",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "mathematical object",
+      "predicate": "is an",
+      "object": "abstract entity arising in mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_object"
+    },
+    {
+      "subject": "one could argue that mathematics",
+      "predicate": "is",
+      "object": "indispensable to these theories",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_object"
+    },
+    {
+      "subject": "view that existence proofs must be constructive This article",
+      "predicate": "is",
+      "object": "about the view in the philosophy of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Constructivism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "subject": "Structuralism in the philosophy of mathematics",
+      "predicate": "is",
+      "object": "particularly associated with Paul Benacerraf",
+      "source": "https://en.wikipedia.org/wiki/Structuralism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "subject": "is that mathematics",
+      "predicate": "is",
+      "object": "not a body of propositions representing an abstract sector of reality",
+      "source": "https://en.wikipedia.org/wiki/Formalism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "widely used to model and solve problems in science",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: memo_philosophy-of-mathematics.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_object"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Constructivism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structuralism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formalism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Principles_of_Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Identity_%28philosophy%29"
+    }
+  ],
+  "ts": "2026-10-07T16:33:59.418718+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "wikipedia_search": {
+    "satiety": 0.5161,
+    "cycle": 15389
+  },
+  "look_outward": {
+    "satiety": 0.3761,
+    "cycle": 15321
+  },
+  "search_own_files": {
+    "satiety": 0.6801,
+    "cycle": 11633
+  },
+  "research_topic": {
+    "satiety": 0.25,
+    "cycle": 15091
+  },
+  "fetch_and_read": {
+    "satiety": 0.3902,
+    "cycle": 15212
+  },
+  "produce_and_check": {
+    "satiety": 0.6373,
+    "cycle": 14745
+  }
+}

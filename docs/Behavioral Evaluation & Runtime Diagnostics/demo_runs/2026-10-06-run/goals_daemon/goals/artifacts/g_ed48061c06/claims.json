@@ -1,0 +1,134 @@
+{
+  "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology",
+    "cooperation"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Applications in other disciplines Evolution",
+    "central unifying concept in biology",
+    "science and applied sciences gave birth to new fields that",
+    "extensions of evolutionary biology",
+    "The diversity of taxa that exhibits cooperation",
+    "quite large",
+    "assert that cooperation",
+    "more complex process",
+    "One specific form of cooperation in animals",
+    "kin selection",
+    "Academic literature regarding forms of cooperation that",
+    "not easily explained in traditional game theory",
+    "As cooperation became general the non-provocable strategies",
+    "exploited and eventually eliminated"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "Applications in other disciplines Evolution",
+      "predicate": "is the",
+      "object": "central unifying concept in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "science and applied sciences gave birth to new fields that",
+      "predicate": "are",
+      "object": "extensions of evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "The diversity of taxa that exhibits cooperation",
+      "predicate": "is",
+      "object": "quite large",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "assert that cooperation",
+      "predicate": "is a",
+      "object": "more complex process",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "One specific form of cooperation in animals",
+      "predicate": "is",
+      "object": "kin selection",
+      "source": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "subject": "Academic literature regarding forms of cooperation that",
+      "predicate": "are",
+      "object": "not easily explained in traditional game theory",
+      "source": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "subject": "As cooperation became general the non-provocable strategies",
+      "predicate": "were",
+      "object": "exploited and eventually eliminated",
+      "source": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "subject": "The extended evolutionary synthesis",
+      "predicate": "was",
+      "object": "called for in the 1950s by C",
+      "source": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "subject": "Interaction of biology and evolution This article",
+      "predicate": "is",
+      "object": "about the biological concept",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "Evolutionary ecology",
+      "predicate": "is a",
+      "object": "science at the intersection of ecology and evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "The main subfields of evolutionary ecology",
+      "predicate": "are",
+      "object": "life history evolution",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cooperation_%28evolution%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Costly_signaling_theory_in_evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_epistemology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Prisoner%27s_dilemma"
+    }
+  ],
+  "ts": "2026-10-06T21:34:55.910344+00:00"
+}

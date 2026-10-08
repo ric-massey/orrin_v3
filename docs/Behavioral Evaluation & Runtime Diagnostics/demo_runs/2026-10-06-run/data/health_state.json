@@ -1,0 +1,14 @@
+{
+  "status": "nominal",
+  "cycle": 15390,
+  "streak": 3078,
+  "sick_streak": 0,
+  "last_check_ts": 1791418978.213763,
+  "milestones_fired": [
+    10,
+    25,
+    50,
+    100
+  ],
+  "total_healthy_cycles": 3078
+}

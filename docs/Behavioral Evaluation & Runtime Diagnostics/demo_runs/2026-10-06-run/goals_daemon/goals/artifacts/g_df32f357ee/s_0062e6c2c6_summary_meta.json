@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_df32f357ee",
+    "title": "Understand High Road more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "High Road open problems",
+        "High Road criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "intrinsic-2026-10-07T05:29:09.486277+00:00",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.257425Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.257433Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.257435Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.257437Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T05:34:19.257438Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on High Road was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about High Road was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T05:34:19.257453Z",
+      "question": "What is there about High Road that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 05:34:19.298377+00:00",
+    "updated_at": "2026-10-07 05:34:20.179219+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [intrinsic-2026-10-07T05:29:09.486277+00:00]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Shortest_path_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/High_Road_%28film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexandra_Road_Estate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Republican_Party_presidential_debates_and_forums",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Scientology_analysis_and_criticism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Belt_and_Road_Initiative",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df32f357ee/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T05:34:25.681383+00:00"
+}

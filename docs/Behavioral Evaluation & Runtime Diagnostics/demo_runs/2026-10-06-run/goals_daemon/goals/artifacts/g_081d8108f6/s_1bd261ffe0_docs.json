@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/General_game_playing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI_Five",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ludeme",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_04.txt",
+      "chars": 6845
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_Dungeon",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Recursive_self-improvement",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_07.txt",
+      "chars": 18819
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Generative_AI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_art",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_081d8108f6/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-06T20:25:17.211411+00:00"
+}

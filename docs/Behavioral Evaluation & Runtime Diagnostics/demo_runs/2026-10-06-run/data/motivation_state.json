@@ -1,0 +1,12 @@
+{
+  "drives": {
+    "connection": 0.3,
+    "world_mastery": 0.0361,
+    "competence": 0.0198,
+    "novelty_exploration_drive": 0.3039,
+    "autonomy": 1.0,
+    "signal_stability": 0.8137,
+    "restlessness": 0.0
+  },
+  "saved_at": "2026-10-08T00:22:18.323812+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "philosophy of mathematics recent research",
+    "philosophy of mathematics common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Philosophy",
+    "https://en.wikipedia.org/wiki/Imre_Lakatos",
+    "https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica",
+    "https://en.wikipedia.org/wiki/Analytic_philosophy",
+    "https://en.wikipedia.org/wiki/Doctor_of_Philosophy",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/The_Emperor%27s_New_Mind",
+    "https://en.wikipedia.org/wiki/Mathematics_education",
+    "https://en.wikipedia.org/wiki/Antiphilosophy",
+    "https://en.wikipedia.org/wiki/Exact_sciences"
+  ],
+  "results": [
+    {
+      "title": "Philosophy",
+      "url": "https://en.wikipedia.org/wiki/Philosophy",
+      "snippet": "aesthetics, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> language, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> mind, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> science, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> religion, <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> history,",
+      "query": "philosophy of mathematics recent research"
+    },
+    {
+      "title": "Imre Lakatos",
+      "url": "https://en.wikipedia.org/wiki/Imre_Lakatos",
+      "snippet": "Debrecen, Hungary, in 1922. He received a degree in <span class=\"searchmatch\">mathematics</span>, physics, and <span class=\"searchmatch\">philosophy</span> from the University <span class=\"searchmatch\">of</span> Debrecen in 1944. In March 1944, the Germans",
+      "query": "philosophy of mathematics recent research"
+    },
+    {
+      "title": "Philosophiæ Naturalis Principia Mathematica",
+      "url": "https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica",
+      "snippet": "Philosophiæ Naturalis Principia Mathematica (English: The <span class=\"searchmatch\">Mathematical</span> Principles <span class=\"searchmatch\">of</span> Natural <span class=\"searchmatch\">Philosophy</span>), often called simply the Principia (/prɪnˈsɪpiə, -ˈkɪp-/)",
+      "query": "philosophy of mathematics recent research"
+    },
+    {
+      "title": "Analytic philosophy",
+      "url": "https://en.wikipedia.org/wiki/Analytic_philosophy",
+      "snippet": " notably <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> language, <span class=\"searchmatch\">mathematics</span>, and science, and modern predicate and <span class=\"searchmatch\">mathematical</span> logic. The history <span class=\"searchmatch\">of</span> analytic <span class=\"searchmatch\">philosophy</span> (taken in",
+      "query": "philosophy of mathematics recent research"
+    },
+    {
+      "title": "Doctor of Philosophy",
+      "url": "https://en.wikipedia.org/wiki/Doctor_of_Philosophy",
+      "snippet": "which is &quot;love <span class=\"searchmatch\">of</span> wisdom&quot;. In most <span class=\"searchmatch\">of</span> Europe, all fields (including history, <span class=\"searchmatch\">philosophy</span>, social sciences, <span class=\"searchmatch\">mathematics</span>, and natural <span class=\"searchmatch\">philosophy</span> – later known",
+      "query": "philosophy of mathematics recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "philosophy of mathematics common misconceptions"
+    },
+    {
+      "title": "The Emperor's New Mind",
+      "url": "https://en.wikipedia.org/wiki/The_Emperor%27s_New_Mind",
+      "snippet": "plethora <span class=\"searchmatch\">of</span> interrelated subjects such as Newtonian physics, special and general relativity, the <span class=\"searchmatch\">philosophy</span> and limitations <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>, quantum physics",
+      "query": "philosophy of mathematics common misconceptions"
+    },
+    {
+      "title": "Mathematics education",
+      "url": "https://en.wikipedia.org/wiki/Mathematics_education",
+      "snippet": "contemporary education, <span class=\"searchmatch\">mathematics</span> education (known in Europe as the didactics or pedagogy <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>) is the practice <span class=\"searchmatch\">of</span> teaching, learning, and",
+      "query": "philosophy of mathematics common misconceptions"
+    },
+    {
+      "title": "Antiphilosophy",
+      "url": "https://en.wikipedia.org/wiki/Antiphilosophy",
+      "snippet": "see common philosophical problems as <span class=\"searchmatch\">misconceptions</span> that are to be dissolved. <span class=\"searchmatch\">Common</span> strategies may involve forms <span class=\"searchmatch\">of</span> relativism, skepticism, nihilism, or",
+      "query": "philosophy of mathematics common misconceptions"
+    },
+    {
+      "title": "Exact sciences",
+      "url": "https://en.wikipedia.org/wiki/Exact_sciences",
+      "snippet": "causes <span class=\"searchmatch\">of</span> things is due to Aristotle, who distinguished <span class=\"searchmatch\">mathematics</span> from natural <span class=\"searchmatch\">philosophy</span> and considered the exact sciences to be the &quot;more natural <span class=\"searchmatch\">of</span> the",
+      "query": "philosophy of mathematics common misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T17:19:23.431860+00:00"
+}

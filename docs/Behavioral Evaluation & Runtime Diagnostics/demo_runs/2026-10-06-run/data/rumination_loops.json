@@ -1,0 +1,35 @@
+[
+  {
+    "id": "7a894072",
+    "content": "A restlessness without a target. Something isn't right and I can't locate what.",
+    "mode": "brooding",
+    "charge": 0.12660000000000005,
+    "seed": "",
+    "return_count": 2,
+    "suppressed_count": 0,
+    "last_returned": "2026-10-07T23:58:35.460891Z",
+    "born": "2026-10-07T23:55:52.278436Z"
+  },
+  {
+    "id": "86c70c64",
+    "content": "The irritation is real. The object of it isn't clear.",
+    "mode": "brooding",
+    "charge": 0.2991999999999995,
+    "seed": "",
+    "return_count": 0,
+    "suppressed_count": 0,
+    "last_returned": null,
+    "born": "2026-10-08T00:17:13.484565Z"
+  },
+  {
+    "id": "bd1d9da7",
+    "content": "Friction with no clear source. I keep reaching for what's blocking and finding nothing.",
+    "mode": "brooding",
+    "charge": 0.2843999999999997,
+    "seed": "",
+    "return_count": 1,
+    "suppressed_count": 0,
+    "last_returned": "2026-10-08T00:22:41.735973Z",
+    "born": "2026-10-08T00:19:38.827818Z"
+  }
+]

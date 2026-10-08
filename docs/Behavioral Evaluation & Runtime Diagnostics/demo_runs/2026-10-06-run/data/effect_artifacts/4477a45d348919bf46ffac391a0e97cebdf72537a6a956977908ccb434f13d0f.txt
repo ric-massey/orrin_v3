@@ -1,0 +1,8 @@
+What I learned about Leave Ric a note about cpu load climb:
+
+- [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.
+- [metacog/pattern] Goal avoidance: 17 consecutive cycles without taking action on 'Answer: What is there about The Daily Stoic that my earlier notes on it are missing?'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 16 consecutive cycles without taking action on 'Answer: What is there about The Daily… / [metacog/pattern] Goal avoidance: 14 consecutive cycles without taking action on 'Answer: What is there about The Daily…]
+- [metacog/pattern] Goal avoidance: 21 consecutive cycles without taking action on 'Characterize what makes my CPU load climb'. I'm thinking but not doing.
+- [Incubation] While sitting with: '💔 Goal failed: Answer: What is there about The Daily Stoic that my earlier notes on it are missing?. steps_unreachable: ', I notice a connection to something from memory: '💔 Goal failed: Answer: What is there about The Daily Stoic that my earlier notes on it are missing?. steps_unreachable: '. These may be related in ways I haven't consciously examined.
+- [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.06 higher than what actually happened. Worth deliberating a little more before committing.

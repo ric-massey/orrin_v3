@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Emergence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_adaptive_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Systems_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Great_Debates_%28international_relations%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_06.txt",
+      "chars": 15027
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Technology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Socialism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Reductionism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cde76ae4ba/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T02:58:22.581632+00:00"
+}

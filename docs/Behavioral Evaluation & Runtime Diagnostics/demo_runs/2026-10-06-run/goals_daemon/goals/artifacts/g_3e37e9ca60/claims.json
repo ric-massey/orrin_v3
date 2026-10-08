@@ -1,0 +1,96 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "learned bot project using the video game Dota 2 OpenAI Five",
+    "computer program by OpenAI that plays the five-on-five video game Dota 2",
+    "the free encyclopedia This article",
+    "about role-playing video games developed in East Asia",
+    "allowing video game music composers such as Yuzo Koshiro to",
+    "highly regarded chiptune music for RPG companies such as Nihon Falcom",
+    "only a small portion of Japanese computer games",
+    "released in North America",
+    "Early Japanese RPGs",
+    "also influenced by visual novel adventure games",
+    "The game",
+    "ranked as the best-selling PC game sold in Japan for the time of its release"
+  ],
+  "relations": [
+    {
+      "subject": "learned bot project using the video game Dota 2 OpenAI Five",
+      "predicate": "is a",
+      "object": "computer program by OpenAI that plays the five-on-five video game Dota 2",
+      "source": "my prior claims [g_410f8a433f]"
+    },
+    {
+      "subject": "the free encyclopedia This article",
+      "predicate": "is",
+      "object": "about role-playing video games developed in East Asia",
+      "source": "https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games"
+    },
+    {
+      "subject": "allowing video game music composers such as Yuzo Koshiro to",
+      "predicate": "produce",
+      "object": "highly regarded chiptune music for RPG companies such as Nihon Falcom",
+      "source": "https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games"
+    },
+    {
+      "subject": "only a small portion of Japanese computer games",
+      "predicate": "were",
+      "object": "released in North America",
+      "source": "https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games"
+    },
+    {
+      "subject": "Early Japanese RPGs",
+      "predicate": "were",
+      "object": "also influenced by visual novel adventure games",
+      "source": "https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games"
+    },
+    {
+      "subject": "The game",
+      "predicate": "was",
+      "object": "ranked as the best-selling PC game sold in Japan for the time of its release",
+      "source": "https://en.wikipedia.org/wiki/Clannad_%28video_game%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_410f8a433f]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_slop"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Character.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_alignment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Human%E2%80%93AI_interaction"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_safety"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Clannad_%28video_game%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+    }
+  ],
+  "ts": "2026-10-07T03:36:41.351184+00:00"
+}

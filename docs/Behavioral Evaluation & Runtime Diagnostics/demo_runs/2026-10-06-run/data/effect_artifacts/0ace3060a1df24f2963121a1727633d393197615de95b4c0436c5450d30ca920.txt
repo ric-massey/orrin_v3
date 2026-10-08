@@ -1,0 +1,13 @@
+[produce_and_check goal=g_2937a5b7e196 :math: Answer: What is there about the nature of mathematics that my earlier notes on it are missing?]
+import math
+n = 9
+# closed form vs brute force: sum(1..n) == n(n+1)/2, sum of squares too
+assert sum(range(1, n + 1)) == n * (n + 1) // 2
+assert sum(i * i for i in range(1, n + 1)) == n * (n + 1) * (2 * n + 1) // 6
+# gcd/lcm identity
+a, b = n, 15
+g = math.gcd(a, b)
+assert g * (a * b // g) == a * b
+print("CHECK_PASS arithmetic identities hold for n =", n)
+--- output ---
+CHECK_PASS arithmetic identities hold for n = 9

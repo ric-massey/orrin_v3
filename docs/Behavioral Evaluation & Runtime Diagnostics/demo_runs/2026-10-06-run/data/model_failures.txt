@@ -1,0 +1,1 @@
+[2026-10-07T04:02:36.214134Z] context.json bloat guard: stripped key 'relationships' (100112 bytes > 100000) — add it to its own file or to _CTX_STRIP

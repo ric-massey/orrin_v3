@@ -1,0 +1,136 @@
+{
+  "question": "What is there about High Road that my earlier notes on it are missing?",
+  "subject_terms": [
+    "high",
+    "road"
+  ],
+  "entities": [
+    "the title Take the High Road",
+    "suggested by the folk song about the area",
+    "Packhorse bridge and Trail The first forms of road transport",
+    "pack animals carrying goods over tracks that often followed game trails",
+    "Roads in the towns",
+    "straight and long",
+    "and brick-paved roads",
+    "built in the Indus Valley Civilisation from around the same time",
+    "including the famous Royal Road which",
+    "one of the finest highways of its time",
+    "The road",
+    "used even after Roman times",
+    "changes unseen in a century High-quality development Houses",
+    "for living",
+    "many of these settlements",
+    "adapted to accommodate the car with wider roads"
+  ],
+  "relations": [
+    {
+      "subject": "the title Take the High Road",
+      "predicate": "was",
+      "object": "suggested by the folk song about the area",
+      "source": "my prior claims [g_df32f357ee]"
+    },
+    {
+      "subject": "Packhorse bridge and Trail The first forms of road transport",
+      "predicate": "were",
+      "object": "pack animals carrying goods over tracks that often followed game trails",
+      "source": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "subject": "Roads in the towns",
+      "predicate": "were",
+      "object": "straight and long",
+      "source": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "subject": "and brick-paved roads",
+      "predicate": "were",
+      "object": "built in the Indus Valley Civilisation from around the same time",
+      "source": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "subject": "including the famous Royal Road which",
+      "predicate": "was",
+      "object": "one of the finest highways of its time",
+      "source": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "subject": "The road",
+      "predicate": "was",
+      "object": "used even after Roman times",
+      "source": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "subject": "changes unseen in a century High-quality development Houses",
+      "predicate": "are",
+      "object": "for living",
+      "source": "https://en.wikipedia.org/wiki/High-quality_development"
+    },
+    {
+      "subject": "many of these settlements",
+      "predicate": "were",
+      "object": "adapted to accommodate the car with wider roads",
+      "source": "https://en.wikipedia.org/wiki/Car-free_movement"
+    },
+    {
+      "subject": "and soon roads",
+      "predicate": "were",
+      "object": "funded through state and federal gas taxes",
+      "source": "https://en.wikipedia.org/wiki/Car-free_movement"
+    },
+    {
+      "subject": "Road traffic control devices",
+      "predicate": "are",
+      "object": "markers",
+      "source": "https://en.wikipedia.org/wiki/Road_traffic_control_device"
+    },
+    {
+      "subject": "Warning signs",
+      "predicate": "are",
+      "object": "traffic signs that are used to warn road users about a potential danger",
+      "source": "https://en.wikipedia.org/wiki/Road_traffic_control_device"
+    },
+    {
+      "subject": "Permanent VMS displays",
+      "predicate": "are",
+      "object": "mounted on large sign structures overhead or alongside the road",
+      "source": "https://en.wikipedia.org/wiki/Road_traffic_control_device"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_df32f357ee]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_road_transport"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/High-quality_development"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glenelg%2C_South_Australia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Transport_in_China"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Car-free_movement"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Haul_truck"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Road_traffic_control_device"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Nanotechnology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Reticular_materials"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Map_matching"
+    }
+  ],
+  "ts": "2026-10-07T05:35:29.105207+00:00"
+}

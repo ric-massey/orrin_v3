@@ -1,0 +1,97 @@
+[
+  {
+    "timestamp": "2026-10-07T04:22:16.806253+00:00",
+    "score": 0.75,
+    "passed": 10,
+    "total": 10,
+    "domain_scores": {
+      "COGNITIVE": 0.75,
+      "PLANNING": 0.75,
+      "TECHNICAL": 0.75,
+      "EMOTIONAL": 0.75,
+      "SOCIAL": 0.75
+    },
+    "results": [
+      {
+        "test_id": "bm_cog_01",
+        "domain": "COGNITIVE",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] brain (ai) [ai, brain, org]\n[symbolic] orrin (ai): role=self; version"
+      },
+      {
+        "test_id": "bm_cog_02",
+        "domain": "COGNITIVE",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] but what if there (concept): is_a=fourth spatial dimension; descripti"
+      },
+      {
+        "test_id": "bm_cog_03",
+        "domain": "COGNITIVE",
+        "resolved": true,
+        "actual_source": "analogy",
+        "score": 1.5,
+        "answer_head": "drawing from a past case (general, similarity 32%): emotional reflection: [symbo"
+      },
+      {
+        "test_id": "bm_plan_01",
+        "domain": "PLANNING",
+        "resolved": true,
+        "actual_source": "analogy",
+        "score": 1.5,
+        "answer_head": "a similar situation suggests (general, similarity 40%): [rss:quanta magazine] [e"
+      },
+      {
+        "test_id": "bm_plan_02",
+        "domain": "PLANNING",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] massachusetts institute of technology skip (organization) [massachuse"
+      },
+      {
+        "test_id": "bm_tech_01",
+        "domain": "TECHNICAL",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] orrin_v3 (project): path=/users/ricmassey/orrin_v3; language=python ["
+      },
+      {
+        "test_id": "bm_tech_02",
+        "domain": "TECHNICAL",
+        "resolved": true,
+        "actual_source": "analogy",
+        "score": 1.5,
+        "answer_head": "by analogy (general, similarity 66%): 📝 working memory summary: - emotional refl"
+      },
+      {
+        "test_id": "bm_emo_01",
+        "domain": "EMOTIONAL",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] orrin (ai): role=self; version=v3 [orrin, ai, self, agent, cognitive]"
+      },
+      {
+        "test_id": "bm_social_01",
+        "domain": "SOCIAL",
+        "resolved": true,
+        "actual_source": "causal_graph",
+        "score": 1.5,
+        "answer_head": "[causal] 'read_a_book' causes (intervention) 'something new grows' (score=0.87, "
+      },
+      {
+        "test_id": "bm_analogy_01",
+        "domain": "COGNITIVE",
+        "resolved": true,
+        "actual_source": "symbolic_search",
+        "score": 1.5,
+        "answer_head": "[symbolic] massachusetts institute of technology search (organization) [massachu"
+      }
+    ]
+  }
+]

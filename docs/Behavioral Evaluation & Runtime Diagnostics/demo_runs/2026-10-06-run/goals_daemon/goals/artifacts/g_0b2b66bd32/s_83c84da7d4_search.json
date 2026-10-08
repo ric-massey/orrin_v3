@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "mathematics history and development",
+    "mathematics applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_mathematics",
+    "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+    "https://en.wikipedia.org/wiki/Mathematics_in_the_medieval_Islamic_world",
+    "https://en.wikipedia.org/wiki/List_of_mathematical_examples",
+    "https://en.wikipedia.org/wiki/Mathematical_linguistics",
+    "https://en.wikipedia.org/wiki/Applied_mathematics",
+    "https://en.wikipedia.org/wiki/Pure_mathematics"
+  ],
+  "results": [
+    {
+      "title": "History of mathematics",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "snippet": "The <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">mathematics</span> deals with the origin of discoveries in <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">mathematical</span> methods <span class=\"searchmatch\">and</span> notation of the past. Before the modern",
+      "query": "mathematics history and development"
+    },
+    {
+      "title": "History of mathematical notation",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+      "snippet": "The <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">mathematical</span> notation covers the introduction, <span class=\"searchmatch\">development</span>, <span class=\"searchmatch\">and</span> cultural diffusion of <span class=\"searchmatch\">mathematical</span> symbols <span class=\"searchmatch\">and</span> the conflicts between notational",
+      "query": "mathematics history and development"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a field of knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, <span class=\"searchmatch\">and</span> probabilities. It uses logical",
+      "query": "mathematics history and development"
+    },
+    {
+      "title": "A History of Greek Mathematics",
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+      "snippet": "A <span class=\"searchmatch\">History</span> of Greek <span class=\"searchmatch\">Mathematics</span> is a book by English historian of <span class=\"searchmatch\">mathematics</span> Thomas Heath about <span class=\"searchmatch\">history</span> of Greek <span class=\"searchmatch\">mathematics</span>. It was published in Oxford",
+      "query": "mathematics history and development"
+    },
+    {
+      "title": "Mathematics in the medieval Islamic world",
+      "url": "https://en.wikipedia.org/wiki/Mathematics_in_the_medieval_Islamic_world",
+      "snippet": "mathematics (Euclid, Archimedes, Apollonius) <span class=\"searchmatch\">and</span> Indian <span class=\"searchmatch\">mathematics</span> (Aryabhata, Brahmagupta). Important <span class=\"searchmatch\">developments</span> of the period include extension of the",
+      "query": "mathematics history and development"
+    },
+    {
+      "title": "List of mathematical examples",
+      "url": "https://en.wikipedia.org/wiki/List_of_mathematical_examples",
+      "snippet": "This page will attempt to list <span class=\"searchmatch\">examples</span> in <span class=\"searchmatch\">mathematics</span>. To qualify for inclusion, an article should be about a <span class=\"searchmatch\">mathematical</span> object with a fair amount of",
+      "query": "mathematics applications and examples"
+    },
+    {
+      "title": "Mathematical linguistics",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_linguistics",
+      "snippet": "<span class=\"searchmatch\">Example</span> <span class=\"searchmatch\">applications</span> of <span class=\"searchmatch\">mathematical</span> linguistics <span class=\"searchmatch\">Mathematical</span> linguistics is the <span class=\"searchmatch\">application</span> of <span class=\"searchmatch\">mathematics</span> to model phenomena <span class=\"searchmatch\">and</span> solve problems in general",
+      "query": "mathematics applications and examples"
+    },
+    {
+      "title": "Applied mathematics",
+      "url": "https://en.wikipedia.org/wiki/Applied_mathematics",
+      "snippet": "problems by formulating <span class=\"searchmatch\">and</span> studying <span class=\"searchmatch\">mathematical</span> models. In the past, practical <span class=\"searchmatch\">applications</span> have motivated the development of <span class=\"searchmatch\">mathematical</span> theories, which then",
+      "query": "mathematics applications and examples"
+    },
+    {
+      "title": "Pure mathematics",
+      "url": "https://en.wikipedia.org/wiki/Pure_mathematics",
+      "snippet": " <span class=\"searchmatch\">and</span> the results obtained may later turn out to be useful for practical <span class=\"searchmatch\">applications</span>, but research is not primarily motivated by such <span class=\"searchmatch\">applications</span>. Instead",
+      "query": "mathematics applications and examples"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "correlation with their <span class=\"searchmatch\">applications</span> <span class=\"searchmatch\">and</span> are often grouped under applied <span class=\"searchmatch\">mathematics</span>. Other areas are developed independently from any <span class=\"searchmatch\">application</span> but often find",
+      "query": "mathematics applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T02:58:19.003762+00:00"
+}

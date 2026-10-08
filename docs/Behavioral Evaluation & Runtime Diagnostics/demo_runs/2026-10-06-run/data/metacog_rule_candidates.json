@@ -1,0 +1,22 @@
+{
+  "Goal avoidance": {
+    "count": 10114,
+    "promoted": true
+  },
+  "Affective stagnation": {
+    "count": 328,
+    "promoted": true
+  },
+  "Oscillation": {
+    "count": 2,
+    "promoted": false
+  },
+  "Cognitive rut": {
+    "count": 18,
+    "promoted": true
+  },
+  "Reflection–action imbalance": {
+    "count": 17,
+    "promoted": true
+  }
+}

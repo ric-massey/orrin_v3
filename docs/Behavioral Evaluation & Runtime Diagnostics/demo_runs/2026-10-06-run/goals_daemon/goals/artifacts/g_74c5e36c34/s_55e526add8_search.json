@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "history relationship to other fields",
+    "history key figures and works"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/W._C._Fields",
+    "https://en.wikipedia.org/wiki/Boston_marriage",
+    "https://en.wikipedia.org/wiki/Queerplatonic_relationship",
+    "https://en.wikipedia.org/wiki/Interpersonal_relationship",
+    "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model",
+    "https://en.wikipedia.org/wiki/Hidden_Figures",
+    "https://en.wikipedia.org/wiki/Harlow_Robinson",
+    "https://en.wikipedia.org/wiki/Germ_theory%27s_key_19th_century_figures",
+    "https://en.wikipedia.org/wiki/Those_Days_%28novel%29",
+    "https://en.wikipedia.org/wiki/Three_Studies_for_Figures_at_the_Base_of_a_Crucifixion"
+  ],
+  "results": [
+    {
+      "title": "W. C. Fields",
+      "url": "https://en.wikipedia.org/wiki/W._C._Fields",
+      "snippet": "personal notes in grandson Ronald Fields&#039;s book W. C. <span class=\"searchmatch\">Fields</span> by Himself, it was shown that <span class=\"searchmatch\">Fields</span> was married (and subsequently estranged from his wife)",
+      "query": "history relationship to other fields"
+    },
+    {
+      "title": "Boston marriage",
+      "url": "https://en.wikipedia.org/wiki/Boston_marriage",
+      "snippet": "Men (1981). 20th-century film reviewers used the term <span class=\"searchmatch\">to</span> describe the Jewett-<span class=\"searchmatch\">Fields</span> <span class=\"searchmatch\">relationship</span> depicted in the 1998 documentary film Out of the Past",
+      "query": "history relationship to other fields"
+    },
+    {
+      "title": "Queerplatonic relationship",
+      "url": "https://en.wikipedia.org/wiki/Queerplatonic_relationship",
+      "snippet": "Queerplatonic <span class=\"searchmatch\">relationships</span> (QPR), also known as queerplatonic partnerships (QPP), are committed intimate <span class=\"searchmatch\">relationships</span> between significant <span class=\"searchmatch\">others</span> whose relationship",
+      "query": "history relationship to other fields"
+    },
+    {
+      "title": "Interpersonal relationship",
+      "url": "https://en.wikipedia.org/wiki/Interpersonal_relationship",
+      "snippet": "time <span class=\"searchmatch\">to</span> each <span class=\"searchmatch\">other</span> than <span class=\"searchmatch\">to</span> associates. Later <span class=\"searchmatch\">relationships</span> also tend <span class=\"searchmatch\">to</span> exhibit higher levels of commitment. Most psychologists and <span class=\"searchmatch\">relationship</span> counselors",
+      "query": "history relationship to other fields"
+    },
+    {
+      "title": "Entity–relationship model",
+      "url": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model",
+      "snippet": "specifies <span class=\"searchmatch\">relationships</span> that can exist between entities (instances of those entity types). In software engineering, an ER model is commonly formed <span class=\"searchmatch\">to</span> represent",
+      "query": "history relationship to other fields"
+    },
+    {
+      "title": "Hidden Figures",
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "snippet": "Hidden <span class=\"searchmatch\">Figures</span> is a 2016 American biographical drama film co-produced <span class=\"searchmatch\">and</span> directed by Theodore Melfi, who co-wrote the screenplay with Allison Schroeder",
+      "query": "history key figures and works"
+    },
+    {
+      "title": "Harlow Robinson",
+      "url": "https://en.wikipedia.org/wiki/Harlow_Robinson",
+      "snippet": "the representation of Russians in American media, <span class=\"searchmatch\">and</span> the lives <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">works</span> of <span class=\"searchmatch\">key</span> <span class=\"searchmatch\">figures</span> in Russian <span class=\"searchmatch\">and</span> Soviet culture. Robinson was born in Bristol, Connecticut",
+      "query": "history key figures and works"
+    },
+    {
+      "title": "Germ theory's key 19th century figures",
+      "url": "https://en.wikipedia.org/wiki/Germ_theory%27s_key_19th_century_figures",
+      "snippet": "nineteenth century when several noteworthy <span class=\"searchmatch\">figures</span> made discoveries which would provide more efficient practices <span class=\"searchmatch\">and</span> tools to prevent the spread of communicable",
+      "query": "history key figures and works"
+    },
+    {
+      "title": "Those Days (novel)",
+      "url": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29",
+      "snippet": "through the life of Nabinkumar, based on Kaliprasanna Singha, <span class=\"searchmatch\">and</span> features <span class=\"searchmatch\">key</span> historical <span class=\"searchmatch\">figures</span> of the era. In 1985, it won the Sahitya Akademi Award. The",
+      "query": "history key figures and works"
+    },
+    {
+      "title": "Three Studies for Figures at the Base of a Crucifixion",
+      "url": "https://en.wikipedia.org/wiki/Three_Studies_for_Figures_at_the_Base_of_a_Crucifixion",
+      "snippet": "and place the <span class=\"searchmatch\">figures</span> at the foot of the cross. The Three Studies are generally considered Bacon&#039;s first mature piece; he regarded his <span class=\"searchmatch\">works</span> before the triptych",
+      "query": "history key figures and works"
+    }
+  ],
+  "ts": "2026-10-07T22:50:42.932863+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "question": "What makes my memory use (RSS) climb?",
+  "subject_terms": [],
+  "entities": [
+    "memory use (RSS)",
+    "read_a_book"
+  ],
+  "relations": [
+    {
+      "subject": "memory use (RSS)",
+      "predicate": "rises after",
+      "object": "read_a_book runs",
+      "source": "resource_history"
+    }
+  ],
+  "prediction": {
+    "claim": "My memory use (RSS) rises after read_a_book runs",
+    "checkable_against": "resource_history:rss_mb:last_fn",
+    "confidence": 0.6,
+    "resolved": true,
+    "correct": true,
+    "driver": "read_a_book",
+    "made_at_ts": 1791384296.4,
+    "hypothesized_at": 1791384302.27376,
+    "train": {
+      "driver": "read_a_book",
+      "n": 262,
+      "mean": 35.8844,
+      "base": 0.0551
+    },
+    "test": {
+      "n": 10,
+      "mean": 32.94,
+      "base": 0.0368,
+      "correct": true
+    },
+    "outcome": "held out of sample: mean +32.94 after read_a_book (n=10) vs baseline +0.0368"
+  },
+  "sources": [
+    {
+      "src": "resource_history.jsonl"
+    }
+  ],
+  "ts": "2026-10-07T14:45:02.273763+00:00"
+}

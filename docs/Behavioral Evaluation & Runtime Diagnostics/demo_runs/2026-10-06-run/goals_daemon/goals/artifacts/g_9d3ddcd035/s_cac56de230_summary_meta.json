@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_9d3ddcd035",
+    "title": "Understand round the sun more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "round the sun open problems",
+        "round the sun criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_d6649e4601",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T10:37:56.711405Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T10:37:56.711413Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T10:37:56.711415Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T10:37:56.711417Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T10:37:56.711418Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on round the sun was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about round the sun was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T10:37:56.711443Z",
+      "question": "What is there about round the sun that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 10:37:56.732685+00:00",
+    "updated_at": "2026-10-07 10:37:57.970431+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_6843383ebe]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sun",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexandra_Eala",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Open_event_at_the_46th_Chess_Olympiad",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chiropractic_controversy_and_criticism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Isaac_Heeney",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stephen_Hunter",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2010_United_Kingdom_general_election_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9d3ddcd035/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T10:38:02.566069+00:00"
+}

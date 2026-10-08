@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New_World_Development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Development_Report",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_02.txt",
+      "chars": 12200
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_history_%28field%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_06.txt",
+      "chars": 14974
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_07.txt",
+      "chars": 15944
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Foundation_model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e008096776/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T22:09:38.505447+00:00"
+}

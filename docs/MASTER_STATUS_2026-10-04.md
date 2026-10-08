@@ -1,5 +1,7 @@
 # Master Status & Docs/GitHub Review (2026-10-04)
 
+> **Superseded 2026-10-07** by [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](POST_RUN13_MASTER_PLAN_2026-10-07.md) (the single to-do list) and the Run 13 verdict. Kept for its docs/GitHub review.
+
 Supersedes `archive/MASTER_STATUS_2026-07-07.md` (read-only history). Built from the
 working tree at `43140c8`, every live doc's header, `NEXT_RUN_TESTS.md`, the run
 index, the wiki repo, and `gh repo view`. Nothing here is from memory.

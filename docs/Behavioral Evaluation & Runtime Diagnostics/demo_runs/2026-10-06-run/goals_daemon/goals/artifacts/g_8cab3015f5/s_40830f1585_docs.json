@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_education",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_03.txt",
+      "chars": 9869
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Centrum_Wiskunde_%26_Informatica",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_04.txt",
+      "chars": 14766
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pacific_Institute_for_the_Mathematical_Sciences",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_05.txt",
+      "chars": 7531
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_06.txt",
+      "chars": 3397
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Scientific_misconceptions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8cab3015f5/doc_10.txt",
+      "chars": 16158
+    }
+  ],
+  "ts": "2026-10-07T21:41:44.954377+00:00"
+}

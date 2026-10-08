@@ -1,0 +1,130 @@
+{
+  "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+  "subject_terms": [],
+  "entities": [
+    "The series",
+    "created by Mike Kelley who was also expected to write for the series",
+    "Executive producers",
+    "slated to include Kelley",
+    "slated to serve as a co-executive producer and Phillip Noyce",
+    "expected to direct and executive produce the first two episodes",
+    "Production companies involved with the series",
+    "expected to consist of Page Fright",
+    "Increment value once a new season",
+    "released",
+    "Increment value once new episodes",
+    "Animation for the series",
+    "provided by Flying Bark Productions and Stellar Creative Lab",
+    "The second season",
+    "released daily from December 22 to 30",
+    "The premise of the book"
+  ],
+  "relations": [
+    {
+      "subject": "The series",
+      "predicate": "was",
+      "object": "created by Mike Kelley who was also expected to write for the series",
+      "source": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "subject": "Executive producers",
+      "predicate": "were",
+      "object": "slated to include Kelley",
+      "source": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "subject": "slated to serve as a co-executive producer and Phillip Noyce",
+      "predicate": "was",
+      "object": "expected to direct and executive produce the first two episodes",
+      "source": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "subject": "Production companies involved with the series",
+      "predicate": "were",
+      "object": "expected to consist of Page Fright",
+      "source": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "subject": "Increment value once a new season",
+      "predicate": "is",
+      "object": "released",
+      "source": "https://en.wikipedia.org/wiki/What_If...%3F_%28TV_series%29"
+    },
+    {
+      "subject": "Increment value once new episodes",
+      "predicate": "are",
+      "object": "released",
+      "source": "https://en.wikipedia.org/wiki/What_If...%3F_%28TV_series%29"
+    },
+    {
+      "subject": "Animation for the series",
+      "predicate": "was",
+      "object": "provided by Flying Bark Productions and Stellar Creative Lab",
+      "source": "https://en.wikipedia.org/wiki/What_If...%3F_%28TV_series%29"
+    },
+    {
+      "subject": "The second season",
+      "predicate": "was",
+      "object": "released daily from December 22 to 30",
+      "source": "https://en.wikipedia.org/wiki/What_If...%3F_%28TV_series%29"
+    },
+    {
+      "subject": "The premise of the book",
+      "predicate": "is",
+      "object": "that most of what we believe is likely to be wrong",
+      "source": "https://en.wikipedia.org/wiki/But_What_If_We%27re_Wrong%3F"
+    },
+    {
+      "subject": "the best hypothesis",
+      "predicate": "is the",
+      "object": "one that reflexively accepts its potential wrongness to begin with",
+      "source": "https://en.wikipedia.org/wiki/But_What_If_We%27re_Wrong%3F"
+    },
+    {
+      "subject": "goals",
+      "predicate": "were",
+      "object": "admirable",
+      "source": "https://en.wikipedia.org/wiki/But_What_If_We%27re_Wrong%3F"
+    },
+    {
+      "subject": "Uatu",
+      "predicate": "was",
+      "object": "punished for destroying another Watcher",
+      "source": "https://en.wikipedia.org/wiki/What_If_%28comics%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/What/If"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If...%3F_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/But_What_If_We%27re_Wrong%3F"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If_%28comics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Randall_Munroe"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If...%3F_season_2"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If..._Zombies%3F%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_If...%3F_season_3"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_We_Talk_About_When_We_Talk_About_Love"
+    }
+  ],
+  "ts": "2026-10-07T02:58:37.124048+00:00"
+}

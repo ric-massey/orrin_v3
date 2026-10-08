@@ -1,0 +1,77 @@
+{
+  "queries": [
+    "evolutionary biology and cooperation history and development",
+    "evolutionary biology and cooperation applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Biology",
+    "https://en.wikipedia.org/wiki/Evolutionary_biology",
+    "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+    "https://en.wikipedia.org/wiki/History_of_life",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Evolutionary_ethics"
+  ],
+  "results": [
+    {
+      "title": "Biology",
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "snippet": "population, <span class=\"searchmatch\">and</span> ecosystems. Subdisciplines include molecular <span class=\"searchmatch\">biology</span>, physiology, ecology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, developmental <span class=\"searchmatch\">biology</span>, <span class=\"searchmatch\">and</span> systematics",
+      "query": "evolutionary biology and cooperation history and development"
+    },
+    {
+      "title": "Evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">biology</span> is a subfield of <span class=\"searchmatch\">biology</span> that analyzes the four mechanisms of evolution: natural selection, mutation, genetic drift, <span class=\"searchmatch\">and</span> gene flow",
+      "query": "evolutionary biology and cooperation history and development"
+    },
+    {
+      "title": "History of evolutionary thought",
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "snippet": " 358–359 Sachs, Joel L. (September 2006). &quot;<span class=\"searchmatch\">Cooperation</span> within <span class=\"searchmatch\">and</span> among species&quot;. Journal of <span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">Biology</span>. 19 (5): 1415–1418, discussion 1426–1436",
+      "query": "evolutionary biology and cooperation history and development"
+    },
+    {
+      "title": "History of life",
+      "url": "https://en.wikipedia.org/wiki/History_of_life",
+      "snippet": "regulatory map reveals distinct functional <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolutionary</span> features of novel transcription factors&quot;. Molecular <span class=\"searchmatch\">Biology</span> <span class=\"searchmatch\">and</span> Evolution. 32 (7): 1767–1773. doi:10",
+      "query": "evolutionary biology and cooperation history and development"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "2014. Sachs, Joel L. (September 2006). &quot;<span class=\"searchmatch\">Cooperation</span> within <span class=\"searchmatch\">and</span> among species&quot;. Journal of <span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">Biology</span>. 19 (5): 1415–1418, discussion 1426–1436",
+      "query": "evolutionary biology and cooperation history and development"
+    },
+    {
+      "title": "Evolutionary biology",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_biology",
+      "snippet": "<span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">biology</span> is a subfield of <span class=\"searchmatch\">biology</span> that analyzes the four mechanisms of evolution: natural selection, mutation, genetic drift, <span class=\"searchmatch\">and</span> gene flow",
+      "query": "evolutionary biology and cooperation applications and examples"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "2014. Sachs, Joel L. (September 2006). &quot;<span class=\"searchmatch\">Cooperation</span> within <span class=\"searchmatch\">and</span> among species&quot;. Journal of <span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">Biology</span>. 19 (5): 1415–1418, discussion 1426–1436",
+      "query": "evolutionary biology and cooperation applications and examples"
+    },
+    {
+      "title": "Biology",
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "snippet": "population, <span class=\"searchmatch\">and</span> ecosystems. Subdisciplines include molecular <span class=\"searchmatch\">biology</span>, physiology, ecology, <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span>, developmental <span class=\"searchmatch\">biology</span>, <span class=\"searchmatch\">and</span> systematics",
+      "query": "evolutionary biology and cooperation applications and examples"
+    },
+    {
+      "title": "History of evolutionary thought",
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "snippet": " 358–359 Sachs, Joel L. (September 2006). &quot;<span class=\"searchmatch\">Cooperation</span> within <span class=\"searchmatch\">and</span> among species&quot;. Journal of <span class=\"searchmatch\">Evolutionary</span> <span class=\"searchmatch\">Biology</span>. 19 (5): 1415–1418, discussion 1426–1436",
+      "query": "evolutionary biology and cooperation applications and examples"
+    },
+    {
+      "title": "Evolutionary ethics",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_ethics",
+      "snippet": "The two major contributions that <span class=\"searchmatch\">evolutionary</span> <span class=\"searchmatch\">biology</span> may be able to make to this problem are, first, to justify <span class=\"searchmatch\">and</span> promote the conscious realization",
+      "query": "evolutionary biology and cooperation applications and examples"
+    }
+  ],
+  "ts": "2026-10-06T23:13:49.107334+00:00"
+}

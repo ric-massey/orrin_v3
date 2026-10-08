@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "this game-playing ai history and development",
+    "this game-playing ai applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/AI-assisted_software_development",
+    "https://en.wikipedia.org/wiki/Generative_AI",
+    "https://en.wikipedia.org/wiki/General_game_playing",
+    "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI",
+    "https://en.wikipedia.org/wiki/15.ai",
+    "https://en.wikipedia.org/wiki/Claude_%28AI%29"
+  ],
+  "results": [
+    {
+      "title": "AI-assisted software development",
+      "url": "https://en.wikipedia.org/wiki/AI-assisted_software_development",
+      "snippet": "<span class=\"searchmatch\">AI</span>-assisted software <span class=\"searchmatch\">development</span> is the use of large language models (LLMs) <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">AI</span> agents to assist software developers in software <span class=\"searchmatch\">development</span>. It can",
+      "query": "this game-playing ai history and development"
+    },
+    {
+      "title": "Generative AI",
+      "url": "https://en.wikipedia.org/wiki/Generative_AI",
+      "snippet": "those in software <span class=\"searchmatch\">development</span>, healthcare, finance, entertainment, sales <span class=\"searchmatch\">and</span> marketing, screenwriting, <span class=\"searchmatch\">and</span> product design. Generative <span class=\"searchmatch\">AI</span> has been used for",
+      "query": "this game-playing ai history and development"
+    },
+    {
+      "title": "General game playing",
+      "url": "https://en.wikipedia.org/wiki/General_game_playing",
+      "snippet": "General <span class=\"searchmatch\">game</span> <span class=\"searchmatch\">playing</span> (GGP) is the design of artificial intelligence programs to be able to <span class=\"searchmatch\">play</span> more than one <span class=\"searchmatch\">game</span> successfully. For many games like chess",
+      "query": "this game-playing ai history and development"
+    },
+    {
+      "title": "History of artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+      "snippet": "The <span class=\"searchmatch\">history</span> of artificial intelligence (<span class=\"searchmatch\">AI</span>) began in antiquity, with myths, stories, <span class=\"searchmatch\">and</span> rumors of artificial beings endowed with intelligence by master",
+      "query": "this game-playing ai history and development"
+    },
+    {
+      "title": "Artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "snippet": "books <span class=\"searchmatch\">and</span> billions of websites. Modern <span class=\"searchmatch\">AI</span> can also learn about a domain by running experiments (as when AlphaZero learns <span class=\"searchmatch\">game</span> strategy by <span class=\"searchmatch\">playing</span> against",
+      "query": "this game-playing ai history and development"
+    },
+    {
+      "title": "Products and applications of OpenAI",
+      "url": "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI",
+      "snippet": "Open<span class=\"searchmatch\">AI</span> has released a variety of products <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">applications</span> since its founding in 2015. At its beginning, Open<span class=\"searchmatch\">AI&#039;s</span> research included many projects focused",
+      "query": "this game-playing ai applications and examples"
+    },
+    {
+      "title": "15.ai",
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "snippet": "15.<span class=\"searchmatch\">ai</span> was a free non-commercial web <span class=\"searchmatch\">application</span> <span class=\"searchmatch\">and</span> research project that used artificial intelligence to generate text-to-speech voices of fictional characters",
+      "query": "this game-playing ai applications and examples"
+    },
+    {
+      "title": "Generative AI",
+      "url": "https://en.wikipedia.org/wiki/Generative_AI",
+      "snippet": " Generative <span class=\"searchmatch\">AI</span> <span class=\"searchmatch\">applications</span> include chatbots such as ChatGPT, Claude, Microsoft Copilot, DeepSeek, Doubao, Google Gemini, Grok, Kimi <span class=\"searchmatch\">and</span> Qwen; text-to-image",
+      "query": "this game-playing ai applications and examples"
+    },
+    {
+      "title": "Artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "snippet": "other agents. <span class=\"searchmatch\">AI</span> agents are used in various <span class=\"searchmatch\">applications</span>, including virtual assistants, chatbots, autonomous vehicles, <span class=\"searchmatch\">game</span>-<span class=\"searchmatch\">playing</span> systems, <span class=\"searchmatch\">and</span> industrial",
+      "query": "this game-playing ai applications and examples"
+    },
+    {
+      "title": "Claude (AI)",
+      "url": "https://en.wikipedia.org/wiki/Claude_%28AI%29",
+      "snippet": "2025). &quot;Anthropic&#039;s <span class=\"searchmatch\">AI</span> agent Claude is <span class=\"searchmatch\">playing</span> Pokémon <span class=\"searchmatch\">and</span> just can&#039;t catch &#039;em all&quot;. Mashable. Pillay, Tharin. &quot;Why the World&#039;s Best <span class=\"searchmatch\">AI</span> Systems Are Still",
+      "query": "this game-playing ai applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T01:55:31.821334+00:00"
+}

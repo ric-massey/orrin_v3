@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_manuscripts_of_Karl_Marx",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_03.txt",
+      "chars": 11141
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_05.txt",
+      "chars": 13568
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_analysis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Exercise_%28mathematics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_07.txt",
+      "chars": 16157
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_08.txt",
+      "chars": 17642
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Topology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4772db45ed/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T00:17:40.266077+00:00"
+}

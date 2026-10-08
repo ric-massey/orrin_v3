@@ -1,0 +1,63 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "while Coman was an economic historian who",
+    "credited with writing the first industrial history of the US"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_560809e26a]"
+    },
+    {
+      "subject": "while Coman was an economic historian who",
+      "predicate": "is",
+      "object": "credited with writing the first industrial history of the US",
+      "source": "https://en.wikipedia.org/wiki/Boston_marriage"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_560809e26a]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/W._C._Fields"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boston_marriage"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Queerplatonic_relationship"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Interpersonal_relationship"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hidden_Figures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Harlow_Robinson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Germ_theory%27s_key_19th_century_figures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/San_Carlos_Institute"
+    }
+  ],
+  "ts": "2026-10-07T03:06:14.703325+00:00"
+}

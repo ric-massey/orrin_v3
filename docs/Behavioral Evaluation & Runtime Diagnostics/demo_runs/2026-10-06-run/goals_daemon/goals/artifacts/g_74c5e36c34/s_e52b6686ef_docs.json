@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/W._C._Fields",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boston_marriage",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_02.txt",
+      "chars": 10547
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Queerplatonic_relationship",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Interpersonal_relationship",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Harlow_Robinson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_07.txt",
+      "chars": 15991
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Germ_theory%27s_key_19th_century_figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_09.txt",
+      "chars": 3585
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Three_Studies_for_Figures_at_the_Base_of_a_Crucifixion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_74c5e36c34/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T22:50:46.837278+00:00"
+}

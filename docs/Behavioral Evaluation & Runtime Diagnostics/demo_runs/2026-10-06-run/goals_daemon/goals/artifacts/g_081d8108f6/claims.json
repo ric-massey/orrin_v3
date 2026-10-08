@@ -1,0 +1,136 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "AI techniques that",
+    "developed for games like poker definitely could not scale in this setting",
+    "One of the first examples of AI",
+    "computerized strategy game Nim",
+    "age of video arcade games that the idea of AI opponents",
+    "largely popularized",
+    "computers",
+    "programmed to play these games using a specially designed algorithm",
+    "These games",
+    "described in terms of a start state",
+    "first commercial usage of general game playing technology",
+    "Zillions of Games in 1998",
+    "game playing algorithm",
+    "theoretically capable of playing chess-like games",
+    "This",
+    "the first program to automatically generate chess-like game rules"
+  ],
+  "relations": [
+    {
+      "subject": "AI techniques that",
+      "predicate": "were",
+      "object": "developed for games like poker definitely could not scale in this setting",
+      "source": "my prior memo: memo_this-game-playing-ai-is-the-new-champ-at-stratego-mit-news-m.md"
+    },
+    {
+      "subject": "One of the first examples of AI",
+      "predicate": "is the",
+      "object": "computerized strategy game Nim",
+      "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "subject": "age of video arcade games that the idea of AI opponents",
+      "predicate": "was",
+      "object": "largely popularized",
+      "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "subject": "computers",
+      "predicate": "are",
+      "object": "programmed to play these games using a specially designed algorithm",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "These games",
+      "predicate": "are",
+      "object": "described in terms of a start state",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "first commercial usage of general game playing technology",
+      "predicate": "was",
+      "object": "Zillions of Games in 1998",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "game playing algorithm",
+      "predicate": "was",
+      "object": "theoretically capable of playing chess-like games",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "This",
+      "predicate": "was",
+      "object": "the first program to automatically generate chess-like game rules",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "like games without any human interaction once the games",
+      "predicate": "were",
+      "object": "generated",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "the commercial system Zillions of Games",
+      "predicate": "was",
+      "object": "developed by Jeff Mallett and Mark Lefler",
+      "source": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "subject": "learned bot project using the video game Dota 2 OpenAI Five",
+      "predicate": "is a",
+      "object": "computer program by OpenAI that plays the five-on-five video game Dota 2",
+      "source": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    },
+    {
+      "subject": "where it",
+      "predicate": "was",
+      "object": "demonstrated in a live one-on-one game against the professional player Dendi",
+      "source": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: memo_this-game-playing-ai-is-the-new-champ-at-stratego-mit-news-m.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/General_game_playing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ludeme"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_Dungeon"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Recursive_self-improvement"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Generative_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_art"
+    }
+  ],
+  "ts": "2026-10-06T20:25:17.574396+00:00"
+}

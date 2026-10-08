@@ -1,0 +1,257 @@
+[
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T19:41:16.299611+00:00",
+    "ts": 1791315676.299616
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T20:28:55.889406+00:00",
+    "ts": 1791318535.889415
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T20:43:22.455256+00:00",
+    "ts": 1791319402.455262
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:01:18.374339+00:00",
+    "ts": 1791320478.374343
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:04:26.243333+00:00",
+    "ts": 1791320666.243341
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:10:34.057450+00:00",
+    "ts": 1791321034.057454
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:20:16.090269+00:00",
+    "ts": 1791321616.0902731
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:32:31.943583+00:00",
+    "ts": 1791322351.943588
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-06T21:46:13.974559+00:00",
+    "ts": 1791323173.974564
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5556,
+    "distance_histogram": {
+      "1": 30,
+      "0": 24
+    },
+    "rule_count": 54,
+    "timestamp": "2026-10-07T00:46:33.231937+00:00",
+    "ts": 1791333993.231945
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 31,
+    "mean_inference_distance": 0.5536,
+    "distance_histogram": {
+      "1": 31,
+      "0": 25
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T03:47:19.059654+00:00",
+    "ts": 1791344839.059656
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 31,
+    "mean_inference_distance": 0.5536,
+    "distance_histogram": {
+      "1": 31,
+      "0": 25
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T06:47:40.682959+00:00",
+    "ts": 1791355660.682965
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 31,
+    "mean_inference_distance": 0.5536,
+    "distance_histogram": {
+      "1": 31,
+      "0": 25
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T09:49:01.064288+00:00",
+    "ts": 1791366541.0642939
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 31,
+    "mean_inference_distance": 0.5536,
+    "distance_histogram": {
+      "1": 31,
+      "0": 25
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T12:50:24.917852+00:00",
+    "ts": 1791377424.9178638
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 31,
+    "mean_inference_distance": 0.5536,
+    "distance_histogram": {
+      "1": 31,
+      "0": 25
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T15:50:46.624864+00:00",
+    "ts": 1791388246.6248682
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5357,
+    "distance_histogram": {
+      "1": 30,
+      "0": 26
+    },
+    "rule_count": 56,
+    "timestamp": "2026-10-07T18:51:48.915299+00:00",
+    "ts": 1791399108.915308
+  },
+  {
+    "available": true,
+    "reflection_on_reflection_edges": 0,
+    "reflection_on_experience_edges": 0,
+    "spiral_ratio": 0.0,
+    "uncited_reflection_rules": 30,
+    "mean_inference_distance": 0.5263,
+    "distance_histogram": {
+      "1": 30,
+      "0": 27
+    },
+    "rule_count": 57,
+    "timestamp": "2026-10-07T21:53:16.268189+00:00",
+    "ts": 1791409996.268197
+  }
+]

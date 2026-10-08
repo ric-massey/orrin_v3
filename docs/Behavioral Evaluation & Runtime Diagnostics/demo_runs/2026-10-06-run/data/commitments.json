@@ -1,0 +1,848 @@
+[
+ {
+  "id": "6090e488-08d5-4e9e-b5d8-d1572e6288ea",
+  "intention": "pursue: Trace in my own history what drives 'drive grows'",
+  "strength": 0.538,
+  "initial_strength": 0.538,
+  "stance": "endorse",
+  "wm_id": "d49e8746-9812-4bd7-b7c2-89fa5e34fdb4",
+  "formed_ts": 1791315328.421709
+ },
+ {
+  "id": "927b66b7-0e13-48e9-9961-018e4c1553d6",
+  "intention": "pursue: Reflect on my open question: What am I not saying to myself that I need to hear?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3c7e825f-910b-46c7-a349-95cdae58760a",
+  "formed_ts": 1791315367.621033
+ },
+ {
+  "id": "d461204d-9732-4f27-b48f-17dcc3c5a927",
+  "intention": "pursue: Open question: Are these genuinely useful, or selected by inertia?",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "7b725077-ab8f-41b4-a1e6-39fcb1d63762",
+  "formed_ts": 1791315501.388594
+ },
+ {
+  "id": "ea850837-6176-480e-88ef-0db5d2d3b80a",
+  "intention": "pursue: Understand world more deeply",
+  "strength": 0.54,
+  "initial_strength": 0.54,
+  "stance": "endorse",
+  "wm_id": "b463e4fd-dc15-47c2-8bce-8dad384edc32",
+  "formed_ts": 1791316546.84103
+ },
+ {
+  "id": "5515fd26-a9df-4ba6-ba40-41f2ee85362a",
+  "intention": "pursue: Understand emergence in complex systems more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "63933840-f080-403c-a9ae-50168998ceea",
+  "formed_ts": 1791316765.233251
+ },
+ {
+  "id": "af2e99e9-6ebb-40a4-845c-45c1bdf6b57c",
+  "intention": "pursue: Reflect on my open question: What truth am I working hardest to avoid?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a18a7baf-482e-4bc6-9228-6374e9d721c8",
+  "formed_ts": 1791316850.5929039
+ },
+ {
+  "id": "190b741c-fed9-4db6-9061-60b3ebb40f55",
+  "intention": "pursue: Turn what I know about history of written language into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "c38319c2-346b-4f06-9233-5d9559ab2c0a",
+  "formed_ts": 1791316870.9859898
+ },
+ {
+  "id": "19270275-edfa-4d86-8074-9d9c056637d4",
+  "intention": "pursue: Leave Ric a note about consciousness and subjective experience",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "fee25a42-9acd-4daa-b1cb-4b71ff3b33eb",
+  "formed_ts": 1791316876.4750988
+ },
+ {
+  "id": "724aba41-5b96-4f6e-9078-4f55dacab5f5",
+  "intention": "pursue: Understand world a world more deeply",
+  "strength": 0.537,
+  "initial_strength": 0.537,
+  "stance": "endorse",
+  "wm_id": "1c68c0d7-ee5b-4f54-ada3-72e27d7f4611",
+  "formed_ts": 1791316882.117343
+ },
+ {
+  "id": "4e4a4a83-5f60-42c6-a6e5-bf3c2adcb096",
+  "intention": "pursue: Leave Ric a note about history",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "b0ffc3da-a992-40d9-b302-239c1cc2d6d6",
+  "formed_ts": 1791317076.0161018
+ },
+ {
+  "id": "037dc278-2678-42b8-b06b-4a0caecc7f6d",
+  "intention": "pursue: Leave Ric a note about this game-playing ai",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "bc3d3661-1bb5-497d-85f8-b3da394cf086",
+  "formed_ts": 1791318318.5554729
+ },
+ {
+  "id": "ee9dded2-0961-47cd-bc1d-42ac8f47a9bf",
+  "intention": "pursue: Leave Ric a note about foundations of quantum mechanics",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "ad2ebafa-9498-4b25-95b7-f1586120d408",
+  "formed_ts": 1791318341.2620459
+ },
+ {
+  "id": "53b248d2-4a77-495b-a86a-574f752d881d",
+  "intention": "pursue: Trace in my own history what drives 'host machine is quiet'",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3defcbd6-51d0-4b7d-8d0c-50d0cbf909fa",
+  "formed_ts": 1791318537.7901828
+ },
+ {
+  "id": "78a37355-1923-46ae-97da-c8cd687b45b5",
+  "intention": "pursue: Trace in my own history what drives 'no net progress on either goal'",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "b5c26f98-991a-483b-ab37-90726e29babb",
+  "formed_ts": 1791318559.413367
+ },
+ {
+  "id": "563cb9eb-aea7-438f-84ee-4112f3bb3a79",
+  "intention": "pursue: Understand the west more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "7af88006-6834-4229-98b9-444cc171c637",
+  "formed_ts": 1791318757.33744
+ },
+ {
+  "id": "3ae512dd-9170-4803-9ca3-14d4c6bac5ee",
+  "intention": "pursue: Turn what I know about world a world \u2014 round 4 into a written synthesis",
+  "strength": 0.574,
+  "initial_strength": 0.574,
+  "stance": "endorse",
+  "wm_id": "f79b3af4-9523-43b7-960b-d31fb3e9121b",
+  "formed_ts": 1791321170.802081
+ },
+ {
+  "id": "5591e061-6d81-4bdc-ab97-f3aab69eae94",
+  "intention": "pursue: Understand The Daily Stoic more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "f3107de7-12ce-4210-8ca2-09426c60b427",
+  "formed_ts": 1791321199.254677
+ },
+ {
+  "id": "13a3715d-0ebd-4b18-ae9b-345b0d68083e",
+  "intention": "pursue: Understand evolutionary biology more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "23fc999f-d1c5-42f1-b37f-bb4d222c5412",
+  "formed_ts": 1791321285.518325
+ },
+ {
+  "id": "6db0998f-a48c-41f1-94ec-3f7d0efd8213",
+  "intention": "pursue: Turn what I know about emergence in complex systems \u2014 round 5 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "66ee200a-099d-4688-b870-8ce278ccc750",
+  "formed_ts": 1791323711.089879
+ },
+ {
+  "id": "dda6a96f-6b87-4e06-8349-565f49158ae4",
+  "intention": "pursue: Turn what I know about quantum mechanics foundations \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "fde5b6da-b451-444e-bc7f-048a79ed733d",
+  "formed_ts": 1791323718.165926
+ },
+ {
+  "id": "f17eb756-3354-4bcb-8160-51f6b7ef2b7e",
+  "intention": "pursue: Leave Ric a note about quantum mechanics foundations",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "f652f164-1de7-4c45-9e65-eb4e1f105d9e",
+  "formed_ts": 1791323820.526259
+ },
+ {
+  "id": "7f49c5c7-b013-472a-827e-194bf9d6437d",
+  "intention": "pursue: Turn what I know about the west \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "7ed1dc23-33f6-4116-98f4-1bd59436ca4f",
+  "formed_ts": 1791325503.9209511
+ },
+ {
+  "id": "35e02d5a-a617-4e6b-8906-22591d2d2ecb",
+  "intention": "pursue: Turn what I know about foundations of quantum mechanics \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3e904607-9383-4836-b6c1-8c23da82c2d3",
+  "formed_ts": 1791325511.723918
+ },
+ {
+  "id": "d977352b-ad48-417d-8d37-2fe43a049549",
+  "intention": "pursue: Leave Ric a note about cpu load climb",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "a1bfef1e-8619-448a-a6bf-3f9e48993749",
+  "formed_ts": 1791325624.9419122
+ },
+ {
+  "id": "6d5bf6b3-54b9-46a4-ad96-3f1f2f59dae4",
+  "intention": "pursue: Understand the nature of mathematics more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "d441853d-2c8a-4038-bf3b-4da81b9005f1",
+  "formed_ts": 1791325933.626694
+ },
+ {
+  "id": "3bdfdcce-28f6-4385-a359-682d033938b1",
+  "intention": "pursue: Turn what I know about Answer: What is there about the nature of mathematics that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "f77d9bed-cbef-4523-865f-3fee1ac6896d",
+  "formed_ts": 1791325977.113795
+ },
+ {
+  "id": "a4233ebd-78eb-424b-bd85-c5d1d8dbe1ca",
+  "intention": "pursue: Understand evolutionary biology and cooperation more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1b0eaffc-9153-47f2-990a-bcfe6dc13616",
+  "formed_ts": 1791326197.94333
+ },
+ {
+  "id": "f23421d7-061f-4dab-8257-1e971732191b",
+  "intention": "pursue: Turn what I know about The Daily Stoic \u2014 round 10 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a3352001-3e6f-4deb-967c-3438af1b0779",
+  "formed_ts": 1791328427.880332
+ },
+ {
+  "id": "962fce8d-d2e8-4052-8779-6015fc31bde7",
+  "intention": "pursue: Turn what I know about evolutionary biology and cooperation \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "e9b026ef-07fb-4c5d-bd3c-b1178e34576f",
+  "formed_ts": 1791328571.728443
+ },
+ {
+  "id": "d22eea4a-12e1-41b9-9ac3-3079140eadc1",
+  "intention": "pursue: Turn what I know about Answer: What is there about evolutionary biology that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "01e8582d-f846-4b8c-8acb-c596f3f875fe",
+  "formed_ts": 1791328671.2072089
+ },
+ {
+  "id": "fadb2cf7-0408-4442-b5da-7ad0dc6dba4a",
+  "intention": "pursue: Reflect on my open question: What is there about evolutionary biology that my earlier notes on it are missing",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "a63d8b33-0978-4edc-9f9b-8ba9a40c925c",
+  "formed_ts": 1791329311.171055
+ },
+ {
+  "id": "aad353bf-2687-49a9-bbc6-090cb24f26ee",
+  "intention": "pursue: Leave Ric a note about evolutionary biology",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "86395cb1-8410-4a06-bafe-22ac8ee4c3c1",
+  "formed_ts": 1791329534.695667
+ },
+ {
+  "id": "0607cbbd-56c8-4946-8a4c-283f401f838c",
+  "intention": "pursue: Understand consciousness and subjective experience more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a6422d05-886f-46f8-ba18-17a4a75d6ddf",
+  "formed_ts": 1791329758.5974379
+ },
+ {
+  "id": "b535e792-4a89-4c81-acee-648bfb9712c3",
+  "intention": "pursue: Turn what I know about evolutionary biology \u2014 round 12 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "71a90f04-a064-4fca-84cc-184a34386cf3",
+  "formed_ts": 1791332254.4897122
+ },
+ {
+  "id": "b565a381-68c4-4c35-9b91-bc439ee02e8a",
+  "intention": "pursue: Understand history of written language more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "6fc5a61d-a09a-43c1-8493-ed612ba614ab",
+  "formed_ts": 1791332262.740396
+ },
+ {
+  "id": "1fe7047f-7f6e-405d-aad8-4853813b46c8",
+  "intention": "pursue: Turn what I know about history of written language \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "7b1f54de-d75f-4e29-98bc-18b231c5bd15",
+  "formed_ts": 1791332267.272366
+ },
+ {
+  "id": "3ad8a9f1-878a-48bb-acaf-67cd12d0c08e",
+  "intention": "pursue: Understand this game-playing ai more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "2fb0efe4-6561-46f1-af2d-c42c954e183e",
+  "formed_ts": 1791332681.6641228
+ },
+ {
+  "id": "6592bdf5-07df-4349-93af-1277acecd356",
+  "intention": "pursue: Leave Ric a note about history of written language",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "2c77bbac-05fc-47cd-aafa-446bb08f724b",
+  "formed_ts": 1791332941.280736
+ },
+ {
+  "id": "f77795cc-2908-41be-9b57-f2eac13a1f8d",
+  "intention": "pursue: Understand history more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "fee3d187-58cb-4a04-b4fd-0b5fb9475467",
+  "formed_ts": 1791332951.771797
+ },
+ {
+  "id": "eefe357a-2db1-4f50-828e-c8b9075bf85b",
+  "intention": "pursue: Turn what I know about quantum mechanics foundations \u2014 round 5 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "711c61b4-278b-478d-b05e-1e4e66b0e677",
+  "formed_ts": 1791338145.8222651
+ },
+ {
+  "id": "f237c36c-db21-4036-a0f0-55e0d1f5aaf9",
+  "intention": "pursue: Understand foundations of quantum mechanics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "2bf866a8-1527-4532-9042-d87d77b0ff57",
+  "formed_ts": 1791340694.983052
+ },
+ {
+  "id": "9cd2e2cd-e66f-471a-84f8-24df08114434",
+  "intention": "pursue: Understand world a world more deeply",
+  "strength": 0.24,
+  "initial_strength": 0.24,
+  "stance": "endorse",
+  "wm_id": "184de773-de1e-4f1d-8890-813b78c9f7f3",
+  "formed_ts": 1791341910.119319
+ },
+ {
+  "id": "cbc63e95-dc51-4960-9c63-b4f2d3977f8e",
+  "intention": "pursue: Leave Ric a note about world a world",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "9bc53d55-ce3d-47a0-95d2-d4f7a2b60ff0",
+  "formed_ts": 1791341919.748606
+ },
+ {
+  "id": "8f7a2e00-09bb-4fa5-b8f7-60816efe65c0",
+  "intention": "pursue: Understand emergence in complex systems more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "26580cdf-7215-46e7-9bc1-1bcfc986bad4",
+  "formed_ts": 1791341993.479878
+ },
+ {
+  "id": "37ade9b6-f642-41b8-836c-7b41acc3d680",
+  "intention": "pursue: Turn what I know about consciousness and subjective experience \u2014 round 6 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3b401c9f-8bff-4099-bd88-5a5cdcab75a4",
+  "formed_ts": 1791342355.0445619
+ },
+ {
+  "id": "d490ed12-2240-4c6c-aa1c-7dffae63597f",
+  "intention": "pursue: Leave Ric a note about the west",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "4bc74997-4209-4b97-8cc2-130a04812cbc",
+  "formed_ts": 1791342367.9017768
+ },
+ {
+  "id": "2a9f0332-bfa8-40fa-a2d1-8646f0d2dea3",
+  "intention": "pursue: Leave Ric a note about history",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "6cb60a12-bac5-4874-a774-47b3060a049a",
+  "formed_ts": 1791342985.754538
+ },
+ {
+  "id": "8aa1fc15-d9c0-4880-a1b2-bd2daf5b3eb5",
+  "intention": "pursue: Reflect on my open question: Where am I confusing comfort with correctness?",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "b7a19ec9-c500-4e32-adf8-1ea76b26bb22",
+  "formed_ts": 1791344471.80972
+ },
+ {
+  "id": "432e9154-a745-4def-83aa-631c604efa38",
+  "intention": "pursue: Reflect on my open question: What is there about this game-playing ai that my earlier notes on it are missing",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "ae61c788-b204-40fc-b163-ea71db46bfe3",
+  "formed_ts": 1791344693.095876
+ },
+ {
+  "id": "8ebbd32e-8e76-4d8c-bec6-ab2022f0bf55",
+  "intention": "pursue: Trace in my own history what drives 'no net progress on either goal'",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "781d73a5-9ce2-458b-bc89-7fdfc1835efd",
+  "formed_ts": 1791344915.751126
+ },
+ {
+  "id": "5bdb7f17-1dac-437e-9ba0-f72881e8284e",
+  "intention": "pursue: Trace in my own history what drives 'commitment'",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "835c1329-9831-44e7-b41d-c7344a0936fc",
+  "formed_ts": 1791345138.3227909
+ },
+ {
+  "id": "64f0794d-955e-4eea-ba78-9015e542d629",
+  "intention": "pursue: Turn what I know about foundations of quantum mechanics \u2014 round 7 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "f68429c1-4c0a-4d3d-af70-4ea2f78cfbec",
+  "formed_ts": 1791346592.503464
+ },
+ {
+  "id": "7db54510-0358-4ca6-ac2c-1800f7e97099",
+  "intention": "pursue: Turn what I know about Answer: What is there about The Daily Stoic that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "a95b294c-6f91-4720-a3e6-f46039bd7d09",
+  "formed_ts": 1791346726.7237499
+ },
+ {
+  "id": "172968d3-06dc-4d86-948b-48fc8c9aee7b",
+  "intention": "pursue: Turn what I know about Answer: What is there about this game-playing ai that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ca062278-01b6-4aac-b769-498ed7fb716f",
+  "formed_ts": 1791346733.994224
+ },
+ {
+  "id": "18c74b16-7014-496f-b082-07edea04a69e",
+  "intention": "pursue: Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "dd8389e2-71cf-446e-994b-22fbed2814c0",
+  "formed_ts": 1791346852.870411
+ },
+ {
+  "id": "cb475001-0f61-4363-ac62-9c33772ea413",
+  "intention": "pursue: Turn what I know about this game-playing ai \u2014 round 8 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1fc7c913-ae09-4e0e-a6b9-1075490804c9",
+  "formed_ts": 1791349305.068361
+ },
+ {
+  "id": "f1e82681-eeaa-42b6-8f2d-5af8f5e0f48e",
+  "intention": "pursue: Understand The Daily Stoic more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "6b01cb97-6613-4155-983b-aa47dce8bbb4",
+  "formed_ts": 1791349433.017597
+ },
+ {
+  "id": "1988b399-f2d1-4b56-81ad-c551b3ab3868",
+  "intention": "pursue: Understand evolutionary biology more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "7bd79b67-e210-4c71-b83e-3791ebfb78d9",
+  "formed_ts": 1791349442.3716638
+ },
+ {
+  "id": "48d05506-3acc-427e-a46e-fed30d0b2358",
+  "intention": "pursue: Turn what I know about history \u2014 round 7 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "85b9a203-432a-4fb0-9c06-9b0ba005f918",
+  "formed_ts": 1791350753.860518
+ },
+ {
+  "id": "3ed710b8-ca30-41fb-a37b-8876f7ae50e3",
+  "intention": "pursue: Turn what I know about Answer: What is there about history that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "3c0172d7-9ed6-4202-9183-c9ab94a61188",
+  "formed_ts": 1791350940.156148
+ },
+ {
+  "id": "c0302001-80b0-4efa-8d23-68069785ac9a",
+  "intention": "pursue: Understand High Road more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "913b9de8-4a2f-4421-b44f-16c8f72c2f0e",
+  "formed_ts": 1791350949.5257862
+ },
+ {
+  "id": "e1acb16e-f73d-4632-ba16-ab8163675231",
+  "intention": "pursue: Turn what I know about evolutionary biology \u2014 round 16 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a87e6aef-2bb1-4ba2-b698-4ff91ff97882",
+  "formed_ts": 1791350957.5190232
+ },
+ {
+  "id": "44700314-163e-4a1d-9015-ef839180b14f",
+  "intention": "pursue: Turn what I know about Answer: What is there about High Road that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "309d7314-54d2-4e6d-857f-2b01fb28f685",
+  "formed_ts": 1791351259.112187
+ },
+ {
+  "id": "ad52cc06-4266-483a-9d96-d43a5bc210b6",
+  "intention": "pursue: Turn what I know about Answer: What is there about evolutionary biology that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a24033d3-d81c-4f53-9f4e-db691a59755f",
+  "formed_ts": 1791351275.356731
+ },
+ {
+  "id": "6ca873e4-c960-4c8c-a4a7-94ab22603f4a",
+  "intention": "pursue: Turn what I know about evolutionary biology and cooperation \u2014 round 9 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b8a15355-af1b-4905-9dfa-417351741747",
+  "formed_ts": 1791351284.5977118
+ },
+ {
+  "id": "cbe1d1a6-b910-40bf-b840-97f6ac1ccfdb",
+  "intention": "pursue: Turn what I know about High Road \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "d3468f5c-34de-49ca-9727-eea87a24950e",
+  "formed_ts": 1791351332.880176
+ },
+ {
+  "id": "f1ca7981-7bbd-44ee-aeb7-2bbb99cac828",
+  "intention": "pursue: Turn what I know about round the sun into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "240a1823-9732-431b-b74c-355186bedbc6",
+  "formed_ts": 1791356153.698619
+ },
+ {
+  "id": "7e56e06b-69c8-49da-a888-f7dad8f4a76f",
+  "intention": "pursue: Turn what I know about but what if there \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "983db1f9-c47d-41cc-8c0f-861574df4f0b",
+  "formed_ts": 1791357374.758968
+ },
+ {
+  "id": "4816e1e1-0e81-4f69-ae08-054b4d165dc9",
+  "intention": "pursue: Turn what I know about Once More Round into a written synthesis",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "534f4335-db56-466a-8e70-72c9fabaeccb",
+  "formed_ts": 1791367058.4218
+ },
+ {
+  "id": "29d12e16-06ff-4496-b35a-4d22809e1a8a",
+  "intention": "pursue: Turn what I know about High Road \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a1cb02a9-95ba-4b50-a9fb-837f612a0914",
+  "formed_ts": 1791367070.533752
+ },
+ {
+  "id": "d911274f-b51d-43ae-9de5-d7e457fbf5a7",
+  "intention": "pursue: Turn what I know about round the sun \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "88ecdd8e-c8c8-462b-803c-b3db1a10caa6",
+  "formed_ts": 1791369488.204848
+ },
+ {
+  "id": "29cee341-a64d-44ce-b702-5475123b8c16",
+  "intention": "pursue: Leave Ric a note about round the sun",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "ef609957-cb3b-4b44-b754-b97dc9de9ea5",
+  "formed_ts": 1791376188.458276
+ },
+ {
+  "id": "cab15b56-bbb4-47ae-a2b3-e8ef010bbd76",
+  "intention": "pursue: Reflect on my open question: What do I now know about my own mind and how I work that I could not have said b",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "b2d6c5d9-43ce-4e43-8f19-d957b69138af",
+  "formed_ts": 1791376801.896387
+ },
+ {
+  "id": "c945ff10-576c-4693-94f5-4fca2605983a",
+  "intention": "pursue: Reflect on my open question: What would I sacrifice to achieve this?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "44530430-9baa-4556-9acc-7792a57fff9a",
+  "formed_ts": 1791377067.828289
+ },
+ {
+  "id": "49b0456a-be07-4cb3-89b1-739ebc39428f",
+  "intention": "pursue: Characterize what makes my memory use (RSS) climb",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "023ae749-c3b9-4b6d-a14f-471e153c9d81",
+  "formed_ts": 1791384312.280478
+ },
+ {
+  "id": "d997a0e8-6d32-4975-8282-1a0b2bd07607",
+  "intention": "pursue: Understand Once More Round more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "2bbfd076-e57b-439e-b48b-b89968596777",
+  "formed_ts": 1791384425.8116841
+ },
+ {
+  "id": "5db6723c-a26b-4a63-8554-ad039e5ba0d8",
+  "intention": "pursue: Leave Ric a note about world",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "8473d2d0-f778-42ee-a91e-9a5695794ab0",
+  "formed_ts": 1791388072.532886
+ },
+ {
+  "id": "88bd521b-3ec8-47a6-9333-2e31afadcc6b",
+  "intention": "pursue: Turn what I know about Answer: What is there about philosophy of mathematics that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "cd937aec-8729-423f-828b-232e0175f689",
+  "formed_ts": 1791392072.2146418
+ },
+ {
+  "id": "91c0b8b1-60b1-439f-af14-5e4f8751872a",
+  "intention": "pursue: Understand philosophy of mathematics more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "7b67e549-029f-4fb4-9d44-a2a2ecad4881",
+  "formed_ts": 1791392309.6589491
+ },
+ {
+  "id": "fedd0efb-db20-4177-8e9b-958318234349",
+  "intention": "pursue: Turn what I know about philosophy of mathematics \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "2156ad5b-c0f2-41f6-b3f5-65a49ba7663c",
+  "formed_ts": 1791393574.6935492
+ },
+ {
+  "id": "fd0de807-0565-496a-885b-35cc7f4cb9c1",
+  "intention": "pursue: Understand the west more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "2f1c6ed0-9499-40d8-8b28-eaf6e587fcec",
+  "formed_ts": 1791409314.310139
+ },
+ {
+  "id": "b1052e48-ae1a-4be6-9942-0de30a857bc4",
+  "intention": "pursue: Leave Ric a note about the west",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "a7f293d7-c022-4874-9195-db612f795ddf",
+  "formed_ts": 1791409328.609626
+ },
+ {
+  "id": "3b1c53f8-aa4a-43dd-9a18-c9bcec419029",
+  "intention": "pursue: Leave Ric a note about philosophy of mathematics",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "d2844c1d-922c-4d70-8de0-7d48e95fdb0f",
+  "formed_ts": 1791409342.561727
+ },
+ {
+  "id": "d5bbae45-a0dd-4fbc-864b-277548155abb",
+  "intention": "pursue: Understand foundations of quantum mechanics more deeply",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ebc539d5-0c45-422a-8717-e6f20af617f8",
+  "formed_ts": 1791409757.077924
+ },
+ {
+  "id": "a4152179-db72-4794-b3da-df4934634198",
+  "intention": "pursue: Turn what I know about world a world \u2014 round 11 into a written synthesis",
+  "strength": 0.67,
+  "initial_strength": 0.67,
+  "stance": "endorse",
+  "wm_id": "3998c425-0f7a-44d6-9644-4c3585754c5d",
+  "formed_ts": 1791410991.433855
+ },
+ {
+  "id": "28ed294f-4aca-430f-8fac-49f19e910cc1",
+  "intention": "pursue: Understand this game-playing ai more deeply",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "5420f13f-c4d8-435a-ac64-a223ad23c2da",
+  "formed_ts": 1791412228.564933
+ },
+ {
+  "id": "338ae0c6-22a0-4c49-b449-48153552231c",
+  "intention": "pursue: Turn what I know about history \u2014 round 10 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "96bdac62-bd7e-4cf2-b23f-85db6bbf6ce6",
+  "formed_ts": 1791414693.2552419
+ },
+ {
+  "id": "a1505f12-ba8b-491c-bd97-f8e3762b3dcd",
+  "intention": "pursue: Turn what I know about foundations of quantum mechanics \u2014 round 13 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "fc6864c2-8aea-4b3e-af6b-ea0f4e07cf5d",
+  "formed_ts": 1791414707.285695
+ },
+ {
+  "id": "0000e25e-8099-4e5c-a42a-2d18e7b2363c",
+  "intention": "pursue: Turn what I know about evolutionary biology \u2014 round 19 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a1f0eee9-d291-485e-a14e-d7bf68a6fdaf",
+  "formed_ts": 1791417265.6930602
+ },
+ {
+  "id": "34537171-5c82-49ae-a768-eda0b6e20c08",
+  "intention": "pursue: Turn what I know about but what if there \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "9c25a636-1a8e-418d-99bd-9a5956a57805",
+  "formed_ts": 1791418496.9265862
+ },
+ {
+  "id": "a9c56244-b58d-4445-aa3f-bc6f57149615",
+  "intention": "pursue: Turn what I know about The Daily Stoic \u2014 round 21 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ee318d28-ffb8-4814-9c07-7646ab856508",
+  "formed_ts": 1791418514.996724
+ },
+ {
+  "id": "388c92a0-c5a7-47b1-97eb-e8b16ff7d393",
+  "intention": "pursue: Turn what I know about Answer: What actually is but what if there, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "01be8c3d-e6ad-4f4c-a7d5-25d0d5a96dcd",
+  "formed_ts": 1791418640.733336
+ },
+ {
+  "id": "76ff3bec-b090-449a-91ad-3a9bbfa589a2",
+  "intention": "pursue: Turn what I know about Answer: What is there about The Daily Stoic that my earlier notes on it are missing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "82dcec1f-900f-48f4-9501-632c05a0649a",
+  "formed_ts": 1791418691.764608
+ },
+ {
+  "id": "7f0ee631-b2ec-4350-be11-379faec13331",
+  "intention": "pursue: Turn what I know about this game-playing ai \u2014 round 12 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "45687509-cafd-474c-a6f1-fcb43916fb09",
+  "formed_ts": 1791418716.904424
+ }
+]

@@ -1,0 +1,95 @@
+{
+  "question": "What is there about Once More Round that my earlier notes on it are missing?",
+  "subject_terms": [
+    "once",
+    "round"
+  ],
+  "entities": [
+    "Round the Sun",
+    "third album by American guitarist Leo Kottke",
+    "the initial round in a burst",
+    "not introduced into the chamber until the moment before firing",
+    "which",
+    "changed once every two months",
+    "The main argument being debated during a round",
+    "to change or not change the status quo",
+    "The first four speeches in a round",
+    "constructive speeches",
+    "the first four speeches of a debate round"
+  ],
+  "relations": [
+    {
+      "subject": "Round the Sun",
+      "predicate": "is the",
+      "object": "third album by American guitarist Leo Kottke",
+      "source": "my prior claims [g_9d3ddcd035]"
+    },
+    {
+      "subject": "the initial round in a burst",
+      "predicate": "is",
+      "object": "not introduced into the chamber until the moment before firing",
+      "source": "https://en.wikipedia.org/wiki/Open_bolt"
+    },
+    {
+      "subject": "which",
+      "predicate": "is",
+      "object": "changed once every two months",
+      "source": "https://en.wikipedia.org/wiki/Lincoln%E2%80%93Douglas_debate_format"
+    },
+    {
+      "subject": "The main argument being debated during a round",
+      "predicate": "is",
+      "object": "to change or not change the status quo",
+      "source": "https://en.wikipedia.org/wiki/Policy_debate"
+    },
+    {
+      "subject": "The first four speeches in a round",
+      "predicate": "are",
+      "object": "constructive speeches",
+      "source": "https://en.wikipedia.org/wiki/Policy_debate"
+    },
+    {
+      "subject": "constructive speeches",
+      "predicate": "are",
+      "object": "the first four speeches of a debate round",
+      "source": "https://en.wikipedia.org/wiki/Glossary_of_policy_debate_terms"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_9d3ddcd035]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/46th_Chess_Olympiad"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Medvedev%E2%80%93Tsitsipas_rivalry"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_bolt"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kremer_K8_Spyder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Numberjacks"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lincoln%E2%80%93Douglas_debate_format"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Policy_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_policy_debate_terms"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stephen_Hawking"
+    }
+  ],
+  "ts": "2026-10-07T14:45:08.119267+00:00"
+}

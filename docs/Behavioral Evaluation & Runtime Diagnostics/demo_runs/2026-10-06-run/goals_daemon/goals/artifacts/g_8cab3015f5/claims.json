@@ -1,0 +1,87 @@
+{
+  "question": "What is there about mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "mathematics"
+  ],
+  "entities": [
+    "Major themes that",
+    "dealt with in philosophy of mathematics include",
+    "Although research into mathematics education",
+    "primarily concerned with the tools",
+    "This type of mathematics education",
+    "implemented in various parts of Canada beginning in 2005",
+    "The Association for Women in Mathematics Newsletter",
+    "member journal of the organization",
+    "the lecture",
+    "given at the annual Joint Mathematics Meetings"
+  ],
+  "relations": [
+    {
+      "subject": "Major themes that",
+      "predicate": "are",
+      "object": "dealt with in philosophy of mathematics include",
+      "source": "my prior claims [g_88f9832b8f]"
+    },
+    {
+      "subject": "Although research into mathematics education",
+      "predicate": "is",
+      "object": "primarily concerned with the tools",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "subject": "This type of mathematics education",
+      "predicate": "was",
+      "object": "implemented in various parts of Canada beginning in 2005",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "subject": "The Association for Women in Mathematics Newsletter",
+      "predicate": "is the",
+      "object": "member journal of the organization",
+      "source": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics"
+    },
+    {
+      "subject": "the lecture",
+      "predicate": "is",
+      "object": "given at the annual Joint Mathematics Meetings",
+      "source": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_88f9832b8f]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Centrum_Wiskunde_%26_Informatica"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pacific_Institute_for_the_Mathematical_Sciences"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Scientific_misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T21:41:46.168383+00:00"
+}

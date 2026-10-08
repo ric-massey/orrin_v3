@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/West_Bank",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_West_Africa",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Key_West",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/American_frontier",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/West_Africa",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/API",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_08.txt",
+      "chars": 5571
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Israeli_law_in_the_West_Bank_settlements",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41d041f210/doc_09.txt",
+      "chars": 14884
+    }
+  ],
+  "ts": "2026-10-06T21:35:07.959251+00:00"
+}

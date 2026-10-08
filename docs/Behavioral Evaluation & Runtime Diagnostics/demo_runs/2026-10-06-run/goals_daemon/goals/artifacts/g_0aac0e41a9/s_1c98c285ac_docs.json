@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_education",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0aac0e41a9/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Association_for_Women_in_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0aac0e41a9/doc_02.txt",
+      "chars": 9869
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0aac0e41a9/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pacific_Institute_for_the_Mathematical_Sciences",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0aac0e41a9/doc_04.txt",
+      "chars": 7531
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Centrum_Wiskunde_%26_Informatica",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0aac0e41a9/doc_05.txt",
+      "chars": 14766
+    }
+  ],
+  "ts": "2026-10-06T21:55:14.438062+00:00"
+}

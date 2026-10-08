@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Future_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_03.txt",
+      "chars": 16829
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_04.txt",
+      "chars": 9571
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Patterns_in_nature",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pattern",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Our_Mathematical_Universe",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_09.txt",
+      "chars": 8796
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Definitions_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3dae344508/doc_10.txt",
+      "chars": 13156
+    }
+  ],
+  "ts": "2026-10-06T20:25:14.381596+00:00"
+}

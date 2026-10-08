@@ -1,0 +1,124 @@
+{
+  "question": "What is there about Once More Round that my earlier notes on it are missing?",
+  "subject_terms": [
+    "once",
+    "round"
+  ],
+  "entities": [
+    "Round the Sun",
+    "third album by American guitarist Leo Kottke",
+    "Once Upon a Time",
+    "created by Lost and Tron",
+    "primarily set in the fictional seaside town of Storybrooke",
+    "the majority of iron-making in the world",
+    "carried out within 32 kilometres of Round Oak",
+    "Round Oak Iron and Steel Works and",
+    "incorporated on 16 April 1891",
+    "The semicircular arch",
+    "also known as a round arch",
+    "dropped once the pointed arch with its malleable proportions",
+    "adopted",
+    "round arches",
+    "also associated with Byzantine",
+    "answer"
+  ],
+  "relations": [
+    {
+      "subject": "Round the Sun",
+      "predicate": "is the",
+      "object": "third album by American guitarist Leo Kottke",
+      "source": "my prior claims [g_d3b230414c]"
+    },
+    {
+      "subject": "Once Upon a Time",
+      "predicate": "was",
+      "object": "created by Lost and Tron",
+      "source": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29"
+    },
+    {
+      "subject": "Once Upon a Time",
+      "predicate": "is",
+      "object": "primarily set in the fictional seaside town of Storybrooke",
+      "source": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29"
+    },
+    {
+      "subject": "the majority of iron-making in the world",
+      "predicate": "was",
+      "object": "carried out within 32 kilometres of Round Oak",
+      "source": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks"
+    },
+    {
+      "subject": "Round Oak Iron and Steel Works and",
+      "predicate": "was",
+      "object": "incorporated on 16 April 1891",
+      "source": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks"
+    },
+    {
+      "subject": "The semicircular arch",
+      "predicate": "is",
+      "object": "also known as a round arch",
+      "source": "https://en.wikipedia.org/wiki/Semicircular_arch"
+    },
+    {
+      "subject": "dropped once the pointed arch with its malleable proportions",
+      "predicate": "was",
+      "object": "adopted",
+      "source": "https://en.wikipedia.org/wiki/Semicircular_arch"
+    },
+    {
+      "subject": "round arches",
+      "predicate": "are",
+      "object": "also associated with Byzantine",
+      "source": "https://en.wikipedia.org/wiki/Semicircular_arch"
+    },
+    {
+      "subject": "answer",
+      "predicate": "is",
+      "object": "not simply round-off error",
+      "source": "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel"
+    },
+    {
+      "subject": "exactly-once delivery",
+      "predicate": "is",
+      "object": "often achieved through idempotency mechanisms rather than true",
+      "source": "https://en.wikipedia.org/wiki/Distributed_computing"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_d3b230414c]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Panzerfaust_3"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Software_bug"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Semicircular_arch"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Distributed_computing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Segment_display"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/JSON"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Microsoft_Excel"
+    }
+  ],
+  "ts": "2026-10-07T15:47:46.923889+00:00"
+}

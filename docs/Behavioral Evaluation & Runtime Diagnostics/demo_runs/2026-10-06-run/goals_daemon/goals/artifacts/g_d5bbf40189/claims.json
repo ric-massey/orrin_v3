@@ -1,0 +1,134 @@
+{
+  "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+  "subject_terms": [
+    "consciousness",
+    "subjective",
+    "experience"
+  ],
+  "entities": [
+    "talk",
+    "published in The Journal of Consciousness Studies",
+    "Scholars",
+    "divided as to whether Aristotle had a concept of consciousness",
+    "is a subjective experience which",
+    "interpreted within a religious framework",
+    "The interpretation of mystical experiences",
+    "matter of debate",
+    "and states that mystical experiences",
+    "mediated by pre-existing frames of reference",
+    "subjective experiences which",
+    "typically interpreted in a religious framework",
+    "may specifically",
+    "unitive or nondual experiences",
+    "the central structure of an experience",
+    "its intentionality"
+  ],
+  "relations": [
+    {
+      "subject": "talk",
+      "predicate": "were",
+      "object": "published in The Journal of Consciousness Studies",
+      "source": "my prior claims [g_eb5fd5ae79]"
+    },
+    {
+      "subject": "Scholars",
+      "predicate": "are",
+      "object": "divided as to whether Aristotle had a concept of consciousness",
+      "source": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "subject": "is a subjective experience which",
+      "predicate": "is",
+      "object": "interpreted within a religious framework",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "The interpretation of mystical experiences",
+      "predicate": "is a",
+      "object": "matter of debate",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "and states that mystical experiences",
+      "predicate": "are",
+      "object": "mediated by pre-existing frames of reference",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "subjective experiences which",
+      "predicate": "are",
+      "object": "typically interpreted in a religious framework",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "may specifically",
+      "predicate": "refers to",
+      "object": "unitive or nondual experiences",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "the central structure of an experience",
+      "predicate": "is",
+      "object": "its intentionality",
+      "source": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "subject": "at all when the experience of the world and its objects",
+      "predicate": "is",
+      "object": "thoroughly subjective",
+      "source": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "subject": "many philosophers believe there",
+      "predicate": "is a",
+      "object": "broadly shared underlying intuition about what consciousness is",
+      "source": "https://en.wikipedia.org/wiki/Animal_consciousness"
+    },
+    {
+      "subject": "The topic of animal consciousness",
+      "predicate": "is",
+      "object": "beset with a number of difficulties",
+      "source": "https://en.wikipedia.org/wiki/Animal_consciousness"
+    },
+    {
+      "subject": "humans",
+      "predicate": "are",
+      "object": "not unique in possessing the neurological substrates that generate consciousness",
+      "source": "https://en.wikipedia.org/wiki/Animal_consciousness"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_eb5fd5ae79]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Animal_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjective_well-being"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjectivity_and_objectivity_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ego_death"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_consciousness"
+    }
+  ],
+  "ts": "2026-10-07T01:13:01.465833+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "daily",
+    "stoic"
+  ],
+  "entities": [
+    "episodes List of episodes This",
+    "list of episodes for The Daily Show",
+    "Stoic philosophy",
+    "traditionally divided into three interconnected disciplines",
+    "Central to Stoic ethics",
+    "the idea of living in accordance with nature",
+    "the system of propositional logic developed by the Stoics",
+    "one of the two great systems of logic in the classical world",
+    "The Stoics held that an understanding of ethics",
+    "impossible without logic",
+    "He emphasizes the Stoic theme that virtue",
+    "only true good and vice the only true evil"
+  ],
+  "relations": [
+    {
+      "subject": "episodes List of episodes This",
+      "predicate": "is a",
+      "object": "list of episodes for The Daily Show",
+      "source": "my prior claims [g_8e66f36288]"
+    },
+    {
+      "subject": "Stoic philosophy",
+      "predicate": "is",
+      "object": "traditionally divided into three interconnected disciplines",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Central to Stoic ethics",
+      "predicate": "was",
+      "object": "the idea of living in accordance with nature",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "the system of propositional logic developed by the Stoics",
+      "predicate": "was",
+      "object": "one of the two great systems of logic in the classical world",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "The Stoics held that an understanding of ethics",
+      "predicate": "was",
+      "object": "impossible without logic",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "He emphasizes the Stoic theme that virtue",
+      "predicate": "is the",
+      "object": "only true good and vice the only true evil",
+      "source": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8e66f36288]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_writing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stowe_School"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sexuality_in_ancient_Rome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sator_Square"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Imperial_College_London"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Commonplace_book"
+    }
+  ],
+  "ts": "2026-10-07T05:03:58.234469+00:00"
+}

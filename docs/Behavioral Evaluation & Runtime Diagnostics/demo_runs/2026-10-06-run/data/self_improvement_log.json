@@ -1,0 +1,96 @@
+[
+  {
+    "timestamp": "2026-10-06T19:41:16.406386+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.4665,
+        "new_conf": 0.5015,
+        "reason": "872 hits but conf=0.47; grounding=0.50"
+      }
+    ],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.16). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T00:46:33.279580+00:00",
+    "changes": [
+      {
+        "type": "decay_unfired",
+        "rule_id": "ac5ae33e76",
+        "old_conf": 0.72,
+        "new_conf": 0.71,
+        "reason": "high confidence but 0 hits — likely never matches"
+      }
+    ],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.23). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T06:47:40.757270+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.3751,
+        "new_conf": 0.4101,
+        "reason": "886 hits but conf=0.38; grounding=0.50"
+      }
+    ],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.23). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T12:50:24.985264+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.21,
+        "new_conf": 0.245,
+        "reason": "886 hits but conf=0.21; grounding=0.50"
+      },
+      {
+        "type": "rehabilitate",
+        "rule_id": "d959527cfb",
+        "old_conf": 0.465,
+        "new_conf": 0.5,
+        "reason": "626 hits but conf=0.47; grounding=0.50"
+      }
+    ],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.23). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07T18:51:49.070863+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.33 in PLANNING (pred_error=0.67, quality=0.23). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  }
+]

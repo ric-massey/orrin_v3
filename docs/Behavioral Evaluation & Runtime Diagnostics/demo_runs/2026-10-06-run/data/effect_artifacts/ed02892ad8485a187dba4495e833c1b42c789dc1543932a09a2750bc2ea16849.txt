@@ -1,0 +1,130 @@
+{
+  "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Applications in other disciplines Evolution",
+    "central unifying concept in biology",
+    "science and applied sciences gave birth to new fields that",
+    "extensions of evolutionary biology",
+    "The field",
+    "composed of multiple core evolutionary concepts",
+    "the free encyclopedia This article",
+    "about the history of evolutionary thought in biology",
+    "Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_ed48061c06]"
+    },
+    {
+      "subject": "Applications in other disciplines Evolution",
+      "predicate": "is the",
+      "object": "central unifying concept in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "science and applied sciences gave birth to new fields that",
+      "predicate": "are",
+      "object": "extensions of evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "The field",
+      "predicate": "is",
+      "object": "composed of multiple core evolutionary concepts",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "subject": "the free encyclopedia This article",
+      "predicate": "is",
+      "object": "about the history of evolutionary thought in biology",
+      "source": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    },
+    {
+      "subject": "Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary physiology",
+      "predicate": "is the",
+      "object": "study of the biological evolution of physiological structures and processes",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_physiology"
+    },
+    {
+      "subject": "range of phenotypes studied by evolutionary physiologists",
+      "predicate": "is",
+      "object": "broad",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_physiology"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_ed48061c06]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_developmental_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Contingency_%28evolutionary_biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_physiology"
+    }
+  ],
+  "ts": "2026-10-06T21:35:06.711828+00:00"
+}

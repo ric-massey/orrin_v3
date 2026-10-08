@@ -1,0 +1,134 @@
+{
+  "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology",
+    "cooperation"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Change in the heritable traits of populations This article",
+    "about evolution in biology",
+    "Applications in other disciplines Evolution",
+    "central unifying concept in biology",
+    "science and applied sciences gave birth to new fields that",
+    "extensions of evolutionary biology",
+    "arms race between pathogenic bacteria and humans",
+    "constant battle for evolutionary advantages in outcompeting each other",
+    "The extended evolutionary synthesis",
+    "called for in the 1950s by C",
+    "Interaction of biology and evolution This article",
+    "about the biological concept",
+    "Evolutionary ecology",
+    "science at the intersection of ecology and evolutionary biology"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_2bb1caeb3f]"
+    },
+    {
+      "subject": "Change in the heritable traits of populations This article",
+      "predicate": "is",
+      "object": "about evolution in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "Applications in other disciplines Evolution",
+      "predicate": "is the",
+      "object": "central unifying concept in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "science and applied sciences gave birth to new fields that",
+      "predicate": "are",
+      "object": "extensions of evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "subject": "arms race between pathogenic bacteria and humans",
+      "predicate": "is a",
+      "object": "constant battle for evolutionary advantages in outcompeting each other",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_pressure"
+    },
+    {
+      "subject": "The extended evolutionary synthesis",
+      "predicate": "was",
+      "object": "called for in the 1950s by C",
+      "source": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "subject": "Interaction of biology and evolution This article",
+      "predicate": "is",
+      "object": "about the biological concept",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "Evolutionary ecology",
+      "predicate": "is a",
+      "object": "science at the intersection of ecology and evolutionary biology",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "The main subfields of evolutionary ecology",
+      "predicate": "are",
+      "object": "life history evolution",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "large part of evolutionary ecology",
+      "predicate": "is",
+      "object": "about utilising models and finding empirical data as proof",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_2bb1caeb3f]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_pressure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_ecology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tragedy_of_the_commons"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Reciprocal_causation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Theistic_evolution"
+    }
+  ],
+  "ts": "2026-10-06T23:16:03.691769+00:00"
+}

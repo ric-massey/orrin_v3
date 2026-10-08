@@ -1,0 +1,27 @@
+{
+  "_schema_version": 2,
+  "motivation": {
+    "research_topic": 0.874877912
+  },
+  "confidence": {
+    "research_topic": 1.2428652
+  },
+  "exploration_drive": {
+    "research_topic": 1.50419652
+  },
+  "reward_positive": {
+    "narrative_update": 1.212796
+  },
+  "impasse_signal": {
+    "fetch_and_read": 0.1
+  },
+  "novelty_signal": {
+    "narrative_update": 0.1
+  },
+  "expected_gain": {
+    "fetch_and_read": 0.7750817600000001
+  },
+  "rejection_signal": {
+    "fetch_and_read": 0.575
+  }
+}

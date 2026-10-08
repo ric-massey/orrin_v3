@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_c1e102477a",
+    "title": "Understand evolutionary biology more deeply — round 5",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "evolutionary biology relationship to other fields",
+        "evolutionary biology key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_4207d6ec44",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:07:41.830428Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:07:41.830440Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:07:41.830442Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:07:41.830444Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-06T23:07:41.830445Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on evolutionary biology was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about evolutionary biology was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-06T23:07:41.830468Z",
+      "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-06 23:07:41.830934+00:00",
+    "updated_at": "2026-10-06 23:07:42.631751+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_950fa121cf]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ecology_and_evolutionary_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biology_of_human_bonding",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Recapitulation_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Modern_synthesis_%2820th_century%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c1e102477a/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-06T23:07:47.678708+00:00"
+}

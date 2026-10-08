@@ -1,0 +1,89 @@
+{
+  "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection",
+    "behaviors or traits that occur universally in all cultures",
+    "good candidates for evolutionary adaptations",
+    "Evolutionary psychology",
+    "long-forestalled scientific attempt to assemble out of the disjointed",
+    "Evolutionary epistemology",
+    "three distinct topics"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_e0de123297]"
+    },
+    {
+      "subject": "Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary epistemology",
+      "predicate": "refers to",
+      "object": "three distinct topics",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_epistemology"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_e0de123297]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_genetics_and_evolutionary_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_epistemology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_debunking"
+    }
+  ],
+  "ts": "2026-10-06T23:13:52.587276+00:00"
+}

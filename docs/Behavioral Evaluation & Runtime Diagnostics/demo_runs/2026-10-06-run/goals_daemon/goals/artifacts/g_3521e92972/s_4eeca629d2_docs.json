@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/What/If",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternate_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Counterfactual_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_03.txt",
+      "chars": 12091
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/What_If..._Captain_Carter_Were_the_First_Avenger%3F",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_06.txt",
+      "chars": 15164
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_07.txt",
+      "chars": 15778
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_08.txt",
+      "chars": 5571
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/API",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mobile_app",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3521e92972/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T07:16:12.627347+00:00"
+}

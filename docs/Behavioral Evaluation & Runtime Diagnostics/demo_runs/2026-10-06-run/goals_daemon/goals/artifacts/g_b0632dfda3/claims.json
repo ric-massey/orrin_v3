@@ -1,0 +1,104 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "learned bot project using the video game Dota 2 OpenAI Five",
+    "computer program by OpenAI that plays the five-on-five video game Dota 2",
+    "where it",
+    "demonstrated in a live one-on-one game against the professional player Dendi",
+    "playing Dota 2",
+    "making inferences based on this incomplete data",
+    "One of the first examples of AI",
+    "computerized strategy game Nim",
+    "age of video arcade games that the idea of AI opponents",
+    "largely popularized",
+    "similar update",
+    "deployed for players playing in groups of two",
+    "The game",
+    "released on October 30"
+  ],
+  "relations": [
+    {
+      "subject": "learned bot project using the video game Dota 2 OpenAI Five",
+      "predicate": "is a",
+      "object": "computer program by OpenAI that plays the five-on-five video game Dota 2",
+      "source": "my prior claims [g_3e37e9ca60]"
+    },
+    {
+      "subject": "where it",
+      "predicate": "was",
+      "object": "demonstrated in a live one-on-one game against the professional player Dendi",
+      "source": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    },
+    {
+      "subject": "playing Dota 2",
+      "predicate": "requires",
+      "object": "making inferences based on this incomplete data",
+      "source": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    },
+    {
+      "subject": "One of the first examples of AI",
+      "predicate": "is the",
+      "object": "computerized strategy game Nim",
+      "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "subject": "age of video arcade games that the idea of AI opponents",
+      "predicate": "was",
+      "object": "largely popularized",
+      "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "subject": "similar update",
+      "predicate": "was",
+      "object": "deployed for players playing in groups of two",
+      "source": "https://en.wikipedia.org/wiki/ARC_Raiders"
+    },
+    {
+      "subject": "The game",
+      "predicate": "was",
+      "object": "released on October 30",
+      "source": "https://en.wikipedia.org/wiki/ARC_Raiders"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_3e37e9ca60]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_alignment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI_Five"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_winter"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_slop"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ARC_Raiders"
+    }
+  ],
+  "ts": "2026-10-07T04:16:28.916760+00:00"
+}

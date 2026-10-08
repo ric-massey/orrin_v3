@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_programming_languages",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f17082caaf/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution_of_languages",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f17082caaf/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_English",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f17082caaf/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_French",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f17082caaf/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Finnish_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f17082caaf/doc_05.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T00:17:45.357009+00:00"
+}

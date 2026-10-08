@@ -1,0 +1,53 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "learned bot project using the video game Dota 2 OpenAI Five",
+    "computer program by OpenAI that plays the five-on-five video game Dota 2"
+  ],
+  "relations": [
+    {
+      "subject": "learned bot project using the video game Dota 2 OpenAI Five",
+      "predicate": "is a",
+      "object": "computer program by OpenAI that plays the five-on-five video game Dota 2",
+      "source": "my prior claims [g_b0632dfda3]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_b0632dfda3]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_alignment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Generative_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meta_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boys%27_love"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Machine_learning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Roko%27s_basilisk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence"
+    }
+  ],
+  "ts": "2026-10-07T05:01:33.401235+00:00"
+}

@@ -1,0 +1,122 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "encyclopedia Structured system of communication This article",
+    "about human language in general",
+    "Early programming languages",
+    "highly specialized",
+    "The first high-level programming language",
+    "Plankalkül",
+    "The first high-level language to have an associated compiler",
+    "created by Corrado Böhm in 1951",
+    "An early proposal for a high-level programming language",
+    "languages designed to communicate instructions to a computer",
+    "written in the early 1950s",
+    "and",
+    "noted for its object code optimization and source-language diagnostics",
+    "Another early programming language",
+    "devised by Grace Hopper in the US",
+    "The origin of language"
+  ],
+  "relations": [
+    {
+      "subject": "encyclopedia Structured system of communication This article",
+      "predicate": "is",
+      "object": "about human language in general",
+      "source": "my prior claims [g_421aa46dcd]"
+    },
+    {
+      "subject": "Early programming languages",
+      "predicate": "were",
+      "object": "highly specialized",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "The first high-level programming language",
+      "predicate": "was",
+      "object": "Plankalkül",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "The first high-level language to have an associated compiler",
+      "predicate": "was",
+      "object": "created by Corrado Böhm in 1951",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "An early proposal for a high-level programming language",
+      "predicate": "was",
+      "object": "Plankalkül",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "languages designed to communicate instructions to a computer",
+      "predicate": "were",
+      "object": "written in the early 1950s",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "and",
+      "predicate": "was",
+      "object": "noted for its object code optimization and source-language diagnostics",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "Another early programming language",
+      "predicate": "was",
+      "object": "devised by Grace Hopper in the US",
+      "source": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "subject": "The origin of language",
+      "predicate": "is a",
+      "object": "hotly contested topic",
+      "source": "https://en.wikipedia.org/wiki/Evolution_of_languages"
+    },
+    {
+      "subject": "spreading its language to what",
+      "predicate": "is",
+      "object": "now Libya",
+      "source": "https://en.wikipedia.org/wiki/Evolution_of_languages"
+    },
+    {
+      "subject": "of Proto-Berber and the emergence of the Berber languages",
+      "predicate": "is",
+      "object": "unclear and may have begun around the time of Mesolithic Capsian culture",
+      "source": "https://en.wikipedia.org/wiki/Evolution_of_languages"
+    },
+    {
+      "subject": "the language",
+      "predicate": "is",
+      "object": "poorly understood due to a scarcity of bilingual texts",
+      "source": "https://en.wikipedia.org/wiki/Evolution_of_languages"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_421aa46dcd]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_programming_languages"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution_of_languages"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_English"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_French"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_Finnish_language"
+    }
+  ],
+  "ts": "2026-10-07T00:17:45.925790+00:00"
+}

@@ -1,0 +1,120 @@
+{
+  "_last_feed_idx": 2,
+  "_seen_guids": [
+    "https://news.mit.edu/2026/lung-cancers-can-use-two-different-mechanisms-evade-kras-inhibiting-drugs-0930",
+    "https://www.quantamagazine.org/?p=167602",
+    "https://www.quantamagazine.org/?p=167494",
+    "https://news.mit.edu/2026/game-playing-ai-stratego-new-champ-0930",
+    "https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929",
+    "https://www.quantamagazine.org/?p=167663",
+    "https://news.mit.edu/2026/astronomers-catch-star-slowly-snacking-on-brown-dwarf-1005",
+    "https://news.mit.edu/2026/planning-system-ensures-robots-flight-path-will-remain-collision-free-1007",
+    "https://news.mit.edu/2026/supercomputing-researchers-document-evolution-ai-hardware-1006",
+    "https://www.quantamagazine.org/?p=167446",
+    "https://news.mit.edu/2026/climate-action-learning-lab-bridges-research-policy-for-effective-climate-solutions-0929",
+    "https://www.quantamagazine.org/?p=167492",
+    "https://www.quantamagazine.org/?p=167558",
+    "https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929",
+    "https://news.mit.edu/2026/mit-transit-lab-to-develop-ai-platform-public-transit-agencies-0930"
+  ],
+  "MIT News": {
+    "fetched_at": "2026-10-07T05:34:17.423930+00:00",
+    "items": [
+      {
+        "title": "Planning system ensures a robot’s flight path will remain collision-free",
+        "summary": "This new method, called “SANDO,” could help disaster-response robots navigate dangerous, unknown environments.",
+        "link": "https://news.mit.edu/2026/planning-system-ensures-robots-flight-path-will-remain-collision-free-1007",
+        "guid": "https://news.mit.edu/2026/planning-system-ensures-robots-flight-path-will-remain-collision-free-1007"
+      },
+      {
+        "title": "Supercomputing researchers document evolution of AI hardware",
+        "summary": "An ongoing survey tracks the latest AI accelerator systems to keep hardware relevant for Lincoln Laboratory staff and sponsors.",
+        "link": "https://news.mit.edu/2026/supercomputing-researchers-document-evolution-ai-hardware-1006",
+        "guid": "https://news.mit.edu/2026/supercomputing-researchers-document-evolution-ai-hardware-1006"
+      },
+      {
+        "title": "Astronomers catch a star slowly snacking on a brown dwarf, 300 light years away",
+        "summary": "The discovery reveals a new way that stars and planetary companions can interact.",
+        "link": "https://news.mit.edu/2026/astronomers-catch-star-slowly-snacking-on-brown-dwarf-1005",
+        "guid": "https://news.mit.edu/2026/astronomers-catch-star-slowly-snacking-on-brown-dwarf-1005"
+      },
+      {
+        "title": "MIT Transit Lab to develop an AI platform for public transit agencies",
+        "summary": "With $2.1 million funding from Google.org, the open-source Public Transit Intelligence Hub will unify public transit monitoring, operations, and passenger communication.",
+        "link": "https://news.mit.edu/2026/mit-transit-lab-to-develop-ai-platform-public-transit-agencies-0930",
+        "guid": "https://news.mit.edu/2026/mit-transit-lab-to-develop-ai-platform-public-transit-agencies-0930"
+      },
+      {
+        "title": "This game-playing AI is the new champ at Stratego",
+        "summary": "Able to defeat top-ranked human players and more efficient than other models, the new system could help decision-makers in military maneuvers or business negotiations.",
+        "link": "https://news.mit.edu/2026/game-playing-ai-stratego-new-champ-0930",
+        "guid": "https://news.mit.edu/2026/game-playing-ai-stratego-new-champ-0930"
+      },
+      {
+        "title": "Lung cancers can use two different mechanisms to evade KRAS-inhibiting drugs",
+        "summary": "Some tumor cells develop resistance by amplifying the KRAS gene, while others change their tumor type, MIT researchers have found.",
+        "link": "https://news.mit.edu/2026/lung-cancers-can-use-two-different-mechanisms-evade-kras-inhibiting-drugs-0930",
+        "guid": "https://news.mit.edu/2026/lung-cancers-can-use-two-different-mechanisms-evade-kras-inhibiting-drugs-0930"
+      },
+      {
+        "title": "Climate Action Learning Lab bridges research and policy for effective climate solutions",
+        "summary": "J-PAL North America’s Learning Lab supported a second cohort of U.S. government and nonprofit organizations in building and using rigorous evidence to advance effective decarbonization and adaptation strategies.",
+        "link": "https://news.mit.edu/2026/climate-action-learning-lab-bridges-research-policy-for-effective-climate-solutions-0929",
+        "guid": "https://news.mit.edu/2026/climate-action-learning-lab-bridges-research-policy-for-effective-climate-solutions-0929"
+      },
+      {
+        "title": "Powered by muscle cells, a paper-thin robot swims through watery maze",
+        "summary": "MIT engineers’ new aquabot offers a way to design small, efficient “biohybrid” robots.",
+        "link": "https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929",
+        "guid": "https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929"
+      },
+      {
+        "title": "The effects of an “algorithmic monoculture” depend on the details",
+        "summary": "In a study focusing on hiring decisions, MIT researchers found the use of a single algorithm by many firms could benefit job seekers in certain situations.",
+        "link": "https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929",
+        "guid": "https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929"
+      },
+      {
+        "title": "Who we become when we talk to machines",
+        "summary": "Professor Sherry Turkle’s new book, “Artificial Intimacy,” offers a withering critique of chatbots and the antisocial dynamics she believes they encourage.",
+        "link": "https://news.mit.edu/2026/when-we-talk-to-machines-sherry-turkle-book-0929",
+        "guid": "https://news.mit.edu/2026/when-we-talk-to-machines-sherry-turkle-book-0929"
+      }
+    ]
+  },
+  "Quanta Magazine": {
+    "fetched_at": "2026-10-07T23:34:08.988110+00:00",
+    "items": [
+      {
+        "title": "As AI Closed In on ‘Unique Games’ Proof, Researchers Raced to Beat the Machines",
+        "summary": "In the shadow of a rumored AI proof of one of the biggest problems in their field, three computer scientists rushed to publish their own milestone result.            The post As AI Closed In on ‘Unique Games’ Proof, Researchers Raced to Beat the Machines first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/as-ai-closed-in-on-unique-games-proof-researchers-raced-to-beat-the-machines-20261007/",
+        "guid": "https://www.quantamagazine.org/?p=167663"
+      },
+      {
+        "title": "Is AI the End of Math As We Know It?",
+        "summary": "Mathematicians are facing the sudden shift with grief, anger, and a desperate search for fresh ideas: “If we don’t adapt, there’s just no more math in 50 years.”            The post Is AI the End of Math As We Know It? first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/is-ai-the-end-of-math-as-we-know-it-20261005/",
+        "guid": "https://www.quantamagazine.org/?p=167602"
+      },
+      {
+        "title": "Sea Monkeys Show Scientists How To Rewrite a Rule of Turbulence",
+        "summary": "Scientists assumed that energy flows in only one direction in a turbulent system. What they didn’t know, until they looked closely at brine shrimp, was that a simple factor can reverse the flow.            The post Sea Monkeys Show Scientists How To Rewrite a Rule of Turbulence first appeared on Qua",
+        "link": "https://www.quantamagazine.org/sea-monkeys-show-scientists-how-to-rewrite-a-rule-of-turbulence-20261002/",
+        "guid": "https://www.quantamagazine.org/?p=167558"
+      },
+      {
+        "title": "What Does the Fourth Dimension Actually Look Like?",
+        "summary": "Maggie Miller explains why our intuition about three dimensions breaks down in four, and how she visualizes 4D spaces as a reel of three-dimensional snapshots.            The post What Does the Fourth Dimension Actually Look Like? first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/what-does-the-fourth-dimension-actually-look-like-20261001/",
+        "guid": "https://www.quantamagazine.org/?p=167492"
+      },
+      {
+        "title": "Surprisingly Complex Waves Reveal the Brain’s Inner Workings",
+        "summary": "Unexpected patterns traveling across the human brain may be reorganizing its activity in real time.            The post Surprisingly Complex Waves Reveal the Brain’s Inner Workings first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/surprisingly-complex-waves-reveal-the-brains-inner-workings-20260930/",
+        "guid": "https://www.quantamagazine.org/?p=167494"
+      }
+    ]
+  }
+}

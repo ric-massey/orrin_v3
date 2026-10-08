@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_593172b96d",
+    "title": "Understand world a world more deeply — round 5",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "world a world relationship to other fields",
+        "world a world key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_44a997d3b1",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.850461Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.850471Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.850474Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.850475Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T00:52:42.850477Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on world a world was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about world a world was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T00:52:42.850509Z",
+      "question": "What is there about world a world that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 00:52:42.862079+00:00",
+    "updated_at": "2026-10-07 00:52:43.988701+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior memo: research_memo.md",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_Formula_One_World_Championship",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Other_Side_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_history_%28field%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mondeuse_noire",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/It%27s_a_Small_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fantasy_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/WWE",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_593172b96d/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T00:52:48.600836+00:00"
+}

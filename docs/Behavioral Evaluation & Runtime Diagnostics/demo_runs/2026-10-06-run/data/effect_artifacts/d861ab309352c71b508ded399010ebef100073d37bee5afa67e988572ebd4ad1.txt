@@ -1,0 +1,64 @@
+{
+  "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "daily",
+    "stoic"
+  ],
+  "entities": [
+    "episodes List of episodes This",
+    "list of episodes for The Daily Show",
+    "Sisu",
+    "Finnish word variously translated as stoic determination"
+  ],
+  "relations": [
+    {
+      "subject": "episodes List of episodes This",
+      "predicate": "is a",
+      "object": "list of episodes for The Daily Show",
+      "source": "my prior claims [g_36ebd0fd57]"
+    },
+    {
+      "subject": "Sisu",
+      "predicate": "is a",
+      "object": "Finnish word variously translated as stoic determination",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_36ebd0fd57]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Daily_Show_episodes_%282025%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Massimo_Pigliucci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Order_%282024_film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Antikythera_mechanism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socrates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_stock_characters"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hanbok"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_last_words"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Copernican_heliocentrism"
+    }
+  ],
+  "ts": "2026-10-08T00:14:42.896652+00:00"
+}

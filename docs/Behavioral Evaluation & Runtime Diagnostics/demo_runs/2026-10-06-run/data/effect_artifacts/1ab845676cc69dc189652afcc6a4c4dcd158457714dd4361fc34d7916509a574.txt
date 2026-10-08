@@ -1,0 +1,8 @@
+What I learned about Leave Ric a note about history of written language:
+
+- [Chunk: [Pattern] 'metacog_pattern' events are clustering (7 in recent memory). Something about metacog pattern keeps surfacing. / [Pattern] 'chunk' events are clustering (17 in recent memory). Something about chunk keeps surfacing.]
+- [metacog/pattern] There may be a pattern I'm not fully seeing — something about how I've been approaching things.
+- [Chunk: [metacog/pattern] Goal avoidance: 10 consecutive cycles without taking action on 'Answer: What is there about this… / [metacog/pattern] Goal avoidance: 8 consecutive cycles without taking action on 'Answer: What is there about this…]
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about history of written language — This… / [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about evolutionary biology — This doesn't…]
+- [Chunk: [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0. / [metacog/pattern] I've been overconfident lately — my predicted outcomes have run about 0.]
+- 💔 Goal failed: Understand history more deeply — round 2. ValueError: no URLs to fetch

@@ -1,0 +1,120 @@
+{
+  "question": "What is there about world a world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "The championship",
+    "contested over twenty-three Grands Prix held around the world",
+    "Subjective lists of features and structures This article",
+    "about natural and human-made phenomena and structures of the world",
+    "The Seven Wonders of the Ancient World",
+    "oldest known list of this type",
+    "Many of the structures on these lists",
+    "built much earlier than the Middle Ages but were well known throughout the world",
+    "These exhibitions vary in character and",
+    "held in different parts of the world at a specific site for a period of time",
+    "world expositions",
+    "largely focused on trade and displayed technological advances and inventions",
+    "World expositions",
+    "platforms for state-of-the-art science and technology from around the world",
+    "The World Cup",
+    "globally regarded as the most prestigious association football competition"
+  ],
+  "relations": [
+    {
+      "subject": "The championship",
+      "predicate": "is",
+      "object": "contested over twenty-three Grands Prix held around the world",
+      "source": "my prior claims [g_a0d6f94aab]"
+    },
+    {
+      "subject": "Subjective lists of features and structures This article",
+      "predicate": "is",
+      "object": "about natural and human-made phenomena and structures of the world",
+      "source": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "subject": "The Seven Wonders of the Ancient World",
+      "predicate": "is the",
+      "object": "oldest known list of this type",
+      "source": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "subject": "Many of the structures on these lists",
+      "predicate": "were",
+      "object": "built much earlier than the Middle Ages but were well known throughout the world",
+      "source": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "subject": "These exhibitions vary in character and",
+      "predicate": "are",
+      "object": "held in different parts of the world at a specific site for a period of time",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "world expositions",
+      "predicate": "were",
+      "object": "largely focused on trade and displayed technological advances and inventions",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "World expositions",
+      "predicate": "were",
+      "object": "platforms for state-of-the-art science and technology from around the world",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "The World Cup",
+      "predicate": "is",
+      "object": "globally regarded as the most prestigious association football competition",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "subject": "The viewership of the 2018 World Cup",
+      "predicate": "was",
+      "object": "estimated to be 3",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "subject": "The other World Cup winners",
+      "predicate": "are",
+      "object": "Germany and Italy",
+      "source": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "subject": "The 2026 tournament",
+      "predicate": "was",
+      "object": "the second World Cup to be hosted by multiple nations",
+      "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"
+    },
+    {
+      "subject": "division of the BBC For the BBC television network that",
+      "predicate": "was",
+      "object": "previously known as BBC World News",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_a0d6f94aab]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    }
+  ],
+  "ts": "2026-10-07T02:58:36.084012+00:00"
+}

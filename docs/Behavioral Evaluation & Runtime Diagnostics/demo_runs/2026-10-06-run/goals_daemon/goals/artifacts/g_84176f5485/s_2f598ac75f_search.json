@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "the west recent research",
+    "the west common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/West_Indies",
+    "https://en.wikipedia.org/wiki/Holocene",
+    "https://en.wikipedia.org/wiki/West_Africa",
+    "https://en.wikipedia.org/wiki/West_Bank",
+    "https://en.wikipedia.org/wiki/List_of_research_universities_in_the_United_States",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+    "https://en.wikipedia.org/wiki/Vikings"
+  ],
+  "results": [
+    {
+      "title": "West Indies",
+      "url": "https://en.wikipedia.org/wiki/West_Indies",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">West</span> Indies are an island subregion of <span class=\"searchmatch\">the</span> Americas, surrounded by <span class=\"searchmatch\">the</span> North Atlantic Ocean and <span class=\"searchmatch\">the</span> Caribbean Sea, which comprises 13 independent",
+      "query": "the west recent research"
+    },
+    {
+      "title": "Holocene",
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "snippet": "glaciers. <span class=\"searchmatch\">The</span> most <span class=\"searchmatch\">recent</span> age of <span class=\"searchmatch\">the</span> Holocene is <span class=\"searchmatch\">the</span> present Meghalayan, which began with extreme drought that lasted around 200 years. <span class=\"searchmatch\">The</span> word &quot;Holocene&quot;",
+      "query": "the west recent research"
+    },
+    {
+      "title": "West Africa",
+      "url": "https://en.wikipedia.org/wiki/West_Africa",
+      "snippet": "<span class=\"searchmatch\">West</span> Africa, also known as Western Africa, is <span class=\"searchmatch\">the</span> westernmost region of Africa. <span class=\"searchmatch\">The</span> United Nations defines Western Africa as <span class=\"searchmatch\">the</span> 16 countries of Benin",
+      "query": "the west recent research"
+    },
+    {
+      "title": "West Bank",
+      "url": "https://en.wikipedia.org/wiki/West_Bank",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">West</span> Bank is <span class=\"searchmatch\">the</span> larger of <span class=\"searchmatch\">the</span> two Palestinian territories (<span class=\"searchmatch\">the</span> other being <span class=\"searchmatch\">the</span> Gaza Strip) that make up Palestine. A landlocked territory located",
+      "query": "the west recent research"
+    },
+    {
+      "title": "List of research universities in the United States",
+      "url": "https://en.wikipedia.org/wiki/List_of_research_universities_in_the_United_States",
+      "snippet": "annual <span class=\"searchmatch\">research</span> expenditures, and (2) grant 20 <span class=\"searchmatch\">research</span> doctorates per year. In both cases, <span class=\"searchmatch\">the</span> thresholds are taken as <span class=\"searchmatch\">the</span> higher of <span class=\"searchmatch\">the</span> most <span class=\"searchmatch\">recent</span> year",
+      "query": "the west recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "the west common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about history",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "the west common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "the west common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about the Middle Ages",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "snippet": "addressing some of <span class=\"searchmatch\">the</span> primary <span class=\"searchmatch\">misconceptions</span> about medieval history; and other historians take <span class=\"searchmatch\">the</span> alternative approach of highlighting many of <span class=\"searchmatch\">the</span> intellectual",
+      "query": "the west common misconceptions"
+    },
+    {
+      "title": "Vikings",
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "snippet": "are a <span class=\"searchmatch\">common</span> find. <span class=\"searchmatch\">The</span> manufacturing of such antler combs was <span class=\"searchmatch\">common</span>, as at <span class=\"searchmatch\">the</span> Viking settlement at Dublin hundreds of examples of combs from <span class=\"searchmatch\">the</span> tenth-century",
+      "query": "the west common misconceptions"
+    }
+  ],
+  "ts": "2026-10-06T22:24:56.336838+00:00"
+}

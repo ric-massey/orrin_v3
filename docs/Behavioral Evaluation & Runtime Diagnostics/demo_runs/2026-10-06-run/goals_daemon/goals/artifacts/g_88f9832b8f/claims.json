@@ -1,0 +1,136 @@
+{
+  "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "mathematics"
+  ],
+  "entities": [
+    "Major themes that",
+    "dealt with in philosophy of mathematics include",
+    "Persian philosophy",
+    "relation between reason and revelation",
+    "Major branches of philosophy",
+    "epistemology",
+    "there",
+    "competing schools of philosophy that promote different principles",
+    "Philosophy",
+    "related to and informs many other fields",
+    "the term philosophy",
+    "used in a wide sense",
+    "Metaphilosophy General conception The practice of philosophy",
+    "characterized by several general features",
+    "Analytic philosophy",
+    "broad school of thought or style in contemporary Western philosophy"
+  ],
+  "relations": [
+    {
+      "subject": "Major themes that",
+      "predicate": "are",
+      "object": "dealt with in philosophy of mathematics include",
+      "source": "my prior claims [g_1227151b8c]"
+    },
+    {
+      "subject": "Persian philosophy",
+      "predicate": "is the",
+      "object": "relation between reason and revelation",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "Major branches of philosophy",
+      "predicate": "are",
+      "object": "epistemology",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "competing schools of philosophy that promote different principles",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "Philosophy",
+      "predicate": "is",
+      "object": "related to and informs many other fields",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "the term philosophy",
+      "predicate": "was",
+      "object": "used in a wide sense",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "Metaphilosophy General conception The practice of philosophy",
+      "predicate": "is",
+      "object": "characterized by several general features",
+      "source": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "subject": "Analytic philosophy",
+      "predicate": "is a",
+      "object": "broad school of thought or style in contemporary Western philosophy",
+      "source": "https://en.wikipedia.org/wiki/Analytic_philosophy"
+    },
+    {
+      "subject": "This kind of philosophy",
+      "predicate": "is",
+      "object": "more like science than religion",
+      "source": "https://en.wikipedia.org/wiki/Analytic_philosophy"
+    },
+    {
+      "subject": "Analytic philosophy",
+      "predicate": "is",
+      "object": "often contrasted with continental philosophy",
+      "source": "https://en.wikipedia.org/wiki/Analytic_philosophy"
+    },
+    {
+      "subject": "Although research into mathematics education",
+      "predicate": "is",
+      "object": "primarily concerned with the tools",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "subject": "This type of mathematics education",
+      "predicate": "was",
+      "object": "implemented in various parts of Canada beginning in 2005",
+      "source": "https://en.wikipedia.org/wiki/Mathematics_education"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1227151b8c]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Imre_Lakatos"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Analytic_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Doctor_of_Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Emperor%27s_New_Mind"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics_education"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Antiphilosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Exact_sciences"
+    }
+  ],
+  "ts": "2026-10-07T17:19:28.052194+00:00"
+}

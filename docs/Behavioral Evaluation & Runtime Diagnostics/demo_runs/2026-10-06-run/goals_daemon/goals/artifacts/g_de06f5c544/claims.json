@@ -1,0 +1,68 @@
+{
+  "question": "What is there about the west that my earlier notes on it are missing?",
+  "subject_terms": [
+    "west"
+  ],
+  "entities": [
+    "West and Censori",
+    "married in a private ceremony in December 2022",
+    "West",
+    "born in Atlanta and raised in Chicago",
+    "and Eaton Streets TSKW Cuba Show The Studios of Key West",
+    "center for the arts in Key West"
+  ],
+  "relations": [
+    {
+      "subject": "West and Censori",
+      "predicate": "were",
+      "object": "married in a private ceremony in December 2022",
+      "source": "https://en.wikipedia.org/wiki/Kanye_West"
+    },
+    {
+      "subject": "West",
+      "predicate": "was",
+      "object": "born in Atlanta and raised in Chicago",
+      "source": "https://en.wikipedia.org/wiki/Kanye_West"
+    },
+    {
+      "subject": "and Eaton Streets TSKW Cuba Show The Studios of Key West",
+      "predicate": "is a",
+      "object": "center for the arts in Key West",
+      "source": "https://en.wikipedia.org/wiki/The_Studios_of_Key_West"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/W._C._Fields"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Relationship_education"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sara_Nasserzadeh"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lawrence_High_School_%28New_Jersey%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/St_Martin-in-the-Fields"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hidden_Figures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kanye_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Studios_of_Key_West"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Those_Days_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/James_Mastin"
+    }
+  ],
+  "ts": "2026-10-07T03:06:02.444457+00:00"
+}

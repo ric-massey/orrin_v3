@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "history history and development",
+    "history applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History",
+    "https://en.wikipedia.org/wiki/Ancient_history",
+    "https://en.wikipedia.org/wiki/Human_history",
+    "https://en.wikipedia.org/wiki/History_of_film",
+    "https://en.wikipedia.org/wiki/Alternate_history",
+    "https://en.wikipedia.org/wiki/Application_software",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/Web_application",
+    "https://en.wikipedia.org/wiki/History_of_Mozilla_Application_Suite",
+    "https://en.wikipedia.org/wiki/MacOS_version_history"
+  ],
+  "results": [
+    {
+      "title": "History",
+      "url": "https://en.wikipedia.org/wiki/History",
+      "snippet": "<span class=\"searchmatch\">History</span> is the systematic study of the past, focusing primarily on the human past. As an academic discipline, it analyses <span class=\"searchmatch\">and</span> interprets evidence to construct",
+      "query": "history history and development"
+    },
+    {
+      "title": "Ancient history",
+      "url": "https://en.wikipedia.org/wiki/Ancient_history",
+      "snippet": "history is roughly 5,000 years, beginning with the <span class=\"searchmatch\">development</span> of Sumerian cuneiform script. Ancient <span class=\"searchmatch\">history</span> covers all continents inhabited by humans in the",
+      "query": "history history and development"
+    },
+    {
+      "title": "Human history",
+      "url": "https://en.wikipedia.org/wiki/Human_history",
+      "snippet": "Human <span class=\"searchmatch\">history</span>, or world <span class=\"searchmatch\">history</span>, is the record of humankind from prehistory to the present. Modern humans evolved in Africa around 300,000 years ago <span class=\"searchmatch\">and</span> initially",
+      "query": "history history and development"
+    },
+    {
+      "title": "History of film",
+      "url": "https://en.wikipedia.org/wiki/History_of_film",
+      "snippet": "The <span class=\"searchmatch\">history</span> of film chronicles the artistic <span class=\"searchmatch\">and</span> cultural <span class=\"searchmatch\">development</span> of a visual art form that uses film technologies that began in the late 19th century",
+      "query": "history history and development"
+    },
+    {
+      "title": "Alternate history",
+      "url": "https://en.wikipedia.org/wiki/Alternate_history",
+      "snippet": "<span class=\"searchmatch\">Development</span>, Structure, <span class=\"searchmatch\">and</span> Aesthetics of the Alternative <span class=\"searchmatch\">History</span>. University of California, Davis 1990. Darius, Julian. &quot;58 Varieties: Watchmen <span class=\"searchmatch\">and</span> Revisionism&quot;",
+      "query": "history history and development"
+    },
+    {
+      "title": "Application software",
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "snippet": "browsers, media players, <span class=\"searchmatch\">and</span> mobile <span class=\"searchmatch\">applications</span> used in daily tasks. An <span class=\"searchmatch\">application</span> (app, <span class=\"searchmatch\">application</span> program, software <span class=\"searchmatch\">application</span>) is any program that",
+      "query": "history applications and examples"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "REST has been used to create stateless, reliable, web-based <span class=\"searchmatch\">applications</span>. An <span class=\"searchmatch\">application</span> that adheres to the REST architectural constraints may be informally",
+      "query": "history applications and examples"
+    },
+    {
+      "title": "Web application",
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "snippet": "A web <span class=\"searchmatch\">application</span> (or web app) is <span class=\"searchmatch\">application</span> software that is created with web technologies <span class=\"searchmatch\">and</span> runs via a web browser. Web <span class=\"searchmatch\">applications</span> emerged during",
+      "query": "history applications and examples"
+    },
+    {
+      "title": "History of Mozilla Application Suite",
+      "url": "https://en.wikipedia.org/wiki/History_of_Mozilla_Application_Suite",
+      "snippet": "The <span class=\"searchmatch\">history</span> of the Mozilla <span class=\"searchmatch\">Application</span> Suite began with the release of the source code of the Netscape suite as an open source project. Going through years",
+      "query": "history applications and examples"
+    },
+    {
+      "title": "MacOS version history",
+      "url": "https://en.wikipedia.org/wiki/MacOS_version_history",
+      "snippet": "pre-installed, full support for 64-bit <span class=\"searchmatch\">applications</span> (including graphical <span class=\"searchmatch\">applications</span>), new features in Mail <span class=\"searchmatch\">and</span> iChat, <span class=\"searchmatch\">and</span> a number of new security features",
+      "query": "history applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T00:29:13.169225+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_72bee86bcb",
+    "title": "Understand Once More Round more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Once More Round history and development",
+        "Once More Round applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_6843383ebe",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T15:47:41.392909Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T15:47:41.392919Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T15:47:41.392921Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T15:47:41.392923Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T15:47:41.392925Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on Once More Round was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about Once More Round was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T15:47:41.392938Z",
+      "question": "What is there about Once More Round that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 15:47:41.393453+00:00",
+    "updated_at": "2026-10-07 15:47:42.960436+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_d3b230414c]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Panzerfaust_3",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Software_bug",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Round_Oak_Steelworks",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Semicircular_arch",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Distributed_computing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Segment_display",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/JSON",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_72bee86bcb/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T15:47:46.961333+00:00"
+}

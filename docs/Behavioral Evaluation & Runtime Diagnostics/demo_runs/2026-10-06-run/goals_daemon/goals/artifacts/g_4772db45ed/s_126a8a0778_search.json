@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "the nature of mathematics history and development",
+    "the nature of mathematics applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_mathematics",
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Mathematical_manuscripts_of_Karl_Marx",
+    "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+    "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+    "https://en.wikipedia.org/wiki/Mathematical_analysis",
+    "https://en.wikipedia.org/wiki/Exercise_%28mathematics%29",
+    "https://en.wikipedia.org/wiki/Quantity",
+    "https://en.wikipedia.org/wiki/Topology"
+  ],
+  "results": [
+    {
+      "title": "History of mathematics",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> deals with <span class=\"searchmatch\">the</span> origin <span class=\"searchmatch\">of</span> discoveries in <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">mathematical</span> methods <span class=\"searchmatch\">and</span> notation <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> past. Before <span class=\"searchmatch\">the</span> modern",
+      "query": "the nature of mathematics history and development"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">and</span>—in case <span class=\"searchmatch\">of</span> abstraction from <span class=\"searchmatch\">nature</span>—some basic properties that are considered true starting points <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> theory under consideration. <span class=\"searchmatch\">Mathematics</span> is",
+      "query": "the nature of mathematics history and development"
+    },
+    {
+      "title": "Mathematical manuscripts of Karl Marx",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_manuscripts_of_Karl_Marx",
+      "snippet": "analyze <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>. Marx&#039;s contributions to <span class=\"searchmatch\">mathematics</span> did not have any impact on <span class=\"searchmatch\">the</span> historical <span class=\"searchmatch\">development</span> <span class=\"searchmatch\">of</span> calculus, <span class=\"searchmatch\">and</span> he was unaware",
+      "query": "the nature of mathematics history and development"
+    },
+    {
+      "title": "History of mathematical notation",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematical</span> notation covers <span class=\"searchmatch\">the</span> introduction, <span class=\"searchmatch\">development</span>, <span class=\"searchmatch\">and</span> cultural diffusion <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematical</span> symbols <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">the</span> conflicts between notational",
+      "query": "the nature of mathematics history and development"
+    },
+    {
+      "title": "A History of Greek Mathematics",
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+      "snippet": "A <span class=\"searchmatch\">History</span> <span class=\"searchmatch\">of</span> Greek <span class=\"searchmatch\">Mathematics</span> is a book by English historian <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> Thomas Heath about <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> Greek <span class=\"searchmatch\">mathematics</span>. It was published in Oxford",
+      "query": "the nature of mathematics history and development"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">and</span>—in case <span class=\"searchmatch\">of</span> abstraction from <span class=\"searchmatch\">nature</span>—some basic properties that are considered true starting points <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> theory under consideration. <span class=\"searchmatch\">Mathematics</span> is",
+      "query": "the nature of mathematics applications and examples"
+    },
+    {
+      "title": "Mathematical analysis",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_analysis",
+      "snippet": "<span class=\"searchmatch\">of</span> study in <span class=\"searchmatch\">mathematical</span> analysis include <span class=\"searchmatch\">the</span> real numbers, functions, sequences, series, <span class=\"searchmatch\">and</span> limits. Analysis is closely connected with <span class=\"searchmatch\">applications</span>",
+      "query": "the nature of mathematics applications and examples"
+    },
+    {
+      "title": "Exercise (mathematics)",
+      "url": "https://en.wikipedia.org/wiki/Exercise_%28mathematics%29",
+      "snippet": "A <span class=\"searchmatch\">mathematical</span> exercise is a routine <span class=\"searchmatch\">application</span> <span class=\"searchmatch\">of</span> algebra or other <span class=\"searchmatch\">mathematics</span> to a stated challenge. <span class=\"searchmatch\">Mathematics</span> teachers assign <span class=\"searchmatch\">mathematical</span> exercises",
+      "query": "the nature of mathematics applications and examples"
+    },
+    {
+      "title": "Quantity",
+      "url": "https://en.wikipedia.org/wiki/Quantity",
+      "snippet": "energy, liquid, material—all cases <span class=\"searchmatch\">of</span> non-collective nouns. Along with analyzing its <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">and</span> classification, <span class=\"searchmatch\">the</span> issues <span class=\"searchmatch\">of</span> quantity involve such closely",
+      "query": "the nature of mathematics applications and examples"
+    },
+    {
+      "title": "Topology",
+      "url": "https://en.wikipedia.org/wiki/Topology",
+      "snippet": "Topology (from <span class=\"searchmatch\">the</span> Greek words τόπος, &#039;place, location&#039;, <span class=\"searchmatch\">and</span> λόγος, &#039;study&#039;) is <span class=\"searchmatch\">the</span> branch <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> concerned with <span class=\"searchmatch\">the</span> properties <span class=\"searchmatch\">of</span> a geometric object",
+      "query": "the nature of mathematics applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T00:17:36.317088+00:00"
+}

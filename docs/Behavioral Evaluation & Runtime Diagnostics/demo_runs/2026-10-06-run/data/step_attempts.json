@@ -1,0 +1,692 @@
+{
+  "ltc_aspiration-self_understa_1": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_00b9afb75fbd": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_0abd3dd3521c": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_04ad3f4e4cb4": {
+    "steps": {
+      "Establish intended outcome": 2
+    },
+    "give_ups": 0,
+    "serial": 2
+  },
+  "g_815908396202": {
+    "steps": {
+      "Establish relevant evidence": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_10ddcfc4f4": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_3413033054": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_f87b9b08d2": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_4807b0f90d47": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_62369e17a17c": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_1bb4f6fb09": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_081d8108f6": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_2cba854c7ce7": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_65d21bd9b53e": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_56987dd29fb2": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_2cdf5791fe": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_3954229c1a": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_fc80d8e227": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_d85fb0bdad1b": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_bdcda430ae74": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_0e5ecf71b0": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_ed48061c06": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_41d041f210": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_485ff9466f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_50ab4c9f7478": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_84176f5485": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_6c0314edb4": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_950fa121cf": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_ae9ba5d180": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_f9dba697dc62": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_518f8f6917": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_940f655e70": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_61e918c2e237": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_da4a3d842476": {
+    "steps": {
+      "Establish implementation": 1
+    },
+    "give_ups": 1,
+    "serial": 5
+  },
+  "g_a8b0b1889040": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_c1e102477a": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_1a53ac96b3": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_42f12c0495": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_e0de123297": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_e9959a804f7b": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_ac7250aa0919": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_503e84fc7427": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_d7c38c422b": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_4a18767b8f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_099b88453a5d": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_05b272ef3f61": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_22ae8cae91": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_421aa46dcd": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_3999488d71": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_a94c12a9224e": {
+    "steps": {
+      "Establish validation": 1
+    },
+    "give_ups": 2,
+    "serial": 9
+  },
+  "g_35280a6d82": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_5949ecc2ddec": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_593172b96d": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_560809e26a": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_d5bbf40189": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_08e3b9cf35": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_ecc1718b38": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_7278227867": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_11feeb8897": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_cde76ae4ba": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_e1a1d9729f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_e12578ce0f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_815f005f8933": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_410f8a433f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_de06f5c544": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_876653759e": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_4fb3315ad648": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_3e37e9ca60": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_a87bb76475": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_25ee80cb3d": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_d6bca2775615": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_8db5ea5735c5": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_ded6b6343398": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_786db91a7a16": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_2778a0fdfa": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_12ecdf7c36": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_b0632dfda3": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_9fe36e10d62c": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_d7805a43b48b": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_514d0113ddd2": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_0c64c41599a6": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_77d6745b5e": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_8e66f36288": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_92fcf06402": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_d216b4c54a46": {
+    "steps": {
+      "Establish implementation": 2
+    },
+    "give_ups": 1,
+    "serial": 6
+  },
+  "g_0bde3a69cac7": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_d8ecaa3585": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_096a66813f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_8b9f7d20ba": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_5f2cb87114df": {
+    "steps": {
+      "Establish implementation": 2
+    },
+    "give_ups": 1,
+    "serial": 6
+  },
+  "g_723ae80283e5": {
+    "steps": {
+      "Establish validation": 2
+    },
+    "give_ups": 2,
+    "serial": 10
+  },
+  "g_dd3a879a7f": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_df32f357ee": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_af44a7918bb0": {
+    "steps": {
+      "Establish intended outcome": 2
+    },
+    "give_ups": 0,
+    "serial": 2
+  },
+  "g_c9b99b8d8d": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "ltc_aspiration-self_understa_232": {
+    "steps": {},
+    "give_ups": 2,
+    "serial": 8
+  },
+  "g_9437353cd7d7": {
+    "steps": {
+      "Establish reasoned conclusion": 1
+    },
+    "give_ups": 2,
+    "serial": 9
+  },
+  "g_ea06b853b1a5": {
+    "steps": {
+      "Establish reasoned conclusion": 1
+    },
+    "give_ups": 2,
+    "serial": 9
+  },
+  "g_d3b230414c": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_7ff6ce25bf": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_ef7b192722": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_1d48a13384": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_08af04f27b": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_093e300493dd": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_3d28e98e68": {
+    "steps": {
+      "Establish intended outcome": 1
+    },
+    "give_ups": 0,
+    "serial": 1
+  },
+  "g_a90956b9ce59": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_6adff5a14f47": {
+    "steps": {},
+    "give_ups": 1,
+    "serial": 4
+  },
+  "g_764d98e9c1fc": {
+    "steps": {
+      "Establish validation": 2
+    },
+    "give_ups": 2,
+    "serial": 10
+  }
+}

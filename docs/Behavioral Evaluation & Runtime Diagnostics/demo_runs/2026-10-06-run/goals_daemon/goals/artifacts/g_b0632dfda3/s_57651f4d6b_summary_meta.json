@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_b0632dfda3",
+    "title": "Understand this game-playing ai more deeply — round 6",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "this game-playing ai open problems",
+        "this game-playing ai criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_081d8108f6",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T04:16:22.828301Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T04:16:22.828312Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T04:16:22.828315Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T04:16:22.828316Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T04:16:22.828318Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on this game-playing ai was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about this game-playing ai was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T04:16:22.837391Z",
+      "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 04:16:22.838023+00:00",
+    "updated_at": "2026-10-07 04:16:23.851769+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_3e37e9ca60]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI_Five",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI%E2%80%93HuggingFace_incident",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_winter",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_slop",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b0632dfda3/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T04:16:28.931930+00:00"
+}

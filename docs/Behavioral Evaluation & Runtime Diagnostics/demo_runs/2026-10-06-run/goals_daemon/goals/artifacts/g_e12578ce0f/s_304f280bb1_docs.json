@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e12578ce0f/doc_01.txt",
+      "chars": 19958
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World%27s_fair",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e12578ce0f/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/FIFA_World_Cup",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e12578ce0f/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e12578ce0f/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/BBC_World_Service",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e12578ce0f/doc_05.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T02:58:34.934701+00:00"
+}

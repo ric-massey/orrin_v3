@@ -1,0 +1,132 @@
+{
+  "question": "What is there about world a world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "The championship",
+    "contested over twenty-three Grands Prix held around the world",
+    "World Heritage Committee to be a unique landmark which",
+    "geographically and historically identifiable",
+    "New York This article",
+    "about the new World Trade Center complex",
+    "The group",
+    "largest development bank in the world",
+    "the IBRD and IDA",
+    "collectively known as the World Bank due to their emphasis on global lending",
+    "Lenin said that human minds",
+    "capable of forming representations of the world that portray the world as it is",
+    "The revised structure",
+    "modeled more closely on the FIFA World Cup as a quadrennial world championship",
+    "FIFA Club World Cup had been held annually in December and",
+    "limited to the winners of continental club competitions"
+  ],
+  "relations": [
+    {
+      "subject": "The championship",
+      "predicate": "is",
+      "object": "contested over twenty-three Grands Prix held around the world",
+      "source": "my prior claims [g_e12578ce0f]"
+    },
+    {
+      "subject": "World Heritage Committee to be a unique landmark which",
+      "predicate": "is",
+      "object": "geographically and historically identifiable",
+      "source": "https://en.wikipedia.org/wiki/World_Heritage_Site"
+    },
+    {
+      "subject": "New York This article",
+      "predicate": "is",
+      "object": "about the new World Trade Center complex",
+      "source": "https://en.wikipedia.org/wiki/World_Trade_Center_%282001%E2%80%93present%29"
+    },
+    {
+      "subject": "The group",
+      "predicate": "is the",
+      "object": "largest development bank in the world",
+      "source": "https://en.wikipedia.org/wiki/World_Bank_Group"
+    },
+    {
+      "subject": "the IBRD and IDA",
+      "predicate": "were",
+      "object": "collectively known as the World Bank due to their emphasis on global lending",
+      "source": "https://en.wikipedia.org/wiki/World_Bank_Group"
+    },
+    {
+      "subject": "Lenin said that human minds",
+      "predicate": "are",
+      "object": "capable of forming representations of the world that portray the world as it is",
+      "source": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    },
+    {
+      "subject": "The revised structure",
+      "predicate": "was",
+      "object": "modeled more closely on the FIFA World Cup as a quadrennial world championship",
+      "source": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup"
+    },
+    {
+      "subject": "FIFA Club World Cup had been held annually in December and",
+      "predicate": "was",
+      "object": "limited to the winners of continental club competitions",
+      "source": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup"
+    },
+    {
+      "subject": "division of the BBC For the BBC television network that",
+      "predicate": "was",
+      "object": "previously known as BBC World News",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "The director of the BBC World Service",
+      "predicate": "is",
+      "object": "Jonathan Munro",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "The controller of the BBC World Service in English",
+      "predicate": "is",
+      "object": "Jon Zilkha",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "subject": "This address",
+      "predicate": "was",
+      "object": "read out five times as the BBC broadcast it live to different parts of the world",
+      "source": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_e12578ce0f]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Heritage_Site"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Trade_Center_%282001%E2%80%93present%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Bank_Group"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/BBC_World_Service"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    }
+  ],
+  "ts": "2026-10-07T05:03:59.834829+00:00"
+}

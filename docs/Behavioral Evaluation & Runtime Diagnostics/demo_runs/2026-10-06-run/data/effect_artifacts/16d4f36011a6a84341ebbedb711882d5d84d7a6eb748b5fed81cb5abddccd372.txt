@@ -1,0 +1,8 @@
+What I learned about world more deeply:
+
+- [metacog/pattern] Goal avoidance: 11 consecutive cycles without taking action on 'Understand the world more deeply'. I'm thinking but not doing.
+- [Chunk: [metacog/pattern] Goal avoidance: 5 consecutive cycles without taking action on 'Understand the world more deeply'. / [metacog/pattern] Goal avoidance: 14 consecutive cycles without taking action on 'Understand the world more deeply'.]
+- [Chunk: [emotion/cause] A sense of being stuck grew because: [goal_blocked] 'Understand world more deeply': step did not take… / [goal_blocked] 'Understand world more deeply': step did not take hold (attempt 1/3) — Establish relevant evidence]
+- [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.54)
+- [metacog/pattern] I've been underconfident lately — things have gone about 0.05 better than I predicted. I can trust my judgement a bit more and act sooner.
+- [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.347): [goal_pursuit] Working on 'Understand my own mind and how I work more deeply' — step: Call search_own_files to make progress on: my own mind and how I work (2 s

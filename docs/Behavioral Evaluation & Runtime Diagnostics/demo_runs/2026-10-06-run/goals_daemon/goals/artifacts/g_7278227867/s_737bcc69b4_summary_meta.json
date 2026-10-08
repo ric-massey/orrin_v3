@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_7278227867",
+    "title": "Understand world a world more deeply — round 6",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "world a world open problems",
+        "world a world criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_44a997d3b1",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-07T02:15:48.439673Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-07T02:15:48.439683Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-07T02:15:48.439685Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-07T02:15:48.439687Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-07T02:15:48.439688Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on world a world was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about world a world was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-07T02:15:48.439769Z",
+      "question": "What is there about world a world that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-07 02:15:48.440905+00:00",
+    "updated_at": "2026-10-07 02:15:49.546054+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_593172b96d]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Heritage_Site",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Trade_Center_%282001%E2%80%93present%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Bank_Group",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/BBC_World_Service",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_7278227867/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-07T02:15:56.263945+00:00"
+}

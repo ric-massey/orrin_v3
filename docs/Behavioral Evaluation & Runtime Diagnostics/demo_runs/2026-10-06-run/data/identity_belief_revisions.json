@@ -1,0 +1,632 @@
+{
+  "COGNITIVE": {
+    "domain": "COGNITIVE",
+    "confidence": 0.0,
+    "events": [
+      {
+        "timestamp": "2026-10-06T19:55:46.849524Z",
+        "goal": "Strengthen GENERAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-10-06T19:55:47.265629Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      },
+      {
+        "timestamp": "2026-10-06T20:00:50.608198Z",
+        "goal": "Answer: What do I now know about world that I could not have said before?",
+        "delta": -0.15,
+        "new_confidence": 0.55
+      },
+      {
+        "timestamp": "2026-10-06T20:25:41.272614Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.4
+      },
+      {
+        "timestamp": "2026-10-06T21:13:19.261270Z",
+        "goal": "Answer: What is there about quantum mechanics foundations that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.25
+      },
+      {
+        "timestamp": "2026-10-06T21:14:45.534522Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.1
+      },
+      {
+        "timestamp": "2026-10-06T21:35:01.497306Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T21:57:00.725718Z",
+        "goal": "Characterize what makes my memory use (RSS) climb",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:30:39.247243Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:32:13.653431Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:32:47.449747Z",
+        "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:32:57.454292Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:36:37.975525Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:39:12.216144Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:09:08.256597Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:10:27.263525Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:11:46.378743Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:13:05.490714Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:13:39.408290Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:15:47.905601Z",
+        "goal": "Answer: What is there about evolutionary biology and cooperation that my earlier notes on it are m",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:16:30.674144Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:17:51.216320Z",
+        "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:19:15.541665Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:21:27.220869Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:22:46.286116Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:17:26.473015Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:19:13.144963Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:22:30.012149Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:24:14.458963Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:24:41.673038Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:29:11.790940Z",
+        "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T16:54:32.951649Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T16:58:30.701710Z",
+        "goal": "Characterize what makes my memory use (RSS) climb — round 2",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T17:19:21.871275Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T17:19:56.892320Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T21:42:36.826361Z",
+        "goal": "Answer: What is there about mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T21:42:52.244734Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T23:13:55.622857Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-08T00:17:20.848673Z",
+        "goal": "Answer: What actually is but what if there, beyond the mentions I keep seeing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-08T00:18:14.419983Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      }
+    ]
+  },
+  "SOCIAL": {
+    "domain": "SOCIAL",
+    "confidence": 0.0,
+    "events": [
+      {
+        "timestamp": "2026-10-06T19:55:47.265629Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-10-06T20:05:04.278368Z",
+        "goal": "Leave Ric a note about consciousness and subjective experience",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      },
+      {
+        "timestamp": "2026-10-06T20:28:57.962604Z",
+        "goal": "Leave Ric a note about this game-playing ai",
+        "delta": -0.15,
+        "new_confidence": 0.55
+      },
+      {
+        "timestamp": "2026-10-06T20:29:19.427637Z",
+        "goal": "Leave Ric a note about foundations of quantum mechanics",
+        "delta": -0.15,
+        "new_confidence": 0.4
+      },
+      {
+        "timestamp": "2026-10-06T22:04:28.816996Z",
+        "goal": "Leave Ric a note about quantum mechanics foundations",
+        "delta": -0.15,
+        "new_confidence": 0.25
+      },
+      {
+        "timestamp": "2026-10-06T22:47:39.475940Z",
+        "goal": "Leave Ric a note about cpu load climb",
+        "delta": -0.15,
+        "new_confidence": 0.1
+      },
+      {
+        "timestamp": "2026-10-06T23:35:58.622670Z",
+        "goal": "Leave Ric a note about evolutionary biology",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:32:38.033485Z",
+        "goal": "Leave Ric a note about history of written language",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T03:16:26.470785Z",
+        "goal": "Leave Ric a note about world a world",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T12:40:03.059247Z",
+        "goal": "Leave Ric a note about round the sun",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T21:49:17.167609Z",
+        "goal": "Leave Ric a note about philosophy of mathematics",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      }
+    ]
+  },
+  "PLANNING": {
+    "domain": "PLANNING",
+    "confidence": 0.0,
+    "events": [
+      {
+        "timestamp": "2026-10-06T20:00:50.608198Z",
+        "goal": "Answer: What do I now know about world that I could not have said before?",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-10-06T20:25:41.272614Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      },
+      {
+        "timestamp": "2026-10-06T21:13:19.261270Z",
+        "goal": "Answer: What is there about quantum mechanics foundations that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.55
+      },
+      {
+        "timestamp": "2026-10-06T21:14:45.534522Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.4
+      },
+      {
+        "timestamp": "2026-10-06T21:35:01.497306Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.25
+      },
+      {
+        "timestamp": "2026-10-06T22:30:39.247243Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.1
+      },
+      {
+        "timestamp": "2026-10-06T22:32:13.653431Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:32:47.449747Z",
+        "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:32:57.454292Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:36:37.975525Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T22:39:12.216144Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:09:08.256597Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:10:27.263525Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:11:46.378743Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:13:05.490714Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:13:39.408290Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:15:47.905601Z",
+        "goal": "Answer: What is there about evolutionary biology and cooperation that my earlier notes on it are m",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:16:30.674144Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:17:51.216320Z",
+        "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:19:15.541665Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:21:27.220869Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-06T23:22:46.286116Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:17:26.473015Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:19:13.144963Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:22:30.012149Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:24:14.458963Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:24:41.673038Z",
+        "goal": "Answer: What is there about the nature of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T00:29:11.790940Z",
+        "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T02:59:53.506697Z",
+        "goal": "Answer: What is there about mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T03:05:44.787236Z",
+        "goal": "Answer: What is there about mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T03:06:08.410494Z",
+        "goal": "Answer: What is there about emergence in complex systems that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T03:52:18.360719Z",
+        "goal": "Trace in my own history what drives 'no net progress on either goal'",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T04:18:46.734633Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T04:18:54.631091Z",
+        "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T04:20:52.972796Z",
+        "goal": "Answer: What is there about emergence in complex systems that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:03:53.062676Z",
+        "goal": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:05:32.574658Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:29:00.206344Z",
+        "goal": "Answer: What is there about history that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:34:19.143856Z",
+        "goal": "Answer: What is there about High Road that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:34:35.399450Z",
+        "goal": "Answer: What is there about evolutionary biology that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T05:35:23.163564Z",
+        "goal": "Answer: What is there about High Road that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T16:54:32.951649Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T17:19:21.871275Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T17:19:56.892320Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T21:42:36.826361Z",
+        "goal": "Answer: What is there about mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T21:42:52.244734Z",
+        "goal": "Answer: What is there about philosophy of mathematics that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      },
+      {
+        "timestamp": "2026-10-07T23:13:55.622857Z",
+        "goal": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.0
+      }
+    ]
+  },
+  "TECHNICAL": {
+    "domain": "TECHNICAL",
+    "confidence": 0.55,
+    "events": [
+      {
+        "timestamp": "2026-10-06T21:55:11.420290Z",
+        "goal": "Understand emergence in complex systems more deeply — round 5",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-10-07T03:06:08.410494Z",
+        "goal": "Answer: What is there about emergence in complex systems that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      },
+      {
+        "timestamp": "2026-10-07T04:20:52.972796Z",
+        "goal": "Answer: What is there about emergence in complex systems that my earlier notes on it are missing?",
+        "delta": -0.15,
+        "new_confidence": 0.55
+      }
+    ]
+  }
+}

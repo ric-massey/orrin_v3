@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "philosophy of mathematics relationship to other fields",
+    "philosophy of mathematics key figures and works"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Science_Without_Numbers",
+    "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+    "https://en.wikipedia.org/wiki/History_of_philosophy",
+    "https://en.wikipedia.org/wiki/History_of_mathematics",
+    "https://en.wikipedia.org/wiki/Analytic_philosophy",
+    "https://en.wikipedia.org/wiki/Friedrich_Waismann"
+  ],
+  "results": [
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">Philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> is the branch <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> that deals with the nature <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> and its <span class=\"searchmatch\">relationship</span> <span class=\"searchmatch\">to</span> <span class=\"searchmatch\">other</span> areas <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span>, particularly",
+      "query": "philosophy of mathematics relationship to other fields"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "Mathematical constant <span class=\"searchmatch\">Mathematical</span> sciences <span class=\"searchmatch\">Mathematics</span> and art <span class=\"searchmatch\">Mathematics</span> education <span class=\"searchmatch\">Philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">Relationship</span> between <span class=\"searchmatch\">mathematics</span> and physics Science",
+      "query": "philosophy of mathematics relationship to other fields"
+    },
+    {
+      "title": "Science Without Numbers",
+      "url": "https://en.wikipedia.org/wiki/Science_Without_Numbers",
+      "snippet": "Defence <span class=\"searchmatch\">of</span> Nominalism is a 1980 book on the <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> by Hartry <span class=\"searchmatch\">Field</span>. In the book, <span class=\"searchmatch\">Field</span> defends nominalism, the view that <span class=\"searchmatch\">mathematical</span> objects",
+      "query": "philosophy of mathematics relationship to other fields"
+    },
+    {
+      "title": "Relationship between mathematics and physics",
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "snippet": "The <span class=\"searchmatch\">relationship</span> between <span class=\"searchmatch\">mathematics</span> and physics has been a subject <span class=\"searchmatch\">of</span> study <span class=\"searchmatch\">of</span> philosophers, mathematicians and physicists since antiquity, and more",
+      "query": "philosophy of mathematics relationship to other fields"
+    },
+    {
+      "title": "History of philosophy",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "snippet": "The history <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> is the systematic study <span class=\"searchmatch\">of</span> the development <span class=\"searchmatch\">of</span> philosophical thought. It focuses on <span class=\"searchmatch\">philosophy</span> as rational inquiry based on argumentation",
+      "query": "philosophy of mathematics relationship to other fields"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "<span class=\"searchmatch\">Mathematics</span> is a field <span class=\"searchmatch\">of</span> knowledge concerned with abstract concepts such as numbers, geometric shapes, sets, functions, <span class=\"searchmatch\">and</span> probabilities. It uses logical",
+      "query": "philosophy of mathematics key figures and works"
+    },
+    {
+      "title": "History of philosophy",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "snippet": "Arabic–Persian <span class=\"searchmatch\">philosophy</span> was strongly influenced by Ancient Greek philosophers. It had its peak period during the Islamic Golden Age. One <span class=\"searchmatch\">of</span> its <span class=\"searchmatch\">key</span> topics was",
+      "query": "philosophy of mathematics key figures and works"
+    },
+    {
+      "title": "History of mathematics",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> deals with the origin <span class=\"searchmatch\">of</span> discoveries in <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">mathematical</span> methods <span class=\"searchmatch\">and</span> notation <span class=\"searchmatch\">of</span> the past. Before the modern age <span class=\"searchmatch\">and</span> worldwide",
+      "query": "philosophy of mathematics key figures and works"
+    },
+    {
+      "title": "Analytic philosophy",
+      "url": "https://en.wikipedia.org/wiki/Analytic_philosophy",
+      "snippet": "language, <span class=\"searchmatch\">mathematics</span>, <span class=\"searchmatch\">and</span> science, <span class=\"searchmatch\">and</span> modern predicate <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">mathematical</span> logic. The history <span class=\"searchmatch\">of</span> analytic <span class=\"searchmatch\">philosophy</span> (taken in the narrower sense <span class=\"searchmatch\">of</span> &quot;20th-/21st-century",
+      "query": "philosophy of mathematics key figures and works"
+    },
+    {
+      "title": "Friedrich Waismann",
+      "url": "https://en.wikipedia.org/wiki/Friedrich_Waismann",
+      "snippet": " <span class=\"searchmatch\">and</span> lecturer in <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> at the University <span class=\"searchmatch\">of</span> Oxford from 1939 until his death. Waismann lost his wife Hermine née Antscherl, <span class=\"searchmatch\">and</span> his",
+      "query": "philosophy of mathematics key figures and works"
+    }
+  ],
+  "ts": "2026-10-07T21:42:10.908730+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "foundations of quantum mechanics recent research",
+    "foundations of quantum mechanics common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+    "https://en.wikipedia.org/wiki/Quantum_logic",
+    "https://en.wikipedia.org/wiki/Quantum_decoherence",
+    "https://en.wikipedia.org/wiki/Quantum_gravity",
+    "https://en.wikipedia.org/wiki/Quantum_superposition",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Quantum_indeterminacy",
+    "https://en.wikipedia.org/wiki/Quantum_eraser_experiment",
+    "https://en.wikipedia.org/wiki/Observer_%28quantum_physics%29",
+    "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+  ],
+  "results": [
+    {
+      "title": "History of quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/History_of_quantum_mechanics",
+      "snippet": "<span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> is a fundamental part <span class=\"searchmatch\">of</span> the history <span class=\"searchmatch\">of</span> modern physics. The major chapters <span class=\"searchmatch\">of</span> this history begin with the emergence <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> ideas",
+      "query": "foundations of quantum mechanics recent research"
+    },
+    {
+      "title": "Quantum logic",
+      "url": "https://en.wikipedia.org/wiki/Quantum_logic",
+      "snippet": "mathematical study <span class=\"searchmatch\">of</span> logic and the physical analysis <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">foundations</span>, <span class=\"searchmatch\">quantum</span> logic is a set <span class=\"searchmatch\">of</span> rules for manip­ulation <span class=\"searchmatch\">of</span> propositions inspired",
+      "query": "foundations of quantum mechanics recent research"
+    },
+    {
+      "title": "Quantum decoherence",
+      "url": "https://en.wikipedia.org/wiki/Quantum_decoherence",
+      "snippet": "how <span class=\"searchmatch\">quantum</span> systems convert to systems that can be explained by classical <span class=\"searchmatch\">mechanics</span>. Beginning out <span class=\"searchmatch\">of</span> attempts to extend the understanding <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> mechanics",
+      "query": "foundations of quantum mechanics recent research"
+    },
+    {
+      "title": "Quantum gravity",
+      "url": "https://en.wikipedia.org/wiki/Quantum_gravity",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> gravity (QG) is a field <span class=\"searchmatch\">of</span> theoretical physics that seeks unification <span class=\"searchmatch\">of</span> the theory <span class=\"searchmatch\">of</span> gravity with the principles <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>. It deals",
+      "query": "foundations of quantum mechanics recent research"
+    },
+    {
+      "title": "Quantum superposition",
+      "url": "https://en.wikipedia.org/wiki/Quantum_superposition",
+      "snippet": "<span class=\"searchmatch\">Quantum</span> superposition is a fundamental principle <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> that states that linear combinations <span class=\"searchmatch\">of</span> solutions to the Schrödinger equation are",
+      "query": "foundations of quantum mechanics recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "foundations of quantum mechanics common misconceptions"
+    },
+    {
+      "title": "Quantum indeterminacy",
+      "url": "https://en.wikipedia.org/wiki/Quantum_indeterminacy",
+      "snippet": "Understanding <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span>, Princeton University Press, 1999. <span class=\"searchmatch\">Common</span> <span class=\"searchmatch\">Misconceptions</span> Regarding <span class=\"searchmatch\">Quantum</span> <span class=\"searchmatch\">Mechanics</span> See especially part III &quot;<span class=\"searchmatch\">Misconceptions</span> regarding",
+      "query": "foundations of quantum mechanics common misconceptions"
+    },
+    {
+      "title": "Quantum eraser experiment",
+      "url": "https://en.wikipedia.org/wiki/Quantum_eraser_experiment",
+      "snippet": "In <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>, a <span class=\"searchmatch\">quantum</span> eraser experiment is an interferometer experiment that demonstrates several fundamental aspects <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span>, including",
+      "query": "foundations of quantum mechanics common misconceptions"
+    },
+    {
+      "title": "Observer (quantum physics)",
+      "url": "https://en.wikipedia.org/wiki/Observer_%28quantum_physics%29",
+      "snippet": "interpretations <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> posit a central role for an observer <span class=\"searchmatch\">of</span> a <span class=\"searchmatch\">quantum</span> phenomenon. The <span class=\"searchmatch\">quantum</span> mechanical observer is tied to the issue <span class=\"searchmatch\">of</span> observer",
+      "query": "foundations of quantum mechanics common misconceptions"
+    },
+    {
+      "title": "Many-worlds interpretation",
+      "url": "https://en.wikipedia.org/wiki/Many-worlds_interpretation",
+      "snippet": "The many-worlds interpretation (MWI) is an interpretation <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">quantum</span> <span class=\"searchmatch\">mechanics</span> that asserts that the universal wave function is objectively real, and that",
+      "query": "foundations of quantum mechanics common misconceptions"
+    }
+  ],
+  "ts": "2026-10-07T01:55:31.772903+00:00"
+}

@@ -1,0 +1,129 @@
+{
+  "question": "What is there about world a world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "The championship",
+    "contested over twenty-three Grands Prix held around the world",
+    "in Athletics in Berlin World records in athletics",
+    "ratified by World Athletics",
+    "which must be satisfied for ratification of a world record",
+    "defined by World Athletics in Part III of the Competition Rules",
+    "Breaking a world record",
+    "important event for athletics fans",
+    "World history in the Western tradition",
+    "commonly divided into three parts",
+    "World history",
+    "not a thing",
+    "and",
+    "supported by new textbooks that take a world-history approach",
+    "fantasy world or fictional world",
+    "world created for fictional media"
+  ],
+  "relations": [
+    {
+      "subject": "The championship",
+      "predicate": "is",
+      "object": "contested over twenty-three Grands Prix held around the world",
+      "source": "https://en.wikipedia.org/wiki/2026_Formula_One_World_Championship"
+    },
+    {
+      "subject": "in Athletics in Berlin World records in athletics",
+      "predicate": "are",
+      "object": "ratified by World Athletics",
+      "source": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics"
+    },
+    {
+      "subject": "which must be satisfied for ratification of a world record",
+      "predicate": "are",
+      "object": "defined by World Athletics in Part III of the Competition Rules",
+      "source": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics"
+    },
+    {
+      "subject": "Breaking a world record",
+      "predicate": "is an",
+      "object": "important event for athletics fans",
+      "source": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics"
+    },
+    {
+      "subject": "World history in the Western tradition",
+      "predicate": "is",
+      "object": "commonly divided into three parts",
+      "source": "https://en.wikipedia.org/wiki/World_history_%28field%29"
+    },
+    {
+      "subject": "World history",
+      "predicate": "is",
+      "object": "not a thing",
+      "source": "https://en.wikipedia.org/wiki/World_history_%28field%29"
+    },
+    {
+      "subject": "and",
+      "predicate": "is",
+      "object": "supported by new textbooks that take a world-history approach",
+      "source": "https://en.wikipedia.org/wiki/World_history_%28field%29"
+    },
+    {
+      "subject": "fantasy world or fictional world",
+      "predicate": "is a",
+      "object": "world created for fictional media",
+      "source": "https://en.wikipedia.org/wiki/Fantasy_world"
+    },
+    {
+      "subject": "solitary individual whose adventures in the fantasy world",
+      "predicate": "are",
+      "object": "of personal significance",
+      "source": "https://en.wikipedia.org/wiki/Fantasy_world"
+    },
+    {
+      "subject": "into a fantasy world The most common fantasy world",
+      "predicate": "is",
+      "object": "one based on medieval Europe",
+      "source": "https://en.wikipedia.org/wiki/Fantasy_world"
+    },
+    {
+      "subject": "When these worlds",
+      "predicate": "are",
+      "object": "copied not so much from history as from other fantasy works",
+      "source": "https://en.wikipedia.org/wiki/Fantasy_world"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: research_memo.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2026_Formula_One_World_Championship"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Other_Side_of_the_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_history_%28field%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mondeuse_noire"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/It%27s_a_Small_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fantasy_world"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WWE"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hidden_Figures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_World_of_Springfield_figures_and_playsets"
+    }
+  ],
+  "ts": "2026-10-07T00:52:48.600487+00:00"
+}

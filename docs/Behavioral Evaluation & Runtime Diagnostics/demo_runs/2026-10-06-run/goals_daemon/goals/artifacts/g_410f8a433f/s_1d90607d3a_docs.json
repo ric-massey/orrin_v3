@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/AI_alignment",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Generative_AI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meta_AI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boys%27_love",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Roko%27s_basilisk",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_410f8a433f/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T03:05:50.153396+00:00"
+}

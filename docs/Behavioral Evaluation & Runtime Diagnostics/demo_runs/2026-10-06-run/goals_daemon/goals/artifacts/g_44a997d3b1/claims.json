@@ -1,0 +1,132 @@
+{
+  "question": "What is there about world a world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "located in the Eastern Hemisphere",
+    "included in modern definitions of the Western world",
+    "the world population",
+    "total number of humans currently alive",
+    "approximately 8",
+    "and present Estimates of world population by their nature",
+    "an aspect of modernity",
+    "Different World",
+    "American sitcom television series and a spin-off of The Cosby Show",
+    "World Heritage Committee to be a unique landmark which",
+    "geographically and historically identifiable",
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "the world",
+    "customarily viewed as all of existence or the whole of reality",
+    "challenging the idea that the world"
+  ],
+  "relations": [
+    {
+      "subject": "located in the Eastern Hemisphere",
+      "predicate": "are",
+      "object": "included in modern definitions of the Western world",
+      "source": "https://en.wikipedia.org/wiki/Western_world"
+    },
+    {
+      "subject": "the world population",
+      "predicate": "is the",
+      "object": "total number of humans currently alive",
+      "source": "https://en.wikipedia.org/wiki/World_population"
+    },
+    {
+      "subject": "the world population",
+      "predicate": "is",
+      "object": "approximately 8",
+      "source": "https://en.wikipedia.org/wiki/World_population"
+    },
+    {
+      "subject": "and present Estimates of world population by their nature",
+      "predicate": "are",
+      "object": "an aspect of modernity",
+      "source": "https://en.wikipedia.org/wiki/World_population"
+    },
+    {
+      "subject": "Different World",
+      "predicate": "is an",
+      "object": "American sitcom television series and a spin-off of The Cosby Show",
+      "source": "https://en.wikipedia.org/wiki/A_Different_World"
+    },
+    {
+      "subject": "World Heritage Committee to be a unique landmark which",
+      "predicate": "is",
+      "object": "geographically and historically identifiable",
+      "source": "https://en.wikipedia.org/wiki/World_Heritage_Site"
+    },
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "the world",
+      "predicate": "is",
+      "object": "customarily viewed as all of existence or the whole of reality",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "challenging the idea that the world",
+      "predicate": "is an",
+      "object": "all-inclusive whole",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "the world",
+      "predicate": "is",
+      "object": "contrasted with the mind as that which is represented by the mind",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "Cosmogony",
+      "predicate": "is the",
+      "object": "field that studies the origin or creation of the world",
+      "source": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "subject": "world history",
+      "predicate": "refers to",
+      "object": "the history of humanity as a whole",
+      "source": "https://en.wikipedia.org/wiki/World"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Western_world"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Arab_world"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_population"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/A_Different_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Heritage_Site"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_A_Different_World_episodes"
+    }
+  ],
+  "ts": "2026-10-06T20:01:21.135812+00:00"
+}

@@ -1,0 +1,61 @@
+{
+  "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "daily",
+    "stoic"
+  ],
+  "entities": [
+    "episodes List of episodes This",
+    "list of episodes for The Daily Show",
+    "and his notes",
+    "representative of Stoic philosophy and its spirituality"
+  ],
+  "relations": [
+    {
+      "subject": "episodes List of episodes This",
+      "predicate": "is a",
+      "object": "list of episodes for The Daily Show",
+      "source": "my prior claims [g_9fa9064836]"
+    },
+    {
+      "subject": "and his notes",
+      "predicate": "are",
+      "object": "representative of Stoic philosophy and its spirituality",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_Marcus_Aurelius"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_9fa9064836]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Daily_Show_episodes_%282025%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Massimo_Pigliucci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/David_Icke"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fresh_Meat_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexander_the_Great"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Anarchism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socrates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Marcus_Aurelius"
+    }
+  ],
+  "ts": "2026-10-06T22:25:17.531863+00:00"
+}

@@ -1,0 +1,100 @@
+{
+  "ltc_aspiration-self_understa_1::search_own_files": {
+    "hashes": [
+      "9a577db9af5c87ef",
+      "6ac576f89fc3bedb",
+      "7975f290baeb7166",
+      "44573b6b60d7e2d4",
+      "aff1b3a8ac538a77",
+      "2647cc3d74071c71",
+      "fcef18f59e2c2076",
+      "6aaf1474ec46f6a9",
+      "aee34bf65bfe8827",
+      "ee02507155c64190",
+      "5b416c5ca668ee71",
+      "9073e4fd803ba18b"
+    ],
+    "count": 12,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1791315435.3645241
+  },
+  "aspiration-output_producing::search_own_files": {
+    "hashes": [
+      "c881bdb25c397f7c",
+      "764641286a0e7422"
+    ],
+    "count": 2,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1791315629.760865
+  },
+  "aspiration-self_understanding::search_own_files": {
+    "hashes": [
+      "c881bdb25c397f7c",
+      "7975f290baeb7166",
+      "2647cc3d74071c71",
+      "0ee50acec4c3340f",
+      "dda30b108a7ebedd",
+      "fe38b026ddbba443",
+      "b7734cab57d912ad",
+      "44e75238095b5e22",
+      "beae92fbb0ccda68",
+      "f9e2f83b806c456e",
+      "fab0f5559ab4bacf",
+      "26401d009ed0b77c",
+      "5e6b4545e25af36e",
+      "5fc9ee8a54e10166",
+      "94b8e44986ca116f",
+      "44350dc54396709f",
+      "2c0082537557b9d1",
+      "bee048e8a51d32ec"
+    ],
+    "count": 18,
+    "barren_streak": 0,
+    "low_streak": 2,
+    "ts": 1791317756.39204
+  },
+  "g_b365f032d2::search_own_files": {
+    "hashes": [
+      "e6885a0c2f9e0530",
+      "05a778f6879650dc",
+      "49863286f6e3450c",
+      "e709a47e0ed07caf",
+      "c44ed4e24a3e375b",
+      "aea7cb8bf1153100",
+      "ae5bf1accf9f4f53",
+      "351e1a378a41771f",
+      "31aba03c5dd4c7bd",
+      "8926410c05f30161",
+      "d6a8eeab1a5d0357",
+      "af30b2f39c8cc257"
+    ],
+    "count": 12,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1791339921.480274
+  },
+  "ltc_aspiration-self_understa_232::search_own_files": {
+    "hashes": [
+      "26401d009ed0b77c",
+      "2d0ea5849d124827",
+      "f0356a922c3b76d6",
+      "6a4850534eeca7bc",
+      "3f59e5aa72e7d522",
+      "a8fa00e47ad0f3e3",
+      "60dac339b7450bbc",
+      "cd65b0e7a2f743b7",
+      "67e5436cca66accf",
+      "018f30efc144cb64",
+      "be364589d2ac25b6",
+      "cc559bc09a37eecf",
+      "1c5d41c420962b3a",
+      "1f185eb67376a4ce"
+    ],
+    "count": 14,
+    "barren_streak": 0,
+    "low_streak": 0,
+    "ts": 1791376048.4416509
+  }
+}

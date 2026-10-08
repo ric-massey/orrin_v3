@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c67ffdd4f/doc_01.txt",
+      "chars": 16369
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c67ffdd4f/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c67ffdd4f/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wave_function_collapse",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c67ffdd4f/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Principles_of_Quantum_Mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c67ffdd4f/doc_05.txt",
+      "chars": 19694
+    }
+  ],
+  "ts": "2026-10-06T20:25:21.587540+00:00"
+}

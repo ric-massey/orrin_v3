@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "the west history and development",
+    "the west applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/West_Bank",
+    "https://en.wikipedia.org/wiki/History_of_West_Africa",
+    "https://en.wikipedia.org/wiki/Key_West",
+    "https://en.wikipedia.org/wiki/West_Africa",
+    "https://en.wikipedia.org/wiki/History_of_Key_West",
+    "https://en.wikipedia.org/wiki/API",
+    "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+    "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank",
+    "https://en.wikipedia.org/wiki/Gray_goo"
+  ],
+  "results": [
+    {
+      "title": "West Bank",
+      "url": "https://en.wikipedia.org/wiki/West_Bank",
+      "snippet": "located on <span class=\"searchmatch\">the</span> western bank of <span class=\"searchmatch\">the</span> Jordan River near <span class=\"searchmatch\">the</span> coast of <span class=\"searchmatch\">the</span> Mediterranean Sea in <span class=\"searchmatch\">West</span> Asia&#039;s Levant region, it is bordered by Jordan <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">the</span> Dead",
+      "query": "the west history and development"
+    },
+    {
+      "title": "History of West Africa",
+      "url": "https://en.wikipedia.org/wiki/History_of_West_Africa",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">West</span> Africa has been divided into its prehistory, <span class=\"searchmatch\">the</span> Iron Age in Africa, <span class=\"searchmatch\">the</span> period of major polities flourishing, <span class=\"searchmatch\">the</span> colonial period",
+      "query": "the west history and development"
+    },
+    {
+      "title": "Key West",
+      "url": "https://en.wikipedia.org/wiki/Key_West",
+      "snippet": "Key <span class=\"searchmatch\">West</span> (Spanish: Cayo Hueso [kaʝo ˈweso]) is a coral cay island in <span class=\"searchmatch\">the</span> Straits of Florida, at <span class=\"searchmatch\">the</span> southernmost end of <span class=\"searchmatch\">the</span> U.S. state of Florida <span class=\"searchmatch\">and</span> its",
+      "query": "the west history and development"
+    },
+    {
+      "title": "West Africa",
+      "url": "https://en.wikipedia.org/wiki/West_Africa",
+      "snippet": "(12 June 2019). &quot;Metaphysical explanations&quot;. D+C, <span class=\"searchmatch\">Development</span> <span class=\"searchmatch\">and</span> Cooperation. <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">History</span> of <span class=\"searchmatch\">West</span> Africa. Routledge. 2018. ISBN 978-1138094144. {{cite",
+      "query": "the west history and development"
+    },
+    {
+      "title": "History of Key West",
+      "url": "https://en.wikipedia.org/wiki/History_of_Key_West",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">history</span> of Key <span class=\"searchmatch\">West</span> begins thousands of years prior to recorded European contact, when <span class=\"searchmatch\">the</span> island became largely occupied by <span class=\"searchmatch\">the</span> Calusa <span class=\"searchmatch\">and</span> Tequesta",
+      "query": "the west history and development"
+    },
+    {
+      "title": "API",
+      "url": "https://en.wikipedia.org/wiki/API",
+      "snippet": "show that most <span class=\"searchmatch\">applications</span> that use an API tend to use a small part of <span class=\"searchmatch\">the</span> API. Language bindings are also APIs. By mapping <span class=\"searchmatch\">the</span> features <span class=\"searchmatch\">and</span> capabilities",
+      "query": "the west applications and examples"
+    },
+    {
+      "title": "West Bank",
+      "url": "https://en.wikipedia.org/wiki/West_Bank",
+      "snippet": "located on <span class=\"searchmatch\">the</span> western bank of <span class=\"searchmatch\">the</span> Jordan River near <span class=\"searchmatch\">the</span> coast of <span class=\"searchmatch\">the</span> Mediterranean Sea in <span class=\"searchmatch\">West</span> Asia&#039;s Levant region, it is bordered by Jordan <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">the</span> Dead",
+      "query": "the west applications and examples"
+    },
+    {
+      "title": "The purpose of a system is what it does",
+      "url": "https://en.wikipedia.org/wiki/The_purpose_of_a_system_is_what_it_does",
+      "snippet": "In Heart of Enterprise, Beer gives examples from his own life as <span class=\"searchmatch\">applications</span> of <span class=\"searchmatch\">the</span> heuristic: Beer deals with a car company that has a system for provisioning",
+      "query": "the west applications and examples"
+    },
+    {
+      "title": "Israeli occupation of the West Bank",
+      "url": "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_West_Bank",
+      "snippet": "during <span class=\"searchmatch\">the</span> Six-Day War. <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">West</span> Bank is part of <span class=\"searchmatch\">the</span> state of Palestine, <span class=\"searchmatch\">and</span> its status as a militarily occupied territory has been affirmed by <span class=\"searchmatch\">the</span> International",
+      "query": "the west applications and examples"
+    },
+    {
+      "title": "Gray goo",
+      "url": "https://en.wikipedia.org/wiki/Gray_goo",
+      "snippet": "events if such events may have an extremely negative <span class=\"searchmatch\">and</span> irreversible consequence, i.e. <span class=\"searchmatch\">application</span> of <span class=\"searchmatch\">the</span> precautionary principle. Dianne Irving admonishes",
+      "query": "the west applications and examples"
+    }
+  ],
+  "ts": "2026-10-07T21:41:58.394598+00:00"
+}

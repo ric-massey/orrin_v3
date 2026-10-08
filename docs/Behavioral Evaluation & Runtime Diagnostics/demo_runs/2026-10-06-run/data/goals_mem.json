@@ -1,0 +1,2915 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-10-06T19:38:21.400114Z",
+    "last_updated": "2026-10-08T00:18:36.939401Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [
+      {
+        "title": "Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on it are missing into a written synthesis",
+        "name": "Turn what I know about Answer: What is there about emergence in complex systems that my earlier notes on it are missing into a written synthesis",
+        "status": "pending",
+        "source": "commitment",
+        "driven_by": "will",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "gathered source material",
+          "a cited primary source",
+          "synthesized sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Gather source material on the topic with research_topic",
+            "status": "completed",
+            "generated_at": "2026-10-07T04:20:52.909059Z",
+            "action": {
+              "function": "research_topic",
+              "purpose": "gather_material",
+              "topic": "Gather source material on the topic with research_topic"
+            },
+            "completed_at": "2026-10-07T04:27:20.850634Z"
+          },
+          {
+            "step": "Read one primary source in depth with fetch_and_read",
+            "status": "completed",
+            "generated_at": "2026-10-07T04:20:52.909069Z",
+            "action": {
+              "function": "fetch_and_read",
+              "purpose": "gather_material",
+              "topic": "Read one primary source in depth with fetch_and_read"
+            },
+            "completed_at": "2026-10-07T04:29:11.260252Z"
+          },
+          {
+            "step": "Synthesize a section from the gathered sources",
+            "status": "pending",
+            "generated_at": "2026-10-07T04:20:52.909071Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Synthesize a section from the gathered sources"
+            }
+          },
+          {
+            "step": "Review the manuscript for coherence",
+            "status": "pending",
+            "generated_at": "2026-10-07T04:20:52.909073Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Review the manuscript for coherence"
+            }
+          },
+          {
+            "step": "Complete the final manuscript",
+            "status": "pending",
+            "generated_at": "2026-10-07T04:20:52.909074Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Complete the final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-10-07T04:20:52.909258Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "gathered source material",
+            "a cited primary source",
+            "synthesized sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Gather source material on the topic with research_topic",
+              "status": "pending",
+              "generated_at": "2026-10-07T04:20:52.909059Z",
+              "action": {
+                "function": "research_topic",
+                "purpose": "gather_material",
+                "topic": "Gather source material on the topic with research_topic"
+              }
+            },
+            {
+              "step": "Read one primary source in depth with fetch_and_read",
+              "status": "pending",
+              "generated_at": "2026-10-07T04:20:52.909069Z",
+              "action": {
+                "function": "fetch_and_read",
+                "purpose": "gather_material",
+                "topic": "Read one primary source in depth with fetch_and_read"
+              }
+            },
+            {
+              "step": "Synthesize a section from the gathered sources",
+              "status": "pending",
+              "generated_at": "2026-10-07T04:20:52.909071Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Synthesize a section from the gathered sources"
+              }
+            },
+            {
+              "step": "Review the manuscript for coherence",
+              "status": "pending",
+              "generated_at": "2026-10-07T04:20:52.909073Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Review the manuscript for coherence"
+              }
+            },
+            {
+              "step": "Complete the final manuscript",
+              "status": "pending",
+              "generated_at": "2026-10-07T04:20:52.909074Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Complete the final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-07T04:20:52.909258Z"
+        },
+        "timestamp": "2026-10-07T04:20:52.909264Z",
+        "last_updated": "2026-10-07T04:20:52.909264Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-07T04:20:52.909264Z"
+          }
+        ],
+        "id": "g_0c64c41599a6",
+        "_step_attempts": {},
+        "_last_deliberate_cycle": 8077,
+        "_deliberate_rounds": 29,
+        "_needs_deliberate_action": "compose_section",
+        "_artifact_first_seen_cycle": 8000
+      },
+      {
+        "id": "g_3d28e98e68",
+        "title": "Understand The Daily Stoic more deeply — round 20",
+        "name": "Understand The Daily Stoic more deeply — round 20",
+        "kind": "research",
+        "tier": "growth",
+        "priority": "CRITICAL",
+        "tags": [
+          "worldward",
+          "external"
+        ],
+        "spec": {
+          "queries": [
+            "The Daily Stoic recent research",
+            "The Daily Stoic common misconceptions"
+          ],
+          "synth_kind": "memo",
+          "build_on_prior": true,
+          "zone": "world",
+          "orientation": "worldward",
+          "followon_of": "g_3954229c1a",
+          "definition_of_done": [
+            {
+              "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+              "kind": "quality",
+              "met": false,
+              "ladder_rung": 5
+            },
+            {
+              "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+              "kind": "quality",
+              "met": false,
+              "ladder_rung": 5
+            }
+          ],
+          "grounded_parts": [
+            "intended outcome",
+            "required components",
+            "implementation",
+            "validation",
+            "durable result"
+          ],
+          "plan": [
+            {
+              "step": "Establish intended outcome",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:14:35.755206Z"
+            },
+            {
+              "step": "Establish required components",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:14:35.755214Z"
+            },
+            {
+              "step": "Establish implementation",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:14:35.755216Z"
+            },
+            {
+              "step": "Establish validation",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:14:35.755218Z"
+            },
+            {
+              "step": "Establish durable result",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:14:35.755220Z"
+            }
+          ],
+          "milestones": [
+            {
+              "text": "A new angle on The Daily Stoic was researched.",
+              "met": false,
+              "met_at": null
+            },
+            {
+              "text": "A new fact about The Daily Stoic was written to long memory.",
+              "met": false,
+              "met_at": null
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:14:35.755236Z",
+          "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+          "tier": "growth",
+          "driven_by": "world_knowledge",
+          "source": "intrinsic"
+        },
+        "next_action": null,
+        "deadline": null,
+        "status": "completed",
+        "definition_of_done": [
+          {
+            "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+            "kind": "quality",
+            "met": false,
+            "ladder_rung": 5
+          },
+          {
+            "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+            "kind": "quality",
+            "met": false,
+            "ladder_rung": 5
+          }
+        ],
+        "grounded_parts": [
+          "intended outcome",
+          "required components",
+          "implementation",
+          "validation",
+          "durable result"
+        ],
+        "plan": [
+          {
+            "step": "Establish intended outcome",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:14:35.755206Z"
+          },
+          {
+            "step": "Establish required components",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:14:35.755214Z"
+          },
+          {
+            "step": "Establish implementation",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:14:35.755216Z"
+          },
+          {
+            "step": "Establish validation",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:14:35.755218Z"
+          },
+          {
+            "step": "Establish durable result",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:14:35.755220Z"
+          }
+        ],
+        "milestones": [
+          {
+            "text": "A new angle on The Daily Stoic was researched.",
+            "met": false,
+            "met_at": null
+          },
+          {
+            "text": "A new fact about The Daily Stoic was written to long memory.",
+            "met": false,
+            "met_at": null
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-10-08T00:14:35.755236Z",
+        "driven_by": "world_knowledge",
+        "source": "intrinsic",
+        "zone": "world",
+        "orientation": "worldward",
+        "timestamp": "2026-10-08T00:14:40.786899Z",
+        "last_updated": "2026-10-08T00:14:40.786899Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:14:40.786899Z"
+          }
+        ],
+        "_step_attempts": {
+          "Establish intended outcome": 1
+        }
+      },
+      {
+        "title": "Turn what I know about but what if there — round 4 into a written synthesis",
+        "name": "Turn what I know about but what if there — round 4 into a written synthesis",
+        "status": "completed",
+        "source": "commitment",
+        "driven_by": "will",
+        "serves": "Understand the world more deeply",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "gathered source material",
+          "a cited primary source",
+          "synthesized sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Gather source material on the topic with research_topic",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:00.406508Z",
+            "action": {
+              "function": "research_topic",
+              "purpose": "gather_material",
+              "topic": "Gather source material on the topic with research_topic"
+            }
+          },
+          {
+            "step": "Read one primary source in depth with fetch_and_read",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:00.406516Z",
+            "action": {
+              "function": "fetch_and_read",
+              "purpose": "gather_material",
+              "topic": "Read one primary source in depth with fetch_and_read"
+            }
+          },
+          {
+            "step": "Synthesize a section from the gathered sources",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:00.406518Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Synthesize a section from the gathered sources"
+            }
+          },
+          {
+            "step": "Review the manuscript for coherence",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:00.406524Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Review the manuscript for coherence"
+            }
+          },
+          {
+            "step": "Complete the final manuscript",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:00.406526Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Complete the final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-10-08T00:15:00.406606Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "gathered source material",
+            "a cited primary source",
+            "synthesized sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Gather source material on the topic with research_topic",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:00.406508Z",
+              "action": {
+                "function": "research_topic",
+                "purpose": "gather_material",
+                "topic": "Gather source material on the topic with research_topic"
+              }
+            },
+            {
+              "step": "Read one primary source in depth with fetch_and_read",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:00.406516Z",
+              "action": {
+                "function": "fetch_and_read",
+                "purpose": "gather_material",
+                "topic": "Read one primary source in depth with fetch_and_read"
+              }
+            },
+            {
+              "step": "Synthesize a section from the gathered sources",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:00.406518Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Synthesize a section from the gathered sources"
+              }
+            },
+            {
+              "step": "Review the manuscript for coherence",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:00.406524Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Review the manuscript for coherence"
+              }
+            },
+            {
+              "step": "Complete the final manuscript",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:00.406526Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Complete the final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:15:00.406606Z"
+        },
+        "timestamp": "2026-10-08T00:15:00.406610Z",
+        "last_updated": "2026-10-08T00:15:02.617092Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:15:00.406610Z"
+          },
+          {
+            "event": "closed_from_v2_event",
+            "v2_status": "DONE",
+            "timestamp": "2026-10-08T00:15:02.617092Z"
+          }
+        ],
+        "id": "g_cc39168fbebc"
+      },
+      {
+        "title": "Turn what I know about The Daily Stoic — round 21 into a written synthesis",
+        "name": "Turn what I know about The Daily Stoic — round 21 into a written synthesis",
+        "status": "completed",
+        "source": "commitment",
+        "driven_by": "will",
+        "serves": "Understand the world more deeply",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "gathered source material",
+          "a cited primary source",
+          "synthesized sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Gather source material on the topic with research_topic",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:16.115099Z",
+            "action": {
+              "function": "research_topic",
+              "purpose": "gather_material",
+              "topic": "Gather source material on the topic with research_topic"
+            }
+          },
+          {
+            "step": "Read one primary source in depth with fetch_and_read",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:16.115109Z",
+            "action": {
+              "function": "fetch_and_read",
+              "purpose": "gather_material",
+              "topic": "Read one primary source in depth with fetch_and_read"
+            }
+          },
+          {
+            "step": "Synthesize a section from the gathered sources",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:16.115111Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Synthesize a section from the gathered sources"
+            }
+          },
+          {
+            "step": "Review the manuscript for coherence",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:16.115113Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Review the manuscript for coherence"
+            }
+          },
+          {
+            "step": "Complete the final manuscript",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:15:16.115114Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Complete the final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-10-08T00:15:16.115232Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "gathered source material",
+            "a cited primary source",
+            "synthesized sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Gather source material on the topic with research_topic",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:16.115099Z",
+              "action": {
+                "function": "research_topic",
+                "purpose": "gather_material",
+                "topic": "Gather source material on the topic with research_topic"
+              }
+            },
+            {
+              "step": "Read one primary source in depth with fetch_and_read",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:16.115109Z",
+              "action": {
+                "function": "fetch_and_read",
+                "purpose": "gather_material",
+                "topic": "Read one primary source in depth with fetch_and_read"
+              }
+            },
+            {
+              "step": "Synthesize a section from the gathered sources",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:16.115111Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Synthesize a section from the gathered sources"
+              }
+            },
+            {
+              "step": "Review the manuscript for coherence",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:16.115113Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Review the manuscript for coherence"
+              }
+            },
+            {
+              "step": "Complete the final manuscript",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:15:16.115114Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Complete the final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:15:16.115232Z"
+        },
+        "timestamp": "2026-10-08T00:15:16.115239Z",
+        "last_updated": "2026-10-08T00:15:18.495106Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:15:16.115239Z"
+          },
+          {
+            "event": "closed_from_v2_event",
+            "v2_status": "DONE",
+            "timestamp": "2026-10-08T00:15:18.495106Z"
+          }
+        ],
+        "id": "g_0f93f469416c"
+      },
+      {
+        "title": "Turn what I know about Answer: What actually is but what if there, beyond the mentions I keep seeing into a written synthesis",
+        "name": "Turn what I know about Answer: What actually is but what if there, beyond the mentions I keep seeing into a written synthesis",
+        "status": "completed",
+        "source": "commitment",
+        "driven_by": "will",
+        "serves": "Understand the world more deeply",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "gathered source material",
+          "a cited primary source",
+          "synthesized sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Gather source material on the topic with research_topic",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:17:20.793294Z",
+            "action": {
+              "function": "research_topic",
+              "purpose": "gather_material",
+              "topic": "Gather source material on the topic with research_topic"
+            }
+          },
+          {
+            "step": "Read one primary source in depth with fetch_and_read",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:17:20.793302Z",
+            "action": {
+              "function": "fetch_and_read",
+              "purpose": "gather_material",
+              "topic": "Read one primary source in depth with fetch_and_read"
+            }
+          },
+          {
+            "step": "Synthesize a section from the gathered sources",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:17:20.793304Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Synthesize a section from the gathered sources"
+            }
+          },
+          {
+            "step": "Review the manuscript for coherence",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:17:20.793305Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Review the manuscript for coherence"
+            }
+          },
+          {
+            "step": "Complete the final manuscript",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:17:20.793307Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Complete the final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-10-08T00:17:20.793323Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "gathered source material",
+            "a cited primary source",
+            "synthesized sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Gather source material on the topic with research_topic",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:17:20.793294Z",
+              "action": {
+                "function": "research_topic",
+                "purpose": "gather_material",
+                "topic": "Gather source material on the topic with research_topic"
+              }
+            },
+            {
+              "step": "Read one primary source in depth with fetch_and_read",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:17:20.793302Z",
+              "action": {
+                "function": "fetch_and_read",
+                "purpose": "gather_material",
+                "topic": "Read one primary source in depth with fetch_and_read"
+              }
+            },
+            {
+              "step": "Synthesize a section from the gathered sources",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:17:20.793304Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Synthesize a section from the gathered sources"
+              }
+            },
+            {
+              "step": "Review the manuscript for coherence",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:17:20.793305Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Review the manuscript for coherence"
+              }
+            },
+            {
+              "step": "Complete the final manuscript",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:17:20.793307Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Complete the final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:17:20.793323Z"
+        },
+        "timestamp": "2026-10-08T00:17:20.793326Z",
+        "last_updated": "2026-10-08T00:17:23.233859Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:17:20.793326Z"
+          },
+          {
+            "event": "closed_from_v2_event",
+            "v2_status": "DONE",
+            "timestamp": "2026-10-08T00:17:23.233859Z"
+          }
+        ],
+        "id": "g_87a02f273231"
+      },
+      {
+        "title": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "name": "Answer: What is there about this game-playing ai that my earlier notes on it are missing?",
+        "description": "My goal 'Understand this game-playing ai more deeply — round 12' closed without answering its own question: 'What is there about this game-playing ai that my earlier notes on it are missing?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+        "priority": 3,
+        "kind": "research",
+        "source": "intrinsic",
+        "tier": "growth",
+        "driven_by": "world_knowledge",
+        "created_ts": "2026-10-08T00:18:21.942567+00:00",
+        "status": "proposed",
+        "milestones": [
+          {
+            "text": "An answer to 'What is there about this game-playing ai that my earlier not' was found.",
+            "met": true,
+            "met_at": 1791418726.788604,
+            "evidence_source": "keyword_overlap"
+          },
+          {
+            "text": "The answer was written to long memory.",
+            "met": false,
+            "met_at": null
+          }
+        ],
+        "spec": {
+          "queries": [
+            "What is there about this game-playing ai that my earlier notes on it are missing?"
+          ],
+          "synth_kind": "memo",
+          "build_on_prior": true,
+          "zone": "world",
+          "orientation": "worldward",
+          "definition_of_done": [
+            {
+              "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+              "kind": "quality",
+              "met": false,
+              "ladder_rung": 5
+            },
+            {
+              "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+              "kind": "quality",
+              "met": false,
+              "ladder_rung": 5
+            }
+          ],
+          "grounded_parts": [
+            "intended outcome",
+            "required components",
+            "implementation",
+            "validation",
+            "durable result"
+          ],
+          "plan": [
+            {
+              "step": "Establish intended outcome",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:22.046811Z"
+            },
+            {
+              "step": "Establish required components",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:22.046819Z"
+            },
+            {
+              "step": "Establish implementation",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:22.046821Z"
+            },
+            {
+              "step": "Establish validation",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:22.046822Z"
+            },
+            {
+              "step": "Establish durable result",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:22.046824Z"
+            }
+          ],
+          "milestones": [
+            {
+              "text": "An answer to 'What is there about this game-playing ai that my earlier not' was found.",
+              "met": false,
+              "met_at": null
+            },
+            {
+              "text": "The answer was written to long memory.",
+              "met": false,
+              "met_at": null
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:18:22.046841Z"
+        },
+        "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+        "requires_artifact": true,
+        "deadline_cycles": 200,
+        "definition_of_done": [
+          {
+            "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+            "kind": "quality",
+            "met": false,
+            "ladder_rung": 5
+          },
+          {
+            "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+            "kind": "quality",
+            "met": false,
+            "ladder_rung": 5
+          }
+        ],
+        "ladder_rung": 5,
+        "zone": "world",
+        "orientation": "worldward",
+        "tags": [
+          "worldward",
+          "external"
+        ],
+        "parent_question_goal": "g_4db090a7b8",
+        "grounded_parts": [
+          "intended outcome",
+          "required components",
+          "implementation",
+          "validation",
+          "durable result"
+        ],
+        "plan": [
+          {
+            "step": "Establish intended outcome",
+            "status": "completed",
+            "generated_at": "2026-10-08T00:18:22.046811Z",
+            "completed_at": "2026-10-08T00:20:04.303217Z"
+          },
+          {
+            "step": "Establish required components",
+            "status": "completed",
+            "generated_at": "2026-10-08T00:18:22.046819Z",
+            "completed_at": "2026-10-08T00:20:40.843891Z"
+          },
+          {
+            "step": "Establish implementation",
+            "status": "completed",
+            "generated_at": "2026-10-08T00:18:22.046821Z",
+            "completed_at": "2026-10-08T00:22:19.161448Z"
+          },
+          {
+            "step": "Establish validation",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:22.046822Z"
+          },
+          {
+            "step": "Establish durable result",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:22.046824Z"
+          }
+        ],
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-10-08T00:18:22.046841Z",
+        "timestamp": "2026-10-08T00:18:22.046845Z",
+        "last_updated": "2026-10-08T00:18:22.046845Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:18:22.046845Z"
+          }
+        ],
+        "id": "g_764d98e9c1fc",
+        "_lm_research_baseline": 126,
+        "_last_progress_cycle": 15368,
+        "_step_attempts": {
+          "Establish validation": 2
+        },
+        "answered": false,
+        "_epistemic_blocks": 2
+      },
+      {
+        "title": "Turn what I know about this game-playing ai — round 12 into a written synthesis",
+        "name": "Turn what I know about this game-playing ai — round 12 into a written synthesis",
+        "status": "completed",
+        "source": "commitment",
+        "driven_by": "will",
+        "serves": "Understand the world more deeply",
+        "definition_of_done": [
+          {
+            "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "kind": "artifact",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+            "kind": "sections",
+            "target": 3,
+            "met": false
+          },
+          {
+            "criterion": "Each completed section advances the stated purpose without placeholder text.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "gathered source material",
+          "a cited primary source",
+          "synthesized sections",
+          "coherence review",
+          "final manuscript"
+        ],
+        "plan": [
+          {
+            "step": "Gather source material on the topic with research_topic",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:36.939342Z",
+            "action": {
+              "function": "research_topic",
+              "purpose": "gather_material",
+              "topic": "Gather source material on the topic with research_topic"
+            }
+          },
+          {
+            "step": "Read one primary source in depth with fetch_and_read",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:36.939355Z",
+            "action": {
+              "function": "fetch_and_read",
+              "purpose": "gather_material",
+              "topic": "Read one primary source in depth with fetch_and_read"
+            }
+          },
+          {
+            "step": "Synthesize a section from the gathered sources",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:36.939357Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Synthesize a section from the gathered sources"
+            }
+          },
+          {
+            "step": "Review the manuscript for coherence",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:36.939358Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Review the manuscript for coherence"
+            }
+          },
+          {
+            "step": "Complete the final manuscript",
+            "status": "pending",
+            "generated_at": "2026-10-08T00:18:36.939360Z",
+            "action": {
+              "function": "compose_section",
+              "artifact_kind": "tracked_work",
+              "section": "Complete the final manuscript"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+            "criterion_kind": "artifact",
+            "met": false
+          },
+          {
+            "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+            "criterion_kind": "sections",
+            "met": false
+          },
+          {
+            "milestone": "Each completed section advances the stated purpose without placeholder text.",
+            "criterion_kind": "quality",
+            "met": false
+          }
+        ],
+        "requires_artifact": true,
+        "tracked_work": true,
+        "comprehension_source": "symbolic",
+        "artifact_strategy": {
+          "function": "compose_section",
+          "artifact_kind": "tracked_work"
+        },
+        "comprehended_at": "2026-10-08T00:18:36.939375Z",
+        "spec": {
+          "definition_of_done": [
+            {
+              "criterion": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "kind": "artifact",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "The manuscript has an explicit outline with at least three substantive sections.",
+              "kind": "sections",
+              "target": 3,
+              "met": false
+            },
+            {
+              "criterion": "Each completed section advances the stated purpose without placeholder text.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "gathered source material",
+            "a cited primary source",
+            "synthesized sections",
+            "coherence review",
+            "final manuscript"
+          ],
+          "plan": [
+            {
+              "step": "Gather source material on the topic with research_topic",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:36.939342Z",
+              "action": {
+                "function": "research_topic",
+                "purpose": "gather_material",
+                "topic": "Gather source material on the topic with research_topic"
+              }
+            },
+            {
+              "step": "Read one primary source in depth with fetch_and_read",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:36.939355Z",
+              "action": {
+                "function": "fetch_and_read",
+                "purpose": "gather_material",
+                "topic": "Read one primary source in depth with fetch_and_read"
+              }
+            },
+            {
+              "step": "Synthesize a section from the gathered sources",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:36.939357Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Synthesize a section from the gathered sources"
+              }
+            },
+            {
+              "step": "Review the manuscript for coherence",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:36.939358Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Review the manuscript for coherence"
+              }
+            },
+            {
+              "step": "Complete the final manuscript",
+              "status": "pending",
+              "generated_at": "2026-10-08T00:18:36.939360Z",
+              "action": {
+                "function": "compose_section",
+                "artifact_kind": "tracked_work",
+                "section": "Complete the final manuscript"
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "milestone": "A persistent manuscript exists and contains a clear purpose or thesis.",
+              "criterion_kind": "artifact",
+              "met": false
+            },
+            {
+              "milestone": "The manuscript has an explicit outline with at least three substantive sections.",
+              "criterion_kind": "sections",
+              "met": false
+            },
+            {
+              "milestone": "Each completed section advances the stated purpose without placeholder text.",
+              "criterion_kind": "quality",
+              "met": false
+            }
+          ],
+          "requires_artifact": true,
+          "tracked_work": true,
+          "artifact_strategy": {
+            "function": "compose_section",
+            "artifact_kind": "tracked_work"
+          },
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-10-08T00:18:36.939375Z"
+        },
+        "timestamp": "2026-10-08T00:18:36.939379Z",
+        "last_updated": "2026-10-08T00:18:38.741719Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-10-08T00:18:36.939379Z"
+          },
+          {
+            "event": "closed_from_v2_event",
+            "v2_status": "DONE",
+            "timestamp": "2026-10-08T00:18:38.741719Z"
+          }
+        ],
+        "id": "g_b93a1252c2bd"
+      }
+    ],
+    "id": "g_13d332a55762"
+  },
+  {
+    "id": "g_4db090a7b8",
+    "title": "Understand this game-playing ai more deeply — round 12",
+    "name": "Understand this game-playing ai more deeply — round 12",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "this game-playing ai recent research",
+        "this game-playing ai common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_081d8108f6",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:18:14.753320Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:18:14.753330Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:18:14.753332Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:18:14.753333Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:18:14.753334Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on this game-playing ai was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about this game-playing ai was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:18:14.753350Z",
+      "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:18:14.753320Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:18:14.753330Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:18:14.753332Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:18:14.753333Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:18:14.753334Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on this game-playing ai was researched.",
+        "met": true,
+        "met_at": 1791418714.799583,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about this game-playing ai was written to long memory.",
+        "met": true,
+        "met_at": 1791418714.799583,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-10-08T00:18:14.753350Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-10-08T00:18:19.777852Z",
+    "last_updated": "2026-10-08T00:18:34.800390Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-10-08T00:18:19.777852Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-10-08T00:18:34.800390Z"
+      }
+    ],
+    "_lm_research_baseline": 126,
+    "_last_progress_cycle": 15367,
+    "completed_timestamp": "2026-10-08T00:18:34.800390Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "title": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+    "name": "Answer: What is there about The Daily Stoic that my earlier notes on it are missing?",
+    "description": "My goal 'Understand The Daily Stoic more deeply — round 20' closed without answering its own question: 'What is there about The Daily Stoic that my earlier notes on it are missing?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "research",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-10-08T00:14:44.047549+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What is there about The Daily Stoic that my earlier notes on' was found.",
+        "met": true,
+        "met_at": 1791418599.062749,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1791418639.191967,
+        "evidence_source": "research_lm_growth"
+      }
+    ],
+    "spec": {
+      "queries": [
+        "What is there about The Daily Stoic that my earlier notes on it are missing?"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:44.202245Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:44.202253Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:44.202255Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:44.202256Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:44.202258Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What is there about The Daily Stoic that my earlier notes on' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:14:44.202284Z"
+    },
+    "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+    "requires_artifact": true,
+    "deadline_cycles": 200,
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      }
+    ],
+    "ladder_rung": 5,
+    "zone": "world",
+    "orientation": "worldward",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "parent_question_goal": "g_3d28e98e68",
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-10-08T00:14:44.202245Z",
+        "completed_at": "2026-10-08T00:16:39.000352Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "completed",
+        "generated_at": "2026-10-08T00:14:44.202253Z",
+        "completed_at": "2026-10-08T00:17:19.046882Z"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:44.202255Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:44.202256Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:44.202258Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-10-08T00:14:44.202284Z",
+    "timestamp": "2026-10-08T00:14:44.202289Z",
+    "last_updated": "2026-10-08T00:17:35.224224Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-10-08T00:14:44.202289Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-10-08T00:17:35.224224Z"
+      }
+    ],
+    "id": "g_6adff5a14f47",
+    "_step_attempts": {},
+    "_lm_research_baseline": 125,
+    "answered": false,
+    "_epistemic_blocks": 2,
+    "_last_progress_cycle": 15366,
+    "completed_timestamp": "2026-10-08T00:17:35.224224Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "title": "Answer: What actually is but what if there, beyond the mentions I keep seeing?",
+    "name": "Answer: What actually is but what if there, beyond the mentions I keep seeing?",
+    "description": "My goal 'Understand but what if there more deeply — round 4' closed without answering its own question: 'What actually is but what if there, beyond the mentions I keep seeing?'. Answer THAT question specifically — not the topic in general — and write the answer to long memory.",
+    "priority": 3,
+    "kind": "research",
+    "source": "intrinsic",
+    "tier": "growth",
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-10-08T00:14:42.091418+00:00",
+    "status": "completed",
+    "milestones": [
+      {
+        "text": "An answer to 'What actually is but what if there, beyond the mentions I ke' was found.",
+        "met": true,
+        "met_at": 1791418557.385922,
+        "evidence_source": "keyword_overlap"
+      },
+      {
+        "text": "The answer was written to long memory.",
+        "met": true,
+        "met_at": 1791418637.568026,
+        "evidence_source": "research_lm_growth"
+      }
+    ],
+    "spec": {
+      "queries": [
+        "What actually is but what if there, beyond the mentions I keep seeing?"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:42.207720Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:42.207729Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:42.207742Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:42.207743Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:42.207745Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is but what if there, beyond the mentions I ke' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:14:42.207762Z"
+    },
+    "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+    "requires_artifact": true,
+    "deadline_cycles": 200,
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      }
+    ],
+    "ladder_rung": 5,
+    "zone": "world",
+    "orientation": "worldward",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "parent_question_goal": "g_25a7aa5c76",
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "completed",
+        "generated_at": "2026-10-08T00:14:42.207720Z",
+        "completed_at": "2026-10-08T00:16:38.702141Z"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:42.207729Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:42.207742Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:42.207743Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:42.207745Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-10-08T00:14:42.207762Z",
+    "timestamp": "2026-10-08T00:14:42.207766Z",
+    "last_updated": "2026-10-08T00:17:17.584391Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-10-08T00:14:42.207766Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-10-08T00:17:17.584391Z"
+      }
+    ],
+    "id": "g_a90956b9ce59",
+    "_step_attempts": {},
+    "_lm_research_baseline": 125,
+    "_last_progress_cycle": 15365,
+    "answered": false,
+    "_epistemic_blocks": 1,
+    "completed_timestamp": "2026-10-08T00:17:17.584391Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_3656422afd",
+    "title": "Understand The Daily Stoic more deeply — round 21",
+    "name": "Understand The Daily Stoic more deeply — round 21",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "The Daily Stoic relationship to other fields",
+        "The Daily Stoic key figures and works"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3954229c1a",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:15:00.834404Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:15:00.834413Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:15:00.834415Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:15:00.834417Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:15:00.834439Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on The Daily Stoic was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about The Daily Stoic was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:15:00.834515Z",
+      "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:15:00.834404Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:15:00.834413Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:15:00.834415Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:15:00.834417Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:15:00.834439Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on The Daily Stoic was researched.",
+        "met": true,
+        "met_at": 1791418512.995991,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about The Daily Stoic was written to long memory.",
+        "met": true,
+        "met_at": 1791418512.995991,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-10-08T00:15:00.834515Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-10-08T00:15:06.151479Z",
+    "last_updated": "2026-10-08T00:15:12.996987Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-10-08T00:15:06.151479Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-10-08T00:15:12.996987Z"
+      }
+    ],
+    "_lm_research_baseline": 125,
+    "_last_progress_cycle": 15355,
+    "completed_timestamp": "2026-10-08T00:15:12.996987Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "g_25a7aa5c76",
+    "title": "Understand but what if there more deeply — round 4",
+    "name": "Understand but what if there more deeply — round 4",
+    "kind": "research",
+    "tier": "growth",
+    "priority": "CRITICAL",
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "spec": {
+      "queries": [
+        "but what if there recent research",
+        "but what if there common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_8763455e59",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841371Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841378Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841380Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841382Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841383Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on but what if there was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about but what if there was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:14:35.841399Z",
+      "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "next_action": null,
+    "deadline": null,
+    "status": "completed",
+    "definition_of_done": [
+      {
+        "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      },
+      {
+        "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+        "kind": "quality",
+        "met": false,
+        "ladder_rung": 5
+      }
+    ],
+    "grounded_parts": [
+      "intended outcome",
+      "required components",
+      "implementation",
+      "validation",
+      "durable result"
+    ],
+    "plan": [
+      {
+        "step": "Establish intended outcome",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:35.841371Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish required components",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:35.841378Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish implementation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:35.841380Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish validation",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:35.841382Z",
+        "skip_reason": "goal completed"
+      },
+      {
+        "step": "Establish durable result",
+        "status": "skipped",
+        "generated_at": "2026-10-08T00:14:35.841383Z",
+        "skip_reason": "goal completed"
+      }
+    ],
+    "milestones": [
+      {
+        "text": "A new angle on but what if there was researched.",
+        "met": true,
+        "met_at": 1791418494.0090728,
+        "evidence_source": "goal_effect"
+      },
+      {
+        "text": "A new fact about but what if there was written to long memory.",
+        "met": true,
+        "met_at": 1791418494.0090728,
+        "evidence_source": "goal_effect"
+      }
+    ],
+    "requires_artifact": true,
+    "tracked_work": false,
+    "comprehension_source": "symbolic",
+    "comprehended_at": "2026-10-08T00:14:35.841399Z",
+    "driven_by": "world_knowledge",
+    "source": "intrinsic",
+    "zone": "world",
+    "orientation": "worldward",
+    "timestamp": "2026-10-08T00:14:40.784657Z",
+    "last_updated": "2026-10-08T00:14:54.032260Z",
+    "history": [
+      {
+        "event": "created",
+        "timestamp": "2026-10-08T00:14:40.784657Z"
+      },
+      {
+        "event": "completed",
+        "timestamp": "2026-10-08T00:14:54.032260Z"
+      }
+    ],
+    "_lm_research_baseline": 125,
+    "_last_progress_cycle": 15354,
+    "completed_timestamp": "2026-10-08T00:14:54.032260Z",
+    "satisfied_need": "exploration_drive",
+    "satisfaction_evidence": {
+      "grounded": true,
+      "milestones_met": 2,
+      "milestones_total": 2,
+      "verified_artifact": false,
+      "significance": 1.21
+    }
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "dormant",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-10-06T19:35:04.150596+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-10-06T22:05:53.459039+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-10-07T03:16:40.261371+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 14,
+    "partial_credit": 0.0,
+    "progress": 0.7,
+    "recent_contributions": [
+      "Leave Ric a note about history of written language",
+      "Leave Ric a note about world a world",
+      "Reflect on my open question: Where am I confusing comfort with correctness?",
+      "Reflect on my open question: What is there about this game-playing ai that my ea",
+      "Leave Ric a note about round the sun"
+    ],
+    "last_contribution_ts": "2026-10-07T22:40:46.915801+00:00",
+    "_lm_research_baseline": 51,
+    "plan": [
+      {
+        "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+        "status": "pending",
+        "generated_at": "2026-10-06T21:11:24.799176Z",
+        "inserted_reason": "blocker_detected"
+      }
+    ],
+    "last_updated": "2026-10-07T04:41:44.981933+00:00",
+    "_plan_versions": [
+      {
+        "version": 0,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T21:11:24.799176Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:25:38.159014+00:00",
+        "reason": "adapt_subgoals"
+      }
+    ],
+    "motivational_weight": 0.2
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-10-06T19:35:04.150596+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "_lm_research_baseline": 3,
+    "plan": [
+      {
+        "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+        "status": "completed",
+        "generated_at": "2026-10-06T19:39:28.779366Z",
+        "inserted_reason": "blocker_detected",
+        "completed_at": "2026-10-07T13:34:57.132709Z"
+      }
+    ],
+    "last_updated": "2026-10-06T19:39:28.779379Z",
+    "_plan_versions": [
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T19:39:28.779366Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:00:03.387882+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T19:39:28.779366Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:16:39.693795+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T19:39:28.779366Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:23:57.865050+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T19:39:28.779366Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:28:03.269261+00:00",
+        "reason": "adapt_subgoals"
+      },
+      {
+        "version": 5,
+        "steps": [
+          {
+            "step": "Resolve blocker: [metacog/pattern] Something feels slightly off in my recent thinking, though I can't quite name it.",
+            "status": "pending",
+            "generated_at": "2026-10-06T19:39:28.779366Z",
+            "inserted_reason": "blocker_detected"
+          }
+        ],
+        "saved_at": "2026-10-06T21:32:58.145712+00:00",
+        "reason": "adapt_subgoals"
+      }
+    ],
+    "last_contribution_ts": "2026-10-07T21:16:30.014658+00:00",
+    "tracked_work_path": "/Users/ricmassey/orrin_v3/brain/data/tracked_work/aspiration-output_producing.md",
+    "tracked_work": true
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-10-06T19:35:04.150596+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-10-06T21:57:34.653996+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-10-07T12:47:51.221949+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 11,
+    "partial_credit": 0.0,
+    "progress": 0.55,
+    "recent_contributions": [
+      "Characterize what makes my CPU load climb",
+      "Trace in my own history what drives 'no net progress on either goal'",
+      "Trace in my own history what drives 'commitment'",
+      "Understand my own mind and how I work more deeply",
+      "Reflect on my open question: What do I now know about my own mind and how I work"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 307,
+    "last_contribution_ts": "2026-10-07T23:45:28.913934+00:00",
+    "tracked_work_path": "/Users/ricmassey/orrin_v3/brain/data/tracked_work/aspiration-self_understanding.md",
+    "tracked_work": true
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-10-06T19:35:04.150596+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-10-06T20:02:07.786839+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-10-06T20:25:57.436473+00:00"
+      },
+      {
+        "auto": true,
+        "label": "15 contributions toward this",
+        "reached_ts": "2026-10-06T21:13:08.087954+00:00"
+      },
+      {
+        "auto": true,
+        "label": "20 contributions toward this",
+        "reached_ts": "2026-10-06T21:35:32.498644+00:00"
+      },
+      {
+        "auto": true,
+        "label": "25 contributions toward this",
+        "reached_ts": "2026-10-06T21:35:32.498661+00:00"
+      },
+      {
+        "auto": true,
+        "label": "30 contributions toward this",
+        "reached_ts": "2026-10-06T22:25:23.792822+00:00"
+      },
+      {
+        "auto": true,
+        "label": "35 contributions toward this",
+        "reached_ts": "2026-10-06T22:25:23.792833+00:00"
+      },
+      {
+        "auto": true,
+        "label": "40 contributions toward this",
+        "reached_ts": "2026-10-06T22:33:41.797078+00:00"
+      },
+      {
+        "auto": true,
+        "label": "45 contributions toward this",
+        "reached_ts": "2026-10-06T22:40:13.229191+00:00"
+      },
+      {
+        "auto": true,
+        "label": "50 contributions toward this",
+        "reached_ts": "2026-10-06T23:12:15.500815+00:00"
+      },
+      {
+        "auto": true,
+        "label": "55 contributions toward this",
+        "reached_ts": "2026-10-06T23:15:53.679092+00:00"
+      },
+      {
+        "auto": true,
+        "label": "60 contributions toward this",
+        "reached_ts": "2026-10-06T23:17:32.647141+00:00"
+      },
+      {
+        "auto": true,
+        "label": "65 contributions toward this",
+        "reached_ts": "2026-10-06T23:21:04.120042+00:00"
+      },
+      {
+        "auto": true,
+        "label": "70 contributions toward this",
+        "reached_ts": "2026-10-06T23:57:19.608611+00:00"
+      },
+      {
+        "auto": true,
+        "label": "75 contributions toward this",
+        "reached_ts": "2026-10-07T00:18:05.200606+00:00"
+      },
+      {
+        "auto": true,
+        "label": "80 contributions toward this",
+        "reached_ts": "2026-10-07T00:25:51.845837+00:00"
+      },
+      {
+        "auto": true,
+        "label": "85 contributions toward this",
+        "reached_ts": "2026-10-07T00:54:25.811222+00:00"
+      },
+      {
+        "auto": true,
+        "label": "90 contributions toward this",
+        "reached_ts": "2026-10-07T01:56:12.755454+00:00"
+      },
+      {
+        "auto": true,
+        "label": "95 contributions toward this",
+        "reached_ts": "2026-10-07T02:59:58.899433+00:00"
+      },
+      {
+        "auto": true,
+        "label": "100 contributions toward this",
+        "reached_ts": "2026-10-07T02:59:58.899446+00:00"
+      },
+      {
+        "auto": true,
+        "label": "105 contributions toward this",
+        "reached_ts": "2026-10-07T03:07:18.028120+00:00"
+      },
+      {
+        "auto": true,
+        "label": "110 contributions toward this",
+        "reached_ts": "2026-10-07T03:39:07.533663+00:00"
+      },
+      {
+        "auto": true,
+        "label": "115 contributions toward this",
+        "reached_ts": "2026-10-07T04:17:00.775535+00:00"
+      },
+      {
+        "auto": true,
+        "label": "120 contributions toward this",
+        "reached_ts": "2026-10-07T05:02:12.168805+00:00"
+      },
+      {
+        "auto": true,
+        "label": "125 contributions toward this",
+        "reached_ts": "2026-10-07T05:05:45.044454+00:00"
+      },
+      {
+        "auto": true,
+        "label": "130 contributions toward this",
+        "reached_ts": "2026-10-07T05:31:37.344005+00:00"
+      },
+      {
+        "auto": true,
+        "label": "135 contributions toward this",
+        "reached_ts": "2026-10-07T05:34:48.339155+00:00"
+      },
+      {
+        "auto": true,
+        "label": "140 contributions toward this",
+        "reached_ts": "2026-10-07T06:58:09.305986+00:00"
+      },
+      {
+        "auto": true,
+        "label": "145 contributions toward this",
+        "reached_ts": "2026-10-07T10:39:57.687066+00:00"
+      },
+      {
+        "auto": true,
+        "label": "150 contributions toward this",
+        "reached_ts": "2026-10-07T16:57:55.293278+00:00"
+      },
+      {
+        "auto": true,
+        "label": "155 contributions toward this",
+        "reached_ts": "2026-10-07T17:22:19.214181+00:00"
+      },
+      {
+        "auto": true,
+        "label": "160 contributions toward this",
+        "reached_ts": "2026-10-07T21:45:08.870825+00:00"
+      },
+      {
+        "auto": true,
+        "label": "165 contributions toward this",
+        "reached_ts": "2026-10-07T22:33:27.517817+00:00"
+      },
+      {
+        "auto": true,
+        "label": "170 contributions toward this",
+        "reached_ts": "2026-10-07T23:14:10.588623+00:00"
+      },
+      {
+        "auto": true,
+        "label": "175 contributions toward this",
+        "reached_ts": "2026-10-07T23:58:11.347968+00:00"
+      },
+      {
+        "auto": true,
+        "label": "180 contributions toward this",
+        "reached_ts": "2026-10-08T00:20:14.808836+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 181,
+    "partial_credit": 0.0,
+    "progress": 1.0,
+    "recent_contributions": [
+      "Understand foundations of quantum mechanics more deeply — round 13",
+      "Answer: What is there about The Daily Stoic that my earlier notes on it are miss",
+      "Understand evolutionary biology more deeply — round 19",
+      "Understand this game-playing ai more deeply — round 11",
+      "Understand The Daily Stoic more deeply — round 20"
+    ],
+    "last_contribution_ts": "2026-10-08T00:18:39.530464+00:00"
+  }
+]

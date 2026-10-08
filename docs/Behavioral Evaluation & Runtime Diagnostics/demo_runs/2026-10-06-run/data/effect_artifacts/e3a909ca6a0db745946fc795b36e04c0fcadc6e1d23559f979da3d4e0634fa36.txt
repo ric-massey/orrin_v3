@@ -1,0 +1,134 @@
+{
+  "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology",
+    "cooperation"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "Biology",
+    "scientific study of life and living organisms",
+    "Central to biology",
+    "five fundamental themes",
+    "Modern biology",
+    "grounded in the theory of evolution by natural selection",
+    "the free encyclopedia Subfield of biology This article",
+    "orphan",
+    "Change in the heritable traits of populations This article",
+    "about evolution in biology",
+    "behaviors or traits that occur universally in all cultures",
+    "good candidates for evolutionary adaptations",
+    "Evolutionary psychology",
+    "long-forestalled scientific attempt to assemble out of the disjointed"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_afa70daad9]"
+    },
+    {
+      "subject": "Biology",
+      "predicate": "is the",
+      "object": "scientific study of life and living organisms",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Central to biology",
+      "predicate": "are",
+      "object": "five fundamental themes",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "Modern biology",
+      "predicate": "is",
+      "object": "grounded in the theory of evolution by natural selection",
+      "source": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "subject": "the free encyclopedia Subfield of biology This article",
+      "predicate": "is an",
+      "object": "orphan",
+      "source": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology"
+    },
+    {
+      "subject": "Change in the heritable traits of populations This article",
+      "predicate": "is",
+      "object": "about evolution in biology",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "behaviors or traits that occur universally in all cultures",
+      "predicate": "are",
+      "object": "good candidates for evolutionary adaptations",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "Evolutionary psychology",
+      "predicate": "is the",
+      "object": "long-forestalled scientific attempt to assemble out of the disjointed",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "subject": "New discoveries in evolutionary developmental biology",
+      "predicate": "are",
+      "object": "providing explanations for these phenomena on a molecular level",
+      "source": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "subject": "phylogeny",
+      "predicate": "is the",
+      "object": "evolutionary history of a species",
+      "source": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "subject": "the free encyclopedia Evolutionary process This article",
+      "predicate": "is",
+      "object": "about the evolutionary process",
+      "source": "https://en.wikipedia.org/wiki/Adaptation"
+    },
+    {
+      "subject": "Adaptation",
+      "predicate": "is a",
+      "object": "major topic in the philosophy of biology",
+      "source": "https://en.wikipedia.org/wiki/Adaptation"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_afa70daad9]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ecological_evolutionary_developmental_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taxonomy_%28biology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Recapitulation_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Adaptation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Isaak_Prezent"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_psychiatry"
+    }
+  ],
+  "ts": "2026-10-07T02:35:56.998006+00:00"
+}

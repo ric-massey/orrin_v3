@@ -1,0 +1,117 @@
+{
+  "queries": [
+    "world",
+    "world explained",
+    "what is not obvious about world"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/World_War_II",
+    "https://en.wikipedia.org/wiki/Hello%2C_world",
+    "https://en.wikipedia.org/wiki/World_War_I",
+    "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+    "https://en.wikipedia.org/wiki/Consciousness_Explained",
+    "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/Obvious_Child",
+    "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem",
+    "https://en.wikipedia.org/wiki/Evan_Williams_%28Internet_entrepreneur%29",
+    "https://en.wikipedia.org/wiki/Fear_Not_the_Obvious",
+    "https://en.wikipedia.org/wiki/A_Different_World_%282026_TV_series%29"
+  ],
+  "results": [
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "A <span class=\"searchmatch\">world</span> is a totality of entities. In philosophy, the <span class=\"searchmatch\">world</span> is customarily viewed as all of existence or the whole of reality. Some conceptions see the",
+      "query": "world"
+    },
+    {
+      "title": "World (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+      "snippet": "Look up <span class=\"searchmatch\">world</span> in Wiktionary, the free dictionary. The <span class=\"searchmatch\">world</span> is the totality of existing entities. It is also common name for the whole of human civilization",
+      "query": "world"
+    },
+    {
+      "title": "World War II",
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "snippet": "<span class=\"searchmatch\">World</span> War II, or the Second <span class=\"searchmatch\">World</span> War (1 September 1939 – 2 September 1945), was a global conflict between two coalitions: the Allies and the Axis powers",
+      "query": "world"
+    },
+    {
+      "title": "Hello, world",
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "snippet": "A &quot;Hello, <span class=\"searchmatch\">world</span>&quot; program is usually a simple computer program that outputs a message similar to &quot;Hello, <span class=\"searchmatch\">world</span>&quot;. The text may be printed out or displayed",
+      "query": "world"
+    },
+    {
+      "title": "World War I",
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "snippet": "<span class=\"searchmatch\">World</span> War I, or the First <span class=\"searchmatch\">World</span> War (28 July 1914 – 11 November 1918), also known as the Great War, was a global conflict between two coalitions: the",
+      "query": "world"
+    },
+    {
+      "title": "Sex, Explained",
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "snippet": "Sex, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span>, is a spin-off of the television",
+      "query": "world explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "world explained"
+    },
+    {
+      "title": "Coronavirus, Explained",
+      "url": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+      "snippet": "Coronavirus, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span> and Sex, <span class=\"searchmatch\">Explained</span>, is a spin-off",
+      "query": "world explained"
+    },
+    {
+      "title": "Consciousness Explained",
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "snippet": "a theory that <span class=\"searchmatch\">explained</span> conscious events in terms of unconscious events could <span class=\"searchmatch\">explain</span> consciousness at all: &quot;To <span class=\"searchmatch\">explain</span> is to <span class=\"searchmatch\">explain</span> away&quot;.[page needed]",
+      "query": "world explained"
+    },
+    {
+      "title": "Explained (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "snippet": "The Mind, <span class=\"searchmatch\">Explained</span>, a series focused specifically on topics related to the human brain. On January 4, 2020, a follow-up titled Sex, <span class=\"searchmatch\">Explained</span> was released",
+      "query": "world explained"
+    },
+    {
+      "title": "Obvious Child",
+      "url": "https://en.wikipedia.org/wiki/Obvious_Child",
+      "snippet": "<span class=\"searchmatch\">Obvious</span> Child <span class=\"searchmatch\">is</span> a 2014 American romantic comedy-drama film written and directed by Gillian Robespierre (in her directorial debut) and stars Jenny Slate",
+      "query": "what is not obvious about world"
+    },
+    {
+      "title": "Is–ought problem",
+      "url": "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem",
+      "snippet": "descriptive statements (<span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> <span class=\"searchmatch\">is</span>) and prescriptive statements (<span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> ought to be). He argued that it <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> <span class=\"searchmatch\">obvious</span> how one can coherently transition",
+      "query": "what is not obvious about world"
+    },
+    {
+      "title": "Evan Williams (Internet entrepreneur)",
+      "url": "https://en.wikipedia.org/wiki/Evan_Williams_%28Internet_entrepreneur%29",
+      "snippet": "firm <span class=\"searchmatch\">Obvious</span> Ventures with James Joaquin and Vishal Vasishth. The firm <span class=\"searchmatch\">is</span> focused on companies they believe can make a positive change in the <span class=\"searchmatch\">world</span>. Since",
+      "query": "what is not obvious about world"
+    },
+    {
+      "title": "Fear Not the Obvious",
+      "url": "https://en.wikipedia.org/wiki/Fear_Not_the_Obvious",
+      "snippet": "Fear <span class=\"searchmatch\">Not</span> the <span class=\"searchmatch\">Obvious</span> <span class=\"searchmatch\">is</span> the first album by the Yayhoos, released in 2001. &quot;Bottle and a Bible&quot; was included on the Ace Records compilation of songs played",
+      "query": "what is not obvious about world"
+    },
+    {
+      "title": "A Different World (2026 TV series)",
+      "url": "https://en.wikipedia.org/wiki/A_Different_World_%282026_TV_series%29",
+      "snippet": "A Different <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">is</span> an American comedy television series and a revival of the 1987–1993 NBC sitcom of the same title. The series stars Maleah Joi Moon",
+      "query": "what is not obvious about world"
+    }
+  ],
+  "ts": "2026-10-07T14:45:02.521222+00:00"
+}

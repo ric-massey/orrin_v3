@@ -1,0 +1,8013 @@
+{
+  "history": {
+    "commitment_driver": [
+      {
+        "ts": 1791366352.2,
+        "entropy": 0.8742,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366478.9,
+        "entropy": 0.8808,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366579.4,
+        "entropy": 0.879,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366682.2,
+        "entropy": 0.8898,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366770.6,
+        "entropy": 0.8795,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366867.6,
+        "entropy": 0.8771,
+        "distinct": 3
+      },
+      {
+        "ts": 1791366957.0,
+        "entropy": 0.8773,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367054.1,
+        "entropy": 0.8816,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367152.1,
+        "entropy": 0.8701,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367264.4,
+        "entropy": 0.831,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367357.5,
+        "entropy": 0.8165,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367451.2,
+        "entropy": 0.7926,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367550.7,
+        "entropy": 0.8085,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367652.3,
+        "entropy": 0.7921,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367740.4,
+        "entropy": 0.7839,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367832.9,
+        "entropy": 0.7755,
+        "distinct": 3
+      },
+      {
+        "ts": 1791367934.3,
+        "entropy": 0.7839,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368033.5,
+        "entropy": 0.7894,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368152.6,
+        "entropy": 0.77,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368278.6,
+        "entropy": 0.7988,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368387.4,
+        "entropy": 0.771,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368484.7,
+        "entropy": 0.783,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368626.7,
+        "entropy": 0.7623,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368729.4,
+        "entropy": 0.7623,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368825.5,
+        "entropy": 0.7839,
+        "distinct": 3
+      },
+      {
+        "ts": 1791368942.5,
+        "entropy": 0.8163,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369098.0,
+        "entropy": 0.8344,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369187.9,
+        "entropy": 0.8675,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369288.0,
+        "entropy": 0.8675,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369389.6,
+        "entropy": 0.8791,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369506.4,
+        "entropy": 0.8766,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369613.1,
+        "entropy": 0.8655,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369717.5,
+        "entropy": 0.8278,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369828.7,
+        "entropy": 0.7967,
+        "distinct": 3
+      },
+      {
+        "ts": 1791369921.2,
+        "entropy": 0.8044,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370039.1,
+        "entropy": 0.7884,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370134.2,
+        "entropy": 0.8087,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370234.9,
+        "entropy": 0.8202,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370329.0,
+        "entropy": 0.8,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370424.5,
+        "entropy": 0.7963,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370526.1,
+        "entropy": 0.8165,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370638.5,
+        "entropy": 0.7967,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370729.5,
+        "entropy": 0.8236,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370874.6,
+        "entropy": 0.7926,
+        "distinct": 3
+      },
+      {
+        "ts": 1791370963.3,
+        "entropy": 0.812,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371063.9,
+        "entropy": 0.7926,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371151.3,
+        "entropy": 0.7921,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371246.9,
+        "entropy": 0.8234,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371395.1,
+        "entropy": 0.855,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371513.8,
+        "entropy": 0.8766,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371650.9,
+        "entropy": 0.8659,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371749.0,
+        "entropy": 0.8829,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371845.4,
+        "entropy": 0.874,
+        "distinct": 3
+      },
+      {
+        "ts": 1791371943.8,
+        "entropy": 0.8803,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372033.9,
+        "entropy": 0.8726,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372137.6,
+        "entropy": 0.8871,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372242.1,
+        "entropy": 0.875,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372328.4,
+        "entropy": 0.8838,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372443.7,
+        "entropy": 0.8814,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372535.1,
+        "entropy": 0.8864,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372645.9,
+        "entropy": 0.8924,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372752.4,
+        "entropy": 0.8972,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372859.4,
+        "entropy": 0.8876,
+        "distinct": 3
+      },
+      {
+        "ts": 1791372960.8,
+        "entropy": 0.8803,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373068.5,
+        "entropy": 0.8647,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373157.7,
+        "entropy": 0.8675,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373268.9,
+        "entropy": 0.8675,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373358.7,
+        "entropy": 0.8675,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373455.3,
+        "entropy": 0.8713,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373603.9,
+        "entropy": 0.8589,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373710.8,
+        "entropy": 0.8752,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373811.8,
+        "entropy": 0.855,
+        "distinct": 3
+      },
+      {
+        "ts": 1791373923.8,
+        "entropy": 0.8626,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374016.4,
+        "entropy": 0.855,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374127.6,
+        "entropy": 0.8655,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374228.4,
+        "entropy": 0.8589,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374341.0,
+        "entropy": 0.8489,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374440.7,
+        "entropy": 0.8526,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374549.8,
+        "entropy": 0.8492,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374639.3,
+        "entropy": 0.8718,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374747.4,
+        "entropy": 0.8811,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374844.3,
+        "entropy": 0.8718,
+        "distinct": 3
+      },
+      {
+        "ts": 1791374961.0,
+        "entropy": 0.8718,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375050.8,
+        "entropy": 0.8751,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375160.5,
+        "entropy": 0.89,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375252.7,
+        "entropy": 0.8872,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375370.8,
+        "entropy": 0.8811,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375466.2,
+        "entropy": 0.8782,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375637.6,
+        "entropy": 0.8871,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375734.3,
+        "entropy": 0.8837,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375862.1,
+        "entropy": 0.8658,
+        "distinct": 3
+      },
+      {
+        "ts": 1791375963.1,
+        "entropy": 0.8778,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376094.5,
+        "entropy": 0.872,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376269.9,
+        "entropy": 0.8492,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376400.6,
+        "entropy": 0.8236,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376508.8,
+        "entropy": 0.7926,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376630.1,
+        "entropy": 0.7965,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376729.5,
+        "entropy": 0.7799,
+        "distinct": 3
+      },
+      {
+        "ts": 1791376912.5,
+        "entropy": 0.7965,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377000.1,
+        "entropy": 0.7963,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377158.5,
+        "entropy": 0.7884,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377256.4,
+        "entropy": 0.8126,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377394.2,
+        "entropy": 0.8347,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377549.5,
+        "entropy": 0.8307,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377657.4,
+        "entropy": 0.8236,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377826.0,
+        "entropy": 0.8162,
+        "distinct": 3
+      },
+      {
+        "ts": 1791377949.0,
+        "entropy": 0.8347,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378052.2,
+        "entropy": 0.8347,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378162.6,
+        "entropy": 0.8347,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378260.1,
+        "entropy": 0.869,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378378.2,
+        "entropy": 0.9037,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378507.4,
+        "entropy": 0.906,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378626.0,
+        "entropy": 0.9157,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378730.2,
+        "entropy": 0.9303,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378847.5,
+        "entropy": 0.9303,
+        "distinct": 3
+      },
+      {
+        "ts": 1791378944.8,
+        "entropy": 0.9329,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379111.7,
+        "entropy": 0.9353,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379208.8,
+        "entropy": 0.9287,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379324.2,
+        "entropy": 0.9105,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379419.7,
+        "entropy": 0.9144,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379583.1,
+        "entropy": 0.9162,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379676.3,
+        "entropy": 0.931,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379798.0,
+        "entropy": 0.9275,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379890.1,
+        "entropy": 0.9262,
+        "distinct": 3
+      },
+      {
+        "ts": 1791379985.6,
+        "entropy": 0.9348,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380106.2,
+        "entropy": 0.9392,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380110.6,
+        "entropy": 0.9392,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380222.5,
+        "entropy": 0.9227,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380322.6,
+        "entropy": 0.9366,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380496.5,
+        "entropy": 0.9293,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380646.8,
+        "entropy": 0.9366,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380783.0,
+        "entropy": 0.9427,
+        "distinct": 3
+      },
+      {
+        "ts": 1791380911.3,
+        "entropy": 0.9366,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381027.8,
+        "entropy": 0.934,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381254.5,
+        "entropy": 0.9451,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381371.0,
+        "entropy": 0.9545,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381470.2,
+        "entropy": 0.9545,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381576.1,
+        "entropy": 0.952,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381695.4,
+        "entropy": 0.9415,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381813.4,
+        "entropy": 0.9455,
+        "distinct": 3
+      },
+      {
+        "ts": 1791381980.5,
+        "entropy": 0.9467,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382087.9,
+        "entropy": 0.9456,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382266.8,
+        "entropy": 0.9506,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382439.2,
+        "entropy": 0.9437,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382548.3,
+        "entropy": 0.9395,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382668.2,
+        "entropy": 0.9561,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382838.9,
+        "entropy": 0.9353,
+        "distinct": 3
+      },
+      {
+        "ts": 1791382963.4,
+        "entropy": 0.9297,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383068.2,
+        "entropy": 0.9366,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383185.3,
+        "entropy": 0.9307,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383295.6,
+        "entropy": 0.9201,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383416.8,
+        "entropy": 0.9031,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383518.2,
+        "entropy": 0.9167,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383621.4,
+        "entropy": 0.9123,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383757.1,
+        "entropy": 0.9359,
+        "distinct": 3
+      },
+      {
+        "ts": 1791383886.6,
+        "entropy": 0.9289,
+        "distinct": 3
+      },
+      {
+        "ts": 1791384000.0,
+        "entropy": 0.9209,
+        "distinct": 3
+      },
+      {
+        "ts": 1791384126.7,
+        "entropy": 0.9254,
+        "distinct": 3
+      },
+      {
+        "ts": 1791384255.3,
+        "entropy": 0.9258,
+        "distinct": 3
+      },
+      {
+        "ts": 1791384355.8,
+        "entropy": 0.7449,
+        "distinct": 4
+      },
+      {
+        "ts": 1791384472.4,
+        "entropy": 0.7214,
+        "distinct": 4
+      },
+      {
+        "ts": 1791384576.4,
+        "entropy": 0.7102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791384710.7,
+        "entropy": 0.7018,
+        "distinct": 4
+      },
+      {
+        "ts": 1791384830.4,
+        "entropy": 0.6891,
+        "distinct": 4
+      },
+      {
+        "ts": 1791384977.6,
+        "entropy": 0.694,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385080.2,
+        "entropy": 0.6814,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385198.3,
+        "entropy": 0.6632,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385313.7,
+        "entropy": 0.6578,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385434.1,
+        "entropy": 0.6437,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385533.1,
+        "entropy": 0.6334,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385662.7,
+        "entropy": 0.6003,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385777.4,
+        "entropy": 0.5833,
+        "distinct": 4
+      },
+      {
+        "ts": 1791385915.1,
+        "entropy": 0.5712,
+        "distinct": 4
+      },
+      {
+        "ts": 1791386025.0,
+        "entropy": 0.5368,
+        "distinct": 4
+      },
+      {
+        "ts": 1791386136.7,
+        "entropy": 0.4948,
+        "distinct": 4
+      },
+      {
+        "ts": 1791386263.2,
+        "entropy": 0.6248,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386403.4,
+        "entropy": 0.6701,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386503.0,
+        "entropy": 0.6701,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386620.3,
+        "entropy": 0.6793,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386730.6,
+        "entropy": 0.6477,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386863.3,
+        "entropy": 0.6667,
+        "distinct": 3
+      },
+      {
+        "ts": 1791386961.9,
+        "entropy": 0.6741,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387087.5,
+        "entropy": 0.6461,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387192.2,
+        "entropy": 0.6667,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387323.1,
+        "entropy": 0.6576,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387427.9,
+        "entropy": 0.6407,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387548.4,
+        "entropy": 0.6288,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387663.9,
+        "entropy": 0.6195,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387819.4,
+        "entropy": 0.6741,
+        "distinct": 3
+      },
+      {
+        "ts": 1791387953.1,
+        "entropy": 0.6513,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388126.5,
+        "entropy": 0.6741,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388270.4,
+        "entropy": 0.6248,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388405.1,
+        "entropy": 0.5814,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388489.3,
+        "entropy": 0.6001,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388626.7,
+        "entropy": 0.6272,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388774.6,
+        "entropy": 0.6694,
+        "distinct": 3
+      },
+      {
+        "ts": 1791388921.4,
+        "entropy": 0.661,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389021.9,
+        "entropy": 0.6528,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389144.6,
+        "entropy": 0.661,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389275.6,
+        "entropy": 0.6613,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389407.2,
+        "entropy": 0.6696,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389508.6,
+        "entropy": 0.6613,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389614.0,
+        "entropy": 0.6679,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389759.8,
+        "entropy": 0.6667,
+        "distinct": 3
+      },
+      {
+        "ts": 1791389902.6,
+        "entropy": 0.6602,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390008.2,
+        "entropy": 0.6602,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390111.1,
+        "entropy": 0.6445,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390228.1,
+        "entropy": 0.6773,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390348.3,
+        "entropy": 0.7205,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390461.7,
+        "entropy": 0.6985,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390574.7,
+        "entropy": 0.6722,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390704.3,
+        "entropy": 0.6328,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390854.5,
+        "entropy": 0.6328,
+        "distinct": 3
+      },
+      {
+        "ts": 1791390971.5,
+        "entropy": 0.6328,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391085.7,
+        "entropy": 0.6081,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391212.8,
+        "entropy": 0.5924,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391339.4,
+        "entropy": 0.5796,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391454.9,
+        "entropy": 0.6288,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391558.6,
+        "entropy": 0.5973,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391685.3,
+        "entropy": 0.6261,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391830.6,
+        "entropy": 0.5783,
+        "distinct": 3
+      },
+      {
+        "ts": 1791391957.0,
+        "entropy": 0.6051,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392065.5,
+        "entropy": 0.6051,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392191.8,
+        "entropy": 0.5759,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392326.4,
+        "entropy": 0.5817,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392431.2,
+        "entropy": 0.6182,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392532.5,
+        "entropy": 0.6694,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392644.6,
+        "entropy": 0.7006,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392785.0,
+        "entropy": 0.7382,
+        "distinct": 3
+      },
+      {
+        "ts": 1791392891.9,
+        "entropy": 0.7382,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393009.5,
+        "entropy": 0.7382,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393126.8,
+        "entropy": 0.7382,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393284.6,
+        "entropy": 0.7712,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393401.9,
+        "entropy": 0.7452,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393513.1,
+        "entropy": 0.7452,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393606.6,
+        "entropy": 0.7304,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393755.5,
+        "entropy": 0.7237,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393879.1,
+        "entropy": 0.7006,
+        "distinct": 3
+      },
+      {
+        "ts": 1791393994.0,
+        "entropy": 0.6924,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394107.7,
+        "entropy": 0.7085,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394251.3,
+        "entropy": 0.7164,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394370.1,
+        "entropy": 0.6776,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394492.4,
+        "entropy": 0.65,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394605.5,
+        "entropy": 0.6068,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394760.1,
+        "entropy": 0.565,
+        "distinct": 3
+      },
+      {
+        "ts": 1791394878.8,
+        "entropy": 0.5603,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395007.9,
+        "entropy": 0.5707,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395151.6,
+        "entropy": 0.5995,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395330.0,
+        "entropy": 0.6051,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395465.1,
+        "entropy": 0.6001,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395581.8,
+        "entropy": 0.6613,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395694.2,
+        "entropy": 0.7085,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395820.0,
+        "entropy": 0.7304,
+        "distinct": 3
+      },
+      {
+        "ts": 1791395962.3,
+        "entropy": 0.7849,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396081.6,
+        "entropy": 0.8208,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396260.7,
+        "entropy": 0.838,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396473.6,
+        "entropy": 0.8445,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396612.5,
+        "entropy": 0.8676,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396732.0,
+        "entropy": 0.872,
+        "distinct": 3
+      },
+      {
+        "ts": 1791396851.3,
+        "entropy": 0.8918,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397000.0,
+        "entropy": 0.8762,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397160.6,
+        "entropy": 0.8969,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397346.0,
+        "entropy": 0.9225,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397467.6,
+        "entropy": 0.9297,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397617.6,
+        "entropy": 0.9348,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397799.6,
+        "entropy": 0.933,
+        "distinct": 3
+      },
+      {
+        "ts": 1791397959.7,
+        "entropy": 0.9217,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398117.4,
+        "entropy": 0.9287,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398275.3,
+        "entropy": 0.9329,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398415.9,
+        "entropy": 0.9165,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398531.1,
+        "entropy": 0.9207,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398728.6,
+        "entropy": 0.9256,
+        "distinct": 3
+      },
+      {
+        "ts": 1791398896.1,
+        "entropy": 0.9162,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399062.3,
+        "entropy": 0.8917,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399198.9,
+        "entropy": 0.9036,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399322.9,
+        "entropy": 0.8869,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399454.4,
+        "entropy": 0.8881,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399617.4,
+        "entropy": 0.885,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399742.6,
+        "entropy": 0.8744,
+        "distinct": 3
+      },
+      {
+        "ts": 1791399858.2,
+        "entropy": 0.8859,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400018.3,
+        "entropy": 0.8619,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400145.3,
+        "entropy": 0.8689,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400272.2,
+        "entropy": 0.8463,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400389.6,
+        "entropy": 0.8292,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400547.9,
+        "entropy": 0.8225,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400716.0,
+        "entropy": 0.8463,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400831.9,
+        "entropy": 0.8225,
+        "distinct": 3
+      },
+      {
+        "ts": 1791400956.1,
+        "entropy": 0.8324,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401172.9,
+        "entropy": 0.8375,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401352.5,
+        "entropy": 0.8576,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401471.6,
+        "entropy": 0.8455,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401598.1,
+        "entropy": 0.8683,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401757.5,
+        "entropy": 0.8698,
+        "distinct": 3
+      },
+      {
+        "ts": 1791401942.1,
+        "entropy": 0.8887,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402090.9,
+        "entropy": 0.8879,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402220.9,
+        "entropy": 0.8873,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402452.3,
+        "entropy": 0.9044,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402617.0,
+        "entropy": 0.9184,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402768.4,
+        "entropy": 0.9197,
+        "distinct": 3
+      },
+      {
+        "ts": 1791402901.1,
+        "entropy": 0.9241,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403069.2,
+        "entropy": 0.9234,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403213.3,
+        "entropy": 0.9048,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403348.7,
+        "entropy": 0.9285,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403473.3,
+        "entropy": 0.9127,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403603.3,
+        "entropy": 0.9162,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403762.5,
+        "entropy": 0.921,
+        "distinct": 3
+      },
+      {
+        "ts": 1791403950.4,
+        "entropy": 0.9144,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404092.2,
+        "entropy": 0.9162,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404214.3,
+        "entropy": 0.9143,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404440.0,
+        "entropy": 0.8998,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404566.8,
+        "entropy": 0.9055,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404786.8,
+        "entropy": 0.9008,
+        "distinct": 3
+      },
+      {
+        "ts": 1791404908.2,
+        "entropy": 0.9008,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405075.7,
+        "entropy": 0.8964,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405205.9,
+        "entropy": 0.905,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405343.1,
+        "entropy": 0.912,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405458.5,
+        "entropy": 0.9285,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405645.2,
+        "entropy": 0.9234,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405767.1,
+        "entropy": 0.9451,
+        "distinct": 3
+      },
+      {
+        "ts": 1791405892.1,
+        "entropy": 0.9297,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406027.6,
+        "entropy": 0.9426,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406170.2,
+        "entropy": 0.93,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406336.3,
+        "entropy": 0.9293,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406461.6,
+        "entropy": 0.9359,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406606.9,
+        "entropy": 0.9322,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406748.4,
+        "entropy": 0.9456,
+        "distinct": 3
+      },
+      {
+        "ts": 1791406899.8,
+        "entropy": 0.9456,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407055.2,
+        "entropy": 0.9378,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407207.7,
+        "entropy": 0.9478,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407341.3,
+        "entropy": 0.9484,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407494.5,
+        "entropy": 0.9456,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407614.4,
+        "entropy": 0.9334,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407750.4,
+        "entropy": 0.9419,
+        "distinct": 3
+      },
+      {
+        "ts": 1791407888.0,
+        "entropy": 0.9301,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408091.6,
+        "entropy": 0.9161,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408213.9,
+        "entropy": 0.9197,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408360.8,
+        "entropy": 0.9373,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408548.7,
+        "entropy": 0.9254,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408695.1,
+        "entropy": 0.9345,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408819.7,
+        "entropy": 0.93,
+        "distinct": 3
+      },
+      {
+        "ts": 1791408961.9,
+        "entropy": 0.9161,
+        "distinct": 3
+      },
+      {
+        "ts": 1791409113.4,
+        "entropy": 0.9006,
+        "distinct": 3
+      },
+      {
+        "ts": 1791409274.3,
+        "entropy": 0.9107,
+        "distinct": 3
+      },
+      {
+        "ts": 1791409376.3,
+        "entropy": 0.6036,
+        "distinct": 6
+      },
+      {
+        "ts": 1791409504.0,
+        "entropy": 0.5919,
+        "distinct": 6
+      },
+      {
+        "ts": 1791409627.8,
+        "entropy": 0.5652,
+        "distinct": 6
+      },
+      {
+        "ts": 1791409799.8,
+        "entropy": 0.5643,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410068.1,
+        "entropy": 0.5584,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410295.0,
+        "entropy": 0.5681,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410423.7,
+        "entropy": 0.5574,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410582.7,
+        "entropy": 0.5717,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410736.0,
+        "entropy": 0.5826,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410866.1,
+        "entropy": 0.5702,
+        "distinct": 6
+      },
+      {
+        "ts": 1791410994.0,
+        "entropy": 0.5611,
+        "distinct": 6
+      },
+      {
+        "ts": 1791411164.2,
+        "entropy": 0.5464,
+        "distinct": 6
+      },
+      {
+        "ts": 1791411354.4,
+        "entropy": 0.5295,
+        "distinct": 6
+      },
+      {
+        "ts": 1791411517.3,
+        "entropy": 0.5162,
+        "distinct": 6
+      },
+      {
+        "ts": 1791411699.3,
+        "entropy": 0.522,
+        "distinct": 6
+      },
+      {
+        "ts": 1791411966.8,
+        "entropy": 0.5271,
+        "distinct": 6
+      },
+      {
+        "ts": 1791412175.7,
+        "entropy": 0.5295,
+        "distinct": 6
+      },
+      {
+        "ts": 1791412298.5,
+        "entropy": 0.7756,
+        "distinct": 3
+      },
+      {
+        "ts": 1791412441.5,
+        "entropy": 0.7756,
+        "distinct": 3
+      },
+      {
+        "ts": 1791412584.7,
+        "entropy": 0.7756,
+        "distinct": 3
+      },
+      {
+        "ts": 1791412857.4,
+        "entropy": 0.7842,
+        "distinct": 3
+      },
+      {
+        "ts": 1791412997.9,
+        "entropy": 0.775,
+        "distinct": 3
+      },
+      {
+        "ts": 1791413153.0,
+        "entropy": 0.7468,
+        "distinct": 3
+      },
+      {
+        "ts": 1791413292.4,
+        "entropy": 0.7709,
+        "distinct": 3
+      },
+      {
+        "ts": 1791413448.9,
+        "entropy": 0.7409,
+        "distinct": 3
+      },
+      {
+        "ts": 1791413609.0,
+        "entropy": 0.6824,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413743.6,
+        "entropy": 0.6427,
+        "distinct": 6
+      },
+      {
+        "ts": 1791413914.7,
+        "entropy": 0.6627,
+        "distinct": 6
+      },
+      {
+        "ts": 1791414113.8,
+        "entropy": 0.6806,
+        "distinct": 6
+      },
+      {
+        "ts": 1791414295.7,
+        "entropy": 0.7072,
+        "distinct": 6
+      },
+      {
+        "ts": 1791414424.5,
+        "entropy": 0.7091,
+        "distinct": 6
+      },
+      {
+        "ts": 1791414563.6,
+        "entropy": 0.7134,
+        "distinct": 6
+      },
+      {
+        "ts": 1791414714.0,
+        "entropy": 0.6385,
+        "distinct": 8
+      },
+      {
+        "ts": 1791414912.3,
+        "entropy": 0.6832,
+        "distinct": 9
+      },
+      {
+        "ts": 1791415038.4,
+        "entropy": 0.7294,
+        "distinct": 10
+      },
+      {
+        "ts": 1791415182.8,
+        "entropy": 0.7338,
+        "distinct": 11
+      },
+      {
+        "ts": 1791415345.4,
+        "entropy": 0.7415,
+        "distinct": 11
+      },
+      {
+        "ts": 1791415583.3,
+        "entropy": 0.7382,
+        "distinct": 11
+      },
+      {
+        "ts": 1791415726.5,
+        "entropy": 0.7434,
+        "distinct": 11
+      },
+      {
+        "ts": 1791415874.1,
+        "entropy": 0.7509,
+        "distinct": 11
+      },
+      {
+        "ts": 1791416047.5,
+        "entropy": 0.7434,
+        "distinct": 11
+      },
+      {
+        "ts": 1791416266.8,
+        "entropy": 0.7506,
+        "distinct": 11
+      },
+      {
+        "ts": 1791416400.2,
+        "entropy": 0.6936,
+        "distinct": 11
+      },
+      {
+        "ts": 1791416535.5,
+        "entropy": 0.6715,
+        "distinct": 9
+      },
+      {
+        "ts": 1791416675.2,
+        "entropy": 0.6935,
+        "distinct": 8
+      },
+      {
+        "ts": 1791416868.9,
+        "entropy": 0.6992,
+        "distinct": 8
+      },
+      {
+        "ts": 1791417035.1,
+        "entropy": 0.7085,
+        "distinct": 8
+      },
+      {
+        "ts": 1791417188.3,
+        "entropy": 0.7074,
+        "distinct": 8
+      },
+      {
+        "ts": 1791417306.8,
+        "entropy": 0.7013,
+        "distinct": 8
+      },
+      {
+        "ts": 1791417464.8,
+        "entropy": 0.6736,
+        "distinct": 7
+      },
+      {
+        "ts": 1791417640.3,
+        "entropy": 0.6187,
+        "distinct": 6
+      },
+      {
+        "ts": 1791417861.3,
+        "entropy": 0.8384,
+        "distinct": 3
+      },
+      {
+        "ts": 1791418190.3,
+        "entropy": 0.8579,
+        "distinct": 3
+      },
+      {
+        "ts": 1791418349.9,
+        "entropy": 0.8647,
+        "distinct": 3
+      },
+      {
+        "ts": 1791418539.9,
+        "entropy": 0.7042,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418722.1,
+        "entropy": 0.6855,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418864.4,
+        "entropy": 0.6556,
+        "distinct": 4
+      }
+    ],
+    "action_pick": [
+      {
+        "ts": 1791366352.2,
+        "entropy": 0.8176,
+        "distinct": 14
+      },
+      {
+        "ts": 1791366478.9,
+        "entropy": 0.8022,
+        "distinct": 14
+      },
+      {
+        "ts": 1791366579.4,
+        "entropy": 0.828,
+        "distinct": 13
+      },
+      {
+        "ts": 1791366682.2,
+        "entropy": 0.8054,
+        "distinct": 14
+      },
+      {
+        "ts": 1791366770.6,
+        "entropy": 0.801,
+        "distinct": 14
+      },
+      {
+        "ts": 1791366867.6,
+        "entropy": 0.7976,
+        "distinct": 15
+      },
+      {
+        "ts": 1791366957.0,
+        "entropy": 0.7965,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367054.1,
+        "entropy": 0.7924,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367152.1,
+        "entropy": 0.7899,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367264.4,
+        "entropy": 0.792,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367357.5,
+        "entropy": 0.7763,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367451.2,
+        "entropy": 0.7833,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367550.7,
+        "entropy": 0.7839,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367652.3,
+        "entropy": 0.7962,
+        "distinct": 15
+      },
+      {
+        "ts": 1791367740.4,
+        "entropy": 0.7881,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367832.9,
+        "entropy": 0.7927,
+        "distinct": 16
+      },
+      {
+        "ts": 1791367934.3,
+        "entropy": 0.7831,
+        "distinct": 15
+      },
+      {
+        "ts": 1791368033.5,
+        "entropy": 0.782,
+        "distinct": 16
+      },
+      {
+        "ts": 1791368152.6,
+        "entropy": 0.7647,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368278.6,
+        "entropy": 0.7726,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368387.4,
+        "entropy": 0.7836,
+        "distinct": 16
+      },
+      {
+        "ts": 1791368484.7,
+        "entropy": 0.7878,
+        "distinct": 15
+      },
+      {
+        "ts": 1791368626.7,
+        "entropy": 0.7929,
+        "distinct": 15
+      },
+      {
+        "ts": 1791368729.4,
+        "entropy": 0.7975,
+        "distinct": 14
+      },
+      {
+        "ts": 1791368825.5,
+        "entropy": 0.7938,
+        "distinct": 15
+      },
+      {
+        "ts": 1791368942.5,
+        "entropy": 0.7846,
+        "distinct": 15
+      },
+      {
+        "ts": 1791369098.0,
+        "entropy": 0.8028,
+        "distinct": 15
+      },
+      {
+        "ts": 1791369187.9,
+        "entropy": 0.8023,
+        "distinct": 15
+      },
+      {
+        "ts": 1791369288.0,
+        "entropy": 0.8085,
+        "distinct": 15
+      },
+      {
+        "ts": 1791369389.6,
+        "entropy": 0.8062,
+        "distinct": 15
+      },
+      {
+        "ts": 1791369506.4,
+        "entropy": 0.8133,
+        "distinct": 14
+      },
+      {
+        "ts": 1791369613.1,
+        "entropy": 0.803,
+        "distinct": 14
+      },
+      {
+        "ts": 1791369717.5,
+        "entropy": 0.8068,
+        "distinct": 14
+      },
+      {
+        "ts": 1791369828.7,
+        "entropy": 0.8169,
+        "distinct": 13
+      },
+      {
+        "ts": 1791369921.2,
+        "entropy": 0.8165,
+        "distinct": 13
+      },
+      {
+        "ts": 1791370039.1,
+        "entropy": 0.8161,
+        "distinct": 13
+      },
+      {
+        "ts": 1791370134.2,
+        "entropy": 0.8156,
+        "distinct": 12
+      },
+      {
+        "ts": 1791370234.9,
+        "entropy": 0.811,
+        "distinct": 12
+      },
+      {
+        "ts": 1791370329.0,
+        "entropy": 0.7984,
+        "distinct": 12
+      },
+      {
+        "ts": 1791370424.5,
+        "entropy": 0.801,
+        "distinct": 12
+      },
+      {
+        "ts": 1791370526.1,
+        "entropy": 0.8413,
+        "distinct": 10
+      },
+      {
+        "ts": 1791370638.5,
+        "entropy": 0.8514,
+        "distinct": 10
+      },
+      {
+        "ts": 1791370729.5,
+        "entropy": 0.8287,
+        "distinct": 10
+      },
+      {
+        "ts": 1791370874.6,
+        "entropy": 0.8747,
+        "distinct": 9
+      },
+      {
+        "ts": 1791370963.3,
+        "entropy": 0.8326,
+        "distinct": 11
+      },
+      {
+        "ts": 1791371063.9,
+        "entropy": 0.828,
+        "distinct": 11
+      },
+      {
+        "ts": 1791371151.3,
+        "entropy": 0.8073,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371246.9,
+        "entropy": 0.8135,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371395.1,
+        "entropy": 0.8113,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371513.8,
+        "entropy": 0.8148,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371650.9,
+        "entropy": 0.8227,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371749.0,
+        "entropy": 0.8111,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371845.4,
+        "entropy": 0.8167,
+        "distinct": 12
+      },
+      {
+        "ts": 1791371943.8,
+        "entropy": 0.8381,
+        "distinct": 12
+      },
+      {
+        "ts": 1791372033.9,
+        "entropy": 0.8497,
+        "distinct": 12
+      },
+      {
+        "ts": 1791372137.6,
+        "entropy": 0.8513,
+        "distinct": 12
+      },
+      {
+        "ts": 1791372242.1,
+        "entropy": 0.8581,
+        "distinct": 12
+      },
+      {
+        "ts": 1791372328.4,
+        "entropy": 0.8481,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372443.7,
+        "entropy": 0.8493,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372535.1,
+        "entropy": 0.8568,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372645.9,
+        "entropy": 0.8345,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372752.4,
+        "entropy": 0.8244,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372859.4,
+        "entropy": 0.8192,
+        "distinct": 13
+      },
+      {
+        "ts": 1791372960.8,
+        "entropy": 0.8338,
+        "distinct": 13
+      },
+      {
+        "ts": 1791373068.5,
+        "entropy": 0.8321,
+        "distinct": 13
+      },
+      {
+        "ts": 1791373157.7,
+        "entropy": 0.8383,
+        "distinct": 13
+      },
+      {
+        "ts": 1791373268.9,
+        "entropy": 0.8441,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373358.7,
+        "entropy": 0.8471,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373455.3,
+        "entropy": 0.8487,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373603.9,
+        "entropy": 0.8393,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373710.8,
+        "entropy": 0.8381,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373811.8,
+        "entropy": 0.8349,
+        "distinct": 12
+      },
+      {
+        "ts": 1791373923.8,
+        "entropy": 0.8098,
+        "distinct": 13
+      },
+      {
+        "ts": 1791374016.4,
+        "entropy": 0.7925,
+        "distinct": 13
+      },
+      {
+        "ts": 1791374127.6,
+        "entropy": 0.7971,
+        "distinct": 13
+      },
+      {
+        "ts": 1791374228.4,
+        "entropy": 0.7948,
+        "distinct": 13
+      },
+      {
+        "ts": 1791374341.0,
+        "entropy": 0.7902,
+        "distinct": 14
+      },
+      {
+        "ts": 1791374440.7,
+        "entropy": 0.8073,
+        "distinct": 14
+      },
+      {
+        "ts": 1791374549.8,
+        "entropy": 0.8135,
+        "distinct": 14
+      },
+      {
+        "ts": 1791374639.3,
+        "entropy": 0.8101,
+        "distinct": 14
+      },
+      {
+        "ts": 1791374747.4,
+        "entropy": 0.7994,
+        "distinct": 14
+      },
+      {
+        "ts": 1791374844.3,
+        "entropy": 0.7779,
+        "distinct": 15
+      },
+      {
+        "ts": 1791374961.0,
+        "entropy": 0.789,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375050.8,
+        "entropy": 0.8001,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375160.5,
+        "entropy": 0.797,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375252.7,
+        "entropy": 0.792,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375370.8,
+        "entropy": 0.8032,
+        "distinct": 14
+      },
+      {
+        "ts": 1791375466.2,
+        "entropy": 0.8009,
+        "distinct": 14
+      },
+      {
+        "ts": 1791375637.6,
+        "entropy": 0.7935,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375734.3,
+        "entropy": 0.8127,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375862.1,
+        "entropy": 0.8162,
+        "distinct": 15
+      },
+      {
+        "ts": 1791375963.1,
+        "entropy": 0.8288,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376094.5,
+        "entropy": 0.8301,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376269.9,
+        "entropy": 0.8485,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376400.6,
+        "entropy": 0.8428,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376508.8,
+        "entropy": 0.8497,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376630.1,
+        "entropy": 0.8592,
+        "distinct": 15
+      },
+      {
+        "ts": 1791376729.5,
+        "entropy": 0.8745,
+        "distinct": 14
+      },
+      {
+        "ts": 1791376912.5,
+        "entropy": 0.885,
+        "distinct": 14
+      },
+      {
+        "ts": 1791377000.1,
+        "entropy": 0.8855,
+        "distinct": 14
+      },
+      {
+        "ts": 1791377158.5,
+        "entropy": 0.8973,
+        "distinct": 14
+      },
+      {
+        "ts": 1791377256.4,
+        "entropy": 0.8873,
+        "distinct": 14
+      },
+      {
+        "ts": 1791377394.2,
+        "entropy": 0.8803,
+        "distinct": 15
+      },
+      {
+        "ts": 1791377549.5,
+        "entropy": 0.8812,
+        "distinct": 15
+      },
+      {
+        "ts": 1791377657.4,
+        "entropy": 0.8779,
+        "distinct": 15
+      },
+      {
+        "ts": 1791377826.0,
+        "entropy": 0.8712,
+        "distinct": 15
+      },
+      {
+        "ts": 1791377949.0,
+        "entropy": 0.8766,
+        "distinct": 15
+      },
+      {
+        "ts": 1791378052.2,
+        "entropy": 0.8603,
+        "distinct": 15
+      },
+      {
+        "ts": 1791378162.6,
+        "entropy": 0.8595,
+        "distinct": 15
+      },
+      {
+        "ts": 1791378260.1,
+        "entropy": 0.8475,
+        "distinct": 14
+      },
+      {
+        "ts": 1791378378.2,
+        "entropy": 0.8446,
+        "distinct": 14
+      },
+      {
+        "ts": 1791378507.4,
+        "entropy": 0.8403,
+        "distinct": 14
+      },
+      {
+        "ts": 1791378626.0,
+        "entropy": 0.8561,
+        "distinct": 13
+      },
+      {
+        "ts": 1791378730.2,
+        "entropy": 0.8703,
+        "distinct": 13
+      },
+      {
+        "ts": 1791378847.5,
+        "entropy": 0.8545,
+        "distinct": 13
+      },
+      {
+        "ts": 1791378944.8,
+        "entropy": 0.839,
+        "distinct": 14
+      },
+      {
+        "ts": 1791379111.7,
+        "entropy": 0.8466,
+        "distinct": 13
+      },
+      {
+        "ts": 1791379208.8,
+        "entropy": 0.8512,
+        "distinct": 13
+      },
+      {
+        "ts": 1791379324.2,
+        "entropy": 0.8882,
+        "distinct": 11
+      },
+      {
+        "ts": 1791379419.7,
+        "entropy": 0.8777,
+        "distinct": 11
+      },
+      {
+        "ts": 1791379583.1,
+        "entropy": 0.8761,
+        "distinct": 11
+      },
+      {
+        "ts": 1791379676.3,
+        "entropy": 0.8612,
+        "distinct": 11
+      },
+      {
+        "ts": 1791379798.0,
+        "entropy": 0.8559,
+        "distinct": 11
+      },
+      {
+        "ts": 1791379890.1,
+        "entropy": 0.8539,
+        "distinct": 12
+      },
+      {
+        "ts": 1791379985.6,
+        "entropy": 0.8362,
+        "distinct": 13
+      },
+      {
+        "ts": 1791380106.2,
+        "entropy": 0.8124,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380110.6,
+        "entropy": 0.8124,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380222.5,
+        "entropy": 0.8128,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380322.6,
+        "entropy": 0.8052,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380496.5,
+        "entropy": 0.8063,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380646.8,
+        "entropy": 0.8198,
+        "distinct": 15
+      },
+      {
+        "ts": 1791380783.0,
+        "entropy": 0.8174,
+        "distinct": 16
+      },
+      {
+        "ts": 1791380911.3,
+        "entropy": 0.8252,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381027.8,
+        "entropy": 0.8303,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381254.5,
+        "entropy": 0.8397,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381371.0,
+        "entropy": 0.8377,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381470.2,
+        "entropy": 0.8352,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381576.1,
+        "entropy": 0.8348,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381695.4,
+        "entropy": 0.8364,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381813.4,
+        "entropy": 0.839,
+        "distinct": 15
+      },
+      {
+        "ts": 1791381980.5,
+        "entropy": 0.8438,
+        "distinct": 15
+      },
+      {
+        "ts": 1791382087.9,
+        "entropy": 0.8741,
+        "distinct": 13
+      },
+      {
+        "ts": 1791382266.8,
+        "entropy": 0.8622,
+        "distinct": 14
+      },
+      {
+        "ts": 1791382439.2,
+        "entropy": 0.8678,
+        "distinct": 13
+      },
+      {
+        "ts": 1791382548.3,
+        "entropy": 0.8695,
+        "distinct": 13
+      },
+      {
+        "ts": 1791382668.2,
+        "entropy": 0.8626,
+        "distinct": 13
+      },
+      {
+        "ts": 1791382838.9,
+        "entropy": 0.8591,
+        "distinct": 13
+      },
+      {
+        "ts": 1791382963.4,
+        "entropy": 0.8523,
+        "distinct": 13
+      },
+      {
+        "ts": 1791383068.2,
+        "entropy": 0.8388,
+        "distinct": 13
+      },
+      {
+        "ts": 1791383185.3,
+        "entropy": 0.8416,
+        "distinct": 13
+      },
+      {
+        "ts": 1791383295.6,
+        "entropy": 0.825,
+        "distinct": 13
+      },
+      {
+        "ts": 1791383416.8,
+        "entropy": 0.8226,
+        "distinct": 13
+      },
+      {
+        "ts": 1791383518.2,
+        "entropy": 0.8396,
+        "distinct": 12
+      },
+      {
+        "ts": 1791383621.4,
+        "entropy": 0.846,
+        "distinct": 12
+      },
+      {
+        "ts": 1791383757.1,
+        "entropy": 0.8257,
+        "distinct": 14
+      },
+      {
+        "ts": 1791383886.6,
+        "entropy": 0.8094,
+        "distinct": 14
+      },
+      {
+        "ts": 1791384000.0,
+        "entropy": 0.8097,
+        "distinct": 14
+      },
+      {
+        "ts": 1791384126.7,
+        "entropy": 0.8343,
+        "distinct": 13
+      },
+      {
+        "ts": 1791384255.3,
+        "entropy": 0.8567,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384355.8,
+        "entropy": 0.855,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384472.4,
+        "entropy": 0.8513,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384576.4,
+        "entropy": 0.8498,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384710.7,
+        "entropy": 0.8426,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384830.4,
+        "entropy": 0.8489,
+        "distinct": 12
+      },
+      {
+        "ts": 1791384977.6,
+        "entropy": 0.8643,
+        "distinct": 12
+      },
+      {
+        "ts": 1791385080.2,
+        "entropy": 0.8904,
+        "distinct": 12
+      },
+      {
+        "ts": 1791385198.3,
+        "entropy": 0.8971,
+        "distinct": 12
+      },
+      {
+        "ts": 1791385313.7,
+        "entropy": 0.9017,
+        "distinct": 12
+      },
+      {
+        "ts": 1791385434.1,
+        "entropy": 0.9029,
+        "distinct": 13
+      },
+      {
+        "ts": 1791385533.1,
+        "entropy": 0.9106,
+        "distinct": 13
+      },
+      {
+        "ts": 1791385662.7,
+        "entropy": 0.8995,
+        "distinct": 14
+      },
+      {
+        "ts": 1791385777.4,
+        "entropy": 0.8968,
+        "distinct": 14
+      },
+      {
+        "ts": 1791385915.1,
+        "entropy": 0.8923,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386025.0,
+        "entropy": 0.876,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386136.7,
+        "entropy": 0.8669,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386263.2,
+        "entropy": 0.871,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386403.4,
+        "entropy": 0.8684,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386503.0,
+        "entropy": 0.8713,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386620.3,
+        "entropy": 0.871,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386730.6,
+        "entropy": 0.849,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386863.3,
+        "entropy": 0.8496,
+        "distinct": 14
+      },
+      {
+        "ts": 1791386961.9,
+        "entropy": 0.8435,
+        "distinct": 14
+      },
+      {
+        "ts": 1791387087.5,
+        "entropy": 0.8638,
+        "distinct": 13
+      },
+      {
+        "ts": 1791387192.2,
+        "entropy": 0.8437,
+        "distinct": 14
+      },
+      {
+        "ts": 1791387323.1,
+        "entropy": 0.8393,
+        "distinct": 14
+      },
+      {
+        "ts": 1791387427.9,
+        "entropy": 0.8347,
+        "distinct": 14
+      },
+      {
+        "ts": 1791387548.4,
+        "entropy": 0.8391,
+        "distinct": 14
+      },
+      {
+        "ts": 1791387663.9,
+        "entropy": 0.8499,
+        "distinct": 13
+      },
+      {
+        "ts": 1791387819.4,
+        "entropy": 0.8604,
+        "distinct": 13
+      },
+      {
+        "ts": 1791387953.1,
+        "entropy": 0.8646,
+        "distinct": 13
+      },
+      {
+        "ts": 1791388126.5,
+        "entropy": 0.8651,
+        "distinct": 13
+      },
+      {
+        "ts": 1791388270.4,
+        "entropy": 0.8652,
+        "distinct": 13
+      },
+      {
+        "ts": 1791388405.1,
+        "entropy": 0.8751,
+        "distinct": 13
+      },
+      {
+        "ts": 1791388489.3,
+        "entropy": 0.8888,
+        "distinct": 13
+      },
+      {
+        "ts": 1791388626.7,
+        "entropy": 0.8414,
+        "distinct": 16
+      },
+      {
+        "ts": 1791388774.6,
+        "entropy": 0.8497,
+        "distinct": 16
+      },
+      {
+        "ts": 1791388921.4,
+        "entropy": 0.8577,
+        "distinct": 16
+      },
+      {
+        "ts": 1791389021.9,
+        "entropy": 0.8604,
+        "distinct": 16
+      },
+      {
+        "ts": 1791389144.6,
+        "entropy": 0.8594,
+        "distinct": 16
+      },
+      {
+        "ts": 1791389275.6,
+        "entropy": 0.8732,
+        "distinct": 16
+      },
+      {
+        "ts": 1791389407.2,
+        "entropy": 0.8863,
+        "distinct": 14
+      },
+      {
+        "ts": 1791389508.6,
+        "entropy": 0.8905,
+        "distinct": 14
+      },
+      {
+        "ts": 1791389614.0,
+        "entropy": 0.9041,
+        "distinct": 14
+      },
+      {
+        "ts": 1791389759.8,
+        "entropy": 0.9122,
+        "distinct": 14
+      },
+      {
+        "ts": 1791389902.6,
+        "entropy": 0.9084,
+        "distinct": 14
+      },
+      {
+        "ts": 1791390008.2,
+        "entropy": 0.8981,
+        "distinct": 14
+      },
+      {
+        "ts": 1791390111.1,
+        "entropy": 0.8598,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390228.1,
+        "entropy": 0.8441,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390348.3,
+        "entropy": 0.8473,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390461.7,
+        "entropy": 0.8436,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390574.7,
+        "entropy": 0.8545,
+        "distinct": 16
+      },
+      {
+        "ts": 1791390704.3,
+        "entropy": 0.8518,
+        "distinct": 16
+      },
+      {
+        "ts": 1791390854.5,
+        "entropy": 0.8448,
+        "distinct": 16
+      },
+      {
+        "ts": 1791390971.5,
+        "entropy": 0.8482,
+        "distinct": 16
+      },
+      {
+        "ts": 1791391085.7,
+        "entropy": 0.8596,
+        "distinct": 16
+      },
+      {
+        "ts": 1791391212.8,
+        "entropy": 0.849,
+        "distinct": 16
+      },
+      {
+        "ts": 1791391339.4,
+        "entropy": 0.8486,
+        "distinct": 16
+      },
+      {
+        "ts": 1791391454.9,
+        "entropy": 0.8528,
+        "distinct": 16
+      },
+      {
+        "ts": 1791391558.6,
+        "entropy": 0.8561,
+        "distinct": 15
+      },
+      {
+        "ts": 1791391685.3,
+        "entropy": 0.8687,
+        "distinct": 14
+      },
+      {
+        "ts": 1791391830.6,
+        "entropy": 0.8695,
+        "distinct": 14
+      },
+      {
+        "ts": 1791391957.0,
+        "entropy": 0.8731,
+        "distinct": 14
+      },
+      {
+        "ts": 1791392065.5,
+        "entropy": 0.8826,
+        "distinct": 13
+      },
+      {
+        "ts": 1791392191.8,
+        "entropy": 0.8924,
+        "distinct": 12
+      },
+      {
+        "ts": 1791392326.4,
+        "entropy": 0.874,
+        "distinct": 13
+      },
+      {
+        "ts": 1791392431.2,
+        "entropy": 0.8727,
+        "distinct": 13
+      },
+      {
+        "ts": 1791392532.5,
+        "entropy": 0.8796,
+        "distinct": 12
+      },
+      {
+        "ts": 1791392644.6,
+        "entropy": 0.8844,
+        "distinct": 12
+      },
+      {
+        "ts": 1791392785.0,
+        "entropy": 0.8716,
+        "distinct": 13
+      },
+      {
+        "ts": 1791392891.9,
+        "entropy": 0.8799,
+        "distinct": 13
+      },
+      {
+        "ts": 1791393009.5,
+        "entropy": 0.8752,
+        "distinct": 13
+      },
+      {
+        "ts": 1791393126.8,
+        "entropy": 0.8765,
+        "distinct": 13
+      },
+      {
+        "ts": 1791393284.6,
+        "entropy": 0.8898,
+        "distinct": 12
+      },
+      {
+        "ts": 1791393401.9,
+        "entropy": 0.9041,
+        "distinct": 11
+      },
+      {
+        "ts": 1791393513.1,
+        "entropy": 0.9,
+        "distinct": 11
+      },
+      {
+        "ts": 1791393606.6,
+        "entropy": 0.8993,
+        "distinct": 11
+      },
+      {
+        "ts": 1791393755.5,
+        "entropy": 0.8978,
+        "distinct": 11
+      },
+      {
+        "ts": 1791393879.1,
+        "entropy": 0.8924,
+        "distinct": 11
+      },
+      {
+        "ts": 1791393994.0,
+        "entropy": 0.8843,
+        "distinct": 11
+      },
+      {
+        "ts": 1791394107.7,
+        "entropy": 0.8836,
+        "distinct": 12
+      },
+      {
+        "ts": 1791394251.3,
+        "entropy": 0.8512,
+        "distinct": 13
+      },
+      {
+        "ts": 1791394370.1,
+        "entropy": 0.8532,
+        "distinct": 13
+      },
+      {
+        "ts": 1791394492.4,
+        "entropy": 0.8544,
+        "distinct": 13
+      },
+      {
+        "ts": 1791394605.5,
+        "entropy": 0.8632,
+        "distinct": 12
+      },
+      {
+        "ts": 1791394760.1,
+        "entropy": 0.853,
+        "distinct": 13
+      },
+      {
+        "ts": 1791394878.8,
+        "entropy": 0.8569,
+        "distinct": 12
+      },
+      {
+        "ts": 1791395007.9,
+        "entropy": 0.8615,
+        "distinct": 12
+      },
+      {
+        "ts": 1791395151.6,
+        "entropy": 0.867,
+        "distinct": 12
+      },
+      {
+        "ts": 1791395330.0,
+        "entropy": 0.8589,
+        "distinct": 13
+      },
+      {
+        "ts": 1791395465.1,
+        "entropy": 0.8611,
+        "distinct": 13
+      },
+      {
+        "ts": 1791395581.8,
+        "entropy": 0.8536,
+        "distinct": 13
+      },
+      {
+        "ts": 1791395694.2,
+        "entropy": 0.8578,
+        "distinct": 13
+      },
+      {
+        "ts": 1791395820.0,
+        "entropy": 0.8539,
+        "distinct": 13
+      },
+      {
+        "ts": 1791395962.3,
+        "entropy": 0.8373,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396081.6,
+        "entropy": 0.8393,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396260.7,
+        "entropy": 0.8281,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396473.6,
+        "entropy": 0.8329,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396612.5,
+        "entropy": 0.8315,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396732.0,
+        "entropy": 0.8221,
+        "distinct": 14
+      },
+      {
+        "ts": 1791396851.3,
+        "entropy": 0.816,
+        "distinct": 14
+      },
+      {
+        "ts": 1791397000.0,
+        "entropy": 0.8086,
+        "distinct": 14
+      },
+      {
+        "ts": 1791397160.6,
+        "entropy": 0.8082,
+        "distinct": 14
+      },
+      {
+        "ts": 1791397346.0,
+        "entropy": 0.8039,
+        "distinct": 15
+      },
+      {
+        "ts": 1791397467.6,
+        "entropy": 0.8072,
+        "distinct": 13
+      },
+      {
+        "ts": 1791397617.6,
+        "entropy": 0.7952,
+        "distinct": 13
+      },
+      {
+        "ts": 1791397799.6,
+        "entropy": 0.7799,
+        "distinct": 13
+      },
+      {
+        "ts": 1791397959.7,
+        "entropy": 0.7878,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398117.4,
+        "entropy": 0.8032,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398275.3,
+        "entropy": 0.8198,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398415.9,
+        "entropy": 0.8109,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398531.1,
+        "entropy": 0.822,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398728.6,
+        "entropy": 0.8269,
+        "distinct": 13
+      },
+      {
+        "ts": 1791398896.1,
+        "entropy": 0.8286,
+        "distinct": 13
+      },
+      {
+        "ts": 1791399062.3,
+        "entropy": 0.8325,
+        "distinct": 13
+      },
+      {
+        "ts": 1791399198.9,
+        "entropy": 0.8326,
+        "distinct": 13
+      },
+      {
+        "ts": 1791399322.9,
+        "entropy": 0.8333,
+        "distinct": 13
+      },
+      {
+        "ts": 1791399454.4,
+        "entropy": 0.8449,
+        "distinct": 12
+      },
+      {
+        "ts": 1791399617.4,
+        "entropy": 0.8575,
+        "distinct": 12
+      },
+      {
+        "ts": 1791399742.6,
+        "entropy": 0.8445,
+        "distinct": 12
+      },
+      {
+        "ts": 1791399858.2,
+        "entropy": 0.8372,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400018.3,
+        "entropy": 0.843,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400145.3,
+        "entropy": 0.8482,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400272.2,
+        "entropy": 0.847,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400389.6,
+        "entropy": 0.8297,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400547.9,
+        "entropy": 0.8239,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400716.0,
+        "entropy": 0.8275,
+        "distinct": 13
+      },
+      {
+        "ts": 1791400831.9,
+        "entropy": 0.8114,
+        "distinct": 14
+      },
+      {
+        "ts": 1791400956.1,
+        "entropy": 0.8234,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401172.9,
+        "entropy": 0.8183,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401352.5,
+        "entropy": 0.8078,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401471.6,
+        "entropy": 0.8288,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401598.1,
+        "entropy": 0.829,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401757.5,
+        "entropy": 0.8477,
+        "distinct": 13
+      },
+      {
+        "ts": 1791401942.1,
+        "entropy": 0.8349,
+        "distinct": 14
+      },
+      {
+        "ts": 1791402090.9,
+        "entropy": 0.845,
+        "distinct": 15
+      },
+      {
+        "ts": 1791402220.9,
+        "entropy": 0.8456,
+        "distinct": 14
+      },
+      {
+        "ts": 1791402452.3,
+        "entropy": 0.8547,
+        "distinct": 14
+      },
+      {
+        "ts": 1791402617.0,
+        "entropy": 0.8546,
+        "distinct": 14
+      },
+      {
+        "ts": 1791402768.4,
+        "entropy": 0.8649,
+        "distinct": 14
+      },
+      {
+        "ts": 1791402901.1,
+        "entropy": 0.8564,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403069.2,
+        "entropy": 0.851,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403213.3,
+        "entropy": 0.8452,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403348.7,
+        "entropy": 0.8451,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403473.3,
+        "entropy": 0.8404,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403603.3,
+        "entropy": 0.8593,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403762.5,
+        "entropy": 0.8677,
+        "distinct": 14
+      },
+      {
+        "ts": 1791403950.4,
+        "entropy": 0.8424,
+        "distinct": 14
+      },
+      {
+        "ts": 1791404092.2,
+        "entropy": 0.8383,
+        "distinct": 14
+      },
+      {
+        "ts": 1791404214.3,
+        "entropy": 0.8257,
+        "distinct": 14
+      },
+      {
+        "ts": 1791404440.0,
+        "entropy": 0.826,
+        "distinct": 13
+      },
+      {
+        "ts": 1791404566.8,
+        "entropy": 0.8205,
+        "distinct": 13
+      },
+      {
+        "ts": 1791404786.8,
+        "entropy": 0.8399,
+        "distinct": 12
+      },
+      {
+        "ts": 1791404908.2,
+        "entropy": 0.8299,
+        "distinct": 12
+      },
+      {
+        "ts": 1791405075.7,
+        "entropy": 0.8186,
+        "distinct": 12
+      },
+      {
+        "ts": 1791405205.9,
+        "entropy": 0.8231,
+        "distinct": 13
+      },
+      {
+        "ts": 1791405343.1,
+        "entropy": 0.8198,
+        "distinct": 13
+      },
+      {
+        "ts": 1791405458.5,
+        "entropy": 0.8191,
+        "distinct": 13
+      },
+      {
+        "ts": 1791405645.2,
+        "entropy": 0.8219,
+        "distinct": 13
+      },
+      {
+        "ts": 1791405767.1,
+        "entropy": 0.8248,
+        "distinct": 13
+      },
+      {
+        "ts": 1791405892.1,
+        "entropy": 0.8213,
+        "distinct": 13
+      },
+      {
+        "ts": 1791406027.6,
+        "entropy": 0.8561,
+        "distinct": 12
+      },
+      {
+        "ts": 1791406170.2,
+        "entropy": 0.8405,
+        "distinct": 12
+      },
+      {
+        "ts": 1791406336.3,
+        "entropy": 0.8458,
+        "distinct": 12
+      },
+      {
+        "ts": 1791406461.6,
+        "entropy": 0.8406,
+        "distinct": 12
+      },
+      {
+        "ts": 1791406606.9,
+        "entropy": 0.8604,
+        "distinct": 12
+      },
+      {
+        "ts": 1791406748.4,
+        "entropy": 0.8565,
+        "distinct": 13
+      },
+      {
+        "ts": 1791406899.8,
+        "entropy": 0.845,
+        "distinct": 13
+      },
+      {
+        "ts": 1791407055.2,
+        "entropy": 0.8652,
+        "distinct": 12
+      },
+      {
+        "ts": 1791407207.7,
+        "entropy": 0.8519,
+        "distinct": 13
+      },
+      {
+        "ts": 1791407341.3,
+        "entropy": 0.852,
+        "distinct": 13
+      },
+      {
+        "ts": 1791407494.5,
+        "entropy": 0.8583,
+        "distinct": 13
+      },
+      {
+        "ts": 1791407614.4,
+        "entropy": 0.8458,
+        "distinct": 14
+      },
+      {
+        "ts": 1791407750.4,
+        "entropy": 0.8491,
+        "distinct": 14
+      },
+      {
+        "ts": 1791407888.0,
+        "entropy": 0.8488,
+        "distinct": 14
+      },
+      {
+        "ts": 1791408091.6,
+        "entropy": 0.843,
+        "distinct": 14
+      },
+      {
+        "ts": 1791408213.9,
+        "entropy": 0.8553,
+        "distinct": 13
+      },
+      {
+        "ts": 1791408360.8,
+        "entropy": 0.8441,
+        "distinct": 13
+      },
+      {
+        "ts": 1791408548.7,
+        "entropy": 0.8348,
+        "distinct": 13
+      },
+      {
+        "ts": 1791408695.1,
+        "entropy": 0.8329,
+        "distinct": 14
+      },
+      {
+        "ts": 1791408819.7,
+        "entropy": 0.8301,
+        "distinct": 14
+      },
+      {
+        "ts": 1791408961.9,
+        "entropy": 0.8372,
+        "distinct": 13
+      },
+      {
+        "ts": 1791409113.4,
+        "entropy": 0.8451,
+        "distinct": 12
+      },
+      {
+        "ts": 1791409274.3,
+        "entropy": 0.8163,
+        "distinct": 14
+      },
+      {
+        "ts": 1791409376.3,
+        "entropy": 0.8144,
+        "distinct": 14
+      },
+      {
+        "ts": 1791409504.0,
+        "entropy": 0.8015,
+        "distinct": 14
+      },
+      {
+        "ts": 1791409627.8,
+        "entropy": 0.7864,
+        "distinct": 14
+      },
+      {
+        "ts": 1791409799.8,
+        "entropy": 0.7833,
+        "distinct": 14
+      },
+      {
+        "ts": 1791410068.1,
+        "entropy": 0.7833,
+        "distinct": 13
+      },
+      {
+        "ts": 1791410295.0,
+        "entropy": 0.7967,
+        "distinct": 14
+      },
+      {
+        "ts": 1791410423.7,
+        "entropy": 0.782,
+        "distinct": 15
+      },
+      {
+        "ts": 1791410582.7,
+        "entropy": 0.7999,
+        "distinct": 15
+      },
+      {
+        "ts": 1791410736.0,
+        "entropy": 0.7924,
+        "distinct": 15
+      },
+      {
+        "ts": 1791410866.1,
+        "entropy": 0.8034,
+        "distinct": 15
+      },
+      {
+        "ts": 1791410994.0,
+        "entropy": 0.8034,
+        "distinct": 15
+      },
+      {
+        "ts": 1791411164.2,
+        "entropy": 0.801,
+        "distinct": 15
+      },
+      {
+        "ts": 1791411354.4,
+        "entropy": 0.8007,
+        "distinct": 14
+      },
+      {
+        "ts": 1791411517.3,
+        "entropy": 0.8057,
+        "distinct": 14
+      },
+      {
+        "ts": 1791411699.3,
+        "entropy": 0.8159,
+        "distinct": 14
+      },
+      {
+        "ts": 1791411966.8,
+        "entropy": 0.8267,
+        "distinct": 14
+      },
+      {
+        "ts": 1791412175.7,
+        "entropy": 0.862,
+        "distinct": 13
+      },
+      {
+        "ts": 1791412298.5,
+        "entropy": 0.8609,
+        "distinct": 13
+      },
+      {
+        "ts": 1791412441.5,
+        "entropy": 0.8597,
+        "distinct": 13
+      },
+      {
+        "ts": 1791412584.7,
+        "entropy": 0.8647,
+        "distinct": 13
+      },
+      {
+        "ts": 1791412857.4,
+        "entropy": 0.8697,
+        "distinct": 13
+      },
+      {
+        "ts": 1791412997.9,
+        "entropy": 0.8722,
+        "distinct": 13
+      },
+      {
+        "ts": 1791413153.0,
+        "entropy": 0.8704,
+        "distinct": 12
+      },
+      {
+        "ts": 1791413292.4,
+        "entropy": 0.8654,
+        "distinct": 13
+      },
+      {
+        "ts": 1791413448.9,
+        "entropy": 0.8526,
+        "distinct": 13
+      },
+      {
+        "ts": 1791413609.0,
+        "entropy": 0.854,
+        "distinct": 13
+      },
+      {
+        "ts": 1791413743.6,
+        "entropy": 0.8492,
+        "distinct": 13
+      },
+      {
+        "ts": 1791413914.7,
+        "entropy": 0.8422,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414113.8,
+        "entropy": 0.8486,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414295.7,
+        "entropy": 0.8522,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414424.5,
+        "entropy": 0.8458,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414563.6,
+        "entropy": 0.8381,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414714.0,
+        "entropy": 0.8361,
+        "distinct": 13
+      },
+      {
+        "ts": 1791414912.3,
+        "entropy": 0.8249,
+        "distinct": 12
+      },
+      {
+        "ts": 1791415038.4,
+        "entropy": 0.8188,
+        "distinct": 12
+      },
+      {
+        "ts": 1791415182.8,
+        "entropy": 0.8181,
+        "distinct": 12
+      },
+      {
+        "ts": 1791415345.4,
+        "entropy": 0.805,
+        "distinct": 13
+      },
+      {
+        "ts": 1791415583.3,
+        "entropy": 0.8016,
+        "distinct": 13
+      },
+      {
+        "ts": 1791415726.5,
+        "entropy": 0.787,
+        "distinct": 13
+      },
+      {
+        "ts": 1791415874.1,
+        "entropy": 0.7925,
+        "distinct": 12
+      },
+      {
+        "ts": 1791416047.5,
+        "entropy": 0.7915,
+        "distinct": 12
+      },
+      {
+        "ts": 1791416266.8,
+        "entropy": 0.7953,
+        "distinct": 13
+      },
+      {
+        "ts": 1791416400.2,
+        "entropy": 0.7924,
+        "distinct": 13
+      },
+      {
+        "ts": 1791416535.5,
+        "entropy": 0.7977,
+        "distinct": 13
+      },
+      {
+        "ts": 1791416675.2,
+        "entropy": 0.7909,
+        "distinct": 13
+      },
+      {
+        "ts": 1791416868.9,
+        "entropy": 0.7801,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417035.1,
+        "entropy": 0.795,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417188.3,
+        "entropy": 0.8005,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417306.8,
+        "entropy": 0.7867,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417464.8,
+        "entropy": 0.7784,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417640.3,
+        "entropy": 0.7885,
+        "distinct": 14
+      },
+      {
+        "ts": 1791417861.3,
+        "entropy": 0.8049,
+        "distinct": 15
+      },
+      {
+        "ts": 1791418190.3,
+        "entropy": 0.8133,
+        "distinct": 15
+      },
+      {
+        "ts": 1791418349.9,
+        "entropy": 0.8205,
+        "distinct": 15
+      },
+      {
+        "ts": 1791418539.9,
+        "entropy": 0.8191,
+        "distinct": 15
+      },
+      {
+        "ts": 1791418722.1,
+        "entropy": 0.8169,
+        "distinct": 15
+      },
+      {
+        "ts": 1791418864.4,
+        "entropy": 0.808,
+        "distinct": 15
+      }
+    ],
+    "ignition_source": [
+      {
+        "ts": 1791366352.2,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366478.9,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366579.4,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366682.2,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366770.6,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366867.6,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791366957.0,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367054.1,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367152.1,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367264.4,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367357.5,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367451.2,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367550.7,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367652.3,
+        "entropy": 0.8628,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367740.4,
+        "entropy": 0.8673,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367832.9,
+        "entropy": 0.8673,
+        "distinct": 17
+      },
+      {
+        "ts": 1791367934.3,
+        "entropy": 0.8673,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368033.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368152.6,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368278.6,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368387.4,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368484.7,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368626.7,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368729.4,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368825.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791368942.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369098.0,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369187.9,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369288.0,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369389.6,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369506.4,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369613.1,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369717.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369828.7,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791369921.2,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370039.1,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370134.2,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370234.9,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370329.0,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370424.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370526.1,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370638.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370729.5,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370874.6,
+        "entropy": 0.8641,
+        "distinct": 17
+      },
+      {
+        "ts": 1791370963.3,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371063.9,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371151.3,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371246.9,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371395.1,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371513.8,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371650.9,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371749.0,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371845.4,
+        "entropy": 0.867,
+        "distinct": 17
+      },
+      {
+        "ts": 1791371943.8,
+        "entropy": 0.8602,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372033.9,
+        "entropy": 0.8602,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372137.6,
+        "entropy": 0.8602,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372242.1,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372328.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372443.7,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372535.1,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372645.9,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372752.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372859.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791372960.8,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373068.5,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373157.7,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373268.9,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373358.7,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373455.3,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373603.9,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373710.8,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373811.8,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791373923.8,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374016.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374127.6,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374228.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374341.0,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374440.7,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374549.8,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374639.3,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374747.4,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374844.3,
+        "entropy": 0.8566,
+        "distinct": 17
+      },
+      {
+        "ts": 1791374961.0,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375050.8,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375160.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375252.7,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375370.8,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375466.2,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375637.6,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375734.3,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375862.1,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791375963.1,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376094.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376269.9,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376400.6,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376508.8,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376630.1,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376729.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791376912.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377000.1,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377158.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377256.4,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377394.2,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377549.5,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377657.4,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377826.0,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791377949.0,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378052.2,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378162.6,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378260.1,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378378.2,
+        "entropy": 0.8523,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378507.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378626.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378730.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378847.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791378944.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379111.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379208.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379324.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379419.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379583.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379676.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379798.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379890.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791379985.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380106.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380110.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380222.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380322.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380496.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380646.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380783.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791380911.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381027.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381254.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381371.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381470.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381576.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381695.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381813.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791381980.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382087.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382266.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382439.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382548.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382668.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382838.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791382963.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383068.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383185.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383295.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383416.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383518.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383621.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383757.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791383886.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384000.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384126.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384255.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384355.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384472.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384576.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384710.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384830.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791384977.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385080.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385198.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385313.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385434.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385533.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385662.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385777.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791385915.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386025.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386136.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386263.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386403.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386503.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386620.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386730.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386863.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791386961.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387087.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387192.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387323.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387427.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387548.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387663.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387819.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791387953.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388126.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388270.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388405.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388489.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388626.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388774.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791388921.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389021.9,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389144.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389275.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389407.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389508.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389614.0,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389759.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791389902.6,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390008.2,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390111.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390228.1,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390348.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390461.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390574.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390704.3,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390854.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791390971.5,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391085.7,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391212.8,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391339.4,
+        "entropy": 0.8592,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391454.9,
+        "entropy": 0.8638,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391558.6,
+        "entropy": 0.8649,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391685.3,
+        "entropy": 0.8649,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391830.6,
+        "entropy": 0.8649,
+        "distinct": 17
+      },
+      {
+        "ts": 1791391957.0,
+        "entropy": 0.8649,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392065.5,
+        "entropy": 0.8649,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392191.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392326.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392431.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392532.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392644.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392785.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791392891.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393009.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393126.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393284.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393401.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393513.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393606.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393755.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393879.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791393994.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394107.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394251.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394370.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394492.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394605.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394760.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791394878.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395007.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395151.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395330.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395465.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395581.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395694.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395820.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791395962.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396081.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396260.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396473.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396612.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396732.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791396851.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397000.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397160.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397346.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397467.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397617.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397799.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791397959.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398117.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398275.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398415.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398531.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398728.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791398896.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399062.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399198.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399322.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399454.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399617.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399742.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791399858.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400018.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400145.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400272.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400389.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400547.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400716.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400831.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791400956.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401172.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401352.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401471.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401598.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401757.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791401942.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402090.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402220.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402452.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402617.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402768.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791402901.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403069.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403213.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403348.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403473.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403603.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403762.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791403950.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404092.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404214.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404440.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404566.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404786.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791404908.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405075.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405205.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405343.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405458.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405645.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405767.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791405892.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406027.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406170.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406336.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406461.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406606.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406748.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791406899.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407055.2,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407207.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407341.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407494.5,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407614.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407750.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791407888.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408091.6,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408213.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408360.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408548.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408695.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408819.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791408961.9,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409113.4,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409274.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409376.3,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409504.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409627.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791409799.8,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791410068.1,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791410295.0,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791410423.7,
+        "entropy": 0.8716,
+        "distinct": 17
+      },
+      {
+        "ts": 1791410582.7,
+        "entropy": 0.8664,
+        "distinct": 18
+      },
+      {
+        "ts": 1791410736.0,
+        "entropy": 0.8664,
+        "distinct": 18
+      },
+      {
+        "ts": 1791410866.1,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791410994.0,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791411164.2,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791411354.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791411517.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791411699.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791411966.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412175.7,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412298.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412441.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412584.7,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412857.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791412997.9,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413153.0,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413292.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413448.9,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413609.0,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413743.6,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791413914.7,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414113.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414295.7,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414424.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414563.6,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414714.0,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791414912.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415038.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415182.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415345.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415583.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415726.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791415874.1,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416047.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416266.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416400.2,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416535.5,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416675.2,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791416868.9,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417035.1,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417188.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417306.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417464.8,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417640.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791417861.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791418190.3,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791418349.9,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791418539.9,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791418722.1,
+        "entropy": 0.8727,
+        "distinct": 18
+      },
+      {
+        "ts": 1791418864.4,
+        "entropy": 0.8727,
+        "distinct": 18
+      }
+    ],
+    "credited_kind": [
+      {
+        "ts": 1791366352.2,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366478.9,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366579.4,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366682.2,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366770.6,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366867.6,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791366957.0,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367054.1,
+        "entropy": 0.4102,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367152.1,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367264.4,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367357.5,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367451.2,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367550.7,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367652.3,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367740.4,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367832.9,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791367934.3,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368033.5,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368152.6,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368278.6,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368387.4,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368484.7,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368626.7,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368729.4,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368825.5,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791368942.5,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369098.0,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369187.9,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369288.0,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369389.6,
+        "entropy": 0.3868,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369506.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369613.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369717.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369828.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791369921.2,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370039.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370134.2,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370234.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370329.0,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370424.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370526.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370638.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370729.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370874.6,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791370963.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371063.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371151.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371246.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371395.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371513.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371650.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371749.0,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371845.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791371943.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372033.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372137.6,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372242.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372328.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372443.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372535.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372645.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372752.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372859.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791372960.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373068.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373157.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373268.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373358.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373455.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373603.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373710.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373811.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791373923.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374016.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374127.6,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374228.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374341.0,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374440.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374549.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374639.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374747.4,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374844.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791374961.0,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375050.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375160.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375252.7,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375370.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375466.2,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375637.6,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375734.3,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375862.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791375963.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376094.5,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376269.9,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376400.6,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376508.8,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376630.1,
+        "entropy": 0.3614,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376729.5,
+        "entropy": 0.3719,
+        "distinct": 4
+      },
+      {
+        "ts": 1791376912.5,
+        "entropy": 0.3719,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377000.1,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377158.5,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377256.4,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377394.2,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377549.5,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377657.4,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377826.0,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791377949.0,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378052.2,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378162.6,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378260.1,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378378.2,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378507.4,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378626.0,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378730.2,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378847.5,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791378944.8,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379111.7,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379208.8,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379324.2,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379419.7,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379583.1,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379676.3,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379798.0,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379890.1,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791379985.6,
+        "entropy": 0.382,
+        "distinct": 4
+      },
+      {
+        "ts": 1791380106.2,
+        "entropy": 0.3481,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380110.6,
+        "entropy": 0.3481,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380222.5,
+        "entropy": 0.3481,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380322.6,
+        "entropy": 0.3481,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380496.5,
+        "entropy": 0.3481,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380646.8,
+        "entropy": 0.3684,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380783.0,
+        "entropy": 0.3684,
+        "distinct": 5
+      },
+      {
+        "ts": 1791380911.3,
+        "entropy": 0.3684,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381027.8,
+        "entropy": 0.3804,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381254.5,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381371.0,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381470.2,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381576.1,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381695.4,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381813.4,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791381980.5,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382087.9,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382266.8,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382439.2,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382548.3,
+        "entropy": 0.3917,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382668.2,
+        "entropy": 0.4124,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382838.9,
+        "entropy": 0.4124,
+        "distinct": 5
+      },
+      {
+        "ts": 1791382963.4,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383068.2,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383185.3,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383295.6,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383416.8,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383518.2,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383621.4,
+        "entropy": 0.4046,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383757.1,
+        "entropy": 0.4234,
+        "distinct": 5
+      },
+      {
+        "ts": 1791383886.6,
+        "entropy": 0.4234,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384000.0,
+        "entropy": 0.4323,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384126.7,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384255.3,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384355.8,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384472.4,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384576.4,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384710.7,
+        "entropy": 0.457,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384830.4,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791384977.6,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385080.2,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385198.3,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385313.7,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385434.1,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385533.1,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385662.7,
+        "entropy": 0.4642,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385777.4,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791385915.1,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386025.0,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386136.7,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386263.2,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386403.4,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386503.0,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386620.3,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386730.6,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386863.3,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791386961.9,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387087.5,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387192.2,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387323.1,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387427.9,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387548.4,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387663.9,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387819.4,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791387953.1,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388126.5,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388270.4,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388405.1,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388489.3,
+        "entropy": 0.4633,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388626.7,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388774.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791388921.4,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389021.9,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389144.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389275.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389407.2,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389508.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389614.0,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389759.8,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791389902.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390008.2,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390111.1,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390228.1,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390348.3,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390461.7,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390574.7,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390704.3,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390854.5,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791390971.5,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391085.7,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391212.8,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391339.4,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391454.9,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391558.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391685.3,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391830.6,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791391957.0,
+        "entropy": 0.4772,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392065.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392191.8,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392326.4,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392431.2,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392532.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392644.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392785.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791392891.9,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393009.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393126.8,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393284.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393401.9,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393513.1,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393606.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393755.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393879.1,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791393994.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394107.7,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394251.3,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394370.1,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394492.4,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394605.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394760.1,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791394878.8,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395007.9,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395151.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395330.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395465.1,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395581.8,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395694.2,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395820.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791395962.3,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396081.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396260.7,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396473.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396612.5,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396732.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791396851.3,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397000.0,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397160.6,
+        "entropy": 0.4682,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397346.0,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397467.6,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397617.6,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397799.6,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791397959.7,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398117.4,
+        "entropy": 0.4813,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398275.3,
+        "entropy": 0.4938,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398415.9,
+        "entropy": 0.4938,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398531.1,
+        "entropy": 0.4938,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398728.6,
+        "entropy": 0.4998,
+        "distinct": 5
+      },
+      {
+        "ts": 1791398896.1,
+        "entropy": 0.5056,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399062.3,
+        "entropy": 0.5056,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399198.9,
+        "entropy": 0.5056,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399322.9,
+        "entropy": 0.5056,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399454.4,
+        "entropy": 0.5056,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399617.4,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399742.6,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791399858.2,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400018.3,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400145.3,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400272.2,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400389.6,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400547.9,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400716.0,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400831.9,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791400956.1,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401172.9,
+        "entropy": 0.5168,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401352.5,
+        "entropy": 0.5222,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401471.6,
+        "entropy": 0.5195,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401598.1,
+        "entropy": 0.5195,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401757.5,
+        "entropy": 0.5129,
+        "distinct": 5
+      },
+      {
+        "ts": 1791401942.1,
+        "entropy": 0.5129,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402090.9,
+        "entropy": 0.5129,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402220.9,
+        "entropy": 0.5129,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402452.3,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402617.0,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402768.4,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791402901.1,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403069.2,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403213.3,
+        "entropy": 0.5089,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403348.7,
+        "entropy": 0.5138,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403473.3,
+        "entropy": 0.5185,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403603.3,
+        "entropy": 0.5231,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403762.5,
+        "entropy": 0.5276,
+        "distinct": 5
+      },
+      {
+        "ts": 1791403950.4,
+        "entropy": 0.5276,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404092.2,
+        "entropy": 0.5362,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404214.3,
+        "entropy": 0.5362,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404440.0,
+        "entropy": 0.5362,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404566.8,
+        "entropy": 0.5362,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404786.8,
+        "entropy": 0.5215,
+        "distinct": 5
+      },
+      {
+        "ts": 1791404908.2,
+        "entropy": 0.5215,
+        "distinct": 5
+      },
+      {
+        "ts": 1791405075.7,
+        "entropy": 0.5215,
+        "distinct": 5
+      },
+      {
+        "ts": 1791405205.9,
+        "entropy": 0.5931,
+        "distinct": 4
+      },
+      {
+        "ts": 1791405343.1,
+        "entropy": 0.5931,
+        "distinct": 4
+      },
+      {
+        "ts": 1791405458.5,
+        "entropy": 0.5931,
+        "distinct": 4
+      },
+      {
+        "ts": 1791405645.2,
+        "entropy": 0.5976,
+        "distinct": 4
+      },
+      {
+        "ts": 1791405767.1,
+        "entropy": 0.5976,
+        "distinct": 4
+      },
+      {
+        "ts": 1791405892.1,
+        "entropy": 0.5976,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406027.6,
+        "entropy": 0.6061,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406170.2,
+        "entropy": 0.6061,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406336.3,
+        "entropy": 0.6143,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406461.6,
+        "entropy": 0.6143,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406606.9,
+        "entropy": 0.622,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406748.4,
+        "entropy": 0.622,
+        "distinct": 4
+      },
+      {
+        "ts": 1791406899.8,
+        "entropy": 0.622,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407055.2,
+        "entropy": 0.6293,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407207.7,
+        "entropy": 0.6362,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407341.3,
+        "entropy": 0.6362,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407494.5,
+        "entropy": 0.6427,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407614.4,
+        "entropy": 0.6427,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407750.4,
+        "entropy": 0.6427,
+        "distinct": 4
+      },
+      {
+        "ts": 1791407888.0,
+        "entropy": 0.6489,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408091.6,
+        "entropy": 0.6489,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408213.9,
+        "entropy": 0.6489,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408360.8,
+        "entropy": 0.6489,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408548.7,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408695.1,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408819.7,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791408961.9,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409113.4,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409274.3,
+        "entropy": 0.6547,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409376.3,
+        "entropy": 0.6644,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409504.0,
+        "entropy": 0.6644,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409627.8,
+        "entropy": 0.6644,
+        "distinct": 4
+      },
+      {
+        "ts": 1791409799.8,
+        "entropy": 0.6737,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410068.1,
+        "entropy": 0.6737,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410295.0,
+        "entropy": 0.6764,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410423.7,
+        "entropy": 0.6764,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410582.7,
+        "entropy": 0.6815,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410736.0,
+        "entropy": 0.6815,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410866.1,
+        "entropy": 0.6815,
+        "distinct": 4
+      },
+      {
+        "ts": 1791410994.0,
+        "entropy": 0.6627,
+        "distinct": 4
+      },
+      {
+        "ts": 1791411164.2,
+        "entropy": 0.6627,
+        "distinct": 4
+      },
+      {
+        "ts": 1791411354.4,
+        "entropy": 0.6627,
+        "distinct": 4
+      },
+      {
+        "ts": 1791411517.3,
+        "entropy": 0.6652,
+        "distinct": 4
+      },
+      {
+        "ts": 1791411699.3,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791411966.8,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412175.7,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412298.5,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412441.5,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412584.7,
+        "entropy": 0.6676,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412857.4,
+        "entropy": 0.6699,
+        "distinct": 4
+      },
+      {
+        "ts": 1791412997.9,
+        "entropy": 0.6721,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413153.0,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413292.4,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413448.9,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413609.0,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413743.6,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791413914.7,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414113.8,
+        "entropy": 0.6559,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414295.7,
+        "entropy": 0.6488,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414424.5,
+        "entropy": 0.6488,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414563.6,
+        "entropy": 0.6488,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414714.0,
+        "entropy": 0.6103,
+        "distinct": 4
+      },
+      {
+        "ts": 1791414912.3,
+        "entropy": 0.6103,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415038.4,
+        "entropy": 0.6103,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415182.8,
+        "entropy": 0.6103,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415345.4,
+        "entropy": 0.6103,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415583.3,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415726.5,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791415874.1,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416047.5,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416266.8,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416400.2,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416535.5,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416675.2,
+        "entropy": 0.6141,
+        "distinct": 4
+      },
+      {
+        "ts": 1791416868.9,
+        "entropy": 0.6177,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417035.1,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417188.3,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417306.8,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417464.8,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417640.3,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791417861.3,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418190.3,
+        "entropy": 0.6194,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418349.9,
+        "entropy": 0.6209,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418539.9,
+        "entropy": 0.6209,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418722.1,
+        "entropy": 0.6209,
+        "distinct": 4
+      },
+      {
+        "ts": 1791418864.4,
+        "entropy": 0.6209,
+        "distinct": 4
+      }
+    ]
+  },
+  "updated": 1791418864.4
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "world a world relationship to other fields",
+    "world a world key figures and works"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/2026_Formula_One_World_Championship",
+    "https://en.wikipedia.org/wiki/Other_Side_of_the_World",
+    "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics",
+    "https://en.wikipedia.org/wiki/World_history_%28field%29",
+    "https://en.wikipedia.org/wiki/Mondeuse_noire",
+    "https://en.wikipedia.org/wiki/It%27s_a_Small_World",
+    "https://en.wikipedia.org/wiki/Fantasy_world",
+    "https://en.wikipedia.org/wiki/WWE",
+    "https://en.wikipedia.org/wiki/Hidden_Figures",
+    "https://en.wikipedia.org/wiki/List_of_World_of_Springfield_figures_and_playsets"
+  ],
+  "results": [
+    {
+      "title": "2026 Formula One World Championship",
+      "url": "https://en.wikipedia.org/wiki/2026_Formula_One_World_Championship",
+      "snippet": "FIA Formula One <span class=\"searchmatch\">World</span> Championship is <span class=\"searchmatch\">a</span> motor racing championship for Formula One cars and the 77th running of the Formula One <span class=\"searchmatch\">World</span> Championship. It",
+      "query": "world a world relationship to other fields"
+    },
+    {
+      "title": "Other Side of the World",
+      "url": "https://en.wikipedia.org/wiki/Other_Side_of_the_World",
+      "snippet": "&quot;<span class=\"searchmatch\">Other</span> Side of the <span class=\"searchmatch\">World</span>&quot; is <span class=\"searchmatch\">a</span> song by Scottish singer-songwriter KT Tunstall, included as the opening track on her debut album, Eye <span class=\"searchmatch\">to</span> the Telescope (2004)",
+      "query": "world a world relationship to other fields"
+    },
+    {
+      "title": "List of world records in athletics",
+      "url": "https://en.wikipedia.org/wiki/List_of_world_records_in_athletics",
+      "snippet": "ratification of <span class=\"searchmatch\">a</span> <span class=\"searchmatch\">world</span> record are defined by <span class=\"searchmatch\">World</span> Athletics in Part III of the Competition Rules. These criteria also apply <span class=\"searchmatch\">to</span> national or <span class=\"searchmatch\">other</span> restricted",
+      "query": "world a world relationship to other fields"
+    },
+    {
+      "title": "World history (field)",
+      "url": "https://en.wikipedia.org/wiki/World_history_%28field%29",
+      "snippet": "<span class=\"searchmatch\">World</span> history or global history as <span class=\"searchmatch\">a</span> <span class=\"searchmatch\">field</span> of historical study examines history from <span class=\"searchmatch\">a</span> global perspective. It emerged centuries ago; some leading practitioners",
+      "query": "world a world relationship to other fields"
+    },
+    {
+      "title": "Mondeuse noire",
+      "url": "https://en.wikipedia.org/wiki/Mondeuse_noire",
+      "snippet": "actually <span class=\"searchmatch\">field</span> blends of true Petite Sirah (Durif) as well as several <span class=\"searchmatch\">other</span> varieties including Mondeuse noire. Though the exact <span class=\"searchmatch\">relationship</span> is not yet",
+      "query": "world a world relationship to other fields"
+    },
+    {
+      "title": "It's a Small World",
+      "url": "https://en.wikipedia.org/wiki/It%27s_a_Small_World",
+      "snippet": "It&#039;s <span class=\"searchmatch\">a</span> Small <span class=\"searchmatch\">World</span> (stylized in all lowercase <span class=\"searchmatch\">and</span> in quotations or with an exclamation mark) is an Old Mill boat dark ride located in the Fantasyland area",
+      "query": "world a world key figures and works"
+    },
+    {
+      "title": "Fantasy world",
+      "url": "https://en.wikipedia.org/wiki/Fantasy_world",
+      "snippet": "reason why certain fantasy <span class=\"searchmatch\">works</span> are deeply convincing <span class=\"searchmatch\">and</span> contain <span class=\"searchmatch\">a</span> magical sense of place. Heavy <span class=\"searchmatch\">and</span> faithful use of real-<span class=\"searchmatch\">world</span> setting for inspiration",
+      "query": "world a world key figures and works"
+    },
+    {
+      "title": "WWE",
+      "url": "https://en.wikipedia.org/wiki/WWE",
+      "snippet": "other companies to produce video games <span class=\"searchmatch\">and</span> action <span class=\"searchmatch\">figures</span>. WWE is owned <span class=\"searchmatch\">and</span> operated by TKO Group Holdings, <span class=\"searchmatch\">a</span> majority-owned subsidiary of the WME Group",
+      "query": "world a world key figures and works"
+    },
+    {
+      "title": "Hidden Figures",
+      "url": "https://en.wikipedia.org/wiki/Hidden_Figures",
+      "snippet": "Hidden <span class=\"searchmatch\">Figures</span> is <span class=\"searchmatch\">a</span> 2016 American biographical drama film co-produced <span class=\"searchmatch\">and</span> directed by Theodore Melfi, who co-wrote the screenplay with Allison Schroeder",
+      "query": "world a world key figures and works"
+    },
+    {
+      "title": "List of World of Springfield figures and playsets",
+      "url": "https://en.wikipedia.org/wiki/List_of_World_of_Springfield_figures_and_playsets",
+      "snippet": "List of <span class=\"searchmatch\">World</span> of Springfield <span class=\"searchmatch\">figures</span> <span class=\"searchmatch\">and</span> playsets is <span class=\"searchmatch\">a</span> compilation of action <span class=\"searchmatch\">figures</span> <span class=\"searchmatch\">and</span> other items related to the animated sitcom The Simpsons <span class=\"searchmatch\">and</span> provided",
+      "query": "world a world key figures and works"
+    }
+  ],
+  "ts": "2026-10-07T00:52:43.988185+00:00"
+}

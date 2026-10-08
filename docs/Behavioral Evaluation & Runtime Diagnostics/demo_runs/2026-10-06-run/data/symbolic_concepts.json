@@ -1,0 +1,147 @@
+[
+  {
+    "name": "event_recent_dream",
+    "type": "PRINCIPLE",
+    "definition": "When event_recent:dream, event_recent:symbolic_dream_insight: 'dream' events tend to recur in clusters.",
+    "conditions": [
+      "event_recent:dream",
+      "event_recent:symbolic_dream_insight"
+    ],
+    "member_rules": [
+      "b0de96c0d4",
+      "25afd9edb9",
+      "837b3530f4",
+      "56a9109318",
+      "86c6431c09",
+      "f7e8cd4868",
+      "068e910a5b",
+      "c9c3866df0"
+    ],
+    "dominant_tokens": [
+      "event",
+      "recent",
+      "dream",
+      "insight",
+      "affective",
+      "regulation"
+    ],
+    "created_at": "2026-10-06T20:28:55.722039+00:00"
+  },
+  {
+    "name": "function_look_around",
+    "type": "PRINCIPLE",
+    "definition": "When function:look_around: uncertainty falls",
+    "conditions": [
+      "function:look_around"
+    ],
+    "member_rules": [
+      "0ad7857627",
+      "1f33e98943",
+      "2e443d3ce7"
+    ],
+    "dominant_tokens": [
+      "function",
+      "look",
+      "around",
+      "outward"
+    ],
+    "created_at": "2026-10-06T20:28:55.722581+00:00"
+  },
+  {
+    "name": "function_goal_assess",
+    "type": "PRINCIPLE",
+    "definition": "When function:assess_goal_progress: impasse_signal rises",
+    "conditions": [
+      "function:assess_goal_progress"
+    ],
+    "member_rules": [
+      "be01138cce",
+      "3be0aafb61",
+      "33469c9374",
+      "ab0f06fc18",
+      "1013ff10f7"
+    ],
+    "dominant_tokens": [
+      "function",
+      "goal",
+      "assess",
+      "progress",
+      "attend"
+    ],
+    "created_at": "2026-10-06T20:28:55.723053+00:00"
+  },
+  {
+    "name": "affect_chronic_signal",
+    "type": "PRINCIPLE",
+    "definition": "When affect_chronic:affiliation_signal, affect_chronic:satisfaction_signal: When 'satisfaction_signal' is chronically elevated, apply regulation early rather than waiting — it keeps returning.",
+    "conditions": [
+      "affect_chronic:affiliation_signal",
+      "affect_chronic:satisfaction_signal"
+    ],
+    "member_rules": [
+      "2b05b1b8c0",
+      "37e7b48255",
+      "18f1e77fab",
+      "9ae5757831",
+      "988461de50",
+      "0317f7efb1",
+      "345a13ceeb",
+      "b61daca123",
+      "0a76e8b070",
+      "15694b3345"
+    ],
+    "dominant_tokens": [
+      "affect",
+      "chronic",
+      "signal",
+      "satisfaction",
+      "affiliation",
+      "novelty"
+    ],
+    "created_at": "2026-10-06T20:28:55.723411+00:00"
+  },
+  {
+    "name": "function_generate_intrinsic",
+    "type": "PRINCIPLE",
+    "definition": "When function:generate_intrinsic_goals: novelty_signal rises",
+    "conditions": [
+      "function:generate_intrinsic_goals"
+    ],
+    "member_rules": [
+      "e1fb6d1924",
+      "8b4453820b",
+      "25f5a7c3d3",
+      "ead11d214c"
+    ],
+    "dominant_tokens": [
+      "function",
+      "generate",
+      "intrinsic",
+      "goals"
+    ],
+    "created_at": "2026-10-06T20:28:55.723566+00:00"
+  },
+  {
+    "name": "dream_processing",
+    "type": "PRINCIPLE",
+    "definition": "When dream, processing: emotional reflection: [symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[symbolic] The",
+    "conditions": [
+      "dream",
+      "processing"
+    ],
+    "member_rules": [
+      "c370f91e8c",
+      "63b53bb9e7",
+      "770a9f7eaa",
+      "meta_536432bad0",
+      "60e793c32e",
+      "f86578b1e9",
+      "6b556d8c48"
+    ],
+    "dominant_tokens": [
+      "dream",
+      "processing"
+    ],
+    "created_at": "2026-10-06T20:28:55.724530+00:00"
+  }
+]

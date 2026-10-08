@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_25a7aa5c76",
+    "title": "Understand but what if there more deeply — round 4",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "but what if there recent research",
+        "but what if there common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_8763455e59",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841371Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841378Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841380Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841382Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-10-08T00:14:35.841383Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on but what if there was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about but what if there was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-10-08T00:14:35.841399Z",
+      "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-10-08 00:14:35.844435+00:00",
+    "updated_at": "2026-10-08 00:14:36.931521+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Scientific_method",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Research_statement",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/WhatsApp",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/There_Is_No_Antimemetics_Division",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Common_English_usage_misconceptions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25a7aa5c76/doc_10.txt"
+    }
+  ],
+  "ts": "2026-10-08T00:14:41.726147+00:00"
+}

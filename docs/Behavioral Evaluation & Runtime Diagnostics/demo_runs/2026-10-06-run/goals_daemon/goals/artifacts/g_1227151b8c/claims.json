@@ -1,0 +1,130 @@
+{
+  "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "mathematics"
+  ],
+  "entities": [
+    "Major themes that",
+    "dealt with in philosophy of mathematics include",
+    "Because the language of mathematics",
+    "so precise",
+    "Logic",
+    "not specific to mathematics",
+    "belonged to philosophy and",
+    "not specifically studied by mathematicians",
+    "which",
+    "presently used commonly in mathematics",
+    "Structuralism in the philosophy of mathematics",
+    "particularly associated with Paul Benacerraf",
+    "Contemporaneous with but independent of these traditions",
+    "the mathematics developed by the Maya civilization of Mexico and Central America",
+    "Many Greek and Arabic texts on mathematics",
+    "translated into Latin from the 12th century"
+  ],
+  "relations": [
+    {
+      "subject": "Major themes that",
+      "predicate": "are",
+      "object": "dealt with in philosophy of mathematics include",
+      "source": "my prior claims [g_237a019a52]"
+    },
+    {
+      "subject": "Because the language of mathematics",
+      "predicate": "is",
+      "object": "so precise",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "Logic",
+      "predicate": "is",
+      "object": "not specific to mathematics",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "belonged to philosophy and",
+      "predicate": "was",
+      "object": "not specifically studied by mathematicians",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "which",
+      "predicate": "are",
+      "object": "presently used commonly in mathematics",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "subject": "Structuralism in the philosophy of mathematics",
+      "predicate": "is",
+      "object": "particularly associated with Paul Benacerraf",
+      "source": "https://en.wikipedia.org/wiki/Structuralism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "subject": "Contemporaneous with but independent of these traditions",
+      "predicate": "were",
+      "object": "the mathematics developed by the Maya civilization of Mexico and Central America",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "subject": "Many Greek and Arabic texts on mathematics",
+      "predicate": "were",
+      "object": "translated into Latin from the 12th century",
+      "source": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is a",
+      "object": "field of knowledge concerned with abstract concepts such as numbers",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "widely used to model and solve problems in science",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many areas of mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "subject": "Mathematics",
+      "predicate": "is",
+      "object": "essential in science and engineering",
+      "source": "https://en.wikipedia.org/wiki/Mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_237a019a52]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structuralism_%28philosophy_of_mathematics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pure_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_linguistics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formalism_%28philosophy%29"
+    }
+  ],
+  "ts": "2026-10-07T17:18:52.508734+00:00"
+}

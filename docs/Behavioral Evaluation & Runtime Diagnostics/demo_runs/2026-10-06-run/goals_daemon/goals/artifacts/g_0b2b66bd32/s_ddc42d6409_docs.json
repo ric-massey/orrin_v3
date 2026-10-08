@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematical_notation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Greek_Mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_04.txt",
+      "chars": 13568
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematics_in_the_medieval_Islamic_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_mathematical_examples",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_06.txt",
+      "chars": 3866
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_linguistics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_07.txt",
+      "chars": 16341
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Applied_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pure_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b2b66bd32/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T02:58:24.024293+00:00"
+}

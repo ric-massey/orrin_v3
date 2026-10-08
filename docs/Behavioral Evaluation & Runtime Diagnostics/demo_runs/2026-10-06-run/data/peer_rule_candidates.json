@@ -1,0 +1,26 @@
+{
+  "trigger:affiliation_signal": {
+    "count": 472,
+    "promoted": true
+  },
+  "trigger:impasse_signal": {
+    "count": 13,
+    "promoted": true
+  },
+  "trigger:exploration_drive": {
+    "count": 4,
+    "promoted": true
+  },
+  "trigger:novelty_signal": {
+    "count": 8,
+    "promoted": true
+  },
+  "trigger:motivation": {
+    "count": 7,
+    "promoted": true
+  },
+  "trigger:rejection_signal": {
+    "count": 228,
+    "promoted": true
+  }
+}

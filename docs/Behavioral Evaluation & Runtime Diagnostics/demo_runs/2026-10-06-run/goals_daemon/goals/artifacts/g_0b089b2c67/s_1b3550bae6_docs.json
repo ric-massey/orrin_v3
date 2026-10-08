@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Unpaved_road",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_01.txt",
+      "chars": 13333
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Long_and_Winding_Road",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Silk_Road",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/High_Speed_2",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Overpass_myth",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_09.txt",
+      "chars": 10107
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Searches_for_Noah%27s_Ark",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0b089b2c67/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-10-07T09:57:45.129790+00:00"
+}

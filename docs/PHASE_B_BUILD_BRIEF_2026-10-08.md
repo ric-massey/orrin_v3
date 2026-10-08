@@ -227,8 +227,8 @@ many constants and would blur attribution of the clusters above.
    `ORRIN_LIFESPAN_MIN_DAYS=1.1 ORRIN_LIFESPAN_MAX_DAYS=1.3 ./run_orrin.sh`, plugged in, lid
    open; the launcher verifies caffeinate.
 5. The website status card's feeder is
-   `~/RicsWebsite/projects/orrin/producer/push_status.py` (run with `nohup … &`;
-   master plan A6 automates it).
+   `~/RicsWebsite/projects/orrin/producer/push_status.py`; `run_orrin.sh` starts and
+   stops it with the life (A6; `ORRIN_STATUS_PRODUCER=0` to skip).
 
 ## 4. Done means
 

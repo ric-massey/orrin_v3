@@ -73,6 +73,7 @@ cleanup() {
     if [ -n "${CAFF_PID:-}" ]; then
         kill "$CAFF_PID" 2>/dev/null || true
     fi
+    stop_status_producer
     if [ "$RUN_LOCK_HELD" -eq 1 ]; then
         "$RUN_LOCK_SCRIPT" unlock >/dev/null || {
             echo "[run] WARNING: run lock cleanup failed; run ./scripts/orrin_run_lock.sh unlock" >&2
@@ -80,6 +81,47 @@ cleanup() {
     fi
     echo "[run] stopped."
     exit "$exit_code"
+}
+
+# Site status producer (master plan A6): the read-only sidecar that feeds the
+# "IS ORRIN RUNNING?" card on ricmassey.com/orrin.html lives in the site checkout
+# (RicsWebsite/projects/orrin/producer/push_status.py). It reads brain/data only,
+# never writes into Orrin, so starting it with the life cannot touch a verdict.
+# Started once per wrapper (it survives relaunches), stopped in cleanup() with one
+# final push so the card flips to "not running" without waiting out the 3 min
+# staleness window. Skipped silently when the checkout or token is absent;
+# disable with ORRIN_STATUS_PRODUCER=0.
+STATUS_DIR="${HOME}/.config/orrin-status"
+STATUS_SCRIPT="${ORRIN_SITE_DIR:-$HOME/RicsWebsite}/projects/orrin/producer/push_status.py"
+STATUS_PID=""
+start_status_producer() {
+    if [ "${ORRIN_STATUS_PRODUCER:-1}" = "0" ]; then
+        echo "[run] Status producer: disabled (ORRIN_STATUS_PRODUCER=0)"
+        return
+    fi
+    if [ ! -f "$STATUS_SCRIPT" ]; then
+        echo "[run] Status producer: skipped (no $STATUS_SCRIPT)"
+        return
+    fi
+    if [ -z "${ORRIN_STATUS_TOKEN:-}" ] && [ ! -s "$STATUS_DIR/token" ]; then
+        echo "[run] Status producer: skipped (no token in $STATUS_DIR/token)"
+        return
+    fi
+    # A hand-started producer (nohup, pre-A6) would double-push; leave it be.
+    if pgrep -f "projects/orrin/producer/push_status.py" >/dev/null 2>&1; then
+        echo "[run] Status producer: already running — not starting a second"
+        return
+    fi
+    mkdir -p "$STATUS_DIR"
+    ORRIN_DIR="$REPO" "$PYTHON" -u "$STATUS_SCRIPT" >>"$STATUS_DIR/producer.log" 2>&1 &
+    STATUS_PID=$!
+    echo "[run] Status producer: pid $STATUS_PID (log $STATUS_DIR/producer.log)" | tee -a "$LOG"
+}
+stop_status_producer() {
+    [ -n "$STATUS_PID" ] || return 0
+    kill "$STATUS_PID" 2>/dev/null || true
+    ORRIN_DIR="$REPO" "$PYTHON" -u "$STATUS_SCRIPT" --once >>"$STATUS_DIR/producer.log" 2>&1 || true
+    STATUS_PID=""
 }
 
 trap cleanup EXIT
@@ -132,6 +174,7 @@ start_caffeinate() {
     fi
 }
 start_caffeinate
+start_status_producer
 POWER_SRC="$(pmset -g batt 2>/dev/null || true)"
 if ! grep -q "AC Power" <<<"${POWER_SRC%%$'\n'*}"; then
     echo "[run] WARNING: on battery — caffeinate cannot hold system sleep off (-s needs AC). Plug in for a full life." | tee -a "$LOG"

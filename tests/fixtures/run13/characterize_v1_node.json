@@ -1,0 +1,10 @@
+{
+  "id": "g_8defcfaea8",
+  "title": "Characterize what makes my memory use (RSS) climb",
+  "name": "Characterize what makes my memory use (RSS) climb",
+  "kind": "characterize",
+  "tier": "growth",
+  "priority": "CRITICAL",
+  "status": "completed",
+  "driven_by": "self_exploration"
+}

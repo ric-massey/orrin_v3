@@ -27,6 +27,18 @@ _EXECUTABLE_KINDS = {"coding", "research", "housekeeping", "generic", "code_edit
                      "characterize"}
 _MAX_SYNC_ATTEMPTS = 5
 
+# B11 (Run 13 verdict §4b A): goal kinds the daemon runs end-to-end and that WAIT
+# (characterize waits up to 6 h for fresh telemetry). The brain must not commit,
+# research, satiety-close or step-fail them — it learns the outcome only from the
+# daemon's terminal event. Committing one made the brain research its title, close
+# it within minutes, "repair" the still-running daemon copy, re-absorb and
+# re-commit it every ~15 min: all 18 Run-13 desyncs and 53–78 % of focus.
+_DAEMON_ONLY_KINDS = {"characterize"}
+
+
+def is_daemon_only(goal: Dict[str, Any]) -> bool:
+    return str(goal.get("kind") or "").lower() in _DAEMON_ONLY_KINDS
+
 # Event-driven failed-goal queue: filled by the API event-bus subscriber (which
 # may run on the daemon thread) and drained by the cognitive-loop thread, so all
 # context handling stays single-threaded.
@@ -304,7 +316,9 @@ def _committable_from_v1_tree(limit: int) -> List[Dict[str, Any]]:
                 tier == "long_term"
                 and bool(n.get("directional") or n.get("never_complete")
                          or n.get("_aspiration")))
-            if (n.get("name") != _BUCKET_NAME and name
+            if is_daemon_only(n):
+                pass
+            elif (n.get("name") != _BUCKET_NAME and name
                     and status in _COMMITTABLE_STATUSES
                     and status not in _V1_TERMINAL
                     and committable_tier):
@@ -366,7 +380,10 @@ def _reconcile_open_v2_into_v1(api) -> None:
                 d.setdefault("status", "in_progress")
                 to_add.append(d)
             elif str(node.get("status", "")).lower() in _V1_TERMINAL:
-                to_close.append((vid, node.get("status")))
+                # B11: a daemon-only goal's lifecycle is the daemon's; a v1 close
+                # (sweep/prune) must not cancel the work it is still waiting on.
+                if not is_daemon_only(d):
+                    to_close.append((vid, node.get("status")))
             elif vid and not node.get("id"):
                 # An id-less title-matched node: adopt the canonical v2 id so
                 # completion/failure events reconcile by id, not title. (A node with
@@ -458,8 +475,28 @@ def _make_followon(gd: Dict[str, Any], src: Dict[str, Any], title: str,
     return new_title
 
 
+# Proposals from code paths that hold no `context` (close-out follow-ups fire from
+# the event bus, closure sweeps and maintenance). Drained into
+# context["proposed_goals"] at the next sync, so they take the one handoff path.
+_pending_proposals: "deque[Dict[str, Any]]" = deque(maxlen=50)
+
+
+def queue_proposal(goal: Dict[str, Any]) -> None:
+    with _q_lock:
+        _pending_proposals.append(goal)
+
+
+def _drain_pending_proposals(context: Dict[str, Any]) -> None:
+    with _q_lock:
+        pending = list(_pending_proposals)
+        _pending_proposals.clear()
+    if pending:
+        context.setdefault("proposed_goals", []).extend(pending)
+
+
 def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
     """Create executable goals from context['proposed_goals'] via GoalsAPI.create_goal."""
+    _drain_pending_proposals(context)
     proposed: List[Dict[str, Any]] = context.get("proposed_goals") or []
     if not proposed:
         return

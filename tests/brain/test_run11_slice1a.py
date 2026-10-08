@@ -136,7 +136,10 @@ def test_unanswered_question_blocks_satiety_close_then_spawns_followup(_clear_fi
     from brain.cognition.planning.goal_closure import (
         _finalize_goal_completion, _EPISTEMIC_BLOCK_MAX)
 
+    import brain.goal_io as gio
+    gio._drain_pending_proposals({})
     goal = _understanding_goal(add_goal, "Understand gneiss more deeply")
+    goal["kind"] = "research"
     ctx = {"committed_goal": goal}
 
     # No artifact exists → answered=False → the wall blocks the satiety close.
@@ -159,10 +162,16 @@ def test_unanswered_question_blocks_satiety_close_then_spawns_followup(_clear_fi
                 _titles(n.get("subgoals"), acc)
         return acc
 
-    titles = _titles(load_goals(), [])
+    # B20: the follow-up is handed to the daemon via the proposed-goals path,
+    # never added straight to the v1 tree (where nothing could execute it).
     q = goal["question"]
-    assert any(t.startswith("Answer: ") and q[:40] in t for t in titles), (
-        "NOT-answered close must spawn a follow-up goal carrying the question")
+    queued: dict = {}
+    gio._drain_pending_proposals(queued)
+    followups = [g for g in queued.get("proposed_goals", [])
+                 if str(g.get("title", "")).startswith("Answer: ") and q[:40] in g["title"]]
+    assert len(followups) == 1, "NOT-answered close must queue a follow-up carrying the question"
+    assert followups[0]["kind"] == "research"
+    assert not any(t.startswith("Answer: ") for t in _titles(load_goals(), []))
 
 
 # ── F-LN4c: questions derive from goal content, not one template ─────────────

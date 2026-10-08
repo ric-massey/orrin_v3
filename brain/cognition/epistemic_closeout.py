@@ -288,19 +288,49 @@ def score_answer(question: str, artifact_text: str) -> Tuple[bool, str]:
     return (True, body[:280])
 
 
+_FOLLOWUP_TOPIC_RES = (
+    re.compile(r"^what is there about (.+?) that my earlier notes", re.IGNORECASE),
+    re.compile(r"^what about (.+?) do i still not understand", re.IGNORECASE),
+    re.compile(r"^what actually is (.+?),? beyond the mentions", re.IGNORECASE),
+)
+
+
+def followup_query(goal: Dict[str, Any], question: str) -> str:
+    """The search topic for a follow-up: the subject the question template wraps,
+    else the parent's own first query, else the question's subject terms. Run 13
+    searched the whole question sentence."""
+    for rx in _FOLLOWUP_TOPIC_RES:
+        m = rx.search(question.strip())
+        if m and m.group(1).strip():
+            return m.group(1).strip()
+    spec = goal.get("spec") if isinstance(goal.get("spec"), dict) else {}
+    queries = spec.get("queries") or []
+    if queries and isinstance(queries[0], str) and queries[0].strip() \
+            and queries[0].strip().lower() != question.strip().lower():
+        return queries[0].strip()
+    return " ".join(subject_terms(question)) or question
+
+
 def spawn_followup_goal(goal: Dict[str, Any]) -> bool:
     """F-LN4b: when an understanding goal finally closes with its question NOT
     answered, the question survives as a NEW goal instead of being eaten by the
-    satiety close. Returns True if a follow-up was actually added (add_goal's
-    live-title-twin dedup may absorb it into an existing node). Never raises."""
+    satiety close. Returns True if a follow-up was queued. Never raises.
+
+    B20 (Run 13 verdict §4b C): the follow-up is a research goal handed to the
+    daemon through the proposed-goals path (goal_io.queue_proposal →
+    sync_proposed_goals). Added straight to the v1 tree it never reached the
+    daemon; the brain cannot execute research steps, so 51 "Answer:" goals failed
+    at the 3-attempt cap. A non-research parent's question (an aspiration's
+    "what do I now know…") has no executor, so it spawns nothing."""
     try:
         question = str(goal.get("question") or "").strip()
         if not question:
             return False
+        if str(goal.get("kind") or "") != "research":
+            return False
         from brain.cognition.intrinsic_helpers import _mk_goal
-        from brain.cognition.planning.goal_store import add_goal
-        kind = str(goal.get("kind") or "generic")
-        is_research = kind == "research"
+        from brain.goal_io import queue_proposal
+        topic = followup_query(goal, question)
         followup = _mk_goal(
             f"Answer: {question[:90]}",
             f"My goal '{str(goal.get('title') or '?')[:60]}' closed without answering "
@@ -309,19 +339,20 @@ def spawn_followup_goal(goal: Dict[str, Any]) -> bool:
             driven_by=str(goal.get("driven_by") or "world_knowledge"),
             milestones=[f"An answer to '{question[:60]}' was found.",
                         "The answer was written to long memory."],
-            kind=kind if is_research else "generic",
-            requires_artifact=bool(is_research),
-            spec={"queries": [question], "synth_kind": "memo"} if is_research else None,
+            kind="research",
+            requires_artifact=True,
+            spec={"queries": [topic, f"{topic} explained"], "synth_kind": "memo"},
             question=question,
         )
         # Lineage for G2's answer-changed-a-decision tracing.
         if goal.get("id"):
             followup["parent_question_goal"] = str(goal["id"])
-        added = add_goal(followup)
+        queue_proposal(followup)
         try:
             from brain.utils.log import log_activity
             log_activity(f"[epistemic] question survived the close — follow-up goal "
-                         f"'{str(added.get('title') or '?')[:70]}' carries it.")
+                         f"'{str(followup.get('title') or '?')[:70]}' queued for research "
+                         f"on '{topic[:50]}'.")
         except Exception as _le:
             record_failure("epistemic_closeout.spawn_followup.log", _le)
         return True

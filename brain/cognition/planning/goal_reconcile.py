@@ -176,7 +176,12 @@ def reconcile_goal_stores(context: Optional[Dict[str, Any]] = None) -> int:
                     repairs += 1
                     log_activity(f"[goal_reconcile] resurrection repaired: '{title[:50]}' "
                                  f"re-closed in v1 ({sname}).")
-            elif v1_terminal and not v2_terminal:
+            elif (v1_terminal and not v2_terminal
+                  and str(getattr(g, "kind", "") or "").lower()
+                  not in goal_io._DAEMON_ONLY_KINDS):
+                # B11: daemon-only goals (characterize) are closed by the daemon
+                # alone; the 18 Run-13 "repairs" here were this pass cancelling
+                # a characterization the brain had wrongly closed.
                 # orphan-RUNNING — v1 closed it, v2 still NEW/READY/RUNNING/BLOCKED.
                 tgt = "DONE" if v1status == "completed" else "FAILED"
                 if goal_io.close_goal_v2(str(gid), status=tgt, reason="reconcile_orphan_running"):

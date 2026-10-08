@@ -60,6 +60,11 @@ class FileGoalsStore:
         self._goals: Dict[str, Goal] = {}
         self._steps: Dict[str, Step] = {}
         self._by_goal_steps: Dict[str, List[str]] = {}
+        # Last persisted form of each step. A deferring step (characterize's
+        # "check prediction" waiting on fresh telemetry) is re-upserted unchanged
+        # every runner tick; Run 13: 67,884 of 72,010 daemon WAL rows were
+        # byte-identical rewrites (B11). Only a changed step is a new record.
+        self._last_step_row: Dict[str, Any] = {}
         self._lock = threading.RLock()
 
         self._load()
@@ -242,8 +247,12 @@ class FileGoalsStore:
             if s.id not in lst:
                 lst.append(s.id)
 
-            append_jsonl(self._state, [{"step": _jsonable(s)}])
-            WAL.append(self._wal, {"type": "step_upsert", "step": _jsonable(s)})
+            row = _jsonable(s)
+            if self._last_step_row.get(s.id) == row:
+                return s
+            self._last_step_row[s.id] = row
+            append_jsonl(self._state, [{"step": row}])
+            WAL.append(self._wal, {"type": "step_upsert", "step": row})
             return s
 
     def get_step(self, step_id: str) -> Optional[Step]:

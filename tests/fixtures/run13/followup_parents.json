@@ -1,0 +1,26 @@
+[
+ {
+  "id": "g_72c5f00bc1",
+  "title": "Understand The Daily Stoic more deeply \u2014 round 2",
+  "name": "Understand The Daily Stoic more deeply \u2014 round 2",
+  "kind": "research",
+  "driven_by": "world_knowledge",
+  "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+  "spec": {
+   "queries": [
+    "The Daily Stoic open problems",
+    "The Daily Stoic criticism and debate"
+   ],
+   "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+   "synth_kind": "memo"
+  }
+ },
+ {
+  "id": "g_0abd3dd3521c",
+  "title": "Understand world more deeply",
+  "name": "Understand world more deeply",
+  "driven_by": "will",
+  "question": "What do I now know about world that I could not have said before?",
+  "spec": {}
+ }
+]

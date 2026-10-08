@@ -11,6 +11,12 @@ it.** Orrin runs fully with no API key (symbolic-only); the LLM is a gated tool,
 loop. See `docs/ARCHITECTURE.md` for the mechanism-level walkthrough and `docs/wiki/` for the
 subsystem pages.
 
+## Where the work is now
+
+**Phase B (the Run 14 build).** Start with `docs/PHASE_B_BUILD_BRIEF_2026-10-08.md`, then
+`docs/POST_RUN13_MASTER_PLAN_2026-10-07.md` (the single to-do list). Governing principle:
+most of Orrin's memories should be about his world, not himself.
+
 ## The golden rules
 
 1. **Keep the suite green.** `make verify` is the gate (ruff + mypy + pytest + frontend

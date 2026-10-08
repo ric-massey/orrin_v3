@@ -2,8 +2,8 @@
 
 Orrin is an **experimental research prototype** under active single-developer development. This page
 is the honest status: what works today, what's experimental, and what's out of scope. It mirrors the
-README's claims-and-evidence framing; the authoritative, dated status lives in
-`docs/MASTER_STATUS_*` and the run reports.
+README's claims-and-evidence framing; the authoritative to-do list is
+`docs/POST_RUN13_MASTER_PLAN_2026-10-07.md`, and the evidence is the run reports.
 
 ## What works today
 
@@ -47,6 +47,23 @@ is audited against an acceptance gate (`docs/NEXT_RUN_TESTS.md`) and sealed into
 `docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/`. That evidence — not a feature
 checklist — is what moves a capability from Experimental to Working.
 
+## Where it stands (Runs 1–13)
+
+Thirteen staging lives have been scored; **the acceptance gate has not passed yet**, but the
+binding constraint has climbed a ladder:
+
+| Runs | What the gate was stuck on |
+|------|----------------------------|
+| 1–4 | basic mechanics: does work get produced and credited honestly |
+| 5–8 | economics: one goal monopolizing attention (broken in Run 8: 90.9 % → 42.6 %) |
+| 9 | honesty: failures that weren't really failures |
+| 10–12 | the research feed going silent, and "growth" that was hollow |
+| **13** | **growth became real for the first time** — questions answered with new knowledge, and a prediction about his own behavior confirmed on data recorded afterwards. Still failing: research silences, goal churn, and a qualitative finding: he mostly thinks about himself (74 % of long-term memory was summaries of his own activity) |
+
+Next (Phase B, the Run 14 build): stop the goal churn, unblock goal generation, keep his own
+logs out of his memory, and make most of his memories about his world.
+`docs/PHASE_B_BUILD_BRIEF_2026-10-08.md` has the details.
+
 ## Known limitations
 
 - Internal APIs still change quickly.
@@ -57,5 +74,7 @@ checklist — is what moves a capability from Experimental to Working.
 ## Where to follow along
 
 - [Releases](https://github.com/ric-massey/orrin_v3/releases) — tagged checkpoints
-- `docs/MASTER_STATUS_*` — the current dated status
-- Run reports — the behavioral evidence trail
+- `docs/POST_RUN13_MASTER_PLAN_2026-10-07.md` — everything still to build, in order
+- Run reports — the behavioral evidence trail (`docs/NEXT_RUN_TESTS.md` has the gate history)
+- [ricmassey.com/orrin.html](https://ricmassey.com/orrin.html) — plain-English progress notes
+  after each run or build, and whether he's running right now

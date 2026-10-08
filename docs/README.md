@@ -5,32 +5,29 @@ level; superseded or completed docs move into that track's `archive/` (or the
 shared `archive/` at the docs root). Run reports live under
 `Behavioral Evaluation & Runtime Diagnostics/demo_runs/`, dated by run.
 
-*Index refreshed 2026-07-19 (Run 11 preparation; previous refresh 2026-07-09).*
+*Index refreshed 2026-10-08 (after Run 13; previous refresh 2026-07-19).*
 
-## Start here for Run 11
+## Start here for Phase B (the Run 14 build)
 
-The current work is the **Run 11 build** ("the Growth Run" — ~20k cycles,
-batch-everything, de-clamp). The reading order:
+Runs 11 and 12 are history; Run 13 (2026-10-06/08) is captured and scored. The
+current work is **Phase B** — the fixes Run 13 showed are needed before Run 14.
 
-1. `Behavioral Evaluation & Runtime Diagnostics/RUN11_BACKLOG_2026-07-19.md` —
-   **the build sheet.** Ric's directives, §0b Run-10-verdict deltas, the
-   membranes/growth/de-prosing/de-clamp packages, sequencing (§9), and the
-   finalized gate (§10, with Run 10 baselines).
-1b. `Behavioral Evaluation & Runtime Diagnostics/RUN11_IMPLEMENTATION_PLAN_2026-07-19.md`
-   — **the executable companion**: build order by slice with code targets
-   verified at `4d69ce5` (file:line for every clamp and fix site), the
-   ground-truth corrections ([GT]: 20k cycles ≈ 30 h not 4.6 days; C1 layers on
-   B1 habituation; E2/E3 mostly exist), adopted decisions, and the launch
-   checklist.
-2. `Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-07-18-run/DEMO_RUN_2026-07-18.md`
-   — the Run 10 verdict the backlog builds on (gate NOT passed: reuse 0 < 8,
-   daemon lane starved; 9/12 items green; findings classified
-   broken-pipe / unopposed-force / misaimed-force).
-3. `NEXT_RUN_TESTS.md` — gate history, all runs; the Run 10 result block points
-   into the backlog.
-4. `Core Architecture, Embodiment & Evolution/QUALITY_GROUNDING_DESIGN_2026-07-18.md`
-   — the value-grounding frame the growth package serves (epistemic close-out =
-   rung 0/1).
+1. **`PHASE_B_BUILD_BRIEF_2026-10-08.md`** — the build brief: ground rules, items
+   B1–B28 in seven clusters with verified code anchors, the Run 14 launch checklist.
+2. **`POST_RUN13_MASTER_PLAN_2026-10-07.md`** — the single to-do list for everything
+   after Run 13 (Phases A–G); Phase B is its §2. Supersedes the open-item lists of the
+   older plans.
+3. `Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-10-06-run/DEMO_RUN_2026-10-06.md`
+   — the Run 13 verdict (NOT PASSED; Growth nonzero for the first time). §4b/§4c are the
+   evidence behind most Phase B items.
+4. `Language & Cognition/FEELING_AND_NAMING_DESIGN_2026-10-07.md` — proposed design;
+   its F0/F1 are B1/B2, the rest is Phase D.
+5. `Core Architecture, Embodiment & Evolution/CONTINUOUS_TIME_DESIGN_2026-10-04.md` —
+   proposed; CT-A is B12, the rest is Phase E.
+6. `NEXT_RUN_TESTS.md` — gate history, Runs 1–13.
+
+Governing principle (Ric, 2026-10-07): **most of his memories should be about his world,
+not himself**, and he should wander the world rather than pick topics from lists.
 
 ## Root docs
 

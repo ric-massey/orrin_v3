@@ -1,5 +1,8 @@
 # Run 12 Implementation Plan — verified build order (2026-07-21)
 
+> **Superseded as a to-do list (2026-10-07):** its open items are in [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](../POST_RUN13_MASTER_PLAN_2026-10-07.md) (Layer 2 → Phase F). The reasoning below stays authoritative.
+
+
 Single home for two inputs that turned out to describe one problem:
 
 1. **The Run 11 re-test gate** — the 8-item fix list from

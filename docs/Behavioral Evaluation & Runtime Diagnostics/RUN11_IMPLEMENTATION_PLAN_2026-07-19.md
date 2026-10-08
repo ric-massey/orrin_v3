@@ -1,5 +1,8 @@
 # Run 11 Implementation Plan — verified build order (2026-07-19)
 
+> **Superseded as a to-do list (2026-10-07):** its open items are in [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](../POST_RUN13_MASTER_PLAN_2026-10-07.md) (Phases D, F, G). The reasoning below stays authoritative.
+
+
 Executable companion to `RUN11_BACKLOG_2026-07-19.md` (rationale, directives, and
 the §10 gate live THERE; this doc is build order + code targets). Every target
 below was verified against the working tree at `4d69ce5` on 2026-07-19 — file

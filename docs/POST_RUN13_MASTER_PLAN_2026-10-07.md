@@ -28,7 +28,7 @@ merged into one item (§8 lists the overlaps).
 | A2 | ✅ `FEELING_AND_NAMING_DESIGN_2026-10-07.md` in `docs/Language & Cognition/`; pointer in `THOUGHT_OBJECT_SPEC.md` | memory `project_feeling_naming_design` |
 | A3 | ✅ This plan finalized and in `docs/` | — |
 | A4 | ✅ Fixed stale headers: `RUN7_FIX_PLAN` ("PROPOSED", built a63b160+bb3685a), `LIFE_AMBITION_PROPOSAL` ("PARKED", built 15b372e), `QUALITY_GROUNDING_DESIGN` ("Not started", rung 0 + ladder built), `TOPDOWN_WRITEBACK_IMPLEMENTATION_PLAN` ("proposed", `workspace_writeback.write_back` built and wired in `loop/deliberate.py`) | this sweep |
-| A5 | Archive pass + `docs/README.md` "Start here" refresh + wiki sync (drift: `Backend_Telemetry`, `Face_and_Brain_UI`, `Roadmap_and_Status`) | `MASTER_STATUS_2026-10-04` §2–3 |
+| A5 | ✅ (2026-10-08) `docs/README.md` "Start here for Phase B"; superseded plans marked with a pointer here (not moved, so verdict links keep working); wiki synced incl. `Roadmap_and_Status` through Run 13 (wiki `560f61f`); `PHASE_B_BUILD_BRIEF_2026-10-08.md` written; runtime state hard-reset and verified | `MASTER_STATUS_2026-10-04` §2–3 |
 | A6 | Producer auto-start: `run_orrin.sh` starts/stops `RicsWebsite/projects/orrin/producer/push_status.py` with each life | memory `project_orrin_site_updates` |
 
 ## 2. Phase B — stop the bleeding (Run 14 gate-passers)

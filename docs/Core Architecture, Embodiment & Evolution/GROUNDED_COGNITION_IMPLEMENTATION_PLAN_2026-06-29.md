@@ -1,5 +1,8 @@
 # Grounded Cognition — Implementation Plan (2026-06-29)
 
+> **Superseded as a to-do list (2026-10-07):** its open items are in [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](../POST_RUN13_MASTER_PLAN_2026-10-07.md) (Phase 4B/5 → G1). The reasoning below stays authoritative.
+
+
 Status: **Phases 1/2/3/4A done (commit `8351ea1`); Phase 2 built but dormant behind the
 fluency gate (voice unchanged until the native organ is ready); Phase 4B fork + Phase 5
 (hierarchical skills) open.** Implements `archive/GROUNDED_COGNITION_DIRECTION_2026-06-29.md`. The

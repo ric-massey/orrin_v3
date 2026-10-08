@@ -1,5 +1,8 @@
 # Orrin Proposal: Make Cognition LLM-Free — Creativity, Novelty & the Symbolic Engine
 
+> **Superseded as a to-do list (2026-10-07):** its open items are in [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](../POST_RUN13_MASTER_PLAN_2026-10-07.md) (Issues B, D → F6, F7). The reasoning below stays authoritative.
+
+
 **Date:** 2026-06-25 (rev. 2 — corrected to the no-LLM-cognition principle)
 **Status:** Proposed — for review and work-splitting
 **Blocked on:** the AD1/D8 fork (LLM-free creativity) in

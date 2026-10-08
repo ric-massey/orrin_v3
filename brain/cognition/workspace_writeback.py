@@ -148,7 +148,8 @@ def tick_salience_priors(context: Dict[str, Any]) -> None:
         record_failure("workspace_writeback.tick", exc)
 
 
-def _signal_writeback(context: Dict[str, Any], moment: Dict[str, Any]) -> Any:
+def _signal_writeback(context: Dict[str, Any], moment: Dict[str, Any],
+                      scale: float = 1.0) -> Any:
     """Map the KIND of conclusion to a small signed nudge on one eligible core
     signal, submitted through the existing affect inbox. Returns (target, delta)
     on a write, or None when no recognizable kind applies (then only the
@@ -179,17 +180,56 @@ def _signal_writeback(context: Dict[str, Any], moment: Dict[str, Any]) -> Any:
     if not target or target not in _ELIGIBLE_TARGETS:
         return None
 
-    delta = max(-_MAX_AFFECT_DELTA, min(_MAX_AFFECT_DELTA, delta))
+    delta = max(-_MAX_AFFECT_DELTA, min(_MAX_AFFECT_DELTA, delta)) * scale
     submit_signal(context, target=target, delta=delta, weight=_AFFECT_WEIGHT,
                   source="workspace_writeback", ttl_cycles=_AFFECT_TTL)
 
     # The binding/closure case carries a paired −impasse relief alongside the
     # +motivation nudge.
     if source == "binding" and target == "motivation":
-        submit_signal(context, target="impasse_signal", delta=-_MAX_AFFECT_DELTA,
+        submit_signal(context, target="impasse_signal", delta=-_MAX_AFFECT_DELTA * scale,
                       weight=_AFFECT_WEIGHT, source="workspace_writeback",
                       ttl_cycles=_AFFECT_TTL)
     return (target, round(delta, 4))
+
+
+# B25 (Run 13): write-back ran on 66 % of cycles, 36 % pushing motivation +0.06 —
+# the same binding situation (one goal in focus) concluded again every cycle, an
+# unopposed push on "drive". Habituation per situation: each repeat of a
+# situation within _HABIT_WINDOW_S halves the write (affect and priming), and from
+# the _HABIT_SILENT-th repeat it writes nothing until the situation changes or
+# has been absent for the window.
+_HABIT_SILENT = 3
+_HABIT_WINDOW_S = 600.0
+_HABIT_KEY = "_writeback_habituation"
+_HABIT_MAX = 64
+
+
+def _situation_key(moment: Dict[str, Any]) -> str:
+    import re
+    content = re.sub(r"\d+", "#", str(moment.get("content") or "").lower())
+    return f"{moment.get('source')}|{moment.get('goal_id') or ''}|{' '.join(content.split())[:80]}"
+
+
+def _habituate(context: Dict[str, Any], moment: Dict[str, Any]) -> int:
+    """Prior writes of this situation inside the window (then counts this one)."""
+    import time
+    now = time.time()
+    habit = context.get(_HABIT_KEY)
+    if not isinstance(habit, dict):
+        habit = {}
+    for k in [k for k, v in habit.items()
+              if not isinstance(v, dict) or now - float(v.get("ts", 0)) > _HABIT_WINDOW_S]:
+        habit.pop(k, None)
+    key = _situation_key(moment)
+    row = habit.get(key) or {"n": 0}
+    repeats = int(row.get("n", 0))
+    habit[key] = {"n": repeats + 1, "ts": now}
+    if len(habit) > _HABIT_MAX:
+        for k in sorted(habit, key=lambda k: habit[k]["ts"])[: len(habit) - _HABIT_MAX]:
+            habit.pop(k, None)
+    context[_HABIT_KEY] = habit
+    return repeats
 
 
 def _is_conclusion(moment: Dict[str, Any]) -> bool:
@@ -218,9 +258,13 @@ def write_back(context: Dict[str, Any], moment: Dict[str, Any]) -> None:
             return
         if not _is_conclusion(moment):
             return
+        repeats = _habituate(context, moment)
+        if repeats >= _HABIT_SILENT:
+            return
 
-        affect = _signal_writeback(context, moment)
-        primed = _prime(context, str(moment.get("content") or ""), _PRIOR_BOOST)
+        scale = 0.5 ** repeats
+        affect = _signal_writeback(context, moment, scale)
+        primed = _prime(context, str(moment.get("content") or ""), _PRIOR_BOOST * scale)
 
         if affect or primed:
             kind = moment.get("kind") or moment.get("source") or "?"

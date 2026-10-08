@@ -27,6 +27,7 @@ from brain.utils.log import log_private
 _WANT_THRESHOLD  = 0.32   # drive pull above this registers as a real want
 _STRONG_WANT     = 0.55   # above this, the impasse_signal is more significant
 _IMPULSE_WINDOW  = 8      # how many suppressed impulses to keep in context
+_HABITUATION_STEPS = 4    # cost halves per consecutive loss, down to 1/16
 
 # Above this action_debt, suppressing an EXECUTION impulse must not add to
 # uncertainty/impasse_signal: those signals route to deliberation functions
@@ -82,6 +83,14 @@ def _apply(
     suppressed: List[Dict] = []
     uncertainty_total = 0.0
     impasse_signal_total = 0.0
+    # B9 (Run 13): a want that keeps losing habituates. ~170 frustration pumps/h
+    # overnight, mostly for goal generation losing every cycle — a standing
+    # condition, not fresh frustration. Each consecutive unchosen cycle halves the
+    # cost (floor 1/16); the streak resets when the want is chosen or fades.
+    habit = context.get("_inhibition_streak")
+    if not isinstance(habit, dict):
+        habit = {}
+    wanted_now = set()
 
     for name, score, _ in scored:
         if name == chosen:
@@ -90,7 +99,10 @@ def _apply(
         if pull < _WANT_THRESHOLD:
             continue  # drives didn't really want this — low interest, not inhibition
 
-        intensity = min(1.0, pull)
+        wanted_now.add(name)
+        streak = int(habit.get(name, 0) or 0)
+        habit[name] = streak + 1
+        intensity = min(1.0, pull) * (0.5 ** min(streak, _HABITUATION_STEPS))
         suppressed.append({"wanted": name, "chosen": chosen, "intensity": round(intensity, 3)})
 
         # Avoidance-regime guard: when debt is high and the thing we wanted was an
@@ -108,6 +120,8 @@ def _apply(
             impasse_signal_total += intensity * 0.030
         else:
             impasse_signal_total += intensity * 0.012
+
+    context["_inhibition_streak"] = {k: v for k, v in habit.items() if k in wanted_now}
 
     if not suppressed:
         return

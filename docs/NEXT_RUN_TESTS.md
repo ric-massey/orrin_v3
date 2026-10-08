@@ -16,6 +16,78 @@ interpretation**.
 
 ---
 
+## Run 14 gate (2026-10-08 — Phase B of `POST_RUN13_MASTER_PLAN_2026-10-07.md`)
+
+Built 2026-10-08 in seven clusters (`eadcaf5` … `6c9584e`); each item has a test built
+from Run 13 artifacts (`tests/fixtures/run13/`). Run 14 is **symbolic-only**, launched
+with the staged lifespan band, scored per the run-analysis skill. Read each observable
+against its Run 13 baseline.
+
+**Feed (clusters 1–2)**
+
+| # | Observable | Run 13 | Pass |
+|---|---|---|---|
+| B11 | orphan-RUNNING repairs on `characterize` goals | 18 | 0 |
+| B11 | `characterize` share of daemon WAL rows | 96 % | < 5 % |
+| B11 | focus held by a waiting (daemon-only) goal | 53–78 % | < 10 % |
+| B11 | resolved predictions per life | 3 | ≥ 4 |
+| B20 | "Answer:" goals failed steps-unreachable; follow-up hand-offs | 51; 0 | 0; > 0 |
+| B13 | `generate_intrinsic_goals` calls skipped | ~90 % | < 10 % ("open action debt" line is gone) |
+| B6 | longest daemon WAL silence | 247 min | ≤ 30 min |
+| B6 | research candidates from neighbour topics (`_neighbour_topic_goals`) | — | > 0 proposed and run |
+| B7 | `research_topic` no-op rate | ~95–98 % | < 20 % |
+| B5 | max follow-on round | 16–21 | ≤ 4 |
+| B4 | junk KG concepts (fragments, chrome, own titles) | many of 26 | 0 |
+
+**Memory about his world (cluster 3)**
+
+| # | Observable | Run 13 | Pass |
+|---|---|---|---|
+| B1 | WM entries `🧠 Chose:` / metacog alarms | present every cycle | 0 |
+| B1/B3 | self-log summaries share of LTM | 74 % | < 10 % |
+| B3 | world findings share of LTM | 2.8 % | ≥ 25 % |
+| B3 | "world perceptions" naming his own state files | 32 / 124 | 0 |
+| B2 | appraisal deltas caused by his own alarm text | 32 at death | 0; world failures appraised `circumstance` |
+
+**Reward honesty (cluster 4)**
+
+| # | Observable | Run 13 | Pass |
+|---|---|---|---|
+| B8/B21 | `decide_to_write_code` picks while no LLM body; its EMA | 273; 0.608 | ≈ 1 per re-probe window; falls toward floor |
+| B16 | credited tracked-work sections failing fluency/self-talk | 75 | 0 |
+| B15 | junk exemplar promotions | 3 of 5 | 0 |
+| B17 | any aspiration value ≥ 0.99 | 0.9999 | none |
+| B23 | ladder entries vs distinct questions; max citations of one answer | 38 vs 17; 1,546 | equal; ≤ decision windows |
+| B24 | top rule hits per cycle | ~7.2 | ≤ 1 |
+
+**Affect and pressure (cluster 5)**
+
+| # | Observable | Run 13 | Pass |
+|---|---|---|---|
+| B9 | inhibition frustration pumps per hour | ~170 | falls sharply |
+| B10 | breaker duty (share of cycles) | ~48 % | < 10 % |
+| B25 | write-back share of cycles; motivation share | 66 %; 36 % | < 20 %; < 15 % |
+| B26 | valence range over the life | 0.58–0.71 | ≥ 0.3 wide (watch: B2 is the expected source) |
+| B26 | `allostatic_load` | 0.000 (fatigue max 0.21) | read with fatigue: moves only if deficit > 0.60 |
+
+**Instruments (cluster 6) and time (cluster 7)**
+
+| # | Observable | Run 13 | Pass |
+|---|---|---|---|
+| B14 | reuse rows with a citer | 14 % | 100 % |
+| B18 | final-words reason at natural death | operator_stop | lifespan |
+| B19 | Face fast reply reads this turn's ToM | previous turn | this turn |
+| B22 | private-thoughts log coverage | last ~10 h | birth → death (`rotated/*.gz`) |
+| B27 | speech rows with blank intent | 26 / 26 | 0 |
+| B28 | `production_attempt_goal_count` vs funnel `producer_ran` | 1,275 vs 164 (different units) | same order |
+| B12 | `[host] suspended` lines for gaps > 60 s; affect/staleness by seconds | — | every gap logged and credited |
+
+**Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
+and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
+distinct questions, structured reuse ≥ 1, an answer cited later).
+
+---
+
 ## Run 6 re-test gate (2026-07-09 — from `RUN6_FIX_PLAN_2026-07-08.md` §4)
 
 Run 4 (07-05) and Run 5 (07-08) results live in their run folders
@@ -302,7 +374,8 @@ pushed pre-launch; **15,392 cycles, single segment**, born 10-06 19:35Z, natural
   corruption in a `compose_section` artifact.
 
 **Re-test gate (Run 14):** Phase B of `POST_RUN13_MASTER_PLAN_2026-10-07.md`
-(B1–B19, each with its Run 13 baseline). Governing principle (Ric): most of his memories
+(B1–B28, each with its Run 13 baseline; the observables are in the "Run 14 gate"
+section at the top of this file). Governing principle (Ric): most of his memories
 about his world, not himself.
 
 ---

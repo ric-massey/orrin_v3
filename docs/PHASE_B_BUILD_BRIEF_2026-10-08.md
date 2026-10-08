@@ -1,5 +1,9 @@
 # Phase B Build Brief — the Run 14 gate (2026-10-08)
 
+> **Status: BUILT 2026-10-08** in seven commits (`eadcaf5` … `6c9584e`), `make verify`
+> green (1,796 tests). Remaining before Run 14: §3 steps 2–4 (smoke life, reset, launch).
+> Build notes and open items: master plan §2 "Phase B build notes".
+
 **For whoever builds next (any model).** Everything needed to build Phase B of
 [`POST_RUN13_MASTER_PLAN_2026-10-07.md`](POST_RUN13_MASTER_PLAN_2026-10-07.md) without
 the conversation that produced it. Phase B = items **B1–B28**, the fixes the Run 13

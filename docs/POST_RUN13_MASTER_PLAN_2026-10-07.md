@@ -31,43 +31,61 @@ merged into one item (§8 lists the overlaps).
 | A5 | ✅ (2026-10-08) `docs/README.md` "Start here for Phase B"; superseded plans marked with a pointer here (not moved, so verdict links keep working); wiki synced incl. `Roadmap_and_Status` through Run 13 (wiki `560f61f`); `PHASE_B_BUILD_BRIEF_2026-10-08.md` written; runtime state hard-reset and verified | `MASTER_STATUS_2026-10-04` §2–3 |
 | A6 | ✅ (2026-10-08) Producer auto-start: `run_orrin.sh` starts/stops `RicsWebsite/projects/orrin/producer/push_status.py` with each life (once per wrapper, final push on stop, skips if checkout/token absent or one is already running; off with `ORRIN_STATUS_PRODUCER=0`) | memory `project_orrin_site_updates` |
 
-## 2. Phase B — stop the bleeding (Run 14 gate-passers)
+## 2. Phase B — stop the bleeding (Run 14 gate-passers) — ✅ BUILT 2026-10-08 (`eadcaf5`…`6c9584e`)
 
 Small, mostly independent fixes from the Run 13 live deep read
 (`FEELING_AND_NAMING_DESIGN` §0b). Each is "broken pipe / unopposed / misaimed" classified.
 
 | # | Item | Class | Observable (Run 13 baseline) |
 |---|---|---|---|
-| B1 | **F0** — telemetry, selection logs, chunk/compaction notices, threshold alarms out of working memory (trace only) | broken pipe | WM `🧠 Chose:` = 0; self-log summaries < 10 % of LTM (79 %) |
-| B2 | **F1** — `appraisal.py` appraises structured events (ledger, failures, goal steps), adds `about`; text path only for real textual input | broken pipe | appraisal no longer fed by his own alarm text; agency ≠ self on world failures |
-| B3 | **Most memories about his world** (Ric's principle): LTM eviction protects world findings from self-log summaries (capped at 2,001); self-observation gets a bounded share | misaimed | world findings ≥ 25 % of LTM (2.8 % at death); self-log summaries ≤ 10 % (74 %) |
-| B4 | Knowledge-graph concept extraction: no fragments, no page chrome, no own titles | broken pipe | 0 concepts like "round the sun" / "See More Results Suggestions" (25 concepts, many junk) |
-| B5 | Real brake on follow-on rounds; angles don't repeat | unopposed | max round ≤ 4 (16) |
-| B6 | Goal generation earns value when the research pool is thin (antagonist to starvation, not a clamp) | unopposed | WAL silence ≤ 30 min (161 min) |
-| B7 | A no-op action (`research_topic` "no fresh topic") earns nothing and isn't goal service | broken pipe | research no-op rate < 20 % (98 %) |
-| B8 | `decide_to_write_code` marked impossible at its `code_writer` bail-out (4th run red) | broken pipe | 0 picks while no LLM body (207) |
-| B9 | Inhibition cost habituates for a repeatedly-unchosen want | unopposed | frustration pumps per hour ↓ (≈170/h overnight) |
-| B10 | Breaker duty | — | fires < 10 % of cycles (~50 %) |
-| B11 | **Daemon-owned waiting goals are not brain goals** (verdict §4b A): a characterize goal waiting on telemetry is never brain-committed, brain-researched, satiety-closed or step-failed; the deferring check step doesn't write a WAL row per tick; characterization re-asks over a life | broken pipe | 0 orphan-RUNNING repairs on characterize (18); characterize WAL rows < 5 % (96 %); no waiting goal > 10 % focus (78 %); ≥ 4 predictions/life (3) |
-| B12 | **CT-A** clock time instead of cycle time (subsumes Run 13 item 5's detector) | — | cadence-invariance test |
-| B13 | **Remove the one-cycle debt gate on goal generation** (`intrinsic_goals.py:199`, `action_debt > 0` blocks origination; verdict §4b B). Clamp → oppose with the feed's own antagonist, not a threshold | unopposed (clamp) | generation skips < 10 % of calls (~90 %); no WAL silence > 30 min (247) |
-| B14 | `citing_goal_id` on every `mark_reused_path` caller (web_research, library, goal_io spec refs) | broken pipe | citer coverage 100 % (14 %) |
-| B15 | Exemplar gate: self-talk on any internal tag and single-paragraph artifacts; copy veto on `source: research_topic` memos; corrupted-text check | broken pipe | 0 junk promotions (3 of 5) |
-| B16 | **Native-LM drafts are not production** until the organ passes its fluency gate and its corpus excludes his logs (verdict §4b D: 75 credited babble sections; the "dropped letters" are the LM) | misaimed | 0 credited tracked-work sections failing the fluency/self-talk checks (75) |
-| B17 | Value headroom guard on commitment EMAs (direct aspiration credit + item-11 propagation; verdict §4b F) | unopposed | no aspiration value ≥ 0.99 (self 0.9999) |
-| B18 | Death-reason label: natural lifespan death recorded as such, not "operator_stop" | broken pipe | final-words reason = lifespan |
-| B20 | **Follow-up "Answer:" goals route through the daemon** (`spawn_followup_goal` → proposed goals → `sync_proposed_goals`; verdict §4b C) | broken pipe | 0 "Answer:" goals failed as steps-unreachable (51) |
-| B21 | **Impossible actions earn no cycle reward** (verdict §4b E: per-cycle reward pays `decide_to_write_code` 0.54 mean) — pairs with B8 | broken pipe | its EMA → floor |
-| B22 | Instruments: private-thoughts log retained for a whole life; capture includes `brain/data/tracked_work/` (run-analysis skill) | instrument | private log covers birth→death |
-| B23 | Growth counts dedupe by question: ladder and close-out credit one rung/stamp per distinct question; citations count once per question per decision window (verdict §4c) | instrument | rung climbs = distinct answered questions; citation counts ≤ decisions |
-| B24 | Rule-hit refractory covers the **hit counter**, not only reinforcement (110,813 hits ≈ 7.2/cycle) | unopposed | top rule hits ≤ ~1/cycle |
-| B25 | Binding write-back pressure: 66 % of cycles, 36 % pushing `motivation` +0.06; give the write-back an antagonist (decay/habituation per situation) | unopposed | write-back < 20 % of cycles; motivation share < 15 % |
-| B26 | Affect dynamic range: `valence` 0.58–0.71 all life, `stability` ≥ 0.95 62 %; `allostatic_load` dead (0.000 all life) — wire or delete | broken pipe + instrument | valence range ≥ 0.3; no gauge flat all life |
-| B27 | Stamp typed `intent` in `speech_log` (speech-grounding check is dead) | instrument | 0 speech rows with intent None |
-| B28 | Cooldown truth: production attempts vs producer runs (1,275 vs 164) reconciled; executive `compose_section` 3,765 recognitions mostly cooldown-skipped | instrument | attempts ≈ producer runs |
-| B19 | Cherry-pick the ToM timing fix from `claude/orrin-dmn-equivalence-zzlw5q` (fast reply read the previous turn's ToM) | broken pipe | ToM computed before the reply that uses it |
+| B1 | ✅ BUILT `827f611` (cluster 3) — **F0** — telemetry, selection logs, chunk/compaction notices, threshold alarms out of working memory (trace only) | broken pipe | WM `🧠 Chose:` = 0; self-log summaries < 10 % of LTM (79 %) |
+| B2 | ✅ BUILT `827f611` (cluster 3) — **F1** — `appraisal.py` appraises structured events (ledger, failures, goal steps), adds `about`; text path only for real textual input | broken pipe | appraisal no longer fed by his own alarm text; agency ≠ self on world failures |
+| B3 | ✅ BUILT `827f611` (cluster 3) — **Most memories about his world** (Ric's principle): LTM eviction protects world findings from self-log summaries (capped at 2,001); self-observation gets a bounded share | misaimed | world findings ≥ 25 % of LTM (2.8 % at death); self-log summaries ≤ 10 % (74 %) |
+| B4 | ✅ BUILT `2d95798` (cluster 2) — Knowledge-graph concept extraction: no fragments, no page chrome, no own titles | broken pipe | 0 concepts like "round the sun" / "See More Results Suggestions" (25 concepts, many junk) |
+| B5 | ✅ BUILT `2d95798` (cluster 2) — Real brake on follow-on rounds; angles don't repeat | unopposed | max round ≤ 4 (16) |
+| B6 | ✅ BUILT `2d95798` (cluster 2) — Goal generation earns value when the research pool is thin (antagonist to starvation, not a clamp) | unopposed | WAL silence ≤ 30 min (161 min) |
+| B7 | ✅ BUILT `2d95798` (cluster 2) — A no-op action (`research_topic` "no fresh topic") earns nothing and isn't goal service | broken pipe | research no-op rate < 20 % (98 %) |
+| B8 | ✅ BUILT `251b9c0` (cluster 4) — `decide_to_write_code` marked impossible at its `code_writer` bail-out (4th run red) | broken pipe | 0 picks while no LLM body (207) |
+| B9 | ✅ BUILT `decc1f9` (cluster 5) — Inhibition cost habituates for a repeatedly-unchosen want | unopposed | frustration pumps per hour ↓ (≈170/h overnight) |
+| B10 | ✅ BUILT `decc1f9` (cluster 5; no direct change; drivers removed by B11/B13/B7) — Breaker duty | — | fires < 10 % of cycles (~50 %) |
+| B11 | ✅ BUILT `eadcaf5` (cluster 1) — **Daemon-owned waiting goals are not brain goals** (verdict §4b A): a characterize goal waiting on telemetry is never brain-committed, brain-researched, satiety-closed or step-failed; the deferring check step doesn't write a WAL row per tick; characterization re-asks over a life | broken pipe | 0 orphan-RUNNING repairs on characterize (18); characterize WAL rows < 5 % (96 %); no waiting goal > 10 % focus (78 %); ≥ 4 predictions/life (3) |
+| B12 | ✅ BUILT `6c9584e` (cluster 7; first rung: clock + dt, affect queue and staleness by seconds; refractories/tripwire remain) — **CT-A** clock time instead of cycle time (subsumes Run 13 item 5's detector) | — | cadence-invariance test |
+| B13 | ✅ BUILT `2d95798` (cluster 2) — **Remove the one-cycle debt gate on goal generation** (`intrinsic_goals.py:199`, `action_debt > 0` blocks origination; verdict §4b B). Clamp → oppose with the feed's own antagonist, not a threshold | unopposed (clamp) | generation skips < 10 % of calls (~90 %); no WAL silence > 30 min (247) |
+| B14 | ✅ BUILT `36c4da3` (cluster 6) — `citing_goal_id` on every `mark_reused_path` caller (web_research, library, goal_io spec refs) | broken pipe | citer coverage 100 % (14 %) |
+| B15 | ✅ BUILT `251b9c0` (cluster 4) — Exemplar gate: self-talk on any internal tag and single-paragraph artifacts; copy veto on `source: research_topic` memos; corrupted-text check | broken pipe | 0 junk promotions (3 of 5) |
+| B16 | ✅ BUILT `251b9c0` (cluster 4) — **Native-LM drafts are not production** until the organ passes its fluency gate and its corpus excludes his logs (verdict §4b D: 75 credited babble sections; the "dropped letters" are the LM) | misaimed | 0 credited tracked-work sections failing the fluency/self-talk checks (75) |
+| B17 | ✅ BUILT `251b9c0` (cluster 4) — Value headroom guard on commitment EMAs (direct aspiration credit + item-11 propagation; verdict §4b F) | unopposed | no aspiration value ≥ 0.99 (self 0.9999) |
+| B18 | ✅ BUILT `36c4da3` (cluster 6) — Death-reason label: natural lifespan death recorded as such, not "operator_stop" | broken pipe | final-words reason = lifespan |
+| B20 | ✅ BUILT `eadcaf5` (cluster 1) — **Follow-up "Answer:" goals route through the daemon** (`spawn_followup_goal` → proposed goals → `sync_proposed_goals`; verdict §4b C) | broken pipe | 0 "Answer:" goals failed as steps-unreachable (51) |
+| B21 | ✅ BUILT `251b9c0` (cluster 4) — **Impossible actions earn no cycle reward** (verdict §4b E: per-cycle reward pays `decide_to_write_code` 0.54 mean) — pairs with B8 | broken pipe | its EMA → floor |
+| B22 | ✅ BUILT `36c4da3` (cluster 6) — Instruments: private-thoughts log retained for a whole life; capture includes `brain/data/tracked_work/` (run-analysis skill) | instrument | private log covers birth→death |
+| B23 | ✅ BUILT `251b9c0` (cluster 4) — Growth counts dedupe by question: ladder and close-out credit one rung/stamp per distinct question; citations count once per question per decision window (verdict §4c) | instrument | rung climbs = distinct answered questions; citation counts ≤ decisions |
+| B24 | ✅ BUILT `251b9c0` (cluster 4) — Rule-hit refractory covers the **hit counter**, not only reinforcement (110,813 hits ≈ 7.2/cycle) | unopposed | top rule hits ≤ ~1/cycle |
+| B25 | ✅ BUILT `decc1f9` (cluster 5) — Binding write-back pressure: 66 % of cycles, 36 % pushing `motivation` +0.06; give the write-back an antagonist (decay/habituation per situation) | unopposed | write-back < 20 % of cycles; motivation share < 15 % |
+| B26 | ✅ BUILT `decc1f9` (cluster 5; gauge correctly wired (fatigue max 0.21 < 0.60 arming line); valence range left to Run 14) — Affect dynamic range: `valence` 0.58–0.71 all life, `stability` ≥ 0.95 62 %; `allostatic_load` dead (0.000 all life) — wire or delete | broken pipe + instrument | valence range ≥ 0.3; no gauge flat all life |
+| B27 | ✅ BUILT `36c4da3` (cluster 6) — Stamp typed `intent` in `speech_log` (speech-grounding check is dead) | instrument | 0 speech rows with intent None |
+| B28 | ✅ BUILT `36c4da3` (cluster 6) — Cooldown truth: production attempts vs producer runs (1,275 vs 164) reconciled; executive `compose_section` 3,765 recognitions mostly cooldown-skipped | instrument | attempts ≈ producer runs |
+| B19 | ✅ BUILT `36c4da3` (cluster 6) — Cherry-pick the ToM timing fix from `claude/orrin-dmn-equivalence-zzlw5q` (fast reply read the previous turn's ToM) | broken pipe | ToM computed before the reply that uses it |
 
 **Gate:** Run 14, symbolic-only, observables above, scored per run-analysis.
+
+**Phase B build notes (2026-10-08).** Observables with Run 13 baselines are in the
+"Run 14 gate" section of `NEXT_RUN_TESTS.md`. Found while building, not yet acted on:
+- **Two committed golden exemplars are verbatim `source: research_topic` memos**
+  (`research-memo-consciousness-…`, `research-memo-evolutionary-biology-…`, auto-promoted
+  in Run 9). B15's new veto would refuse them as candidates; removing them from the
+  golden set is Ric's call.
+- **The native LM's tokenizer drops characters** (capital W/Q/G/T, `q`, `z`: "hat",
+  "uestion", "oal", "magaine") and emits U+FFFD. B16 gates its drafts; the organ itself
+  needs a vocabulary fix + retrain (Phase D/F).
+- **B26:** `allostatic_load` is wired; it arms only above fatigue 0.60 and Run 13 peaked
+  at 0.21. Whether that line is right is a decision with evidence, not a bug.
+- **B12 remainder (CT-A A.2):** deliberation-gate, knowledge-formation and trigger-7
+  refractories and the saturation tripwire still count cycles.
+- **B4 residue:** proper-noun page titles ("High Road", "Once More Round") still pass the
+  cleaner; they read as ordinary names.
+- **Before Run 14** (not done): ~2k-cycle smoke life for the cluster 1–2 observables, hard
+  reset + restore the two seeds, launch with the staged band (build brief §3).
 
 ## 3. Phase C — a world to wander (design first)
 

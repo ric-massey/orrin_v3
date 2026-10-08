@@ -28,14 +28,26 @@ def test_fetch_and_read_reuse_names_a_citer(monkeypatch):
     from brain.cognition import web_research as wr
     calls: list = []
     monkeypatch.setattr("brain.agency.effect_ledger.mark_reused_path",
-                        lambda p, citing_goal_id=None: calls.append(citing_goal_id))
+                        lambda p, citing_goal_id=None: calls.append((p, citing_goal_id)))
     monkeypatch.setattr(wr, "_pick_url", lambda ctx: "file:///tmp/memo.md")
-    monkeypatch.setattr(wr, "_fetch_url_text", lambda *a, **k: "", raising=False)
-    try:
-        wr.fetch_and_read({})
-    except Exception:
-        pass
-    assert calls == ["fn:fetch_and_read"]
+    monkeypatch.setattr(wr, "_get", lambda url, timeout=12: None)   # no I/O
+    monkeypatch.setattr(wr, "_last_fetch", 0.0, raising=False)
+    wr.fetch_and_read({})
+    monkeypatch.setattr(wr, "_last_fetch", 0.0, raising=False)
+    wr.fetch_and_read({"committed_goal": {"id": "g_tides", "title": "Understand tides"}})
+    assert calls == [("/tmp/memo.md", "fn:fetch_and_read"), ("/tmp/memo.md", "g_tides")]
+
+
+def test_library_read_names_its_reader(monkeypatch, tmp_path):
+    from brain.cognition.language import library
+    book = tmp_path / "pg1.txt"
+    book.write_text("A short book about tides. " * 40)
+    monkeypatch.setattr(library, "_LIB", tmp_path)
+    calls: list = []
+    monkeypatch.setattr("brain.agency.effect_ledger.mark_reused_path",
+                        lambda p, citing_goal_id=None: calls.append(citing_goal_id))
+    library.read_book(book)
+    assert calls == ["fn:language_acquisition"]
 
 
 # ── B18: a natural death keeps its own final words ───────────────────────────

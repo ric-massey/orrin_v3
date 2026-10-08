@@ -121,3 +121,23 @@ def test_a_persons_words_still_appraised():
            "content": "You finally solved the parser bug and the build is working now."}]
     rows = appraise_working_memory(wm, ["fix the parser bug"], _HIGH_COPING, mood=0.2)
     assert any(r["emotion"] == "reward_positive" for r in rows)
+
+
+def test_credited_work_queues_a_self_help_event():
+    """B2 producer: a credited ledger effect is a structured 'help' event of his
+    own making; an uncredited duplicate queues nothing."""
+    from brain.agency.effect_ledger import record_effect
+    from brain.control_signals import appraisal as ap
+    ap.drain_appraisal_events()
+    body = ("Tides are driven by the moon's gravity acting unevenly across the Earth; "
+            "the near side is pulled more than the far side, raising two bulges. ") * 3
+    row = record_effect("file_write", body, goal_id="g_tides",
+                        metadata={"path": "/tmp/tides_memo.md"})
+    events = ap.drain_appraisal_events()
+    if row is not None and row.significance > 0:
+        assert events and events[0]["kind"] == "ledger_credit"
+        assert events[0]["outcome"] == "help" and events[0]["agency"] == "self"
+        assert events[0]["goal"] == "g_tides"
+    record_effect("file_write", body, goal_id="g_tides", metadata={"path": "/tmp/tides_memo.md"})
+    assert ap.drain_appraisal_events() == []   # exact duplicate: no credit, no event
+

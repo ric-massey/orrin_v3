@@ -376,8 +376,8 @@ def execute_cognition_function(
             _status_r = 0.1 if _is_failure else 0.5
             # B7 (Run 13): an explicit no-op ({"changed": False}, not a throttle) earns no
             # reward, isn't consequential, and its streak ends the breaker's exemption.
-            _noop = (isinstance(fn_result, dict) and fn_result.get("changed") is False
-                     and not fn_result.get("throttled"))
+            from brain.cognition.action_accounting import is_noop_result
+            _noop = is_noop_result(fn_result)
             _noops = context.setdefault("_fn_noop_streak", {})
             _noops[fn_name] = int(_noops.get(fn_name, 0)) + 1 if _noop else 0
             try:

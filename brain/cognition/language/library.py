@@ -18,12 +18,16 @@ import time
 from pathlib import Path
 from typing import List
 
+from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_activity
 
 _UA = {"User-Agent": "OrrinLanguageLearner/1.0 (personal research; contact: local)"}
 
-_LIB = Path(__file__).resolve().parents[2] / "data" / "language" / "library"
+# Resolved through brain.paths (golden rule 3): the old __file__-relative path
+# bypassed ORRIN_DATA_DIR, so any test that read a book wrote book_reads.json into
+# the live tree. Same location in a normal run (DATA_DIR = brain/data).
+_LIB = DATA_DIR / "language" / "library"
 
 # Public-domain Project Gutenberg IDs, ordered simple → rich (curriculum).
 _CURRICULUM = [

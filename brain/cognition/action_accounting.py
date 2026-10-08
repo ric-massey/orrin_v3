@@ -42,6 +42,15 @@ def mark_consequential_cognition(
     return bool(produced)
 
 
+def is_noop_result(result: Any) -> bool:
+    """B7 (Run 13): an explicit {"changed": False} result did nothing — no reward,
+    not consequential, and its streak ends the avoidance breaker's goal-service
+    exemption. A throttle ({"throttled": True}) is the action resting, not a no-op
+    (smoke life 2026-10-08: scoring throttles as no-ops starved research_topic)."""
+    return (isinstance(result, dict) and result.get("changed") is False
+            and not result.get("throttled"))
+
+
 def cycle_produced_goal_action(context: Dict[str, Any]) -> bool:
     """Return the authoritative goal-action result for the current cycle."""
     if not bound_goal(context):

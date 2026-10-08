@@ -15,6 +15,9 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Tuple
 
 from brain.utils.subject_terms import mentions, subject_terms
+# Run 13 item 12 / B4: Wikipedia navigation, infobox and hatnote chrome is
+# stripped by the shared cleaner.
+from brain.utils.topic_clean import strip_chrome as _strip_chrome
 
 from ..model import Goal
 
@@ -36,21 +39,6 @@ _REL_RE = re.compile(
     r"([A-Za-z][\w\-][\w\- ]{1,78}?)\s*[.,;:]",
     re.IGNORECASE,
 )
-
-
-# Run 13 item 12: Wikipedia navigation/infobox chrome survived into Run 12's
-# relations ("biology portal Category v t e Evolutionary biology is a subfield…",
-# "H65 2016 Preceded by Ego is the Enemy Website dailystoic"). Navboxes end in
-# "v t e" and portal/category links; the sentence that matters follows the last one.
-_CHROME_SPLIT_RE = re.compile(r"\bv\s+t\s+e\b|\bCategory\b|\bportal\b", re.IGNORECASE)
-_INFOBOX_RE = re.compile(r"\b(?:Preceded by|Followed by|Website|ISBN|Retrieved|Archived|"
-                         r"Jump to navigation|edit source)\b", re.IGNORECASE)
-
-
-def _strip_chrome(sentence: str) -> str:
-    """The prose after the last navigation marker; '' for infobox residue."""
-    s = _CHROME_SPLIT_RE.split(str(sentence or ""))[-1].strip(" .,;:-")
-    return "" if _INFOBOX_RE.search(s) else s
 
 
 def _claim_subject_terms(text: str) -> List[str]:

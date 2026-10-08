@@ -26,6 +26,12 @@ from brain.cognition.intrinsic_helpers import (
 )
 from brain.cognition.intrinsic_objectives import objective_pressure, _serves_aspiration
 from brain.utils.felt_lexicon import felt_label
+from brain.utils.topic_clean import clean_topic, is_junk_topic, own_titles
+
+
+def _rounds_exhausted(title: str) -> bool:
+    from brain.goal_io import rounds_exhausted
+    return rounds_exhausted(title)
 
 _log = get_logger(__name__)
 
@@ -56,6 +62,8 @@ def _concept_deepening_goals(limit: int = 4) -> List[Dict]:
                 continue
             name = _strip_goal_scaffold(str(e.get("name", "")))
             if len(name) <= 3 or not _acceptable_goal_subject(name):
+                continue
+            if is_junk_topic(name, own_titles()):   # B4: chrome / fragments / own titles
                 continue
             key = name.lower()
             if key in seen:
@@ -485,6 +493,78 @@ def _characterization_goals(limit: int = 1) -> List[Dict]:
     return out
 
 
+# ── Neighbouring topics from his own research (B6) ─────────────────────────────
+# Run 13's research pool ran dry for hours (heartbeat silent 10:37→14:44Z) while
+# every finished research goal had written definitional claims about NEIGHBOURING
+# subjects ("Sisu is a Finnish word…" while researching The Daily Stoic). Those
+# subjects are world topics he has met but not studied: each research product
+# feeds the pool its own next candidates, so the feed grows with what he reads
+# instead of draining a fixed concept list. The antagonist to pool starvation.
+_DEFINITIONAL_PREDICATES = frozenset({
+    "is", "is a", "is an", "is the", "are", "was", "were", "means", "refers to",
+    "is defined as", "is called", "is a type of", "is part of"})
+_CLAIMS_SCAN = 20
+_NEIGHBOUR_MAX_WORDS = 4
+
+
+def _neighbour_topics(scan: int = _CLAIMS_SCAN) -> List[str]:
+    """Clean subjects of definitional relations in the newest claims files that
+    are NOT the subject the claim's own question asked about. Newest first."""
+    import json as _json
+    from brain.paths import GOALS_DIR
+    from brain.utils.subject_terms import mentions, subject_terms
+    try:
+        files = sorted((GOALS_DIR / "artifacts").glob("*/claims.json"),
+                       key=lambda p: p.stat().st_mtime, reverse=True)[:scan]
+    except OSError:
+        return []
+    own = own_titles()
+    out: List[str] = []
+    seen: set = set()
+    for f in files:
+        try:
+            data = _json.loads(f.read_text(encoding="utf-8", errors="replace"))
+        except (OSError, ValueError):
+            continue
+        asked = subject_terms(str(data.get("question") or ""))
+        for r in data.get("relations") or []:
+            if not isinstance(r, dict):
+                continue
+            if str(r.get("predicate") or "").lower() not in _DEFINITIONAL_PREDICATES:
+                continue
+            name = clean_topic(str(r.get("subject") or ""), own, strict=True)
+            if not name or len(name.split()) > _NEIGHBOUR_MAX_WORDS:
+                continue
+            if asked and mentions(asked, name):
+                continue   # the topic he already researched, not a neighbour
+            key = name.lower()
+            if key in seen or not _acceptable_goal_subject(name):
+                continue
+            seen.add(key)
+            out.append(name)
+    return out
+
+
+def _neighbour_topic_goals(limit: int = 2) -> List[Dict]:
+    from brain.cognition.intrinsic_helpers import topic_appetite
+    names = _neighbour_topics()
+    scored = [(n, topic_appetite(f"Understand {n} more deeply")) for n in names]
+    out: List[Dict] = []
+    for name in _weighted_sample(scored, limit):
+        out.append(_mk_goal(
+            f"Understand {name} more deeply",
+            f"My own research kept defining {name} in passing. Find out what {name} "
+            f"actually is and write the finding to long memory.",
+            driven_by="world_knowledge",
+            milestones=[f"{name} was researched from outside sources.",
+                        f"A sourced finding about {name} was written to long memory."],
+            kind="research", requires_artifact=True,
+            spec={"queries": [name, f"{name} explained"], "synth_kind": "memo"},
+            question=f"What actually is {name}, beyond the mentions I keep seeing?",
+        ))
+    return out
+
+
 # ── Intake → output laddering (P5 / G2) ────────────────────────────────────────
 # Completing an "Understand X" intake goal should ladder INTO making something
 # with X, not loop back into re-understanding X. note_intake_completed queues the
@@ -860,6 +940,7 @@ def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
     candidates += _tension_goals(context)
     candidates += _autobiographical_continuity_goals()
     candidates += _characterization_goals()
+    candidates += _neighbour_topic_goals()
     # P5 — polyculture: making + contact generators so the pool can finally serve
     # ALL FOUR aspirations, not just intake/introspection. These emit artifact-gated
     # output_producing / genuine_contact goals (fail-able via P2).
@@ -889,6 +970,8 @@ def _build_symbolic_pool(context: Dict[str, Any], long_mem: list) -> List[Dict]:
         # TITLE_COMPLETION_CAP completions is not spawnable again this life.
         if _title_respawn_blocked(t, now):
             continue
+        if str(g.get("kind", "")) == "research" and _rounds_exhausted(title):
+            continue   # B5: base round + one per angle already finished this life
         pool.append(g)
     return pool
 

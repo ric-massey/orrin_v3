@@ -96,6 +96,17 @@ _GOAL_DRIVEN_FNS = frozenset({
 })
 
 
+_NOOP_STREAK_NOT_SERVICE = 2
+
+
+def noop_fns(context: Dict[str, Any]) -> set:
+    """Functions whose last _NOOP_STREAK_NOT_SERVICE+ dispatches were explicit
+    no-ops (streak kept by loop/execute.py)."""
+    streaks = context.get("_fn_noop_streak") or {}
+    return {fn for fn, n in streaks.items()
+            if isinstance(n, int) and n >= _NOOP_STREAK_NOT_SERVICE}
+
+
 def _try_suppress(action: str, n_cycles: int, reason: str,
                   context: Optional[Dict[str, Any]] = None) -> None:
     """
@@ -200,7 +211,10 @@ def metacog_analyze(context: Dict[str, Any]) -> List[str]:
         _suppressed: Optional[str] = None
         if debt >= _GOAL_DEBT_WARN * 3 and picks:
             # Suppress the most-frequent non-goal-pursuit function from recent picks.
-            _PURSUE = {"pursue_committed_goal", "pursue_goal", "advance_goal_plan"} | _GOAL_DRIVEN_FNS
+            # B7: a goal instrument that keeps returning no-ops is not serving
+            # the goal; the breaker stops sparing it.
+            _PURSUE = ({"pursue_committed_goal", "pursue_goal", "advance_goal_plan"}
+                       | (_GOAL_DRIVEN_FNS - noop_fns(context)))
             recent_for_susp = picks[-_RUT_WINDOW:]
             substitute_counts = Counter(p for p in recent_for_susp if p not in _PURSUE)
             if substitute_counts:

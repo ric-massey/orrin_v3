@@ -1,0 +1,42 @@
+{
+  "question": "What actually is but what if there, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Holocene"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Scientific_method"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Research_statement"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WhatsApp"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/There_Is_No_Antimemetics_Division"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Common_English_usage_misconceptions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS"
+    }
+  ],
+  "ts": "2026-10-08T00:14:41.679374+00:00"
+}

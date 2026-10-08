@@ -374,6 +374,12 @@ def execute_cognition_function(
                 "ERROR" in _fn_str[:30]
             )
             _status_r = 0.1 if _is_failure else 0.5
+            # B7 (Run 13): an explicit no-op ({"changed": False}) earns no reward, is
+            # not consequential, and its streak ends the breaker's goal-service
+            # exemption (research_topic no-op'd ~95 % of late life).
+            _noop = isinstance(fn_result, dict) and fn_result.get("changed") is False
+            _noops = context.setdefault("_fn_noop_streak", {})
+            _noops[fn_name] = int(_noops.get(fn_name, 0)) + 1 if _noop else 0
             try:
                 from brain.cognition.action_accounting import mark_consequential_cognition
                 _reach = context.get("_last_reach_outcome")
@@ -381,7 +387,7 @@ def execute_cognition_function(
                     context,
                     env_r=_env_r,
                     ticked_n=_ticked_n,
-                    is_failure=_is_failure,
+                    is_failure=_is_failure or _noop,
                     info_gain=(
                         getattr(_reach, "info_gain", None)
                         if _reach is not None else None
@@ -428,6 +434,8 @@ def execute_cognition_function(
                 _env_r, _status_r, _is_failure,
             )
 
+            if _noop:
+                reward = 0.0
             # Expose for finalize.py's reward_signal signal.
             context["_step_delta_reward"] = reward
             # Feed env-delta reward back into the depth bandit when

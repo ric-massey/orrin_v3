@@ -1,0 +1,53 @@
+{
+  "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+  "subject_terms": [
+    "game",
+    "playing"
+  ],
+  "entities": [
+    "computers",
+    "programmed to play these games using a specially designed algorithm"
+  ],
+  "relations": [
+    {
+      "subject": "computers",
+      "predicate": "are",
+      "object": "programmed to play these games using a specially designed algorithm",
+      "source": "my prior claims [g_46d05db093]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_46d05db093]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_alignment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Generative_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meta_AI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boys%27_love"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Roko%27s_basilisk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Machine_learning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence"
+    }
+  ],
+  "ts": "2026-10-08T00:18:20.778462+00:00"
+}

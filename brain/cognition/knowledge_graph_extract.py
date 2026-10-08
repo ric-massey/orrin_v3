@@ -87,6 +87,12 @@ def _validate_candidate(
         pass
     if name.lower() in _STOPWORDS:
         return False, 0.0, "stopword"
+    # B4: a concept is a world topic — never page chrome, a clause fragment the
+    # definition regex grabbed mid-sentence, or one of his own aspiration titles.
+    if entity_type == "concept":
+        from brain.utils.topic_clean import is_junk_topic, own_titles
+        if is_junk_topic(name, own_titles()):
+            return False, 0.0, "junk_topic"
     # Purely numeric tokens are not entities (dates, counts, etc.)
     if re.fullmatch(r'[\d\s\.\-,:/%+]+', name):
         return False, 0.0, "numeric"

@@ -413,6 +413,11 @@ def score_candidates(
                 context["_gen_pool_ratio"] = _cached
             if _cached[1] > 3.0:
                 total -= min(0.5, 0.12 * (_cached[1] - 3.0))
+            # B6: the antagonist to that demotion. When the daemon holds no open
+            # research work the feed is starving (Run 13: WAL silences up to 247
+            # min), and making a goal is the only way to end it — pull toward
+            # generation in proportion to how empty the research lane is.
+            total += _research_lane_pull(context, _cyc)
 
         # Will/commitment follow-through bias (cognition/will.py): a small,
         # decaying boost to actually pursuing the committed goal, so fresh resolve
@@ -473,3 +478,25 @@ def score_candidates(
         scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety, "value": s_value}))
 
     return scored
+
+
+_RESEARCH_LANE_PULL = {0: 0.30, 1: 0.12}
+
+
+def _research_lane_pull(context: Dict[str, Any], cycle: int) -> float:
+    """Selection pull on generate_intrinsic_goals from an empty research lane:
+    +0.30 with no open daemon research goal, +0.12 with one, else 0. The open
+    count is read once per cycle (cached on context)."""
+    cached = context.get("_research_lane_open")
+    if not (isinstance(cached, tuple) and len(cached) == 2 and cached[0] == cycle):
+        open_n = 2   # unknown → no pull
+        try:
+            from brain.goal_io import open_daemon_goal_count
+            n = open_daemon_goal_count("research")
+            if n is not None:
+                open_n = n
+        except Exception as exc:
+            record_failure("select_function.research_lane_open", exc)
+        cached = (cycle, open_n)
+        context["_research_lane_open"] = cached
+    return _RESEARCH_LANE_PULL.get(int(cached[1]), 0.0)

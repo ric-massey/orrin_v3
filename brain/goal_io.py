@@ -440,8 +440,45 @@ _FOLLOWON_ANGLES = (
     ("open problems", "criticism and debate"),
     ("history and development", "applications and examples"),
     ("recent research", "common misconceptions"),
-    ("relationship to other fields", "key figures and works"),
 )
+# B5 (Run 13): the angles used to cycle (`% len`), so round 21 of "The Daily Stoic"
+# re-fetched round 2's pages (34 "no URLs" failures, max round 16-21). A topic gets
+# its base round plus one round per angle; after that a research proposal is dropped and
+# the curiosity moves to the neighbouring topics its claims named
+# (intrinsic_generators._neighbour_topic_goals).
+MAX_ROUND = 1 + len(_FOLLOWON_ANGLES)
+
+
+def open_daemon_goal_count(kind: str) -> "int | None":
+    """Open (NEW/RUNNING) daemon goals of `kind`; None when no store is installed."""
+    if _api_ref is None:
+        return None
+    from goals.model import Status
+    return sum(1 for g in _api_ref.list_goals(statuses=[Status.NEW, Status.RUNNING], limit=200)
+               if getattr(g, "kind", "") == kind)
+
+
+_finished_rounds_cache: Dict[str, Any] = {"ts": 0.0, "counts": {}}
+
+
+def rounds_exhausted(title: str) -> bool:
+    """True when `title`'s topic has finished MAX_ROUND rounds in the daemon store
+    (B5), so generators stop proposing it. Store read cached for 60 s; False when
+    the store is unavailable."""
+    import time as _time
+    now = _time.time()
+    if now - float(_finished_rounds_cache["ts"]) > 60.0:
+        counts: Dict[str, int] = {}
+        try:
+            if _api_ref is not None:
+                for g in _api_ref.list_goals(limit=500):
+                    if _is_terminal_v2(g):
+                        k = _round_base(g.title).lower()
+                        counts[k] = counts.get(k, 0) + 1
+        except Exception as _e:
+            record_failure("goal_io.rounds_exhausted", _e)
+        _finished_rounds_cache.update(ts=now, counts=counts)
+    return int(_finished_rounds_cache["counts"].get(_round_base(title).lower(), 0)) >= MAX_ROUND
 
 
 def _is_terminal_v2(g: Any) -> bool:
@@ -466,7 +503,7 @@ def _make_followon(gd: Dict[str, Any], src: Dict[str, Any], title: str,
     spec["followon_of"] = prior_ids[-1]
     if str(gd.get("kind")) == "research":
         topic = re.sub(r"(?i)^(understand|open question:|answer:)\s+|\s+more deeply$", "", base).strip()
-        a, b = _FOLLOWON_ANGLES[(k - 2) % len(_FOLLOWON_ANGLES)]
+        a, b = _FOLLOWON_ANGLES[min(k - 2, len(_FOLLOWON_ANGLES) - 1)]
         spec["queries"] = [f"{topic} {a}", f"{topic} {b}"]
         spec["build_on_prior"] = True
     gd["spec"] = spec
@@ -556,6 +593,13 @@ def sync_proposed_goals(api, context: Dict[str, Any]) -> None:
             record_failure("goal_io.no_milestones", ValueError(f"goal {title[:60]!r} has no milestones"))
         try:
             if kind in _EXECUTABLE_KINDS:
+                if (kind == "research" and title not in existing
+                        and _round_base(title) in finished
+                        and len(finished[_round_base(title)]) >= MAX_ROUND):
+                    log_handoff("sync_proposed_goals", title, kind, "rounds_exhausted",
+                                f"{len(finished[_round_base(title)])} rounds finished "
+                                f"(max {MAX_ROUND})")
+                    continue
                 if title not in existing and _round_base(title) in finished:
                     title = _make_followon(gd, src, title, finished[_round_base(title)])
                     log_handoff("sync_proposed_goals", title, kind, "followon",

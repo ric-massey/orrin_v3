@@ -196,9 +196,11 @@ def generate_intrinsic_goals(context: Dict[str, Any] = None) -> List[Dict]:
     if context.get("_suppress_intrinsic_goals") and bound_goal(context):
         log_activity("[intrinsic_goals] Skipped while patch-leave suppression is active.")
         return []
-    if int(context.get("action_debt", 0) or 0) > 0 and bound_goal(context):
-        log_activity("[intrinsic_goals] Skipped while the committed goal has open action debt.")
-        return []
+    # B13 (Run 13 §4b B): no action-debt gate here. `action_debt > 0` with a
+    # committed goal skipped ~90 % of calls all life (one unacted cycle was
+    # enough) and drove the feed silences (7 > 30 min, max 247). Displacement is
+    # opposed by the antagonists below (sub-neutral-EMA and pool-depth cooldown
+    # stretch) and by the avoidance breaker, not by a threshold.
 
     now = time.time()
     has_goal = bool(bound_goal(context))

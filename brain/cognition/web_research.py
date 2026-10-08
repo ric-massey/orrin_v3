@@ -254,6 +254,8 @@ def _topic_from_knowledge_graph() -> str:
     """
     try:
         from brain.cognition.knowledge_graph import _load_graph
+        from brain.utils.topic_clean import is_junk_topic, own_titles
+        own = own_titles()
         g = _load_graph()
         concepts = [
             e for e in (g.get("entities") or {}).values()
@@ -261,6 +263,7 @@ def _topic_from_knowledge_graph() -> str:
             and float(e.get("confidence", 0) or 0) >= 0.45
             and len(str(e.get("name", ""))) > 3
             and _is_concrete_topic(str(e.get("name", "")))
+            and not is_junk_topic(str(e.get("name", "")), own)
         ]
         if not concepts:
             return ""

@@ -65,6 +65,32 @@ def _invoke_cognition(
     args: Optional[Sequence[Any]] = None,
     kwargs: Optional[Dict[str, Any]] = None,
 ) -> Any:
+    """Dispatch one cognitive function from the main loop.
+
+    B8 (Run 13): the main loop never marked the action it dispatched, so a tool
+    refusal inside it was attributed to nothing and `decide_to_write_code` (273
+    bail-outs, "no LLM body available") was never marked impossible. The action
+    is marked for the call, and a result that says {"impossible": True} marks it
+    impossible directly (its own bail-out knows; no gate denial is needed)."""
+    from brain.control_signals.reward_signals import impossibility as _imp
+    _imp.set_current_action(name)
+    try:
+        out = _dispatch(fn, name, ctx, args=args, kwargs=kwargs)
+    finally:
+        _imp.clear_current_action()
+    if isinstance(out, dict) and out.get("impossible"):
+        _imp.mark_impossible(name, str(out.get("reason") or "impossible"))
+    return out
+
+
+def _dispatch(
+    fn: Callable[..., Any],
+    name: str,
+    ctx: Dict[str, Any],
+    *,
+    args: Optional[Sequence[Any]] = None,
+    kwargs: Optional[Dict[str, Any]] = None,
+) -> Any:
     if isinstance(args, (list, tuple)) or isinstance(kwargs, dict):
         return fn(*(args or ()), **(kwargs or {}))
     built = _build_kwargs_for(fn, name, ctx)

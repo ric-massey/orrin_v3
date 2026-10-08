@@ -150,3 +150,48 @@ def _truncate_plain(text: str, limit: int) -> str:
     if cut <= 0:
         cut = limit - 1
     return head[:cut].rstrip() + _ELLIPSIS
+
+
+# ── Self-talk and garble (B15/B16, Run 13) ────────────────────────────────────
+# One detector for "this is his own log, not work about a subject", shared by the
+# exemplar gate (quality_standard.originality), native-LM drafting
+# (agency.compose_section) and the language corpus filter (acquisition_noise).
+# Bracketed internal tags: any snake_case or slash identifier ([world_model],
+# [I_model], [intrinsic_goal], [metacog/pattern], [sym_dream:analogy]) plus the
+# named organs. World tags ([research], [rss:…], [EXTERNAL/UNTRUSTED …]) are not
+# matched: they mark outside content.
+INTERNAL_TAG_RE = re.compile(
+    r"\[(?:[A-Za-z]+_[A-Za-z_]+|[a-z]+/[a-z_]+|chunk:|metacog|will\]|incubation|"
+    r"sym_dream|dream|autobiography|working_memory|announced|reflection|symbolic|"
+    r"epistemic|behavioral_adapt|knowledge_formation|consciousness|affect)")
+# His status lines and failure notices, and the offline research footer.
+STATUS_LINE_RE = re.compile(
+    r"I've been running for|💔|Goal failed:|Offline synthesis fallback|"
+    r"Provide your own LLM|🧠 Chose:", re.IGNORECASE)
+
+_SENT_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+_GARBLE_MIN_SENTENCES = 4
+_GARBLE_LOWER_SHARE = 0.2
+
+
+def internal_marks(text: str) -> int:
+    """Count of internal tags plus status-line hits in `text`."""
+    t = str(text or "")
+    return len(INTERNAL_TAG_RE.findall(t)) + len(STATUS_LINE_RE.findall(t))
+
+
+def looks_garbled(text: str) -> bool:
+    """True for the native LM's babble: a U+FFFD replacement character (the
+    tokenizer's unknown-char output), or ≥ 20 % of sentences starting lowercase
+    (dropped capitals: "hat I learned…", "his is the…"). Run 13: real memos ≤ 7 %,
+    credited babble sections mostly 20–86 %."""
+    if "\ufffd" in str(text or ""):
+        return True
+    starts = []
+    for s in _SENT_SPLIT_RE.split(str(text or "")):
+        s = s.strip().lstrip("\"'([-*•# ")
+        if len(s) > 12 and s[:1].isalpha():
+            starts.append(s[:1])
+    if len(starts) < _GARBLE_MIN_SENTENCES:
+        return False
+    return sum(c.islower() for c in starts) / len(starts) >= _GARBLE_LOWER_SHARE

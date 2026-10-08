@@ -43,6 +43,7 @@ from brain.utils.log import log_activity
 from brain.utils.failure_counter import record_failure
 from brain.cognition.quality_standard import revisions
 from brain.cognition.quality_standard import originality
+from brain.utils.text_sanity import looks_garbled
 
 _IGNORE = {"README.md", "PLACEHOLDER.md"}
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]+")
@@ -201,6 +202,10 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
         # 2a0) SELF-TALK (Run 13 item 8): internal log lines are not authored work
         #      about anything; rejected outright, not routed to review.
         _talk, _talk_why = originality.is_self_talk(text)
+        if not _talk and looks_garbled(text):
+            _talk, _talk_why = True, "garbled_text"
+        if not _talk and originality.is_verbatim_research_memo(text):
+            _talk, _talk_why = True, "verbatim_research_topic_memo"
         if _talk:
             revisions.mark(cid, "rejected", reason=_talk_why)
             changed.append(revisions.get(cid))

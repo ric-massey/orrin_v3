@@ -24,6 +24,7 @@ from brain.utils.generate_response import generate_response, get_thinking_model,
 from brain.utils.llm_gate import llm_callable_by
 from brain.utils.timeutils import now_iso_z
 from brain.utils.failure_counter import record_failure
+from brain.utils.text_sanity import internal_marks, looks_garbled
 
 TRACKED_WORK_DIR = DATA_DIR / "tracked_work"
 
@@ -54,9 +55,16 @@ def _draft(goal: Dict[str, Any], section: str,
     # AR3 (audit D6): LLM-off composition speaks with his own trained organ.
     # Maturity-gated on the same voice.lm_ready check the mouth uses; the organ
     # is seeded with the material so the draft stays grounded in real sources.
+    # B16 (Run 13 §4b D): the organ is trusted to write production only once it
+    # passes the same fluency gate conditional_render uses. Before that its drafts
+    # imitated his status lines ("[I_model] I've been running for 2h 0. It's
+    # afternalouses on ednesday") and 75 such sections were credited, because
+    # babble is always novel to the ledger. A draft carrying internal tags,
+    # status lines or dropped-capital garble is refused even after the gate.
     try:
+        from brain.cognition.language.conditional_render import organ_fluent
         from brain.cognition.language.voice import lm_ready
-        if lm_ready():
+        if lm_ready() and organ_fluent():
             from brain.cognition.language import native_lm
             from brain.utils.felt_lexicon import strip_scaffold
             seed = material[0][1][:160] if material else ""
@@ -66,7 +74,8 @@ def _draft(goal: Dict[str, Any], section: str,
             ).strip()
             if text.startswith(prompt):
                 text = text[len(prompt):].strip()
-            if len(text) >= MIN_ARTIFACT_CHARS:
+            if (len(text) >= MIN_ARTIFACT_CHARS and not internal_marks(text)
+                    and not looks_garbled(text)):
                 return text
     except Exception as exc:
         record_failure("compose_section.native_draft", exc)

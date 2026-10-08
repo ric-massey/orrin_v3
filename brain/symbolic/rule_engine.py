@@ -258,20 +258,30 @@ def match_all(text: str, threshold: float = 0.35) -> List[Tuple[Dict, float]]:
 _last_hit_cycle: Dict[str, int] = {}
 
 
-def apply(rule: Dict, *, log: bool = True) -> str:
-    """Return the rule's conclusion and bump hit count (once per cycle)."""
+def _hit_refractory(rid: str) -> bool:
+    """True when `rid` already banked a hit this cycle; otherwise records the
+    hit's cycle and returns False. Shared by apply() and reinforce_rule() —
+    B24 (Run 13): knowledge_formation re-observed the goal-avoidance pattern ~7×
+    per cycle through reinforce_rule, which had no refractory (110,813 hits)."""
     try:
         from brain.utils.get_cycle_count import get_cycle_count
-        _cyc = get_cycle_count()
+        cyc = get_cycle_count()
     except Exception:
-        _cyc = 0
+        cyc = 0
+    if cyc > 0 and rid and _last_hit_cycle.get(rid) == cyc:
+        return True
+    if rid:
+        _last_hit_cycle[rid] = cyc
+    return False
+
+
+def apply(rule: Dict, *, log: bool = True) -> str:
+    """Return the rule's conclusion and bump hit count (once per cycle)."""
     rid = rule.get("id", "")
-    if _cyc > 0 and rid and _last_hit_cycle.get(rid) == _cyc:
+    if _hit_refractory(rid):
         # Already reinforced this cycle — a repeat match is not new evidence.
         return rule["conclusion"]
     rule["hits"] = rule.get("hits", 0) + 1
-    if rid:
-        _last_hit_cycle[rid] = _cyc
     if log:
         log_activity(f"[rule_engine] Applied rule '{rule['id']}': {rule['conclusion'][:80]}")
     _flush_hit(rule)
@@ -342,12 +352,13 @@ def add_rule(
 
 def reinforce_rule(rule_id: str, confidence: Optional[float] = None) -> Optional[Dict]:
     """Strengthen an existing rule in place: bump hits (a re-observation is
-    evidence) and ratchet confidence upward, never down. Returns the rule, or
+    evidence, once per cycle) and ratchet confidence upward, never down. Returns the rule, or
     None if the id is unknown."""
     rules = _load_rules(force=True)
     for r in rules:
         if r["id"] == rule_id:
-            r["hits"] = r.get("hits", 0) + 1
+            if not _hit_refractory(rule_id):
+                r["hits"] = r.get("hits", 0) + 1
             if confidence is not None and confidence > r.get("confidence", 0.0):
                 r["confidence"] = confidence
             save_json(SYMBOLIC_RULES_FILE, rules)

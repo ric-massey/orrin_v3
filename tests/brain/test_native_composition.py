@@ -45,6 +45,9 @@ def test_ready_organ_drafts_the_section(monkeypatch):
     import brain.cognition.language.voice as voice
     import brain.cognition.language.native_lm as nlm
     monkeypatch.setattr(voice, "lm_ready", lambda: True)
+    # B16: drafting production also requires the organ's fluency gate.
+    monkeypatch.setattr("brain.cognition.language.conditional_render.organ_fluent",
+                        lambda: True)
     monkeypatch.setattr(nlm, "generate",
                         lambda prompt, length=80, temperature=0.8, **k: prompt + _ORGAN_TEXT)
 

@@ -64,6 +64,8 @@ def _isolate(tmp_path, monkeypatch):
     import brain.cognition.language.voice as voice
     import brain.cognition.language.native_lm as nlm
     monkeypatch.setattr(voice, "lm_ready", lambda: True)
+    monkeypatch.setattr("brain.cognition.language.conditional_render.organ_fluent",
+                        lambda: True)   # B16: production drafting needs the fluency gate
     monkeypatch.setattr(nlm, "generate",
                         lambda prompt, length=400, temperature=0.7, **k: prompt + _ORGAN_TEXT)
     el.reset_for_tests()

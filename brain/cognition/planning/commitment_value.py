@@ -265,6 +265,18 @@ def note_goal_credit(goal_id: str, significance: float, *,
         _fold_credit(target, significance, alignment, content_hash)
 
 
+def _headroom(old: float, sample: float) -> float:
+    """B17 (Run 13 §4b F): diminishing returns on the way up. An upward step is
+    scaled by the squared room left above the neutral 0.5 (1 at ≤ 0.5, 0.04 at
+    0.9), so a stream of credits approaches 1 ever more slowly instead of pinning
+    it (self-understanding hit 0.9999 on babble credit + propagation): ~5,000
+    maximal credits to reach 0.99 at α = 0.25. Downward steps are unscaled:
+    losing value is never slowed."""
+    if sample <= old:
+        return 1.0
+    return max(0.0, min(1.0, 2.0 * (1.0 - old))) ** 2
+
+
 def _fold_credit(gid: str, significance: float, alignment: Optional[float],
                  content_hash: Optional[str]) -> None:
     try:
@@ -290,7 +302,7 @@ def _fold_credit(gid: str, significance: float, alignment: Optional[float],
             diversity = (len(set(hashes)) / len(hashes)) if hashes else 1.0
             sample = max(0.0, min(1.0, 0.5 + sig * align * diversity))
             old = float(row.get("value_ema", 0.5))
-            row["value_ema"] = round((1.0 - _VALUE_ALPHA) * old + _VALUE_ALPHA * sample, 4)
+            row["value_ema"] = round(old + _VALUE_ALPHA * _headroom(old, sample) * (sample - old), 4)
             row["stale_cycles"] = 0.0
             # C2: a credited effect IS service — the neglect pull is satisfied.
             if _NEGLECT_PRESSURE_ENABLED:

@@ -19,6 +19,7 @@
 # floor; scoring stays symbolic — term overlap, no LLM.
 from __future__ import annotations
 
+import hashlib
 import time
 from typing import Any, Dict, List, Optional
 
@@ -102,6 +103,13 @@ def annotate_reason(reason: Dict[str, Any], context: Dict[str, Any], chosen: str
         if hit is None:
             return
         row, overlap = hit
+        # B23 (Run 13 §4c): one citation per question per decision window — the
+        # window lasts while the deciding context is unchanged. Run 13 cited the
+        # junk "world a world" answer 1,546× from one standing context.
+        window = hashlib.sha1(deciding.encode("utf-8")).hexdigest()[:16]
+        if row.get("last_cited_window") == window:
+            return
+        row["last_cited_window"] = window
         row["cited"] = int(row.get("cited", 0) or 0) + 1
         row["last_cited_ts"] = round(time.time(), 1)
         row["last_cited_fn"] = chosen

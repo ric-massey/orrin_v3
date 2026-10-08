@@ -187,25 +187,38 @@ def is_derivative(report: CopyReport) -> tuple[bool, str]:
 # ("[metacog/pattern] Goal avoidance: 4 consecutive cycles…", "[will] I resolve
 # to…", "[Incubation] While sitting with…"). It passed the copy veto because none
 # of it was copied — it is internal telemetry, which reads as "original prose".
-_INTERNAL_TAG_RE = re.compile(
-    r"\[(?:chunk:|metacog|will\]|incubation|sym_dream|dream|autobiography|world_model|"
-    r"working_memory|announced|reflection|symbolic|epistemic|behavioral_adapt|"
-    r"knowledge_formation|consciousness|affect)", re.IGNORECASE)
 _SELF_TALK_MIN_LINES = 2
 _SELF_TALK_SHARE = 0.3
+# B15 (Run 13): a single-paragraph artifact has one content line, so the line
+# share test could never fire on it ("A similar situation suggests…: [intrinsic_goal]
+# 'Understand history…'"). Any internal mark in a short artifact is self-talk.
+_SHORT_ARTIFACT_LINES = 3
 
 
 def is_self_talk(text: str) -> tuple[bool, str]:
-    """True when the artifact's content lines are mostly Orrin's internal tags
-    (metacog / will / incubation / dream / chunk …) rather than work about a subject."""
+    """True when the artifact's content is Orrin's internal tags / status lines
+    (metacog / will / world_model / intrinsic_goal …) rather than work about a
+    subject. Shared detector: brain.utils.text_sanity.INTERNAL_TAG_RE."""
+    from brain.utils.text_sanity import internal_marks
     lines = [ln.strip().lstrip("-*• ").strip() for ln in str(text or "").splitlines()]
-    content = [ln for ln in lines if ln and not ln.startswith("#")]
+    content = [ln for ln in lines if ln and not ln.startswith("#") and ln != "---"]
     if not content:
         return False, ""
-    tagged = sum(1 for ln in content if _INTERNAL_TAG_RE.search(ln))
+    tagged = sum(1 for ln in content if internal_marks(ln))
+    if len(content) <= _SHORT_ARTIFACT_LINES and tagged:
+        return True, f"self_talk_short_{tagged}_of_{len(content)}_lines"
     if tagged >= _SELF_TALK_MIN_LINES and tagged / len(content) >= _SELF_TALK_SHARE:
         return True, f"self_talk_{tagged}_of_{len(content)}_lines"
     return False, ""
+
+
+_RESEARCH_TOPIC_FOOTER_RE = re.compile(r"(?m)^source:\s*research_topic\s*$")
+
+
+def is_verbatim_research_memo(text: str) -> bool:
+    """B15: a `source: research_topic` memo is the fetched page text written down
+    (web_research._write_research_memo) — verbatim by construction."""
+    return bool(_RESEARCH_TOPIC_FOOTER_RE.search(str(text or "")))
 
 
 def check(text: str, *, goal_id: Optional[str] = None) -> tuple[bool, str, CopyReport]:

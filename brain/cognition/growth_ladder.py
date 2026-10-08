@@ -37,6 +37,7 @@ _STATE_FILE = DATA_DIR / "growth_ladder.json"
 _STREAK_TO_CLIMB = 3     # verified successes at the current rung before the bar rises
 _MAX_RUNG = 5
 _MASTERY_CACHE_TTL = 300.0
+_CREDITED_REFS_MAX = 500
 
 _mastery_cache: Optional[Set[str]] = None
 _mastery_cache_ts = 0.0
@@ -58,6 +59,15 @@ def note_verified_success(kind: str, ref: str = "") -> None:
         return
     try:
         d = _state()
+        # B23 (Run 13 §4c): one success per distinct question/exemplar. Run 13's
+        # 38 ladder entries covered 17 questions ("world a world" ×6), so rung 5
+        # was climbed on repeats.
+        key = f"{kind}:{' '.join(str(ref).lower().split())[:160]}"
+        credited = [k for k in (d.get("credited_refs") or []) if isinstance(k, str)]
+        if ref and key in credited:
+            return
+        if ref:
+            d["credited_refs"] = (credited + [key])[-_CREDITED_REFS_MAX:]
         d["streak"] = int(d.get("streak", 0) or 0) + 1
         d.setdefault("history", []).append(
             {"kind": kind, "ref": str(ref)[:120], "ts": round(time.time(), 1)})

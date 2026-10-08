@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import re
 
+from brain.utils.text_sanity import internal_marks
+
 # Lines that are internal instrumentation, not language to learn from.
 _NOISE_LINE = re.compile(
     r"^\s*(\[?\d{4}-\d\d-\d\d|\[(working_memory|chunk|energy|state_processor|metacog|"
@@ -48,6 +50,11 @@ def _is_log_noise(line: str) -> bool:
     if not s:
         return True
     if any(m in s for m in _TELEMETRY_MARKERS):
+        return True
+    # B16 (Run 13): [world_model] / [I_model] status lines reached the organ's
+    # corpus and it learned to babble them; any internal tag or status line is
+    # mechanism, not language (shared detector, brain/utils/text_sanity).
+    if internal_marks(line or ""):
         return True
     # JSON / data soup: a brace plus a quoted-key colon, or several quoted-key colons.
     if ("{" in s or "}" in s) and '":' in s:

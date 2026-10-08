@@ -427,7 +427,7 @@ def synthesize_from_gap(context: Dict[str, Any] = None, **_) -> str:
         return f"synthesize_from_gap failed: {e}"
 
 
-def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
+def decide_to_write_code(context: Dict[str, Any] = None, **_) -> Optional[Dict[str, Any]]:
     """
     Write a new cognitive function for the current goal — but ONLY when the
     code-writing tool can supply a genuine function body. Writing code is a
@@ -465,7 +465,10 @@ def decide_to_write_code(context: Dict[str, Any] = None, **_) -> None:
             event_type="capability_unavailable", importance=2,
         )
         log_activity("[code_writer] decide_to_write_code: no LLM body available — not writing a stub.")
-        return
+        # B8: say so structurally — the dispatcher marks the action impossible
+        # (out of the selectable set, zero-with-prejudice reward) until re-probe.
+        return {"changed": False, "impossible": True,
+                "reason": "no LLM body available — code writing needs the LLM tool"}
 
     result = write_cognitive_function(
         fn_name,

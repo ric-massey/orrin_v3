@@ -331,8 +331,9 @@ def select_function(
     }
 
     # G2 (Run 11 §3): a decision whose driving context carries an answered
-    # question's subject CITES it in this payload — the readable event that
-    # proves an answer changed a later decision.
+    # question's subject records that recurrence in this payload. It runs after
+    # the pick and reads no answer, so it is NOT evidence an answer changed the
+    # decision (F4, 2026-10-17).
     try:
         from brain.cognition.answer_citation import annotate_reason
         annotate_reason(reason, context, chosen)

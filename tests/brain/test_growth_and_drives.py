@@ -101,9 +101,10 @@ def test_harden_goal_applies_the_rung_to_making_goals_only(tmp_path, monkeypatch
     assert thinking["definition_of_done"] == [], "non-making goals are untouched"
 
 
-# ── G2: the answer changes a later decision ──────────────────────────────────
+# ── G2: an answered question's topic recurring in a later decision ───────────
+# (F4, 2026-10-17: a recurrence, not evidence the answer was used.)
 
-def test_decision_reason_cites_a_consumed_answer(monkeypatch, tmp_path):
+def test_decision_reason_records_answered_topic_recurrence(monkeypatch, tmp_path):
     from brain.cognition import answer_citation as ac
     monkeypatch.setattr(ac, "_FILE", tmp_path / "answered.json")
     ac.note_answered(
@@ -112,14 +113,16 @@ def test_decision_reason_cites_a_consumed_answer(monkeypatch, tmp_path):
     reason: dict = {}
     ctx = {"focus_goal": {"title": "Reduce impasse pressure in my experience of planning"}}
     ac.annotate_reason(reason, ctx, "assess_goal_progress")
-    assert "cites_answer" in reason, "the consumed answer must appear in the payload"
-    assert reason["cites_answer"]["goal_id"] == "g_q1"
-    rows = ac.cited_rows()
-    assert rows and rows[0]["cited"] == 1 and rows[0]["last_cited_fn"] == "assess_goal_progress"
+    assert "answer_topic_in_context" in reason
+    assert reason["answer_topic_in_context"]["goal_id"] == "g_q1"
+    assert "cites_answer" not in reason, "a topic match is not a citation (F4)"
+    rows = ac.topic_recurrence_rows()
+    assert rows and rows[0]["topic_recurrences"] == 1
+    assert rows[0]["last_recurrence_fn"] == "assess_goal_progress"
     # An unrelated decision context does not cite.
     reason2: dict = {}
     ac.annotate_reason(reason2, {"focus_goal": {"title": "Water the plants"}}, "speak")
-    assert "cites_answer" not in reason2
+    assert "answer_topic_in_context" not in reason2
 
 
 # ── G3: mastery weighting ────────────────────────────────────────────────────

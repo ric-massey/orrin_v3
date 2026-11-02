@@ -94,9 +94,17 @@ Small, mostly independent fixes from the Run 13 live deep read
   keeps up to 20 per signal, and has one writer (`execute_cognition_function`); the
   Hebbian copy in `runtime_coupling/adaptation.py`, `action_gate`'s outcome-free
   nudge and the A4.2 share cap are gone, and a lone association is scored by its
-  value, not given full weight. Rows added to the Run 14 gate. Still open from that
-  report: F4/F12 (citation is not decision change), attention learning and rule verification in the same
-  finalizer still score the previous function's reward against this cycle's context.
+  value, not given full weight. **F4/F12 (same day):** the "answer citation" is
+  renamed to what it measures, `topic_recurrences` — overlap noticed after the pick,
+  not answer use — and dropped from the Run 14 Growth greens; the gate now says a
+  pass is operational only, with a separate learning gate (E5/E6/E9, frozen code,
+  matched controls) that nothing has passed, and `run-analysis` forbids scoring an
+  intermediate event as learning. No code yet lets an answer change a selection;
+  E5 is the test that would show one did. Rows added to the Run 14 gate. Still open
+  from that report: attention learning and rule verification in the same
+  finalizer still score the previous function's reward against this cycle's context;
+  and the report's F5–F10 (controller authority, four-bucket task context, delayed
+  credit and replay, belief-evidence identity), none touched.
 - **Before Run 14** (not done): ~2k-cycle smoke life for the cluster 1–2 observables, hard
   reset + restore the two seeds, launch with the staged band (build brief §3).
 

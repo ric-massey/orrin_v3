@@ -82,7 +82,7 @@ against its Run 13 baseline.
 | B28 | `production_attempt_goal_count` vs funnel `producer_ran` | 1,275 vs 164 (different units) | same order |
 | B12 | `[host] suspended` lines for gaps > 60 s; affect/staleness by seconds | — | every gap logged and credited |
 
-**Learning contract (F1–F3 of `analysis/2026-10-17-cognitive-learning-investigation/`,
+**Learning contract (F1–F4 of `analysis/2026-10-17-cognitive-learning-investigation/`,
 fixed 2026-11-02 — Ric: "Fix F1/F2 first", then "Fix F3 first")**
 
 | # | Observable | Before | Pass |
@@ -91,6 +91,7 @@ fixed 2026-11-02 — Ric: "Fix F1/F2 first", then "Fix F3 first")**
 | F1 | `assess_goal_progress` EMA with a goal committed | rewarded as pursuit (+0.3) | no higher than other non-advancing cognition |
 | F2 | `cognition_history` deliberate rows whose reward is the previous pick's | every row | 0 — each row's reward is its own (`executed` names an override) |
 | F2 | reward-engine / EMA key on override cycles | the selector's pick | the function that ran |
+| F4 | `answered_questions.json` rows | `cited` (2,501 in Run 13), read as "an answer changed a decision" | `topic_recurrences` — reported, never scored as growth |
 | F3 | `signal_function_map.json` functions per signal at death | 1 for all 8 signals (`impasse_signal → fetch_and_read: 0.1`) | > 1 wherever more than one function ran under it; failures hold values < successes |
 
 All three are unit-tested (`tests/brain/test_learning_contract_f1_f2.py`,
@@ -100,7 +101,30 @@ than Run 13's — that is the point, not a regression.
 
 **Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
 and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
-distinct questions, structured reuse ≥ 1, an answer cited later).
+distinct questions, structured reuse ≥ 1). "An answer cited later" is no longer a green:
+it was topic overlap counted after the pick (F4), and is reported as `topic_recurrences`.
+
+**What a Run 14 pass means — and does not (F12, 2026-11-02).** This gate is
+*operational*: the feed runs, memory is about his world, rewards are honest, the
+instruments work. It cannot show that Orrin learned. Code changed between every pair of
+lives, so no difference between Run 13 and Run 14 is evidence of learning from
+experience; and prediction-scored answers, reuse rows, ladder rungs, topic recurrences
+and artifact counts are intermediate events, not better decisions. A verdict may say
+"Run 14 passed the operational gate". It may not say Orrin learned, improved, or used
+what he knows, unless the learning gate below passed.
+
+### Learning gate (separate from any life's operational gate)
+
+From `analysis/2026-10-17-cognitive-learning-investigation/EXPERIMENTS.md`; the code is
+frozen for the whole comparison, and every pass is against a matched control.
+
+| Claim | Test | Passes iff |
+|---|---|---|
+| An answer changed a decision | E5 | the action changes appropriately with the stored answer, a topic-matched irrelevant answer gives no equal benefit, and held-out success improves by ≥ 10 points with a paired interval excluding zero. Recurrences and citations are not a criterion. |
+| A prediction became useful control | E6 | out-of-sample accuracy above a declared baseline, and ≥ 20 % lower cost at matched correctness (or more success under the same budget) than prediction-removed and frozen-learning controls |
+| He improves through experience | E9 | after experience, better than both his own pre-experience state and a frozen-learning control on held-out situations; survives a restart; removing the learned state removes the advantage |
+
+None of these has been run. Until one passes, "Orrin learns" is a hypothesis.
 
 ---
 

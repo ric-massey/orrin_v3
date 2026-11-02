@@ -8,12 +8,21 @@
 #
 #   note_answered()   — close-out files every answered question in a small
 #                       rolling index (question, answer excerpt, goal id).
-#   annotate_reason() — at selection time, if the deciding context (bound-goal
+#   annotate_reason() — after selection, if the deciding context (bound-goal
 #                       title / focus) shares subject terms with an answered
-#                       question, the DECISION REASON PAYLOAD cites it and the
-#                       index row is stamped consumed — "the answer changed a
-#                       later decision" becomes a readable, countable event
-#                       (the §10 gate reads `cited` rows).
+#                       question, the reason payload records the TOPIC
+#                       RECURRENCE and the row counts it.
+#
+# F4 (learning investigation, 2026-10-17): this used to be called a citation
+# and logged "the answer changed a later decision". It never was one. It runs
+# after the pick, matches the QUESTION's words (not anything inferred from the
+# answer), and nothing in selection reads an answer — so the decision would have
+# been the same without it. Run 13 counted 2,501 such "citations", 1,546 of them
+# for the malformed "world a world" question. A recurrence says the subject came
+# back while he was deciding; it is not evidence the answer was used, and the
+# gate no longer scores it as growth (docs/NEXT_RUN_TESTS.md, Run 14 gate).
+# Showing an answer changed a decision takes a counterfactual: the same decision
+# with that answer removed (the investigation's EXPERIMENTS.md E5).
 #
 # F-LN4a/b (memo filing + authoritative close-out stamps) are this module's
 # floor; scoring stays symbolic — term overlap, no LLM.
@@ -56,7 +65,7 @@ def note_answered(question: str, answer: str, goal_id: Optional[str]) -> None:
                 "answer": str(answer or "")[:280],
                 "goal_id": goal_id,
                 "ts": round(time.time(), 1),
-                "cited": 0,
+                "topic_recurrences": 0,
             })
         save_json(_FILE, rows[-_MAX_ROWS:])
     except Exception as exc:
@@ -81,7 +90,8 @@ def _deciding_text(context: Dict[str, Any]) -> str:
 
 def annotate_reason(reason: Dict[str, Any], context: Dict[str, Any], chosen: str) -> None:
     """If this decision's driving context carries an answered question's
-    subject, cite it in the reason payload and stamp the index row consumed."""
+    subject, record the recurrence in the reason payload and count it. This is
+    topic overlap observed after the choice, not use of the answer (F4)."""
     if not chosen or not isinstance(reason, dict):
         return
     try:
@@ -103,30 +113,31 @@ def annotate_reason(reason: Dict[str, Any], context: Dict[str, Any], chosen: str
         if hit is None:
             return
         row, overlap = hit
-        # B23 (Run 13 §4c): one citation per question per decision window — the
-        # window lasts while the deciding context is unchanged. Run 13 cited the
-        # junk "world a world" answer 1,546× from one standing context.
+        # B23 (Run 13 §4c): one recurrence per question per decision window — the
+        # window lasts while the deciding context is unchanged. Run 13 counted the
+        # junk "world a world" question 1,546× from one standing context.
         window = hashlib.sha1(deciding.encode("utf-8")).hexdigest()[:16]
         if row.get("last_cited_window") == window:
             return
         row["last_cited_window"] = window
-        row["cited"] = int(row.get("cited", 0) or 0) + 1
-        row["last_cited_ts"] = round(time.time(), 1)
-        row["last_cited_fn"] = chosen
+        row["topic_recurrences"] = int(row.get("topic_recurrences", 0) or 0) + 1
+        row["last_recurrence_ts"] = round(time.time(), 1)
+        row["last_recurrence_fn"] = chosen
         save_json(_FILE, rows[-_MAX_ROWS:])
-        reason["cites_answer"] = {
+        reason["answer_topic_in_context"] = {
             "question": str(row.get("question", ""))[:120],
             "goal_id": row.get("goal_id"),
             "term_overlap": overlap,
         }
         log_activity(
-            f"[answer_citation] decision '{chosen}' cites answered question "
-            f"\"{str(row.get('question', ''))[:80]}\" — the answer changed a later decision"
+            f"[answer_citation] decision '{chosen}' was made with an answered question's "
+            f"topic in context: \"{str(row.get('question', ''))[:80]}\" (topic overlap, not answer use)"
         )
     except Exception as exc:
         record_failure("answer_citation.annotate_reason", exc)
 
 
-def cited_rows() -> List[Dict[str, Any]]:
-    """Rows whose answers have been consumed by at least one decision (§10 gate)."""
-    return [r for r in _rows() if int(r.get("cited", 0) or 0) > 0]
+def topic_recurrence_rows() -> List[Dict[str, Any]]:
+    """Rows whose question's topic has recurred in a later decision context.
+    Not a count of answers used (F4)."""
+    return [r for r in _rows() if int(r.get("topic_recurrences", 0) or 0) > 0]

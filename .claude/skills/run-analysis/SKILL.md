@@ -68,6 +68,13 @@ even when the run "looks clean."
   `last_error`; a "FAILED" goal with artifacts on disk means either the
   runner race or misfiled drive-by intake — distinguish them (check artifact
   topic + provenance vs the goal title).
+- **Never score an intermediate event as learning** (F12, 2026-11-02). Topic
+  recurrences (the old "citations" — overlap counted after the pick, F4), reuse
+  rows, ladder rungs, prediction-scored answers and artifact counts are reported
+  as what they are. A verdict says "learned", "improved" or "used what he knows"
+  only when the learning gate in `docs/NEXT_RUN_TESTS.md` (E5/E6/E9: frozen code,
+  matched control, held-out situations) passed; a life-to-life difference is
+  never that evidence, because the code changed between lives.
 - **Reuse rows**: verify real `cycle` + `metadata.path`, subject-token
   overlap with the citing goal, and whether the citing goal succeeded (Run 8:
   reuse was time-locked ≤250 ms before failures — always check).

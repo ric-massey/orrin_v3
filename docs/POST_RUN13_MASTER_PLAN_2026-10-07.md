@@ -99,8 +99,9 @@ Small, mostly independent fixes from the Run 13 live deep read
   not answer use — and dropped from the Run 14 Growth greens; the gate now says a
   pass is operational only, with a separate learning gate (E5/E6/E9, frozen code,
   matched controls) that nothing has passed, and `run-analysis` forbids scoring an
-  intermediate event as learning. No code yet lets an answer change a selection;
-  E5 is the test that would show one did. Rows added to the Run 14 gate. Still open
+  intermediate event as learning. No code yet lets an answer change a selection.
+  **E5 built (same day):** `scripts/run_e5.py`; first result FAIL, zero effect (0/200
+  trials flipped) — the baseline any answer-use mechanism has to move. Rows added to the Run 14 gate. Still open
   from that report: attention learning and rule verification in the same
   finalizer still score the previous function's reward against this cycle's context;
   and the report's F5–F10 (controller authority, four-bucket task context, delayed

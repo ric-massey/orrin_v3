@@ -124,7 +124,25 @@ frozen for the whole comparison, and every pass is against a matched control.
 | A prediction became useful control | E6 | out-of-sample accuracy above a declared baseline, and ≥ 20 % lower cost at matched correctness (or more success under the same budget) than prediction-removed and frozen-learning controls |
 | He improves through experience | E9 | after experience, better than both his own pre-experience state and a frozen-learning control on held-out situations; survives a restart; removing the learned state removes the advantage |
 
-None of these has been run. Until one passes, "Orrin learns" is a hypothesis.
+**E5 is built** (2026-11-02, Ric: "Build the E5 test"): `brain/eval/e5_answer_use.py`,
+run with `.venv/bin/python scripts/run_e5.py` (scratch data dir, never `brain/data`). Ten
+decision problems between two real cognitive functions, five dev and five held out;
+each has two answers to the same question, one per candidate, written in the
+function's definition words rather than its name, and a topic-matched answer that
+implies nothing. Orrin's real `select_function` runs on each problem under no answer,
+each answer and the irrelevant one, with state wiped between calls and ε-exploration
+seeded identically. An oracle that applies the answer must pass and a blind or
+topic-only decider must fail, or the script reports the harness broken
+(`tests/brain/test_e5_harness.py` holds that). It runs the selector alone: retrieval
+into working memory or the workspace, and the research handler's use of prior
+claims, are not exercised.
+
+**First result, 2026-11-02 (code at `01941b9`, 20 seeds, all ten problems): FAIL.**
+Success 0.500 in every condition; relevant − absent +0.000 [+0.000, +0.000]; the
+answer flipped the pick in 0 of 200 trials. The selector chose between the candidates
+(its pick differs across problems) but never because of what an answer said — as
+the code predicts, since nothing in selection reads an answer. E6 and E9 are not built.
+Until one passes, "Orrin learns" is a hypothesis.
 
 ---
 

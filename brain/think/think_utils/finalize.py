@@ -112,8 +112,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # `next_function`, so the reward here belongs to the function executed LAST
     # cycle. The step outcome names that function; everything below that learns
     # from this reward is keyed on it, never on `next_function`.
-    from brain.cognition.action_accounting import take_step_outcome
-    _outcome = take_step_outcome(context)
+    from brain.cognition.action_accounting import _take_step_outcome
+    _outcome = _take_step_outcome(context)
     _outcome_fn = _outcome["fn"] if _outcome else None
     _judged_fn = _outcome_fn or str(context.get("last_function_chosen") or "")
     _delta_r = context.pop("_step_delta_reward", None)

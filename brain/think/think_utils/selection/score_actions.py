@@ -12,7 +12,7 @@ dependency surface is explicit and unit-testable in isolation; the coordinator
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, FrozenSet, List, Optional, Tuple
 
 from brain.control_signals.reward_signals.action_reward_ema import (
@@ -70,6 +70,9 @@ _W_BOREDOM_CAT = 0.50    # category: all-think window ⇒ up to −0.20 on think
 # order of a strong affect-prior contribution, and decisive combined with the
 # exploration cap below and the (kept) multiplicative scaler.
 _W_VALUE = 0.6
+# Weight of an answered question's verdict on a candidate (answer_use.py). Set on
+# E5's dev problems only (brain/eval/e5_answer_use.py) — see the note there.
+_W_ANSWER = 0.6
 # Maturity gate for value authority — same ≥8-observation bar s_curio and the A4
 # scaler use, so exploration owns immature actions and value owns mature ones.
 _MATURITY_OBS = 8
@@ -143,6 +146,10 @@ class ScoreInputs:
     stagnation_signal: float
     attention_mode: str
     user_spoke: bool
+    # Answers inform selection (2026-11-02): the answered question bearing on this
+    # decision, and the candidate its answer describes (brain/cognition/answer_use.py).
+    answer_row: Optional[Dict[str, Any]] = None
+    answer_boost: Dict[str, float] = field(default_factory=dict)
 
 
 def score_candidates(
@@ -312,7 +319,8 @@ def score_candidates(
                 if _think_share > 0.6:
                     s_boredom -= _W_BOREDOM_CAT * (_think_share - 0.6)
 
-        total = (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp + s_value + s_boredom
+        s_answer = _W_ANSWER * float(si.answer_boost.get(name, 0.0))
+        total = s_answer + (w_dir * s_dir) + (w_goal * s_goal) + (w_emo * s_emo) + (w_novel * s_nov) + (w_band * s_band) + (w_drive * s_drv) + s_attn + s_energy + s_help + s_emo_route + s_chain + s_neuro + s_emo_mode + s_outward + s_reach + s_type_recruit + s_goal_recruit + s_goal_lens + s_recruit + s_explore + s_satiety + s_curio + s_evc + s_workspace + s_uncon_damp + s_value + s_boredom
 
         # A4 (RUN4_FIX_PLAN §1.3, S9): the multiplicative scaler is KEPT as the
         # secondary nudge behind Fix 1's additive term. For a MATURE action, the
@@ -475,7 +483,7 @@ def score_candidates(
             except Exception as exc:
                 record_failure("select_function.fn_suppression", exc)
 
-        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety, "value": s_value}))
+        scored.append((name, total, {"dir": s_dir, "goal": s_goal, "emo": s_emo, "novel": s_nov, "band": s_band, "drive": s_drv, "attn": s_attn, "energy": s_energy, "help": s_help, "emo_route": s_emo_route, "chain": s_chain, "neuro": s_neuro, "emo_mode": s_emo_mode, "outward": s_outward, "goal_recruit": s_goal_recruit, "goal_lens": s_goal_lens, "explore": s_explore, "exploit": s_exploit, "satiety": s_satiety, "value": s_value, "answer": s_answer}))
 
     return scored
 

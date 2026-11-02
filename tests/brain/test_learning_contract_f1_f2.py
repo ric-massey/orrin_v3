@@ -70,13 +70,13 @@ class _Speaker:
 
 def _cycle(ctx, pick, ran=None, reward=None, n=1):
     """One cycle: think()'s finalize for `pick`, then the loop executing `ran`."""
-    from brain.cognition.action_accounting import record_step_outcome
+    from brain.cognition.action_accounting import _record_step_outcome
     from brain.think.think_utils.finalize import finalize_cycle
     ctx["_cycle_index"] = n
     ctx["cycle_count"] = {"count": n}
     finalize_cycle(ctx, "", pick, {"via": "test"}, _Speaker())
     if ran is not None:
-        record_step_outcome(ctx, ran, reward)
+        _record_step_outcome(ctx, ran, reward)
         ctx["last_function_chosen"] = pick
 
 
@@ -118,10 +118,10 @@ def test_reward_engine_keys_on_the_function_that_ran(fresh):
 
 
 def test_outer_finalize_names_the_override():
-    from brain.cognition.action_accounting import record_step_outcome
+    from brain.cognition.action_accounting import _record_step_outcome
     import brain.loop.finalize as fin
     ctx = {"_cycle_index": 4}
-    record_step_outcome(ctx, "repair", 0.5)
+    _record_step_outcome(ctx, "repair", 0.5)
     # only the stamp logic is under test; stop after last_function_chosen is set
     try:
         fin.finalize_cycle(ctx, {"next_function": "alpha"}, 0.5, {}, 4)

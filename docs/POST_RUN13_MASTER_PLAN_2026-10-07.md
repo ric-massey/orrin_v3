@@ -101,7 +101,14 @@ Small, mostly independent fixes from the Run 13 live deep read
   matched controls) that nothing has passed, and `run-analysis` forbids scoring an
   intermediate event as learning. No code yet lets an answer change a selection.
   **E5 built (same day):** `scripts/run_e5.py`; first result FAIL, zero effect (0/200
-  trials flipped) — the baseline any answer-use mechanism has to move. Rows added to the Run 14 gate. Still open
+  trials flipped) — the baseline any answer-use mechanism has to move. **Answers
+  inform selection (same day):** `brain/cognition/answer_use.py` + a counterfactual
+  rescore in `select_function`; E5 PASS on held-out (relevant 1.000 vs 0.500, irrelevant
+  no effect), and 0 of Run 13's 17 real answers fire. Limits in `NEXT_RUN_TESTS.md`.
+  **Found on the way, not fixed:** every public function in a `brain/cognition` module is
+  a selectable cognitive function (`cognition_registry.discover_cognitive_functions`) —
+  the live pool of 285 includes helpers such as `bound_goal`, `budget_bytes`,
+  `mark_consequential_cognition`. The helpers added today are private; the rest are not. Rows added to the Run 14 gate. Still open
   from that report: attention learning and rule verification in the same
   finalizer still score the previous function's reward against this cycle's context;
   and the report's F5–F10 (controller authority, four-bucket task context, delayed

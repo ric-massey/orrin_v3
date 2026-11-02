@@ -116,7 +116,7 @@ def test_decision_reason_records_answered_topic_recurrence(monkeypatch, tmp_path
     assert "answer_topic_in_context" in reason
     assert reason["answer_topic_in_context"]["goal_id"] == "g_q1"
     assert "cites_answer" not in reason, "a topic match is not a citation (F4)"
-    rows = ac.topic_recurrence_rows()
+    rows = ac._topic_recurrence_rows()
     assert rows and rows[0]["topic_recurrences"] == 1
     assert rows[0]["last_recurrence_fn"] == "assess_goal_progress"
     # An unrelated decision context does not cite.

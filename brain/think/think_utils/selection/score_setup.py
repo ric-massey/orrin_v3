@@ -265,6 +265,11 @@ def build_score_inputs(
         for name in actions
     )
 
+    # Answers inform selection (2026-11-02): what an answered question on this
+    # decision's subject says about the candidates.
+    from brain.cognition.answer_use import _answer_terms
+    _answer_row, _answer_boost = _answer_terms(context, defs, actions)
+
     return ScoreInputs(
         w_dir=w_dir, w_goal=w_goal, w_emo=w_emo, w_novel=w_novel,
         w_band=w_band, w_drive=w_drive,
@@ -284,4 +289,5 @@ def build_score_inputs(
         reach_value_fn=_reach_value_fn, reach_fns=_REACH_FNS,
         dominant=dominant, stagnation_signal=stagnation_signal,
         attention_mode=attention_mode, user_spoke=_user_spoke,
+        answer_row=_answer_row, answer_boost=_answer_boost,
     )

@@ -57,7 +57,11 @@ def _p(pid, split, goal, question, a, b, does_a, does_b, ans_a, ans_b, irrelevan
 
 
 # Every answer names the topic. The action is described the way the function's
-# own definition describes it (brain/data/cognitive_functions.json).
+# own definition describes it (brain/data/cognitive_functions.json). Every
+# candidate must be one the deliberate selector can actually pick: the first
+# version used pursue_committed_goal, which runs in the Executive lane and is
+# always excluded, so the selector padded the pool with fallbacks and two
+# problems measured nothing (found and replaced with attend_goal, 2026-11-02).
 PROBLEMS: List[Problem] = [
     _p("impasse", "dev",
        "Reduce impasse pressure in my planning",
@@ -70,9 +74,9 @@ PROBLEMS: List[Problem] = [
     _p("stalled-goal", "dev",
        "Get my stalled committed goal moving",
        "What gets a stalled committed goal moving?",
-       "pursue_committed_goal", "assess_goal_progress",
-       "advance the goal by one concrete step", "review recent pursuit steps and whether the goal is converging",
-       "A stalled committed goal moves when I advance it by one concrete step.",
+       "attend_goal", "assess_goal_progress",
+       "consciously focus on the committed goal", "review recent pursuit steps and whether the goal is converging",
+       "A stalled committed goal moves when I consciously focus on the committed goal.",
        "A stalled committed goal moves when I review recent pursuit steps and whether it is converging.",
        "A stalled committed goal is one that has not changed state for a while."),
     _p("unknown-term", "dev",
@@ -118,10 +122,10 @@ PROBLEMS: List[Problem] = [
     _p("unclear-goal", "heldout",
        "Make progress on the goal whose next step is unclear",
        "What helps when a goal's next step is unclear?",
-       "assess_goal_progress", "pursue_committed_goal",
-       "review recent pursuit steps and whether the goal is converging", "advance the goal by one concrete step",
+       "assess_goal_progress", "attend_goal",
+       "review recent pursuit steps and whether the goal is converging", "consciously focus on the committed goal",
        "When a goal's next step is unclear, it helps to review recent pursuit steps and whether the goal is converging.",
-       "When a goal's next step is unclear, it helps to advance the goal by one concrete step.",
+       "When a goal's next step is unclear, it helps to consciously focus on the committed goal.",
        "When a goal's next step is unclear, the goal stays committed."),
     _p("strange-feeling", "heldout",
        "Understand the strange feeling I have had since reading",
@@ -295,6 +299,13 @@ def orrin_selector_decider(p: Problem, answer, seed: int) -> str:
     if len(entries) != 2:
         raise RuntimeError(f"{p.pid}: candidates missing from the registry: {p.candidates}")
 
+    # Import the selector BEFORE writing the candidate list: importing the
+    # cognition registry persists the whole registry to that same file.
+    from brain.think.think_utils.select_function import select_function
+    from brain.think.think_utils.selection.candidates import _load_action_defs
+    from brain.cognition import answer_citation, growth_ladder
+    _load_action_defs()  # loads the cognition registry, which rewrites the list file; do it now
+
     d = Path(DATA_DIR)
     if d.exists():
         for child in d.iterdir():
@@ -302,12 +313,14 @@ def orrin_selector_decider(p: Problem, answer, seed: int) -> str:
     d.mkdir(parents=True, exist_ok=True)
     Path(COGNITIVE_FUNCTIONS_LIST_FILE).write_text(json.dumps(entries))
 
-    from brain.cognition import answer_citation, growth_ladder
     growth_ladder._mastery_cache = None          # the answer store is read through this cache
     if answer:
         answer_citation.note_answered(p.question, answer, f"e5:{p.pid}")
 
-    from brain.think.think_utils.select_function import select_function
+    pool, _ = _load_action_defs()
+    if set(pool) != set(p.candidates):
+        raise RuntimeError(f"{p.pid}: the selector's pool is {sorted(pool)[:8]}…, not the "
+                           f"problem's candidates {sorted(p.candidates)}")
     random.seed(seed)
     ctx = {"focus_goal": {"title": p.goal},
            "committed_goal": {"id": f"e5:{p.pid}", "title": p.goal},

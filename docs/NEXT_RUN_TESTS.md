@@ -91,6 +91,7 @@ fixed 2026-11-02 — Ric: "Fix F1/F2 first", then "Fix F3 first")**
 | F1 | `assess_goal_progress` EMA with a goal committed | rewarded as pursuit (+0.3) | no higher than other non-advancing cognition |
 | F2 | `cognition_history` deliberate rows whose reward is the previous pick's | every row | 0 — each row's reward is its own (`executed` names an override) |
 | F2 | reward-engine / EMA key on override cycles | the selector's pick | the function that ran |
+| A1 | answer-changed decisions (`decisions_changed` summed over rows) | 0 (no reader existed) | reported; **every one audited**: was the answer about that action, and did the pick do better than its counterfactual? |
 | F4 | `answered_questions.json` rows | `cited` (2,501 in Run 13), read as "an answer changed a decision" | `topic_recurrences` — reported, never scored as growth |
 | F3 | `signal_function_map.json` functions per signal at death | 1 for all 8 signals (`impasse_signal → fetch_and_read: 0.1`) | > 1 wherever more than one function ran under it; failures hold values < successes |
 
@@ -141,8 +142,39 @@ claims, are not exercised.
 Success 0.500 in every condition; relevant − absent +0.000 [+0.000, +0.000]; the
 answer flipped the pick in 0 of 200 trials. The selector chose between the candidates
 (its pick differs across problems) but never because of what an answer said — as
-the code predicts, since nothing in selection reads an answer. E6 and E9 are not built.
-Until one passes, "Orrin learns" is a hypothesis.
+the code predicts, since nothing in selection reads an answer.
+
+**Answers inform selection — E5 PASS on held-out, 2026-11-02** (Ric: "Let answers inform
+selection"). `brain/cognition/answer_use.py`: before scoring, the answered question whose
+subject is in the deciding context is found; what its answer says beyond the subject is
+compared, stemmed, with each candidate's registry definition and name; a candidate that
+leads every other by ≥ 0.25 of the answer's predicate (and shares ≥ 2 stems) gets
+`0.6 × lead` (`_W_ANSWER` in `score_actions.py`). The selector then rescores without that
+term; `answer_use.changed_decision` in the reason payload and `informed` /
+`decisions_changed` on the answer's row count the counterfactual.
+
+| | absent | relevant | irrelevant | relevant − absent | flips |
+|---|---|---|---|---|---|
+| held-out, 20 seeds | 0.500 | 1.000 | 0.500 | +0.500 [+0.200, +0.800] | 1.000 |
+| dev, 20 seeds | 0.500 | 0.900 | 0.500 | +0.400 [+0.100, +0.700] | 0.800 |
+| all, term off (`_W_ANSWER = 0`) | 0.500 | 0.500 | 0.500 | +0.000 | 0.000 |
+
+How it was set, so the held-out number can be weighed: the weight and both floors were
+chosen on the dev problems and on Run 13's 17 real answers (none of them E5 problems).
+Held-out was run once, then again after the lead floor replaced a coverage floor that let
+2 of the 17 real answers fire; the numbers did not change. Two harness bugs were fixed on
+the way, both by validity rules rather than results: `pursue_committed_goal` is never
+selectable (replaced by `attend_goal` in two problems), and importing the registry rewrote
+the adapter's candidate list (the pool is now checked to be exactly the two candidates).
+The dev misses are honest: `reflect_on_effectiveness` and `compose_section` have almost no
+definition in the registry, so an answer describing them matches nothing.
+
+What this does not show: E5's answers are written to describe actions; Orrin's real
+answers are mostly facts about the world, and on Run 13's 17 none fires (the fixture is
+`tests/fixtures/run13/answered_questions.json`). The matcher has no sense of sign — an
+answer saying an action is *costly* would boost it if it fired — and it reads words, not
+meaning. Watch `decisions_changed` in Run 14 and audit every flip by hand. E6 and E9 are
+not built. Until one passes, "Orrin learns" is a hypothesis.
 
 ---
 

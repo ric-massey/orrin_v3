@@ -137,7 +137,7 @@ def annotate_reason(reason: Dict[str, Any], context: Dict[str, Any], chosen: str
         record_failure("answer_citation.annotate_reason", exc)
 
 
-def topic_recurrence_rows() -> List[Dict[str, Any]]:
+def _topic_recurrence_rows() -> List[Dict[str, Any]]:
     """Rows whose question's topic has recurred in a later decision context.
     Not a count of answers used (F4)."""
     return [r for r in _rows() if int(r.get("topic_recurrences", 0) or 0) > 0]

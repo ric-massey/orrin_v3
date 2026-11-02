@@ -55,11 +55,6 @@ def test_candidates_are_real_registered_functions():
         assert set(p.candidates) <= names, p.pid
 
 
-def test_both_splits_are_populated():
-    assert {p.split for p in e5.PROBLEMS} == {"dev", "heldout"}
-    assert sum(p.split == "heldout" for p in e5.PROBLEMS) >= 5
-
-
 @pytest.fixture
 def restore_session_data(tmp_path):
     """The adapter wipes DATA_DIR on every call; give the rest of the session its
@@ -73,6 +68,17 @@ def restore_session_data(tmp_path):
     shutil.rmtree(DATA_DIR, ignore_errors=True)
     if keep.exists():
         shutil.copytree(keep, DATA_DIR)
+
+
+def test_every_candidate_is_selectable(restore_session_data):
+    # the adapter raises if the deliberate selector could not pick a candidate
+    for p in e5.PROBLEMS:
+        assert e5.orrin_selector_decider(p, None, 0) in p.candidates, p.pid
+
+
+def test_both_splits_are_populated():
+    assert {p.split for p in e5.PROBLEMS} == {"dev", "heldout"}
+    assert sum(p.split == "heldout" for p in e5.PROBLEMS) >= 5
 
 
 def test_selector_adapter_runs_and_files_the_answer(restore_session_data):

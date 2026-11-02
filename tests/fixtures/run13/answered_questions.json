@@ -1,0 +1,145 @@
+[
+  {
+    "question": "What is there about emergence in complex systems that my earlier notes on it are missing?",
+    "answer": "complex system is a system composed of many components that interact with one another",
+    "goal_id": "g_e62c0425a7",
+    "ts": 1791316875.2,
+    "cited": 288,
+    "last_cited_ts": 1791418985.7,
+    "last_cited_fn": "research_topic"
+  },
+  {
+    "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+    "answer": "is a subjective experience which is interpreted within a religious framework",
+    "goal_id": "g_6afa2dce86",
+    "ts": 1791335582.1,
+    "cited": 24,
+    "last_cited_ts": 1791342842.7,
+    "last_cited_fn": "attend_goal"
+  },
+  {
+    "question": "What is there about world a world that my earlier notes on it are missing?",
+    "answer": "Subjective lists of features and structures This article is about natural and human-made phenomena and structures of the world",
+    "goal_id": "g_44a997d3b1",
+    "ts": 1791341916.5,
+    "cited": 1546,
+    "last_cited_ts": 1791418281.2,
+    "last_cited_fn": "attend_goal"
+  },
+  {
+    "question": "What is there about history that my earlier notes on it are missing?",
+    "answer": "while Coman was an economic historian who is credited with writing the first industrial history of the US",
+    "goal_id": "g_2a464a2685",
+    "ts": 1791342375.1,
+    "cited": 70,
+    "last_cited_ts": 1791414997.1,
+    "last_cited_fn": "fetch_and_read"
+  },
+  {
+    "question": "What is there about quantum mechanics foundations that my earlier notes on it are missing?",
+    "answer": "Richard Feynman The history of quantum mechanics is a fundamental part of the history of modern physics",
+    "goal_id": "g_1bb4f6fb09",
+    "ts": 1791323717.1,
+    "cited": 115,
+    "last_cited_ts": 1791415048.2,
+    "last_cited_fn": "wikipedia_search"
+  },
+  {
+    "question": "What is there about this game-playing ai that my earlier notes on it are missing?",
+    "answer": "the free encyclopedia This article is about role-playing video games developed in East Asia",
+    "goal_id": "g_081d8108f6",
+    "ts": 1791344202.8,
+    "cited": 22,
+    "last_cited_ts": 1791418939.7,
+    "last_cited_fn": "fetch_and_read"
+  },
+  {
+    "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+    "answer": "Quantization is one of the foundations of the much broader physics of quantum mechanics",
+    "goal_id": "g_6c67ffdd4f",
+    "ts": 1791325510.1,
+    "cited": 0
+  },
+  {
+    "question": "What is there about mathematics that my earlier notes on it are missing?",
+    "answer": "Mathematics was developed by the Ancient Civilizations for intellectual challenge and pleasure",
+    "goal_id": "g_88555e96ba",
+    "ts": 1791325983.4,
+    "cited": 5,
+    "last_cited_ts": 1791341906.8,
+    "last_cited_fn": "research_topic"
+  },
+  {
+    "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+    "answer": "Evolutionary biology is a subfield of biology that analyzes the four mechanisms of evolution",
+    "goal_id": "g_ed48061c06",
+    "ts": 1791322496.1,
+    "cited": 119,
+    "last_cited_ts": 1791417618.1,
+    "last_cited_fn": "leave_note"
+  },
+  {
+    "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+    "answer": "developmental biology or informally human evo-devo is the human-specific subset of evolutionary developmental biology",
+    "goal_id": "g_485ff9466f",
+    "ts": 1791330970.2,
+    "cited": 0
+  },
+  {
+    "question": "What is there about the west that my earlier notes on it are missing?",
+    "answer": "Key West was the wealthiest city in the United States per capita",
+    "goal_id": "g_41d041f210",
+    "ts": 1791409323.5,
+    "cited": 3,
+    "last_cited_ts": 1791343118.3,
+    "last_cited_fn": "fetch_and_read"
+  },
+  {
+    "question": "What makes my memory use (RSS) climb?",
+    "answer": "prediction confirmed: My memory use (RSS) rises after read_a_book runs",
+    "goal_id": "g_8defcfaea8",
+    "ts": 1791395310.8,
+    "cited": 296,
+    "last_cited_ts": 1791395063.0,
+    "last_cited_fn": "leave_note"
+  },
+  {
+    "question": "What is there about history of written language that my earlier notes on it are missing?",
+    "answer": "languages designed to communicate instructions to a computer were written in the early 1950s",
+    "goal_id": "g_f17082caaf",
+    "ts": 1791332266.4,
+    "cited": 0
+  },
+  {
+    "question": "What is there about round the sun that my earlier notes on it are missing?",
+    "answer": "Round the Sun is the third album by American guitarist Leo Kottke",
+    "goal_id": "g_d6649e4601",
+    "ts": 1791356150.7,
+    "cited": 12,
+    "last_cited_ts": 1791376772.6,
+    "last_cited_fn": "leave_note"
+  },
+  {
+    "question": "What is there about High Road that my earlier notes on it are missing?",
+    "answer": "high-clearance four-wheel drive vehicle is required to travel effectively on a forest road",
+    "goal_id": "g_0b089b2c67",
+    "ts": 1791367066.1,
+    "cited": 1,
+    "last_cited_ts": 1791367068.5,
+    "last_cited_fn": "research_topic"
+  },
+  {
+    "question": "What is there about world that my earlier notes on it are missing?",
+    "answer": "many substances as their parts while others hold that worlds are simple in the sense that there is only one substance",
+    "goal_id": "g_5fc4a538d5",
+    "ts": 1791384307.4,
+    "cited": 0
+  },
+  {
+    "question": "What is there about philosophy of mathematics that my earlier notes on it are missing?",
+    "answer": "view that existence proofs must be constructive This article is about the view in the philosophy of mathematics",
+    "goal_id": "g_7779f23993",
+    "ts": 1791390840.6,
+    "cited": 0
+  }
+]

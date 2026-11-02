@@ -271,15 +271,15 @@ def run_cognitive_loop(
             # think() finalize credits the right function. Cognition names its own
             # (an override may have swapped it); an action is the action think chose.
             try:
-                from brain.cognition.action_accounting import record_step_outcome
+                from brain.cognition.action_accounting import _record_step_outcome
                 _ran_fn = context.pop("_executed_fn", None)
                 if _ran_fn is None and isinstance(result, dict) and "action" in result:
                     _act = result.get("action") or {}
                     _ran_fn = _act.get("type") or _act.get("name")
                 if _ran_fn:
-                    record_step_outcome(context, _ran_fn, reward)
+                    _record_step_outcome(context, _ran_fn, reward)
             except Exception as _e:
-                record_failure("ORRIN_loop.record_step_outcome", _e)
+                record_failure("ORRIN_loop._record_step_outcome", _e)
             if not context.get("_reward_rate_updated_this_cycle"):
                 try:
                     from brain.cognition.reward_rate import update_reward_rate

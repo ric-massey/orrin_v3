@@ -255,6 +255,31 @@ def select_function(
     scored = score_candidates(actions, defs, _score_inputs, context)
 
     scored.sort(key=lambda t: t[1], reverse=True)
+
+    # Answers inform selection (2026-11-02): when an answered question bore on
+    # this decision, score it again without the answer's term. Whether the top
+    # pick differs is the counterfactual the answer's row counts — the
+    # difference annotate_reason's topic overlap could never show (F4).
+    _answer_use = None
+    if _score_inputs.answer_boost and scored:
+        try:
+            import dataclasses as _dc
+            _without = score_candidates(
+                actions, defs, _dc.replace(_score_inputs, answer_boost={}), context)
+            _top_without = max(_without, key=lambda t: t[1])[0] if _without else ""
+            _row = _score_inputs.answer_row or {}
+            _answer_use = {
+                "question": str(_row.get("question", ""))[:120],
+                "goal_id": _row.get("goal_id"),
+                "boost": {k: round(v, 3) for k, v in _score_inputs.answer_boost.items()},
+                "changed_decision": scored[0][0] != _top_without,
+                "pick_without": _top_without,
+            }
+            from brain.cognition.answer_use import _note_decision
+            _note_decision(_row, _answer_use["changed_decision"])
+        except Exception as _e:
+            record_failure("select_function.answer_use", _e)
+
     if context.get("goal_lens"):
         try:
             _lens_ranked = [
@@ -334,6 +359,8 @@ def select_function(
     # question's subject records that recurrence in this payload. It runs after
     # the pick and reads no answer, so it is NOT evidence an answer changed the
     # decision (F4, 2026-10-17).
+    if _answer_use is not None:
+        reason["answer_use"] = _answer_use
     try:
         from brain.cognition.answer_citation import annotate_reason
         annotate_reason(reason, context, chosen)

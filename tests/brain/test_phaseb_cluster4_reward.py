@@ -119,10 +119,10 @@ def test_topic_recurrence_counts_once_per_decision_window():
     ctx = {"bound_goal": "Understand emergence in complex systems more deeply"}
     for _ in range(50):
         ac.annotate_reason({}, ctx, "research_topic")
-    assert ac.topic_recurrence_rows()[0]["topic_recurrences"] == 1
+    assert ac._topic_recurrence_rows()[0]["topic_recurrences"] == 1
     ac.annotate_reason({}, {"bound_goal": "Write about emergence in complex systems"},
                        "compose_section")
-    assert ac.topic_recurrence_rows()[0]["topic_recurrences"] == 2
+    assert ac._topic_recurrence_rows()[0]["topic_recurrences"] == 2
 
 
 # ── B24: rule hits are once per cycle on every path ──────────────────────────

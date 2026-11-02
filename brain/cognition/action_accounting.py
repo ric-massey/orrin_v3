@@ -76,7 +76,7 @@ def reset_cycle_action_flags(context: Dict[str, Any]) -> None:
     context.pop("_verified_artifact_this_cycle", None)
 
 
-def record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> None:
+def _record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> None:
     """F2 (learning investigation, 2026-10-17): stamp what was EXECUTED this cycle
     with the reward it earned, so learners never pair one function's outcome with
     another function's name.
@@ -102,7 +102,7 @@ def record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> N
     }
 
 
-def take_step_outcome(context: Dict[str, Any]) -> Dict[str, Any] | None:
-    """Pop the last executed step's outcome (see record_step_outcome)."""
+def _take_step_outcome(context: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Pop the last executed step's outcome (see _record_step_outcome)."""
     out = context.pop("_step_outcome", None)
     return out if isinstance(out, dict) and out.get("fn") else None

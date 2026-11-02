@@ -105,6 +105,68 @@ def _is_dispatchable(name: str) -> bool:
     return ok
 
 
+# The registry-leak fix (2026-11-02, Ric: "Fix the registry leak").
+# cognition_registry.discover_cognitive_functions makes EVERY public function in a
+# brain.cognition module a "cognitive function", and the name filters above only
+# catch some prefixes, so the live pool of 285 was half plumbing: getters
+# (budget_bytes, rung, life_status), recorders (record_failure, record_completion),
+# and worse (rebirth_if_elapsed, mark_final_thoughts_written). Run 13 picked
+# cpu_count 35 times and cadence_multiplier / heavy_cycle_frequency 5 each, and
+# the dormant-function nudge gives every never-used helper ~8 tries a life.
+#
+# A function is now selectable only if it is DECLARED cognition: it has an entry
+# in the committed capability manifest (brain/data/capability_descriptions.json),
+# Orrin authored it (custom cognition — marked by cognition_registry._merge_custom),
+# or it is listed below. Of Run 13's 76 picked functions only those three helpers
+# lose selectability.
+#
+# Listed here rather than given a manifest entry: functions the selector's own
+# tables already treat as choices (priors, tag sets, organ timers) but which have
+# no capability description. A manifest entry would also make them recruitable
+# by goal prose; this keeps their behaviour as it was. submit_finetune_job and
+# run_pipeline are here because the exploration notes keep them "selectable on
+# merit, never forced" — whether they should be selectable at all is Ric's call.
+_DECLARED_WITHOUT_DESCRIPTION: frozenset[str] = frozenset({
+    "compose_consolidation", "idle_consolidation_cycle", "investigate_unexplained_emotions",
+    "mark_private", "metacog_flush", "narrate_experience", "plan_self_evolution",
+    "reflect_on_affect", "reflect_on_emotion_model", "run_symbolic_consolidation",
+    "submit_finetune_job", "run_pipeline",
+})
+_declared_cache: Dict[str, Any] = {"names": None}
+
+
+def _manifest_names() -> frozenset[str]:
+    """Every function named in the capability manifest (cached; the file ships
+    with the code). Empty on a read failure — callers fail open on empty."""
+    if _declared_cache["names"] is None:
+        try:
+            import json as _json
+            from brain.think.think_utils.selection.catalog import _CAPS_PATH
+            _declared_cache["names"] = frozenset(_json.loads(_CAPS_PATH.read_text("utf-8")))
+        except Exception as exc:
+            record_failure("candidates._manifest_names", exc)
+            return frozenset()
+    return _declared_cache["names"]
+
+
+def _is_declared_cognition(name: str) -> bool:
+    """True if `name` is declared cognition (see the note above). Fails open —
+    keeps the candidate — if the manifest cannot be read, so a broken file can
+    never empty the pool."""
+    manifest = _manifest_names()
+    if not manifest:
+        return True
+    if name in manifest or name in _DECLARED_WITHOUT_DESCRIPTION:
+        return True
+    try:
+        from brain.registry.cognition_registry import COGNITIVE_FUNCTIONS  # lazy: avoid import cycle
+        meta = COGNITIVE_FUNCTIONS.get(name)
+        return bool(isinstance(meta, dict) and meta.get("authored"))
+    except Exception as exc:
+        record_failure("candidates._is_declared_cognition", exc)
+        return False
+
+
 def _impossible_now() -> frozenset[str]:
     """R10-8: actions the gate has refused (LLM circuit open / tool absent) that
     are still inside their believed-impossible window — they leave the selectable
@@ -128,7 +190,8 @@ def _load_actions() -> List[str]:
     names: List[str] = []
     for it in items:
         name = str(it["name"]) if isinstance(it, dict) and "name" in it else (it if isinstance(it, str) else "")
-        if name and name not in excluded and _is_selectable_name(name) and _is_dispatchable(name):
+        if (name and name not in excluded and _is_selectable_name(name)
+                and _is_declared_cognition(name) and _is_dispatchable(name)):
             names.append(name)
     return names or FALLBACK_ACTIONS
 
@@ -159,12 +222,14 @@ def _load_action_defs() -> Tuple[List[str], Dict[str, str]]:
     for it in items:
         if isinstance(it, dict) and "name" in it:
             nm = str(it["name"])
-            if nm in excluded or not _is_selectable_name(nm) or not _is_dispatchable(nm):
+            if (nm in excluded or not _is_selectable_name(nm)
+                    or not _is_declared_cognition(nm) or not _is_dispatchable(nm)):
                 continue
             names.append(nm)
             defs[nm] = str(it.get("definition") or nm)
         elif isinstance(it, str):
-            if it in excluded or not _is_selectable_name(it) or not _is_dispatchable(it):
+            if (it in excluded or not _is_selectable_name(it)
+                    or not _is_declared_cognition(it) or not _is_dispatchable(it)):
                 continue
             names.append(it)
             defs[it] = it

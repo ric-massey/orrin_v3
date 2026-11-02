@@ -91,6 +91,7 @@ fixed 2026-11-02 — Ric: "Fix F1/F2 first", then "Fix F3 first")**
 | F1 | `assess_goal_progress` EMA with a goal committed | rewarded as pursuit (+0.3) | no higher than other non-advancing cognition |
 | F2 | `cognition_history` deliberate rows whose reward is the previous pick's | every row | 0 — each row's reward is its own (`executed` names an override) |
 | F2 | reward-engine / EMA key on override cycles | the selector's pick | the function that ran |
+| R1 | picks of a function outside declared cognition (manifest, authored, or `_DECLARED_WITHOUT_DESCRIPTION`) | `cpu_count` 35, `cadence_multiplier` 5, `heavy_cycle_frequency` 5 | 0 |
 | A1 | answer-changed decisions (`decisions_changed` summed over rows) | 0 (no reader existed) | reported; **every one audited**: was the answer about that action, and did the pick do better than its counterfactual? |
 | F4 | `answered_questions.json` rows | `cited` (2,501 in Run 13), read as "an answer changed a decision" | `topic_recurrences` — reported, never scored as growth |
 | F3 | `signal_function_map.json` functions per signal at death | 1 for all 8 signals (`impasse_signal → fetch_and_read: 0.1`) | > 1 wherever more than one function ran under it; failures hold values < successes |

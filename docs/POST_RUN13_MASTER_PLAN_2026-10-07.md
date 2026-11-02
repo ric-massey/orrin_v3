@@ -105,10 +105,15 @@ Small, mostly independent fixes from the Run 13 live deep read
   inform selection (same day):** `brain/cognition/answer_use.py` + a counterfactual
   rescore in `select_function`; E5 PASS on held-out (relevant 1.000 vs 0.500, irrelevant
   no effect), and 0 of Run 13's 17 real answers fire. Limits in `NEXT_RUN_TESTS.md`.
-  **Found on the way, not fixed:** every public function in a `brain/cognition` module is
-  a selectable cognitive function (`cognition_registry.discover_cognitive_functions`) —
-  the live pool of 285 includes helpers such as `bound_goal`, `budget_bytes`,
-  `mark_consequential_cognition`. The helpers added today are private; the rest are not. Rows added to the Run 14 gate. Still open
+  **Registry leak (fixed same day, Ric: "Fix the registry leak"):** every public
+  function in a `brain/cognition` module was a selectable cognitive function — the pool
+  of 285 was half plumbing, and Run 13 picked `cpu_count` 35 times. Only declared
+  cognition is selectable now (`selection/candidates._is_declared_cognition`): a
+  capability-manifest entry, authored by Orrin (`_merge_custom` marks it), or the short
+  `_DECLARED_WITHOUT_DESCRIPTION` list. Pool 285 → 147; of Run 13's 76 picks only
+  `cpu_count`, `cadence_multiplier`, `heavy_cycle_frequency` drop out. **Ric's call:**
+  `submit_finetune_job` and `run_pipeline` stay selectable because the exploration notes
+  say "selectable on merit, never forced" — drop them from that list if not. Rows added to the Run 14 gate. Still open
   from that report: attention learning and rule verification in the same
   finalizer still score the previous function's reward against this cycle's context;
   and the report's F5–F10 (controller authority, four-bucket task context, delayed

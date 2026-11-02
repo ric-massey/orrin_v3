@@ -64,12 +64,15 @@ def _merge_custom(funcs: Dict[str, Dict[str, object]]) -> Dict[str, Dict[str, ob
                 # Skip private helpers from custom too
                 if isinstance(name, str) and name.startswith("_"):
                     continue
+                # "authored": Orrin wrote it — selectable without a manifest entry
+                # (selection/candidates._is_declared_cognition, 2026-11-02).
                 if callable(obj):
-                    funcs[name] = {"function": obj, "is_cognition": True}
+                    funcs[name] = {"function": obj, "is_cognition": True, "authored": True}
                 elif isinstance(obj, dict) and callable(obj.get("function")):
                     funcs[name] = {
                         "function": obj["function"],
                         "is_cognition": bool(obj.get("is_cognition", True)),
+                        "authored": True,
                     }
         return funcs
     except Exception as e:

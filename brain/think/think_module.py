@@ -8,7 +8,6 @@ import time
 from typing import Any, Dict, List
 
 from brain.utils.json_utils import load_json
-from brain.utils.signal_keyword_utils import dominant_signal
 from brain.utils.log import log_error
 
 from brain.utils.manage_cycle_count import manage_cycle_count
@@ -369,14 +368,11 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         except Exception as _ne:
             record_failure("think_module.think.narrate", _ne)
 
-        # Link dominant emotion → function. F2 (2026-10-17): this used to update
-        # (today's emotion, today's pick) with context["last_reward"] — which, at
-        # this point in the cycle, is the reward of the function executed TWO
-        # cycles ago. Now the emotion is stashed with the pick, execution carries
-        # it on the step outcome, and finalize_cycle reinforces the pair once the
-        # function that ran has its own reward.
-        dom_emo = dominant_signal(affect_state)
-        context["_selection_dom_emo"] = dom_emo or None
+        # F2 (2026-10-17): no emotion → function update here. This one paired
+        # (today's emotion, today's pick) with context["last_reward"] — at this
+        # point in the cycle the reward of the function executed TWO cycles ago.
+        # execute_cognition_function updates the map with the function that ran,
+        # its own reward and the affect before it ran (the map's one writer, F3).
 
         # === 7) Conflict-gated deliberation (Fix 3; Botvinick et al. 2001) =======
         # Default stance is unchanged: the LLM is a TOOL, not a background engine —

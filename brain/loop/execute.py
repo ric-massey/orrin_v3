@@ -457,9 +457,8 @@ def execute_cognition_function(
                 context["last_acceptance_pass"] = not _is_failure and _wm_refs
             except Exception:
                 context["last_acceptance_pass"] = not _is_failure
-            # Update emotion→function map with actual reward (not always 1.0).
-            # think_module.py uses last_reward from the *previous* cycle as a
-            # proxy; here we update with the real outcome for better accuracy.
+            # Update emotion→function map with this function's own reward, under
+            # the affect it ran from — the map's one writer (F3, 2026-11-02).
             try:
                 _core_pre = (_emo_pre.get("core_signals") or _emo_pre) or {}
                 _dom_emo = max(

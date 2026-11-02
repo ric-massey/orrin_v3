@@ -7,10 +7,11 @@ In biology, plasticity is a property of every neural event, not a separate
 module. Every cognitive cycle leaves a trace that makes future cycles
 slightly different. This module implements that at three levels:
 
-1. Hebbian emotion→function reinforcement
-   Whatever function ran under whatever dominant emotion gets a weighted
-   update in the emotion_function_map. Stronger reward = stronger trace.
-   This runs on top of (not replacing) the existing update_signal_function_map.
+1. (Removed 2026-11-02, F3.) Hebbian emotion→function reinforcement wrote a
+   second, scaled copy of every outcome into signal_function_map.json, read
+   affect AFTER the act rather than the affect it was chosen under, and its
+   negatives were floored to +0.1 by the map. execute_cognition_function's
+   update is now the map's one writer.
 
 2. Spreading activation update
    The function that ran primes related functions for the next cycle.
@@ -30,10 +31,6 @@ from brain.core.runtime_log import get_logger
 from typing import Any, Dict, List
 from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
-
-# How strongly emotion→function associations reinforce vs the standard path
-# Standard: increment=reward. Hebbian: smaller but always fires.
-_HEBBIAN_SCALE = 0.15
 
 # How many related functions to prime (by name similarity / co-occurrence)
 _PRIME_TOP_N = 5
@@ -56,11 +53,6 @@ def apply_adaptation(
         return
 
     try:
-        _hebbian_update(fn_name, context, reward)
-    except Exception as _e:
-        record_failure("adaptation.apply_adaptation", _e)
-
-    try:
         _spreading_activation(fn_name, context, reward)
     except Exception as _e:
         record_failure("adaptation.apply_adaptation.2", _e)
@@ -69,51 +61,6 @@ def apply_adaptation(
         _tag_recent_memories(context)
     except Exception as _e:
         record_failure("adaptation.apply_adaptation.3", _e)
-
-
-# ------------------------------------------------------------------
-# 1. Hebbian reinforcement
-
-def _hebbian_update(fn_name: str, context: Dict[str, Any], reward: float) -> None:
-    """
-    Strengthen or weaken the emotion→function association for what just ran.
-    This complements the existing update_signal_function_map (which is called
-    in ORRIN_loop on the cognition path). This fires on ALL paths including
-    action and fallback, so no event goes unlearned.
-    """
-    es = context.get("affect_state") or {}
-    core = (es.get("core_signals") or es) or {}
-
-    # Find dominant emotion
-    numeric = {k: float(v) for k, v in core.items()
-               if isinstance(v, (int, float)) and 0.0 <= float(v) <= 1.0}
-    if not numeric:
-        return
-
-    dominant = max(numeric, key=numeric.get)
-    dom_intensity = numeric[dominant]
-
-    # Scale: reward * intensity * hebbian_scale
-    # Negative reward weakens the association; positive strengthens it
-    increment = float(reward) * dom_intensity * _HEBBIAN_SCALE
-
-    try:
-        from brain.control_signals.signal_learning import update_signal_function_map
-        update_signal_function_map(dominant, fn_name, reward_signal=increment)
-    except Exception as _e:
-        record_failure("adaptation._hebbian_update", _e)
-
-    # Secondary: also reinforce for the second-strongest emotion if elevated
-    sorted_emos = sorted(numeric.items(), key=lambda x: x[1], reverse=True)
-    if len(sorted_emos) >= 2:
-        second_emo, second_val = sorted_emos[1]
-        if second_val > 0.40:
-            secondary_increment = float(reward) * second_val * _HEBBIAN_SCALE * 0.5
-            try:
-                from brain.control_signals.signal_learning import update_signal_function_map
-                update_signal_function_map(second_emo, fn_name, reward_signal=secondary_increment)
-            except Exception as _e:
-                record_failure("adaptation._hebbian_update.2", _e)
 
 
 # ------------------------------------------------------------------

@@ -86,7 +86,7 @@ def record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> N
     under the NEW pick (cognition history, replay, the deliberation discount) and
     under `last_function_chosen`, which is the selector's pick even when a
     setpoint override ran something else. This record names the function that
-    actually ran, the affect it was chosen under, and whether it advanced the goal.
+    actually ran and whether it advanced the goal.
     """
     try:
         r = float(reward)
@@ -97,7 +97,6 @@ def record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> N
     context["_step_outcome"] = {
         "fn": str(fn_name),
         "reward": r,
-        "dom_emo": context.get("_selection_dom_emo"),
         "produced": cycle_produced_goal_action(context),
         "cycle": context.get("_cycle_index"),
     }

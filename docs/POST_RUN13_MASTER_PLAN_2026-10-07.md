@@ -89,9 +89,13 @@ Small, mostly independent fixes from the Run 13 live deep read
   goal progress now credits only consequential action, and as a shift around neutral
   (an unrelated or failed call keeps its own reward); every learner fed by think()'s
   finalizer is keyed on the function that actually ran, and cognition history writes a
-  row once that row's own reward is known. Rows added to the Run 14 gate. Still open
-  from that report: F3 (signal→function map is a recency selector), F4/F12 (citation
-  is not decision change), attention learning and rule verification in the same
+  row once that row's own reward is known. **F3 (same day):** the signal→function map
+  holds each function's average reward under each signal (a failure lowers it),
+  keeps up to 20 per signal, and has one writer (`execute_cognition_function`); the
+  Hebbian copy in `runtime_coupling/adaptation.py`, `action_gate`'s outcome-free
+  nudge and the A4.2 share cap are gone, and a lone association is scored by its
+  value, not given full weight. Rows added to the Run 14 gate. Still open from that
+  report: F4/F12 (citation is not decision change), attention learning and rule verification in the same
   finalizer still score the previous function's reward against this cycle's context.
 - **Before Run 14** (not done): ~2k-cycle smoke life for the cluster 1–2 observables, hard
   reset + restore the two seeds, launch with the staged band (build brief §3).

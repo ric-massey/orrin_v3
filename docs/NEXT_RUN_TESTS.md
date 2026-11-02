@@ -82,8 +82,8 @@ against its Run 13 baseline.
 | B28 | `production_attempt_goal_count` vs funnel `producer_ran` | 1,275 vs 164 (different units) | same order |
 | B12 | `[host] suspended` lines for gaps > 60 s; affect/staleness by seconds | — | every gap logged and credited |
 
-**Learning contract (F1/F2 of `analysis/2026-10-17-cognitive-learning-investigation/`,
-fixed 2026-11-02 — Ric: "Fix F1/F2 first")**
+**Learning contract (F1–F3 of `analysis/2026-10-17-cognitive-learning-investigation/`,
+fixed 2026-11-02 — Ric: "Fix F1/F2 first", then "Fix F3 first")**
 
 | # | Observable | Before | Pass |
 |---|---|---|---|
@@ -91,8 +91,10 @@ fixed 2026-11-02 — Ric: "Fix F1/F2 first")**
 | F1 | `assess_goal_progress` EMA with a goal committed | rewarded as pursuit (+0.3) | no higher than other non-advancing cognition |
 | F2 | `cognition_history` deliberate rows whose reward is the previous pick's | every row | 0 — each row's reward is its own (`executed` names an override) |
 | F2 | reward-engine / EMA key on override cycles | the selector's pick | the function that ran |
+| F3 | `signal_function_map.json` functions per signal at death | 1 for all 8 signals (`impasse_signal → fetch_and_read: 0.1`) | > 1 wherever more than one function ran under it; failures hold values < successes |
 
-Both are unit-tested (`tests/brain/test_learning_contract_f1_f2.py`); a live life is
+All three are unit-tested (`tests/brain/test_learning_contract_f1_f2.py`,
+`tests/brain/test_signal_map_f3.py`); a live life is
 what shows whether honest rewards change selection. Expect reward EMAs to sit lower
 than Run 13's — that is the point, not a regression.
 
@@ -725,7 +727,7 @@ uses) has its whole positive score scaled by **(0.5 + EMA)**:
 The old additive `s_exploit` term is **removed from the sum** (kept only for
 telemetry) so the modulator is not double-counted. In parallel, per-signal
 affect couplings are **L1-normalized and capped at 0.5 share**
-(`signal_learning._bound_coupling_shares`) so no single coupling (2026-07-03:
+(`signal_learning._bound_coupling_shares`; removed 2026-11-02 with F3 — the map now holds bounded reward averages) so no single coupling (2026-07-03:
 `exploration_drive→look_outward` at 0.706) can structurally outvote value.
 
 **S9 passes in Run 4 iff:** a mature action's final score scales by (0.5 + EMA);

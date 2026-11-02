@@ -270,8 +270,6 @@ def evaluate_and_act_if_needed(
     agentic_actions = [a for a in filtered_actions if a["type"] in AGENTIC_TYPES]
     if cur >= dynamic_max_cycles and agentic_actions:
         log_private(f"🚨 Stagnation: Forcing agentic action after {cur} cycles (max {dynamic_max_cycles})")
-        from brain.control_signals.signal_learning import update_signal_function_map
-        update_signal_function_map("impasse_signal", "agentic_action")
         context["stagnation_signal_count"] = 0
         context["cycles_since_agentic_action"] = 0
         best_agentic, _ = max(((a, score_action(a, affect_state, long_memory)) for a in agentic_actions), key=lambda x: x[1])

@@ -117,17 +117,6 @@ def test_reward_engine_keys_on_the_function_that_ran(fresh):
     assert entry["choice"] == "alpha" and entry["executed"] == "repair"
 
 
-def test_signal_map_learns_the_emotion_the_function_was_chosen_under(fresh):
-    from brain.paths import SIGNAL_FUNCTION_MAP_FILE
-    ctx = {"affect_state": {"core_signals": {}}, "_selection_dom_emo": "curiosity"}
-    _cycle(ctx, "alpha", ran="alpha", reward=0.8, n=1)
-    ctx["_selection_dom_emo"] = "fear"
-    _cycle(ctx, "beta", n=2)
-    m = json.loads(SIGNAL_FUNCTION_MAP_FILE.read_text())
-    assert "alpha" in (m.get("curiosity") or {})
-    assert "beta" not in (m.get("fear") or {})
-
-
 def test_outer_finalize_names_the_override():
     from brain.cognition.action_accounting import record_step_outcome
     import brain.loop.finalize as fin

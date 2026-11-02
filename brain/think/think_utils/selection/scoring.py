@@ -118,9 +118,14 @@ def _signal_pref_scores_for_dominant(actions: List[str]) -> Dict[str, float]:
         return {}
 
     vals = list(pref.values())
-    if len(vals) == 1:               # singleton → full weight
-        k = next(iter(pref))
-        return {k: 1.0}
+    if len(vals) == 1:
+        # F3 (2026-10-17): a lone association used to get full weight, so the one
+        # function the old update left behind — often one that had just failed —
+        # read as the strongest preference. With nothing to rank it against, score
+        # it by its own value (the map holds average reward), floored like the
+        # worst of a ranked set.
+        k, v = next(iter(pref.items()))
+        return {k: 0.15 + 0.85 * max(0.0, min(1.0, v))}
 
     lo, hi = min(vals), max(vals)
     span = (hi - lo) or 1.0

@@ -197,15 +197,6 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         _reward(context, signal="reward_signal", actual=actual_fb, expected=0.5, effort=0.5,
                 mode="phasic", source="env_delta")
 
-    # Emotion → function association (moved here from think(), F2): reinforce the
-    # affect the executed function was CHOSEN under with that function's reward.
-    if _outcome and _outcome.get("dom_emo"):
-        try:
-            from brain.control_signals.signal_learning import update_signal_function_map
-            update_signal_function_map(_outcome["dom_emo"], _outcome_fn, reward_signal=actual_fb)
-        except Exception as _e:
-            record_failure("finalize.signal_function_map", _e)
-
     # Attention value learning: sources that were active this cycle get credit
     # or penalty based on whether the cycle produced high reward.
     try:

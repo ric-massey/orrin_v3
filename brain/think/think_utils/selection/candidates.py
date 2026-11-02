@@ -125,7 +125,7 @@ def _is_dispatchable(name: str) -> bool:
 # no capability description. A manifest entry would also make them recruitable
 # by goal prose; this keeps their behaviour as it was. submit_finetune_job and
 # run_pipeline are here because the exploration notes keep them "selectable on
-# merit, never forced" — whether they should be selectable at all is Ric's call.
+# merit, never forced"; Ric confirmed it on 2026-11-02 ("Keep them").
 _DECLARED_WITHOUT_DESCRIPTION: frozenset[str] = frozenset({
     "compose_consolidation", "idle_consolidation_cycle", "investigate_unexplained_emotions",
     "mark_private", "metacog_flush", "narrate_experience", "plan_self_evolution",
